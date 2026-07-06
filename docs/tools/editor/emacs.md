@@ -11,7 +11,7 @@ thể dùng. Tuy nhiên, để dùng Emacs thành thạo cho nhiều công việ
 vẫn cần một khoảng thời gian nhất định.
 
 Là một hướng dẫn nhập môn, trang này chỉ giới thiệu các chức năng cơ bản của
-Emacs, cũng như cách dùng Emacs để viết và gỡ lỗi mã thuận tiện hơn.
+Emacs, cũng như cách dùng Emacs để viết và gỡ lỗi mã hiệu quả hơn.
 
 ## Nhập môn
 
@@ -35,19 +35,19 @@ Có thể nhấp tên bộ đệm ở đáy vùng bộ đệm hoặc dùng phím
 
 ### Biên dịch, gỡ lỗi và chạy
 
-Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools (`Công cụ`) trên thanh menu phía trên. Người dùng cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để dùng chức năng biên dịch và gỡ lỗi.
+Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuống Tools (`Công cụ`) trên thanh menu phía trên. Cũng có thể dùng lệnh hoặc phím tắt tự định nghĩa để gọi chức năng biên dịch và gỡ lỗi.
 
 Có thể dùng trình dòng lệnh hoặc Eshell để chạy chương trình.
 
 Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools (`Công cụ`), nhập tên chương trình
 (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành
 tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể
-sai**) là có thể bắt đầu gỡ lỗi.
+sai**) để bắt đầu gỡ lỗi.
 
 ### Chia cửa sổ
 
-Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều bộ đệm mà
-không cần chuyển qua lại giữa các bộ đệm, thuận tiện cho kiểm thử và gỡ lỗi mã.
+Chức năng này cho phép xem đồng thời nội dung của nhiều bộ đệm mà không cần
+chuyển qua lại giữa các bộ đệm, hỗ trợ kiểm thử và gỡ lỗi mã.
 
 Chức năng chia cửa sổ có thể hiển thị nhiều cửa sổ cùng lúc; kéo mép cửa sổ bằng chuột để thay đổi kích thước cửa sổ.
 
@@ -92,16 +92,16 @@ Dưới đây là một số phím tắt thường dùng:
 
 ## Cá nhân hóa
 
-Emacs mới cài có giao diện xấu và không dễ dùng, vì vậy cần cá nhân hóa nó.
+Thiết lập mặc định của Emacs có thể chưa phù hợp với thói quen sử dụng, vì vậy nên cá nhân hóa nó.
 
-Vì cấu hình không dễ nhớ, nên với một số mục có thể thiết lập trực tiếp, khuyến nghị không cần nhớ cấu hình.
+Vì các mục cấu hình khó nhớ, với một số mục có giao diện thiết lập trực tiếp thì không cần ghi nhớ cấu hình thủ công.
 
 ### Thiết lập trực tiếp
 
 -   Options (`Tùy chọn`): `Highlight Matching Parentheses` (`Tô sáng cặp ngoặc khớp`) tô sáng cặp ngoặc khớp.
 -   Options (`Tùy chọn`): `Blink Cursor` (`Con trỏ nhấp nháy`) thiết lập con trỏ nhấp nháy.
 -   Options Show/Hide (`Tùy chọn Hiển thị/Ẩn`): `Tool Bar` (`Thanh công cụ`) hiển thị/ẩn thanh công cụ (mặc định hiển thị, khuyến nghị ẩn).
--   Options (`Tùy chọn`): `Use CUA Keys` (`Dùng phím CUA`) sau khi chọn có thể dùng các phím tắt như Ctrl + C, Ctrl + V để sao chép/dán.
+-   Options (`Tùy chọn`): `Use CUA Keys` (`Dùng phím CUA`) sau khi bật sẽ dùng được các phím tắt như Ctrl + C, Ctrl + V để sao chép/dán.
 -   Options Customize-Emacs (`Tùy chọn Tùy chỉnh Emacs`): `Custom Theme` (`Chủ đề tùy chỉnh`) chọn bảng màu; sau khi chọn xong cần nhấp lưu.
 -   Options (`Tùy chọn`): `Save Options` (`Lưu tùy chọn`) **lưu cấu hình**.
 
@@ -245,9 +245,9 @@ Cấu hình khuyến nghị cho phòng thi như sau.
 
 Để khởi động Emacs ở chế độ trình dòng lệnh, thêm tham số `-nw` khi khởi động. Emacs có nhiều biến thể, chẳng hạn [GCC Emacs](http://akrl.sdf.org/gccemacs.html) dùng biên dịch mã gốc (native-comp) để giảm độ trễ và biến thể GTK thuần của nó, hoặc Emacs Macport được tối ưu cho macOS.
 
-Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài phần bổ trợ. Dùng [máy chủ nhân bản (mirror)](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
+Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài phần bổ trợ. [Máy chủ nhân bản (mirror)](https://mirrors.bfsu.edu.cn/help/elpa/) giúp tăng tốc tải xuống.
 
-Emacs có thể dùng máy chủ ngôn ngữ (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Phần xử lý phía sau (backend) cho C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Phần giao diện trong Emacs (frontend) có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi lựa chọn phần giao diện trong Emacs.
+Emacs có thể dùng máy chủ ngôn ngữ (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Phần xử lý phía sau (backend) cho C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Phần giao diện trong Emacs (frontend) có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); có thể tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) khi lựa chọn phần giao diện trong Emacs.
 
 Tài liệu Org Mode có phần mở rộng `.org` có thể được chuyển thành tài liệu Markdown bằng [Pandoc](https://pandoc.org/).
 

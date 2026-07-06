@@ -18,7 +18,7 @@ Truy cập [trang tải xuống dành cho nhà phát triển Apple](https://deve
 
 ![](images/xcode-2.jpg)
 
-Nhấp tên tệp màu xanh trong hộp thoại bật lên để tải xuống. Sau khi có tệp nén, dùng công cụ có sẵn của hệ thống để giải nén và nhận tệp `Xcode.app`. Di chuyển tệp này vào thư mục `Applications` là có thể sử dụng.
+Nhấp tên tệp màu xanh trong hộp thoại bật lên để tải xuống. Sau khi có tệp nén, dùng công cụ có sẵn của hệ thống để giải nén và nhận tệp `Xcode.app`. Di chuyển tệp này vào thư mục `Applications` để sử dụng.
 
 ## Cấu hình cơ bản
 
@@ -54,7 +54,7 @@ Thông thường chỉ cần dùng vùng soạn thảo và vùng chạy. Nếu c
 
 ![](images/xcode-9.jpg)
 
-Làm theo cách này, có thể chạy bất kỳ chương trình C/C++ tệp đơn nào.
+Với cách này, có thể chạy các chương trình C/C++ tệp đơn.
 
 ## Sử dụng tệp tiêu đề tổng hợp
 
@@ -66,7 +66,7 @@ Khi thêm tệp tiêu đề tổng hợp ở dòng đầu tiên của mã nguồ
 
 Nguyên nhân là trên macOS, mặc định [libc++](https://libcxx.llvm.org/) được dùng làm phần triển khai thư viện chuẩn C++, còn tệp tiêu đề tổng hợp `bits/stdc++.h` là phần riêng của [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/).
 
-Tuy vậy, có thể tự tạo một tệp tiêu đề tổng hợp để sử dụng.
+Tuy vậy, vẫn có thể tự tạo một tệp tiêu đề tổng hợp để sử dụng.
 
 ### Bước 1
 
@@ -272,6 +272,6 @@ Nhấn <kbd>Esc</kbd> ở góc trên bên trái bàn phím để thoát chế đ
 
 ## Ưu và nhược điểm
 
-Ưu điểm: do Apple phát triển, phù hợp với người dùng Mac, giao diện đầy đủ và đẹp.
+Ưu điểm: do Apple phát triển, phù hợp với người dùng Mac, giao diện đầy đủ và hoàn thiện.
 
-Nhược điểm: Xcode chủ yếu dùng để phát triển ứng dụng Apple, nên có nhiều chức năng dư thừa đối với lập trình thi đấu; gói cài đặt khá lớn và chỉ dùng được trên Mac.
+Nhược điểm: Xcode chủ yếu dùng để phát triển ứng dụng Apple, nên có nhiều chức năng dư thừa đối với lập trình thi đấu; gói cài đặt lớn và chỉ dùng được trên Mac.
