@@ -1,4 +1,4 @@
-Kiến thức nền: [định lí nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), [định lí Euler](./fermat.md#định-lý-euler), [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange)
+Kiến thức nền: [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), [định lý Euler](./fermat.md#định-lý-euler), [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange)
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
 [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
@@ -84,7 +84,7 @@ không âm đầu tiên. Từ đó suy ra một loạt tính chất về bậc.
     $r=0$. Do đó $a^n \equiv 1 \pmod m$ khi và chỉ khi
     $n\bmod \delta_m(a) = 0$, tức là $\delta_m(a)\mid n$.
 
-Trong [định lí Euler](./fermat.md#định-lý-euler), đồng
+Trong [định lý Euler](./fermat.md#định-lý-euler), đồng
 dư $a^{\varphi(m)}\equiv 1\pmod m$ đúng với mọi $a\perp m$. Kết hợp với
 [Tính chất 2](#ord-prop-2), điều này cho thấy với mọi $a\perp m$ đều có
 $\delta_m(a)\mid\varphi(m)$. Nói cách khác, $\varphi(m)$ là một bội chung của
@@ -308,12 +308,12 @@ nhóm cyclic, nên căn nguyên thủy là $0$.
 
 <span id="định-lí-kiểm-tra-căn-nguyên-thủy"></span>
 
-### Định lí kiểm tra căn nguyên thủy
+### Định lý kiểm tra căn nguyên thủy
 
 Nếu đã biết tất cả các thừa số nguyên tố của $\varphi(m)$, có thể kiểm tra một
 số có phải căn nguyên thủy modulo $m$ hay không.
 
-???+ note "Định lí"
+???+ note "Định lý"
     Với số nguyên $m\ge 3$ và $g\perp m$, $g$ là căn nguyên thủy modulo $m$ khi
     và chỉ khi với mọi thừa số nguyên tố $p$ của $\varphi(m)$, điều kiện sau
     đều đúng:
@@ -325,7 +325,7 @@ số có phải căn nguyên thủy modulo $m$ hay không.
 ??? note "Chứng minh"
     Chiều cần suy ra trực tiếp từ định nghĩa bậc. Để chứng minh chiều đủ, dùng
     phản chứng. Nếu $g$ không phải là căn nguyên thủy modulo $m$, thì
-    $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lí
+    $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lý
     Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, có thể lấy $p$ là một thừa số
     nguyên tố của $\dfrac{\varphi(m)}{\delta_m(g)}$, và khi đó
     $\delta_m(g)\mid\dfrac{\varphi(m)}{p}$. Áp dụng lại Tính chất 2, suy ra
@@ -345,7 +345,7 @@ Căn nguyên thủy nếu tồn tại thì cũng không nhất thiết duy nhấ
 với các bậc có thể có của mỗi phần tử trong hệ thặng dư thu gọn modulo $m$ và
 số phần tử có một bậc nào đó, có kết luận sau:
 
-???+ note "Định lí"
+???+ note "Định lý"
     Nếu số nguyên dương $m$ có căn nguyên thủy $g$, thì phần tử bậc $d$ modulo
     $m$ tồn tại khi và chỉ khi $d\mid\varphi(m)$, và khi tồn tại thì có đúng
     $\varphi(d)$ phần tử như vậy. Đặc biệt, số căn nguyên thủy modulo $m$ bằng
@@ -377,11 +377,11 @@ số phần tử có một bậc nào đó, có kết luận sau:
 
 <span id="định-lí-tồn-tại-căn-nguyên-thủy"></span>
 
-### Định lí tồn tại căn nguyên thủy
+### Định lý tồn tại căn nguyên thủy
 
-Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
+Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
 
-???+ note "Định lí"
+???+ note "Định lý"
     Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi
     $m=1,2,4,p^e,2p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
@@ -407,11 +407,11 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         f(x) = x^{d(k-1)} + x^{d(k-2)} + \cdots + x^d + 1.
         $$
 
-        Theo [định lí Euler](./fermat.md#định-lý-euler),
+        Theo [định lý Euler](./fermat.md#định-lý-euler),
         phương trình đồng dư
         $(x^d-1)f(x)=x^{p-1}-1\equiv 0\pmod{p}$ có đúng $p-1$ nghiệm đôi một
         khác nhau. Các nghiệm này lần lượt là nghiệm của $x^d-1$ và $f(x)$.
-        Theo [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange),
+        Theo [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange),
         chúng lần lượt có nhiều nhất $d$ và $d(k-1)$ nghiệm đôi một khác nhau.
         Vì $d+d(k-1)=p-1$, trường hợp đầu chỉ có thể có đúng $d$ nghiệm đôi một
         khác nhau. Điều này chứng minh phương trình đồng dư
@@ -464,7 +464,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
 
         Cách chọn $g$ bảo đảm biểu thức này đúng khi $e=1$. Giả sử biểu thức
         đúng với trường hợp $e$, cần chứng minh nó cũng đúng với trường hợp
-        $e+1$. Với mọi $e \ge 1$, theo định lí Euler tồn tại $\lambda$ sao cho
+        $e+1$. Với mọi $e \ge 1$, theo định lý Euler tồn tại $\lambda$ sao cho
 
         $$
         g^{\varphi(p^e)} = 1 + \lambda p^e
@@ -490,7 +490,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         $g^\delta\equiv 1\pmod{p^e}$. Theo giả thiết quy nạp,
         $\delta_{p^e}(g) = \varphi(p^e)$. Do đó, theo
         [Tính chất 2](#ord-prop-2) về bậc ở trên, $\varphi(p^e)\mid\delta$.
-        Lại theo định lí Euler, $\delta\mid\varphi(p^{e+1})$. Nhưng
+        Lại theo định lý Euler, $\delta\mid\varphi(p^{e+1})$. Nhưng
         $\varphi(p^{e+1})=p\varphi(p^e)$. Vì vậy chỉ có hai khả năng:
         $\delta=\varphi(p^e)$ hoặc $\delta=\varphi(p^{e+1})$. Tuy nhiên, kết
         luận ở bước 2 cho thấy
@@ -511,7 +511,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         căn nguyên thủy modulo $p^{e}$. Trong hai số này có đúng một số lẻ;
         không mất tính tổng quát, giả sử đó là $g$. Khi đó
         $(g,2p^e)=1$. Đặt $\delta=\delta_{2p^e}(g)$, cần chứng minh
-        $\delta=\varphi(2p^e)$. Theo định lí Euler,
+        $\delta=\varphi(2p^e)$. Theo định lý Euler,
         $\delta\mid\varphi(2p^e)$. Đồng thời, theo định nghĩa
         $g^\delta\equiv 1\pmod{2p^e}$, nên $g^\delta\equiv 1\pmod{p^e}$. Do
         đó, theo [Tính chất 2](#ord-prop-2) về bậc và cách chọn $g$, có
@@ -555,7 +555,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         Giả sử $m$ thỏa mãn các điều kiện đã nêu và không phải lũy thừa của
         $2$. Khi đó tồn tại $2 < m_1 < m_2$ và $m_1\perp m_2$ sao cho
         $m=m_1m_2$. Giả sử căn nguyên thủy $g$ modulo $m$ tồn tại. Vì
-        $g\perp m$, nên với $i=1,2$ đều có $g\perp m_i$. Theo định lí Euler,
+        $g\perp m$, nên với $i=1,2$ đều có $g\perp m_i$. Theo định lý Euler,
 
         $$
         g^{\varphi(m_i)} \equiv 1 \pmod{m_i}.
@@ -567,7 +567,7 @@ Mục này sẽ thiết lập định lí tồn tại căn nguyên thủy sau:
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m_i}.
         $$
 
-        Theo [định lí thặng dư Trung Hoa](./crt.md), suy ra
+        Theo [định lý thặng dư Trung Hoa](./crt.md), suy ra
 
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m}.
@@ -685,7 +685,7 @@ nguyên thủy** modulo $m$. Nó tồn tại với mọi modulo $m$.
 
 Hàm Carmichael là một [hàm số học](./basic.md#hàm-số-học).
 Mục này thảo luận một công thức truy hồi của nó, từ đó đưa ra một chứng minh
-khác cho định lí tồn tại căn nguyên thủy.
+khác cho định lý tồn tại căn nguyên thủy.
 
 Tuy không phải hàm nhân tính, khi tính hàm Carmichael vẫn có thể xử lý riêng
 các thừa số nguyên tố cùng nhau.
@@ -697,7 +697,7 @@ các thừa số nguyên tố cùng nhau.
 ??? note "Chứng minh"
     Giả sử $a_1$ và $a_2$ lần lượt là $\lambda$-căn nguyên thủy modulo $m_1$ và
     modulo $m_2$. Đặt $m=m_1m_2$. Theo
-    [định lí thặng dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
+    [định lý thặng dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
     $a\equiv a_i\pmod{m_i}$ với $i=1,2$. Vì $a^{\lambda(m)}\equiv 1\pmod m$,
     nên với $i=1,2$ đều có $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Từ đó theo
     [Tính chất 2](#ord-prop-2) và cách chọn $a_i$, có
@@ -705,7 +705,7 @@ các thừa số nguyên tố cùng nhau.
     $[\lambda(m_1),\lambda(m_2)]\mid\lambda(m)$.
 
     Ngược lại, với mọi $a\perp m$ và $i=1,2$, đều có
-    $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Áp dụng định lí
+    $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Áp dụng định lý
     thặng dư Trung Hoa, thu được
     $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ với mọi $a\perp m$.
     Theo định nghĩa hàm Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
@@ -765,8 +765,8 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     $p$ đều là nghiệm của phương trình đồng dư
     $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghĩa modulo $p$, phương trình này có
     tổng cộng $p-1$ nghiệm đôi một khác nhau. Theo
-    [định lí Lagrange](./congruence-equation.md#định-lý-3-lagrange),
-    có $p-1\le\lambda(p)$. Đồng thời, định lí Euler yêu cầu
+    [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange),
+    có $p-1\le\lambda(p)$. Đồng thời, định lý Euler yêu cầu
     $\lambda(p)\mid\varphi(p)=p-1$. Do đó $\lambda(p)=p-1$.
 
     Với $m=p^e$ và $e> 1$, có thể bắt đầu bằng việc chứng minh $1+p$ là phần tử
@@ -779,7 +779,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     Nên $\delta_m(1+p)=p^{e-1}$. Ngoài ra, giả sử $g$ là căn nguyên thủy modulo
     $p$. Khi đó, vì $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo
     [Tính chất 2](#ord-prop-2) về bậc, có $p-1\mid\delta_m(g)$. Theo định
-    nghĩa hàm Carmichael và định lí Euler,
+    nghĩa hàm Carmichael và định lý Euler,
 
     $$
     p^{e-1}(p-1) = [\delta_m(g),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
@@ -790,7 +790,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 Tóm tắt các kết quả của mục này, thu được công thức truy hồi của hàm
 Carmichael:
 
-???+ note "Định lí"
+???+ note "Định lý"
     Với mọi số nguyên dương $m$, có
 
     $$
@@ -815,8 +815,8 @@ hồi của hàm Carmichael, có thể quy nạp ra kết quả sau:
     Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi $m=1,2,4,p^e,2p^e$, trong
     đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
-Vì chứng minh công thức truy hồi trong mục này không dùng đến định lí tồn tại
-căn nguyên thủy, đây tạo thành một chứng minh khác cho định lí đó.
+Vì chứng minh công thức truy hồi trong mục này không dùng đến định lý tồn tại
+căn nguyên thủy, đây tạo thành một chứng minh khác cho định lý đó.
 
 <span id="số-carmichael"></span>
 

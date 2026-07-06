@@ -75,9 +75,9 @@ $$
 
 <span id="phương-pháp-định-lí-nhị-thức"></span>
 
-### Phương pháp định lí nhị thức
+### Phương pháp định lý nhị thức
 
-Xét định lí nhị thức $\displaystyle (a+b)^n=\sum _ {i=0}^n\binom{n}{i}a^ib^{n-i}$. Khi đó
+Xét định lý nhị thức $\displaystyle (a+b)^n=\sum _ {i=0}^n\binom{n}{i}a^ib^{n-i}$. Khi đó
 
 $$
 \begin{aligned}
@@ -111,7 +111,7 @@ f(x)&=\sum _ {0\leq i\leq n}f(i)\prod _ {0\leq j\leq n\,\land \,j\neq i}\frac{x-
 \end{aligned}
 $$
 
-Biểu thức trên tuy có dạng tích chập nhưng không bảo đảm mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lí bằng phân loại, chẳng hạn khi hệ số được lấy theo modulo số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
+Biểu thức trên tuy có dạng tích chập nhưng không bảo đảm mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lý bằng phân loại, chẳng hạn khi hệ số được lấy theo modulo số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
 
 $$
 \begin{aligned}
@@ -378,7 +378,7 @@ có thể được tính xong trong thời gian $O(\sqrt m\log m)$.
 ???+ note "Bài tập [P5702. Tính tổng cấp số điều hòa](https://www.luogu.com.cn/problem/P5702)"
     Tính $\sum _ {i=1}^ni^{-1}\bmod p$, trong đó $p$ là số nguyên tố và $1\leq n< p< 2^{30}$.
 
-Kí hiệu $H_n=\sum _ {k=1}^nk^{-1}$. Một bước truy hồi là
+Ký hiệu $H_n=\sum _ {k=1}^nk^{-1}$. Một bước truy hồi là
 
 $$
 \begin{bmatrix}
@@ -469,9 +469,9 @@ Mỗi vòng tốn độ phức tạp $O(m^2dT\log(dT))$ cho phần tịnh tiến
 
 Cuối cùng, chỉ cần làm đến khi $T\ge\sqrt{n/d}$.
 
-Nhân tử $-\frac1{P_0(n)}$ trước đó cũng có thể xử lí bằng phương pháp tương tự.
+Nhân tử $-\frac1{P_0(n)}$ trước đó cũng có thể xử lý bằng phương pháp tương tự.
 
-Như vậy độ phức tạp tiền xử lí là $\Theta(\sqrt{nd}(m^3+m^2\log(nd)))$.
+Như vậy độ phức tạp tiền xử lý là $\Theta(\sqrt{nd}(m^3+m^2\log(nd)))$.
 
 Xét truy vấn, chỉ cần $\Theta(n/T)$ phép nhân vector với ma trận, cùng $O(T)$ lần chuyển trạng thái trực tiếp.
 
@@ -479,7 +479,7 @@ Phần tính toán này không phải nút thắt cổ chai về độ phức t�
 
 Do đó tổng độ phức tạp của thuật toán là $\Theta(\sqrt{nd}(m^3+m^2\log(nd)))$.
 
-Khi viết mã, có thể dùng kĩ thuật tích chập vòng để giảm hằng số của NTT.
+Khi viết mã, có thể dùng kỹ thuật tích chập vòng để giảm hằng số của NTT.
 
 Trong ứng dụng thực tế, thường cần trích hệ số xa của một GF vi phân hữu hạn đã biết, do đó $m,d$ đều là hằng số, tức đạt được việc tính hệ số xa trong $\Theta(\sqrt n\log n)$.
 

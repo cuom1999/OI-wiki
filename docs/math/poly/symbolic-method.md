@@ -1,4 +1,4 @@
-Phương pháp kí hiệu (symbolic method) là một cách nhanh để chuyển các đối tượng tổ hợp thành hàm sinh. Bài viết sẽ xét một số phép toán cụ thể được định nghĩa trên các tập hợp, rồi suy ra phép toán tương ứng trên hàm sinh.
+Phương pháp ký hiệu (symbolic method) là một cách nhanh để chuyển các đối tượng tổ hợp thành hàm sinh. Bài viết sẽ xét một số phép toán cụ thể được định nghĩa trên các tập hợp, rồi suy ra phép toán tương ứng trên hàm sinh.
 
 Một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A},\lvert \cdot \rvert)$, trong đó $\mathcal{A}$ là tập các đối tượng tổ hợp, còn hàm $\lvert \cdot \rvert$ ánh xạ mỗi đối tượng tổ hợp tới một số nguyên không âm, thường gọi là hàm kích thước. Cần lưu ý rằng số nguyên không âm này không được là vô hạn. Ví dụ, với chuỗi trên bảng chữ cái $\lbrace 0,1\rbrace$, có thể lấy độ dài chuỗi làm hàm kích thước; với cây hoặc đồ thị, có thể lấy số đỉnh làm hàm kích thước. Điều này không phải tuyệt đối: đôi khi cũng có thể gán kích thước $0$ cho một vài loại đỉnh đặc biệt.
 
@@ -8,7 +8,7 @@ Bài viết này là một bản giản lược dựa trên chương 1 của sá
 
 ## Hệ không gắn nhãn
 
-Trong hệ không gắn nhãn, dùng hàm sinh thường (OGF). Với tập $\mathcal{A}$, OGF tương ứng được kí hiệu là
+Trong hệ không gắn nhãn, dùng hàm sinh thường (OGF). Với tập $\mathcal{A}$, OGF tương ứng được ký hiệu là
 
 $$
 A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geq 0}a_nz^n.
@@ -20,10 +20,10 @@ Bài viết này không thảo luận về tính chấp nhận được (admissi
 
 Dưới đây là hai lớp tổ hợp và đối tượng tổ hợp đặc biệt:
 
--   Kí hiệu $\epsilon$ là đối tượng trung hòa (neutral object), và $\mathcal{E}=\lbrace \epsilon \rbrace$ là lớp trung hòa (neutral class). Kích thước của đối tượng trung hòa là $0$, và OGF của lớp trung hòa là $E(z)=1$.
--   Kí hiệu $\circ$ hoặc $\bullet$ là đối tượng nguyên tử (atom object), và $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$, $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$, hoặc viết tắt $\mathcal{Z}$, là lớp nguyên tử (atom class). Kích thước của đối tượng nguyên tử là $1$, và OGF của lớp nguyên tử là $Z(z)=z$.
+-   Ký hiệu $\epsilon$ là đối tượng trung hòa (neutral object), và $\mathcal{E}=\lbrace \epsilon \rbrace$ là lớp trung hòa (neutral class). Kích thước của đối tượng trung hòa là $0$, và OGF của lớp trung hòa là $E(z)=1$.
+-   Ký hiệu $\circ$ hoặc $\bullet$ là đối tượng nguyên tử (atom object), và $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$, $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$, hoặc viết tắt $\mathcal{Z}$, là lớp nguyên tử (atom class). Kích thước của đối tượng nguyên tử là $1$, và OGF của lớp nguyên tử là $Z(z)=z$.
 
-Với hai lớp tổ hợp $\mathcal{A}$ và $\mathcal{B}$, quan hệ đẳng cấu theo nghĩa tổ hợp được kí hiệu là $\mathcal{A}=\mathcal{B}$ hoặc $\mathcal{A}\cong\mathcal{B}$, nhưng kí hiệu sau chỉ được dùng khi đẳng cấu đó không tầm thường.
+Với hai lớp tổ hợp $\mathcal{A}$ và $\mathcal{B}$, quan hệ đẳng cấu theo nghĩa tổ hợp được ký hiệu là $\mathcal{A}=\mathcal{B}$ hoặc $\mathcal{A}\cong\mathcal{B}$, nhưng ký hiệu sau chỉ được dùng khi đẳng cấu đó không tầm thường.
 
 Có
 
@@ -37,13 +37,13 @@ trong đó $\times$ là phép toán hai ngôi, biểu thị tích Descartes củ
 
 ### Cấu trúc hợp rời nhau của tập hợp
 
-Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, hợp của chúng được kí hiệu là
+Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, hợp của chúng được ký hiệu là
 
 $$
 \mathcal{A}+\mathcal{B}=(\mathcal{E}_{1}\times\mathcal{A})+(\mathcal{E}_2\times\mathcal{B}).
 $$
 
-Cách định nghĩa như vậy không trái với yêu cầu các tập phải rời nhau trong lí thuyết tập hợp. Có thể hình dung bằng cách tô màu đỏ cho các đối tượng trong $\mathcal{A}$ và tô màu xanh cho các đối tượng trong $\mathcal{B}$.
+Cách định nghĩa như vậy không trái với yêu cầu các tập phải rời nhau trong lý thuyết tập hợp. Có thể hình dung bằng cách tô màu đỏ cho các đối tượng trong $\mathcal{A}$ và tô màu xanh cho các đối tượng trong $\mathcal{B}$.
 
 OGF tương ứng là
 
@@ -63,7 +63,7 @@ tương ứng với phép cộng chuỗi lũy thừa hình thức.
 
 ### Cấu trúc tích Descartes của tập hợp
 
-Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, tích Descartes của chúng được kí hiệu là
+Với hai lớp $\mathcal{A}$ và $\mathcal{B}$, tích Descartes của chúng được ký hiệu là
 
 $$
 \mathcal{A}\times \mathcal{B}=\left\lbrace (\alpha, \beta)\mid \alpha \in \mathcal{A},\beta\in\mathcal{B}\right\rbrace.

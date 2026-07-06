@@ -10,7 +10,7 @@ author: Early0v0
 
 Sàng Zhouge là một phương pháp sàng có thể tính tổng tiền tố của phần lớn hàm nhân trong độ phức tạp dưới tuyến tính.
 
-Dưới đây lấy việc tính $\displaystyle\sum_{i=1}^nf(i)$ làm ví dụ để trình bày cụ thể nguyên lí của sàng Zhouge.
+Dưới đây lấy việc tính $\displaystyle\sum_{i=1}^nf(i)$ làm ví dụ để trình bày cụ thể nguyên lý của sàng Zhouge.
 
 <span id="quy-ước"></span>
 ## Quy ước
@@ -52,7 +52,7 @@ Hai phần trước và sau có thể được tính riêng.
 
 Xét việc liệt kê $i$, sau đó tính phần trong ngoặc trong $O(1)$.
 
-Kí hiệu $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$, tức là tổng giá trị $f$ của các số trong $[1,l]$ cùng nguyên tố với mọi $p_1,p_2,\dots,p_t$.
+Ký hiệu $\displaystyle g(t,l)=\sum_{i=1}^l[\forall j\in[1,t],\gcd(i,p_j)=1]f(i)$, tức là tổng giá trị $f$ của các số trong $[1,l]$ cùng nguyên tố với mọi $p_1,p_2,\dots,p_t$.
 
 Như vậy, việc tính phần 1 trở thành $\displaystyle\sum_{i=1}^{\sqrt n}f(i)\cdot g\left(m,\left\lfloor\frac ni\right\rfloor\right)$.
 
@@ -66,13 +66,13 @@ Thay vào công thức truy hồi được: khi $p_t^2>l$, $g(t,l)=g(t-1,l)-f(p_
 
 Vì vậy, một khi phát hiện $p_t^2>l$ thì dừng chuyển trạng thái. Gọi $t$ tại thời điểm này là $t_l$, khi đó $\forall t>t_l,g(t,l)=g(t_l,l)-\sum_{i=t_l}^{t-1}f(p_i)$.
 
-Tiền xử lí tổng tiền tố giá trị $f$ trên các số nguyên tố là có thể tính nhanh $g$, độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
+Tiền xử lý tổng tiền tố giá trị $f$ trên các số nguyên tố là có thể tính nhanh $g$, độ phức tạp thời gian được tối ưu xuống $O\left(\dfrac{n^{\frac34}}{\log n}\right)$.
 
 ### Phần 2
 
 > Tính $\displaystyle\sum_{i=1}^n\left[\forall d\in(\sqrt n,n]\cap\mathbb P,d\nmid i\right]f(i)$.
 
-Kí hiệu $\displaystyle h(t,l)=\sum_{i=1}^l\left[i=\prod_{j=t}^mp_j^{c_j},c_j\in\mathbb N\right]f(i)$, tức là tổng giá trị $f$ của mọi số trong $[1,l]$ chỉ chứa các thừa số nguyên tố $p_t,p_{t+1},\dots,p_m$.
+Ký hiệu $\displaystyle h(t,l)=\sum_{i=1}^l\left[i=\prod_{j=t}^mp_j^{c_j},c_j\in\mathbb N\right]f(i)$, tức là tổng giá trị $f$ của mọi số trong $[1,l]$ chỉ chứa các thừa số nguyên tố $p_t,p_{t+1},\dots,p_m$.
 
 Phần 2 chính là tính $h(0,n)$.
 

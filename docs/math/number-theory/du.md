@@ -72,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-Nếu có thể tiền xử lí một phần $S(k)$, với $k=1,2,\dots,m$ và $m\geq \lfloor\sqrt n\rfloor$. Giả sử độ phức tạp tiền xử lí là $T_0(m)$, thì lúc này $T(n)$ là:
+Nếu có thể tiền xử lý một phần $S(k)$, với $k=1,2,\dots,m$ và $m\geq \lfloor\sqrt n\rfloor$. Giả sử độ phức tạp tiền xử lý là $T_0(m)$, thì lúc này $T(n)$ là:
 
 $$
 \begin{aligned}
@@ -213,7 +213,7 @@ $$
 
 Trong đó $F(n)=\dfrac{1}{2}n(n+1)$.
 
-Chia đoạn số học trên $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$, còn tổng tiền tố của $d^2\varphi(d)$ được xử lí bằng sàng Dujiao:
+Chia đoạn số học trên $\sum_{d=1}^nF\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)^2$, còn tổng tiền tố của $d^2\varphi(d)$ được xử lý bằng sàng Dujiao:
 
 $$
 f(n)=n^2\varphi(n)=(\operatorname{id}^2\varphi)(n)
@@ -225,7 +225,7 @@ $$
 
 Cần xây dựng một hàm nhân $g$ sao cho $f\times g$ và $g$ đều có thể tính tổng nhanh.
 
-Tổng tiền tố của riêng $\varphi$ có thể xử lí bằng sàng Dujiao cho $\varphi * 1$, nhưng trong bài này $f$ có thêm một thừa số $\operatorname{id}^2$. Vì vậy chập thêm một $\operatorname{id}^2$ để biến nó thành hằng số:
+Tổng tiền tố của riêng $\varphi$ có thể xử lý bằng sàng Dujiao cho $\varphi * 1$, nhưng trong bài này $f$ có thêm một thừa số $\operatorname{id}^2$. Vì vậy chập thêm một $\operatorname{id}^2$ để biến nó thành hằng số:
 
 $$
 S(n)=\sum_{i=1}^n\left(\left(\operatorname{id}^2\varphi\right) * \operatorname{id}^2\right)(i)-\sum_{i=2}^n\operatorname{id}^2(i)S\left(\left\lfloor\frac{n}{i}\right\rfloor\right)

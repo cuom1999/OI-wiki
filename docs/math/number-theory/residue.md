@@ -28,7 +28,7 @@ thặng dư bậc $k$ modulo $m$.
 Tương tự thặng dư bậc hai, có thể xét bài toán kiểm tra thặng dư bậc $k$, số
 lượng nghiệm và số lớp thặng dư bậc $k$. Giống các bài toán
 [phương trình đồng dư](./congruence-equation.md) khác, có thể dùng
-[định lí thặng dư Trung Hoa](./crt.md) để đưa chúng về trường hợp modulo lũy
+[định lý thặng dư Trung Hoa](./crt.md) để đưa chúng về trường hợp modulo lũy
 thừa của số nguyên tố. Tùy theo việc căn nguyên thủy có tồn tại hay không,
 trường hợp này tiếp tục tách thành modulo lũy thừa của số nguyên tố lẻ và
 modulo lũy thừa của $2$.
@@ -36,7 +36,7 @@ modulo lũy thừa của $2$.
 Trường hợp modulo lũy thừa của số lẻ tương đối đơn giản. Trong mọi trường hợp
 có căn nguyên thủy, thu được kết quả sau:
 
-???+ note "Định lí"
+???+ note "Định lý"
     Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố cùng
     nhau. Giả sử căn nguyên thủy modulo $m$ tồn tại, và $g$ là một căn nguyên
     thủy modulo $m$. Đặt $d=\gcd(k,\varphi(m))$ và
@@ -85,7 +85,7 @@ có căn nguyên thủy, thu được kết quả sau:
     y = y_0 + id' \pmod{\varphi(m)},~0\le y_0 < d',~i=0,1,\cdots,d-1.
     $$
 
-    Từ đây gần như suy ra toàn bộ nội dung định lí; điểm duy nhất cần giải thích
+    Từ đây gần như suy ra toàn bộ nội dung định lý; điểm duy nhất cần giải thích
     thêm là tiêu chuẩn $a^{d'} \equiv 1 \pmod m$. Theo
     [tính chất 3 của bậc](./primitive-root.md#ord-prop-3), suy ra
 
@@ -104,7 +104,7 @@ gọn modulo $2^e$: mọi số lẻ $a$ đều đồng dư duy nhất với mộ
 $(-1)^s5^r\bmod 2^e$, trong đó $s\in\{0,1\}$ và $0\le r < 2^{e-2}$. Kết quả
 này dẫn đến kết luận sau:
 
-???+ note "Định lí"
+???+ note "Định lý"
     Cho số nguyên $k\ge 2$, số lẻ $a$ và số nguyên dương $m=2^e$ với
     $e \ge 2$. Khi $k$ là số lẻ:
 
@@ -157,7 +157,7 @@ này dẫn đến kết luận sau:
         lớp thặng dư bậc $k$. Tính trực tiếp thấy điều kiện thứ nhất tương đương
         với $a\equiv 1\pmod 4$; lặp lại phân tích trong trường hợp modulo lũy
         thừa của số nguyên tố lẻ, điều kiện thứ hai tương đương với $a^{d'}=1$.
-        Kết hợp hai điểm này sẽ cho tiêu chuẩn trong định lí. Nghiệm tổng quát
+        Kết hợp hai điểm này sẽ cho tiêu chuẩn trong định lý. Nghiệm tổng quát
         của hai phương trình đồng dư tuyến tính cũng đã biết:
 
         $$
@@ -291,7 +291,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     Suy ra tính chất 5.
 
     Gần như lặp lại chứng minh của
-    [định lí kiểm tra căn nguyên thủy](./primitive-root.md#định-lí-kiểm-tra-căn-nguyên-thủy)
+    [định lý kiểm tra căn nguyên thủy](./primitive-root.md#định-lí-kiểm-tra-căn-nguyên-thủy)
     sẽ thu được tính chất 6. Tiêu chuẩn này thực chất đang kiểm tra
     $\delta_m(a)=k$.
 
@@ -363,7 +363,7 @@ trúc của căn đơn vị đơn giản hơn:
     $a^x\equiv b\pmod{m}$, tức là $b$ có thể biểu diễn thành một lũy thừa của
     $a$.
 
-Định lí này cho thấy, khi căn nguyên thủy tồn tại, toàn bộ các căn đơn vị bậc
+Định lý này cho thấy, khi căn nguyên thủy tồn tại, toàn bộ các căn đơn vị bậc
 $k$ có cấu trúc [nhóm cyclic](../algebra/group-theory.md#nhóm-vòng),
 và các căn đơn vị nguyên thủy bậc $k$ là phần tử sinh của nhóm cyclic đó. Phần
 tiếp theo cho thấy thuật toán Tonelli-Shanks tận dụng điểm này để tăng tốc phần
@@ -377,7 +377,7 @@ Cuối cùng, bài viết thảo luận cách tìm căn bậc $k$. Với $k=2$, 
 để khai căn bậc hai theo modulo. Tuy nhiên, với $k$ tổng quát, hiện chưa biết
 thuật toán thời gian đa thức. Mục này giới thiệu hai thuật toán phổ biến, lần
 lượt có thể tìm một căn bậc $k$ trong thời gian $O(m^{1/2})$ và
-$O(m^{1/4+\varepsilon})$. Dùng định lí thặng dư Trung Hoa luôn có thể đưa bài
+$O(m^{1/4+\varepsilon})$. Dùng định lý thặng dư Trung Hoa luôn có thể đưa bài
 toán về trường hợp modulo lũy thừa của số nguyên tố, vì vậy mục này chủ yếu
 thảo luận lời giải trong trường hợp modulo lũy thừa của số nguyên tố.
 
@@ -508,7 +508,7 @@ $$
 x^d\equiv x^{k\ell} \equiv a^{\ell} =: b \pmod{m}.
 $$
 
-Đồng dư đầu tiên dùng [định lí Euler](./fermat.md#định-lý-euler)
+Đồng dư đầu tiên dùng [định lý Euler](./fermat.md#định-lý-euler)
 và quan hệ đồng dư sau: ($c\in\mathbf Z$)
 
 $$
@@ -589,7 +589,7 @@ $O\left(\sqrt{(s-e)p}\right)$. Sau khi thu được $h$, thay vào biểu thức
 
 Độ phức tạp thời gian của thuật toán này là $O(m^{1/4+\varepsilon})$. Khi thảo
 luận về độ phức tạp trong mục này, luôn giả sử một phép nhân mất $O(1)$ thời
-gian, và khi tính lũy thừa thì luôn dùng định lí Euler để giảm số mũ; vì vậy
+gian, và khi tính lũy thừa thì luôn dùng định lý Euler để giảm số mũ; vì vậy
 việc tính từng lũy thừa liên quan luôn có thể hoàn thành trong $O(\log m)$.
 
 Trước hết xét việc tính một căn bậc $p^e$. Việc tìm bất thặng dư bậc $p$ chỉ

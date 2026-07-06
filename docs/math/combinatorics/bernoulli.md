@@ -5,7 +5,7 @@ $B_0=1,B_1=-\frac{1}{2},B_2=\frac{1}{6},B_3=0,B_4=-\frac{1}{30},\dots$
 <span id="tổng-các-lũy-thừa-cùng-bậc"></span>
 ## Tổng các lũy thừa cùng bậc
 
-Số Bernoulli được đặt theo tên Jacob Bernoulli. Khi nghiên cứu công thức tổng các lũy thừa bậc $m$, ông phát hiện ra một quan hệ rất đẹp. Kí hiệu
+Số Bernoulli được đặt theo tên Jacob Bernoulli. Khi nghiên cứu công thức tổng các lũy thừa bậc $m$, ông phát hiện ra một quan hệ rất đẹp. Ký hiệu
 
 $$
 S_{m}(n)=\sum_{k=0}^{n-1}k^m=0^m+1^m+\dots+(n-1)^m

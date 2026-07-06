@@ -17,7 +17,7 @@ Các số phân hoạch bắt đầu từ $0$:
 <span id="số-phân-hoạch-thành-k-phần"></span>
 ## Số phân hoạch thành $k$ phần
 
-Phân hoạch chia $n$ thành đúng $k$ phần được gọi là phân hoạch $k$ phần, kí hiệu là $p(n,k)$.
+Phân hoạch chia $n$ thành đúng $k$ phần được gọi là phân hoạch $k$ phần, ký hiệu là $p(n,k)$.
 
 Số phân hoạch $k$ phần $p(n,k)$ cũng chính là số nghiệm của phương trình sau:
 
@@ -261,7 +261,7 @@ Tiếp theo, chứng minh rằng trong đa số trường hợp hai số cách t
 
 Một cách tiếp cận là xây dựng một song ánh.
 
-Vẽ biểu đồ Ferrers của mỗi phân hoạch phân biệt. Hàng cuối cùng gọi là đáy của biểu đồ, số điểm trên đáy kí hiệu là $b$ (Bottom); đoạn chéo dài nhất góc $45$ độ nối điểm cuối cùng của hàng trên cùng với một điểm trong biểu đồ gọi là sườn, số điểm trên sườn kí hiệu là $s$ (Slide).
+Vẽ biểu đồ Ferrers của mỗi phân hoạch phân biệt. Hàng cuối cùng gọi là đáy của biểu đồ, số điểm trên đáy ký hiệu là $b$ (Bottom); đoạn chéo dài nhất góc $45$ độ nối điểm cuối cùng của hàng trên cùng với một điểm trong biểu đồ gọi là sườn, số điểm trên sườn ký hiệu là $s$ (Slide).
 
 ![](./images/bottom_slide.jpg)
 

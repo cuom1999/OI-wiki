@@ -2,7 +2,7 @@
 
 Cây Chtholly Tree, còn gọi là Old Driver Tree ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
 
-Tên gọi này chỉ một kĩ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lí. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ một cách thuận tiện hơn.
+Tên gọi này chỉ một kỹ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lý. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ một cách thuận tiện hơn.
 
 ## Cài đặt (`std::set`)
 
@@ -56,7 +56,7 @@ Trên các trình biên dịch không hỗ trợ suy diễn kiểu trả về b�
 
 Một thao tác quan trọng khác là `assign`. Nó dùng để gán giá trị cho một đoạn. Giả sử cần gán khoảng $[l,r]$ thành $v$.
 
-Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`, và kí hiệu các iterator mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi iterator $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong $[l,r]$.
+Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`, và ký hiệu các iterator mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi iterator $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong $[l,r]$.
 
 Sau đó, xóa thông tin cũ. `std::set` có hàm thành viên `erase`, với chữ kí như `iterator erase( const_iterator first, const_iterator last );`, có thể loại bỏ các phần tử trong phạm vi `[first; last)`. Vì vậy gọi `odt.erase(itl, itr);` để xóa thông tin cũ.
 

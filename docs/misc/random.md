@@ -1,6 +1,6 @@
 ## Tổng quan
 
-Muốn sử dụng các kĩ thuật ngẫu nhiên hóa, điều kiện tiên quyết là có thể sinh số ngẫu nhiên thật nhanh. Bài viết này giới thiệu các phương pháp phổ biến để sinh số ngẫu nhiên.
+Muốn sử dụng các kỹ thuật ngẫu nhiên hóa, điều kiện tiên quyết là có thể sinh số ngẫu nhiên thật nhanh. Bài viết này giới thiệu các phương pháp phổ biến để sinh số ngẫu nhiên.
 
 ### Số ngẫu nhiên và số giả ngẫu nhiên
 
@@ -37,7 +37,7 @@ Một lựa chọn là dùng thời gian hệ thống hiện tại làm hạt gi
 Về tính ngẫu nhiên của `rand()` và `rand()%n`:
 
 -   Chuẩn C/C++ không quy định bất kì yêu cầu nào về chất lượng của các số ngẫu nhiên do `rand()` sinh ra.
--   Cách hiện thực `rand()` mà trình biên dịch GCC sử dụng bảo đảm các tính chất cơ bản như phân bố đều, nhưng có những khuyết điểm rõ rệt như chu kì của các bit thấp ngắn. Ví dụ trên máy của tác giả, dãy do `rand()%2` sinh ra có chu kì khoảng $2\cdot 10^6$.
+-   Cách hiện thực `rand()` mà trình biên dịch GCC sử dụng bảo đảm các tính chất cơ bản như phân bố đều, nhưng có những khuyết điểm rõ rệt như chu kỳ của các bit thấp ngắn. Ví dụ trên máy của tác giả, dãy do `rand()%2` sinh ra có chu kỳ khoảng $2\cdot 10^6$.
 -   Ngay cả khi giả sử `rand()` là ngẫu nhiên đều, `rand()%n` cũng không bảo đảm tính đều, vì mỗi số trong `[0,n)` có thể xuất hiện với số lần khác nhau trong `0%n,1%n,...,RAND_MAX%n`.
 
 ### Bộ sinh số ngẫu nhiên định nghĩa sẵn
@@ -51,7 +51,7 @@ Thư viện chuẩn định nghĩa sẵn một số bộ sinh số ngẫu nhiên
 
 Đây là một lớp bộ sinh số ngẫu nhiên, có tác dụng tương tự `rand()`. Miền giá trị ngẫu nhiên giống miền giá trị của kiểu `unsigned int`.
 
-Ưu điểm của nó là chất lượng số ngẫu nhiên cao, ví dụ chu kì trước khi lặp dài hơn, các mặt khác cũng ít nhất không kém `rand()`, đồng thời tốc độ nhanh hơn `rand()` rất nhiều. Khi sử dụng cần `#include<random>`.
+Ưu điểm của nó là chất lượng số ngẫu nhiên cao, ví dụ chu kỳ trước khi lặp dài hơn, các mặt khác cũng ít nhất không kém `rand()`, đồng thời tốc độ nhanh hơn `rand()` rất nhiều. Khi sử dụng cần `#include<random>`.
 
 `mt19937` dựa trên Mersenne Twister 32 bit, do Matsumoto và Nishimura thiết kế năm 1998[^ref3]. Khi dùng, chỉ cần dùng nó để định nghĩa một bộ sinh số ngẫu nhiên: `std::mt19937 myrand(seed)`. Có thể bỏ qua `seed`; khi đó hạt giống ngẫu nhiên mặc định sẽ được dùng.
 
@@ -270,7 +270,7 @@ $$
 
 Trong đó $A,B,P$ đều là hằng số.
 
-Phương pháp này dễ hiện thực, nhưng dãy ngẫu nhiên được sinh ra có chu kì khá ngắn. Chu kì lớn nhất là $P$, nhưng trong đa số trường hợp sẽ ngắn hơn $P$.
+Phương pháp này dễ hiện thực, nhưng dãy ngẫu nhiên được sinh ra có chu kỳ khá ngắn. Chu kỳ lớn nhất là $P$, nhưng trong đa số trường hợp sẽ ngắn hơn $P$.
 
 ??? note "Hiện thực tham khảo"
     ```cpp
@@ -309,7 +309,7 @@ $$
 
 Trong công thức này, $P$ thường lấy là một lũy thừa của $2$, phổ biến là $2^{32}$ hoặc $2^{64}$; $\star$ biểu thị toán tử nhị phân, có thể dùng phép cộng, phép trừ, phép nhân hoặc XOR.
 
-So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống, phương pháp này có chu kì dài hơn, nhưng tính ngẫu nhiên chịu ảnh hưởng khá lớn từ điều kiện ban đầu.
+So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống, phương pháp này có chu kỳ dài hơn, nhưng tính ngẫu nhiên chịu ảnh hưởng khá lớn từ điều kiện ban đầu.
 
 ??? note "Hiện thực tham khảo"
     ```cpp

@@ -5,8 +5,8 @@ Bài viết này giới thiệu các khái niệm mở đầu của số học.
 
 ???+ note "Định nghĩa"
     Cho $a,b\in\mathbf{Z}$, $a\ne 0$. Nếu $\exists q\in\mathbf{Z}$ sao cho
-    $b=aq$, thì $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
-    hết cho $a$ được kí hiệu $a\nmid b$.
+    $b=aq$, thì $b$ **chia hết** cho $a$, ký hiệu $a\mid b$; $b$ không chia
+    hết cho $a$ được ký hiệu $a\nmid b$.
 
 Tính chất của quan hệ chia hết:
 
@@ -234,10 +234,10 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
 ???+ note "Định nghĩa"
     Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, gọi $m$ là **modun**
     (**modulo**), nói $a$ đồng dư với $b$ theo modulo $m$, và $b$ là **thặng
-    dư** của $a$ theo modulo $m$. Kí hiệu $a\equiv b\pmod m$.
+    dư** của $a$ theo modulo $m$. Ký hiệu $a\equiv b\pmod m$.
     
     Ngược lại, $a$ không đồng dư với $b$ theo modulo $m$, và $b$ không phải
-    thặng dư của $a$ theo modulo $m$. Kí hiệu $a\not\equiv b\pmod m$.
+    thặng dư của $a$ theo modulo $m$. Ký hiệu $a\not\equiv b\pmod m$.
     
     Một đẳng thức như vậy được gọi là đồng dư thức modulo $m$, gọi tắt là
     **đồng dư thức**.
@@ -286,7 +286,7 @@ Còn một tính chất khác là nghịch đảo nhân. Xem [Nghịch đảo nh
 <span id="lớp-đồng-dư-và-hệ-thặng-dư"></span>
 ## Lớp đồng dư và hệ thặng dư
 
-Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, dùng các kí hiệu
+Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, dùng các ký hiệu
 sau:
 
 -   $r+A:=\{r+a:a\in A\}$;
@@ -316,7 +316,7 @@ Từ định nghĩa lớp đồng dư, có:
 Vì đồng dư là quan hệ tương đương, lớp đồng dư chính là lớp tương đương của quan
 hệ đồng dư.
 
-Kí hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
+Ký hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
 
 $$
 \mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
@@ -370,10 +370,10 @@ tìm cấu trúc của tập hợp các số nguyên nguyên tố cùng nhau v�
     Với lớp đồng dư $r\bmod m$, nếu $(r,m)=1$, thì lớp đồng dư này được gọi là
     **lớp đồng dư thu gọn** hoặc **lớp thặng dư thu gọn**.
 
-    Số lượng lớp thặng dư thu gọn modulo $m$ được kí hiệu là $\varphi(m)$ và
+    Số lượng lớp thặng dư thu gọn modulo $m$ được ký hiệu là $\varphi(m)$ và
     được gọi là [hàm Euler](./euler-totient.md).
 
-Kí hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
+Ký hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
 $\mathbf{Z}_m^*$, tức là
 
 $$

@@ -58,7 +58,7 @@ $$
 f\left(g\left(x\right)\right)\bmod{x^n}=\operatorname{\mathsf{Comp}}\left(f\left(y^{-1}\right),1-y\cdot g(x),\max\left\lbrace 1+\deg f,n\right\rbrace ,1\right)\bmod{x^n}
 $$
 
-Lưu ý tham số thứ ba là để xử lí trường hợp $g(0)$ có thể khác không. Nếu $\deg f\geq n$ thì lúc này không thể cắt cụt $f(x)$ để tính $f\left(g(x)\right)$. Cũng có thể chọn tính $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$; khi đó đặt $F:=f\left(x+g(0)\right)\bmod{x^n}$ và $G:=g-g(0)$, rồi chuyển sang tính $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$.
+Lưu ý tham số thứ ba là để xử lý trường hợp $g(0)$ có thể khác không. Nếu $\deg f\geq n$ thì lúc này không thể cắt cụt $f(x)$ để tính $f\left(g(x)\right)$. Cũng có thể chọn tính $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$; khi đó đặt $F:=f\left(x+g(0)\right)\bmod{x^n}$ và $G:=g-g(0)$, rồi chuyển sang tính $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$.
 
 Ngoài ra, do giới hạn của lời gọi, khi đệ quy kết thúc thì $Q(0,y)^{-1}$ có thể được suy ra trực tiếp, không cần dùng thuật toán nghịch đảo nhân của chuỗi lũy thừa hình thức. Chỉ cần tính một phép nhân rồi trích các hệ số cần thiết.
 

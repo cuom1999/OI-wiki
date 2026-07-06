@@ -4,7 +4,7 @@
 ??? note "Vì sao giới thiệu số Stirling loại hai trước"
     Tuy được gọi là "loại hai", số Stirling loại hai lại được mô tả trước trong các công trình liên quan của Stirling và trong Concrete Mathematics; đồng thời nó cũng thường dùng hơn nhiều so với số Stirling loại một.
 
-**Số Stirling loại hai** (số Stirling tập con) $\begin{Bmatrix}n\\ k\end{Bmatrix}$, cũng có thể kí hiệu là $S(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ tập con không rỗng và không phân biệt thứ tự.
+**Số Stirling loại hai** (số Stirling tập con) $\begin{Bmatrix}n\\ k\end{Bmatrix}$, cũng có thể ký hiệu là $S(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ tập con không rỗng và không phân biệt thứ tự.
 
 <span id="công-thức-truy-hồi"></span>
 ### Công thức truy hồi
@@ -22,7 +22,7 @@ Khi chèn một phần tử mới, có hai khả năng:
 -   Đặt phần tử mới vào một tập con riêng, có $\begin{Bmatrix}n-1\\ k-1\end{Bmatrix}$ cách;
 -   Đặt phần tử mới vào một tập con không rỗng đã có, có $k\begin{Bmatrix}n-1\\ k\end{Bmatrix}$ cách.
 
-Theo nguyên lí cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
+Theo nguyên lý cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
 
 <span id="công-thức-tổng-quát"></span>
 ### Công thức tổng quát
@@ -31,7 +31,7 @@ $$
 \begin{Bmatrix}n\\m\end{Bmatrix}=\sum\limits_{i=0}^m\dfrac{(-1)^{m-i}i^n}{i!(m-i)!}
 $$
 
-Dùng nguyên lí bao hàm - loại trừ để chứng minh công thức này. Gọi $G_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập đôi một phân biệt (cho phép tập rỗng), và $F_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập không rỗng đôi một phân biệt (không cho phép tập rỗng).
+Dùng nguyên lý bao hàm - loại trừ để chứng minh công thức này. Gọi $G_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập đôi một phân biệt (cho phép tập rỗng), và $F_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập không rỗng đôi một phân biệt (không cho phép tập rỗng).
 
 Các đại lượng này thỏa mãn
 
@@ -700,7 +700,7 @@ Phần này có nhiều khái niệm "có nhãn" và "không nhãn"; cần phân
 <span id="số-stirling-loại-một-stirling-number"></span>
 ## Số Stirling loại một
 
-**Số Stirling loại một** (số Stirling chu trình) $\begin{bmatrix}n\\ k\end{bmatrix}$, cũng có thể kí hiệu là $s(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ chu trình không rỗng và không phân biệt thứ tự.
+**Số Stirling loại một** (số Stirling chu trình) $\begin{bmatrix}n\\ k\end{bmatrix}$, cũng có thể ký hiệu là $s(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ chu trình không rỗng và không phân biệt thứ tự.
 
 Một chu trình là một hoán vị vòng có đầu cuối nối nhau. Có thể viết một chu trình $[A,B,C,D]$ và xem $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$, tức hai chu trình thu được từ nhau bằng phép quay là tương đương. Lưu ý rằng hai chu trình thu được từ nhau bằng phép lật không được xem là tương đương, tức $[A,B,C,D]\neq[D,C,B,A]$.
 
@@ -720,7 +720,7 @@ Khi chèn một phần tử mới, có hai khả năng:
 -   Đặt phần tử mới vào một chu trình riêng, có $\begin{bmatrix}n-1\\ k-1\end{bmatrix}$ cách;
 -   Chèn phần tử mới vào một chu trình đã có bất kì, có $(n-1)\begin{bmatrix}n-1\\ k\end{bmatrix}$ cách.
 
-Theo nguyên lí cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
+Theo nguyên lý cộng, cộng hai biểu thức sẽ thu được công thức truy hồi.
 
 <span id="công-thức-tổng-quát_1"></span>
 ### Công thức tổng quát
@@ -742,7 +742,7 @@ Do đó
 
 $F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$
 
-Đây thực chất là lũy thừa giai thừa tăng bậc $n$ của $x$, kí hiệu $x^{\overline n}$. Có thể tính trực tiếp bằng nhân chia để trị trong $O(n\log^2n)$, nhưng dùng kĩ thuật liên quan đến lũy thừa tăng có thể tính trong $O(n\log n)$. Xem thêm [tịnh tiến đa thức | tịnh tiến giá trị tại các điểm liên tiếp](../poly/shift.md#các-số-stirling-không-dấu-loại-một-trên-cùng-một-hàng).
+Đây thực chất là lũy thừa giai thừa tăng bậc $n$ của $x$, ký hiệu $x^{\overline n}$. Có thể tính trực tiếp bằng nhân chia để trị trong $O(n\log^2n)$, nhưng dùng kỹ thuật liên quan đến lũy thừa tăng có thể tính trong $O(n\log n)$. Xem thêm [tịnh tiến đa thức | tịnh tiến giá trị tại các điểm liên tiếp](../poly/shift.md#các-số-stirling-không-dấu-loại-một-trên-cùng-một-hàng).
 
 <span id="tính-một-cột-số-stirling-loại-một"></span>
 ### Tính một cột số Stirling loại một
@@ -778,7 +778,7 @@ Lũy thừa bậc $k$ của nó chính là hàm sinh mũ của $\begin{bmatrix}i
 <span id="chuyển-đổi-giữa-lũy-thừa-tăng-và-lũy-thừa-thường"></span>
 ### Chuyển đổi giữa lũy thừa tăng và lũy thừa thường
 
-Kí hiệu lũy thừa giai thừa tăng là $x^{\overline{n}}=\prod_{k=0}^{n-1} (x+k)$.
+Ký hiệu lũy thừa giai thừa tăng là $x^{\overline{n}}=\prod_{k=0}^{n-1} (x+k)$.
 
 Có thể dùng đồng nhất thức sau để chuyển lũy thừa tăng thành lũy thừa thường:
 
@@ -795,7 +795,7 @@ $$
 <span id="chuyển-đổi-giữa-lũy-thừa-giảm-và-lũy-thừa-thường"></span>
 ### Chuyển đổi giữa lũy thừa giảm và lũy thừa thường
 
-Kí hiệu lũy thừa giai thừa giảm là $x^{\underline{n}}=\dfrac{x!}{(x-n)!}=\prod_{k=0}^{n-1} (x-k)$.
+Ký hiệu lũy thừa giai thừa giảm là $x^{\underline{n}}=\dfrac{x!}{(x-n)!}=\prod_{k=0}^{n-1} (x-k)$.
 
 Có thể dùng đồng nhất thức sau để chuyển lũy thừa thường thành lũy thừa giảm:
 

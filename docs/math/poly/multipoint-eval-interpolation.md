@@ -38,7 +38,7 @@ $$
 f_{0}\left(x\right)\equiv f\left(x\right)\pmod{g_{0}\left(x\right)}
 $$
 
-Khi đó $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$; với $X_{1}$ xử lí tương tự.
+Khi đó $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$; với $X_{1}$ xử lý tương tự.
 
 Đến đây, kích thước bài toán đã bị giảm một nửa, nên có thể giải bằng chia để trị + lấy dư đa thức.
 

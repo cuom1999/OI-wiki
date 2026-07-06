@@ -36,7 +36,7 @@ $$
 
 ## Thặng dư hình thức
 
-Thặng dư hình thức là hệ số của hạng $x^{-1}$ trong chuỗi Laurent hình thức. Kí hiệu $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$.
+Thặng dư hình thức là hệ số của hạng $x^{-1}$ trong chuỗi Laurent hình thức. Ký hiệu $\operatorname{res} f:=\lbrack x^{-1}\rbrack f$.
 
 **Bổ đề**: với mọi chuỗi Laurent hình thức $f$, có $\operatorname{res} f'=0$.
 
@@ -86,7 +86,7 @@ $$
 
 ## Nghịch đảo hợp thành
 
-Kí hiệu $A(x)\circ B(x):=A(B(x))$.
+Ký hiệu $A(x)\circ B(x):=A(B(x))$.
 
 **Mệnh đề**: $f(x):=\sum_{k\geq 1}f_kx^k$ có nghịch đảo hợp thành $f^{\langle -1\rangle}(x)$ khi và chỉ khi $f(0)=0\neq f'(0)$; khi đó $f^{\langle -1\rangle}(x)$ là duy nhất. Nói thêm: nếu $g(x)=\sum_{k\geq 1}g_kx^k$ thỏa mãn $f(g(x))=x$ hoặc $g(f(x))=x$, thì $g(x)=f^{\langle -1\rangle}(x)$.
 

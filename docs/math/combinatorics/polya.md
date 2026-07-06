@@ -5,10 +5,10 @@ Kiến thức cần có: [hoán vị và sắp xếp](../permutation.md)
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Nguyên lí đếm Pólya thường được dùng để giải các bài toán đếm liên quan đến những đối tượng "khác nhau về bản chất".
+Nguyên lý đếm Pólya thường được dùng để giải các bài toán đếm liên quan đến những đối tượng "khác nhau về bản chất".
 
-???+ info "Bài viết này có thể liên quan đến nội dung lí thuyết nhóm"
-    Bài viết này có thể dùng một số nội dung của lí thuyết nhóm. Các khái niệm nhóm xuất hiện trong bài sẽ được giải thích ngắn gọn để người đọc chưa quen vẫn có thể hiểu và áp dụng nguyên lí đếm Pólya. Với phát biểu và thảo luận chặt chẽ hơn về lí thuyết nhóm, xem thêm các chương [khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md), [lí thuyết nhóm](../algebra/group-theory.md), v.v.
+???+ info "Bài viết này có thể liên quan đến nội dung lý thuyết nhóm"
+    Bài viết này có thể dùng một số nội dung của lý thuyết nhóm. Các khái niệm nhóm xuất hiện trong bài sẽ được giải thích ngắn gọn để người đọc chưa quen vẫn có thể hiểu và áp dụng nguyên lý đếm Pólya. Với phát biểu và thảo luận chặt chẽ hơn về lý thuyết nhóm, xem thêm các chương [khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md), [lý thuyết nhóm](../algebra/group-theory.md), v.v.
 
 ??? info "\"Nhóm đối xứng không gian\", \"nhóm đối xứng\" và \"nhóm hoán vị\""
     Trong bài này sẽ không tránh khỏi việc dùng đồng thời ba tên gọi nhóm trên. Dù dễ gây nhầm lẫn, chúng thật sự chỉ các khái niệm khác nhau. Với một cấu trúc hình học cho trước, phép đối xứng trên nó là một phép biến đổi hình học có thể đưa nó trùng lại với chính nó; nhóm đối xứng không gian (symmetry group) là tập hợp các phép đối xứng đó. Nhóm đối xứng (symmetric group) là tập hợp tất cả các hoán vị trên một tập cho trước. Nhóm hoán vị (permutation group) là một nhóm con của nhóm đối xứng, tức một nhóm gồm một số hoán vị, không nhất thiết là toàn bộ. Phần sau sẽ giải thích cách biểu diễn nhóm đối xứng không gian của một cấu trúc hình học cho trước dưới dạng nhóm hoán vị và dùng nó cho bài toán đếm.
@@ -18,7 +18,7 @@ Nguyên lí đếm Pólya thường được dùng để giải các bài toán 
 
 Đọc thêm: [bổ đề Burnside](../algebra/group-theory.md#bổ-đề-burnside)
 
-Nguyên lí đếm Pólya là một ứng dụng và mở rộng của bổ đề Burnside. Trước khi giới thiệu nguyên lí đếm Pólya, cần nhắc lại ngắn gọn nội dung của bổ đề Burnside.
+Nguyên lý đếm Pólya là một ứng dụng và mở rộng của bổ đề Burnside. Trước khi giới thiệu nguyên lý đếm Pólya, cần nhắc lại ngắn gọn nội dung của bổ đề Burnside.
 
 Để rút ra quy luật tổng quát, trước hết xét một ví dụ đơn giản.
 
@@ -58,19 +58,19 @@ Nguyên lí đếm Pólya là một ứng dụng và mở rộng của bổ đ�
     
     Nếu xét các nhóm chứa $BBBB$ và $RRRR$, áp dụng bất kì phép quay nào cũng cho lại chính chúng. Do đó mỗi nhóm chỉ có $1$ phần tử.
     
-    Gọi $x$ là một cách tô, $Gx$ là tập các mã màu thu được sau khi tác động các phép toán lên $x$. Từ ví dụ trên có thể rút ra rằng tác động của $G$ lên $x$ có một dạng "chu kì" nào đó.
+    Gọi $x$ là một cách tô, $Gx$ là tập các mã màu thu được sau khi tác động các phép toán lên $x$. Từ ví dụ trên có thể rút ra rằng tác động của $G$ lên $x$ có một dạng "chu kỳ" nào đó.
     
-    Gọi $|G|$ là tổng số phép toán. Tính "chu kì" này nghĩa là nếu có $m$ phép toán khác nhau trong $G$ biến cách tô $x$ thành chính nó, thì kết quả của $x$ dưới các phép toán đó sẽ lặp lại $m$ lần. Vì vậy $x$ có tổng cộng $|G|/m$ kết quả khác nhau dưới các phép toán, và đó chính là kích thước nhóm chứa $x$.
+    Gọi $|G|$ là tổng số phép toán. Tính "chu kỳ" này nghĩa là nếu có $m$ phép toán khác nhau trong $G$ biến cách tô $x$ thành chính nó, thì kết quả của $x$ dưới các phép toán đó sẽ lặp lại $m$ lần. Vì vậy $x$ có tổng cộng $|G|/m$ kết quả khác nhau dưới các phép toán, và đó chính là kích thước nhóm chứa $x$.
     
     Trong ví dụ này, vì chỉ có quay không lần $r_0$ biến $RRBB$ thành chính nó, nên kích thước nhóm của nó là $4/1=4$; còn quay không lần $r_0$ và quay hai lần $r_2$ đều biến $BRBR$ thành chính nó, nên kích thước nhóm là $4/2=2$; với $BBBB$, mọi phép quay đều biến nó thành chính nó, nên kích thước nhóm là $4/4=1$.
     
-    Trong phần dưới, kí hiệu $G_x$ là tập các phép toán biến $x$ thành chính nó, nên $|G_x|$ chính là $m$ ở trên. Khi đó kích thước quỹ đạo chứa $x$ là $|G|/|G_x|$. Để tính số nhóm các cách tô, chỉ cần duyệt mọi cách tô có thể $x\in X$, rồi gán trọng số $1/|Gx|$ cho cách tô $x$ nằm trong nhóm có kích thước $|Gx|$. Khi đó số nhóm là
+    Trong phần dưới, ký hiệu $G_x$ là tập các phép toán biến $x$ thành chính nó, nên $|G_x|$ chính là $m$ ở trên. Khi đó kích thước quỹ đạo chứa $x$ là $|G|/|G_x|$. Để tính số nhóm các cách tô, chỉ cần duyệt mọi cách tô có thể $x\in X$, rồi gán trọng số $1/|Gx|$ cho cách tô $x$ nằm trong nhóm có kích thước $|Gx|$. Khi đó số nhóm là
     
     $$
     |X/G|=\sum_{x\in X}\frac{1}{|Gx|}=\sum_{x\in X}\frac{|G_x|}{|G|}.
     $$
     
-    Dạng công thức hiện tại chưa tiện áp dụng. Kí hiệu $gx$ là kết quả khi áp dụng phép toán $g\in G$ lên cách tô $x\in X$. Khi đó tập $G_x$ nêu trên là $\{g\in G:gx=x\}$, nên đổi thứ tự lấy tổng được
+    Dạng công thức hiện tại chưa tiện áp dụng. Ký hiệu $gx$ là kết quả khi áp dụng phép toán $g\in G$ lên cách tô $x\in X$. Khi đó tập $G_x$ nêu trên là $\{g\in G:gx=x\}$, nên đổi thứ tự lấy tổng được
     
     $$
     \begin{aligned}
@@ -114,9 +114,9 @@ Từ ví dụ trên có thể rút ra kết quả tổng quát để giải lớ
 
 Bài toán tô màu là: cho một cấu trúc, tô màu các đỉnh của nó sẽ tạo ra các cách tô khác nhau. Cấu trúc này có một loại đối xứng nào đó, khiến các cách tô nhìn có vẻ khác nhau lại có thể biến đổi qua lại bằng một dãy phép đối xứng. Những cách tô có thể biến đổi qua lại như vậy được gọi là giống nhau về bản chất. Bài toán yêu cầu số cách tô khác nhau về bản chất.
 
-Theo phân tích trong ví dụ, để giải bài toán như vậy, trước hết cần xét cấu trúc cho trước có những phép đối xứng nào. Tập các phép đối xứng đó, kí hiệu $G$, gọi là nhóm đối xứng không gian của cấu trúc. Trong ứng dụng thực tế, đa số trường hợp không cần hiểu định nghĩa nhóm, chỉ cần liệt kê đầy đủ và không trùng lặp mọi phép đối xứng không gian. Phần sau sẽ phân tích cấu trúc của một số nhóm đối xứng không gian thường gặp và giải thích định nghĩa nhóm ở đó.
+Theo phân tích trong ví dụ, để giải bài toán như vậy, trước hết cần xét cấu trúc cho trước có những phép đối xứng nào. Tập các phép đối xứng đó, ký hiệu $G$, gọi là nhóm đối xứng không gian của cấu trúc. Trong ứng dụng thực tế, đa số trường hợp không cần hiểu định nghĩa nhóm, chỉ cần liệt kê đầy đủ và không trùng lặp mọi phép đối xứng không gian. Phần sau sẽ phân tích cấu trúc của một số nhóm đối xứng không gian thường gặp và giải thích định nghĩa nhóm ở đó.
 
-Kí hiệu tập tất cả các cách tô là $X$, một cách tô riêng lẻ là $x$. Kết quả tác động của phép toán $g\in G$ lên cách tô $x\in X$ là $gx$. Khi đó tập tất cả kết quả thu được bằng cách tác động một phép toán nào đó lên $x$ là $Gx=\{gx:g\in G\}$, gọi là quỹ đạo của $x$ dưới tác động của nhóm $G$. Các cách tô khác nhau trong cùng một quỹ đạo chính là những cách "giống nhau về bản chất" trong loại bài toán này. Vì thế số cách tô khác nhau về bản chất tương đương với số quỹ đạo khác nhau.
+Ký hiệu tập tất cả các cách tô là $X$, một cách tô riêng lẻ là $x$. Kết quả tác động của phép toán $g\in G$ lên cách tô $x\in X$ là $gx$. Khi đó tập tất cả kết quả thu được bằng cách tác động một phép toán nào đó lên $x$ là $Gx=\{gx:g\in G\}$, gọi là quỹ đạo của $x$ dưới tác động của nhóm $G$. Các cách tô khác nhau trong cùng một quỹ đạo chính là những cách "giống nhau về bản chất" trong loại bài toán này. Vì thế số cách tô khác nhau về bản chất tương đương với số quỹ đạo khác nhau.
 
 Phân tích trong ví dụ có thể mở rộng sang trường hợp tổng quát.
 
@@ -129,7 +129,7 @@ Phân tích trong ví dụ có thể mở rộng sang trường hợp tổng qu�
     
     Tại đây, $X^g=\{x\in X:gx=x\}$ là tập điểm bất động dưới tác động của $g\in G$.
 
-Chứng minh gần như chỉ là chép lại phân tích trong ví dụ trên. Tuy nhiên, ví dụ dùng một quan sát: kết quả tác động của nhóm $G$ lên một phần tử riêng lẻ $x$ có một dạng "chu kì", nên số lần lặp của chu kì bằng số phép toán biến $x$ thành chính nó. Quan sát này đúng trong trường hợp tổng quát, nhưng vì cấu trúc của nhóm $G$ có thể phức tạp, "chu kì" của nó không nhất thiết trực quan như trong ví dụ. Phát biểu chặt chẽ quan sát này cần dùng [định lí quỹ đạo - ổn định tử (orbit-stabilizer theorem)](../algebra/group-theory.md#bộ-ổn-định) trong lí thuyết nhóm.
+Chứng minh gần như chỉ là chép lại phân tích trong ví dụ trên. Tuy nhiên, ví dụ dùng một quan sát: kết quả tác động của nhóm $G$ lên một phần tử riêng lẻ $x$ có một dạng "chu kỳ", nên số lần lặp của chu kỳ bằng số phép toán biến $x$ thành chính nó. Quan sát này đúng trong trường hợp tổng quát, nhưng vì cấu trúc của nhóm $G$ có thể phức tạp, "chu kỳ" của nó không nhất thiết trực quan như trong ví dụ. Phát biểu chặt chẽ quan sát này cần dùng [định lý quỹ đạo - ổn định tử (orbit-stabilizer theorem)](../algebra/group-theory.md#bộ-ổn-định) trong lý thuyết nhóm.
 
 Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết số điểm bất động ứng với từng phép đối xứng là giải được bài toán đếm tương ứng. Dưới đây là một ứng dụng hơi phức tạp hơn.
 
@@ -137,7 +137,7 @@ Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết 
     Dùng ba màu để tô một khối lập phương, hỏi có bao nhiêu phương án khác nhau về bản chất (hai phương án trùng nhau sau một phép quay trong không gian được xem là cùng một phương án).
 
 ??? example "Lời giải"
-    Khối lập phương có $6$ mặt, mỗi mặt có $3$ cách tô, nên tổng cộng có $3^6$ cách tô, tức $|X|=3^6$. Kí hiệu nhóm đối xứng không gian của khối lập phương là $G$.
+    Khối lập phương có $6$ mặt, mỗi mặt có $3$ cách tô, nên tổng cộng có $3^6$ cách tô, tức $|X|=3^6$. Ký hiệu nhóm đối xứng không gian của khối lập phương là $G$.
     
     ![](../images/cube.svg)
     
@@ -156,11 +156,11 @@ Khi áp dụng, chỉ cần liệt kê mọi phép đối xứng và cho biết 
     $$
 
 <span id="nguyên-lí-đếm-pólya"></span>
-## Nguyên lí đếm Pólya
+## Nguyên lý đếm Pólya
 
-Trong phát biểu của bổ đề Burnside, không dùng tính chất rằng tập $X$ là toàn bộ các cách tô trên một cấu trúc nào đó. Phạm vi áp dụng của bổ đề Burnside không chỉ giới hạn ở bài toán đếm tô màu. Với bài toán tô màu, nguyên lí đếm Pólya cung cấp một cách tính chính xác hơn; có thể xem nó là ứng dụng của bổ đề Burnside tổng quát vào bài toán tô màu.
+Trong phát biểu của bổ đề Burnside, không dùng tính chất rằng tập $X$ là toàn bộ các cách tô trên một cấu trúc nào đó. Phạm vi áp dụng của bổ đề Burnside không chỉ giới hạn ở bài toán đếm tô màu. Với bài toán tô màu, nguyên lý đếm Pólya cung cấp một cách tính chính xác hơn; có thể xem nó là ứng dụng của bổ đề Burnside tổng quát vào bài toán tô màu.
 
-So với bổ đề Burnside, điểm cải tiến của nguyên lí đếm Pólya là cung cấp cách tính cụ thể kích thước tập điểm bất động $|X^g|$ trong bài toán đếm tô màu.
+So với bổ đề Burnside, điểm cải tiến của nguyên lý đếm Pólya là cung cấp cách tính cụ thể kích thước tập điểm bất động $|X^g|$ trong bài toán đếm tô màu.
 
 Ví dụ tô màu lập phương ở trên cho thấy điều này một cách trực quan. Với các phép đối xứng của khối lập phương, kích thước tập điểm bất động đều có dạng $m^{c(g)}$, trong đó $m$ là số màu, còn $c(g)$ là số vùng có thể tô độc lập dưới phép toán $g$. Quan sát này cũng đúng trong trường hợp tổng quát, nhưng cần làm rõ cách tính $c(g)$ với một $g$ cho trước.
 
@@ -168,9 +168,9 @@ Chọn một cách tô cho một cấu trúc, viết bằng ngôn ngữ toán h�
 
 Bây giờ phân tích cấu trúc của tập điểm bất động $(C^X)^g$. Với $g$ cho trước, xem nó là một hoán vị trên $X$. Tương tự phân tích trong ví dụ, nếu vị trí $x$ trong $X$ có thể chuyển đến vị trí $y$ sau khi lặp hữu hạn lần phép toán $g$, thì với một điểm bất động $f\in (C^X)^g$, bắt buộc $f(x)=f(y)$. Theo ngôn ngữ quỹ đạo ở phần trước, vì vị trí $x$ và $y$ nằm trong cùng một quỹ đạo dưới tác động[^g-act] của $g$, chúng phải được tô cùng màu. Theo ngôn ngữ hoán vị, trong [phân tích thành chu trình](../permutation.md#biểu-diễn-bằng-chu-trình) của hoán vị $g$, vị trí $x$ và $y$ nằm trong cùng một chu trình nên phải tô cùng màu. Các chu trình khác nhau trong phân tích chu trình không nhất thiết phải cùng màu và có thể tô độc lập. Vì vậy số vùng có thể tô độc lập chính là $c(g)$, tức số chu trình trong phân tích chu trình của $g$.
 
-Từ đó, số điểm bất động của phép toán $g$ là $|C|^{c(g)}$. Thay kết luận này vào bổ đề Burnside, thu được phiên bản không trọng số của **nguyên lí đếm Pólya** (Pólya enumeration theorem).
+Từ đó, số điểm bất động của phép toán $g$ là $|C|^{c(g)}$. Thay kết luận này vào bổ đề Burnside, thu được phiên bản không trọng số của **nguyên lý đếm Pólya** (Pólya enumeration theorem).
 
-???+ note "Nguyên lí đếm Pólya (phiên bản không trọng số)"
+???+ note "Nguyên lý đếm Pólya (phiên bản không trọng số)"
     Cho nhóm $G$ tác động lên tập $X$, và cho tập màu $C$ có $m$ phần tử. Số cách tô khác nhau là
     
     $$
@@ -180,9 +180,9 @@ Từ đó, số điểm bất động của phép toán $g$ là $|C|^{c(g)}$. Th
     trong đó $m$ là số màu, còn $c(g)$ là số chu trình trong phân tích chu trình của biểu diễn hoán vị của phần tử $g\in G$.
 
 ??? info "Về ý nghĩa của nhóm $G$"
-    Tại đây có lạm dụng kí hiệu một chút. Nếu nhóm $G$ tác động lên $X$, thì tác động nhóm trên tập cách tô $C^X$ cần được định nghĩa lại; bài viết không phân biệt riêng hai tác động này.
+    Tại đây có lạm dụng ký hiệu một chút. Nếu nhóm $G$ tác động lên $X$, thì tác động nhóm trên tập cách tô $C^X$ cần được định nghĩa lại; bài viết không phân biệt riêng hai tác động này.
 
-Như một ứng dụng đơn giản của nguyên lí đếm Pólya, xét lại các ví dụ phía trước.
+Như một ứng dụng đơn giản của nguyên lý đếm Pólya, xét lại các ví dụ phía trước.
 
 ??? example "Một cách giải khác cho bài toán tô màu vòng cổ"
     Đánh số bốn hạt là $1\sim 4$. Khi đó các phần tử trong nhóm $G$ của ví dụ có biểu diễn hoán vị như sau (đều viết dưới dạng phân tích chu trình):
@@ -199,12 +199,12 @@ Như một ứng dụng đơn giản của nguyên lí đếm Pólya, xét lại
     $$
 
 ??? example "Một cách giải khác cho bài toán tô màu lập phương"
-    Phân tích phía trước thực chất đã cho biểu diễn chu trình của từng loại hoán vị, chỉ chưa viết tường minh bằng kí hiệu số. Phần này không lặp lại phân tích đó, chỉ minh họa trường hợp quay $180^\circ$ quanh trục nối trung điểm của hai cạnh đối diện. Đánh số sáu mặt trước, sau, trên, dưới, trái, phải lần lượt là $1\sim6$, hoán vị tương ứng là $(13)(24)(56)$, do đó $c(g)=3$. Các loại hoán vị khác cũng phân tích tương tự, và biểu thức đếm cuối cùng giống hệt phần trên.
+    Phân tích phía trước thực chất đã cho biểu diễn chu trình của từng loại hoán vị, chỉ chưa viết tường minh bằng ký hiệu số. Phần này không lặp lại phân tích đó, chỉ minh họa trường hợp quay $180^\circ$ quanh trục nối trung điểm của hai cạnh đối diện. Đánh số sáu mặt trước, sau, trên, dưới, trái, phải lần lượt là $1\sim6$, hoán vị tương ứng là $(13)(24)(56)$, do đó $c(g)=3$. Các loại hoán vị khác cũng phân tích tương tự, và biểu thức đếm cuối cùng giống hệt phần trên.
 
 <span id="mở-rộng-có-trọng-số"></span>
 ## Mở rộng có trọng số
 
-Phiên bản không trọng số của nguyên lí đếm Pólya chỉ cho số lượng tất cả các cách tô khác nhau về bản chất; khi xử lí bài toán tinh hơn thì không đủ. Chẳng hạn, nếu trong bài toán tô màu ở trên, số lần được dùng của từng màu đã được cho trước, thì không thể áp dụng trực tiếp công thức Pólya trên. Khi giải loại bài toán này trong thực tế, cần dùng lại bổ đề Burnside để suy luận; tổng kết các kết quả đó dưới dạng hàm sinh chính là phiên bản có trọng số của nguyên lí đếm Pólya.
+Phiên bản không trọng số của nguyên lý đếm Pólya chỉ cho số lượng tất cả các cách tô khác nhau về bản chất; khi xử lý bài toán tinh hơn thì không đủ. Chẳng hạn, nếu trong bài toán tô màu ở trên, số lần được dùng của từng màu đã được cho trước, thì không thể áp dụng trực tiếp công thức Pólya trên. Khi giải loại bài toán này trong thực tế, cần dùng lại bổ đề Burnside để suy luận; tổng kết các kết quả đó dưới dạng hàm sinh chính là phiên bản có trọng số của nguyên lý đếm Pólya.
 
 ???+ example "Tô màu vòng cổ (có ràng buộc)"
     Có một vòng cổ gồm bốn hạt, mỗi hạt có thể tô màu đỏ hoặc xanh, và phải dùng đúng hai hạt đỏ, hai hạt xanh. Hỏi có bao nhiêu vòng cổ khác nhau về bản chất? (Nếu hai cách tô có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
@@ -241,7 +241,7 @@ $$
 
 Khai triển biểu thức này, hệ số của mỗi đơn thức sẽ cho số cách tô khác nhau về bản chất với tổ hợp màu tương ứng.
 
-Trong quá trình trên, hàm sinh $\sum_{i=1}^mx_i^k$ cho việc tô mỗi chu trình không có gì đặc biệt, có thể thay bằng các hàm sinh khác. Vì vậy có phiên bản tổng quát sau của nguyên lí đếm Pólya.
+Trong quá trình trên, hàm sinh $\sum_{i=1}^mx_i^k$ cho việc tô mỗi chu trình không có gì đặc biệt, có thể thay bằng các hàm sinh khác. Vì vậy có phiên bản tổng quát sau của nguyên lý đếm Pólya.
 
 ???+ note "Chỉ số chu trình của nhóm hoán vị"
     Cho nhóm hoán vị $G$, **chỉ số chu trình** (cycle index) của nhóm $G$ được định nghĩa là
@@ -252,7 +252,7 @@ Trong quá trình trên, hàm sinh $\sum_{i=1}^mx_i^k$ cho việc tô mỗi chu 
     
     trong đó $c_k(g)$ là số chu trình độ dài $k$ trong phân tích chu trình của hoán vị $g$, tức $1^{c_1(g)}2^{c_2(g)}\cdots n^{c_n(g)}$ là kiểu của hoán vị $g$.
 
-???+ note "Nguyên lí đếm Pólya (phiên bản có trọng số)"
+???+ note "Nguyên lý đếm Pólya (phiên bản có trọng số)"
     Cho nhóm $G$ tác động lên tập $X$. Nếu cách tô mỗi điểm được cho bởi hàm sinh đếm các phương án tô $f(x_1,x_2,\cdots,x_m)$, thì hàm sinh đếm các cách tô khác nhau về bản chất của tập $X$ là
     
     $$
@@ -261,9 +261,9 @@ Trong quá trình trên, hàm sinh $\sum_{i=1}^mx_i^k$ cho việc tô mỗi chu 
     
     trong đó $Z_G(t_1,t_2,\cdots,t_n)$ là chỉ số chu trình của nhóm $G$.
 
-Tại đây, nếu hàm sinh của cách tô một vị trí là $f(x_1,x_2,\cdots,x_m)$, thì hàm sinh của cách tô một chu trình độ dài $k$ là $f(x_1^k,x_2^k,\cdots,x_m^k)$. Điều này phản ánh rằng nếu một cách tô là điểm bất động của hoán vị cho trước, thì mọi vị trí trong cùng một chu trình phải có cùng màu. Nếu lấy giá trị hàm sinh tại $x_i=1$, sẽ thu được phiên bản không trọng số của nguyên lí đếm Pólya ở trên.
+Tại đây, nếu hàm sinh của cách tô một vị trí là $f(x_1,x_2,\cdots,x_m)$, thì hàm sinh của cách tô một chu trình độ dài $k$ là $f(x_1^k,x_2^k,\cdots,x_m^k)$. Điều này phản ánh rằng nếu một cách tô là điểm bất động của hoán vị cho trước, thì mọi vị trí trong cùng một chu trình phải có cùng màu. Nếu lấy giá trị hàm sinh tại $x_i=1$, sẽ thu được phiên bản không trọng số của nguyên lý đếm Pólya ở trên.
 
-Phát biểu định lí dùng khái niệm chỉ số chu trình của nhóm hoán vị. Khái niệm này độc lập với bài toán tô màu cụ thể; nó mô tả cấu trúc của nhóm hoán vị.
+Phát biểu định lý dùng khái niệm chỉ số chu trình của nhóm hoán vị. Khái niệm này độc lập với bài toán tô màu cụ thể; nó mô tả cấu trúc của nhóm hoán vị.
 
 ??? example "Một cách giải khác cho bài toán tô vòng cổ có ràng buộc"
     Chỉ số chu trình của nhóm đối xứng quay là $\dfrac14\left(t_1^4+t_2^2+2t_4\right)$, hàm sinh tô một điểm là $r+b$, nên hàm sinh của toàn bộ cách tô là
@@ -280,7 +280,7 @@ Phát biểu định lí dùng khái niệm chỉ số chu trình của nhóm ho
 <span id="ứng-dụng"></span>
 ### Ứng dụng
 
-Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò quan trọng trong các bài toán đếm tổ hợp. Phần này chỉ thảo luận ngắn gọn ứng dụng của nó; phần tổng quát hơn có thể xem ở [phương pháp hình thức cho bài toán tổ hợp](../poly/symbolic-method.md#cấu-trúc-có-ràng-buộc).
+Phiên bản có trọng số của nguyên lý đếm Pólya đóng vai trò quan trọng trong các bài toán đếm tổ hợp. Phần này chỉ thảo luận ngắn gọn ứng dụng của nó; phần tổng quát hơn có thể xem ở [phương pháp hình thức cho bài toán tổ hợp](../poly/symbolic-method.md#cấu-trúc-có-ràng-buộc).
 
 ???+ example "Vòng cổ kim cương"
     Có một vòng cổ gồm bốn hạt giống nhau, mỗi hạt có thể gắn một số viên kim cương. Nếu có tổng cộng bốn viên kim cương, hỏi có bao nhiêu cách gắn khác nhau về bản chất? (Nếu hai cách gắn có thể trùng nhau sau khi quay vòng cổ, chúng được xem là giống nhau.)
@@ -292,7 +292,7 @@ Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò qu
     f(x)=1+x+x^2+\cdots=\sum_{i=0}^\infty x^i=\frac{1}{1-x}.
     $$
     
-    Áp dụng phiên bản có trọng số của nguyên lí đếm Pólya, hàm sinh của mọi phương án gắn kim cương là
+    Áp dụng phiên bản có trọng số của nguyên lý đếm Pólya, hàm sinh của mọi phương án gắn kim cương là
     
     $$
     \begin{aligned}
@@ -309,7 +309,7 @@ Phiên bản có trọng số của nguyên lí đếm Pólya đóng vai trò qu
     
     Tại đây, mỗi nhóm bốn chữ số biểu diễn số kim cương trên từng hạt.
 
-Ví dụ này cho thấy phiên bản có trọng số của nguyên lí đếm Pólya giải được phạm vi bài toán rộng hơn nhiều so với bài toán tô màu. Nó cung cấp cách mở rộng phép đếm tại một điểm đơn lẻ thành phép đếm khác nhau về bản chất trên toàn cấu trúc. Bài toán tô màu chỉ là một trường hợp đặc biệt của lớp bài toán này.
+Ví dụ này cho thấy phiên bản có trọng số của nguyên lý đếm Pólya giải được phạm vi bài toán rộng hơn nhiều so với bài toán tô màu. Nó cung cấp cách mở rộng phép đếm tại một điểm đơn lẻ thành phép đếm khác nhau về bản chất trên toàn cấu trúc. Bài toán tô màu chỉ là một trường hợp đặc biệt của lớp bài toán này.
 
 <span id="các-nhóm-đối-xứng-không-gian-thường-gặp"></span>
 ## Các nhóm đối xứng không gian thường gặp
@@ -317,7 +317,7 @@ Ví dụ này cho thấy phiên bản có trọng số của nguyên lí đếm 
 Một khó khăn của các bài toán đếm Pólya là phân tích cấu trúc của nhóm hoán vị. Phần này thảo luận ngắn gọn cấu trúc của các nhóm đối xứng không gian thường gặp và mô tả chúng bằng chỉ số chu trình. Cần lưu ý rằng với cùng một nhóm đối xứng không gian của một cấu trúc, nếu tập đối tượng mà nó tác động lên khác nhau thì [tác động nhóm](../algebra/group-theory.md#tác-động-nhóm) tương ứng cũng khác nhau, do đó biểu diễn hoán vị cũng khác nhau. Ví dụ, nhóm đối xứng không gian của khối lập phương khi tác động lên đỉnh, cạnh, mặt lần lượt cho nhóm hoán vị đỉnh, nhóm hoán vị cạnh và nhóm hoán vị mặt của khối lập phương; số lượng đỉnh, cạnh, mặt đôi một khác nhau, nên các nhóm hoán vị đó và chỉ số chu trình tương ứng cũng khác nhau. Vì vậy trong bài toán cụ thể, không được bỏ qua việc chỉ rõ đối tượng mà nhóm tác động lên.
 
 ??? info "Quan hệ giữa nhóm đối xứng không gian và nhóm hoán vị"
-    Dù hai khái niệm rất giống nhau về trực giác, chúng tuyệt đối không phải cùng một đối tượng. Nói bằng ngôn ngữ lí thuyết nhóm, cho nhóm đối xứng không gian $G$ và tác động nhóm của nó lên tập $X$, biểu diễn hoán vị của tác động nhóm cho một đồng cấu từ nhóm $G$ đến nhóm đối xứng $S_X$, kí hiệu $\varphi$. Trong ngữ cảnh đếm tổ hợp, biểu diễn hoán vị này thường là trung thành, tức $\ker\varphi=\{e\}$, nên đồng cấu $\varphi$ thực chất là một phép nhúng từ nhóm $G$ vào nhóm $S_X$. Nhóm hoán vị trong bài chính là ảnh của phép nhúng này, tức $\varphi(G)$, và nó đẳng cấu với nhóm đối xứng không gian $G$. Vì vậy, với cùng một nhóm đối xứng không gian $G$ trên cùng một cấu trúc, nếu cách chọn tác động nhóm khác nhau thì nó sẽ đẳng cấu với các nhóm hoán vị $\varphi(G)$ khác nhau, từ đó có chỉ số chu trình khác nhau (các nhóm hoán vị đẳng cấu không nhất thiết có cùng chỉ số chu trình).
+    Dù hai khái niệm rất giống nhau về trực giác, chúng tuyệt đối không phải cùng một đối tượng. Nói bằng ngôn ngữ lý thuyết nhóm, cho nhóm đối xứng không gian $G$ và tác động nhóm của nó lên tập $X$, biểu diễn hoán vị của tác động nhóm cho một đồng cấu từ nhóm $G$ đến nhóm đối xứng $S_X$, ký hiệu $\varphi$. Trong ngữ cảnh đếm tổ hợp, biểu diễn hoán vị này thường là trung thành, tức $\ker\varphi=\{e\}$, nên đồng cấu $\varphi$ thực chất là một phép nhúng từ nhóm $G$ vào nhóm $S_X$. Nhóm hoán vị trong bài chính là ảnh của phép nhúng này, tức $\varphi(G)$, và nó đẳng cấu với nhóm đối xứng không gian $G$. Vì vậy, với cùng một nhóm đối xứng không gian $G$ trên cùng một cấu trúc, nếu cách chọn tác động nhóm khác nhau thì nó sẽ đẳng cấu với các nhóm hoán vị $\varphi(G)$ khác nhau, từ đó có chỉ số chu trình khác nhau (các nhóm hoán vị đẳng cấu không nhất thiết có cùng chỉ số chu trình).
 
 Cho một cấu trúc, nhóm đối xứng không gian của nó là tập mọi phép toán có thể biến đổi nó thành chính nó. Nó nhất thiết thỏa mãn các điều kiện sau:
 
@@ -326,12 +326,12 @@ Cho một cấu trúc, nhóm đối xứng không gian của nó là tập mọi
 -   Tồn tại phép đối xứng đồng nhất, tức việc giữ nguyên cấu trúc cũng được xem là một phép toán;
 -   Mọi phép toán đều có phép nghịch đảo, có thể triệt tiêu hiệu quả của phép toán đã cho.
 
-[Nhóm](../algebra/basic.md#nhóm) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lí thuyết nhóm](../algebra/group-theory.md). Phân tích bên dưới chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
+[Nhóm](../algebra/basic.md#nhóm) là sự trừu tượng hóa của mọi khái niệm thỏa mãn các điều kiện trên. Việc nghiên cứu cấu trúc nhóm là nội dung chính của [lý thuyết nhóm](../algebra/group-theory.md). Phân tích bên dưới chủ yếu tập trung vào nhóm đối xứng không gian và dùng quan điểm hình học để thảo luận cấu trúc của chúng. Các ví dụ thường gặp dưới đây nhằm giúp người đọc nắm được cách phân tích loại bài toán này.
 
 <span id="nhóm-cyclic"></span>
 ### Nhóm cyclic
 
-Cho đa giác đều $n$ cạnh, nhóm đối xứng không gian gồm tất cả các phép quay của nó được gọi là nhóm cyclic, kí hiệu $C_n$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, khi đó các phần tử của nhóm $C_n$ có thể viết là
+Cho đa giác đều $n$ cạnh, nhóm đối xứng không gian gồm tất cả các phép quay của nó được gọi là nhóm cyclic, ký hiệu $C_n$. Ký hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, khi đó các phần tử của nhóm $C_n$ có thể viết là
 
 $$
 C_n=\{e,r,r^2,\cdots,r^{n-1}\}.
@@ -367,7 +367,7 @@ Nếu chỉ tính phép quay, nhóm đối xứng không gian của vòng cổ �
 <span id="nhóm-nhị-diện"></span>
 ### Nhóm nhị diện
 
-Cho đa giác đều $n$ cạnh, tất cả các phép quay và phép lật qua trục đối xứng cũng tạo thành một nhóm đối xứng không gian, gọi là nhóm nhị diện (dihedral group), kí hiệu $D_{2n}$. Kí hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, và kí hiệu phép lật qua một trục đối xứng cố định (ví dụ đường nối tâm với một đỉnh) là $s$, khi đó các phép toán của nhóm $D_{2n}$ có thể viết là
+Cho đa giác đều $n$ cạnh, tất cả các phép quay và phép lật qua trục đối xứng cũng tạo thành một nhóm đối xứng không gian, gọi là nhóm nhị diện (dihedral group), ký hiệu $D_{2n}$. Ký hiệu phép quay ngược chiều kim đồng hồ $(360/n)^\circ$ là $r$, và ký hiệu phép lật qua một trục đối xứng cố định (ví dụ đường nối tâm với một đỉnh) là $s$, khi đó các phép toán của nhóm $D_{2n}$ có thể viết là
 
 $$
 D_{2n}=\{e,r,\cdots,r^{n-1},s,sr,\cdots,sr^{n-1}\}.
@@ -395,7 +395,7 @@ $$
 <span id="nhóm-đối-xứng"></span>
 ### Nhóm đối xứng
 
-Cho $n$ phần tử, tập tất cả các hoán vị trên chúng tạo thành một nhóm, gọi là nhóm đối xứng bậc $n$ (symmetric group), kí hiệu $S_n$. Nó mô tả mọi đối xứng mà $n$ đỉnh này có thể có. Nó cũng chính là biểu diễn hoán vị của các phép đối xứng đó khi tác động lên tập đỉnh.
+Cho $n$ phần tử, tập tất cả các hoán vị trên chúng tạo thành một nhóm, gọi là nhóm đối xứng bậc $n$ (symmetric group), ký hiệu $S_n$. Nó mô tả mọi đối xứng mà $n$ đỉnh này có thể có. Nó cũng chính là biểu diễn hoán vị của các phép đối xứng đó khi tác động lên tập đỉnh.
 
 Theo phân tích trong bài [hoán vị và sắp xếp](../permutation.md#kiểu-chu-trình-của-hoán-vị), chỉ số chu trình của nó là
 
@@ -437,7 +437,7 @@ Với đồ thị đầy đủ trên $n$ đỉnh, nhóm tự đẳng cấu của
     Z(S_4^{(2)})=\dfrac{1}{24}(t_1^6+9t_1^2t_2^2+8t_3^2+6t_2t_4).
     $$
     
-    Theo nguyên lí đếm Pólya, số đồ thị đơn vô hướng có $4$ đỉnh xét đến đẳng cấu là
+    Theo nguyên lý đếm Pólya, số đồ thị đơn vô hướng có $4$ đỉnh xét đến đẳng cấu là
     
     $$
     \frac{2^6+9\times 2^4+8\times 2^2+6\times 2^2}{24} = 11.
@@ -505,9 +505,9 @@ Các chỉ số chu trình tại đây đều dành cho nhóm hoán vị tác đ
 <span id="bài-toán-tô-màu"></span>
 ### Bài toán tô màu
 
-Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và áp dụng nguyên lí đếm Pólya.
+Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và áp dụng nguyên lý đếm Pólya.
 
--   [Luogu P4980 Mẫu: Định lí Polya](https://www.luogu.com.cn/problem/P4980)
+-   [Luogu P4980 Mẫu: Định lý Polya](https://www.luogu.com.cn/problem/P4980)
 -   [Luogu P2561 [AHOI2002] Gạch trắng đen](https://www.luogu.com.cn/problem/P2561)
 -   [TRANSP - Transposing is Fun](https://www.spoj.com/problems/TRANSP/)
 -   [TRANSP2 - Transposing is Even More Fun](https://www.spoj.com/problems/TRANSP2/)
@@ -522,13 +522,13 @@ Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba l�
 <span id="đếm-đồ-thị"></span>
 ### Đếm đồ thị
 
-Nguyên lí đếm Pólya có thể dùng cho bài toán [đếm đồ thị](../combinatorics/graph-enumeration.md); khó khăn của loại bài này nằm ở việc liệt kê nhóm hoán vị cạnh của đồ thị.
+Nguyên lý đếm Pólya có thể dùng cho bài toán [đếm đồ thị](../combinatorics/graph-enumeration.md); khó khăn của loại bài này nằm ở việc liệt kê nhóm hoán vị cạnh của đồ thị.
 
 -   [SGU 282. Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)
 -   [Luogu P4727 [HNOI2009] Đếm đẳng cấu đồ thị](https://www.luogu.com.cn/problem/P4727)
 -   [Luogu P4128 [SHOI2006] Đồ thị có màu](https://www.luogu.com.cn/problem/P4128)
 
-Một loại bài toán đếm đồ thị khác có thể áp dụng nguyên lí đếm Pólya cần thao tác trực tiếp trên hàm sinh.
+Một loại bài toán đếm đồ thị khác có thể áp dụng nguyên lý đếm Pólya cần thao tác trực tiếp trên hàm sinh.
 
 -   [LOJ 6538 Đếm alkyl, bản tăng cường, bản tăng cường](https://loj.ac/p/6538)
 -   [LOJ 6512 "Trại huấn luyện Yale 2018" Đếm alkane](https://loj.ac/p/6512)

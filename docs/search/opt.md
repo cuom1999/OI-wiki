@@ -5,7 +5,7 @@ author: CBW2007, ChungZH, Marcythm, abc1763613206, Ir1d
 
 DFS (tìm kiếm theo chiều sâu) là một thuật toán phổ biến. Phần lớn bài toán đều có thể giải bằng DFS, nhưng trong đa số trường hợp, đó chỉ là cách làm để lấy một phần điểm; rất hiếm bài toán mà vét cạn bằng tìm kiếm lại là lời giải chuẩn, vì độ phức tạp thời gian của DFS đặc biệt cao. Cần nắm DFS trước khi đọc tiếp.
 
-Vì DFS thường không đủ để trở thành lời giải chuẩn, nên cố gắng lấy được nhiều điểm hơn bằng các tối ưu hóa. Bài viết này sẽ giới thiệu một số kĩ thuật tối ưu thực dụng, thường được gọi là "cắt tỉa".
+Vì DFS thường không đủ để trở thành lời giải chuẩn, nên cố gắng lấy được nhiều điểm hơn bằng các tối ưu hóa. Bài viết này sẽ giới thiệu một số kỹ thuật tối ưu thực dụng, thường được gọi là "cắt tỉa".
 
 Trước hết là một mẫu tìm kiếm sâu; các mẫu phía sau sẽ được sửa đổi dựa trên mẫu này.
 

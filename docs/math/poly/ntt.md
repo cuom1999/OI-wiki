@@ -6,9 +6,9 @@ author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphere
 
 **Biến đổi số học** (number-theoretic transform, NTT) là cách hiện thực biến đổi Fourier rời rạc (DFT) trên nền tảng số học; **biến đổi số học nhanh** (fast number-theoretic transform, FNTT) là cách hiện thực [biến đổi Fourier nhanh](./fft.md) (FFT) trên nền tảng số học.
 
-**Biến đổi số học** là một thuật toán nhanh để tính tích chập (convolution). Một trong những thuật toán thường dùng nhất chính là biến đổi Fourier nhanh đã nhắc ở phần trước. Tuy nhiên, FFT có một số nhược điểm khi hiện thực: vector dữ liệu phải được xử lí bằng cách nhân với ma trận hệ số phức, mà phần thực và phần ảo của mỗi hệ số phức là các giá trị của hàm sin và cos, nên phần lớn hệ số là số thực dấu phẩy động. Nói cách khác, cần thực hiện phép toán trên số phức và số dấu phẩy động, khiến lượng tính toán lớn hơn và sai số do phép toán dấu phẩy động cũng đáng kể hơn.
+**Biến đổi số học** là một thuật toán nhanh để tính tích chập (convolution). Một trong những thuật toán thường dùng nhất chính là biến đổi Fourier nhanh đã nhắc ở phần trước. Tuy nhiên, FFT có một số nhược điểm khi hiện thực: vector dữ liệu phải được xử lý bằng cách nhân với ma trận hệ số phức, mà phần thực và phần ảo của mỗi hệ số phức là các giá trị của hàm sin và cos, nên phần lớn hệ số là số thực dấu phẩy động. Nói cách khác, cần thực hiện phép toán trên số phức và số dấu phẩy động, khiến lượng tính toán lớn hơn và sai số do phép toán dấu phẩy động cũng đáng kể hơn.
 
-NTT xử lí trường hợp nhân đa thức có lấy modulo. Có thể nói nó chịu một số ràng buộc từ modulo, và các số thường tương đối lớn. Modulo phổ biến nhất hiện nay là 998244353.
+NTT xử lý trường hợp nhân đa thức có lấy modulo. Có thể nói nó chịu một số ràng buộc từ modulo, và các số thường tương đối lớn. Modulo phổ biến nhất hiện nay là 998244353.
 
 <span id="kiến-thức-cần-có"></span>
 
@@ -28,7 +28,7 @@ Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [
 
 **Biến đổi số học** (NTT) thu được bằng cách chuyển biến đổi Fourier rời rạc sang $F={\mathbb {Z}/p}$, tức các số nguyên modulo số nguyên tố $p$. Đây là một **trường hữu hạn**. Miễn là $n$ chia hết $p-1$, sẽ tồn tại căn nguyên thủy bậc $n$, nên suy ra $p=\xi n+1$ với số nguyên dương $\xi$. Cụ thể, với số nguyên tố $p=qn+1, (n=2^m)$, căn nguyên thủy $g$ thỏa mãn $g^{qn} \equiv 1 \pmod p$; nếu xem $g_n=g^q\pmod p$ là phần tử tương ứng với $\omega_n$, thì nó thỏa mãn các tính chất tương tự, chẳng hạn $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$.
 
-Vì phần này liên quan đến biến đổi số học, nên $N$ (để phân biệt với $n$ trong FFT, kí hiệu $n$ được đổi thành $N$) có thể lớn hơn $n$ trong FFT; chỉ cần xem $\frac{qN}{n}$ là $q$ trong ngữ cảnh này là đủ để tránh vấn đề về kích thước.
+Vì phần này liên quan đến biến đổi số học, nên $N$ (để phân biệt với $n$ trong FFT, ký hiệu $n$ được đổi thành $N$) có thể lớn hơn $n$ trong FFT; chỉ cần xem $\frac{qN}{n}$ là $q$ trong ngữ cảnh này là đủ để tránh vấn đề về kích thước.
 
 Các modulo thường gặp gồm:
 
@@ -70,19 +70,19 @@ Cách viết tắt này tương tự biến đổi Fourier nhanh. Thuật ngữ 
 
 Biến đổi số học hoặc biến đổi số học nhanh là phép toán trong nghĩa modulo, không có trường hợp liên tục, nên luôn là rời rạc và tự nhiên không cần nhắc đến từ "rời rạc".
 
-Trong lĩnh vực thuật toán, các thao tác không được tăng tốc thường không có ý nghĩa thực tiễn. Khi giới thiệu thuật ngữ DFT trong biến đổi Fourier nhanh, lí do là DFT còn có các ứng dụng cụ thể khác trong xử lí tín hiệu và xử lí ảnh, đồng thời DFT cũng là nguyên lí hoặc kiến thức nền của FFT.
+Trong lĩnh vực thuật toán, các thao tác không được tăng tốc thường không có ý nghĩa thực tiễn. Khi giới thiệu thuật ngữ DFT trong biến đổi Fourier nhanh, lí do là DFT còn có các ứng dụng cụ thể khác trong xử lý tín hiệu và xử lý ảnh, đồng thời DFT cũng là nguyên lý hoặc kiến thức nền của FFT.
 
 Khi không gây nhầm lẫn, NTT thường được dùng để chỉ FNTT. Để tránh nhầm lẫn trong phần trình bày tiếp theo, dưới đây hai thuật ngữ NTT và FNTT được tách riêng.
 
 Quan hệ cụ thể giữa DFT, FFT, NTT và FNTT là:
 
--   Trên cơ sở DFT và NTT, thêm thao tác chia để trị để thu được FFT và FNTT. Phương pháp và nguyên lí của thao tác chia để trị có thể xem trong bài về biến đổi Fourier nhanh.
+-   Trên cơ sở DFT và NTT, thêm thao tác chia để trị để thu được FFT và FNTT. Phương pháp và nguyên lý của thao tác chia để trị có thể xem trong bài về biến đổi Fourier nhanh.
 
 -   Trên cơ sở DFT và FFT, thay phép cộng và phép nhân số phức bằng phép cộng và phép nhân theo modulo $p$, thường giới hạn giá trị trong khoảng từ $0$ đến $p-1$; thay căn đơn vị nguyên thủy bằng căn đơn vị nguyên thủy cùng bậc trong nghĩa modulo $p$, với bậc là lũy thừa của $2$, thì có thể thu được NTT và FNTT.
 
-Vì các phép toán được thay thế chỉ gồm cộng và nhân, nên DFT, FFT, NTT và FNTT có cùng nguyên lí: đều thực hiện trên một vành thỏa mãn phép cộng và phép nhân, không cần điều kiện chặt hơn là phải có phép chia như trên trường.
+Vì các phép toán được thay thế chỉ gồm cộng và nhân, nên DFT, FFT, NTT và FNTT có cùng nguyên lý: đều thực hiện trên một vành thỏa mãn phép cộng và phép nhân, không cần điều kiện chặt hơn là phải có phép chia như trên trường.
 
-Miễn là có căn nguyên thủy, tức phần tử sinh trong lí thuyết nhóm, thì NTT hoặc FNTT dưới modulo đó có thể thực hiện được. Xét rằng các modulo $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, khi đã có căn nguyên thủy $g$ của modulo $p^\alpha$ và $2p^\alpha$, cùng phương pháp vẫn cho phép thực hiện NTT hoặc FNTT.
+Miễn là có căn nguyên thủy, tức phần tử sinh trong lý thuyết nhóm, thì NTT hoặc FNTT dưới modulo đó có thể thực hiện được. Xét rằng các modulo $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, khi đã có căn nguyên thủy $g$ của modulo $p^\alpha$ và $2p^\alpha$, cùng phương pháp vẫn cho phép thực hiện NTT hoặc FNTT.
 
 <span id="mẫu"></span>
 

@@ -33,7 +33,7 @@ Vậy làm thế nào để tìm mọi PN không vượt quá $n$? Dùng sàng t
 <span id="sàng-pn"></span>
 ## Sàng PN
 
-Trước hết, xây dựng một hàm nhân $g$ dễ tính tổng tiền tố và thỏa mãn $g(p) = f(p)$ với mọi số nguyên tố $p$. Kí hiệu $G(n) = \sum_{i=1}^{n} g(i)$.
+Trước hết, xây dựng một hàm nhân $g$ dễ tính tổng tiền tố và thỏa mãn $g(p) = f(p)$ với mọi số nguyên tố $p$. Ký hiệu $G(n) = \sum_{i=1}^{n} g(i)$.
 
 Tiếp theo, xây dựng hàm $h = f / g$, trong đó $/$ biểu thị phép chia theo tích chập Dirichlet. Theo tính chất của tích chập Dirichlet, $h$ cũng là hàm nhân, nên $h(1) = 1$. Khi đó $f = g * h$, trong đó $*$ biểu thị tích chập Dirichlet.
 
@@ -65,7 +65,7 @@ Tiếp theo xét cách tính $h(p^c)$. Có hai phương pháp: một là trực 
 4.  Tìm kiếm PN, đồng thời cộng dồn đáp án.
 5.  Thu được kết quả.
 
-Với bước 3, có thể tính trực tiếp theo công thức, có thể tiền xử lí bằng cách liệt kê để lập bảng, hoặc chỉ suy ra tạm thời khi tìm kiếm đến.
+Với bước 3, có thể tính trực tiếp theo công thức, có thể tiền xử lý bằng cách liệt kê để lập bảng, hoặc chỉ suy ra tạm thời khi tìm kiếm đến.
 
 <span id="tính-chất"></span>
 ### Tính chất

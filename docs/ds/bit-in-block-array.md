@@ -40,7 +40,7 @@ Chẳng hạn, đặt $Y_i$ là tung độ của điểm có hoành độ $i$.
 
 Sau đó, phân khối các hoành độ với kích thước khối là $\sqrt n$.
 Với mỗi khối, xây một cây Fenwick trên miền giá trị.
-Kí hiệu $T_i$ là cây Fenwick tương ứng với khối thứ $i$,
+Ký hiệu $T_i$ là cây Fenwick tương ứng với khối thứ $i$,
 và $T_{i, j}$ là số điểm trong khối $i$ có tung độ thuộc $(j - lowbit(j), j]$.
 
 ### Truy vấn
@@ -62,7 +62,7 @@ rồi cộng dồn vào đáp án.
 Đến đây vẫn còn một điểm có thể tối ưu.
 Khi xử lý các khối hoàn chỉnh,
 thực chất đang truy vấn tổng tiền tố của $T$.
-Nếu khi cập nhật cũng dùng kĩ thuật cây Fenwick để xử lý $T$,
+Nếu khi cập nhật cũng dùng kỹ thuật cây Fenwick để xử lý $T$,
 độ phức tạp truy vấn sẽ thấp hơn.
 
 ### Cập nhật
@@ -107,7 +107,7 @@ Cập nhật có độ phức tạp giống truy vấn, là $O (\sqrt n + \log (
     
     Độ dài dãy $n$ thỏa mãn $2 \le n \le 2 \cdot 10^5$, số thao tác $q$ thỏa mãn $1 \le q \le 2 \cdot 10^5$.
 
-Với mỗi giá trị $i$, kí hiệu $x_i$ là chỉ số của nó trong hoán vị $b$,
+Với mỗi giá trị $i$, ký hiệu $x_i$ là chỉ số của nó trong hoán vị $b$,
 và $y_i$ là chỉ số của nó trong hoán vị $a$.
 Khi đó, thao tác 1 trở thành một truy vấn số điểm trong vùng chữ nhật,
 còn thao tác 2 có thể xem là hai thao tác cập nhật.

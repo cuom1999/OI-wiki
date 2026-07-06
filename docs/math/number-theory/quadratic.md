@@ -61,7 +61,7 @@ số trong một đẳng thức bằng liên hợp của nó, tức đổi dấu
 Dùng liên hợp có thể xây dựng một số ánh xạ từ số đại số bậc hai đến số hữu tỉ,
 giúp chuyển các thảo luận về số đại số bậc hai thành thảo luận về số hữu tỉ.
 Ánh xạ đơn giản hơn là **vết** (trace) của số đại số bậc hai $\alpha$, tức tổng
-của một số và liên hợp của nó, kí hiệu $\operatorname{tr}(\alpha)$. Vì nó thực
+của một số và liên hợp của nó, ký hiệu $\operatorname{tr}(\alpha)$. Vì nó thực
 chất chỉ là hai lần phần hữu tỉ của số đó, nên không cung cấp nhiều thông tin.
 
 Hữu ích hơn là chuẩn của số đại số bậc hai. Tích của số đại số bậc hai với liên
@@ -102,7 +102,7 @@ x^2-\operatorname{tr}(\alpha)x+N(\alpha)=0
 $$
 
 Biệt thức của phương trình này cũng được gọi là **biệt thức** (discriminant)
-của số đại số bậc hai đó, kí hiệu $\operatorname{disc}(\alpha)$, và có giá trị
+của số đại số bậc hai đó, ký hiệu $\operatorname{disc}(\alpha)$, và có giá trị
 $4db^2$.
 
 ???+ note "Biểu diễn ma trận"
@@ -157,7 +157,7 @@ Ngược lại, mọi số phức có dạng này đều là số nguyên bậc 
 bậc hai không hữu tỉ, cách viết dưới dạng này là duy nhất.
 
 Tập hợp tất cả số nguyên bậc hai trong trường bậc hai $\mathbf Q(\sqrt{d})$
-được kí hiệu là $\mathbf Z[\omega]$. Vì tập này đóng dưới phép cộng, trừ, nhân,
+được ký hiệu là $\mathbf Z[\omega]$. Vì tập này đóng dưới phép cộng, trừ, nhân,
 nó cũng được gọi là **vành số nguyên bậc hai** (quadratic integer ring). Các số
 hữu tỉ trong vành số nguyên bậc hai đúng bằng toàn bộ các số nguyên. Nếu xét
 tập tất cả các thương của các số nguyên bậc hai trong $\mathbf Z[\omega]$, sẽ
@@ -172,21 +172,21 @@ $d\equiv 2,3\pmod 4$, biệt thức là $4d$.
 <span id="chia-hết-liên-kết-và-đơn-vị"></span>
 ### Chia hết, liên kết và đơn vị
 
-Tương tự số nguyên, có thể xây dựng lí thuyết chia hết cho số nguyên
+Tương tự số nguyên, có thể xây dựng lý thuyết chia hết cho số nguyên
 bậc hai. Việc thảo luận phải được thực hiện trong cùng một vành số
 nguyên bậc hai.
 
 Với các số nguyên bậc hai $\alpha$ và $\beta$ trong vành số nguyên bậc hai
 $\mathbf Z[\omega]$, nếu tồn tại số nguyên bậc hai $\gamma$ trong cùng vành sao
-cho $\beta=\alpha\gamma$, thì nói $\alpha$ chia hết $\beta$, kí hiệu
+cho $\beta=\alpha\gamma$, thì nói $\alpha$ chia hết $\beta$, ký hiệu
 $\alpha\mid\beta$. Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi)
 trên vành số nguyên bậc hai. Nếu đồng thời có $\alpha\mid\beta$ và
-$\beta\mid\alpha$, thì khi nghiên cứu lí thuyết chia hết có thể xem $\alpha$
+$\beta\mid\alpha$, thì khi nghiên cứu lý thuyết chia hết có thể xem $\alpha$
 và $\beta$ như cùng một số; chúng được gọi là **liên kết** (associate). Quan hệ
 liên kết là một quan hệ tương đương trên vành số nguyên bậc hai.
 
-Trong lí thuyết chia hết của số nguyên, quan hệ liên kết chính là quan hệ đối
-nhau. Thông thường chỉ cần xét các số tự nhiên trong lí thuyết chia hết, không
+Trong lý thuyết chia hết của số nguyên, quan hệ liên kết chính là quan hệ đối
+nhau. Thông thường chỉ cần xét các số tự nhiên trong lý thuyết chia hết, không
 cần xét trường hợp số âm. Đối với số nguyên bậc hai, quan hệ liên kết có thể
 phức tạp hơn. Nếu hai số nguyên bậc hai $\alpha$ và $\beta$ liên kết, thì tồn
 tại các số nguyên bậc hai $\gamma$ và $\delta$ sao cho $\beta=\alpha\gamma$ và
@@ -244,7 +244,7 @@ trong số học đại số phát biểu rằng tất cả đơn vị của m�
 lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#nhóm-abel-hữu-hạn-sinh),
 đồng thời định lý này cũng cho biết hạng của nhóm đó.
 
-Các nội dung trong lí thuyết chia hết của số nguyên như ước chung lớn nhất,
+Các nội dung trong lý thuyết chia hết của số nguyên như ước chung lớn nhất,
 phép chia có dư, định lý Bézout, định lý phân tích duy nhất, v.v. đều có thể
 mở rộng lên một phần hoặc toàn bộ các vành số nguyên bậc hai. Việc có thể thực
 hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay không phản
@@ -252,7 +252,7 @@ hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay 
 mọi vành số nguyên bậc hai đều thỏa mãn định lý phân tích duy nhất; trong các
 vành thỏa mãn định lý phân tích duy nhất, cũng chỉ một phần cho phép thực hiện
 phép chia có dư. Có thể tham khảo mục [vành số nguyên bậc hai](../algebra/ring-theory.md#ví-dụ-vành-số-nguyên-bậc-hai)
-trong phần lí thuyết vành hoặc các sách liên quan để biết thêm về nội dung này.
+trong phần lý thuyết vành hoặc các sách liên quan để biết thêm về nội dung này.
 
 <span id="phân-tích-duy-nhất"></span>
 ### Phân tích duy nhất
@@ -323,11 +323,11 @@ thể là $p$ hoặc $p^2$. Điều này cho thấy chỉ có ba khả năng sau
     viết thành bình phương của một iđêan nguyên tố.
 
 Có thể chứng minh thêm rằng, để xác định một số nguyên tố $p$ rơi vào trường
-hợp nào trong ba trường hợp trên, chỉ cần tính [kí hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol)
+hợp nào trong ba trường hợp trên, chỉ cần tính [ký hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol)
 $\left(\dfrac{D}{p}\right)$ với biệt thức $D$ của trường bậc hai chứa
 $\mathbf Z[\omega]$ và số nguyên tố $p$. Ba trường hợp này tương ứng với ba giá
-trị của kí hiệu Kronecker: $-1$, $+1$ và $0$. Khi $p$ là số nguyên tố lẻ, kí
-hiệu Kronecker chính là [kí hiệu Legendre](./quad-residue.md#ký-hiệu-legendre),
+trị của ký hiệu Kronecker: $-1$, $+1$ và $0$. Khi $p$ là số nguyên tố lẻ, kí
+hiệu Kronecker chính là [ký hiệu Legendre](./quad-residue.md#ký-hiệu-legendre),
 và ba trường hợp tương ứng với $D$ là [không thặng dư bậc hai](./quad-residue.md),
 $D$ là [thặng dư bậc hai](./quad-residue.md), và $p$ chia $D$. Khi $p=2$, ba
 trường hợp lần lượt tương ứng với $D\equiv \pm 3\pmod 8$,
@@ -363,7 +363,7 @@ tích duy nhất.
 
 Dùng kết quả của phần trước có thể tìm các phần tử nguyên tố trong số nguyên
 Gauss (cũng gọi là số nguyên tố Gauss). Vì biệt thức của vành số nguyên Gauss
-là $-4$, còn kí hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ nhận giá trị $0$
+là $-4$, còn ký hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ nhận giá trị $0$
 trên $n$ chẵn, và trên $n$ lẻ có giá trị bằng
 $\left(\dfrac{-1}{n}\right)=(-1)^{(n-1)/2}$, nên
 
@@ -455,14 +455,14 @@ $$
 \dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^k = \sum_{j=0}^k\left(\dfrac{-4}{p^k}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
 $$
 
-Vì kí hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ là hàm hoàn toàn nhân tính,
+Vì ký hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ là hàm hoàn toàn nhân tính,
 thu được
 
 $$
 f(n) = 4\sum_{d\mid n}\left(\dfrac{-4}{d}\right)=4\sum_{d\mid n}\chi_{4,3}(d).
 $$
 
-Kí hiệu trong tổng bên phải cũng dùng sự thật rằng kí hiệu Kronecker
+Ký hiệu trong tổng bên phải cũng dùng sự thật rằng ký hiệu Kronecker
 $\left(\dfrac{-4}{n}\right)$ là [đặc trưng Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_character)
 thực modulo $4$.
 
@@ -554,10 +554,10 @@ mặt phẳng phức.
 
 Số nguyên Eisenstein có nhiều tính chất rất giống số nguyên Gauss. Trên số
 nguyên Eisenstein, cũng có thể dùng chuẩn $N(\cdot)$ để định nghĩa phép chia có
-dư, rồi thiết lập thuật toán Euclid, định lí Bezout, định lí phân tích duy
+dư, rồi thiết lập thuật toán Euclid, định lý Bezout, định lý phân tích duy
 nhất, v.v. Tương tự phần trên, có thể suy ra cách các số nguyên tố phân rã
 trong vành số nguyên Eisenstein. Để làm việc này, cần lưu ý rằng biệt thức của
-$\mathbf Z[\omega]$ là $-3$, và kí hiệu Kronecker
+$\mathbf Z[\omega]$ là $-3$, và ký hiệu Kronecker
 
 $$
 \left(\dfrac{-3}{n}\right) = \begin{cases}
@@ -578,7 +578,7 @@ Eisenstein, có ba loại sau:
     phần tử liên kết với chính nó.
 
 Dùng phương pháp của phần trước, có thể tìm số lượng số nguyên Eisenstein có
-chuẩn bằng $n$. Kí hiệu số này là $f(n)$, khi đó
+chuẩn bằng $n$. Ký hiệu số này là $f(n)$, khi đó
 
 $$
 f(n)=6\sum_{d\mid n}\left(\dfrac{-3}{d}\right)=6\sum_{d\mid n}\chi_{3,2}(d).

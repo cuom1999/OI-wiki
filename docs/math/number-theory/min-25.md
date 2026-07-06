@@ -15,9 +15,9 @@ Sàng này có thể giải một lớp bài toán tính tổng tiền tố củ
 Yêu cầu: $f(p)$ là tổng của các hàm hoàn toàn nhân theo $p$ có thể tính nhanh (ví dụ đa thức); $f(p^{c})$ có thể tính nhanh.
 
 <span id="kí-hiệu"></span>
-## Kí hiệu
+## Ký hiệu
 
--   **Nếu không có giải thích đặc biệt, mọi biến được kí hiệu là $p$ trong mục này đều lấy giá trị trên tập tất cả số nguyên tố.**
+-   **Nếu không có giải thích đặc biệt, mọi biến được ký hiệu là $p$ trong mục này đều lấy giá trị trên tập tất cả số nguyên tố.**
 -   $x / y := \left\lfloor\frac{x}{y}\right\rfloor$
 -   $\operatorname{isprime}(n) := [ |\{d : d \mid n\}| = 2 ]$, tức là giá trị bằng $1$ khi $n$ là số nguyên tố, ngược lại bằng $0$.
 -   $p_{k}$: số nguyên tố nhỏ thứ $k$ trong tập tất cả số nguyên tố (ví dụ: $p_{1} = 2, p_{2} = 3$). Đặc biệt, đặt $p_{0} = 1$.
@@ -95,7 +95,7 @@ $$
 
 Về độ phức tạp không gian, dù là $F_{k}$ hay $F_{\mathrm{prime}}$, giá trị hữu hiệu của chúng chỉ xuất hiện tại các điểm $n / i$, tổng cộng $O(\sqrt{n})$ điểm. Chỉ ghi lại các giá trị hữu hiệu là có thể tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
-Trước hết, dùng một lần chia đoạn số học để lấy mọi giá trị hữu hiệu, lưu bằng một mảng $\text{lis}$ kích thước $O(\sqrt{n})$. Với giá trị hữu hiệu $v$, kí hiệu $\text{id}(v)$ là chỉ số của $v$ trong $\text{lis}$. Khi đó, với mọi giá trị hữu hiệu $v$, $\text{id}(v) \le \sqrt{n}$.
+Trước hết, dùng một lần chia đoạn số học để lấy mọi giá trị hữu hiệu, lưu bằng một mảng $\text{lis}$ kích thước $O(\sqrt{n})$. Với giá trị hữu hiệu $v$, ký hiệu $\text{id}(v)$ là chỉ số của $v$ trong $\text{lis}$. Khi đó, với mọi giá trị hữu hiệu $v$, $\text{id}(v) \le \sqrt{n}$.
 
 Sau đó xét riêng các giá trị hữu hiệu không lớn hơn $\sqrt{n}$ và lớn hơn $\sqrt{n}$: với giá trị hữu hiệu $v$ không lớn hơn $\sqrt{n}$, dùng mảng $\text{le}$ ghi $\text{id}(v)$, tức $\text{le}_v = \text{id}(v)$; với giá trị hữu hiệu $v$ lớn hơn $\sqrt{n}$, dùng mảng $\text{ge}$ ghi $\text{id}(v)$. Vì $v$ quá lớn, mượn $v' = n / v < \sqrt{n}$ để ghi $\text{id}(v)$, tức $\text{ge}_{v'} = \text{id}(v)$.
 
@@ -108,8 +108,8 @@ Khi tính $F_{k}(n)$, trong cài đặt thường chọn phương pháp thứ nh
 
 Với việc tính $F_{\mathrm{prime}}(n)$, chỉ cần cài đặt trực tiếp theo công thức truy hồi.
 
-Với $p_{k}^{2} \le n$, có thể dùng sàng tuyến tính tiền xử lí $s_{k} := F_{\mathrm{prime}}(p_{k})$ để thay thế $F_{\mathrm{prime}}(p_{k - 1})$ trong công thức truy hồi của $F_{k}$.
-Tương tự, $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ trong công thức truy hồi của $G$ cũng có thể được tiền xử lí theo cách này.
+Với $p_{k}^{2} \le n$, có thể dùng sàng tuyến tính tiền xử lý $s_{k} := F_{\mathrm{prime}}(p_{k})$ để thay thế $F_{\mathrm{prime}}(p_{k - 1})$ trong công thức truy hồi của $F_{k}$.
+Tương tự, $G_{k - 1}(p_{k - 1}) = \sum_{i = 1}^{k - 1} g(p_{i})$ trong công thức truy hồi của $G$ cũng có thể được tiền xử lý theo cách này.
 
 Khi dùng sàng Eratosthenes mở rộng để tính tổng tiền tố của **hàm nhân** $f$, cần xác định rõ các điểm sau:
 
