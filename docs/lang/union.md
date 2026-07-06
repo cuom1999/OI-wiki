@@ -1,11 +1,11 @@
-**Liên hiệp** (`union`) là một loại lớp đặc biệt; tại mỗi thời điểm chỉ có một
-thành viên dữ liệu không tĩnh của nó đang hoạt động.
+**Liên hiệp** (`union`) là một loại lớp đặc biệt; tại mỗi thời điểm, chỉ một
+thành viên dữ liệu không tĩnh của nó được xem là đang hoạt động.
 
 Liên hiệp chính thức được thêm vào đề cương NOI cấp nhập môn từ năm 2023.
 
 ## Định nghĩa liên hiệp
 
-Bộ chỉ định lớp trong khai báo liên hiệp tương tự khai báo lớp hoặc
+Phần khai báo liên hiệp có cú pháp tương tự khai báo lớp hoặc
 [cấu trúc](./struct.md):
 
 ```cpp
@@ -17,7 +17,7 @@ union MyUnion {
 
 Cách định nghĩa liên hiệp tương tự cấu trúc. Theo định nghĩa trên, `MyUnion` có
 thể được dùng như một kiểu tự định nghĩa, còn `u` là một biến có kiểu `MyUnion`.
-Có thể bỏ qua tên `MyUnion` nếu không cần dùng lại kiểu này.
+Nếu không cần dùng lại kiểu này, có thể bỏ qua tên `MyUnion`.
 
 ## Truy cập/sửa thành viên
 
@@ -27,7 +27,7 @@ Kích thước vùng nhớ mà liên hiệp chiếm **không nhỏ hơn** kích 
 lớn nhất của nó; mọi thành viên **dùng chung vùng nhớ và địa chỉ**. Khi một
 thành viên được gán giá trị, thành viên đó trở thành thành viên đang hoạt động.
 Vì bộ nhớ được chia sẻ, giá trị của các thành viên khác không còn được bảo toàn.
-Tức là tại cùng một thời điểm, chỉ nên xem giá trị của thành viên đang hoạt động
+Do đó, tại cùng một thời điểm, chỉ nên xem giá trị của thành viên đang hoạt động
 là hợp lệ.
 
 Xem thêm các cách dùng liên hiệp tại
