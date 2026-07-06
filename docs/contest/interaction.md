@@ -24,9 +24,9 @@ Ví dụ:
 
 ## CF679A Bear and Prime 100
 
-Mỗi số nguyên tố có đúng hai ước, nên ta có thể trực tiếp liệt kê các ước của số cần đoán. Vì giới hạn tối đa 20 truy vấn, và với các số lớn hơn (như 92), khi thử phân tích thừa số nguyên tố sẽ thấy cần liệt kê các số nguyên tố đến tận $\lfloor\frac{n}{2}\rfloor$ trong trường hợp xấu nhất. Vì vậy trước tiên ta sàng các số nguyên tố không vượt quá 50, rồi lần lượt hỏi tất cả các số đó.
+Mỗi số nguyên tố có đúng hai ước, nên có thể trực tiếp liệt kê các ước của số cần đoán. Vì giới hạn tối đa 20 truy vấn, và với các số lớn hơn (như 92), khi thử phân tích thừa số nguyên tố sẽ thấy cần liệt kê các số nguyên tố đến tận $\lfloor\frac{n}{2}\rfloor$ trong trường hợp xấu nhất. Vì vậy trước tiên sàng các số nguyên tố không vượt quá 50, rồi lần lượt hỏi tất cả các số đó.
 
-Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Ta sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
+Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Khi đó sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -50,9 +50,9 @@ Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp th�
 
 ## CF843B Interactive LowerBound
 
-Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng ta chỉ được truy vấn $1999$ lần và chỉ lấy được phần tử kế tiếp của một phần tử, nên cách duyệt toàn bộ danh sách liên kết thông thường không dùng được. Chỉ có một cách trực tiếp để tìm cách tiến gần đến vị trí của phần tử mục tiêu: rải điểm ngẫu nhiên.
+Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng chỉ được truy vấn $1999$ lần và chỉ lấy được phần tử kế tiếp của một phần tử, nên cách duyệt toàn bộ danh sách liên kết thông thường không dùng được. Chỉ có một cách trực tiếp để tìm cách tiến gần đến vị trí của phần tử mục tiêu: rải điểm ngẫu nhiên.
 
-Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$, ta rải trực tiếp 1000 điểm; lúc này khoảng cách kỳ vọng giữa các điểm này rất nhỏ, và ta có thể bắt đầu duyệt về sau từ giá trị lớn nhất nhỏ hơn $x$. Có thể chứng minh rằng trước khi đến điểm tiếp theo, ta đã thu được đáp án. Trong quá trình duyệt, hễ tìm được phần tử lớn hơn hoặc bằng $x$ thì có thể suy ra trực tiếp.
+Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$, rải trực tiếp 1000 điểm; lúc này khoảng cách kỳ vọng giữa các điểm này rất nhỏ, và có thể bắt đầu duyệt về sau từ giá trị lớn nhất nhỏ hơn $x$. Có thể chứng minh rằng trước khi đến điểm tiếp theo đã thu được đáp án. Trong quá trình duyệt, hễ tìm được phần tử lớn hơn hoặc bằng $x$ thì có thể suy ra trực tiếp.
 
 Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
 
@@ -110,13 +110,13 @@ Chia thành hai subtasks để thảo luận:
 
 1.  Giới hạn số lần truy vấn.
 
-    Ta xét truy vấn đầu tiên. Vì ban đầu không biết bất kỳ số nào, ta cần hỏi đoạn $[1, 10 ^ {18}]$ để nhận giá trị lớn nhất và nhỏ nhất.
+    Xét truy vấn đầu tiên. Vì ban đầu không biết bất kỳ số nào, cần hỏi đoạn $[1, 10 ^ {18}]$ để nhận giá trị lớn nhất và nhỏ nhất.
 
-    Do giới hạn số lần truy vấn vừa đúng là $\frac{N + 1}{2}$, ta xét làm thế nào để mỗi lần đều lấy được những giá trị chưa từng lấy trước đó, nhờ vậy đại khái có thể lấy được toàn bộ các số trong dãy trong giới hạn số lần. Cách làm cũng rất đơn giản: sau mỗi lần truy vấn $[s, t]$, giả sử nhận được các giá trị $mn, mx$, thì truy vấn tiếp theo là $[mn + 1, mx - 1]$.
+    Do giới hạn số lần truy vấn vừa đúng là $\frac{N + 1}{2}$, cần xét làm thế nào để mỗi lần đều lấy được những giá trị chưa từng lấy trước đó, nhờ vậy đại khái có thể lấy được toàn bộ các số trong dãy trong giới hạn số lần. Cách làm cũng rất đơn giản: sau mỗi lần truy vấn $[s, t]$, giả sử nhận được các giá trị $mn, mx$, thì truy vấn tiếp theo là $[mn + 1, mx - 1]$.
 
 2.  Giới hạn kích thước đoạn truy vấn.
 
-    Vì đề bài yêu cầu tổng số lượng các số trong những đoạn được truy vấn không vượt quá $3N$, ta xét cách tối thiểu hóa đoạn truy vấn. Cách ở trên không còn dùng được, vì tổng số lượng các số trong các đoạn truy vấn có quy mô $O(N ^ 2)$. Ta có thể xét chặt nhị phân miền giá trị, nhưng cách này không đáng tin cậy, trường hợp xấu nhất có thể bị chặn đến $O(N ^ 2)$. Vì vậy cần một cách chia miền giá trị hiệu quả hơn để tránh truy vấn lặp lại các điểm trong đoạn, gây lãng phí cơ hội.
+    Vì đề bài yêu cầu tổng số lượng các số trong những đoạn được truy vấn không vượt quá $3N$, cần xét cách tối thiểu hóa đoạn truy vấn. Cách ở trên không còn dùng được, vì tổng số lượng các số trong các đoạn truy vấn có quy mô $O(N ^ 2)$. Có thể xét chặt nhị phân miền giá trị, nhưng cách này không đáng tin cậy, trường hợp xấu nhất có thể bị chặn đến $O(N ^ 2)$. Vì vậy cần một cách chia miền giá trị hiệu quả hơn để tránh truy vấn lặp lại các điểm trong đoạn, gây lãng phí cơ hội.
 
     Nhận thấy đáp án không nhỏ hơn $\lfloor\frac{a_n - a_1}{N - 1}\rfloor$, nên có thể xét chia miền giá trị theo giá trị này. Đặt $i$ ban đầu là 0, $ans$ ban đầu là giá trị vừa nêu; mỗi lần truy vấn $[i, i + ans]$ và cập nhật $ans$, sau đó lại tăng $i$ với bước nhảy là $ans$.
 
@@ -156,35 +156,35 @@ Chia thành hai subtasks để thảo luận:
 
 ## CF750F New Year and Finding Roots
 
-Thấy yêu cầu chặt chẽ $h \le 7$, số lần truy vấn $\le 16$, ta cần tận dụng tối đa thông tin thu được từ mỗi lần thăm.
+Yêu cầu $h \le 7$, số lần truy vấn $\le 16$ rất chặt, nên cần tận dụng tối đa thông tin thu được từ mỗi lần thăm.
 
 Khi $h \le 4$ có thể brute force trực tiếp. Tuy nhiên khi $h > 4$ cần một thuật toán duyệt rất hiệu quả.
 
 Rải điểm ngẫu nhiên không phải cách tốt, vì nó không thể xác định bản thân đã đủ gần nút gốc hay chưa. Nếu chỉ rải điểm ngẫu nhiên đơn thuần, xác suất ít nhất một lần chạm nút gốc là $1 - (\frac{2 ^ h - 2}{2 ^ h - 1})$; ngay cả khi loại bỏ trường hợp rải trùng điểm, xác suất chạm nút gốc vẫn rất nhỏ.
 
-Vì $1 \le k \le 3$ và ta không biết phía nào gần nút gốc hơn, ta xét trường hợp xấu nhất: khi $k = 3$, hai lần đầu hướng duyệt của ta đều đi xa nút gốc, lần thứ ba mới đi gần nút gốc. Vì vậy ta buộc phải duyệt theo cả ba hướng.
+Vì $1 \le k \le 3$ và không biết phía nào gần nút gốc hơn, xét trường hợp xấu nhất: khi $k = 3$, hai lần đầu hướng duyệt đều đi xa nút gốc, lần thứ ba mới đi gần nút gốc. Vì vậy buộc phải duyệt theo cả ba hướng.
 
-Xét hai cách duyệt bfs và dfs. Do cây tìm kiếm của bfs có thể rất lớn, ta ưu tiên xét dfs. Tất nhiên, nếu biết độ sâu hiện tại và độ sâu hiện tại nhỏ đến mức kích thước cây tìm kiếm trong phạm vi độ sâu đó không vượt quá số lần còn lại, ta có thể bfs trực tiếp.
+Xét hai cách duyệt bfs và dfs. Do cây tìm kiếm của bfs có thể rất lớn, ưu tiên xét dfs. Nếu biết độ sâu hiện tại và độ sâu hiện tại nhỏ đến mức kích thước cây tìm kiếm trong phạm vi độ sâu đó không vượt quá số lần còn lại, có thể bfs trực tiếp.
 
-Biết độ sâu của nút hiện tại và hướng đang duyệt sẽ đem lại lợi thế rất lớn. Tuy nhiên việc biết hiện tại đang đi về phía nút gốc hay đi về phía lá là rất khó. Nếu dùng dfs, chỉ khi duyệt đến nút gốc ($k = 2$) hoặc nút lá ($k = 1$) mới biết được hướng hiện tại. Vì vậy ta cần biết độ sâu của nút hiện tại nhiều nhất có thể, đồng thời không thể dùng những cách như iterative deepening rồi dừng giữa chừng trong quá trình duyệt.
+Biết độ sâu của nút hiện tại và hướng đang duyệt sẽ đem lại lợi thế rất lớn. Tuy nhiên việc biết hiện tại đang đi về phía nút gốc hay đi về phía lá là rất khó. Nếu dùng dfs, chỉ khi duyệt đến nút gốc ($k = 2$) hoặc nút lá ($k = 1$) mới biết được hướng hiện tại. Vì vậy cần biết độ sâu của nút hiện tại nhiều nhất có thể, đồng thời không thể dùng những cách như iterative deepening rồi dừng giữa chừng trong quá trình duyệt.
 
 Xét chọn ngẫu nhiên một nút ban đầu; xuất phát từ nút ban đầu có thể gặp trường hợp xấu nhất ở trên.
 
-Nếu $k = 1$, ta có thể biết trực tiếp độ sâu của nút hiện tại.
+Nếu $k = 1$, có thể biết trực tiếp độ sâu của nút hiện tại.
 
 Nếu $k = 2$, nút hiện tại chính là nút gốc.
 
-Nếu $k = 3$, ta trực tiếp xét dfs theo cả ba hướng. Vì hai hướng trong đó đi thẳng về phía lá nên độ dài đường duyệt bằng nhau; hướng còn lại đi về phía nút gốc, nhưng có thể giữa chừng vô tình đi về phía lá, khiến độ dài đường duyệt lớn hơn. Khi đó ta có thể tính được độ sâu của nút hiện tại.
+Nếu $k = 3$, trực tiếp xét dfs theo cả ba hướng. Vì hai hướng trong đó đi thẳng về phía lá nên độ dài đường duyệt bằng nhau; hướng còn lại đi về phía nút gốc, nhưng có thể giữa chừng vô tình đi về phía lá, khiến độ dài đường duyệt lớn hơn. Khi đó có thể tính được độ sâu của nút hiện tại.
 
-Khi $k = 1$ hoặc $k = 3$, ta cần xét đường duyệt dài hơn. Ta có thể biết điểm có độ sâu nhỏ nhất trên đường đi (chắc chắn nhỏ hơn độ sâu của nút ban đầu). Nếu đánh dấu các nút đã thăm và không duyệt lại, từ nút đó trở đi chỉ còn một đường duyệt. Dù đường này vẫn có thể đi về phía lá, trên đường đó chắc chắn cũng tồn tại nút có độ sâu nhỏ hơn điểm xuất phát, và ta có thể bắt đầu từ nút này để tiếp tục lặp lại các bước ở trên.
+Khi $k = 1$ hoặc $k = 3$, cần xét đường duyệt dài hơn. Có thể biết điểm có độ sâu nhỏ nhất trên đường đi (nhỏ hơn độ sâu của nút ban đầu). Nếu đánh dấu các nút đã thăm và không duyệt lại, từ nút đó trở đi chỉ còn một đường duyệt. Dù đường này vẫn có thể đi về phía lá, trên đường đó vẫn tồn tại nút có độ sâu nhỏ hơn điểm xuất phát, và có thể bắt đầu từ nút này để tiếp tục lặp lại các bước ở trên.
 
-Tất nhiên, khi xét trường hợp xấu nhất với $h = 7$ (mỗi lần chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá), ta sẽ thấy nếu chỉ dfs thì trường hợp xấu nhất cần $\frac{(1 + 7) \times 7}{2} = 28$ lần truy vấn. Nhưng ta đã biết độ sâu của nút ban đầu, nên có thể tính được độ sâu của mọi nút đã duyệt, và dựa trên thảo luận về bfs ban đầu để phán đoán liệu có thể bfs trực tiếp từ nút có độ sâu nhỏ nhất hay không.
+Khi xét trường hợp xấu nhất với $h = 7$ (mỗi lần chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá), nếu chỉ dfs thì trường hợp xấu nhất cần $\frac{(1 + 7) \times 7}{2} = 28$ lần truy vấn. Nhưng do đã biết độ sâu của nút ban đầu, có thể tính được độ sâu của mọi nút đã duyệt, và dựa trên thảo luận về bfs ban đầu để phán đoán liệu có thể bfs trực tiếp từ nút có độ sâu nhỏ nhất hay không.
 
-Lúc này ta có thể tính được trường hợp xấu nhất cần 17 lần. Vì vậy ta xét loại bỏ một nút khỏi cây tìm kiếm (dựa trên tính chất dfs chỉ có thể duyệt mù, ta xét bfs): khi thực hiện bfs ở độ sâu $k$, cây tìm kiếm trong trường hợp xấu nhất có $2 ^ k - 1$ nút, có thể cần $2 ^ k - 1$ lần truy vấn mới xác định được nút nào có đúng 2 hàng xóm. Tuy nhiên nếu ta đã truy vấn $2 ^ k - 2$ nút trong số đó, có thể biết chắc nút cuối cùng là nút gốc.
+Lúc này có thể tính được trường hợp xấu nhất cần 17 lần. Vì vậy xét loại bỏ một nút khỏi cây tìm kiếm (dựa trên tính chất dfs chỉ có thể duyệt mù, xét bfs): khi thực hiện bfs ở độ sâu $k$, cây tìm kiếm trong trường hợp xấu nhất có $2 ^ k - 1$ nút, có thể cần $2 ^ k - 1$ lần truy vấn mới xác định được nút nào có đúng 2 hàng xóm. Tuy nhiên nếu đã truy vấn $2 ^ k - 2$ nút trong số đó, có thể biết nút cuối cùng là nút gốc.
 
-Khi đó lời giải tối ưu trong trường hợp xấu nhất là: với $h = 7$, bắt đầu dfs từ một nút lá; mỗi lần đều chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá. Sau 10 lần truy vấn, độ sâu của nút có độ sâu nhỏ nhất hiện đã biết là 4. Vì đã biết cha của nó, ta bfs trực tiếp từ cha của nó (độ sâu cây tìm kiếm là 3, số nút là $2 ^ 3 - 1 = 7$). Trong lúc bfs, sau khi truy vấn $2 ^ 3 - 2 = 6$ lần, xác định nút cuối cùng trên cây tìm kiếm bfs là nút gốc.
+Khi đó lời giải tối ưu trong trường hợp xấu nhất là: với $h = 7$, bắt đầu dfs từ một nút lá; mỗi lần đều chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá. Sau 10 lần truy vấn, độ sâu của nút có độ sâu nhỏ nhất hiện đã biết là 4. Vì đã biết cha của nó, bfs trực tiếp từ cha của nó (độ sâu cây tìm kiếm là 3, số nút là $2 ^ 3 - 1 = 7$). Trong lúc bfs, sau khi truy vấn $2 ^ 3 - 2 = 6$ lần, xác định nút cuối cùng trên cây tìm kiếm bfs là nút gốc.
 
-Khi đó thuật toán của ta vừa khít trường hợp xấu nhất 16 lần.
+Khi đó thuật toán vừa khít trường hợp xấu nhất 16 lần.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -280,16 +280,16 @@ Khi đó thuật toán của ta vừa khít trường hợp xấu nhất 16 lầ
 
 ## UVa12731 Bí ẩn trạm không gian / Mysterious Space Station
 
-Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, ta nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
+Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
 
 -   Khi đi sát mép tường, rất dễ biết mình có va vào tường hay không, nhờ đó thu được nhiều thông tin nhất có thể.
 -   Các ô sát tường đều không thể là ô có cổng dịch chuyển, nhờ vậy có thể tránh để robot bị lạc.
 
-Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể đảm bảo tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể đảm bảo quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong mã thực tế không cần cố tình đâm vào tường để đảm bảo robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.
+Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong mã thực tế không cần cố tình đâm vào tường để xác nhận robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.
 
 Từ đó có thể suy ra phương pháp thử sai để xác định robot có ở một ô cụ thể hay không: đưa robot, trong điều kiện không đi vào ô chưa biết hoặc cổng dịch chuyển đã biết, đến đường sát tường, rồi đi một vòng quanh đường sát tường. Nếu trong quá trình này không va tường, có thể xác định robot đúng là đang ở ô cụ thể đó.
 
-Ta có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để phán đoán ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để phán đoán robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
+Có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để phán đoán ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để phán đoán robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
 
 Sau khi tìm ra các ô chưa biết, cần phán đoán quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp phán đoán toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
