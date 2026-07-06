@@ -1,10 +1,10 @@
-C++ cung cấp một hệ thống đầy đủ để khai báo giá trị chỉ đọc. Mọi biến được đánh
-dấu bằng `const` đều là giá trị chỉ đọc; trình biên dịch sẽ kiểm tra các lỗi vi
+C++ cung cấp một hệ thống đầy đủ để khai báo các giá trị chỉ đọc. Mọi biến được
+đánh dấu bằng `const` đều là biến chỉ đọc; trình biên dịch sẽ kiểm tra các lỗi vi
 phạm trong giai đoạn biên dịch để tránh việc sửa đổi các giá trị này, đồng thời
 có thể thực hiện một số tối ưu hóa.
 
-Trong điều kiện thông thường, nên dùng `const` cho biến và tham số ở những nơi
-hợp lý để mã chặt chẽ hơn.
+Thông thường, nên dùng `const` cho biến và tham số ở những nơi hợp lý để mã chặt
+chẽ hơn.
 
 ## Bộ định tính kiểu `const`
 
@@ -20,8 +20,8 @@ const int a = 0;  // kiểu của a là const int
 
 ### Tham chiếu tới hằng, con trỏ tới hằng
 
-Tham chiếu tới hằng và con trỏ tới hằng đều ngăn việc sửa đổi giá trị mà chúng
-tham chiếu tới hoặc trỏ tới.
+Tham chiếu tới hằng và con trỏ tới hằng đều ngăn việc sửa đổi giá trị được tham
+chiếu tới hoặc được trỏ tới.
 
 ```cpp
 int a = 0;
@@ -42,14 +42,14 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-Ngoài ra, cần phân biệt con trỏ tới hằng (`const T*`) với hằng con trỏ
+Ngoài ra, cần phân biệt con trỏ tới hằng (`const T*`) với con trỏ hằng
 (`T* const`). Xét các khai báo sau:
 
 ```cpp
 int a = 0, other = 1;
 const int b = 0;
 
-// Hằng con trỏ: không đổi được địa chỉ trỏ tới,
+// Con trỏ hằng: không đổi được địa chỉ trỏ tới,
 // nhưng đổi được giá trị được trỏ tới.
 int* const p1 = &a;
 
@@ -57,7 +57,7 @@ int* const p1 = &a;
 // nhưng có thể trỏ tới biến int khác.
 const int* p2 = &a;
 
-// Hằng con trỏ tới hằng: không đổi được giá trị,
+// Con trỏ hằng trỏ tới hằng: không đổi được giá trị,
 // cũng không đổi được địa chỉ trỏ tới.
 const int* const p3 = &b;
 
@@ -73,7 +73,7 @@ using const_ptr_to_const_int = const ptr_to_const_int;
 ```
 
 Dùng `const` trong khai báo tham số hàm có thể tránh sửa nhầm dữ liệu, đồng thời
-tăng tính dễ đọc của mã.
+làm mã dễ đọc hơn.
 
 ```cpp
 void sum(const std::vector<int>& data, int& total) {
@@ -85,7 +85,7 @@ void sum(const std::vector<int>& data, int& total) {
 ## Hàm thành viên `const`
 
 Trong một kiểu, hàm thành viên được đánh dấu `const` có thể dùng để hạn chế việc
-sửa đổi thành viên dữ liệu.
+sửa đổi thành viên dữ liệu của đối tượng.
 
 ```cpp
 #include <iostream>
@@ -124,9 +124,9 @@ hằng. Với biến `constexpr`, giá trị khởi tạo phải là biểu th�
 cảnh cho phép.
 
 Việc tính toán trong lúc biên dịch cho phép tối ưu hóa tốt hơn, chẳng hạn đưa kết
-quả vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác với tối ưu hóa mà
-`const` có thể mang lại, biến được đánh dấu `constexpr` phải có giá trị xác định
-được trong lúc biên dịch.
+quả trực tiếp vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác với tối
+ưu hóa mà `const` có thể mang lại, biến được đánh dấu `constexpr` phải có giá trị
+xác định được trong lúc biên dịch.
 
 ???+ note "Cách hiểu trực quan"
     ```cpp
@@ -141,7 +141,7 @@ quả vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác
     ```
 
 Ví dụ sau minh họa khác biệt giữa `const` và `constexpr`. Mã dùng đệ quy để tính
-dãy Fibonacci rồi xuất kết quả bằng luồng xuất chuẩn.
+dãy Fibonacci rồi xuất kết quả ra luồng xuất chuẩn.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -219,19 +219,19 @@ dãy Fibonacci rồi xuất kết quả bằng luồng xuất chuẩn.
 
 Hàm `fib0` được đánh dấu `constexpr` và được gọi trong ngữ cảnh khởi tạo biến
 `constexpr` với đối số hằng, nên lời gọi này được tính trong lúc biên dịch. Vì
-lời gọi đó không cần thực thi lúc chạy, trình biên dịch cũng xác định rằng không
+lời gọi đó không cần thực thi khi chạy, trình biên dịch cũng xác định rằng không
 cần sinh mã assembly cho `fib0` trong ví dụ này.
 
 Đoạn assembly cũng cho thấy `v0` không có mã khởi tạo. Trong đoạn mã gọi `cout`
 để xuất `v0`, `v0` đã được thay bằng kết quả tính cuối cùng; điều này cho thấy
-giá trị biến đã được tính trong lúc biên dịch và phép tính lúc chạy đã bị tối ưu
-bỏ. Còn quá trình khởi tạo `v1` vẫn là một lời gọi đệ quy `fib1` thông thường.
+giá trị của biến đã được tính trong lúc biên dịch và phép tính khi chạy đã bị tối
+ưu bỏ. Còn quá trình khởi tạo `v1` vẫn là một lời gọi đệ quy `fib1` thông thường.
 
 Do đó, có thể dùng `constexpr` để thay thế các hằng được định nghĩa bằng macro,
 tránh [rủi ro của định nghĩa macro](./basic.md#lệnh-define).
 
 Trong bài toán thuật toán, có thể dùng `constexpr` để lưu các giá trị tính trước
-với quy mô nhỏ nhằm loại bỏ chi phí tính toán lúc chạy. Một trường hợp thường gặp
+với quy mô nhỏ nhằm loại bỏ chi phí tính toán khi chạy. Một trường hợp thường gặp
 là kỹ thuật "[lập bảng](../contest/dictionary.md)", dùng các vùng chứa như mảng
 được khai báo `constexpr` để lưu đáp án.
 
