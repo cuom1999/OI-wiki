@@ -25,7 +25,7 @@ $$
 2, 1, 3, 4, 7, 11, 18, 29, 47, 76, 123, 199, \dots
 $$
 
-Khi nghiên cứu dãy Fibonacci, trong nhiều trường hợp ta cần dùng dãy Lucas như một công cụ.
+Khi nghiên cứu dãy Fibonacci, trong nhiều trường hợp cần dùng dãy Lucas như một công cụ.
 
 <span id="công-thức-tổng-quát-của-dãy-fibonacci"></span>
 ## Công thức tổng quát của dãy Fibonacci
@@ -35,15 +35,15 @@ Số Fibonacci thứ $n$ có thể được tính bằng công thức truy hồi
 <span id="nghiệm-giải-tích"></span>
 ### Nghiệm giải tích
 
-Nghiệm giải tích là nghiệm dạng công thức. Ta có công thức tổng quát của dãy Fibonacci (Binet's Formula):
+Nghiệm giải tích là nghiệm dạng công thức. Công thức tổng quát của dãy Fibonacci là công thức Binet (Binet's Formula):
 
 $$
 F_n = \frac{\left(\frac{1 + \sqrt{5}}{2}\right)^n - \left(\frac{1 - \sqrt{5}}{2}\right)^n}{\sqrt{5}}
 $$
 
-Công thức này có thể chứng minh dễ dàng bằng quy nạp; cũng có thể suy ra bằng hàm sinh, hoặc bằng cách giải một phương trình.
+Công thức này có thể chứng minh bằng quy nạp; cũng có thể suy ra bằng hàm sinh, hoặc bằng cách giải một phương trình.
 
-Dễ thấy số hạng thứ hai trên tử số luôn có trị tuyệt đối nhỏ hơn $1$ và giảm theo tốc độ mũ. Vì vậy ta có thể viết công thức trên thành
+Số hạng thứ hai trên tử số luôn có trị tuyệt đối nhỏ hơn $1$ và giảm theo tốc độ mũ. Vì vậy có thể viết công thức trên thành
 
 $$
 F_n = \left[\frac{\left(\frac{1 + \sqrt{5}}{2}\right)^n}{\sqrt{5}}\right]
@@ -56,7 +56,7 @@ Hai công thức này đòi hỏi độ chính xác rất cao khi tính toán n�
 <span id="công-thức-tổng-quát-của-dãy-lucas"></span>
 ### Công thức tổng quát của dãy Lucas
 
-Ta có công thức tổng quát của dãy Lucas:
+Công thức tổng quát của dãy Lucas là:
 
 $$
 L_n = \left(\frac{1 + \sqrt{5}}{2}\right)^n + \left(\frac{1 - \sqrt{5}}{2}\right)^n
@@ -95,18 +95,18 @@ $$
 \begin{bmatrix}F_{n-1} & F_{n} \cr\end{bmatrix} = \begin{bmatrix}F_{n-2} & F_{n-1} \cr\end{bmatrix} \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}
 $$
 
-Đặt $P = \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}$, ta có
+Đặt $P = \begin{bmatrix}0 & 1 \cr 1 & 1 \cr\end{bmatrix}$, có
 
 $$
 \begin{bmatrix}F_n & F_{n+1} \cr\end{bmatrix} = \begin{bmatrix}F_0 & F_1 \cr\end{bmatrix} P^n
 $$
 
-Vì vậy ta có thể tính số Fibonacci bằng phép nhân ma trận trong thời gian $\Theta(\log n)$. Ngoài ra, công thức ở phần trước cũng có thể được suy ra bằng kỹ thuật chéo hóa ma trận.
+Vì vậy có thể tính số Fibonacci bằng phép nhân ma trận trong thời gian $\Theta(\log n)$. Ngoài ra, công thức ở phần trước cũng có thể được suy ra bằng kỹ thuật chéo hóa ma trận.
 
 <span id="phương-pháp-nhân-đôi-nhanh"></span>
 ### Phương pháp nhân đôi nhanh
 
-Từ các công thức trên, ta thu được các đẳng thức:
+Từ các công thức trên, thu được các đẳng thức:
 
 $$
 \begin{aligned}
@@ -137,16 +137,16 @@ Dãy Fibonacci có nhiều tính chất thú vị; dưới đây là một số 
 
 1.  Đồng nhất thức Cassini (Cassini's identity): $F_{n-1} F_{n+1} - F_n^2 = (-1)^n$.
 2.  Tính chất cộng chỉ số: $F_{n+k} = F_k F_{n+1} + F_{k-1} F_n$.
-3.  Lấy $k = n$ trong tính chất trên, ta được $F_{2n} = F_n (F_{n+1} + F_{n-1})$.
+3.  Lấy $k = n$ trong tính chất trên, được $F_{2n} = F_n (F_{n+1} + F_{n-1})$.
 4.  Từ tính chất trên có thể chứng minh bằng quy nạp rằng $\forall k\in \mathbb{N},F_n|F_{nk}$.
-5.  Chiều ngược lại cũng đúng, tức là $\forall F_a|F_b,a|b$.
+5.  Chiều ngược lại cũng đúng nếu $a\ge 3$: từ $F_a\mid F_b$ suy ra $a\mid b$.
 6.  Tính chất GCD: $(F_m, F_n) = F_{(m, n)}$.
 7.  Khi đầu vào là hai số Fibonacci liên tiếp, thuật toán Euclid đạt độ phức tạp xấu nhất; xem thêm [Wikipedia - Lame](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9).
 
 <span id="quan-hệ-giữa-dãy-fibonacci-và-dãy-lucas"></span>
 ### Quan hệ giữa dãy Fibonacci và dãy Lucas
 
-Không khó để nhận thấy các đẳng thức liên quan đến dãy Lucas và dãy Fibonacci có độ tương đồng cao với các công thức lượng giác. Chẳng hạn:
+Các đẳng thức liên quan đến dãy Lucas và dãy Fibonacci có độ tương đồng cao với các công thức lượng giác. Chẳng hạn:
 
 $$
 \frac{L_n + F_n\sqrt{5}}{2} = \left(\frac{1 + \sqrt{5}}{2}\right)^n
@@ -196,12 +196,12 @@ $$
 F_{2n}=F_nL_n
 $$
 
-Đây cũng là một cách nhân đôi chỉ số nhanh. Tương tự, ta có thể mô phỏng các công thức lượng giác như tính chẵn lẻ, biến tổng thành tích, biến tích thành tổng, công thức nửa góc, phép thế vạn năng, v.v. để suy ra thêm nhiều đẳng thức tương ứng cho dãy Lucas và dãy Fibonacci.
+Đây cũng là một cách nhân đôi chỉ số nhanh. Tương tự, có thể mô phỏng các công thức lượng giác như tính chẵn lẻ, biến tổng thành tích, biến tích thành tổng, công thức nửa góc, phép thế vạn năng, v.v. để suy ra thêm nhiều đẳng thức tương ứng cho dãy Lucas và dãy Fibonacci.
 
 <span id="mã-hóa-fibonacci"></span>
 ## Mã hóa Fibonacci
 
-Ta có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số số Fibonacci:
+Có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số số Fibonacci:
 
 $$
 N = F_{k_1} + F_{k_2} + \ldots + F_{k_r}
@@ -209,7 +209,7 @@ $$
 
 với $k_1 \ge k_2 + 2,\ k_2 \ge k_3 + 2,\  \ldots,\  k_r \ge 2$, tức là không được dùng hai số Fibonacci liên tiếp.
 
-Vì vậy ta có thể biểu diễn một số nguyên dương bằng mã $d_0 d_1 d_2 \dots d_s 1$, trong đó $d_i=1$ nghĩa là $F_{i+2}$ được sử dụng. Ở cuối mã ta bắt buộc thêm một chữ số 1; khi đó sẽ xuất hiện hai chữ số 1 liên tiếp, đánh dấu điểm kết thúc của chuỗi mã. Một số ví dụ:
+Vì vậy có thể biểu diễn một số nguyên dương bằng mã $d_0 d_1 d_2 \dots d_s 1$, trong đó $d_i=1$ nghĩa là $F_{i+2}$ được sử dụng. Ở cuối mã bắt buộc thêm một chữ số 1; khi đó sẽ xuất hiện hai chữ số 1 liên tiếp, đánh dấu điểm kết thúc của chuỗi mã. Một số ví dụ:
 
 $$
 \begin{aligned}
@@ -234,22 +234,22 @@ Giải mã cũng tương tự: trước hết xóa chữ số 1 cuối cùng; v�
 <span id="tính-tuần-hoàn-trong-modulo"></span>
 ## Tính tuần hoàn trong modulo
 
-Với dãy Fibonacci xét theo modulo $m$, nguyên lý Dirichlet cho phép chứng minh dễ dàng rằng dãy này có tính tuần hoàn. Vì mỗi số Fibonacci phụ thuộc vào hai số liền trước, cần mô tả trạng thái của dãy bằng cặp hai số Fibonacci liên tiếp. Xét $m^2+1$ cặp Fibonacci đầu tiên trong modulo:
+Với dãy Fibonacci xét theo modulo $m$, nguyên lý Dirichlet cho phép chứng minh rằng dãy này có tính tuần hoàn. Vì mỗi số Fibonacci phụ thuộc vào hai số liền trước, cần mô tả trạng thái của dãy bằng cặp hai số Fibonacci liên tiếp. Xét $m^2+1$ cặp Fibonacci đầu tiên trong modulo:
 
 $$
 (F_0,\ F_1),\ (F_1,\ F_2),\ \ldots,\ (F_{m^2},\ F_{m^2 + 1})
 $$
 
-Hệ thặng dư modulo $m$ có kích thước $m$, nên có nhiều nhất $m^2$ cặp khác nhau. Do đó, trong $m^2+1$ cặp đầu tiên chắc chắn có hai cặp bằng nhau; từ hai cặp đó về sau sẽ sinh ra cùng một dãy Fibonacci. Vì vậy dãy Fibonacci là tuần hoàn, và chu kỳ dương nhỏ nhất không vượt quá $m^2$.
+Hệ thặng dư modulo $m$ có kích thước $m$, nên có nhiều nhất $m^2$ cặp khác nhau. Do đó, trong $m^2+1$ cặp đầu tiên phải có hai cặp bằng nhau; từ hai cặp đó về sau sẽ sinh ra cùng một dãy Fibonacci. Vì vậy dãy Fibonacci là tuần hoàn, và chu kỳ dương nhỏ nhất không vượt quá $m^2$.
 
 <span id="chu-kỳ-pisano"></span>
 ### Chu kỳ Pisano
 
 Chu kỳ dương nhỏ nhất của dãy Fibonacci trong modulo $m$ được gọi là **chu kỳ Pisano** (Pisano period, [OEIS A001175](http://oeis.org/A001175)). Trong bài này, ký hiệu $\pi(m)$ là chu kỳ Pisano modulo $m$.
 
-Quan sát này có thể dùng để tính giá trị của số Fibonacci thứ $n$ modulo $m$. Nếu $n$ rất lớn, ta cần tính chu kỳ của dãy Fibonacci modulo $m$. Dĩ nhiên chỉ cần tìm được một chu kỳ, không nhất thiết là chu kỳ dương nhỏ nhất.
+Quan sát này có thể dùng để tính giá trị của số Fibonacci thứ $n$ modulo $m$. Nếu $n$ rất lớn, cần tính chu kỳ của dãy Fibonacci modulo $m$. Chỉ cần tìm được một chu kỳ, không nhất thiết là chu kỳ dương nhỏ nhất.
 
-Để làm vậy, ta có các kết luận sau:
+Để làm vậy, dùng các kết luận sau:
 
 1.  Với hai modulo nguyên tố cùng nhau $m_1,m_2$, có $\pi(m_1m_2)=\operatorname{lcm}(\pi(m_1),\pi(m_2))$.
 2.  Với số nguyên tố $p$ và số nguyên dương $e$, có $\pi(p^{e})\mid p^{e-1}\pi(p)$.
@@ -257,9 +257,9 @@ Quan sát này có thể dùng để tính giá trị của số Fibonacci thứ
 4.  Với $m=5^e~(e\in\mathbf N_+)$, có $\pi(m)=4\cdot 5^e$.
 5.  Cuối cùng, với số nguyên tố $p\equiv\pm1\pmod{10}$, có $\pi(p)\mid(p-1)$; với số nguyên tố $p\equiv\pm3\pmod{10}$, có $\pi(p)\mid 2(p+1)$.
 
-Kết hợp các trường hợp này, ta suy ra: chu kỳ Pisano modulo $m$ không vượt quá $6m$, và dấu bằng xảy ra khi và chỉ khi $m = 2\times 5^e~(e\in\mathbf N_+)$.
+Kết hợp các trường hợp này, suy ra: chu kỳ Pisano modulo $m$ không vượt quá $6m$, và dấu bằng xảy ra khi và chỉ khi $m = 2\times 5^e~(e\in\mathbf N_+)$.
 
-Dựa trên các kết luận trên, ta có thể dùng phân tích thừa số nguyên tố để thu được phương pháp tính nhanh chu kỳ Pisano như sau:
+Dựa trên các kết luận trên, có thể dùng phân tích thừa số nguyên tố để thu được phương pháp tính nhanh chu kỳ Pisano như sau:
 
 ??? example "Mã tham khảo"
     ```cpp
@@ -273,7 +273,7 @@ Chu kỳ thu được theo cách này có thể chỉ là một bội của chu 
 
 Cuối cùng, bài viết chứng minh ngắn gọn các kết luận nêu trên về chu kỳ Pisano. Cần lưu ý rằng phương pháp dưới đây có thể mở rộng cho dãy truy hồi tuyến tính thuần nhất bậc hai với hệ số hằng nói chung. Dù hằng số cụ thể khác nhau, chu kỳ Pisano modulo $m$ của các dãy này đều là $O(m)$.
 
-Quan sát đầu tiên là: nhờ [định lý số dư Trung Hoa](../number-theory/crt.md), ta có thể giới hạn việc thảo luận ở trường hợp modulo lũy thừa nguyên tố. Giả sử $m_1,m_2$ là hai modulo nguyên tố cùng nhau. Chu kỳ của dãy Fibonacci modulo $m_1$ là $\pi(m_1)$ và các bội của nó; chu kỳ modulo $m_2$ là $\pi(m_2)$ và các bội của nó. Do đó chu kỳ dương nhỏ nhất modulo $m_1m_2$ chính là bội chung nhỏ nhất của $\pi(m_1)$ và $\pi(m_2)$. Đây là kết luận 1 ở trên.
+Quan sát đầu tiên là: nhờ [định lý số dư Trung Hoa](../number-theory/crt.md), có thể giới hạn việc thảo luận ở trường hợp modulo lũy thừa nguyên tố. Giả sử $m_1,m_2$ là hai modulo nguyên tố cùng nhau. Chu kỳ của dãy Fibonacci modulo $m_1$ là $\pi(m_1)$ và các bội của nó; chu kỳ modulo $m_2$ là $\pi(m_2)$ và các bội của nó. Do đó chu kỳ dương nhỏ nhất modulo $m_1m_2$ chính là bội chung nhỏ nhất của $\pi(m_1)$ và $\pi(m_2)$. Đây là kết luận 1 bên trên.
 
 Một quan sát khác là: chu kỳ Pisano modulo $m$ thực chất là số nguyên dương nhỏ nhất $k$ sao cho
 
@@ -283,13 +283,13 @@ $$
 
 Nói cách khác, nó là [bậc](../algebra/group-theory.md#cấp) của ma trận $A$ trong modulo $m$[^mod-m].
 
-Với modulo lũy thừa nguyên tố $m=p^e$, ta có thể dùng lập luận nâng lũy thừa cổ điển để liên hệ với trường hợp modulo nguyên tố tương ứng. Đặt $k=\pi(p^e)$, khi đó tồn tại một ma trận vuông cấp hai $\Lambda$ sao cho
+Với modulo lũy thừa nguyên tố $m=p^e$, có thể dùng lập luận nâng lũy thừa cổ điển để liên hệ với trường hợp modulo nguyên tố tương ứng. Đặt $k=\pi(p^e)$, khi đó tồn tại một ma trận vuông cấp hai $\Lambda$ sao cho
 
 $$
 A^k = p^e\Lambda + I 
 $$
 
-Do [định lý nhị thức](./combination.md#định-lý-nhị-thức), ta có
+Do [định lý nhị thức](./combination.md#định-lý-nhị-thức), có
 
 $$
 A^{kp} = (p^e\Lambda + I)^p = I + \sum_{i=1}^p\binom{p}{i}(p^e\Lambda)^i \equiv I\pmod{p^{e+1}}. 
@@ -314,7 +314,7 @@ Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứn
     
     Với $p=2$, biểu thức này không thể lấy modulo trực tiếp, nhưng có thể kiểm tra rằng chu kỳ Pisano tương ứng là $\pi(2)=3$. Với $p=5$, có $F_n\equiv n\cdot 3^{n-1}\pmod{p}$, và có thể kiểm tra trực tiếp chu kỳ Pisano tương ứng là $\pi(5)=20$. Với các modulo nguyên tố lẻ còn lại, chia thành hai trường hợp:
     
-    -   Nếu $p\equiv 1,4\pmod{5}$, ta có
+    -   Nếu $p\equiv 1,4\pmod{5}$, có
     
         $$
         \begin{aligned}
@@ -323,8 +323,8 @@ Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứn
         \end{aligned}
         $$
     
-        Trong quá trình rút gọn, ta dùng các kết luận sau: theo [định lý Lucas](../number-theory/lucas.md), với $0 < k < p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, và với $1 < k < p$ đều có $\dbinom{p+1}{k}\equiv 0\pmod{p}$; theo [định lý nhỏ Fermat](../number-theory/fermat.md#định-lý-nhỏ-fermat), có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 1,4\pmod{5}$, $p$ là thặng dư bậc hai modulo $5$, nên theo [luật tương hỗ bậc hai](../number-theory/quad-residue.md#luật-thuận-nghịch-bậc-hai), $5$ cũng là thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv 1\pmod{p}$. Suy ra $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$, nên $(p-1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid(p-1)$.
-    -   Nếu $p\equiv 2,3\pmod{5}$, ta có
+        Trong quá trình rút gọn, dùng các kết luận sau: theo [định lý Lucas](../number-theory/lucas.md), với $0 < k < p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, và với $1 < k < p$ đều có $\dbinom{p+1}{k}\equiv 0\pmod{p}$; theo [định lý nhỏ Fermat](../number-theory/fermat.md#định-lý-nhỏ-fermat), có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 1,4\pmod{5}$, $p$ là thặng dư bậc hai modulo $5$, nên theo [luật tương hỗ bậc hai](../number-theory/quad-residue.md#luật-thuận-nghịch-bậc-hai), $5$ cũng là thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv 1\pmod{p}$. Suy ra $(F_p,F_{p+1}) \equiv (F_1,F_2) \pmod{p}$, nên $(p-1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid(p-1)$.
+    -   Nếu $p\equiv 2,3\pmod{5}$, có
     
         $$
         \begin{aligned}
@@ -333,20 +333,20 @@ Với trường hợp modulo nguyên tố $p$, bài viết xét hai cách chứn
         \end{aligned}
         $$
     
-        Trong quá trình rút gọn, ta dùng các kết luận sau: theo định lý Lucas, với $0 < k < p$ và $p < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p}{p}\equiv 2\pmod{p}$; với $1 < k < p$ và $p + 1 < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p+1}{p}\equiv 2\pmod{p}$; theo định lý nhỏ Fermat, có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 2,3\pmod{5}$, $p$ là bất thặng dư bậc hai modulo $5$, nên theo luật tương hỗ bậc hai, $5$ cũng là bất thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv -1\pmod{p}$. Suy ra $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$, nên $2(p+1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid 2(p+1)$.
+        Trong quá trình rút gọn, dùng các kết luận sau: theo định lý Lucas, với $0 < k < p$ và $p < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p}{p}\equiv 2\pmod{p}$; với $1 < k < p$ và $p + 1 < k < 2p$ đều có $\dbinom{p}{k}\equiv 0\pmod{p}$, đồng thời $\dbinom{2p+1}{p}\equiv 2\pmod{p}$; theo định lý nhỏ Fermat, có $2^{p-1}\equiv 5^{p-1}\equiv 1\pmod{p}$; với $p\equiv 2,3\pmod{5}$, $p$ là bất thặng dư bậc hai modulo $5$, nên theo luật tương hỗ bậc hai, $5$ cũng là bất thặng dư bậc hai modulo $p$, do đó $5^{(p-1)/2} \equiv -1\pmod{p}$. Suy ra $(F_{2p},F_{2p+1}) \equiv (F_{-2},F_{-1}) \pmod{p}$, nên $2(p+1)$ là một chu kỳ modulo $p$. Vì vậy $\pi(p)\mid 2(p+1)$.
     
     Chứng minh hoàn tất. Hạn chế của phương pháp này là nó phụ thuộc mạnh vào công thức tổng quát của dãy Fibonacci, nên khó mở rộng trực tiếp sang trường hợp tổng quát.
 
 === "Dùng trường mở rộng"
-    Một cách chứng minh khác là trực tiếp tính bậc của ma trận $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$. [Đa thức đặc trưng](../linear-algebra/char-poly.md) của nó là $f(x) = x^2-x-1$, với biệt thức tương ứng $\Delta = 5$. Với modulo $p=5$, có $\Delta\equiv 0\pmod{5}$, ma trận $A$ có hai trị riêng trùng nhau $\lambda=3$ và không chéo hóa được, nên cần tính riêng. Với modulo $p\equiv 1,4\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là thặng dư bậc hai modulo $p$, nên ma trận $A$ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong trường $\mathbf F_p$; bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $|\mathbf F_p^\times|=p-1$. Với modulo $p\equiv 2,3\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là bất thặng dư bậc hai modulo $p$, nên ma trận $A$ không có trị riêng trong trường $\mathbf F_p$, mà chỉ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong [trường mở rộng](../algebra/field-theory.md#mở-rộng-trường) $\mathbf F_p[\sqrt{5}]$. Do tự đẳng cấu Frobenius $x\mapsto x^p$ hoán đổi hai nghiệm, ta có $\lambda_2=\lambda_1^p$, vì vậy $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$, tức là $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$. Từ đó, bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $2(p+1)$. Điều này cho kết luận giống phương pháp trước.
+    Một cách chứng minh khác là trực tiếp tính bậc của ma trận $A=\begin{pmatrix}1&1\\1&0\end{pmatrix}$. [Đa thức đặc trưng](../linear-algebra/char-poly.md) của nó là $f(x) = x^2-x-1$, với biệt thức tương ứng $\Delta = 5$. Với modulo $p=5$, có $\Delta\equiv 0\pmod{5}$, ma trận $A$ có hai trị riêng trùng nhau $\lambda=3$ và không chéo hóa được, nên cần tính riêng. Với modulo $p\equiv 1,4\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là thặng dư bậc hai modulo $p$, nên ma trận $A$ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong trường $\mathbf F_p$; bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $|\mathbf F_p^\times|=p-1$. Với modulo $p\equiv 2,3\pmod{5}$, theo luật tương hỗ bậc hai, biệt thức $\Delta=5$ là bất thặng dư bậc hai modulo $p$, nên ma trận $A$ không có trị riêng trong trường $\mathbf F_p$, mà chỉ có hai trị riêng phân biệt $\lambda_1\neq\lambda_2$ trong [trường mở rộng](../algebra/field-theory.md#mở-rộng-trường) $\mathbf F_p[\sqrt{5}]$. Do tự đẳng cấu Frobenius $x\mapsto x^p$ hoán đổi hai nghiệm, có $\lambda_2=\lambda_1^p$, vì vậy $\lambda_1^{p+1}=\lambda_2^{p+1}=\lambda_1\lambda_2=-1$, tức là $\lambda_1^{2(p+1)}=\lambda_2^{2(p+1)}=1$. Từ đó, bậc của ma trận $A$ là $\operatorname{lcm}(\operatorname{ord}(\lambda_1),\operatorname{ord}(\lambda_2))$, tất yếu chia hết cho $2(p+1)$. Điều này cho kết luận giống phương pháp trước.
 
-Tóm lại, với các trường hợp khác nhau, ta có tương ứng:
+Tóm lại, với các trường hợp khác nhau, có tương ứng:
 
 -   $\pi(2^e)=\dfrac{3}{2}\cdot 2^e,~\dfrac{1}{4}\pi(5^e)=5^e$.
 -   Khi $p\equiv\pm1\pmod{10}$, $\pi(p^e) \mid (p-1)p^{e-1}$, nên $\pi(p^e)\le p^e$.
 -   Khi $p\equiv\pm3\pmod{10}$, $\dfrac{1}{4}\pi(p^e) \mid \dfrac{p+1}{2}p^{e-1}$, nên $\dfrac{1}{4}\pi(p^e)\le p^e$.
 
-Do đó, dùng kết luận 1, với modulo tổng quát $m=\prod_i p_i^{e_i}$, ta có
+Do đó, dùng kết luận 1, với modulo tổng quát $m=\prod_i p_i^{e_i}$, có
 
 $$
 \begin{aligned}
