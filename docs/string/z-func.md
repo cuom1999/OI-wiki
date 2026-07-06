@@ -53,18 +53,18 @@ Thuật toán đơn giản để tính hàm Z có độ phức tạp $O(n^2)$:
 
 Giống nhiều thuật toán trong chủ đề xâu, điểm then chốt là dùng tư tưởng tự động hóa để tìm hàm chuyển trạng thái dưới các ràng buộc, từ đó tận dụng các trạng thái đã biết để tăng tốc việc tính trạng thái mới.
 
-Trong thuật toán này, ta tính lần lượt các giá trị $z[i]$ từ $1$ đến $n-1$ (với $z[0]=0$). Khi tính $z[i]$, ta sẽ sử dụng các giá trị đã tính $z[0],\ldots,z[i-1]$.
+Trong thuật toán này, tính lần lượt các giá trị $z[i]$ từ $1$ đến $n-1$ (với $z[0]=0$). Khi tính $z[i]$, sử dụng các giá trị đã tính $z[0],\ldots,z[i-1]$.
 
 Với một vị trí $i$, gọi đoạn $[i,i+z[i]-1]$ là **đoạn khớp** của $i$, hay còn gọi là Z-box.
 
-Trong quá trình chạy, thuật toán duy trì đoạn khớp có đầu phải xa nhất. Để tiện, ký hiệu đoạn này là $[l,r]$. Theo định nghĩa, $s[l,r]$ là một tiền tố của $s$. Khi tính $z[i]$, ta bảo đảm $l\le i$. Ban đầu $l=r=0$.
+Trong quá trình chạy, thuật toán duy trì đoạn khớp có đầu phải xa nhất. Để tiện, ký hiệu đoạn này là $[l,r]$. Theo định nghĩa, $s[l,r]$ là một tiền tố của $s$. Khi tính $z[i]$, luôn có $l\le i$. Ban đầu $l=r=0$.
 
 Khi tính $z[i]$:
 
--   Nếu $i\le r$, theo định nghĩa của $[l,r]$ ta có $s[i,r] = s[i-l,r-l]$, do đó $z[i]\ge \min(z[i-l],r-i+1)$. Khi đó:
+-   Nếu $i\le r$, theo định nghĩa của $[l,r]$ có $s[i,r] = s[i-l,r-l]$, do đó $z[i]\ge \min(z[i-l],r-i+1)$. Khi đó:
     -   Nếu $z[i-l] < r-i+1$, thì $z[i] = z[i-l]$.
-    -   Ngược lại, $z[i-l]\ge r-i+1$. Ta đặt $z[i] = r-i+1$, rồi vét cạn các ký tự tiếp theo để mở rộng $z[i]$ cho tới khi không thể mở rộng nữa.
--   Nếu $i>r$, ta trực tiếp làm như thuật toán đơn giản: bắt đầu so sánh từ $s[i]$ và vét cạn để tìm $z[i]$.
+    -   Ngược lại, $z[i-l]\ge r-i+1$. Đặt $z[i] = r-i+1$, rồi vét cạn các ký tự tiếp theo để mở rộng $z[i]$ cho tới khi không thể mở rộng nữa.
+-   Nếu $i>r$, trực tiếp làm như thuật toán đơn giản: bắt đầu so sánh từ $s[i]$ và vét cạn để tìm $z[i]$.
 -   Sau khi tìm được $z[i]$, nếu $i+z[i]-1>r$, cần cập nhật $[l,r]$, tức đặt $l=i, r=i+z[i]-1$.
 
 Có thể xem mô phỏng quá trình tính hàm Z tại [trang này](https://personal.utdallas.edu/~besp/demo/John2010/z-algorithm.htm).
@@ -130,33 +130,33 @@ Các ứng dụng này phần lớn tương tự các ứng dụng của [hàm t
 
 Để tránh nhầm lẫn, gọi $t$ là **văn bản** và $p$ là **mẫu**. Bài toán đặt ra là tìm mọi lần xuất hiện (occurrence) của mẫu $p$ trong văn bản $t$.
 
-Để giải bài toán này, ta xây dựng một xâu mới $s = p + \diamond + t$, tức nối $p$ và $t$ lại với nhau nhưng đặt một ký tự phân tách $\diamond$ ở giữa (chọn $\diamond$ sao cho chắc chắn nó không xuất hiện trong $p$ hoặc $t$).
+Để giải bài toán này, xây dựng một xâu mới $s = p + \diamond + t$, tức nối $p$ và $t$ lại với nhau nhưng đặt một ký tự phân tách $\diamond$ ở giữa (chọn $\diamond$ sao cho chắc chắn nó không xuất hiện trong $p$ hoặc $t$).
 
-Trước hết tính hàm Z của $s$. Sau đó, với mỗi $i$ trong đoạn $[0,|t| - 1]$, xét giá trị hàm Z trong $s$ của hậu tố bắt đầu tại $t[i]$, tức $k = z[i + |p| + 1]$. Nếu $k = |p|$, ta biết có một lần xuất hiện của $p$ tại vị trí thứ $i$ của $t$; ngược lại, không có lần xuất hiện của $p$ tại vị trí đó.
+Trước hết tính hàm Z của $s$. Sau đó, với mỗi $i$ trong đoạn $[0,|t| - 1]$, xét giá trị hàm Z trong $s$ của hậu tố bắt đầu tại $t[i]$, tức $k = z[i + |p| + 1]$. Nếu $k = |p|$, có một lần xuất hiện của $p$ tại vị trí thứ $i$ của $t$; ngược lại, không có lần xuất hiện của $p$ tại vị trí đó.
 
 Độ phức tạp thời gian (và cũng là độ phức tạp bộ nhớ) là $O(|t| + |p|)$.
 
 <span id="số-xâu-con-khác-nhau-về-bản-chất"></span>
 ### Số xâu con khác nhau về bản chất
 
-Cho một xâu $s$ có độ dài $n$, hãy tính số lượng xâu con khác nhau về bản chất của $s$.
+Cho một xâu $s$ có độ dài $n$, cần tính số lượng xâu con khác nhau về bản chất của $s$.
 
-Xét cách tính phần tăng thêm: khi đã biết số xâu con khác nhau về bản chất của $s$ hiện tại, hãy tính số này sau khi thêm một ký tự vào cuối $s$.
+Xét cách tính phần tăng thêm: khi đã biết số xâu con khác nhau về bản chất của $s$ hiện tại, cần tính số này sau khi thêm một ký tự vào cuối $s$.
 
-Gọi $k$ là số xâu con khác nhau về bản chất của $s$ hiện tại. Ta thêm một ký tự mới $c$ vào cuối $s$. Rõ ràng sẽ xuất hiện một số xâu con mới kết thúc bằng $c$ (những xâu con kết thúc bằng $c$ và chưa từng xuất hiện trước đó).
+Gọi $k$ là số xâu con khác nhau về bản chất của $s$ hiện tại. Thêm một ký tự mới $c$ vào cuối $s$. Khi đó sẽ xuất hiện một số xâu con mới kết thúc bằng $c$ (những xâu con kết thúc bằng $c$ và chưa từng xuất hiện trước đó).
 
-Gọi $t$ là xâu đảo ngược của $s+c$ (xâu đảo ngược là xâu thu được bằng cách sắp các ký tự của xâu ban đầu theo thứ tự ngược lại). Nhiệm vụ của ta là tính có bao nhiêu tiền tố của $t$ không xuất hiện ở nơi khác trong $t$. Tính hàm Z của $t$ và lấy giá trị lớn nhất $z_{\max}$. Khi đó, đảo ngược của các tiền tố của $t$ có độ dài không vượt quá $z_{\max}$ chính là các xâu con kết thúc bằng $c$ đã từng xuất hiện trong $s$.
+Gọi $t$ là xâu đảo ngược của $s+c$ (xâu đảo ngược là xâu thu được bằng cách sắp các ký tự của xâu ban đầu theo thứ tự ngược lại). Nhiệm vụ là tính có bao nhiêu tiền tố của $t$ không xuất hiện ở nơi khác trong $t$. Tính hàm Z của $t$ và lấy giá trị lớn nhất $z_{\max}$. Khi đó, đảo ngược của các tiền tố của $t$ có độ dài không vượt quá $z_{\max}$ chính là các xâu con kết thúc bằng $c$ đã từng xuất hiện trong $s$.
 
 Vì vậy, sau khi thêm ký tự $c$ vào $s$, số xâu con mới xuất hiện là $|t| - z_{\max}$.
 
 Thuật toán có độ phức tạp thời gian $O(n^2)$.
 
-Đáng chú ý là với cùng phương pháp, ta có thể tính lại trong $O(n)$ số xâu con khác nhau về bản chất sau khi thêm một ký tự ở một đầu hoặc xóa một ký tự ở một đầu (từ cuối hoặc từ đầu).
+Đáng chú ý là với cùng phương pháp, có thể tính lại trong $O(n)$ số xâu con khác nhau về bản chất sau khi thêm một ký tự ở một đầu hoặc xóa một ký tự ở một đầu (từ cuối hoặc từ đầu).
 
 <span id="chu-kỳ-nguyên-của-xâu"></span>
 ### Chu kỳ nguyên của xâu
 
-Cho một xâu $s$ có độ dài $n$, hãy tìm chu kỳ nguyên ngắn nhất của nó, tức tìm xâu ngắn nhất $t$ sao cho $s$ có thể được biểu diễn bằng cách nối một số bản sao của $t$.
+Cho một xâu $s$ có độ dài $n$, cần tìm chu kỳ nguyên ngắn nhất của nó, tức tìm xâu ngắn nhất $t$ sao cho $s$ có thể được biểu diễn bằng cách nối một số bản sao của $t$.
 
 Tính hàm Z của $s$; độ dài chu kỳ nguyên của nó là ước nhỏ nhất $i$ của $n$ thỏa $i+z[i]=n$.
 
