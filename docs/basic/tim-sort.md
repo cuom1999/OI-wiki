@@ -106,11 +106,11 @@ trí, không cần xử lý. Chỉ cần trộn $[6, 10]$ của đoạn A với 
 
 #### Chế độ galloping
 
-Để tiếp tục nâng cao hiệu quả trộn, Timsort đưa vào **chế độ galloping**. Trong
-quá trình trộn chuẩn, thuật toán so sánh từng phần tử của hai đoạn và đưa phần
-tử nhỏ hơn vào mảng kết quả. Tuy nhiên, nếu một phía có nhiều phần tử liên tiếp
-nhỏ hơn phần tử hiện tại của phía còn lại, việc so sánh từng phần tử sẽ gây chi
-phí không cần thiết.
+Để tiếp tục nâng cao hiệu quả trộn, Timsort đưa vào **chế độ phi nước đại**
+(galloping). Trong quá trình trộn chuẩn, thuật toán so sánh từng phần tử của hai
+đoạn và đưa phần tử nhỏ hơn vào mảng kết quả. Tuy nhiên, nếu một phía có nhiều
+phần tử liên tiếp nhỏ hơn phần tử hiện tại của phía còn lại, việc so sánh từng
+phần tử sẽ gây chi phí không cần thiết.
 
 Để xử lý vấn đề này, Timsort đặt một ngưỡng `Min_Gallop` (giá trị mặc định là
 $7$). Khi các phần tử ở một phía thắng liên tiếp trong số lần so sánh đạt

@@ -405,9 +405,9 @@ int main() {
     
     Vì hàm, chẳng hạn `foo`, có thể được chuyển đổi ngầm định thành con trỏ trỏ tới hàm, nên cách viết `void (*p)() = foo;` là hợp lệ.
     
-    Dùng toán tử `&` có thể lấy địa chỉ của đối tượng; điều này cũng đúng với hàm, nên cách viết `void (*p)() = &foo;` vẫn hợp lệ.
+    Toán tử `&` lấy địa chỉ của đối tượng; điều này cũng đúng với hàm, nên cách viết `void (*p)() = &foo;` vẫn hợp lệ.
     
-    Dùng toán tử `*` trên con trỏ hàm có thể lấy hàm mà con trỏ trỏ tới. Với cách viết như `**foo`, `*foo` thu được chính hàm `foo`, rồi ngay sau đó lại được chuyển đổi ngầm định thành con trỏ trỏ tới `foo`. Cứ suy luận tương tự, kết quả cuối cùng của `**foo` vẫn là con trỏ hàm trỏ tới `foo`; người dùng có thể dùng bao nhiêu dấu `*` tùy ý, kết quả vẫn như nhau.
+    Toán tử `*` trên con trỏ hàm lấy hàm mà con trỏ trỏ tới. Với cách viết như `**foo`, `*foo` thu được chính hàm `foo`, rồi ngay sau đó lại được chuyển đổi ngầm định thành con trỏ trỏ tới `foo`. Cứ suy luận tương tự, kết quả cuối cùng của `**foo` vẫn là con trỏ hàm trỏ tới `foo`; có thể viết bao nhiêu dấu `*` tùy ý, kết quả vẫn như nhau.
     
     Tương tự, khi gọi hàm, các câu lệnh như `(*p)()` và `p()` là như nhau; có thể lược bỏ toán tử `*`.
     
@@ -422,9 +422,9 @@ typedef int (*p_bi_int_op)(int, int);
 Từ đó, về sau có thể dùng kiểu `p_bi_int_op`, tức kiểu con trỏ trỏ tới hàm "có
 2 tham số kiểu `int` và giá trị trả về cũng là `int`".
 
-Có thể dùng `std::function` để tham chiếu hàm một cách thuận tiện hơn. (Còn tiếp)
+Ngoài con trỏ hàm, `std::function` cũng có thể dùng để tham chiếu hàm thuận tiện hơn.
 
-Dùng con trỏ hàm có thể triển khai "hàm callback". (Còn tiếp)
+Con trỏ hàm cũng thường được dùng để triển khai "hàm callback".
 
 ## Tài liệu tham khảo và chú thích
 

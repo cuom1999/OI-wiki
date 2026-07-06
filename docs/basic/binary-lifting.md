@@ -4,7 +4,8 @@ Trang này giới thiệu ngắn gọn về kỹ thuật nhảy nhị phân.
 
 ## Định nghĩa
 
-Nhảy nhị phân (binary lifting), đúng như tên gọi, là cách "tăng theo bội".
+Nhảy nhị phân (binary lifting) là kỹ thuật nhảy theo các bước có độ dài tăng
+theo lũy thừa, thường là lũy thừa của 2.
 Khi thực hiện truy hồi, nếu không gian trạng thái rất lớn và truy hồi tuyến
 tính thông thường không đáp ứng được yêu cầu về thời gian hoặc bộ nhớ, có
 thể chỉ truy hồi các giá trị đại diện tại những vị trí là lũy thừa nguyên của

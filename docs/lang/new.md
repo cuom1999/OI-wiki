@@ -140,7 +140,7 @@ int main() {
 
 ## Ràng buộc có cấu trúc (C++17)
 
-Ràng buộc có cấu trúc là một cú pháp tiện ích do C++17 cung cấp, giúp trích xuất phần tử con hoặc tham chiếu tới phần tử con một cách thuận tiện, như sau:
+Ràng buộc có cấu trúc là cú pháp tiện ích do C++17 cung cấp, giúp trích xuất phần tử con hoặc tham chiếu tới phần tử con gọn hơn, như sau:
 
 ```cpp
 struct C {
@@ -461,11 +461,11 @@ void func(T... args) {
 
 ## Thư viện ranges (C++20)
 
-> Thư viện ranges là phần mở rộng của bộ lặp và thư viện thuật toán tổng quát, giúp việc kết hợp bộ lặp và thuật toán linh hoạt hơn, đồng thời giảm khả năng mắc lỗi.
+> Thư viện ranges là phần mở rộng của bộ lặp và thư viện thuật toán tổng quát, giúp kết hợp bộ lặp với thuật toán linh hoạt hơn, đồng thời giảm khả năng mắc lỗi.
 
 Phạm vi (`range`) là một dãy có thể duyệt, bao gồm mảng, bộ chứa, khung nhìn (`view`), v.v.
 
-Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp cách viết thuật toán ngắn gọn và mạch lạc hơn.
+Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) giúp mã thuật toán ngắn gọn và mạch lạc hơn.
 
 ### Khung nhìn (view)
 
@@ -476,17 +476,17 @@ nhau cho phạm vi.
 Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia
 thành hai loại:
 
-1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc biệt. Dùng loại bộ sinh này có thể bỏ qua bước tự xây dựng bộ chứa, giảm chi phí và trực tiếp sinh ra một phạm vi.
-2.  **Bộ chuyển đổi phạm vi** (range adaptor), cung cấp nhiều cách duyệt đa dạng; vừa có thể gọi như hàm, vừa có thể nối bằng toán tử ống dẫn `|` để gọi theo chuỗi.
+1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc biệt. Loại bộ sinh này cho phép bỏ qua bước tự xây dựng bộ chứa, giảm chi phí và trực tiếp sinh ra một phạm vi.
+2.  **Bộ chuyển đổi phạm vi** (range adaptor), cung cấp nhiều cách duyệt đa dạng; có thể gọi như hàm hoặc nối bằng toán tử ống dẫn `|` để gọi theo chuỗi.
 
-Với vai trò là [**đối tượng bao đóng bộ chuyển đổi phạm vi**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject) (range adaptor closure object), **bộ chuyển đổi phạm vi** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như toán tử ống dẫn (pipe).
+Với vai trò là [**đối tượng bao đóng bộ chuyển đổi phạm vi**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject) (range adaptor closure object), **bộ chuyển đổi phạm vi** cũng là [**đối tượng hàm**](#đối-tượng-hàm). Chúng nạp chồng `operator|`, nhờ đó có thể ghép với nhau như toán tử ống dẫn (pipe).
 
 ??? note "Toán tử ống dẫn"
     Trong ngữ cảnh này, `|` là toán tử ống dẫn (pipe), không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
-Trong các thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và có đặc điểm sau:
+Trong các thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và tuân theo quy tắc sau:
 
-Nếu A, B, C là các đối tượng bao đóng bộ chuyển đổi phạm vi, R là một phạm vi nào đó, và các chữ cái khác là tham số hợp lệ, thì biểu thức
+Nếu A, B, C là các đối tượng bao đóng bộ chuyển đổi phạm vi, R là một phạm vi nào đó, còn các chữ cái khác là tham số hợp lệ, thì biểu thức
 
     R | A(a) | B(b) | C(c, d)
 

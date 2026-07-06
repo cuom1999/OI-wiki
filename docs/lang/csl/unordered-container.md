@@ -68,8 +68,8 @@ của những số nguyên tố này để tạo ra nhiều va chạm băm.
 <span id="tùy-biến-hàm-băm"></span>
 ## Tùy biến hàm băm
 
-Dùng hàm băm tùy biến có thể giúp tránh hiệu quả nhiều va chạm băm do dữ liệu
-được thiết kế có chủ đích tạo ra.
+Hàm băm tùy biến giúp giảm đáng kể nguy cơ va chạm băm do dữ liệu được thiết
+kế có chủ đích tạo ra.
 
 Để dùng hàm băm tùy biến, cần định nghĩa một `struct` và nạp chồng toán tử `()`
 trong struct đó, như sau:

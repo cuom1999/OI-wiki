@@ -12,9 +12,9 @@ tử tiếp theo cần chọn.
 
 Tên của sắp xếp giải đấu bắt nguồn từ thể thức thi đấu loại trực tiếp. Trong
 thể thức này, nhiều người chơi tham gia, được so sánh từng cặp, và người thắng
-đi tiếp vào vòng sau. Cách loại này có thể xác định người chơi tốt nhất, nhưng
-người bị loại ở vòng cuối không nhất thiết là người tốt thứ hai: người đó vẫn
-có thể kém một người đã bị loại trước đó.
+đi tiếp vào vòng sau. Thể thức loại trực tiếp này có thể xác định người chơi
+tốt nhất, nhưng người bị loại ở vòng cuối không nhất thiết là người tốt thứ hai:
+người đó vẫn có thể kém một người đã bị loại trước đó.
 
 ## Quy trình
 

@@ -113,10 +113,11 @@ lời gọi hàm, ngăn xếp thêm một khung ngăn xếp; mỗi khi hàm tr�
 bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, nên nếu tầng đệ
 quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
-Trong một số trường hợp đệ quy rất hiệu quả, chẳng hạn merge sort; nhưng **cũng
-có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ
-Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có thể không
-tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ dài của nó.
+Trong một số trường hợp đệ quy rất hiệu quả, chẳng hạn sắp xếp trộn (merge
+sort); nhưng **cũng có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông
+trên người Tôn Ngộ Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn
+giản có thể không tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết,
+tính độ dài của nó.
 
 ```cpp
 // khung duyệt lặp điển hình
@@ -177,10 +178,10 @@ Những bài toán giải được bằng chia để trị thường có các đ
     bài toán con chung, gây nhiều công việc thừa. Khi đó vẫn có thể dùng chia
     để trị, nhưng thường dùng [quy hoạch động](../dp/basic.md) sẽ tốt hơn.
 
-Lấy merge sort làm ví dụ. Giả sử hàm cài đặt merge sort tên là `merge_sort`.
-Trước hết cần xác định rõ nhiệm vụ của hàm này: **sắp xếp mảng được truyền
-vào**. Bài toán này có thể chia được. Sắp xếp một mảng tương đương với
-sắp xếp nửa trái, sắp xếp nửa phải, rồi gộp chúng thành một mảng.
+Lấy sắp xếp trộn làm ví dụ. Giả sử hàm cài đặt thuật toán này tên là
+`merge_sort`. Trước hết cần xác định rõ nhiệm vụ của hàm này: **sắp xếp mảng
+được truyền vào**. Bài toán này có thể chia được. Sắp xếp một mảng tương đương
+với sắp xếp nửa trái, sắp xếp nửa phải, rồi gộp chúng thành một mảng.
 
 ```cpp
 void merge_sort(một_mảng) {
@@ -194,8 +195,8 @@ void merge_sort(một_mảng) {
 Khi truyền cho nó nửa mảng, sau khi xử lý xong thì nửa mảng đó đã được sắp
 xếp. Hàm `merge_sort` rất giống mẫu duyệt hậu tự của cây nhị phân. Vì khuôn mẫu
 của chia để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**:
-trước hết chia trái phải, sau đó xử lý gộp; bước quay lui chính là khi stack
-trả về, tương đương hậu tự.
+trước hết chia trái phải, sau đó xử lý gộp; bước quay lui chính là khi ngăn xếp
+lời gọi trả về, tương đương hậu tự.
 
 Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên kết đã sắp xếp.
 
