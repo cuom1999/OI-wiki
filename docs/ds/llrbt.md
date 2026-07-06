@@ -1,10 +1,11 @@
 author: c-forrest, Enter-tainer, giiiiiithub, hly1204, iamtwz, Ir1d, kigawas, ksyx, luxuryspark567, mgt, orzAtalod, sandyzikun, SunsetGlow95, Tiphereth-A, current2020, untitledunrevised, yuhuoji
 
-Cây đỏ-đen nghiêng trái là một biến thể của [cây đỏ-đen](./rbtree.md). Nó đặt thêm một số ràng buộc lên vị trí của cạnh
-đỏ (hoặc nút đỏ), nhờ đó các thao tác chèn và xóa có thể tương ứng một-một với
+Cây đỏ-đen nghiêng trái là một biến thể của [cây đỏ-đen](./rbtree.md). Nó đặt thêm một số ràng buộc lên vị trí của liên
+kết đỏ (hoặc nút đỏ), nhờ đó các thao tác chèn và xóa có thể tương ứng một-một với
 [cây 2-3](https://en.wikipedia.org/wiki/2%E2%80%933_tree).
 
-Chúng tôi giả sử người đọc đã nắm được ít nhất một loại cây cân bằng dựa trên phép xoay, vì vậy bài viết này sẽ không giải thích riêng thao tác xoay.
+Chúng tôi giả sử người đọc đã nắm được ít nhất một loại cây cân bằng dựa trên phép xoay, vì vậy bài viết này sẽ không
+giải thích riêng thao tác xoay.
 
 ## Cây đỏ-đen
 
@@ -14,8 +15,10 @@ Một cây đỏ-đen thỏa mãn các tính chất sau:
 
 1.  Mỗi nút có màu đỏ hoặc đen.
 2.  Nút NIL (nút lá rỗng) có màu đen.
-3.  Mọi con của nút đỏ đều phải có màu đen, tức là trên mọi đường đi từ mỗi lá đến gốc không được có hai nút đỏ liên tiếp.
-4.  Trên mọi đường đi đơn từ một nút bất kỳ đến từng lá trong cây con của nó đều có cùng số lượng nút đen. Đây là cân bằng chiều cao đen.
+3.  Mọi con của nút đỏ đều phải có màu đen, tức là trên mọi đường đi từ mỗi lá đến gốc không được có hai nút đỏ liên
+    tiếp.
+4.  Trên mọi đường đi đơn từ một nút bất kỳ đến từng lá trong cây con của nó đều có cùng số lượng nút đen. Đây là tính
+    cân bằng chiều cao đen.
 
 Các tính chất này bảo đảm đường đi dài nhất từ gốc đến một lá bất kỳ, trong trường hợp màu đỏ và đen xen kẽ, không vượt
 quá hai lần đường đi ngắn nhất, trong trường hợp toàn nút đen. Nhờ đó cây vẫn được cân bằng.
@@ -31,13 +34,13 @@ vỡ. Vấn đề là cần một cách thuận tiện để xử lý các trư�
 
 Cây đỏ-đen nghiêng trái, hay LLRB, là một biến thể cây đỏ-đen dễ cài đặt.
 
-Trong các sơ đồ cây đỏ-đen nghiêng trái bên dưới, màu được gán cho cạnh chứ không phải cho nút. Theo thói quen, màu của
-một nút được dùng để chỉ màu của cạnh nối từ cha của nó đến nó.
+Trong các sơ đồ cây đỏ-đen nghiêng trái bên dưới, màu được gán cho liên kết chứ không phải cho nút. Theo thói quen, màu
+của một nút được dùng để chỉ màu của liên kết nối nút cha với nút đó.
 
 Cây đỏ-đen nghiêng trái đặt thêm ràng buộc lên cây đỏ-đen. Với hai con trái và phải của một nút đen:
 
--   Hoặc cả hai đều là màu đen.
--   Hoặc con trái là màu đỏ, con phải là màu đen.
+-   Hoặc cả hai đều có màu đen.
+-   Hoặc con trái có màu đỏ, con phải có màu đen.
 
 Các trường hợp hợp lệ:
 
@@ -47,19 +50,18 @@ Các trường hợp không hợp lệ:
 
 ![Các biểu diễn không hợp lệ trong cây đỏ-đen nghiêng trái](./images/llrbt-2.png)
 
-Đây chính là tính chất "nghiêng trái" của LLRB: cạnh đỏ chỉ được phép nghiêng về bên trái.
+Đây chính là tính chất "nghiêng trái" của LLRB: liên kết đỏ chỉ được phép nghiêng về bên trái.
 
 ### Quy trình
 
 #### Chèn
 
-Trước hết, dùng cách chèn BST thông thường để chèn một nút lá màu đỏ ở đáy cây. Sau đó, thông qua các điều chỉnh từ dưới
-lên, bảo đảm cây sau khi chèn vẫn thỏa mãn các tính chất của cây đỏ-đen nghiêng trái. Quy trình điều chỉnh được mô tả
-dưới đây:
+Trước hết, dùng cách chèn BST thông thường để chèn một nút lá màu đỏ ở đáy cây. Sau đó điều chỉnh từ dưới lên để bảo đảm
+cây sau khi chèn vẫn thỏa mãn các tính chất của cây đỏ-đen nghiêng trái. Quy trình điều chỉnh được mô tả dưới đây:
 
 ![Các khả năng sau khi chèn nút đỏ](./images/llrbt-3.png)
 
-Sau khi chèn, có thể xuất hiện một cạnh đỏ nghiêng phải. Trong trường hợp đó, cần thực hiện một phép xoay trái:
+Sau khi chèn, có thể xuất hiện một liên kết đỏ nghiêng phải. Trong trường hợp đó, cần thực hiện một phép xoay trái:
 
 ![Xoay trái để sửa cạnh đỏ nghiêng phải](./images/llrbt-4.png)
 
@@ -72,7 +74,7 @@ Vì vậy cần thực hiện một phép xoay phải. Với trạng thái sau p
 
 ![Đảo màu sau khi xoay phải](./images/llrbt-6.png)
 
-Nhờ đó cạnh đỏ nghiêng phải bị loại bỏ.
+Nhờ đó liên kết đỏ nghiêng phải bị loại bỏ.
 
 ??? note "Mã tham khảo (một phần)"
     ```cpp
@@ -108,19 +110,19 @@ Nhờ đó cạnh đỏ nghiêng phải bị loại bỏ.
 
 #### Xóa
 
-Thao tác xóa dựa trên ý tưởng sau: không thể xóa một nút đen, vì làm vậy sẽ phá vỡ chiều cao đen. Do đó cần bảo đảm nút
-cuối cùng bị xóa là nút đỏ.
+Thao tác xóa dựa trên ý tưởng sau: không thể xóa trực tiếp một nút đen, vì làm vậy sẽ phá vỡ chiều cao đen. Do đó cần
+bảo đảm nút cuối cùng bị xóa là nút đỏ.
 
 ##### Xóa nút nhỏ nhất
 
 Trước hết, xét thao tác xóa giá trị nhỏ nhất trong toàn bộ cây.
 
-Làm thế nào để bảo đảm nút cuối cùng bị xóa là màu đỏ? Trong quá trình đệ quy đi xuống, cần duy trì một tính chất: nếu
-nút hiện tại là `h`, thì phải bảo đảm `h` là màu đỏ, hoặc `h->lc` là màu đỏ.
+Làm thế nào để bảo đảm nút cuối cùng bị xóa có màu đỏ? Trong quá trình đệ quy đi xuống, cần duy trì một tính chất: nếu
+nút hiện tại là `h`, thì phải bảo đảm `h` có màu đỏ, hoặc `h->lc` có màu đỏ.
 
 Xét tính đúng đắn của cách làm này. Nếu duy trì thành công tính chất trên bằng các phép xoay và thao tác đảo màu, thì khi
-đi đến nút nhỏ nhất `h_min`, hoặc `h_min` là màu đỏ, hoặc cây con trái của `h_min` là màu đỏ. Nhưng `h_min` hoàn toàn
-không có cây con trái. Vì vậy điều này bảo đảm nút nhỏ nhất là màu đỏ. Vì nó là màu đỏ, có thể xóa trực tiếp
+đi đến nút nhỏ nhất `h_min`, hoặc `h_min` có màu đỏ, hoặc cây con trái của `h_min` có màu đỏ. Nhưng `h_min` hoàn toàn
+không có cây con trái. Vì vậy điều này bảo đảm nút nhỏ nhất có màu đỏ. Vì nó có màu đỏ, có thể xóa trực tiếp
 nút này, rồi dùng cùng ý tưởng điều chỉnh như thao tác chèn để chỉnh lại cây.
 
 Bây giờ xét cách thỏa mãn tính chất này. Lưu ý rằng trong lúc đệ quy đi xuống, một số tính chất của cây đỏ-đen nghiêng
@@ -130,13 +132,13 @@ Như hình dưới mô tả, đây là một trường hợp tương đối đơ
 
 ![Trường hợp đơn giản khi xóa nút nhỏ nhất với h->rc->lc màu đen](./images/llrbt-7.png)
 
-Hơn nữa, sau phép đảo màu như trên, `h->rc` và `h->rc->lc` sẽ không tạo thành các cạnh đỏ liên tiếp.
+Hơn nữa, sau phép đảo màu như trên, `h->rc` và `h->rc->lc` sẽ không tạo thành các liên kết đỏ liên tiếp.
 
 Nhưng nếu `h->rc->lc` là màu đỏ thì tình huống phức tạp hơn:
 
 ![Trường hợp khó khi xóa nút nhỏ nhất với h->rc->lc màu đỏ](./images/llrbt-8.png)
 
-Nếu chỉ đảo màu, các cạnh đỏ liên tiếp sẽ xuất hiện. Khi xét quá trình quay lui khỏi đệ quy, không thể sửa được tình
+Nếu chỉ đảo màu, các liên kết đỏ liên tiếp sẽ xuất hiện. Khi xét quá trình quay lui khỏi đệ quy, không thể sửa được tình
 huống như vậy, nên cần xử lý thêm.
 
 Sau đó có thể thực hiện xóa:
@@ -178,8 +180,8 @@ Sau đó có thể thực hiện xóa:
 Trước hết xét việc xóa lá. Tương tự như xóa giá trị nhỏ nhất, trong quá trình xóa một giá trị bất kỳ cũng cần duy trì một
 tính chất. Tuy nhiên lần này có điểm đặc biệt: quá trình đệ quy không chỉ đi sang trái, mà có thể đi theo cả hai hướng
 trái và phải. Vì vậy tính chất cần duy trì trong quá trình xóa là: nếu đi sang trái và nút hiện tại là `h`, thì cần bảo
-đảm `h` là màu đỏ, hoặc `h->lc` là màu đỏ; nếu đi sang phải và nút hiện tại là `h`, thì cần bảo đảm `h` là màu đỏ, hoặc
-`h->rc` là màu đỏ. Như vậy có thể bảo đảm cuối cùng luôn xóa một nút đỏ.
+đảm `h` có màu đỏ, hoặc `h->lc` có màu đỏ; nếu đi sang phải và nút hiện tại là `h`, thì cần bảo đảm `h` có màu đỏ, hoặc
+`h->rc` có màu đỏ. Như vậy có thể bảo đảm cuối cùng luôn xóa một nút đỏ.
 
 Tiếp theo xét việc xóa nút không phải lá. Chỉ cần tìm nút nhỏ nhất trong cây con phải của nó, nếu có, rồi dùng giá trị
 của nút nhỏ nhất trong cây con phải để thay thế giá trị của nút đó. Cuối cùng xóa nút nhỏ nhất trong cây con phải.
@@ -541,11 +543,11 @@ tử trùng lặp:
 ## Quan hệ với cây 2-3
 
 Cây 2-3 là cây B bậc 3. Mỗi nút là nút 2 hoặc nút 3, lưu trữ một hoặc hai phần tử dữ liệu. Nút 2 và nút 3 không phải lá
-lần lượt chỉ có thể có hai hoặc ba con. Ngoài ra, tất cả dữ liệu được lưu trong cây 2-3 đều có thứ tự.
+lần lượt có hai hoặc ba con. Ngoài ra, tất cả dữ liệu được lưu trong cây 2-3 đều có thứ tự.
 
 Về bản chất, cây 2-3 và cây đỏ-đen nghiêng trái là tương đương. Trong cây 2-3, một nút có thể lưu $1$ phần tử hoặc $2$
 phần tử, còn một nút trong cây đỏ-đen chỉ có thể lưu một phần tử. Như hình dưới đây, nút 2 của cây 2-3 tương ứng với một
-nút đen, còn nút 3 tương ứng với một nút đỏ và một nút đen. Có thể xem `b` và `c` là song song.
+nút đen, còn nút 3 tương ứng với một nút đỏ và một nút đen. Có thể xem `b` và `c` là hai khóa cùng nằm trong một nút 3.
 
 ![Nút 2 của cây 2-3 tương ứng với nút đen](images/2-3-tree-rbt-1.svg)
 
@@ -559,8 +561,9 @@ Các thao tác chèn và xóa của cây 2-3 và cây đỏ-đen nghiêng trái 
 
 ## Tài liệu tham khảo và đọc thêm
 
--   [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf)-  Robert Sedgewick Princeton University
--   [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf)-\_Algorithms\_Robert Sedgewick | Kevin Wayne
+-   [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf) - Robert Sedgewick, Princeton University
+-   [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf) -
+    _Algorithms_, Robert Sedgewick và Kevin Wayne
 
 [^23-vs-llrbt]: [Bài viết này](https://riteme.site/blog/2016-3-12/2-3-tree-and-red-black-tree.html) cung cấp mô tả chi
     tiết. "Cây đỏ-đen" trong bài viết đó thực chất chỉ "cây đỏ-đen nghiêng trái".
