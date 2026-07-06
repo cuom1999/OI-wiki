@@ -1,7 +1,7 @@
 author: 0x03A6, abc1763613206, auuuu4, CCXXXI, Conless, Enter-tainer, fanenr, happyZYM, hsfzLZH1, iamtwz, LeverImmy, leverimmy, Lhcfl, Marcythm, RIvance, Tiphereth-A, trudbot, Xeniume, Xeonacid, YBYCS, yuhuoji
 
-Cây đỏ-đen là một loại cây tìm kiếm nhị phân tự cân bằng. Mỗi nút lưu thêm một trường màu ("RED" hoặc "BLACK"), dùng để
-bảo đảm cây vẫn cân bằng khi chèn và xóa.
+Cây đỏ-đen là một loại cây tìm kiếm nhị phân tự cân bằng. Mỗi nút lưu thêm một trường màu ("RED" hoặc "BLACK") để bảo
+đảm cây vẫn cân bằng sau các thao tác chèn và xóa.
 
 Cây đỏ-đen là một biến thể của cây B bậc 4 ([cây 2-3-4](https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree)).[^gilbas1978]
 
@@ -9,10 +9,10 @@ Cây đỏ-đen là một biến thể của cây B bậc 4 ([cây 2-3-4](https:
 
 Một cây đỏ-đen hợp lệ phải tuân theo bốn tính chất sau:
 
-1.  Mỗi nút có màu đỏ hoặc đen
-2.  Nút NIL (nút lá rỗng) có màu đen
-3.  Các nút con của nút đỏ đều có màu đen
-4.  Trên mọi đường đi từ nút gốc đến nút NIL, số lượng nút đen là như nhau
+1.  Mỗi nút có màu đỏ hoặc đen.
+2.  Nút NIL (nút lá rỗng) có màu đen.
+3.  Các nút con của nút đỏ đều có màu đen.
+4.  Trên mọi đường đi từ nút gốc đến nút NIL, số lượng nút đen là như nhau.
 
 Hình dưới đây là một cây đỏ-đen hợp lệ:
 
@@ -49,7 +49,7 @@ Hình dưới đây là một cây đỏ-đen hợp lệ:
     Bài này dùng cách cài đặt trong *Introduction to Algorithms*,
     chia việc duy trì cân bằng sau khi chèn thành 3 trường hợp và sau khi xóa thành 4 trường hợp.
 
-Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm hạng của phần tử, tìm phần tử theo hạng,
+Các thao tác duyệt cây, tìm giá trị nhỏ nhất/lớn nhất, tìm kiếm phần tử, tìm thứ hạng của phần tử, tìm phần tử theo hạng,
 tìm tiền nhiệm/kế nhiệm, v.v. của cây đỏ-đen giống với [cây tìm kiếm nhị phân](./bst.md), nên không trình bày lại.
 
 Ngoài ra, chú thích mã trong phần duy trì cân bằng khi chèn/xóa bên dưới dùng các quy ước sau:
@@ -97,7 +97,7 @@ cân bằng.
 
 Gọi nút được chèn là $n$, nút cha là $p$, nút ông là $g$, nút chú là $u$. Theo tính chất 3, $g$ phải có màu đen.
 
-Bắt đầu từ vị trí chèn, quá trình duy trì cân bằng tiếp tục đệ quy lên phía trên. Nếu $p$ có màu đen thì có thể dừng; nếu
+Bắt đầu từ vị trí chèn, quá trình duy trì cân bằng tiếp tục đi lên phía trên. Nếu $p$ có màu đen thì có thể dừng; nếu
 không, chia thành 3 trường hợp.
 
 ```cpp
@@ -108,7 +108,7 @@ không, chia thành 3 trường hợp.
 
 #### Trường hợp chèn 1
 
-$p$ và $u$ đều có màu đỏ. Khi đó chỉ cần tô màu lại.
+$p$ và $u$ đều có màu đỏ. Khi đó chỉ cần tô màu lại các nút liên quan.
 
 ![](images/rbtree-insert-case1.svg)
 
@@ -121,7 +121,7 @@ $p$ và $u$ đều có màu đỏ. Khi đó chỉ cần tô màu lại.
 
 $p$ có màu đỏ, $u$ có màu đen, hướng của $p$ và hướng của $n$ khác nhau.
 
-Khi đó cần xoay nút $p$ để chuyển thành trường hợp thứ ba.
+Khi đó cần xoay nút $p$ để chuyển về trường hợp thứ ba.
 
 ![](images/rbtree-insert-case2.svg)
 
@@ -173,7 +173,7 @@ So với cây tìm kiếm nhị phân thông thường, thao tác xóa của câ
 Theo phần thảo luận trước đó, $n$ là nút lá màu đen và không phải nút gốc.
 Đặt nút cha của $n$ là $p$, nút anh em là $s$, các nút cháu lần lượt là $c$ và $d$.
 
-Quá trình duy trì cân bằng sau khi xóa cũng bắt đầu từ $n$ và tiếp tục đệ quy lên phía trên.
+Quá trình duy trì cân bằng sau khi xóa cũng bắt đầu từ $n$ và tiếp tục đi lên phía trên.
 Nếu $n$ là nút gốc hoặc $n$ có màu đỏ thì có thể dừng; nếu không, chia thành 4 trường hợp.
 
 ```cpp
@@ -277,9 +277,9 @@ của cây 2-3-4 tương ứng với hai trường hợp trong cây đỏ-đen: 
 
 ![Đối ứng giữa nút 2, nút 3, nút 4 và cây đỏ-đen](images/2-3-4-tree-rbt-1.svg)
 
-Hình dưới đây là một cây đỏ-đen và cây 2-3-4 tương ứng với nó. Nếu đưa các nút đỏ trong cây đỏ-đen lên hai phía trái
-phải của nút cha để tạo thành một nút cây B, có thể thu được cây 2-3-4 tương ứng. Số nút của cây đỏ-đen bằng số phần tử
-dữ liệu của cây 2-3-4.
+Hình dưới đây là một cây đỏ-đen và cây 2-3-4 tương ứng với nó. Nếu đưa các nút đỏ trong cây đỏ-đen lên cùng nút cha để
+tạo thành một nút cây B, có thể thu được cây 2-3-4 tương ứng. Số nút của cây đỏ-đen bằng số phần tử dữ liệu của cây
+2-3-4.
 
 ![Cây đỏ-đen và cây 2-3-4 tương ứng](images/2-3-4-tree-rbt-2.svg)
 
@@ -304,7 +304,8 @@ kinh điển.
 -   [Lập lịch tác vụ không thời gian thực CFS](https://www.kernel.org/doc/html/latest/scheduler/sched-design-CFS.html)
 
     Sau phiên bản nhân Linux ổn định 2.6.24, bộ lập lịch mới CFS được sử dụng.
-    Tất cả tiến trình runnable không thời gian thực đều được duy trì trong một cây đỏ-đen với khóa là thời gian chạy ảo,
+    Tất cả tiến trình không thời gian thực ở trạng thái có thể chạy đều được duy trì trong một cây đỏ-đen với khóa là
+    thời gian chạy ảo,
     nhằm lập lịch mọi tác vụ công bằng và hiệu quả hơn.
     CFS bỏ active/expired array và việc tính toán động độ ưu tiên,
     không còn theo dõi thời gian ngủ của tác vụ hay phân biệt tác vụ có tương tác hay không.
@@ -314,7 +315,7 @@ kinh điển.
 -   [epoll](https://man7.org/linux/man-pages/man7/epoll.7.html)
 
     Tên đầy đủ của epoll là event poll, một cách cài đặt IO multiplexing trong nhân Linux và là phiên bản cải tiến của
-    poll/select ban đầu. Cài đặt epoll trong Linux chọn dùng cây đỏ-đen để lưu trữ file descriptor.
+    poll/select ban đầu. Cài đặt epoll trong Linux chọn dùng cây đỏ-đen để lưu trữ các bộ mô tả tệp.
 
 ### Nginx
 
@@ -323,10 +324,10 @@ Mã nguồn:
 -   [`nginx/src/core/ngx_rbtree.h`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.h)
 -   [`nginx/src/core/ngx_rbtree.c`](https://github.com/nginx/nginx/blob/master/src/core/ngx_rbtree.c)
 
-Bộ định thời ở user space trong nginx được cài đặt bằng cây đỏ-đen. Trong nginx, mọi nút timer đều được duy trì bởi một
-cây đỏ-đen; trong mỗi vòng lặp của tiến trình worker đều gọi hàm `ngx_process_events_and_timers`, và trong hàm này sẽ
-gọi hàm xử lý bộ định thời `ngx_event_expire_timers`. Mỗi lần, hàm này liên tục lấy ra nút có giá trị thời gian nhỏ nhất
-từ cây đỏ-đen, kiểm tra xem chúng đã timeout hay chưa, rồi thực thi hàm của chúng cho đến khi nút được lấy ra chưa
+Bộ định thời ở không gian người dùng trong nginx được cài đặt bằng cây đỏ-đen. Trong nginx, mọi nút timer đều do một cây
+đỏ-đen duy trì; trong mỗi vòng lặp của tiến trình worker đều gọi hàm `ngx_process_events_and_timers`, và trong hàm này
+sẽ gọi hàm xử lý bộ định thời `ngx_event_expire_timers`. Mỗi lần, hàm này liên tục lấy ra nút có giá trị thời gian nhỏ
+nhất từ cây đỏ-đen, kiểm tra xem chúng đã timeout hay chưa, rồi thực thi hàm của chúng cho đến khi nút được lấy ra chưa
 timeout.
 
 Có nhiều tài nguyên công khai phân tích mã nguồn cây đỏ-đen trong nginx, có thể tham khảo thêm khi cần.
