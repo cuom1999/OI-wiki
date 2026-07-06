@@ -30,7 +30,7 @@ Lần lượt nhấp "(thanh menu) Search" ("Tìm kiếm") -> "Replace" ("Thay t
 
 ![Thay thế trong Notepad++](./images/npp-replace.png)
 
-Tìm kiếm và thay thế nằm trong cùng một cửa sổ; chỉ cần nhấp các thẻ phía trên là có thể chuyển đổi.
+Tìm kiếm và thay thế nằm trong cùng một cửa sổ; nhấp các thẻ phía trên để chuyển đổi giữa hai chức năng.
 
 Chức năng của nó gần giống trình soạn thảo thông thường, nhưng hỗ trợ nhiều hơn, ví dụ:
 
@@ -108,7 +108,7 @@ Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên
 
 #### Lưu macro
 
-Nhấp "Macro" -> "Save Current Recorded Macro" ("Macro -> Lưu macro vừa ghi"), đặt tên và phím tắt, là có thể lưu lại để tiện dùng về sau.
+Nhấp "Macro" -> "Save Current Recorded Macro" ("Macro -> Lưu macro vừa ghi"), rồi đặt tên và phím tắt để lưu lại cho các lần dùng sau.
 
 <span id="plugin"></span>
 
