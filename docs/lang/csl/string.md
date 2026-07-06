@@ -2,32 +2,32 @@ author: johnvp22, Ir1d
 
 ## `string` là gì
 
-`std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (lưu ý
-không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất nó là bí danh của
+`std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (lưu ý:
+không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất, nó là bí danh của
 `std::basic_string<char>`.
 
 ## Vì sao nên dùng `string`
 
-Trong ngôn ngữ C, có các thao tác xử lý chuỗi, nhưng chỉ có thể cài đặt chuỗi
-bằng mảng ký tự. Còn `string` là một lớp đơn giản, dễ dùng và được sử dụng rộng
-rãi trong các cuộc thi OI. So với các bộ chứa STL khác, chi phí hằng số của
-`string` khá tốt, gần như không thua mảng ký tự.
+Ngôn ngữ C cũng có các thao tác xử lý chuỗi, nhưng chuỗi thường được biểu diễn
+bằng mảng ký tự. Trong C++, `string` là một lớp dễ dùng và được sử dụng rộng rãi
+trong các cuộc thi OI. So với nhiều bộ chứa STL khác, `string` có chi phí hằng
+số nhỏ, gần như không thua mảng ký tự.
 
 ### `string` có thể cấp phát bộ nhớ động
 
 Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó có
-thể dùng trực tiếp `std::cin` để nhập, dù cách nhập này vẫn chậm. Điều này cũng
-giúp giảm nhu cầu tự quản lý bộ nhớ.
+thể nhập bằng `std::cin`, dù cách nhập này vẫn chậm. Điều này cũng giúp giảm
+nhu cầu tự quản lý bộ nhớ.
 
 ### `string` nạp chồng toán tử cộng và toán tử so sánh
 
-Toán tử cộng của `string` có thể nối trực tiếp hai chuỗi, hoặc một chuỗi với một
-ký tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh theo thứ tự từ
-điển, nên có thể gọi trực tiếp `std::sort` để sắp xếp nhiều chuỗi.
+Toán tử cộng của `string` có thể nối hai chuỗi, hoặc nối một chuỗi với một ký
+tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh theo thứ tự từ
+điển, nên có thể dùng `std::sort` để sắp xếp nhiều chuỗi.
 
 ## Cách dùng
 
-Dưới đây giới thiệu các thao tác cơ bản của `string`; chi tiết có thể xem trong
+Dưới đây là các thao tác cơ bản của `string`; chi tiết xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/string/basic_string).
 
 ### Khai báo
@@ -38,11 +38,11 @@ std::string s;
 
 ### Chuyển sang mảng `char`
 
-Trong ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng đều là
-kiểu con trỏ `char`. Để tiện dùng, `string` có hai hàm thành viên trả về con trỏ
-đến dữ liệu ký tự bên trong: `data()`/`c_str()`. Từ C++11 trở đi, hai hàm này
-đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng; nếu cần tương thích với chuẩn
-cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
+Ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng thường là con
+trỏ `char`. Để phối hợp với các hàm này, `string` có hai hàm thành viên trả về
+con trỏ đến dữ liệu ký tự bên trong: `data()` và `c_str()`. Từ C++11 trở đi, cả
+hai hàm đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng; nếu cần tương thích
+với chuẩn cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
 
 ```cpp
 printf("%s", s);          // lỗi biên dịch
@@ -52,7 +52,7 @@ printf("%s", s.c_str());  // xuất đúng
 
 ### Lấy độ dài
 
-Nhiều hàm có thể trả về độ dài của một `string`:
+Có nhiều cách lấy độ dài của một `string`:
 
 ```cpp
 printf("độ dài của s là %zu", s.size());
@@ -61,22 +61,22 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
 ```
 
 ???+ note "Độ phức tạp của các hàm này"
-    Độ phức tạp của `strlen()` tuyến tính theo độ dài chuỗi.
+    Độ phức tạp của `strlen()` là tuyến tính theo độ dài chuỗi.
     
-    Độ phức tạp của `size()` và `length()` không được chỉ định trong C++98, và
-    được chỉ định là hằng số trong C++11. Nhưng trên các trình biên dịch phổ
-    biến, ngay cả với C++98, độ phức tạp của hai hàm này cũng là hằng số.
+    Độ phức tạp của `size()` và `length()` không được quy định trong C++98,
+    nhưng được quy định là hằng số từ C++11. Trên các trình biên dịch phổ biến,
+    ngay cả với C++98, hai hàm này cũng thường có độ phức tạp hằng số.
 
 ???+ warning "Cảnh báo"
     Kiểu trả về của ba hàm này (và hàm `find` sẽ nhắc tới ở phần sau) đều là
-    `size_t` (một kiểu số nguyên không dấu). Vì vậy, các giá trị trả về này
-    không nên so sánh hoặc tính toán trực tiếp với số âm; nên ép kiểu khi cần.
+    `size_t` (một kiểu số nguyên không dấu). Vì vậy, không nên đem các giá trị
+    trả về này so sánh hoặc tính toán với số âm khi chưa ép kiểu phù hợp.
 
 ### Tìm vị trí xuất hiện đầu tiên của ký tự/chuỗi
 
-Hàm `find(str, pos)` có thể dùng để tìm vị trí xuất hiện đầu tiên của một ký tự
-hoặc chuỗi trong chuỗi, bắt đầu từ vị trí `pos` (bao gồm `pos`; nếu không truyền
-tham số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về
+Hàm `find(str, pos)` dùng để tìm vị trí xuất hiện đầu tiên của một ký tự hoặc
+chuỗi trong chuỗi, bắt đầu từ vị trí `pos` (bao gồm `pos`; nếu không truyền tham
+số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về
 `string::npos` (được định nghĩa là `-1`, nhưng kiểu vẫn là
 `size_t`/`unsigned long`).
 
@@ -129,11 +129,11 @@ chuỗi con gồm tối đa ba ký tự bắt đầu từ vị trí thứ hai c�
 ### Chèn/xóa ký tự hoặc chuỗi
 
 `insert(index, count, ch)` và `insert(index, str)` là hai hàm chèn thường gặp.
-Chúng lần lượt biểu thị chèn liên tiếp `count` lần ký tự `ch` tại `index`, và
-chèn chuỗi `str` tại `index`.
+Hàm thứ nhất chèn liên tiếp `count` lần ký tự `ch` tại `index`; hàm thứ hai chèn
+chuỗi `str` tại `index`.
 
 Hàm `erase(index, count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
-(bao gồm `index`; nếu không truyền tham số `count` thì xóa toàn bộ ký tự từ
+(bao gồm `index`; nếu không truyền tham số `count` thì xóa toàn bộ phần chuỗi từ
 `index` trở đi).
 
 Ví dụ:
@@ -164,8 +164,8 @@ sau khi chèn liên tiếp 3 lần ký tự u vào vị trí thứ tám của s,
 ### Thay thế ký tự hoặc chuỗi
 
 `replace(pos, count, str)` và `replace(first, last, str)` là hai hàm thay thế
-thường gặp. Chúng lần lượt biểu thị thay chuỗi con gồm `count` ký tự bắt đầu từ
-`pos` bằng `str`, và thay chuỗi con bắt đầu từ `first` (bao gồm) đến `last`
+thường gặp. Hàm thứ nhất thay chuỗi con gồm `count` ký tự bắt đầu từ `pos` bằng
+`str`; hàm thứ hai thay chuỗi con trong đoạn từ `first` (bao gồm) đến `last`
 (không bao gồm) bằng `str`, trong đó `first` và `last` đều là bộ lặp.
 
 Ví dụ:
