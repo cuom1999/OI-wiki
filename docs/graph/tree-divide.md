@@ -39,16 +39,16 @@ Vì cần truy vấn số cặp đỉnh có khoảng cách trên cây thuộc đ
 ??? note "Ví dụ 3 [Luogu P2664 Trò chơi trên cây](https://www.luogu.com.cn/problem/P2664)"
     Cho một cây mà mỗi đỉnh đều có một màu. Định nghĩa $s(i,j)$ là số màu trên đường đi từ $i$ đến $j$, và $\mathit{sum}_i=\sum_{j=1}^n s(i,j)$. Tính $\mathit{sum}_i$ với mọi $1\leq i\leq n$. Với $1 \le n, c_i \le 10^5$.
 
-Bài này kiểm tra khá sâu khả năng hiểu và vận dụng tư tưởng phân trị theo đỉnh, phù hợp làm ví dụ và bài luyện tập khó hơn về phân trị theo đỉnh.
+Bài này kiểm tra khá sâu khả năng hiểu và áp dụng tư tưởng phân trị theo đỉnh, phù hợp làm ví dụ và bài luyện tập khó hơn về phân trị theo đỉnh.
 
-Trước hết, cần hiểu rõ một phép chuyển đổi. Đề bài định nghĩa $\mathit{sum}_i$ là tổng số màu trên các đường đi từ $i$ đến mọi đỉnh. Tuy nhiên, nếu dùng trực tiếp cách nhìn này trong phân trị theo đỉnh thì rất khó thống kê đáp án, vì khó hợp nhất thông tin của hai cây con cùng xuất phát từ gốc hiện tại. Do đó, chuyển đổi ý nghĩa của $\mathit{sum}_i$. Với mỗi màu $j$, gọi số đường đi có một đầu mút là $i$ và chứa màu $j$ là $\mathit{cnt}_j$. Khi đó $\mathit{sum}_i$ thực chất chính là $\sum \mathit{cnt}_j$. Bước chuyển đổi này chỉ là đổi đối tượng quan sát: xét đóng góp của từng màu vào $\mathit{sum}_i$. Giá trị $\mathit{cnt}_j$ lại rất dễ xử lý: mỗi khi gặp một màu mới, chỉ cần cộng $\mathit{cnt}_{\mathit{col}_u}+=\mathit{size}_u$, trong đó $\mathit{size}_u$ là kích thước cây con của $u$. Điều này có nghĩa là mọi đỉnh trong cây con đó đều tạo một đóng góp theo màu này cho đáp án của $u$.
+Trước hết, cần hiểu rõ một phép chuyển đổi. Đề bài định nghĩa $\mathit{sum}_i$ là tổng số màu trên các đường đi từ $i$ đến mọi đỉnh. Tuy nhiên, nếu dùng trực tiếp cách nhìn này trong phân trị theo đỉnh thì rất khó thống kê đáp án, vì khó hợp nhất thông tin của hai cây con cùng xuất phát từ gốc hiện tại. Do đó, chuyển đổi ý nghĩa của $\mathit{sum}_i$. Với mỗi màu $j$, gọi số đường đi có một đầu mút là $i$ và chứa màu $j$ là $\mathit{cnt}_j$. Khi đó $\mathit{sum}_i$ chính là $\sum \mathit{cnt}_j$. Bước chuyển đổi này chỉ là đổi đối tượng quan sát: xét đóng góp của từng màu vào $\mathit{sum}_i$. Giá trị $\mathit{cnt}_j$ lại rất dễ xử lý: mỗi khi gặp một màu mới, chỉ cần cộng $\mathit{cnt}_{\mathit{col}_u}+=\mathit{size}_u$, trong đó $\mathit{size}_u$ là kích thước cây con của $u$. Điều này có nghĩa là mọi đỉnh trong cây con đó đều tạo một đóng góp theo màu này cho đáp án của $u$.
 
 Trong quá trình phân trị theo đỉnh, chỉ cần lần lượt thống kê:
 
 1.  Đóng góp cho gốc của các đường đi trong cây con có gốc hiện tại làm một đầu mút.
 2.  Đóng góp cho mỗi đỉnh trong cây con của các đường đi có lca là gốc hiện tại.
 
-Phần 1 tương đối dễ xử lý. Vì trong phân trị theo đỉnh, số tầng đệ quy không vượt quá $\log{n}$, ở mỗi tầng đều có thể duyệt toàn bộ cây con, nên có thể dùng trực tiếp công thức định nghĩa của $\mathit{sum}_i$ để thống kê trong quá trình duyệt cây con.
+Phần 1 khá dễ xử lý. Vì trong phân trị theo đỉnh, số tầng đệ quy không vượt quá $\log{n}$, ở mỗi tầng đều có thể duyệt toàn bộ cây con, nên có thể dùng trực tiếp công thức định nghĩa của $\mathit{sum}_i$ để thống kê trong quá trình duyệt cây con.
 
 Với phần 2, giả sử một đỉnh con của gốc hiện tại $u$ là $d$, và chọn tùy ý một đỉnh $v$ trong cây con của $d$. Khi đó đáp án của $v$ có thể chia thành hai phần:
 

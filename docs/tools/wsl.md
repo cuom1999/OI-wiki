@@ -48,7 +48,7 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 
 Để tránh những tình huống như vậy trong phòng thi, cần làm quen trước với cách thao tác trên hệ thống Linux.
 
-Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo tương đối phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
+Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo khá phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
 
 Windows 10 giới thiệu WSL trong bản Anniversary Update, rồi nâng cấp lên WSL 2 trong bản cập nhật tháng 5 năm 2020. Tính đến ngày 1 tháng 6 năm 2020, WSL đã hỗ trợ cài các bản phân phối Linux phổ biến như Ubuntu, openSUSE Leap, Kali và Debian. Tuy nhiên, WSL không hỗ trợ Arbiter dùng để chấm trong NOI.
 

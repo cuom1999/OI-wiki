@@ -114,7 +114,7 @@ Trong đề cương NOI, mức nhập môn chỉ yêu cầu học sắp xếp ch
 
 ### 2.5 Tìm kiếm nhị phân và nhân đôi
 
-Tìm kiếm nhị phân về bản chất là vận dụng tư tưởng chia để trị, liên tục thu hẹp phạm vi tìm kiếm cho đến khi tìm được đáp án. Tuy nhiên cần lưu ý rằng cách tìm này phải được áp dụng trên cấu trúc dữ liệu có thứ tự.
+Tìm kiếm nhị phân về bản chất là áp dụng tư tưởng chia để trị, liên tục thu hẹp phạm vi tìm kiếm cho đến khi tìm được đáp án. Tuy nhiên cần lưu ý rằng cách tìm này phải được áp dụng trên cấu trúc dữ liệu có thứ tự.
 
 -   [Tìm kiếm nhị phân](../basic/binary.md)
 
@@ -162,7 +162,7 @@ Mảng, danh sách liên kết, hàng đợi và ngăn xếp đều là cấu tr
 
 ### 2.8 Nhập môn quy hoạch động
 
-Quy hoạch động (Dynamic Programming, DP) là phương pháp giải các bài toán phức tạp bằng cách phân rã bài toán gốc thành những bài toán con tương đối đơn giản.
+Quy hoạch động (Dynamic Programming, DP) là phương pháp giải các bài toán phức tạp bằng cách phân rã bài toán gốc thành những bài toán con đơn giản hơn.
 
 Vì quy hoạch động không phải một thuật toán cụ thể mà là một phương pháp giải một lớp bài toán nhất định, nó sẽ xuất hiện trong đủ loại cấu trúc dữ liệu, và các dạng bài liên quan cũng phức tạp hơn.
 
@@ -203,7 +203,7 @@ Nếu ngay cả long long (hoặc int64) vẫn không đủ thì sao? Dùng thu�
 
 #### 2.9.2 Chuyển đổi cơ số
 
-Trong máy tính, ngoài hệ nhị phân, các hệ thường dùng còn có hệ bát phân và hệ thập lục phân. Đôi khi biết vận dụng đúng hệ cơ số cũng giúp ích rất nhiều cho việc giải bài.
+Trong máy tính, ngoài hệ nhị phân, các hệ thường dùng còn có hệ bát phân và hệ thập lục phân. Đôi khi biết áp dụng đúng hệ cơ số cũng giúp ích rất nhiều cho việc giải bài.
 
 -   [Hệ cơ số](../math/numeral-sys/base.md)
 

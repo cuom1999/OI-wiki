@@ -6,7 +6,7 @@ Tệp là tập hợp dữ liệu có liên quan được gom lại theo một m
 C/C++ xem mỗi tệp là một luồng byte có thứ tự; khi đọc đến cuối tệp, chương
 trình sẽ gặp **dấu kết thúc tệp** (EOF). Nếu muốn thao tác với một tệp, trước
 hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở, tệp ấy sẽ được liên
-kết với một luồng; luồng này thực chất là một dãy byte. Sau khi sử dụng xong,
+kết với một luồng; luồng này là một dãy byte. Sau khi sử dụng xong,
 cần đóng tệp đã mở.
 
 C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp chứa

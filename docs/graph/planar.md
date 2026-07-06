@@ -202,7 +202,7 @@ Một định lý liên quan khác là định lý Wagner. Định lý này dùn
 ???+ note "Định lý Wagner"
     Đồ thị $G$ là đồ thị phẳng khi và chỉ khi $G$ không có đồ thị con nào có thể co về $K_5$ hoặc $K_{3,3}$.
 
-Việc đồ thị phẳng không chứa các loại đồ thị con này là tương đối trực tiếp, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ đều có thể co về chúng, nhưng chiều ngược lại không nhất thiết đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
+Việc đồ thị phẳng không chứa các loại đồ thị con này khá dễ thấy, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ đều có thể co về chúng, nhưng chiều ngược lại không nhất thiết đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
 
 ### Thuật toán kiểm tra tính phẳng
 
@@ -254,7 +254,7 @@ Mọi đồ thị ngoài phẳng đều là đồ thị phẳng, nhưng chiều 
 ???+ note "Định lý"
     Một đồ thị $G$ là đồ thị ngoài phẳng khi và chỉ khi $G$ không chứa đồ thị con đồng phôi với $K_4$ hoặc $K_{2,3}$.
 
-Với đồ thị ngoài phẳng, cũng có thể xét khái niệm đồ thị ngoài phẳng cực đại. Với đồ thị ngoài phẳng đơn $G$, nếu thêm cạnh giữa hai đỉnh không kề nhau bất kỳ đều làm cho đồ thị thu được không còn ngoài phẳng, thì $G$ được gọi là **đồ thị ngoài phẳng cực đại** (maximal outerplanar graph). Một phép nhúng ngoài phẳng của đồ thị ngoài phẳng cực đại được gọi là **đồ thị ngoài phẳng đã nhúng cực đại**. Đồ thị ngoài phẳng đã nhúng cực đại thực chất chính là một phép tam giác phân của đa giác trên mặt phẳng.
+Với đồ thị ngoài phẳng, cũng có thể xét khái niệm đồ thị ngoài phẳng cực đại. Với đồ thị ngoài phẳng đơn $G$, nếu thêm cạnh giữa hai đỉnh không kề nhau bất kỳ đều làm cho đồ thị thu được không còn ngoài phẳng, thì $G$ được gọi là **đồ thị ngoài phẳng cực đại** (maximal outerplanar graph). Một phép nhúng ngoài phẳng của đồ thị ngoài phẳng cực đại được gọi là **đồ thị ngoài phẳng đã nhúng cực đại**. Đồ thị ngoài phẳng đã nhúng cực đại chính là một phép tam giác phân của đa giác trên mặt phẳng.
 
 ???+ note "Định lý"
     Với đồ thị ngoài phẳng đã nhúng cực đại $G$ có số đỉnh $|V|\ge 3$, nếu mọi đỉnh đều nằm trên biên mặt ngoài, thì $G$ có đúng $|V|-2$ mặt trong.

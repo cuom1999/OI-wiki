@@ -1,4 +1,4 @@
-Trang này giới thiệu các bài toán bước đi ngẫu nhiên trên đồ thị. Nội dung chủ yếu khảo sát từ ba góc độ: đồ thị lưới, đồ thị thưa và đồ thị tổng quát; đồng thời trình bày nhiều phương pháp giải loại bài toán này và so sánh ưu, nhược điểm của chúng trong các tình huống khác nhau.
+Trang này giới thiệu các bài toán bước đi ngẫu nhiên trên đồ thị. Nội dung chủ yếu xét ba loại đồ thị: đồ thị lưới, đồ thị thưa và đồ thị tổng quát; đồng thời trình bày nhiều phương pháp giải loại bài toán này và so sánh ưu, nhược điểm của chúng trong các tình huống khác nhau.
 
 ## Định nghĩa
 

@@ -601,7 +601,7 @@ Nội tuyến hàm khi bật `-O2` thường do trình biên dịch tự động
 Trong C++ hiện đại, từ khóa `inline` được xem là một hành vi ngữ nghĩa về liên kết và xuất ký hiệu, chứ không phải để thực hiện nội tuyến hàm.
 
 <a id="register---gợi-ý-thanh-ghi-không-còn-thực-chất"></a>
-### register - gợi ý thanh ghi không còn thực chất
+### register - gợi ý thanh ghi không còn ý nghĩa thực tế
 
 Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ
 thanh ghi tự chọn thường không thông minh bằng việc để trình biên dịch chạy thuật

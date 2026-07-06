@@ -13,14 +13,14 @@ Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ 
 
 Phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
 
-Đây là thuật toán có phần mô tả chi tiết tương đối đầy đủ trong bài gốc, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
+Đây là thuật toán được bài gốc mô tả khá đầy đủ, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
 
 Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các bucket S và L, rồi dùng thêm $O(n)$ thao tác để thay cho bucket kiểu.
 
 <span id="đổi-tên-xâu-mục-tiêu-pat"></span>
 ### Đổi tên xâu mục tiêu Pat
 
-Nói ngắn gọn, đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, nhằm chỉ ra đầu bucket hoặc cuối bucket.
+Nói ngắn gọn, đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, qua đó chỉ ra đầu bucket hoặc cuối bucket.
 
 Cách đổi tên là thay ký tự kiểu S trong $\texttt{Pat}$ bằng chỉ số cuối bucket của nó, và thay ký tự kiểu L bằng chỉ số đầu bucket của nó.
 

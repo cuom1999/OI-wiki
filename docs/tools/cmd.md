@@ -6,7 +6,7 @@ Trang này giới thiệu ngắn gọn một số cách sử dụng dòng lệnh
 
 ## Cơ bản
 
-Windows có sẵn hai giao diện dòng lệnh. `Command Prompt` (`Dấu nhắc lệnh`, `cmd`) là giao diện cũ hơn, chức năng cũng tương đối đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng tương đối nặng. Cả hai đều có thể tìm thấy trong menu Start.
+Windows có sẵn hai giao diện dòng lệnh. `Command Prompt` (`Dấu nhắc lệnh`, `cmd`) là giao diện cũ hơn, chức năng cũng khá đơn giản. PowerShell là giao diện dòng lệnh mới hơn, có nhiều tính năng tích hợp nhưng khá nặng. Cả hai đều có thể tìm thấy trong menu Start.
 
 Các hệ thống kiểu Unix (bao gồm macOS và Linux, dưới đây gọi chung là Unix) có hai trường hợp: có giao diện đồ họa và không có giao diện đồ họa. Nếu hệ thống có giao diện đồ họa (ví dụ dùng macOS, hoặc Linux có cài GNOME, KDE, v.v.), dòng lệnh thường có thể được mở bằng chương trình tên là `Terminal` (`Thiết bị đầu cuối`) hoặc `Console` (`Bảng điều khiển`). Hệ thống không có giao diện đồ họa sẽ tự động đi vào dòng lệnh sau khi khởi động xong.
 
@@ -48,7 +48,7 @@ Trước dấu `>`, `$` hoặc `#` trên dòng lệnh sẽ hiển thị một đ
 
 Trước hết cần phân biệt hai cách mô tả vị trí trong hệ thống tệp: đường dẫn tương đối và đường dẫn tuyệt đối.
 
--   Đường dẫn tương đối: mô tả vị trí bằng quan hệ so với đường dẫn hiện tại. Ví dụ, nếu đường dẫn hiện tại là `~/folder`, thì `./a.cpp` thực chất chỉ tệp `~/folder/a.cpp`. **Khi đường dẫn hiện tại thay đổi, vị trí mà đường dẫn tương đối mô tả cũng có thể thay đổi**.
+-   Đường dẫn tương đối: mô tả vị trí bằng quan hệ so với đường dẫn hiện tại. Ví dụ, nếu đường dẫn hiện tại là `~/folder`, thì `./a.cpp` chỉ tệp `~/folder/a.cpp`. **Khi đường dẫn hiện tại thay đổi, vị trí mà đường dẫn tương đối mô tả cũng có thể thay đổi**.
 
 -   Đường dẫn tuyệt đối: mô tả vị trí bằng đường dẫn đầy đủ. Ví dụ, `~/folder/a.cpp` là một đường dẫn tuyệt đối. **Vị trí mà đường dẫn tuyệt đối mô tả không thay đổi theo đường dẫn hiện tại**.
 

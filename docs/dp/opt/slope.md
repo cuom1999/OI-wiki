@@ -115,7 +115,7 @@ So sánh "Đóng gói đồ chơi" và "Đóng gói đồ chơi - phiên bản s
 
 ## Tổng kết
 
-Tối ưu DP bằng độ dốc cần vận dụng linh hoạt. Mục tiêu cốt lõi là chuyển bài toán tối ưu thành bài toán cực trị tung độ gốc liên quan tới bao lồi trên mặt phẳng hai chiều. Khi gặp phương trình có tính chất không thuận lợi, đôi khi cần hỗ trợ bằng cấu trúc dữ liệu; lúc đó cần phân tích theo từng bài cụ thể.
+Tối ưu DP bằng độ dốc cần được dùng linh hoạt. Mục tiêu cốt lõi là chuyển bài toán tối ưu thành bài toán cực trị tung độ gốc liên quan tới bao lồi trên mặt phẳng hai chiều. Khi gặp phương trình có tính chất không thuận lợi, đôi khi cần hỗ trợ bằng cấu trúc dữ liệu; lúc đó cần phân tích theo từng bài cụ thể.
 
 ## Bài tập
 

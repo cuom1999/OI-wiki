@@ -57,7 +57,7 @@ Những tình huống sau tốt nhất cũng không nên xuất hiện:
 Các ngoại lệ có thể nới lỏng yêu cầu:
 
 1.  Thi thử trong trường.
-2.  Thi thử nhằm mục đích luyện tập chuyên đề.
+2.  Thi thử với mục đích luyện tập chuyên đề.
 3.  Cuộc thi có độ khó thấp, hoặc bài được định vị là bài cho điểm dễ.
 
 #### Về bài "độc"
@@ -78,7 +78,7 @@ Ví dụ: [XR-1: Gia tộc Conan](https://www.luogu.com.cn/problem/P5346), hai n
 
 Ví dụ kinh điển: [NOIP2017 Nỗi băn khoăn của Xiao Kai](https://uoj.ac/problem/329)
 
-Điểm khác biệt giữa bài toán học trong OI và các bài toán học khác, cũng là một đặc điểm thể hiện bản chất của OI, là trọng tâm của bài toán học trong OI thường không nằm ở đáp án **là gì**, mà nằm ở cách **tăng tốc** việc tính đáp án. Nếu trọng tâm khảo sát của một bài là "tính như thế nào" thay vì "làm sao tính nhanh", thì dạng bài toán học như vậy thường không phù hợp để đưa vào OI.
+Điểm khác biệt giữa bài toán học trong OI và các bài toán học khác, cũng là một đặc điểm thể hiện bản chất của OI, là trọng tâm của bài toán học trong OI thường không nằm ở đáp án **là gì**, mà nằm ở cách **tăng tốc** việc tính đáp án. Nếu trọng tâm của một bài là "tính như thế nào" thay vì "làm sao tính nhanh", thì dạng bài toán học như vậy thường không phù hợp để đưa vào OI.
 
 > Một số bài lệch hướng có liên quan đến nội dung vật lý đại học, khiến thí sinh khi đối mặt với những kiến thức vật lý chưa từng tiếp xúc trở nên lúng túng, tạo ra rào cản về kiến thức.
 >
@@ -96,7 +96,7 @@ Không chỉ vật lý, bài OI cũng không nên liên quan quá nhiều đến
 
 Ví dụ kinh điển: [SDOI2010: Sát Trư Quốc](https://loj.ac/problem/2885), [Kiểm tra chéo đội tuyển tập huấn 2015: Chương trình tương lai - bản sửa](https://uoj.ac/problem/98)
 
-Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phần chủ yếu. Những bài kỹ thuật như Day 2+ của THUWC/THUSC cũng có lý do tồn tại của chúng: mục đích của trại trải nghiệm không chỉ là kiểm tra năng lực thiết kế thuật toán của thí sinh, mà còn kiểm tra khả năng viết mã kỹ thuật và học tài liệu để nối tiếp với việc học ở đại học. Nhưng trong các cuộc thi OI thông thường, điều cần khảo sát nhiều hơn vẫn nên là thiết kế thuật toán và năng lực tư duy.
+Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phần chủ yếu. Những bài kỹ thuật như Day 2+ của THUWC/THUSC cũng có lý do tồn tại của chúng: mục đích của trại trải nghiệm không chỉ là kiểm tra năng lực thiết kế thuật toán của thí sinh, mà còn kiểm tra khả năng viết mã kỹ thuật và học tài liệu để nối tiếp với việc học ở đại học. Nhưng trong các cuộc thi OI thông thường, điều cần đánh giá nhiều hơn vẫn nên là khả năng thiết kế thuật toán và tư duy.
 
 ## Đề bài
 
@@ -112,7 +112,7 @@ Khi sử dụng, cần tuân thủ [yêu cầu định dạng công thức LaTeX
 
 ### Bối cảnh bài toán
 
-Bối cảnh bài toán tốt nhất nên càng ngắn gọn càng tốt. Khi bối cảnh tương đối dài, nên tách riêng với phần mô tả bài toán.
+Bối cảnh bài toán tốt nhất nên càng ngắn gọn càng tốt. Khi bối cảnh khá dài, nên tách riêng với phần mô tả bài toán.
 
 Cần tuyệt đối tránh việc bối cảnh ảnh hưởng nghiêm trọng đến việc hiểu ý đề.
 
@@ -257,7 +257,7 @@ Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
 Để vừa cho qua các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
 
-Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để khiến các lời giải sai tương đối tốt và lời giải đúng có hằng số lớn không qua toàn bộ, nhưng vẫn nhận được điểm thành phần khá cao.
+Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để những lời giải sai nhưng khá tốt và những lời giải đúng có hằng số lớn không vượt qua được toàn bộ dữ liệu, nhưng vẫn nhận được điểm thành phần khá cao.
 
 Khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để vượt qua hay không.
 
@@ -473,7 +473,7 @@ Ví dụ: lời giải dp phải giải thích rõ định nghĩa trạng thái.
 
 ### Về chi tiết
 
-Nếu chi tiết cài đặt cụ thể tương đối khéo, tốt nhất nên viết ra; nếu không, viết "xem mã" cũng được. Nếu viết "xem mã", tốt nhất nên thêm một lượng chú thích nhất định trong mã.
+Nếu có những chi tiết cài đặt khá tinh tế, tốt nhất nên viết ra; nếu không, viết "xem mã" cũng được. Nếu viết "xem mã", tốt nhất nên thêm một lượng chú thích nhất định trong mã.
 
 ### Lời giải chuẩn
 
@@ -504,7 +504,7 @@ Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng giữ đ�
 
 ### Phân bổ kiến thức của bài
 
-Một cuộc thi nên cố gắng bao phủ phạm vi kiến thức tương đối rộng, ngoại trừ các cuộc thi luyện tập chuyên đề.
+Một cuộc thi nên cố gắng bao phủ phạm vi kiến thức khá rộng, ngoại trừ các cuộc thi luyện tập chuyên đề.
 
 Phản ví dụ kinh điển: CTS2019, bao phủ nhiều kiến thức như quy hoạch động, kỳ vọng, đếm tổ hợp, nguyên lý bao hàm-loại trừ, đa thức, v.v.
 
@@ -520,7 +520,7 @@ Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh
 
 ### Codeforces
 
-Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài tương đối cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
+Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài khá cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
 
 #### Tư cách ra đề
 

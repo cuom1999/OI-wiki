@@ -52,7 +52,7 @@ Trong ứng dụng thực tế, thường dùng một hàm `solve(l,r)` để x�
     
     Để tiện duyệt, sắp xếp tất cả các điểm trong $(l,mid)$ và $(mid+1,r)$ theo giá trị $b$ tăng dần. Sau đó lần lượt duyệt từng $j$, đưa tất cả các điểm $i$ có $b_{i} \leq b_{j}$ vào một cấu trúc dữ liệu, trong lời giải này chọn [cây Fenwick](../ds/fenwick.md). Khi đó chỉ cần truy vấn trong cây Fenwick có bao nhiêu điểm có giá trị $c$ không lớn hơn $c_{j}$, từ đó tính được số lượng $i$ có thể ghép hợp lệ với điểm $j$ này.
     
-    Khi chèn một điểm có giá trị $c$ bằng $x$, cộng một tại vị trí $x$ trong cây Fenwick; còn thao tác truy vấn trong cây Fenwick có bao nhiêu điểm nhỏ hơn $x$ thực chất là tính [tổng tiền tố](../basic/prefix-sum.md). Sau khi [rời rạc hóa](../misc/discrete.md) tất cả các giá trị $c$ từ trước, độ phức tạp được bảo đảm.
+    Khi chèn một điểm có giá trị $c$ bằng $x$, cộng một tại vị trí $x$ trong cây Fenwick; còn thao tác truy vấn trong cây Fenwick có bao nhiêu điểm nhỏ hơn $x$ là tính [tổng tiền tố](../basic/prefix-sum.md). Sau khi [rời rạc hóa](../misc/discrete.md) tất cả các giá trị $c$ từ trước, độ phức tạp được bảo đảm.
     
     Với mỗi $j$, đều cần chèn tất cả các điểm $i$ có $b_{i} \leq b_{j}$ vào cây Fenwick. Vì tất cả các $i$ và $j$ đều đã được sắp xếp trước theo giá trị $b$, chỉ cần dùng hai con trỏ để chèn điểm vào cây Fenwick, số thao tác chèn lên cây Fenwick có thể giảm từ $O(n^2)$ xuống $O(n)$.
     
@@ -148,7 +148,7 @@ Trong quá trình trên, nếu xem cây đệ quy của chia để trị CDQ nh�
 
 ## Chuyển bài toán động thành bài toán tĩnh
 
-Trong hai trường hợp trước, mục đích của việc dùng chia để trị CDQ là chia đôi dãy rồi xử lý đệ quy quan hệ giữa các cặp điểm, nhằm đạt được độ phức tạp tốt. Tuy nhiên trong mục này, thứ được chia đôi không phải một dãy thông thường, mà là dãy thời gian.
+Trong hai trường hợp trước, mục đích của việc dùng chia để trị CDQ là chia đôi dãy rồi xử lý đệ quy quan hệ giữa các cặp điểm, để cải thiện độ phức tạp. Tuy nhiên trong mục này, thứ được chia đôi không phải một dãy thông thường, mà là dãy thời gian.
 
 Cách này phù hợp với một số bài cấu trúc dữ liệu dạng "cần hỗ trợ thực hiện sửa đổi xxx rồi thực hiện truy vấn xxx". Loại bài này có hai đặc điểm:
 

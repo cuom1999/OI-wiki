@@ -3,7 +3,7 @@ mà nó giải quyết, những thuật toán được thiết kế dựa trên 
 tối ưu tương ứng.
 
 Quy hoạch động là phương pháp giải bài toán phức tạp bằng cách phân rã bài toán
-ban đầu thành các bài toán con tương đối đơn giản hơn.
+ban đầu thành các bài toán con đơn giản hơn.
 
 Vì quy hoạch động không phải một thuật toán cụ thể mà là một cách giải quyết
 một số loại bài toán nhất định, nó có thể xuất hiện trong nhiều cấu trúc dữ

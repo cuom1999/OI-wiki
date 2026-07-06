@@ -1,4 +1,4 @@
-**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không khảo sát toàn bộ cú pháp lambda một cách đầy đủ, mà chỉ trình bày những phần thường dùng trong lập trình thi đấu.
+**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không trình bày đầy đủ toàn bộ cú pháp lambda, mà chỉ trình bày những phần thường dùng trong lập trình thi đấu.
 
 Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
@@ -190,7 +190,7 @@ int value = 520;
 
 Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
-Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda; trong các ví dụ trên là biến $f$. Lý do là lambda thực chất được biểu diễn bằng một kiểu lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
+Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda; trong các ví dụ trên là biến $f$. Lý do là lambda được biểu diễn bằng một kiểu lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
 
 ```cpp
 int main() {

@@ -107,7 +107,7 @@ $$
 <span id="biến-đổi-hàng-sơ-cấp-ma-trận-mở-rộng-thành-dạng-rút-gọn-theo-hàng"></span>
 ### Biến đổi hàng sơ cấp ma trận mở rộng thành dạng rút gọn theo hàng
 
-Ma trận mở rộng là ma trận mới được tạo bằng cách ghép ma trận hệ số $A$ của hệ phương trình với cột hằng số $b$, tức $(A | b)$. Việc dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng về dạng rút gọn theo hàng chính là vận dụng tư tưởng của phương pháp khử Gauss: lược bỏ biến và dùng vị trí hệ số để biểu diễn biến. Trong ma trận mở rộng, đường thẳng đứng tách ma trận hệ số và cột hằng số, đại diện cho dấu bằng.
+Ma trận mở rộng là ma trận mới được tạo bằng cách ghép ma trận hệ số $A$ của hệ phương trình với cột hằng số $b$, tức $(A | b)$. Việc dùng các phép biến đổi sơ cấp trên hàng để đưa ma trận mở rộng về dạng rút gọn theo hàng chính là áp dụng ý tưởng của phương pháp khử Gauss: lược bỏ biến và dùng vị trí hệ số để biểu diễn biến. Trong ma trận mở rộng, đường thẳng đứng tách ma trận hệ số và cột hằng số, đại diện cho dấu bằng.
 
 $$
 \left(\begin{matrix}

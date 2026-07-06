@@ -162,7 +162,7 @@ Do thiếu bảo trì lâu dài, hệ thống tồn tại một số lỗ hổng
 
 ### Đánh giá
 
-Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật thực chất nào, khiến trải nghiệm chấm rất tệ và giao diện không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc trình kiểm tra đáp án bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
+Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật đáng kể nào, khiến trải nghiệm chấm rất tệ và giao diện không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc trình kiểm tra đáp án bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
 
 ??? note "Phụ lục: cách dùng lệnh ren và rename"
     Trong hệ điều hành Windows có sẵn một lệnh đổi tên tệp: `ren`.
@@ -179,7 +179,7 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     ren *.out *.ans
     ```
     
-    Nếu thực hiện thao tác này trong môi trường NOI Linux 2.0, hiện có vẻ lệnh `rename` là lựa chọn tương đối dễ dùng, nhưng nó không được cài sẵn trong NOI Linux 2.0, nên cần cài đặt trước:
+    Nếu thực hiện thao tác này trong môi trường NOI Linux 2.0, hiện có vẻ lệnh `rename` là lựa chọn khá dễ dùng, nhưng nó không được cài sẵn trong NOI Linux 2.0, nên cần cài đặt trước:
     
     ```shell
     sudo apt install rename

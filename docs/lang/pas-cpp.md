@@ -66,7 +66,7 @@ std::cout << "Hello World!" << std::endl;
 ??? note "Về tiền tố std::"
     Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới [phần này](basic.md#cin-và-cout).
 
-Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; thực chất nó biểu thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệnh này có nghĩa là `"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy vào luồng xuất.
+Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; về bản chất, nó biểu thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệnh này có nghĩa là `"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy vào luồng xuất.
 
 `std::endl` là lệnh **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong Pascal, nhưng trong C++ không có `coutln`. Điểm khác nhau giữa Pascal và C++ là `write('Hello World!')` tương đương với `std::cout << "Hello World!"`, còn `writeln('Hello World!')` tương đương với `std::cout << "Hello World!" << std::endl`.
 
