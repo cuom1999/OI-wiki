@@ -2,21 +2,21 @@ Trang này chủ yếu giới thiệu thuật toán thước kẹp quay.
 
 ## Dẫn nhập
 
-Thuật toán thước kẹp quay, tiếng Anh là Rotating Calipers, dựa trên bao lồi. Khi liệt kê một cạnh nào đó trên bao lồi, ta đồng thời duy trì các điểm cần thiết khác, nhờ đó có thể giải các bài toán liên quan đến tính chất của bao lồi, như đường kính bao lồi hoặc hình chữ nhật phủ nhỏ nhất, trong thời gian tuyến tính.
+Thuật toán thước kẹp quay, tiếng Anh là Rotating Calipers, dựa trên bao lồi. Khi liệt kê một cạnh nào đó trên bao lồi, thuật toán đồng thời duy trì các điểm cần thiết khác, nhờ đó có thể giải các bài toán liên quan đến tính chất của bao lồi, như đường kính bao lồi hoặc hình chữ nhật phủ nhỏ nhất, trong thời gian tuyến tính.
 
 ???+ note "Tên gọi của thuật toán"
-    Tên tiếng Việt trong bản dịch này là "thước kẹp quay". Có thể hiểu như sau: ứng với cạnh đang được liệt kê, từ mỗi điểm đang duy trì ta vẽ một đường thẳng song song hoặc vuông góc với cạnh đó. Để bảo đảm tính tối ưu đối với cạnh hiện tại, nhiệm vụ là làm cho các đường thẳng này vừa kẹp sát bao lồi. Các cạnh thường được liệt kê theo thứ tự quay về một hướng, nên toàn bộ quá trình là một chiếc thước kẹp đang quay quanh bao lồi.
+    Tên tiếng Việt trong bản dịch này là "thước kẹp quay". Có thể hiểu như sau: ứng với cạnh đang được liệt kê, từ mỗi điểm đang duy trì, vẽ một đường thẳng song song hoặc vuông góc với cạnh đó. Để bảo đảm tính tối ưu đối với cạnh hiện tại, các đường thẳng này cần vừa kẹp sát bao lồi. Các cạnh thường được liệt kê theo thứ tự quay về một hướng, nên toàn bộ quá trình giống như một chiếc thước kẹp đang quay quanh bao lồi.
     
     Tên tiếng Anh "rotating calipers" được hiểu trực tiếp là "thước kẹp quay", trong đó "calipers" là thước kẹp. Bài báo đầu tiên đề xuất thuật ngữ này[^ref1] có ý tưởng dùng một chiếc thước kẹp có thể điều chỉnh động để kẹp bao lồi, rồi quay chiếc thước kẹp đó quanh bao lồi.
 
 ## Tìm đường kính bao lồi
 
 ???+ note "Ví dụ 1: [Luogu P1452 Beauty Contest G](https://www.luogu.com.cn/problem/P1452)"
-    Cho $n$ điểm trên mặt phẳng, hãy tìm khoảng cách lớn nhất giữa mọi cặp điểm. ($2\leq n \leq 50000,|x|,|y| \leq 10^4$)
+    Cho $n$ điểm trên mặt phẳng, tìm khoảng cách lớn nhất giữa mọi cặp điểm. ($2\leq n \leq 50000,|x|,|y| \leq 10^4$)
 
 ### Quá trình
 
-Trước hết dùng một thuật toán bao lồi bất kỳ để tìm bao lồi của tất cả các điểm đã cho. Cặp điểm có khoảng cách lớn nhất chắc chắn nằm trên bao lồi. Do hình dạng của bao lồi, khi duyệt ngược chiều kim đồng hồ qua các cạnh của bao lồi và với mỗi cạnh tìm điểm xa cạnh đó nhất, điểm xa nhất tương ứng cũng quay ngược chiều kim đồng hồ theo cạnh, không quay ngược lại. Điều này có nghĩa là khi liệt kê các cạnh của bao lồi theo chiều ngược kim đồng hồ, ta chỉ cần ghi lại và duy trì một điểm xa nhất hiện tại, rồi liên tục tính và cập nhật đáp án.
+Trước hết dùng một thuật toán bao lồi bất kỳ để tìm bao lồi của tất cả các điểm đã cho. Có thể chọn một cặp điểm đạt khoảng cách lớn nhất trên bao lồi. Do hình dạng của bao lồi, khi duyệt ngược chiều kim đồng hồ qua các cạnh của bao lồi và với mỗi cạnh tìm điểm xa cạnh đó nhất, điểm xa nhất tương ứng cũng quay ngược chiều kim đồng hồ theo cạnh, không quay ngược lại. Điều này có nghĩa là khi liệt kê các cạnh của bao lồi theo chiều ngược kim đồng hồ, chỉ cần ghi lại và duy trì một điểm xa nhất hiện tại, rồi liên tục tính và cập nhật đáp án.
 
 Sau khi tìm bao lồi, mảng thu được tự nhiên được sắp theo thứ tự quay ngược chiều kim đồng hồ. Tuy nhiên cần nhớ thêm trước đỉnh số 1 ở góc trái dưới vào cuối mảng, để khi lần lượt liệt kê các cạnh $(i,i+1)$ thì có thể duyệt đủ mọi cạnh.
 
@@ -89,15 +89,15 @@ Trong quá trình liệt kê, với mỗi cạnh, kiểm tra khoảng cách từ
 
 [Luogu P3187 Minimum Rectangle Cover](https://www.luogu.com.cn/problem/P3187)
 
-Cho tọa độ một số điểm, hãy tìm hình chữ nhật có diện tích nhỏ nhất có thể phủ tất cả các điểm. ($3\leq n \leq 50000$)
+Cho tọa độ một số điểm, tìm hình chữ nhật có diện tích nhỏ nhất có thể phủ tất cả các điểm. ($3\leq n \leq 50000$)
 
 ### Quá trình
 
-Dựa trên bài trước, ý tưởng trực quan của bài này vẫn là dùng thước kẹp quay. Tuy nhiên lần này cần tối ưu diện tích; nếu chỉ duy trì một điểm tối ưu như bài trước thì ta chỉ tìm được một cặp đường thẳng song song có khoảng cách nhỏ nhất, trong khi còn cần xác định biên trái và biên phải của hình chữ nhật. Vì vậy lần này ta cần duy trì ba điểm: một điểm nằm đối diện đường thẳng đang liệt kê và hai điểm nằm ở hai phía khác nhau. Điểm tối ưu ở phía đối diện vẫn được so sánh bằng diện tích tính bởi tích có hướng; lúc này so sánh diện tích chính là so sánh một cạnh của hình chữ nhật. Hai điểm tối ưu ở hai phía được so sánh bằng tích vô hướng, vì so sánh tích vô hướng chính là so sánh độ dài hình chiếu, và tổng hai độ dài hình chiếu trái phải có thể biểu diễn cạnh còn lại của hình chữ nhật. Tính tối ưu của hai cạnh này độc lập với nhau, nên khi tìm được vị trí của ba điểm tối ưu, ta xác định được hình chữ nhật có diện tích nhỏ nhất phủ mọi điểm khi đường thẳng chứa cạnh hiện tại là một cạnh của hình chữ nhật.
+Dựa trên bài trước, ý tưởng trực quan của bài này vẫn là dùng thước kẹp quay. Tuy nhiên lần này cần tối ưu diện tích; nếu chỉ duy trì một điểm tối ưu như bài trước thì chỉ xác định được một cặp đường thẳng song song có khoảng cách nhỏ nhất, trong khi còn cần xác định biên trái và biên phải của hình chữ nhật. Vì vậy lần này cần duy trì ba điểm: một điểm nằm đối diện đường thẳng đang liệt kê và hai điểm nằm ở hai phía khác nhau. Điểm tối ưu ở phía đối diện vẫn được so sánh bằng diện tích tính bởi tích có hướng; lúc này so sánh diện tích chính là so sánh một cạnh của hình chữ nhật. Hai điểm tối ưu ở hai phía được so sánh bằng tích vô hướng, vì so sánh tích vô hướng chính là so sánh độ dài hình chiếu, và tổng hai độ dài hình chiếu trái phải có thể biểu diễn cạnh còn lại của hình chữ nhật. Tính tối ưu của hai cạnh này độc lập với nhau, nên khi tìm được vị trí của ba điểm tối ưu, có thể xác định hình chữ nhật có diện tích nhỏ nhất phủ mọi điểm khi đường thẳng chứa cạnh hiện tại là một cạnh của hình chữ nhật.
 
 ![](images/rotating-calipers2.png)
 
-Khi thống kê đáp án cuối cùng, nếu đề bài không yêu cầu tìm cả bốn đỉnh, thực ra có một cách khá khéo để tính trực tiếp diện tích hình chữ nhật bằng tích có hướng và tích vô hướng. Gọi hai lần diện tích phần màu tím là $S$, diện tích cuối cùng là
+Khi thống kê đáp án cuối cùng, nếu đề bài không yêu cầu tìm cả bốn đỉnh, có một cách khá khéo để tính trực tiếp diện tích hình chữ nhật bằng tích có hướng và tích vô hướng. Gọi hai lần diện tích phần màu tím là $S$, diện tích cuối cùng là
 
 $$
 S\times (|\overrightarrow{AD}\cdot \overrightarrow{AB}|+|\overrightarrow{BC}\cdot \overrightarrow{BA}|-|\overrightarrow{AB}\cdot \overrightarrow{BA}|)/|\overrightarrow{AB}\cdot \overrightarrow{BA}|
