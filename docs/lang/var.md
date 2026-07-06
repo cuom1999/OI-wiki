@@ -57,7 +57,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
 
 Kiểu số nguyên dùng để lưu các giá trị nguyên. Kiểu số nguyên cơ bản nhất là `int`.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Do nguyên nhân lịch sử, trong C++, kiểu luận lý và kiểu ký tự được xem là các kiểu số nguyên đặc biệt.
 
     Trong hầu hết mọi trường hợp, **không nên** dùng các kiểu ký tự khác `signed char` và `unsigned char` như kiểu số nguyên.
@@ -129,7 +129,7 @@ GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản khô
 của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc
 được hỗ trợ hay không.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc biệt cẩn thận khi dùng chúng.
 
     ???+ note "Mã ví dụ"
@@ -231,11 +231,11 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
 
     Với GCC, có thể thêm `-fsigned-char` hoặc `-funsigned-char` vào tham số biên
     dịch để chỉ định xem `char` là `signed char` hay `unsigned char`; với các
-    trình biên dịch khác, cần tham khảo tài liệu tương ứng. Cần chú ý rằng việc
+    trình biên dịch khác, cần tham khảo tài liệu tương ứng. Cần lưu ý rằng việc
     chỉ định tính có dấu khác với giá trị mặc định của kiến trúc có thể phá vỡ
     ABI, khiến chương trình không hoạt động bình thường.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
 
     Nói chung, không nên dùng `signed char`, `unsigned char` để lưu ký tự. Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
@@ -244,7 +244,7 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
 
 ### Kiểu số thực dấu phẩy động
 
-Dùng để lưu "số thực" (chú ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà
+Dùng để lưu "số thực" (lưu ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà
 là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
 
 -   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary32.
@@ -326,7 +326,7 @@ Khi đã triển khai kiểu tương ứng, chuẩn C++ quy định bắt buộc
 -   `_MAX` biểu thị giá trị lớn nhất, ví dụ `INT32_MAX` là giá trị lớn nhất của `int32_t`.
 -   `_MIN` biểu thị giá trị nhỏ nhất, ví dụ `INT32_MIN` là giá trị nhỏ nhất của `int32_t`.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Về bản chất, kiểu số nguyên có độ rộng cố định là bí danh kiểu của các kiểu số nguyên thông thường, nên việc trộn lẫn kiểu số nguyên có độ rộng cố định và kiểu số nguyên thông thường có thể ảnh hưởng đến khả năng biên dịch đa nền tảng. Ví dụ:
 
     ???+ note "Mã ví dụ"
@@ -366,7 +366,7 @@ std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị k�
 
 Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến truyền vào lại có kiểu `double`), cần chuyển một kiểu nào đó thành một kiểu khác.
 
-Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Ở đây chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
+Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Phần này chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
 
 <a id="nâng-hạng-số-học"></a>
 
@@ -452,7 +452,7 @@ Cụ thể có các quy tắc sau:
 -   Kiểu `bool` có thể chuyển sang `int`: `false` trở thành `0`, `true` trở thành `1`.
 -   Nếu phạm vi giá trị của kiểu đích chứa phạm vi giá trị của kiểu nguồn, và phạm vi giá trị của kiểu nguồn không thể được chứa bởi `int` và `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích.[^note12]
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     `char`->`short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng hạng thành `int / unsigned int`, sau đó mới là `int / unsigned int`->`short`, không thỏa điều kiện của nâng hạng số học.
 
 Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit, `signed char` và `unsigned char` là 8 bit, `bool` là 1 bit):
@@ -473,7 +473,7 @@ Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâ
 
 Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Nâng hạng số học có độ ưu tiên cao hơn chuyển đổi số học. Ví dụ, `bool`->`int` là nâng hạng số học chứ không phải chuyển đổi số học.
 
 <a id="chuyển-đổi-số-nguyên"></a>
@@ -551,9 +551,9 @@ double wiki;
 char org = 'c';
 ```
 
-Trong các đoạn chương trình cơ bản ở đây, biến được định nghĩa trong phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa cần xét trong phần nhập môn này.
+Trong các đoạn chương trình cơ bản trong phần này, biến được định nghĩa trong phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa cần xét trong phần nhập môn này.
 
-Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần được gán giá trị ban đầu rõ ràng; nếu không có thể gây ra lỗi khó phát hiện.
+Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần được gán giá trị ban đầu cụ thể; nếu không có thể gây ra lỗi khó phát hiện.
 
 <a id="phạm-vi-của-biến"></a>
 

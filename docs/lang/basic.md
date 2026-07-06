@@ -1,7 +1,7 @@
 ## Khung chương trình
 
-Nếu chưa muốn tìm hiểu sâu nguyên lý phía sau, khi mới học có thể ghi nhớ trực
-tiếp "khung" sau:
+Ở giai đoạn mới học, nếu chưa tìm hiểu sâu nguyên lý phía sau, có thể ghi nhớ
+trực tiếp "khung" sau:
 
 ```cpp
 #include <cstdio>
@@ -21,11 +21,10 @@ int main() {
     có thể dùng các đối tượng mà `iostream` cung cấp như `std::cin`,
     `std::cout`, `std::endl`, v.v.
 
-    Nếu đã học ngôn ngữ C, có thể thấy trong C++ hiện nay các tệp tiêu đề thường
-    gặp không có hậu tố `.h`, còn các tệp tiêu đề `xx.h` của C thường có dạng
-    `cxx`, chẳng hạn `stdio.h` trở thành `cstdio`. Để tương thích với C, C++
-    trực tiếp sử dụng các tệp tiêu đề của C; để phân biệt tệp tiêu đề C++ với
-    tệp tiêu đề C, C++ dùng tiền tố `c`.
+    Trong C++ hiện nay, các tệp tiêu đề thường gặp không có hậu tố `.h`, còn các
+    tệp tiêu đề `xx.h` của C thường có dạng `cxx`, chẳng hạn `stdio.h` trở thành
+    `cstdio`. Để tương thích với C, C++ trực tiếp sử dụng các tệp tiêu đề của C;
+    để phân biệt tệp tiêu đề C++ với tệp tiêu đề C, C++ dùng tiền tố `c`.
 
     Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa
     trên nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu
@@ -37,15 +36,14 @@ int main() {
     Có thể `#include` tệp tiêu đề tự viết không? Câu trả lời là có.
 
     Có thể tự viết một tệp tiêu đề, ví dụ `myheader.h`. Sau đó đặt nó vào
-    cùng thư mục với mã nguồn, rồi dùng `#include "myheader.h"` là được. Cần chú
-    ý rằng tệp tiêu đề tự định nghĩa phải dùng dấu ngoặc kép thay vì dấu ngoặc
-    nhọn. Tất nhiên, cũng có thể dùng tùy chọn biên dịch
-    `-I <header_file_path>` để cho trình biên dịch biết cần tìm tệp tiêu đề ở
-    đâu; khi đó không cần đặt tệp tiêu đề cùng thư mục với mã nguồn nữa.
+    cùng thư mục với mã nguồn, rồi dùng `#include "myheader.h"` là được. Tệp tiêu
+    đề tự định nghĩa phải dùng dấu ngoặc kép thay vì dấu ngoặc nhọn. Ngoài ra,
+    có thể dùng tùy chọn biên dịch `-I <header_file_path>` để cho trình biên dịch
+    biết cần tìm tệp tiêu đề ở đâu; khi đó không cần đặt tệp tiêu đề cùng thư mục
+    với mã nguồn nữa.
 
 ??? note "`main()` là gì?"
-    Có thể hiểu rằng khi chương trình chạy, các đoạn mã trong `main()` sẽ được
-    thực thi.
+    Khi chương trình chạy, các đoạn mã trong `main()` sẽ được thực thi.
 
     Thực tế, hàm `main` được hệ thống hoặc chương trình bên ngoài gọi. Ví dụ,
     khi gọi chương trình từ dòng lệnh, hệ thống sẽ gọi hàm `main` trong chương
@@ -55,10 +53,10 @@ int main() {
     mặc định, khi chương trình kết thúc, trả về 0 nghĩa là mọi thứ bình thường;
     ngược lại, giá trị trả về biểu thị mã lỗi (trên Windows, dạng thập lục phân
     của mã lỗi này có thể tra cứu trên trang [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/)).
-    Giá trị này được trả về cho ai? Thực ra là cho hệ thống hoặc chương trình
-    bên ngoài đã gọi chương trình; khi chương trình kết thúc,
-    nó sẽ nhận được giá trị trả về này. Nếu không viết câu lệnh `return`, khi
-    chương trình kết thúc bình thường, giá trị trả về mặc định cũng là 0.
+    Giá trị này được trả về cho hệ thống hoặc chương trình bên ngoài đã gọi
+    chương trình; khi chương trình kết thúc, nơi gọi chương trình sẽ nhận được
+    giá trị trả về này. Nếu không viết câu lệnh `return`, khi chương trình kết
+    thúc bình thường, giá trị trả về mặc định cũng là 0.
 
     Trong C hoặc C++, nếu giá trị trả về của chương trình khác 0, trình chấm
     thường sẽ xem đó là lỗi khi chạy (RE).
@@ -116,9 +114,9 @@ int main() {
 
 ### `scanf` và `printf`
 
-`scanf` và `printf` thực ra là các hàm do ngôn ngữ C cung cấp. Trong đa số
-trường hợp, chúng nhanh hơn `cin` và `cout`, đồng thời có thể điều khiển định
-dạng nhập xuất một cách thuận tiện.
+`scanf` và `printf` là các hàm do ngôn ngữ C cung cấp. Trong đa số trường hợp,
+chúng nhanh hơn `cin` và `cout`, đồng thời hỗ trợ điều khiển định dạng nhập xuất
+thuận tiện.
 
 ???+ note "Tối ưu nhập xuất"
     Về khác biệt cụ thể giữa `cin`/`cout` và `scanf`/`printf`, cũng như tối ưu
@@ -167,10 +165,10 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
     thống nhất trong [Biến](./var.md).
 
 ??? note "Vì sao trong `scanf` có toán tử `&`?"
-    Ở đây, `&` thực chất là toán tử lấy địa chỉ, trả về địa chỉ của biến trong bộ
-    nhớ. Tham số mà `scanf` nhận chính là địa chỉ của biến. Cụ thể hơn có lẽ
-    phải đến [Con trỏ](./pointer.md) mới có thể giải thích thật rõ ràng; hiện
-    tại chỉ cần ghi nhớ điểm này là đủ.
+    Trong biểu thức này, `&` là toán tử lấy địa chỉ, trả về địa chỉ của biến
+    trong bộ nhớ. Tham số mà `scanf` nhận chính là địa chỉ của biến. Phần
+    [Con trỏ](./pointer.md) sẽ giải thích chi tiết hơn; ở giai đoạn này chỉ cần
+    ghi nhớ điểm trên.
 
 ??? note "`\n` là gì?"
     `\n` là một **ký tự thoát**, biểu thị xuống dòng.
@@ -192,9 +190,9 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
     5.  `\r` biểu thị ký tự về đầu dòng. Trong Linux, ký tự xuống dòng là `\n`;
         trong Windows, ký tự xuống dòng là `\r\n`. Trong OI, nếu đầu ra cần
         xuống dòng, dùng `\n` là đủ. Nhưng khi đọc vào, nếu dùng cách đọc từng
-        ký tự, ký tự xuống dòng có thể gây ra một số vấn đề, cần chú ý. Ví dụ,
-        `gets` xem `\n` là kết thúc chuỗi; lúc này nếu ký tự xuống dòng là
-        `\r\n`, thì `\r` sẽ còn lại ở cuối chuỗi.
+        ký tự, ký tự xuống dòng có thể gây ra một số vấn đề và cần xử lý cẩn
+        thận. Ví dụ, `gets` xem `\n` là kết thúc chuỗi; lúc này nếu ký tự xuống
+        dòng là `\r\n`, thì `\r` sẽ còn lại ở cuối chuỗi.
 
     6.  Đặc biệt, `%%` biểu thị `%`, chỉ dùng trong `printf` hoặc `scanf`; trong
         các chuỗi ký tự khác, chỉ cần dùng `%` trực tiếp là được.
@@ -213,8 +211,8 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
 ### Ký tự trắng trong C++
 
 Trong C++, tất cả ký tự trắng (dấu cách, tab, xuống dòng), dù nhiều hay một, đều
-được xem như nhau. Tất nhiên, điều này không áp dụng cho các ký tự nằm trong dấu
-ngoặc kép và được xem là một phần của chuỗi.
+được xem như nhau. Quy tắc này không áp dụng cho các ký tự nằm trong dấu ngoặc
+kép và được xem là một phần của chuỗi.
 
 Vì vậy, có thể sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là
 chú thích trên dòng, literal chuỗi và lệnh tiền xử lý phải nằm trong một dòng.
@@ -224,7 +222,7 @@ Ví dụ:
 --8<-- "docs/lang/code/basic/basic_1.cpp:main"
 ```
 
-Tất nhiên, cách viết này không nên dùng trong mã thông thường.
+Dù hợp lệ về cú pháp, cách viết này không nên dùng trong mã thông thường.
 
 Một phong cách viết mã khác cũng được sử dụng rộng rãi, nhưng khác với phong cách
 mà **OI Wiki** yêu cầu:
@@ -258,15 +256,15 @@ int main() {
     hợp lệ.
 
     Định danh bắt đầu bằng chữ cái tiếng Anh hoặc dấu gạch dưới; các ký tự phía
-    sau chỉ được là chữ cái tiếng Anh, dấu gạch dưới hoặc chữ số. Cần chú ý rằng
-    từ khóa (như `int`, `for`, `if`) không thể dùng làm định danh.
+    sau chỉ được là chữ cái tiếng Anh, dấu gạch dưới hoặc chữ số. Từ khóa (như
+    `int`, `for`, `if`) không thể dùng làm định danh.
 
 ??? note "Lệnh tiền xử lý là gì?"
     Lệnh tiền xử lý là lệnh mà bộ tiền xử lý chấp nhận, dùng để thực hiện các
     biến đổi văn bản sơ bộ trên mã, chẳng hạn thao tác bao gồm tệp `#include` và
-    xử lý macro `#define` và các thao tác tương tự. Với GCC, theo mặc định tệp đầu ra `.i` của giai
-    đoạn tiền xử lý sẽ không được giữ lại. Có thể dùng tùy chọn `-E` để giữ lại
-    tệp đầu ra.
+    xử lý macro `#define` cùng các thao tác tương tự. Với GCC, theo mặc định tệp
+    đầu ra `.i` của giai đoạn tiền xử lý sẽ không được giữ lại. Có thể dùng tùy
+    chọn `-E` để giữ lại tệp đầu ra.
 
 Macro có thể mang tham số; macro có tham số có thể được dùng với cú pháp giống
 hàm:
@@ -287,7 +285,7 @@ gây ra nhiều vấn đề. Ví dụ:
 ```cpp
 #include <iostream>
 #define sum(x, y) x + y
-// Ở đây nên là #define sum(x, y) ((x) + (y))
+// Nên viết thành #define sum(x, y) ((x) + (y))
 #define square(x) ((x) * (x))
 
 int main() {

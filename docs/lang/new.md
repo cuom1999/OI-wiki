@@ -1,4 +1,4 @@
-**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không trình bày toàn diện mọi cú pháp hiện đại của C++, mà chỉ giới thiệu những phần thường dùng trong lập trình thi đấu.
+**Ghi chú**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không trình bày toàn diện mọi cú pháp hiện đại của C++, mà chỉ giới thiệu những phần thường dùng trong lập trình thi đấu.
 
 Cú pháp trong bài viết này tham chiếu theo chuẩn **C++11**. Với những chỗ có ngữ nghĩa khác nhau, **C++11** sẽ được lấy làm chuẩn; cú pháp của C++14, C++17, v.v. sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
@@ -11,7 +11,7 @@ auto a = 1;        // a có kiểu int
 auto b = a + 0.1;  // b có kiểu double
 ```
 
-Lưu ý rằng khi khai báo biến bằng `auto` đơn thuần, kiểu được suy luận sẽ bỏ phần tham chiếu. Nếu không muốn tạo bản sao, cần chỉ định tham chiếu một cách tường minh:
+Khi khai báo biến bằng `auto` đơn thuần, kiểu được suy luận sẽ bỏ phần tham chiếu. Nếu không muốn tạo bản sao, cần chỉ định tham chiếu một cách tường minh:
 
 ```cpp
 int a = 1;
@@ -22,7 +22,7 @@ auto& e = a;  // e có kiểu int&, là tham chiếu tới a
 
 ## Bộ chỉ định `decltype`
 
-`decltype` có thể suy luận kiểu dựa trên **thực thể** hoặc **biểu thức**. Cần chú ý rằng hai cách này có quy tắc suy luận khác nhau; dùng sai có thể tạo ra tham chiếu treo. Nội dung này không thường dùng trong thi đấu, nên ở đây chỉ giới thiệu sơ lược.
+`decltype` có thể suy luận kiểu dựa trên **thực thể** hoặc **biểu thức**. Hai cách này tuân theo các quy tắc suy luận khác nhau; dùng sai có thể tạo ra tham chiếu treo. Nội dung này không thường dùng trong thi đấu, nên phần này chỉ giới thiệu sơ lược.
 
 ```cpp
 #include <iostream>
@@ -153,7 +153,7 @@ auto [c1, c2] = C{};       // c1=1,c2=2; kiểu int
 auto& [a1, a2, a3] = arr;  // a1=arr[0],a2=arr[1],a3=arr[2]; kiểu int&
 ```
 
-Lưu ý các điểm sau:
+Cần lưu ý các điểm sau:
 
 -   Số biến khai báo ở bên trái phải bằng số phần tử con của đối tượng bên phải.
 -   Khai báo kiểu cần dùng `auto`.
@@ -174,7 +174,7 @@ for (auto& [k, v] : m) {
 
 ## Bộ `std::tuple`
 
-[`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong tệp tiêu đề `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Hãy xem ví dụ sau:
+[`std::tuple`](https://en.cppreference.com/w/cpp/utility/tuple) được định nghĩa trong tệp tiêu đề `<tuple>`, là sự khái quát hóa của `std::pair` và có thể lưu nhiều giá trị thuộc các kiểu khác nhau. Xét ví dụ sau:
 
 ```cpp
 #include <iostream>
@@ -257,7 +257,7 @@ std::cout << x << std::endl;
 [khái niệm/yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject)
 được dùng rộng rãi trong thư viện chuẩn.
 
-Đối tượng hàm có thể được chia đại khái thành hai loại:
+Đối tượng hàm thường được chia thành hai loại:
 
 1.  Con trỏ hàm
 2.  Đối tượng lớp đã nạp chồng toán tử `operator()`
@@ -266,11 +266,11 @@ std::cout << x << std::endl;
 
 ## Biểu thức lambda
 
-> Vui lòng tham khảo trang [Biểu thức lambda](lambda.md).
+> Xem thêm trang [Biểu thức lambda](lambda.md).
 
 ## std::function
 
-???+ warning "Chú ý chi phí hiệu năng"
+???+ warning "Cân nhắc chi phí hiệu năng"
     `std::function` có thể gây thêm chi phí hiệu năng. Theo thử nghiệm [benchmark](./lambda.md#đệ-quy-trong-lambda), nó thường làm hiệu năng giảm từ 2 đến hơn 3 lần.
     
     Nguyên nhân là nó sử dụng kỹ thuật xóa kiểu (type erasure), thường được cài
@@ -333,7 +333,7 @@ int main() {
 Trước C++11, cả mẫu lớp và mẫu hàm đều chỉ có thể nhận số lượng tham số mẫu cố
 định. C++11 cho phép tham số mẫu có **số lượng bất kỳ, kiểu bất kỳ**.
 
-Ở đây chỉ giới thiệu ngắn gọn về mẫu **hàm** tham số biến thiên.
+Phần này chỉ giới thiệu ngắn gọn về mẫu **hàm** tham số biến thiên.
 
 Mẫu hàm `fun` được khai báo trong đoạn mã sau có thể nhận số lượng tùy ý các
 tham số mẫu với kiểu bất kỳ.
@@ -345,12 +345,12 @@ void fun(Clazz... paras) {}
 
 `paras` là một gói tham số hàm (function parameter pack), nhận 0 hoặc nhiều đối số hàm. `Clazz` là một gói tham số mẫu (template parameter pack), nhận 0 hoặc nhiều đối số mẫu (không phải kiểu, kiểu hoặc mẫu); khi được đánh dấu bằng `typename` thì chỉ nhận kiểu.
 
-Có thể hiểu đơn giản như sau:
+Có thể tóm tắt như sau:
 
 -   Gói tham số mẫu thường là một dãy tên kiểu (nhưng cũng có thể chứa hằng số thời gian biên dịch hoặc tên mẫu).
 -   Gói tham số hàm thường là một dãy tên biến.
 
-Bây giờ có thể gọi hàm `fun` như sau:
+Khi đó, có thể gọi hàm `fun` như sau:
 
 ```cpp
 fun();
@@ -363,7 +363,7 @@ fun(1, 0.0, "abc");
 
 #### Cú pháp mở rộng gói tham số
 
-Mở rộng gói tham số rất đơn giản: chỉ cần dùng `...`; các phần tử sẽ tự động
+Để mở rộng gói tham số, chỉ cần dùng `...`; các phần tử sẽ tự động
 được phân tách bằng dấu phẩy. Ví dụ:
 
 ```cpp
@@ -396,7 +396,7 @@ func(1, 2, 1.1, 2.1f);
 Hàm ở trên không thể chạy riêng lẻ, vì số lượng tham số liên tục giảm; cuối cùng
 lời gọi sẽ không còn tham số và gây lỗi biên dịch.
 
-Ta cần chỉ định điều kiện kết thúc; có thể cung cấp một hàm thông thường như sau:
+Cần chỉ định điều kiện kết thúc; có thể cung cấp một hàm thông thường như sau:
 
 ```cpp
 void func() {}
@@ -430,7 +430,7 @@ void func(C... args) {
   (std::cout << ... << args) << std::endl;
   // Cú pháp 4, tương đương với ↓
   // ( ( ( std::cout << 1 ) << 2.1 ) << true ) << std::endl;
-  // Kết quả: 12.11  Lưu ý true được in thành 1, vì ở đây không chỉ định boolalpha
+  // Kết quả: 12.11  true được in thành 1 do không chỉ định boolalpha
 
   std::cout << (args && ...) << std::endl;
   // Cú pháp 1, tương đương với ↓
@@ -450,7 +450,7 @@ dạng rút gọn:
 void func(auto... args) { (std::cout << ... << args) << std::endl; }
 ```
 
-Lưu ý rằng về bản chất nó vẫn là mẫu hàm, tương đương với cách viết sau:
+Về bản chất, cú pháp này vẫn tạo ra mẫu hàm, tương đương với cách viết sau:
 
 ```cpp
 template <class... T>
@@ -465,7 +465,7 @@ void func(T... args) {
 
 Phạm vi (`range`) là một dãy có thể duyệt, bao gồm mảng, bộ chứa, khung nhìn (`view`), v.v.
 
-Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp viết thuật toán dễ hơn và rõ ràng hơn.
+Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác, [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) có thể giúp cách viết thuật toán ngắn gọn và mạch lạc hơn.
 
 ### Khung nhìn (view)
 
@@ -473,7 +473,7 @@ Khung nhìn (`view`) là một đối tượng nhẹ, cài đặt một số tha
 chế đặc thù (như bộ lặp tự định nghĩa), nhờ đó cung cấp nhiều cách duyệt khác
 nhau cho phạm vi.
 
-Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia đại khái
+Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia
 thành hai loại:
 
 1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc biệt. Dùng loại bộ sinh này có thể bỏ qua bước tự xây dựng bộ chứa, giảm chi phí và trực tiếp sinh ra một phạm vi.
@@ -482,7 +482,7 @@ thành hai loại:
 Với vai trò là [**đối tượng bao đóng bộ chuyển đổi phạm vi**](https://en.cppreference.com/w/cpp/named_req/RangeAdaptorClosureObject) (range adaptor closure object), **bộ chuyển đổi phạm vi** cũng thuộc về [**đối tượng hàm**](#đối-tượng-hàm); chúng nạp chồng `operator|`, nhờ đó có thể ghép lại với nhau như toán tử ống dẫn (pipe).
 
 ??? note "Toán tử ống dẫn"
-    Ở đây nên hiểu `|` là toán tử ống dẫn (pipe), chứ không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
+    Trong ngữ cảnh này, `|` là toán tử ống dẫn (pipe), không phải toán tử OR theo bit. Cách dùng này bắt nguồn từ [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
 Trong các thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và có đặc điểm sau:
 
