@@ -8,8 +8,9 @@ Trừ các hàm đã được nêu riêng, các hàm liệt kê trong trang này
 
 Xem thêm: [`qsort`](https://en.cppreference.com/w/c/algorithm/qsort), [`std::qsort`](https://en.cppreference.com/w/cpp/algorithm/qsort)
 
-Hàm này là [sắp xếp nhanh](./quick-sort.md) được cài đặt trong thư viện chuẩn
-C, định nghĩa trong `<stdlib.h>`. Trong thư viện chuẩn C++, hàm này được định
+Hàm này là hàm sắp xếp trong thư viện chuẩn C, định nghĩa trong `<stdlib.h>`.
+Tên `qsort` bắt nguồn từ [sắp xếp nhanh](./quick-sort.md), nhưng chuẩn C không
+yêu cầu một cách cài đặt cụ thể. Trong thư viện chuẩn C++, hàm này được định
 nghĩa trong `<cstdlib>`.
 
 ### Hàm so sánh của qsort và bsearch
@@ -18,8 +19,8 @@ Hàm `qsort` có bốn tham số: tên mảng, số phần tử, kích thước 
 so sánh. Quy tắc so sánh được cài đặt bằng cách truyền vào một hàm so sánh;
 các hàm so sánh khác nhau có thể tạo ra các thứ tự sắp xếp khác nhau.
 
-Tham số của hàm so sánh được giới hạn là hai con trỏ kiểu `const void`. Giá trị
-trả về được quy định là số dương, số âm hoặc 0.
+Tham số của hàm so sánh là hai con trỏ kiểu `const void *`. Giá trị trả về được
+quy định là số dương, số âm hoặc 0.
 
 Một cách viết ví dụ cho hàm so sánh là:
 
@@ -81,10 +82,10 @@ std::sort(a, a + n);
 std::sort(a, a + n, cmp);
 ```
 
-Lưu ý: giá trị trả về của hàm so sánh trong `sort` là `true` hoặc `false`;
-chúng biểu thị quan hệ lớn nhỏ (thứ tự trước sau) giữa hai phần tử. Điều này
-khác hoàn toàn với ngữ nghĩa của hàm so sánh ba giá trị trong `qsort`. Nội dung
-cụ thể xem trong tài liệu `sort` đã dẫn ở trên.
+Lưu ý: giá trị trả về của hàm so sánh trong `sort` là `true` hoặc `false`,
+biểu thị quan hệ đứng trước giữa hai phần tử. Điều này khác với ngữ nghĩa của
+hàm so sánh ba giá trị trong `qsort`. Nội dung cụ thể xem trong tài liệu `sort`
+đã dẫn ở trên.
 
 Nếu muốn chuyển một cách đơn giản từ `sort` sang `qsort` mà nhìn chung vẫn giữ
 nguyên thứ tự sắp xếp (không xét các phần tử tương đương), cần đổi giá trị trả
@@ -95,8 +96,9 @@ cuối cùng của hàm này là một hàm so sánh nhị phân; nếu không c
 `cmp`, mặc định sẽ sắp xếp theo thứ tự từ nhỏ đến lớn.
 
 Trong các chuẩn C++ cũ, hàm này chỉ được yêu cầu đạt độ phức tạp thời gian
-**trung bình** $O(n\log n)$. Từ chuẩn C++11 trở đi, hàm này được yêu cầu đạt độ
-phức tạp thời gian **xấu nhất** $O(n\log n)$.
+trong trường hợp **trung bình** $O(n\log n)$. Từ chuẩn C++11 trở đi, hàm này
+được yêu cầu đạt độ phức tạp thời gian trong trường hợp **bất lợi nhất**
+$O(n\log n)$.
 
 Chuẩn C++ không quy định chặt chẽ thuật toán cài đặt của hàm này; cách cài đặt
 cụ thể phụ thuộc vào trình biên dịch. Các cài đặt trong
@@ -117,13 +119,13 @@ std::nth_element(first, nth, last, cmp);
 
 Hàm này sắp xếp lại các phần tử trong `[first, last)` sao cho phần tử mà `nth`
 trỏ tới trở thành phần tử sẽ xuất hiện ở vị trí đó nếu `[first, last)` được sắp
-xếp. Tất cả phần tử đứng trước `nth` mới đều nhỏ hơn hoặc bằng tất cả phần tử
-đứng sau `nth` mới.
+xếp đầy đủ. Tất cả phần tử đứng trước `nth` mới đều nhỏ hơn hoặc bằng tất cả
+phần tử đứng sau `nth` mới.
 
 Thuật toán cài đặt là một dạng sắp xếp nội quan chưa hoàn chỉnh.
 
-Với cả hai cách dùng trên, chuẩn C++ yêu cầu độ phức tạp thời gian trung bình
-là $O(n)$, trong đó $n$ là `std::distance(first, last)`.
+Với cả hai cách dùng trên, chuẩn C++ yêu cầu độ phức tạp thời gian trung bình là
+$O(n)$, trong đó $n$ là `std::distance(first, last)`.
 
 Hàm này thường được dùng để xây dựng [K-D Tree](../ds/kdt.md).
 
@@ -168,13 +170,13 @@ Nguyên lý:
 
 Ý tưởng của `std::partial_sort` là: thực hiện thao tác `make_heap()` trên khoảng
 `[first, mid)` trong container ban đầu để xây dựng một heap lớn nhất, rồi so
-sánh từng phần tử trong `[mid, last)` với `first`, bảo đảm phần tử tại `first`
-là phần tử lớn nhất trong heap. Nếu phần tử đang xét nhỏ hơn giá trị lớn nhất
-đó, hoán đổi vị trí hai phần tử, rồi điều chỉnh các phần tử trong
+sánh từng phần tử trong `[mid, last)` với `first`. Khi đó phần tử tại `first`
+luôn là phần tử lớn nhất trong heap. Nếu phần tử đang xét nhỏ hơn giá trị lớn
+nhất đó, hoán đổi vị trí hai phần tử, rồi điều chỉnh các phần tử trong
 `[first, mid)` để chúng tiếp tục duy trì thứ tự heap lớn nhất. Sau khi so sánh
-xong, thực hiện thêm một lần thao tác sắp xếp heap `sort_heap()` trên các phần
-tử trong `[first, mid)`, để chúng được sắp theo thứ tự tăng dần. Lưu ý rằng thứ
-tự heap và thứ tự tăng dần là khác nhau.
+xong, thực hiện thêm thao tác sắp xếp heap `sort_heap()` trên các phần tử trong
+`[first, mid)`, để chúng được sắp theo thứ tự tăng dần. Lưu ý rằng thứ tự heap
+và thứ tự tăng dần là khác nhau.
 
 ## So sánh tự định nghĩa
 
@@ -221,8 +223,7 @@ Xem thêm: [Ứng dụng trong C++ - Lý thuyết thứ tự](../math/order-theo
 
 Toán tử dùng để sắp xếp phải thỏa mãn
 [thứ tự yếu nghiêm ngặt](../math/order-theory.md#quan-hệ-hai-ngôi), nếu không
-có thể xuất hiện tình huống không thể dự đoán (như lỗi khi chạy, hoặc không sắp
-xếp đúng).
+có thể xuất hiện hành vi không xác định hoặc kết quả sắp xếp sai.
 
 Các cách làm sai thường gặp:
 
