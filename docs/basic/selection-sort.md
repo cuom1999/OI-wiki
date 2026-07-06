@@ -29,7 +29,7 @@ Các ví dụ cài đặt sau đây đều dựa trên việc hoán đổi phầ
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất, trung bình và xấu nhất của sắp xếp chọn đều là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của sắp xếp chọn đều là $O(n^2)$.
 
 ## Cài đặt
 

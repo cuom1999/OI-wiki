@@ -26,7 +26,7 @@ Vì số phần tử trong mỗi thùng thường không nhiều, có thể dùn
 
 Độ phức tạp thời gian trung bình của sắp xếp theo thùng là $O(n + n^2/k + k)$ (chia đều miền giá trị thành $k$ phần + sắp xếp + gộp lại các phần tử); khi $k\approx n$ thì là $O(n)$.[^ref1]
 
-Độ phức tạp thời gian xấu nhất của sắp xếp theo thùng là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp bất lợi nhất của sắp xếp theo thùng là $O(n^2)$.
 
 ## Cài đặt
 

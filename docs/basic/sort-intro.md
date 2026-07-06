@@ -3,7 +3,7 @@ Trang này giới thiệu ngắn gọn về các thuật toán sắp xếp.
 ## Định nghĩa
 
 **Thuật toán sắp xếp** (sorting algorithm) là thuật toán sắp xếp một tập dữ liệu
-nhất định theo một thứ tự nào đó. Có rất nhiều thuật toán sắp xếp, và tính chất
+nhất định theo một thứ tự nào đó. Có nhiều thuật toán sắp xếp, và tính chất
 của chúng cũng thường khác nhau.
 
 ## Tính chất
@@ -32,7 +32,7 @@ Trang chính: [Độ phức tạp](./complexity.md)
 
 Cách tính độ phức tạp đơn giản thường là đếm số lần thực hiện các "thao tác đơn giản"; đôi khi cũng có thể ước lượng gần đúng bằng cách đếm số tầng vòng lặp.
 
-Độ phức tạp thời gian được chia thành độ phức tạp tốt nhất, trung bình và xấu nhất. Trong các kỳ thi OI, thường cần xét độ phức tạp xấu nhất, vì nó thể hiện mức bảo đảm của thuật toán; trong quá trình chấm, sẽ không có kết quả tệ hơn mức này.
+Độ phức tạp thời gian thường được xét theo ba trường hợp: tốt nhất, trung bình và bất lợi nhất. Trong các kỳ thi OI, thường cần xét độ phức tạp trong trường hợp bất lợi nhất, vì nó thể hiện mức bảo đảm của thuật toán; trong quá trình chấm, sẽ không có kết quả tệ hơn mức này.
 
 Cận dưới độ phức tạp thời gian của các thuật toán sắp xếp dựa trên so sánh là $O(n\log n)$.
 

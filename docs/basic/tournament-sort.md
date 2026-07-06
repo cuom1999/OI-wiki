@@ -47,7 +47,7 @@ Sắp xếp giải đấu là một thuật toán sắp xếp không ổn địn
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất, trung bình và xấu nhất của sắp xếp giải đấu đều
+Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của sắp xếp giải đấu đều
 là $O(n\log n)$. Thuật toán dùng $O(n)$ thời gian để khởi tạo "giải đấu", sau
 đó dùng $O(\log n)$ thời gian để chọn một phần tử trong $n$ phần tử.
 
