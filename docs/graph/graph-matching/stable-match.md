@@ -15,15 +15,15 @@ Thị trường ghép cặp gồm một số nam $M$ và một số nữ $W$. M�
 -   Với mỗi nam $m\in M$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_m$ trên tập $W\cup\{m\}$;
 -   Với mỗi nữ $w\in W$, tồn tại một thứ tự toàn phần nghiêm ngặt $\preceq_w$ trên tập $M\cup\{w\}$.
 
-Ngoài việc so sánh giữa những người khác giới, mỗi người còn đưa chính mình vào thứ tự ưu tiên này. Điều đó biểu thị rằng người này chỉ chấp nhận ghép cặp với những người khác giới được họ xếp cao hơn chính mình; các đối tượng này được gọi là **chấp nhận được**. Rõ ràng, thứ tự ưu tiên giữa các đối tượng không chấp nhận được không còn quan trọng; về nguyên tắc, chỉ cần đưa ra thứ tự ưu tiên giữa các đối tượng chấp nhận được. Vì vậy, các sở thích có tồn tại đối tượng không chấp nhận được cũng được gọi là sở thích với danh sách không đầy đủ.
+Ngoài việc so sánh giữa những người khác giới, mỗi người còn đưa chính mình vào thứ tự ưu tiên này. Điều đó biểu thị rằng người này chỉ chấp nhận ghép cặp với những người khác giới được họ xếp cao hơn chính mình; các đối tượng này được gọi là **chấp nhận được**. Thứ tự ưu tiên giữa các đối tượng không chấp nhận được không còn quan trọng; về nguyên tắc, chỉ cần đưa ra thứ tự ưu tiên giữa các đối tượng chấp nhận được. Vì vậy, các sở thích có tồn tại đối tượng không chấp nhận được cũng được gọi là sở thích với danh sách không đầy đủ.
 
 ???+ example "Ví dụ"
     Giả sử $m$ là một nam, $w_1,w_2,w_3$ là ba nữ, và có quan hệ ưu tiên $w_1\prec_m m \prec_m w_2\prec_m w_3$. Khi đó, nam $m$ thích độc thân hơn là ghép cặp với nữ $w_1$; thích ghép cặp với nữ $w_2$ hơn là độc thân; và thích ghép cặp với nữ $w_3$ hơn là ghép cặp với nữ $w_2$. Đối với nam $m$, nữ $w_1$ là không chấp nhận được, còn nữ $w_2,w_3$ là chấp nhận được.
 
 Một **ghép cặp** $\mu:M\cup W\rightarrow M\cup W$ trên thị trường cần thỏa các tính chất sau:
 
--   Mỗi người chỉ có thể được ghép với người khác giới hoặc với chính mình, tức là với mọi $m\in M$ ta có $\mu(m)\in W\cup\{m\}$ và với mọi $w\in W$ ta có $\mu(w)\in M\cup\{w\}$.
--   Ghép cặp là tương hỗ, tức là với mọi $i\in M\cup W$ ta có $i = \mu(\mu(i))$.
+-   Mỗi người chỉ có thể được ghép với người khác giới hoặc với chính mình, tức là với mọi $m\in M$ có $\mu(m)\in W\cup\{m\}$ và với mọi $w\in W$ có $\mu(w)\in M\cup\{w\}$.
+-   Ghép cặp là tương hỗ, tức là với mọi $i\in M\cup W$ có $i = \mu(\mu(i))$.
 
 Trong một ghép cặp $\mu$, có thể tồn tại hai loại yếu tố gây bất ổn:
 
@@ -41,7 +41,7 @@ Gale và Shapley đã đề xuất **thuật toán chấp nhận trì hoãn** v�
 Thuật toán Gale–Shapley có hai phiên bản đối xứng, lần lượt là phiên bản nam cầu hôn và phiên bản nữ cầu hôn. Lấy thuật toán Gale–Shapley nam cầu hôn làm ví dụ, quy trình thuật toán như sau:
 
 1.  Khi thuật toán bắt đầu, mỗi nữ được xem như đang giữ lời cầu hôn của chính mình, và mỗi nam được đánh dấu là đang hoạt động.
-2.  Một nam đang hoạt động sẽ cầu hôn người nữ mà anh ta thích nhất trong số những người nữ chấp nhận được nhưng chưa từng được anh ta cầu hôn; nếu không tồn tại người nữ như vậy thì không cần làm gì. Dù có cầu hôn hay không, sau đó đánh dấu tất cả nam là không hoạt động.
+2.  Một nam đang hoạt động sẽ cầu hôn người nữ mà người đó thích nhất trong số những người nữ chấp nhận được nhưng chưa từng được cầu hôn; nếu không tồn tại người nữ như vậy thì không cần làm gì. Dù có cầu hôn hay không, sau đó đánh dấu tất cả nam là không hoạt động.
 3.  Người nữ nhận được lời cầu hôn mới sẽ so sánh chúng với lời cầu hôn đang giữ trước đó, chỉ giữ lại lời cầu hôn mà cô thích nhất (có thể là chính cô), và từ chối mọi lời cầu hôn còn lại. Các nam bị từ chối được đánh dấu lại là đang hoạt động.
 4.  Lặp lại hai bước trước cho đến khi không còn nam nào đang hoạt động. Khi đó, các nữ chấp nhận lời cầu hôn mà họ đang giữ. Kết quả ghép cặp thu được là một ghép cặp ổn định.
 
@@ -62,9 +62,9 @@ Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước h
     Kết quả của thuật toán Gale–Shapley là một ghép cặp ổn định. Do đó, ghép cặp ổn định tồn tại.
 
 ??? note "Chứng minh"
-    Nam sẽ không cầu hôn những nữ mà anh ta không chấp nhận, và nữ cũng sẽ lập tức từ chối lời cầu hôn từ những nam mà cô không chấp nhận. Vì vậy, những nam và nữ được ghép với nhau ở cuối thuật toán chắc chắn chấp nhận lẫn nhau, nên không thể tồn tại cá thể chặn. Để chứng minh đó là ghép cặp ổn định, chỉ cần chứng minh không tồn tại cặp chặn.
+    Nam sẽ không cầu hôn những nữ mà họ không chấp nhận, và nữ cũng sẽ lập tức từ chối lời cầu hôn từ những nam mà họ không chấp nhận. Vì vậy, những nam và nữ được ghép với nhau ở cuối thuật toán chắc chắn chấp nhận lẫn nhau, nên không thể tồn tại cá thể chặn. Để chứng minh đó là ghép cặp ổn định, chỉ cần chứng minh không tồn tại cặp chặn.
     
-    Chứng minh phản chứng. Giả sử $(m,w)$ là một cặp chặn. Khi đó, trước khi nam $m$ cầu hôn $\mu(m)$, anh ta chắc chắn đã từng cầu hôn $w$. Nhưng vì nữ $w$ đã từ chối $m$, cô ấy chắc chắn đã nhận được lời cầu hôn của một người $m'$ mà cô thích hơn. Nếu $m'\neq \mu(w)$, thì nữ $w$ chỉ có thể thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn $m'$. Do đó, so với $m$, nữ $w$ chắc chắn thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn. Điều này mâu thuẫn với việc $(m,w)$ là cặp chặn. Vì vậy, ghép cặp là ổn định.
+    Chứng minh phản chứng. Giả sử $(m,w)$ là một cặp chặn. Khi đó, trước khi nam $m$ cầu hôn $\mu(m)$, $m$ chắc chắn đã từng cầu hôn $w$. Nhưng vì nữ $w$ đã từ chối $m$, cô chắc chắn đã nhận được lời cầu hôn của một người $m'$ mà cô thích hơn. Nếu $m'\neq \mu(w)$, thì nữ $w$ chỉ có thể thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn $m'$. Do đó, so với $m$, nữ $w$ chắc chắn thích đối tượng ghép cặp cuối cùng $\mu(w)$ hơn. Điều này mâu thuẫn với việc $(m,w)$ là cặp chặn. Vì vậy, ghép cặp là ổn định.
 
 ???+ note "Hệ quả"
     Nếu $|M|=|W|$ và mọi người khác giới đều chấp nhận được, thì tồn tại một ghép cặp hoàn hảo ổn định.
@@ -72,12 +72,12 @@ Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước h
 Trong thuật toán Gale–Shapley, có thể để nam cầu hôn hoặc nữ cầu hôn. Nói chung, hai phiên bản này của thuật toán Gale–Shapley không cho cùng một ghép cặp ổn định. Thực tế, ghép cặp ổn định do thuật toán Gale–Shapley nam cầu hôn thu được là ghép cặp có lợi nhất cho nam trong tất cả các ghép cặp ổn định; chiều ngược lại cũng đúng.
 
 ???+ note "Định lý 2 (Gale và Shapley, 1962)"
-    Gọi $\mu_M$ và $\mu_W$ lần lượt là các ghép cặp ổn định thu được từ thuật toán Gale–Shapley nam cầu hôn và nữ cầu hôn. Với mọi ghép cặp ổn định $\mu$, ta có $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$, và $\mu(w)\preceq_w\mu_W(w)$ với mọi $w\in W$.
+    Gọi $\mu_M$ và $\mu_W$ lần lượt là các ghép cặp ổn định thu được từ thuật toán Gale–Shapley nam cầu hôn và nữ cầu hôn. Với mọi ghép cặp ổn định $\mu$, có $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$, và $\mu(w)\preceq_w\mu_W(w)$ với mọi $w\in W$.
 
 ??? note "Chứng minh"
     Theo tính đối xứng, chỉ cần chứng minh $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$. Để làm điều này, vẫn xét thuật toán Gale–Shapley nam cầu hôn, và ký hiệu $k(m,w)$ là vòng lặp của thuật toán khi nữ $w$ từ chối lời cầu hôn của nam $m$. Vòng lặp này được định nghĩa tốt với mọi $(m,w)$ thỏa $\mu_M(m)\prec_m w$.
     
-    Giả sử $\mu_M$ không phải là ghép cặp có lợi nhất cho tất cả nam, tức là tồn tại một ghép cặp ổn định $\mu$ và một nam $m\in M$ sao cho $\mu_M(m)\prec_m\mu(m)$. Vì ghép cặp $\mu_M$ là ổn định, ta có $m\preceq_m\mu_M(m)\prec_m\mu(m)$, nên $\mu(m)$ là một nữ, và $k(m,\mu(m))$ chắc chắn được định nghĩa tốt. Do đó, không mất tính tổng quát, chọn $m$ là nam có $k(m,\mu(m))$ nhỏ nhất trong số tất cả các nam như vậy. Giả sử trong quá trình thuật toán, khi nữ $w=\mu(m)$ từ chối nam $m$, cô giữ lời cầu hôn của nam $m'$, tức là $m=\mu(w)\prec_w m'$. Vì $\mu$ là ghép cặp ổn định, $(w,m')$ không thể là cặp chặn; lại có $\mu(m')\neq w$, nên $w\prec_{m'}\mu(m')$. Vì trong thuật toán Gale–Shapley, nữ $w$ không nhất thiết giữ lời cầu hôn của $m'$ đến cuối, nên $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$. Khi đó, $k(m',\mu(m'))$ được định nghĩa tốt. Hơn nữa, do $w\prec_{m'}\mu(m')$, chỉ sau khi nữ $\mu(m')$ từ chối lời cầu hôn của $m'$ thì mới có chuyện $w$ giữ lời cầu hôn của $m'$, tức là $k(m',\mu(m')) < k(m,\mu(m))$. Điều này mâu thuẫn với cách chọn $m$. Vì vậy, theo phản chứng, $\mu_M$ là ghép cặp ổn định có lợi nhất cho tất cả nam.
+    Giả sử $\mu_M$ không phải là ghép cặp có lợi nhất cho tất cả nam, tức là tồn tại một ghép cặp ổn định $\mu$ và một nam $m\in M$ sao cho $\mu_M(m)\prec_m\mu(m)$. Vì ghép cặp $\mu_M$ là ổn định, có $m\preceq_m\mu_M(m)\prec_m\mu(m)$, nên $\mu(m)$ là một nữ, và $k(m,\mu(m))$ chắc chắn được định nghĩa tốt. Do đó, không mất tính tổng quát, chọn $m$ là nam có $k(m,\mu(m))$ nhỏ nhất trong số tất cả các nam như vậy. Giả sử trong quá trình thuật toán, khi nữ $w=\mu(m)$ từ chối nam $m$, cô giữ lời cầu hôn của nam $m'$, tức là $m=\mu(w)\prec_w m'$. Vì $\mu$ là ghép cặp ổn định, $(w,m')$ không thể là cặp chặn; lại có $\mu(m')\neq w$, nên $w\prec_{m'}\mu(m')$. Vì trong thuật toán Gale–Shapley, nữ $w$ không nhất thiết giữ lời cầu hôn của $m'$ đến cuối, nên $\mu_M(m')\preceq_{m'}w\prec_{m'}\mu(m')$. Khi đó, $k(m',\mu(m'))$ được định nghĩa tốt. Hơn nữa, do $w\prec_{m'}\mu(m')$, chỉ sau khi nữ $\mu(m')$ từ chối lời cầu hôn của $m'$ thì mới có chuyện $w$ giữ lời cầu hôn của $m'$, tức là $k(m',\mu(m')) < k(m,\mu(m))$. Điều này mâu thuẫn với cách chọn $m$. Vì vậy, theo phản chứng, $\mu_M$ là ghép cặp ổn định có lợi nhất cho tất cả nam.
 
 Một thị trường ghép cặp có thể có số lượng ghép cặp ổn định cấp số mũ. Gọi $\mathcal S$ là tập tất cả các ghép cặp ổn định. Trên tập này có thể định nghĩa hai thứ tự bộ phận:
 
@@ -94,7 +94,7 @@ Phép phân rã này dựa trên bổ đề sau:
     Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Gọi $M(\mu_i)=\{m\in M : \mu_j(m)\prec_m\mu_i(m)\}$ và $W(\mu_i)=\{w\in W:\mu_j(w)\prec_w\mu_i(w)\}$ lần lượt là tập các nam và nữ thích kết quả ghép cặp trong $\mu_i$ hơn, trong đó $i,j=1,2$ và $i\neq j$. Khi đó, cả $\mu_1$ và $\mu_2$ đều là song ánh giữa $M(\mu_1)$ và $W(\mu_2)$, đồng thời cũng là song ánh giữa $M(\mu_2)$ và $W(\mu_1)$.
 
 ??? note "Chứng minh"
-    Xét $m\in M(\mu_1)$. Vì $m\preceq_m \mu_2(m)\prec_m\mu_1(m)$, nên $\mu_1(m)\in W$. Đặt $w=\mu_1(m)$. Do $\mu_2(w)\neq m$, và $\mu_2(w)\prec_w m$ sẽ kéo theo $(m,w)$ là cặp chặn của $\mu_2$, nên ta phải có $\mu_1(w)=m\prec_w\mu_2(w)$. Nói cách khác, $w\in W(\mu_2)$. Điều này cho thấy $\mu_1(M(\mu_1))\subseteq W(\mu_2)$. Theo tính đối xứng, cũng có thể thiết lập $\mu_2(W(\mu_2))\subseteq M(\mu_1)$. Vì $\mu_1$ và $\mu_2$ đều là đơn ánh, nên $|M(\mu_1)|=|W(\mu_2)|$ và hai ánh xạ này đều là toàn ánh. Do đó, $\mu_1$ và $\mu_2$ đều là song ánh giữa $M(\mu_1)$ và $W(\mu_2)$. Tương tự, chúng cũng đều là song ánh giữa $M(\mu_2)$ và $W(\mu_1)$.
+    Xét $m\in M(\mu_1)$. Vì $m\preceq_m \mu_2(m)\prec_m\mu_1(m)$, nên $\mu_1(m)\in W$. Đặt $w=\mu_1(m)$. Do $\mu_2(w)\neq m$, và $\mu_2(w)\prec_w m$ sẽ kéo theo $(m,w)$ là cặp chặn của $\mu_2$, nên phải có $\mu_1(w)=m\prec_w\mu_2(w)$. Nói cách khác, $w\in W(\mu_2)$. Điều này cho thấy $\mu_1(M(\mu_1))\subseteq W(\mu_2)$. Theo tính đối xứng, cũng có thể thiết lập $\mu_2(W(\mu_2))\subseteq M(\mu_1)$. Vì $\mu_1$ và $\mu_2$ đều là đơn ánh, nên $|M(\mu_1)|=|W(\mu_2)|$ và hai ánh xạ này đều là toàn ánh. Do đó, $\mu_1$ và $\mu_2$ đều là song ánh giữa $M(\mu_1)$ và $W(\mu_2)$. Tương tự, chúng cũng đều là song ánh giữa $M(\mu_2)$ và $W(\mu_1)$.
 
 Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là [đối ngẫu](../../math/order-theory.md#đối-ngẫu). Hơn nữa, dưới mỗi thứ tự bộ phận, tập $\mathcal S$ đều tạo thành một [dàn](../../math/order-theory.md#tập-định-hướng-và-dàn). Vì $\mathcal S$ là hữu hạn, hai dàn này chắc chắn có phần tử lớn nhất và phần tử nhỏ nhất. Hai phần tử cực trị này chính là các ghép cặp ổn định thu được từ hai phiên bản của thuật toán Gale–Shapley đã nói ở trên.
 
@@ -102,9 +102,9 @@ Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq
     Các tập thứ tự bộ phận $(\mathcal S,\preceq_M)$ và $(\mathcal S,\preceq_W)$ là hai dàn đối ngẫu của nhau. Hơn nữa, $\mu_M$ và $\mu_W$ lần lượt là phần tử lớn nhất và nhỏ nhất của $(\mathcal S,\preceq_M)$, đồng thời lần lượt là phần tử nhỏ nhất và lớn nhất của $(\mathcal S,\preceq_W)$.
 
 ??? note "Chứng minh"
-    Theo bổ đề, dễ thấy hai tập thứ tự bộ phận là đối ngẫu. Nếu $\mu_1\preceq_M\mu_2$, điều này cho thấy $M(\mu_1)=\varnothing$; theo bổ đề, $W(\mu_2)=\varnothing$, tức là $\mu_2\preceq_W\mu_1$. Chiều ngược lại cũng tương tự. Vì vậy, hai thứ tự này đối ngẫu với nhau. Kết hợp với định lý 2 ở trên, ta thu được $\mu_M$ và $\mu_W$ là các phần tử cực trị của hai tập thứ tự bộ phận. Điều còn cần chứng minh trong mệnh đề là hai tập thứ tự bộ phận đều là dàn. Theo tính đối xứng, chỉ cần chứng minh $(\mathcal S,\preceq_M)$ là dàn. Lại theo tính đối xứng của phép gặp và phép hợp, chỉ cần chứng minh hợp của hai ghép cặp ổn định vẫn là ghép cặp ổn định. Nói một cách hình thức, với mọi $\mu_1,\mu_2\in\mathcal S$, cần chứng minh rằng ghép cặp $\mu=\mu_1\lor_M\mu_2$ thỏa $\mu(m)=\mu_1(m)\lor_m\mu_2(m)$ với mọi $m\in M$ là ghép cặp ổn định, trong đó $\lor_m$ là phép hợp dưới thứ tự toàn phần $\preceq_m$ (tức là đối tượng mà $m$ thích hơn trong hai đối tượng).
+    Theo bổ đề, hai tập thứ tự bộ phận là đối ngẫu. Nếu $\mu_1\preceq_M\mu_2$, điều này cho thấy $M(\mu_1)=\varnothing$; theo bổ đề, $W(\mu_2)=\varnothing$, tức là $\mu_2\preceq_W\mu_1$. Chiều ngược lại cũng tương tự. Vì vậy, hai thứ tự này đối ngẫu với nhau. Kết hợp với định lý 2 ở trên, thu được $\mu_M$ và $\mu_W$ là các phần tử cực trị của hai tập thứ tự bộ phận. Điều còn cần chứng minh trong mệnh đề là hai tập thứ tự bộ phận đều là dàn. Theo tính đối xứng, chỉ cần chứng minh $(\mathcal S,\preceq_M)$ là dàn. Lại theo tính đối xứng của phép gặp và phép hợp, chỉ cần chứng minh hợp của hai ghép cặp ổn định vẫn là ghép cặp ổn định. Nói một cách hình thức, với mọi $\mu_1,\mu_2\in\mathcal S$, cần chứng minh rằng ghép cặp $\mu=\mu_1\lor_M\mu_2$ thỏa $\mu(m)=\mu_1(m)\lor_m\mu_2(m)$ với mọi $m\in M$ là ghép cặp ổn định, trong đó $\lor_m$ là phép hợp dưới thứ tự toàn phần $\preceq_m$ (tức là đối tượng mà $m$ thích hơn trong hai đối tượng).
     
-    Tiếp tục dùng ký hiệu trong bổ đề. Với $i\in M(\mu_1)\cup W(\mu_2)$, ta có $\mu(i)=\mu_1(i)$; ngược lại, ta có $\mu(i)=\mu_2(i)$. Vì $\mu_1$ và $\mu_2$ đều ổn định và không có cá thể chặn, $\mu$ cũng không có cá thể chặn. Giả sử $(m,w)$ là một cặp chặn của $\mu$. Nếu $m\in M(\mu_1)$, thì $\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$. Khi đó, nếu $w\in W(\mu_2)$, ta có $\mu_1(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_1$, mâu thuẫn; nếu không, $w\in W\setminus W(\mu_2)$, ta có $\mu_2(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_2$, cũng mâu thuẫn. Tương tự, trường hợp $m\in M\setminus M(\mu_1)$ cũng chỉ dẫn đến mâu thuẫn. Theo phản chứng, không tồn tại cặp chặn như vậy. Vì vậy, $\mu_1\lor_M\mu_2$ là ghép cặp ổn định. Mệnh đề được chứng minh.
+    Tiếp tục dùng ký hiệu trong bổ đề. Với $i\in M(\mu_1)\cup W(\mu_2)$, có $\mu(i)=\mu_1(i)$; ngược lại, có $\mu(i)=\mu_2(i)$. Vì $\mu_1$ và $\mu_2$ đều ổn định và không có cá thể chặn, $\mu$ cũng không có cá thể chặn. Giả sử $(m,w)$ là một cặp chặn của $\mu$. Nếu $m\in M(\mu_1)$, thì $\mu_2(m)\prec_m\mu_1(m)=\mu(m)\prec_m w$. Khi đó, nếu $w\in W(\mu_2)$, có $\mu_1(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_1$, mâu thuẫn; nếu không, $w\in W\setminus W(\mu_2)$, có $\mu_2(w)=\mu(w)\prec_w m$, nên $(m,w)$ là cặp chặn của $\mu_2$, cũng mâu thuẫn. Tương tự, trường hợp $m\in M\setminus M(\mu_1)$ cũng chỉ dẫn đến mâu thuẫn. Theo phản chứng, không tồn tại cặp chặn như vậy. Vì vậy, $\mu_1\lor_M\mu_2$ là ghép cặp ổn định. Mệnh đề được chứng minh.
 
 Cuối cùng, trong tất cả các ghép cặp ổn định, tập nam và nữ chưa được ghép cặp là cố định.
 
@@ -122,13 +122,13 @@ Ghép cặp ổn định và các bài toán tương tự còn xuất hiện tro
 
 ### Bài toán tuyển sinh đại học
 
-Nếu nới lỏng ràng buộc ghép cặp một-một trong bài toán hôn nhân ổn định và cho phép ghép cặp nhiều-một, ta thu được **bài toán tuyển sinh đại học**. Khi đó, một trường đại học có thể tuyển nhiều sinh viên, miễn là không vượt quá chỉ tiêu tuyển sinh; nhưng mỗi sinh viên vẫn chỉ được phép vào học nhiều nhất một trường. Các tình huống tương tự cũng xuất hiện trong tuyển dụng công ty, bệnh viện tuyển bác sĩ nội trú và các bối cảnh khác.
+Nếu nới lỏng ràng buộc ghép cặp một-một trong bài toán hôn nhân ổn định và cho phép ghép cặp nhiều-một, thu được **bài toán tuyển sinh đại học**. Khi đó, một trường đại học có thể tuyển nhiều sinh viên, miễn là không vượt quá chỉ tiêu tuyển sinh; nhưng mỗi sinh viên vẫn chỉ được phép vào học nhiều nhất một trường. Các tình huống tương tự cũng xuất hiện trong tuyển dụng công ty, bệnh viện tuyển bác sĩ nội trú và các bối cảnh khác.
 
 Với loại bài toán này, thuật toán Gale–Shapley vẫn áp dụng được. Chẳng hạn, trong thuật toán Gale–Shapley do sinh viên nộp đơn, trường đại học có thể duy trì một danh sách chờ có độ dài không vượt quá chỉ tiêu; mỗi khi số lượng đơn vượt quá chỉ tiêu, chỉ cần từ chối đơn của sinh viên kém nhất. Những thảo luận ở trên về tính chất của ghép cặp ổn định vẫn áp dụng cho bối cảnh này. Đặc biệt, phiên bản tương ứng của định lý 4 là: trong tất cả các ghép cặp ổn định, số sinh viên mà mỗi trường tuyển được là cố định. Điều này còn được gọi là **định lý bệnh viện nông thôn**. Tên gọi này xuất phát từ hệ quả rằng dù thay đổi cơ chế ghép cặp thế nào, miễn là kết quả thu được ổn định, những bệnh viện nông thôn vốn không tuyển đủ bác sĩ sẽ mãi không tuyển đủ người.
 
-### Bài toán bạn cùng phòng ổn định
+### Bài toán ghép phòng ổn định
 
-Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằng chỉ có thể ghép cặp với người khác giới, ta thu được **bài toán bạn cùng phòng ổn định**. Khi đó, ban đầu chỉ có một số sinh viên và cần ghép họ thành từng cặp bạn cùng phòng. Với loại bài toán này, ghép cặp ổn định không nhất thiết tồn tại. Irving đã đề xuất vào năm 1985 một thuật toán giải bài toán này trong thời gian $O(n^2)$.
+Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằng chỉ có thể ghép cặp với người khác giới, thu được **bài toán ghép phòng ổn định**. Khi đó, ban đầu chỉ có một số sinh viên và cần ghép họ thành từng cặp ở chung phòng. Với loại bài toán này, ghép cặp ổn định không nhất thiết tồn tại. Irving đã đề xuất vào năm 1985 một thuật toán giải bài toán này trong thời gian $O(n^2)$.
 
 ### Bài toán phân bổ nhà ở
 
