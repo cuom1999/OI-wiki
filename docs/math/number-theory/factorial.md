@@ -3,9 +3,9 @@ author: aofall, c-forrest, CoelacanthusHex, Early0v0, Enter-tainer, Great-design
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một modulo, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước modulo. Vì vậy, phương pháp này chủ yếu phù hợp khi modulo không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày ở đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#giai-thừa-theo-modulo-số-nguyên-tố) để tính nhanh.
+Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một modulo, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước modulo. Vì vậy, phương pháp này chủ yếu phù hợp khi modulo không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày tại đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#giai-thừa-theo-modulo-số-nguyên-tố) để tính nhanh.
 
-Theo [định lý phần dư Trung Hoa](./crt.md), bài toán lấy modulo của giai thừa có thể chuyển về trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, ta thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
+Theo [định lý phần dư Trung Hoa](./crt.md), bài toán lấy modulo của giai thừa có thể chuyển về trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
@@ -23,20 +23,20 @@ Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, c
 Định lý Wilson cho một điều kiện cần và đủ để kiểm tra một số tự nhiên có phải số nguyên tố hay không.
 
 ???+ note "Định lý Wilson"
-    Với số tự nhiên $n>1$, ta có $(n-1)!\equiv -1\pmod n$ khi và chỉ khi $n$ là số nguyên tố.
+    Với số tự nhiên $n>1$, có $(n-1)!\equiv -1\pmod n$ khi và chỉ khi $n$ là số nguyên tố.
 
 ??? note "Chứng minh"
-    Trước hết, chứng minh rằng với số nguyên tố $p$ thì $(p-1)!\equiv -1\pmod{p}$. Điều này có thể được chứng minh ngắn gọn bằng [phương trình đồng dư](./congruence-equation.md#hệ-quả-2) hoặc [căn nguyên thủy](./primitive-root.md); ở đây không trình bày hai cách đó. Sau đây là một chứng minh cần ít kiến thức chuẩn bị hơn.
+    Trước hết, chứng minh rằng với số nguyên tố $p$ thì $(p-1)!\equiv -1\pmod{p}$. Điều này có thể được chứng minh ngắn gọn bằng [phương trình đồng dư](./congruence-equation.md#hệ-quả-2) hoặc [căn nguyên thủy](./primitive-root.md); phần này không trình bày hai cách đó. Sau đây là một chứng minh cần ít kiến thức chuẩn bị hơn.
     
-    Khi $p=2$, mệnh đề hiển nhiên đúng. Xét $p\geq 3$. Ta cần chứng minh tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ (tức các lớp đồng dư khác không) bằng $\overline{-1}$. Vì mọi phần tử khác không $\overline{a}$ trong $\mathbf{Z}_p$ đều có nghịch đảo $\overline{a}^{-1}$, tích của các cặp phần tử nghịch đảo nhau trong $\mathbf{Z}_p$ bằng $\overline{1}$. Tuy nhiên, cần chú ý rằng $\overline{a}$ có thể bằng $\overline{a}^{-1}$: $\overline{a}=\overline{a}^{-1}$ khi và chỉ khi $a^2\equiv 1\pmod p$, tức là
+    Khi $p=2$, mệnh đề đúng. Xét $p\geq 3$. Cần chứng minh tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ (tức các lớp đồng dư khác không) bằng $\overline{-1}$. Vì mọi phần tử khác không $\overline{a}$ trong $\mathbf{Z}_p$ đều có nghịch đảo $\overline{a}^{-1}$, tích của các cặp phần tử nghịch đảo nhau trong $\mathbf{Z}_p$ bằng $\overline{1}$. Tuy nhiên, cần lưu ý rằng $\overline{a}$ có thể bằng $\overline{a}^{-1}$: $\overline{a}=\overline{a}^{-1}$ khi và chỉ khi $a^2\equiv 1\pmod p$, tức là
     
     $$
-    0\equiv a^2-1\equiv (a+1)(a-1),\pmod p
+    0\equiv a^2-1\equiv (a+1)(a-1)\pmod p
     $$
     
     Do đó $a\equiv 1\pmod p$ hoặc $a\equiv -1\pmod p$. Điều này cho thấy tích của tất cả phần tử trong $\mathbf{Z}_p\setminus\{\overline{0},\overline{1},\overline{-1}\}$ bằng $\overline{1}$, suy ra tích của tất cả phần tử khác không trong $\mathbf{Z}_p$ bằng $\overline{-1}$.
     
-    Ngược lại, với trường hợp $n$ là hợp số, ta cần chứng minh $(n-1)!\not\equiv-1\pmod{n}$. Dùng phản chứng, giả sử $(n-1)!\equiv -1\pmod{n}$, tức tồn tại số nguyên $k$ sao cho $(n-1)!=kn-1$. Vì $n$ là hợp số, chắc chắn tồn tại số nguyên tố $p<n$ sao cho $n=pm$, nên $(n-1)!=kpm-1\equiv -1\pmod{p}$. Nhưng trong tích $(n-1)!$ chắc chắn đã có thừa số $p$, do đó $(n-1)!\equiv 0\pmod{p}$. Mâu thuẫn này chứng minh $(n-1)!\not\equiv-1\pmod{n}$.
+    Ngược lại, với trường hợp $n$ là hợp số, cần chứng minh $(n-1)!\not\equiv-1\pmod{n}$. Dùng phản chứng, giả sử $(n-1)!\equiv -1\pmod{n}$, tức tồn tại số nguyên $q$ sao cho $(n-1)!=qn-1$. Vì $n$ là hợp số, tồn tại số nguyên tố $p<n$ sao cho $n=pm$, nên $(n-1)!=qpm-1\equiv -1\pmod{p}$. Nhưng trong tích $(n-1)!$ đã có thừa số $p$, do đó $(n-1)!\equiv 0\pmod{p}$. Mâu thuẫn này chứng minh $(n-1)!\not\equiv-1\pmod{n}$.
 
 Theo ký hiệu của bài viết này, định lý Wilson có thể viết thành $(p!)_p\equiv -1\pmod{p}$.
 
@@ -46,7 +46,7 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
 Định lý Wilson có thể được mở rộng cho modulo tổng quát.
 
 ???+ note "Định lý (Gauss)"
-    Với số tự nhiên $m>1$, ta có
+    Với số tự nhiên $m>1$, có
     
     $$
     \prod_{1\le k<m,\ k\perp m} k \equiv \pm 1 \pmod{m}.
@@ -57,7 +57,7 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
 ??? note "Chứng minh"
     Định lý này có thể được chứng minh đơn giản bằng cấu trúc của [nhóm nhân các lớp đồng dư nguyên modulo $n$](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên). Dưới đây là một chứng minh có ý tưởng tương tự nhưng sơ cấp hơn.
     
-    Với $m=2$, ta có $1!=1\equiv -1\pmod{2}$. Với các trường hợp còn lại có căn nguyên thủy, gọi một căn nguyên thủy là $g$. Khi đó mọi số nguyên dương $k<m$ và nguyên tố cùng nhau với $m$ đều có thể biểu diễn duy nhất dưới dạng $g^i\bmod m$, trong đó $0\le i<\varphi(m)$ và $\varphi(m)$ là [hàm Euler](./euler-totient.md). Kiểm tra trực tiếp cho thấy $\varphi(m)$ luôn chẵn. Vì $g^i$ và $g^{\varphi(m)-i}$ là nghịch đảo nhân của nhau, ghép cặp chúng trong tích sẽ cho
+    Với $m=2$, có $1!=1\equiv -1\pmod{2}$. Với các trường hợp còn lại có căn nguyên thủy, gọi một căn nguyên thủy là $g$. Khi đó mọi số nguyên dương $k<m$ và nguyên tố cùng nhau với $m$ đều có thể biểu diễn duy nhất dưới dạng $g^i\bmod m$, trong đó $0\le i<\varphi(m)$ và $\varphi(m)$ là [hàm Euler](./euler-totient.md). Kiểm tra trực tiếp cho thấy $\varphi(m)$ luôn chẵn. Vì $g^i$ và $g^{\varphi(m)-i}$ là nghịch đảo nhân của nhau, ghép cặp chúng trong tích sẽ cho
     
     $$
     \prod_{1\le k<m,\ k\perp m} k \equiv \prod_{i=0}^{\varphi(m)-1}g^i = g^{\varphi(m)/2}\prod_{i=1}^{\varphi(m)/2-1}g^{i}g^{\varphi(m)-i} \equiv g^{\varphi(m)/2} \pmod{m}.
@@ -65,25 +65,25 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
     
     Vì $g^{\varphi(m)/2}\bmod m$ là phần tử duy nhất khác $1\bmod{m}$ và có nghịch đảo nhân bằng chính nó, nên nó bằng $-1\bmod{m}$. Do đó phần dư trong trường hợp này bằng $-1$.
     
-    Khi modulo $m$ không có căn nguyên thủy, ta cần chứng minh phần dư bằng $1$. Trước hết phân tích thừa số nguyên tố $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$, rồi áp dụng [định lý phần dư Trung Hoa](./crt.md). Khi đó chỉ cần chứng minh
+    Khi modulo $m$ không có căn nguyên thủy, cần chứng minh phần dư bằng $1$. Trước hết phân tích thừa số nguyên tố $m=p_1^{e_1}p_2^{e_2}\cdots p_s^{e_s}$, rồi áp dụng [định lý phần dư Trung Hoa](./crt.md). Khi đó chỉ cần chứng minh
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv 1\pmod{p_j^{e_j}}
     $$
     
-    với mọi thừa số $p_j^{e_j}$. Định lý phần dư Trung Hoa cho biết mỗi tổ hợp phần dư khả dĩ $(r_1,r_2,\cdots,r_s)$, trong đó $1\le r_j<p_j^{e_j}$ và $p_j\perp r_j$, tương ứng duy nhất với một số $1\le k<m$ thỏa mãn $k\perp m$ và $k\equiv r_j\pmod{p_j^{e_j}}$. Vì vậy, với một phần dư $r_j$ cố định, có đúng ${\varphi(m)}/{\varphi(p_j^{e_j})}$ số $k$ sao cho $k\equiv r_j\pmod{p_j^{e_j}}$. Dùng điều này để nhóm tích, ta có
+    với mọi thừa số $p_j^{e_j}$. Định lý phần dư Trung Hoa cho biết mỗi tổ hợp phần dư khả dĩ $(r_1,r_2,\cdots,r_s)$, trong đó $1\le r_j<p_j^{e_j}$ và $p_j\perp r_j$, tương ứng duy nhất với một số $1\le k<m$ thỏa mãn $k\perp m$ và $k\equiv r_j\pmod{p_j^{e_j}}$. Vì vậy, với một phần dư $r_j$ cố định, có đúng ${\varphi(m)}/{\varphi(p_j^{e_j})}$ số $k$ sao cho $k\equiv r_j\pmod{p_j^{e_j}}$. Dùng điều này để nhóm tích, có
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv\left(\prod_{1\le r_j<p_j^{e_j},\ r_j\perp p_j} r_j\right)^{{\varphi(m)}/{\varphi(p_j^{e_j})}}\pmod{p_j^{e_j}}.
     $$
     
-    Để số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ là số lẻ thì bắt buộc $m/p_j^{e_j}=1,2$, vì hàm Euler $\varphi(n)$ là số chẵn với mọi $n\ge 3$. Nếu $p_j$ là số nguyên tố lẻ, do modulo $m$ không có căn nguyên thủy, chắc chắn $m/p_j^{e_j}\neq 1,2$. Nếu $p_j^{e_j}=2,4$, cũng do modulo $m$ không có căn nguyên thủy, $m/p_j^{e_j}$ chắc chắn chứa một thừa số nguyên tố lẻ, nên lớn hơn $2$. Trong cả hai trường hợp, số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}$ đều chẵn. Mặt khác, thừa số trong ngoặc ở công thức trên đã được chứng minh có phần dư $-1$ modulo $p_j^{e_j}$, nên lũy thừa đó có phần dư $1$ modulo $p_j^{e_j}$. Trường hợp còn lại chỉ là $p_j=2$ và $e_j>2$; với trường hợp này, có thể chứng minh trực tiếp rằng
+    Để số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}=\varphi(m/p_j^{e_j})$ là số lẻ thì bắt buộc $m/p_j^{e_j}=1,2$, vì hàm Euler $\varphi(n)$ là số chẵn với mọi $n\ge 3$. Nếu $p_j$ là số nguyên tố lẻ, do modulo $m$ không có căn nguyên thủy, có $m/p_j^{e_j}\neq 1,2$. Nếu $p_j^{e_j}=2,4$, cũng do modulo $m$ không có căn nguyên thủy, $m/p_j^{e_j}$ chứa một thừa số nguyên tố lẻ, nên lớn hơn $2$. Trong cả hai trường hợp, số mũ ${\varphi(m)}/{\varphi(p_j^{e_j})}$ đều chẵn. Mặt khác, thừa số trong ngoặc ở công thức trên đã được chứng minh có phần dư $-1$ modulo $p_j^{e_j}$, nên lũy thừa đó có phần dư $1$ modulo $p_j^{e_j}$. Trường hợp còn lại chỉ là $p_j=2$ và $e_j>2$; với trường hợp này, có thể chứng minh trực tiếp rằng
     
     $$
     \prod_{1\le r_j<2^{e_j},\ r_j\perp 2}r_j \equiv 1\pmod{2^{e_j}}.
     $$
     
-    Tương tự ý tưởng chứng minh ở trên, ghép cặp các số lẻ $r_j$ thỏa $1\le r_j<2^{e_j}$ với nghịch đảo của chúng. Những số không ghép cặp được phải là nghiệm của phương trình $x^2\equiv 1\pmod{2^{e_j}}$. Phương trình này có nghĩa là $2^{e_j}\mid (x-1)(x+1)$. Đặt $x=2y+1$, ta có $2^{e_j-2}\mid y(y+1)$. Vì $y$ và $y+1$ luôn có một số lẻ, một số chẵn, nên $y=t2^{e_j-2}$ hoặc $y=t2^{e_j-2}-1$. Do đó $x=t2^{e_j-1}\pm 1$, với $t$ là số nguyên. Trong các phần dư modulo $2^{e_j}$, chỉ có bốn giá trị $\pm 1$ và $2^{e_j-1}\pm 1$. Vì thế
+    Tương tự ý tưởng chứng minh ở trên, ghép cặp các số lẻ $r_j$ thỏa $1\le r_j<2^{e_j}$ với nghịch đảo của chúng. Những số không ghép cặp được phải là nghiệm của phương trình $x^2\equiv 1\pmod{2^{e_j}}$. Phương trình này có nghĩa là $2^{e_j}\mid (x-1)(x+1)$. Đặt $x=2y+1$, có $2^{e_j-2}\mid y(y+1)$. Vì $y$ và $y+1$ luôn có một số lẻ, một số chẵn, nên $y=t2^{e_j-2}$ hoặc $y=t2^{e_j-2}-1$. Do đó $x=t2^{e_j-1}\pm 1$, với $t$ là số nguyên. Trong các phần dư modulo $2^{e_j}$, chỉ có bốn giá trị $\pm 1$ và $2^{e_j-1}\pm 1$. Vì thế
     
     $$
     \prod_{1\le r_j<2^{e_j},\ r_j\perp 2}r_j \equiv (-1)(2^{e_j-1}-1)(2^{e_j-1}+1) \equiv 1\pmod{2^{e_j}}.
@@ -94,7 +94,7 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
 Trong tính toán, trường hợp modulo là lũy thừa nguyên tố đặc biệt quan trọng:
 
 ???+ note "Hệ quả"
-    Với số nguyên tố $p$ và số nguyên dương $\alpha$, ta có
+    Với số nguyên tố $p$ và số nguyên dương $\alpha$, có
     
     $$
     \prod_{1\le k<p^\alpha,\ k\perp p}k \equiv 
@@ -105,7 +105,7 @@ Trong tính toán, trường hợp modulo là lũy thừa nguyên tố đặc bi
     \pmod{p^\alpha}.
     $$
 
-Chú ý rằng vế trái không phải $(p^\alpha!)_p$, vì biểu thức sau còn cần tính cả đóng góp của các bội của $p$.
+Lưu ý rằng vế trái không phải $(p^\alpha!)_p$, vì biểu thức sau còn cần tính cả đóng góp của các bội của $p$.
 
 <span id="tính-phần-dư-của-giai-thừa"></span>
 ## Tính phần dư của giai thừa
@@ -115,7 +115,7 @@ Phần này thảo luận cách tính phần dư $(n!)_p\bmod p^{\alpha}$.
 <span id="trường-hợp-modulo-số-nguyên-tố"></span>
 ### Trường hợp modulo số nguyên tố
 
-Biểu thức $(n!)_p$ có cấu trúc đệ quy rõ ràng. Để thấy điều đó, trước hết xét một ví dụ cụ thể:
+Biểu thức $(n!)_p$ có cấu trúc đệ quy. Trước hết xét một ví dụ cụ thể:
 
 ???+ example "Ví dụ"
     Để tính $(32!)_5 \bmod{5}$, có thể thực hiện phép tính đệ quy như sau:
@@ -132,12 +132,12 @@ Biểu thức $(n!)_p$ có cấu trúc đệ quy rõ ràng. Để thấy điều
     \end{aligned}
     $$
     
-    Có thể thấy rằng nhờ tính chu kỳ của phần dư modulo $5$, ta chia được tích này thành các khối độ dài $5$; điểm khác nhau duy nhất giữa các khối là phần dư của phần tử cuối. Vì $32$ chia cho $5$ được thương $6$ và dư $2$, tích này gồm $6$ khối đầy đủ và một đoạn cuối không đầy đủ có độ dài $2$. Do đó, ta tách phần trước phần tử cuối của $6$ khối đầu tiên ra (phần này được xử lý đúng bằng định lý Wilson), nhân thêm tích của khối cuối không đầy đủ, rồi nhân với tích các phần tử cuối của $6$ khối đầu tiên. Mỗi phần tử cuối của một khối đều là bội của $5$; sau khi bỏ các lũy thừa của $5$, tích của chúng đúng bằng $(6!)_{5}\pmod{5}$. Nhờ vậy, bài toán ban đầu được chuyển thành một bài toán nhỏ hơn.
+    Nhờ tính chu kỳ của phần dư modulo $5$, tích này được chia thành các khối độ dài $5$; điểm khác nhau duy nhất giữa các khối là phần dư của phần tử cuối. Vì $32$ chia cho $5$ được thương $6$ và dư $2$, tích này gồm $6$ khối đầy đủ và một đoạn cuối không đầy đủ có độ dài $2$. Do đó, tách phần trước phần tử cuối của $6$ khối đầu tiên ra (phần này được xử lý đúng bằng định lý Wilson), nhân thêm tích của khối cuối không đầy đủ, rồi nhân với tích các phần tử cuối của $6$ khối đầu tiên. Mỗi phần tử cuối của một khối đều là bội của $5$; sau khi bỏ các lũy thừa của $5$, tích của chúng đúng bằng $(6!)_{5}\pmod{5}$. Nhờ vậy, bài toán ban đầu được chuyển thành một bài toán nhỏ hơn.
 
-Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được công thức truy hồi sau:
+Tổng quát hóa cấu trúc đệ quy trong ví dụ này, thu được công thức truy hồi sau:
 
 ???+ note "Công thức truy hồi"
-    Với số nguyên tố $p$ và số nguyên dương $n$, ta có
+    Với số nguyên tố $p$ và số nguyên dương $n$, có
     
     $$
     (n!)_p \equiv (-1)^{\left\lfloor n/p\right\rfloor}\cdot (n\bmod p)!\cdot\left(\left\lfloor n/p\right\rfloor!\right)_p\pmod{p}.
@@ -157,7 +157,7 @@ Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được cô
     
     Như vậy công thức đã được chứng minh. Sau đây là một cách giải thích cụ thể hơn cho dạng chứng minh này.
     
-    Ta cần tính giá trị của $(n!)_p\bmod p$. Tương tự ví dụ ở trên, có
+    Cần tính giá trị của $(n!)_p\bmod p$. Tương tự ví dụ ở trên, có
     
     $$
     \begin{aligned}
@@ -168,16 +168,16 @@ Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được cô
     \end{aligned}
     $$
     
-    Có thể thấy rõ rằng, ngoài khối cuối cùng, giai thừa được chia thành nhiều khối đầy đủ có cùng độ dài.
+    Ngoài khối cuối cùng, giai thừa được chia thành nhiều khối đầy đủ có cùng độ dài.
     
     $$
     \begin{aligned}
     (n!)_p&= \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{\text{lần 1}} \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 2}_{\text{lần 2}} \cdot \ldots \\
-    &\quad \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{\text{lần }p} \cdot \ldots \cdot \quad \underbrace{1 \cdot 2 \cdot \cdot \ldots \cdot (n \bmod p)}_{\text{đuôi}} \pmod{p}.
+    &\quad \cdot \underbrace{1 \cdot 2 \cdot 3 \cdot \ldots \cdot (p-2) \cdot (p-1) \cdot 1}_{\text{lần }p} \cdot \ldots \cdot \quad \underbrace{1 \cdot 2 \cdot \ldots \cdot (n \bmod p)}_{\text{đuôi}} \pmod{p}.
     \end{aligned}
     $$
     
-    Ngoại trừ phần tử cuối của mỗi khối, phần chính của mỗi khối đầy đủ là $(p-1)!\ \mathrm{mod}\ p$, có thể tính dễ dàng bằng định lý Wilson:
+    Ngoại trừ phần tử cuối của mỗi khối, phần chính của mỗi khối đầy đủ là $(p-1)!\ \mathrm{mod}\ p$, có thể tính bằng định lý Wilson:
     
     $$
     (p-1)!\equiv -1\pmod p.
@@ -187,7 +187,7 @@ Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được cô
     
     Giá trị của khối cuối không đầy đủ là $(n\bmod p)!\bmod p$, có thể tính riêng.
     
-    Phần còn lại là phần tử cuối của mỗi khối. Nếu ẩn các phần tử đã xử lý, ta thấy mẫu sau:
+    Phần còn lại là phần tử cuối của mỗi khối. Nếu ẩn các phần tử đã xử lý, sẽ thấy mẫu sau:
     
     $$
     (n!)_p = \underbrace{ \ldots \cdot 1 } \cdot \underbrace{ \ldots \cdot 2} \cdot \ldots \cdot \underbrace{ \ldots \cdot (p-1)} \cdot \underbrace{ \ldots \cdot 1 } \cdot \underbrace{ \ldots \cdot 1} \cdot \underbrace{ \ldots \cdot 2} \cdots
@@ -199,11 +199,11 @@ Tổng quát hóa cấu trúc đệ quy trong ví dụ này, ta thu được cô
     \left(\left\lfloor \frac{n}{p} \right\rfloor !\right)_p.
     $$
     
-    Nhân các phần lại với nhau, ta thu được công thức truy hồi ở trên.
+    Nhân các phần lại với nhau, thu được công thức truy hồi ở trên.
 
-Dùng công thức truy hồi này, độ sâu đệ quy là $O(\log_p n)$. Nếu mỗi lần đều tính lại hạng tử ở giữa, độ phức tạp mỗi tầng là $O(p)$, nên tổng độ phức tạp thời gian là $O(p\log_p n)$. Nếu tiền xử lý trước mọi giá trị $n!\bmod p$ với $n=1,2,\cdots,p-1$, độ phức tạp tiền xử lý là $O(p)$, mỗi tầng tính trong $O(1)$, và tổng độ phức tạp là $O(p+\log_p n)$.
+Dùng công thức truy hồi này, độ sâu đệ quy là $O(\log_p n)$. Nếu mỗi lần đều tính lại hạng tử ở giữa, độ phức tạp mỗi tầng là $O(p)$, nên tổng độ phức tạp thời gian là $O(p\log_p n)$. Nếu tiền xử lý trước mọi giá trị $n!\bmod p$ với $n=0,1,\cdots,p-1$, độ phức tạp tiền xử lý là $O(p)$, mỗi tầng tính trong $O(1)$, và tổng độ phức tạp là $O(p+\log_p n)$.
 
-Khi cài đặt, vì đây là đệ quy đuôi nên có thể viết bằng vòng lặp. Cài đặt dưới đây tiền xử lý giai thừa của $p-1$ giá trị đầu tiên; nếu cần gọi nhiều lần, có thể đưa phần tiền xử lý ra ngoài hàm.
+Khi cài đặt, vì đây là đệ quy đuôi nên có thể viết bằng vòng lặp. Cài đặt dưới đây tiền xử lý giai thừa của các giá trị từ $0$ đến $p-1$; nếu cần gọi nhiều lần, có thể đưa phần tiền xử lý ra ngoài hàm.
 
 ??? example "Cài đặt tham khảo"
     ```cpp
@@ -218,7 +218,7 @@ Nếu bộ nhớ hạn chế và không thể lưu toàn bộ giai thừa, cũng
 Với trường hợp modulo là lũy thừa nguyên tố, có thể giải tương tự trường hợp modulo số nguyên tố, chỉ cần thay định lý Wilson bằng dạng mở rộng của nó. Trong hai kết quả của phần này, ký hiệu $\pm 1$ luôn được hiểu theo định nghĩa sau: lấy $1$ khi modulo có $p=2$ và $\alpha\ge 3$, còn các trường hợp khác lấy $-1$.
 
 ???+ note "Công thức truy hồi"
-    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, ta có
+    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, có
     
     $$
     (n!)_{p} \equiv (\pm 1)^{\lfloor n/p^\alpha\rfloor}\cdot\left(\prod_{1\le j\le (n\bmod p^\alpha),\ j\perp p}j\right)\cdot(\lfloor n/p\rfloor!)_p\pmod{p^\alpha}.
@@ -239,13 +239,13 @@ Với trường hợp modulo là lũy thừa nguyên tố, có thể giải tư�
     \end{aligned}
     $$
 
-Khác với trường hợp modulo số nguyên tố, ngoài việc $-1$ có thể cần thay bằng $\pm 1$, còn phải chú ý dữ liệu tiền xử lý cũng khác. Với modulo lũy thừa nguyên tố, cần tiền xử lý tích của mọi số nguyên dương từ $1$ đến $n$ nhưng không phải bội của $p$, với mọi $n$ không vượt quá $p^\alpha$, tức là
+Khác với trường hợp modulo số nguyên tố, ngoài việc $-1$ có thể cần thay bằng $\pm 1$, dữ liệu tiền xử lý cũng khác. Với modulo lũy thừa nguyên tố, cần tiền xử lý tích của mọi số nguyên dương từ $1$ đến $n$ nhưng không phải bội của $p$, với mọi $n$ không vượt quá $p^\alpha$, tức là
 
 $$
 \prod_{1\le k\le n,\ k\perp p} k\bmod{p^\alpha}.
 $$
 
-Trong trường hợp modulo số nguyên tố, biểu thức này suy biến thành $n!\bmod p$, nhưng với lũy thừa nguyên tố tổng quát thì không còn dùng được biểu thức đó.
+Trong trường hợp modulo số nguyên tố và $0\le n<p$, biểu thức này suy biến thành $n!\bmod p$, nhưng với lũy thừa nguyên tố tổng quát thì không còn dùng được biểu thức đó.
 
 Dưới đây là ví dụ tính phần dư giai thừa theo modulo lũy thừa nguyên tố, giúp hiểu phương pháp trên:
 
@@ -264,25 +264,26 @@ Dưới đây là ví dụ tính phần dư giai thừa theo modulo lũy thừa 
     &\quad\times 1\times 2\times\underbrace{7}_{21}\times 4\times 5\times\underbrace{8}_{24}\times 7\times 8\times\underbrace{1}_{27}\\
     &\quad\times 1\times 2\times\underbrace{1}_{30}\times 4\times 5\\
     &=(1\times 2\times 4\times 5\times 7\times 8)^{3}\times (1\times 2\times 4\times 5)\\
-    &\quad\times\begin{pmatrix}\underbrace{1}_{3}\times\underbrace{2}_{6}\times\underbrace{1}_{9}\times\underbrace{4}_{12}\times\underbrace{5}_{15}\times\underbrace{2}_{18}\\\times\underbrace{7}_{21}\times\underbrace{8}_{24}\times\underbrace{1}_{27}\times\underbrace{1}_{30}\end{pmatrix}\pmod{9}.
+    &\quad\times\left(\underbrace{1}_{3}\times\underbrace{2}_{6}\times\underbrace{1}_{9}\times\underbrace{4}_{12}\times\underbrace{5}_{15}\times\underbrace{2}_{18}\right.\\
+    &\quad\left.\times\underbrace{7}_{21}\times\underbrace{8}_{24}\times\underbrace{1}_{27}\times\underbrace{1}_{30}\right)\pmod{9}.
     \end{aligned}
     $$
     
     Kết quả phân tách biểu thức $(32!)_3\bmod 9$ cũng gồm ba phần:
     
-    -   Các khối đầy đủ: tích của mọi số nguyên trong khoảng $1\sim 9$ không chia hết cho $3$, có tổng cộng $\lfloor 32/9\rfloor=3$ khối;
+    -   Các khối đầy đủ: tích của mọi số nguyên từ $1$ đến $9$ không chia hết cho $3$, có tổng cộng $\lfloor 32/9\rfloor=3$ khối;
     -   Khối cuối không đầy đủ: tích của các số nguyên không chia hết cho $3$ từ $1$ đến $32\bmod 9$;
-    -   Tích của mọi số nguyên chia hết cho $3$. So với kết quả ở dấu bằng áp chót, có thể thấy đây chính là $10$ hạng tử đầu của nó, tức $(\lfloor 32/3\rfloor!)_3\bmod 9$.
+    -   Tích của mọi số nguyên chia hết cho $3$. So với kết quả ở dấu bằng áp chót, đây chính là $10$ hạng tử đầu của nó, tức $(\lfloor 32/3\rfloor!)_3\bmod 9$.
     
     Chỉ cần tiếp tục giải đệ quy phần trong ngoặc cuối cùng, bài toán ban đầu sẽ được chuyển thành bài toán nhỏ hơn.
 
-Từ đó, ta thu được kết quả truy hồi sau:
+Từ đó, thu được kết quả truy hồi sau:
 
 ???+ note "Kết quả truy hồi"
-    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, ta có
+    Với số nguyên tố $p$ và các số nguyên dương $\alpha,n$, có
     
     $$
-    (n!)_p \equiv (\pm 1)^{\sum_{j\ge\alpha}\lfloor{n}/{p^j}\rfloor}\prod_{j\ge 0}F(\lfloor n/p^j\rfloor\bmod p^\alpha),
+    (n!)_p \equiv (\pm 1)^{\sum_{j\ge\alpha}\lfloor{n}/{p^j}\rfloor}\prod_{j\ge 0}F(\lfloor n/p^j\rfloor\bmod p^\alpha)\pmod{p^\alpha},
     $$
     
     trong đó $F(m) = \prod_{1\le k\le m,\ k\perp p} k\bmod{p^\alpha}$ và giá trị của $\pm 1$ giống như đã nêu ở trên.
@@ -322,7 +323,7 @@ Số mũ của số nguyên tố $p$ trong giai thừa $n!$ có thể được t
     n! = 1\times 2\times \cdots \times p\times \cdots \times 2p\times \cdots \times \lfloor n/p\rfloor p\times \cdots \times n.
     $$
     
-    Tích các bội của $p$ là $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$, còn $\lfloor n/p\rfloor !$ có thể tiếp tục chứa các bội của $p$. Vì vậy, với số mũ ta có quan hệ truy hồi:
+    Tích các bội của $p$ là $p\times 2p\times \cdots \times \lfloor n/p\rfloor p=p^{\lfloor n/p\rfloor }\lfloor n/p\rfloor !$, còn $\lfloor n/p\rfloor !$ có thể tiếp tục chứa các bội của $p$. Vì vậy, với số mũ có quan hệ truy hồi:
     
     $$
     \nu_p(n!) = \lfloor n/p\rfloor + \nu_p(\lfloor n/p\rfloor!).
@@ -364,10 +365,10 @@ Cài đặt tham khảo để tính số mũ của số nguyên tố trong giai 
 
 Kết quả lấy modulo của hệ số nhị thức thường tạo thành cấu trúc phân hình; ví dụ tam giác Sierpinski có thể thu được từ hệ số nhị thức modulo $2$.
 
-Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay không thực ra liên quan đến việc phép trừ hai chỉ số trong hệ cơ số $p$ có cần mượn hay không. Từ đó ta có **định lý Kummer**.
+Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay không liên quan đến việc phép trừ hai chỉ số trong hệ cơ số $p$ có cần mượn hay không. Từ đó có **định lý Kummer**.
 
 ???+ note "Định lý Kummer"
-    Số mũ của số nguyên tố $p$ trong hệ số nhị thức $\dbinom{m}{n}$ đúng bằng số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$, tức là
+    Với $0\le n\le m$, số mũ của số nguyên tố $p$ trong hệ số nhị thức $\dbinom{m}{n}$ đúng bằng số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$, tức là
     
     $$
     \nu_p\left(\dbinom{m}{n}\right)=\frac{S_p(n)+S_p(m-n)-S_p(m)}{p-1}.
@@ -376,7 +377,7 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     Đặc biệt, số mũ của $2$ trong hệ số nhị thức là $\nu_2\left(\dbinom{m}{n}\right)=S_2(n)+S_2(m-n)-S_2(m)$.
 
 ??? note "Chứng minh"
-    Trước hết chứng minh biểu thức dưới đây. Dùng công thức Legendre, ta có
+    Trước hết chứng minh biểu thức dưới đây. Dùng công thức Legendre, có
     
     $$
     \begin{aligned}
@@ -387,7 +388,7 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     \end{aligned}
     $$
     
-    Biểu thức này có thể hiểu là số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$. Nếu khi tính chữ số thứ $i$ (chữ số thấp nhất có chỉ số $1$) xảy ra trường hợp không đủ để trừ và phải mượn, thì phần trước chữ số thứ $i$ trong hiệu, tức $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$, thực chất bằng phần trước chữ số thứ $i$ của $m$, tức $\left\lfloor\dfrac{m}{p^i}\right\rfloor$, trừ đi một (đơn vị đã mượn), rồi trừ tiếp phần trước chữ số thứ $i$ của $n$, tức $\left\lfloor\dfrac{n}{p^i}\right\rfloor$. Vì vậy hiệu
+    Biểu thức này có thể hiểu là số lần cần mượn khi lấy $m$ trừ $n$ trong hệ cơ số $p$. Nếu sau khi xử lý $i$ chữ số thấp nhất xuất hiện một lần mượn sang phần còn lại, thì phần còn lại của hiệu, tức $\left\lfloor\dfrac{m-n}{p^i}\right\rfloor$, thực chất bằng phần còn lại của $m$, tức $\left\lfloor\dfrac{m}{p^i}\right\rfloor$, trừ đi một (đơn vị đã mượn), rồi trừ tiếp phần còn lại của $n$, tức $\left\lfloor\dfrac{n}{p^i}\right\rfloor$. Vì vậy hiệu
     
     $$
     \left\lfloor\dfrac{m}{p^i}\right\rfloor-\left\lfloor\dfrac{n}{p^i}\right\rfloor-\left\lfloor\dfrac{m-n}{p^i}\right\rfloor = 1
@@ -399,7 +400,7 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
 ## Bài tập ví dụ
 
 ???+ example "Bài tập [HDU 2973 - YAPTCHA](https://acm.hdu.edu.cn/showproblem.php?pid=2973)"
-    Cho $n$, hãy tính
+    Cho $n$, tính
     
     $$
     \sum_{k=1}^n\left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor
@@ -412,12 +413,12 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     (3k+6)!\equiv-1\pmod{3k+7}
     $$
     
-    Đặt $(3k+6)!+1=k(3k+7)$.
+    Đặt $(3k+6)!+1=q(3k+7)$.
     
     Khi đó
     
     $$
-    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k-\left\lfloor k-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
+    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor q-\left\lfloor q-\frac{1}{3k+7}\right\rfloor\right\rfloor=1
     $$
     
     Nếu $3k+7$ không phải số nguyên tố, thì $(3k+7)\mid(3k+6)!$, tức
@@ -426,10 +427,10 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
     (3k+6)!\equiv 0\pmod{3k+7}
     $$
     
-    Đặt $(3k+6)!=k(3k+7)$, ta có
+    Đặt $(3k+6)!=q(3k+7)$, có
     
     $$
-    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor k+\frac{1}{3k+7}-k\right\rfloor=0
+    \left\lfloor\frac{(3k+6)!+1}{3k+7}-\left\lfloor\frac{(3k+6)!}{3k+7}\right\rfloor\right\rfloor=\left\lfloor q+\frac{1}{3k+7}-q\right\rfloor=0
     $$
     
     Vì vậy
