@@ -1500,7 +1500,8 @@ public class Main {
 }
 ```
 
-Kiểu của khóa và giá trị cũng có thể thay đổi. Ví dụ `Map` cũng có thể được định nghĩa là:
+Kiểu của khóa và giá trị cũng có thể thay đổi. Ví dụ, có thể định nghĩa `Map`
+như sau:
 
 ```java
 Map<String, Set<Integer>> map = new HashMap<>();
@@ -1508,7 +1509,8 @@ Map<String, Set<Integer>> map = new HashMap<>();
 
 ## Arrays (lớp tiện ích mảng)
 
-`Arrays` là một lớp tiện ích trong `java.util` dùng để thao tác với mảng. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
+`Arrays` là một lớp tiện ích trong `java.util` dùng để thao tác với mảng. Các
+phương thức của nó đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
 
 ### Arrays.sort()
 
@@ -1552,20 +1554,32 @@ public class Main {
 Ý nghĩa của các overload theo số thứ tự:
 
 1.  Sắp xếp mảng `a`, mặc định tăng dần.
-2.  Sắp xếp đoạn chỉ định của mảng `a`, mặc định tăng dần; đoạn sắp xếp là nửa kín nửa mở `[firstIdx, lastIdx)`.
-3.  Sắp xếp mảng `a` theo cách tùy chỉnh; tham số thứ hai trừ tham số thứ nhất là giảm dần, tham số thứ nhất trừ tham số thứ hai là tăng dần. Khi dùng comparator tùy chỉnh, kiểu phần tử mảng phải là kiểu đối tượng.
-4.  Sắp xếp tùy chỉnh đoạn chỉ định của mảng `a`; đoạn sắp xếp là nửa kín nửa mở `[firstIdx, lastIdx)`. Khi dùng comparator tùy chỉnh, kiểu phần tử mảng phải là kiểu đối tượng.
+2.  Sắp xếp đoạn chỉ định của mảng `a`, mặc định tăng dần; đoạn sắp xếp là nửa
+    kín nửa mở `[firstIdx, lastIdx)`.
+3.  Sắp xếp mảng `a` theo cách tùy chỉnh. Nếu comparator trả về tham số thứ hai
+    trừ tham số thứ nhất thì kết quả giảm dần; nếu trả về tham số thứ nhất trừ
+    tham số thứ hai thì kết quả tăng dần. Khi dùng comparator tùy chỉnh, kiểu phần
+    tử mảng phải là kiểu đối tượng.
+4.  Sắp xếp tùy chỉnh đoạn chỉ định của mảng `a`; đoạn sắp xếp là nửa kín nửa mở
+    `[firstIdx, lastIdx)`. Khi dùng comparator tùy chỉnh, kiểu phần tử mảng phải
+    là kiểu đối tượng.
 5.  Tương tự 3, dùng biểu thức Lambda để rút gọn mã.
 6.  Tương tự 4, dùng biểu thức Lambda để rút gọn mã.
 
-???+ note "Hàm bên dưới của `Arrays.sort()`"
-    1.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` là kiểu dữ liệu nguyên thủy (`byte`, `short`, `char`, `int`, `long`, `double`, `float`), mặc định dùng `DualPivotQuicksort` (sắp xếp nhanh hai chốt), độ phức tạp xấu nhất có thể đạt $O(n^2)$.
-    2.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` không phải kiểu dữ liệu nguyên thủy, mặc định dùng `legacyMergeSort` và `TimSort` (sắp xếp trộn), độ phức tạp là $O(n\log n)$.
+???+ note "Cài đặt bên trong của `Arrays.sort()`"
+    1.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` là kiểu dữ liệu nguyên
+        thủy (`byte`, `short`, `char`, `int`, `long`, `double`, `float`), mặc định
+        dùng `DualPivotQuicksort` (sắp xếp nhanh hai chốt), độ phức tạp xấu nhất
+        có thể đạt $O(n^2)$.
+    2.  Khi kiểu phần tử của mảng truyền vào `Arrays.sort` không phải kiểu dữ liệu
+        nguyên thủy, mặc định dùng `legacyMergeSort` và `TimSort` (sắp xếp trộn),
+        độ phức tạp là $O(n\log n)$.
 
 Có thể kiểm chứng bằng đoạn mã sau:
 
 ???+ example "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
-    Có $n$ số nguyên. Cần chia chúng thành hai nhóm và kiểm tra có tồn tại một nhóm có độ dài nhỏ hơn nhóm kia nhưng tổng lại lớn hơn hay không.
+    Có $n$ số nguyên. Cần chia chúng thành hai nhóm và kiểm tra liệu có tồn tại
+    một nhóm có độ dài nhỏ hơn nhóm kia nhưng tổng lại lớn hơn hay không.
 
 ??? note "Mã bài ví dụ"
     ```java
@@ -1656,7 +1670,9 @@ Có thể kiểm chứng bằng đoạn mã sau:
 
 ### Arrays.binarySearch()
 
-`Arrays.binarySearch()` là phương thức tìm kiếm nhị phân trên một đoạn liên tiếp của mảng. Điều kiện tiên quyết là mảng phải có thứ tự. Độ phức tạp thời gian là $O(\log_n)$. Các overload chính như sau:
+`Arrays.binarySearch()` là phương thức tìm kiếm nhị phân trên một đoạn liên tiếp
+của mảng. Điều kiện cần là mảng phải có thứ tự. Độ phức tạp thời gian là
+$O(\log n)$. Các overload chính như sau:
 
 ```java
 import java.util.Arrays;
@@ -1698,24 +1714,34 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
 
 Ý nghĩa của các overload theo số thứ tự:
 
-1.  Tìm nhị phân trong mảng `a` xem có tồn tại `key` hay không; nếu có thì trả về chỉ số của nó. Nếu không tồn tại thì trả về một số âm.
-2.  Tìm nhị phân trong mảng `a` xem có tồn tại `key` hay không; nếu có thì trả về chỉ số của nó. Đoạn tìm kiếm là nửa kín nửa mở `[firstIdx,lastIdx)`. Nếu không tồn tại thì trả về một số âm.
+1.  Tìm nhị phân trong mảng `a` xem có tồn tại `key` hay không. Nếu có thì trả về
+    chỉ số của nó; nếu không tồn tại thì trả về một số âm.
+2.  Tìm nhị phân trong đoạn nửa kín nửa mở `[firstIdx,lastIdx)` của mảng `a`. Nếu
+    tìm thấy `key` thì trả về chỉ số của nó; nếu không tồn tại thì trả về một số
+    âm.
 
 ### Arrays.fill()
 
-Phương thức `Arrays.fill()` gán cùng một giá trị cho các phần tử trong một đoạn liên tiếp của mảng. Tham số mà nó nhận gồm mảng, `fromIndex`, `toIndex` và giá trị cần điền. Sau khi phương thức chạy, mọi phần tử trong đoạn nửa kín nửa mở `[firstIdx,lastIdx)` của mảng đều có giá trị cần điền.
+Phương thức `Arrays.fill()` gán cùng một giá trị cho các phần tử trong một đoạn
+liên tiếp của mảng. Tham số của nó gồm mảng, `fromIndex`, `toIndex` và giá trị cần
+điền. Sau khi phương thức chạy, mọi phần tử trong đoạn nửa kín nửa mở
+`[firstIdx,lastIdx)` của mảng đều có giá trị cần điền.
 
 ## Collections (lớp tiện ích tập hợp)
 
-`Collections` là một lớp tiện ích trong `java.util` dùng để thao tác với tập hợp. Các phương thức đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
+`Collections` là một lớp tiện ích trong `java.util` dùng để thao tác với tập hợp.
+Các phương thức của nó đều là phương thức tĩnh, có thể gọi trực tiếp bằng tên lớp.
 
 ### Collections.sort()
 
-Nguyên lý bên dưới của `Collections.sort()` là chuyển toàn bộ phần tử trong đó thành mảng rồi gọi `Arrays.sort()`. Sau khi sắp xếp xong, nó gán lại vào tập hợp ban đầu. Vì trong Java, kiểu phần tử của `Collection` đều là kiểu đối tượng, nên nó luôn dùng sắp xếp trộn để xử lý.
+Về cơ bản, `Collections.sort()` chuyển toàn bộ phần tử trong tập hợp thành mảng
+rồi gọi `Arrays.sort()`. Sau khi sắp xếp xong, nó gán kết quả trở lại tập hợp ban
+đầu. Vì trong Java, kiểu phần tử của `Collection` luôn là kiểu đối tượng, phương
+thức này dùng sắp xếp trộn để xử lý.
 
 Phương thức này không thể sắp xếp một đoạn chỉ định của tập hợp.
 
-Mã nguồn bên dưới:
+Mã nguồn tương ứng:
 
 ```java
 default void sort(Comparator<? super E> c) {
@@ -1731,7 +1757,8 @@ default void sort(Comparator<? super E> c) {
 
 ### Collections.binarySearch()
 
-`Collections.binarySearch()` là tìm kiếm nhị phân trên tập hợp; chức năng giống `Arrays.binarySearch()`.
+`Collections.binarySearch()` thực hiện tìm kiếm nhị phân trên tập hợp; chức năng
+tương tự `Arrays.binarySearch()`.
 
 ```java
 Collections.binarySearch(list, key);
@@ -1741,7 +1768,8 @@ Phương thức này không thể tìm kiếm trên một đoạn chỉ định.
 
 ### Collections.swap()
 
-Chức năng của `Collections.swap()` là hoán đổi phần tử ở hai vị trí chỉ định trong tập hợp.
+`Collections.swap()` dùng để hoán đổi hai phần tử ở hai vị trí chỉ định trong tập
+hợp.
 
 ```java
  Collections.swap(list, i, j);
@@ -1753,7 +1781,10 @@ Chức năng của `Collections.swap()` là hoán đổi phần tử ở hai v�
 <span id="vấn-đề-so-sánh-số"></span>
 ### Vấn đề so sánh số
 
-Trong Java, nếu chỉ xét kiểu số nguyên thủy thì `-0.0 = 0.0`. Nếu là kiểu đối tượng thì `-0.0 != 0.0`. Khi thử dùng `Set` để đếm số lượng hệ số góc, vấn đề này sẽ gây rắc rối. Cách giải quyết là cộng thêm `0.0` vào mọi hệ số góc trước khi đưa vào `Set`.
+Trong Java, nếu xét kiểu số thực nguyên thủy thì `-0.0 == 0.0`. Nếu dùng kiểu đối
+tượng thì `-0.0` và `0.0` có thể được xem là hai giá trị khác nhau khi so sánh đối
+tượng. Khi dùng `Set` để đếm số lượng hệ số góc, khác biệt này có thể gây rắc
+rối. Cách xử lý là cộng thêm `0.0` vào mọi hệ số góc trước khi đưa vào `Set`.
 
 ```java
 import java.io.PrintWriter;
