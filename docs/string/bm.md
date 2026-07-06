@@ -4,12 +4,12 @@ Kiến thức chuẩn bị: [hàm tiền tố và thuật toán KMP](./kmp.md).
 
 Thuật toán KMP khai thác thông tin khớp tiền tố đến mức tối đa.
 
-Còn ý tưởng cơ bản phía sau thuật toán BM là dùng khớp hậu tố để thu được nhiều thông tin hơn so với khớp tiền tố, từ đó thực hiện các bước nhảy ký tự nhanh hơn.
+Ý tưởng cơ bản của thuật toán BM là dùng khớp hậu tố để thu được nhiều thông tin hơn so với khớp tiền tố, từ đó thực hiện các bước nhảy ký tự nhanh hơn.
 
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Hình dung xâu mẫu $pat$ được đặt ở đầu bên trái của xâu văn bản $string$, sao cho hai ký tự đầu tiên của chúng thẳng hàng.
+Xét trường hợp xâu mẫu $pat$ được đặt ở đầu bên trái của xâu văn bản $string$, sao cho hai ký tự đầu tiên của chúng thẳng hàng.
 
 $$
 \begin{aligned}
@@ -37,7 +37,7 @@ Nếu ký tự $char$ không xuất hiện trong $pat$, không cần xét các k
 
 Tổng quát hơn, **nếu vị trí xuất hiện ngoài cùng bên phải của ký tự $char$ trong $pat$ cách cuối xâu $delta_1$ ký tự**,
 
-thì có thể bỏ qua việc so khớp và trượt thẳng $pat$ sang phải $delta_1$ ký tự: nếu trượt ít hơn $delta_1$, chỉ riêng ký tự $char$ đã không thể khớp, nên dĩ nhiên xâu mẫu $pat$ cũng không thể khớp.
+thì có thể bỏ qua việc so khớp và trượt thẳng $pat$ sang phải $delta_1$ ký tự: nếu trượt ít hơn $delta_1$, chỉ riêng ký tự $char$ đã không thể khớp, nên xâu mẫu $pat$ cũng không thể khớp.
 
 Do đó, trừ khi ký tự $char$ có thể khớp với ký tự cuối của $pat$, con trỏ trên $string$ cần nhảy qua $delta_1$ ký tự (tương đương với việc $pat$ trượt sang phải $delta_1$ ký tự). Hàm $delta_1(char)$ được xác định như sau:
 
@@ -51,7 +51,7 @@ $$
 \end{array}
 $$
 
-Cần chú ý rằng bảng này chỉ cần được tính đến vị trí $patlastpos-1$.
+Bảng này chỉ cần được tính đến vị trí $patlastpos-1$.
 
 Giả sử $char$ đã khớp với ký tự cuối của $pat$, tiếp tục kiểm tra ký tự đứng trước $char$ có khớp với ký tự áp chót của $pat$ hay không:
 
@@ -64,11 +64,9 @@ Hoặc cũng có thể sau khi đã khớp $m$ ký tự cuối của $pat$, xu�
 
 Trong **Quan sát 2**, khi đã khớp $m$ ký tự cuối của $pat$ rồi bất khớp ở ký tự thứ $m+1$ tính từ cuối, để ký tự bất khớp trong $string$ thẳng hàng với ký tự tương ứng trong $pat$,
 
-cần trượt $pat$ sang phải $k$ ký tự. Nói cách khác, cần chú ý đến ký tự sau đó $k+m$ vị trí (tức ký tự ở cuối đoạn của $pat$ sau khi trượt $k$ bước và thẳng hàng với $string$).
+cần trượt $pat$ sang phải $k$ ký tự. Nói cách khác, cần xét ký tự sau đó $k+m$ vị trí (tức ký tự ở cuối đoạn của $pat$ sau khi trượt $k$ bước và thẳng hàng với $string$).
 
-Mà $k=delta_1-m$,
-
-nên điểm chú ý trên $string$ cần nhảy sang phải $delta_1-m+m = delta_1$ ký tự.
+Vì $k=delta_1-m$, vị trí đang xét trên $string$ cần nhảy sang phải $delta_1-m+m = delta_1$ ký tự.
 
 Tuy vậy, vẫn có cơ hội bỏ qua nhiều ký tự hơn; tiếp tục xét.
 
@@ -81,7 +79,7 @@ thì sau ký tự bất khớp $char$ trong $string$ là một xâu con khớp v
 
 sao cho $subpat$ xuất hiện phía trước ký tự tương ứng với ký tự bất khớp $char$ trong $pat$ (một lần tái xuất hiện hợp lệ, plausible reoccurrence, sau đây cũng viết tắt là pr) thẳng hàng với $subpat$ trong $string$. Nếu có nhiều $subpat$ trong $pat$, theo thứ tự khớp hậu tố từ phải sang trái, lấy lần đầu tiên (rightmost plausible reoccurrence, sau đây cũng viết tắt là rpr).
 
-Giả sử lúc này $pat$ trượt sang phải $k$ ký tự (tức khoảng cách giữa $subpat$ ở cuối $pat$ và lần tái xuất hiện hợp lệ ngoài cùng bên phải của nó). Khi đó điểm chú ý trên $string$ nên trượt sang phải $k+m$ ký tự; khoảng cách này được gọi là $delta_2(j)$:
+Giả sử $pat$ trượt sang phải $k$ ký tự (tức khoảng cách giữa $subpat$ ở cuối $pat$ và lần tái xuất hiện hợp lệ ngoài cùng bên phải của nó). Khi đó vị trí đang xét trên $string$ nên trượt sang phải $k+m$ ký tự; khoảng cách này được gọi là $delta_2(j)$:
 
 Giả sử $rpr(j)$ là vị trí tái xuất hiện hợp lệ ngoài cùng bên phải của $subpat=pat[j+1\dots patlastpos]$ khi bất khớp tại $pat[j]$, với $rpr(j) < j$ (đây chỉ là định nghĩa đơn giản; phần thiết kế thuật toán bên dưới sẽ thảo luận chính xác hơn), khi đó $k=j-rpr(j),\ m=patlastpos-j$.
 
@@ -94,7 +92,7 @@ $$
 \end{array}
 $$
 
-Do đó khi xảy ra bất khớp, có thể cho điểm chú ý trên $string$ nhảy sang phải $\max(delta_1,delta_2)$ ký tự.
+Do đó khi xảy ra bất khớp, có thể cho vị trí đang xét trên $string$ nhảy sang phải $\max(delta_1,delta_2)$ ký tự.
 
 <span id="quy-trình"></span>
 ## Quy trình
@@ -129,7 +127,7 @@ $$
 \end{aligned}
 $$
 
-Lúc này *char*: $\texttt{T}$ đã khớp, dịch con trỏ trên $string$ sang trái một bước để tiếp tục so khớp:
+Khi đó *char*: $\texttt{T}$ đã khớp, dịch con trỏ trên $string$ sang trái một bước để tiếp tục so khớp:
 
 $$
 \begin{aligned}
@@ -149,7 +147,7 @@ $$
 \end{aligned}
 $$
 
-Lúc này $char$ lại khớp với ký tự cuối $\texttt{T}$ của $pat$. Con trỏ trên $string$ khớp sang trái đến $\texttt{A}$, tiếp tục khớp sang trái rồi phát hiện bất khớp tại ký tự $\texttt{-}$:
+Khi đó $char$ lại khớp với ký tự cuối $\texttt{T}$ của $pat$. Con trỏ trên $string$ khớp sang trái đến $\texttt{A}$, tiếp tục khớp sang trái rồi phát hiện bất khớp tại ký tự $\texttt{-}$:
 
 $$
 \begin{aligned}
@@ -159,9 +157,9 @@ $$
 \end{aligned}
 $$
 
-Về trực giác, lúc này theo **Quan sát 3(b)**, dịch $pat$ sang phải $k=5$ ký tự để hậu tố $\texttt{AT}$ thẳng hàng. Cách dịch này cho con trỏ $string$ dịch được xa nhất; khi đó $delta_2=k+patlastpos-j=5+6-4=7$, tức con trỏ trên $string$ dịch sang phải 7 ký tự.
+Theo trực giác của **Quan sát 3(b)**, dịch $pat$ sang phải $k=5$ ký tự để hậu tố $\texttt{AT}$ thẳng hàng. Cách dịch này cho con trỏ $string$ dịch được xa nhất; khi đó $delta_2=k+patlastpos-j=5+6-4=7$, tức con trỏ trên $string$ dịch sang phải 7 ký tự.
 
-Nhìn theo logic hình thức, lúc này $delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$,
+Theo lập luận hình thức, $delta_1=7-1-2=4,\ delta_2=7, \max(delta_1,delta_2)= 7$,
 điều này cũng ủng hộ bước nhảy theo **Quan sát 3(b)**:
 
 $$
@@ -172,7 +170,7 @@ $$
 \end{aligned}
 $$
 
-Lúc này mọi ký tự trên $pat$ đều bằng ký tự tương ứng trên $string$, tức đã tìm được một lần khớp của $pat$ trong $string$. Tổng cộng chỉ cần 14 lần truy cập $string$, trong đó 7 lần là các phép so sánh bắt buộc để hoàn thành một lần khớp thành công ($patlen=7$), 7 lần còn lại giúp bỏ qua 22 ký tự.
+Khi đó mọi ký tự trên $pat$ đều bằng ký tự tương ứng trên $string$, tức đã tìm được một lần khớp của $pat$ trong $string$. Tổng cộng chỉ cần 14 lần truy cập $string$, trong đó 7 lần là các phép so sánh bắt buộc để hoàn thành một lần khớp thành công ($patlen=7$), 7 lần còn lại giúp bỏ qua 22 ký tự.
 
 <span id="thiết-kế-thuật-toán"></span>
 ## Thiết kế thuật toán
@@ -214,11 +212,11 @@ Theo định nghĩa ở trên, $rpr(j)$ biểu thị vị trí tái xuất hiệ
 
 Nói cách khác, cần tìm một $k$ tốt nhất sao cho $pat[k\dots k+patlastpos-j-1]=pat[j+1\dots patlastpos]$. Ngoài ra còn phải xét hai trường hợp đặc biệt:
 
-1.  Khi $k<0$, điều này tương đương với việc thêm một đoạn tiền tố ảo phía trước $pat$, và thực ra vẫn phù hợp với nguyên lý nhảy của $delta_2$.
+1.  Khi $k<0$, điều này tương đương với việc thêm một đoạn tiền tố ảo phía trước $pat$, và vẫn phù hợp với nguyên lý nhảy của $delta_2$.
 2.  Khi $k>0$, nếu $pat[k-1]=pat[j]$, thì $pat[k\dots k+patlastpos-j-1]$ này không thể được xem là một lần tái xuất hiện hợp lệ của $subpat$.
     Lý do là bản thân $pat[j]$ là ký tự bất khớp, nên sau khi trượt $pat$ sang phải $k$ ký tự, quá trình khớp hậu tố vẫn sẽ bất khớp tại $pat[k-1]$.
 
-Cũng cần chú ý hai ràng buộc:
+Cũng cần xét hai ràng buộc:
 
 1.  $k < j$. Vì khi $k=j$ thì $pat[k]=pat[j]$, ký tự bất khớp tại $pat[j]$ cũng sẽ bất khớp tại $pat[k]$.
 2.  Do $delta_2(patlastpos)= 0$, quy ước $rpr(patlastpos) = patlastpos$.
@@ -255,7 +253,7 @@ Với $rpr(7)$, $subpat$ là $\texttt{C}$. Tương tự, do $string[7]=string[1]
 
 Với $rpr(8)$, theo định nghĩa của $delta_2$, $rpr(patlastpos)=patlastpos$, do đó $rpr(8)=8$.
 
-Bây giờ xét thêm một ví dụ khác:
+Tiếp tục xét thêm một ví dụ khác:
 
 $$
 \begin{aligned}
@@ -329,7 +327,7 @@ i \gets patlastpos \\
 \end{array}
 $$
 
-$large$ có nhiều vai trò: một mặt nó hỗ trợ bước nhảy ký tự xấu nhanh tương tự thuật toán Horspool sẽ giới thiệu sau, mặt khác nó giúp phát hiện việc tìm kiếm trong xâu đã kết thúc.
+$large$ có hai vai trò: vừa hỗ trợ bước nhảy ký tự xấu nhanh tương tự thuật toán Horspool sẽ giới thiệu sau, vừa giúp phát hiện việc tìm kiếm trong xâu đã kết thúc.
 
 Sau cải tiến, so với thuật toán gốc, khi thực hiện bước nhảy của **Quan sát 1** không còn phải tính thừa $delta_2$ mỗi lần, nhờ đó hiệu năng tìm kiếm trên các bảng chữ cái thông thường được cải thiện rõ rệt.
 
@@ -350,7 +348,7 @@ Trước khi giới thiệu thuật toán xây dựng $delta_2$ của Knuth, có
 
 1.  Với mỗi vị trí `i` trong đoạn `[0, patlen)`, xác định khoảng vị trí tái xuất hiện theo độ dài của `subpat`, tức `[-subpatlen, i]`.
 2.  So sánh từng ký tự của các vị trí tái xuất hiện khả dĩ theo thứ tự từ phải sang trái, để tìm vị trí tái xuất hiện ngoài cùng bên phải của $subpat$ thỏa yêu cầu của $delta_2$.
-3.  Cuối cùng đừng quên đặt $delta_2(lastpos)= 0$.
+3.  Cuối cùng đặt $delta_2(lastpos)= 0$.
 
 ???+ note "Cài đặt"
     ```Rust
@@ -409,7 +407,7 @@ Thuật toán vét cạn này có độ phức tạp thời gian $O(n^3)$.
 
 Tiếp theo là thuật toán hiệu quả có độ phức tạp thời gian $O(n)$, nhưng cần thêm $O(n)$ bộ nhớ.
 
-Dù Knuth đã đưa ra phương pháp xây dựng này vào năm 1977, phiên bản xây dựng gốc của ông có một khiếm khuyết: với một số $pat$, nó thực ra không tạo được $delta_2$ đúng theo định nghĩa.
+Dù Knuth đã đưa ra phương pháp xây dựng này vào năm 1977, phiên bản xây dựng gốc của ông có một khiếm khuyết: với một số $pat$, nó không tạo được $delta_2$ đúng theo định nghĩa.
 
 Rytter đã sửa điểm này trong bài báo đăng trên *SIAM Journal on Computing* năm 1980[^rytter]. Thuật toán xây dựng $delta_2$ như sau:
 
@@ -447,13 +445,13 @@ $$
 
 Lần tái xuất hiện của $delta_2(3)$ là $\texttt{[(XX)ABC]XXXABC}$; trong hậu tố của $subpat$ $\texttt{XXABC}$ và tiền tố của $pat$, phần bằng nhau là $\texttt{ABC}$.
 
-Thực ra, mấu chốt để tính cả trường hợp thứ hai và thứ ba đều là tính và áp dụng hàm tiền tố.
+Mấu chốt để tính cả trường hợp thứ hai và thứ ba đều là tính và áp dụng hàm tiền tố.
 
 Chỉ cần giá trị $j$ khiến $subpat$ chứa hậu tố bằng nhau này là sẽ thu được một lần tái xuất hiện của $subpat$ thuộc trường hợp thứ hai. Với ví dụ trên, chỉ cần $j \leqslant 5$.
 
 Khi $j = 5$, đó chính là trường hợp biên mà $subpat$ nằm hoàn toàn ở đầu $pat$.
 
-Có thể tính $delta_2(j)$ lúc này:
+Khi đó có thể tính $delta_2(j)$:
 
 Giả sử độ dài của cặp tiền tố - hậu tố bằng nhau này là $\textit{prefixlen}$. Khi đó $subpatlen = patlastpos - j$, nên độ dài phần nằm bên trái $pat$ là $subpatlen-\textit{prefixlen}$.
 
@@ -487,7 +485,7 @@ Hơn nữa, theo định nghĩa của $delta_2$, ký tự tiếp theo (tức ký
 
 Điều này gợi ý rằng có thể dùng một quá trình tương tự tính hàm tiền tố để xử lý trường hợp thứ ba, chỉ khác là dùng hàm tiền tố theo chiều ngược trái phải:
 
--   Hai con trỏ lần lượt chỉ vào đầu trái của xâu con và vị trí "tiền tố" của tiền tố - hậu tố chung dài nhất của xâu con, rồi di chuyển từ phải sang trái. Khi hai ký tự đang chỉ đến bằng nhau, tiếp tục di chuyển; lúc này tương đương với việc "tiền tố" dài ra.
+-   Hai con trỏ lần lượt chỉ vào đầu trái của xâu con và vị trí "tiền tố" của tiền tố - hậu tố chung dài nhất của xâu con, rồi di chuyển từ phải sang trái. Khi hai ký tự đang chỉ đến bằng nhau, tiếp tục di chuyển; thao tác này tương đương với việc "tiền tố" dài ra.
 -   Khi hai ký tự khác nhau, phần đã bằng nhau trước đó thỏa yêu cầu của $delta_2$ đối với một lần tái xuất hiện. Sau đó lùi con trỏ trỏ vào vị trí "tiền tố" cho đến khi tạo được cặp ký tự bằng nhau mới hoặc đi ra ngoài biên.
 
 Giống hàm tiền tố, cần một mảng phụ để lùi trạng thái; có thể dùng lại không gian của mảng tiền tố đã sinh ra khi tính trường hợp thứ hai.
@@ -575,9 +573,9 @@ Sau một lần khớp thành công trong thuật toán gốc, nếu chỉ đơn
 
 Ví dụ cực đoan: $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$.
 
-Để xử lý điều này, Knuth từng đề xuất dùng một tập trạng thái "hữu hạn" để ghi lại các ký tự có độ dài $patlen$. Thuật toán này bảo đảm mỗi ký tự trên $string$ được so sánh nhiều nhất một lần, nhưng cái giá là tập trạng thái "hữu hạn" ấy có thể không nhỏ; với một $pat$ mà các ký tự đôi một khác nhau, cần $\dfrac{1}{2}m^{2}+m$ trạng thái.
+Để xử lý điều này, Knuth từng đề xuất dùng một tập trạng thái "hữu hạn" để ghi lại các ký tự có độ dài $patlen$. Thuật toán này bảo đảm mỗi ký tự trên $string$ được so sánh nhiều nhất một lần, nhưng đổi lại tập trạng thái "hữu hạn" ấy có thể không nhỏ; với một $pat$ mà các ký tự đôi một khác nhau, cần $\dfrac{1}{2}m^{2}+m$ trạng thái.
 
-Dưới đây là ý tưởng Galil[^galil-rule], đơn giản hơn và không cần thêm chi phí tiền xử lý.
+Ý tưởng Galil[^galil-rule] đơn giản hơn và không cần thêm chi phí tiền xử lý.
 
 <span id="quy-tắc-galil"></span>
 ### Quy tắc Galil
@@ -588,7 +586,7 @@ Ví dụ, $pat: \texttt{ABCABCAB}$ là tiền tố của $\texttt{ABCABCABC}$, t
 
 $pat$ ít nhất có một chu kỳ với độ dài bằng chính nó. Quy ước chu kỳ ngắn nhất có độ dài $k$, với $k\leq patlen$.
 
-Trong quá trình tìm kiếm, nếu $pat$ đã hoàn tất một lần khớp thành công, thì theo tính chất chu kỳ, thực ra chỉ cần dịch $string$ sang phải $k$ ký tự và so sánh xem $k$ ký tự đó có tương ứng bằng nhau hay không là có thể trực tiếp xác định có thêm một lần khớp của $pat$ hay không.
+Trong quá trình tìm kiếm, nếu $pat$ đã hoàn tất một lần khớp thành công, thì theo tính chất chu kỳ, chỉ cần dịch $string$ sang phải $k$ ký tự và so sánh xem $k$ ký tự đó có tương ứng bằng nhau hay không là có thể trực tiếp xác định có thêm một lần khớp của $pat$ hay không.
 
 Để tính độ dài chu kỳ ngắn nhất này, giả sử đã biết một cặp tiền tố - hậu tố bằng nhau của $pat$, có độ dài $\textit{prefixlen}$. Khi đó $pat[i] = pat[i+(patlen-\textit{prefixlen})]$, nên thu được một chu kỳ có độ dài $patlen-\textit{prefixlen}$.
 
@@ -675,7 +673,7 @@ Khi biết cặp tiền tố - hậu tố bằng nhau dài nhất của $pat$, s
 
 Từ góc độ thực tế, trường hợp xấu nhất trên lý thuyết không dễ ảnh hưởng đến hiệu năng. Ngay cả khi kiểm thử trên văn bản ngẫu nhiên với bảng chữ cái rất nhỏ chỉ có 4 ký tự, ảnh hưởng của trường hợp xấu nhất này cũng nhỏ đến mức khó quan sát.
 
-Vì vậy nếu không được thiết kế tốt, việc dùng quy tắc Galil có thể làm giảm nhẹ hiệu năng trung bình. Nhưng với một số $pat$ và $string$ cực kỳ đặc biệt, chẳng hạn ví dụ $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$, việc áp dụng quy tắc Galil thật sự có thể cải thiện hiệu năng lên nhiều lần.
+Vì vậy nếu không được thiết kế tốt, việc dùng quy tắc Galil có thể làm giảm nhẹ hiệu năng trung bình. Nhưng với một số $pat$ và $string$ cực kỳ đặc biệt, chẳng hạn ví dụ $pat$: $\texttt{AAA}$, $string$: $\texttt{AAAAA}\dots$, việc áp dụng quy tắc Galil có thể cải thiện hiệu năng lên nhiều lần.
 
 <span id="các-thuật-toán-cải-tiến"></span>
 ## Các thuật toán cải tiến
@@ -786,7 +784,7 @@ Thuật toán này kết hợp Horspool và Sunday. Đây là thuật toán `fin
 
     Nếu ký tự này nằm trong $pat$, dùng $delta_1$ tại ký tự ở vị trí $patlastpos$ để thực hiện bước nhảy Horspool.
 
-Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ nhớ, thuật toán sẽ có các cách cài đặt rất khác nhau.
+Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ nhớ, thuật toán sẽ có các cách cài đặt khác nhau đáng kể.
 
 <span id="phiên-bản-tiết-kiệm-thời-gian"></span>
 #### Phiên bản tiết kiệm thời gian
@@ -866,7 +864,7 @@ Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ 
     }
     ```
 
-Phiên bản B5S này có hiệu năng rất lý tưởng; trong loạt thuật toán khớp hậu tố đang được giới thiệu, nó thường là phiên bản nhanh nhất trong các trường hợp thông thường.
+Phiên bản B5S này có hiệu năng tốt; trong loạt thuật toán khớp hậu tố đang được giới thiệu, nó thường là phiên bản nhanh nhất trong các trường hợp thông thường.
 
 <span id="phiên-bản-tiết-kiệm-bộ-nhớ"></span>
 #### Phiên bản tiết kiệm bộ nhớ
@@ -902,11 +900,11 @@ Phiên bản này cũng được cài đặt trong `stringlib` của CPython. N�
 
     Về mặt lý thuyết, với cài đặt "bộ lọc Bloom" ở trên, khi độ dài $pat$ là 50 byte, xác suất FP khoảng 0.5; khi độ dài $pat$ là 10 byte, xác suất FP khoảng 0.15.
 
-    Tuy nhiên đây không phải một bộ lọc Bloom chuẩn. Trước hết, nó không dùng một hàm băm thật sự; thực chất nó chỉ là một phép ánh xạ ký tự, ánh xạ byte 0-255 thành số được tạo từ sáu bit thấp của byte đó.
+    Tuy nhiên đây không phải một bộ lọc Bloom chuẩn. Trước hết, nó không dùng một hàm băm đúng nghĩa; thực chất nó chỉ là một phép ánh xạ ký tự, ánh xạ byte 0-255 thành số được tạo từ sáu bit thấp của byte đó.
 
-    Nhưng xét đến việc đang tìm kiếm ký tự trong bộ nhớ, sự đơn giản hóa này rất quan trọng. Ngay cả khi dùng thuật toán băm phi mật mã nhanh nhất hiện biết là [xxHash](https://cyan4973.github.io/xxHash/), thời gian tính toán cần thiết vẫn cao hơn nó một bậc độ lớn.
+    Nhưng xét đến việc đang tìm kiếm ký tự trong bộ nhớ, sự đơn giản hóa này có vai trò quan trọng. Ngay cả khi dùng thuật toán băm phi mật mã nhanh nhất hiện biết là [xxHash](https://cyan4973.github.io/xxHash/), thời gian tính toán cần thiết vẫn cao hơn nó một bậc độ lớn.
 
-    Ngoài ra, khi $pat$ ngắn hơn 30 byte, để đạt xác suất FP tốt nhất, cần nhiều hơn một hàm băm. Nhưng làm vậy không mấy ý nghĩa, vì chỉ cần một mảng chứa hai số `u128` là đã có thể xây dựng bảng ký tự cho toàn bộ bảng chữ cái.
+    Ngoài ra, khi $pat$ ngắn hơn 30 byte, để đạt xác suất FP tốt nhất, cần nhiều hơn một hàm băm. Nhưng cách này không mang lại nhiều lợi ích, vì chỉ cần một mảng chứa hai số `u128` là đã có thể xây dựng bảng ký tự cho toàn bộ bảng chữ cái.
 
 2.  Dùng $delta_1(pat[patlastpos])$ thay cho toàn bộ $delta_1$.
 
@@ -992,16 +990,16 @@ Phiên bản này cũng được cài đặt trong `stringlib` của CPython. N�
         }
         ```
 
-    So với các thuật toán khớp hậu tố phía trước, phiên bản này không nhanh bằng nhưng chênh lệch không lớn. Nhờ độ phức tạp bộ nhớ rất tốt, tối đa chỉ hai số nguyên `u64`, hiệu năng của nó vẫn tốt hơn KMP.
+    So với các thuật toán khớp hậu tố phía trước, phiên bản này không nhanh bằng nhưng chênh lệch không lớn. Nhờ độ phức tạp bộ nhớ thấp, tối đa chỉ hai số nguyên `u64`, hiệu năng của nó vẫn tốt hơn KMP.
 
 <span id="phân-tích-lý-thuyết"></span>
 ## Phân tích lý thuyết
 
-Dưới đây là biểu hiện của các thuật toán trên bảng chữ cái thông thường. Trục tung tương tự chi phí thực thi (`cost` chỉ chi phí khi bất khớp sau khi đã khớp thành công m ký tự, `skip` chỉ xác suất dịch sang phải k ký tự khi xảy ra bất khớp); giá trị càng nhỏ thì hiệu năng càng tốt. Trục hoành là độ dài của xâu mẫu $pat$:
+Các biểu đồ sau mô tả hiệu năng của các thuật toán trên bảng chữ cái thông thường. Trục tung tương tự chi phí thực thi (`cost` chỉ chi phí khi bất khớp sau khi đã khớp thành công m ký tự, `skip` chỉ xác suất dịch sang phải k ký tự khi xảy ra bất khớp); giá trị càng nhỏ thì hiệu năng càng tốt. Trục hoành là độ dài của xâu mẫu $pat$:
 
 ![Biểu đồ so sánh hiệu năng các thuật toán tìm kiếm xâu](./images/BM/plot256.svg)
 
-Biểu hiện trên bảng chữ cái nhỏ hơn (chuỗi cặp base DNA {A, C, T, G}):
+Trường hợp bảng chữ cái nhỏ hơn (chuỗi cặp base DNA {A, C, T, G}):
 
 ![Biểu đồ so sánh hiệu năng thuật toán tìm kiếm xâu trên bảng chữ cái nhỏ](./images/BM/plot4.svg)
 
@@ -1009,7 +1007,7 @@ Tóm lại, trên các bảng chữ cái lớn hơn, chẳng hạn trong quá tr
 
 Mặt khác, trên bảng chữ cái nhỏ hơn, vai trò của $delta_1$ giảm xuống, còn vai trò của $delta_2$ được thể hiện rõ hơn.
 
-Nếu có đủ không gian dư, thuật toán Boyer-Moore đầy đủ với độ phức tạp bộ nhớ $O(m)$ tổng quát hơn và có biểu hiện tổng hợp tốt nhất.
+Nếu có đủ không gian dư, thuật toán Boyer-Moore đầy đủ với độ phức tạp bộ nhớ $O(m)$ tổng quát hơn và có hiệu năng tổng hợp tốt nhất.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

@@ -8,7 +8,7 @@ Một mặt, khi tự ra đề, rất khó để tạo ra bài có độ khó v�
 
 ### Có thái độ nghiêm túc và có trách nhiệm
 
-Ra đề là để người khác làm. So với việc thể hiện bản thân, mục tiêu quan trọng hơn là phục vụ người khác. Thi đấu thuật toán là cuộc thi giữa các thí sinh, không phải cuộc đối đầu giữa người ra đề và người làm bài. Vì vậy, ra đề không nên lấy việc "đánh gục" thí sinh làm mục tiêu (dĩ nhiên, chống AK hợp lý và độ phân hóa tốt cũng rất quan trọng), mà nên giúp thí sinh thu được điều gì đó trong cuộc thi. Việc dành đủ thời gian và công sức để học cách ra đề, rồi ra đề một cách nghiêm túc và có trách nhiệm, là rất quan trọng.
+Ra đề là để người khác làm. So với việc thể hiện bản thân, mục tiêu quan trọng hơn là phục vụ người khác. Thi đấu thuật toán là cuộc thi giữa các thí sinh, không phải cuộc đối đầu giữa người ra đề và người làm bài. Vì vậy, ra đề không nên lấy việc "đánh gục" thí sinh làm mục tiêu; chống AK hợp lý và độ phân hóa tốt vẫn rất quan trọng, nhưng bài thi nên giúp thí sinh thu được điều gì đó trong cuộc thi. Việc dành đủ thời gian và công sức để học cách ra đề, rồi ra đề một cách nghiêm túc và có trách nhiệm, là rất quan trọng.
 
 ### Sẵn sàng bỏ ra rất nhiều thời gian
 
@@ -26,7 +26,7 @@ Bài viết này giới thiệu toàn bộ quy trình ra đề từ hai góc đ�
 
 1.  Được gợi cảm hứng từ các bài đã có (nhưng không được sao chép hoặc tăng cường một cách vô nghĩa, chẳng hạn: chuyển một bài về dãy lên cactus).
 2.  Được gợi cảm hứng từ các kiến thức đã học (nhưng không được ghép các kiến thức rời rạc một cách vô liên quan).
-3.  Được gợi cảm hứng từ đời sống/trò chơi (nhưng chú ý đừng biến trò chơi thành một bài mô phỏng lớn).
+3.  Được gợi cảm hứng từ đời sống/trò chơi (nhưng tránh biến trò chơi thành một bài mô phỏng lớn).
 4.  Không rõ vì sao, tự nhiên nghĩ ra một bài.
 
 ### Những ý tưởng như thế nào là không tốt
@@ -108,7 +108,7 @@ Trên mạng có rất nhiều hướng dẫn LaTeX, chẳng hạn:
 -   [Tổng hợp công thức toán LaTeX](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
 -   [Các lệnh và ký hiệu LaTeX](https://blog.csdn.net/anxiaoxi45/article/details/39449445)
 
-Khi sử dụng, cần chú ý [yêu cầu định dạng công thức LaTeX](../intro/format.md).
+Khi sử dụng, cần tuân thủ [yêu cầu định dạng công thức LaTeX](../intro/format.md).
 
 ### Bối cảnh bài toán
 
@@ -140,7 +140,7 @@ Cần tránh để đề bài có cách hiểu sai nhưng vẫn tự hợp lý h
 
 Để thuận tiện cho thí sinh làm bài, trong định dạng vào ra tốt nhất nên giải thích ý nghĩa cụ thể của từng biến, trừ khi ý nghĩa của biến rất dài và không thể nói rõ trong một câu (lúc này có thể viết "ý nghĩa xem trong mô tả bài toán").
 
-Cần đặc biệt chú ý rằng nếu đầu ra có số thập phân, nên cố gắng dùng [SPJ](#special-judge) để giới hạn độ lớn sai số, thay vì yêu cầu "giữ lại x chữ số sau dấu thập phân".
+Với đầu ra có số thập phân, nên cố gắng dùng [SPJ](#special-judge) để giới hạn độ lớn sai số, thay vì yêu cầu "giữ lại x chữ số sau dấu thập phân".
 
 "Giữ lại x chữ số sau dấu thập phân" có thể tạo ra yêu cầu độ chính xác vô hạn. Ví dụ: yêu cầu giữ lại ba chữ số sau dấu thập phân, đáp án thật là $0.0015$. Khi đó chỉ cần có sai số bất kỳ khiến đáp án tính được nhỏ hơn $0.0015$, dù đáp án tính được là $0.00149999\cdots$ thì cũng sẽ in ra đáp án sai.
 
@@ -221,7 +221,7 @@ Cần chắc rằng lời giải chuẩn có thể chạy qua **bất kỳ bộ 
     
     Nếu nhất định phải yêu cầu dữ liệu được sinh ngẫu nhiên, cần chỉ rõ thao tác sinh ngẫu nhiên cụ thể. Ví dụ, khi sinh một cây, là chọn ngẫu nhiên đỉnh cha hay sinh ngẫu nhiên dãy Prüfer.
     
-    Cần chú ý rằng thuật toán không tất định và thuật toán phụ thuộc vào tính ngẫu nhiên của dữ liệu là khác nhau. Loại trước có thể cho lời giải đúng với xác suất rất cao trên dữ liệu bất kỳ, còn loại sau đúng với phần lớn dữ liệu nhưng không thể đúng trên một số dữ liệu đặc biệt.
+    Cần phân biệt thuật toán không tất định với thuật toán phụ thuộc vào tính ngẫu nhiên của dữ liệu. Loại trước có thể cho lời giải đúng với xác suất rất cao trên dữ liệu bất kỳ, còn loại sau đúng với phần lớn dữ liệu nhưng không thể đúng trên một số dữ liệu đặc biệt.
 
 ### Ví dụ
 
@@ -255,11 +255,11 @@ Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 2.  Nếu cuộc thi cho phép dùng Java, phải để Java có thể qua.
 3.  Không nên để lời giải sai vượt qua (trừ khi thật sự không chặn được, hoặc muốn cho một loại lời giải sai nào đó qua).
 
-Để vừa cho qua các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Nhưng cần chú ý rằng đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu chưa chắc đã làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
+Để vừa cho qua các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
 
 Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để khiến các lời giải sai tương đối tốt và lời giải đúng có hằng số lớn không qua toàn bộ, nhưng vẫn nhận được điểm thành phần khá cao.
 
-Cần chú ý rằng khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để vượt qua hay không.
+Khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để vượt qua hay không.
 
 Thông thường, giới hạn bộ nhớ nên đặt đủ lớn, trừ khi lời giải có độ phức tạp bộ nhớ tốt hơn thật sự rất khéo và đáng để chặn các lời giải dùng nhiều bộ nhớ. Trong trường hợp này có thể cân nhắc đặt một phần điểm với giới hạn bộ nhớ rộng hơn. Cần lưu ý rằng nếu không muốn chặn các lời giải tiêu tốn nhiều bộ nhớ, các bài về cấu trúc dữ liệu thường cần đặt giới hạn bộ nhớ lớn hơn.
 
@@ -448,7 +448,7 @@ Bài yêu cầu in phương án và bài yêu cầu in số thực là hai dạn
 
 Checker thường được viết bằng Testlib. Vì checker phải xử lý đủ loại đầu ra không hợp lệ, nó cần độ vững rất cao; nếu không dùng Testlib thì rất khó viết checker tốt.
 
-Khi viết checker cần chú ý hai điểm sau:
+Khi viết checker cần xử lý hai điểm sau:
 
 1.  Cần xử lý mọi loại đầu ra không hợp lệ, vì vậy phải kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình kiểm tra, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
 2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong checker (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là Testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
@@ -504,7 +504,7 @@ Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng giữ đ�
 
 ### Phân bổ kiến thức của bài
 
-Một cuộc thi nên cố gắng bao phủ phạm vi kiến thức tương đối rộng (tất nhiên trừ các cuộc thi luyện tập chuyên đề).
+Một cuộc thi nên cố gắng bao phủ phạm vi kiến thức tương đối rộng, ngoại trừ các cuộc thi luyện tập chuyên đề.
 
 Phản ví dụ kinh điển: CTS2019, bao phủ nhiều kiến thức như quy hoạch động, kỳ vọng, đếm tổ hợp, nguyên lý bao hàm-loại trừ, đa thức, v.v.
 
@@ -531,7 +531,7 @@ Codeforces là một trong những trang web thi đấu thuật toán nổi ti�
 
 #### Gửi đề xuất cuộc thi
 
-Sau khi có tư cách ra đề, ở thanh bên có thể thấy nút [Propose a contest/problems](http://codeforces.com/proposals/new-contest).
+Sau khi có tư cách ra đề, thanh bên sẽ hiển thị nút [Propose a contest/problems](http://codeforces.com/proposals/new-contest).
 
 Nhấn vào đó, trước hết viết một đề xuất cuộc thi (viết trong PROPOSE A CONTEST), sau đó viết đề xuất bài và thêm vào cuộc thi.
 
@@ -550,7 +550,7 @@ Liên hệ với quản trị có hai tác dụng:
 
 Cách liên hệ chính quy là gửi đơn trong hệ thống đề xuất dưới dạng đề xuất; sau khi quản trị bắt đầu xét duyệt, thảo luận ở bên dưới đề xuất dưới dạng bình luận.
 
-Trên thực tế, nếu đề xuất lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (thật ra trên CF có viết "Đừng gửi tin nhắn riêng hoặc email cho điều phối viên", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
+Trong thực tế, nếu đề xuất lâu không được duyệt, có thể cân nhắc nhắn tin riêng cho quản trị (mặc dù trên CF có viết "Đừng gửi tin nhắn riêng hoặc email cho điều phối viên", nhưng 300iq trong [bình luận](http://codeforces.com/blog/entry/64077#comment-478933) nói rằng có thể nhắn tin riêng cho anh ấy).
 
 ### Comet OJ
 

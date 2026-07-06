@@ -75,7 +75,7 @@ Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 
 -   Chuỗi thực trong cây gốc: các nút nằm trong cùng một Splay của cây phụ trợ.
 -   Chuỗi ảo trong cây gốc: trong cây phụ trợ, `Father` của Splay chứa nút con trỏ tới nút cha, nhưng hai con của nút cha đều không trỏ tới nút con.
--   Chú ý: gốc của cây gốc không nhất thiết là gốc của cây phụ trợ.
+-   Lưu ý: gốc của cây gốc không nhất thiết là gốc của cây phụ trợ.
 -   Con trỏ `Father` trong cây gốc không giống con trỏ `Father` trong cây phụ trợ.
 -   Cây phụ trợ có thể đổi gốc tùy ý miễn vẫn thỏa các tính chất của cây phụ trợ và Splay.
 -   Chuyển đổi giữa chuỗi ảo và chuỗi thực có thể thực hiện thuận tiện trên cây phụ trợ; đây chính là cách duy trì động phân rã cây theo chuỗi.
@@ -253,7 +253,7 @@ int Access(int x) {
 }
 ```
 
-`Access()` thực ra rất đơn giản, chỉ gồm bốn bước:
+`Access()` khá đơn giản, chỉ gồm bốn bước:
 
 1.  Xoay nút hiện tại lên gốc.
 2.  Đổi con thành nút trước đó.
@@ -263,7 +263,7 @@ int Access(int x) {
 Phiên bản `Access` trong phần này còn có giá trị trả về. Giá trị này tương đương chỉ số nút cha của cạnh ảo trong lần chuyển đổi chuỗi ảo/thực cuối cùng. Nó có hai ý nghĩa:
 
 -   Khi thực hiện hai thao tác `Access` liên tiếp, giá trị trả về của thao tác `Access` thứ hai bằng LCA của hai nút đó.
--   Biểu thị gốc của Splay chứa chuỗi từ $x$ tới gốc. Nút này chắc chắn đã được xoay lên gốc và cha của nó chắc chắn rỗng.
+-   Biểu thị gốc của Splay chứa chuỗi từ $x$ tới gốc. Nút này đã được xoay lên gốc và cha của nó rỗng.
 
 ### `Update()`
 
@@ -277,7 +277,7 @@ void Update(int p) {
 
 ### `makeRoot()`
 
--   Tầm quan trọng của `Make_Root()` không hề kém `Access()`. Khi cần duy trì thông tin đường đi, chắc chắn sẽ có trường hợp độ sâu trên đường đi không tăng nghiêm ngặt; theo tính chất của AuxTree, kiểu đường đi này không thể xuất hiện trong một Splay.
+-   Tầm quan trọng của `Make_Root()` không hề kém `Access()`. Khi cần duy trì thông tin đường đi, sẽ có trường hợp độ sâu trên đường đi không tăng nghiêm ngặt; theo tính chất của AuxTree, kiểu đường đi này không thể xuất hiện trong một Splay.
 -   Lúc này cần dùng `Make_Root()`.
 -   Tác dụng của `Make_Root()` là biến điểm được chỉ định thành gốc của cây gốc. Xét cách cài đặt thao tác này.
 -   Giả sử giá trị trả về của `Access(x)` là $y$, khi đó đường đi từ $x$ tới gốc hiện tại vừa đúng tạo thành một Splay, và gốc của Splay này là $y$.
@@ -295,7 +295,7 @@ void makeRoot(int p) {
 
 ### `Link()`
 
--   `Link` hai điểm thật ra rất đơn giản: trước hết `Make_Root(x)`, sau đó cho cha của $x$ trỏ tới $y$. Thao tác này không được xảy ra trong cùng một cây, nên cần kiểm tra trước.
+-   `Link` hai điểm khá đơn giản: trước hết `Make_Root(x)`, sau đó cho cha của $x$ trỏ tới $y$. Thao tác này không được xảy ra trong cùng một cây, nên cần kiểm tra trước.
 
 ```cpp
 void Link(int x, int p) {
@@ -314,7 +314,7 @@ void Link(int x, int p) {
 ### `Cut()`
 
 -   `Cut` có hai trường hợp: bảo đảm hợp lệ và không nhất thiết bảo đảm hợp lệ.
--   Nếu bảo đảm hợp lệ, trực tiếp `Split(x, y)`. Lúc này $y$ là gốc, $x$ chắc chắn là con của nó, chỉ cần ngắt liên kết hai chiều. Ví dụ:
+-   Nếu bảo đảm hợp lệ, trực tiếp `Split(x, y)`. Lúc này $y$ là gốc, $x$ là con của nó, chỉ cần ngắt liên kết hai chiều. Ví dụ:
 
 ```cpp
 void Cut(int x, int p) { makeRoot(x), Access(p), Splay(p), ls = f[x] = 0; }
@@ -336,7 +336,7 @@ Phần cài đặt cụ thể xin để lại như một bài tập suy nghĩ. K
 
 -   `Find()` tìm gốc của **cây gốc** chứa $x$; đừng nhầm gốc cây gốc với gốc cây phụ trợ. Sau `Access(p)`, tiếp tục `Splay(p)`. Khi đó gốc là nút có độ sâu nhỏ nhất trong cây, chỉ cần đi liên tục sang con trái và `PushDown` trên đường đi.
 -   Đi cho tới khi không còn `ls`, rất đơn giản.
--   Chú ý, sau mỗi lần truy vấn cần `Splay` nút kết quả tìm được lên trên để bảo đảm độ phức tạp.
+-   Sau mỗi lần truy vấn cần `Splay` nút kết quả tìm được lên trên để bảo đảm độ phức tạp.
 
 ```cpp
 int Find(int p) {
@@ -414,7 +414,7 @@ Bài này yêu cầu thực hiện cộng cây con, nhân cây con và tính t�
 
 Khi gắn và đẩy xuống đánh dấu cộng, lượng thay đổi của tổng trọng số cây con liên quan tới số nút trong cây con, nên còn phải duy trì kích thước cây con `siz`.
 
-Khi đẩy đánh dấu xuống, cần chú ý thứ tự: đẩy đánh dấu nhân trước, rồi đến đánh dấu cộng. Hai loại đánh dấu đảo cây con và cộng/nhân cây con không xung đột.
+Khi đẩy đánh dấu xuống, thứ tự cần là: đẩy đánh dấu nhân trước, rồi đến đánh dấu cộng. Hai loại đánh dấu đảo cây con và cộng/nhân cây con không xung đột.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -703,13 +703,13 @@ Nếu cần co mỗi thành phần song liên thông cạnh thành một điểm
     
     $1<n<3\times 10^4,1<m<10^5,0\le q\le 4\times 10^4$
 
-Có thể thấy, số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ đều phải đi qua bằng số nút trên đường đi giữa điểm chứa $u$ và điểm chứa $v$ sau khi co mọi thành phần song liên thông cạnh thành điểm, trừ $1$.
+Số cạnh mà mọi đường đi khả dĩ giữa hai điểm $u,v$ đều phải đi qua bằng số nút trên đường đi giữa điểm chứa $u$ và điểm chứa $v$ sau khi co mọi thành phần song liên thông cạnh thành điểm, trừ $1$.
 
 Vì thao tác xóa cạnh trong bài không dễ xử lý, xét xử lý ngoại tuyến theo chiều ngược, biến xóa cạnh thành thêm cạnh.
 
 Khi thêm một cạnh, nếu hai điểm ban đầu không liên thông, nối hai điểm trên LCT; ngược lại, trích xuất đường đi giữa hai điểm này trên LCT trước khi thêm cạnh, duyệt cây con tương ứng trên cây phụ trợ, tương đương duyệt đường đi đó, rồi hợp nhất các điểm này và dùng DSU để duy trì thông tin hợp nhất.
 
-Dùng phần tử đại diện của DSU sau khi hợp nhất để thay thế đường đi ban đầu trên cây. Chú ý rằng trong mọi thao tác sau đó, cần tìm phần tử đại diện trong DSU của điểm thao tác rồi mới thao tác.
+Dùng phần tử đại diện của DSU sau khi hợp nhất để thay thế đường đi ban đầu trên cây. Trong mọi thao tác sau đó, cần tìm phần tử đại diện trong DSU của điểm thao tác rồi mới thao tác.
 
 ??? note "Mã tham khảo"
     ```cpp
