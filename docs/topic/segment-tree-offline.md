@@ -68,7 +68,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     ??? note "Ý tưởng giải"
         Dùng DSU duy trì tính chẵn lẻ để kiểm tra một đồ thị có phải là đồ thị hai phía hay không, sau đó áp dụng trực tiếp chia để trị bằng cây đoạn.
         
-        Chú ý DSU có thể khôi phục trạng thái không được nén đường, chỉ có thể hợp nhất theo hạng.
+        Lưu ý rằng DSU có thể khôi phục trạng thái không được nén đường, chỉ có thể hợp nhất theo hạng.
     
     ??? note "Mã tham khảo"
         ```cpp
@@ -78,7 +78,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 ???+ note "Ràng buộc màu"
     Cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, có $k$ màu được đánh số từ $0\sim k-1$, mỗi cạnh có một màu.
     
-    Với mỗi màu, hãy xác định rằng nếu xóa tất cả cạnh có màu đó thì đồ thị thu được có liên thông không? Có phải là một cây không?
+    Với mỗi màu, cần xác định rằng nếu xóa tất cả cạnh có màu đó thì đồ thị thu được có liên thông không? Có phải là một cây không?
     
     In ra số lượng màu sao cho sau khi xóa, đồ thị vẫn liên thông, và số lượng màu sao cho sau khi xóa, đồ thị là một cây.
     
