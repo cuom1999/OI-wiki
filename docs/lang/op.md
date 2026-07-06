@@ -18,29 +18,29 @@ author: aofall, greyqz, Ir1d, Link-cute, Marcythm, ouuan, Shen-Linwood, sshwy, S
     có hai toán hạng là `1` và `2`. Ngoài ra, trong C++ còn có một toán tử ba
     ngôi duy nhất là `?:`.
 
-Trong các toán tử số học, có hai toán tử một ngôi (dương, âm) và năm toán tử hai
-ngôi (nhân, chia, lấy phần dư, cộng, trừ). Các toán tử một ngôi có độ ưu tiên
-cao nhất.
+Trong nhóm toán tử số học, có hai toán tử một ngôi (dương, âm) và năm toán tử hai
+ngôi (nhân, chia, lấy phần dư, cộng, trừ). Các toán tử một ngôi có độ ưu tiên cao
+hơn các toán tử số học hai ngôi.
 
-Toán tử modulo `%` có nghĩa là tính phần dư khi chia hai số nguyên.
+Toán tử modulo `%` dùng để tính phần dư khi chia hai số nguyên.
 
-Khi `-` là toán tử hai ngôi, nó là toán tử trừ, ví dụ `2-1`; khi là toán tử một
-ngôi, nó là toán tử lấy giá trị âm, ví dụ `-1`.
+Khi `-` là toán tử hai ngôi, nó biểu thị phép trừ, ví dụ `2 - 1`; khi là toán tử
+một ngôi, nó biểu thị giá trị âm, ví dụ `-1`.
 
 Cách dùng như sau:
 
 `op = x - y * z`
 
 Giá trị tính được của `op` tuân theo quy tắc ưu tiên cộng, trừ, nhân, chia trong
-toán học: trước hết thực hiện phép có độ ưu tiên cao; nếu cùng độ ưu tiên thì
-tính theo tính kết hợp của toán tử; dấu ngoặc có thể thay đổi thứ tự tính.
+toán học: trước hết thực hiện phép có độ ưu tiên cao; nếu cùng độ ưu tiên thì tính
+theo tính kết hợp của toán tử; dấu ngoặc có thể thay đổi thứ tự tính.
 
 ### Chuyển đổi kiểu trong phép toán số học
 
 Với toán tử số học hai ngôi, nếu hai toán hạng có cùng kiểu, sẽ không xảy ra
-[chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu), và kết quả phép toán có kiểu đó.
-Nếu hai toán hạng không cùng kiểu, chuyển đổi kiểu sẽ xảy ra để đưa chúng về một
-kiểu thống nhất. Quy tắc chuyển đổi được trình bày tại
+[chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu), và kết quả phép toán có kiểu đó. Nếu
+hai toán hạng không cùng kiểu, chuyển đổi kiểu sẽ xảy ra để đưa chúng về một kiểu
+thống nhất. Quy tắc chuyển đổi được trình bày tại
 [chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu).
 
 Ví dụ, với một biến số nguyên (`int`) $x$ và một biến số thực dấu phẩy động độ
@@ -68,11 +68,10 @@ Xem thêm: [phép toán bit](../math/bit.md#phép-toán-bit).
 | `>>`          | dịch phải theo bit |
 
 Ý nghĩa của phép toán bit được trình bày ở trang [phép toán bit](../math/bit.md).
-Cần chú ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép
-đảo bit); AND theo bit, OR theo bit và XOR còn thấp hơn toán tử so sánh (xem
-[bảng tổng hợp độ ưu tiên toán tử C++](#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c)).
-Vì vậy, khi dùng các toán tử này, nên thêm ngoặc nếu thứ tự tính không thật rõ
-ràng.
+Cần chú ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép đảo
+bit); AND theo bit, OR theo bit và XOR còn thấp hơn toán tử so sánh (xem
+[bảng tổng hợp độ ưu tiên toán tử C++](#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c)). Vì
+vậy, khi dùng các toán tử này, nên thêm ngoặc nếu thứ tự tính không thật rõ ràng.
 
 Trong phép dịch bit, nếu xuất hiện các trường hợp sau thì hành vi không xác định:
 
@@ -87,18 +86,18 @@ thể được biểu diễn bởi kiểu của số ban đầu; nếu không, h
 định.[^note1] Dịch trái một số âm cũng là hành vi không xác định.[^note2]
 
 Với phép dịch phải, các bit dư ở bên phải sẽ bị loại bỏ, còn phía bên trái phức
-tạp hơn: với số không dấu, bên trái được điền $0$[^note3]; với số có dấu, cách
-xử lý phụ thuộc vào chuẩn C++ và triển khai cụ thể, xem chú thích ở sau.[^note4]
+tạp hơn: với số không dấu, bên trái được điền $0$[^note3]; với số có dấu, cách xử
+lý phụ thuộc vào chuẩn C++ và triển khai cụ thể, xem chú thích ở sau.[^note4]
 
 ## Toán tử tự tăng/tự giảm
 
-Đôi khi cần tăng một biến thêm 1 (tự tăng) hoặc giảm đi 1 (tự giảm). Khi đó
-toán tử tự tăng `++` và tự giảm `--` sẽ được dùng.
+Đôi khi cần tăng một biến thêm 1 (tự tăng) hoặc giảm đi 1 (tự giảm). Khi đó có
+thể dùng toán tử tự tăng `++` và tự giảm `--`.
 
-Toán tử tự tăng/tự giảm có thể đặt trước hoặc sau biến. Đặt trước biến gọi là
-dạng tiền tố, đặt sau biến gọi là dạng hậu tố. Khi dùng riêng lẻ, hai dạng này
-gần như tương đương; nếu cần dùng giá trị của cả biểu thức thì cần lưu ý như
-trong ví dụ sau. Có thể tham khảo thêm phần ví dụ trong [tham chiếu](./reference.md).
+Toán tử tự tăng/tự giảm có thể đặt trước hoặc sau biến. Đặt trước biến gọi là dạng
+tiền tố, đặt sau biến gọi là dạng hậu tố. Khi dùng riêng lẻ, hai dạng này gần như
+tương đương; nếu cần dùng giá trị của cả biểu thức thì cần lưu ý như trong ví dụ
+sau. Có thể tham khảo thêm phần ví dụ trong [tham chiếu](./reference.md).
 
 ```cpp
 i = 100;
@@ -129,9 +128,9 @@ thành `op -= 2`, `op = op * 2` có thể viết thành `op *= 2`.
 
 ## Toán tử điều kiện
 
-Toán tử điều kiện là dạng viết tắt của câu lệnh `if`. Trong `a ? b : c`, nếu
-biểu thức `a` đúng thì kết quả của biểu thức điều kiện này là `b`, ngược lại kết
-quả là `c`.
+Toán tử điều kiện là dạng biểu thức tương tự một câu lệnh `if` đơn giản. Trong
+`a ? b : c`, nếu biểu thức `a` đúng thì kết quả của biểu thức điều kiện là `b`,
+ngược lại kết quả là `c`.
 
 ## Toán tử so sánh
 
@@ -144,13 +143,13 @@ quả là `c`.
 | `==`    | bằng |
 | `!=`    | khác |
 
-Trong đó cần đặc biệt phân biệt toán tử bằng `==` với toán tử gán `=`,
-điều này đặc biệt quan trọng trong câu lệnh kiểm tra điều kiện.
+Trong đó cần đặc biệt phân biệt toán tử bằng `==` với toán tử gán `=`; điều này
+đặc biệt quan trọng trong câu lệnh kiểm tra điều kiện.
 
 `if (op = 1)` và `if (op == 1)` trông có vẻ giống nhau, nhưng chức năng thực tế
-khác hẳn. Câu thứ nhất gán giá trị cho `op`; nếu giá trị được gán khác 0 thì
-được xem là đúng, nên điều kiện luôn thỏa mãn và không còn tác dụng kiểm tra. Câu
-thứ hai mới là kiểm tra giá trị của `op`.
+khác hẳn. Câu thứ nhất gán giá trị cho `op`; nếu giá trị được gán khác 0 thì được
+xem là đúng, nên điều kiện luôn thỏa mãn và không còn tác dụng kiểm tra. Câu thứ
+hai mới là kiểm tra giá trị của `op`.
 
 ## Toán tử logic
 
@@ -169,14 +168,14 @@ Result = !op1;  // nếu op1 sai thì Result đúng
 ```
 
 Toán tử **dựng sẵn** `&&` và `||` thực hiện đánh giá ngắn mạch: nếu sau khi đánh
-giá toán hạng thứ nhất đã biết kết quả thì không đánh giá toán hạng thứ hai.
-Toán tử được nạp chồng không có tính chất này và luôn đánh giá cả hai toán hạng.
+giá toán hạng thứ nhất đã biết kết quả thì không đánh giá toán hạng thứ hai. Toán
+tử được nạp chồng không có tính chất này và luôn đánh giá cả hai toán hạng.
 
 ## Toán tử dấu phẩy
 
-Toán tử dấu phẩy có thể nối nhiều biểu thức. Các biểu thức này được tính lần
-lượt từ trái sang phải, và giá trị của toàn bộ biểu thức là giá trị của biểu thức
-cuối cùng. Biểu thức dấu phẩy có độ ưu tiên **thấp nhất** trong tất cả toán tử.
+Toán tử dấu phẩy có thể nối nhiều biểu thức. Các biểu thức này được tính lần lượt
+từ trái sang phải, và giá trị của toàn bộ biểu thức là giá trị của biểu thức cuối
+cùng. Biểu thức dấu phẩy có độ ưu tiên **thấp nhất** trong tất cả toán tử.
 
 ```cpp
 exp1, exp2, exp3;  // giá trị cuối cùng là kết quả của exp3.
@@ -205,9 +204,8 @@ Result = (1 + 2, 3 + 4, 5 + 6);
 Các toán tử này dùng để truy cập thành viên của đối tượng hoặc truy cập bộ nhớ.
 Trong các toán tử ở bảng trên, `.` không thể được nạp chồng, còn `[]`, `&`, `*`
 và `->` có thể được nạp chồng. Với nội dung liên quan đến `&`, `*` và `->`, nên
-đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Phần
-này cũng lược bỏ hai toán tử ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
-xem tại
+đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Phần này
+cũng lược bỏ hai toán tử ít dùng là `.*` và `->*`; cách dùng cụ thể có thể xem tại
 [sổ tay ngôn ngữ C++](https://en.cppreference.com/w/cpp/language/operator_member_access).
 
 ```cpp
