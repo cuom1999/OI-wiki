@@ -10,7 +10,7 @@ Trước hết xem hình sau:
 
 ![Ví dụ cây trie biểu diễn các xâu](./images/trie1.png)
 
-Có thể thấy cây trie này dùng cạnh để biểu diễn chữ cái, và đường đi từ gốc đến một đỉnh nào đó trên cây biểu diễn một xâu. Ví dụ, $1\to4\to 8\to 12$ biểu diễn xâu `caa`.
+Cây trie này dùng cạnh để biểu diễn chữ cái, và đường đi từ gốc đến một đỉnh nào đó trên cây biểu diễn một xâu. Ví dụ, $1\to4\to 8\to 12$ biểu diễn xâu `caa`.
 
 Cấu trúc trie rất dễ hiểu. Dùng $\delta(u,c)$ để chỉ đỉnh tiếp theo mà ký tự $c$ của đỉnh $u$ trỏ đến; nói cách khác, đó là đỉnh của xâu thu được khi thêm một ký tự $c$ vào sau xâu mà đỉnh $u$ biểu diễn. (Phạm vi giá trị của $c$ phụ thuộc vào kích thước bảng chữ cái, không nhất thiết là $0\sim 26$.)
 
@@ -202,7 +202,7 @@ void maintain(int o) {
 
 Mã chèn và xóa rất giống nhau.
 
-Những điểm cần chú ý:
+Những điểm cần lưu ý:
 
 -   `MAXH` là độ sâu của trie, tức là bắt buộc khoảng cách từ mọi lá đến gốc đều bằng `MAXH`. Với một số giá trị nhỏ, đôi khi không cần xây sâu đến vậy (ví dụ: nếu chèn số `4`, tách thành nhị phân là `100`, thì từ gốc chỉ cần chèn ba bit `001`), nhưng vẫn bắt buộc chèn `MAXH` bit. Mục đích là để xử lý nhớ bit khi cộng `+1` toàn cục. Ví dụ: số ban đầu là `3` (`11`), sau khi tăng thành `4` (`100`); nếu lúc chèn `3` chỉ chèn `2` bit thì phần nhớ này sẽ bị mất.
 
@@ -290,9 +290,9 @@ Nhắc lại định nghĩa của `w[o]`: `w[o]` chỉ số lượng giá trị 
 
 Đây là thao tác hợp nhất hai 01-trie nói trên, đồng thời hợp nhất các thông tin được duy trì.
 
-Có lẽ không có nhiều bài viết về hợp nhất trie. Thực ra ý tưởng hợp nhất trie rất giống hợp nhất cây phân đoạn; có thể tìm "hợp nhất cây phân đoạn" để học cách hợp nhất trie.
+Có lẽ không có nhiều bài viết về hợp nhất trie. Ý tưởng hợp nhất trie rất giống hợp nhất cây phân đoạn; có thể tìm "hợp nhất cây phân đoạn" để học cách hợp nhất trie.
 
-Hợp nhất trie thực ra rất đơn giản. Xét một hàm `int merge(int a, int b)`: hàm này nhận vào chỉ số hai đỉnh nằm cùng một vị trí tương đối trong hai trie, và trả về chỉ số đỉnh sau khi hợp nhất xong.
+Hợp nhất trie khá đơn giản. Xét một hàm `int merge(int a, int b)`: hàm này nhận vào chỉ số hai đỉnh nằm cùng một vị trí tương đối trong hai trie, và trả về chỉ số đỉnh sau khi hợp nhất xong.
 
 <span id="quá-trình_1"></span>
 #### Quá trình
@@ -330,7 +330,7 @@ int merge(int a, int b) {
 }
 ```
 
-Thực ra trie nào cũng có thể hợp nhất. Nói cách khác, thao tác hợp nhất trie không chỉ giới hạn ở 01-trie.
+Trie nào cũng có thể hợp nhất. Nói cách khác, thao tác hợp nhất trie không chỉ giới hạn ở 01-trie.
 
 ???+ note "[luogu-P6018 Ynoi2010 Fusion tree](https://www.luogu.com.cn/problem/P6018)"
     Cho một cây $n$ đỉnh, mỗi đỉnh có trọng số. Có $m$ thao tác.

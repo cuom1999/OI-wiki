@@ -80,7 +80,7 @@ $$
 
 Các thành viên dữ liệu trong cấu trúc này lần lượt là tập sinh $S$ của nhóm hiện tại, quỹ đạo cơ bản $\Delta$, hệ đại diện lớp kề tương ứng $T$, và bộ ổn định $C'$ được lưu như một cấu trúc con lồng nhau. Bộ ổn định $C'$ cũng là một cấu trúc như vậy. Toàn bộ nhóm thực tế được lưu trong một cấu trúc phân tầng, mỗi tầng mô tả một nhóm trong chuỗi bộ ổn định. Tầng trong cùng là cấu trúc rỗng, biểu diễn $G^{(k)}=\{e\}$.
 
-Trong mã giả, các thành viên của cấu trúc dữ liệu này có thể được truy cập lần lượt bằng $C.generators$, $C.orbit$, $C.transversal$ và $C.next$. Phần tử đầu tiên của quỹ đạo $C.orbit[0]$ mặc định là điểm cơ sở $\beta$, còn đại diện lớp kề tương ứng $C.transversal[\beta]$ mặc định là biến đổi đồng nhất $e$. Cần chú ý rằng tuy tại đây dùng chỉ số mảng để truy cập phần tử trong quỹ đạo và hệ đại diện lớp kề, chúng không nhất thiết phải được lưu bằng mảng; đúng hơn, nên hiểu rằng chúng cung cấp cách truy cập phần tử đầu của quỹ đạo và cách tra cứu đại diện lớp kề tương ứng theo điểm trong quỹ đạo. Các chi tiết cài đặt cụ thể sẽ được bàn ở phần sau.
+Trong mã giả, các thành viên của cấu trúc dữ liệu này có thể được truy cập lần lượt bằng $C.generators$, $C.orbit$, $C.transversal$ và $C.next$. Phần tử đầu tiên của quỹ đạo $C.orbit[0]$ mặc định là điểm cơ sở $\beta$, còn đại diện lớp kề tương ứng $C.transversal[\beta]$ mặc định là biến đổi đồng nhất $e$. Tuy tại đây dùng chỉ số mảng để truy cập phần tử trong quỹ đạo và hệ đại diện lớp kề, chúng không nhất thiết phải được lưu bằng mảng; đúng hơn, nên hiểu rằng chúng cung cấp cách truy cập phần tử đầu của quỹ đạo và cách tra cứu đại diện lớp kề tương ứng theo điểm trong quỹ đạo. Các chi tiết cài đặt cụ thể sẽ được bàn ở phần sau.
 
 <span id="ứng-dụng"></span>
 ### Ứng dụng
@@ -103,7 +103,7 @@ Do đó, chỉ cần nhân kích thước của tất cả các hệ đại di�
 
 Nếu đã biết cơ sở và tập sinh mạnh của nhóm $G$, cũng có thể xác định một hoán vị $h$ có thuộc $G$ hay không. Bài toán này được gọi là **kiểm tra thành viên** (membership testing).
 
-Bài toán này có thể giải đệ quy. Để xác định $h\in G^{(i-1)}$, trước hết cần tìm đại diện $t\in T_i$ của lớp kề của $G^{(i)}$ chứa $h$. Nếu tìm được, đặt $h'=ht^{-1}$, khi đó $h=h't$ và $h\in G^{(i-1)}$ tương đương với $h'\in G^{(i)}$; bài toán chuyển thành xác định $h'\in G^{(i)}$. Nếu không tìm được $t$ như vậy, hoặc đã đệ quy đến $G^{(k)}=\{e\}$ nhưng $h\neq e$, kết luận $h\notin G$. Thực ra, quá trình này không chỉ xác định $h\in G$, mà trong trường hợp $h\in G$ còn biểu diễn được $h$ thành tích của một dãy đại diện lớp kề $t_k\cdots t_2t_1$, với $t_i\in T_i$. Đối với các phần tử của $G$, biểu diễn như vậy tồn tại và duy nhất. Điều này một lần nữa chứng minh công thức tính cấp của nhóm bên trên là đúng.
+Bài toán này có thể giải đệ quy. Để xác định $h\in G^{(i-1)}$, trước hết cần tìm đại diện $t\in T_i$ của lớp kề của $G^{(i)}$ chứa $h$. Nếu tìm được, đặt $h'=ht^{-1}$, khi đó $h=h't$ và $h\in G^{(i-1)}$ tương đương với $h'\in G^{(i)}$; bài toán chuyển thành xác định $h'\in G^{(i)}$. Nếu không tìm được $t$ như vậy, hoặc đã đệ quy đến $G^{(k)}=\{e\}$ nhưng $h\neq e$, kết luận $h\notin G$. Quá trình này không chỉ xác định $h\in G$, mà trong trường hợp $h\in G$ còn biểu diễn được $h$ thành tích của một dãy đại diện lớp kề $t_k\cdots t_2t_1$, với $t_i\in T_i$. Đối với các phần tử của $G$, biểu diễn như vậy tồn tại và duy nhất. Điều này một lần nữa chứng minh công thức tính cấp của nhóm bên trên là đúng.
 
 Viết quá trình trên thành mã giả:
 
@@ -264,7 +264,7 @@ $$
 
 phần tử. Trong trường hợp tổng quát, cận trên này đạt được.[^upper-bound] Tuy nhiên, với các nhóm hữu hạn cần xử lý trong thực tế, cận này khá lỏng: phần lớn các phần tử sinh Schreier mới thu được đều trùng với phần tử sinh đã có, hoặc có thể hợp thành từ các phần tử sinh trước đó.
 
-Vì quy trình cơ bản của Schreier-Sims có thể cài đặt bằng cách đệ quy gọi thuật toán tính quỹ đạo và bộ ổn định bên trên, đến đây thực ra đã có một cách cài đặt thô sơ của Schreier-Sims. Nhưng nếu không lọc bớt, số lượng phần tử sinh Schreier tăng theo cấp số mũ: lặp lại $O(|S_{i}|)=O(|S_{i-1}||T_i|)$ cho thấy kích thước tập sinh của bộ ổn định trong cùng sẽ đạt $O(|S||G|)$. Điều này phi lý về mặt hiệu quả, vì bộ ổn định trong cùng là $\{e\}$.
+Vì quy trình cơ bản của Schreier-Sims có thể cài đặt bằng cách đệ quy gọi thuật toán tính quỹ đạo và bộ ổn định bên trên, đến bước này đã có một cách cài đặt thô sơ của Schreier-Sims. Nhưng nếu không lọc bớt, số lượng phần tử sinh Schreier tăng theo cấp số mũ: lặp lại $O(|S_{i}|)=O(|S_{i-1}||T_i|)$ cho thấy kích thước tập sinh của bộ ổn định trong cùng sẽ đạt $O(|S||G|)$. Điều này phi lý về mặt hiệu quả, vì bộ ổn định trong cùng là $\{e\}$.
 
 Công trình của Sims đưa ra cách khống chế tốc độ tăng của số phần tử sinh Schreier; nó bảo đảm tập sinh mạnh cuối cùng $\bar S$ có kích thước $O(n^2)$. Nhờ vậy có thể tính cơ sở và tập sinh mạnh trong thời gian đa thức.
 
@@ -280,9 +280,9 @@ Tối ưu cốt lõi của Schreier-Sims so với thuật toán thô sơ ở tr�
 
 Nhưng điều kiện tiền đề để làm như vậy là, dựa trên các phần tử sinh Schreier đã sinh ra của nhóm hiện tại, chuỗi bộ ổn định (hay cơ sở và tập sinh mạnh) của nhóm mà chúng sinh ra đã được xây dựng sẵn. Điều này có nghĩa là mỗi khi thêm một phần tử sinh Schreier mới vào tập sinh của bộ ổn định, cần duy trì đồng bộ chuỗi bộ ổn định bên trong để dùng cho các lần sàng lọc sau. Tuy nhiên, mỗi lần tầng hiện tại chèn thêm một phần tử sinh, có thể sinh ra nhiều phần tử sinh Schreier, nên có thể phải cập nhật cấu trúc bên trong nhiều lần; mỗi cập nhật ở cấu trúc bên trong lại có thể kéo theo nhiều cập nhật ở các cấu trúc sâu hơn.
 
-Có vẻ như vấn đề bùng nổ theo cấp số mũ nêu trên vẫn tồn tại. Thực ra không phải. Vì đã sàng lọc trước, một tầng chỉ được cập nhật khi phần tử sinh sắp thêm thật sự làm nhóm được lưu ở tầng đó lớn hơn. Do đó, số lần cập nhật của một tầng thực chất bằng số lần nhóm mà tầng đó lưu tăng nghiêm ngặt. Nhưng một nhóm có kích thước $|G|$ có chuỗi nhóm con dài nhất không quá $\log|G|$, vì định lý Lagrange bảo đảm mỗi khi chuỗi nhóm con dài thêm một mức, kích thước nhóm ít nhất tăng gấp đôi. Vì vậy, mỗi tầng chỉ cập nhật tối đa $\log|G|$ lần, và kích thước tập sinh mạnh cuối cùng $\bar S$ là $|B|\log|G|$.
+Có vẻ như vấn đề bùng nổ theo cấp số mũ nêu trên vẫn tồn tại. Tuy nhiên, do đã sàng lọc trước, một tầng chỉ được cập nhật khi phần tử sinh sắp thêm thật sự làm nhóm được lưu ở tầng đó lớn hơn. Do đó, số lần cập nhật của một tầng thực chất bằng số lần nhóm mà tầng đó lưu tăng nghiêm ngặt. Nhưng một nhóm có kích thước $|G|$ có chuỗi nhóm con dài nhất không quá $\log|G|$, vì định lý Lagrange bảo đảm mỗi khi chuỗi nhóm con dài thêm một mức, kích thước nhóm ít nhất tăng gấp đôi. Vì vậy, mỗi tầng chỉ cập nhật tối đa $\log|G|$ lần, và kích thước tập sinh mạnh cuối cùng $\bar S$ là $|B|\log|G|$.
 
-Ước lượng này còn có thể cải tiến. Vì nhóm $G$ đang xét đã biết là nhóm con của nhóm đối xứng bậc $n$, $S_n$, nên độ dài chuỗi nhóm con của $G$ không vượt quá độ dài chuỗi nhóm con của $S_n$. Có thể chứng minh[^subgroup-chain] rằng độ dài của một chuỗi nhóm con tăng nghiêm ngặt trong $S_n$ không vượt quá $3n/2$. Điều này cho thấy số lần cập nhật của một tầng thực ra là $O(n)$. Kích thước cơ sở cũng không vượt quá $n$. Vì thế, kích thước tập sinh mạnh cuối cùng $\bar S$ là $O(n^2)$.
+Ước lượng này còn có thể cải tiến. Vì nhóm $G$ đang xét đã biết là nhóm con của nhóm đối xứng bậc $n$, $S_n$, nên độ dài chuỗi nhóm con của $G$ không vượt quá độ dài chuỗi nhóm con của $S_n$. Có thể chứng minh[^subgroup-chain] rằng độ dài của một chuỗi nhóm con tăng nghiêm ngặt trong $S_n$ không vượt quá $3n/2$. Điều này cho thấy số lần cập nhật của một tầng trên thực tế là $O(n)$. Kích thước cơ sở cũng không vượt quá $n$. Vì thế, kích thước tập sinh mạnh cuối cùng $\bar S$ là $O(n^2)$.
 
 Phương pháp sàng lọc vừa nêu do Sims đưa ra, còn gọi là sàng Sims (Sims filter). Còn một phương pháp sàng lọc phức tạp hơn do Jerrum đưa ra, gọi là [sàng Jerrum](https://groupprops.subwiki.org/w/index.php?title=Jerrum%27s_filter) (Jerrum filter), bảo đảm tập sinh mạnh thu được có kích thước $O(n)$. Có thể tham khảo thêm các tài liệu ở cuối bài.
 
@@ -435,7 +435,7 @@ Tuy so với lưu trực tiếp, cây Schreier đưa thêm một thừa số $n$
 <span id="cài-đặt-tham-khảo"></span>
 ### Cài đặt tham khảo
 
-Phần này cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ tương đối nhỏ, trong cài đặt này cơ sở $B=\{n,n-1,\cdots,1\}$ được chỉ định trực tiếp thay vì để thuật toán chọn. Lợi ích là trong nhóm ở tầng thứ $k$ tính từ trong ra ngoài (không tính cấu trúc rỗng), các hoán vị chỉ thay đổi $k$ phần tử đầu, thuận tiện cho các tính toán tiếp theo. Một tối ưu khác trong mã là khi lưu đại diện lớp kề, thực ra lưu hoán vị nghịch đảo của nó; điều này làm đơn giản các phép toán hoán vị.
+Phần này cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ tương đối nhỏ, trong cài đặt này cơ sở $B=\{n,n-1,\cdots,1\}$ được chỉ định trực tiếp thay vì để thuật toán chọn. Lợi ích là trong nhóm ở tầng thứ $k$ tính từ trong ra ngoài (không tính cấu trúc rỗng), các hoán vị chỉ thay đổi $k$ phần tử đầu, thuận tiện cho các tính toán tiếp theo. Một tối ưu khác trong mã là lưu nghịch đảo của đại diện lớp kề; cách này làm đơn giản các phép toán hoán vị.
 
 ??? example "Cài đặt tham khảo"
     ```cpp

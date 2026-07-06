@@ -182,7 +182,7 @@ Vì vậy khi chuyển sang vị trí tiếp theo, giá trị của hàm tiền 
 
 Trong thuật toán cải tiến sơ bộ này, khi tính mỗi $\pi[i]$, trường hợp tốt nhất là lần so sánh chuỗi đầu tiên đã khớp; tức là số lần so sánh chuỗi cơ bản là $n-1$.
 
-Do ràng buộc `j = pi[i-1]+1` (`pi[0]=0`) lên số lần so sánh chuỗi tối đa, có thể thấy rằng chỉ trong trường hợp tốt nhất mỗi bước mới tích lũy thêm $1$ vào cận trên của số lần so sánh chuỗi, còn mỗi phép so sánh vượt quá một lần sẽ tiêu hao phần tăng trưởng của các bước về sau.
+Do ràng buộc `j = pi[i-1]+1` (`pi[0]=0`) lên số lần so sánh chuỗi tối đa, chỉ trong trường hợp tốt nhất mỗi bước mới tích lũy thêm $1$ vào cận trên của số lần so sánh chuỗi, còn mỗi phép so sánh vượt quá một lần sẽ tiêu hao phần tăng trưởng của các bước về sau.
 
 Từ đó có thể suy ra một tình huống đạt số lần so sánh chuỗi nhiều nhất: ít nhất $1$ lần so sánh bị tiêu hao và nhiều nhất $n-2$ lần so sánh được tích lũy; khi đó số lần so sánh chuỗi là $n-1 + n-2 = 2n-3$.
 
@@ -205,7 +205,7 @@ Nếu tìm được một độ dài $j$ như vậy, chỉ cần so sánh lại 
 
 ![](images/prefix_str_2.svg)
 
-Quan sát hình trên có thể thấy, vì $s[0\dots \pi[i]-1] = s[i-\pi[i]+1\dots i]$, nên độ dài lớn thứ hai $j$ của $s[0\dots i]$ có tính chất:
+Từ hình trên, do $s[0\dots \pi[i]-1] = s[i-\pi[i]+1\dots i]$, độ dài lớn thứ hai $j$ của $s[0\dots i]$ có tính chất:
 
 $$
 s[0 \dots j - 1] = s[i - j + 1 \dots i]= s[\pi[i]-j\dots \pi[i]-1]
@@ -409,7 +409,7 @@ Vì vậy, sau khi thêm một ký tự mới, số xâu con mới xuất hiện
 
 Do đó với mỗi ký tự được thêm vào, có thể tính số xâu con mới trong thời gian $O(n)$, nên độ phức tạp cuối cùng là $O(n^2)$.
 
-Đáng chú ý là cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
+Ngoài ra, cũng có thể tính lại số xâu con khác nhau khi thêm một ký tự vào đầu, hoặc khi xóa một ký tự ở cuối hay ở đầu.
 
 <span id="nén-chuỗi"></span>
 ### Nén chuỗi
@@ -423,9 +423,9 @@ Tính hàm tiền tố của $s$. Dùng giá trị cuối cùng của hàm này 
 Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó có thể nén chuỗi $s$ xuống độ dài $k$.
 
 ???+ note "Chứng minh"
-    Tất nhiên, vẫn cần chứng minh giá trị này là tối ưu. Thực ra, nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
+    Vẫn cần chứng minh giá trị này là tối ưu. Nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
     
-    Bây giờ giả sử $n$ không chia hết cho $k$, chứng minh bằng phản chứng rằng điều này có nghĩa đáp án là $n$[^1]. Giả sử biểu diễn nén nhỏ nhất của nó là $r$ có độ dài $p$ ($p$ là ước của $n$), và chuỗi $s$ được chia thành $n / p \ge 2$ khối. Khi đó giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ chắc chắn phải lớn hơn $n - p$ (nếu bằng thì $n$ sẽ chia hết cho $k$), tức là hậu tố mà nó biểu diễn sẽ phủ một phần lên khối đầu tiên. Tiếp theo xét khối thứ hai của chuỗi. Khối này có hai cách diễn giải: cách thứ nhất là $r_0 r_1 \dots r_{p - 1}$, cách thứ hai là $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$. Vì hai cách diễn giải tương ứng với cùng một chuỗi, thu được một hệ gồm $p$ phương trình, có thể viết gọn là $r_{(i + k) \bmod p} = r_{i \bmod p}$, trong đó $\cdot \bmod p$ biểu thị phần dư không âm nhỏ nhất theo modulo $p$.
+    Bây giờ giả sử $n$ không chia hết cho $k$, chứng minh bằng phản chứng rằng điều này có nghĩa đáp án là $n$[^1]. Giả sử biểu diễn nén nhỏ nhất của nó là $r$ có độ dài $p$ ($p$ là ước của $n$), và chuỗi $s$ được chia thành $n / p \ge 2$ khối. Khi đó giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ phải lớn hơn $n - p$ (nếu bằng thì $n$ sẽ chia hết cho $k$), tức là hậu tố mà nó biểu diễn sẽ phủ một phần lên khối đầu tiên. Tiếp theo xét khối thứ hai của chuỗi. Khối này có hai cách diễn giải: cách thứ nhất là $r_0 r_1 \dots r_{p - 1}$, cách thứ hai là $r_{p - k} r_{p - k + 1} \dots r_{p - 1} r_0 r_1 \dots r_{p - k - 1}$. Vì hai cách diễn giải tương ứng với cùng một chuỗi, thu được một hệ gồm $p$ phương trình, có thể viết gọn là $r_{(i + k) \bmod p} = r_{i \bmod p}$, trong đó $\cdot \bmod p$ biểu thị phần dư không âm nhỏ nhất theo modulo $p$.
     
     $$
     \begin{gathered}
@@ -451,7 +451,7 @@ $$
 \underbrace{s_0 ~ s_1 ~ \dots ~ s_{n-1} ~ \#}_{\text{cần lưu}} ~ \underbrace{t_0 ~ t_1 ~ \dots ~ t_{m-1}}_{\text{không cần lưu}}
 $$
 
-Thực ra trong trường hợp này, chỉ cần biết ký tự tiếp theo $c$ của $t$ và giá trị hàm tiền tố ở vị trí trước đó là đủ để tính giá trị hàm tiền tố ở vị trí tiếp theo, không cần dùng đến bất kỳ ký tự nào khác của $t$ hay giá trị hàm tiền tố tương ứng của chúng.
+Trong trường hợp này, chỉ cần biết ký tự tiếp theo $c$ của $t$ và giá trị hàm tiền tố ở vị trí trước đó là đủ để tính giá trị hàm tiền tố ở vị trí tiếp theo, không cần dùng đến bất kỳ ký tự nào khác của $t$ hay giá trị hàm tiền tố tương ứng của chúng.
 
 Nói cách khác, có thể xây dựng một **ô-tô-mát** (một máy trạng thái hữu hạn): trạng thái của nó là giá trị hàm tiền tố hiện tại, còn chuyển tiếp từ trạng thái này sang trạng thái khác được xác định bởi ký tự tiếp theo.
 
