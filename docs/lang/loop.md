@@ -134,10 +134,10 @@ for (;;) {
 Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem phần sau) để
 thoát.
 
-Có thể thấy ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình
-huống, nhưng nói chung nên chọn theo các nguyên tắc sau:
+Ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình huống, nhưng nói
+chung nên chọn theo các nguyên tắc sau:
 
-1.  Khi quá trình lặp có biến đếm hoặc bước cập nhật rõ ràng, ví dụ liệt kê một
+1.  Khi quá trình lặp có biến đếm hoặc bước cập nhật xác định, ví dụ liệt kê một
     dãy chỉ số, dùng câu lệnh `for`;
 2.  Khi chủ yếu chỉ biết điều kiện tiếp tục hoặc điều kiện kết thúc vòng lặp,
     dùng câu lệnh `while`;
@@ -167,11 +167,11 @@ END:;
 Cả hai câu lệnh `break` và `continue` đều có thể được dùng trong thân vòng lặp
 của ba loại câu lệnh lặp.
 
-Nói chung, câu lệnh `break` và `continue` có thể làm logic của mã nguồn rõ ràng
-hơn, ví dụ:
+Nói chung, câu lệnh `break` và `continue` có thể làm logic của mã nguồn dễ theo
+dõi hơn, ví dụ:
 
 ```cpp
-// Logic chưa rõ ràng, các tầng dấu ngoặc nhọn phức tạp
+// Logic khó theo dõi, các tầng dấu ngoặc nhọn phức tạp
 
 for (int i = 1; i <= n; ++i) {
   if (i != x) {
@@ -183,7 +183,7 @@ for (int i = 1; i <= n; ++i) {
   }
 }
 
-// Logic rõ ràng hơn, các tầng dấu ngoặc nhọn đơn giản và dễ hiểu
+// Logic dễ theo dõi hơn, các tầng dấu ngoặc nhọn đơn giản và dễ hiểu
 
 for (int i = 1; i <= n; ++i) {
   if (i == x) continue;

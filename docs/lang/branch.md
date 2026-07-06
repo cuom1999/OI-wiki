@@ -1,7 +1,8 @@
-Theo mặc định, chương trình được thực thi theo thứ tự xuất hiện của các câu lệnh.
-Đôi khi chỉ cần thực thi một số câu lệnh khi điều kiện nhất định được thỏa mãn;
-khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh rẽ nhánh phù hợp giúp
-logic chương trình rõ ràng hơn.
+Theo mặc định, các câu lệnh trong chương trình được thực thi theo thứ tự xuất
+hiện.
+Trong nhiều trường hợp, một số câu lệnh chỉ cần được thực thi khi điều kiện
+nhất định được thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh
+rẽ nhánh phù hợp giúp logic chương trình mạch lạc hơn.
 
 ## Câu lệnh if
 
@@ -15,12 +16,12 @@ if (dieu_kien) {
 }
 ```
 
-Câu lệnh `if` đánh giá điều kiện; nếu kết quả là đúng, các câu lệnh bên trong
-phần thân sẽ được thực thi, ngược lại thì bị bỏ qua.
+Câu lệnh `if` đánh giá điều kiện; nếu điều kiện đúng, các câu lệnh trong phần
+thân được thực thi, ngược lại thì bị bỏ qua.
 
 Nếu phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn. Tuy vậy,
 khi mới học hoặc khi mã có nhiều nhánh lồng nhau, giữ lại dấu ngoặc nhọn thường
-giúp mã dễ đọc và khó nhầm hơn.
+làm mã dễ đọc hơn và giảm khả năng nhầm lẫn.
 
 ### Câu lệnh if...else
 
@@ -57,10 +58,10 @@ không cần viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đún
 nếu điều kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3;
 chỉ khi tất cả điều kiện đều sai mới thực thi thân 4.
 
-Thực chất, câu lệnh này tương đương với việc trong nhánh `else` của `if` đầu
+Về bản chất, câu lệnh này tương đương với việc trong nhánh `else` của `if` đầu
 tiên chỉ có một câu lệnh `if`, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền
-nhau. Nếu các điều kiện có quan hệ ngang hàng với nhau, cách viết này có thể làm
-logic của mã rõ ràng hơn.
+nhau. Nếu các điều kiện có quan hệ ngang hàng với nhau, cách viết này giúp logic
+của mã mạch lạc hơn.
 
 Về mặt logic, nó tương tự đoạn mô tả sau:
 
@@ -90,7 +91,7 @@ Khi câu lệnh `switch` được thực thi, trước tiên chương trình tí
 biểu thức chọn, sau đó dựa vào giá trị đó để chọn nhãn tương ứng và bắt đầu thực
 thi từ vị trí nhãn ấy. Trong C++, biểu thức chọn thường là biểu thức kiểu số
 nguyên hoặc kiểu liệt kê; các kiểu lớp chuyển đổi được sang những kiểu này cũng
-có thể dùng được. Các nhãn `case` phải là biểu thức hằng có thể chuyển đổi sang
+hợp lệ. Các nhãn `case` phải là biểu thức hằng có thể chuyển đổi sang
 kiểu của biểu thức chọn. Ví dụ:
 
 ```cpp
@@ -113,11 +114,10 @@ switch (i) {
 }
 ```
 
-Trong câu lệnh `switch`, tùy theo nhu cầu còn cần thêm câu lệnh `break` để ngắt
-nhánh hiện tại. Nếu không có `break`, sau khi `case` tương ứng được chọn, chương
-trình sẽ tiếp tục chạy xuống các câu lệnh trong những `case` phía sau và cả
-`default`. Đây gọi là hiện tượng rơi tiếp (`fallthrough`). Có thể xem ví dụ cụ
-thể sau đây.
+Trong câu lệnh `switch`, có thể cần thêm câu lệnh `break` để ngắt nhánh hiện
+tại. Nếu không có `break`, sau khi `case` tương ứng được chọn, chương trình sẽ
+tiếp tục chạy xuống các câu lệnh trong những `case` phía sau và cả `default`.
+Đây gọi là hiện tượng rơi tiếp (`fallthrough`). Ví dụ:
 
 ```cpp
 char i = 'B';
@@ -135,9 +135,8 @@ switch (i) {
 }
 ```
 
-Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI` và `Hello World`. Nếu
-không muốn các câu lệnh ở những nhánh sau được chạy tiếp, cần dùng `break`; có
-thể xem ví dụ cụ thể sau đây.
+Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI` và `Hello World`. Khi
+các câu lệnh ở những nhánh sau không cần chạy tiếp, cần dùng `break`. Ví dụ:
 
 ```cpp
 char i = 'B';
@@ -182,7 +181,7 @@ switch (i) {
 
 Trong các nhánh `case` của `switch` cũng có thể thêm cặp dấu ngoặc nhọn. Nếu cần
 định nghĩa biến riêng trong một nhánh `case`, nên dùng cặp dấu ngoặc nhọn để tạo
-phạm vi cục bộ rõ ràng và tránh lỗi do nhảy qua phần khởi tạo biến. Ví dụ:
+phạm vi cục bộ tường minh và tránh lỗi do nhảy qua phần khởi tạo biến. Ví dụ:
 
 ```cpp
 char i = 'B';
@@ -210,7 +209,7 @@ switch (i) {
 ```
 
 ??? note "Hiểu switch như thế nào"
-    Ở phần trên đã dùng nhiều cách nói như "nhánh case", "mệnh đề case", v.v.
+    Phần trên đã dùng nhiều cách nói như "nhánh case", "mệnh đề case", v.v.
     Ở tầng triển khai thấp hơn, `switch` tương đương với một nhóm câu lệnh nhảy.
-    Cũng vì vậy mới có kỹ thuật đặc biệt như Duff's Device; nếu muốn tìm hiểu
-    sâu hơn, có thể nghiên cứu thêm.
+    Đây cũng là cơ sở của những kỹ thuật đặc biệt như Duff's Device; có thể tham
+    khảo thêm khi cần tìm hiểu sâu hơn.

@@ -6,7 +6,7 @@ Tệp là tập hợp dữ liệu có liên quan được gom lại theo một m
 C/C++ xem mỗi tệp là một luồng byte có thứ tự; khi đọc đến cuối tệp, chương
 trình sẽ gặp **dấu kết thúc tệp** (EOF). Nếu muốn thao tác với một tệp, trước
 hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở, tệp ấy sẽ được liên
-kết với một luồng; luồng ở đây thực chất là một dãy byte. Sau khi dùng xong,
+kết với một luồng; luồng này thực chất là một dãy byte. Sau khi sử dụng xong,
 cần đóng tệp đã mở.
 
 C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp chứa
@@ -17,8 +17,8 @@ các tệp có định dạng đặc biệt, tệp mã thực thi, v.v.
 
 1. Mở tệp, cho con trỏ tệp hoặc luồng tệp liên kết với tệp và xác định chế độ mở
    tệp;
-2. Thực hiện thao tác đọc, ghi trên tệp (đây là các thao tác chủ yếu dùng trong
-   thi đấu; các thao tác khác tạm thời không đề cập);
+2. Thực hiện thao tác đọc, ghi trên tệp (các thao tác chủ yếu dùng trong thi
+   đấu; các thao tác khác không được đề cập trong phần này);
 3. Sau khi dùng xong tệp, đóng tệp.
 
 ## Hàm `freopen`
@@ -124,8 +124,8 @@ int main(void) {
 ## Hàm `fopen` (đọc thêm)
 
 Hàm này mở tệp được chỉ định và trả về con trỏ tới tệp đã mở. Khác với
-`freopen`, `fopen` không chuyển hướng `stdin` hoặc `stdout`; ta cần dùng con trỏ
-trả về để đọc/ghi tệp.
+`freopen`, `fopen` không chuyển hướng `stdin` hoặc `stdout`; cần dùng con trỏ
+được trả về để đọc/ghi tệp.
 
 ### Nguyên mẫu hàm
 
