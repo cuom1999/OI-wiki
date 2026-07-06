@@ -2,9 +2,9 @@ author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
 ## Giới thiệu phần mềm
 
-Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![Biểu trưng Notepad++](./images/npp-logo.webp)).
+Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Trang này dùng biểu trưng Notepad++ để minh họa: ![Biểu trưng Notepad++](./images/npp-logo.webp).
 
-Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
+Notepad++ có nhiều chức năng hơn các trình soạn thảo văn bản cơ bản; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm (có thể cần cấu hình). Ngoài ra, dung lượng chỉ hơn 10 MB, nên có thể đặt trong USB để mang theo.
 
 ## Tải xuống và cài đặt
 
@@ -46,7 +46,7 @@ Chức năng của nó gần giống trình soạn thảo thông thường, như
 
 Chức năng này giúp giảm rủi ro mất mã do sự cố bất ngờ.
 
-Tuy nhiên, chức năng này chỉ tạo bản chụp nhanh của tệp, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Ngoài ra, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Auto Save" (xem [Cách dùng nâng cao -> Phần bổ trợ](#plugin), các mục dưới tương tự).
+Tuy nhiên, chức năng này chỉ tạo bản chụp nhanh của tệp, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp thường xuyên. Ngoài ra, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Auto Save" (xem [Cách dùng nâng cao -> Phần bổ trợ](#plugin), các mục dưới tương tự).
 
 ### Chức năng đánh dấu
 
@@ -58,9 +58,9 @@ Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp đ�
 
 ### Tô sáng mã
 
-Nhấp chuột phải vào "XXX file" ("Tệp XXX") ở góc dưới bên trái để chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Notepad++ cũng hỗ trợ tự định nghĩa tô sáng.
+Nhấp chuột phải vào "XXX file" ("Tệp XXX") ở góc dưới bên trái để chọn tô sáng cho nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Notepad++ cũng hỗ trợ tự định nghĩa tô sáng.
 
-Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language" ("Thiết lập -> Tùy chọn -> Tài liệu mới -> Ngôn ngữ mặc định").
+Nếu việc đổi tô sáng mỗi lần mở tệp gây bất tiện, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language" ("Thiết lập -> Tùy chọn -> Tài liệu mới -> Ngôn ngữ mặc định").
 
 Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer" ("Trình xem Markdown"); còn nhiều phần bổ trợ tương tự khác có sẵn.
 
@@ -68,7 +68,7 @@ Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Ma
 
 ![Hiển thị toàn bộ ký tự trong Notepad++](./images/npp-settings-2.png)
 
-Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự vốn không nhìn thấy như "space" ("dấu cách"), "TAB" ("tab") và "newline" ("xuống dòng").
+Nhấp nút được khoanh đỏ để hiển thị rõ các ký tự vốn không nhìn thấy như "space" ("dấu cách"), "TAB" ("tab") và "newline" ("xuống dòng").
 
 ### Tự động nhận diện mã hóa tệp và ký tự xuống dòng
 
@@ -147,7 +147,7 @@ Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed" ("Đã
 
 ### Dựng môi trường phát triển
 
-Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công cụ rất mạnh: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE. Phần này lấy C++ làm ví dụ.
+Không chỉ là trình soạn thảo, "Notepad++" còn có thể đóng vai trò như một công cụ phát triển gọn nhẹ: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE trong một số tình huống. Phần này lấy C++ làm ví dụ.
 
 1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là phần bổ trợ của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
 
@@ -187,4 +187,4 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
 
     Câu này tự tin thật, nhưng phải nói là cũng có cơ sở.
 
-2.  Trong một trang mới mở, nhập "random" rồi chọn nó, sau đó nhấn `F1`, sẽ nhận được một câu khá thú vị.
+2.  Trong một trang mới mở, nhập "random" rồi chọn nó, sau đó nhấn `F1`, sẽ nhận được một câu thú vị.
