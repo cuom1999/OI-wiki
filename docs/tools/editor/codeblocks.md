@@ -2,16 +2,16 @@
 
 Code::Blocks là một môi trường phát triển tích hợp (IDE) mã nguồn mở được phát
 triển bằng C++, dùng wxWidgets làm thư viện giao diện đồ họa. Dự án bắt đầu từ
-năm 2001, hiện do cộng đồng chính thức duy trì, và chủ yếu dùng cho phát triển
+năm 2001, hiện được cộng đồng chính thức duy trì, và chủ yếu dùng cho phát triển
 bằng các ngôn ngữ như C, C++ và Fortran.[^ref1]
 
 Ưu điểm:
 
 -   **Nhẹ và hiệu quả**: Code::Blocks chiếm ít tài nguyên và khởi động nhanh, phù hợp với môi trường tài nguyên hạn chế, lập trình viên thích IDE nhẹ, cũng như người mới học.
 
--   **Tương thích đa nền tảng**: hỗ trợ nhiều hệ điều hành như Windows, Linux và macOS, cung cấp trải nghiệm người dùng nhất quán để lập trình viên có thể làm việc liền mạch trên nhiều nền tảng.
+-   **Tương thích đa nền tảng**: hỗ trợ nhiều hệ điều hành như Windows, Linux và macOS, cung cấp trải nghiệm nhất quán để lập trình viên làm việc trên nhiều nền tảng.
 
--   **Hỗ trợ nhiều trình biên dịch**: hỗ trợ nhiều trình biên dịch, bao gồm GCC, MSVC (Microsoft Visual C++), Digital Mars và Borland C++ 5.5, cho phép lập trình viên chọn công cụ biên dịch phù hợp nhất theo nhu cầu dự án.
+-   **Hỗ trợ nhiều trình biên dịch**: hỗ trợ nhiều trình biên dịch, bao gồm GCC, MSVC (Microsoft Visual C++), Digital Mars và Borland C++ 5.5, cho phép chọn công cụ biên dịch phù hợp với nhu cầu dự án.
 
 Nhược điểm:
 
@@ -83,7 +83,7 @@ Lấy một dự án Console Application đơn giản làm ví dụ, dưới đ�
 1.  Sau khi tạo dự án xong, sẽ thấy một tệp `main.cpp` mặc định. Có thể viết mã trong tệp này rồi lưu lại.
 2.  Sau khi viết mã xong, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
 3.  Sau khi biên dịch và chạy, cửa sổ đầu ra sẽ hiển thị kết quả xuất của chương trình. Có thể xem đầu ra trong cửa sổ này và điều chỉnh mã khi cần.
-4.  Nếu chỉ cần biên dịch dự án mà không chạy, có thể nhấp nút `Build` (`Biên dịch`) trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ chỉ biên dịch dự án, không chạy chương trình.
+4.  Để biên dịch dự án mà không chạy, có thể nhấp nút `Build` (`Biên dịch`) trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ biên dịch dự án nhưng không chạy chương trình.
 
 ### Gỡ lỗi
 
@@ -111,8 +111,8 @@ Code::Blocks cung cấp nhiều tùy chọn thiết lập để giúp điều ch
 Code::Blocks hỗ trợ phần bổ trợ để mở rộng chức năng. Có thể xem và cài đặt phần bổ trợ khả dụng qua `Settings -> Plugins` (`Thiết lập -> Phần bổ trợ`), chẳng hạn DoxyBlocks, wxSmith, v.v. Dưới đây là một số phần bổ trợ thường dùng:
 
 -   **DoxyBlocks**: phần bổ trợ tích hợp công cụ sinh tài liệu nổi tiếng Doxygen, có thể sinh tài liệu dự án trực tiếp trong Code::Blocks.
--   **wxSmith**: phần bổ trợ dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
--   **Thread Search**: phần bổ trợ hỗ trợ tìm kiếm đa luồng, có thể nhanh chóng tìm kiếm và thay thế ký hiệu và văn bản trong dự án, phù hợp cho phát triển dự án lớn.
+-   **wxSmith**: phần bổ trợ dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, hỗ trợ tạo và bố trí giao diện GUI để rút gọn quy trình phát triển.
+-   **Thread Search**: phần bổ trợ hỗ trợ tìm kiếm đa luồng, dùng để tìm kiếm và thay thế ký hiệu hoặc văn bản trong dự án, phù hợp cho phát triển dự án lớn.
 
 Cách cài đặt và sử dụng phần bổ trợ xem trong [tài liệu phần bổ trợ của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Chọn phần bổ trợ phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của phần bổ trợ.
 

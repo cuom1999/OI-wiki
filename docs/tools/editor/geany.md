@@ -1,11 +1,10 @@
 author: xingjiapeng, MingqiHuang
 
-Geany là một trình soạn thảo nhẹ, tiện lợi và thân thiện với người mới trong môi
-trường Linux.
+Geany là một trình soạn thảo nhẹ, dễ dùng cho người mới trong môi trường Linux.
 
 Giống Dev-C++, nó có thể biên dịch và chạy một tệp đơn lẻ.
 
-Tuy nhiên, nó có thể chạy trên Linux/Windows/macOS.
+Ngoài Linux, Geany cũng chạy được trên Windows và macOS.
 
 Trang chủ: <https://geany.org/>
 
@@ -20,7 +19,7 @@ Trang chủ: <https://geany.org/>
 
 ### Nhược điểm
 
-1.  Không có quá nhiều người dùng.
+1.  Cộng đồng người dùng không quá lớn.
 2.  Có một số vấn đề quyền hạn trên macOS Catalina[^1].
 3.  Khi tạo tệp mới, mặc định không có tô sáng cú pháp; cần tự chuyển loại tệp.
 
@@ -59,7 +58,7 @@ Trong *Preferences -> Tools -> Virtual Terminal* (*Tùy chọn -> Công cụ -> 
 deepin-terminal -x "/bin/sh" %c
 ```
 
-Nhấp nút "Apply" ("Áp dụng") là được.[^3]
+Nhấp nút "Apply" ("Áp dụng") để lưu thiết lập.[^3]
 
 ## Tài liệu tham khảo và chú thích
 
