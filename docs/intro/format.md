@@ -1,4 +1,4 @@
-Trước khi bắt đầu bài viết, toàn thể thành viên dự án **OI Wiki** rất hoan nghênh mọi đóng góp cho dự án này. Chính nhờ hàng trăm người đóng góp mà **OI Wiki** có được ngày hôm nay!
+Trước khi bắt đầu bài viết, toàn thể thành viên dự án **OI Wiki** luôn hoan nghênh mọi đóng góp cho dự án này. Chính nhờ hàng trăm người đóng góp mà **OI Wiki** có được ngày hôm nay!
 
 Trang này liệt kê các quy chuẩn định dạng và phương châm biên tập được khuyên dùng khi viết **OI Wiki**. Trước khi soạn thảo hoặc sửa trang Wiki, vui lòng đọc kỹ các nội dung dưới đây để tạo ra nội dung chất lượng hơn.
 
@@ -43,7 +43,7 @@ Nếu muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm t�
 
 ## <a id="tom-tat-nhanh"></a>Tóm tắt nhanh
 
-Để thuận tiện cho người lần đầu đọc tài liệu này, mục này liệt kê một số điểm trọng yếu của sổ tay:
+Để người đọc lần đầu dễ nắm nội dung, mục này liệt kê một số điểm trọng yếu của sổ tay:
 
 -   Lưu trữ tệp:
 
@@ -100,7 +100,7 @@ Nếu muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm t�
 
 -   Mã:
 
-    -   Cố gắng viết ngắn gọn, dễ hiểu, tránh các thói quen xấu như nén quá nhiều câu lệnh trên một dòng. Cố gắng bảo đảm khả năng đọc và làm nổi bật tư tưởng thuật toán. Xem [CONT-10](#CONT-10).
+    -   Viết ngắn gọn, dễ hiểu, tránh các thói quen xấu như nén quá nhiều câu lệnh trên một dòng. Bảo đảm khả năng đọc và làm nổi bật tư tưởng thuật toán. Xem [CONT-10](#CONT-10).
 
     -   Không khuyến nghị chèn mã trực tiếp vào tài liệu Markdown. Xem [CODE-1.1](#CODE-1.1), [CODE-1.2](#CODE-1.2).
 
@@ -157,7 +157,7 @@ Khi dự định đóng góp nội dung cho một phần nào đó, người đ�
 
         Trang ví dụ: [WSL (Windows 10)](../tools/wsl.md).
 
-Trừ khi chất lượng nội dung hiện có khá thấp, nên đóng góp theo hướng **bổ sung** thay vì ghi đè trực tiếp. Nếu không chắc nên làm gì, có thể tham khảo mục [cách trao đổi về dự án này](./about.md#trao-đổi) và liên hệ với nhóm dự án **OI Wiki**.
+Trừ khi chất lượng nội dung hiện có thấp, nên đóng góp theo hướng **bổ sung** thay vì ghi đè trực tiếp. Nếu không chắc nên làm gì, có thể tham khảo mục [cách trao đổi về dự án này](./about.md#trao-đổi) và liên hệ với nhóm dự án **OI Wiki**.
 
 ### Yêu cầu định dạng cơ bản của tài liệu
 
@@ -481,7 +481,7 @@ LaTeX là lựa chọn ưu tiên để dàn công thức, và cần sử dụng 
 
     Vì vậy, khi nhập hằng, tên hàm, toán tử, v.v., vui lòng kiểm tra trước xem có nên dùng Roman hoặc font khác hay không. Cách viết ký hiệu LaTeX có thể tham khảo trang [Supported Functions của KaTeX](https://katex.org/docs/supported.html) (không phải đầy đủ tất cả), hoặc có thể tìm kiếm lời giải.
 
-    Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman khá khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
+    Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman tương đối khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
 
     Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Việt hoặc văn bản tự nhiên dài, nên cân nhắc đưa nội dung ra ngoài công thức LaTeX nếu có thể.
 
@@ -554,7 +554,7 @@ Có thể dùng một bảng để tóm tắt các nội dung trên. Lưu ý b�
 
 #### Yêu cầu định dạng bổ sung đối với công thức toán
 
-Vui lòng lưu ý, mặc dù cú pháp nhập công thức nói trên rất giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp rất giống LaTeX mà thôi. Giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
+Vui lòng lưu ý, mặc dù cú pháp nhập công thức nói trên giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp tương tự LaTeX. Giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
 
 Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên bộ máy dàn trang LaTeX, cần nhấn mạnh tính tương thích của công thức giữa MathJax và LaTeX. **Khi viết công thức toán trong Wiki, vui lòng lưu ý các điểm sau.**
 
