@@ -3,8 +3,8 @@ trình bày toàn diện mọi cú pháp hiện đại của C++, mà chỉ gi�
 thường dùng trong lập trình thi đấu.
 
 Cú pháp trong bài viết này tham chiếu theo chuẩn **C++11**. Với những chỗ có ngữ
-nghĩa khác nhau, **C++11** sẽ được lấy làm chuẩn; cú pháp của C++14, C++17, v.v.
-sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
+nghĩa khác nhau giữa các phiên bản, **C++11** sẽ được lấy làm mốc; cú pháp của
+C++14, C++17, v.v. sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
 ## Bộ chỉ định kiểu `auto`
 
@@ -29,9 +29,9 @@ auto& e = a;  // e có kiểu int&, là tham chiếu tới a
 ## Bộ chỉ định `decltype`
 
 `decltype` có thể suy luận kiểu dựa trên **thực thể** hoặc **biểu thức**. Hai
-cách này tuân theo các quy tắc suy luận khác nhau; dùng sai có thể tạo ra tham
-chiếu treo. Nội dung này không thường dùng trong thi đấu, nên phần này chỉ giới
-thiệu sơ lược.
+cách này tuân theo các quy tắc suy luận khác nhau; nếu dùng sai, có thể tạo ra
+tham chiếu treo. Nội dung này không thường dùng trong thi đấu, nên phần này chỉ
+giới thiệu sơ lược.
 
 ```cpp
 #include <iostream>
@@ -55,9 +55,9 @@ int main() {
 
 ## Vòng lặp `for` dựa trên phạm vi
 
-Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu
-suất tương đương cách duyệt bằng bộ lặp. Hai cách này thường phù hợp hơn duyệt
-bằng chỉ số khi chỉ cần đi qua từng phần tử, vì không cần tự quản lý chỉ số.
+Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu suất
+tương đương cách duyệt bằng bộ lặp. Khi chỉ cần đi qua từng phần tử, hai cách này
+thường phù hợp hơn duyệt bằng chỉ số vì không cần tự quản lý chỉ số.
 
 Sau đây là cú pháp cơ bản của vòng lặp `for` dựa trên phạm vi:
 
@@ -399,8 +399,8 @@ fun(1, 0.0, "abc");
 
 #### Cú pháp mở rộng gói tham số
 
-Để mở rộng gói tham số, chỉ cần dùng `...`; các phần tử sẽ tự động
-được phân tách bằng dấu phẩy. Ví dụ:
+Để mở rộng gói tham số, dùng `...`; các phần tử sẽ tự động được phân tách bằng
+dấu phẩy. Ví dụ:
 
 ```cpp
 template <class A, class... C>
@@ -430,7 +430,7 @@ func(1, 2, 1.1, 2.1f);
 #### Hàm kết thúc
 
 Hàm ở trên không thể chạy riêng lẻ, vì số lượng tham số liên tục giảm; cuối cùng
-lời gọi sẽ không còn tham số và gây lỗi biên dịch.
+lời gọi sẽ không còn tham số, dẫn đến lỗi biên dịch.
 
 Cần chỉ định điều kiện kết thúc; có thể cung cấp một hàm thông thường như sau:
 
@@ -446,8 +446,8 @@ void func(A arg1, C... arg2) {
 func(1, 2, 1.1, 2.1f);
 ```
 
-Vì vậy, khi số lượng tham số khác 0 thì mẫu hàm sẽ được gọi; khi không còn tham
-số thì hàm thông thường sẽ được gọi, nên chương trình có thể chạy bình thường.
+Vì vậy, khi số lượng tham số khác 0 thì mẫu hàm được gọi; khi không còn tham số
+thì hàm thông thường được gọi, nên chương trình có thể chạy bình thường.
 
 ### Biểu thức gấp (fold expression, C++17)
 
@@ -497,21 +497,20 @@ void func(T... args) {
 
 ## Thư viện ranges (C++20)
 
-> Thư viện ranges là phần mở rộng của bộ lặp và thư viện thuật toán tổng quát,
-> giúp kết hợp bộ lặp với thuật toán linh hoạt hơn, đồng thời giảm khả năng mắc
-> lỗi.
+> Thư viện ranges mở rộng mô hình bộ lặp và thư viện thuật toán tổng quát, giúp
+> kết hợp phạm vi với thuật toán linh hoạt hơn, đồng thời giảm khả năng mắc lỗi.
 
 Phạm vi (`range`) là một dãy có thể duyệt, bao gồm mảng, bộ chứa, khung nhìn
 (`view`), v.v.
 
-Khi cần thực hiện các thao tác phức tạp trên bộ chứa hoặc các phạm vi khác,
+Khi cần thao tác phức tạp trên bộ chứa hoặc các phạm vi khác,
 [thư viện ranges](https://en.cppreference.com/w/cpp/ranges) giúp mã thuật toán
 ngắn gọn và mạch lạc hơn.
 
 ### Khung nhìn (view)
 
-Khung nhìn (`view`) là một đối tượng nhẹ, cài đặt một số thao tác thông qua cơ
-chế đặc thù (như bộ lặp tự định nghĩa), nhờ đó cung cấp nhiều cách duyệt khác
+Khung nhìn (`view`) là một đối tượng nhẹ, cài đặt một số thao tác thông qua cơ chế
+đặc thù, chẳng hạn bộ lặp tự định nghĩa. Nhờ đó, nó cung cấp nhiều cách duyệt khác
 nhau cho phạm vi.
 
 Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia
@@ -534,8 +533,8 @@ ghép với nhau như toán tử ống dẫn (pipe).
     bit. Cách dùng này bắt nguồn từ
     [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
-Trong các thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và tuân theo
-quy tắc sau:
+Khi thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và tuân theo quy
+tắc sau:
 
 Nếu A, B, C là các đối tượng bao đóng bộ chuyển đổi phạm vi, R là một phạm vi nào
 đó, còn các chữ cái khác là tham số hợp lệ, thì biểu thức
@@ -566,14 +565,14 @@ int main() {
     ra một phạm vi chỉ còn các số chẵn.
 3.  Hai thao tác được liên kết bằng toán tử ống dẫn (pipe).
 
-Đoạn mã trên không cần cấp phát thêm vùng nhớ heap để lưu phạm vi sinh ra ở mỗi
-bước. Việc sinh và lọc thực tế xảy ra trong quá trình duyệt (cụ thể hơn là khi
-xây dựng, tăng và giải tham chiếu bộ lặp nội bộ), nên không tạo thêm chi phí phụ
-trội đáng kể (zero overhead).
+Đoạn mã trên không cần cấp phát thêm vùng nhớ heap để lưu phạm vi sinh ra ở từng
+bước. Việc sinh và lọc thực tế xảy ra trong quá trình duyệt, cụ thể là khi xây
+dựng, tăng và giải tham chiếu bộ lặp nội bộ, nên không tạo thêm chi phí phụ trội
+đáng kể (zero overhead).
 
 Đồng thời, khung nhìn thường chỉ tham chiếu đến phạm vi đầu vào bên ngoài. Nếu
-phạm vi bên ngoài (chẳng hạn bộ chứa hoặc bộ sinh phạm vi) đã bị hủy, thì việc
-duyệt khung nhìn sau đó tương đương với giải tham chiếu con trỏ treo, thuộc về
+phạm vi bên ngoài, chẳng hạn bộ chứa hoặc bộ sinh phạm vi, đã bị hủy, thì việc
+duyệt khung nhìn sau đó tương đương với giải tham chiếu con trỏ treo và thuộc về
 hành vi không xác định.
 
 Để tránh tình huống trên, cần bảo đảm vòng đời của khung nhìn không vượt quá vòng
@@ -610,7 +609,7 @@ hành vi không xác định.
 
 Các thuật toán này có thể được hiểu là phiên bản cải tiến của thuật toán thư viện
 chuẩn cũ. Chúng đều là đối tượng hàm, cung cấp cách nạp chồng thân thiện hơn và
-kiểm tra kiểu tham số đầu vào tốt hơn (dựa trên
+kiểm tra kiểu tham số đầu vào chặt chẽ hơn (dựa trên
 [`concept`](https://en.cppreference.com/w/cpp/language/constraints)). Trước tiên,
 lấy so sánh giữa `std::sort` và `ranges::sort` làm ví dụ:
 
@@ -643,7 +642,7 @@ khác trong không gian tên `std` cũng có phiên bản nạp chồng tương 
 vi nằm trong không gian tên `ranges`.
 
 Dùng các tham số đầu vào dạng phạm vi này, kết hợp với khung nhìn ở phần trước,
-giúp mã vẫn dễ đọc khi thực hiện những thao tác phức tạp. Ví dụ:
+giúp mã vẫn dễ đọc khi viết những thao tác phức tạp. Ví dụ:
 
 ```cpp
 #include <algorithm>
