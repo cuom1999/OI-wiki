@@ -89,7 +89,7 @@ g++ grader.cpp my_solution.cpp -o my_solution -Wall -O2
 
 Chương trình sau khi biên dịch có hành vi giống chương trình của bài truyền thống. Nó sẽ mở các tệp cố định, đọc dữ liệu theo định dạng cố định, gọi hàm do thí sinh viết, rồi hiển thị kết quả và một số thông tin (ví dụ số lần truy vấn, tính đúng sai của đáp án) ra đầu ra chuẩn.
 
-Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Nói chung, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của trình chấm đều sẽ bị truất quyền (disqualification).
+Khi chấm thật, chương trình của thí sinh sẽ được biên dịch với một `grader.cpp` khác. `grader.cpp` này sẽ gọi hàm do thí sinh viết theo cách tương tự và ghi nhận điểm số. Thông thường, mọi ký hiệu toàn cục trong phiên bản `grader.cpp` này đều được đặt là `static`, tức không thể phá bằng cách đặt tên xung đột; tuy nhiên mọi hành vi cố gắng vượt qua giới hạn của trình chấm đều sẽ bị truất quyền (disqualification).
 
 ### Khác biệt
 
@@ -149,7 +149,7 @@ Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó
 
 [^note2]: Với các ngôn ngữ thông dịch như Python, chương trình sẽ được trình thông dịch trực tiếp thông dịch và chạy.
 
-[^note3]: Trên thực tế, cài đặt của hệ thống chấm phức tạp hơn điều này rất nhiều; phần này chỉ giới thiệu sơ lược quá trình chấm của hệ thống.
+[^note3]: Cài đặt của hệ thống chấm phức tạp hơn điều này rất nhiều; phần này chỉ giới thiệu sơ lược quá trình chấm của hệ thống.
 
 [^note4]: Nói chính xác hơn, thường là thời gian ở chế độ người dùng của chương trình.
 

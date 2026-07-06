@@ -2,7 +2,7 @@ author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouu
 
 ## Giới thiệu
 
-Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, có thể thao tác thêm hoặc xóa không hiện thực được. Khi chỉ thao tác thêm không hiện thực được, hoặc chỉ thao tác xóa không hiện thực được, có thể dùng Mo có khôi phục trạng thái (Mo rollback) để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo có khôi phục trạng thái là: nếu chỉ hiện thực được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế khôi phục trạng thái xử lý.
+Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, thao tác thêm hoặc xóa có thể khó cài đặt. Khi chỉ thao tác thêm khó cài đặt, hoặc chỉ thao tác xóa khó cài đặt, có thể dùng Mo có khôi phục trạng thái (Mo rollback) để giải trong thời gian $O(n \sqrt m)$. Ý tưởng cốt lõi của Mo có khôi phục trạng thái là: nếu chỉ cài đặt thuận tiện được một thao tác, thì chỉ dùng thao tác đó, phần còn lại giao cho cơ chế khôi phục trạng thái xử lý.
 
 Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo có khôi phục trạng thái chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
 

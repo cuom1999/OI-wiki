@@ -97,7 +97,7 @@ Như đã nói ở trên, một ô-tô-mát có thể được biểu diễn b�
 
 **Ô-tô-mát trạng thái hữu hạn không xác định**[^nfa-and-nfaepsilon] (Nondeterministic Finite Automaton, NFA) là mở rộng tự nhiên của DFA. Trong NFA, với một trạng thái bất kỳ và một ký tự bất kỳ, có thể tồn tại không, một hoặc nhiều trạng thái kế tiếp. Đồng thời, NFA được thảo luận trong mục này cho phép nhận ký tự rỗng, nghĩa là có thể chuyển từ một trạng thái sang một trạng thái kế tiếp nào đó mà không tiêu thụ ký tự nào.
 
-Ví dụ, vẫn là "ô-tô-mát trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được, đây là sự tồn tại của ký tự rỗng: cạnh ký tự rỗng có thể đi hoặc không đi. Chỉ cần sửa nhẹ ô-tô-mát ở trên là có thể mô tả các chức năng này:
+Ví dụ, vẫn là "ô-tô-mát trà sữa". Sau khi đặt hàng, dù có tiền mua trà sữa, vẫn có thể vì mạng kém mà không mua được trà sữa, đây là trường hợp tồn tại nhiều trạng thái kế tiếp; cũng có thể vì thao tác chậm, dù chuỗi đầu vào (tức dãy thao tác) là như nhau, nhưng trà sữa đã bán hết nên không mua được. Trường hợp này có thể được mô hình hóa bằng chuyển $\varepsilon$: cạnh $\varepsilon$ có thể được đi qua mà không tiêu thụ ký tự đầu vào. Chỉ cần sửa nhẹ ô-tô-mát ở trên là có thể mô tả các chức năng này:
 
 ![NFA mô phỏng quy trình đặt hàng](./images/fsm4.svg)
 
@@ -383,7 +383,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
 ??? note "Lời giải"
     Trước hết đưa ra một cách tính $f(n)$ tham lam. Xét một số từ chữ số cao xuống chữ số thấp. Ban đầu, đặt tổng của số thu được là $0$. Khi tính tới một chữ số, nếu số hiện tại đã ghép được là âm thì cộng chữ số hiện tại vào, nếu là dương thì trừ chữ số hiện tại đi. Với cách xử lý này, giá trị tuyệt đối của $f(n)$ do tham lam tính được không quá $9$. Vì vậy, giá trị tuyệt đối của $f(n)$ thật sự cũng không quá $9$.
     
-    Tiếp tục xét câu hỏi: để ghép ra đáp án cuối cùng, số có thể ghép được trong quá trình trung gian lớn nhất là bao nhiêu? Vì đáp án không quá $9$, mà số chỉ có $18$ chữ số, mỗi lần nhiều nhất chỉ cộng hoặc trừ $9$, nên số có thể ghép ra trong quá trình không quá $90$; nếu lớn hơn thì cuối cùng không thể trừ về được. Trên thực tế, cận trên này còn có thể thấp hơn[^upper-bound].
+    Tiếp tục xét câu hỏi: để ghép ra đáp án cuối cùng, số có thể ghép được trong quá trình trung gian lớn nhất là bao nhiêu? Vì đáp án không quá $9$, mà số chỉ có $18$ chữ số, mỗi lần nhiều nhất chỉ cộng hoặc trừ $9$, nên số có thể ghép ra trong quá trình không quá $90$; nếu lớn hơn thì cuối cùng không thể trừ về được. Cận trên này còn có thể thấp hơn[^upper-bound].
     
     Xét DP lồng DP đơn giản. Trước hết, thiết kế DP tầng trong để xác định đáp án của một số: định nghĩa $g_{i,c}$ biểu diễn việc chỉ dựa vào $i$ chữ số đầu của số này thì có thể ghép ra $c$ hay không. Theo phần trên, $c$ chỉ cần giữ các số không quá $90$. Nếu chữ số hiện tại điền là $v$, thì có các chuyển:
     
@@ -467,7 +467,7 @@ Nếu cần định nghĩa, nó chấp nhận và chỉ chấp nhận **tâm và
 
 Vì ô-tô-mát và so khớp có quan hệ rất chặt chẽ, mà một tư tưởng cơ bản của so khớp là "chuỗi này không được thì thử xem hậu tố của nó có được không", nên trong nhiều ô-tô-mát (KMP, ô-tô-mát AC, SAM, PAM) đều có khái niệm liên kết hậu tố.
 
-Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết hậu tố của nó trỏ tới trạng thái tương ứng với hậu tố thực chung dài nhất trong các chuỗi mà trạng thái đó biểu diễn. Nói chung, các liên kết hậu tố sẽ tạo thành một cây, và cây liên kết hậu tố của các ô-tô-mát khác nhau có một số tính chất giống nhau; điểm này đáng được lưu ý thêm khi học.
+Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết hậu tố của nó trỏ tới trạng thái tương ứng với hậu tố thực chung dài nhất trong các chuỗi mà trạng thái đó biểu diễn. Thông thường, các liên kết hậu tố sẽ tạo thành một cây, và cây liên kết hậu tố của các ô-tô-mát khác nhau có một số tính chất giống nhau; điểm này đáng được lưu ý thêm khi học.
 
 ## Đọc thêm
 
@@ -483,7 +483,7 @@ Một trạng thái sẽ tương ứng với một số chuỗi. Liên kết h�
 
 [^prove-regular-language]: Xem chi tiết trong [lời giải chính thức](https://qoj.ac/download.php?type=attachments&id=2079&r=1).
 
-[^smaller-evidence]: "Tương đương với" trong ngữ cảnh này có nghĩa là dù trên thực tế $P_x$ có thể chưa thật sự được kiểm tra, nhưng ngay cả khi kiểm tra $P_x$ trên phép chia hiện tại thì cũng không tạo ra bất kỳ tinh chỉnh nào. Hiểu đơn giản, trên cây các tập chứng cứ thu được bằng cách tách tập, một tổ tiên nào đó của nó và mọi nhánh bên trên đường đi đều đã được kiểm tra; vì vậy, có thể chứng minh quy nạp rằng điều này tương đương với việc chính nó cũng đã được kiểm tra.
+[^smaller-evidence]: "Tương đương với" trong ngữ cảnh này có nghĩa là dù $P_x$ có thể chưa thật sự được kiểm tra, nhưng ngay cả khi kiểm tra $P_x$ trên phép chia hiện tại thì cũng không tạo ra bất kỳ tinh chỉnh nào. Hiểu đơn giản, trên cây các tập chứng cứ thu được bằng cách tách tập, một tổ tiên nào đó của nó và mọi nhánh bên trên đường đi đều đã được kiểm tra; vì vậy, có thể chứng minh quy nạp rằng điều này tương đương với việc chính nó cũng đã được kiểm tra.
 
 [^detail]: Có một chi tiết trong hiện thực thuật toán: với một chứng cứ $A$, có thể sau khi kiểm tra xong một phần ký tự thì tập chứng cứ này đã bị tách thành $B$ và $C$. Giả sử $|B|\ge |C|$. Trong hiện thực tham khảo, tập nhỏ hơn $C$ được chèn vào cuối hàng đợi chứng cứ, còn tập chứng cứ lớn hơn $B$ thay thế vị trí ban đầu của tập $A$. Khi thuật toán tiếp tục chạy, thực tế chỉ dùng chứng cứ $B$ để kiểm tra các ký tự còn lại. Cách làm này là đúng, vì với các ký tự đã kiểm tra xong, ít nhất đã kiểm chứng hai tập $A$ và $C$; còn với các ký tự chưa kiểm tra, ít nhất kiểm chứng hai tập $B$ và $C$.
 

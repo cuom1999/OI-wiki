@@ -64,7 +64,7 @@ Không cần nắm mọi chi tiết hoạt động của máy Turing; chỉ cầ
 
 Máy Turing không tất định là một loại máy Turing. Điểm khác với máy Turing tất định là: ở mỗi bước, máy Turing tất định chỉ có thể chuyển sang một trạng thái, còn máy Turing không tất định có thể "đồng thời" chuyển sang nhiều trạng thái, từ đó tính toán song song trên nhiều "nhánh"; chỉ cần một trong các "nhánh" này dừng tại trạng thái chấp nhận thì máy Turing không tất định đó chấp nhận đầu vào.
 
-Trên thực tế, mọi máy Turing tất định đều có thể mô phỏng hành vi trong thời gian đa thức của một máy Turing không tất định bằng cách tương tự tìm kiếm sâu lặp, với thời gian cấp số mũ.
+Mọi máy Turing tất định đều có thể mô phỏng hành vi trong thời gian đa thức của một máy Turing không tất định bằng cách tương tự tìm kiếm sâu lặp, với thời gian cấp số mũ.
 
 Trong đời sống thực, máy Turing tất định tương ứng với bộ xử lý đơn nhân, chỉ hỗ trợ xử lý tuần tự; còn máy Turing không tất định tương ứng với bộ xử lý đa nhân lý tưởng, hỗ trợ xử lý song song với quy mô vô hạn.
 
@@ -271,7 +271,7 @@ Trước hết, định nghĩa một mô hình tính toán gọi là mô hình s
 
 Nếu số phép toán của một thuật toán trong mô hình số học là một đa thức theo số lượng các số trong đầu vào, và độ phức tạp không gian là một đa thức theo quy mô đầu vào (chứ không phải theo số lượng các số), thì thuật toán đó có **thời gian đa thức mạnh**. Vì các phép toán số học trong mô hình tính toán thông thường có thể hoàn thành trong thời gian đa thức theo quy mô đầu vào (tức là theo logarit độ lớn của số), thuật toán thời gian đa thức mạnh luôn là thuật toán thời gian đa thức.
 
-Nói chung, độ phức tạp thời gian của thuật toán thời gian đa thức mạnh không phụ thuộc vào miền giá trị.
+Thông thường, độ phức tạp thời gian của thuật toán thời gian đa thức mạnh không phụ thuộc vào miền giá trị.
 
 <span id="weakly-polynomial-time"></span>
 ### Thời gian đa thức yếu

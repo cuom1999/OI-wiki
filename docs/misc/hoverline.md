@@ -2,13 +2,13 @@ author: mwsht, sshwy, ouuan, Ir1d, Henry-ZHR, hsfzLZH1
 
 ## Giới thiệu
 
-Phương pháp đường treo có phạm vi áp dụng là một tập con của stack đơn điệu. Cụ thể, có thể áp dụng phương pháp đường treo cho các bài toán thỏa mãn các điều kiện sau:
+Phương pháp đường treo có phạm vi áp dụng là một trường hợp đặc biệt của ngăn xếp đơn điệu. Cụ thể, có thể áp dụng phương pháp đường treo cho các bài toán thỏa mãn các điều kiện sau:
 
 -   Cần duy trì thông tin đơn điệu khi quét dãy;
--   Có thể giải bằng stack đơn điệu;
--   Không cần tìm kiếm nhị phân trên stack đơn điệu.
+-   Có thể giải bằng ngăn xếp đơn điệu;
+-   Không cần tìm kiếm nhị phân trên ngăn xếp đơn điệu.
 
-Thoạt nhìn, phương pháp đường treo có thể được thay thế và không quá hữu dụng. Tuy vậy, khái niệm của nó đơn giản hơn stack đơn điệu, phù hợp hơn để người mới học OI hiểu và giải các bài như hình chữ nhật con lớn nhất.
+Thoạt nhìn, phương pháp đường treo có thể được thay thế và không quá hữu dụng. Tuy vậy, khái niệm của nó đơn giản hơn ngăn xếp đơn điệu, phù hợp hơn để người mới học OI hiểu và giải các bài như hình chữ nhật con lớn nhất.
 
 ## Ví dụ
 

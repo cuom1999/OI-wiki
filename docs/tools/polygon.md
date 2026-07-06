@@ -63,7 +63,7 @@ Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn
 
 Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" ("Rà soát") để xem đề bài, trình kiểm tra dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
 
-Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ trên thực tế chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
+Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
 Có thể dùng liên kết "In HTML" ("Dạng HTML") ở phía trên cùng để xem đề bài sau khi dựng HTML, và dùng "Tutorial in HTML" ("Hướng dẫn dạng HTML") để xem hướng dẫn sau khi dựng HTML.
 

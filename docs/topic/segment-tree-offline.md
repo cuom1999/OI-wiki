@@ -66,7 +66,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
     Với mỗi thời điểm, nếu đồ thị lúc đó là đồ thị hai phía thì in `Yes`, ngược lại in `No`.
     
     ??? note "Ý tưởng giải"
-        Dùng DSU duy trì tính chẵn lẻ để kiểm tra một đồ thị có phải là đồ thị hai phía hay không, sau đó áp dụng trực tiếp chia để trị bằng cây đoạn.
+        Dùng DSU duy trì tính chẵn lẻ để kiểm tra một đồ thị có phải là đồ thị hai phía hay không, sau đó áp dụng chia để trị bằng cây đoạn.
         
         Lưu ý rằng DSU có thể khôi phục trạng thái không được nén đường, chỉ có thể hợp nhất theo hạng.
     

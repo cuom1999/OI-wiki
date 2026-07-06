@@ -217,7 +217,7 @@ Cần chắc rằng lời giải chuẩn có thể chạy qua **bất kỳ bộ 
 ???+ note "Về việc 'dữ liệu được sinh ngẫu nhiên'"
     Một số bài sẽ ghi rằng "dữ liệu được sinh ngẫu nhiên". Trong rất nhiều trường hợp, ràng buộc như vậy không phải là phương án tối ưu, vì "sinh ngẫu nhiên" không đưa ra giới hạn cụ thể cho dữ liệu, gây khó khăn cho việc xác định phạm vi dữ liệu cụ thể và cung cấp dữ liệu hack.
     
-    Nói chung, câu "dữ liệu được sinh ngẫu nhiên" có thể được thay bằng tính chất dữ liệu mà lời giải cần. Ví dụ, sinh ngẫu nhiên một cây thường có thể được thay bằng giới hạn chiều cao của cây.
+    Thông thường, câu "dữ liệu được sinh ngẫu nhiên" có thể được thay bằng tính chất dữ liệu mà lời giải cần. Ví dụ, sinh ngẫu nhiên một cây thường có thể được thay bằng giới hạn chiều cao của cây.
     
     Nếu nhất định phải yêu cầu dữ liệu được sinh ngẫu nhiên, cần chỉ rõ thao tác sinh ngẫu nhiên cụ thể. Ví dụ, khi sinh một cây, là chọn ngẫu nhiên đỉnh cha hay sinh ngẫu nhiên dãy Prüfer.
     
@@ -269,7 +269,7 @@ Thông thường, giới hạn bộ nhớ nên đặt đủ lớn, trừ khi l�
 
 Điểm thành phần thường được chia thành hai loại: giới hạn dữ liệu nhỏ hơn và tính chất đặc biệt.
 
-Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều mức. Ngay cả khi chưa nghĩ ra lời giải có độ phức tạp nào đó, cũng có thể cân nhắc cho độ phức tạp ấy một mức điểm. Nói chung, để tránh kẹt hằng số, có thể đặt một mức điểm bằng một nửa dữ liệu cực hạn.
+Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều mức. Ngay cả khi chưa nghĩ ra lời giải có độ phức tạp nào đó, cũng có thể cân nhắc cho độ phức tạp ấy một mức điểm. Thông thường, để tránh kẹt hằng số, có thể đặt một mức điểm bằng một nửa dữ liệu cực hạn.
 
 "Dữ liệu có phân tầng" tốt nhất nên được thay bằng nhiều mức điểm thành phần.
 
@@ -277,7 +277,7 @@ Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy th
 
 Nếu cách tính điểm của bài khác với mặc định (ví dụ: trong một cuộc thi theo thể thức OI thông thường nhưng chấm theo bài con buộc chặt), nhất định phải nói rõ trong đề.
 
-Không khuyến nghị dùng cách nói "$XX$% dữ liệu thỏa mãn XX", đặc biệt khi giới hạn dữ liệu có nhiều biến. Ví dụ, "$30\%$ dữ liệu thỏa mãn $n \le 1000$" và "$40\%$ dữ liệu thỏa mãn $m \le 100$" có thể đang mô tả tính chất của $70\%$ dữ liệu, cũng có thể chỉ mô tả tính chất của $40\%$ dữ liệu. Nói chung, bài con (subtask) hoặc bảng giới hạn dữ liệu là lựa chọn tốt hơn.
+Không khuyến nghị dùng cách nói "$XX$% dữ liệu thỏa mãn XX", đặc biệt khi giới hạn dữ liệu có nhiều biến. Ví dụ, "$30\%$ dữ liệu thỏa mãn $n \le 1000$" và "$40\%$ dữ liệu thỏa mãn $m \le 100$" có thể đang mô tả tính chất của $70\%$ dữ liệu, cũng có thể chỉ mô tả tính chất của $40\%$ dữ liệu. Thông thường, bài con (subtask) hoặc bảng giới hạn dữ liệu là lựa chọn tốt hơn.
 
 ## Tạo dữ liệu
 

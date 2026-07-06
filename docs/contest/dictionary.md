@@ -27,7 +27,7 @@ $$
 Sau đó khi in đáp án, cũng xử lý theo tư tưởng phân khối: phần thuộc khối
 đầy đủ dùng giá trị đã tiền xử lý, còn phần không trọn khối thì tính vét cạn.
 
-Nói chung, dạng bài phù hợp là những bài mà việc tính một giá trị hàm đơn lẻ
+Thông thường, dạng bài phù hợp là những bài mà việc tính một giá trị hàm đơn lẻ
 $f(x)$ rất nhanh, nhưng cần tổng hợp rất nhiều giá trị hàm, chẳng hạn lấy tổng,
 tích hoặc một phép toán có thể gộp nhanh. Khi liệt kê trực tiếp sẽ quá thời
 gian và chưa tìm được lời giải chuẩn, lập bảng theo đoạn là một lựa chọn đáng

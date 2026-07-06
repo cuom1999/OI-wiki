@@ -12,9 +12,9 @@ Một cách phân tích biểu thức bằng đệ quy là xem biểu thức nh�
 
 Thực hiện [duyệt cây](../graph/tree-basic.md#duyệt-cây) trên cây biểu thức có thể thu được các loại biểu thức khác nhau. Biểu thức số học được chia thành ba loại: biểu thức tiền tố, biểu thức trung tố và biểu thức hậu tố. Biểu thức trung tố là dạng được dùng phổ biến nhất trong đời sống hằng ngày; biểu thức hậu tố là dạng máy tính dễ xử lý.
 
--   Duyệt tiền tự tương ứng với biểu thức tiền tố (ký pháp Ba Lan)
--   Duyệt trung tự tương ứng với biểu thức trung tố
--   Duyệt hậu tự tương ứng với biểu thức hậu tố (ký pháp Ba Lan ngược)
+-   Duyệt tiền thứ tự tương ứng với biểu thức tiền tố (ký pháp Ba Lan)
+-   Duyệt trung thứ tự tương ứng với biểu thức trung tố
+-   Duyệt hậu thứ tự tương ứng với biểu thức hậu tố (ký pháp Ba Lan ngược)
 
 Ký pháp Ba Lan ngược (biểu thức hậu tố) là một cách viết biểu thức toán học trong đó toán tử đứng sau các toán hạng của nó. Ví dụ, biểu thức sau:
 

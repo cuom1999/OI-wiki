@@ -83,7 +83,7 @@ Nhấn OPEN ("Mở") để mở một kỳ thi đã tạo; sau đó cần chọn
 
 Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
-Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Rất không khuyến nghị dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
+Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Không nên dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
 
 ![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
 
@@ -145,7 +145,7 @@ Các điểm đã xác nhận cần lưu ý:
 -   Cần lưu kỳ thi kịp thời, nếu không khi thao tác có thể bị thoát đột ngột. Để tránh bị thoát, có thể thử lưu kỳ thi nhiều lần, hoặc lưu ngay sau mỗi lần sửa.
 -   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
 -   Do giới hạn ngăn xếp (stack) khi chạy trên Linux, nếu muốn mở ngăn xếp không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
--   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
+-   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter từ GNOME, tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
 -   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời tệp kết quả sinh ra sẽ có thông báo `Compile Failed.` (`Biên dịch thất bại.`).
 -   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 

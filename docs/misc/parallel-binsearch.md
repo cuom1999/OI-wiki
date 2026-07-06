@@ -1,13 +1,13 @@
 ## Mở đầu
 
-Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, nên dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán ngoại tuyến. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
+Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân riêng cho từng truy vấn có thể dẫn đến TLE, nên dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán ngoại tuyến. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
 
 Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏa mãn các tính chất sau[^ref1]:
 
 1.  Đáp án của truy vấn có thể chặt nhị phân được.
 2.  **Đóng góp của các phép sửa đổi vào việc kiểm tra đáp án độc lập với nhau**, hiệu quả của các phép sửa đổi không ảnh hưởng lẫn nhau.
 3.  Nếu một phép sửa đổi có đóng góp vào việc kiểm tra đáp án, đóng góp đó là một giá trị xác định và không phụ thuộc vào tiêu chuẩn kiểm tra.
-4.  Các đóng góp thỏa mãn tính giao hoán, tính kết hợp và có tính cộng được.
+4.  Các đóng góp thỏa mãn tính giao hoán, tính kết hợp và có thể cộng dồn được.
 5.  Bài toán cho phép dùng thuật toán ngoại tuyến.
 
 ## Giải thích

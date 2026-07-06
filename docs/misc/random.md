@@ -42,7 +42,7 @@ Về tính ngẫu nhiên của `rand()` và `rand()%n`:
 
 ### Bộ sinh số ngẫu nhiên định nghĩa sẵn
 
-Thư viện định nghĩa một số thuật toán phổ biến đặc biệt. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong tệp tiêu đề `<random>`.
+Thư viện chuẩn định nghĩa sẵn một số bộ sinh số ngẫu nhiên thông dụng. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong tệp tiêu đề `<random>`.
 
 ??? warning "Cảnh báo"
     Các bộ sinh số ngẫu nhiên định nghĩa sẵn chỉ bắt đầu được dùng từ chuẩn C++11[^ref2].
@@ -232,7 +232,7 @@ Kết quả có thể như sau.
 
 ### Phân bố số ngẫu nhiên
 
-Phần này giới thiệu việc yêu cầu số ngẫu nhiên được sinh ra xuất hiện theo một xác suất nhất định, chẳng hạn xác suất bằng nhau, [phân bố Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [phân bố nhị thức](https://en.wikipedia.org/wiki/Binomial_distribution), [phân bố hình học](https://en.wikipedia.org/wiki/Geometric_distribution), [phân bố chuẩn tắc, còn gọi là Gaussian](https://en.wikipedia.org/wiki/Normal_distribution).
+Phần này giới thiệu việc yêu cầu số ngẫu nhiên được sinh ra xuất hiện theo một xác suất nhất định, chẳng hạn xác suất bằng nhau, [phân bố Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [phân bố nhị thức](https://en.wikipedia.org/wiki/Binomial_distribution), [phân bố hình học](https://en.wikipedia.org/wiki/Geometric_distribution), [phân bố chuẩn, còn gọi là phân bố Gaussian](https://en.wikipedia.org/wiki/Normal_distribution).
 
 Tên lớp cụ thể có thể xem trong danh sách [sinh số giả ngẫu nhiên: phân bố số ngẫu nhiên](https://en.cppreference.com/w/cpp/numeric/random#Random_number_distributions).
 
