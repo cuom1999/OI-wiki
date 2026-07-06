@@ -3,13 +3,13 @@ Trang này giới thiệu ngắn gọn về thuật toán tham lam.
 ## Mở đầu
 
 Thuật toán tham lam (greedy algorithm) là quá trình dùng máy tính mô phỏng một
-người "tham lam" ra quyết định: ở mỗi bước luôn chọn thao tác tốt nhất theo một
-tiêu chí nào đó. Đồng thời người này cũng thiển cận: chỉ nhìn lợi ích trước mắt
-và không xét ảnh hưởng có thể xảy ra về sau.
+người "tham lam" khi ra quyết định: ở mỗi bước, ta luôn chọn thao tác tốt nhất
+theo một tiêu chí nào đó. Cách nhìn này cũng khá "ngắn hạn": nó chỉ xét lợi ích
+trước mắt và không trực tiếp xét ảnh hưởng về sau.
 
-Có thể hình dung rằng không phải lúc nào tham lam cũng cho nghiệm tối ưu. Vì
-vậy khi dùng thuật toán tham lam, thường cần chứng minh được tính đúng đắn của
-nó.
+Không phải lúc nào lựa chọn tham lam cũng dẫn tới nghiệm tối ưu. Vì vậy, khi
+dùng thuật toán tham lam, thường cần chứng minh được tính đúng đắn của chiến
+lược chọn.
 
 ## Giải thích
 
@@ -25,11 +25,11 @@ rồi từ nghiệm tối ưu của các bài toán con suy ra nghiệm tối ư
 Có hai cách chứng minh thuật toán tham lam thường gặp: phản chứng và quy nạp.
 Thông thường, một bài dùng một trong hai cách là đủ.
 
-1.  Phản chứng: nếu sau khi đổi chỗ hai phần tử bất kỳ hoặc hai phần tử kề
-    nhau trong phương án mà đáp án không tốt hơn, có thể suy ra nghiệm hiện tại
-    đã là tối ưu.
+1.  Phản chứng: nếu đổi chỗ hai phần tử bất kỳ hoặc hai phần tử kề nhau trong
+    phương án mà đáp án không tốt hơn, có thể suy ra nghiệm hiện tại đã là tối
+    ưu.
 2.  Quy nạp: trước hết tính nghiệm tối ưu $F_1$ của trường hợp biên, chẳng hạn
-    $n = 1$, rồi chứng minh với mọi $n$, $F_{n+1}$ có thể được suy ra từ
+    $n = 1$, rồi chứng minh với mọi $n$, nghiệm $F_{n+1}$ có thể được suy ra từ
     $F_n$.
 
 ## Điểm chính
@@ -41,33 +41,33 @@ Trong các bài không quá nâng cao, hai dạng tham lam thường gặp nhấ
 -   "Sắp xếp XXX theo một thứ tự nào đó, rồi chọn theo một thứ tự nào đó, chẳng
     hạn từ nhỏ đến lớn."
 -   "Mỗi lần lấy phần tử lớn nhất/nhỏ nhất trong XXX, rồi cập nhật XXX." Đôi
-    khi phần "phần tử lớn nhất/nhỏ nhất trong XXX" có thể được cải thiện, ví dụ
+    khi phần "lấy phần tử lớn nhất/nhỏ nhất trong XXX" có thể được tối ưu, ví dụ
     dùng hàng đợi ưu tiên để duy trì.
 
-Khác biệt giữa hai dạng là: dạng đầu là xử lý ngoại tuyến, xử lý trước rồi chọn;
-dạng sau là xử lý trực tuyến, vừa xử lý vừa chọn.
+Khác biệt giữa hai dạng là: dạng đầu xử lý ngoại tuyến, tức là xử lý trước rồi
+mới chọn; dạng sau xử lý trực tuyến, tức là vừa xử lý vừa chọn.
 
 ### Lời giải bằng sắp xếp
 
-Tình huống thường gặp của phương pháp sắp xếp là: đầu vào là một mảng chứa vài
-trọng số, thường là một hoặc hai trọng số, sau đó sắp xếp rồi duyệt mô phỏng để
-tính giá trị tối ưu.
+Tình huống thường gặp của phương pháp sắp xếp là: đầu vào là một mảng gồm các
+đối tượng có một hoặc hai trọng số, sau đó sắp xếp rồi duyệt mô phỏng để tính
+giá trị tối ưu.
 
 ### Lời giải hối tiếc
 
-Tư tưởng là tạm chấp nhận lựa chọn hiện tại bất kể nó có phải tối ưu hay không,
-sau đó so sánh. Nếu sau khi chọn mà phương án không còn tối ưu, thuật toán
-"hối tiếc" và loại bỏ lựa chọn này; nếu không thì chính thức chấp nhận. Lặp lại
-quá trình đó.
+Tư tưởng là tạm chấp nhận lựa chọn hiện tại dù chưa chắc nó tối ưu, rồi so sánh
+lại. Nếu sau khi chọn mà phương án không còn tối ưu, thuật toán sẽ "hối tiếc"
+và loại bỏ lựa chọn này; nếu không thì chính thức chấp nhận. Quá trình đó được
+lặp lại cho tới khi xử lý xong.
 
 ## Khác biệt
 
 ### Khác với quy hoạch động
 
 Điểm khác biệt giữa thuật toán tham lam và quy hoạch động là: tham lam đưa ra
-lựa chọn cho mỗi bài toán con và không quay lui. Quy hoạch động thì lưu kết quả
-tính toán trước đó, rồi dựa vào các kết quả đó để chọn ở trạng thái hiện tại,
-nên có khả năng quay lui theo nghĩa rộng.
+lựa chọn cho mỗi bài toán con và không quay lui. Quy hoạch động lưu các kết quả
+đã tính trước đó, rồi dựa vào các kết quả này để chọn ở trạng thái hiện tại, nên
+có khả năng quay lại xét các lựa chọn theo nghĩa rộng.
 
 ## Phân tích bài ví dụ
 
@@ -100,22 +100,25 @@ nên có khả năng quay lui theo nghĩa rộng.
     mới ở vị trí $i$ là $\dfrac{s}{b_{i+1}}$, còn phần thưởng của đại thần mới
     ở vị trí $i+1$ là $\dfrac{s\cdot a_{i+1}}{b_i}$.
 
-    Thứ tự trước khi đổi tốt hơn khi và chỉ khi
+    Thứ tự trước khi đổi tốt hơn thứ tự sau khi đổi khi và chỉ khi
 
     $$
-    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)  < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{s} {b_i}, \dfrac{s \cdot a_i} {b_{i+1}}\right)
+      < \max \left(\dfrac{s} {b_{i+1}}, \dfrac{s \cdot a_{i+1}} {b_i}\right)
     $$
 
     Tách nhân tử chung $s$ và rút gọn, thu được
 
     $$
-    \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)  < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
+    \max \left(\dfrac{1} {b_i}, \dfrac{a_i} {b_{i+1}}\right)
+      < \max \left(\dfrac{1} {b_{i+1}}, \dfrac{a_{i+1}} {b_i}\right)
     $$
 
     Chuyển phân thức thành biểu thức nguyên, thu được
 
     $$
-    \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
+    \max (b_{i+1}, a_i\cdot b_i)
+      < \max (b_i, a_{i+1}\cdot b_{i+1})
     $$
 
     Khi cài đặt, lưu hai số đầu vào bằng một struct và nạp chồng toán tử:
@@ -135,21 +138,21 @@ nên có khả năng quay lui theo nghĩa rộng.
 ???+ note "[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
     Ngày làm việc của John bắt đầu từ thời điểm $0$ và có $10^9$ đơn vị thời
     gian. Ở mỗi đơn vị thời gian, anh có thể chọn hoàn thành một trong $N$ công
-    việc được đánh số từ $1$ đến $N$ với $N(1 \leq N \leq 10^5)$. Công việc
-    $i$ có hạn chót $D_i(1 \leq D_i \leq 10^9)$ và lợi nhuận sau khi hoàn thành
-    là $P_i(1\leq P_i\leq 10^9)$. Với lợi nhuận và hạn chót đã cho, tính lợi
-    nhuận lớn nhất John có thể đạt được.
+    việc được đánh số từ $1$ đến $N$, với $1 \leq N \leq 10^5$. Công việc $i$
+    có hạn chót $D_i$ ($1 \leq D_i \leq 10^9$) và lợi nhuận sau khi hoàn thành
+    là $P_i$ ($1 \leq P_i \leq 10^9$). Với lợi nhuận và hạn chót đã cho, hãy
+    tính lợi nhuận lớn nhất John có thể đạt được.
 
 ??? note "Ý tưởng giải"
-    1.  Trước hết giả sử mọi công việc đều được làm, sắp xếp các công việc theo
-        hạn chót rồi đưa vào hàng đợi.
-    2.  Khi xét công việc thứ `i` có làm hay không, nếu hạn chót của nó thỏa
-        điều kiện, so sánh nó với phần tử có thù lao nhỏ nhất trong hàng đợi.
-        Nếu công việc thứ `i` có thù lao cao hơn, tức là nên "hối tiếc" lựa
-        chọn trước đó, cập nhật `ans += a[i].p - q.top()`.
+    1.  Sắp xếp các công việc theo hạn chót tăng dần. Khi duyệt, tạm đưa những
+        công việc được chọn vào hàng đợi ưu tiên.
+    2.  Khi xét công việc thứ `i`, nếu hạn chót của nó thỏa điều kiện, so sánh
+        nó với phần tử có thù lao nhỏ nhất trong hàng đợi. Nếu công việc thứ
+        `i` có thù lao cao hơn, tức là nên "hối tiếc" lựa chọn trước đó, cập
+        nhật `ans += a[i].p - q.top()`.
         Dùng hàng đợi ưu tiên dạng min-heap để duy trì phần tử nhỏ nhất ở đầu.
-    3.  Điều kiện `a[i].d<=q.size()` có thể hiểu như sau: từ thời điểm 0 đến
-        `a[i].d` chỉ có thể làm `a[i].d` công việc. Nếu `q.size()>=a[i].d`,
+    3.  Điều kiện `a[i].d <= q.size()` có thể hiểu như sau: từ thời điểm 0 đến
+        `a[i].d` chỉ có thể làm `a[i].d` công việc. Nếu `q.size() >= a[i].d`,
         nghĩa là thời gian cần để hoàn thành `q.size()` công việc đã lớn hơn
         hoặc bằng `a[i].d`. Vì vậy khi công việc thứ `i` có lợi nhuận lớn hơn,
         nên thay công việc nhỏ nhất trong hàng đợi ưu tiên ra ngoài.
