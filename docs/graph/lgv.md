@@ -37,7 +37,7 @@ Trong đó $\sum\limits_{S:A\rightarrow B}$ biểu thị tổng trên mọi bộ
 
 ### Chứng minh
 
-Từ định nghĩa của định thức, ta có
+Từ định nghĩa của định thức, có
 
 $$
 \begin{align}
@@ -56,7 +56,7 @@ $$
 \end{align}
 $$
 
-Ở đây $P$ là một bộ đường đi tùy ý.
+Trong đó $P$ là một bộ đường đi tùy ý.
 
 Gọi $U$ là các bộ đường đi không giao nhau theo đỉnh, và $V$ là các bộ đường đi có giao nhau,
 
@@ -69,7 +69,7 @@ $$
 
 Giả sử trong $P$ tồn tại một bộ đường đi giao nhau $P_i:a_1 \to u \to b_1,P_j:a_2 \to u \to b_2$. Khi đó chắc chắn tồn tại một bộ đường đi giao nhau tương ứng $P_i'=a_1\to u\to b_2,P_j'=a_2\to u\to b_1$, còn các đường đi khác của $P'$ giống với $P$. Suy ra $\omega(P)=\omega(P'),t(P)=t(P')\pm 1$.
 
-Do đó ta có $\sum\limits_{V:A\to B}(-1)^{t(\sigma)}\prod\limits_{i=1}^n \omega(V_i)=0$.
+Do đó có $\sum\limits_{V:A\to B}(-1)^{t(\sigma)}\prod\limits_{i=1}^n \omega(V_i)=0$.
 
 Vậy $\det(M)=\sum\limits_{U:A\to B}(-1)^{t(U)}\prod\limits_{i=1}^n \omega(U_i)$.
 
@@ -78,9 +78,9 @@ Chứng minh hoàn tất[^1].
 ## Ví dụ
 
 ???+ note "Ví dụ 1 [CF348D Turtles](https://codeforces.com/contest/348/problem/D)"
-    Tóm tắt đề bài: Có một bàn cờ dạng lưới $n\times m$, trong đó một số ô có thể đi qua và một số ô không thể đi qua. Một con rùa ở $(x, y)$ chỉ có thể đi đến $(x+1, y)$ và $(x, y+1)$. Hãy tính số cặp đường đi không giao nhau theo đỉnh của rùa từ $(1, 1)$ đến $(n, m)$, lấy kết quả modulo $10^9+7$. $2\le n,m\le3000$.
+    Tóm tắt đề bài: Có một bàn cờ dạng lưới $n\times m$, trong đó một số ô có thể đi qua và một số ô không thể đi qua. Một con rùa ở $(x, y)$ chỉ có thể đi đến $(x+1, y)$ và $(x, y+1)$. Cần tính số cặp đường đi không giao nhau theo đỉnh của rùa từ $(1, 1)$ đến $(n, m)$, lấy kết quả modulo $10^9+7$. $2\le n,m\le3000$.
 
-Đây là một ứng dụng khá trực tiếp của bổ đề LGV. Xét tất cả các đường đi hợp lệ, ta thấy mọi đường đi xuất phát từ $(1,1)$ đều phải đi qua $A=\{(1,2), (2,1)\}$, còn mọi đường đi đến đích đều phải đi qua $B=\{(n-1, m), (n, m-1)\}$. Vì vậy có thể chọn ngay $A, B$. Áp dụng bổ đề LGV, đáp án là:
+Đây là một ứng dụng khá trực tiếp của bổ đề LGV. Xét tất cả các đường đi hợp lệ, có thể thấy mọi đường đi xuất phát từ $(1,1)$ đều phải đi qua $A=\{(1,2), (2,1)\}$, còn mọi đường đi đến đích đều phải đi qua $B=\{(n-1, m), (n, m-1)\}$. Vì vậy có thể chọn ngay $A, B$. Áp dụng bổ đề LGV, đáp án là:
 
 $$
 \begin{vmatrix}
@@ -97,7 +97,7 @@ Trong đó $f(a, b)$ là số đường đi từ $a\rightarrow b$ trên đồ th
     ```
 
 ???+ note "Ví dụ 2 [HDU 5852 Intersection is not allowed!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
-    Tóm tắt đề bài: Có một bàn cờ $n\times n$. Một quân cờ ở $(x, y)$ chỉ có thể đi đến $(x, y+1)$ hoặc $(x + 1, y)$. Có $k$ quân cờ, ban đầu quân cờ thứ $i$ đặt tại $(1, a_i)$, cuối cùng cần đi đến $(n, b_i)$. Các đường đi phải đôi một không giao nhau theo đỉnh. Hãy tính số phương án modulo $10^9+7$. $1\le n\le 10^5$, $1\le k\le 100$, đảm bảo $1\le a_1<a_2<\dots<a_n\le n$, $1\le b_1<b_2<\dots<b_n\le n$.
+    Tóm tắt đề bài: Có một bàn cờ $n\times n$. Một quân cờ ở $(x, y)$ chỉ có thể đi đến $(x, y+1)$ hoặc $(x + 1, y)$. Có $k$ quân cờ, ban đầu quân cờ thứ $i$ đặt tại $(1, a_i)$, cuối cùng cần đi đến $(n, b_i)$. Các đường đi phải đôi một không giao nhau theo đỉnh. Cần tính số phương án modulo $10^9+7$. $1\le n\le 10^5$, $1\le k\le 100$, thỏa $1\le a_1<a_2<\dots<a_n\le n$, $1\le b_1<b_2<\dots<b_n\le n$.
 
 Nhận thấy nếu các đường đi không giao nhau thì đường đi từ $a_i$ chắc chắn phải đến $b_i$, vì vậy trong bổ đề LGV chắc chắn có $\sigma(S)_i=i$, không cần xét vấn đề dấu. Đặt trọng số cạnh bằng $1$ rồi áp dụng trực tiếp bổ đề.
 

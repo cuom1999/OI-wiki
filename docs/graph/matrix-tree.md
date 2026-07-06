@@ -168,7 +168,7 @@ Các phát biểu trên rất giống nhau. Phần này đưa ra một cách ch�
     \det(AB) = \sum_{S\subset[m];~|S|=n}\det(BA)_{S,S} = \sum_{S\subset[m];~|S|=n}\det(B)_{S,[n]}\det(A)_{[n],S} = \sum_{S\subset[m];~|S|=n}\det(A)_{[n],S}\det(B)_{S,[n]}.
     $$
 
-    Ở đây, dấu bằng thứ hai dùng kết quả của trường hợp $m=n$.
+    Dấu bằng thứ hai dùng kết quả của trường hợp $m=n$.
 
 ### Mô tả cấu trúc đồ thị bằng ma trận liên thuộc
 
@@ -235,7 +235,7 @@ Bây giờ có thể chứng minh kết quả chính của bài viết. Các d�
     \sum_{T\in\mathcal T^\mathrm{root}(G,k)}w(T)=\det L^\mathrm{out}(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
 
-    Ở đây, $\mathcal T^\mathrm{root}(G,k)$ là tập các cây khung có hướng của $G$ lấy $k$ làm gốc và hướng về gốc.
+    Trong đó, $\mathcal T^\mathrm{root}(G,k)$ là tập các cây khung có hướng của $G$ lấy $k$ làm gốc và hướng về gốc.
 
 ??? note "Chứng minh"
     Ký hiệu $W=[n]\setminus\{k\}$ là tập các đỉnh còn lại sau khi bỏ đỉnh $k$. Theo công thức Cauchy-Binet, vế phải có thể viết thành
@@ -255,7 +255,7 @@ Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chí
     \sum_{T\in\mathcal T(G)}w(T) = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
 
-    Ở đây, $\mathcal T(G)$ là tập các cây khung của $G$. Điều này cũng cho thấy mọi định thức con chính cấp $(n-1)$ của $L(G)$ đều bằng nhau.
+    Trong đó, $\mathcal T(G)$ là tập các cây khung của $G$. Điều này cũng cho thấy mọi định thức con chính cấp $(n-1)$ của $L(G)$ đều bằng nhau.
 
 ??? note "Chứng minh"
     Với đồ thị vô hướng $G=(V,E)$, có thể xây dựng đồ thị có hướng $G'=(V,E')$, trong đó $E'=\{(v_i,v_j):(v_i,v_j)\in E\}\cup\{(v_j,v_i):(v_i,v_j)\in E\}$, tức mỗi cạnh vô hướng trong $G$ được tách thành hai cạnh có hướng ngược chiều nhau trong đồ thị có hướng. Chọn tùy ý $k$. Khi đó, cây khung có hướng lấy $k$ làm gốc và hướng về gốc trong $G'$ tương ứng một-một với cây khung trong $G$. Từ đối tượng trước sang đối tượng sau, chỉ cần bỏ hướng cạnh và bỏ lựa chọn gốc; từ đối tượng sau sang đối tượng trước, chỉ cần bắt đầu từ gốc đã chọn $k$ và định hướng từng cạnh theo chiều hướng về gốc. Do đó, lúc này
@@ -264,7 +264,7 @@ Khi $w(e)=1$, trọng số của mỗi cây đều là $1$, nên vế trái chí
     \sum_{T\in\mathcal T(G)}w(T) = \sum_{T\in\mathcal T^\mathrm{root}(G',k)}w(T) = \det L^\mathrm{out}(G')_{[n]\setminus\{k\},[n]\setminus\{k\}} = \det L(G)_{[n]\setminus\{k\},[n]\setminus\{k\}}.
     $$
 
-    Ở đây dùng kết luận $L^\mathrm{out}(G')=L(G)$, điều này có thể kiểm tra trực tiếp.
+    Bước này dùng kết luận $L^\mathrm{out}(G')=L(G)$, điều này có thể kiểm tra trực tiếp.
 
 ### Dạng trị riêng
 
@@ -277,7 +277,7 @@ Vẫn bắt đầu bằng kết luận trên đồ thị có hướng.
     \chi(x_1,\cdots,x_n)=\det(\mathrm{diag}(x_1,\cdots,x_n)-L^\mathrm{out}(G)).
     $$
 
-    Ở đây, $\mathrm{diag}(x_1,\cdots,x_n)$ chỉ ma trận đường chéo có các phần tử đường chéo là $x_1,\cdots,x_n$. Khi đó,
+    Trong đó, $\mathrm{diag}(x_1,\cdots,x_n)$ chỉ ma trận đường chéo có các phần tử đường chéo là $x_1,\cdots,x_n$. Khi đó,
 
     $$
     (-1)^{n-r}[x_{k_1},\cdots,x_{k_r}]\chi(x_1,\cdots,x_n)
@@ -325,7 +325,7 @@ $$
     \sum_{T\in\mathcal T_k(G)}w(T)Q(T) = (-1)^{n-k}[x^k]P(x).
     $$
 
-    Ở đây, $Q(T)$ là tích số đỉnh của từng thành phần liên thông trong rừng $T$. Đặc biệt, khi $k=1$, có $Q(T)=n$, nên
+    Trong đó, $Q(T)$ là tích số đỉnh của từng thành phần liên thông trong rừng $T$. Đặc biệt, khi $k=1$, có $Q(T)=n$, nên
 
     $$
     n\sum_{T\in\mathcal T(G)}w(T) = \lambda_1\lambda_2\cdots\lambda_{n-1}.
