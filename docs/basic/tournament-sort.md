@@ -5,7 +5,7 @@ Trang này giới thiệu ngắn gọn về sắp xếp giải đấu.
 Sắp xếp giải đấu (tournament sort), còn gọi là sắp xếp chọn dạng cây, là một
 phiên bản tối ưu của [sắp xếp chọn](./selection-sort.md) và là một biến thể của
 [sắp xếp vun đống](./heap-sort.md) (đều dùng cây nhị phân hoàn chỉnh). Trên cơ
-sở sắp xếp chọn, thuật toán dùng hàng đợi ưu tiên để tìm phần tử tiếp theo cần
+sở sắp xếp chọn, thuật toán dùng cấu trúc dạng cây để tìm phần tử tiếp theo cần
 chọn.
 
 ## Giới thiệu
@@ -26,9 +26,9 @@ Các phần tử cần sắp xếp được đặt ở các nút lá. Cạnh mà
 chiến thắng của phần tử nhỏ hơn trong mỗi vòng so sánh. Sau khi hoàn thành một
 "giải đấu", có thể chọn ra phần tử nhỏ nhất trong một nhóm phần tử.
 
-Sau mỗi vòng so sánh trên $n$ phần tử, thu được $\frac{n}{2}$ "người thắng";
-phần tử nhỏ hơn trong mỗi cặp đi tiếp vào vòng so sánh sau. Nếu một phần tử
-không ghép được thành cặp, nó trực tiếp đi tiếp vào vòng sau.
+Sau mỗi vòng so sánh trên $n$ phần tử, thu được $\frac{n}{2}$ "người thắng".
+Phần tử nhỏ hơn trong mỗi cặp đi tiếp vào vòng so sánh sau. Nếu một phần tử
+không ghép được thành cặp, phần tử đó trực tiếp đi tiếp vào vòng sau.
 
 ![Ví dụ sắp xếp giải đấu 2](./images/tournament-sort2.png)
 
@@ -47,9 +47,10 @@ Sắp xếp giải đấu là một thuật toán sắp xếp không ổn địn
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của sắp xếp giải đấu đều
-là $O(n\log n)$. Thuật toán dùng $O(n)$ thời gian để khởi tạo "giải đấu", sau
-đó dùng $O(\log n)$ thời gian để chọn một phần tử trong $n$ phần tử.
+Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của
+sắp xếp giải đấu đều là $O(n\log n)$. Thuật toán dùng $O(n)$ thời gian để khởi
+tạo "giải đấu", sau đó dùng $O(\log n)$ thời gian để chọn một phần tử trong $n$
+phần tử.
 
 ### Độ phức tạp bộ nhớ
 
