@@ -518,22 +518,22 @@ True
 ```
 
 Có một sự thật quan trọng: phép gán trong Python chỉ truyền tham chiếu, không tạo
-giá trị mới. Có thể tạo biến thuộc nhiều kiểu khác nhau rồi gán cho biến mới,
-sau đó kiểm tra thấy định danh của hai biến giống nhau. Đến đây mới giới thiệu
-danh sách, một kiểu khả biến; khi gán giá trị mới cho các kiểu bất biến như số
-và chuỗi, thực tế Python tạo đối tượng mới, nên hai biến trước sau không ảnh
-hưởng nhau. Nhưng danh sách là kiểu khả biến, nên khi sửa phần tử của một danh
-sách, danh sách kia cũng bị sửa vì cùng trỏ đến một đối tượng.
+giá trị mới. Có thể tạo biến thuộc nhiều kiểu khác nhau rồi gán cho biến mới, sau
+đó kiểm tra thấy định danh của hai biến giống nhau. Đến đây mới giới thiệu danh
+sách, một kiểu khả biến; khi gán giá trị mới cho các kiểu bất biến như số và
+chuỗi, thực tế Python tạo đối tượng mới, nên hai biến trước sau không ảnh hưởng
+nhau. Nhưng danh sách là kiểu khả biến, nên khi sửa phần tử của một danh sách,
+danh sách kia cũng bị sửa vì cùng trỏ đến một đối tượng.
 
 Tạo mảng hai chiều cũng tương tự: trong ví dụ, dùng phép nhân để tạo danh sách
-hai chiều tương đương lặp lại danh sách một chiều `[0]*3` ba lần, nên thao tác
-trên một dòng sẽ đồng thời ảnh hưởng hai dòng còn lại. Tệ hơn nữa, khi gán danh
-sách hai chiều cho biến khác, ngay cả dùng phép cắt lát để sao chép cũng chỉ là
-"sao chép nông"; các phần tử bên trong vẫn trỏ đến cùng đối tượng. Để giải
+hai chiều tương đương với việc lặp lại danh sách một chiều `[0]*3` ba lần, nên
+thao tác trên một dòng sẽ đồng thời ảnh hưởng hai dòng còn lại. Tệ hơn nữa, khi
+gán danh sách hai chiều cho biến khác, ngay cả dùng phép cắt lát để sao chép cũng
+chỉ là "sao chép nông"; các phần tử bên trong vẫn trỏ đến cùng đối tượng. Để giải
 quyết, cần dùng [`deepcopy`](https://docs.python.org/3/library/copy.html) trong
-thư viện chuẩn, hoặc cố gắng tránh gán cả danh sách hai chiều. May là việc tạo
-danh sách hai chiều mà không lặp lại cùng một danh sách, có thể dùng biểu thức
-sinh danh sách.
+thư viện chuẩn, hoặc cố gắng tránh gán cả danh sách hai chiều. May là có thể tạo
+danh sách hai chiều không lặp lại cùng một danh sách bằng biểu thức sinh danh
+sách.
 
 ```pycon
 >>> vis1 = [[0] * 3 for _ in range(3)]  # _ thường dùng cho biến đếm bỏ qua
@@ -548,8 +548,8 @@ sinh danh sách.
 ```
 
 Biểu thức sinh danh sách được giới thiệu trước vòng lặp vì Python là ngôn ngữ
-thông dịch có tính động cao, nên việc chạy chương trình có nhiều chi phí phụ.
-Đặc biệt, **vòng lặp `for` thuần Python thường chậm**. Vì vậy khi dùng Python mà
+thông dịch có tính động cao, nên việc chạy chương trình có nhiều chi phí phụ. Đặc
+biệt, **vòng lặp `for` thuần Python thường chậm**. Vì vậy, khi dùng Python mà
 muốn đạt hiệu năng cao, nên cân nhắc biểu thức sinh danh sách hoặc các hàm dựng
 sẵn như `filter`, `map` để thao tác trên cả kiểu tuần tự, qua đó giảm số vòng lặp
 viết tay. Dù vậy, vẫn phải tùy bài toán cụ thể.
@@ -612,7 +612,7 @@ array([[0, 0, 1],
 [`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu
 quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản
 một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được
-dùng; phần này chỉ nhắc qua.
+dùng trong OI; phần này chỉ nhắc qua.
 
 Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sách".
 
@@ -627,7 +627,7 @@ Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng s�
 
 #### Xuất định dạng
 
-Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi cơ bản, `print()`
+Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi cơ bản, nên `print()`
 thường đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định
 dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo
 phong cách `printf()`; cách khác là dùng
@@ -670,10 +670,10 @@ Nhập dãy số: 1 2 3 4 5 6
 3.5
 ```
 
-Đôi khi đề bài mỗi dòng nhập cố định vài số, chẳng hạn đỉnh đầu, đỉnh cuối và
-trọng số của cạnh. Nếu chỉ dùng cách trên, mỗi lần phải đọc vào mảng rồi gán theo
-chỉ số. Lúc này có thể dùng tính năng "mở gói" của Python để gán nhiều biến một
-lần:
+Đôi khi mỗi dòng nhập của đề bài có số lượng giá trị cố định, chẳng hạn đỉnh đầu,
+đỉnh cuối và trọng số của cạnh. Nếu chỉ dùng cách trên, mỗi lần phải đọc vào mảng
+rồi gán theo chỉ số. Lúc này có thể dùng tính năng "mở gói" của Python để gán
+nhiều biến một lần:
 
 ```pycon
 >>> u, v, w = [int(x) for x in input().split()]
@@ -703,21 +703,21 @@ lý nhập nhiều dòng mà không cần viết vòng lặp riêng. Sau đây g
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-Chương trình trên tương đương với việc đọc trước một ma trận N dòng 3 cột, sau
-đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách,
-cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho
-`u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/3/library/functions.html#zip)
+Chương trình trên tương đương với việc đọc trước một ma trận N dòng 3 cột, sau đó
+chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối
+cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`,
+`w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/3/library/functions.html#zip)
 có thể ghép các phần tử tương ứng trong nhiều kiểu tuần tự cùng độ dài vào
 `tuple` để tạo kiểu tuần tự mới. Còn `map()` là một thao tác lập trình hàm: áp
-dụng một hàm cho từng phần tử của kiểu tuần tự do `zip()` sinh ra; trong ví dụ
-này dùng `list()` để biến `tuple` thành `list`.
+dụng một hàm cho từng phần tử của kiểu tuần tự do `zip()` sinh ra; trong ví dụ này
+dùng `list()` để biến `tuple` thành `list`.
 
 Có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/3/library/functions.html#zip)
 và [`map()`](https://docs.python.org/3/library/functions.html#map) để hiểu ý
 nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về `list` mà
 trả về bộ lặp. Phần này chưa giải thích khác biệt giữa chúng; có thể hiểu bộ lặp
-là thứ có thể sinh ra từng phần tử của `list`, và dùng `list()` bọc bộ lặp sẽ
-tạo ra `list`.
+là thứ có thể sinh ra từng phần tử của `list`, và dùng `list()` bọc bộ lặp sẽ tạo
+ra `list`.
 
 <a id="đọc-ghi-tệp"></a>
 
@@ -739,7 +739,8 @@ with open("out.txt", "w") as f:
 ```
 
 Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì
-các kỳ thi OI hiện chưa hỗ trợ dùng Python, phần này không đi sâu.
+nhiều kỳ thi OI chưa hỗ trợ dùng Python làm ngôn ngữ chính thức, phần này không
+đi sâu.
 
 <a id="luồng-điều-khiển"></a>
 
@@ -801,7 +802,7 @@ print(u, v, w)
 
 Nhìn chung cấu trúc rẽ nhánh gần với C/C++; các khác biệt về hình thức được minh
 họa trong ví dụ sau. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng
-toán tử gán (Python 3.8 trở lên có thể dùng
+toán tử gán thông thường (Python 3.8 trở lên có thể dùng
 [`:=`](https://www.python.org/dev/peps/pep-0572/)), và
 [không có câu lệnh switch](https://docs.python.org/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
 
@@ -826,8 +827,8 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
 
 Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để
 xử lý ngoại lệ, trong thi đấu thông thường ít dùng. Còn trong Python, phong cách
-[EAFP](https://docs.python.org/3/glossary.html#term-eafp) phổ biến, nên trong mã
-có thể dùng nhiều câu lệnh
+[EAFP](https://docs.python.org/3/glossary.html#term-eafp) khá phổ biến, nên trong
+mã có thể dùng nhiều câu lệnh
 [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement).
 Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
 
@@ -857,7 +858,7 @@ sách) đã giới thiệu kỹ, còn có `tuple` (bộ),
 [`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ
 điển) và `set` (tập hợp).
 
-Có thể hiểu `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất
+Có thể hiểu `tuple` như một danh sách bất biến, nhưng cần lưu ý ý nghĩa của "bất
 biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của
 `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple`
 không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm
