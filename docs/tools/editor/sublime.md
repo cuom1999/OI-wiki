@@ -61,17 +61,17 @@ Nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>, nhập `Install` (`Cài đ
 
 Phần bổ trợ khuyến nghị:
 
--   BracketHighlighter: tăng cường khả năng tô sáng cặp ngoặc so với bản gốc, gần như bắt buộc nên có.
+-   BracketHighlighter: tăng cường khả năng tô sáng cặp ngoặc so với bản gốc, thường nên cài.
 -   C++ Snippets: ST đã có hoàn thành mã C++ sẵn, với phong cách dấu ngoặc nhọn không xuống dòng. Nếu không quen phong cách có sẵn hoặc muốn thêm một số mẫu hoàn thành, có thể cài phần bổ trợ này.
 -   C++ 11: hỗ trợ tô sáng chuẩn C++ 11 (không cần trong ST4).
 -   SublimeAstyleFormatter: Astyle, dùng để định dạng mã.
--   Diffy: nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng so sánh khác biệt giữa tệp đang mở ở khung nhìn thứ nhất và thứ hai; cách so sánh là theo từng dòng.
+-   Diffy: nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd> để so sánh khác biệt giữa tệp đang mở ở khung nhìn thứ nhất và thứ hai; cách so sánh là theo từng dòng.
 -   ConvertToUTF8: tự động nhận diện mã hóa tệp và hỗ trợ chuyển đổi mã hóa.
 -   SideBarEnhancements: tăng cường thanh bên, hữu ích khi thao tác với nhiều
     tệp và thư mục.
 -   Transparency: làm cửa sổ trong suốt.
 
-Nếu có nhu cầu khác, có thể thử tìm kiếm thêm.
+Nếu có nhu cầu khác, hãy tìm kiếm thêm trong Package Control.
 
 Một số giao diện:[^ref3]
 
@@ -194,7 +194,7 @@ Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, c
 ```JSON
 {
   // Hiện một vạch ở đầu dòng giữa hai ngoặc khớp nhau,
-  // giúp nhanh chóng tìm phạm vi cặp ngoặc
+  // giúp tìm phạm vi cặp ngoặc
   "content_highlight_bar": true,
 
   // Hiện cặp ngoặc khớp nhau trong bản đồ thu nhỏ
@@ -225,17 +225,17 @@ Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, c
 
 ### Sửa và thêm mới
 
-Đôi khi một số chỗ trong phần bổ trợ có thể chưa thật vừa ý, hoặc muốn bản địa hóa phần bổ trợ; khi đó cần sửa phần bổ trợ.
+Đôi khi một số chỗ trong phần bổ trợ có thể chưa phù hợp, hoặc muốn bản địa hóa phần bổ trợ; khi đó cần sửa phần bổ trợ.
 
 Phần bổ trợ được đặt trong thư mục `\Installed Packages` dưới thư mục dữ liệu.
 
-Các tệp bên trong có hậu tố `.sublime-package`; thực chất đây là định dạng `.zip`, có thể mở bằng phần mềm giải nén.
+Các tệp bên trong có hậu tố `.sublime-package`; thực chất đây là định dạng `.zip`, mở được bằng phần mềm giải nén.
 
-Ví dụ, nếu muốn sửa hoàn thành tự động, có thể mở các tệp `\Snippets\*.sublime-snippet` trong gói `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một phần bổ trợ mới, nhưng không được thêm trực tiếp vào gói C++ có sẵn, nếu không ST sẽ không nhận diện). Khi lưu bất kỳ sửa đổi nào, **bắt buộc** phải đóng ST và nên sao lưu trước, nếu không có thể mất tệp.
+Ví dụ, nếu muốn sửa hoàn thành tự động, hãy mở các tệp `\Snippets\*.sublime-snippet` trong gói `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một phần bổ trợ mới, nhưng không được thêm trực tiếp vào gói C++ có sẵn, nếu không ST sẽ không nhận diện). Trước khi lưu bất kỳ sửa đổi nào, cần đóng ST và nên sao lưu để tránh mất tệp.
 
-Mọi phần thêm mới đều có thể đặt dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
+Có thể đặt mọi phần thêm mới dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
 
-Ví dụ, một đoạn mẫu tệp có thể viết như sau:
+Ví dụ, một đoạn mẫu tệp như sau:
 
 ```XML
 <snippet>
@@ -350,7 +350,7 @@ Thử nhập một số nội dung trong ST rồi đóng thẳng toàn bộ ST. 
 
 ### Chọn nhiều điểm
 
-Nếu muốn đổi tất cả `bok` trong đoạn mã sau thành `book`, chỉ cần đặt con trỏ vào một `bok` bất kỳ rồi giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng chọn tất cả.
+Nếu muốn đổi tất cả `bok` trong đoạn mã sau thành `book`, đặt con trỏ vào một `bok` bất kỳ rồi giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> để chọn tất cả.
 
 ```cpp
 int check() {
@@ -359,7 +359,7 @@ int check() {
 }
 ```
 
-Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, chỉ cần đặt con trỏ trước `aaa` ở dòng đầu, nhấn <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> năm lần, sau đó nhấn <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập `good`.
+Nếu muốn đổi toàn bộ phần sau dấu bằng trong tệp dưới đây thành `"good"`, đặt con trỏ trước `aaa` ở dòng đầu, nhấn <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> năm lần, sau đó nhấn <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập `good`.
 
 Hoặc chọn `"a`, giữ <kbd>Ctrl</kbd>+<kbd>D</kbd>, sau đó nhấn <kbd>Right</kbd>, <kbd>Ctrl</kbd>+<kbd>D</kbd>, rồi nhập nội dung cần thay.
 
@@ -372,7 +372,7 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-Nếu muốn thêm ngoặc cho tất cả `a + b` dưới đây, chỉ cần chọn một `a + b`, giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập <kbd>(</kbd> (nếu đã chọn một vùng nhất định, nhập bất kỳ ngoặc trái nào sẽ thêm cặp ngoặc khớp vào hai bên vùng đó).
+Nếu muốn thêm ngoặc cho tất cả `a + b` dưới đây, chọn một `a + b`, giữ <kbd>Ctrl</kbd>+<kbd>D</kbd> rồi nhập <kbd>(</kbd> (nếu đã chọn một vùng nhất định, nhập bất kỳ ngoặc trái nào sẽ thêm cặp ngoặc khớp vào hai bên vùng đó).
 
 ```plain
 a + b*a + b*a + b
@@ -391,7 +391,7 @@ s[5] = "aae";
 s[6] = "aaf";
 ```
 
-Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, chỉ cần dùng thay thế trong vùng chọn, bật biểu thức chính quy, nhập `\n`, rồi thay bằng `;\n`.
+Nếu muốn thêm dấu chấm phẩy cho đoạn mã sau, có thể dùng thay thế trong vùng chọn, bật biểu thức chính quy, nhập `\n`, rồi thay bằng `;\n`.
 
 ```plain
 int main() {  int a, b  cin >> a >> b  cout << a + b  return 0}
@@ -441,7 +441,7 @@ Vào `Tools->Build System->New Build System...` (`Công cụ -> Hệ thống bi�
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
-Sau khi lưu, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> để chuyển hệ thống biên dịch là có thể dùng. Cấu hình này sẽ biên dịch rồi chạy trong CMD bên ngoài.
+Sau khi lưu, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> để chọn hệ thống biên dịch này. Cấu hình này sẽ biên dịch rồi chạy trong CMD bên ngoài.
 
 Tệp đã lưu nằm tại `\Packages\User\tên_hệ_thống_biên_dịch.sublime-build` dưới thư mục dữ liệu và có thể sửa nhiều lần.
 
@@ -458,7 +458,7 @@ Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trì
 
 Có thể cài phần bổ trợ để ST hỗ trợ gỡ lỗi gdb bằng giao diện đồ họa, nhưng không nên phụ thuộc vào phần bổ trợ để gỡ lỗi gdb.
 
-Cách tốt hơn là thêm lệnh liên quan khi cấu hình hệ thống biên dịch để khởi động gdb, rồi gỡ lỗi bằng dòng lệnh ở bên ngoài.
+Một cách ổn định hơn là thêm lệnh liên quan khi cấu hình hệ thống biên dịch để khởi động gdb, rồi gỡ lỗi bằng dòng lệnh ở bên ngoài.
 
 ## Linh tinh
 
