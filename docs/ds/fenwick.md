@@ -19,21 +19,21 @@ Cây Fenwick (Binary Indexed Tree, BIT) là một cấu trúc dữ liệu có l�
     -   Sửa đổi đoạn: cho $l, r, x$, tăng mỗi số trong $a[l \ldots r]$ thêm $x$;
     -   Truy vấn một điểm: cho $x$, tính giá trị của $a[x]$.
     
-    Cần chú ý rằng bài toán trên đoạn thường mạnh hơn hẳn bài toán trên một điểm, vì thao tác trên một điểm có thể xem là thao tác trên đoạn độ dài $1$.
+    Cần lưu ý rằng bài toán trên đoạn thường mạnh hơn hẳn bài toán trên một điểm, vì thao tác trên một điểm có thể xem là thao tác trên đoạn độ dài $1$.
 
 Cây Fenwick thông thường yêu cầu thông tin và phép toán được duy trì phải thỏa mãn **tính kết hợp** và **có thể lấy sai phân**, chẳng hạn phép cộng (tổng), phép nhân (tích), xor, v.v.
 
 -   Tính kết hợp: $(x \circ y) \circ z = x \circ (y \circ z)$, trong đó $\circ$ là một toán tử hai ngôi.
 -   Có thể lấy sai phân: phép toán có phép nghịch đảo, tức biết $x \circ y$ và $x$ thì có thể suy ra $y$.
 
-Cần chú ý:
+Lưu ý:
 
 -   Với phép nhân theo modulo, để có thể lấy sai phân thì cần bảo đảm mỗi số đều có nghịch đảo (luôn tồn tại khi modulo là số nguyên tố).
 -   Các thông tin như $\gcd$, $\max$ không thể lấy sai phân, nên không thể xử lý bằng cây Fenwick thông thường. Tuy nhiên:
     -   Có thể dùng hai cây Fenwick để xử lý cực trị trên đoạn, xem [Efficient Range Minimum Queries using Binary Indexed Trees](http://history.ioinformatics.org/oi/files/volume9.pdf#page=41).
     -   Trang này cũng sẽ giới thiệu một mở rộng của cây Fenwick hỗ trợ truy vấn thông tin không thể lấy sai phân với độ phức tạp thời gian $\Theta(\log^2n)$.
 
-Trên thực tế, tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn chắc chắn làm được, nhưng những gì cây phân đoạn làm được thì cây Fenwick chưa chắc xử lý được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
+Trên thực tế, tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn đều xử lý được, nhưng những gì cây phân đoạn làm được thì cây Fenwick không phải lúc nào cũng xử lý được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
 
 Đôi khi, với sự hỗ trợ của mảng sai phân và mảng phụ, cây Fenwick còn có thể giải các bài toán mạnh hơn như **cộng đoạn, hỏi giá trị một điểm** và **cộng đoạn, hỏi tổng đoạn**.
 
@@ -45,7 +45,7 @@ Trước hết xét một ví dụ: cần tính tổng tiền tố $a[1 \ldots 7
 
 Một cách là tính $a_1 + a_2 + a_3 + a_4 + a_5 + a_6 + a_7$, tức phải cộng $7$ số.
 
-Nhưng nếu đã biết ba số $A$, $B$, $C$, trong đó $A$ là tổng của $a[1 \ldots 4]$, $B$ là tổng của $a[5 \ldots 6]$, còn $C$ là tổng của $a[7 \ldots 7]$ (thực ra chính là $a[7]$), đáp án chỉ là $A + B + C$. Khi đó chỉ cần cộng $3$ số.
+Nhưng nếu đã biết ba số $A$, $B$, $C$, trong đó $A$ là tổng của $a[1 \ldots 4]$, $B$ là tổng của $a[5 \ldots 6]$, còn $C$ là tổng của $a[7 \ldots 7]$ (tức chính là $a[7]$), đáp án chỉ là $A + B + C$. Khi đó chỉ cần cộng $3$ số.
 
 Đó là lý do cây Fenwick có thể trả lời nhanh: một tiền tố $[1, n]$ luôn có thể được tách thành **không quá $\boldsymbol{\log n}$ đoạn**, sao cho thông tin của các đoạn này đều **đã biết**.
 
@@ -61,7 +61,7 @@ Tám ô ở dưới cùng biểu diễn mảng dữ liệu ban đầu $a$. Các 
 
 Mảng $c$ dùng để lưu tổng của một số đoạn trong mảng ban đầu $a$. Nói cách khác, thông tin của các đoạn này đã biết; mục tiêu là tách tiền tố cần hỏi thành các đoạn nhỏ đó.
 
-Ví dụ, từ hình có thể thấy:
+Ví dụ, hình trên minh họa:
 
 -   $c_2$ quản lý $a[1 \ldots 2]$;
 -   $c_4$ quản lý $a[1 \ldots 4]$;
@@ -146,7 +146,7 @@ Tiếp theo xét cách cài đặt các thao tác cụ thể của cây Fenwick,
 
 Nhắc lại quá trình truy vấn $a[4 \ldots 7]$: chuyển nó thành hai bài toán con, truy vấn tổng $a[1 \ldots 7]$ và truy vấn tổng $a[1 \ldots 3]$, rồi lấy hiệu.
 
-Thực ra truy vấn đoạn nào cũng có thể làm như vậy: tổng của $a[l \ldots r]$ bằng tổng của $a[1 \ldots r]$ trừ tổng của $a[1 \ldots l - 1]$. Nhờ đó, bài toán trên đoạn được chuyển thành bài toán tiền tố, thuận tiện hơn để xử lý.
+Truy vấn đoạn bất kỳ cũng có thể làm như vậy: tổng của $a[l \ldots r]$ bằng tổng của $a[1 \ldots r]$ trừ tổng của $a[1 \ldots l - 1]$. Nhờ đó, bài toán trên đoạn được chuyển thành bài toán tiền tố, thuận tiện hơn để xử lý.
 
 Trong thi lập trình, việc chuyển truy vấn đoạn $l \ldots r$ thành hai truy vấn tiền tố $1 \ldots r$ và $1 \ldots l - 1$ rồi lấy sai phân là một kỹ thuật rất thường dùng.
 
@@ -204,7 +204,7 @@ Quy ước:
 **Tính chất $\boldsymbol{1}$: với $\boldsymbol{x \le y}$, hoặc $\boldsymbol{c[x]}$ và $\boldsymbol{c[y]}$ không giao nhau, hoặc $\boldsymbol{c[x]}$ nằm trong $\boldsymbol{c[y]}$.**
 
 ??? note "Chứng minh"
-    Giả sử $c[x]$ và $c[y]$ giao nhau, tức $[l(x), x]$ và $[l(y), y]$ giao nhau, khi đó chắc chắn có $l(y) \le x \le y$.
+    Giả sử $c[x]$ và $c[y]$ giao nhau, tức $[l(x), x]$ và $[l(y), y]$ giao nhau, khi đó suy ra $l(y) \le x \le y$.
     
     Biểu diễn $y$ thành $s \times 2^{k +1} + 2^k$, khi đó $l(y) = s \times 2^{k + 1} + 1$. Vì vậy, $x$ có thể biểu diễn thành $s \times 2^{k +1} + b$, trong đó $1 \le b \le 2^k$.
     
@@ -212,7 +212,7 @@ Quy ước:
     
     nên $l(x) = x - \operatorname{lowbit}(x) + 1 = s \times 2^{k +1} + b - \operatorname{lowbit}(b) +1 \ge s \times 2^{k +1} + 1 = l(y)$, tức $l(y) \le l(x) \le x \le y$.
     
-    Vì vậy, nếu $c[x]$ và $c[y]$ giao nhau, phạm vi quản lý của $c[x]$ chắc chắn nằm hoàn toàn trong phạm vi quản lý của $c[y]$.
+    Vì vậy, nếu $c[x]$ và $c[y]$ giao nhau, phạm vi quản lý của $c[x]$ nằm hoàn toàn trong phạm vi quản lý của $c[y]$.
 
 **Tính chất $\boldsymbol{2}$: $\boldsymbol{c[x]}$ là tập con thực sự của $\boldsymbol{c[x + \operatorname{lowbit}(x)]}$.**
 
@@ -238,9 +238,9 @@ Sau ba tính chất làm nền, xét dạng cây của cây Fenwick (bỏ qua c�
 
 ![](./images/fenwick.svg)
 
-Thực ra dạng cây của cây Fenwick là đồ thị thu được bằng cách nối cạnh từ $x$ tới $x + \operatorname{lowbit}(x)$, trong đó $x + \operatorname{lowbit}(x)$ là cha của $x$.
+Dạng cây của cây Fenwick là đồ thị thu được bằng cách nối cạnh từ $x$ tới $x + \operatorname{lowbit}(x)$, trong đó $x + \operatorname{lowbit}(x)$ là cha của $x$.
 
-Cần chú ý rằng khi xét dạng cây của cây Fenwick, ảnh hưởng của kích thước cây được bỏ qua, tức xem nó như một cây vô hạn để tiện phân tích. Khi cài đặt thực tế, chỉ cần dùng các $c[x]$ với $x \le n$, trong đó $n$ là độ dài mảng ban đầu.
+Cần lưu ý rằng khi xét dạng cây của cây Fenwick, ảnh hưởng của kích thước cây được bỏ qua, tức xem nó như một cây vô hạn để tiện phân tích. Khi cài đặt thực tế, chỉ cần dùng các $c[x]$ với $x \le n$, trong đó $n$ là độ dài mảng ban đầu.
 
 Cây này tự nhiên thỏa mãn nhiều tính chất đẹp. Dưới đây là một số tính chất (đặt $fa[u]$ là cha trực tiếp của $u$):
 
@@ -266,7 +266,7 @@ Cây này tự nhiên thỏa mãn nhiều tính chất đẹp. Dưới đây là
 -   Với mọi $v' > u$, nếu $v'$ không phải tổ tiên của $u$, thì $c[u]$ và $c[v']$ không giao nhau.
 
 ??? note "Chứng minh"
-    Trong $u$ và các tổ tiên của $u$, chắc chắn tồn tại một điểm $v$ sao cho $v < v' < fa[v]$. Theo tính chất $3$, $c[v']$ không giao với $c[v]$; mà $c[v]$ chứa $c[u]$, nên $c[v']$ không giao với $c[u]$.
+    Trong $u$ và các tổ tiên của $u$, luôn tồn tại một điểm $v$ sao cho $v < v' < fa[v]$. Theo tính chất $3$, $c[v']$ không giao với $c[v]$; mà $c[v]$ chứa $c[u]$, nên $c[v']$ không giao với $c[u]$.
 
 -   Với mọi $v < u$, nếu $v$ không nằm trong cây con của $u$, thì $c[u]$ và $c[v]$ không giao nhau (đảo $u$, $v'$ trong tính chất trên).
 -   Với mọi $v > u$, $c[u]$ là tập con thực sự của $c[v]$ khi và chỉ khi $v$ là tổ tiên của $u$ (tổng hợp các tính chất trên). Đây là nguyên lý cốt lõi của thao tác sửa đổi một điểm trong cây Fenwick.
@@ -310,7 +310,7 @@ Bây giờ xét cách sửa đổi một điểm $a[x]$.
 
 Mục tiêu là duy trì mảng $c$ nhanh và đúng. Để giữ hiệu quả, chỉ cần duyệt và sửa mọi $c[y]$ có quản lý $a[x]$, vì các $c$ khác không thay đổi.
 
-Mọi $c[y]$ quản lý $a[x]$ chắc chắn chứa $c[x]$ (theo tính chất $1$), nên $y$ là tổ tiên của $x$ trên dạng cây Fenwick. Vì vậy, bắt đầu từ $x$ và liên tục nhảy lên cha cho tới khi vượt quá độ dài mảng ban đầu.
+Mọi $c[y]$ quản lý $a[x]$ đều chứa $c[x]$ (theo tính chất $1$), nên $y$ là tổ tiên của $x$ trên dạng cây Fenwick. Vì vậy, bắt đầu từ $x$ và liên tục nhảy lên cha cho tới khi vượt quá độ dài mảng ban đầu.
 
 Gọi $n$ là kích thước của $a$. Có thể viết quá trình sửa đổi một điểm $a[x]$ như sau:
 
@@ -629,7 +629,7 @@ $$
 
 Vì vậy, cần duy trì bốn cây Fenwick, lần lượt lưu thông tin tổng của $d(i, j)$, $d(i, j) \times i$, $d(i, j) \times j$, $d(i, j) \times i \times j$.
 
-Dĩ nhiên, tương tự trường hợp một chiều, nếu chỉ cần cộng ma trận con và hỏi giá trị một điểm, duy trì một mảng sai phân rồi truy vấn tiền tố là đủ.
+Tương tự trường hợp một chiều, nếu chỉ cần cộng ma trận con và hỏi giá trị một điểm, duy trì một mảng sai phân rồi truy vấn tiền tố là đủ.
 
 Dưới đây là mã:
 
@@ -695,7 +695,7 @@ Dùng cây Fenwick theo giá trị có thể giải một số bài toán kinh �
 
 Phần này chỉ thảo luận phần tử nhỏ thứ $k$; bài toán phần tử lớn thứ $k$ có thể chuyển thành phần tử nhỏ thứ $k$ bằng tính toán đơn giản.
 
-Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, cần rời rạc hóa rồi xây mảng tần suất giá trị $b$. Chú ý cũng phải rời rạc hóa cả các giá trị xuất hiện trong thao tác sửa đổi một điểm, không thể chỉ rời rạc hóa các phần tử ban đầu của mảng $a$.
+Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, cần rời rạc hóa rồi xây mảng tần suất giá trị $b$. Cũng cần rời rạc hóa cả các giá trị xuất hiện trong thao tác sửa đổi một điểm, không thể chỉ rời rạc hóa các phần tử ban đầu của mảng $a$.
 
 Với sửa đổi một điểm, chỉ cần chuyển thao tác sửa trên dãy gốc thành thao tác sửa trên mảng tần suất giá trị. Cụ thể, nếu $a[x]$ trong mảng gốc được đổi từ $y$ thành $z$, thì trên mảng tần suất $b$ giảm $b[y]$ đi $1$ và tăng $b[z]$ thêm $1$.
 
@@ -712,9 +712,9 @@ Xét dùng nhân đôi thay cho nhị phân.
 
 Giá trị $x$ thu được là giá trị lớn nhất sao cho tổng tiền tố $[1 \ldots x] < k$, nên cuối cùng $x + 1$ là đáp án.
 
-Thoạt nhìn cách này không cải thiện thời gian, nhưng thực ra truy vấn tổng đoạn $[x + 1 \ldots x + 2^i]$ chỉ cần truy cập giá trị $c[x + 2^i]$.
+Thoạt nhìn cách này không cải thiện thời gian, nhưng truy vấn tổng đoạn $[x + 1 \ldots x + 2^i]$ chỉ cần truy cập giá trị $c[x + 2^i]$.
 
-Lý do rất đơn giản: xét $\operatorname{lowbit}(x + 2^i)$, nó chắc chắn là $2^i$, vì trước đó $x$ chỉ cộng các $2^j$ với $j > i$. Do đó, đoạn mà $c[x + 2^i]$ biểu diễn chính là $[x + 1 \ldots x + 2^i]$.
+Lý do rất đơn giản: xét $\operatorname{lowbit}(x + 2^i)$, giá trị này bằng $2^i$, vì trước đó $x$ chỉ cộng các $2^j$ với $j > i$. Do đó, đoạn mà $c[x + 2^i]$ biểu diễn chính là $[x + 1 \ldots x + 2^i]$.
 
 Như vậy, độ phức tạp thời gian giảm xuống $\Theta(\log n)$.
 
@@ -762,12 +762,12 @@ Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy g
 
 Xét cách duyệt ngược $i$ từ $n$ về $1$, xem $i$ là chỉ số của phần tử đầu tiên trong cặp nghịch thế, rồi tính có bao nhiêu $j > i$ thỏa mãn $a[j] < a[i]$, cuối cùng cộng dồn vào đáp án.
 
-Thực ra chỉ cần làm như sau (giả sử hiện tại $a[i] = x$):
+Cách thực hiện như sau (giả sử hiện tại $a[i] = x$):
 
 -   Truy vấn tổng tiền tố $b[1 \ldots x - 1]$, đó chính là số cặp nghịch thế có đầu trái là $a[i]$.
 -   Tăng $b[x]$ thêm $1$.
 
-Lý do rất tự nhiên: các phần tử xuất hiện trong $b[1 \ldots x-1]$ chắc chắn nhỏ hơn $x = a[i]$ hiện tại, còn việc duyệt ngược $i$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $j$ trong mảng gốc lớn hơn chỉ số $i$ đang duyệt.
+Lý do rất tự nhiên: các phần tử xuất hiện trong $b[1 \ldots x-1]$ đều nhỏ hơn $x = a[i]$ hiện tại, còn việc duyệt ngược $i$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $j$ trong mảng gốc lớn hơn chỉ số $i$ đang duyệt.
 
 Minh họa bằng ví dụ $a = (4, 3, 1, 2, 1)$.
 
@@ -781,7 +781,7 @@ Quét $i$ theo thứ tự $5 \to 1$:
 
 Vì vậy đáp án cuối cùng là $0 + 1 + 0 + 3 + 4 = 8$.
 
-Chú ý rằng hai bước truy vấn $b[1 \ldots x - 1]$ và tăng $b[x]$ sau khi duyệt $i$ có thể đổi thứ tự thành tăng $b[x]$ trước rồi truy vấn $b[1 \ldots x - 1]$, mà không ảnh hưởng đáp án. Có thể giải thích từ hai góc độ:
+Lưu ý rằng hai bước truy vấn $b[1 \ldots x - 1]$ và tăng $b[x]$ sau khi duyệt $i$ có thể đổi thứ tự thành tăng $b[x]$ trước rồi truy vấn $b[1 \ldots x - 1]$, mà không ảnh hưởng đáp án. Có thể giải thích từ hai góc độ:
 
 -   Việc sửa $b[x]$ không ảnh hưởng tới truy vấn $b[1 \ldots x - 1]$.
 -   Sau khi đổi thứ tự, thực chất đang đếm số cặp thỏa mãn $i \le j$ và $a[i] > a[j]$; nhưng khi $i = j$ không thể có $a[i] > a[j]$, nên $i \le j$ tương đương $i < j$. Vì vậy nó tương đương với bài toán nghịch thế ban đầu.
@@ -798,7 +798,7 @@ Ngoài ra, với bài toán nghịch thế ban đầu còn có một cách khác
 -   Truy vấn tổng đoạn $b[x + 1 \ldots V]$ ($V$ là kích thước của $b$, tức miền giá trị của $a$ hoặc miền giá trị sau rời rạc hóa).
 -   Tăng $b[x]$ thêm $1$.
 
-Lý do: các phần tử xuất hiện trong $b[x + 1 \ldots V]$ chắc chắn lớn hơn $x = a[j]$ hiện tại, còn việc duyệt xuôi $j$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $i$ trong mảng gốc nhỏ hơn chỉ số $j$ đang duyệt.
+Lý do: các phần tử xuất hiện trong $b[x + 1 \ldots V]$ đều lớn hơn $x = a[j]$ hiện tại, còn việc duyệt xuôi $j$ bảo đảm những phần tử đã có trong mảng tần suất giá trị có chỉ số $i$ trong mảng gốc nhỏ hơn chỉ số $j$ đang duyệt.
 
 Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp xếp trộn](../basic/merge-sort.md#nghịch-thế). Cách này tránh được rời rạc hóa, và độ phức tạp thời gian cũng là $O(n\log n)$. Cài đặt tham khảo của cả hai thuật toán đều nằm trong chương [nghịch thế](../math/permutation.md#số-nghịch-thế).
 
@@ -806,7 +806,7 @@ Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp x�
 
 Ví dụ như duy trì cực trị trên đoạn.
 
-Chú ý rằng tuy phương pháp này có lượng mã nhỏ, độ phức tạp thời gian của cả sửa đổi một điểm và truy vấn đoạn đều là $\Theta(\log^2n)$, kém hơn độ phức tạp $\Theta(\log n)$ khi dùng cây phân đoạn.
+Lưu ý rằng tuy phương pháp này có lượng mã nhỏ, độ phức tạp thời gian của cả sửa đổi một điểm và truy vấn đoạn đều là $\Theta(\log^2n)$, kém hơn độ phức tạp $\Theta(\log n)$ khi dùng cây phân đoạn.
 
 ### Truy vấn đoạn
 
@@ -839,17 +839,17 @@ Dưới đây là mã ví dụ cho truy vấn giá trị lớn nhất trên đo�
 Có thể chứng minh độ phức tạp thời gian của thuật toán trên là $\Theta(\log^2n)$.
 
 ??? note "Chứng minh độ phức tạp thời gian"
-    Xét bit cao nhất mà $r$ và $l$ khác nhau. Chắc chắn $r$ có bit này bằng $1$, còn $l$ có bit này bằng $0$ (vì $r \ge l$).
+    Xét bit cao nhất mà $r$ và $l$ khác nhau. Khi đó $r$ có bit này bằng $1$, còn $l$ có bit này bằng $0$ (vì $r \ge l$).
     
-    Nếu phía sau bit này của $r$ vẫn còn bit $1$, chắc chắn có $r - \operatorname{lowbit}(r) \ge l$, nên bước tiếp theo chắc chắn đổi bit `1` thấp nhất của $r$ thành `0`.
+    Nếu phía sau bit này của $r$ vẫn còn bit $1$, có $r - \operatorname{lowbit}(r) \ge l$, nên bước tiếp theo đổi bit `1` thấp nhất của $r$ thành `0`.
     
-    Nếu bit $1$ này của $r$ chính là bit `1` thấp nhất của $r$, thì dù thực hiện $r \gets r - \operatorname{lowbit}(r)$ hay $r \gets r - 1$, bit $1$ này của $r$ chắc chắn sẽ trở thành $0$.
+    Nếu bit $1$ này của $r$ chính là bit `1` thấp nhất của $r$, thì dù thực hiện $r \gets r - \operatorname{lowbit}(r)$ hay $r \gets r - 1$, bit $1$ này của $r$ đều sẽ trở thành $0$.
     
-    Vì vậy, sau nhiều nhất $\log n$ lần biến đổi, bit cao nhất mà $r$ và $l$ khác nhau chắc chắn có thể giảm xuống một vị trí. Do đó, tổng độ phức tạp thời gian là $\Theta(\log^2n)$.
+    Vì vậy, sau nhiều nhất $\log n$ lần biến đổi, bit cao nhất mà $r$ và $l$ khác nhau sẽ giảm xuống một vị trí. Do đó, tổng độ phức tạp thời gian là $\Theta(\log^2n)$.
 
 ### Cập nhật một điểm
 
-???+ note "Chú ý"
+???+ note "Lưu ý"
     Cần nắm hai tính chất sau của dạng cây Fenwick trước khi đọc phần này.
     
     -   Đặt $u = s \times 2^{k + 1} + 2^k$. Khi đó số con của nó là $k = \log_2\operatorname{lowbit}(u)$, được đánh số lần lượt là $u - 2^t(0 \le t < k)$.
@@ -861,11 +861,11 @@ Sau khi cập nhật $a[x]$, chỉ cần cập nhật các $c[y]$ sao cho trên 
 
 Với cực trị (lấy giá trị lớn nhất làm ví dụ), một suy nghĩ sai thường gặp là: nếu sửa $a[x]$ thành $p$, thì cập nhật mọi $c[y]$ thành $\max(c[y], p)$. Phản ví dụ: trong $(1, 2, 3, 4, 5)$, sửa $5$ thành $4$ thì giá trị lớn nhất là $4$, nhưng cách cập nhật trên vẫn cho kết quả $5$. Cập nhật trực tiếp $c[y]$ thành $p$ cũng sai; một phản ví dụ là sửa $3$ trong ví dụ trên thành $4$.
 
-Thực ra với thông tin không thể lấy sai phân, không tồn tại cách sửa trực tiếp $c[y]$ chỉ dựa vào $p$. Lý do là thao tác sửa tương đương với việc "loại bỏ" số cũ khỏi đoạn gốc rồi thêm một số mới. Ảnh hưởng của bước "loại bỏ" lên thông tin đoạn tương đương với thực hiện "phép nghịch đảo"; nhưng thông tin không thể lấy sai phân không có "phép nghịch đảo", nên không thể sửa trực tiếp $c[y]$.
+Với thông tin không thể lấy sai phân, không tồn tại cách sửa trực tiếp $c[y]$ chỉ dựa vào $p$. Lý do là thao tác sửa tương đương với việc "loại bỏ" số cũ khỏi đoạn gốc rồi thêm một số mới. Ảnh hưởng của bước "loại bỏ" lên thông tin đoạn tương đương với thực hiện "phép nghịch đảo"; nhưng thông tin không thể lấy sai phân không có "phép nghịch đảo", nên không thể sửa trực tiếp $c[y]$.
 
 Nói cách khác, với mỗi $c[y]$ bị ảnh hưởng, bắt buộc phải dựng lại thông tin của đoạn đó.
 
-Xét các con của $c[y]$. Thông tin của chúng chắc chắn đúng (vì cập nhật con trước rồi cập nhật cha), và các con này ghép lại đúng đoạn quản lý $[l(y), y - 1]$. Khi gộp thêm một điểm $a[y]$, thu được thông tin của $[l(y), y]$, tức $c[y]$. Như vậy, mỗi $c$ cần sửa có thể được dựng lại bằng cách gộp nhiều nhất $\log n$ đoạn.
+Xét các con của $c[y]$. Thông tin của chúng đều đúng (vì cập nhật con trước rồi cập nhật cha), và các con này ghép lại đúng đoạn quản lý $[l(y), y - 1]$. Khi gộp thêm một điểm $a[y]$, thu được thông tin của $[l(y), y]$, tức $c[y]$. Như vậy, mỗi $c$ cần sửa có thể được dựng lại bằng cách gộp nhiều nhất $\log n$ đoạn.
 
 ???+ note "Cài đặt"
     ```cpp

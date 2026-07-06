@@ -6,7 +6,7 @@ Kiến thức nền: [hàm ngẫu nhiên](../misc/random.md) và [xác suất s�
 
 Bài viết này phân loại sơ bộ các kỹ thuật liên quan đến ngẫu nhiên hóa trong OI/ICPC, đồng thời giới thiệu từng nhóm. Bài viết cũng nhắc đến một số phương pháp ít dùng trong OI/ICPC, nhưng khá gần với OI/ICPC về phong cách; các mục đó sẽ được đánh dấu bằng `(*)`.
 
-Cách phân loại này không phải đồng thuận rộng rãi, và chắc chắn không bao quát hết mọi khả năng, vì vậy chỉ nên xem như tài liệu tham khảo.
+Cách phân loại này không phải đồng thuận rộng rãi, và nhất định không bao quát hết mọi khả năng, vì vậy chỉ nên xem như tài liệu tham khảo.
 
 **Ký hiệu và quy ước**:
 
@@ -42,18 +42,18 @@ Làm như vậy, xác suất đúng của một lần chạy là $\big(\frac 23\
 ???+ note "Tóm tắt đề bài"
     Cho một đồ thị vô hướng có trọng số không âm trên cả đỉnh và cạnh. Tìm một tập cạnh $S$ có kích thước $\leq K$ để tối đa hóa tổng trọng số của các đỉnh liên thông với $S$ trừ đi tổng trọng số các cạnh trong $S$. Trọng số của một đỉnh chỉ được tính một lần.
 
-Nhận xét: nếu trong các cạnh đã chọn có ba cạnh tạo thành một đường đi, thì xóa cạnh ở giữa chắc chắn không tệ hơn; nếu trong các cạnh đã chọn có một số cạnh tạo thành chu trình, thì xóa bất kỳ cạnh nào cũng không tệ hơn.
+Nhận xét: nếu trong các cạnh đã chọn có ba cạnh tạo thành một đường đi, thì xóa cạnh ở giữa nhất định không tệ hơn; nếu trong các cạnh đã chọn có một số cạnh tạo thành chu trình, thì xóa bất kỳ cạnh nào cũng không tệ hơn.
 
-Hệ quả: tập cạnh được chọn trong nghiệm tối ưu chắc chắn tạo thành một số đồ thị hoa cúc rời nhau, tức là các cây có đường kính không quá 2.
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu nhất định tạo thành một số đồ thị hoa cúc rời nhau, tức là các cây có đường kính không quá 2.
 
-Hệ quả: tập cạnh được chọn trong nghiệm tối ưu chắc chắn tạo thành một đồ thị hai phía.
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu nhất định tạo thành một đồ thị hai phía.
 
 Tô mỗi đỉnh độc lập và đều bằng một trong hai màu đen/trắng, và yêu cầu cách tô màu này trùng với cách tô hai phía của đồ thị hai phía tương ứng với nghiệm tối ưu.
 
 Thử tính xác suất nghiệm tối ưu thỏa yêu cầu này:
 
 -   Xét một đồ thị hoa cúc có $n$ đỉnh. Nó có 2 cách tô màu, nên xác suất tô đúng màu là $\dfrac 2{2^n}=2^{1-n}$.
--   Giả sử số đỉnh của từng hoa cúc trong nghiệm tối ưu lần lượt là $a_1,\cdots,a_l$. Khi đó chắc chắn có $(a_1-1)+\cdots+(a_l-1)\leq K$, trong đó $K$ là số cạnh tối đa có thể chọn.
+-   Giả sử số đỉnh của từng hoa cúc trong nghiệm tối ưu lần lượt là $a_1,\cdots,a_l$. Khi đó nhất định có $(a_1-1)+\cdots+(a_l-1)\leq K$, trong đó $K$ là số cạnh tối đa có thể chọn.
 -   Suy ra xác suất tất cả các hoa cúc đều được tô đúng màu là $2^{1-a_1}\cdots 2^{1-a_l}\geq 2^{-K}$.
 
 Dưới yêu cầu trên, thử lập mô hình luồng chi phí để tính đáp án tối ưu:
@@ -90,9 +90,9 @@ Toàn bộ đồ thị có thể tách thành một chu trình cộng với bố
 -   Dưới điều kiện trên, khoảng cách ngắn nhất từ thiết bị nghe lén trên $C$ đến chu trình là nhỏ nhất có thể.
     -   Mục đích của yêu cầu này là chặn nhiều nhất các cuộc gọi có đúng một đầu mút nằm trong $C$.
 
-Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và vét cạn xem trên các cạnh này có đặt thiết bị nghe lén hay không. Nếu muốn chặn các cuộc gọi cắt qua giữa chuỗi và chu trình, đặt thiết bị nghe lén trên 4 cạnh này chắc chắn là tối ưu. Bây giờ có thể chia các đường gọi thành các loại sau:
+Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và vét cạn xem trên các cạnh này có đặt thiết bị nghe lén hay không. Nếu muốn chặn các cuộc gọi cắt qua giữa chuỗi và chu trình, đặt thiết bị nghe lén trên 4 cạnh này nhất định là tối ưu. Bây giờ có thể chia các đường gọi thành các loại sau:
 
-1.  Đường gọi nằm hoàn toàn trên chuỗi. Các đường này chắc chắn đã bị chặn, nên có thể bỏ qua.
+1.  Đường gọi nằm hoàn toàn trên chuỗi. Các đường này nhất định đã bị chặn, nên có thể bỏ qua.
 2.  Đường gọi cắt qua chuỗi và chu trình, và đã bị chặn. Chúng có thể bị bỏ qua.
 3.  Đường gọi cắt qua chuỗi và chu trình, nhưng chưa bị chặn. Có thể cắt bỏ phần trên chuỗi của nó, vì cách đặt thiết bị trên chuỗi đã cố định, và chỉ giữ lại phần trên chu trình.
 4.  Đường gọi nằm hoàn toàn trên chu trình.
@@ -102,7 +102,7 @@ Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và
 Giả sử trong nghiệm tối ưu, tập cạnh trên chu trình có đặt thiết bị nghe lén là $S$. Nếu đã xác định được bất kỳ một phần tử $e$ nào trong $S$, có thể:
 
 -   Cắt chu trình tại $e$ thành một chuỗi.
--   Sau đó tham lam bắt đầu từ $e$, liên tục tìm cạnh tiếp theo để đặt thiết bị nghe lén. Chú ý rằng nếu tiền xử lý thích hợp, mỗi bước tham lam có thể làm trong $O(1)$.
+-   Sau đó tham lam bắt đầu từ $e$, liên tục tìm cạnh tiếp theo để đặt thiết bị nghe lén. Lưu ý rằng nếu tiền xử lý thích hợp, mỗi bước tham lam có thể làm trong $O(1)$.
 -   Từ đó giải bài toán trong $O(|S|)$.
 
 Xét việc chọn ngẫu nhiên một cạnh $e'$ trên chu trình, quy định $e'\in S$, rồi thực hiện quá trình trên; lặp lại nhiều lần và lấy kết quả tốt nhất.
@@ -134,7 +134,7 @@ Một thao tác cốt lõi là chọn đỉnh đích $t$ và đỉnh nguồn $s$
 
 -   Dùng điều kiện cần và đủ này vẫn khó suy ra thuật toán trực tiếp, chủ yếu vì sau khi nối cạnh $t\to s$, tính hợp lệ của các cặp $(s',t')$ khác có thể bị ảnh hưởng, điều này khá khó xử lý.
 
-Chú ý rằng quan hệ giữa đỉnh nguồn và đỉnh đích được biết rất ít (thực ra ngay cả truy vấn nhanh một cặp $s-t$ có thể đi tới nhau hay không cũng cần tiền xử lý dfs + bitset, mà giới hạn thời gian không cho phép). Điều này gợi ý rằng cần một tính chất rất tổng quát và mạnh.
+Lưu ý rằng quan hệ giữa đỉnh nguồn và đỉnh đích được biết rất ít (ngay cả truy vấn nhanh một cặp $s-t$ có thể đi tới nhau hay không cũng cần tiền xử lý dfs + bitset, mà giới hạn thời gian không cho phép). Điều này gợi ý rằng cần một tính chất rất tổng quát và mạnh.
 
 Nhận xét: số cặp $(s,t)$ không thỏa mục tiêu I nhiều nhất là $n+m-1$, trong đó $n$ là số đỉnh nguồn và $m$ là số đỉnh đích.
 
@@ -143,7 +143,7 @@ Nhận xét: số cặp $(s,t)$ không thỏa mục tiêu I nhiều nhất là $
 
 Hệ quả: chọn đều ngẫu nhiên $(s,t)$, xác suất thỏa yêu cầu trên $\geq \dfrac {(n-1)(m-1)}{nm}$.
 
--   Chú ý rằng kết luận này mạnh hơn nghiêm ngặt so với kết luận tồn tại đã nêu trước đó.
+-   Lưu ý rằng kết luận này mạnh hơn nghiêm ngặt so với kết luận tồn tại đã nêu trước đó.
 
 Hệ quả: chọn độc lập và đều ngẫu nhiên liên tiếp $\dfrac {\min(n,m)}2$ cặp $(s,t)$ không có phần tử chung, và **lần lượt** thao tác trên chúng (tức là nối cạnh $t\to s$), thì xác suất tất cả các thao tác đều thỏa mục tiêu I là $\geq \dfrac 14$.
 
@@ -157,7 +157,7 @@ $$
 \end{aligned}
 $$
 
-Sau khi chọn liên tiếp $k$ cặp $(s,t)$, việc kiểm tra chúng có tất cả thỏa mục tiêu I hay không rất đơn giản: chỉ cần chạy lại phép co thành phần liên thông mạnh và kiểm tra $n,m$ có đều giảm $k$ hay không. Chú ý rằng nếu mỗi lần giảm $k=\dfrac{\min(n,m)}2$, thì $\min(n,m)$ sẽ trở thành 1 trong $O\big(\log(n+m)\big)$ vòng, tức là chuyển về trường hợp đơn giản.
+Sau khi chọn liên tiếp $k$ cặp $(s,t)$, việc kiểm tra chúng có tất cả thỏa mục tiêu I hay không rất đơn giản: chỉ cần chạy lại phép co thành phần liên thông mạnh và kiểm tra $n,m$ có đều giảm $k$ hay không. Lưu ý rằng nếu mỗi lần giảm $k=\dfrac{\min(n,m)}2$, thì $\min(n,m)$ sẽ trở thành 1 trong $O\big(\log(n+m)\big)$ vòng, tức là chuyển về trường hợp đơn giản.
 
 ???+ note "Mã giả của thuật toán"
     ```text
@@ -194,7 +194,7 @@ Xem chi tiết tại [phương pháp gia tăng ngẫu nhiên](../geometry/random
 
 Kỹ thuật gặp nhau ở giữa là hướng tiếp cận tự nhiên. Chia đều tập đỉnh thành hai nửa trái/phải $V_L,V_R$ (mỗi bên có kích thước $\dfrac n2$), tính mảng $f_{L,k}$ biểu thị tổng trọng số lớn nhất của mọi clique có kích thước $\geq k$ trong tập đỉnh $L\subseteq V_L$. Sau đó liệt kê mỗi clique $C_R$ ở nửa phải, tính các đỉnh bên trái nối với tất cả đỉnh trong $C_R$ (ký hiệu tập này là $N_L$), và dùng $f_{N_L,\frac 23 n-|C_R|}+\textit{value}(C_R)$ để cập nhật đáp án.
 
--   Chú ý có thể chuyển trạng thái mỗi $f_{L,k}$ trong $O(1)$. Cụ thể, lấy $d$ là một phần tử bất kỳ trong $L$, rồi chia trường hợp:
+-   Lưu ý có thể chuyển trạng thái mỗi $f_{L,k}$ trong $O(1)$. Cụ thể, lấy $d$ là một phần tử bất kỳ trong $L$, rồi chia trường hợp:
     -   Giả sử trong nghiệm tối ưu $d$ không nằm trong clique, thì chuyển từ $f_{L\setminus \{d\},k}$.
     -   Giả sử trong nghiệm tối ưu $d$ nằm trong clique, thì chuyển từ $f_{L\cap N(d),k}+\textit{value}(d)$, trong đó $N(d)$ là tập đỉnh kề của $d$.
     -   Đừng quên dùng $f_{L,k+1}$ để cập nhật $f_{L,k}$.
@@ -202,7 +202,7 @@ Kỹ thuật gặp nhau ở giữa là hướng tiếp cận tự nhiên. Chia �
 Cách giải này sẽ quá thời gian. Thử tối ưu:
 
 -   Khi chia đôi tập đỉnh, chia đều một cách ngẫu nhiên. Khi đó tập đỉnh của nghiệm tối ưu $C_{res}$ cũng được chia đúng đôi với xác suất đáng kể, tức là $|C_{res}\cap V_L|=|C_{res}\cap V_R|$.
-    -   Tất nhiên, $|C_{res}|$ có thể là số lẻ. Để đơn giản, phần này giả sử nó là số chẵn; trường hợp lẻ không làm thay đổi bản chất lời giải.
+    -   $|C_{res}|$ có thể là số lẻ. Để đơn giản, phần này giả sử nó là số chẵn; trường hợp lẻ không làm thay đổi bản chất lời giải.
     -   Thực nghiệm cho thấy thử ngẫu nhiên khoảng 20 lần là với xác suất rất cao sẽ có ít nhất một lần thỏa tính chất này. Nói cách khác, nếu thuật toán dựa vào tính chất "$C_{res}$ được chia đôi", thì lặp lại thuật toán 20 lần và lấy kết quả tốt nhất cũng bảo đảm xác suất đúng rất cao.
 -   Có tính chất này, có thể quy định trực tiếp kích thước của clique bên trái $L$ và clique bên phải $C_R$ đều $\geq \dfrac n3$. Điều này đem lại hai cải tiến về độ phức tạp:
     -   $f$ không cần lưu chiều kích thước.
@@ -233,7 +233,7 @@ Cách băm là: với mỗi $(a,b)$, gán một số nguyên không âm ngẫu n
 Khi đó, giá trị băm của bất kỳ tập cố định nào đều tuân theo phân bố đều trên $R:=\left\{0,1,\cdots,2^{64}-1\right\}$, nói cách khác miền giá trị của băm là $R$ và xác suất lấy mỗi giá trị là bằng nhau. Lý do:
 
 1.  Một $H_{(a,b)}$ riêng lẻ tuân theo phân bố đều.
-2.  Xor của hai biến ngẫu nhiên độc lập và đều trên $R$ chắc chắn cũng đều trên $R$. Có thể chứng minh trực tiếp.
+2.  Xor của hai biến ngẫu nhiên độc lập và đều trên $R$ nhất định cũng đều trên $R$. Có thể chứng minh trực tiếp.
 
 Do đó xác suất đúng của thuật toán này được bảo đảm.
 
@@ -252,20 +252,20 @@ Phần này chỉ tập trung vào phần thứ hai, tức là cách tìm truy h
 ???+ note "Bài toán"
     Cho một dãy ma trận. Dãy này, theo modulo $P:=998244353$, tuân theo một truy hồi tuyến tính thuần nhất (phép nhân vô hướng và phép cộng trong truy hồi được định nghĩa là phép nhân vô hướng và phép cộng ma trận). Cần tìm truy hồi ngắn nhất.
 
-Nếu một dãy ma trận tuân theo một truy hồi $F$, thì mỗi phần tử của ma trận cũng chắc chắn tuân theo $F$. Tuy nhiên, nếu tìm truy hồi ngắn nhất $F'$ cho một vị trí nào đó, $F'$ có thể ngắn hơn $F$, gây ra vấn đề.
+Nếu một dãy ma trận tuân theo một truy hồi $F$, thì mỗi phần tử của ma trận cũng nhất định tuân theo $F$. Tuy nhiên, nếu tìm truy hồi ngắn nhất $F'$ cho một vị trí nào đó, $F'$ có thể ngắn hơn $F$, gây ra vấn đề.
 
 Cách xử lý: gán cho mỗi vị trí $(i,j)$ của ma trận một trọng số ngẫu nhiên $x_{i,j}<P$. Sau đó với mỗi ma trận trong dãy, tính tổng có trọng số của tất cả các vị trí theo modulo $P$, nối các số tính được từ mỗi ma trận thành một dãy số, cuối cùng chạy thuật toán BM trên dãy số thu được.
 
 Phân tích tỉ lệ sai:
 
 -   Giả sử cách làm trên tìm được một truy hồi bậc $l$ là $F'$, khác $F$ và không dài hơn $F$.
--   Vì dãy ma trận không tuân theo $F'$, nên chắc chắn tồn tại một vị trí $(i,j)$ trong ma trận sao cho dãy số tương ứng với vị trí đó, $S_{i,j}$, không tuân theo $F'$ tại một $N$ nào đó. Tức là:
+-   Vì dãy ma trận không tuân theo $F'$, nên nhất định tồn tại một vị trí $(i,j)$ trong ma trận sao cho dãy số tương ứng với vị trí đó, $S_{i,j}$, không tuân theo $F'$ tại một $N$ nào đó. Tức là:
 
 $$
 S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\not\equiv 0\pmod {P}
 $$
 
--   Giả sử $(i,j)$ là vị trí duy nhất không tuân theo, khi đó chắc chắn có:
+-   Giả sử $(i,j)$ là vị trí duy nhất không tuân theo, khi đó nhất định có:
 
 $$
 T_{i,j}:=\Big(x_{i,j}\cdot\big(S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\big)\bmod P\Big)=0
@@ -284,9 +284,9 @@ $$
 
 Đặt $f_{K,i,j}$ là giá trị băm của đa tập gồm tất cả xâu tương ứng với mọi đường đi dài $j$ bắt đầu từ đỉnh $i$ trong đồ thị $G_K$. Xét mỗi trạng thái theo thứ tự tăng dần của $j$; khi chuyển trạng thái, liệt kê các cạnh ra của $i$ và quy định cạnh đó là cạnh đầu tiên trên đường đi.
 
-Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, chắc chắn không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
+Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, nhất định không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
 
-Tiếp theo xét cách băm cụ thể. Chú ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$, không dùng được trong bài toán này. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
+Tiếp theo xét cách băm cụ thể. Lưu ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$, không dùng được trong bài toán này. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
 
 Vấn đề của cách làm trên nằm ở chỗ giá trị băm của một xâu là một tổng, nên mỗi hạng tử có thể bị tách ra và ghép lại. Để tránh vấn đề này, xét đổi giá trị băm thành dạng tích. Ngoài ra, tính giao hoán của phép nhân sẽ khiến các vị trí khác nhau không phân biệt được, nên cần gán trọng số khác nhau cho các vị trí khác nhau.
 
@@ -312,13 +312,13 @@ Nếu giá trị băm của hai đa tập xâu khác nhau lại bằng nhau, có
 
 Phân tích xác suất của trường hợp đầu:
 
--   Nhận xét: với bất kỳ $A\neq B; A,B\leq N$ và số nguyên tố $Q\leq Q_{\max}$ được chọn ngẫu nhiên, chắc chắn có:
+-   Nhận xét: với bất kỳ $A\neq B; A,B\leq N$ và số nguyên tố $Q\leq Q_{\max}$ được chọn ngẫu nhiên, nhất định có:
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{\log N \log Q_{max}}{Q_{max}}\Big)
 $$
 
--   Lý do: để $A\equiv B$ đúng, $Q$ chắc chắn phải thỏa $Q\big|(A-B)$. Số lượng $Q$ như vậy là $\omega(A-B)\leq \log_2 N$; theo định lý số nguyên tố, số số nguyên tố khác nhau không vượt quá $Q_{\max}$ là $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$. Chia hai đại lượng này sẽ được công thức trên.
+-   Lý do: để $A\equiv B$ đúng, $Q$ nhất định phải thỏa $Q\big|(A-B)$. Số lượng $Q$ như vậy là $\omega(A-B)\leq \log_2 N$; theo định lý số nguyên tố, số số nguyên tố khác nhau không vượt quá $Q_{\max}$ là $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$. Chia hai đại lượng này sẽ được công thức trên.
 -   Trong nhận xét trên, lấy $A,B$ (với $A\neq B$) là hệ số của một hạng tử cụ thể trong $P_0,P_1$ (cũng bằng số lần xuất hiện của xâu ứng với hạng tử đó trong $G_0,G_1$). Khi đó $A,B\leq (m_1+m_2)^{L}$, suy ra:
 
 $$
@@ -335,7 +335,7 @@ Phân tích xác suất của trường hợp sau:
     -   Lấy $S=F$.
 -   Suy ra xác suất cần tìm $\leq \dfrac LQ$.
 
-Chú ý rằng cần bảo đảm tính đúng cho mọi $L$, nên nếu muốn lập luận chặt chẽ thì cần dùng thêm Union Bound (xem bên dưới).
+Lưu ý rằng cần bảo đảm tính đúng cho mọi $L$, nên nếu muốn lập luận chặt chẽ thì cần dùng thêm Union Bound (xem bên dưới).
 
 Trong thực hành không nhất thiết phải chọn modulo ngẫu nhiên, vì chẳng hạn dùng ngày sinh làm modulo thì trên thực tế cũng đã tương đương một số ngẫu nhiên.
 
@@ -361,7 +361,7 @@ Do đó có thuật toán:
 1.  Gán giá trị băm trong $[0,1]$ cho các phần tử của ma trận. Để bảo đảm tính ngẫu nhiên, hàm băm có thể được hiện thực trực tiếp bằng `map` và bộ sinh số ngẫu nhiên: mỗi khi gặp một giá trị mới chưa từng xuất hiện thì gán cho nó một giá trị băm ngẫu nhiên.
 2.  Khi trả lời truy vấn, tìm cách lấy giá trị băm nhỏ nhất $M$ trong ma trận con, và in $\dfrac 1M-1$.
 
-Tuy nhiên, thuật toán này chưa đáp ứng mong muốn. Kỳ vọng của giá trị xuất ra là $\mathrm{E}\Big[\dfrac 1{\min\limits_i X_i}-1\Big]$, nhưng thực ra giá trị này không bằng $\dfrac 1{\mathrm{E}\big[\min\limits_i X_i\big]}-1=k$, mà có thể chứng minh là bằng $\infty$.
+Tuy nhiên, thuật toán này chưa đáp ứng mong muốn. Kỳ vọng của giá trị xuất ra là $\mathrm{E}\Big[\dfrac 1{\min\limits_i X_i}-1\Big]$, nhưng giá trị này không bằng $\dfrac 1{\mathrm{E}\big[\min\limits_i X_i\big]}-1=k$, mà có thể chứng minh là bằng $\infty$.
 
 Nói cách khác, không thể trực tiếp đưa một giá trị lấy mẫu đơn lẻ của $\min\limits_i X_i$ vào mẫu số; phải tính kỳ vọng của nó trước, rồi mới đưa kỳ vọng đó vào mẫu số.
 
@@ -457,7 +457,7 @@ Heap ngẫu nhiên không đặt bất kỳ yêu cầu cứng hay mềm nào lê
 ???+ note "Chứng minh độ phức tạp kỳ vọng"
     Sẽ chứng minh rằng với bất kỳ heap $A$ nào, nếu bắt đầu từ nút gốc và mỗi lần chọn ngẫu nhiên đi sang trái hoặc phải cho đến khi không còn đường, thì kỳ vọng độ dài đường đi (tức số nút trên đường đi) là $h(A)\leq\log_2 (|A|+1)$.
     
-    -   Chú ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của heap ngẫu nhiên.
+    -   Lưu ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của heap ngẫu nhiên.
     
     Chứng minh bằng quy nạp toán học. Trường hợp cơ sở là $A$ rỗng, kết luận đúng ngay. Giả sử $A$ không rỗng.
     
@@ -521,9 +521,9 @@ Tư tưởng được dùng trong đoạn chứng minh này gọi là "ghép c�
     
     Hỏi chi phí kỳ vọng dưới chiến lược tối ưu.
 
-Nhận xét: nếu chọn rút vật phẩm, thì chắc chắn sẽ tiếp tục rút cho đến khi nhận được vật phẩm mới.
+Nhận xét: nếu chọn rút vật phẩm, thì nhất định sẽ tiếp tục rút cho đến khi nhận được vật phẩm mới.
 
--   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới chắc chắn cũng là "rút thêm một lần".
+-   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới nhất định cũng là "rút thêm một lần".
 
 Có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩm khác nhau, thì kỳ vọng cần tốn bao nhiêu tiền để rút được vật phẩm mới. Theo nhận xét vừa rồi, có thể xem trực tiếp $f_k$ như một chi phí cố định, tức là chuyển thành "mỗi lần trả $f_k$ tiền để nhận ngẫu nhiên một vật phẩm mới".
 
@@ -538,7 +538,7 @@ Có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩ
     
     Xác suất rút một lần được vật phẩm mới là $\dfrac {n-k}n$, nên $R=\dfrac n{n-k}$.
 
-Kết luận: chiến lược tối ưu chắc chắn là rút một số lần trước, rồi mua hết các vật phẩm chưa rút được.
+Kết luận: chiến lược tối ưu nhất định là rút một số lần trước, rồi mua hết các vật phẩm chưa rút được.
 
 Kết luận này phù hợp trực giác, vì $f_k$ tăng theo $k$, nên rút sớm có vẻ thực sự tốt hơn rút muộn.
 
@@ -546,20 +546,20 @@ Kết luận này phù hợp trực giác, vì $f_k$ tăng theo $k$, nên rút s
     Trước hết chứng minh một trường hợp đặc biệt. Sẽ chứng minh:
     
     -   Quá trình ngẫu nhiên $A$: mua vật phẩm $x$ trước, sau đó liên tục rút cho đến khi có tất cả vật phẩm.
-    -   ... chắc chắn không tốt hơn ...
+    -   ... nhất định không tốt hơn ...
     -   Quá trình ngẫu nhiên $B$: liên tục rút cho đến khi có tất cả vật phẩm trừ $x$, sau đó nếu vẫn chưa có $x$ thì mua nó.
     
     Cho hai quá trình ngẫu nhiên $A$ và $B$ dùng cùng một bộ sinh số ngẫu nhiên. Tức là lần rút đầu tiên của $A$ và lần rút đầu tiên của $B$ sẽ rút trúng cùng một phần tử, lần thứ hai, thứ ba, ... cũng vậy.
     
-    Khi đó số lần rút của $A$ và $B$ chắc chắn bằng nhau. Với một vật phẩm $y\neq x$ được $A$ rút trúng, quan sát thấy:
+    Khi đó số lần rút của $A$ và $B$ nhất định bằng nhau. Với một vật phẩm $y\neq x$ được $A$ rút trúng, quan sát thấy:
     
-    -   Số vật phẩm đã sở hữu khi $A$ rút trúng $y$ chắc chắn lớn hơn hoặc bằng số vật phẩm đã sở hữu khi $B$ rút trúng $y$.
+    -   Số vật phẩm đã sở hữu khi $A$ rút trúng $y$ nhất định lớn hơn hoặc bằng số vật phẩm đã sở hữu khi $B$ rút trúng $y$.
     
     Vì vậy chi phí một lần rút của $B$ không cao hơn của $A$, và tổng chi phí rút cũng không cao hơn của $A$.
     
-    Chi phí mua của $B$ cũng không cao hơn của $A$. Tóm lại, $B$ chắc chắn không tệ hơn $A$.
+    Chi phí mua của $B$ cũng không cao hơn của $A$. Tóm lại, $B$ nhất định không tệ hơn $A$.
     
-    Sau đó có thể dùng quy nạp toán học để mở rộng kết luận này sang trường hợp tổng quát. Cụ thể, mỗi lần tìm lần mua cuối cùng trong chiến lược hiện tại, rồi theo kết luận trên, dời lần mua này về cuối chắc chắn không tệ hơn. Chi tiết lược bỏ.
+    Sau đó có thể dùng quy nạp toán học để mở rộng kết luận này sang trường hợp tổng quát. Cụ thể, mỗi lần tìm lần mua cuối cùng trong chiến lược hiện tại, rồi theo kết luận trên, dời lần mua này về cuối nhất định không tệ hơn. Chi tiết lược bỏ.
 
 Dựa trên kết luận này, lại chuyển đổi tương đương bài toán: thay thao tác "chọn một vật phẩm và trả giá tương ứng để mua" bằng "chọn ngẫu nhiên một vật phẩm chưa sở hữu và trả giá tương ứng để mua". Lý do tương đương là: vì mua chỉ dùng để dọn phần còn lại, chọn trúng vật phẩm nào cũng không quan trọng.
 
@@ -567,13 +567,13 @@ Bây giờ "rút" và "mua" về bản chất đã trở thành cùng một thao
 
 Nhận xét: tại một thời điểm, nên chọn mua khi và chỉ khi chi phí lần rút tiếp theo (được xác định bởi số vật phẩm đã rút được) lớn hơn giá trung bình của các vật phẩm còn lại (nếu bằng nhau thì chọn cách nào cũng được).
 
--   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút chắc chắn không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
+-   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút nhất định không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
 
 Cuối cùng, liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng quy hoạch động kiểu ba lô, như vậy là qua được bài này.
 
 ***
 
-**Nhìn lại**: có thể thấy kỹ thuật ghép cặp được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "ghép cặp" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
+**Nhìn lại**: kỹ thuật ghép cặp được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "ghép cặp" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
 
 ## Tài liệu tham khảo
 
