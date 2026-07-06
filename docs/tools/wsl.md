@@ -391,7 +391,7 @@ Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\hom
 
 Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh sửa tệp trong WSL thuận tiện hơn.
 
-Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng terminal để gỡ lỗi tiện hơn.
+Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng trình dòng lệnh để gỡ lỗi tiện hơn.
 
 Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 

@@ -190,7 +190,7 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 
 | Lệnh | Mô tả |
 | ---- | ----- |
-| `enable pretty-printer` | Bật bộ in định dạng đẹp (pretty-printer), có thể in bộ chứa STL theo cách con người dễ đọc |
+| `enable pretty-printer` | Bật bộ in đẹp (pretty-printer), có thể in các bộ chứa STL theo dạng dễ đọc hơn |
 | `checkpoint`[^checkpoint] | Tạo điểm kiểm tra, có thể quay lại điểm kiểm tra đó |
 | `restart [num]`[^checkpoint] | Quay lại điểm kiểm tra thứ `[num]` |
 | `save breakpoints [filename]` | Lưu điểm dừng vào tệp |
