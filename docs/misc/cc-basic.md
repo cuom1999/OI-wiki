@@ -1,6 +1,6 @@
-Phần này giới thiệu các kiến thức cơ bản của lý thuyết tính toán. Nội dung này không có vai trò lớn trong OI (nhưng vẫn có một chút tác dụng: nếu gặp một bài toán NP-khó, bạn có thể xem như nó không có lời giải với độ phức tạp đa thức), có thể đọc để mở rộng hiểu biết hoặc chuẩn bị cho việc học sau này.
+Phần này giới thiệu các kiến thức cơ bản của lý thuyết tính toán. Nội dung này không có vai trò lớn trong OI, nhưng vẫn có một chút tác dụng: nếu gặp một bài toán NP-khó, có thể xem như nó không có lời giải với độ phức tạp đa thức. Có thể đọc để mở rộng hiểu biết hoặc chuẩn bị cho việc học sau này.
 
-Nhiều kết luận trong bài này được nêu mà không chứng minh. Nếu quan tâm, bạn có thể tự tra cứu các chứng minh liên quan.
+Nhiều kết luận trong bài này được nêu mà không chứng minh. Nếu quan tâm, có thể tự tra cứu các chứng minh liên quan.
 
 Kiến thức cần có: [Độ phức tạp thời gian](../basic/complexity.md).
 
@@ -12,7 +12,7 @@ Một **bảng chữ cái (alphabet)** là một tập hữu hạn không rỗng
 
 Ký hiệu $\Sigma^\ast$ là tập các xâu tạo thành bằng cách nối một số không âm ký tự trong $\Sigma$. Một **ngôn ngữ (language)** trên bảng chữ cái $\Sigma$ là một tập con của $\Sigma^\ast$.
 
-Cần chú ý rằng "ngôn ngữ" ở đây là một khái niệm trừu tượng. Xâu theo nghĩa thông thường là ngôn ngữ, và toàn bộ các đồ thị có hướng không chu trình cũng có thể là một ngôn ngữ (có thể thiết lập song ánh giữa xâu 01 và đồ thị có hướng; không cần biết cách làm cụ thể).
+Cần lưu ý rằng "ngôn ngữ" trong ngữ cảnh này là một khái niệm trừu tượng. Xâu theo nghĩa thông thường là ngôn ngữ, và toàn bộ các đồ thị có hướng không chu trình cũng có thể là một ngôn ngữ (có thể thiết lập song ánh giữa xâu 01 và đồ thị có hướng; không cần biết cách làm cụ thể).
 
 Vì mọi ngôn ngữ đều có thể được chuyển thành dạng xâu 01, nên trong phần dưới, nếu không nói thêm thì $\Sigma=\{0, 1\}$.
 
@@ -20,7 +20,7 @@ Vì mọi ngôn ngữ đều có thể được chuyển thành dạng xâu 01, 
 
 Bài toán quyết định là bài toán chỉ có thể trả lời bằng YES/NO. Về bản chất, đó là việc quyết định một xâu có thuộc một ngôn ngữ hay không, tức là: $f:\Sigma^\ast\rightarrow\{0, 1\}, f(x)=1\iff x\in L$ là một bài toán quyết định liên quan đến bảng chữ cái $\Sigma$ và ngôn ngữ $L$. Chẳng hạn, "quyết định một đồ thị có phải là đồ thị có hướng không chu trình hay không" là một bài toán quyết định.
 
-Do tính đơn giản, bài toán quyết định thường được dùng làm đối tượng nghiên cứu trong lý thuyết tính toán. Trong bài này, nếu không nói thêm, "bài toán" đều chỉ "bài toán quyết định". Dĩ nhiên, đôi khi một số mệnh đề cũng có thể được mở rộng đơn giản sang các loại bài toán khác.
+Do tính đơn giản, bài toán quyết định thường được dùng làm đối tượng nghiên cứu trong lý thuyết tính toán. Trong bài này, nếu không nói thêm, "bài toán" đều chỉ "bài toán quyết định". Một số mệnh đề cũng có thể được mở rộng đơn giản sang các loại bài toán khác.
 
 Một ngôn ngữ cũng có thể được dùng để chỉ bài toán quyết định "một xâu có thuộc ngôn ngữ này hay không", vì vậy "ngôn ngữ" và "bài toán" có thể được xem là đồng nghĩa.
 
@@ -38,7 +38,7 @@ Bài toán quyết định cũng có thể chuyển thành một bài toán hàm
 
 Nếu không nói thêm, "máy Turing" thường chỉ "máy Turing tất định"; trong bài này cũng vậy.
 
-Máy Turing có nhiều định nghĩa khác nhau. Ở đây chọn một trong số đó; máy Turing theo các định nghĩa khác thường có năng lực tính toán tương đương với máy Turing theo định nghĩa dưới đây.
+Máy Turing có nhiều định nghĩa khác nhau. Phần này chọn một trong số đó; máy Turing theo các định nghĩa khác thường có năng lực tính toán tương đương với máy Turing theo định nghĩa dưới đây.
 
 Máy Turing là một máy thao tác trên một băng giấy có thể kéo dài vô hạn theo hai chiều và được chia thành các ô. Máy có trạng thái bên trong, cùng một đầu đọc/ghi có thể sửa nội dung và di chuyển trên băng.
 
@@ -49,16 +49,16 @@ Nói chính thức, máy Turing là một bộ bảy $M=\langle Q,\Gamma,b,\Sigm
 -   $b\in\Gamma$ là **ký tự trắng**, là ký tự duy nhất có thể xuất hiện vô hạn lần trên băng trong quá trình tính toán;
 -   $\Sigma\subseteq(\Gamma\setminus\{b\})$ là **tập ký hiệu đầu vào**, gồm các ký tự có thể xuất hiện trên băng ban đầu (tức đầu vào);
 -   $q_0\in Q$ là **trạng thái ban đầu**;
--   $F\subseteq Q$ là **tập trạng thái chấp nhận**. Nếu một máy Turing dừng tại một trạng thái chấp nhận, ta nói nội dung trên băng ban đầu được máy Turing này **chấp nhận**.
+-   $F\subseteq Q$ là **tập trạng thái chấp nhận**. Nếu một máy Turing dừng tại một trạng thái chấp nhận, nội dung trên băng ban đầu được máy Turing này **chấp nhận**.
 -   $\delta :(Q\setminus F)\times \Gamma \not \to Q\times \Gamma \times \{L,R\}$ là một hàm riêng phần (partial function) được gọi là **hàm chuyển** (tức là hàm chỉ được định nghĩa trên một tập con của miền xác định). Nếu $\delta$ không được định nghĩa trong trạng thái hiện tại, máy Turing sẽ dừng.
 
 Máy Turing bắt đầu từ trạng thái ban đầu và vị trí đầu băng. Ở mỗi bước, nó thao tác dựa trên trạng thái bên trong hiện tại $x$ và ký tự $y$ trong ô băng mà đầu đọc/ghi đang trỏ tới: nếu $\delta(x, y)$ không được định nghĩa thì dừng; ngược lại, nếu $\delta(x, y)=(a, b, c)$, nó đổi trạng thái bên trong thành $a$, đổi ký tự trong ô đang trỏ tới thành $b$, rồi nếu $c$ là $L$ thì di chuyển sang trái một ô, nếu là $R$ thì di chuyển sang phải một ô.
 
-Thực ra, không cần nắm mọi chi tiết hoạt động của máy Turing; chỉ cần xây dựng trực giác là đủ.
+Không cần nắm mọi chi tiết hoạt động của máy Turing; chỉ cần xây dựng trực giác là đủ.
 
 Đầu ra của máy Turing $M$ trên đầu vào $x$ được ký hiệu là $M(x)$ ($M(x)=1$ khi và chỉ khi $M$ chấp nhận $x$; $M(x)=0$ khi và chỉ khi $M$ dừng trong hữu hạn bước trên đầu vào $x$ và $M$ không chấp nhận $x$). Trong ngoặc cũng có thể chứa nhiều tham số, phân tách bằng dấu phẩy; khi hiện thực cụ thể, có thể thêm một phần tử vào bảng chữ cái để biểu diễn dấu phẩy và phân tách các tham số.
 
-Độ phức tạp thời gian khi máy Turing giải bài toán chỉ khác máy tính von Neumann trong phạm vi đa thức, nên khi nghiên cứu lớp độ phức tạp, ta có thể dùng máy Turing làm mô hình tính toán.
+Độ phức tạp thời gian khi máy Turing giải bài toán chỉ khác máy tính von Neumann trong phạm vi đa thức, nên khi nghiên cứu lớp độ phức tạp, có thể dùng máy Turing làm mô hình tính toán.
 
 ### Máy Turing không tất định
 
@@ -70,7 +70,7 @@ Trong đời sống thực, máy Turing tất định tương ứng với bộ x
 
 ### Máy Turing nhiều băng
 
-Máy Turing chuẩn chỉ có thể thao tác trên một băng giấy, nhưng để tiện, trong bài này ta nghiên cứu máy Turing nhiều băng. Với một máy Turing $k$ băng, một băng là băng đầu vào chỉ đọc, còn $k-1$ băng còn lại có thể đọc ghi, và trong $k-1$ băng này còn có một băng dùng làm đầu ra.
+Máy Turing chuẩn chỉ có thể thao tác trên một băng giấy, nhưng để tiện, phần này nghiên cứu máy Turing nhiều băng. Với một máy Turing $k$ băng, một băng là băng đầu vào chỉ đọc, còn $k-1$ băng còn lại có thể đọc ghi, và trong $k-1$ băng này còn có một băng dùng làm đầu ra.
 
 Số băng của máy Turing nhiều băng phải là hữu hạn.
 
@@ -97,7 +97,7 @@ Tức là: tồn tại một máy Turing phổ dụng có thể mô phỏng bấ
 
 Với một bài toán quyết định, nếu tồn tại một máy Turing luôn dừng trong hữu hạn bước và có thể quyết định đúng, thì bài toán đó là một bài toán **tính được theo Turing**; nếu không, bài toán đó là một bài toán **không tính được theo Turing**.
 
-Vì máy Turing có thể được mã hóa bằng số tự nhiên, nên số lượng máy Turing là vô hạn đếm được, còn số lượng ngôn ngữ (tức các tập xâu nhị phân) là vô hạn không đếm được. Mỗi máy Turing nhiều nhất quyết định một ngôn ngữ, vì vậy chắc chắn tồn tại bài toán không tính được theo Turing.
+Vì máy Turing có thể được mã hóa bằng số tự nhiên, nên số lượng máy Turing là vô hạn đếm được, còn số lượng ngôn ngữ (tức các tập xâu nhị phân) là vô hạn không đếm được. Mỗi máy Turing nhiều nhất quyết định một ngôn ngữ, vì vậy tồn tại bài toán không tính được theo Turing.
 
 ### Bài toán dừng
 
@@ -110,11 +110,11 @@ Bài toán dừng là một bài toán không tính được theo Turing kinh đ
     \mathsf{UC}(\alpha)=\begin{cases}0&M_\alpha(\alpha)=1\\1&\text{ngược lại}\end{cases}
     $$
     
-    Trước hết, ta chứng minh hàm $\mathsf{UC}$ là không tính được theo Turing:
+    Trước hết, chứng minh hàm $\mathsf{UC}$ là không tính được theo Turing:
     
-    Giả sử tồn tại một máy Turing $M_{\beta}$ có thể tính $\mathsf{UC}$. Khi đó, theo định nghĩa của $\mathsf{UC}$, ta có $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$, còn theo việc $M_{\beta}$ có thể tính $\mathsf{UC}$, ta có $M_{\beta}(\beta)=\mathsf{UC}(\beta)$. Điều này tạo ra mâu thuẫn, nên giả thiết không đúng, và không tồn tại máy Turing nào có thể tính $\mathsf{UC}$.
+    Giả sử tồn tại một máy Turing $M_{\beta}$ có thể tính $\mathsf{UC}$. Khi đó, theo định nghĩa của $\mathsf{UC}$, có $\mathsf{UC}(\beta)=1\iff M_\beta(\beta)\neq 1$, còn theo việc $M_{\beta}$ có thể tính $\mathsf{UC}$, có $M_{\beta}(\beta)=\mathsf{UC}(\beta)$. Điều này tạo ra mâu thuẫn, nên giả thiết không đúng, và không tồn tại máy Turing nào có thể tính $\mathsf{UC}$.
     
-    Giả sử $M_{\mathsf{HALT}}$ là một máy Turing có thể giải bài toán dừng, và giá trị của $M_{\mathsf{HALT}}(x,\alpha)$ là đáp án của bài toán quyết định liệu $M_\alpha$ có dừng trong hữu hạn bước khi đầu vào là $x$ hay không. Khi đó ta có thể xây dựng một máy Turing $M_{\mathsf{UC}}$ có thể tính hàm $\mathsf{UC}$:
+    Giả sử $M_{\mathsf{HALT}}$ là một máy Turing có thể giải bài toán dừng, và giá trị của $M_{\mathsf{HALT}}(x,\alpha)$ là đáp án của bài toán quyết định liệu $M_\alpha$ có dừng trong hữu hạn bước khi đầu vào là $x$ hay không. Khi đó có thể xây dựng một máy Turing $M_{\mathsf{UC}}$ có thể tính hàm $\mathsf{UC}$:
     
     $M_\mathsf{UC}$ trước hết gọi $M_\mathsf{HALT}(\alpha,\alpha)$. Nếu nó xuất ra $0$, thì $M_\mathsf{UC}(\alpha)=1$; nếu không, $M_\mathsf{UC}$ dùng máy Turing phổ dụng để mô phỏng tính toán và thu được đáp án.
     
@@ -126,7 +126,7 @@ Luận đề Church-Turing phát biểu rằng nếu một lớp bài toán có 
 
 Trong đó, "phương pháp hữu hiệu" cần thỏa mãn:
 
-1.  Chứa hữu hạn chỉ thị rõ ràng;
+1.  Chứa hữu hạn chỉ thị xác định;
 2.  Khi dùng phương pháp này để giải một bài toán thuộc lớp đó, phương pháp cần kết thúc trong hữu hạn bước và nhận được đáp án đúng.
 
 Luận đề này chưa được chứng minh, nhưng nó là một tiên đề cơ bản của lý thuyết tính toán.
@@ -137,9 +137,9 @@ Có rất nhiều lớp độ phức tạp. Bài này chỉ giới thiệu một
 
 ### R và RE
 
-Với ngôn ngữ $L$ và máy Turing $M$, nếu $M$ dừng trong hữu hạn bước trên mọi đầu vào, và $M(x)=1\iff x\in L$, thì ta nói $M$ có thể **quyết định** $L$.
+Với ngôn ngữ $L$ và máy Turing $M$, nếu $M$ dừng trong hữu hạn bước trên mọi đầu vào, và $M(x)=1\iff x\in L$, thì $M$ có thể **quyết định** $L$.
 
-Với ngôn ngữ $L$ và máy Turing $M$, nếu với mọi đầu vào thuộc $L$, $M$ đều dừng trong hữu hạn bước, và $M(x)=1\iff x\in L$, thì ta nói $M$ có thể **nhận biết** $L$.
+Với ngôn ngữ $L$ và máy Turing $M$, nếu với mọi đầu vào thuộc $L$, $M$ đều dừng trong hữu hạn bước, và $M(x)=1\iff x\in L$, thì $M$ có thể **nhận biết** $L$.
 
 Lớp độ phức tạp $\mathsf R$ biểu diễn tập các ngôn ngữ có thể được một máy Turing nào đó quyết định, tức là tất cả các ngôn ngữ tính được theo Turing.
 
@@ -183,7 +183,7 @@ $$
 \mathsf{NP}=\bigcup\limits_{k\in\mathbb{N}}\mathsf{NTIME}(n^k)
 $$
 
-Mọi bài toán thuộc lớp $\mathsf P$ đều là bài toán thuộc lớp $\mathsf{NP}$. Để xem thêm các bài toán thuộc lớp $\mathsf{NP}$, hãy tham khảo các bài toán NPC và NP-intermediate ở phần dưới.
+Mọi bài toán thuộc lớp $\mathsf P$ đều là bài toán thuộc lớp $\mathsf{NP}$. Để xem thêm các bài toán thuộc lớp $\mathsf{NP}$, tham khảo các bài toán NPC và NP-intermediate ở phần dưới.
 
 <span id="np-hard"></span>
 #### NP-khó (NP-hard)
@@ -205,7 +205,7 @@ Tương tự, các lớp độ phức tạp khác cũng có khái niệm "XX-com
 
 #### co-NP
 
-Một bài toán thuộc lớp $\mathsf{co-NP}$ khi và chỉ khi phần bù của nó là một bài toán thuộc lớp $\mathsf{NP}$. Nếu hiểu "bài toán" là "ngôn ngữ", còn "ngôn ngữ" là tập con của $\Sigma^\ast$, ta sẽ hiểu được "phần bù".
+Một bài toán thuộc lớp $\mathsf{co-NP}$ khi và chỉ khi phần bù của nó là một bài toán thuộc lớp $\mathsf{NP}$. Nếu hiểu "bài toán" là "ngôn ngữ", còn "ngôn ngữ" là tập con của $\Sigma^\ast$, sẽ hiểu được "phần bù".
 
 Ví dụ: "cho $n$ tập con, xác định có thể chọn $k$ tập trong số đó để phủ toàn bộ tập hay không" là một bài toán NPC, còn phần bù của nó, "cho $n$ tập con, xác định có phải bất kỳ cách chọn $k$ tập nào trong số đó cũng không thể phủ toàn bộ tập hay không", là một bài toán thuộc lớp $\mathsf{co-NP}$. Nếu đáp án của bài toán thứ nhất là "có", thì điều đó tương đương với việc tìm được một phản ví dụ cho bài toán thứ hai, nên đáp án của bài toán thứ hai là "không".
 
@@ -216,7 +216,7 @@ Nếu một bài toán thuộc lớp $\mathsf{NP}$ nhưng vừa không thuộc l
 
 Theo hiểu biết hiện nay, bài toán đẳng cấu đồ thị, bài toán logarit rời rạc và bài toán phân tích thừa số có thể là NP-trung gian.
 
-Định lý Ladner chỉ ra rằng nếu $\mathsf{P}\ne\mathsf{NP}$, thì chắc chắn tồn tại bài toán NP-trung gian.
+Định lý Ladner chỉ ra rằng nếu $\mathsf{P}\ne\mathsf{NP}$, thì tồn tại bài toán NP-trung gian.
 
 ### NEXPTIME
 
@@ -238,7 +238,7 @@ Nếu tồn tại một máy Turing tất định có thể quyết định mộ
 
 -   $\mathsf{REG}=\mathsf{DSPACE}(O(1))$, tức là ngôn ngữ chính quy, cũng là các ngôn ngữ mà automaton có thể quyết định.
 
--   $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$. Cần chú ý rằng không gian mà máy Turing sử dụng không bao gồm không gian do đầu vào chiếm dụng.
+-   $\mathsf{L}=\mathsf{DSPACE}(O(\log n))$. Cần lưu ý rằng không gian mà máy Turing sử dụng không bao gồm không gian do đầu vào chiếm dụng.
 
 -   $\mathsf{PSPACE}=\bigcup\limits_{k\in\mathbb N}\mathsf{DSPACE}(n^k)$
 
@@ -260,16 +260,16 @@ Nếu tồn tại một máy Turing không tất định có thể quyết đị
 
 ## Thời gian đa thức
 
-Nói đơn giản, nếu tồn tại số dương $k$ sao cho độ phức tạp thời gian của một thuật toán là $O(n^k)$ (chú ý, không phải $\Theta(n^k)$), trong đó $n$ là quy mô bài toán (độ dài đầu vào), thì thuật toán đó được gọi là có **thời gian đa thức**. Nếu một bài toán có thuật toán thời gian đa thức (trên máy Turing tất định) để giải, thì bài toán đó thuộc lớp độ phức tạp $\mathsf{P}$.
+Nói đơn giản, nếu tồn tại số dương $k$ sao cho độ phức tạp thời gian của một thuật toán là $O(n^k)$ (lưu ý, không phải $\Theta(n^k)$), trong đó $n$ là quy mô bài toán (độ dài đầu vào), thì thuật toán đó được gọi là có **thời gian đa thức**. Nếu một bài toán có thuật toán thời gian đa thức (trên máy Turing tất định) để giải, thì bài toán đó thuộc lớp độ phức tạp $\mathsf{P}$.
 
 Thời gian đa thức có thể chia thành thời gian đa thức mạnh và thời gian đa thức yếu; ngoài ra còn có thời gian giả đa thức.
 
 <span id="strongly-polynomial-time"></span>
 ### Thời gian đa thức mạnh
 
-Trước hết, ta định nghĩa một mô hình tính toán gọi là mô hình số học. Trong mô hình số học, các phép toán số học giữa các số (cộng, trừ, nhân, chia, so sánh độ lớn) có thể hoàn thành trong thời gian đơn vị (tức là trong thời gian $O(1)$, không phụ thuộc vào độ lớn của số).
+Trước hết, định nghĩa một mô hình tính toán gọi là mô hình số học. Trong mô hình số học, các phép toán số học giữa các số (cộng, trừ, nhân, chia, so sánh độ lớn) có thể hoàn thành trong thời gian đơn vị (tức là trong thời gian $O(1)$, không phụ thuộc vào độ lớn của số).
 
-Nếu số phép toán của một thuật toán trong mô hình số học là một đa thức theo số lượng các số trong đầu vào, và độ phức tạp không gian là một đa thức theo quy mô đầu vào (chứ không phải theo số lượng các số), thì thuật toán đó có **thời gian đa thức mạnh**. Vì các phép toán số học trong mô hình tính toán thông thường có thể hoàn thành trong thời gian đa thức theo quy mô đầu vào (tức là theo logarit độ lớn của số), thuật toán thời gian đa thức mạnh chắc chắn là thuật toán thời gian đa thức.
+Nếu số phép toán của một thuật toán trong mô hình số học là một đa thức theo số lượng các số trong đầu vào, và độ phức tạp không gian là một đa thức theo quy mô đầu vào (chứ không phải theo số lượng các số), thì thuật toán đó có **thời gian đa thức mạnh**. Vì các phép toán số học trong mô hình tính toán thông thường có thể hoàn thành trong thời gian đa thức theo quy mô đầu vào (tức là theo logarit độ lớn của số), thuật toán thời gian đa thức mạnh luôn là thuật toán thời gian đa thức.
 
 Nói chung, độ phức tạp thời gian của thuật toán thời gian đa thức mạnh không phụ thuộc vào miền giá trị.
 
@@ -283,7 +283,7 @@ Ví dụ, thuật toán Euclid để tính ước chung lớn nhất có độ p
 <span id="pseudo-polynomial-time"></span>
 ### Thời gian giả đa thức
 
-Nếu thời gian chạy của một thuật toán là đa thức theo miền giá trị, thì thuật toán đó được gọi là có **thời gian giả đa thức**. Thuật toán thời gian giả đa thức có thể là thời gian đa thức hoặc cũng có thể không phải. Lý do có thể không phải thời gian đa thức là vì để biểu diễn một số nguyên dương có độ lớn $n$ thường chỉ cần $O(\log n)$ bit nhị phân, nên thuật toán có thời gian đa thức theo miền giá trị thường có thời gian cấp số mũ theo độ dài đầu vào. Tuy theo định nghĩa, thời gian giả đa thức cũng có thể là thời gian đa thức, nhưng khi nói một thuật toán có thời gian giả đa thức, thông thường ta đang nói thuật toán đó không phải là thời gian đa thức.
+Nếu thời gian chạy của một thuật toán là đa thức theo miền giá trị, thì thuật toán đó được gọi là có **thời gian giả đa thức**. Thuật toán thời gian giả đa thức có thể là thời gian đa thức hoặc cũng có thể không phải. Lý do có thể không phải thời gian đa thức là vì để biểu diễn một số nguyên dương có độ lớn $n$ thường chỉ cần $O(\log n)$ bit nhị phân, nên thuật toán có thời gian đa thức theo miền giá trị thường có thời gian cấp số mũ theo độ dài đầu vào. Tuy theo định nghĩa, thời gian giả đa thức cũng có thể là thời gian đa thức, nhưng khi nói một thuật toán có thời gian giả đa thức, thông thường hàm ý là thuật toán đó không phải thời gian đa thức.
 
 Ví dụ, bài toán ba lô là bài toán NP-khó, nhưng nó có lời giải thời gian giả đa thức dựa trên quy hoạch động.
 
@@ -293,9 +293,9 @@ Nếu một bài toán NPC/NP-khó có lời giải thời gian giả đa thức
 
 ### Hàm xây dựng được theo thời gian
 
-Đôi khi ta muốn máy Turing biết nó đã dùng bao nhiêu thời gian, ví dụ như buộc máy Turing dừng sau khi thực hiện $T(n)$ bước tính toán. Nhưng nếu thời gian dùng để tính $T(n)$ đã vượt quá $T(n)$, điều này là không thể. Vì vậy, ta định nghĩa hàm xây dựng được theo thời gian để tránh rắc rối như vậy.
+Đôi khi cần máy Turing biết nó đã dùng bao nhiêu thời gian, ví dụ như buộc máy Turing dừng sau khi thực hiện $T(n)$ bước tính toán. Nhưng nếu thời gian dùng để tính $T(n)$ đã vượt quá $T(n)$, điều này là không thể. Vì vậy, định nghĩa hàm xây dựng được theo thời gian để tránh rắc rối như vậy.
 
-Nếu tồn tại máy Turing $M$ sao cho khi đầu vào là $1^n$ ($n$ ký tự 1), $M$ có thể dừng trong thời gian $O(f(n))$ và xuất ra biểu diễn nhị phân của $f(n)$ (chú ý, đầu ra của máy Turing ở đây không phải là chấp nhận/không chấp nhận, mà là một xâu; đầu ra có thể được đặt trên băng), thì $f(n)$ là một **hàm xây dựng được theo thời gian**.
+Nếu tồn tại máy Turing $M$ sao cho khi đầu vào là $1^n$ ($n$ ký tự 1), $M$ có thể dừng trong thời gian $O(f(n))$ và xuất ra biểu diễn nhị phân của $f(n)$ (lưu ý, đầu ra của máy Turing trong ngữ cảnh này không phải là chấp nhận/không chấp nhận, mà là một xâu; đầu ra có thể được đặt trên băng), thì $f(n)$ là một **hàm xây dựng được theo thời gian**.
 
 Vì việc đọc đầu vào cần thời gian $O(n)$, mọi hàm không hằng thuộc $o(n)$ đều không phải là hàm xây dựng được theo thời gian.
 
@@ -324,9 +324,9 @@ Từ định lý phân cấp thời gian tất định có thể suy ra $\mathsf
     
     Bây giờ giả sử $L\in\mathsf{DTIME}(o\left({\dfrac {f(n)}{\log f(n)}}\right))$, và đặt $M_z$ là máy Turing quyết định $L$ trong thời gian $o\left({\dfrac {f(n)}{\log f(n)}}\right)$.
     
-    Gọi thời gian chạy của máy Turing phổ dụng $\mathcal{U}(x, z)$ theo $x$ là $g(|x|)$. Từ phần giới thiệu về máy Turing phổ dụng ở trên, ta có $g(n)=o(f(n))$, nên khi $y$ đủ lớn, $g(|z|+|y|)<f(|z|+|y|)$.
+    Gọi thời gian chạy của máy Turing phổ dụng $\mathcal{U}(x, z)$ theo $x$ là $g(|x|)$. Từ phần giới thiệu về máy Turing phổ dụng ở trên, có $g(n)=o(f(n))$, nên khi $y$ đủ lớn, $g(|z|+|y|)<f(|z|+|y|)$.
     
-    Lấy $y'$ là một $y$ đủ lớn. Khi đó $\mathcal{U}((z, y'), z)$ chắc chắn dừng trong thời gian $f(|z|+|y'|)$, dẫn đến $M_z(z, y')\ne M_z(z, y')$, tạo ra mâu thuẫn. Vì vậy giả thiết không đúng, và định lý phân cấp thời gian tất định được chứng minh.
+    Lấy $y'$ là một $y$ đủ lớn. Khi đó $\mathcal{U}((z, y'), z)$ dừng trong thời gian $f(|z|+|y'|)$, dẫn đến $M_z(z, y')\ne M_z(z, y')$, tạo ra mâu thuẫn. Vì vậy giả thiết không đúng, và định lý phân cấp thời gian tất định được chứng minh.
 
 #### Định lý phân cấp thời gian không tất định
 
@@ -360,10 +360,10 @@ Việc hai lớp độ phức tạp $\mathsf{P}$ và $\mathsf{NP}$ có bằng nh
 
 Nếu $\mathsf{P}=\mathsf{NP}$, có thể suy ra $\mathsf{NP}=\mathsf{co-NP}$, nhưng chiều ngược lại thì không (hiện chưa có phương pháp chứng minh $\mathsf{P}=\mathsf{NP}$ dựa trên $\mathsf{NP}=\mathsf{co-NP}$).
 
-???+ note "Vì sao NP?=co-NP không phải là hiển nhiên?"
+???+ note "Vì sao NP?=co-NP không trực tiếp đúng?"
     Vì một bài toán $\mathsf{NP}$ và bài toán $\mathsf{co-NP}$ tương ứng có đáp án trái ngược nhau, rất dễ nảy sinh ý nghĩ này: với một bài toán $\mathsf{co-NP}$, chỉ cần đảo ngược đầu ra của máy Turing không tất định giải phần bù của nó là giải được bài toán $\mathsf{co-NP}$ đó, nên $\mathsf{NP}=\mathsf{co-NP}$.
     
-    Thực ra, cách nói trên đúng là có thể giải bài toán $\mathsf{co-NP}$ đó, nhưng nó không tìm được một máy Turing không tất định để giải bài toán này: nếu việc một máy Turing làm là đảo ngược đầu ra của một máy Turing không tất định, thì máy Turing đó không phải là máy Turing không tất định. Bởi vì máy Turing không tất định chấp nhận khi có một nhánh nào đó chấp nhận, còn từ chối khi mọi nhánh đều từ chối; khi đảo ngược đầu ra của nó, việc chấp nhận biến thành xảy ra ở mọi nhánh, còn từ chối biến thành xảy ra ở một nhánh, điều này không phù hợp với định nghĩa của máy Turing không tất định. Vì vậy, việc có thể dùng máy Turing đó để giải bài toán $\mathsf{co-NP}$ này không làm cho bài toán $\mathsf{co-NP}$ này trở thành một bài toán $\mathsf{NP}$.
+    Cách nói trên đúng là có thể giải bài toán $\mathsf{co-NP}$ đó, nhưng nó không tìm được một máy Turing không tất định để giải bài toán này: nếu việc một máy Turing làm là đảo ngược đầu ra của một máy Turing không tất định, thì máy Turing đó không phải là máy Turing không tất định. Bởi vì máy Turing không tất định chấp nhận khi có một nhánh nào đó chấp nhận, còn từ chối khi mọi nhánh đều từ chối; khi đảo ngược đầu ra của nó, việc chấp nhận biến thành xảy ra ở mọi nhánh, còn từ chối biến thành xảy ra ở một nhánh, điều này không phù hợp với định nghĩa của máy Turing không tất định. Vì vậy, việc có thể dùng máy Turing đó để giải bài toán $\mathsf{co-NP}$ này không làm cho bài toán $\mathsf{co-NP}$ này trở thành một bài toán $\mathsf{NP}$.
 
 Nếu $\mathsf{P}=\mathsf{NP}$, còn có thể suy ra $\mathsf{EXPTIME}=\mathsf{NEXPTIME}$.
 
