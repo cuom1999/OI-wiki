@@ -20,9 +20,9 @@ $$
 \frac{0}{1},\ \frac{1}{0}.
 $$
 
-Ở đây $\dfrac{1}{0}$ không phải là một phân số hữu tỉ theo nghĩa nghiêm ngặt; có thể hiểu nó là phân số tối giản biểu diễn $\infty$.
+Trong ngữ cảnh này, $\dfrac{1}{0}$ không phải là một phân số hữu tỉ theo nghĩa nghiêm ngặt; có thể hiểu nó là phân số tối giản biểu diễn $\infty$.
 
-Giữa hai phân số kề nhau $\dfrac{a}{b}$ và $\dfrac{c}{d}$ trong dãy Stern-Brocot bậc $k$, chèn trung vị phân số (mediant)[^mediant] của chúng là $\dfrac{a+c}{b+d}$, ta thu được dãy Stern-Brocot bậc $k+1$. Dù định nghĩa của trung vị phân số nói chung cho phép rút gọn phân số, trong quá trình xây dựng cây Stern-Brocot ta chỉ cần cộng riêng tử số và mẫu số, không cần lo việc rút gọn. Nhờ vậy, có thể xây dựng lặp các dãy Stern-Brocot ở mọi bậc. Một vài bước lặp đầu tiên như sau:
+Giữa hai phân số kề nhau $\dfrac{a}{b}$ và $\dfrac{c}{d}$ trong dãy Stern-Brocot bậc $k$, chèn trung vị phân số (mediant)[^mediant] của chúng là $\dfrac{a+c}{b+d}$, thu được dãy Stern-Brocot bậc $k+1$. Dù định nghĩa của trung vị phân số nói chung cho phép rút gọn phân số, trong quá trình xây dựng cây Stern-Brocot chỉ cần cộng riêng tử số và mẫu số, không cần lo việc rút gọn. Nhờ vậy, có thể xây dựng lặp các dãy Stern-Brocot ở mọi bậc. Một vài bước lặp đầu tiên như sau:
 
 $$
 \begin{array}{ccccccccc}
@@ -32,7 +32,7 @@ $$
 \end{array}
 $$
 
-Nối các phân số mới được thêm ở mỗi lần lặp thành một cấu trúc dạng cây, ta nhận được cây Stern-Brocot, như hình dưới đây:
+Nối các phân số mới được thêm ở mỗi lần lặp thành một cấu trúc dạng cây sẽ nhận được cây Stern-Brocot, như hình dưới đây:
 
 ![](./images/stern-brocot-tree.svg)
 
@@ -109,18 +109,18 @@ Thuật toán xây cây chỉ cần mô phỏng quá trình trên. Dưới đây
 <span id="tính-chất"></span>
 ### Tính chất
 
-Tiếp theo ta xét các tính chất của cây Stern-Brocot. Nói ngắn gọn, cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) chứa tất cả các phân số hữu tỉ dương tối giản; nó cũng là một [heap](../../ds/binary-heap.md) theo tử số và mẫu số, đồng thời là [cây Descartes](../../ds/cartesian-tree.md) của các cặp gồm mẫu số và tử số. Nếu xét các đoạn được tạo bởi hai đầu mút trái phải trong cách xây dựng bằng bộ ba ở trên, cây Stern-Brocot cũng có thể xem là một [cây đoạn](../../ds/seg.md) trên $[0,\infty]$. Những phát biểu này đều có thể suy ra từ ba tính chất cơ bản sau.
+Tiếp theo xét các tính chất của cây Stern-Brocot. Nói ngắn gọn, cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) chứa tất cả các phân số hữu tỉ dương tối giản; nó cũng là một [heap](../../ds/binary-heap.md) theo tử số và mẫu số, đồng thời là [cây Descartes](../../ds/cartesian-tree.md) của các cặp gồm mẫu số và tử số. Nếu xét các đoạn được tạo bởi hai đầu mút trái phải trong cách xây dựng bằng bộ ba ở trên, cây Stern-Brocot cũng có thể xem là một [cây đoạn](../../ds/seg.md) trên $[0,\infty]$. Những phát biểu này đều có thể suy ra từ ba tính chất cơ bản sau.
 
 <span id="tính-đơn-điệu"></span>
 #### Tính đơn điệu
 
-Trong cách xây dựng trên, các phân số ở mỗi tầng đều tăng đơn điệu. Ta chỉ cần chứng minh bằng quy nạp. Nếu $\dfrac{a}{b} < \dfrac{c}{d}$, thì tất yếu có
+Trong cách xây dựng trên, các phân số ở mỗi tầng đều tăng đơn điệu. Chỉ cần chứng minh bằng quy nạp. Nếu $\dfrac{a}{b} < \dfrac{c}{d}$, thì tất yếu có
 
 $$
 \dfrac{a}{b} < \dfrac{a+c}{b+d} < \dfrac{c}{d}.
 $$
 
-Điều này nhận được bằng cách khử mẫu trong các bất đẳng thức. Cơ sở quy nạp là $\dfrac{0}{1} < \dfrac{1}{0}$, nên tính đơn điệu cũng hiển nhiên đúng.
+Điều này nhận được bằng cách khử mẫu trong các bất đẳng thức. Cơ sở quy nạp là $\dfrac{0}{1} < \dfrac{1}{0}$, nên tính đơn điệu cũng đúng.
 
 <span id="tính-tối-giản"></span>
 #### Tính tối giản
@@ -134,13 +134,13 @@ a & c
 \end{pmatrix} = 1.
 $$
 
-Ở nút gốc ta có ma trận đơn vị, nên điều này hiển nhiên đúng. Khi đi xuống, các ma trận được nhân thêm là $L$ và $R$, đều có định thức bằng $1$; theo tính chất của [định thức](../linear-algebra/determinant.md), ở tầng tiếp theo ta vẫn có
+Ở nút gốc có ma trận đơn vị, nên điều này đúng. Khi đi xuống, các ma trận được nhân thêm là $L$ và $R$, đều có định thức bằng $1$; theo tính chất của [định thức](../linear-algebra/determinant.md), ở tầng tiếp theo vẫn có
 
 $$
 \det\begin{pmatrix}b & b+d \\ a & a+c \end{pmatrix} = \det\begin{pmatrix}b+d & d \\ a+c & c\end{pmatrix} = 1.
 $$
 
-Với cơ sở quy nạp $\dfrac{0}{1}$ và $\dfrac{1}{0}$, điều này cũng hiển nhiên. Từ đó, theo [định lý Bezout](./bezouts.md), tử số và mẫu số của mọi phân số phải nguyên tố cùng nhau, tức mọi phân số đều tối giản.
+Với cơ sở quy nạp $\dfrac{0}{1}$ và $\dfrac{1}{0}$, điều này cũng đúng. Từ đó, theo [định lý Bezout](./bezouts.md), tử số và mẫu số của mọi phân số phải nguyên tố cùng nhau, tức mọi phân số đều tối giản.
 
 <span id="tính-đầy-đủ"></span>
 #### Tính đầy đủ
@@ -159,7 +159,7 @@ $$
 bp-aq \ge 1,\ cq-dp \ge 1.
 $$
 
-Nhân hai bất đẳng thức lần lượt với $(c+d)$ và $(a+b)$, ta thu được
+Nhân hai bất đẳng thức lần lượt với $(c+d)$ và $(a+b)$, thu được
 
 $$
 (c+d)(bp-aq) + (a+b)(cq-dp) \ge a+b+c+d.
@@ -171,12 +171,12 @@ $$
 p+q \ge a+b+c+d.
 $$
 
-Mỗi lần quá trình tìm kiếm đi sâu thêm một tầng, vế phải của đẳng thức này tăng nghiêm ngặt, còn vế trái không đổi; do đó quá trình tìm kiếm chắc chắn dừng sau hữu hạn bước.
+Mỗi lần quá trình tìm kiếm đi sâu thêm một tầng, vế phải của đẳng thức này tăng nghiêm ngặt, còn vế trái không đổi; do đó quá trình tìm kiếm sẽ dừng sau hữu hạn bước.
 
 <span id="tìm-phân-số"></span>
 ### Tìm phân số
 
-Trong ứng dụng thực tế của cây Stern-Brocot, ta thường cần truy vấn vị trí của một phân số cho trước trên cây Stern-Brocot.
+Trong ứng dụng thực tế của cây Stern-Brocot, thường cần truy vấn vị trí của một phân số cho trước trên cây Stern-Brocot.
 
 <span id="thuật-toán-đơn-giản"></span>
 #### Thuật toán đơn giản
@@ -198,14 +198,14 @@ Cài đặt thuật toán tìm phân số đơn giản như sau:
 
 Độ phức tạp của thuật toán là $O(p+q)$, nên trong lập trình thi đấu nó không thực dụng.
 
-Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần chú ý so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
+Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
 
 <span id="thuật-toán-nhanh"></span>
 #### Thuật toán nhanh
 
 Thuật toán tìm phân số đơn giản có hiệu quả không cao, nhưng chỉ cần tối ưu nhẹ là có thể thu được thuật toán tìm kiếm nhanh $O(\log(p+q))$. Điểm mấu chốt là gộp các đoạn $L$ liên tiếp và $R$ liên tiếp để xử lý cùng lúc.
 
-Nếu phân số cần tìm $\dfrac{p}{q}$ nằm giữa $\dfrac{a}{b}$ và $\dfrac{c}{d}$, thì khi đi sang phải liên tiếp $t$ lần, biên phải giữ nguyên, còn nút biên trái chuyển đến $\dfrac{a+tc}{b+td}$; ngược lại, khi đi sang trái liên tiếp $t$ lần, biên trái giữ nguyên, còn nút biên phải chuyển đến $\dfrac{ta+c}{tb+d}$. Vì vậy, có thể trực tiếp dùng $\dfrac{a+tc}{b+td}<\dfrac{p}{q}$ hoặc $\dfrac{p}{q}<\dfrac{ta+c}{tb+d}$ để xác định số lần đi sang phải hoặc sang trái. Ở đây dùng bất đẳng thức nghiêm ngặt vì thuật toán đang di chuyển hai đầu mút, còn phân số cần tìm xuất hiện dưới dạng trung vị phân số của hai đầu mút cuối cùng.
+Nếu phân số cần tìm $\dfrac{p}{q}$ nằm giữa $\dfrac{a}{b}$ và $\dfrac{c}{d}$, thì khi đi sang phải liên tiếp $t$ lần, biên phải giữ nguyên, còn nút biên trái chuyển đến $\dfrac{a+tc}{b+td}$; ngược lại, khi đi sang trái liên tiếp $t$ lần, biên trái giữ nguyên, còn nút biên phải chuyển đến $\dfrac{t a+c}{t b+d}$. Vì vậy, có thể trực tiếp dùng $\dfrac{a+tc}{b+td}<\dfrac{p}{q}$ hoặc $\dfrac{p}{q}<\dfrac{t a+c}{t b+d}$ để xác định số lần đi sang phải hoặc sang trái. Trong đoạn này dùng bất đẳng thức nghiêm ngặt vì thuật toán đang di chuyển hai đầu mút, còn phân số cần tìm xuất hiện dưới dạng trung vị phân số của hai đầu mút cuối cùng.
 
 ???+ example "Tìm phân số nhanh"
     === "C++"
@@ -235,13 +235,13 @@ $$
 \dfrac{p_{-2}}{q_{-2}}=\dfrac{0}{1},~\dfrac{p_{-1}}{q_{-1}}=\dfrac{1}{0}.
 $$
 
-Gọi số lần di chuyển của nhóm thứ $k$ là $t_k$. Theo quan hệ giữa số lần di chuyển và vị trí đầu mút đã suy ra ở trên, ta có
+Gọi số lần di chuyển của nhóm thứ $k$ là $t_k$. Theo quan hệ giữa số lần di chuyển và vị trí đầu mút đã suy ra ở trên, có
 
 $$
 \dfrac{p_k}{q_k} = \dfrac{t_kp_{k-1}+p_{k-2}}{t_kq_{k-1}+q_{k-2}}.
 $$
 
-Theo [quan hệ truy hồi](./continued-fraction.md#quan-hệ-truy-hồi) của liên phân số, ta biết đầu mút
+Theo [quan hệ truy hồi](./continued-fraction.md#quan-hệ-truy-hồi) của liên phân số, biết rằng đầu mút
 
 $$
 \dfrac{p_k}{q_k} = [t_0,t_1,\cdots,t_k].
@@ -324,13 +324,13 @@ Cách đánh số này có thể xây dựng đệ quy: nút gốc có chỉ s�
 <span id="dãy-hai-nguyên-tử-stern"></span>
 ### Dãy hai nguyên tử Stern
 
-Sắp xếp tất cả phân số trong cây Calkin-Wilf theo chỉ số tìm kiếm theo chiều rộng, hoặc sắp xếp tất cả phân số trong cây Stern-Brocot theo cách đánh số trong hình trên, ta thu được dãy sau:
+Sắp xếp tất cả phân số trong cây Calkin-Wilf theo chỉ số tìm kiếm theo chiều rộng, hoặc sắp xếp tất cả phân số trong cây Stern-Brocot theo cách đánh số trong hình trên, thu được dãy sau:
 
 $$
 \frac{1}{1},~\dfrac{1}{2},~\dfrac{2}{1},~\dfrac{1}{3},~\dfrac{3}{2},~\dfrac{2}{3},~\dfrac{3}{1},~\dfrac{1}{4},~\dfrac{4}{3},~\dfrac{3}{5},~\dfrac{5}{2},\cdots.
 $$
 
-Dùng quá trình xây dựng cây Calkin-Wilf, có thể chứng minh rằng với hai phân số kề nhau trong dãy này, mẫu số của phân số trước luôn bằng tử số của phân số sau. Lấy riêng các tử số ra, ta được dãy hai nguyên tử Stern (Stern diatomic sequence, [OEIS A002487](https://oeis.org/A002487)), còn được gọi là dãy Stern-Brocot (Stern-Brocot sequence). Dãy phân số ở trên được đánh số bắt đầu từ $1$, đồng thời quy ước bổ sung phần tử thứ $0$ bằng $0$.
+Dùng quá trình xây dựng cây Calkin-Wilf, có thể chứng minh rằng với hai phân số kề nhau trong dãy này, mẫu số của phân số trước luôn bằng tử số của phân số sau. Lấy riêng các tử số ra sẽ thu được dãy hai nguyên tử Stern (Stern diatomic sequence, [OEIS A002487](https://oeis.org/A002487)), còn được gọi là dãy Stern-Brocot (Stern-Brocot sequence). Dãy phân số ở trên được đánh số bắt đầu từ $1$, đồng thời quy ước bổ sung phần tử thứ $0$ bằng $0$.
 
 Gọi $a_n$ là phần tử thứ $n$ trong dãy hai nguyên tử Stern. Khi đó nó thỏa mãn quan hệ truy hồi:
 
@@ -386,7 +386,7 @@ $$
 \end{aligned}
 $$
 
-Ở đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Du](./du.md#bài-toán-1).
+Tại đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Du](./du.md#bài-toán-1).
 
 So với việc trực tiếp tính độ dài dãy, tình huống thường gặp hơn là cần tìm chỉ số của một phân số $r=\dfrac{p}{q}$ trong dãy $F_k$. Điều này tương đương với việc tính
 
@@ -394,24 +394,24 @@ $$
 1 + \sum_{k = 1}^n\sum_{i=1}^{\lfloor rk\rfloor}[i\perp k] = 1 + \sum_{d=1}^n\mu(d)\sum_{j=1}^{\lfloor n/d\rfloor}\lfloor rj\rfloor.
 $$
 
-Để thu được vế phải, ta áp dụng [nghịch đảo Mobius](./mobius.md). Kết hợp sàng tuyến tính với việc liệt kê ước, có thể đạt $O(n)$ tiền xử lý và $O(n\log n)$ cho mỗi truy vấn; kết hợp sàng Du với [thuật toán Euclid mở rộng](./euclidean.md), có thể đạt $O(n^{2/3})$ tiền xử lý và $O(\sqrt n\log n)$ cho mỗi truy vấn.
+Để thu được vế phải, áp dụng [nghịch đảo Mobius](./mobius.md). Kết hợp sàng tuyến tính với việc liệt kê ước, có thể đạt $O(n)$ tiền xử lý và $O(n\log n)$ cho mỗi truy vấn; kết hợp sàng Du với [thuật toán Euclid mở rộng](./euclidean.md), có thể đạt $O(n^{2/3})$ tiền xử lý và $O(\sqrt n\log n)$ cho mỗi truy vấn.
 
-Ngược lại, nếu biết chỉ số và cần tìm phân số, ta cần tìm kiếm nhị phân trên các số thực trong $[0,1]$, hoặc [tìm kiếm nhị phân](#thuật-toán-nhanh) trên cây Stern-Brocot. Cách trước có thể chịu ảnh hưởng của sai số số thực, và cần $O(\log V)$ truy vấn chỉ số phân số, trong đó $V$ là phạm vi độ chính xác; cách sau không chịu giới hạn bởi sai số số thực, nhưng cần $O(\log^2n)$ truy vấn chỉ số phân số.
+Ngược lại, nếu biết chỉ số và cần tìm phân số, cần tìm kiếm nhị phân trên các số thực trong $[0,1]$, hoặc [tìm kiếm nhị phân](#thuật-toán-nhanh) trên cây Stern-Brocot. Cách trước có thể chịu ảnh hưởng của sai số số thực, và cần $O(\log V)$ truy vấn chỉ số phân số, trong đó $V$ là phạm vi độ chính xác; cách sau không chịu giới hạn bởi sai số số thực, nhưng cần $O(\log^2n)$ truy vấn chỉ số phân số.
 
 <span id="các-phần-tử-kề-farey"></span>
 ### Các phần tử kề Farey
 
-Nếu hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong một dãy Farey nào đó, ta gọi chúng là **hai phần tử kề Farey** (Farey neighbors), cũng gọi là **cặp Farey** (Farey pair).
+Nếu hai phân số $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong một dãy Farey nào đó, gọi chúng là **hai phần tử kề Farey** (Farey neighbors), cũng gọi là **cặp Farey** (Farey pair).
 
-Giả sử $\dfrac{a}{b}<\dfrac{c}{d}$. Từ quá trình xây dựng dãy Farey, trong hai phân số kề nhau, phân số được thêm vào sau chắc chắn là trung vị phân số của phân số còn lại với phần tử kề trước đó của nó. Do vậy, hai phần tử kề Farey cũng kề nhau trong một dãy Stern-Brocot bậc nào đó; theo kết luận đã chứng minh trong phần [tính tối giản](#tính-tối-giản), tất yếu có
+Giả sử $\dfrac{a}{b}<\dfrac{c}{d}$. Từ quá trình xây dựng dãy Farey, trong hai phân số kề nhau, phân số được thêm vào sau là trung vị phân số của phân số còn lại với phần tử kề trước đó của nó. Do vậy, hai phần tử kề Farey cũng kề nhau trong một dãy Stern-Brocot bậc nào đó; theo kết luận đã chứng minh trong phần [tính tối giản](#tính-tối-giản), tất yếu có
 
 $$
 bc-ad=1.
 $$
 
-Ngược lại, đây cũng là điều kiện đủ để hai phân số thực tối giản trở thành hai phần tử kề Farey. Ta chứng minh điều này. Không mất tính tổng quát, giả sử $\dfrac{a}{b}$ là phân số có mẫu số lớn hơn trong hai phân số, khi đó cả hai phân số đều xuất hiện trong $F_b$. Gọi $\dfrac{e}{f}$ là một phần tử trong dãy $F_b$ nằm ngay bên phải $\dfrac{a}{b}$. Theo tính cần thiết đã nêu, ta có $be-af=1$. Nhưng [phương trình đồng dư tuyến tính](./linear-equation.md) $bx-ay=1$ chỉ có một nghiệm nguyên dương với $y\le b$, nên tất yếu $(e,f)=(c,d)$.
+Ngược lại, đây cũng là điều kiện đủ để hai phân số thực tối giản trở thành hai phần tử kề Farey. Chứng minh như sau. Không mất tính tổng quát, giả sử $\dfrac{a}{b}$ là phân số có mẫu số lớn hơn trong hai phân số, khi đó cả hai phân số đều xuất hiện trong $F_b$. Gọi $\dfrac{e}{f}$ là một phần tử trong dãy $F_b$ nằm ngay bên phải $\dfrac{a}{b}$. Theo tính cần thiết đã nêu, có $be-af=1$. Nhưng [phương trình đồng dư tuyến tính](./linear-equation.md) $bx-ay=1$ chỉ có một nghiệm nguyên dương với $y\le b$, nên tất yếu $(e,f)=(c,d)$.
 
-Thực ra, vì phân số tối giản tiếp theo sẽ xuất hiện giữa hai phân số đó chắc chắn là $\dfrac{a+c}{b+d}$, nên $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong mọi dãy Farey từ bậc $\max\{b,d\}$ đến bậc $(b+d-1)$.
+Vì phân số tối giản tiếp theo sẽ xuất hiện giữa hai phân số đó là $\dfrac{a+c}{b+d}$, nên $\dfrac{a}{b}$ và $\dfrac{c}{d}$ kề nhau trong mọi dãy Farey từ bậc $\max\{b,d\}$ đến bậc $(b+d-1)$.
 
 Quan hệ giữa các phần tử kề Farey có mẫu số không vượt quá $9$ được minh họa dưới đây:
 
@@ -427,7 +427,7 @@ $$
 
 Vì hai phân số tối giản là khác nhau, nên $|bc-ad|\ge 1$; do đó hai đường tròn chỉ có thể tiếp xúc hoặc rời nhau. Hơn nữa, hai đường tròn tiếp xúc khi và chỉ khi $|bc-ad|=1$, điều này tương đương với việc hai phân số là hai phần tử kề Farey.
 
-Cuối cùng, ta tính số cặp phần tử kề Farey. Ngoại trừ $\left(\dfrac{0}{1},\dfrac{1}{1}\right)$, các cặp kề Farey còn lại đều có mẫu số khác nhau. Không mất tính tổng quát, giả sử $\dfrac{p}{q}$ là phân số có mẫu số lớn hơn trong cặp đó, thì phân số còn lại có thể được tìm từ phương trình Diophantine tuyến tính hai ẩn
+Cuối cùng, tính số cặp phần tử kề Farey. Ngoại trừ $\left(\dfrac{0}{1},\dfrac{1}{1}\right)$, các cặp kề Farey còn lại đều có mẫu số khác nhau. Không mất tính tổng quát, giả sử $\dfrac{p}{q}$ là phân số có mẫu số lớn hơn trong cặp đó, thì phân số còn lại có thể được tìm từ phương trình Diophantine tuyến tính hai ẩn
 
 $$
 qx-py=\pm 1
@@ -435,7 +435,7 @@ $$
 
 Hai phương trình này mỗi phương trình có đúng một nghiệm nguyên dương thỏa mãn $y<q$, lần lượt ứng với hai phần tử kề nằm bên trái và bên phải của $\dfrac{p}{q}$. Vì vậy, mỗi phân số thực trong $(0,1)$ đều có hai phần tử kề Farey với mẫu số nhỏ hơn mẫu số của nó; cộng thêm $\dfrac{0}{1}$ và $\dfrac{1}{1}$, suy ra dãy $F_n$ có tổng cộng $(2|F_n|-3)$ cặp phần tử kề Farey.
 
-Tất nhiên, hai phân số $\dfrac{a}{b}<\dfrac{c}{d}$ tìm được trong quá trình này chính là hai phần tử kề trái phải khi chèn $\dfrac{p}{q}$ vào dãy. Vì vậy, bản thân chúng là hai phần tử kề Farey và $\dfrac{p}{q}$ là trung vị phân số của chúng. Giả sử $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$, thì hai phần tử kề Farey có mẫu số nhỏ hơn này lần lượt là $[t_0,t_1,\cdots,t_n]$ và $[t_0,t_1,\cdots,t_{n-1}]$.
+Hai phân số $\dfrac{a}{b}<\dfrac{c}{d}$ tìm được trong quá trình này chính là hai phần tử kề trái phải khi chèn $\dfrac{p}{q}$ vào dãy. Vì vậy, bản thân chúng là hai phần tử kề Farey và $\dfrac{p}{q}$ là trung vị phân số của chúng. Giả sử $\dfrac{p}{q}=[t_0,t_1,\cdots,t_n,1]$, thì hai phần tử kề Farey có mẫu số nhỏ hơn này lần lượt là $[t_0,t_1,\cdots,t_n]$ và $[t_0,t_1,\cdots,t_{n-1}]$.
 
 Để tính các phần tử kề Farey khác của phân số hiện tại $\dfrac{p}{q}$, chỉ cần dùng [thuật toán Euclid mở rộng](./bezouts.md#trường-hợp-hai-biến) để tìm tất cả nghiệm thỏa mãn điều kiện.
 
@@ -444,7 +444,7 @@ Tất nhiên, hai phân số $\dfrac{a}{b}<\dfrac{c}{d}$ tìm được trong qu�
 
 Dãy Farey có một quan hệ truy hồi gọn, có thể dùng để sinh toàn bộ phân số của dãy Farey bậc $n$ theo thứ tự từ trái sang phải.
 
-Trước hết, phân tích ở trên chỉ ra rằng trong $F_n$, phần tử mới được thêm $\dfrac{p}{n}$ luôn là trung vị phân số của hai phân số kề trái phải. Thực ra, quan hệ này đúng với mọi phân số trong $F_n$ trừ hai đầu mút. Giả sử $\dfrac{a}{b}<\dfrac{p}{q}<\dfrac{c}{d}$, theo điều kiện cần và đủ của hai phần tử kề Farey, luôn có
+Trước hết, phân tích ở trên chỉ ra rằng trong $F_n$, phần tử mới được thêm $\dfrac{p}{n}$ luôn là trung vị phân số của hai phân số kề trái phải. Quan hệ này đúng với mọi phân số trong $F_n$ trừ hai đầu mút. Giả sử $\dfrac{a}{b}<\dfrac{p}{q}<\dfrac{c}{d}$, theo điều kiện cần và đủ của hai phần tử kề Farey, luôn có
 
 $$
 bp-aq = 1 = cq-dp \iff \frac{p}{q} = \dfrac{a+c}{b+d}.
@@ -452,7 +452,7 @@ $$
 
 Tuy nhiên, trong trường hợp tổng quát, phân số $\dfrac{a+c}{b+d}$ có thể cần được rút gọn.
 
-Dùng quan sát này, ta có thể xây dựng quan hệ truy hồi sau. Giả sử đã biết $\dfrac{a}{b}$ và $\dfrac{p}{q}$, cần tìm giá trị của phân số thứ ba $\dfrac{c}{d}$. Khi đó tồn tại $k$ sao cho
+Dùng quan sát này, có thể xây dựng quan hệ truy hồi sau. Giả sử đã biết $\dfrac{a}{b}$ và $\dfrac{p}{q}$, cần tìm giá trị của phân số thứ ba $\dfrac{c}{d}$. Khi đó tồn tại $k$ sao cho
 
 $$
 a+c = kp,\ b+d=kq
@@ -470,7 +470,7 @@ $$
 k = \left\lfloor\dfrac{n+b}{q}\right\rfloor.
 $$
 
-Có thể kiểm chứng rằng phân số nhận được theo cách này chắc chắn nằm trong $F_n$. Vì vậy, tử số và mẫu số của các phân số trong $F_n$ thỏa mãn quan hệ truy hồi:
+Có thể kiểm chứng rằng phân số nhận được theo cách này luôn nằm trong $F_n$. Vì vậy, tử số và mẫu số của các phân số trong $F_n$ thỏa mãn quan hệ truy hồi:
 
 $$
 \begin{aligned}
