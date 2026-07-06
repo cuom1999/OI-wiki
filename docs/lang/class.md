@@ -1,14 +1,14 @@
 author: Ir1d, cjsoft, Lans1ot, JasonkayZK
 
-Lớp (`class`) là phần mở rộng của cấu trúc: ngoài thành viên dữ liệu, nó còn có
-hàm thành viên.
+Lớp (`class`) có thể xem là phần mở rộng của cấu trúc: ngoài thành viên dữ liệu,
+nó còn có hàm thành viên.
 
 Trong lập trình hướng đối tượng (OOP), đối tượng là một thực thể của lớp, tức
 một giá trị hoặc biến thuộc kiểu lớp đó.
 
-Trong C++, kiểu được định nghĩa bằng từ khóa `struct` cũng là lớp. Định nghĩa
-**cấu trúc** ở phần trước gần với cách dùng trong C. Vì lý do lịch sử, C++ giữ
-lại và mở rộng `struct`.
+Trong C++, kiểu được định nghĩa bằng từ khóa `struct` cũng là một lớp. Phần
+**cấu trúc** trước đó gần với cách dùng trong C. Vì lý do lịch sử, C++ giữ lại
+`struct` và mở rộng thêm khả năng của nó.
 
 ## Định nghĩa lớp
 
@@ -45,28 +45,26 @@ bộ chỉ định truy cập.
 
 -   `public`: mọi thành viên sau bộ chỉ định truy cập này đều có thể được truy cập
     công khai, cả **bên trong lớp** lẫn **bên ngoài lớp**.
--   `protected`: mọi thành viên sau bộ chỉ định truy cập này có thể được thành
-    viên **bên trong lớp**, thành viên của lớp dẫn xuất hoặc friend truy cập,
+-   `protected`: mọi thành viên sau bộ chỉ định truy cập này có thể được truy cập
+    bởi thành viên **bên trong lớp**, thành viên của lớp dẫn xuất hoặc friend,
     nhưng **không thể truy cập từ bên ngoài lớp**.
 -   `private`: mọi thành viên sau bộ chỉ định truy cập này **chỉ** có thể được
-    thành viên **bên trong lớp** hoặc friend truy cập, **không thể** truy cập từ
-    bên ngoài lớp hoặc từ lớp dẫn xuất.
+    truy cập bởi thành viên **bên trong lớp** hoặc friend, **không thể** truy cập
+    từ bên ngoài lớp hoặc từ lớp dẫn xuất.
 
 Với `struct`, mọi thành viên mặc định đều là `public`. Với `class`, mọi thành
 viên mặc định đều là `private`.
 
 ??? note "Khái niệm cơ bản về friend và lớp dẫn xuất"
-    Friend (`friend`): dùng từ khóa `friend` để khai báo một hàm hoặc một lớp.
-    Điều này cho phép **thực thể được khai báo là friend** truy cập thành viên
-    riêng tư (`private`) hoặc được bảo vệ (`protected`) của lớp đó mà không cần
-    trở thành hàm thành viên hoặc lớp thành viên. Khi một hàm hoặc lớp được khai
-    báo là `friend` của lớp này, nó có thể truy cập các thành viên riêng tư hoặc
-    được bảo vệ của lớp này.
+    Friend (`friend`): dùng từ khóa `friend` để khai báo một hàm hoặc một lớp là
+    bạn của lớp hiện tại. Khi đó, **thực thể được khai báo là friend** có thể truy
+    cập thành viên riêng tư (`private`) hoặc được bảo vệ (`protected`) của lớp mà
+    không cần trở thành hàm thành viên hoặc lớp thành viên.
 
-    Lớp dẫn xuất (`derived class`): C++ cho phép dùng một lớp làm **lớp cơ sở**
-    và từ lớp cơ sở **dẫn xuất** ra **lớp dẫn xuất**. Lớp dẫn xuất kế thừa biến
-    thành viên và hàm thành viên của lớp cơ sở theo các quy tắc nhất định, nhờ
-    đó tăng khả năng tái sử dụng mã.
+    Lớp dẫn xuất (`derived class`): C++ cho phép dùng một lớp làm **lớp cơ sở**,
+    rồi từ lớp cơ sở đó **dẫn xuất** ra **lớp dẫn xuất**. Lớp dẫn xuất kế thừa
+    biến thành viên và hàm thành viên của lớp cơ sở theo các quy tắc nhất định,
+    nhờ đó tăng khả năng tái sử dụng mã.
 
     Lớp dẫn xuất biểu diễn quan hệ "là một". Ví dụ, xe tải (lớp dẫn xuất) "là
     một" phương tiện giao thông (lớp cơ sở).
@@ -131,20 +129,20 @@ Nếu muốn gọi hàm thành viên `print` của `var`, có thể dùng `var.p
     C++ cho phép người viết cung cấp nhiều định nghĩa cho hàm hoặc toán tử cùng
     tên. Điều này được gọi là **nạp chồng** (overload).
 
-    Nếu các hàm cùng tên có khác biệt ở kiểu tham số hoặc số lượng tham số, chúng
-    được xem là các hàm khác nhau.
+    Nếu các hàm cùng tên khác nhau ở kiểu tham số hoặc số lượng tham số, chúng
+    được xem là những hàm khác nhau.
 
     Lưu ý: nếu hai hàm cùng tên chỉ khác nhau ở kiểu giá trị trả về thì không
     thể nạp chồng; lúc này trình biên dịch sẽ từ chối biên dịch.
 
     Nếu lời gọi không nhập nhằng, tức có thể dựa vào kiểu và số lượng tham số đã
     truyền để xác định duy nhất hàm cần gọi, trình biên dịch sẽ chọn hàm tương
-    ứng. Trường hợp nhập nhằng thường gặp ở các hàm có tham số mặc định.
+    ứng. Trường hợp nhập nhằng thường gặp khi các hàm có tham số mặc định.
 
     Quá trình trên được gọi là phân giải nạp chồng.
 
 Trong một số trường hợp, nạp chồng toán tử có thể thay cho lời gọi hàm thông
-thường và giúp mã ngắn gọn hơn.
+thường, giúp mã ngắn gọn hơn.
 
 Sau đây là ví dụ nạp chồng toán tử.
 
@@ -175,7 +173,7 @@ Vector Vector::operator-(const Vector& other) const {
 ```
 
 Ví dụ này định nghĩa một lớp vector và nạp chồng các toán tử `*`, `+`, `-`, lần
-lượt đại diện cho tích vô hướng vector, cộng vector và trừ vector.
+lượt biểu diễn tích vô hướng, phép cộng vector và phép trừ vector.
 
 Mẫu nạp chồng toán tử thường có các dạng sau:
 
@@ -224,8 +222,8 @@ class Object {
 };
 ```
 
-Ví dụ này định nghĩa hàm tạo mặc định của `Object`. Hàm này có thể khởi tạo mọi
-thành viên dữ liệu thành `0` khi tạo biến kiểu `Object`.
+Ví dụ này định nghĩa hàm tạo mặc định của `Object`. Hàm này khởi tạo các thành
+viên dữ liệu thành `0` khi tạo biến kiểu `Object`.
 
 Nếu người viết không tự định nghĩa hàm tạo, trình biên dịch xem lớp đó là có hàm
 tạo mặc định ngầm định. Cụ thể, khi không có bất kỳ hàm tạo nào được định nghĩa,
@@ -241,8 +239,8 @@ hàm tạo.
 
 ??? note "Về định nghĩa hoặc nạp chồng hàm tạo"
     Thông thường, hàm tạo mặc định là hàm tạo có thể được gọi khi không truyền
-    đối số. Đây là điểm khác với các hàm tạo còn lại. Cách định nghĩa hàm tạo và
-    hàm tạo mặc định gần giống nhau, chỉ khác ở danh sách tham số.
+    đối số. Đây là điểm khác với các hàm tạo còn lại. Cách định nghĩa hàm tạo mặc
+    định và các hàm tạo khác gần giống nhau, chỉ khác ở danh sách tham số.
 
     Hàm tạo có thể được nạp chồng; lần đầu viết một hàm tạo cũng là định nghĩa
     hàm tạo đó. Nếu đã định nghĩa hàm tạo, trình biên dịch sẽ không tự sinh hàm
@@ -258,8 +256,8 @@ Khi dùng C++11 trở lên, có thể dùng `{}` để khởi tạo biến.
     Các bước khởi tạo thường diễn ra như sau:
 
     1.  Thử tìm hàm tạo nhận `std::initializer_list`; nếu có thì gọi hàm đó, và
-        sau khi gọi xong thì không tiếp tục tìm các cách phía sau nữa. Các bước
-        sau cũng tương tự.
+        sau khi gọi xong thì không tiếp tục thử các cách còn lại. Các bước sau
+        cũng tương tự.
     2.  Thử điền các phần tử trong `{}` vào tham số của các hàm tạo khác; nếu có
         thể điền đầy đủ tham số theo thứ tự, tính cả tham số mặc định, thì gọi
         hàm tạo tương ứng.
@@ -315,7 +313,7 @@ Object C{1, 2};  // hợp lệ (C++11)
     ```
 
     Thoạt nhìn có vẻ lạ: một giá trị kiểu `int` không thể tự nhiên chuyển thành
-    kiểu `Node`. Nhưng trình biên dịch sẽ không báo `error`.
+    kiểu `Node`. Nhưng trình biên dịch sẽ không báo lỗi.
 
     Nguyên nhân là trong quá trình khởi tạo sao chép, `1` được dùng làm tham số
     để gọi `Node::Node(int)`, từ đó tạo ra một đối tượng `Node`.
@@ -333,12 +331,12 @@ Object C{1, 2};  // hợp lệ (C++11)
     };
     ```
 
-    Khi đó, `Node a = 1` sẽ báo lỗi, nhưng `Node a = Node(1)` thì không, vì đoạn
-    sau gọi hàm tạo một cách tường minh. Cách viết sau không phổ biến, nhưng ví dụ
-    này đủ để minh họa tác dụng của `explicit`.
+    Khi đó, `Node a = 1` sẽ báo lỗi, nhưng `Node a = Node(1)` thì không, vì cách
+    viết sau gọi hàm tạo một cách tường minh. Cách viết này không phổ biến, nhưng
+    đủ để minh họa tác dụng của `explicit`.
 
-    *Trong lập trình thi đấu, cách thường dùng để tránh tình huống này là viết
-    mã chặt chẽ ngay từ đầu.*
+    *Trong lập trình thi đấu, cách thường dùng để tránh tình huống này là viết mã
+    chặt chẽ ngay từ đầu.*
 
 ### Hủy
 
@@ -351,8 +349,8 @@ nhớ động thủ công.
 Nếu thành viên của lớp là con trỏ sở hữu vùng nhớ động, cũng sẽ gặp vấn đề này.
 Khi đó cần dùng hàm hủy để giải phóng bộ nhớ động thủ công.
 
-Hàm **hủy** (destructor) sẽ được gọi khi biến đó bị hủy. Cách định nghĩa tương
-tự hàm tạo, nhưng cần thêm `~` phía trước tên hàm.
+Hàm **hủy** (destructor) được gọi khi biến bị hủy. Cách định nghĩa tương tự hàm
+tạo, nhưng cần thêm `~` phía trước tên hàm.
 
 *Hàm hủy mặc định thường đã đủ dùng trong lập trình thi đấu; thường chỉ tự
 định nghĩa hàm hủy khi thành viên có chứa con trỏ cần tự quản lý.*
@@ -394,8 +392,8 @@ tmp2 = Object(...);
 tmp3 = {...};
 ```
 
-Nếu cần xử lý vấn đề con trỏ hoặc thao tác đặc biệt khác, cần tự định nghĩa toán
-tử gán, hàm tạo sao chép hoặc các hàm thành viên đặc biệt liên quan.
+Nếu cần xử lý con trỏ hoặc thao tác đặc biệt khác, cần tự định nghĩa toán tử gán,
+hàm tạo sao chép hoặc các hàm thành viên đặc biệt liên quan.
 
 *Nội dung khác về hàm tạo: xem mục thứ sáu trong "Tài liệu tham khảo".*
 
