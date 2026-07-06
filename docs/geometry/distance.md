@@ -14,7 +14,7 @@ $$
 
 #### Giải thích
 
-Ví dụ, trong hệ tọa độ Descartes phẳng, nếu có hai điểm $A(6,5),B(2,2)$, từ công thức ta dễ dàng tính được khoảng cách Euclid giữa $A$ và $B$:
+Ví dụ, trong hệ tọa độ Descartes phẳng, nếu có hai điểm $A(6,5),B(2,2)$, từ công thức có thể tính được khoảng cách Euclid giữa $A$ và $B$:
 
 $$
 \left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5
@@ -30,11 +30,11 @@ $$
 
 #### Dẫn nhập
 
-Vậy công thức khoảng cách Euclid giữa hai điểm trong không gian ba chiều là gì? Hãy quan sát hình dưới đây.
+Công thức khoảng cách Euclid giữa hai điểm trong không gian ba chiều có thể suy ra từ hình dưới đây.
 
 ![Khoảng cách trong không gian ba chiều](./images/distance-0.png)
 
-Ta dễ thấy rằng trong $\triangle ADC$, $\angle ADC = 90^\circ$; trong $\triangle ACB$, $\angle ACB = 90^\circ$.
+Trong $\triangle ADC$, có $\angle ADC = 90^\circ$; trong $\triangle ACB$, có $\angle ACB = 90^\circ$.
 
 $$
 \begin{aligned}
@@ -58,7 +58,7 @@ $$
 
 [NOIP2017 Advanced Group Cheese](https://uoj.ac/problem/332) sử dụng kiến thức này và có thể xem là một bài ví dụ về khoảng cách Euclid.
 
-Tương tự, ta thu được công thức khoảng cách Euclid trong không gian $n$ chiều: với $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$, ta có
+Tương tự, thu được công thức khoảng cách Euclid trong không gian $n$ chiều: với $\vec A(x_{11}, x_{12}, \cdots,x_{1n}) ,~ \vec B(x_{21}, x_{22}, \cdots,x_{2n})$, có
 
 $$
 \begin{aligned}
@@ -67,7 +67,7 @@ $$
 \end{aligned}
 $$
 
-Khoảng cách Euclid rất hữu ích, nhưng cũng có nhược điểm rõ ràng. Khi tính khoảng cách Euclid giữa hai điểm nguyên, kết quả thường là số thực, nên có thể phát sinh sai số nhất định.
+Khoảng cách Euclid rất hữu ích, nhưng cũng có nhược điểm đáng kể. Khi tính khoảng cách Euclid giữa hai điểm nguyên, kết quả thường là số thực, nên có thể phát sinh sai số nhất định.
 
 ## Khoảng cách Manhattan
 
@@ -91,13 +91,13 @@ Vẫn với ví dụ tương tự, trong hình dưới đây tọa độ của $
 
 ![Khoảng cách Manhattan](./images/distance-2.svg)
 
-Từ công thức, ta dễ dàng tính được khoảng cách Manhattan giữa hai điểm $A,B$:
+Từ công thức, có thể tính được khoảng cách Manhattan giữa hai điểm $A,B$:
 
 $$
 d(A,B) = |20 - 10| + |25 - 10| = 10 + 15 = 25
 $$
 
-Sau khi suy diễn, ta có công thức khoảng cách Manhattan trong không gian $n$ chiều:
+Sau khi suy diễn, thu được công thức khoảng cách Manhattan trong không gian $n$ chiều:
 
 $$
 \begin{aligned}
@@ -119,7 +119,7 @@ Ngoài công thức, khoảng cách Manhattan còn có các tính chất toán h
 
 [P5098 "USACO04OPEN" Cave Cows 3](https://www.luogu.com.cn/problem/P5098)
 
-Theo đề bài, với biểu thức $|x_1-x_2|+|y_1-y_2|$, ta có thể giả sử $x_1 - x_2 \geq 0$, rồi dựa vào dấu của $y_1 - y_2$ để chia thành hai trường hợp:
+Theo đề bài, với biểu thức $|x_1-x_2|+|y_1-y_2|$, có thể giả sử $x_1 - x_2 \geq 0$, rồi dựa vào dấu của $y_1 - y_2$ để chia thành hai trường hợp:
 
 -   $(y_1 - y_2 \geq 0)\rightarrow |x_1-x_2|+|y_1-y_2|=x_1 + y_1 - (x_2 + y_2)$
 
@@ -163,7 +163,7 @@ Chỉ cần lần lượt tìm giá trị lớn nhất và nhỏ nhất của $x
         print(max(maxx - minx, maxy - miny))
         ```
 
-Thật ra còn có cách làm thứ hai: chuyển khoảng cách Manhattan thành khoảng cách Chebyshev để giải. Phần cuối sẽ trình bày cách này.
+Còn có cách làm thứ hai: chuyển khoảng cách Manhattan thành khoảng cách Chebyshev để giải. Phần cuối sẽ trình bày cách này.
 
 ## Khoảng cách Chebyshev
 
@@ -199,11 +199,11 @@ $$
 
 ### Quá trình
 
-Trước hết, ta xét việc vẽ tất cả các điểm trên hệ tọa độ Descartes phẳng có khoảng cách Manhattan đến gốc tọa độ bằng $1$.
+Trước hết, xét việc vẽ tất cả các điểm trên hệ tọa độ Descartes phẳng có khoảng cách Manhattan đến gốc tọa độ bằng $1$.
 
-Từ công thức, ta dễ dàng thu được phương trình $|x| + |y| = 1$.
+Từ công thức, thu được phương trình $|x| + |y| = 1$.
 
-Khai triển trị tuyệt đối, ta thu được $4$ hàm bậc nhất, lần lượt là:
+Khai triển trị tuyệt đối, thu được $4$ hàm bậc nhất, lần lượt là:
 
 $$
 \begin{aligned}
@@ -214,17 +214,17 @@ $$
 \end{aligned}
 $$
 
-Vẽ $4$ hàm này lên hệ tọa độ Descartes phẳng, ta được một hình vuông có cạnh dài $\sqrt{2}$ như hình dưới đây:
+Vẽ $4$ hàm này lên hệ tọa độ Descartes phẳng, thu được một hình vuông có cạnh dài $\sqrt{2}$ như hình dưới đây:
 
 ![Hình vuông khoảng cách Manhattan đơn vị](./images/distance-3.svg)
 
 Mọi điểm trên biên của hình vuông đều có khoảng cách Manhattan đến gốc tọa độ bằng $1$.
 
-Tương tự, ta xét việc vẽ tất cả các điểm trên hệ tọa độ Descartes phẳng có khoảng cách Chebyshev đến gốc tọa độ bằng $1$.
+Tương tự, xét việc vẽ tất cả các điểm trên hệ tọa độ Descartes phẳng có khoảng cách Chebyshev đến gốc tọa độ bằng $1$.
 
-Từ công thức, ta biết $\max(|x|,|y|)=1$.
+Từ công thức, có $\max(|x|,|y|)=1$.
 
-Khai triển biểu thức này, ta cũng thu được $4$ đoạn thẳng, lần lượt là:
+Khai triển biểu thức này, cũng thu được $4$ đoạn thẳng, lần lượt là:
 
 $$
 \begin{aligned}
@@ -235,13 +235,13 @@ $$
 \end{aligned}
 $$
 
-Vẽ chúng lên hệ tọa độ Descartes phẳng, ta được một hình vuông có cạnh dài $2$ như hình dưới đây:
+Vẽ chúng lên hệ tọa độ Descartes phẳng, thu được một hình vuông có cạnh dài $2$ như hình dưới đây:
 
 ![Hình vuông khoảng cách Chebyshev đơn vị](./images/distance-4.svg)
 
 Mọi điểm trên biên của hình vuông đều có khoảng cách Chebyshev đến gốc tọa độ bằng $1$.
 
-So sánh hai hình, ta sẽ thấy một điều thú vị:
+So sánh hai hình, có một điểm thú vị:
 
 Hai hình vuông này là các hình đồng dạng.
 
@@ -249,11 +249,11 @@ Hai hình vuông này là các hình đồng dạng.
 
 Vậy giữa khoảng cách Manhattan và khoảng cách Chebyshev có tồn tại mối liên hệ nào không?
 
-Tiếp theo ta chứng minh ngắn gọn:
+Tiếp theo là chứng minh ngắn gọn:
 
 Giả sử $A(x_1,y_1),B(x_2,y_2)$.
 
-Ta tách trị tuyệt đối trong khoảng cách Manhattan ra, sẽ thu được bốn giá trị. Giá trị lớn nhất trong bốn giá trị này là tổng của hai số không âm, tức là khoảng cách Manhattan. Khi đó khoảng cách Manhattan giữa hai điểm $A,B$ là:
+Tách trị tuyệt đối trong khoảng cách Manhattan sẽ thu được bốn giá trị. Giá trị lớn nhất trong bốn giá trị này là tổng của hai số không âm, tức là khoảng cách Manhattan. Khi đó khoảng cách Manhattan giữa hai điểm $A,B$ là:
 
 $$
 \begin{aligned}
@@ -263,7 +263,7 @@ d(A,B)&=|x_1 - x_2| + |y_1 - y_2|\\
 \end{aligned}
 $$
 
-Ta dễ thấy đây chính là khoảng cách Chebyshev giữa hai điểm $(x_1 + y_1,x_1 - y_1), (x_2 + y_2,x_2 - y_2)$.
+Đây chính là khoảng cách Chebyshev giữa hai điểm $(x_1 + y_1,x_1 - y_1), (x_2 + y_2,x_2 - y_2)$.
 
 Vì vậy, nếu biến đổi mỗi điểm $(x,y)$ thành $(x + y, x - y)$, thì khoảng cách Chebyshev trong hệ tọa độ mới bằng khoảng cách Manhattan trong hệ tọa độ ban đầu.
 
@@ -272,7 +272,7 @@ Tương tự, khoảng cách Chebyshev giữa hai điểm $A,B$ là:
 $$
 \begin{aligned}
 d(A,B)&=\max\begin{Bmatrix} |x_1 - x_2|,|y_1 - y_2|\end{Bmatrix}\\
-&=\max\begin{Bmatrix} \left|\dfrac{x_1 + y_1}{2}-\dfrac{x_2 + y_2}{2}\right|+\left|\dfrac{x_1 - y_1}{2}-\dfrac{x_2 - y_2}{2}\right|\end{Bmatrix}
+&= \left|\dfrac{x_1 + y_1}{2}-\dfrac{x_2 + y_2}{2}\right|+\left|\dfrac{x_1 - y_1}{2}-\dfrac{x_2 - y_2}{2}\right|
 \end{aligned}
 $$
 
@@ -286,7 +286,7 @@ Vì vậy, nếu biến đổi mỗi điểm $(x,y)$ thành $(\dfrac{x + y}{2},\
 -   Sau khi biến đổi tọa độ của một điểm $(x,y)$ thành $(x + y, x - y)$, khoảng cách Manhattan trong hệ tọa độ ban đầu bằng khoảng cách Chebyshev trong hệ tọa độ mới.
 -   Sau khi biến đổi tọa độ của một điểm $(x,y)$ thành $(\dfrac{x + y}{2},\dfrac{x - y}{2})$, khoảng cách Chebyshev trong hệ tọa độ ban đầu bằng khoảng cách Manhattan trong hệ tọa độ mới.
 
-Khi gặp bài toán yêu cầu tính khoảng cách Chebyshev hoặc khoảng cách Manhattan, ta thường có thể chuyển đổi qua lại giữa hai loại khoảng cách để giải. Hai loại khoảng cách có ưu và nhược điểm khác nhau trong từng bài toán, nên cần vận dụng linh hoạt.
+Khi gặp bài toán yêu cầu tính khoảng cách Chebyshev hoặc khoảng cách Manhattan, thường có thể chuyển đổi qua lại giữa hai loại khoảng cách để giải. Hai loại khoảng cách có ưu và nhược điểm khác nhau trong từng bài toán, nên cần vận dụng linh hoạt.
 
 ### Bài ví dụ
 
@@ -296,9 +296,9 @@ Khi gặp bài toán yêu cầu tính khoảng cách Chebyshev hoặc khoảng c
 
 Cuối cùng, dưới đây là cách giải thứ hai cho [P5098 "USACO04OPEN" Cave Cows 3](https://www.luogu.com.cn/problem/P5098):
 
-Ta xét việc chuyển khoảng cách Manhattan mà bài toán yêu cầu thành khoảng cách Chebyshev, tức là biến đổi tọa độ mỗi điểm $(x,y)$ thành $(x + y, x - y)$.
+Xét việc chuyển khoảng cách Manhattan mà bài toán yêu cầu thành khoảng cách Chebyshev, tức là biến đổi tọa độ mỗi điểm $(x,y)$ thành $(x + y, x - y)$.
 
-Đáp án cần tìm trở thành $\max\limits_{i,j\in n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$.
+Đáp án cần tìm trở thành $\max\limits_{1\le i,j\le n}\begin{Bmatrix} \max\begin{Bmatrix} |x_i - x_j|,|y_i - y_j|\end{Bmatrix}\end{Bmatrix}$.
 
 Để hiệu hoành độ hoặc hiệu tung độ đạt lớn nhất, chỉ cần tiền xử lý giá trị lớn nhất và nhỏ nhất của $x,y$.
 
@@ -341,11 +341,11 @@ Ta xét việc chuyển khoảng cách Manhattan mà bài toán yêu cầu thàn
         print(max(maxx - minx, maxy - miny))
         ```
 
-So sánh hai đoạn mã, ta lại thấy rằng hai ý tưởng khác nhau nhưng mã viết ra hoàn toàn tương đương. Tất nhiên, những vấn đề sâu hơn cần được tiếp tục tự nghiên cứu.
+So sánh hai đoạn mã cho thấy hai ý tưởng khác nhau nhưng mã viết ra hoàn toàn tương đương. Những vấn đề sâu hơn có thể được tiếp tục nghiên cứu riêng.
 
 ## Khoảng cách Minkowski
 
-Ta định nghĩa khoảng cách Minkowski giữa hai điểm $X(x_1, x_2, \dots, x_n)$, $Y(y_1, y_2, \dots, y_n)$ trong không gian $n$ chiều là:
+Khoảng cách Minkowski giữa hai điểm $X(x_1, x_2, \dots, x_n)$, $Y(y_1, y_2, \dots, y_n)$ trong không gian $n$ chiều được định nghĩa là:
 
 $$
 D(X, Y) = \left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right)^{\frac{1}{p}}.
