@@ -6,7 +6,7 @@
 **Định lý Bézout** (Bézout's lemma), còn gọi là **đồng nhất thức Bézout** (Bézout's identity), cho điều kiện cần và đủ để một số nguyên có thể biểu diễn thành tổ hợp tuyến tính với hệ số nguyên của hai số nguyên.
 
 ???+ note "Định lý Bézout"
-    Cho $a,b$ là hai số nguyên không đồng thời bằng $0$. Khi đó, với mọi số nguyên $x,y$, ta có $\gcd(a,b)\mid ax+by$; đồng thời tồn tại các số nguyên $x,y$ sao cho $ax+by=\gcd(a,b)$.
+    Cho $a,b$ là hai số nguyên không đồng thời bằng $0$. Khi đó, với mọi số nguyên $x,y$, luôn có $\gcd(a,b)\mid ax+by$; đồng thời tồn tại các số nguyên $x,y$ sao cho $ax+by=\gcd(a,b)$.
 
 ??? note "Chứng minh"
     Đặt $d=\gcd(a,b)$. Vì $d\mid a,b$, tồn tại các số nguyên $u,v$ sao cho $a=du,~b=dv$. Do đó luôn có
@@ -17,7 +17,7 @@
     
     Suy ra $d\mid ax+by$.
     
-    Ngược lại, cần chứng minh tồn tại $x,y$ để đẳng thức trên đúng. Nếu một trong hai số $a,b$ bằng $0$, không mất tính tổng quát giả sử $b=0$, khi đó ước chung lớn nhất của chúng là $d=a$, và rõ ràng $(x,y)=(1,0)$ làm đẳng thức đúng. Tiếp theo xét trường hợp $a,b$ đều khác $0$. Do $\gcd(a,b)=\gcd(-a,b)=\gcd(a,-b)$, có thể giả sử $a,b$ đều dương.
+    Ngược lại, cần chứng minh tồn tại $x,y$ để đẳng thức trên đúng. Nếu một trong hai số $a,b$ bằng $0$, không mất tính tổng quát giả sử $b=0$; khi đó ước chung lớn nhất của chúng là $d=|a|$, chọn $x=1$ nếu $a>0$ và $x=-1$ nếu $a<0$, cùng $y=0$, thì đẳng thức đúng. Tiếp theo xét trường hợp $a,b$ đều khác $0$. Do $\gcd(a,b)=\gcd(-a,b)=\gcd(a,-b)$, có thể giả sử $a,b$ đều dương.
     
     Xét quá trình thuật toán Euclid:
     
@@ -39,7 +39,7 @@
     d = r_n = r_{n-2} - q_nr_{n-1}.
     $$
     
-    Từ đẳng thức đứng trước nó, ta rút ra
+    Từ đẳng thức đứng trước nó, suy ra
     
     $$
     r_{n-1} = r_{n-3} - q_{n-1}r_{n-2}
@@ -62,9 +62,9 @@
     
     Vậy tồn tại $x,y$ sao cho $ax+by=d$. Kết hợp với phần trên, mệnh đề ban đầu được chứng minh.
 
-Chứng minh về tính tồn tại ở đây mang tính xây dựng, đồng thời cho một cách tính các hệ số. Cách tính đó chính là [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng).
+Chứng minh về tính tồn tại này mang tính xây dựng, đồng thời cho một cách tính các hệ số. Cách tính đó chính là [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng).
 
-Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta có hệ quả sau:
+Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, thu được hệ quả sau:
 
 ???+ note "Hệ quả"
     Hai số nguyên $a,b$ nguyên tố cùng nhau khi và chỉ khi tồn tại các số nguyên $x,y$ sao cho $ax+by=1$.
@@ -75,7 +75,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta c
 Định lý Bézout có thể mở rộng cho trường hợp nhiều số nguyên.
 
 ???+ note "Định lý"
-    Cho $a_1,a_2,\cdots,a_n$ là các số nguyên không đồng thời bằng $0$. Khi đó, với mọi số nguyên $x_1,x_2,\cdots,x_n$, ta có $\gcd(a_1,a_2,\cdots,a_n)\mid a_1x_1+a_2x_2+\cdots+a_nx_n$; đồng thời tồn tại các số nguyên $x_1,x_2,\cdots,x_n$ sao cho $\gcd(a_1,a_2,\cdots,a_n)=a_1x_1+a_2x_2+\cdots+a_nx_n$.
+    Cho $a_1,a_2,\cdots,a_n$ là các số nguyên không đồng thời bằng $0$. Khi đó, với mọi số nguyên $x_1,x_2,\cdots,x_n$, luôn có $\gcd(a_1,a_2,\cdots,a_n)\mid a_1x_1+a_2x_2+\cdots+a_nx_n$; đồng thời tồn tại các số nguyên $x_1,x_2,\cdots,x_n$ sao cho $\gcd(a_1,a_2,\cdots,a_n)=a_1x_1+a_2x_2+\cdots+a_nx_n$.
 
 ??? note "Chứng minh"
     Sử dụng đẳng thức $\gcd(a_1,a_2,\cdots,a_n)=\gcd(\gcd(a_1,a_2,\cdots,a_{n-1}),a_n)$ và quy nạp theo $n$.
@@ -84,7 +84,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta c
 ### Ví dụ
 
 ???+ example "[Codeforces 510 D. Fox And Jumping](https://codeforces.com/problemset/problem/510/D)"
-    Cho $n\le 300$ tấm thẻ, tấm thứ $i$ có hai giá trị $l_i$ và $c_i$. Trên một băng giấy dài vô hạn, bạn có thể trả $c_i$ để mua thẻ $i$; từ đó trở đi, bạn có thể nhảy sang trái hoặc sang phải đúng $l_i$ đơn vị bao nhiêu lần tùy ý. Hỏi cần ít nhất bao nhiêu tiền để có thể nhảy tới mọi vị trí trên băng giấy. Nếu không thể, in ra $-1$.
+    Cho $n\le 300$ tấm thẻ, tấm thứ $i$ có hai giá trị $l_i$ và $c_i$. Trên một băng giấy dài vô hạn, được phép trả $c_i$ để mua thẻ $i$; từ đó trở đi, được phép nhảy sang trái hoặc sang phải đúng $l_i$ đơn vị bao nhiêu lần tùy ý. Hỏi cần ít nhất bao nhiêu tiền để có thể nhảy tới mọi vị trí trên băng giấy. Nếu không thể, in ra $-1$.
 
 ??? note "Lời giải"
     Phân tích bài toán cho thấy: muốn nhảy tới mọi ô, các số đã chọn $l_{i_1}, \cdots, l_{i_k}$ phải có thể cộng hoặc trừ một số lần để thu được giá trị tuyệt đối bằng $1$. Nói cách khác, tồn tại các số nguyên $x_1, \cdots, x_k$ sao cho $l_{i_1} x_1 + \cdots + l_{i_k} x_k = 1$. Theo định lý Bézout cho nhiều số nguyên, điều này tương đương với việc chọn một số phần tử từ mảng $l_1, \cdots, l_n$ sao cho ước chung lớn nhất của chúng bằng $1$, đồng thời tổng chi phí nhỏ nhất.
@@ -103,7 +103,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, ta c
     
     Giống bài toán ba lô 0-1 thông thường, có thể dùng mảng cuộn để bỏ chiều đầu tiên. Hơn nữa, với 300 số, các giá trị ước chung lớn nhất $j$ có thể tạo ra khá thưa, nên có thể dùng bảng băm để lưu trữ.
     
-    Thực ra, đồ thị được xây dựng trong cách 1 chính là đồ thị chuyển trạng thái của quy hoạch động trong cách 2; cách 2 tương đương với việc dùng quy hoạch động để tìm đường đi ngắn nhất trên đồ thị có hướng không chu trình. Vì vậy cách 1 và cách 2 là tương đương. Tuy nhiên, cách 2 không cần lưu toàn bộ đồ thị, và độ phức tạp thời gian của DP là $O(n + m)$, nhỏ hơn Dijkstra, nên tốt hơn về cả thời gian lẫn bộ nhớ.
+    Đồ thị được xây dựng trong cách 1 chính là đồ thị chuyển trạng thái của quy hoạch động trong cách 2; cách 2 tương đương với việc dùng quy hoạch động để tìm đường đi ngắn nhất trên đồ thị có hướng không chu trình. Vì vậy cách 1 và cách 2 là tương đương. Tuy nhiên, cách 2 không cần lưu toàn bộ đồ thị, và độ phức tạp thời gian của DP là $O(n + m)$, nhỏ hơn Dijkstra, nên tốt hơn về cả thời gian lẫn bộ nhớ.
 
 <span id="phương-trình-nghiệm-nguyên-tuyến-tính"></span>
 ## Phương trình nghiệm nguyên tuyến tính
@@ -131,13 +131,13 @@ $$
 d = \gcd(a_1,a_2) \mid b.
 $$
 
-Tiếp theo, giả sử điều kiện này đúng. Dùng thuật toán Euclid mở rộng có thể tìm được một nghiệm nguyên $(x_1^*,x_2^*)$ của phương trình $a_1x_1 + a_2x_2 = d$. Từ đó, ta thu được một nghiệm riêng của phương trình ban đầu:
+Tiếp theo, giả sử điều kiện này đúng. Dùng thuật toán Euclid mở rộng có thể tìm được một nghiệm nguyên $(x_1^*,x_2^*)$ của phương trình $a_1x_1 + a_2x_2 = d$. Từ đó thu được một nghiệm riêng của phương trình ban đầu:
 
 $$
 (x_1^\circ,x_2^\circ) = \left(\frac{b}{d}x_1^*,\frac{b}{d}x_2^*\right).
 $$
 
-Để thu được tất cả nghiệm, lấy phương trình ban đầu trừ đi đồng nhất thức $a_1x_1^\circ+a_2x_2^\circ = b$, ta có
+Để thu được tất cả nghiệm, lấy phương trình ban đầu trừ đi đồng nhất thức $a_1x_1^\circ+a_2x_2^\circ = b$, thu được
 
 $$
 a_1(x_1 - x_1^\circ) + a_2(x_2 - x_2^\circ) = 0.
@@ -201,7 +201,7 @@ $$
 x_1 = x_1^*y_1 + t_1\dfrac{a_2}{d_1},~x_2 = x_2^*y_1 - t_1\dfrac{a_1}{d_1}.
 $$
 
-Thế biểu thức của $y_1$ vào, ta thu được nghiệm tổng quát của phương trình ban đầu:
+Thế biểu thức của $y_1$ vào sẽ thu được nghiệm tổng quát của phương trình ban đầu:
 
 $$
 \begin{aligned}
@@ -220,7 +220,7 @@ $$
 
 Bài toán vẫn xét khi nào một số nguyên $k$ có thể biểu diễn dưới dạng $a_1x_1+a_2x_2+\cdots+a_nx_n$. Trong định lý Bézout, $x_i$ có thể là số nguyên bất kỳ, còn trong bài toán đồng xu Frobenius, $x_i$ chỉ được là số tự nhiên.
 
-Trường hợp chỉ có một loại đồng xu là hiển nhiên, vì khi đó chỉ có thể có $a_1=1$ và mọi số tự nhiên đều biểu diễn được. Trường hợp $n>2$ lại quá phức tạp, nên mục này chỉ thảo luận trường hợp $n=2$.
+Trường hợp chỉ có một loại đồng xu khá đơn giản, vì khi đó chỉ có thể có $a_1=1$ và mọi số tự nhiên đều biểu diễn được. Trường hợp $n>2$ lại quá phức tạp, nên mục này chỉ thảo luận trường hợp $n=2$.
 
 <span id="định-lý-sylvester"></span>
 ### Định lý Sylvester
@@ -243,7 +243,7 @@ Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frob
     
     **Bước 1**: Chứng minh mọi số nguyên lớn hơn $C$ đều biểu diễn được.
     
-    Khi $k > C$, ta có
+    Khi $k > C$, suy ra
     
     $$
     a_1x_1 = k - a_2x_2 > C - a_2(a_1-1) = -a_1.
@@ -253,13 +253,13 @@ Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frob
     
     **Bước 2**: Chứng minh $C$ không biểu diễn được. Từ đó $C$ là số nguyên không biểu diễn được lớn nhất, và $k$ với $C-k$ không thể đồng thời biểu diễn được.
     
-    Chứng minh bằng phản chứng. Giả sử $C$ biểu diễn được, tức là tồn tại $x_1,x_2\in\mathbf N$ sao cho $a_1x_1+a_2x_2=C$. Thế biểu thức của $C$ vào, ta có
+    Chứng minh bằng phản chứng. Giả sử $C$ biểu diễn được, tức là tồn tại $x_1,x_2\in\mathbf N$ sao cho $a_1x_1+a_2x_2=C$. Thế biểu thức của $C$ vào, thu được
     
     $$
     a_1a_2 = a_1(x_1+1) + a_2(x_2+1).
     $$
     
-    Do đó $a_2\mid (x_1+1)$ và $a_1\mid (x_2+1)$. Lại vì $x_1+1,x_2+1$ đều dương, ta có
+    Do đó $a_2\mid (x_1+1)$ và $a_1\mid (x_2+1)$. Lại vì $x_1+1,x_2+1$ đều dương, suy ra
     
     $$
     a_1a_2 \ge a_1a_2 + a_2a_1 = 2a_1a_2.
@@ -269,9 +269,9 @@ Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frob
     
     Nếu $k$ và $C-k$ đều biểu diễn được, thì cộng các hệ số trong biểu diễn của $k$ và $C-k$ sẽ cho biểu diễn của $C$, mâu thuẫn với việc $C$ không biểu diễn được. Vì vậy trong $k$ và $C-k$ có nhiều nhất một số biểu diễn được.
     
-    **Bước 3**: Chứng minh nếu $k$ không biểu diễn được thì $C-k$ nhất định biểu diễn được.
+    **Bước 3**: Chứng minh nếu $k$ không biểu diễn được thì $C-k$ biểu diễn được.
     
-    Đặt $(x_1,x_2)$ là nghiệm nguyên của phương trình $a_1x_1+a_2x_2=k$ như ở trên. Phần trước đã cho thấy $k$ không biểu diễn được tương đương với $x_1<0$. Khi đó
+    Đặt $(x_1,x_2)$ là nghiệm nguyên của phương trình $a_1x_1+a_2x_2=k$ như đã chọn. Phần trước đã cho thấy $k$ không biểu diễn được tương đương với $x_1<0$. Khi đó
     
     $$
     C - k = a_1a_2 - a_1 - a_2 - a_1x_1 - a_2x_2 = a_1(-1-x_1) + a_2(a_1-1-x_2).
@@ -280,7 +280,7 @@ Năm 1882, Sylvester đã giải quyết trọn vẹn bài toán đồng xu Frob
     Trong đó $-1-x_1$ và $a_1-1-x_2$ đều là số nguyên không âm, nên $C-k$ biểu diễn được.
 
 ??? note "Chứng minh 2"
-    Ở đây chỉ chứng minh $C=a_1a_2-a_1-a_2$ là số tự nhiên không biểu diễn được lớn nhất; các phần còn lại chứng minh tương tự chứng minh 1.
+    Phần này chỉ chứng minh $C=a_1a_2-a_1-a_2$ là số tự nhiên không biểu diễn được lớn nhất; các phần còn lại được chứng minh tương tự Chứng minh 1.
     
     Xét trong từng lớp thặng dư modulo $a_2$, số tự nhiên biểu diễn được nhỏ nhất. Vì các số tự nhiên khác nhau trong cùng một lớp thặng dư có thể chuyển hóa qua lại bằng cách cộng trừ một số bội của $a_2$, nên khi xét số biểu diễn được nhỏ nhất, chỉ cần xét khả năng cộng trừ $a_1$. Do $a_1$ và $a_2$ nguyên tố cùng nhau, số tự nhiên biểu diễn được nhỏ nhất trong mỗi lớp thặng dư chính là các bội sau của $a_1$:
     

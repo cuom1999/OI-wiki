@@ -4,7 +4,7 @@ author: ouuan, CBW2007, partychicken, StudyingFather, Xeonacid, Henry-ZHR
 
 Notepad++ là trình soạn thảo văn bản trên hệ điều hành Windows, hỗ trợ nhiều ngôn ngữ, nhiều kiểu mã hóa, cũng như tô sáng và tự động hoàn thành cho nhiều ngôn ngữ lập trình. Logo của nó cũng khá đáng yêu: một con tắc kè hoa (![Biểu trưng Notepad++](./images/npp-logo.webp)).
 
-Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm cho bạn (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
+Chức năng của nó mạnh hơn nhiều trình soạn thảo khác; khi mở tệp lớn thì ổn định hơn, và undo liên tục cũng không gặp vấn đề. Khi đóng phần mềm cũng không cần lưu ngay, vì nó sẽ tự lưu vào vùng đệm (có thể cần cấu hình). Hơn nữa, nó rất nhỏ gọn, chỉ hơn 10 MB, thậm chí có thể đặt trong USB để mang theo.
 
 ## Tải xuống và cài đặt
 
@@ -14,7 +14,7 @@ Xem [Hướng dẫn bắt đầu | Notepad++ User Manual](https://npp-user-manua
 
 ![Đổi ngôn ngữ giao diện Notepad++](./images/npp-lang.gif)
 
-Sau khi đổi ngôn ngữ xong, bạn có thể tùy ý chỉnh sửa trình soạn thảo theo ý mình.
+Sau khi đổi ngôn ngữ xong, có thể tùy chỉnh trình soạn thảo theo nhu cầu.
 
 ## Cách dùng cơ bản
 
@@ -30,7 +30,7 @@ Lần lượt nhấp "(thanh menu) Search" ("Tìm kiếm") -> "Replace" ("Thay t
 
 ![Thay thế trong Notepad++](./images/npp-replace.png)
 
-Thực ra tìm kiếm và thay thế nằm trong cùng một cửa sổ; chỉ cần nhấp các thẻ phía trên là có thể chuyển đổi.
+Tìm kiếm và thay thế nằm trong cùng một cửa sổ; chỉ cần nhấp các thẻ phía trên là có thể chuyển đổi.
 
 Chức năng của nó gần giống trình soạn thảo thông thường, nhưng hỗ trợ nhiều hơn, ví dụ:
 
@@ -44,9 +44,9 @@ Chức năng của nó gần giống trình soạn thảo thông thường, như
 
 ![Thiết lập sao lưu định kỳ trong Notepad++](./images/npp-settings-1.png)
 
-Có chức năng này thì bạn không cần quá lo mã bị mất do sự cố bất ngờ.
+Chức năng này giúp giảm rủi ro mất mã do sự cố bất ngờ.
 
-Tuy nhiên, chức năng này chỉ chụp một bản chụp nhanh cho tệp của bạn, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Hoặc bạn có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Auto Save" (xem [Cách dùng nâng cao -> Phần bổ trợ](#plugin), các mục dưới tương tự).
+Tuy nhiên, chức năng này chỉ tạo bản chụp nhanh của tệp, chứ chưa thật sự lưu tệp, nên vẫn nên giữ thói quen lưu tệp tốt. Ngoài ra, có thể vào kho phần bổ trợ tích hợp để cài phần bổ trợ "Auto Save" (xem [Cách dùng nâng cao -> Phần bổ trợ](#plugin), các mục dưới tương tự).
 
 ### Chức năng đánh dấu
 
@@ -58,11 +58,11 @@ Nếu thấy chưa tiện, có thể vào kho phần bổ trợ tích hợp đ�
 
 ### Tô sáng mã
 
-Nhấp chuột phải vào "XXX file" ("Tệp XXX") ở góc dưới bên trái, bạn có thể chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Thậm chí bạn có thể tự định nghĩa tô sáng.
+Nhấp chuột phải vào "XXX file" ("Tệp XXX") ở góc dưới bên trái để chọn tô sáng cho rất nhiều ngôn ngữ như C, C++, PASCAL, Markdown. Notepad++ cũng hỗ trợ tự định nghĩa tô sáng.
 
 Nếu thấy mỗi lần mở tệp lại phải đổi tô sáng là phiền, có thể sửa tô sáng mặc định trong "Settings -> Preferences -> New Document -> Default Language" ("Thiết lập -> Tùy chọn -> Tài liệu mới -> Ngôn ngữ mặc định").
 
-Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer" ("Trình xem Markdown"); còn nhiều phần bổ trợ tương tự khác đang chờ bạn.
+Nếu cần hiển thị Markdown, có thể vào kho phần bổ trợ cài "Markdown Viewer" ("Trình xem Markdown"); còn nhiều phần bổ trợ tương tự khác có sẵn.
 
 ### Hiển thị toàn bộ ký tự
 
@@ -72,13 +72,13 @@ Nhấp nút được khoanh đỏ để hiển thị rất rõ các ký tự v�
 
 ### Tự động nhận diện mã hóa tệp và ký tự xuống dòng
 
-Notepad++ có thể tự động nhận diện tệp hiện tại dùng mã hóa `UTF-8`, `GB2312` hoặc các kiểu mã hóa khác. Bạn không còn phải lo bị lỗi mojibake khi đọc nhầm mã hóa.
+Notepad++ có thể tự động nhận diện tệp hiện tại dùng mã hóa `UTF-8`, `GB2312` hoặc các kiểu mã hóa khác. Nhờ đó giảm nguy cơ gặp lỗi mojibake do đọc nhầm mã hóa.
 
 Nếu muốn xem văn bản bằng mã hóa khác, lần lượt nhấp "(thanh menu) Encoding" -> "Use XXX encoding" ("(thanh menu) Mã hóa -> Dùng mã hóa XXX"). Nếu muốn đổi mã hóa ký tự cho tệp, lần lượt nhấp "(thanh menu) Encoding" -> "Convert to XXX encoding" ("(thanh menu) Mã hóa -> Chuyển sang mã hóa XXX").
 
 Nó cũng có thể tự động nhận diện ký tự xuống dòng là `CR`, `LF` hay `CRLF`, nên không cần lo dữ liệu tải xuống bị mất dòng.
 
-Ở thanh thông tin phía dưới, bạn có thể thấy các dòng như "Windows(CR LF)"; đó chính là kiểu xuống dòng hiện tại của tệp. Nhấp chuột phải vào đó để đổi kiểu xuống dòng của tệp hiện tại. Thao tác này trực quan hơn khi dùng cùng chức năng "hiển thị toàn bộ ký tự".
+Thanh thông tin phía dưới hiển thị các dòng như "Windows(CR LF)"; đó chính là kiểu xuống dòng hiện tại của tệp. Nhấp chuột phải vào đó để đổi kiểu xuống dòng của tệp hiện tại. Thao tác này trực quan hơn khi dùng cùng chức năng "hiển thị toàn bộ ký tự".
 
 ## Cách dùng nâng cao
 
@@ -86,7 +86,7 @@ Phần này phù hợp với người dùng có nhu cầu cao hơn.
 
 ### Macro tự động hóa
 
-Macro có thể giúp bạn hoàn thành nhiều việc lặp lại. Ví dụ, đổi "abcde" ở các dòng lẻ thành "afce" cần hai bước.
+Macro hỗ trợ hoàn thành nhiều việc lặp lại. Ví dụ, đổi "abcde" ở các dòng lẻ thành "afce" cần hai bước.
 
 #### Ghi macro
 
@@ -118,18 +118,18 @@ Nhấp "Macro" -> "Save Current Recorded Macro" ("Macro -> Lưu macro vừa ghi"
 
 #### Quản lý phần bổ trợ
 
-Mở nút "Plugins" ("Phần bổ trợ") trên thanh chức năng; danh sách sẽ hiển thị toàn bộ phần bổ trợ bạn đã cài.
+Mở nút "Plugins" ("Phần bổ trợ") trên thanh chức năng; danh sách sẽ hiển thị toàn bộ phần bổ trợ đã cài.
 
 Sau đó chọn "Plugins Admin" ("Quản lý phần bổ trợ") để quản lý phần bổ trợ.
 
 #### Cài phần bổ trợ (kho phần bổ trợ)
 
-1.  Mở thẻ "Available" (Khả dụng), đánh dấu phần bổ trợ bạn cần trong danh sách.
+1.  Mở thẻ "Available" (Khả dụng), đánh dấu phần bổ trợ cần cài trong danh sách.
 2.  Nhấp nút "Install" (Cài đặt) ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
 
 #### Cài phần bổ trợ (thủ công)
 
-1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Chú ý nhất định phải chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
+1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Cần chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
 2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên phần bổ trợ).
 3.  Trong Notepad++, nhấp Plugins ("Phần bổ trợ") trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
 4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
@@ -147,7 +147,7 @@ Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed" (Đã 
 
 ### Dựng môi trường phát triển
 
-Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công cụ rất mạnh: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE. Ở đây lấy C++ làm ví dụ.
+Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công cụ rất mạnh: nó có thể biên dịch mã theo cách đơn giản, thậm chí thay thế IDE. Phần này lấy C++ làm ví dụ.
 
 1.  Cài trình biên dịch và thêm các thư mục tệp cần thiết của nó vào biến môi trường PATH. (Với C++ cần thêm `%APPPATH%\bin`.) Khi nhập `g++` trong cmd mà không còn báo `'g++' is not recognized as an internal or external command...` là được (có thể cần khởi động lại máy). Khuyến nghị [tải ConsolePauser](https://sourceforge.net/projects/orwelldevcpp/files/Tools/ConsolePauser.exe/download), đặt ở đâu cũng được rồi thêm thư mục của nó vào biến môi trường (đây là phần bổ trợ của Dev-C++; trong thư mục gốc của phần mềm Dev-C++ cũng có).
 
@@ -163,7 +163,7 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
     # Lệnh gỡ lỗi:
     cmd /c gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe
 
-    # Nếu đã tải ConsolePauser, có thể dùng các lệnh sau để có trải nghiệm chạy chương trình tốt hơn! (Chú ý thêm biến môi trường!)
+    # Nếu đã tải ConsolePauser, có thể dùng các lệnh sau để có trải nghiệm chạy chương trình tốt hơn! (Cần thêm biến môi trường!)
 
     # Lệnh biên dịch:
     cmd /c (start ConsolePauser "g++.exe -o $(CURRENT_DIRECTORY)\$(NAME_PART).exe $(FULL_CURRENT_PATH)")
@@ -173,13 +173,13 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
     cmd /c (start ConsolePauser "gdb $(CURRENT_DIRECTORY)\$(NAME_PART).exe")
     ```
 
-4.  Nhấp "Save" ("Lưu"); tên có thể tự đặt, chẳng hạn "Compile" ("Biên dịch"), "Run" ("Chạy"), rồi đặt phím tắt bạn muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
+4.  Nhấp "Save" ("Lưu"); tên có thể tự đặt, chẳng hạn "Compile" ("Biên dịch"), "Run" ("Chạy"), rồi đặt phím tắt mong muốn (chọn phím dễ nhớ, ví dụ Dev-C++ lần lượt là `F9` và `F10`).
 
-5.  Thế là xong!
+5.  Hoàn tất thiết lập.
 
 ## Trứng phục sinh
 
-1.  Khi chạy trình cài đặt, bạn sẽ thấy câu sau ở phía dưới:
+1.  Khi chạy trình cài đặt, phía dưới sẽ hiện câu sau:
 
     > "The best things in life are free. Notepad++ is free. So Notepad++ is the best(.)"
     >
@@ -187,4 +187,4 @@ Không chỉ là trình soạn thảo, "Notepad++" có thể coi là một công
 
     Câu này tự tin thật, nhưng phải nói là cũng có cơ sở.
 
-2.  Trong một trang mới mở, nhập "random" rồi chọn nó, sau đó nhấn `F1`, bạn sẽ nhận được một câu khá thú vị.
+2.  Trong một trang mới mở, nhập "random" rồi chọn nó, sau đó nhấn `F1`, sẽ nhận được một câu khá thú vị.

@@ -15,7 +15,7 @@ $$
 
 Điều kiện biên là $\begin{Bmatrix}n\\ 0\end{Bmatrix}=[n=0]$.
 
-Ta chứng minh bằng ý nghĩa tổ hợp.
+Có thể chứng minh bằng ý nghĩa tổ hợp.
 
 Khi chèn một phần tử mới, có hai khả năng:
 
@@ -33,7 +33,7 @@ $$
 
 Dùng nguyên lí bao hàm - loại trừ để chứng minh công thức này. Gọi $G_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập đôi một phân biệt (cho phép tập rỗng), và $F_i$ là số cách chia $n$ phần tử đôi một khác nhau vào $i$ tập không rỗng đôi một phân biệt (không cho phép tập rỗng).
 
-Rõ ràng
+Các đại lượng này thỏa mãn
 
 $$
 \begin{aligned}
@@ -63,7 +63,7 @@ $$
 
 "Cùng một hàng" của số Stirling loại hai là dãy $\begin{Bmatrix}n\\i\end{Bmatrix}$ với $n$ cố định và $i$ thay đổi. Tính toàn bộ một hàng tức là tính, với mọi $i=0..n$, số cách chia $n$ phần tử khác nhau thành $i$ tập không rỗng.
 
-Dựa vào công thức tổng quát ở trên, ta chỉ cần tính bằng tích chập. Cách làm này có độ phức tạp thời gian $O(n \log n)$.
+Dựa vào công thức tổng quát ở trên, chỉ cần tính bằng tích chập. Cách làm này có độ phức tạp thời gian $O(n \log n)$.
 
 Mã dưới đây dùng một lớp đa thức tên `poly`, chỉ để tham khảo.
 
@@ -671,7 +671,7 @@ Mã dưới đây dùng một lớp đa thức tên `poly`, chỉ để tham kh�
 
 "Cùng một cột" của số Stirling loại hai là dãy $\begin{Bmatrix}i\\k\end{Bmatrix}$ với $k$ cố định và $i$ thay đổi. Tính toàn bộ một cột tức là tính, với mọi $i=0..n$, số cách chia $i$ phần tử khác nhau thành $k$ tập không rỗng.
 
-Ta dùng hàm sinh mũ để tính.
+Dùng hàm sinh mũ để tính.
 
 Số cách đặt $i$ vật vào một hộp không rỗng là $[i>0]$. Hàm sinh mũ của nó là $F(x)=\sum\limits_{i=1}^{+\infty}\dfrac{x^i}{i!} = \mathrm{e}^x-1$. Từ kiến thức trước đó, $F^k(x)$ là hàm sinh mũ của việc đặt $i$ vật có nhãn vào $k$ hộp có nhãn; chia cho $k!$ sẽ thu được hàm sinh mũ của việc đặt $i$ vật có nhãn vào $k$ hộp không nhãn.
 
@@ -679,7 +679,7 @@ $\begin{Bmatrix}i\\k\end{Bmatrix}=\dfrac{\left[\dfrac{x^i}{i!}\right]F^k(x)}{k!}
 
 Ngoài ra, $\exp F(x)=\sum\limits_{i=0}^{+\infty}\dfrac{F^i(x)}{i!}$ chính là hàm sinh mũ của việc đặt $i$ vật có nhãn vào tùy ý số hộp không nhãn (EXP loại bỏ nhãn của các hộp bằng cách chia mỗi hạng cho $i!$). Đây thực chất là hàm sinh của số Bell.
 
-Ở đây có nhiều khái niệm "có nhãn" và "không nhãn"; cần phân biệt cẩn thận.
+Phần này có nhiều khái niệm "có nhãn" và "không nhãn"; cần phân biệt cẩn thận.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -702,7 +702,7 @@ Ngoài ra, $\exp F(x)=\sum\limits_{i=0}^{+\infty}\dfrac{F^i(x)}{i!}$ chính là 
 
 **Số Stirling loại một** (số Stirling chu trình) $\begin{bmatrix}n\\ k\end{bmatrix}$, cũng có thể kí hiệu là $s(n,k)$, biểu diễn số cách chia $n$ phần tử đôi một khác nhau thành $k$ chu trình không rỗng và không phân biệt thứ tự.
 
-Một chu trình là một hoán vị vòng có đầu cuối nối nhau. Ta có thể viết một chu trình $[A,B,C,D]$ và xem $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$, tức hai chu trình thu được từ nhau bằng phép quay là tương đương. Chú ý rằng hai chu trình thu được từ nhau bằng phép lật không được xem là tương đương, tức $[A,B,C,D]\neq[D,C,B,A]$.
+Một chu trình là một hoán vị vòng có đầu cuối nối nhau. Có thể viết một chu trình $[A,B,C,D]$ và xem $[A,B,C,D]=[B,C,D,A]=[C,D,A,B]=[D,A,B,C]$, tức hai chu trình thu được từ nhau bằng phép quay là tương đương. Lưu ý rằng hai chu trình thu được từ nhau bằng phép lật không được xem là tương đương, tức $[A,B,C,D]\neq[D,C,B,A]$.
 
 <span id="công-thức-truy-hồi_1"></span>
 ### Công thức truy hồi
@@ -730,11 +730,11 @@ Số Stirling loại một không có công thức tổng quát thực dụng.
 <span id="tính-một-hàng-số-stirling-loại-một"></span>
 ### Tính một hàng số Stirling loại một
 
-Tương tự số Stirling loại hai, ta xây dựng hàm sinh cho một hàng số Stirling loại một:
+Tương tự số Stirling loại hai, xây dựng hàm sinh cho một hàng số Stirling loại một:
 
 $F_n(x)=\sum\limits_{i=0}^n\begin{bmatrix}n\\i\end{bmatrix}x^i$
 
-Dựa vào công thức truy hồi, không khó để viết:
+Dựa vào công thức truy hồi, có:
 
 $F_n(x)=(n-1)F_{n-1}(x)+xF_{n-1}(x)$
 
@@ -747,9 +747,9 @@ $F_n(x)=\prod\limits_{i=0}^{n-1}(x+i)=\dfrac{(x+n-1)!}{(x-1)!}$
 <span id="tính-một-cột-số-stirling-loại-một"></span>
 ### Tính một cột số Stirling loại một
 
-Mô phỏng cách tính số Stirling loại hai, ta có thể dùng hàm sinh mũ để giải bài toán này. Chú ý rằng vì công thức truy hồi phụ thuộc vào hàng, ta không thể dùng truy hồi đó để tính một cột số Stirling loại một.
+Mô phỏng cách tính số Stirling loại hai, có thể dùng hàm sinh mũ để giải bài toán này. Lưu ý rằng vì công thức truy hồi phụ thuộc vào hàng, không thể dùng truy hồi đó để tính một cột số Stirling loại một.
 
-Rõ ràng hàm sinh mũ của một chu trình đơn là
+Hàm sinh mũ của một chu trình đơn là
 
 $F(x)=\sum\limits_{i=1}^n\dfrac{(i-1)!x^i}{i!}=\sum\limits_{i=1}^n\dfrac{x^i}{i}$
 
@@ -786,7 +786,7 @@ $$
 x^{\overline{n}}=\sum_{k} \begin{bmatrix}n\\ k\end{bmatrix} x^k
 $$
 
-Nếu chuyển lũy thừa thường thành lũy thừa tăng, ta có đồng nhất thức:
+Khi chuyển lũy thừa thường thành lũy thừa tăng, có đồng nhất thức:
 
 $$
 x^n=\sum_{k} \begin{Bmatrix}n\\ k\end{Bmatrix} (-1)^{n-k} x^{\overline{k}}
@@ -803,7 +803,7 @@ $$
 x^n=\sum_{k} \begin{Bmatrix}n\\ k\end{Bmatrix} x^{\underline{k}}
 $$
 
-Nếu chuyển lũy thừa giảm thành lũy thừa thường, ta có đồng nhất thức:
+Khi chuyển lũy thừa giảm thành lũy thừa thường, có đồng nhất thức:
 
 $$
 x^{\underline{n}}=\sum_{k} \begin{bmatrix}n\\ k\end{bmatrix} (-1)^{n-k} x^k
@@ -812,7 +812,7 @@ $$
 <span id="quan-hệ-giữa-biểu-diễn-theo-lũy-thừa-giai-thừa-giảm-và-biểu-diễn-điểm-trị-của-đa-thức"></span>
 ### Quan hệ giữa biểu diễn theo lũy thừa giai thừa giảm và biểu diễn điểm trị của đa thức
 
-Ở đây, biểu diễn đa thức theo lũy thừa giai thừa giảm là biểu diễn dưới dạng
+Trong mục này, biểu diễn đa thức theo lũy thừa giai thừa giảm là biểu diễn dưới dạng
 
 $$
 f(x)=\sum\limits_{i=0}^nb_i{x^{\underline{i}}}
@@ -826,7 +826,7 @@ $$
 
 để biểu diễn một đa thức.
 
-Rõ ràng hệ số theo lũy thừa giảm $b$ và điểm trị $a$ thỏa mãn quan hệ:
+Hệ số theo lũy thừa giảm $b$ và điểm trị $a$ thỏa mãn quan hệ:
 
 $$
 a_k=\sum\limits_{i=0}^{n}b_ik^{\underline{i}}
@@ -840,7 +840,7 @@ a_k&=\sum\limits_{i=0}^{n}\dfrac{b_ik!}{(k-i)!}\\\dfrac{a_k}{k!}&=\sum\limits_{i
 \end{aligned}
 $$
 
-Đây là một công thức dạng tích chập, nên ta có thể chuyển đổi qua lại giữa điểm trị và lũy thừa giai thừa giảm trong độ phức tạp thời gian $O(n\log n)$.
+Đây là một công thức dạng tích chập, nên có thể chuyển đổi qua lại giữa điểm trị và lũy thừa giai thừa giảm trong độ phức tạp thời gian $O(n\log n)$.
 
 <span id="bài-tập"></span>
 ## Bài tập
