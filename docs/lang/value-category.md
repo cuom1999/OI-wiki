@@ -1,4 +1,4 @@
-Loại giá trị là một khái niệm rất quan trọng trong C++. Tuy trong lập trình thi
+Loại giá trị là một khái niệm quan trọng trong C++. Tuy trong lập trình thi
 đấu có thể không được dùng nhiều, hiểu nó giúp phát hiện và tránh những phép
 sao chép không cần thiết, từ đó cải thiện hiệu quả và hiệu năng của mã.
 
@@ -27,7 +27,7 @@ Trong quá trình đưa chuỗi vào `vec`, cả `str` và phần tử mới tro
 
 Nếu nhất định muốn tiết kiệm phần bộ nhớ này, có thể tự cài đặt một thao tác
 di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ
-trỏ tới vùng dữ liệu chuỗi. Khi đó chỉ cần sao chép con trỏ sang nơi mới,
+trỏ tới vùng dữ liệu chuỗi. Khi đó, sao chép con trỏ sang nơi mới là đủ,
 đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
 
 ```cpp
@@ -179,8 +179,8 @@ int main() {
 }
 ```
 
-Vì vậy chỉ cần đổi `push_back(str)` thành `push_back(std::move(str))` là có
-thể cho phép `vector` dùng hàm tạo di chuyển thay vì sao chép.
+Vì vậy, đổi `push_back(str)` thành `push_back(std::move(str))` sẽ cho phép
+`vector` dùng hàm tạo di chuyển thay vì sao chép.
 
 ```cpp
 int main() {
@@ -203,7 +203,7 @@ int main() {
 
 ## Loại giá trị trong C++17
 
-C++17 tiếp tục đơn giản hóa loại giá trị:
+C++17 tiếp tục tinh giản loại giá trị:
 
 -   Trái trị (lvalue): có danh tính, không thể di chuyển.
 -   Giá trị sắp hết hạn (xvalue): có danh tính, có thể di chuyển.

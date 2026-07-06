@@ -4,7 +4,7 @@ disqus:
 
 Trước hết, xin cảm ơn mọi đóng góp cho **OI Wiki**.
 
-Tuy nhiên, trước khi bắt đầu, cần đọc và nắm rõ nội dung trong [Cách tham gia](./intro/htc.md) và [Sổ tay định dạng](./intro/format.md), để tránh những phiền toái không cần thiết khi chỉnh sửa.
+Tuy nhiên, trước khi bắt đầu, cần đọc và nắm rõ nội dung trong [Cách tham gia](./intro/htc.md) và [Sổ tay định dạng](./intro/format.md), để tránh các lỗi không cần thiết khi chỉnh sửa.
 
 Sau khi đọc xong, nhấp nút bên dưới rồi bắt đầu chỉnh sửa.
 
