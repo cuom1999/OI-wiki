@@ -1,7 +1,7 @@
 ## Khung chương trình
 
 Ở giai đoạn mới học, nếu chưa tìm hiểu sâu nguyên lý phía sau, có thể ghi nhớ
-trực tiếp "khung" sau:
+"khung" sau:
 
 ```cpp
 #include <cstdio>
@@ -15,23 +15,21 @@ int main() {
 
 ??? note "`#include` là gì?"
     `#include` thực chất là một lệnh tiền xử lý, nghĩa là "đặt" một tệp vào vị
-    trí của câu lệnh này; tệp được đặt vào đó gọi là tệp tiêu đề. Nói cách khác,
-    khi biên dịch, trình biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề
-    `iostream` rồi "dán" vào vị trí câu lệnh `#include <iostream>`. Nhờ vậy,
-    có thể dùng các đối tượng mà `iostream` cung cấp như `std::cin`,
-    `std::cout`, `std::endl`, v.v.
+    trí của câu lệnh này; tệp được đặt vào đó gọi là tệp tiêu đề. Khi biên dịch,
+    trình biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề `iostream` rồi "dán"
+    vào vị trí câu lệnh `#include <iostream>`. Nhờ vậy, có thể dùng các đối tượng
+    mà `iostream` cung cấp như `std::cin`, `std::cout`, `std::endl`, v.v.
 
     Trong C++ hiện nay, các tệp tiêu đề thường gặp không có hậu tố `.h`, còn các
     tệp tiêu đề `xx.h` của C thường có dạng `cxx`, chẳng hạn `stdio.h` trở thành
-    `cstdio`. Để tương thích với C, C++ trực tiếp sử dụng các tệp tiêu đề của C;
-    để phân biệt tệp tiêu đề C++ với tệp tiêu đề C, C++ dùng tiền tố `c`.
+    `cstdio`. Để tương thích với C, C++ cũng cung cấp các tệp tiêu đề của C; để
+    phân biệt tệp tiêu đề C++ với tệp tiêu đề C, C++ dùng tiền tố `c`.
 
-    Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa
-    trên nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu
-    đề, thời gian biên dịch có thể tăng, nhưng thời gian chạy thường không bị
-    ảnh hưởng. Ở phần hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và
-    `cstdio`; nếu chỉ dùng `scanf` và `printf`, thì không cần
-    `#include <iostream>`.
+    Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa trên
+    nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu đề, thời
+    gian biên dịch có thể tăng, nhưng thời gian chạy thường không bị ảnh hưởng. Ở
+    phần hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và `cstdio`; nếu chỉ
+    dùng `scanf` và `printf`, thì không cần `#include <iostream>`.
 
     Có thể `#include` tệp tiêu đề tự viết không? Câu trả lời là có.
 
@@ -52,7 +50,8 @@ int main() {
     Câu lệnh `return 0;` cuối cùng biểu thị chương trình chạy thành công. Theo
     mặc định, khi chương trình kết thúc, trả về 0 nghĩa là mọi thứ bình thường;
     ngược lại, giá trị trả về biểu thị mã lỗi (trên Windows, dạng thập lục phân
-    của mã lỗi này có thể tra cứu trên trang [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/)).
+    của mã lỗi này có thể tra cứu trên trang
+    [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/)).
     Giá trị này được trả về cho hệ thống hoặc chương trình bên ngoài đã gọi
     chương trình; khi chương trình kết thúc, nơi gọi chương trình sẽ nhận được
     giá trị trả về này. Nếu không viết câu lệnh `return`, khi chương trình kết
@@ -81,10 +80,10 @@ nhưng vẫn được giữ lại trong tệp nguồn.
 Trong phát triển phần mềm, chú thích giúp việc bảo trì về sau và việc đọc mã của
 người khác dễ dàng hơn.
 
-Trong OI, người viết thường không thêm nhiều chú thích, nhưng chú thích giúp làm rõ
-suy nghĩ khi viết mã và hỗ trợ ôn lại sau này. Hơn nữa, nếu cần viết lời
-giải hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc hiểu ý đồ của
-mã hơn. Nên hình thành thói quen viết chú thích vừa đủ và đúng chỗ.
+Trong OI, người viết thường không thêm nhiều chú thích, nhưng chú thích giúp làm
+rõ suy nghĩ khi viết mã và hỗ trợ ôn lại sau này. Hơn nữa, nếu cần viết lời giải
+hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc hiểu ý đồ của mã hơn.
+Nên hình thành thói quen viết chú thích vừa đủ và đúng chỗ.
 
 ## Nhập và xuất
 
@@ -115,7 +114,7 @@ int main() {
 
 `scanf` và `printf` là các hàm do ngôn ngữ C cung cấp. Trong đa số trường hợp,
 chúng nhanh hơn `cin` và `cout`, đồng thời hỗ trợ điều khiển định dạng nhập xuất
-trực tiếp hơn.
+rõ ràng hơn.
 
 ???+ note "Tối ưu nhập xuất"
     Về khác biệt cụ thể giữa `cin`/`cout` và `scanf`/`printf`, cũng như tối ưu
@@ -156,7 +155,7 @@ không thường dùng; sau đây là hai cách phổ biến:
     tác dụng.
 2.  `%.6lf`, dùng khi xuất ra, giữ lại sáu chữ số sau dấu thập phân.
 
-Ở các vị trí tương ứng trong hai dạng định dạng này đều có thể điền các số khác,
+Ở các vị trí tương ứng trong hai dạng định dạng này đều có thể điền các số khác;
 ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
 
 ??? note "Số thực dấu phẩy động độ chính xác kép, số nguyên dài là gì?"
@@ -188,18 +187,18 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
 
     5.  `\r` biểu thị ký tự về đầu dòng. Trong Linux, ký tự xuống dòng là `\n`;
         trong Windows, ký tự xuống dòng là `\r\n`. Trong OI, nếu đầu ra cần
-        xuống dòng, dùng `\n` là đủ. Nhưng khi đọc vào, nếu dùng cách đọc từng
-        ký tự, ký tự xuống dòng có thể gây ra một số vấn đề và cần xử lý cẩn
-        thận. Ví dụ, `gets` xem `\n` là kết thúc chuỗi; lúc này nếu ký tự xuống
-        dòng là `\r\n`, thì `\r` sẽ còn lại ở cuối chuỗi.
+        xuống dòng, dùng `\n` là đủ. Nhưng khi đọc vào, nếu dùng cách đọc từng ký
+        tự, ký tự xuống dòng có thể gây ra một số vấn đề và cần xử lý cẩn thận.
+        Ví dụ, `gets` xem `\n` là kết thúc chuỗi; lúc này nếu ký tự xuống dòng là
+        `\r\n`, thì `\r` sẽ còn lại ở cuối chuỗi.
 
     6.  Đặc biệt, `%%` biểu thị `%`, chỉ dùng trong `printf` hoặc `scanf`; trong
-        các chuỗi ký tự khác, dùng `%` trực tiếp là được.
+        các chuỗi ký tự khác, dùng `%` là được.
 
-    ??? note "Giá trị trực tiếp (literal) là gì?"
-        Literal là một giá trị xuất hiện trực tiếp trong mã, ví dụ `3` là một
-        literal kiểu `int`, `'c'` là một literal kiểu `char`. `"hello world"`
-        trong chương trình ở trên cũng là một literal chuỗi.
+    ??? note "Literal là gì?"
+        Literal là một giá trị xuất hiện ngay trong mã, ví dụ `3` là một literal
+        kiểu `int`, `'c'` là một literal kiểu `char`. `"hello world"` trong chương
+        trình ở trên cũng là một literal chuỗi.
 
         Những literal không có giải thích và xuất hiện không rõ lý do còn được
         gọi là "số ma thuật" (magic number). Nếu mã cần được người khác đọc, đây
@@ -213,8 +212,8 @@ Trong C++, tất cả ký tự trắng (dấu cách, tab, xuống dòng), dù nh
 được xem như nhau. Quy tắc này không áp dụng cho các ký tự nằm trong dấu ngoặc
 kép và được xem là một phần của chuỗi.
 
-Vì vậy, có thể sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là
-chú thích trên dòng, literal chuỗi và lệnh tiền xử lý phải nằm trong một dòng.
+Vì vậy, có thể sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là chú thích
+trên dòng, literal chuỗi và lệnh tiền xử lý phải nằm trong một dòng.
 Ví dụ:
 
 ```cpp
@@ -223,8 +222,8 @@ Ví dụ:
 
 Dù hợp lệ về cú pháp, cách viết này không nên dùng trong mã thông thường.
 
-Một phong cách viết mã khác cũng được sử dụng rộng rãi, nhưng khác với phong cách
-mà **OI Wiki** yêu cầu:
+Một phong cách viết mã khác cũng được sử dụng rộng rãi, nhưng không phải phong
+cách mà **OI Wiki** yêu cầu:
 
 ```cpp
 --8<-- "docs/lang/code/basic/basic_2.cpp:main"
@@ -240,8 +239,9 @@ phép thay thế văn bản. Ví dụ:
 #define n 233
 
 // n không phải là biến; bộ tiền xử lý sẽ thay mọi token n trong mã thành 233,
-// nhưng n nằm trong một phần của định danh thì sẽ không bị thay thế, chẳng hạn
-// fn sẽ không bị thay thành f233; tương tự, n trong chuỗi cũng không bị thay thế
+// nhưng n nằm trong một phần của định danh thì sẽ không bị thay thế.
+// Chẳng hạn, fn sẽ không bị thay thành f233;
+// tương tự, n trong chuỗi cũng không bị thay thế.
 
 int main() {
   std::cout << n;  // xuất 233
@@ -278,8 +278,8 @@ int main() {
 }
 ```
 
-Nhưng macro có tham số khác với hàm. Vì macro là thay thế văn bản, nên nó có thể
-gây ra nhiều vấn đề. Ví dụ:
+Macro có tham số khác với hàm. Vì macro là thay thế văn bản, nên nó có thể gây
+ra nhiều vấn đề. Ví dụ:
 
 ```cpp
 #include <iostream>
@@ -326,9 +326,9 @@ xử lý như `#ifdef` thì hiệu quả. Ví dụ:
 #endif
 ```
 
-Có thể dùng `-DLINUX` khi biên dịch để điều khiển phần mã được biên dịch, mà
-không cần sửa tệp nguồn. Điều này còn có một ưu điểm: trong tệp thực thi được
-biên dịch bằng `-DLINUX` không có mã của các hệ điều hành khác; những đoạn mã đó
-đã bị xóa ngay ở giai đoạn tiền xử lý.
+Có thể dùng `-DLINUX` khi biên dịch để điều khiển phần mã được biên dịch mà không
+cần sửa tệp nguồn. Điều này còn có một ưu điểm: trong tệp thực thi được biên dịch
+bằng `-DLINUX` không có mã của các hệ điều hành khác; những đoạn mã đó đã bị xóa
+ngay ở giai đoạn tiền xử lý.
 
 `#define` còn có thể sử dụng các toán tử `#`, `##`, giúp việc gỡ lỗi dễ hơn.
