@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-DP nén trạng thái là một dạng quy hoạch động trong đó ta chuyển tập trạng thái thành số nguyên và lưu trực tiếp trong trạng thái DP để thực hiện chuyển trạng thái.
+DP nén trạng thái là một dạng quy hoạch động trong đó tập trạng thái được chuyển thành số nguyên và lưu trực tiếp trong trạng thái DP để thực hiện chuyển trạng thái.
 
 Để đạt độ phức tạp thời gian thấp hơn, thường cần tìm cách biểu diễn với số trạng thái ít hơn. Phần lớn bài toán tận dụng trạng thái nhị phân, dùng một số nhị phân $n$ bit để biểu diễn $n$ trạng thái nhị phân độc lập.
 
@@ -21,9 +21,9 @@ Với trạng thái có số hiệu $j$, dùng số nhị phân $sit(j)$ để b
 
 ![](./images/scoi2005-non-attacking-kings.png)
 
-Giả sử trạng thái hàng hiện tại là $j$, trạng thái hàng trước là $x$, ta có phương trình chuyển: $f(i,j,l) = \sum f(i-1,x,l-sta(j))$.
+Giả sử trạng thái hàng hiện tại là $j$, trạng thái hàng trước là $x$, phương trình chuyển là: $f(i,j,l) = \sum f(i-1,x,l-sta(j))$.
 
-Với số hiệu trạng thái hàng trước là $x$, trong điều kiện hàng hiện tại và hàng trước không xung đột, ta duyệt mọi $x$ có thể để chuyển trạng thái:
+Với số hiệu trạng thái hàng trước là $x$, trong điều kiện hàng hiện tại và hàng trước không xung đột, duyệt mọi $x$ có thể để chuyển trạng thái:
 
 $$
 f(i,j,l) = \sum f(i-1,x,l-sta(j))
@@ -54,7 +54,7 @@ $$
 \end{cases}
 $$
 
-Cần chú ý rằng không nên duyệt trực tiếp các tập rồi kiểm tra có phải tập con hay không. Thay vào đó, hãy dùng [duyệt tập con](../math/binary-set.md#duyệt-submask-của-mọi-mask), nhờ đó độ phức tạp thời gian là $O(3^n)$.
+Cần lưu ý rằng không nên duyệt trực tiếp các tập rồi kiểm tra có phải tập con hay không. Thay vào đó, dùng [duyệt tập con](../math/binary-set.md#duyệt-submask-của-mọi-mask), nhờ đó độ phức tạp thời gian là $O(3^n)$.
 
 ### Cài đặt
 
