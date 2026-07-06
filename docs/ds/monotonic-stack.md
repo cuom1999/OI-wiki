@@ -1,7 +1,7 @@
 ## Giới thiệu
 
 Ngăn xếp đơn điệu là một cấu trúc ngăn xếp thỏa mãn tính đơn điệu. So với hàng
-đợi đơn điệu, nó chỉ thực hiện thao tác đưa vào và lấy ra ở một đầu.
+đợi đơn điệu, nó chỉ thực hiện thao tác thêm và xóa ở một đầu.
 
 Để tiện mô tả, các ví dụ và mã giả sau lấy việc duy trì một ngăn xếp số nguyên
 đơn điệu tăng làm ví dụ.
@@ -11,14 +11,14 @@ Ngăn xếp đơn điệu là một cấu trúc ngăn xếp thỏa mãn tính đ
 ### Chèn
 
 Khi chèn một phần tử vào ngăn xếp đơn điệu, để duy trì tính đơn điệu của ngăn
-xếp, cần bật ra số phần tử ít nhất sao cho sau khi đưa phần tử đó lên đỉnh,
+xếp, cần loại bớt từ đỉnh số phần tử ít nhất sao cho sau khi đưa phần tử đó lên đỉnh,
 toàn bộ ngăn xếp vẫn thỏa mãn tính đơn điệu.
 
 Ví dụ, các phần tử trong ngăn xếp từ đỉnh xuống đáy là $\{0,11,45,81\}$.
 
 ![](images/monotonic-stack-before.svg)
 
-Khi chèn phần tử $14$, để bảo đảm tính đơn điệu, cần lần lượt bật ra các phần tử
+Khi chèn phần tử $14$, để bảo đảm tính đơn điệu, cần lần lượt loại khỏi đỉnh các phần tử
 $0,11$; sau thao tác, ngăn xếp trở thành $\{14,45,81\}$.
 
 ![](images/monotonic-stack-after.svg)
@@ -49,9 +49,9 @@ xếp.
     $\sum_{i=1}^{N} c_i$.
 
 Một ứng dụng khá cơ bản là bài này: chỉ cần dùng ngăn xếp đơn điệu một cách đơn
-giản, ghi lại vị trí mà mỗi con bò bị bật ra; nếu chưa từng bị bật ra thì xem
-như tới đầu xa nhất. Xử lý thêm một chút là có thể tính được kết quả bài toán
-yêu cầu.
+giản, ghi lại vị trí mà mỗi con bò bị loại khỏi ngăn xếp; nếu chưa từng bị loại
+thì xem như nó có thể nhìn tới tận đầu xa nhất. Xử lý thêm một chút là có thể
+tính được kết quả bài toán yêu cầu.
 
 Ngoài ra, ngăn xếp đơn điệu cũng có thể dùng để giải bài toán RMQ theo kiểu
 ngoại tuyến.
@@ -59,8 +59,8 @@ ngoại tuyến.
 Có thể sắp xếp tất cả truy vấn theo đầu mút phải, sau đó mỗi lần quét dãy từ
 trái sang phải tới đầu mút phải của truy vấn hiện tại và chèn các phần tử đã
 quét vào ngăn xếp đơn điệu. Như vậy, mỗi khi trả lời truy vấn, các giá trị được
-lưu trong ngăn xếp đơn điệu đều là những điểm quyết định có vị trí $\le r$ và
-có khả năng trở thành đáp án, đồng thời các phần tử này thỏa mãn tính đơn điệu.
+lưu trong ngăn xếp đơn điệu đều là những ứng viên có vị trí $\le r$ và còn khả
+năng trở thành đáp án, đồng thời các phần tử này thỏa mãn tính đơn điệu.
 Khi đó, phần tử đầu tiên trên ngăn xếp đơn điệu có vị trí $\ge l$ chính là đáp
 án của truy vấn hiện tại; bước này có thể thực hiện bằng tìm kiếm nhị phân. Dùng
 ngăn xếp đơn điệu để giải RMQ có độ phức tạp thời gian

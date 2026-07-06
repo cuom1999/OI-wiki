@@ -27,7 +27,7 @@ và "hàng đợi".
 
 "Đơn điệu" chỉ quy luật của các phần tử: tăng dần (hoặc giảm dần).
 
-"Hàng đợi" nghĩa là các phần tử chỉ được thao tác ở đầu hàng đợi và cuối hàng đợi.
+"Hàng đợi" nghĩa là các phần tử chỉ được thao tác ở đầu và cuối hàng đợi.
 
 Lưu ý rằng "hàng đợi" trong hàng đợi đơn điệu có một số khác biệt so với hàng đợi
 thông thường; phần sau sẽ nhắc tới.
@@ -39,12 +39,12 @@ thông thường; phần sau sẽ nhắc tới.
 Với khái niệm "hàng đợi đơn điệu" ở trên, có thể dùng nó để tối ưu.
 
 Cần tìm giá trị lớn nhất (nhỏ nhất) trong mỗi $k$ số liên tiếp. Khi một số đi
-vào phạm vi đang "tìm" giá trị lớn nhất, nếu số này lớn hơn những số đứng trước
-nó (vào hàng đợi trước), thì các số phía trước sẽ rời hàng đợi trước số này và
+vào cửa sổ đang xét, nếu số này lớn hơn những số đứng trước nó (tức vào hàng
+đợi trước), thì có thể loại ngay các số phía trước khỏi cuối hàng đợi, vì chúng
 không còn khả năng trở thành giá trị lớn nhất nữa.
 
-Nói cách khác, khi thỏa mãn điều kiện trên, có thể "bật ra" các số phía trước,
-rồi mới thật sự push số hiện tại vào cuối hàng đợi.
+Nói cách khác, khi thỏa mãn điều kiện trên, có thể loại các số phía trước khỏi
+cuối hàng đợi, rồi mới đưa số hiện tại vào cuối hàng đợi.
 
 Điều này tương đương với việc duy trì một hàng đợi giảm dần, phù hợp với định
 nghĩa hàng đợi đơn điệu và giảm số lần so sánh lặp lại. Hơn nữa, vì hàng đợi
@@ -57,8 +57,8 @@ vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
 
 Do độ dài đoạn truy vấn là cố định, một giá trị dù lớn đến đâu cũng không được
 in nếu đã vượt ra ngoài phạm vi truy vấn. Vì vậy, còn cần mảng `site` ghi lại
-vị trí trong mảng gốc của phần tử thứ $i$ trong hàng đợi, để bật ra đầu hàng
-đợi đã nằm ngoài phạm vi.
+vị trí trong mảng gốc của phần tử thứ $i$ trong hàng đợi, để loại phần tử ở đầu
+hàng đợi khi nó đã nằm ngoài phạm vi.
 
 ### Quá trình
 
@@ -77,8 +77,8 @@ như sau (giả sử $k = 3$):
 | ------------------------------------------------------------ | ------------------- |
 | 1 vào hàng đợi                                               | `{1}`               |
 | 3 lớn hơn 1, 3 vào hàng đợi                                  | `{1 3}`             |
-| -1 nhỏ hơn mọi phần tử trong hàng đợi, nên xóa hàng đợi rồi cho -1 vào hàng đợi | `{-1}`              |
-| -3 nhỏ hơn mọi phần tử trong hàng đợi, nên xóa hàng đợi rồi cho -3 vào hàng đợi | `{-3}`              |
+| -1 nhỏ hơn mọi phần tử trong hàng đợi, nên loại hết phần tử hiện có rồi cho -1 vào hàng đợi | `{-1}`              |
+| -3 nhỏ hơn mọi phần tử trong hàng đợi, nên loại hết phần tử hiện có rồi cho -3 vào hàng đợi | `{-3}`              |
 | 5 lớn hơn -3, vào hàng đợi trực tiếp                         | `{-3 5}`            |
 | 3 nhỏ hơn 5, 5 ra khỏi hàng đợi, 3 vào hàng đợi              | `{-3 3}`            |
 | -3 đã nằm ngoài cửa sổ, nên -3 ra khỏi hàng đợi; 6 lớn hơn 3, 6 vào hàng đợi | `{3 6}`             |
@@ -116,16 +116,17 @@ Có thể dùng hai hàng đợi đơn điệu, một tăng và một giảm, đ
 nhất và nhỏ nhất trong $[L,R]$ khi $R$ liên tục dịch sang phải. Lúc này, nếu cố
 định $L$, thì giá trị lớn nhất trong $[L,R]$ chỉ có thể ngày càng lớn, còn giá
 trị nhỏ nhất chỉ có thể ngày càng nhỏ. Do đó, đặt
-$f(R) = \max[L,R]-\min[L,R]$, thì $f(R)$ là một hàm tăng theo $R$, nên
-$f(R)\geq D \implies f(r)\geq D,R\lt r \leq N$. Điều này cho thấy với mỗi $L$
+$f(R) = \max[L,R]-\min[L,R]$, thì $f(R)$ là một hàm không giảm theo $R$, nên
+$f(R)\geq D \implies f(r)\geq D, R\lt r \leq N$. Điều này cho thấy với mỗi $L$
 cố định, $R$ đầu tiên ở bên phải thỏa mãn điều kiện chính là lựa chọn tối ưu.
 
 Vì vậy, toàn bộ quá trình giải là: trước hết cố định $L$, rồi di chuyển $R$ từ
 trước ra sau, dùng hai hàng đợi đơn điệu để duy trì các giá trị cực trị của
 $[L,R]$. Khi tìm được $R$ đầu tiên thỏa mãn điều kiện, cập nhật đáp án và cũng
 dịch $L$ sang phải. Khi $L$ dịch sang phải, cả hai hàng đợi đơn điệu đều cần
-kịp thời bật đầu hàng đợi. Như vậy, cho tới khi $R$ đi tới cuối, mỗi phần tử
-vẫn chỉ vào và ra khỏi hàng đợi một lần, bảo đảm độ phức tạp thời gian $O(n)$.
+kịp thời loại các phần tử ở đầu hàng đợi nếu chúng rời khỏi đoạn hiện tại.
+Như vậy, cho tới khi $R$ đi tới cuối, mỗi phần tử vẫn chỉ vào và ra khỏi hàng
+đợi một lần, bảo đảm độ phức tạp thời gian $O(n)$.
 
 ???+ note "Mã tham khảo"
     ```cpp
