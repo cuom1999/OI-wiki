@@ -88,14 +88,14 @@ Biến đổi sơ cấp trên hàng và trên cột đều có 3 loại: nhân b
 
 Thay "hàng" trong các thao tác trên bằng "cột" thì thu được các biến đổi sơ cấp trên cột.
 
-Trong các biến đổi sơ cấp, phép hoán đổi có thể được thực hiện bằng phép nhân bội và cộng bội. Rõ ràng, phép cộng bội không thể được thực hiện bằng phép nhân bội và hoán đổi. Nhờ kiến thức về định thức, cùng với tính tương đương giữa biến đổi sơ cấp và phép nhân ma trận ở phần dưới, cũng có thể giải thích rằng phép nhân bội không thể được thực hiện bằng phép cộng bội và hoán đổi.
+Trong các biến đổi sơ cấp, phép hoán đổi có thể được thực hiện bằng phép nhân bội và cộng bội. Phép cộng bội không thể được thực hiện bằng phép nhân bội và hoán đổi. Nhờ kiến thức về định thức, cùng với tính tương đương giữa biến đổi sơ cấp và phép nhân ma trận ở phần dưới, cũng có thể giải thích rằng phép nhân bội không thể được thực hiện bằng phép cộng bội và hoán đổi.
 
 Vì vậy, so với phép hoán đổi, phép nhân bội và cộng bội là các thao tác bản chất hơn. Phép hoán đổi được đưa vào như một thao tác phụ trợ để bảo đảm thứ tự khử trong phương pháp khử.
 
 <span id="biến-đổi-sơ-cấp-và-phép-nhân-ma-trận"></span>
 ## Biến đổi sơ cấp và phép nhân ma trận
 
-Có thể thấy ba loại ma trận sơ cấp đều là kết quả của việc thực hiện đúng một biến đổi tương ứng trên ma trận đơn vị $I$. Trong phần biến đổi tuyến tính về sau sẽ chỉ ra rằng biến đổi tuyến tính và ma trận có quan hệ tương ứng, tương tự quan hệ ở đây.
+Ba loại ma trận sơ cấp đều là kết quả của việc thực hiện đúng một biến đổi tương ứng trên ma trận đơn vị $I$. Trong phần biến đổi tuyến tính về sau sẽ chỉ ra rằng biến đổi tuyến tính và ma trận có quan hệ tương ứng, tương tự quan hệ này.
 
 Bất kể ma trận $A$ có vuông hay không, thực hiện biến đổi sơ cấp trên hàng của $A$ tương đương với nhân trái $A$ bởi một ma trận sơ cấp. Thực hiện biến đổi sơ cấp trên cột của $A$ tương đương với nhân phải $A$ bởi một ma trận sơ cấp.
 
@@ -104,7 +104,7 @@ Bất kể ma trận $A$ có vuông hay không, thực hiện biến đổi sơ 
 
 Nhân trái với một ma trận nhân bội $D_i(k)$ tương đương với biến hàng thứ $i$ thành $k$ lần chính nó. Nhân phải với một ma trận nhân bội $D_i(k)$ tương đương với biến cột thứ $i$ thành $k$ lần chính nó.
 
-Tích của hai ma trận đường chéo vẫn là ma trận đường chéo; khi nhân các ma trận đường chéo, ta nhân các phần tử tương ứng trên đường chéo chính. Vì ma trận đơn vị là một ma trận nhân bội đặc biệt, còn ma trận nhân bội yêu cầu $k$ khác $0$, có thể thấy rằng chỉ cần mọi phần tử trên đường chéo chính của ma trận đường chéo đều khác $0$, nó có thể được phân tích thành tích của các ma trận nhân bội.
+Tích của hai ma trận đường chéo vẫn là ma trận đường chéo; khi nhân các ma trận đường chéo, các phần tử tương ứng trên đường chéo chính được nhân với nhau. Vì ma trận đơn vị là một ma trận nhân bội đặc biệt, còn ma trận nhân bội yêu cầu $k$ khác $0$, chỉ cần mọi phần tử trên đường chéo chính của ma trận đường chéo đều khác $0$, nó có thể được phân tích thành tích của các ma trận nhân bội.
 
 Với ma trận đường chéo tổng quát, bất kể các phần tử có bằng $0$ hay không, cũng có kết luận tương ứng. Nhân trái với ma trận đường chéo tương đương với nhân các hàng tương ứng lên một số lần, hệ số đúng bằng phần tử tương ứng trên đường chéo chính của ma trận đường chéo. Nhân phải với ma trận đường chéo là thao tác tương tự trên các cột tương ứng.
 
@@ -119,7 +119,7 @@ Thao tác nhân bội tương ứng với ma trận đơn vị là giữ nguyên
 
 Nhân trái với một ma trận hoán đổi $P_{ij}$ tương đương với hoán đổi hàng thứ $i$ và hàng thứ $j$. Nhân phải với một ma trận hoán đổi $P_{ij}$ tương đương với hoán đổi cột thứ $i$ và cột thứ $j$.
 
-Tương tự quan hệ giữa ma trận nhân bội và ma trận đường chéo, ở đây đưa vào khái niệm ma trận hoán vị. Ma trận hoán vị là một ma trận vuông, trong đó mỗi hàng và mỗi cột đều có đúng một phần tử $1$, các vị trí còn lại đều là $0$. Ma trận đơn vị $I$ cũng là một ma trận hoán vị đặc biệt.
+Tương tự quan hệ giữa ma trận nhân bội và ma trận đường chéo, phần này đưa vào khái niệm ma trận hoán vị. Ma trận hoán vị là một ma trận vuông, trong đó mỗi hàng và mỗi cột đều có đúng một phần tử $1$, các vị trí còn lại đều là $0$. Ma trận đơn vị $I$ cũng là một ma trận hoán vị đặc biệt.
 
 Ma trận hoán vị trùng với kết quả của việc hoán vị các hàng của ma trận đơn vị $I$, và cũng trùng với kết quả của việc hoán vị các cột của ma trận đơn vị $I$. Bản thân ma trận đơn vị $I$ tương ứng với biến đổi đồng nhất.
 
@@ -149,7 +149,7 @@ Thao tác cộng bội tương ứng với ma trận đơn vị là giữ nguyê
 <span id="ma-trận-tam-giác-trên"></span>
 #### Ma trận tam giác trên
 
-Ma trận cộng bội là một ma trận tam giác trên hoặc tam giác dưới. Vì hai loại ma trận này đối xứng qua đường chéo chính, ở đây chỉ xét ma trận tam giác trên. Thực ra trong ví dụ này chỉ cần biến đổi sơ cấp trên hàng, không cần biến đổi trên cột.
+Ma trận cộng bội là một ma trận tam giác trên hoặc tam giác dưới. Vì hai loại ma trận này đối xứng qua đường chéo chính, phần này chỉ xét ma trận tam giác trên. Trong ví dụ này chỉ cần biến đổi sơ cấp trên hàng, không cần biến đổi trên cột.
 
 Nếu mọi phần tử trên đường chéo chính của một ma trận tam giác trên đều là $1$, thì nó có thể được phân tích thành tích của một dãy ma trận cộng bội. Thứ tự phân tích là: trước hết thực hiện các thao tác cộng bội trên hàng thứ nhất của ma trận đơn vị $I$, rồi trên hàng thứ hai, cứ như vậy cho đến khi mọi hàng đều đã được xử lý.
 
@@ -166,13 +166,13 @@ Bất kể đường chéo chính của ma trận tam giác trên có phần t�
 
 Chỉ dùng thao tác cộng bội cũng có thể đưa một ma trận vuông bất kỳ về ma trận đường chéo. Ví dụ này cần cả biến đổi sơ cấp trên hàng lẫn trên cột.
 
-Nếu hàng thứ nhất và cột thứ nhất của ma trận vuông có phần tử khác không, ta có thể dùng phép cộng bội để làm cho phần tử góc trên bên trái khác không; sau đó dùng biến đổi sơ cấp trên hàng và trên cột để biến mọi phần tử ở hàng thứ nhất và cột thứ nhất, trừ phần tử góc trên bên trái, thành $0$.
+Nếu hàng thứ nhất và cột thứ nhất của ma trận vuông có phần tử khác không, có thể dùng phép cộng bội để làm cho phần tử góc trên bên trái khác không; sau đó dùng biến đổi sơ cấp trên hàng và trên cột để biến mọi phần tử ở hàng thứ nhất và cột thứ nhất, trừ phần tử góc trên bên trái, thành $0$.
 
 Nếu hàng thứ nhất và cột thứ nhất đều đã toàn là $0$, thì xét trực tiếp hàng thứ hai và cột thứ hai.
 
 Nhờ cách này, thậm chí có thể quy định rằng các phần tử khác không của ma trận đường chéo đều nằm ở góc trên bên trái.
 
-Nếu hàng thứ nhất và cột thứ nhất đều đã toàn là $0$, ta xét phần hàng và cột còn lại có phần tử khác không hay không. Chỉ cần còn phần tử khác không, có thể dùng thao tác cộng bội để làm cho một phần tử nào đó ở hàng thứ nhất hoặc cột thứ nhất trở thành khác $0$, rồi quy về trường hợp ban đầu để phần tử góc trên bên trái khác $0$.
+Nếu hàng thứ nhất và cột thứ nhất đều đã toàn là $0$, xét phần hàng và cột còn lại có phần tử khác không hay không. Chỉ cần còn phần tử khác không, có thể dùng thao tác cộng bội để làm cho một phần tử nào đó ở hàng thứ nhất hoặc cột thứ nhất trở thành khác $0$, rồi quy về trường hợp ban đầu để phần tử góc trên bên trái khác $0$.
 
 Chỉ khi phần hàng và cột còn lại cũng đều không có phần tử khác không thì góc trên bên trái mới không thể trở thành phần tử khác không; khi đó ma trận vuông còn lại đã là ma trận không.
 
@@ -215,13 +215,13 @@ $$
 T_{ij}(k)^{-1}=T_{ij}(-k)
 $$
 
-Rõ ràng ma trận đơn vị $I$ khả nghịch, và nghịch đảo của nó vẫn là $I$.
+Ma trận đơn vị $I$ khả nghịch, và nghịch đảo của nó vẫn là $I$.
 
 Biến đổi sơ cấp bảo toàn tính khả nghịch của ma trận: trước và sau biến đổi, ma trận hoặc đồng thời khả nghịch, hoặc đồng thời không khả nghịch.
 
 Ma trận $A$ khả nghịch khi và chỉ khi $A$ có thể viết thành tích của các ma trận sơ cấp, tức có thể biến thành ma trận đơn vị $I$ bằng các biến đổi sơ cấp.
 
-Sau khi đưa vào định thức, ta sẽ biết:
+Sau khi đưa vào định thức, sẽ có:
 
 Ma trận $A$ khả nghịch khi và chỉ khi hạng của $A$ là $n$, khi và chỉ khi định thức của $A$ khác $0$.
 
@@ -239,7 +239,7 @@ Cách ký hiệu này cũng có thể áp dụng cho các ma trận nghịch đ�
 <span id="giải-hệ-phương-trình-tuyến-tính"></span>
 ### Giải hệ phương trình tuyến tính
 
-Với một hệ phương trình tuyến tính, các hệ số đứng trước ẩn tạo thành ma trận hệ số; nếu ghép thêm cột hằng số của hệ phương trình vào bên phải ma trận hệ số, ta được ma trận bổ sung.
+Với một hệ phương trình tuyến tính, các hệ số đứng trước ẩn tạo thành ma trận hệ số; nếu ghép thêm cột hằng số của hệ phương trình vào bên phải ma trận hệ số, thu được ma trận bổ sung.
 
 Dùng biến đổi sơ cấp trên hàng, có thể đưa ma trận bổ sung tương ứng với hệ phương trình tuyến tính trước hết về ma trận bậc thang hàng, rồi về ma trận hàng rút gọn, từ đó hoàn thành việc giải hệ phương trình tuyến tính. Phương pháp này gọi là khử để giải hệ phương trình tuyến tính; thuật toán khử Gauss-Jordan ở phần sau là thuật toán khử theo một thứ tự nhất định.
 

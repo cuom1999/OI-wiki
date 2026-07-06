@@ -39,7 +39,7 @@ $$
 
 Do mỗi biến đổi $T_i$ đều là một đa thức của biến đổi $T$, nên biến đổi $T_D$ cũng là một đa thức của biến đổi $T$; vì thế mỗi không gian con $V_i$ bất biến dưới biến đổi $T_D$.
 
-Từ đẳng thức trên có thể biết rằng hạn chế ${T_D|}_{V_i}$ của biến đổi $T_D$ trên không gian con $V_i$ là một phép vị tự của không gian con $V_i$, với hệ số vị tự $\lambda_i$. Do đó biến đổi $T_D$ có thể chéo hóa.
+Từ đẳng thức trên suy ra hạn chế ${T_D|}_{V_i}$ của biến đổi $T_D$ trên không gian con $V_i$ là một phép vị tự của không gian con $V_i$, với hệ số vị tự $\lambda_i$. Do đó biến đổi $T_D$ có thể chéo hóa.
 
 Xây dựng:
 
@@ -47,7 +47,7 @@ $$
 T_N=T-T_D
 $$
 
-Khi đó biến đổi $T_N$ cũng là một đa thức của biến đổi $T$, nên mỗi không gian con $V_i$ bất biến dưới biến đổi $T_N$. Với mọi vectơ $\xi_i$ trong không gian con $V_i$, ta có:
+Khi đó biến đổi $T_N$ cũng là một đa thức của biến đổi $T$, nên mỗi không gian con $V_i$ bất biến dưới biến đổi $T_N$. Với mọi vectơ $\xi_i$ trong không gian con $V_i$, thu được:
 
 $$
 {T_N}^{r_i}(\xi_i)={T-T_D}^{r_i}(\xi_i)={T-\lambda_i T_i}^{r_i}(\xi_i)=0
@@ -111,17 +111,17 @@ Vì vành đa thức chứa trường số, ma trận số là một trường h
 <span id="biến-đổi-sơ-cấp-của-ma-trận-lambda"></span>
 ### Biến đổi sơ cấp của ma trận lambda
 
-Với ma trận $\lambda$, ta cũng có thể định nghĩa phép cộng trừ, phép nhân, biến đổi sơ cấp, hạng. Với ma trận vuông $\lambda$, ta cũng có thể định nghĩa định thức, minor và phần bù đại số.
+Đối với ma trận $\lambda$, vẫn có thể định nghĩa phép cộng trừ, phép nhân, biến đổi sơ cấp và hạng. Với ma trận vuông $\lambda$, vẫn có thể định nghĩa định thức, định thức con và phần bù đại số.
 
-Với ma trận $\lambda$, các biến đổi sơ cấp phần lớn giống ma trận số, chỉ thay phép cộng bội thành (ở đây lấy biến đổi hàng làm ví dụ):
+Đối với ma trận $\lambda$, các biến đổi sơ cấp phần lớn giống ma trận số, chỉ thay phép cộng bội như sau (lấy biến đổi hàng làm ví dụ):
 
 -   Nhân một hàng với đa thức $\varphi(\lambda)$ theo $\lambda$ rồi cộng vào một hàng khác.
 
-Chú ý phép nhân một hàng với bội số không được sửa đổi. Lý do là phép cộng bội không làm thay đổi định thức, còn phép nhân bội làm thay đổi định thức. Để giữ tính chất hạng trên vành đa thức, định thức chỉ được phép thay đổi trên trường số.
+Lưu ý rằng phép nhân một hàng với bội số không được sửa đổi. Lý do là phép cộng bội không làm thay đổi định thức, còn phép nhân bội làm thay đổi định thức. Để giữ tính chất hạng trên vành đa thức, định thức chỉ được phép thay đổi trên trường số.
 
 Các ma trận sơ cấp tương ứng cũng được sửa đổi theo.
 
-Dễ thấy định thức của cả ba loại ma trận sơ cấp đều là hằng số khác không, vì vậy chúng đều đủ hạng. Do đó nhân trái hoặc nhân phải với chúng không làm thay đổi hạng của ma trận $\lambda$.
+Định thức của cả ba loại ma trận sơ cấp đều là hằng số khác không, vì vậy chúng đều đủ hạng. Do đó nhân trái hoặc nhân phải với chúng không làm thay đổi hạng của ma trận $\lambda$.
 
 Nếu $A(\lambda)$ qua hữu hạn lần biến đổi sơ cấp trở thành $B(\lambda)$, thì $A(\lambda)$ và $B(\lambda)$ được gọi là tương đương.
 
@@ -130,7 +130,7 @@ Với ma trận $\lambda$, nếu hai ma trận tương đương thì chúng có 
 <span id="dạng-chuẩn-smith"></span>
 ## Dạng chuẩn Smith
 
-Định lý: Giả sử hạng của ma trận $\lambda$ là $r$, thì $A(\lambda)$ nhất định tương đương với:
+Định lý: Giả sử hạng của ma trận $\lambda$ là $r$, thì $A(\lambda)$ luôn tương đương với:
 
 $$
 \begin{pmatrix}
@@ -155,7 +155,7 @@ Dạng chuẩn này được gọi là dạng chuẩn Smith, và $d_i(\lambda)$ 
 
 Cách cụ thể để tìm dạng chuẩn Smith là khử từ góc trên trái đến góc dưới phải; mỗi lần, phần tử ở góc trên trái là ước chung lớn nhất của toàn bộ các đa thức còn lại ở phía dưới bên phải, rồi dùng phần tử ở góc trên trái để khử toàn bộ hàng và cột đó về $0$.
 
-Định lý: Điều kiện $A(\lambda)$ và $B(\lambda)$ tương đương tương đương với điều kiện $A(\lambda)$ và $B(\lambda)$ có đúng cùng các nhân tử bất biến.
+Định lý: $A(\lambda)$ và $B(\lambda)$ tương đương khi và chỉ khi $A(\lambda)$ và $B(\lambda)$ có đúng cùng các nhân tử bất biến.
 
 <span id="nhân-tử-sơ-cấp"></span>
 ### Nhân tử sơ cấp
@@ -176,13 +176,13 @@ nên các số mũ $e_{1j},e_{2j},\cdots,e_{mj}$ tăng dần, và các số mũ 
 
 Toàn bộ các nhân tử có số mũ lớn hơn không trong công thức trên được gọi chung là các nhân tử sơ cấp của $A(\lambda)$.
 
-Chú ý rằng nhân tử sơ cấp được tính cả bội. Nếu với một $j$ nào đó, số mũ $e_{ij}$ xuất hiện nhiều lần, thì nhân tử sơ cấp tương ứng ${(\lambda-\lambda_j)}^{e_{ij}}$ cũng phải xuất hiện số lần tương ứng.
+Lưu ý rằng nhân tử sơ cấp được tính cả bội. Nếu với một $j$ nào đó, số mũ $e_{ij}$ xuất hiện nhiều lần, thì nhân tử sơ cấp tương ứng ${(\lambda-\lambda_j)}^{e_{ij}}$ cũng phải xuất hiện số lần tương ứng.
 
-Định lý trước cho biết $A(\lambda)$ và $B(\lambda)$ tương đương khi và chỉ khi chúng có hoàn toàn cùng các nhân tử bất biến. Nhân tử bất biến hoàn toàn giống nhau thì đương nhiên nhân tử sơ cấp cũng hoàn toàn giống nhau, nhưng chiều ngược lại không đúng. Thực ra có kết luận:
+Định lý trước cho biết $A(\lambda)$ và $B(\lambda)$ tương đương khi và chỉ khi chúng có hoàn toàn cùng các nhân tử bất biến. Khi các nhân tử bất biến hoàn toàn giống nhau, các nhân tử sơ cấp cũng hoàn toàn giống nhau; tuy nhiên chiều ngược lại không đúng. Kết luận chính xác là:
 
 Định lý: $A(\lambda)$ và $B(\lambda)$ có hoàn toàn cùng nhân tử bất biến khi và chỉ khi chúng có hoàn toàn cùng nhân tử sơ cấp và cùng hạng.
 
-Vì vậy, "nhân tử sơ cấp và hạng đều hoàn toàn giống nhau" cũng trở thành một điều kiện để phán đoán tính tương đương của ma trận $\lambda$.
+Vì vậy, "nhân tử sơ cấp và hạng đều hoàn toàn giống nhau" cũng trở thành một điều kiện để xác định tính tương đương của ma trận $\lambda$.
 
 Khi thực hiện biến đổi sơ cấp, cũng có thể trước tiên biến đổi $A(\lambda)$ thành ma trận đường chéo, rồi tìm nhân tử sơ cấp và hạng, sau đó tìm nhân tử bất biến để thu được dạng chuẩn. Có kết luận:
 
@@ -231,7 +231,7 @@ $$
 
 có mọi phần tử trên đường chéo chính đều là $\lambda$, mọi phần tử ngay phía trên đường chéo chính đều là $1$, các vị trí còn lại đều là $0$, được gọi là một ma trận Jordan ứng với $\lambda$, hoặc khối Jordan.
 
-Rõ ràng, ma trận Jordan lũy linh là một trường hợp đặc biệt của ma trận Jordan, tức trường hợp $\lambda$ bằng $0$.
+Ma trận Jordan lũy linh là một trường hợp đặc biệt của ma trận Jordan, tương ứng với trường hợp $\lambda$ bằng $0$.
 
 Định lý: Giả sử $T$ là một biến đổi của không gian $n$ chiều $V$, và $\lambda_1,\cdots,\lambda_k$ là tất cả các giá trị riêng đôi một khác nhau của $T$. Khi đó tồn tại một cơ sở sao cho ma trận của $T$ theo cơ sở này có dạng:
 
@@ -263,7 +263,7 @@ $$
 m_A(\lambda)={(\lambda-\lambda_1)}^{r_1}{(\lambda-\lambda_2)}^{r_2}\cdots{(\lambda-\lambda_k)}^{r_k}
 $$
 
-ta có phân rã nguyên sơ:
+suy ra phân rã nguyên sơ:
 
 $$
 V=V_1\oplus V_2\oplus\cdots\oplus V_k
@@ -277,7 +277,7 @@ $$
 
 với $A$ là ma trận tương ứng với $T$.
 
-Gọi biến đổi $S_i$ là hạn chế ${T|}_{V_i}$ của $T$ trên $V_i$; tiếp theo ta thử thực hiện phân rã Jordan cho từng $S_i$.
+Gọi biến đổi $S_i$ là hạn chế ${T|}_{V_i}$ của $T$ trên $V_i$; tiếp theo xét phân rã Jordan cho từng $S_i$.
 
 Ký hiệu $T_e$ là biến đổi đồng nhất trên $V$. Khác với phân rã Jordan ở phần trước, ký hiệu $T_i$ là phần lũy linh trong phân rã Jordan của $S_i$:
 
@@ -285,7 +285,7 @@ $$
 S_i=\lambda_i T_e+T_i
 $$
 
-Khi đó $T_i$ là một biến đổi lũy linh của không gian con $V_i$, thực ra cũng là hạn chế ${(T-\lambda_i T_e)|}_{V_i}$ của $T-\lambda_i T_e$ trên $V_i$.
+Khi đó $T_i$ là một biến đổi lũy linh của không gian con $V_i$, đồng thời là hạn chế ${(T-\lambda_i T_e)|}_{V_i}$ của $T-\lambda_i T_e$ trên $V_i$.
 
 Không gian con $V_i$ có thể phân rã thành tổng trực tiếp của các không gian con cyclic của biến đổi lũy linh $T_i$:
 
@@ -325,7 +325,7 @@ J_{i1} &  &  & 0\\
 \end{pmatrix}
 $$
 
-Ở đây $J_{i1},J_{i2},\cdots,J_{is_i}$ đều là các khối Jordan ứng với $\lambda_i$.
+Trong biểu thức này, $J_{i1},J_{i2},\cdots,J_{is_i}$ đều là các khối Jordan ứng với $\lambda_i$.
 
 Với mỗi không gian con $V_i$, chọn một cơ sở theo cách trên, rồi ghép chúng lại thành cơ sở của $V$. Khi đó ma trận của $T$ theo cơ sở này chính là dạng được nêu trong định lý.
 
@@ -344,9 +344,9 @@ trong đó mỗi $J_i$ đều là một khối Jordan, được gọi là một 
 
 Định lý: Mỗi ma trận cấp $n$ $A$ đều tương tự với một dạng chuẩn Jordan. Ngoài thứ tự sắp xếp của các khối Jordan, dạng chuẩn Jordan tương tự với $A$ được xác định duy nhất bởi $A$.
 
-Chú ý rằng trong ma trận $B_i$ được xây dựng ở trên, hạng đầu là một bội của ma trận đơn vị, nên đương nhiên giao hoán với hạng thứ hai. Vì vậy hạng đầu chính là phần chéo hóa được trong phân rã Jordan của $B_i$, còn hạng thứ hai chính là phần lũy linh trong phân rã Jordan của $B_i$.
+Lưu ý rằng trong ma trận $B_i$ được xây dựng ở trên, số hạng thứ nhất là một bội của ma trận đơn vị, nên giao hoán với số hạng thứ hai. Vì vậy số hạng thứ nhất chính là phần chéo hóa được trong phân rã Jordan của $B_i$, còn số hạng thứ hai chính là phần lũy linh trong phân rã Jordan của $B_i$.
 
-Trong dạng chuẩn Jordan tương ứng với một ma trận, ma trận đường chéo tạo bởi các phần tử trên đường chéo chính là phần chéo hóa được của dạng chuẩn Jordan tương ứng với ma trận đó; nếu thay các phần tử trên đường chéo chính bằng $0$, ta được phần lũy linh của dạng chuẩn Jordan tương ứng với ma trận đó.
+Trong dạng chuẩn Jordan tương ứng với một ma trận, ma trận đường chéo gồm các phần tử trên đường chéo chính là phần chéo hóa được của dạng chuẩn Jordan tương ứng với ma trận đó; nếu thay các phần tử trên đường chéo chính bằng $0$, thu được phần lũy linh của dạng chuẩn Jordan tương ứng với ma trận đó.
 
 Định lý: Trong dạng chuẩn Jordan của ma trận $A$, mỗi khối Jordan:
 
@@ -362,9 +362,9 @@ $$
 
 tương ứng với một nhân tử sơ cấp ${(\lambda-\lambda_i)}^{n_i}$ của ma trận đặc trưng $\lambda I-A$; toàn bộ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ tương ứng với toàn bộ các khối Jordan trong dạng chuẩn Jordan của ma trận $A$.
 
-Lý do là ma trận $A$ tương tự với dạng chuẩn Jordan của nó, do đó ma trận đặc trưng của hai bên cũng tương đương; đưa ma trận đặc trưng của dạng chuẩn Jordan về dạng chuẩn Smith là có thể thấy điều này.
+Lý do là ma trận $A$ tương tự với dạng chuẩn Jordan của nó, do đó ma trận đặc trưng của hai bên cũng tương đương; khi đưa ma trận đặc trưng của dạng chuẩn Jordan về dạng chuẩn Smith, kết luận trên được suy ra.
 
-Từ định lý này, nhờ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$, ta có thể viết ra dạng chuẩn Jordan của ma trận $A$.
+Từ định lý này, các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ cho phép xác định dạng chuẩn Jordan của ma trận $A$.
 
 Một hệ quả là: ma trận $A$ chéo hóa được khi và chỉ khi các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ đều là bậc nhất.
 
