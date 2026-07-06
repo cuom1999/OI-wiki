@@ -10,7 +10,8 @@ xếp được sử dụng rộng rãi.
 
 ### Quy trình
 
-Sắp xếp nhanh hoạt động bằng cách dùng phương pháp [chia để trị](./divide-and-conquer.md) để sắp xếp một mảng.
+Sắp xếp nhanh hoạt động bằng cách dùng phương pháp
+[chia để trị](./divide-and-conquer.md) để sắp xếp một mảng.
 
 Sắp xếp nhanh gồm ba bước:
 
@@ -18,25 +19,24 @@ Sắp xếp nhanh gồm ba bước:
 2.  Đệ quy sắp xếp nhanh trên hai dãy con;
 3.  Không cần trộn, vì sau hai lời gọi đệ quy, toàn bộ dãy đã có thứ tự.
 
-Khác với sắp xếp trộn, bước đầu tiên không chia sẵn thành hai dãy trước và sau,
-mà trong quá trình chia phải bảo đảm quan hệ lớn nhỏ tương đối. Cụ thể,
-bước đầu tiên là chia dãy số thành hai phần, đồng thời bảo đảm mọi số trong dãy
-con phía trước đều nhỏ hơn mọi số trong dãy con phía sau. Để giữ độ phức tạp
-thời gian trung bình ở mức tốt, thường chọn ngẫu nhiên một số $m$ làm mốc phân
-chia giữa hai dãy con.
+Khác với sắp xếp trộn, bước đầu tiên không chỉ đơn giản chia dãy thành hai nửa.
+Trong quá trình chia, thuật toán phải đồng thời bảo đảm quan hệ lớn nhỏ tương
+đối giữa hai phần. Cụ thể, dãy được chia thành hai phần sao cho mọi số trong
+dãy con phía trước đều nhỏ hơn mọi số trong dãy con phía sau. Để giữ độ phức
+tạp thời gian trung bình ở mức tốt, thường chọn ngẫu nhiên một số $m$ làm mốc
+phân chia giữa hai dãy con.
 
 Sau đó, duy trì hai con trỏ $p$ và $q$ ở hai đầu, lần lượt xét xem phần tử hiện
-tại đã nằm ở vị trí nên thuộc về nó hay chưa (phía trước hay phía sau). Nếu
-phần tử hiện tại đặt sai, chẳng hạn con trỏ phía sau $q$ gặp một số nhỏ hơn
-$m$, có thể hoán đổi các số ở vị trí $p$ và $q$, rồi dịch $p$ sang phải một vị
-trí. Khi các phần tử hiện tại đã được đặt đúng phía, tiếp tục di chuyển con trỏ
-để xử lý cho đến khi hai con trỏ gặp nhau.
+tại đã nằm đúng phía của mốc hay chưa. Nếu phần tử hiện tại đặt sai, chẳng hạn
+con trỏ phía sau $q$ gặp một số nhỏ hơn $m$, có thể hoán đổi các số ở vị trí
+$p$ và $q$, rồi dịch $p$ sang phải một vị trí. Khi các phần tử hiện tại đã nằm
+đúng phía, tiếp tục di chuyển con trỏ cho đến khi hai con trỏ gặp nhau.
 
 Thực tế, sắp xếp nhanh không quy định cụ thể phải cài đặt bước đầu tiên như thế
 nào; cả quá trình chọn $m$ lẫn quá trình phân hoạch đều có nhiều cách cài đặt.
 
 Ở bước thứ ba, hai dãy con đã lần lượt có thứ tự và mọi số trong dãy thứ nhất
-đều nhỏ hơn dãy thứ hai, nên có thể ghép lại.
+đều nhỏ hơn dãy thứ hai, nên có thể ghép trực tiếp.
 
 === "C++"
     === "Cài đặt không đệ quy[^ref2]"
@@ -145,7 +145,7 @@ cực trị của dãy. Khi đó độ phức tạp thời gian của thuật to
 $T(n) = T(n - 1) + \Theta(n)$; cộng dồn suy ra $T(n) = \Theta(n^2)$.
 
 Trong trường hợp trung bình, giả sử giá trị mốc ở mỗi lần được chọn ngẫu nhiên
-đều.
+đều trong các phần tử hiện có.
 
 ??? note "Chứng minh"
     Sau đây là phần chứng minh độ phức tạp thời gian của thuật toán trong
@@ -155,18 +155,18 @@ Trong trường hợp trung bình, giả sử giá trị mốc ở mỗi lần �
     so sánh trong quá trình phân hoạch phần tử là $X$, thì độ phức tạp thời
     gian của sắp xếp nhanh là $O(n + X)$.
     
-    Vì trong mỗi lần phân hoạch phần tử, thuật toán sẽ chọn một phần tử làm
-    mốc, nên quá trình phân hoạch phần tử xảy ra nhiều nhất $n$ lần. Hơn nữa,
-    số phép so sánh và số thao tác cơ bản khác trong quá trình phân hoạch cùng
-    bậc độ lớn, nên tổng độ phức tạp thời gian là $O(n + X)$.
+    Vì trong mỗi lần phân hoạch, thuật toán chọn một phần tử làm mốc, nên quá
+    trình phân hoạch xảy ra nhiều nhất $n$ lần. Hơn nữa, số phép so sánh và số
+    thao tác cơ bản khác trong quá trình phân hoạch cùng bậc độ lớn, nên tổng
+    độ phức tạp thời gian là $O(n + X)$.
     
     Gọi $a_i$ là số nhỏ thứ $i$ trong mảng ban đầu, định nghĩa $A_{i,j}$ là
     $\{ a_i, a_{i+1}, \dots, a_j \}$, và $X_{i,j}$ là biến ngẫu nhiên rời rạc
     nhận giá trị $0$ hoặc $1$, biểu thị trong quá trình sắp xếp $a_i$ có được
     so sánh với $a_j$ hay không.
     
-    Các giá trị mốc được chọn ở mỗi lần là khác nhau, và phần tử chỉ
-    được so sánh với mốc, nên tổng số phép so sánh là
+    Các giá trị mốc được chọn ở mỗi lần là khác nhau, và phần tử chỉ được so
+    sánh với mốc, nên tổng số phép so sánh là
     
     $$
     \begin{aligned} X = \sum \limits _ {i = 1} ^ {n - 1} \sum \limits _ {j = i + 1} ^ n X_{i,j} \end{aligned}
@@ -231,7 +231,7 @@ Trong trường hợp trung bình, giả sử giá trị mốc ở mỗi lần �
     
     Từ đó, độ phức tạp thời gian kỳ vọng của sắp xếp nhanh là $O(n \log n)$.
 
-Trong thực tế, trường hợp bất lợi nhất hiếm khi xảy ra; đồng thời, truy cập bộ
+Trong thực tế, trường hợp bất lợi nhất hiếm khi xảy ra. Đồng thời, truy cập bộ
 nhớ của sắp xếp nhanh tuân theo nguyên lý cục bộ. Vì vậy, trong đa số trường
 hợp, sắp xếp nhanh thường chạy nhanh hơn sắp xếp vun đống và nhiều thuật toán
 sắp xếp khác có độ phức tạp $O(n \log n)$.[^ref1]
@@ -248,8 +248,8 @@ có dữ liệu được thiết kế để làm sắp xếp nhanh đơn giản 
 Vì vậy, cần tối ưu hóa ý tưởng sắp xếp nhanh đơn giản. Các hướng tối ưu hóa
 thường gặp gồm ba loại sau[^ref3].
 
--   Dùng phương pháp **lấy trung vị của ba số (tức chọn trung vị trong ba phần
-    tử đầu, cuối và giữa)** để chọn phần tử phân chia hai dãy con (tức pivot).
+-   Dùng phương pháp **lấy trung vị của ba số** (tức chọn trung vị trong ba phần
+    tử đầu, cuối và giữa) để chọn phần tử phân chia hai dãy con (tức pivot).
     Cách này tránh suy biến do dữ liệu cực đoan, chẳng hạn dãy tăng hoặc dãy
     giảm;
 -   Khi dãy ngắn, dùng **sắp xếp chèn** thường hiệu quả hơn;
@@ -264,22 +264,22 @@ Sau đây là một số cách tối ưu hóa sắp xếp nhanh tương đối h
 #### Định nghĩa
 
 Sắp xếp nhanh ba đường (3-way radix quicksort) là sự kết hợp giữa sắp xếp nhanh
-và [sắp xếp cơ số](./radix-sort.md). Ý tưởng thuật toán của nó dựa trên lời giải
-của
+và [sắp xếp cơ số](./radix-sort.md). Ý tưởng của thuật toán này dựa trên lời
+giải của
 [bài toán quốc kỳ Hà Lan](https://en.wikipedia.org/wiki/Dutch_national_flag_problem).
 
 #### Quy trình
 
 Khác với sắp xếp nhanh nguyên bản, sau khi chọn ngẫu nhiên điểm mốc $m$, sắp
 xếp nhanh ba đường chia dãy cần sắp xếp thành ba phần: nhỏ hơn $m$, bằng $m$ và
-lớn hơn $m$. Nhờ vậy, nó đạt được hiệu quả gom các phần tử bằng phần tử mốc
-quanh phần tử mốc.
+lớn hơn $m$. Nhờ vậy, các phần tử bằng mốc được gom lại trong một lần phân
+hoạch.
 
 #### Tính chất
 
-Khi xử lý mảng có nhiều giá trị trùng lặp, sắp xếp nhanh ba đường hiệu quả hơn
-sắp xếp nhanh nguyên bản. Độ phức tạp thời gian trong trường hợp tốt nhất của
-nó là $O(n)$.
+Khi xử lý mảng có nhiều giá trị trùng lặp, sắp xếp nhanh ba đường thường hiệu
+quả hơn sắp xếp nhanh nguyên bản. Độ phức tạp thời gian trong trường hợp tốt
+nhất của nó là $O(n)$.
 
 #### Cài đặt
 
@@ -346,16 +346,17 @@ Sau đây là một cài đặt C++ của sắp xếp nhanh ba đường.
 
 Sắp xếp nội quan (introsort hoặc introspective sort)[^ref4] là sự kết hợp giữa
 sắp xếp nhanh và [sắp xếp vun đống](./heap-sort.md), do David Musser phát minh
-năm 1997. Sắp xếp nội quan thực chất là một dạng tối ưu hóa của sắp xếp nhanh,
-bảo đảm độ phức tạp thời gian trong trường hợp bất lợi nhất là $O(n\log n)$.
+năm 1997. Có thể xem sắp xếp nội quan là một dạng tối ưu hóa của sắp xếp nhanh,
+nhằm bảo đảm độ phức tạp thời gian trong trường hợp bất lợi nhất là
+$O(n\log n)$.
 
 #### Tính chất
 
 Sắp xếp nội quan giới hạn độ sâu đệ quy tối đa của sắp xếp nhanh ở
-$\lfloor \log_2n \rfloor$; nếu vượt quá giới hạn thì chuyển sang sắp xếp vun
-đống. Cách này vừa giữ được tính cục bộ trong truy cập bộ nhớ của sắp xếp
-nhanh, vừa ngăn sắp xếp nhanh suy giảm hiệu năng thành $O(n^2)$ trong một số
-trường hợp.
+$\lfloor \log_2n \rfloor$. Nếu vượt quá giới hạn này, thuật toán chuyển sang
+sắp xếp vun đống. Cách này vừa giữ được tính cục bộ trong truy cập bộ nhớ của
+sắp xếp nhanh, vừa ngăn sắp xếp nhanh suy giảm hiệu năng thành $O(n^2)$ trong
+một số trường hợp.
 
 #### Cài đặt
 
@@ -368,15 +369,15 @@ Trong ví dụ mã sau, phần tử hạng $k$ được định nghĩa là số 
 dãy được sắp xếp tăng dần (đánh số từ 0).
 
 Để tìm phần tử hạng $k$ (K-th order statistic), cách đơn giản nhất là sắp xếp
-trước rồi lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp
-thời gian $O(n\log n)$, không hiệu quả đối với bài toán này.
+trước rồi lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp thời gian
+$O(n\log n)$, chưa hiệu quả cho bài toán này.
 
 Có thể mượn ý tưởng của sắp xếp nhanh để giải bài toán. Xét quá trình phân
 hoạch của sắp xếp nhanh: sau khi quá trình "phân hoạch" kết thúc, dãy
 $A_{p} \cdots A_{r}$ được chia thành $A_{p} \cdots A_{q}$ và
 $A_{q+1} \cdots A_{r}$. Khi đó có thể dựa vào số lượng phần tử bên trái
-($q - p + 1$) và quan hệ lớn nhỏ với $k$ để quyết định chỉ đệ quy giải ở bên
-trái hay chỉ ở bên phải.
+($q - p + 1$) và quan hệ với $k$ để quyết định chỉ đệ quy ở bên trái hay bên
+phải.
 
 Giống như sắp xếp nhanh, độ phức tạp thời gian của phương pháp này phụ thuộc
 vào giá trị mốc được chọn trong mỗi lần phân hoạch. Nếu chọn mốc ngẫu nhiên, có
@@ -386,9 +387,11 @@ là $O(n)$.
 ### Cài đặt (C++)
 
 ```cpp
-// Tham số mẫu T biểu thị kiểu của phần tử; kiểu này cần định nghĩa toán tử nhỏ hơn (<)
+// Tham số mẫu T biểu thị kiểu của phần tử.
+// Kiểu này cần định nghĩa toán tử nhỏ hơn (<).
 template <typename T>
-// arr là mảng trong phạm vi tìm kiếm, rk là hạng cần tìm (tính từ 0), len là độ dài mảng
+// arr là mảng trong phạm vi tìm kiếm.
+// rk là hạng cần tìm (tính từ 0), len là độ dài mảng.
 T find_kth_element(T arr[], int rk, const int len) {
   if (len <= 1) return arr[0];
   // Chọn ngẫu nhiên pivot
@@ -407,11 +410,13 @@ T find_kth_element(T arr[], int rk, const int len) {
     else
       i++;
   }
-  // Dựa vào hạng cần tìm và vị trí của hai đường phân cách để đệ quy tìm phần tử hạng k trong đoạn tương ứng
-  // Nếu số phần tử nhỏ hơn pivot nhiều hơn k, thì phần tử hạng k là một phần tử nhỏ hơn pivot
+  // Dựa vào hạng cần tìm và vị trí của hai đường phân cách
+  // để đệ quy tìm phần tử hạng k trong đoạn tương ứng.
+  // Nếu số phần tử nhỏ hơn pivot nhiều hơn k,
+  // thì phần tử hạng k là một phần tử nhỏ hơn pivot.
   if (rk < j) return find_kth_element(arr, rk, j);
-  // Ngược lại, nếu tổng số phần tử nhỏ hơn pivot và bằng pivot vẫn không nhiều đến k,
-  // thì phần tử hạng k là một phần tử lớn hơn pivot
+  // Ngược lại, nếu tổng số phần tử nhỏ hơn pivot và bằng pivot
+  // vẫn không nhiều đến k, thì phần tử hạng k là một phần tử lớn hơn pivot.
   else if (rk >= k)
     return find_kth_element(arr + k, rk - k, len - k);
   // Nếu không, pivot chính là phần tử hạng k
