@@ -348,7 +348,7 @@ Phần mã chính như sau. Các định nghĩa kiểu xuất hiện trong mã �
     }
     ```
 
-Tuy nhiên hướng này không có độ phức tạp tuyến tính (vì phải nhảy theo `fail` của từng đỉnh), nên sẽ quá thời gian ở subtasks thứ hai; do đó cần tối ưu.
+Tuy nhiên hướng này không có độ phức tạp tuyến tính (vì phải nhảy theo `fail` của từng đỉnh), nên sẽ quá thời gian ở bài con thứ hai; do đó cần tối ưu.
 
 Nhìn lại tính chất đặc biệt của bài toán, mọi từ đều có độ dài chỉ $20$, vì vậy có thể tối ưu bằng nén trạng thái.
 

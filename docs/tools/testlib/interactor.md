@@ -5,11 +5,11 @@ Trình tương tác (interactor) dùng để giao tiếp với chương trình c
 
 Nên đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
-Testlib cung cấp cho trình tương tác một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; interactor có thể ghi vào luồng này, còn checker có thể đọc lại bằng `ouf`.
+Testlib cung cấp cho trình tương tác một luồng đặc biệt `std::fstream tout`. Đây là luồng nhật ký; trình tương tác có thể ghi vào luồng này, còn trình kiểm tra có thể đọc lại bằng `ouf`.
 
-Trong interactor, dữ liệu test của đề được đọc từ `inf`; đầu vào chuẩn cho chương trình thí sinh (và chương trình chuẩn) được ghi vào `stdout` (trực tuyến); đầu ra của thí sinh được đọc từ `ouf` (trực tuyến); đầu ra chuẩn được đọc từ `ans` (trực tuyến).
+Trong trình tương tác, dữ liệu kiểm thử của đề được đọc từ `inf`; đầu vào chuẩn cho chương trình thí sinh (và chương trình chuẩn) được ghi vào `stdout` (trực tuyến); đầu ra của thí sinh được đọc từ `ouf` (trực tuyến); đầu ra chuẩn được đọc từ `ans` (trực tuyến).
 
-Nếu interactor trả về trạng thái `_ok`, checker (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
+Nếu trình tương tác trả về trạng thái `_ok`, trình kiểm tra (nếu có) sẽ tiếp quản và kiểm tra tính hợp lệ của đáp án.
 
 ## Cách dùng
 

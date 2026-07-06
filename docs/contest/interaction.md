@@ -106,7 +106,7 @@ Tuy ý tưởng tổng thể đơn giản, nhưng nếu chưa từng học các 
 
 ## UOJ206\[APIO2016]Gap
 
-Chia thành hai subtasks để thảo luận:
+Chia thành hai bài con để thảo luận:
 
 1.  Giới hạn số lần truy vấn.
 
@@ -120,7 +120,7 @@ Chia thành hai subtasks để thảo luận:
 
     Nhận thấy đáp án không nhỏ hơn $\lfloor\frac{a_n - a_1}{N - 1}\rfloor$, nên có thể xét chia miền giá trị theo giá trị này. Đặt $i$ ban đầu là 0, $ans$ ban đầu là giá trị vừa nêu; mỗi lần truy vấn $[i, i + ans]$ và cập nhật $ans$, sau đó lại tăng $i$ với bước nhảy là $ans$.
 
-    Tuy nhiên cách này cũng không áp dụng tốt cho subtask 1, vì trong trường hợp xấu nhất có thể có rất nhiều truy vấn mà trong miền giá trị không chứa số nào.
+    Tuy nhiên cách này cũng không áp dụng tốt cho bài con 1, vì trong trường hợp xấu nhất có thể có rất nhiều truy vấn mà trong miền giá trị không chứa số nào.
 
 ??? note "Mã tham khảo"
     ```cpp

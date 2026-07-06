@@ -444,14 +444,14 @@ Thông thường có thể sinh dữ liệu có xuống dòng kiểu Linux bằn
 
 [Hướng dẫn viết SPJ](../tools/special-judge.md)
 
-Bài yêu cầu in phương án và bài yêu cầu in số thực là hai dạng bài khá thường gặp cần dùng SPJ; các bài khác cũng có thể cần dùng SPJ tùy tình huống. Trên CF, mọi bài đều phải dùng checker dựa trên Testlib. Ví dụ: khi bài yêu cầu in một vài số nguyên, dùng checker `ncmp` có sẵn của Testlib; thí sinh có thể in ký tự trắng tùy ý (có thể là dấu cách hoặc xuống dòng).
+Bài yêu cầu in phương án và bài yêu cầu in số thực là hai dạng bài khá thường gặp cần dùng SPJ; các bài khác cũng có thể cần dùng SPJ tùy tình huống. Trên CF, mọi bài đều phải dùng trình kiểm tra dựa trên Testlib. Ví dụ: khi bài yêu cầu in một vài số nguyên, dùng trình kiểm tra `ncmp` có sẵn của Testlib; thí sinh có thể in ký tự trắng tùy ý (có thể là dấu cách hoặc xuống dòng).
 
-Checker thường được viết bằng Testlib. Vì checker phải xử lý đủ loại đầu ra không hợp lệ, nó cần độ vững rất cao; nếu không dùng Testlib thì rất khó viết checker tốt.
+Trình kiểm tra thường được viết bằng Testlib. Vì trình kiểm tra phải xử lý đủ loại đầu ra không hợp lệ, nó cần độ vững rất cao; nếu không dùng Testlib thì rất khó viết trình kiểm tra tốt.
 
-Khi viết checker cần xử lý hai điểm sau:
+Khi viết trình kiểm tra cần xử lý hai điểm sau:
 
 1.  Cần xử lý mọi loại đầu ra không hợp lệ, vì vậy phải kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình kiểm tra, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
-2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong checker (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là Testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
+2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong trình kiểm tra (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là Testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
 
 ## Lời giải
 
