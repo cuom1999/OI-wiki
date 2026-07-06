@@ -3,9 +3,9 @@ author: CBW2007, ChungZH, Marcythm, abc1763613206, Ir1d
 <span id="lời-nói-đầu"></span>
 ## Lời nói đầu
 
-DFS (tìm kiếm theo chiều sâu) là một thuật toán phổ biến. Phần lớn bài toán đều có thể giải bằng DFS, nhưng trong đa số trường hợp, đó chỉ là cách làm để lấy một phần điểm; rất hiếm bài toán mà vét cạn bằng tìm kiếm lại là lời giải chuẩn, vì độ phức tạp thời gian của DFS đặc biệt cao. Nếu chưa học DFS, hãy bổ sung kiến thức này trước.
+DFS (tìm kiếm theo chiều sâu) là một thuật toán phổ biến. Phần lớn bài toán đều có thể giải bằng DFS, nhưng trong đa số trường hợp, đó chỉ là cách làm để lấy một phần điểm; rất hiếm bài toán mà vét cạn bằng tìm kiếm lại là lời giải chuẩn, vì độ phức tạp thời gian của DFS đặc biệt cao. Cần nắm DFS trước khi đọc tiếp.
 
-Vì DFS thường không đủ để trở thành lời giải chuẩn, ta hãy cố gắng lấy được nhiều điểm hơn bằng các tối ưu hóa. Bài viết này sẽ giới thiệu một số kĩ thuật tối ưu thực dụng, thường được gọi là "cắt tỉa".
+Vì DFS thường không đủ để trở thành lời giải chuẩn, nên cố gắng lấy được nhiều điểm hơn bằng các tối ưu hóa. Bài viết này sẽ giới thiệu một số kĩ thuật tối ưu thực dụng, thường được gọi là "cắt tỉa".
 
 Trước hết là một mẫu tìm kiếm sâu; các mẫu phía sau sẽ được sửa đổi dựa trên mẫu này.
 
@@ -33,7 +33,7 @@ Ba dạng cắt tỉa thông dụng nhất là tìm kiếm có ghi nhớ, cắt 
 <span id="tìm-kiếm-có-ghi-nhớ"></span>
 ### Tìm kiếm có ghi nhớ
 
-Trong quá trình tìm kiếm, cùng một giá trị truyền vào thường dẫn đến cùng một nghiệm. Vì vậy, ta có thể dùng mảng để ghi nhớ; xem thêm tại [Tìm kiếm có ghi nhớ](../dp/memo.md).
+Trong quá trình tìm kiếm, cùng một giá trị truyền vào thường dẫn đến cùng một nghiệm. Vì vậy, có thể dùng mảng để ghi nhớ; xem thêm tại [Tìm kiếm có ghi nhớ](../dp/memo.md).
 
 **Mẫu:**
 
@@ -108,9 +108,9 @@ void dfs(input_state) {
 
 Có rất nhiều hướng suy nghĩ để cắt tỉa; phần lớn cần phân tích theo từng bài toán cụ thể. Dưới đây là một vài ý tưởng cắt tỉa thường gặp.
 
--   Phương pháp cực hạn: xét trường hợp cực đoan. Nếu ngay cả trường hợp cực đoan, lý tưởng nhất cũng không thể thỏa mãn, thì kết quả tìm kiếm trong thực tế chắc chắn sẽ không tốt hơn.
+-   Phương pháp cực hạn: xét trường hợp cực đoan. Nếu ngay cả trường hợp cực đoan, lý tưởng nhất cũng không thể thỏa mãn, thì kết quả tìm kiếm trong thực tế cũng không thể tốt hơn.
 
--   Phương pháp điều chỉnh: so sánh các cây con để loại bỏ những cây con trùng lặp và những cây con rõ ràng không "hứa hẹn" nhất.
+-   Phương pháp điều chỉnh: so sánh các cây con để loại bỏ những cây con trùng lặp và những cây con kém "hứa hẹn" nhất.
 
 -   Phương pháp toán học: chẳng hạn trong lý thuyết đồ thị có thể dựa vào các thành phần liên thông, trong số học có thể phân tích phương trình đồng dư, hoặc dùng bất đẳng thức để ước lượng cận dưới, v.v.
 
@@ -118,13 +118,13 @@ Có rất nhiều hướng suy nghĩ để cắt tỉa; phần lớn cần phân
 ## Ví dụ
 
 ???+ note "Bài toán phân công công việc"
-    Có $n$ ($1 \leq n \leq  15$) công việc cần phân cho $n$ người thực hiện, mỗi người làm đúng một việc. Thời gian người thứ $i$ cần để hoàn thành công việc thứ $k$ là một số nguyên dương $t_{i,k}$ ($1 \leq t_{i,k} \leq 10^4$), trong đó $1 \leq i, k \leq n$. Hãy xác định một phương án phân công sao cho tổng thời gian hoàn thành $n$ công việc là nhỏ nhất.
+    Có $n$ ($1 \leq n \leq  15$) công việc cần phân cho $n$ người thực hiện, mỗi người làm đúng một việc. Thời gian người thứ $i$ cần để hoàn thành công việc thứ $k$ là một số nguyên dương $t_{i,k}$ ($1 \leq t_{i,k} \leq 10^4$), trong đó $1 \leq i, k \leq n$. Cần xác định một phương án phân công sao cho tổng thời gian hoàn thành $n$ công việc là nhỏ nhất.
 
-Vì mỗi người đều phải được phân một công việc, ở đây có thể tạo một mảng hai chiều `time[i][j]` để biểu diễn thời gian người $i$ cần để hoàn thành công việc số $j$. Dùng một vòng lặp, bắt đầu từ người thứ 1 và lần lượt phân công việc cho đến khi tất cả mọi người đều đã được phân. Khi phân công việc cho người thứ $i$, lại duyệt từng công việc để kiểm tra xem công việc đó đã được phân chưa; nếu chưa thì phân cho người $i$, nếu rồi thì kiểm tra công việc tiếp theo. Có thể dùng một mảng một chiều `is_working[j]` để biểu diễn công việc số $j$ đã được phân hay chưa: chưa phân thì `is_working[j]=0`, ngược lại `is_working[j]=1`. Dùng tư tưởng quay lui: sau khi vòng lặp công nhân kết thúc, quay về công nhân trước đó, hủy công việc đã phân lần này, rồi thử phân công việc tiếp theo cho đến khi có thể phân được. Cứ như vậy, khi quay lui về người thứ 1, ta có thể thu được tất cả các nghiệm khả thi.
+Vì mỗi người đều phải được phân một công việc, có thể tạo một mảng hai chiều `time[i][j]` để biểu diễn thời gian người $i$ cần để hoàn thành công việc số $j$. Dùng một vòng lặp, bắt đầu từ người thứ 1 và lần lượt phân công việc cho đến khi tất cả mọi người đều đã được phân. Khi phân công việc cho người thứ $i$, lại duyệt từng công việc để kiểm tra xem công việc đó đã được phân chưa; nếu chưa thì phân cho người $i$, nếu rồi thì kiểm tra công việc tiếp theo. Có thể dùng một mảng một chiều `is_working[j]` để biểu diễn công việc số $j$ đã được phân hay chưa: chưa phân thì `is_working[j]=0`, ngược lại `is_working[j]=1`. Dùng tư tưởng quay lui: sau khi vòng lặp công nhân kết thúc, quay về công nhân trước đó, hủy công việc đã phân lần này, rồi thử phân công việc tiếp theo cho đến khi có thể phân được. Cứ như vậy, khi quay lui về người thứ 1, có thể thu được tất cả các nghiệm khả thi.
 
-Kiểm tra một phương án phân công thực chất là kiểm tra rằng, khi thu được nghiệm khả thi, các chỉ số theo chiều thứ nhất của mảng hai chiều đôi một khác nhau và các chỉ số theo chiều thứ hai cũng đôi một khác nhau. Mục tiêu của ta là tổng thời gian nhỏ nhất để hoàn thành $n$ công việc, tức nghiệm khả thi có tổng thời gian nhỏ nhất. Vì vậy cần định nghĩa thêm một biến toàn cục `cost_time_total_min` để biểu diễn tổng thời gian nhỏ nhất trong các nghiệm đã tìm được. Giá trị ban đầu của `cost_time_total_min` là tổng các `time[i][i]`, tức tổng thời gian của các công việc trên đường chéo chính. Khi tất cả mọi người đã được phân việc, so sánh `count` với `cost_time_total_min`; nếu `count` nhỏ hơn `cost_time_total_min`, nghĩa là đã tìm thấy một nghiệm tốt hơn, khi đó gán `count` cho `cost_time_total_min`.
+Kiểm tra một phương án phân công thực chất là kiểm tra rằng, khi thu được nghiệm khả thi, các chỉ số theo chiều thứ nhất của mảng hai chiều đôi một khác nhau và các chỉ số theo chiều thứ hai cũng đôi một khác nhau. Mục tiêu là tổng thời gian nhỏ nhất để hoàn thành $n$ công việc, tức nghiệm khả thi có tổng thời gian nhỏ nhất. Vì vậy cần định nghĩa thêm một biến toàn cục `cost_time_total_min` để biểu diễn tổng thời gian nhỏ nhất trong các nghiệm đã tìm được. Giá trị ban đầu của `cost_time_total_min` là tổng các `time[i][i]`, tức tổng thời gian của các công việc trên đường chéo chính. Khi tất cả mọi người đã được phân việc, so sánh `count` với `cost_time_total_min`; nếu `count` nhỏ hơn `cost_time_total_min`, nghĩa là đã tìm thấy một nghiệm tốt hơn, khi đó gán `count` cho `cost_time_total_min`.
 
-Tuy nhiên, xét về hiệu suất thuật toán, ở đây vẫn còn một việc cắt tỉa cần làm. Mỗi khi tính biến chi phí cục bộ `count`, nếu thấy `count` đã lớn hơn `cost_time_total_min`, thì không cần tiếp tục phân công xuống nữa, vì nghiệm thu được khi đó chắc chắn không phải là nghiệm tối ưu.
+Tuy nhiên, xét về hiệu suất thuật toán, vẫn còn một việc cắt tỉa cần làm. Mỗi khi tính biến chi phí cục bộ `count`, nếu thấy `count` đã lớn hơn `cost_time_total_min`, thì không cần tiếp tục phân công xuống nữa, vì nghiệm thu được khi đó không thể là nghiệm tối ưu.
 
 ??? note "Mã tham khảo"
     ```cpp

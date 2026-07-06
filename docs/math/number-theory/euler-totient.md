@@ -7,14 +7,14 @@ Hàm Euler (Euler's totient function), tức $\varphi(n)$, biểu thị số lư
 
 Ví dụ $\varphi(1) = 1$.
 
-Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
+Khi $n$ là số nguyên tố, $\varphi(n) = n - 1$.
 
 <span id="tính-chất"></span>
 ## Tính chất
 
 -   Hàm Euler là [hàm nhân tính](./basic.md#hàm-nhân-tính).
 
-    Tức với mọi số nguyên $a,b$ thỏa $\gcd(a, b) = 1$, ta có $\varphi(ab) = \varphi(a)\varphi(b)$.
+    Tức với mọi số nguyên $a,b$ thỏa $\gcd(a, b) = 1$, có $\varphi(ab) = \varphi(a)\varphi(b)$.
 
     Đặc biệt, khi $n$ là số lẻ, $\varphi(2n) = \varphi(n)$.
 
@@ -29,12 +29,12 @@ Khi $n$ là số nguyên tố, hiển nhiên $\varphi(n) = n - 1$.
         
         Nếu đặt $f(x)$ là số lượng số thỏa $\gcd(k, n) = x$, thì $n = \sum_{i = 1}^n{f(i)}$.
         
-        Theo chứng minh trên, $f(x) = \varphi(\dfrac{n}{x})$, nên $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$. Chú ý rằng ước $d$ và $\dfrac{n}{d}$ có tính đối xứng, do đó công thức trở thành $n = \sum_{d \mid n}\varphi(d)$.
+        Theo chứng minh trên, $f(x) = \varphi(\dfrac{n}{x})$, nên $n = \sum_{d \mid n}\varphi(\dfrac{n}{d})$. Lưu ý rằng ước $d$ và $\dfrac{n}{d}$ có tính đối xứng, do đó công thức trở thành $n = \sum_{d \mid n}\varphi(d)$.
 
 -   Nếu $n = p^k$, trong đó $p$ là số nguyên tố, thì $\varphi(n) = p^k - p^{k - 1}$.
     (Suy ra trực tiếp từ định nghĩa.)
 
--   Theo định lý phân tích duy nhất, đặt $n = \prod_{i=1}^{s}p_i^{k_i}$, trong đó $p_i$ là số nguyên tố, ta có $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$.
+-   Theo định lý phân tích duy nhất, đặt $n = \prod_{i=1}^{s}p_i^{k_i}$, trong đó $p_i$ là số nguyên tố, có $\varphi(n) = n \times \prod_{i = 1}^s{\dfrac{p_i - 1}{p_i}}$.
 
     ???+ note "Chứng minh"
         -   Bổ đề: với mọi số nguyên tố $p$, $\varphi(p^k)=p^{k-1}\times(p-1)$.
@@ -111,7 +111,7 @@ $$
 n=\sum_{d|n}\varphi(d),
 $$
 
-ta có
+suy ra
 
 $$
 \gcd(a,b) = \sum_{d|\gcd(a,b)}\varphi(d) = \sum_d [d|a][d|b]\varphi(d),
@@ -123,12 +123,12 @@ $$
 \sum_{i=1}^n\gcd(i,n)=\sum_{d}\sum_{i=1}^n[d|i][d|n]\varphi(d)=\sum_d\left\lfloor\frac{n}{d}\right\rfloor[d|n]\varphi(d)=\sum_{d|n}\left\lfloor\frac{n}{d}\right\rfloor\varphi(d).
 $$
 
-Quan sát then chốt ở đây là $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$, tức số lượng $i$ trong khoảng từ $1$ đến $n$ chia hết cho $d$ là $\lfloor\frac{n}{d}\rfloor$.
+Quan sát then chốt là $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$, tức số lượng $i$ trong khoảng từ $1$ đến $n$ chia hết cho $d$ là $\lfloor\frac{n}{d}\rfloor$.
 
 Dùng công thức này, có thể duyệt các ước để tính tổng. Khi có nhiều truy vấn, có thể tiền xử lý tổng tiền tố của hàm Euler rồi dùng chia khối số học để trả lời.
 
 ???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
-    Cho $n\le 100000$, hãy tính
+    Cho $n\le 100000$, cần tính
     
     $$
     \sum_{i=1}^n\sum_{j=1}^n\gcd(i,j).
@@ -182,4 +182,4 @@ Chứng minh và bài tập xem tại [định lý Euler](./fermat.md).
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
-[^1]: Cách gọi này chưa thấy xuất hiện trong tạp chí học thuật hoặc diễn đàn nước ngoài; cần chú ý khi sử dụng.
+[^1]: Cách gọi này chưa thấy xuất hiện trong tạp chí học thuật hoặc diễn đàn nước ngoài; cần lưu ý khi sử dụng.

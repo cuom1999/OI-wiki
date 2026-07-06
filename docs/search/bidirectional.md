@@ -11,7 +11,7 @@ thời hai chiều" và "gặp nhau ở giữa".
 [DFS](./dfs.md) đồng thời từ trạng thái bắt đầu và trạng thái kết thúc trên đồ
 thị trạng thái.
 
-Nếu phát hiện hai đầu tìm kiếm gặp nhau, ta có thể xem như đã tìm được một lời
+Nếu phát hiện hai đầu tìm kiếm gặp nhau, có thể xem như đã tìm được một lời
 giải khả thi.
 
 ### Quy trình
@@ -45,15 +45,15 @@ trong khi (hàng đợi q không rỗng)
     Trên bàn cờ còn một ô trống, biểu diễn bằng $0$. Các quân cờ xung quanh ô
     trống có thể di chuyển vào ô trống. Bài toán yêu cầu: cho một bố cục ban
     đầu và một bố cục mục tiêu (để đơn giản, đặt trạng thái mục tiêu là
-    $123804765$), hãy tìm cách di chuyển với số bước ít nhất để chuyển từ bố cục
+    $123804765$), cần tìm cách di chuyển với số bước ít nhất để chuyển từ bố cục
     ban đầu sang bố cục mục tiêu.
 
 ??? note "Ý tưởng giải"
-    Dễ nghĩ đến BFS vét cạn. Bài này dùng BFS vét cạn cũng không quá thời gian,
-    nhưng ở đây dùng nó làm ví dụ cho tìm kiếm đồng thời hai chiều. Ta có thể
+    Một cách trực tiếp là BFS vét cạn. Bài này dùng BFS vét cạn cũng không quá thời gian,
+    nhưng phần này dùng nó làm ví dụ cho tìm kiếm đồng thời hai chiều. Có thể
     dùng hai BFS: một BFS tìm xuôi từ trạng thái bắt đầu, một BFS tìm ngược từ
     trạng thái kết thúc, rồi luân phiên dùng hai BFS. Kích thước cây tìm kiếm sẽ
-    giảm rất nhiều. Khi một BFS tìm ra trạng thái mà BFS kia đã tìm được, ta có
+    giảm rất nhiều. Khi một BFS tìm ra trạng thái mà BFS kia đã tìm được, sẽ thu được
     đáp án.
 
 ??? note "Mã tham khảo"
@@ -98,7 +98,7 @@ $O(a^{b/2})$.
 
 ??? note "Ý tưởng giải"
     Nếu dùng DFS vét cạn để tìm trạng thái bật/tắt công tắc, độ phức tạp là
-    $O(2^{n})$, rõ ràng quá thời gian. Nhưng dùng gặp nhau ở giữa thì có thể
+    $O(2^{n})$, dẫn đến quá thời gian. Nhưng dùng gặp nhau ở giữa thì có thể
     tối ưu còn $O(n2^{n/2})$. Cụ thể, trước hết tìm một nửa trạng thái, tức tìm
     mọi trạng thái có thể đạt được chỉ bằng các công tắc đánh số từ $1$ đến
     $\mathrm{mid}$; sau đó tìm mọi trạng thái có thể đạt được bằng nửa công tắc

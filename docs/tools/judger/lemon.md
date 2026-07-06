@@ -28,7 +28,7 @@ cd lemon
 sudo install -Dm755 -t /usr/bin/ Lemon
 ```
 
-Nếu muốn biên dịch LemonLime, hãy tham khảo [sổ tay biên dịch](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md) của LemonLime.
+Nếu cần biên dịch LemonLime, tham khảo [sổ tay biên dịch](https://github.com/Project-LemonLime/Project_LemonLime/blob/master/BUILD.md) của LemonLime.
 
 ### Định dạng dữ liệu
 

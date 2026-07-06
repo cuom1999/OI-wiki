@@ -1,6 +1,6 @@
 Mo hai chiều, đúng như tên gọi, là biến thể trong đó mỗi trạng thái có bốn hướng để mở rộng.
 
-Trong Mo hai chiều, mỗi lần di chuyển con trỏ cần thao tác trên một hàng hoặc một cột các số. Cách hiện thực cụ thể tương tự Mo một chiều thông thường, nên không nhắc lại ở đây. Phần này tập trung vào cách chọn độ dài khối.
+Trong Mo hai chiều, mỗi lần di chuyển con trỏ cần thao tác trên một hàng hoặc một cột các số. Cách hiện thực cụ thể tương tự Mo một chiều thông thường, nên phần này không nhắc lại mà tập trung vào cách chọn độ dài khối.
 
 ## Chọn độ dài khối
 
@@ -36,11 +36,11 @@ Cuối cùng, độ phức tạp thời gian của phần tính toán là $\Thet
 
     Giới hạn dữ liệu: $1\leq n\leq 500$, $1\leq q\leq 6\times 10^4$, $0\leq a_{i,j}\leq 10^9$.
 
-Trước hết, giống bài trước, cần rời rạc hóa toàn bộ ma trận. Tuy nhiên cần chú ý rằng trong bài này, ngoài việc chia khối theo giá trị, ta còn cần chia khối theo miền giá trị để tìm được đáp án.
+Trước hết, giống bài trước, cần rời rạc hóa toàn bộ ma trận. Tuy nhiên, trong bài này, ngoài việc chia khối theo giá trị, cần chia khối theo miền giá trị để tìm được đáp án.
 
-Ở đây còn cần dùng sắp xếp chẵn lẻ để tối ưu; xem chi tiết tại [thuật toán Mo thông thường](../misc/mo-algo.md#tối-ưu-mo-thông-thường).
+Phần này còn cần dùng sắp xếp chẵn lẻ để tối ưu; xem chi tiết tại [thuật toán Mo thông thường](../misc/mo-algo.md#tối-ưu-mo-thông-thường).
 
-Với bài này, giới hạn thời gian không quá rộng, nên cần chú ý hằng số trong mã. Giá trị độ dài khối tính ra thường khá nhỏ; khi $n,\ q$ đều đạt cực đại, độ dài khối xấp xỉ $11$, vì vậy có thể đặt trực tiếp thành hằng số để giảm thời gian chạy của mã.
+Với bài này, giới hạn thời gian không quá rộng, nên cần kiểm soát hằng số trong mã. Giá trị độ dài khối tính ra thường khá nhỏ; khi $n,\ q$ đều đạt cực đại, độ dài khối xấp xỉ $11$, vì vậy có thể đặt trực tiếp thành hằng số để giảm thời gian chạy của mã.
 
 ??? note "Mã mẫu"
     ```cpp

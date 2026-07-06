@@ -32,13 +32,13 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, trình kiểm tra dữ liệu và trình kiểm tra đáp án.
 
-Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm bộ kiểm thử/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, và dĩ nhiên cũng có thể để trống.
+Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm bộ kiểm thử/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, hoặc để trống.
 
 Trong "Rev." ("Phiên bản"), "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản gói. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
 
-Trong "Edit session" ("Phiên chỉnh sửa"), "Start" ("Bắt đầu") nghĩa là tài khoản của bạn chưa từng xem bài này; "Continue (x) Discard" ("Tiếp tục (x) / Hủy bỏ") nghĩa là tài khoản của bạn đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" ("Hủy bỏ") sẽ hủy **không thể khôi phục** toàn bộ thay đổi của bạn và trở về trạng thái như chưa từng xem bài.
+Trong "Edit session" ("Phiên chỉnh sửa"), "Start" ("Bắt đầu") nghĩa là tài khoản hiện tại chưa từng xem bài này; "Continue (x) Discard" ("Tiếp tục (x) / Hủy bỏ") nghĩa là tài khoản hiện tại đang ở phiên bản thứ x của bài này. Nhấp "Start" hoặc "Continue (x)" sẽ đi vào giao diện quản lý bài; nhấp "Discard" ("Hủy bỏ") sẽ hủy **không thể khôi phục** toàn bộ thay đổi trong phiên và trở về trạng thái như chưa từng xem bài.
 
-Nếu tài khoản của bạn có thay đổi chưa ghi nhận (commit) trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
+Nếu tài khoản hiện tại có thay đổi chưa ghi nhận (commit) trong một bài, cả hàng tương ứng trong danh sách bài sẽ chuyển sang màu đỏ.
 
 ## Quản lý bài
 
@@ -57,13 +57,13 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 
 Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn bộ nhớ, loại bài, thẻ của bài và cuộc thi chứa bài.
 
-Ở cuối trang, "statement sketch" ("bản nháp đề bài") và "tutorial sketch" ("bản nháp hướng dẫn") cho phép chỉnh sửa **bản nháp** của đề bài và hướng dẫn. Chú ý rằng hai mục này sẽ không xuất hiện trong đề bài và hướng dẫn chính thức.
+Ở cuối trang, "statement sketch" ("bản nháp đề bài") và "tutorial sketch" ("bản nháp hướng dẫn") cho phép chỉnh sửa **bản nháp** của đề bài và hướng dẫn. Lưu ý rằng hai mục này sẽ không xuất hiện trong đề bài và hướng dẫn chính thức.
 
 ### Đề bài và hướng dẫn
 
 Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" ("Rà soát") để xem đề bài, trình kiểm tra dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
 
-Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ thực ra chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
+Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ trên thực tế chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
 
 Có thể dùng liên kết "In HTML" ("Dạng HTML") ở phía trên cùng để xem đề bài sau khi dựng HTML, và dùng "Tutorial in HTML" ("Hướng dẫn dạng HTML") để xem hướng dẫn sau khi dựng HTML.
 
@@ -81,13 +81,13 @@ Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces
 
 `testlib.h` cung cấp một số trình kiểm tra đáp án tích hợp sẵn; trong hộp chọn có giới thiệu ngắn gọn, và sau khi chọn cũng có thể nhấp "View source" ("Xem mã nguồn").
 
-Nếu cần tự viết trình kiểm tra đáp án, hãy tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
+Nếu cần tự viết trình kiểm tra đáp án, tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
 
 "Checker tests" ("Kiểm thử checker") bên dưới dùng "Add test" ("Thêm bộ kiểm thử") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy kiểm thử") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
 ### Trình tương tác
 
-Chỉ bài tương tác kiểu IO mới cần mục này; hãy tham khảo [hướng dẫn viết trình tương tác](./testlib/interactor.md).
+Chỉ bài tương tác kiểu IO mới cần mục này; tham khảo [hướng dẫn viết trình tương tác](./testlib/interactor.md).
 
 ### Trình kiểm tra dữ liệu
 
@@ -105,7 +105,7 @@ Trên Polygon, cách làm được khuyến nghị là dùng một số ít [tr�
 
 "Add Test" ("Thêm bộ kiểm thử") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
-Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu muốn chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, hãy nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
+Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu cần chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
 Phần dưới của trang "Tests" dùng để nhập kịch bản sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự bộ kiểm thử.
 
@@ -155,11 +155,11 @@ Quản lý quyền truy cập của bài.
 
 Cột đầu tiên sẽ hiển thị một số thông tin cơ bản. Nếu có chỗ nào không đúng quy chuẩn (ví dụ `tests` không chứa `pretests`, hoặc có bộ kiểm thử bị trùng), nó sẽ hiển thị màu vàng; đưa chuột lên đó sẽ thấy thông tin cụ thể.
 
-"View changes" ("Xem thay đổi") dùng để xem lịch sử thay đổi. Cần chú ý rằng "switch" ("chuyển") không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, điều này thực ra không có ý nghĩa, nên switch tương đương chỉ đọc.
+"View changes" ("Xem thay đổi") dùng để xem lịch sử thay đổi. Cần lưu ý rằng "switch" ("chuyển") không dùng để quay lại một phiên bản nào đó; nó chỉ có thể thực hiện sửa đổi không sinh xung đột trên cơ sở một phiên bản nào đó, thao tác này thực tế không có ý nghĩa, nên switch tương đương chỉ đọc.
 
 "Update Working Copy" ("Cập nhật bản làm việc") dùng để lấy cập nhật của người khác.
 
-"Commit Changes" ("Ghi nhận thay đổi") dùng để ghi nhận (commit) cập nhật của bạn.
+"Commit Changes" ("Ghi nhận thay đổi") dùng để ghi nhận (commit) cập nhật trong bản làm việc.
 
 Khi ghi nhận thay đổi, nếu có chỗ không đúng quy chuẩn hoặc cần cảnh báo, chúng sẽ được liệt kê ra.
 

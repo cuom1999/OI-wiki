@@ -11,7 +11,7 @@ $$
 
 được gọi là **phương trình đồng dư tuyến tính** (linear congruence equation).
 
-Giải phương trình đồng dư tuyến tính nghĩa là tìm toàn bộ nghiệm $x$ trong đoạn $[0,n-1]$. Tất nhiên, cộng hoặc trừ bội tùy ý của $n$ vào các nghiệm này vẫn cho nghiệm của phương trình. Theo modulo $n$, đó là toàn bộ nghiệm của phương trình.
+Giải phương trình đồng dư tuyến tính nghĩa là tìm toàn bộ nghiệm $x$ trong đoạn $[0,n-1]$. Việc cộng hoặc trừ bội tùy ý của $n$ vào các nghiệm này vẫn cho nghiệm của phương trình. Theo modulo $n$, đó là toàn bộ nghiệm của phương trình.
 
 Bài viết này giới thiệu hai cách giải phương trình đồng dư tuyến tính, lần lượt dùng nghịch đảo và phương trình bất định. Trong trường hợp tổng quát, cả việc tính nghịch đảo lẫn giải phương trình bất định đều cần dùng [thuật toán Euclid mở rộng](./gcd.md#thuật-toán-euclid-mở-rộng), nên hai cách này về bản chất là nhất quán.
 
@@ -24,7 +24,7 @@ $$
 x \equiv ba^{-1} \pmod n.
 $$
 
-Tiếp theo xét trường hợp $a$ và $n$ không nguyên tố cùng nhau, tức $\gcd(a,n)=d>1$. Khi đó phương trình ban đầu chưa chắc có nghiệm. Ví dụ $2x\equiv 1\pmod 4$ không có nghiệm. Vì vậy cần xét hai trường hợp:
+Tiếp theo xét trường hợp $a$ và $n$ không nguyên tố cùng nhau, tức $\gcd(a,n)=d>1$. Khi đó phương trình ban đầu không nhất thiết có nghiệm. Ví dụ $2x\equiv 1\pmod 4$ không có nghiệm. Vì vậy cần xét hai trường hợp:
 
 -   Nếu $d$ không chia hết $b$, phương trình vô nghiệm. Với mọi $x$, vế trái $ax$ luôn là bội của $d$, nhưng vế phải $b$ không phải bội của $d$. Do đó chúng không thể chênh nhau một bội của $n$, vì mọi bội của $n$ cũng là bội của $d$. Vì vậy phương trình vô nghiệm.
 
@@ -36,7 +36,7 @@ Tiếp theo xét trường hợp $a$ và $n$ không nguyên tố cùng nhau, t�
 
     Trong đó $\gcd(a',n')=1$, tức $a'$ và $n'$ nguyên tố cùng nhau. Trường hợp này đã được giải ở trên, nên có thể dùng nghịch đảo để tìm một nghiệm $x'$.
 
-    Hiển nhiên $x'$ cũng là một nghiệm của phương trình ban đầu. Nhưng đây không phải nghiệm duy nhất của phương trình ban đầu. Vì toàn bộ nghiệm của phương trình đã chuyển đổi là
+    Suy ra $x'$ cũng là một nghiệm của phương trình ban đầu. Nhưng đây không phải nghiệm duy nhất của phương trình ban đầu. Vì toàn bộ nghiệm của phương trình đã chuyển đổi là
 
     $$
     \{x' + kn' : k\in\mathbf Z\}.

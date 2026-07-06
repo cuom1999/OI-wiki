@@ -55,7 +55,7 @@ Trong `day<x>`, `<x>` là số hiệu buổi thi; `<contestant_x's ID>` là mã 
 ...
 ```
 
-Trong đó, `<contestant_x's name>` biểu thị tên thí sinh. Hãy lưu tệp này dưới dạng tệp văn bản thuần hoặc tệp CSV; có thể dùng mã hóa `UTF-8`.
+Trong đó, `<contestant_x's name>` biểu thị tên thí sinh. Lưu tệp này dưới dạng tệp văn bản thuần hoặc tệp CSV; có thể dùng mã hóa `UTF-8`.
 
 Cũng có thể thêm danh sách thí sinh thủ công sau khi khởi động Arbiter.
 
@@ -89,7 +89,7 @@ Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nh�
 
 Nhấn "Tệp" - "Lưu". Không được bỏ qua thao tác này, nếu không chương trình sẽ không sinh tệp cấu hình bài. Lưu ý mỗi lần sửa cấu hình bài đều phải lưu lại.
 
-Lúc này, mở thư mục kỳ thi, ta sẽ thấy các nội dung sau.
+Lúc này, mở thư mục kỳ thi sẽ thấy các nội dung sau.
 
 ```text
 <name>/
@@ -140,13 +140,13 @@ Trong phần cấu hình bài của quản lý bài, đổi phương thức nộ
 
 ### Lưu ý
 
-Các điểm đã xác nhận cần chú ý:
+Các điểm đã xác nhận cần lưu ý:
 
--   Cần chú ý lưu kỳ thi kịp thời, nếu không khi thao tác có thể bị thoát đột ngột. Để tránh bị thoát, có thể thử lưu kỳ thi nhiều lần, hoặc lưu ngay sau mỗi lần sửa.
+-   Cần lưu kỳ thi kịp thời, nếu không khi thao tác có thể bị thoát đột ngột. Để tránh bị thoát, có thể thử lưu kỳ thi nhiều lần, hoặc lưu ngay sau mỗi lần sửa.
 -   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
 -   Do giới hạn ngăn xếp (stack) khi chạy trên Linux, nếu muốn mở ngăn xếp không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
 -   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter trực tiếp, tiến trình cha là GNOME, và tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
--   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời trong tệp kết quả sinh ra có thể thấy thông báo `Compile Failed.` (`Biên dịch thất bại.`).
+-   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời tệp kết quả sinh ra sẽ có thông báo `Compile Failed.` (`Biên dịch thất bại.`).
 -   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 
 Các điểm còn nghi ngờ:
@@ -154,7 +154,7 @@ Các điểm còn nghi ngờ:
 -   Rất dễ treo máy; chẳng hạn khi chấm số lượng lớn, di chuyển chuột có thể gây treo máy.
 -   Thỉnh thoảng thoát đột ngột (một phần nguyên nhân là không lưu kỳ thi kịp thời).
 -   Sau khi sửa cách so sánh, có xác suất sửa thất bại, tức cách so sánh sau khi sửa không được áp dụng.
--   Khi cấu hình cần chú ý vấn đề quyền, nhưng nếu bảo đảm dùng cùng một người dùng để tạo kỳ thi, sao chép dữ liệu và chấm thì sẽ không xuất hiện vấn đề quyền.
+-   Khi cấu hình cần lưu ý vấn đề quyền, nhưng nếu bảo đảm dùng cùng một người dùng để tạo kỳ thi, sao chép dữ liệu và chấm thì sẽ không xuất hiện vấn đề quyền.
 
 ### Lỗ hổng
 
@@ -185,7 +185,7 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     sudo apt install rename
     ```
     
-    Ghi chú: nếu sau khi chạy xuất hiện thông báo `E: Unable to locate package package_name`, bạn cần chạy lệnh này trước: `sudo apt-get update`.
+    Ghi chú: nếu sau khi chạy xuất hiện thông báo `E: Unable to locate package package_name`, cần chạy lệnh này trước: `sudo apt-get update`.
     
     Sau khi cài đặt xong, có thể dùng `rename` bình thường. Cách dùng `rename` tương tự thay thế văn bản trực tiếp; cú pháp trong môi trường NOI Linux 2.0 như sau:
     
@@ -205,9 +205,9 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     
     Trong đó, `\.` biểu thị escape ký tự `.`.
     
-    Gợi ý: nếu thiếu `\.`, giả sử trong tệp của bạn có một tệp tên `outtest.out`, sau khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
+    Gợi ý: nếu thiếu `\.`, giả sử trong thư mục có một tệp tên `outtest.out`, sau khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
     
-    Tương tự, nếu bạn cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu bộ kiểm thử) thành `test<x>.ans`, có thể viết như sau:
+    Tương tự, nếu cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu bộ kiểm thử) thành `test<x>.ans`, có thể viết như sau:
     
     ```shell
     rename 's/atmost/test/' *.ans
