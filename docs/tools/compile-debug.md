@@ -1,22 +1,22 @@
 author: CoelacanthusHex, qinyihao, StudyingFather, ksyx, NachtgeistW, CoderOJ, Enter-tainer, mcendu, Tiphereth-A, ayalhw, CCXXXI, Early0v0, HeRaNO, ouuan, swiftqwq, Xeonacid, xiaofu-15191
 
-Trước khi đọc mục này, hãy cài GCC và GDB trước; cách cài đặt cụ thể xem trong bài [trình biên dịch](compiler.md).
+Trước khi đọc mục này, cần cài đặt GCC và GDB; cách cài đặt cụ thể xem trong bài [trình biên dịch](compiler.md).
 
 ## Dùng g++ trên dòng lệnh để biên dịch tệp cpp
 
 ### Biên dịch thủ công
 
-Nhập `g++ a.cpp` trong dòng lệnh là có thể biên dịch tệp `a.cpp` (trên Windows cần thêm trước thư mục chứa trình biên dịch vào `PATH`).
+Nhập `g++ a.cpp` trong dòng lệnh để biên dịch tệp `a.cpp` (trên Windows cần thêm thư mục chứa trình biên dịch vào `PATH` trước).
 
 Có thể thêm một số tùy chọn biên dịch trong quá trình biên dịch:
 
 -   `-o <tên tệp>`: chỉ định tên tệp thực thi mà trình biên dịch xuất ra.
 -   `-g`: thêm thông tin gỡ lỗi khi biên dịch (cần khi dùng GDB để gỡ lỗi).
 -   `-Wall`: hiển thị toàn bộ thông tin cảnh báo khi biên dịch.
--   `-O1`, `-O2`, `-O3`, `-Ofast`: tối ưu hóa chương trình được biên dịch; mức càng về sau biểu thị càng dùng nhiều biện pháp tối ưu hơn (bật tối ưu hóa sẽ ảnh hưởng đến việc gỡ lỗi bằng GDB).
+-   `-O1`, `-O2`, `-O3`, `-Ofast`: tối ưu hóa chương trình được biên dịch; mức càng cao thì áp dụng càng nhiều biện pháp tối ưu hơn (bật tối ưu hóa sẽ ảnh hưởng đến việc gỡ lỗi bằng GDB).
 -   `-DDEBUG`: định nghĩa ký hiệu `DEBUG` khi biên dịch (ký hiệu có thể thay tùy ý; ví dụ `-DONLINE_JUDGE` định nghĩa ký hiệu `ONLINE_JUDGE`).
 -   `-UDEBUG`: hủy định nghĩa ký hiệu `DEBUG` khi biên dịch.
--   `-lm`, `-lgmp`: liên kết một thư viện nào đó (ở đây là math và gmp; tên cụ thể cần dùng phải tra tài liệu của thư viện, nhưng thường giống tên thư viện).
+-   `-lm`, `-lgmp`: liên kết một thư viện cụ thể (trong ví dụ này là math và gmp; tên cần dùng nên tra theo tài liệu của thư viện, nhưng thường giống tên thư viện).
 
 ???+ note "Ghi chú"
     Trên Unix, nếu dùng thư viện math trong thư viện C chuẩn (`math.h`), cần thêm tham số `-lm` khi biên dịch.[^have-to-link-libm-in-gcc]
@@ -24,21 +24,21 @@ Có thể thêm một số tùy chọn biên dịch trong quá trình biên dị
 ???+ note "Làm thế nào để tăng kích thước ngăn xếp?"
     Trên Windows, có thể dùng tùy chọn biên dịch `-Wl,--stack=536870912` để tăng ngăn xếp lên 512 MB; số sau dấu bằng là **số byte**.
 
-    Trên Unix, dùng `ulimit -s [num]` để đặt ngăn xếp của **trình dòng lệnh hiện tại** thành `[num]` **KiB**.
+    Trên Unix, dùng `ulimit -s [num]` để đặt ngăn xếp của **trình bao hiện tại** thành `[num]` **KiB**.
 
 ### Dùng quy tắc tích hợp của GNU Make[^gnu-make-built-in-rules]
 
 Với mã nguồn C/C++ tên `qwq.c/cpp`, có thể dùng `make qwq` để tự động biên dịch thành chương trình tương ứng tên `qwq`.
 
-Nếu cần thêm tùy chọn biên dịch, có thể dùng `export CFLAGS="xxx"` (chương trình C) hoặc `export CXXFLAGS="xxx"` (chương trình C++) để chỉ định. Nếu cần thêm tùy chọn tiền xử lý, có thể dùng `export CPPFLAGS="xxx"` để chỉ định. Các thiết lập trên cũng có thể viết dưới dạng như `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` để chỉ định biến môi trường dùng trong một lần chạy lệnh.
+Nếu cần thêm tùy chọn biên dịch, có thể dùng `export CFLAGS="xxx"` (chương trình C) hoặc `export CXXFLAGS="xxx"` (chương trình C++) để chỉ định. Nếu cần thêm tùy chọn tiền xử lý, có thể dùng `export CPPFLAGS="xxx"` để chỉ định. Các thiết lập trên cũng có thể viết dưới dạng `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` để chỉ định biến môi trường cho một lần chạy lệnh.
 
 ### Công cụ sanitizer
 
 #### Giới thiệu
 
-Sanitizer là một loại công cụ được tích hợp trong trình biên dịch để gỡ lỗi mã C/C++. Công cụ này chèn mã kiểm tra trong quá trình biên dịch để phát hiện các lỗi khi chạy như truy cập bộ nhớ vượt biên, hành vi không xác định, v.v.
+Sanitizer là nhóm công cụ được tích hợp trong trình biên dịch để gỡ lỗi mã C/C++. Các công cụ này chèn mã kiểm tra trong quá trình biên dịch để phát hiện các lỗi khi chạy như truy cập bộ nhớ vượt biên, hành vi không xác định, v.v.
 
-Nó được chia thành các loại sau:
+Sanitizer được chia thành các loại sau:
 
 -   AddressSanitizer[^address-sanitizer]: phát hiện truy cập vượt biên trên heap, ngăn xếp và biến toàn cục, giải phóng bộ nhớ không hợp lệ, rò rỉ bộ nhớ (thử nghiệm).
 -   ThreadSanitizer[^thread-sanitizer]: phát hiện tranh chấp dữ liệu trong đa luồng.
@@ -47,20 +47,20 @@ Nó được chia thành các loại sau:
 
 #### Cách sử dụng
 
-Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizer, nhưng chức năng và cách dùng có khác nhau. Ở đây lấy clang++ làm ví dụ; cách dùng như sau:
+Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizer, nhưng chức năng và cách dùng có khác nhau. Phần này lấy clang++ làm ví dụ; cách dùng như sau:
 
 ```console
 $ clang++ -fsanitize=<name> test.cc
 ```
 
-Trong đó `<name>` là chức năng cần bật (có thể hiểu một sanitizer là một tập hợp chức năng), ví dụ:
+Trong đó `<name>` là chức năng cần bật (có thể hiểu mỗi sanitizer là một tập hợp chức năng), ví dụ:
 
 ```console
 $ clang++ -fsanitize=memory test.cc # Bật MemorySanitizer
 $ clang++ -fsanitize=signed-integer-overflow test.cc # Bật kiểm tra tràn số nguyên có dấu
 ```
 
-Sau đó chỉ cần chạy tệp thực thi như bình thường. Nếu sanitizer phát hiện lỗi, nó sẽ xuất thông tin ra luồng `stderr`, ví dụ:
+Sau đó chạy tệp thực thi như bình thường. Nếu sanitizer phát hiện lỗi, nó sẽ xuất thông tin ra luồng `stderr`, ví dụ:
 
 ```console
 $ ./a.out
@@ -74,7 +74,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 
 #### Chi phí thời gian/bộ nhớ
 
-Hiển nhiên, các công cụ gỡ lỗi này sẽ làm chương trình chạy chậm hơn đáng kể và tăng lượng bộ nhớ sử dụng. Bảng dưới đây là chi phí thời gian/bộ nhớ khi dùng chúng:
+Các công cụ gỡ lỗi này sẽ làm chương trình chạy chậm hơn đáng kể và tăng lượng bộ nhớ sử dụng. Bảng dưới đây là chi phí thời gian/bộ nhớ khi dùng chúng:
 
 | Tên | Hệ số tăng bộ nhớ | Hệ số tăng thời gian |
 | :-- | :---------------- | :------------------- |
@@ -103,7 +103,7 @@ Find the GDB manual and other documentation resources online at:
 --Type <RET> for more, q to quit, c to continue without paging--
 ```
 
-Nhấn `c` để tiếp tục. Sau đó sẽ hiện thông báo `Reading symbols from [filename]...`; khi xuất hiện `(gdb)`, bạn có thể nhập lệnh để gỡ lỗi.
+Nhấn `c` để tiếp tục. Sau đó sẽ hiện thông báo `Reading symbols from [filename]...`; khi xuất hiện `(gdb)`, có thể nhập lệnh để gỡ lỗi.
 
 Dưới đây là các lệnh thường dùng được liệt kê theo phân loại:
 
@@ -133,12 +133,12 @@ Dưới đây là các lệnh thường dùng được liệt kê theo phân lo�
 | `enable [id]` | Bật điểm dừng có số chỉ định |
 | `list` | Liệt kê mã nguồn, tiếp tục từ vị trí trước đó; mỗi lần liệt kê 10 dòng |
 | `list [num]` | Liệt kê mã nguồn với dòng `[num]` ở giữa |
-| `list [func-name]` | Liệt kê mã nguồn với một hàm nào đó ở giữa |
+| `list [func-name]` | Liệt kê mã nguồn với hàm tương ứng ở giữa |
 | `call [function]` | Gọi hàm và in giá trị trả về |
 
 `break [num]` sẽ xuất ra số hiệu của điểm dừng; cũng có thể dùng `break [func-name]` để đặt điểm dừng tại hàm.
 
-Bạn cũng có thể dùng `break [num] [p]` khi đặt điểm dừng để đạt hiệu quả gần giống `condition [id] [p]`.
+Cũng có thể dùng `break [num] [p]` khi đặt điểm dừng để có tác dụng gần giống `condition [id] [p]`.
 
 ### Lệnh khung ngăn xếp
 

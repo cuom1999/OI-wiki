@@ -46,7 +46,7 @@ Trước dấu `>`, `$` hoặc `#` trên dòng lệnh sẽ hiển thị một đ
 
 ### Liên quan đến hệ thống tệp
 
-Trước hết, ta giới thiệu hai cách mô tả vị trí trong hệ thống tệp: đường dẫn tương đối và đường dẫn tuyệt đối.
+Trước hết cần phân biệt hai cách mô tả vị trí trong hệ thống tệp: đường dẫn tương đối và đường dẫn tuyệt đối.
 
 -   Đường dẫn tương đối: mô tả vị trí bằng quan hệ so với đường dẫn hiện tại. Ví dụ, nếu đường dẫn hiện tại là `~/folder`, thì `./a.cpp` thực chất chỉ tệp `~/folder/a.cpp`. **Khi đường dẫn hiện tại thay đổi, vị trí mà đường dẫn tương đối mô tả cũng có thể thay đổi**.
 
@@ -59,7 +59,7 @@ Trên Unix, lệnh `pwd` có thể in ra thư mục hiện tại (trong Windows 
 ???+ note "Ghi chú riêng cho Windows Command Prompt"
     Trong Windows Command Prompt không có lệnh `pwd`, nhưng có thể dùng lệnh `cd` không kèm tham số để thay thế gần đúng.
 
-    Đồng thời, cần chú ý rằng khi dùng lệnh `cd` trong Windows Command Prompt để chuyển thư mục, nếu **ký tự ổ đĩa của thư mục cần chuyển tới khác với ký tự ổ đĩa của thư mục hiện tại**, thì thư mục hiện tại sẽ không đổi. Bạn có thể gõ thêm một lần ký tự ổ đĩa của đường dẫn cần chuyển tới, hoặc dùng lệnh `cd /d <thư mục>` để chuyển ổ đĩa cùng lúc. Hai cách tương ứng có giao diện dòng lệnh như sau:
+    Đồng thời, cần lưu ý rằng khi dùng lệnh `cd` trong Windows Command Prompt để chuyển thư mục, nếu **ký tự ổ đĩa của thư mục cần chuyển tới khác với ký tự ổ đĩa của thư mục hiện tại**, thì thư mục hiện tại sẽ không đổi. Có thể gõ thêm một lần ký tự ổ đĩa của đường dẫn cần chuyển tới, hoặc dùng lệnh `cd /d <thư mục>` để chuyển ổ đĩa cùng lúc. Hai cách tương ứng có giao diện dòng lệnh như sau:
 
     ```doscon
     C:\Users\Libaray>cd D:\Codes
@@ -74,7 +74,7 @@ Trên Unix, lệnh `pwd` có thể in ra thư mục hiện tại (trong Windows 
 
 Trên Windows, dùng lệnh `dir` để liệt kê danh sách tệp trong thư mục hiện tại. Trên Unix, lệnh liệt kê danh sách tệp là `ls`. Riêng trong PowerShell, cũng có thể dùng lệnh `ls` giống Unix.
 
-Trên Windows, dùng lệnh `md <thư mục>` hoặc `mkdir <thư mục>` để tạo một thư mục mới, dùng lệnh `rd <thư mục>` hoặc `rmdir <thư mục>` để xóa một thư mục. Trên Unix, hai lệnh tương ứng là `mkdir` và `rmdir`. Cần chú ý rằng **trước khi dùng `rd` hoặc `rmdir` để xóa một thư mục, thư mục đó phải rỗng**. Nếu muốn xóa thư mục không rỗng (cùng toàn bộ tệp bên trong), trên Unix có thể chạy lệnh `rm -r <thư mục>`, còn trên Windows có thể chạy lệnh `rd /s <thư mục>`.
+Trên Windows, dùng lệnh `md <thư mục>` hoặc `mkdir <thư mục>` để tạo một thư mục mới, dùng lệnh `rd <thư mục>` hoặc `rmdir <thư mục>` để xóa một thư mục. Trên Unix, hai lệnh tương ứng là `mkdir` và `rmdir`. Cần lưu ý rằng **trước khi dùng `rd` hoặc `rmdir` để xóa một thư mục, thư mục đó phải rỗng**. Nếu muốn xóa thư mục không rỗng (cùng toàn bộ tệp bên trong), trên Unix có thể chạy lệnh `rm -r <thư mục>`, còn trên Windows có thể chạy lệnh `rd /s <thư mục>`.
 
 ### Cơ chế chuyển hướng
 
@@ -89,7 +89,7 @@ $ command < input > output
 Ví dụ, lệnh `./prog < 1.in > 1.out` sẽ làm cho chương trình `prog` đọc dữ liệu từ `1.in` trong thư mục hiện tại, đồng thời ghi đè kết quả xuất của chương trình vào `1.out`.
 
 ???+ warning "Cảnh báo"
-    Nội dung ban đầu của `1.out` sẽ bị ghi đè. Nếu muốn ghi nối vào cuối tệp xuất ban đầu, hãy dùng `>>`, tức là chuyển hướng xuất theo dạng `./prog >> 1.out`.
+    Nội dung ban đầu của `1.out` sẽ bị ghi đè. Nếu muốn ghi nối vào cuối tệp xuất ban đầu, dùng `>>`, tức là chuyển hướng xuất theo dạng `./prog >> 1.out`.
 
 Lưu ý rằng PowerShell chỉ hỗ trợ chuyển hướng xuất, không hỗ trợ chuyển hướng nhập.
 
@@ -99,9 +99,9 @@ Trên thực tế, đa số OJ đều dùng cơ chế chuyển hướng như v�
 
 Với một chương trình thực thi hoặc một tập lệnh batch, chỉ cần nhập trực tiếp tên tệp của nó trong dòng lệnh là có thể chạy.
 
-Dĩ nhiên, khi thực thi một tệp, dòng lệnh sẽ không tìm qua tất cả thư mục. Biến môi trường `PATH` mô tả phạm vi đường dẫn tìm kiếm của dòng lệnh; dòng lệnh sẽ tìm tệp mục tiêu trong các đường dẫn thuộc `PATH`.
+Khi thực thi một tệp, dòng lệnh sẽ không tìm qua tất cả thư mục. Biến môi trường `PATH` mô tả phạm vi đường dẫn tìm kiếm của dòng lệnh; dòng lệnh sẽ tìm tệp mục tiêu trong các đường dẫn thuộc `PATH`.
 
-Đối với hệ thống Windows, **thư mục hiện tại cũng nằm trong phạm vi tìm kiếm mặc định của dòng lệnh**. Ví dụ, trong Windows, nhập lệnh `hello` có thể chạy `hello.exe` trong thư mục hiện tại. Tuy nhiên trong PowerShell, mặc định PowerShell không tìm chương trình thực thi trong thư mục hiện tại (điều này nhất quán với hành vi trên Unix), nên trong PowerShell cần dùng đường dẫn tương đối hoặc đường dẫn tuyệt đối để gọi chương trình thực thi trong thư mục hiện tại, chẳng hạn `.\hello.exe`; nếu không, bạn sẽ thấy lỗi sau:
+Đối với hệ thống Windows, **thư mục hiện tại cũng nằm trong phạm vi tìm kiếm mặc định của dòng lệnh**. Ví dụ, trong Windows, nhập lệnh `hello` có thể chạy `hello.exe` trong thư mục hiện tại. Tuy nhiên trong PowerShell, mặc định PowerShell không tìm chương trình thực thi trong thư mục hiện tại (điều này nhất quán với hành vi trên Unix), nên trong PowerShell cần dùng đường dẫn tương đối hoặc đường dẫn tuyệt đối để gọi chương trình thực thi trong thư mục hiện tại, chẳng hạn `.\hello.exe`; nếu không sẽ xuất hiện lỗi sau:
 
 ```ps1con
 PS> hello
@@ -184,19 +184,19 @@ Ngoài ra, trên hệ thống kiểu Unix còn có sổ tay (`manual`) có thể
 
 ### time tích hợp và GNU time
 
-Khi kiểm tra thời gian chạy của chương trình, ta thường có thể dùng lệnh `time`.
+Khi kiểm tra thời gian chạy của chương trình, thường có thể dùng lệnh `time`.
 
-Tuy nhiên, lệnh này thực ra có hai dạng tương ứng trong hệ thống: một dạng là lệnh tích hợp sẵn của một số shell (chẳng hạn Bash), dạng còn lại là GNU time (một phần mềm riêng). Hai dạng này có một số khác biệt.
+Tuy nhiên, lệnh này có hai dạng tương ứng trong hệ thống: một dạng là lệnh tích hợp sẵn của một số shell (chẳng hạn Bash), dạng còn lại là GNU time (một phần mềm riêng). Hai dạng này có một số khác biệt.
 
-Thông thường, khi dùng trực tiếp `time` trong Bash thì phiên bản được gọi là phiên bản tích hợp của Bash. Ta có thể dùng biến môi trường `TIMEFORMAT` để điều khiển định dạng xuất; ví dụ đặt nó thành `%3lR` để xuất thời gian chạy thực tế với độ chính xác ba chữ số, hoặc `%3lU` để xuất thời gian chạy trong không gian người dùng với độ chính xác ba chữ số.[^bash-time-format]
+Thông thường, khi dùng trực tiếp `time` trong Bash thì phiên bản được gọi là phiên bản tích hợp của Bash. Có thể dùng biến môi trường `TIMEFORMAT` để điều khiển định dạng xuất; ví dụ đặt nó thành `%3lR` để xuất thời gian chạy thực tế với độ chính xác ba chữ số, hoặc `%3lU` để xuất thời gian chạy trong không gian người dùng với độ chính xác ba chữ số.[^bash-time-format]
 
 Nếu muốn gọi phiên bản GNU của time, cần dùng `\time` hoặc `/usr/bin/time`; tuy nhiên định dạng xuất của nó không dễ đọc, nên có thể thêm tham số `-p` (tức `\time -p`) để nhận đầu ra dễ đọc.
 
 ## Ống dẫn
 
-Giả sử ta có hai chương trình A và B đều dùng đầu vào/đầu ra chuẩn. Làm thế nào để chuyển hướng đầu ra của A vào đầu vào của B?
+Giả sử có hai chương trình A và B đều dùng đầu vào/đầu ra chuẩn. Làm thế nào để chuyển hướng đầu ra của A vào đầu vào của B?
 
-Ta có thể dùng cách chuyển hướng đã nói ở trên: trước hết chuyển hướng đầu ra của A vào một tệp tạm, rồi chuyển hướng đầu vào của B vào tệp tạm đó.
+Có thể dùng cách chuyển hướng đã nói ở trên: trước hết chuyển hướng đầu ra của A vào một tệp tạm, rồi chuyển hướng đầu vào của B vào tệp tạm đó.
 
 Nhưng cách này rất kém hiệu quả: không chỉ phải tạo tệp mới, thao tác IO đĩa cũng có thể trở thành nút thắt, và hai chương trình không thể chạy đồng thời; phải chờ A chạy xong mới bắt đầu chạy B. Có cách nào tốt hơn không?
 
@@ -206,11 +206,11 @@ Có, đó chính là **ống dẫn**. Cách dùng rất đơn giản:
 $ A | B
 ```
 
-Lệnh này tạo một ống dẫn trong bộ nhớ, rồi khởi động hai chương trình cùng lúc. Mỗi lần chương trình A muốn xuất dữ liệu, dữ liệu đó được chuyển hướng vào ống dẫn; bản thân ống dẫn không lưu dữ liệu (thực ra có một bộ đệm rất nhỏ). Trước khi B đọc, thao tác xuất của A sẽ bị chặn; sau khi B đọc dữ liệu vào, thao tác xuất của A mới tiếp tục. Nhờ vậy, các vấn đề trên được giải quyết gọn gàng: không có thao tác IO đĩa, hai đoạn mã chạy đồng thời, và cũng không tốn thêm nhiều bộ nhớ để lưu kết quả trung gian.
+Lệnh này tạo một ống dẫn trong bộ nhớ, rồi khởi động hai chương trình cùng lúc. Mỗi lần chương trình A muốn xuất dữ liệu, dữ liệu đó được chuyển hướng vào ống dẫn; bản thân ống dẫn không lưu dữ liệu (chỉ có một bộ đệm rất nhỏ). Trước khi B đọc, thao tác xuất của A sẽ bị chặn; sau khi B đọc dữ liệu vào, thao tác xuất của A mới tiếp tục. Nhờ vậy, các vấn đề trên được giải quyết gọn gàng: không có thao tác IO đĩa, hai đoạn mã chạy đồng thời, và cũng không tốn thêm nhiều bộ nhớ để lưu kết quả trung gian.
 
 ### Ống dẫn có tên
 
-Đôi khi ta không chỉ cần chuyển hướng đầu ra của một chương trình vào đầu vào của chương trình khác. Ví dụ, khi làm bài tương tác IO, thường cần chuyển hướng đầu ra của A vào đầu vào của B, và chuyển hướng đầu ra của B vào đầu vào của A; khi đó ống dẫn thông thường nói ở trên không làm được. Còn chuyển hướng vào tệp lại không thể cho hai chương trình chạy đồng thời. Lúc này cần một ống dẫn trông giống như tệp: ống dẫn có tên.
+Đôi khi yêu cầu không chỉ là chuyển hướng đầu ra của một chương trình vào đầu vào của chương trình khác. Ví dụ, khi làm bài tương tác IO, thường cần chuyển hướng đầu ra của A vào đầu vào của B, và chuyển hướng đầu ra của B vào đầu vào của A; khi đó ống dẫn thông thường nói ở trên không làm được. Còn chuyển hướng vào tệp lại không thể cho hai chương trình chạy đồng thời. Lúc này cần một ống dẫn trông giống như tệp: ống dẫn có tên.
 
 Trong hệ thống Unix, có thể dùng lệnh sau để tạo ống dẫn có tên (ví dụ đặt tên là `my_pipe`):
 
@@ -218,13 +218,13 @@ Trong hệ thống Unix, có thể dùng lệnh sau để tạo ống dẫn có 
 $ mkfifo my_pipe
 ```
 
-Lúc này dùng lệnh `ls` để liệt kê tệp trong thư mục hiện tại, ta sẽ thấy xuất hiện thêm một tệp `my_pipe|`. Như vậy là đã tạo một ống dẫn có tên; dấu `|` sau tên tệp cho biết đây là tệp ống dẫn. Sau đó, ta có thể đọc ghi vào ống dẫn này giống như chuyển hướng tệp.
+Lúc này dùng lệnh `ls` để liệt kê tệp trong thư mục hiện tại sẽ thấy xuất hiện thêm một tệp `my_pipe|`. Như vậy là đã tạo một ống dẫn có tên; dấu `|` sau tên tệp cho biết đây là tệp ống dẫn. Sau đó, có thể đọc ghi vào ống dẫn này giống như chuyển hướng tệp.
 
-Với ống dẫn có tên, ta có thể cho hai chương trình tương tác theo cách sau:
+Với ống dẫn có tên, có thể cho hai chương trình tương tác theo cách sau:
 
 ```console
 $ mkfifo input output
-$ ./checker > input < output # Ở đây nhất định phải viết > input trước, nếu không shell sẽ mở ống dẫn output trước; hiện ống dẫn này chưa có gì, nên checker sẽ bị chặn.
+$ ./checker > input < output # Cần viết > input trước; nếu không shell sẽ mở ống dẫn output trước, khi ống dẫn này chưa có dữ liệu nên checker sẽ bị chặn.
 $ ./my_code < input > output
 ```
 
