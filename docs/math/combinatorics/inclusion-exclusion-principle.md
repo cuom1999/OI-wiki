@@ -15,7 +15,7 @@ $$
 
 ![Nguyên lý bao hàm-loại trừ - ví dụ biểu đồ Venn](./images/incexcp.png)
 
-Mở rộng bài toán trên ra trường hợp tổng quát, ta thu được nguyên lý bao hàm-loại trừ quen thuộc.
+Mở rộng bài toán trên ra trường hợp tổng quát sẽ thu được nguyên lý bao hàm-loại trừ quen thuộc.
 
 <span id="định-nghĩa"></span>
 
@@ -68,14 +68,14 @@ Vế phải lại dùng bao hàm-loại trừ.
 
 Độc giả đã từng tiếp xúc với bao hàm-loại trừ chắc đều nắm rõ phần trên, và quan tâm hơn đến ứng dụng của nó.
 
-Tiếp theo ta đưa ra 3 ví dụ ở các mức độ khác nhau để minh họa ứng dụng của nguyên lý bao hàm-loại trừ.
+Tiếp theo là 3 ví dụ ở các mức độ khác nhau để minh họa ứng dụng của nguyên lý bao hàm-loại trừ.
 
 <span id="đếm-nghiệm-nguyên-không-âm-của-phương-trình-bất-định"></span>
 
 ## Đếm nghiệm nguyên không âm của phương trình bất định
 
 ???+ note "Đếm nghiệm nguyên không âm của phương trình bất định"
-    Cho phương trình bất định $\sum_{i=1}^nx_i=m$ và $n$ điều kiện ràng buộc $x_i\leq b_i$, trong đó $m,b_i \in \mathbb{N}$. Hãy tính số nghiệm nguyên không âm của phương trình.
+    Cho phương trình bất định $\sum_{i=1}^nx_i=m$ và $n$ điều kiện ràng buộc $x_i\leq b_i$, trong đó $m,b_i \in \mathbb{N}$. Tính số nghiệm nguyên không âm của phương trình.
 
 <span id="khi-không-có-ràng-buộc"></span>
 
@@ -87,13 +87,13 @@ Chứng minh sơ lược: phương pháp thanh ngăn.
 
 Tương đương với việc có $m$ quả bóng cần chia vào $n$ hộp, cho phép hộp rỗng. Bài toán này không thể giải trực tiếp bằng số tổ hợp.
 
-Ta thêm $n-1$ quả bóng nữa; khi đó bài toán trở thành chọn $n-1$ quả bóng trong một dãy bóng độ dài $m+n-1$. $n-1$ quả bóng được chọn này chia dãy thành $n$ phần, tương ứng một-một với cách chia vào $n$ hộp. Vậy số cách chọn $n-1$ quả bóng trong $m+n-1$ quả là $\dbinom{m+n-1}{n-1}$.
+Thêm $n-1$ quả bóng nữa; khi đó bài toán trở thành chọn $n-1$ quả bóng trong một dãy bóng độ dài $m+n-1$. $n-1$ quả bóng được chọn này chia dãy thành $n$ phần, tương ứng một-một với cách chia vào $n$ hộp. Vậy số cách chọn $n-1$ quả bóng trong $m+n-1$ quả là $\dbinom{m+n-1}{n-1}$.
 
 <span id="mô-hình-bao-hàm-loại-trừ"></span>
 
 ### Mô hình bao hàm-loại trừ
 
-Tiếp theo ta thử trừu tượng hóa mô hình của nguyên lý bao hàm-loại trừ:
+Tiếp theo, thử trừu tượng hóa mô hình của nguyên lý bao hàm-loại trừ:
 
 1.  Tập vũ trụ $U$: các nghiệm nguyên không âm của phương trình bất định $\sum_{i=1}^nx_i=m$.
 2.  Phần tử: biến $x_i$.
@@ -105,7 +105,7 @@ Có thể tính bằng $\left|\bigcap_{i=1}^{n}S_i\right|=|U|-\left|\bigcup_{i=1
 
 Bài toán trở thành tính kích thước giao của một số $\overline{S_{a_i}}$. Ý nghĩa của $\overline{S_{a_i} }$ là số nghiệm thỏa $x_{a_i}\geq b_{a_i}+1$, và giao nghĩa là đồng thời thỏa các điều kiện này. Vì vậy phương trình bất định tương ứng với giao này có một số biến có **cận dưới**, còn các biến khác không bị ràng buộc.
 
-Có thể khử các cận dưới này không? Vì ta cần nghiệm nguyên không âm, mà cận dưới của một số biến lại lớn hơn $0$, ta chỉ cần **trừ đi cận dưới đó** để biến cận dưới của chúng thành $0$, tức không còn cận dưới. Do đó với
+Có thể khử các cận dưới này không? Vì cần nghiệm nguyên không âm, mà cận dưới của một số biến lại lớn hơn $0$, chỉ cần **trừ đi cận dưới đó** để biến cận dưới của chúng thành $0$, tức không còn cận dưới. Do đó với
 
 $$
 \left|\bigcap_{a_i<a_{i+1} }^{1\leq i\leq k}S_{a_i}\right|
@@ -130,7 +130,7 @@ Nên phần này cũng tính được bằng số tổ hợp. Mảng $a$ độ d
 
 Nếu dùng bài toán cái túi, độ phức tạp là $O(4nS)$, không chấp nhận được. Đặc điểm rõ nhất của bài này là chỉ có bốn loại xu. Trừu tượng hóa bài toán, thực chất là cần đếm số nghiệm nguyên không âm của $\sum_{i=1}^4C_ix_i=S,x_i\leq D_i$.
 
-Dùng cùng cách bao hàm-loại trừ, thuộc tính của $x_i$ là $x_i\leq D_i$. Áp dụng công thức bao hàm-loại trừ, cuối cùng ta cần giải
+Dùng cùng cách bao hàm-loại trừ, thuộc tính của $x_i$ là $x_i\leq D_i$. Áp dụng công thức bao hàm-loại trừ, cuối cùng cần giải
 
 $$
 \sum_{i=1}^4C_ix_i=S-\sum_{i=1}^kC_{a_i}(D_{a_i}+1)
@@ -156,7 +156,7 @@ Ba bài trên đều là ứng dụng thuận chiều của nguyên lý bao hàm
 
 ### Dạng toán học
 
-Nhìn qua bài này, hướng thuật toán không rõ ràng; với bài khó, trước hết nên trừu tượng hóa thành dạng toán học. Chênh lệch điểm là hiệu đối xứng chẵn lẻ, có thể dùng lũy thừa của $-1$ làm hệ số. Ta cần tính
+Nhìn qua bài này, hướng thuật toán chưa rõ; với bài khó, trước hết nên trừu tượng hóa thành dạng toán học. Chênh lệch điểm là hiệu đối xứng chẵn lẻ, có thể dùng lũy thừa của $-1$ làm hệ số. Cần tính
 
 $$
 Ans=\sum_{S\subseteq E}(-1)^{|S|-1}F(S)
@@ -166,7 +166,7 @@ $$
 
 ### Mô hình bao hàm-loại trừ
 
-"Hai đỉnh kề nhau phải có cùng một màu" được xem là một thuộc tính. Ở đây trước hết ta tạm không tuân theo quy tắc tô màu, giả định dùng trực tiếp $m$ màu để tô đồ thị. Với đồ thị $G'=(V,S)$, ta xem nó là **phần tử**. **Thuộc tính** $x_i=x_j$ có nghĩa là đỉnh $i,j$ cùng màu (lưu ý không yêu cầu giữa $i,j$ có cạnh).
+"Hai đỉnh kề nhau phải có cùng một màu" được xem là một thuộc tính. Trước hết tạm không tuân theo quy tắc tô màu, giả định dùng trực tiếp $m$ màu để tô đồ thị. Với đồ thị $G'=(V,S)$, xem nó là **phần tử**. **Thuộc tính** $x_i=x_j$ có nghĩa là đỉnh $i,j$ cùng màu (lưu ý không yêu cầu giữa $i,j$ có cạnh).
 
 Tập **tương ứng** với thuộc tính $x_i=x_j$ được định nghĩa là $Q_{i,j}$; ý nghĩa của nó là tất cả các phương án tô màu của đồ thị $G'$ thỏa thuộc tính này. Kích thước tập là số phương án tô màu thỏa thuộc tính, và phần tử trong tập tương ứng với các đồ thị đã tô màu thỏa thuộc tính đó.
 
@@ -178,9 +178,9 @@ $$
 
 Ý nghĩa của vế phải là: với mỗi cạnh $(i,j)$ trong $S$, phương án tô màu đều thỏa $x_i=x_j$, chính là $F(S)$.
 
-Đã thấy dáng dấp của bao hàm-loại trừ. Vì nguyên lý bao hàm-loại trừ không có dạng cặp có thứ tự, ta ánh xạ **tất cả** cạnh $(i,j)$ vào $T=\frac{n(n+1)}{2}$ số nguyên. Giả sử $(i,j)$ được ánh xạ thành $k,1\leq k\leq T$, đồng thời $Q_{i,j}$ được ánh xạ thành $Q_k$. Khi đó thuộc tính $x_i=x_j$ được định nghĩa là $P_k$.
+Đã thấy dáng dấp của bao hàm-loại trừ. Vì nguyên lý bao hàm-loại trừ không có dạng cặp có thứ tự, ánh xạ **tất cả** cạnh $(i,j)$ vào $T=\frac{n(n+1)}{2}$ số nguyên. Giả sử $(i,j)$ được ánh xạ thành $k,1\leq k\leq T$, đồng thời $Q_{i,j}$ được ánh xạ thành $Q_k$. Khi đó thuộc tính $x_i=x_j$ được định nghĩa là $P_k$.
 
-Đồng thời $S$ có thể biểu diễn thành một tập gồm các $k$, tức $S\iff K=\{k_1,k_2,\cdots,k_m\}$ (nghĩa là ta lập một quan hệ tương đương giữa tập cạnh và tập số).
+Đồng thời $S$ có thể biểu diễn thành một tập gồm các $k$, tức $S\iff K=\{k_1,k_2,\cdots,k_m\}$ (nghĩa là lập một quan hệ tương đương giữa tập cạnh và tập số).
 
 Tập $E$ tương ứng với $M=\left\{1,2,\cdots,\frac{n(n+1)}{2}\right\}$. Khi đó
 
@@ -207,13 +207,13 @@ $$
 Ans=\left|\bigcup_{i=1}^TQ_i\right|
 $$
 
-Xét ý nghĩa của vế phải: chỉ cần thỏa bất kỳ điều kiện nào trong $1\sim T$, tức tồn tại hai đỉnh cùng màu (không nhất thiết kề nhau). Tập vũ trụ các phương án tô màu là $U$, rõ ràng $|U|=m^n$. Chuyển sang phần bù, ta cần đếm số phương án mà mọi cặp đỉnh có màu khác nhau, tức $A_m^n=\frac{m!}{(m-n)!}$. Do đó
+Xét ý nghĩa của vế phải: chỉ cần thỏa bất kỳ điều kiện nào trong $1\sim T$, tức tồn tại hai đỉnh cùng màu (không nhất thiết kề nhau). Tập vũ trụ các phương án tô màu là $U$, có $|U|=m^n$. Chuyển sang phần bù, cần đếm số phương án mà mọi cặp đỉnh có màu khác nhau, tức $A_m^n=\frac{m!}{(m-n)!}$. Do đó
 
 $$
 Ans=m^n-A_m^n
 $$
 
-Để giải bài này, trước hết ta trừu tượng hóa đề bài thành dạng toán học; sau đó bắt đầu từ điều kiện chứa nhiều thông tin nhất, định nghĩa của hàm $F(S)$, và chuyển nó thành các phép giao, hợp, bù của tập hợp. Cuối cùng biến đổi biểu thức về dạng nguyên lý bao hàm-loại trừ và **suy ngược** ra kết quả. Bài này thể hiện cách dùng ngược của nguyên lý bao hàm-loại trừ.
+Để giải bài này, trước hết trừu tượng hóa đề bài thành dạng toán học; sau đó bắt đầu từ điều kiện chứa nhiều thông tin nhất, định nghĩa của hàm $F(S)$, và chuyển nó thành các phép giao, hợp, bù của tập hợp. Cuối cùng biến đổi biểu thức về dạng nguyên lý bao hàm-loại trừ và **suy ngược** ra kết quả. Bài này thể hiện cách dùng ngược của nguyên lý bao hàm-loại trừ.
 
 <span id="bao-hàm-loại-trừ-trong-số-học"></span>
 
@@ -240,7 +240,7 @@ $$
 f(k)= \lfloor (N/k) \rfloor ^2 - \sum_{i=2}^{i*k \le N} f(i*k)
 $$
 
-Vì khi $k>N/2$, ta có thể tính trực tiếp $f(k)= \lfloor (N/k) \rfloor ^2$, nên chỉ cần tính ngược từ $f(N)$ về $f(1)$. Vậy ta đã hoàn thành bài toán bằng nguyên lý bao hàm-loại trừ.
+Vì khi $k>N/2$, có thể tính trực tiếp $f(k)= \lfloor (N/k) \rfloor ^2$, nên chỉ cần tính ngược từ $f(N)$ về $f(1)$. Vậy bài toán đã được hoàn thành bằng nguyên lý bao hàm-loại trừ.
 
 ```cpp
 for (long long k = N; k >= 1; k--) {
@@ -274,13 +274,13 @@ $$
 n=\prod_{i=1}^k{p_i}^{c_i}
 $$
 
-Khi đó cần yêu cầu với mọi $p_i$, $x$ không phải bội của $p_i$, tức $p_i\nmid x$. Xem đây là một thuộc tính, tập tương ứng là $S_i$, ta có
+Khi đó cần yêu cầu với mọi $p_i$, $x$ không phải bội của $p_i$, tức $p_i\nmid x$. Xem đây là một thuộc tính, tập tương ứng là $S_i$, có
 
 $$
 \varphi(n)=\left|\bigcap_{i=1}^kS_i\right|=|U|-\left|\bigcup_{i=1}^k\overline{S_i}\right|
 $$
 
-Kích thước tập vũ trụ $|U|=n$, còn $\overline{S_i}$ là tập các $x$ thỏa $p_i\mid x$, rõ ràng $|\overline{S_i}|=\frac{n}{p_i}$, từ đó suy ra
+Kích thước tập vũ trụ $|U|=n$, còn $\overline{S_i}$ là tập các $x$ thỏa $p_i\mid x$, nên $|\overline{S_i}|=\frac{n}{p_i}$, từ đó suy ra
 
 $$
 \left|\bigcap_{a_i<a_{i+1}}S_{a_i}\right|=\frac{n}{\prod p_{a_i}}
@@ -318,7 +318,7 @@ $$
 
 ### Chứng minh
 
-Ta chứng minh ngắn gọn. Bắt đầu từ vế phải:
+Chứng minh ngắn gọn. Bắt đầu từ vế phải:
 
 $$
 \begin{aligned}
@@ -411,7 +411,7 @@ $$
 
 ## Bao hàm-loại trừ min-max
 
-Với một dãy $\{x_i\}$ thỏa quan hệ [thứ tự toàn phần](../order-theory.md#tập-có-thứ-tự-bộ-phận) và các phần tử trong dãy có thể cộng trừ, đặt độ dài dãy là $n$, và $S=\{1,2,3,\cdots,n\}$, ta có:
+Với một dãy $\{x_i\}$ thỏa quan hệ [thứ tự toàn phần](../order-theory.md#tập-có-thứ-tự-bộ-phận) và các phần tử trong dãy có thể cộng trừ, đặt độ dài dãy là $n$, và $S=\{1,2,3,\cdots,n\}$, có:
 
 $$
 \max_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\min_{j\in T}{x_j}}
@@ -421,9 +421,9 @@ $$
 \min_{i\in S}{x_i}=\sum_{T\subseteq S}{(-1)^{|T|-1}\max_{j\in T}{x_j}}
 $$
 
-**Chứng minh:** Xét một ánh xạ đến nguyên lý bao hàm-loại trừ tổng quát. Với $x\in S$, giả sử $x$ là phần tử nhỏ thứ $k$. Định nghĩa ánh xạ $f:x\mapsto \{1,2,\cdots,k\}$. Rõ ràng đây là một song ánh.
+**Chứng minh:** Xét một ánh xạ đến nguyên lý bao hàm-loại trừ tổng quát. Với $x\in S$, giả sử $x$ là phần tử nhỏ thứ $k$. Định nghĩa ánh xạ $f:x\mapsto \{1,2,\cdots,k\}$. Đây là một song ánh.
 
-Dễ thấy, với $x,y\in S$, $f(\min(x,y))=f(x)\cap f(y)$ và $f(\max(x,y))=f(x)\cup f(y)$. Do đó:
+Với $x,y\in S$, có $f(\min(x,y))=f(x)\cap f(y)$ và $f(\max(x,y))=f(x)\cup f(y)$. Do đó:
 
 $$
 \begin{aligned}
@@ -438,7 +438,7 @@ Sau đó ánh xạ $\left|f\left(\max_{i\in S}{x_i}\right)\right|$ ngược lạ
 
 Chứng minh hoàn tất.
 
-Có thể bạn thấy công thức này khá thừa, vì giá trị lớn nhất có thể tính trực tiếp. Lý do bao hàm-loại trừ min-max quan trọng là nó vẫn đúng với kỳ vọng, cụ thể:
+Công thức này có vẻ khá thừa, vì giá trị lớn nhất có thể tính trực tiếp. Lý do bao hàm-loại trừ min-max quan trọng là nó vẫn đúng với kỳ vọng, cụ thể:
 
 $$
 E\left(\max_{i\in S}{x_i}\right)=\sum_{T\subseteq S}{(-1)^{|T|-1}E\left(\min_{j\in T}{x_j} \right)}
@@ -540,7 +540,7 @@ Ba công thức còn lại tương tự.
 
 Chứng minh hoàn tất.
 
-Theo bao hàm-loại trừ min-max, ta còn có công thức:
+Theo bao hàm-loại trừ min-max, còn có công thức:
 
 $$
 \underset{i\in S}{\operatorname{lcm}}{x_i}=\prod_{T\subseteq S}{\left(\gcd_{j\in T}{x_j} \right)^{(-1)^{|T|-1}}}
@@ -553,7 +553,7 @@ Vì $\operatorname{lcm},\gcd,a^{1},a^{-1}$ lần lượt tương ứng với $\m
 ## PKUWC2018 Random Walk
 
 ???+ note "[PKUWC2018 Random Walk](https://loj.ac/problem/2542)"
-    Cho một cây có $n$ đỉnh. Bạn xuất phát từ $x$; mỗi lần chọn ngẫu nhiên đồng xác suất một cạnh kề với đỉnh hiện tại và đi theo cạnh đó.
+    Cho một cây có $n$ đỉnh. Xuất phát từ $x$; mỗi lần chọn ngẫu nhiên đồng xác suất một cạnh kề với đỉnh hiện tại và đi theo cạnh đó.
     
     Có $Q$ truy vấn. Mỗi truy vấn cho một tập $S$; hỏi nếu xuất phát từ $x$ và cứ tiếp tục đi ngẫu nhiên cho đến khi mọi đỉnh trong $S$ đều đã được đi qua ít nhất một lần, thì kỳ vọng cần đi bao nhiêu bước.
     
@@ -563,13 +563,13 @@ Vì $\operatorname{lcm},\gcd,a^{1},a^{-1}$ lần lượt tương ứng với $\m
     
     $1\le n\le 18,1\le Q\le 5000,1\le |S|\le n$.
 
-Kỳ vọng số bước đi chính là thời gian đi. Đặt biến ngẫu nhiên $x_i$ là thời điểm lần đầu đi tới đỉnh $i$. Ta cần tính
+Kỳ vọng số bước đi chính là thời gian đi. Đặt biến ngẫu nhiên $x_i$ là thời điểm lần đầu đi tới đỉnh $i$. Cần tính
 
 $$
 E\left(\max_{i\in S}x_i\right)
 $$
 
-Dùng bao hàm-loại trừ min-max, ta có
+Dùng bao hàm-loại trừ min-max, có
 
 $$
 E\left(\max_{i\in S}x_i\right)
@@ -584,24 +584,24 @@ Với một tập $T\in[n]$, xét cách tính $F(T)=E(\min_{i\in T}x_i)$.
 -   Với $i\in T$, có $f(i)=0$.
 -   Với $i\notin T$, có $f(i)=1+\frac{1}{\text{deg}(i)}\sum_{(i,j)\in E}f(j)$.
 
-Nếu khử Gauss trực tiếp, độ phức tạp là $O(n^3)$. Nếu tính $F(T)$ cho mỗi $T$, tổng độ phức tạp sẽ là $O(2^nn^3)$, không chấp nhận được. Ta dùng kỹ thuật khử trên cây.
+Nếu khử Gauss trực tiếp, độ phức tạp là $O(n^3)$. Nếu tính $F(T)$ cho mỗi $T$, tổng độ phức tạp sẽ là $O(2^nn^3)$, không chấp nhận được. Dùng kỹ thuật khử trên cây.
 
-Không mất tính tổng quát, lấy gốc là đỉnh $1$, cha của đỉnh $u$ là $p_u$. Với đỉnh lá $i$, $f(i)$ chỉ liên quan đến cha của $i$ (hoặc có thể $f(i)=0$, càng tốt). Do đó ta có thể viết $f(i)=A_i+B_if(p_i)$, trong đó $A_i,B_i$ tính nhanh được.
+Không mất tính tổng quát, lấy gốc là đỉnh $1$, cha của đỉnh $u$ là $p_u$. Với đỉnh lá $i$, $f(i)$ chỉ liên quan đến cha của $i$ (hoặc có thể $f(i)=0$, càng tốt). Do đó có thể viết $f(i)=A_i+B_if(p_i)$, trong đó $A_i,B_i$ tính nhanh được.
 
-Với đỉnh không phải lá $i$, xét dãy con của nó $j_1,\cdots,j_k$. Vì $f(j_e)=A_{j_e}+B_{j_e}f(i)$, ta có
+Với đỉnh không phải lá $i$, xét dãy con của nó $j_1,\cdots,j_k$. Vì $f(j_e)=A_{j_e}+B_{j_e}f(i)$, có
 
 $$
 f(i)=1+\frac{1}{\deg(i)}\sum_{e=1}^k\left(A_{j_e}+B_{j_e}f(i)\right)+\frac{f(p_i)}{\deg(i)}
 $$
 
-Biến đổi, ta được
+Biến đổi, thu được
 
 $$
 f(i)=\frac{\deg(i)+\sum_{e=1}^kA_{j_e}}{\deg(i)-\sum_{e=1}^kB_{j_e}}+
 \frac{f(p_i)}{\deg(i)-\sum_{e=1}^kB_{j_e}}
 $$
 
-Vậy ta cũng viết được $f(i)$ ở dạng $A_i+B_if(p_i)$. Có thể lần ngược như vậy đến gốc; gốc không có cha. Tức là
+Vậy cũng viết được $f(i)$ ở dạng $A_i+B_if(p_i)$. Có thể lần ngược như vậy đến gốc; gốc không có cha. Tức là
 
 $$
 f(1)=\frac{\deg(1)+\sum_{e=1}^kA_{j_e}}{\deg(1)-\sum_{e=1}^kB_{j_e}}
@@ -611,9 +611,9 @@ Giải phương trình này sẽ thu được $f(1)$, rồi đẩy xuống một
 
 Như vậy có thể tính $F(T)$ cho mỗi $T$ với độ phức tạp $O(2^nn)$.
 
-Quay lại phần bao hàm-loại trừ, ta biết $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}(-1)^{|T|-1}F(T)$.
+Quay lại phần bao hàm-loại trừ, có $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}(-1)^{|T|-1}F(T)$.
 
-Đặt $F'(T)=(-1)^{|T|-1}F(T)$, ta có thêm $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}F'(T)$. Do đó có thể dùng FMT (còn gọi là tổng tiền tố trên tập con, hoặc FWT / phép biến đổi) để tính $E(\max_{i\in S}x_i)$ cho mỗi $S$ trong $O(2^nn)$, rồi trả lời mỗi truy vấn trong $O(1)$.
+Đặt $F'(T)=(-1)^{|T|-1}F(T)$, có thêm $E(\max_{i\in S}x_i)=\sum_{T\subseteq S}F'(T)$. Do đó có thể dùng FMT (còn gọi là tổng tiền tố trên tập con, hoặc FWT / phép biến đổi) để tính $E(\max_{i\in S}x_i)$ cho mỗi $S$ trong $O(2^nn)$, rồi trả lời mỗi truy vấn trong $O(1)$.
 
 <span id="bài-tập"></span>
 
