@@ -1,28 +1,28 @@
 author: Marcythm, YZircon, Chaigidel, Tiger3018, voidge, H-J-Granger, ouuan, Enter-tainer, lcfsih, Xeonacid, Ir1d
 
-Bài viết này giới thiệu cách tối ưu I/O dựa trên stream và I/O kiểu C.
+Bài viết này giới thiệu cách tối ưu I/O dựa trên luồng và I/O kiểu C.
 
 ???+ note "Lưu ý"
-    Tốc độ thực tế của I/O dựa trên stream và I/O kiểu C sẽ thay đổi theo môi trường (như trình biên dịch, hệ điều hành và cấu hình phần cứng). Nếu muốn phân tích sâu hơn, nên lấy kết quả thực nghiệm làm chuẩn. Tuy nhiên, cần kiểm soát biến trong thí nghiệm, tránh để nhiều biến cùng ảnh hưởng dẫn tới kết luận sai.
+    Tốc độ thực tế của I/O dựa trên luồng và I/O kiểu C sẽ thay đổi theo môi trường (như trình biên dịch, hệ điều hành và cấu hình phần cứng). Nếu muốn phân tích sâu hơn, nên lấy kết quả thực nghiệm làm chuẩn. Tuy nhiên, cần kiểm soát biến trong thí nghiệm, tránh để nhiều biến cùng ảnh hưởng dẫn tới kết luận sai.
 
-## I/O dựa trên stream
+## I/O dựa trên luồng
 
-Với I/O dựa trên stream (như `std::cin` và `std::cout`), cách tối ưu thường dùng nhất là tắt đồng bộ với stream của C và bỏ liên kết giữa stream nhập và stream xuất.
+Với I/O dựa trên luồng (như `std::cin` và `std::cout`), cách tối ưu thường dùng nhất là tắt đồng bộ với luồng của C và bỏ liên kết giữa luồng nhập và luồng xuất.
 
 ### Tắt đồng bộ
 
-Dùng hàm [`std::ios::sync_with_stdio(false)`](https://en.cppreference.com/w/cpp/io/ios_base/sync_with_stdio) để tắt đồng bộ với stream của C. Để tương thích với C, tức để bảo đảm chương trình không bị lẫn lộn khi dùng đồng thời `printf` và `std::cout`, C++ đã đồng bộ hai loại stream này. Các stream C++ được đồng bộ bảo đảm an toàn luồng.
+Dùng hàm [`std::ios::sync_with_stdio(false)`](https://en.cppreference.com/w/cpp/io/ios_base/sync_with_stdio) để tắt đồng bộ với luồng của C. Để tương thích với C, tức để bảo đảm chương trình không bị lẫn lộn khi dùng đồng thời `printf` và `std::cout`, C++ đã đồng bộ hai loại luồng này. Các luồng C++ được đồng bộ bảo đảm an toàn luồng.
 
-Thực chất đây là một biện pháp thận trọng mà C++ dùng để tương thích. Nếu bật đồng bộ, trong mỗi thao tác I/O, stream C++ sẽ lập tức áp dụng thao tác đó lên bộ đệm C tương ứng; nếu trong mã không liên quan đến I/O kiểu C thì thao tác này là dư thừa. Vì vậy có thể tắt đồng bộ với stream của C trước khi thực hiện I/O, nhưng sau đó cần lưu ý rằng phần mã phía sau không được dùng đồng thời `std::cin` và `scanf`, cũng không được dùng đồng thời `std::cout` và `printf`; tuy nhiên vẫn có thể dùng đồng thời `std::cin` và `printf`, cũng như `scanf` và `std::cout`.
+Thực chất đây là một biện pháp thận trọng mà C++ dùng để tương thích. Nếu bật đồng bộ, trong mỗi thao tác I/O, luồng C++ sẽ lập tức áp dụng thao tác đó lên bộ đệm C tương ứng; nếu trong mã không liên quan đến I/O kiểu C thì thao tác này là dư thừa. Vì vậy có thể tắt đồng bộ với luồng của C trước khi thực hiện I/O, nhưng sau đó cần lưu ý rằng phần mã phía sau không được dùng đồng thời `std::cin` và `scanf`, cũng không được dùng đồng thời `std::cout` và `printf`; tuy nhiên vẫn có thể dùng đồng thời `std::cin` và `printf`, cũng như `scanf` và `std::cout`.
 
 ### Bỏ liên kết
 
-Dùng hàm [`tie()`](https://en.cppreference.com/w/cpp/io/basic_ios/tie) để bỏ liên kết giữa stream nhập và stream xuất.
+Dùng hàm [`tie()`](https://en.cppreference.com/w/cpp/io/basic_ios/tie) để bỏ liên kết giữa luồng nhập và luồng xuất.
 
 Mặc định, `std::cin` được liên kết với `&std::cout`, nên mỗi lần thực hiện nhập có định dạng đều sẽ gọi `std::cout.flush()` để xả bộ đệm đầu ra; việc này làm tăng chi phí I/O. Có thể dùng `std::cin.tie(nullptr)` để bỏ liên kết, từ đó tăng thêm hiệu suất thực thi.
 
 ???+ warning "Lưu ý"
-    Khi sử dụng không được bỏ qua tham số và viết thành `std::cin.tie()`: cách này không bỏ liên kết, mà trả về stream xuất đang liên kết với `std::cin`. Ngoài ra cũng không cần gọi `std::cout.tie(nullptr)`, vì mặc định không có stream xuất nào khác liên kết với `std::cout`.
+    Khi sử dụng không được bỏ qua tham số và viết thành `std::cin.tie()`: cách này không bỏ liên kết, mà trả về luồng xuất đang liên kết với `std::cin`. Ngoài ra cũng không cần gọi `std::cout.tie(nullptr)`, vì mặc định không có luồng xuất nào khác liên kết với `std::cout`.
 
 ### Mã cài đặt
 
