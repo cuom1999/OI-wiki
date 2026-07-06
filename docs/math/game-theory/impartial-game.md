@@ -29,18 +29,18 @@ Dễ kiểm tra rằng Nim là một trò chơi tổ hợp công bằng theo lu�
 
 Trong trò chơi Nim, các biến đổi có thể xảy ra của cục diện có thể được mô tả bằng đồ thị trò chơi.
 
-Xem mỗi trạng thái có thể có là một đỉnh của đồ thị, rồi nối cạnh từ một trạng thái tới các trạng thái kế tiếp của nó, tức các trạng thái có thể đạt được sau một thao tác. Khi đó ta thu được một đồ thị có hướng không chu trình, gọi là đồ thị trò chơi. Đồ thị không có chu trình vì trong Nim, sau mỗi thao tác, tổng số đá đều giảm nghiêm ngặt.
+Xem mỗi trạng thái có thể có là một đỉnh của đồ thị, rồi nối cạnh từ một trạng thái tới các trạng thái kế tiếp của nó, tức các trạng thái có thể đạt được sau một thao tác. Khi đó thu được một đồ thị có hướng không chu trình, gọi là đồ thị trò chơi. Đồ thị không có chu trình vì trong Nim, sau mỗi thao tác, tổng số đá đều giảm nghiêm ngặt.
 
 ???+ example "Ví dụ"
     Ví dụ, với trò chơi Nim có cục diện ban đầu gồm $3$ đống đá, mỗi đống lần lượt có $1,1,2$ viên, có thể vẽ đồ thị trò chơi như sau:
     
     ![Ví dụ về đồ thị trò chơi](./images/nim.svg)
     
-    Ngay sau đây ta sẽ thấy các đỉnh màu đỏ trong hình biểu thị trạng thái tất thắng, còn các đỉnh màu đen biểu thị trạng thái tất bại.
+    Các đỉnh màu đỏ trong hình biểu thị trạng thái tất thắng, còn các đỉnh màu đen biểu thị trạng thái tất bại.
 
 Vì Nim là trò chơi tổ hợp công bằng, việc mỗi người chơi có chiến lược thắng hay không chỉ phụ thuộc vào trạng thái hiện tại của trò chơi, không phụ thuộc vào danh tính người chơi. Do đó, mọi trạng thái có thể được chia thành **trạng thái tất thắng** của người đi trước và **trạng thái tất bại** của người đi trước, lần lượt ký hiệu là trạng thái $\mathcal N$ và trạng thái $\mathcal P$[^n-vs-p]. Định nghĩa này áp dụng cho mọi trò chơi tổ hợp công bằng.
 
-Nhờ bổ đề sau, ta có thể đánh dấu quy nạp mọi trạng thái là tất thắng hoặc tất bại:<a id="np-lem"></a>
+Nhờ bổ đề sau, có thể đánh dấu quy nạp mọi trạng thái là tất thắng hoặc tất bại:<a id="np-lem"></a>
 
 ???+ note "Bổ đề"
     Trong trò chơi tổ hợp công bằng theo luật bình thường,
@@ -56,7 +56,7 @@ Nhờ bổ đề sau, ta có thể đánh dấu quy nạp mọi trạng thái l�
     
     Với mệnh đề thứ ba, nếu không tồn tại trạng thái kế tiếp nào là tất bại, dù đi thế nào người chơi cũng chỉ có thể đi tới trạng thái tất thắng; khi đó đối thủ đối mặt với trạng thái người đi trước tất thắng, nên người chơi hiện tại sẽ thua.
 
-Trong mọi trò chơi tổ hợp công bằng, đồ thị trò chơi đều là đồ thị có hướng không chu trình. Vì vậy, sau khi dựng đồ thị trò chơi, dựa vào ba tính chất trên có thể tính trong thời gian $O(|V|+|E|)$ xem mỗi trạng thái là tất thắng hay tất bại. Ở đây $|V|$ là số trạng thái của đồ thị trò chơi, còn $|E|$ là số cạnh, tức tổng số hành động có thể thực hiện trên mọi trạng thái.
+Trong mọi trò chơi tổ hợp công bằng, đồ thị trò chơi đều là đồ thị có hướng không chu trình. Vì vậy, sau khi dựng đồ thị trò chơi, dựa vào ba tính chất trên có thể tính trong thời gian $O(|V|+|E|)$ xem mỗi trạng thái là tất thắng hay tất bại. Tại đây $|V|$ là số trạng thái của đồ thị trò chơi, còn $|E|$ là số cạnh, tức tổng số hành động có thể thực hiện trên mọi trạng thái.
 
 Bổ đề này có thể mở rộng cho trò chơi luật ngược và trường hợp đồ thị có hướng có thể có chu trình. Thảo luận liên quan xem trong phần [trò chơi trên đồ thị có hướng](#tro-choi-tren-do-thi-co-huong).
 
@@ -65,7 +65,7 @@ Bổ đề này có thể mở rộng cho trò chơi luật ngược và trườ
 
 Tiếp tục xét trò chơi Nim.
 
-Bằng cách dựng đồ thị trò chơi, có thể xác định một cục diện có phải là tất thắng cho người đi trước hay không trong thời gian $\Omega(\prod_{i=1}^na_i)$. Nhưng độ phức tạp như vậy quá cao để áp dụng thực tế. Thật ra, có thể thấy việc trạng thái của Nim có tất thắng cho người đi trước hay không chỉ phụ thuộc vào tổng Nim của số đá trong cục diện hiện tại.
+Bằng cách dựng đồ thị trò chơi, có thể xác định một cục diện có phải là tất thắng cho người đi trước hay không trong thời gian $\Omega(\prod_{i=1}^na_i)$. Nhưng độ phức tạp như vậy quá cao để áp dụng thực tế. Với Nim, việc trạng thái có tất thắng cho người đi trước hay không chỉ phụ thuộc vào tổng Nim của số đá trong cục diện hiện tại.
 
 ???+ abstract "Tổng Nim"
     **Tổng Nim** (Nim sum) của các số tự nhiên $a_1,a_2,\cdots,a_n$ được định nghĩa là $a_1\oplus a_2\oplus\cdots\oplus a_n$.
@@ -85,8 +85,8 @@ Cái gọi là tổng Nim chính là [phép toán XOR](../bit.md#phép-toán-bit
     1.  Nếu $a_i=0$ với mọi $i=1,\cdots,n$, trạng thái này không có trạng thái kế tiếp và tổng Nim bằng $0$, nên mệnh đề đúng.
     2.  Nếu $k = a_1\oplus a_2\oplus\cdots\oplus a_n\neq 0$, cần chứng minh trạng thái này là tất thắng. Nói cách khác, cần dựng một nước đi hợp lệ sao cho trạng thái kế tiếp là tất bại; theo giả thiết quy nạp, chỉ cần chứng minh trạng thái kế tiếp thỏa $a'_1\oplus a'_2\oplus\cdots\oplus a'_n=0$. Dựa vào tính chất của tổng Nim, tức XOR, điều này tương đương với việc tồn tại một đống đá sao cho lấy đi một số viên từ $a_i$ sẽ nhận được $a_i\oplus k$, tức $a_i>a_i\oplus k$.
     
-        Thật vậy, giả sử trong biểu diễn nhị phân của $k$, bit $1$ cao nhất nằm ở vị trí $d$. Khi đó chắc chắn tồn tại một $a_i$ có bit thứ $d$ trong biểu diễn nhị phân bằng $1$. Với đống đá tương ứng, nhất định có $a_i>a_i\oplus k$, vì trong $a_i\oplus k$ bit thứ $d$ bằng $0$, còn các bit cao hơn giống với $a_i$.
-    3.  Nếu $a_1\oplus a_2\oplus\cdots\oplus a_n= 0$, cần chứng minh trạng thái này là tất bại. Theo giả thiết quy nạp, chỉ cần chứng minh tổng Nim của mọi trạng thái kế tiếp đều khác $0$. Điều này hiển nhiên: mọi nước đi hợp lệ biến $a_i$ thành $a'_i\neq a_i$, nên tổng Nim tất yếu trở thành $a'_i\oplus a_i\neq 0$.
+        Thật vậy, giả sử trong biểu diễn nhị phân của $k$, bit $1$ cao nhất nằm ở vị trí $d$. Khi đó tồn tại một $a_i$ có bit thứ $d$ trong biểu diễn nhị phân bằng $1$. Với đống đá tương ứng, có $a_i>a_i\oplus k$, vì trong $a_i\oplus k$ bit thứ $d$ bằng $0$, còn các bit cao hơn giống với $a_i$.
+    3.  Nếu $a_1\oplus a_2\oplus\cdots\oplus a_n= 0$, cần chứng minh trạng thái này là tất bại. Theo giả thiết quy nạp, chỉ cần chứng minh tổng Nim của mọi trạng thái kế tiếp đều khác $0$. Mọi nước đi hợp lệ biến $a_i$ thành $a'_i\neq a_i$, nên tổng Nim tất yếu trở thành $a'_i\oplus a_i\neq 0$.
 
 Từ đó có thể xác định trong thời gian $O(n)$ xem một trạng thái của Nim có tất thắng cho người đi trước hay không.
 
@@ -98,10 +98,10 @@ Lý thuyết Sprague-Grundy chỉ ra rằng mọi trò chơi tổ hợp công b�
 <span id="ký-hiệu-trò-chơi"></span>
 ### Ký hiệu trò chơi
 
-Như đã nói ở trên, mọi trò chơi tổ hợp công bằng đều có thể được mô tả bằng đồ thị trò chơi. Vì trong đồ thị trò chơi, tính chất của mỗi trạng thái chỉ do các trạng thái kế tiếp của nó quyết định, nên ta có thể biểu diễn một trạng thái $S$ trong đồ thị trò chơi bằng tập các trạng thái kế tiếp của nó.
+Như đã nói ở trên, mọi trò chơi tổ hợp công bằng đều có thể được mô tả bằng đồ thị trò chơi. Vì trong đồ thị trò chơi, tính chất của mỗi trạng thái chỉ do các trạng thái kế tiếp của nó quyết định, nên có thể biểu diễn một trạng thái $S$ trong đồ thị trò chơi bằng tập các trạng thái kế tiếp của nó.
 
 ???+ example "Ví dụ (tiếp)"
-    Với đồ thị trò chơi ở trên, ta nhận được cách biểu diễn trạng thái như sau:
+    Với đồ thị trò chơi ở trên, nhận được cách biểu diễn trạng thái như sau:
     
     $$
     \begin{aligned}
@@ -154,7 +154,7 @@ Tổng của trò chơi có thể hiểu là trò chơi gồm hai trò chơi con
 
 Một quan sát là: mặc dù trong Nim một đống, ngoại trừ trường hợp không có đá, mọi trạng thái đều tất thắng cho người đi trước, các trò chơi Nim một đống khác nhau này khi kết hợp với những trò chơi Nim một đống khác lại không cho cùng một trò chơi. Ví dụ, trò chơi $*n$ chỉ tạo thành một trò chơi tất bại khi kết hợp với một $*n$ khác; khi kết hợp với mọi trò chơi $*n'\neq *n$ khác, kết quả đều là trò chơi tất thắng.
 
-Quan sát này gợi ý rằng ta có thể nghiên cứu tính chất của một trò chơi bằng cách xét tổng của nó với các trò chơi khác. Điều này dẫn tới khái niệm tương đương giữa các trò chơi.
+Quan sát này gợi ý rằng có thể nghiên cứu tính chất của một trò chơi bằng cách xét tổng của nó với các trò chơi khác. Điều này dẫn tới khái niệm tương đương giữa các trò chơi.
 
 ???+ abstract "Quan hệ tương đương của trò chơi"
     Nếu với mọi trò chơi $H$, hai trò chơi $G_1+H$ và $G_2+H$ luôn cùng là trạng thái tất bại hoặc cùng là trạng thái tất thắng, thì gọi $G_1$ và $G_2$ là **tương đương** (equivalent), ký hiệu $G_1\approx G_2$.
@@ -169,12 +169,12 @@ Phân tích trò chơi Nim cho thấy các trò chơi Nim một đống khác nh
 Để chứng minh các kết luận này, trước hết cần thiết lập hai bổ đề về quan hệ tương đương giữa trò chơi. Thứ nhất, kết hợp một trò chơi tất bại với bất kỳ trò chơi nào cũng tương đương với trò chơi ban đầu.
 
 ???+ note "Bổ đề 1"
-    Với trò chơi $G$ và bất kỳ trò chơi tất bại $A\in\mathcal P$, ta có $G\approx G + A$.
+    Với trò chơi $G$ và bất kỳ trò chơi tất bại $A\in\mathcal P$, có $G\approx G + A$.
 
 ??? note "Chứng minh"
     Theo định nghĩa, chỉ cần chứng minh với mọi trò chơi $H$ đều có $G+H\approx G+A+H$.
     
-    Nếu trò chơi $G+H$ có chiến lược thắng, thì trò chơi $G+A+H$ cũng có chiến lược thắng. Nếu đối thủ đi trong trò chơi con $A$, ta đi để đưa nó trở lại trạng thái tất bại; nếu không, ta đi theo chiến lược thắng trong trò chơi $G+H$. Như vậy chắc chắn bảo đảm thắng cuối cùng.
+    Nếu trò chơi $G+H$ có chiến lược thắng, thì trò chơi $G+A+H$ cũng có chiến lược thắng. Nếu đối thủ đi trong trò chơi con $A$, đi để đưa nó trở lại trạng thái tất bại; nếu không, đi theo chiến lược thắng trong trò chơi $G+H$. Như vậy bảo đảm thắng cuối cùng.
     
     Nếu trò chơi $G+H$ là trò chơi tất bại, thì trò chơi $G+A+H$ cũng là trò chơi tất bại. Bởi dù lượt này đi trong trò chơi con $G+H$ hay trong trò chơi con $A$, đối thủ đều có thể ở lượt tiếp theo đưa trò chơi con tương ứng trở lại trạng thái tất bại. Cuối cùng, người đi trước nhất định không thể thắng.
 
@@ -188,9 +188,9 @@ Thứ hai, hai trò chơi tương đương khi và chỉ khi tổng của chúng
 ??? note "Chứng minh"
     Nếu $G$ và $G'$ tương đương, thì $G+G'$ và $G+G$ cùng tất thắng hoặc cùng tất bại, trong khi $G+G$ là trò chơi tất bại. Lý do là với bất kỳ nước đi nào của người đi trước, người đi sau đều có thể thực hiện hành động giống hệt trong trò chơi con còn lại, và cuối cùng người đi trước nhất định không thể đi tiếp.
     
-    Ngược lại, nếu $G+G'$ là trò chơi tất bại, theo bổ đề 1 ta có $G\approx G+(G+G') = (G+G)+G' \approx G'$.
+    Ngược lại, nếu $G+G'$ là trò chơi tất bại, theo bổ đề 1 có $G\approx G+(G+G') = (G+G)+G' \approx G'$.
 
-Dùng các bổ đề này, ta thu được định lý sau:
+Dùng các bổ đề này, thu được định lý sau:
 
 ???+ note "Định lý (Sprague-Grundy)"
     Với bất kỳ trò chơi công bằng hữu hạn $G$, tồn tại $n\in\mathbf N$ sao cho $G\approx *n$.
@@ -202,7 +202,7 @@ Dùng các bổ đề này, ta thu được định lý sau:
     G' = \{*n_1,*n_2,\cdots,*n_k\}.
     $$
     
-    Ta sẽ chứng minh $G'\approx *m$, trong đó $m=\operatorname{mex}\{n_1,n_2,\cdots,n_k\}$ là số tự nhiên nhỏ nhất không xuất hiện trong tập.
+    Cần chứng minh $G'\approx *m$, trong đó $m=\operatorname{mex}\{n_1,n_2,\cdots,n_k\}$ là số tự nhiên nhỏ nhất không xuất hiện trong tập.
     
     Bước thứ nhất, cần chứng minh $G\approx G'$. Theo [bổ đề 2](#sg-lem-2), chỉ cần chứng minh trò chơi $G+G'$ là tất bại. Giả sử không mất tính tổng quát rằng $G\neq *0$. Nếu người đi trước chọn $G_i$, thì người đi sau có thể chọn $*n_i$; ngược lại, nếu người đi trước chọn $*n_i$, người đi sau có thể chọn $G_i$. Nói chung, sau hai nước đi này, trò chơi trở thành $G_i+*n_i$; theo bổ đề 2 và $G_i\approx *n_i$, đây là trò chơi tất bại. Điều này chứng minh $G\approx G'$.
     
@@ -238,7 +238,7 @@ Dựa vào giá trị hàm SG, tức số Nim, có thể xác định một tr�
 Cuối cùng, giá trị hàm SG của tổng các trò chơi chính là tổng Nim, tức XOR, của các giá trị hàm SG của những trò chơi con.
 
 ???+ note "Định lý (Sprague-Grundy)"
-    Với các trò chơi công bằng $G_1,G_2,\cdots,G_n$, ta có
+    Với các trò chơi công bằng $G_1,G_2,\cdots,G_n$, có
     
     $$
     \operatorname{SG}(G_1+ G_2+\cdots + G_n) = \operatorname{SG}(G_1)\oplus \operatorname{SG}(G_2)\oplus\cdots\oplus\operatorname{SG}(G_n).
@@ -251,7 +251,7 @@ Cuối cùng, giá trị hàm SG của tổng các trò chơi chính là tổng 
     *a_1+ *a_2 + \cdots + *a_n + *(a_1\oplus a_2\oplus\cdots\oplus a_n)
     $$
     
-    là tất bại cho người đi trước. Theo [bổ đề 2](#sg-lem-2), ta có
+    là tất bại cho người đi trước. Theo [bổ đề 2](#sg-lem-2), có
     
     $$
     *a_1+ *a_2 + \cdots + *a_n \approx *(a_1\oplus a_2\oplus\cdots\oplus a_n).
@@ -263,7 +263,7 @@ Cuối cùng, giá trị hàm SG của tổng các trò chơi chính là tổng 
     \operatorname{SG}(*a_1 + *a_2 + \cdots + *a_n) = a_1\oplus a_2\oplus\cdots\oplus a_n.
     $$
     
-    Đặt $a_i=\operatorname{SG}(G_i)$, khi đó $G_i\approx *a_i$. Dùng các tính chất đại số của $\approx$, ta có
+    Đặt $a_i=\operatorname{SG}(G_i)$, khi đó $G_i\approx *a_i$. Dùng các tính chất đại số của $\approx$, có
     
     $$
     (G_1+ G_2+\cdots + G_n) + (*a_1 + *a_2 + \cdots + *a_n) = \sum_{i=1}^n(G_i+*a_i) \in\mathcal P.
@@ -326,7 +326,7 @@ Với trò chơi này, có kết luận sau:
 ??? note "Chứng minh 1"
     Khi $n\not\equiv 0\pmod {k+1}$, chỉ cần lấy đi $n\bmod{(k+1)}\in[1,k]$ viên đá là có thể bảo đảm đối thủ ở trạng thái tất bại. Do đó lúc này là trạng thái tất thắng cho người đi trước.
     
-    Ngược lại, khi $n\equiv 0\pmod {k+1}$, hoặc đã không còn lựa chọn nào, hoặc sau khi ta lấy đi $k'$ viên đá, đối thủ có thể lập tức lấy đi $k+1-k'$ viên đá để đưa ta trở lại trạng thái tất bại.
+    Ngược lại, khi $n\equiv 0\pmod {k+1}$, hoặc đã không còn lựa chọn nào, hoặc sau khi người đi trước lấy đi $k'$ viên đá, đối thủ có thể lập tức lấy đi $k+1-k'$ viên đá để đưa cục diện trở lại trạng thái tất bại.
 
 ??? note "Chứng minh 2"
     Như một ứng dụng của định lý Sprague-Grundy, gọi $f(n)$ là giá trị hàm SG của cục diện khi còn lại $n$ viên đá.
@@ -391,7 +391,7 @@ Với trò chơi này, có kết luận sau:
     
     Chiến lược thắng là: nếu có thể thì lấy hết số đá còn lại; nếu không thì lấy đi số Fibonacci nhỏ nhất trong phân rã. Vì trong phân rã, số Fibonacci nhỏ thứ hai luôn lớn nghiêm ngặt hơn hai lần số Fibonacci nhỏ nhất, nên nếu lượt hiện tại ở trạng thái tất thắng không thể lấy hết đá, thì ở lượt sau đối thủ cũng không thể lấy số Fibonacci nhỏ thứ hai, tức số Fibonacci nhỏ nhất của lượt sau; đối thủ nhất định ở trạng thái tất bại.
     
-    Ngược lại, nếu hiện tại là trạng thái tất bại, giả sử số đá được lấy hiện tại là $k$, thì nó chắc chắn nhỏ nghiêm ngặt hơn số Fibonacci nhỏ nhất $F$ trong phân rã hiện tại. Giả sử số Fibonacci nhỏ nhất ở lượt sau là $F'$, nó cũng nhất định là số Fibonacci nhỏ nhất trong phân rã ứng với $F - k$. Đặt $F'=F''+F'''$ và $F''>F'''$, tức $F''',F'',F'$ là ba số Fibonacci kề nhau. Nếu $k<F''$, thì khi dùng mã hóa Fibonacci để tính $k + (F-k)$, không cần nhớ, nên không thể thu được $F$. Vì vậy nhất định có $k\ge F''$. Điều này cho thấy hạn mức lượt sau $2k>F''+F'''=F'$, nên đó là trạng thái tất thắng.
+    Ngược lại, nếu hiện tại là trạng thái tất bại, giả sử số đá được lấy hiện tại là $k$, thì nó nhỏ nghiêm ngặt hơn số Fibonacci nhỏ nhất $F$ trong phân rã hiện tại. Giả sử số Fibonacci nhỏ nhất ở lượt sau là $F'$, nó cũng là số Fibonacci nhỏ nhất trong phân rã ứng với $F - k$. Đặt $F'=F''+F'''$ và $F''>F'''$, tức $F''',F'',F'$ là ba số Fibonacci kề nhau. Nếu $k<F''$, thì khi dùng mã hóa Fibonacci để tính $k + (F-k)$, không cần nhớ, nên không thể thu được $F$. Vì vậy có $k\ge F''$. Điều này cho thấy hạn mức lượt sau $2k>F''+F'''=F'$, nên đó là trạng thái tất thắng.
 
 <span id="trò-chơi-wythoff"></span>
 ### Trò chơi Wythoff
@@ -425,7 +425,7 @@ Với trò chơi này, có kết luận sau:
     
     Nhưng vế trái là số hữu tỉ, còn vế phải là số vô tỉ, mâu thuẫn. Vì vậy các số trong dãy đôi một khác nhau.
     
-    Tiếp theo, chứng minh trong tập $\mathcal A$ có đúng $\lfloor a_i\rfloor$ số nhỏ hơn hoặc bằng $a_i$. Không mất tính tổng quát, giả sử $a_i\in\mathcal A_r$, tức $a_i=kr$. Đếm riêng các phần tử trong $\mathcal A_r$ và $\mathcal A_s$, ta được số phần tử nhỏ hơn hoặc bằng $a_i$ là
+    Tiếp theo, chứng minh trong tập $\mathcal A$ có đúng $\lfloor a_i\rfloor$ số nhỏ hơn hoặc bằng $a_i$. Không mất tính tổng quát, giả sử $a_i\in\mathcal A_r$, tức $a_i=kr$. Đếm riêng các phần tử trong $\mathcal A_r$ và $\mathcal A_s$, thu được số phần tử nhỏ hơn hoặc bằng $a_i$ là
     
     $$
     k + \left\lfloor\dfrac{kr}{s}\right\rfloor = k + \lfloor k(r-1)\rfloor = \lfloor kr\rfloor = \lfloor a_i\rfloor.
@@ -436,9 +436,9 @@ Với trò chơi này, có kết luận sau:
 Từ đây có thể chứng minh kết luận đã nêu.
 
 ??? note "Chứng minh kết luận của trò chơi Wythoff"
-    Với mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, đặt $k = a_2 - a_1 \in\mathbf N_+$. Khi đó $a_1=\lfloor k\phi\rfloor$ và $a_2=\lfloor k(\phi+1)\rfloor$. Vì $\phi$ là tỉ lệ vàng, ta có $\dfrac{1}{\phi}+\dfrac{1}{\phi+1}=1$. Theo định lý Rayleigh, các dãy $\{\lfloor k\phi\rfloor\}$ và $\lfloor k(\phi+1)\rfloor$ tạo thành một phân hoạch của tập số nguyên dương $\mathbf N_+$. Điều này thực ra nói rằng trong mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, hai thành phần $a_1$ và $a_2$ lấy đúng một lần mọi số nguyên dương, và hiệu của chúng $a_2-a_1$ cũng lấy đúng một lần mọi số nguyên dương.
+    Với mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, đặt $k = a_2 - a_1 \in\mathbf N_+$. Khi đó $a_1=\lfloor k\phi\rfloor$ và $a_2=\lfloor k(\phi+1)\rfloor$. Vì $\phi$ là tỉ lệ vàng, có $\dfrac{1}{\phi}+\dfrac{1}{\phi+1}=1$. Theo định lý Rayleigh, các dãy $\{\lfloor k\phi\rfloor\}$ và $\lfloor k(\phi+1)\rfloor$ tạo thành một phân hoạch của tập số nguyên dương $\mathbf N_+$. Điều này nghĩa là trong mọi trạng thái $(a_1,a_2)$ thỏa $a_1 < a_2$ và người đi trước tất bại, hai thành phần $a_1$ và $a_2$ lấy đúng một lần mọi số nguyên dương, và hiệu của chúng $a_2-a_1$ cũng lấy đúng một lần mọi số nguyên dương.
     
-    Trong trò chơi Wythoff, một thao tác hợp lệ hoặc giữ nguyên một trong hai thành phần, hoặc giữ nguyên hiệu của hai thành phần. Vì vậy, từ một trạng thái người đi trước tất bại, đúng là không thể nhận được một trạng thái người đi trước tất bại khác chỉ bằng một thao tác hợp lệ. Ngược lại, với bất kỳ trạng thái người đi trước tất thắng $(a_1,a_2)$, giả sử không mất tính tổng quát rằng $a_1\le a_2$ và đặt $k=a_2-a_1$. Nếu $a_1>\lfloor k\phi\rfloor$, người đi trước có thể lấy từ mỗi đống $(a_1 - \lfloor k\phi\rfloor)$ viên đá để biến cục diện thành trạng thái tất bại. Ngược lại, theo kết luận ở đoạn trước, với $a_1$ này tất nhiên tồn tại duy nhất một trạng thái tất bại $(a_1,a_2')$. Tiếp đó, nếu $a_1 > a_2'$ thì hiển nhiên $a_2' < a_2$; còn nếu $a_1 < a_2'$, lấy $k'=a_2'-a_1$ sao cho $a_1=\lfloor k'\phi\rfloor$. Lại có $a_1 < \lfloor k\phi\rfloor$, nên $k' < k$, do đó $a_2'=a_1 + k' < a_1+k = a_2$. Vì vậy, miễn là $a_1 < \lfloor k\phi\rfloor$, nhất định có $a_2' < a_2$; người đi trước chỉ cần lấy đi $(a_2-a'_2)$ viên đá từ đống thứ hai là có thể biến cục diện thành trạng thái tất bại.
+    Trong trò chơi Wythoff, một thao tác hợp lệ hoặc giữ nguyên một trong hai thành phần, hoặc giữ nguyên hiệu của hai thành phần. Vì vậy, từ một trạng thái người đi trước tất bại, không thể nhận được một trạng thái người đi trước tất bại khác chỉ bằng một thao tác hợp lệ. Ngược lại, với bất kỳ trạng thái người đi trước tất thắng $(a_1,a_2)$, giả sử không mất tính tổng quát rằng $a_1\le a_2$ và đặt $k=a_2-a_1$. Nếu $a_1>\lfloor k\phi\rfloor$, người đi trước có thể lấy từ mỗi đống $(a_1 - \lfloor k\phi\rfloor)$ viên đá để biến cục diện thành trạng thái tất bại. Ngược lại, theo kết luận ở đoạn trước, với $a_1$ này tồn tại duy nhất một trạng thái tất bại $(a_1,a_2')$. Tiếp đó, nếu $a_1 > a_2'$ thì $a_2' < a_2$; còn nếu $a_1 < a_2'$, lấy $k'=a_2'-a_1$ sao cho $a_1=\lfloor k'\phi\rfloor$. Lại có $a_1 < \lfloor k\phi\rfloor$, nên $k' < k$, do đó $a_2'=a_1 + k' < a_1+k = a_2$. Vì vậy, miễn là $a_1 < \lfloor k\phi\rfloor$, nhất định có $a_2' < a_2$; người đi trước chỉ cần lấy đi $(a_2-a'_2)$ viên đá từ đống thứ hai là có thể biến cục diện thành trạng thái tất bại.
 
 <span id="trò-chơi-lật-đồng-xu"></span>
 ### Trò chơi lật đồng xu
@@ -466,7 +466,7 @@ Dù có rất nhiều loại trò chơi lật đồng xu, hướng giải của 
     $$
 
 ??? note "Chứng minh"
-    Xét một trò chơi liên quan: trong một cục diện $G'$, tại mỗi phần tử của tập $S$ đặt một số viên đá; mỗi lượt, người chơi có thể lấy đi một viên đá tại $s$, chọn một tập $T\in f(s)$, rồi đặt thêm một viên đá tại mỗi phần tử trong $T\setminus\{s\}$. Với loại trò chơi này, vẫn có thể định nghĩa cục diện cơ sở $G'_s$, tức cục diện chỉ đặt một viên đá tại vị trí $s$. Trong loại trò chơi này, mỗi cục diện đều là tổng của các cục diện cơ sở ứng với mọi viên đá của nó. Lý do là khi đặt đá mới, ta gắn nó với viên đá vừa bị lấy đi; như vậy mỗi viên đá xuất hiện trong quá trình chơi đều có thể được gắn với một viên đá ở cục diện ban đầu. Tiếp đó, tiến trình trò chơi con ứng với các viên đá khác nhau ở cục diện ban đầu không can thiệp lẫn nhau, nên toàn bộ trò chơi có thể xem là tổng của các trò chơi con này. Vì các viên đá ở cùng vị trí ứng với cùng một giá trị SG của cục diện cơ sở, dựa vào tính chất của XOR, giá trị SG của cục diện $G'$ chỉ phụ thuộc vào tính chẵn lẻ của số đá ở từng đống, không phụ thuộc vào số lượng cụ thể. Vì vậy, với cục diện $G'$, nếu ký hiệu tập các vị trí có số đá lẻ là $H(G')$, thì phân tích trong đoạn này có thể tóm tắt bằng công thức:
+    Xét một trò chơi liên quan: trong một cục diện $G'$, tại mỗi phần tử của tập $S$ đặt một số viên đá; mỗi lượt, người chơi có thể lấy đi một viên đá tại $s$, chọn một tập $T\in f(s)$, rồi đặt thêm một viên đá tại mỗi phần tử trong $T\setminus\{s\}$. Với loại trò chơi này, vẫn có thể định nghĩa cục diện cơ sở $G'_s$, tức cục diện chỉ đặt một viên đá tại vị trí $s$. Trong loại trò chơi này, mỗi cục diện đều là tổng của các cục diện cơ sở ứng với mọi viên đá của nó. Lý do là khi đặt đá mới, viên đá mới được gắn với viên đá vừa bị lấy đi; như vậy mỗi viên đá xuất hiện trong quá trình chơi đều có thể được gắn với một viên đá ở cục diện ban đầu. Tiếp đó, tiến trình trò chơi con ứng với các viên đá khác nhau ở cục diện ban đầu không can thiệp lẫn nhau, nên toàn bộ trò chơi có thể xem là tổng của các trò chơi con này. Vì các viên đá ở cùng vị trí ứng với cùng một giá trị SG của cục diện cơ sở, dựa vào tính chất của XOR, giá trị SG của cục diện $G'$ chỉ phụ thuộc vào tính chẵn lẻ của số đá ở từng đống, không phụ thuộc vào số lượng cụ thể. Vì vậy, với cục diện $G'$, nếu ký hiệu tập các vị trí có số đá lẻ là $H(G')$, thì phân tích trong đoạn này có thể tóm tắt bằng công thức:
     
     $$
     \operatorname{SG}(G') = \bigoplus_{s\in H(G')} \operatorname{SG}(G'_s).
@@ -476,7 +476,7 @@ Dù có rất nhiều loại trò chơi lật đồng xu, hướng giải của 
     
     Cần chứng minh rằng với cục diện $G'$ của trò chơi mới và cục diện $G$ của trò chơi lật đồng xu, nếu các vị trí có số đá lẻ trong $G'$ đúng bằng các vị trí có đồng xu ngửa trong $G$, thì $G'$ và $G$ tương đương. Theo [bổ đề 2 của định lý Sprague-Grundy](#sg-lem-2), điều này tương đương với việc chứng minh cục diện $G+G'$ là trạng thái tất bại. Chiến lược thắng của người đi sau rất đơn giản: nếu người đi trước chọn lấy đi một viên đá tại $s$ và ở đó có hơn một viên đá, người đi sau trực tiếp bắt chước hành vi của người đi trước; nếu không, người đi sau chọn cùng $s$ và cùng $T\in f(s)$ với người đi trước, nhưng chọn trò chơi con khác với người đi trước, tức người đi trước lấy đá thì người đi sau lật xu, còn người đi trước lật xu thì người đi sau lấy đá. Với bất kỳ thao tác nào của người đi trước, người đi sau đều có thể tiếp tục thao tác và bảo đảm trong cục diện còn lại, các vị trí có số đá lẻ trùng với các vị trí có đồng xu ngửa. Như vậy trò chơi tất yếu kết thúc khi người đi trước không có thao tác hợp lệ, nên người đi trước tất bại. Định lý được chứng minh.
 
-Dùng kết luận này, để phán định một cục diện có tất thắng hay không, chỉ cần tính giá trị hàm SG của các cục diện cơ sở ứng với mọi đồng xu đang ngửa, rồi lấy tổng Nim. Các giá trị hàm SG của cục diện cơ sở cũng không khó tính, vì các cục diện kế tiếp của chúng đã được ánh xạ $f$ cho trước, và giá trị SG của cục diện kế tiếp có thể được tính quy nạp:
+Dùng kết luận này, để phán định một cục diện có tất thắng hay không, chỉ cần tính giá trị hàm SG của các cục diện cơ sở ứng với mọi đồng xu đang ngửa, rồi lấy tổng Nim. Các giá trị hàm SG của cục diện cơ sở có thể tính trực tiếp, vì các cục diện kế tiếp của chúng đã được ánh xạ $f$ cho trước, và giá trị SG của cục diện kế tiếp có thể được tính quy nạp:
 
 $$
 \operatorname{SG}(G_s) = \operatorname{mex}\limits_{T\in f(s)}\bigoplus_{t\in T\setminus\{s\}}\operatorname{SG}(G_t).
@@ -511,7 +511,7 @@ Ngoài ra, trò chơi trên đồ thị hai phía còn có một biến thể:
 ???+ abstract "Biến thể của trò chơi trên đồ thị hai phía"
     Cho $G=(V,E)$ là một đồ thị vô hướng, và trên mỗi đỉnh của đồ thị đặt một viên đá. Hai người chơi lần lượt hành động để lấy đá. Khi trò chơi bắt đầu, người đi trước có thể lấy đi bất kỳ viên đá nào; ở các lượt sau, mỗi người chơi phải lấy viên đá tại một đỉnh kề với đỉnh mà đối phương đã lấy đá ở lượt trước. Người đầu tiên không thể lấy đá thua.
 
-Rõ ràng, biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cặp lớn nhất, tức đồ thị $G$ tồn tại [ghép cặp hoàn hảo](../../graph/graph-matching/graph-match.md#sự-tồn-tại-của-ghép-cặp-hoàn-hảo).
+Biến thể này tương đương với việc trong trò chơi trên đồ thị hai phía ở trên, cho người đi trước chọn cục diện ban đầu, rồi để người đi sau bắt đầu trò chơi trên đồ thị hai phía. Vì vậy, trong biến thể này, người đi trước tất bại khi và chỉ khi mọi đỉnh đều là điểm then chốt của ghép cặp lớn nhất, tức đồ thị $G$ tồn tại [ghép cặp hoàn hảo](../../graph/graph-matching/graph-match.md#sự-tồn-tại-của-ghép-cặp-hoàn-hảo).
 
 <span id="trò-chơi-nim-luật-ngược"></span>
 ## Trò chơi Nim luật ngược
@@ -534,9 +534,9 @@ Với trò chơi này, có kết luận sau:
     
     Tiếp theo, xét trường hợp có một số đống đá có số lượng lớn hơn nghiêm ngặt $1$.
     
-    Trường hợp A: nếu chỉ có một đống đá có số lượng lớn hơn nghiêm ngặt $1$, thì lúc này tổng Nim chắc chắn khác $0$. Hơn nữa, vì người đi trước có thể chọn chuyển sang cục diện mà số đá ở mọi đống đều không vượt quá $1$, đồng thời có thể kiểm soát tính chẵn lẻ của số đống đá không rỗng còn lại, nên đây là trạng thái tất thắng cho người đi trước $\mathcal N$.
+    Trường hợp A: nếu chỉ có một đống đá có số lượng lớn hơn nghiêm ngặt $1$, thì lúc này tổng Nim khác $0$. Hơn nữa, vì người đi trước có thể chọn chuyển sang cục diện mà số đá ở mọi đống đều không vượt quá $1$, đồng thời có thể kiểm soát tính chẵn lẻ của số đống đá không rỗng còn lại, nên đây là trạng thái tất thắng cho người đi trước $\mathcal N$.
     
-    Trường hợp B: hiện có hơn một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Khi đó dù thao tác thế nào, trong cục diện tiếp theo vẫn có ít nhất một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Theo giả thiết quy nạp, trong cục diện tiếp theo, người đi trước tất bại tương ứng với tổng Nim bằng không, còn người đi trước tất thắng tương ứng với tổng Nim khác không. Điều này hoàn toàn giống giả thiết quy nạp của Nim bình thường. Vì vậy, lặp lại lập luận của trò chơi Nim, ta biết cục diện hiện tại cũng thỏa kết luận rằng tổng Nim bằng không tương ứng với trạng thái người đi trước tất bại.
+    Trường hợp B: hiện có hơn một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Khi đó dù thao tác thế nào, trong cục diện tiếp theo vẫn có ít nhất một đống đá có số lượng lớn hơn nghiêm ngặt $1$. Theo giả thiết quy nạp, trong cục diện tiếp theo, người đi trước tất bại tương ứng với tổng Nim bằng không, còn người đi trước tất thắng tương ứng với tổng Nim khác không. Điều này hoàn toàn giống giả thiết quy nạp của Nim bình thường. Vì vậy, lặp lại lập luận của trò chơi Nim, cục diện hiện tại cũng thỏa kết luận rằng tổng Nim bằng không tương ứng với trạng thái người đi trước tất bại.
 
 <span id="trò-chơi-trên-đồ-thị-có-hướng"></span>
 ## Trò chơi trên đồ thị có hướng
@@ -566,7 +566,7 @@ Phần này thảo luận một số bài tập điển hình.
     Có $2n$ đống đá. Với $k=1,2,\cdots,n$, hai đống đá $2k-1$ và $2k$ tạo thành một nhóm. Hai người chơi lần lượt thao tác: mỗi lần chọn một nhóm đống đá, bỏ đi một trong hai đống, rồi chia đống còn lại thành hai đống không rỗng và đặt vào hai vị trí của nhóm đó. Nếu mọi đống đá đều chỉ có một viên, người chơi hiện tại không có thao tác hợp lệ và thua. Cho số đá của mỗi đống $\{a_i\}_{i=1}^{2n}$, hỏi cục diện có tất thắng cho người đi trước hay không.
 
 ??? note "Lời giải"
-    Rõ ràng, trò chơi ở các nhóm đống đá khác nhau độc lập với nhau. Vì vậy, chỉ cần tính giá trị hàm SG của mỗi nhóm là có thể tính giá trị SG của toàn bộ trò chơi, từ đó phán định có phải trạng thái tất thắng hay không. Điểm mấu chốt là tính giá trị hàm SG của mỗi nhóm đống đá như thế nào. Điều này không dễ. Một hướng thường gặp khi giải các bài lý thuyết trò chơi loại này là lập bảng. Gọi giá trị SG là $f(i,j)$ khi trong một nhóm, số đá ở hai đống lần lượt là $(i,j)$. Viết một chương trình vét cạn lập bảng sẽ nhận được kết quả sau:
+    Trò chơi ở các nhóm đống đá khác nhau độc lập với nhau. Vì vậy, chỉ cần tính giá trị hàm SG của mỗi nhóm là có thể tính giá trị SG của toàn bộ trò chơi, từ đó phán định có phải trạng thái tất thắng hay không. Điểm mấu chốt là tính giá trị hàm SG của mỗi nhóm đống đá như thế nào. Điều này không dễ. Một hướng thường gặp khi giải các bài lý thuyết trò chơi loại này là lập bảng. Gọi giá trị SG là $f(i,j)$ khi trong một nhóm, số đá ở hai đống lần lượt là $(i,j)$. Viết một chương trình vét cạn lập bảng sẽ nhận được kết quả sau:
     
     ```text
     0 1 0 2 0 1 0 3 0 1 0 2 0 1 0 4 
@@ -612,7 +612,7 @@ Phần này thảo luận một số bài tập điển hình.
     
     Hàm SG cần tìm là $f(i,j)=g(i-1,j-1)$. Dùng công thức truy hồi này, thuật toán có thể tính giá trị $f(i,j)$ trong thời gian $O(\log\min\{i,j\})$.
     
-    Tất nhiên, bằng quy nạp đơn giản có thể thấy $g(i,j)$ thực ra là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
+    Bằng quy nạp đơn giản, $g(i,j)$ thực ra là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
     
     Trong loại bài này, sau khi quan sát từ bảng và nhận được biểu thức hàm SG, biểu thức đó thường rất dễ chứng minh bằng quy nạp; vì vậy điểm mấu chốt khi giải bài là thu được các kết luận này bằng một hình thức nào đó, chứ không phải suy diễn từ đầu. Ví dụ, sau khi biết kết luận, quan hệ truy hồi trong bài này có thể được chứng minh quy nạp như sau. Gọi $S_k$ là tập các giá trị SG của các cục diện có thể nhận được khi chia $k$ viên đá thành hai đống không rỗng. Khi đó $f(i,j) = \operatorname{mex}(S_i \cup S_j)$. Vì vậy $S_k$ có quan hệ truy hồi:
     
@@ -622,7 +622,7 @@ Phần này thảo luận một số bài tập điển hình.
     
     Cần chứng minh rằng $d\in S_k$ khi và chỉ khi trong biểu diễn nhị phân của $(k-1)$, bit thứ $d$ với bit thấp nhất là bit thứ $0$ bằng $1$.
     
-    Dùng quy nạp toán học. Cơ sở quy nạp $S_1=\varnothing$ hiển nhiên đúng. Giả sử mệnh đề đúng với mọi số nguyên dương nhỏ hơn $k$. Khi đó $d\in S_k$ khi và chỉ khi tồn tại $i,j\in\mathbf N_+$ sao cho $i+j=k$, đồng thời trong hai số $(i-1)$ và $(j-1)$, ở mỗi bit $d' < d$ có ít nhất một số có bit bằng $1$, còn bit thứ $d$ của cả hai đều bằng $0$. Hiển nhiên, tồn tại một cách chia như vậy khi và chỉ khi nếu chỉ xét phần gồm các bit $0\sim d$, tức xét modulo $2^{d+1}$, giá trị của $(k-1)=(i-1)+(j-1)+1$ nằm trong khoảng $[2^d,2^{d+1}-1)$. Điều kiện này tương đương với bit thứ $d$ của $(k-1)$ bằng $1$. Từ đó bước quy nạp đúng, và mệnh đề ban đầu được chứng minh.
+    Dùng quy nạp toán học. Cơ sở quy nạp $S_1=\varnothing$ đúng. Giả sử mệnh đề đúng với mọi số nguyên dương nhỏ hơn $k$. Khi đó $d\in S_k$ khi và chỉ khi tồn tại $i,j\in\mathbf N_+$ sao cho $i+j=k$, đồng thời trong hai số $(i-1)$ và $(j-1)$, ở mỗi bit $d' < d$ có ít nhất một số có bit bằng $1$, còn bit thứ $d$ của cả hai đều bằng $0$. Tồn tại một cách chia như vậy khi và chỉ khi nếu chỉ xét phần gồm các bit $0\sim d$, tức xét modulo $2^{d+1}$, giá trị của $(k-1)=(i-1)+(j-1)+1$ nằm trong khoảng $[2^d,2^{d+1}-1)$. Điều kiện này tương đương với bit thứ $d$ của $(k-1)$ bằng $1$. Từ đó bước quy nạp đúng, và mệnh đề ban đầu được chứng minh.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -644,7 +644,7 @@ Phần này thảo luận một số bài tập điển hình.
     Có $n$ đống đá, đống thứ $i$ có $a_i$ viên. Hai người chơi lần lượt lấy đá; mỗi lần chỉ được chọn một đống ở ngoài cùng bên trái hoặc ngoài cùng bên phải để lấy đi tùy ý nhiều viên đá, nhưng không được không lấy. Người lấy viên đá cuối cùng thắng. Hỏi người đi trước có tất thắng hay không.
 
 ??? note "Lời giải"
-    Vì bài này không tồn tại các trò chơi con độc lập với nhau, về nguyên tắc chỉ dùng [bổ đề phán định trạng thái tất bại và tất thắng](#np-lem). Bắt đầu phân tích từ trường hợp đơn giản nhất. Khi $n\le 2$, đây là trò chơi Nim. Khi $n \ge 3$, bài toán trở nên phức tạp. Tuy nhiên, vì các đống đá có thể thao tác chỉ là hai đống ở hai đầu, giả sử số đá của chúng lần lượt là $x$ và $y$. Tiếp đó, gọi $f(x,y)$ là hàm chỉ thị trạng thái người đi trước tất thắng, tức $f(x,y)=1$ nếu người đi trước tất thắng, ngược lại $f(x,y)=0$. Dễ thấy giá trị của $f(x,y)$ thỏa quan hệ truy hồi: $f(x,y)=0$ khi và chỉ khi với mọi $s < x$ và $t < y$ đều có $f(x,t)=f(s,y)=1$. Cơ sở truy hồi nằm ở $x=0$ hoặc $y=0$; khi đó trò chơi đã còn chưa tới $n$ đống đá, nên cần xét thêm số đá ở các đống giữa. Vì vậy, tạm giả sử $f(x,0)$ và $f(0,y)$ đã biết, rồi xét cách suy ra toàn bộ giá trị $f(x,y)$ từ chúng. Điều này không khó. Xét ma trận vô hạn có tập chỉ số là $\mathbf N\times\mathbf N$; việc tính $f(x,y)$ tương đương với điền $0$ và $1$ vào ma trận, cần thỏa điều kiện rằng mỗi hàng và mỗi cột có nhiều nhất một số $0$, và nếu các vị trí trước đó trong cùng hàng hoặc cùng cột đều chưa xuất hiện số $0$, thì vị trí này nhất định là $0$. Vị trí của số $0$ trong mỗi hàng thực ra định nghĩa một hàm từ số hàng $x$ tới số cột $y$. Sau khi thử một vài ví dụ đơn giản, tức lập bảng, có thể thấy rằng nếu $x_0$ là $x$ duy nhất sao cho $f(x,0)=0$, và $y_0$ là $y$ duy nhất sao cho $f(0,y)=0$, thì với mọi $x$, giá trị $y$ làm $f(x,y)=0$ là
+    Vì bài này không tồn tại các trò chơi con độc lập với nhau, về nguyên tắc chỉ dùng [bổ đề phán định trạng thái tất bại và tất thắng](#np-lem). Bắt đầu phân tích từ trường hợp đơn giản nhất. Khi $n\le 2$, đây là trò chơi Nim. Khi $n \ge 3$, bài toán trở nên phức tạp. Tuy nhiên, vì các đống đá có thể thao tác chỉ là hai đống ở hai đầu, giả sử số đá của chúng lần lượt là $x$ và $y$. Tiếp đó, gọi $f(x,y)$ là hàm chỉ thị trạng thái người đi trước tất thắng, tức $f(x,y)=1$ nếu người đi trước tất thắng, ngược lại $f(x,y)=0$. Giá trị của $f(x,y)$ thỏa quan hệ truy hồi: $f(x,y)=0$ khi và chỉ khi với mọi $s < x$ và $t < y$ đều có $f(x,t)=f(s,y)=1$. Cơ sở truy hồi nằm ở $x=0$ hoặc $y=0$; khi đó trò chơi đã còn chưa tới $n$ đống đá, nên cần xét thêm số đá ở các đống giữa. Vì vậy, tạm giả sử $f(x,0)$ và $f(0,y)$ đã biết, rồi xét cách suy ra toàn bộ giá trị $f(x,y)$ từ chúng. Xét ma trận vô hạn có tập chỉ số là $\mathbf N\times\mathbf N$; việc tính $f(x,y)$ tương đương với điền $0$ và $1$ vào ma trận, cần thỏa điều kiện rằng mỗi hàng và mỗi cột có nhiều nhất một số $0$, và nếu các vị trí trước đó trong cùng hàng hoặc cùng cột đều chưa xuất hiện số $0$, thì vị trí này nhất định là $0$. Vị trí của số $0$ trong mỗi hàng thực ra định nghĩa một hàm từ số hàng $x$ tới số cột $y$. Sau khi thử một vài ví dụ đơn giản, tức lập bảng, nếu $x_0$ là $x$ duy nhất sao cho $f(x,0)=0$, và $y_0$ là $y$ duy nhất sao cho $f(0,y)=0$, thì với mọi $x$, giá trị $y$ làm $f(x,y)=0$ là
     
     $$
     y = \begin{cases}
@@ -655,7 +655,7 @@ Phần này thảo luận một số bài tập điển hình.
     \end{cases}
     $$
     
-    Nói cách khác, chỉ cần biết $x_0$ và $y_0$ là có thể tính giá trị của mọi $f(x,y)$ trong thời gian $O(1)$, từ đó phán định trạng thái hiện tại có tất thắng cho người đi trước hay không. Còn $x_0$ và $y_0$ có thể được tính đệ quy. Ví dụ, $x_0$ là nghiệm duy nhất làm $f(x,0)=0$, nhưng đồng thời giá trị của $f(x,0)$ có thể được tính bằng cách bỏ đống đá ngoài cùng bên phải rồi chỉ xét $n-1$ đống còn lại; nói cách khác, chỉ xét $n-1$ đống đá đầu cũng có thể tính một hàm $f_{1,n-1}(x,y)$, khi đó hiển nhiên có $f(x,0)=f_{1,n-1}(x,a_{n-1})$. Tương tự, sau khi bỏ đống đá ngoài cùng bên trái và tính được $f_{2,n}(x,y)$, ta nhận được $f(0,y)=f_{2,n}(a_1,y)$. Tất nhiên, việc tính các hàm bên trong $f_{1,n-1}(x,y)$ và $f_{2,n}(x,y)$ lại phụ thuộc vào các hàm ở lớp sâu hơn. Đây là [DP đoạn](../../dp/interval.md) điển hình. Ở mỗi lớp, chỉ cần duy trì $x_0$ và $y_0$ của hàm tương ứng.
+    Nói cách khác, chỉ cần biết $x_0$ và $y_0$ là có thể tính giá trị của mọi $f(x,y)$ trong thời gian $O(1)$, từ đó phán định trạng thái hiện tại có tất thắng cho người đi trước hay không. Còn $x_0$ và $y_0$ có thể được tính đệ quy. Ví dụ, $x_0$ là nghiệm duy nhất làm $f(x,0)=0$, nhưng đồng thời giá trị của $f(x,0)$ có thể được tính bằng cách bỏ đống đá ngoài cùng bên phải rồi chỉ xét $n-1$ đống còn lại; nói cách khác, chỉ xét $n-1$ đống đá đầu cũng có thể tính một hàm $f_{1,n-1}(x,y)$, khi đó có $f(x,0)=f_{1,n-1}(x,a_{n-1})$. Tương tự, sau khi bỏ đống đá ngoài cùng bên trái và tính được $f_{2,n}(x,y)$, nhận được $f(0,y)=f_{2,n}(a_1,y)$. Việc tính các hàm bên trong $f_{1,n-1}(x,y)$ và $f_{2,n}(x,y)$ lại phụ thuộc vào các hàm ở lớp sâu hơn. Đây là [DP đoạn](../../dp/interval.md) điển hình. Ở mỗi lớp, chỉ cần duy trì $x_0$ và $y_0$ của hàm tương ứng.
 
 ??? note "Mã tham khảo"
     ```cpp
