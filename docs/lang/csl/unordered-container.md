@@ -18,7 +18,7 @@ Chúng có nhiều điểm chung với các bộ chứa kết hợp tương ứn
 thành viên, v.v. Khác biệt lớn nhất là các bộ chứa kết hợp thông thường thường
 được cài đặt bằng cây đỏ-đen, nên các phần tử bên trong được sắp xếp theo một
 thứ tự xác định; còn các bộ chứa kết hợp không thứ tự lưu phần tử bằng bảng băm,
-nên thứ tự phần tử không được đảm bảo.
+nên thứ tự phần tử không được bảo đảm.
 
 Nhờ cách lưu trữ bằng bảng băm, bộ chứa kết hợp không thứ tự có thể thực hiện
 hầu hết thao tác (bao gồm tìm kiếm, chèn, xóa) với độ phức tạp hằng số **trong
@@ -80,7 +80,7 @@ struct my_hash {
 };
 ```
 
-Tất nhiên, để đảm bảo hàm băm không bị phân tích nhanh chóng (ví dụ các bài nộp
+Để bảo đảm hàm băm không bị phân tích nhanh chóng (ví dụ các bài nộp
 dùng bộ chứa kết hợp không thứ tự trên Codeforces bị khai thác), có thể thử thêm
 một số yếu tố ngẫu nhiên (như thời gian) vào hàm băm để tăng độ khó khi phân
 tích.

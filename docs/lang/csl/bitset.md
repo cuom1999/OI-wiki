@@ -318,17 +318,17 @@ Số đa tập hợp là $10^5$, số thao tác là $10^6$, miền giá trị l�
 <span id="cách-làm"></span>
 #### Cách làm
 
-Thấy cụm "theo mô-đun $2$", ta có thể nghĩ đến việc dùng `bitset` để duy trì mỗi đa tập hợp.
+Cụm "theo mô-đun $2$" gợi ý dùng `bitset` để duy trì mỗi đa tập hợp.
 
-Khi đó, thao tác $1$ gán trực tiếp, thao tác $2$ là XOR (vì tính theo mô-đun $2$), thao tác $4$ là truy vấn trực tiếp. Nhưng thao tác $3$ thì sao?
+Khi đó, thao tác $1$ gán trực tiếp, thao tác $2$ là XOR (vì tính theo mô-đun $2$), thao tác $4$ là truy vấn trực tiếp. Vấn đề còn lại là thao tác $3$.
 
-Ta có thể thử duy trì đa tập hợp gồm tất cả ước của các phần tử trong mỗi đa tập hợp. Khi đó thao tác $3$ chính là AND theo bit trực tiếp.
+Có thể thử duy trì đa tập hợp gồm tất cả ước của các phần tử trong mỗi đa tập hợp. Khi đó thao tác $3$ chính là AND theo bit trực tiếp.
 
 Có thể tiền xử lý `bitset` gồm các ước của mỗi số trong miền giá trị, như vậy thao tác $1$ được giải quyết. Thao tác $2$ vẫn là XOR.
 
 Vấn đề lúc này là: làm sao từ đa tập hợp các ước của một đa tập hợp để lấy được số lần xuất hiện của một số trong đa tập hợp gốc.
 
-Gọi đa tập hợp gốc là $A$, đa tập hợp các ước của nó là $A'$. Ta cần số lần xuất hiện của $x$ trong $A$; dùng [nghịch đảo Möbius](../../math/number-theory/mobius.md) để suy ra:
+Gọi đa tập hợp gốc là $A$, đa tập hợp các ước của nó là $A'$. Cần tính số lần xuất hiện của $x$ trong $A$; dùng [nghịch đảo Möbius](../../math/number-theory/mobius.md) để suy ra:
 
 $$
 \begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
@@ -457,7 +457,7 @@ Cách dùng cũng rất đơn giản: chỉ cần thay mảng `bool` trong sàng
     
             ![](./images/bitset-1e8.png)
     
-    Từ kết quả kiểm thử có thể thấy:
+    Kết quả kiểm thử cho thấy:
     
     1.  Sàng Eratosthenes có độ phức tạp thời gian $O(n \log \log n)$, sau khi được tối ưu bằng `bitset` hoặc `vector<bool>`, hiệu năng thực tế thậm chí vượt cả sàng Euler có độ phức tạp $O(n)$;
     2.  Hiệu quả tối ưu của `bitset` hoặc `vector<bool>` với sàng Euler nhìn chung không rõ rệt trong đa số trường hợp;

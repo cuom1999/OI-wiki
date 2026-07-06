@@ -10,7 +10,7 @@ Vim là một trình soạn thảo văn bản phát triển từ vi. Các chức
 
 Hệ thống Linux thường có sẵn Vim; mở trình dòng lệnh và nhập `vim` là có thể dùng.
 
-Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) của Vim có [tài liệu hướng dẫn tải xuống](https://www.vim.org/download.php); hãy biên dịch và cài đặt theo nhu cầu.
+Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) của Vim có [tài liệu hướng dẫn tải xuống](https://www.vim.org/download.php); biên dịch và cài đặt theo nhu cầu.
 
 ## Chế độ và phím thường dùng của Vim
 
@@ -22,7 +22,7 @@ Thông thường cần khoảng hai đến ba mươi phút để làm quen sơ b
 
 Đây là chế độ mặc định sau khi vào Vim.
 
-Ở trạng thái này, thao tác gõ phím sẽ được Vim nhận diện là lệnh chứ không phải nhập ký tự. Ví dụ, lúc này nếu ta nhấn <kbd>i</kbd>, nó sẽ không nhập một ký tự; <kbd>i</kbd> được xem là một lệnh.
+Ở trạng thái này, thao tác gõ phím sẽ được Vim nhận diện là lệnh chứ không phải nhập ký tự. Ví dụ, lúc này nếu nhấn <kbd>i</kbd>, Vim sẽ không nhập một ký tự; <kbd>i</kbd> được xem là một lệnh.
 
 Phím di chuyển của Vim là <kbd>↑</kbd>, <kbd>↓</kbd>, <kbd>←</kbd>, <kbd>→</kbd>, hoặc <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd>, <kbd>l</kbd>.
 
@@ -65,7 +65,7 @@ Trong chế độ lệnh, nhấn <kbd>/</kbd>, phía dưới sẽ xuất hiện 
 
 Trong chế độ lệnh, nhấn <kbd>\*</kbd> để tìm từ dưới con trỏ hiện tại.
 
-Nếu trước khi nhập một lệnh bạn nhập một số `n`, lệnh đó sẽ được lặp lại `n` lần.
+Nếu nhập một số `n` trước một lệnh, lệnh đó sẽ được lặp lại `n` lần.
 
 ### Chế độ nhập
 
@@ -159,7 +159,7 @@ cout << a + b
 return 0
 ```
 
-Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chèn, ta có thể thêm dấu chấm phẩy ở cuối dòng rất hiệu quả.
+Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chèn, có thể thêm dấu chấm phẩy ở cuối dòng rất hiệu quả.
 
 ```vim
 A;<Esc>

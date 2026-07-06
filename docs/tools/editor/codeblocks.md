@@ -27,11 +27,11 @@ Xem [trang web chính thức của Code::Blocks](https://www.codeblocks.org/down
 
 ## Cấu hình
 
-Nếu khi cài đặt bạn chọn trình cài đặt không kèm MinGW, hoặc cần dùng trình biên dịch khác, thì cần cài đặt và cấu hình trình biên dịch thủ công, rồi thiết lập Code::Blocks để dùng trình biên dịch đó.
+Nếu khi cài đặt đã chọn trình cài đặt không kèm MinGW, hoặc cần dùng trình biên dịch khác, thì cần cài đặt và cấu hình trình biên dịch thủ công, rồi thiết lập Code::Blocks để dùng trình biên dịch đó.
 
 ### Cài đặt chuỗi công cụ
 
-Tham khảo hướng dẫn cài đặt [trình biên dịch](../compiler.md) trên trang này để tải và cài đặt trình biên dịch bạn cần.
+Tham khảo hướng dẫn cài đặt [trình biên dịch](../compiler.md) trên trang này để tải và cài đặt trình biên dịch cần dùng.
 
 ### Thiết lập chuỗi công cụ
 
@@ -40,12 +40,12 @@ Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động qu�
 1.  Mở Code::Blocks, nhấp `Settings -> Compiler` (`Thiết lập -> Trình biên dịch`) trên thanh menu để mở hộp thoại thiết lập trình biên dịch (như hình dưới).![Thiết lập trình biên dịch trong Code::Blocks](./images/codeblocks-2.png)
 2.  Trong danh sách thả xuống `Selected compiler` (`Trình biên dịch đã chọn`), chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
 3.  Trong thẻ `Toolchain executables` (`Tệp thực thi của chuỗi công cụ`), nhấp nút `Auto-detect` (`Tự động phát hiện`); Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
-4.  Nếu tự động quét thất bại, bạn có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory` (`Thư mục cài đặt trình biên dịch`), nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
-5.  Sau khi thiết lập xong, nhấp `OK` (`Đồng ý`) để lưu; bây giờ bạn có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
+4.  Nếu tự động quét thất bại, có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory` (`Thư mục cài đặt trình biên dịch`), nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
+5.  Sau khi thiết lập xong, nhấp `OK` (`Đồng ý`) để lưu; từ thời điểm này có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
 
 ## Sử dụng
 
-Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người dùng tự định nghĩa cách biên dịch dự án. Bạn có thể đặt tùy chọn biên dịch trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`), chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties` (`Dự án -> Thuộc tính`), chẳng hạn tên dự án, đường dẫn và danh sách tệp.
+Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người dùng tự định nghĩa cách biên dịch dự án. Có thể đặt tùy chọn biên dịch trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`), chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties` (`Dự án -> Thuộc tính`), chẳng hạn tên dự án, đường dẫn và danh sách tệp.
 
 ??? note "Cấu hình Makefile"
     Mặc định Code::Blocks không yêu cầu viết Makefile. Nếu cần dùng Makefile tùy chỉnh, có thể chọn tùy chọn `This is a custom Makefile` (`Đây là Makefile tùy chỉnh`) trong `Project -> Properties` (`Dự án -> Thuộc tính`), rồi đặt đường dẫn Makefile trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`).
@@ -62,20 +62,20 @@ Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể t�
 
 Lấy một dự án Console Application đơn giản làm ví dụ, dưới đây là cách biên dịch và chạy dự án:
 
-1.  Sau khi tạo dự án xong, bạn sẽ thấy một tệp `main.cpp` mặc định. Bạn có thể viết mã trong tệp này rồi lưu lại.
+1.  Sau khi tạo dự án xong, sẽ thấy một tệp `main.cpp` mặc định. Có thể viết mã trong tệp này rồi lưu lại.
 2.  Sau khi viết mã xong, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
-3.  Sau khi biên dịch và chạy, cửa sổ đầu ra sẽ hiển thị kết quả xuất của chương trình. Bạn có thể xem đầu ra trong cửa sổ này và điều chỉnh mã khi cần.
+3.  Sau khi biên dịch và chạy, cửa sổ đầu ra sẽ hiển thị kết quả xuất của chương trình. Có thể xem đầu ra trong cửa sổ này và điều chỉnh mã khi cần.
 4.  Nếu chỉ cần biên dịch dự án mà không chạy, có thể nhấp nút `Build` (`Biên dịch`) trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ chỉ biên dịch dự án, không chạy chương trình.
 
 ### Gỡ lỗi
 
-Code::Blocks tích hợp trình gỡ lỗi. Bạn có thể thiết lập và khởi động trình gỡ lỗi trong menu `Debug` (`Gỡ lỗi`) để hỗ trợ định vị và giải quyết lỗi trong chương trình.
+Code::Blocks tích hợp trình gỡ lỗi. Có thể thiết lập và khởi động trình gỡ lỗi trong menu `Debug` (`Gỡ lỗi`) để hỗ trợ định vị và giải quyết lỗi trong chương trình.
 
 Tương tự, lấy một dự án Console Application đơn giản làm ví dụ, dưới đây là cách gỡ lỗi dự án:
 
 1.  **Đặt điểm dừng**: nhấp chuột trái ở bên trái dòng mã cần gỡ lỗi để đặt điểm dừng; chương trình sẽ dừng thực thi tại điểm dừng.
 2.  **Khởi động trình gỡ lỗi**: nhấp nút `Debug` (`Gỡ lỗi`) trên thanh công cụ, hoặc nhấn phím `F8`; Code::Blocks sẽ tự động biên dịch và khởi động trình gỡ lỗi.
-3.  **Gỡ lỗi chương trình**: trong trình gỡ lỗi, bạn có thể thực thi từng bước, xem giá trị biến, ngăn xếp gọi, v.v. để hỗ trợ định vị và giải quyết lỗi trong chương trình.
+3.  **Gỡ lỗi chương trình**: trong trình gỡ lỗi, có thể thực thi từng bước, xem giá trị biến, ngăn xếp gọi, v.v. để hỗ trợ định vị và giải quyết lỗi trong chương trình.
 4.  **Dừng gỡ lỗi**: sau khi gỡ lỗi xong, có thể nhấp nút `Stop` (`Dừng`) trên thanh công cụ, hoặc nhấn `Shift + F8`, để dừng trình gỡ lỗi.
 
 ## Tùy chỉnh thiết lập
@@ -96,14 +96,14 @@ Code::Blocks hỗ trợ phần bổ trợ để mở rộng chức năng. Có th
 -   **wxSmith**: phần bổ trợ dùng để phát triển ứng dụng wxWidgets, cung cấp công cụ thiết kế giao diện trực quan, cho phép tạo và bố trí giao diện GUI nhanh chóng, đơn giản hóa quy trình phát triển.
 -   **Thread Search**: phần bổ trợ hỗ trợ tìm kiếm đa luồng, có thể nhanh chóng tìm kiếm và thay thế ký hiệu và văn bản trong dự án, phù hợp cho phát triển dự án lớn.
 
-Cách cài đặt và sử dụng phần bổ trợ xem trong [tài liệu phần bổ trợ của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Hãy chọn phần bổ trợ phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của phần bổ trợ.
+Cách cài đặt và sử dụng phần bổ trợ xem trong [tài liệu phần bổ trợ của Code::Blocks](https://wiki.codeblocks.org/index.php/Code::Blocks_Plugins). Chọn phần bổ trợ phù hợp để cài đặt và sử dụng theo nhu cầu và chức năng của phần bổ trợ.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Phần bổ trợ của Code::Blocks tương đối đơn giản và cơ bản; phần lớn phần bổ trợ đã được tích hợp vào phần mềm, còn số lượng và chất lượng phần bổ trợ bên thứ ba thì hạn chế. Nên chọn phần bổ trợ phù hợp theo nhu cầu thực tế.
 
 ### Thiết lập phím tắt
 
-Bạn có thể xem và sửa phím tắt qua thẻ `Settings -> Editor -> Keyboard shortcuts` (`Thiết lập -> Trình soạn thảo -> Phím tắt`), rồi điều chỉnh theo thói quen của mình.
+Có thể xem và sửa phím tắt qua thẻ `Settings -> Editor -> Keyboard shortcuts` (`Thiết lập -> Trình soạn thảo -> Phím tắt`), rồi điều chỉnh theo thói quen sử dụng.
 
 Dưới đây là một số phím tắt thường dùng:
 

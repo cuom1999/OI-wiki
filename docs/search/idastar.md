@@ -15,7 +15,7 @@ $$
 
 vượt quá ngưỡng $C$, thuật toán dừng tìm kiếm trên nhánh đó.
 
-Ngưỡng $C$ được cập nhật động giữa các vòng lặp. Ngưỡng ban đầu lấy bằng tổng chi phí ước lượng tại đỉnh xuất phát, tức $h(s)$. Trong một vòng lặp, mỗi khi dừng vì vượt ngưỡng, ta ghi lại giá trị nhỏ nhất trong các tổng chi phí ước lượng của những đỉnh kế tiếp chưa được thăm. Sau khi vòng lặp kết thúc, cập nhật ngưỡng thành giá trị nhỏ nhất này rồi tiếp tục vòng tìm kiếm kế tiếp.
+Ngưỡng $C$ được cập nhật động giữa các vòng lặp. Ngưỡng ban đầu lấy bằng tổng chi phí ước lượng tại đỉnh xuất phát, tức $h(s)$. Trong một vòng lặp, mỗi khi dừng vì vượt ngưỡng, ghi lại giá trị nhỏ nhất trong các tổng chi phí ước lượng của những đỉnh kế tiếp chưa được thăm. Sau khi vòng lặp kết thúc, cập nhật ngưỡng thành giá trị nhỏ nhất này rồi tiếp tục vòng tìm kiếm kế tiếp.
 
 <span id="tính-chất"></span>
 ## Tính chất
@@ -80,16 +80,16 @@ $$
 ## Ví dụ
 
 ???+ example "[Phân số Ai Cập](https://www.luogu.com.cn/problem/P1763)"
-    Ở Ai Cập cổ đại, người ta biểu diễn mọi số hữu tỉ bằng tổng của các phân số đơn vị đôi một khác nhau, tức các số dạng $1/a$ với $a\in\mathbf{N}_+$. Ví dụ, $\dfrac{2}{3}=\dfrac{1}{2}+\dfrac{1}{6}$, nhưng không cho phép $\dfrac{2}{3}=\dfrac{1}{3}+\dfrac{1}{3}$, vì trong các số hạng không được có hai phân số đơn vị giống nhau.
+    Ở Ai Cập cổ đại, mọi số hữu tỉ được biểu diễn bằng tổng của các phân số đơn vị đôi một khác nhau, tức các số dạng $1/a$ với $a\in\mathbf{N}_+$. Ví dụ, $\dfrac{2}{3}=\dfrac{1}{2}+\dfrac{1}{6}$, nhưng không cho phép $\dfrac{2}{3}=\dfrac{1}{3}+\dfrac{1}{3}$, vì trong các số hạng không được có hai phân số đơn vị giống nhau.
     
     Với một phân số $\dfrac{a}{b}$, có nhiều cách biểu diễn. Quy ước: trong các cách biểu diễn khác nhau của cùng một phân số, cách nào có ít số hạng hơn thì tốt hơn; nếu số hạng bằng nhau, cách nào có phân số nhỏ nhất lớn hơn thì tốt hơn. Chẳng hạn, $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{6}+\dfrac{1}{18}$ là phương án tối ưu.
     
-    Cho hai số nguyên $a,b$ ($0<a<b<1000$), hãy lập trình tính biểu thức tối ưu.
+    Cho hai số nguyên $a,b$ ($0<a<b<1000$), cần lập trình tính biểu thức tối ưu.
 
 ??? note "Hướng giải"
-    Về lý thuyết, bài này có thể giải bằng quay lui, nhưng cây nghiệm sẽ rất lớn: độ sâu không có cận trên rõ ràng, và về lý thuyết lựa chọn số hạng cũng là vô hạn. Nói cách khác, nếu duyệt theo chiều rộng thì ngay cả một tầng cũng không mở rộng hết được, vì mỗi tầng đều có kích thước vô hạn.
+    Về lý thuyết, bài này có thể giải bằng quay lui, nhưng cây nghiệm sẽ rất lớn: độ sâu không có cận trên xác định, và về lý thuyết lựa chọn số hạng cũng là vô hạn. Nói cách khác, nếu duyệt theo chiều rộng thì ngay cả một tầng cũng không mở rộng hết được, vì mỗi tầng đều có kích thước vô hạn.
     
-    Cách giải là dùng tìm kiếm sâu dần: lần lượt liệt kê giới hạn độ sâu $C$ từ nhỏ đến lớn, mỗi lần tìm kiếm chỉ xét các đỉnh có độ sâu không vượt quá $C$. Như vậy, miễn là nghiệm có độ sâu hữu hạn, ta chắc chắn có thể liệt kê được trong thời gian hữu hạn.
+    Cách giải là dùng tìm kiếm sâu dần: lần lượt liệt kê giới hạn độ sâu $C$ từ nhỏ đến lớn, mỗi lần tìm kiếm chỉ xét các đỉnh có độ sâu không vượt quá $C$. Như vậy, miễn là nghiệm có độ sâu hữu hạn, quá trình liệt kê sẽ kết thúc trong thời gian hữu hạn.
     
     Giới hạn độ sâu $C$ còn có thể dùng để cắt tỉa. Mở rộng theo thứ tự mẫu số tăng dần. Nếu khi mở rộng đến tầng $i$, tổng của $i$ phân số đầu là $\dfrac{c}{d}$, và phân số thứ $i$ là $\dfrac{1}{e}$, thì tiếp theo ít nhất cần thêm
     
@@ -97,11 +97,11 @@ $$
     h = \left(\dfrac{a}{b}-\dfrac{c}{d}\right)/\left(\dfrac{1}{e+1}\right)
     $$
     
-    phân số nữa để tổng có thể đạt tới $\dfrac{a}{b}$. Ví dụ, nếu đang tìm đến $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{100}+\cdots$, thì mỗi phân số phía sau lớn nhất cũng chỉ là $\dfrac{1}{101}$; do đó cần ít nhất $\left({\dfrac{19}{45}-\dfrac{1}{5}}\right)/\left({\dfrac{1}{101}}\right)=23$ số hạng để tổng đạt tới $\dfrac{19}{45}$. Vì thế, $22$ lần lặp đầu tiên hoàn toàn sẽ không xét cây con này. Điểm then chốt ở đây là: ta có thể ước lượng ít nhất còn cần bao nhiêu bước nữa mới tìm được nghiệm.
+    phân số nữa để tổng có thể đạt tới $\dfrac{a}{b}$. Ví dụ, nếu đang tìm đến $\dfrac{19}{45}=\dfrac{1}{5}+\dfrac{1}{100}+\cdots$, thì mỗi phân số phía sau lớn nhất cũng chỉ là $\dfrac{1}{101}$; do đó cần ít nhất $\left({\dfrac{19}{45}-\dfrac{1}{5}}\right)/\left({\dfrac{1}{101}}\right)=23$ số hạng để tổng đạt tới $\dfrac{19}{45}$. Vì thế, $22$ lần lặp đầu tiên hoàn toàn sẽ không xét cây con này. Điểm then chốt là ước lượng được số bước tối thiểu còn cần để tìm nghiệm.
     
-    Lưu ý, từ "ít nhất" ở đây cho thấy ước lượng này là "lạc quan". Giống như trong thuật toán A\*, một hàm ước lượng tốt cần phải "lạc quan", nghĩa là không được đánh giá cao hơn chi phí thực tế. Thay giới hạn độ sâu $g\le C$ trong tìm kiếm sâu dần bằng giới hạn chặt hơn $g + h \le C$ sẽ thu được thuật toán IDA\* được thảo luận trong trang này. Vì trong bài này chi phí đường đi chính là độ dài của nó, IDA\* cũng giới hạn độ dài đường đi, chỉ khác là cộng thêm ước lượng về số bước còn cần. Trong các bài toán tổng quát hơn, tùy theo loại chi phí cần tối thiểu hóa, ta có thể thiết kế các hàm ước lượng khác.
+    Lưu ý, từ "ít nhất" trong lập luận này cho thấy ước lượng này là "lạc quan". Giống như trong thuật toán A\*, một hàm ước lượng tốt cần phải "lạc quan", nghĩa là không được đánh giá cao hơn chi phí thực tế. Thay giới hạn độ sâu $g\le C$ trong tìm kiếm sâu dần bằng giới hạn chặt hơn $g + h \le C$ sẽ thu được thuật toán IDA\* được thảo luận trong trang này. Vì trong bài này chi phí đường đi chính là độ dài của nó, IDA\* cũng giới hạn độ dài đường đi, chỉ khác là cộng thêm ước lượng về số bước còn cần. Trong các bài toán tổng quát hơn, tùy theo loại chi phí cần tối thiểu hóa, có thể thiết kế các hàm ước lượng khác.
     
-    Trong cài đặt, ta tiếp tục tối ưu IDA\* bằng các cắt tỉa sau:
+    Trong cài đặt, tiếp tục tối ưu IDA\* bằng các cắt tỉa sau:
     
     1.  Khi mở rộng đỉnh, mẫu số tiếp theo cần xét ít nhất là $\left(\dfrac{a}{b}-\dfrac{c}{d}\right)^{-1}$; có thể dùng giá trị này để cải thiện điểm bắt đầu khi liệt kê $e$.
     2.  Giới hạn chi phí đường đi của IDA\* có thể biến đổi thành
@@ -141,7 +141,7 @@ $$
         Do đó, có thể trực tiếp liệt kê mọi $k$ khả thi và kiểm tra xem có tồn tại một cặp nghiệm nguyên như vậy hay không. Cận trên khi liệt kê $k$ được xác định bằng điều kiện $y < E_\text{max}$.
     4.  Mỗi khi tìm được một đáp án, điều chỉnh cận trên mẫu số $M_e$ thành mẫu số lớn nhất trong đáp án hiện tại trừ đi một.
     
-    Ngoài ra, trong cài đặt, ta trực tiếp lưu giá trị của $\dfrac{a}{b}-\dfrac{c}{d}$ và $C-g$. Tử số và mẫu số của giá trị thứ nhất lần lượt được lưu trong hai biến `a` và `b`, còn giá trị thứ hai được lưu trong biến `d`.
+    Ngoài ra, trong cài đặt, lưu trực tiếp giá trị của $\dfrac{a}{b}-\dfrac{c}{d}$ và $C-g$. Tử số và mẫu số của giá trị thứ nhất lần lượt được lưu trong hai biến `a` và `b`, còn giá trị thứ hai được lưu trong biến `d`.
 
 ??? note "Mã mẫu"
     ```cpp

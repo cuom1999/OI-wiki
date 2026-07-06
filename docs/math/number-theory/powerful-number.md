@@ -35,11 +35,11 @@ Vậy làm thế nào để tìm mọi PN không vượt quá $n$? Dùng sàng t
 
 Trước hết, xây dựng một hàm nhân $g$ dễ tính tổng tiền tố và thỏa mãn $g(p) = f(p)$ với mọi số nguyên tố $p$. Kí hiệu $G(n) = \sum_{i=1}^{n} g(i)$.
 
-Tiếp theo, xây dựng hàm $h = f / g$, trong đó $/$ biểu thị phép chia theo tích chập Dirichlet. Theo tính chất của tích chập Dirichlet, $h$ cũng là hàm nhân, nên $h(1) = 1$. Ta có $f = g * h$, trong đó $*$ biểu thị tích chập Dirichlet.
+Tiếp theo, xây dựng hàm $h = f / g$, trong đó $/$ biểu thị phép chia theo tích chập Dirichlet. Theo tính chất của tích chập Dirichlet, $h$ cũng là hàm nhân, nên $h(1) = 1$. Khi đó $f = g * h$, trong đó $*$ biểu thị tích chập Dirichlet.
 
 Với số nguyên tố $p$, $f(p) = g(1)h(p) + g(p)h(1) = h(p) + g(p) \implies h(p) = 0$. Từ $h(p)=0$ và việc $h$ là hàm nhân, suy ra với mọi số $n$ không phải PN thì $h(n) = 0$, tức là $h$ chỉ có giá trị hữu hiệu tại các PN.
 
-Bây giờ, từ $f = g * h$ ta có
+Từ $f = g * h$, suy ra
 
 $$
 \begin{aligned}
@@ -87,7 +87,7 @@ Về độ phức tạp không gian, nút thắt nằm ở việc lưu $h(p^c)$.
 
 **Đề bài**: Cho hàm nhân $f(p^k) = p^k(p^k-1)$, tính $\sum_{i=1}^{n} f(i)$.
 
-Dễ thấy $f(p) = p(p-1) = \operatorname{id}(p)\varphi(p)$, xây dựng $g(n) = \operatorname{id}(n)\varphi(n)$.
+Nhận thấy $f(p) = p(p-1) = \operatorname{id}(p)\varphi(p)$, xây dựng $g(n) = \operatorname{id}(n)\varphi(n)$.
 
 Xét dùng sàng Dujiao để tính $G(n)$. Từ $(\operatorname{id}\cdot \varphi) * \operatorname{id} = \operatorname{id}_2$ suy ra $G(n)= \sum_{i=1}^{n} i^2 - \sum_{d=2}^{n} d \cdot G\left(\left\lfloor \dfrac{n}{d} \right\rfloor\right)$.
 
@@ -128,7 +128,7 @@ f(a)f(b) & n=ab \text{ và } a \perp b
 \end{cases}
 $$
 
-Dễ thấy:
+Nhận thấy:
 
 $$
 f(p) =

@@ -33,9 +33,9 @@ dung lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
 `vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều
-này giúp dễ dàng kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp
+này cho phép kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp
 tuyến tính theo kích thước bộ chứa). Chẳng hạn có thể dùng `vector<char>` để so
-sánh chuỗi (tất nhiên, dùng `std::string` vẫn nhanh và tiện hơn). Ngoài ra,
+sánh chuỗi, dù `std::string` vẫn nhanh và tiện hơn. Ngoài ra,
 `vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
 <span id="khởi-tạo-vector-thuận-tiện"></span>
@@ -222,7 +222,7 @@ dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng
 
 ### Chi tiết cài đặt của `vector`
 
-Về cài đặt, `vector` thực ra vẫn là mảng có độ dài cố định. Lý do nó mở rộng động
+Về bản chất cài đặt, `vector` vẫn là mảng có độ dài cố định. Lý do nó mở rộng động
 được là vì có thêm thao tác cấp phát lại để tránh vượt quá dung lượng. Trước hết
 cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng
 nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau;
@@ -476,5 +476,5 @@ do STL cung cấp; so với `std::list`, nó giảm chi phí bộ nhớ.
 ### Cách dùng `forward_list`
 
 Cách dùng `forward_list` gần như giống `list`, nhưng bộ lặp chỉ là một chiều, nên
-ở đây không trình bày chi tiết. Nội dung chi tiết có thể xem trong
+phần này không trình bày chi tiết. Nội dung chi tiết có thể xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).

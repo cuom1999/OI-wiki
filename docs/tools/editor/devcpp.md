@@ -114,7 +114,7 @@ Chọn nhãn tùy chọn `Show most warnings (-Wall)` (`Hiển thị hầu hết
 
 #### Sinh thông tin gỡ lỗi
 
-Khi xuất hiện thông báo `Project does not have debugging information, do you want to enable debugging and rebuild?` (`Dự án chưa có thông tin gỡ lỗi, bạn có muốn bật gỡ lỗi và biên dịch lại không?`) rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
+Khi xuất hiện thông báo `Project does not have debugging information, do you want to enable debugging and rebuild?` (`Dự án chưa có thông tin gỡ lỗi, có bật gỡ lỗi và biên dịch lại không?`) rồi bị thoát sau khi nhấp, hoặc khi muốn dùng chức năng gỡ lỗi, cần bật chức năng này.
 
 Chọn nhãn tùy chọn `Generate debugging information` (`Sinh thông tin gỡ lỗi`) trong thẻ con `Linker` (`Trình liên kết`).
 
@@ -140,7 +140,7 @@ Thuận tiện để chấm cục bộ bằng tệp đầu vào/đầu ra hoặc
 
 Thêm lệnh `-D[String]` vào mục `Add the following commands when calling the linker` (`thêm các lệnh sau khi gọi trình liên kết`).
 
-Trong đó `[String]` đổi thành tên macro bạn cần.
+Trong đó, thay `[String]` bằng tên macro cần định nghĩa.
 
 Như hình, sau khi bật tùy chọn biên dịch, đoạn mã sau có thể đọc dữ liệu từ tệp `test.in` và xuất ra tệp `test.out`.
 

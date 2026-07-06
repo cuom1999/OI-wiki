@@ -15,14 +15,14 @@ có thể khác nhau.
     gần như không cần tự viết `template`. Nếu quan tâm, có thể đọc thêm
     "C++ Primer" để học sâu hơn về C++.
 
-Sử dụng `pair` linh hoạt giúp xử lý dễ dàng các tình huống **cần ghép hai dữ liệu
+Sử dụng `pair` linh hoạt giúp xử lý hiệu quả các tình huống **cần ghép hai dữ liệu
 liên quan để lưu trữ và xử lý**.
 
 ??? note "Cấu trúc (`struct`)"
     So với `struct` tự định nghĩa, `pair` không cần định nghĩa thêm cấu trúc và
     nạp chồng toán tử, nên dùng đơn giản hơn.
 
-    Tuy nhiên, tên thành viên trong `struct` tự định nghĩa thường rõ ràng hơn (`pair`
+    Tuy nhiên, tên thành viên trong `struct` tự định nghĩa thường dễ hiểu hơn (`pair`
     chỉ có thể dùng `first` và `second` để truy cập hai thành viên bên trong). Đồng
     thời, nếu cần liên kết nhiều hơn hai biến, `struct` tự định nghĩa sẽ phù hợp
     hơn.
@@ -54,7 +54,7 @@ pair<int, double> p2 = make_pair(1, 2.0);
 
 Trong một số mã thi đấu cũ, người viết định nghĩa macro `#define mp make_pair`
 để rút gọn tên hàm `make_pair` thành `mp`. Cách này không bắt buộc; dùng trực tiếp
-`make_pair` hoặc khởi tạo bằng dấu `{}` thường rõ ràng hơn.
+`make_pair` hoặc khởi tạo bằng dấu `{}` thường dễ đọc hơn.
 
 Trong C++11 và các phiên bản mới hơn, `make_pair` có thể dùng cùng `auto` để
 tránh khai báo kiểu dữ liệu tường minh.
@@ -85,7 +85,7 @@ p1.first++;
 ### So sánh
 
 `pair` đã định nghĩa sẵn tất cả toán tử so sánh, bao gồm `<`, `>`, `<=`, `>=`,
-`==`, `!=`. Tất nhiên, điều này yêu cầu kiểu dữ liệu của hai biến tạo thành
+`==`, `!=`. Điều này yêu cầu kiểu dữ liệu của hai biến tạo thành
 `pair` đã định nghĩa toán tử `==` và/hoặc `<`.
 
 Trong đó, bốn toán tử `<`, `>`, `<=`, `>=` sẽ so sánh thành viên thứ nhất của hai

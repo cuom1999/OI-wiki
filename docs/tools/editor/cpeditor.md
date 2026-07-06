@@ -2,7 +2,7 @@ author: zarttic, xk2013
 
 ## Giới thiệu
 
-[CP Editor](https://github.com/cpeditor/cpeditor) được thiết kế riêng cho thi đấu thuật toán, không giống các IDE khác chủ yếu được thiết kế cho phát triển phần mềm. Nó có thể giúp bạn tự động hóa việc biên dịch, chạy và kiểm thử, để bạn tập trung vào thiết kế thuật toán. Nó thậm chí có thể lấy mẫu từ nhiều trang web thi đấu thuật toán và nộp mã lên [Codeforces](https://codeforces.com/)!
+[CP Editor](https://github.com/cpeditor/cpeditor) được thiết kế riêng cho thi đấu thuật toán, không giống các IDE khác chủ yếu được thiết kế cho phát triển phần mềm. Công cụ này có thể tự động hóa việc biên dịch, chạy và kiểm thử, giúp người dùng tập trung vào thiết kế thuật toán. CP Editor thậm chí có thể lấy mẫu từ nhiều trang web thi đấu thuật toán và nộp mã lên [Codeforces](https://codeforces.com/)!
 
 ## Tải xuống và cài đặt
 
@@ -10,7 +10,7 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
 ## Cấu hình cơ bản
 
-> CP Editor không tích hợp sẵn trình biên dịch bên trong; bạn cần tự cài đặt và cấu hình trình biên dịch. Nếu cần, hãy tham khảo bài liên quan đến cài đặt trình biên dịch trên trang này[^compiler]. Dĩ nhiên, nếu khi tải xuống bạn chọn gói cài đặt có hậu tố `with-gcc-<số phiên bản GCC>-llvm-<số phiên bản LLVM>`, bạn có thể dùng trình biên dịch đi kèm CP Editor, nằm tại `{thư mục cài đặt}/mingw64/bin/`.
+> CP Editor không tích hợp sẵn trình biên dịch bên trong; cần tự cài đặt và cấu hình trình biên dịch. Nếu cần, tham khảo bài liên quan đến cài đặt trình biên dịch trên trang này[^compiler]. Với gói cài đặt có hậu tố `with-gcc-<số phiên bản GCC>-llvm-<số phiên bản LLVM>`, có thể dùng trình biên dịch đi kèm CP Editor, nằm tại `{thư mục cài đặt}/mingw64/bin/`.
 
 -   Đặt ngôn ngữ mặc định
 
@@ -28,11 +28,11 @@ Xem [Installation | CP Editor](https://cpeditor.org/docs/installation/).
 
 -   Đặt mẫu
 
-    Mẫu sẽ tự động khởi tạo khi tạo tệp mới. Cần chú ý rằng CP Editor cần một tệp `xxx.cpp` làm mẫu tệp.
+    Mẫu sẽ tự động khởi tạo khi tạo tệp mới. Lưu ý rằng CP Editor cần một tệp `xxx.cpp` làm mẫu tệp.
 
     ![Cấu hình tệp mẫu C++ trong CP Editor](images/cp-setting-lang-4.png)
 
-> Sau khi hoàn thành các thao tác cơ bản trên, bạn đã có thể dùng các chức năng cơ bản nhất.
+> Sau khi hoàn thành các thao tác cơ bản trên, có thể dùng các chức năng cơ bản nhất.
 
 ## Chức năng cơ bản
 

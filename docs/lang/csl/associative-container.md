@@ -89,7 +89,7 @@ tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
 Trong thuật toán tham lam, thường cần thao tác kiểu **tìm và xóa phần tử nhỏ
 nhất lớn hơn hoặc bằng một giá trị nào đó**. Thao tác này có thể được thực hiện
-dễ dàng bằng `set`.
+trực tiếp bằng `set`.
 
 ```cpp
 // Các phần tử hiện đang khả dụng
@@ -114,7 +114,7 @@ if (it == available.end()) {
 duy nhất. Các thao tác tìm kiếm, xóa và chèn có độ phức tạp logarit. `map`
 thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md).
 
-Hãy xét tình huống sau: cần lưu một số cặp khóa-giá trị, chẳng hạn điểm tương
+Xét tình huống sau: cần lưu một số cặp khóa-giá trị, chẳng hạn điểm tương
 ứng với tên học sinh: `Tom 0`, `Bob 100`, `Alan 100`. Tuy nhiên, chỉ số mảng chỉ
 có thể là số nguyên không âm, nên không thể dùng tên làm chỉ số để lưu trữ. Lúc
 này, cách đơn giản nhất là dùng `map` trong STL.

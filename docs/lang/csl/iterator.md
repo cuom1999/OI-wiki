@@ -54,7 +54,7 @@ lần lượt gồm các loại sau:
 -   `ContiguousIterator` (bộ lặp liên tục): dựa trên `RandomAccessIterator`,
     yêu cầu nếu `a + n` có thể giải tham chiếu thì biểu thức `*(a + n)` tương
     đương `*(std::address_of(*a) + n)`, tức các phần tử được lưu trữ liên tục;
-    ở đây `a` là bộ lặp liên tục và `n` là giá trị số nguyên.
+    trong đó `a` là bộ lặp liên tục và `n` là giá trị số nguyên.
 
     `ContiguousIterator` được chính thức đưa vào từ C++17.
 
@@ -72,8 +72,8 @@ Bắt đầu từ bộ lặp tiến, nếu những bộ lặp này cũng hỗ tr
 xuất, chúng là bộ lặp khả biến. Từ đó có thể sinh ra các loại như
 "bộ lặp truy cập ngẫu nhiên khả biến" (`mutable random access iterator`).
 
-Mỗi [bộ chứa STL](./container.md) hỗ trợ những loại bộ lặp khác nhau, nên cần
-chú ý khi sử dụng.
+Mỗi [bộ chứa STL](./container.md) hỗ trợ những loại bộ lặp khác nhau, vì vậy cần
+lưu ý khi sử dụng.
 
 Con trỏ mảng thỏa mãn mọi yêu cầu của bộ lặp liên tục (hoặc bộ lặp truy cập
 ngẫu nhiên với C++14 trở về trước), nên có thể dùng như bộ lặp liên tục.

@@ -18,11 +18,11 @@ Truy cập [trang tải xuống dành cho nhà phát triển Apple](https://deve
 
 ![](images/xcode-2.jpg)
 
-Nhấp tên tệp màu xanh trong hộp thoại bật lên để tải xuống. Sau khi có tệp nén, dùng công cụ có sẵn của hệ thống để giải nén, bạn sẽ nhận được tệp `Xcode.app`. Di chuyển tệp này vào thư mục `Applications` là có thể sử dụng.
+Nhấp tên tệp màu xanh trong hộp thoại bật lên để tải xuống. Sau khi có tệp nén, dùng công cụ có sẵn của hệ thống để giải nén và nhận tệp `Xcode.app`. Di chuyển tệp này vào thư mục `Applications` là có thể sử dụng.
 
 ## Cấu hình cơ bản
 
-Khi mở Xcode lần đầu, bạn có thể gặp cửa sổ bật lên sau:
+Khi mở Xcode lần đầu, có thể xuất hiện cửa sổ bật lên sau:
 
 ![](images/xcode-3.jpg)
 
@@ -36,7 +36,7 @@ Nhấp `Create a new Xcode project` (`Tạo một dự án Xcode mới`), sau đ
 
 ![](images/xcode-5.jpg)
 
-Tiếp theo, ta có thể đặt tên cho dự án, nhưng điều quan trọng nhất là chọn ngôn ngữ của dự án. Tùy nhu cầu, tại mục `Language` (`Ngôn ngữ`) ở phía dưới cùng, ta có thể chọn C hoặc C++:
+Tiếp theo là bước đặt tên cho dự án, nhưng điều quan trọng nhất là chọn ngôn ngữ của dự án. Tùy nhu cầu, tại mục `Language` (`Ngôn ngữ`) ở phía dưới cùng, có thể chọn C hoặc C++:
 
 ![](images/xcode-6.jpg)
 
@@ -50,15 +50,15 @@ Sau khi viết mã, có thể nhấn `⌘B` để biên dịch (`Build`), `⌘R`
 
 ![](images/xcode-8.jpg)
 
-Thông thường ta chỉ dùng vùng soạn thảo và vùng chạy. Nếu chương trình có dữ liệu vào, nhập trong vùng chạy rồi sẽ nhận được kết quả đầu ra. Giao diện hiển thị như sau:
+Thông thường chỉ cần dùng vùng soạn thảo và vùng chạy. Nếu chương trình có dữ liệu vào, nhập trong vùng chạy rồi sẽ nhận được kết quả đầu ra. Giao diện hiển thị như sau:
 
 ![](images/xcode-9.jpg)
 
-Làm theo cách này, ta có thể chạy bất kỳ chương trình C/C++ tệp đơn nào.
+Làm theo cách này, có thể chạy bất kỳ chương trình C/C++ tệp đơn nào.
 
 ## Sử dụng tệp tiêu đề tổng hợp
 
-Trong quá trình viết mã, ta có thể cần dùng nhiều tệp tiêu đề. Một cách xử lý phổ biến là dùng tệp tiêu đề tổng hợp.
+Trong quá trình viết mã, có thể cần dùng nhiều tệp tiêu đề. Một cách xử lý phổ biến là dùng tệp tiêu đề tổng hợp.
 
 Khi thêm tệp tiêu đề tổng hợp ở dòng đầu tiên của mã nguồn, quá trình biên dịch lại báo: `'bits/stdc++.h' file not found`, nghĩa là không tìm thấy tệp tiêu đề này.
 
@@ -66,7 +66,7 @@ Khi thêm tệp tiêu đề tổng hợp ở dòng đầu tiên của mã nguồ
 
 Nguyên nhân là trên macOS, mặc định [libc++](https://libcxx.llvm.org/) được dùng làm phần triển khai thư viện chuẩn C++, còn tệp tiêu đề tổng hợp `bits/stdc++.h` là phần riêng của [GNU libstdc++](https://gcc.gnu.org/onlinedocs/libstdc++/).
 
-Tuy vậy, ta có thể tự tạo một tệp tiêu đề tổng hợp để sử dụng.
+Tuy vậy, có thể tự tạo một tệp tiêu đề tổng hợp để sử dụng.
 
 ### Bước 1
 
@@ -101,7 +101,7 @@ Giao diện như sau:
 
 ![](images/xcode-11.jpg)
 
-Tiếp theo, ta cần chỉnh sửa tệp bằng vim. Nhấn phím `i` (`insert`, chèn) để vào chế độ chèn/chỉnh sửa (bên dưới xuất hiện `-- INSERT --`):
+Tiếp theo, cần chỉnh sửa tệp bằng vim. Nhấn phím `i` (`insert`, chèn) để vào chế độ chèn/chỉnh sửa (bên dưới xuất hiện `-- INSERT --`):
 
 ![](images/xcode-12.jpg)
 
