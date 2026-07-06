@@ -79,7 +79,7 @@ $O(\log\log n)$. Tổng độ dài các đoạn trên mỗi tầng là $O(n)$, d
     Theo định lý chính, $S(m)=O(\log m)$, vì vậy $T(n)=S(\log n)=O(\log\log n)$.
 
 Bây giờ đã có thể trả lời truy vấn trong thời gian $O(\log\log n)$. Với truy vấn $[l,r]$, chỉ cần nhanh chóng tìm nút $u$
-có độ dài đoạn nhỏ nhất sao cho $u$ chứa được $[l,r]$. Khi đó $[l,r]$ chắc chắn đi qua nhiều khối trong phân hoạch của
+có độ dài đoạn nhỏ nhất sao cho $u$ chứa được $[l,r]$. Khi đó $[l,r]$ sẽ đi qua nhiều khối trong phân hoạch của
 $u$, nên có thể tính đáp án trong $O(1)$. Độ phức tạp tổng thể của một truy vấn là $O(\log\log n)$, vì chiều cao cây là
 $O(\log\log n)$. Tuy nhiên, quá trình này vẫn có thể tối ưu thêm.
 
@@ -147,7 +147,7 @@ Vì vậy độ phức tạp cập nhật điểm trên Sqrt Tree là $O(n+\sqrt
 Lưu ý rằng nút thắt của cập nhật điểm nằm ở việc cập nhật $\left\langle B_{i,j}\right\rangle$ của nút gốc. Vì vậy, thử
 dùng một Sqrt Tree khác để thay cho $\left\langle B_{i,j}\right\rangle$ ở nút gốc, gọi là $index$. Vai trò của nó giống
 mảng hai chiều ban đầu: duy trì đáp án cho các truy vấn trên cả đoạn. Các nút không phải gốc vẫn dùng
-$\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Cần chú ý: nếu nút gốc của một Sqrt Tree có cấu trúc $index$,
+$\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Lưu ý: nếu nút gốc của một Sqrt Tree có cấu trúc $index$,
 gọi Sqrt Tree đó là **có chỉ mục**; nếu nút gốc của một Sqrt Tree có cấu trúc $\left\langle B_{i,j}\right\rangle$, gọi nó
 là **không có chỉ mục**. Bản thân cây $index$ là không có chỉ mục.
 

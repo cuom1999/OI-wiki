@@ -425,7 +425,7 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
 -   Có thể viết một hàm riêng `pushdown` để đẩy nhãn lười xuống, và một hàm riêng `maintain` (hoặc đối xứng là `pushup`)
     để cập nhật nút hiện tại từ các nút con, giúp giảm độ khó khi viết mã.
 
--   Vĩnh cửu hóa nhãn: nếu chắc chắn nhãn lười không bị cộng dồn đến mức tràn (tức vượt quá miền biểu diễn của kiểu dữ
+-   Vĩnh cửu hóa nhãn: nếu nhãn lười không bị cộng dồn đến mức tràn (tức vượt quá miền biểu diễn của kiểu dữ
     liệu), có thể vĩnh cửu hóa nhãn. Vĩnh cửu hóa nhãn tránh việc đẩy nhãn lười xuống; khi truy vấn chỉ cần cộng ảnh hưởng
     của nhãn vào đáp án, nhờ đó giảm hằng số chương trình. Cách xử lý cụ thể phụ thuộc vào đặc điểm bài toán. Đây cũng là
     một kỹ thuật được dùng trong cây lồng cây và cấu trúc dữ liệu bền vững.

@@ -159,7 +159,7 @@ Xét một lần cập nhật trên nút $x$ và cha của nó là $p$, với ch
 Gọi thế năng trước và sau khi cập nhật lần lượt là $\Phi$ và $\Phi'$.
 Tính chi phí cập nhật khấu hao của việc cập nhật nút $x$.
 Vì nút hiện tại $x$ được cập nhật,
-tại thời điểm đó thế năng của nó chắc chắn giảm từ $d(x)$ xuống $0$.
+tại thời điểm đó thế năng của nó giảm từ $d(x)$ xuống $0$.
 Còn với $p$, trong trường hợp xấu nhất,
 thế năng của nó có thể tăng từ $0$ lên $d(p)$:
 
@@ -234,7 +234,7 @@ Xét một lần cập nhật trên nút $x$ và cha của nó là $p$, với ch
 Gọi thế năng trước và sau khi cập nhật lần lượt là $\Phi$ và $\Phi'$.
 Tính chi phí cập nhật khấu hao của việc cập nhật nút $x$.
 Vì nút hiện tại $x$ được cập nhật,
-tại thời điểm đó thế năng của nó chắc chắn giảm từ
+tại thời điểm đó thế năng của nó giảm từ
 $d(x)^{\log_2(s+1)}I(x)$ xuống $d(x)^{\log_2(s+1)}(I(x)-1)$.
 Còn với $p$, trong trường hợp xấu nhất,
 thế năng của nó có thể tăng từ $0$ lên $d(p)^{\log_2(s+1)}$:

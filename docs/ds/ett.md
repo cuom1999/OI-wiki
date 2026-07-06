@@ -23,7 +23,7 @@ này chỉ giới thiệu một vài cách cài đặt và ứng dụng khả th
 Nếu xem mỗi cạnh của cây là hai cạnh có hướng, có thể biểu diễn một cây thành một chu trình Euler trong đồ thị có hướng.
 Biểu diễn này được gọi là biểu diễn chu trình Euler của cây (Euler tour representation, ETR).
 
-Dãy cần duy trì ở phần sau thực ra là một biến thể của ETR: xem các đỉnh trong cây như các khuyên tự nối và cũng đưa
+Dãy cần duy trì ở phần sau là một biến thể của ETR: xem các đỉnh trong cây như các khuyên tự nối và cũng đưa
 chúng vào ETR. Tuy nhiên, vì tác giả trong bài báo gốc không đặt tên mới cho biến thể này, bài viết vẫn gọi nó là ETR.
 
 Có thể thu được biểu diễn chu trình Euler của cây $T$ bằng thuật toán sau:
@@ -281,7 +281,7 @@ thông tin trên đoạn, rồi dùng cấu trúc dữ liệu duy trì dãy đ�
 yêu cầu thông tin được duy trì phải có **tính trừ được**.
 
 Các thao tác trên dãy tương ứng với thao tác cây động đã giới thiệu ở trên có thể di chuyển ngoặc phải trong dãy ngoặc lên
-trước ngoặc trái. Vì vậy, khi duy trì các thông tin như tổng trọng số đỉnh trên đường đi của cây, cần đặc biệt chú ý rằng
+trước ngoặc trái. Vì vậy, khi duy trì các thông tin như tổng trọng số đỉnh trên đường đi của cây, cần đặc biệt lưu ý rằng
 thao tác không được làm thay đổi thứ tự trước-sau của cặp ngoặc trái và phải tương ứng. Điều này có thể đòi hỏi phải suy
 nghĩ lại các thao tác trên dãy tương ứng với thao tác cây động, thậm chí suy nghĩ lại việc nên duy trì dãy DFS nào.
 

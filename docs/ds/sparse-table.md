@@ -163,5 +163,5 @@ $\Theta(\log n+\log w)$.
     đều làm cho một kết quả nào đó trong "dãy đang xét" giảm ít nhất một nửa. Nói cách khác, $\Phi(A)$ giảm ít nhất
     $1$, nên thời gian của tầng đệ quy đó có thể được khấu hao bằng hàm thế năng.
 
-    Đồng thời, có thể thấy giá trị ban đầu của $\Phi(A)$ lớn nhất là $\log_2 (w^n)=\Theta(n\log w)$, và $\Phi(A)$
+    Đồng thời, giá trị ban đầu của $\Phi(A)$ lớn nhất là $\log_2 (w^n)=\Theta(n\log w)$, và $\Phi(A)$
     không tăng. Vì vậy, độ phức tạp thời gian của phần tiền xử lý bảng ST là $O(n(\log w+\log n))$.
