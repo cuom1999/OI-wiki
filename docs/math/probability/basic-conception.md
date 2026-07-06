@@ -1,10 +1,10 @@
 <span id="tổng-quan"></span>
 ## Tổng quan
 
-Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta thường tập trung vào các yếu tố sau:
+Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, các yếu tố sau thường được xét:
 
 -   Không gian mẫu $\Omega$, chỉ rõ tất cả các kết quả có thể xảy ra của hiện tượng ngẫu nhiên.
--   Trường biến cố $\mathcal{F}$, biểu thị tất cả các biến cố mà ta quan tâm.
+-   Trường biến cố $\mathcal{F}$, biểu thị tất cả các biến cố được xét.
 -   Xác suất $P$, mô tả mức độ khả năng xảy ra của mỗi biến cố.
 
 <span id="không-gian-mẫu-và-biến-cố-ngẫu-nhiên"></span>
@@ -17,23 +17,23 @@ Trong một hiện tượng ngẫu nhiên, một kết quả có thể xảy ra 
 
 Một **biến cố ngẫu nhiên** là một tập con của không gian mẫu $\Omega$. Nó gồm một số điểm mẫu và được ký hiệu bằng các chữ cái in hoa $A, B, C, \cdots$.
 
-Với kết quả $\omega$ của một hiện tượng ngẫu nhiên và một biến cố ngẫu nhiên $A$, ta nói biến cố $A$ **xảy ra** khi và chỉ khi $\omega \in A$.
+Với kết quả $\omega$ của một hiện tượng ngẫu nhiên và một biến cố ngẫu nhiên $A$, biến cố $A$ được xem là **xảy ra** khi và chỉ khi $\omega \in A$.
 
 Ví dụ, số chấm thu được khi gieo một con xúc xắc một lần là một hiện tượng ngẫu nhiên; không gian mẫu của nó có thể viết là $\Omega=\{1,2,3,4,5,6\}$. Giả sử biến cố ngẫu nhiên $A$ là "số chấm thu được lớn hơn $4$", khi đó $A = \{ 5, 6 \}$. Nếu trong một lần gieo xúc xắc số chấm thu được là $\omega = 3$, thì do $\omega \notin A$, biến cố $A$ không xảy ra.
 
 <span id="các-phép-toán-trên-biến-cố"></span>
 ### Các phép toán trên biến cố
 
-Vì ta định nghĩa biến cố ngẫu nhiên là tập con của không gian mẫu $\Omega$, nên có thể chuyển các phép toán trên tập hợp, như giao, hợp, phần bù, v.v., sang các biến cố ngẫu nhiên. Ký hiệu được giữ nhất quán với các phép toán tập hợp.
+Do biến cố ngẫu nhiên được định nghĩa là tập con của không gian mẫu $\Omega$, các phép toán trên tập hợp, như giao, hợp, phần bù, v.v., có thể được chuyển sang các biến cố ngẫu nhiên. Ký hiệu được giữ nhất quán với các phép toán tập hợp.
 
 Đặc biệt, hợp của hai biến cố $A \cup B$ cũng có thể viết là $A + B$, còn giao của hai biến cố $A \cap B$ cũng có thể viết là $AB$; khi đó chúng lần lượt cũng được gọi là **biến cố tổng** và **biến cố tích**.
 
 <span id="trường-biến-cố"></span>
 ## Trường biến cố
 
-Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta cần xác định rõ những biến cố nào là đối tượng quan tâm. Theo định nghĩa của biến cố ngẫu nhiên, hiển nhiên có $\mathcal{F} \subset 2^{\Omega}$, trong đó ký hiệu $2^{\Omega}$ chỉ tập lũy thừa của $\Omega$, nhưng không nhất thiết phải có $\mathcal{F} = 2^{\Omega}$. Khi không gian mẫu $\Omega$ là hữu hạn, điều này có thể hơi khó hiểu, vì dù $2^{\Omega}$ lớn hơn nhưng vẫn hữu hạn. Tuy nhiên, khi $\Omega$ là một tập vô hạn, lực lượng của $2^{\Omega}$ trở nên lớn hơn nhiều; trong đó khó tránh khỏi một số biến cố có "tính chất không thật tốt" và ta cũng không quan tâm. Khi ấy, từ bỏ một số tính chất chỉ để bao quát các biến cố này là điều không đáng.
+Khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, cần xác định rõ những biến cố nào là đối tượng quan tâm. Theo định nghĩa của biến cố ngẫu nhiên, luôn có $\mathcal{F} \subset 2^{\Omega}$, trong đó ký hiệu $2^{\Omega}$ chỉ tập lũy thừa của $\Omega$, nhưng không nhất thiết phải có $\mathcal{F} = 2^{\Omega}$. Khi không gian mẫu $\Omega$ là hữu hạn, điều này có thể hơi khó hiểu, vì dù $2^{\Omega}$ lớn hơn nhưng vẫn hữu hạn. Tuy nhiên, khi $\Omega$ là một tập vô hạn, lực lượng của $2^{\Omega}$ trở nên lớn hơn nhiều; trong đó khó tránh khỏi một số biến cố có "tính chất không thuận lợi" và cũng không thuộc phạm vi quan tâm. Khi ấy, việc hy sinh một số tính chất mong muốn chỉ để bao quát các biến cố này là không đáng.
 
-Dù $\mathcal{F} = 2^{\Omega}$ không phải là bắt buộc, điều đó không có nghĩa là bất kỳ tập con nào của $2^{\Omega}$ cũng có thể trở thành trường biến cố. Thông thường ta quan tâm đến xác suất của các biến cố thu được sau khi thực hiện một số phép toán trên biến cố, vì vậy ta mong muốn trường biến cố $\mathcal{F}$ thỏa mãn các điều kiện sau:
+Dù $\mathcal{F} = 2^{\Omega}$ không phải là bắt buộc, điều đó không có nghĩa là bất kỳ tập con nào của $2^{\Omega}$ cũng có thể trở thành trường biến cố. Vì thường cần xét xác suất của các biến cố thu được sau khi thực hiện một số phép toán trên biến cố, trường biến cố $\mathcal{F}$ cần thỏa mãn các điều kiện sau:
 
 -   $\varnothing \in \mathcal{F}$;
 -   Nếu $A \in \mathcal{F}$, thì biến cố bù $\bar{A} \in \mathcal{F}$;
@@ -62,7 +62,7 @@ Nhưng hai tập hợp sau thì không:
 <span id="định-nghĩa-cổ-điển"></span>
 #### Định nghĩa cổ điển
 
-Trong giai đoạn đầu của lý thuyết xác suất, các hiện tượng ngẫu nhiên được xét còn tương đối đơn giản: cụ thể là không gian mẫu $\Omega$ là tập hữu hạn, và về trực giác mọi điểm mẫu đều có khả năng xuất hiện như nhau. Vì thế người ta đã tổng kết được định nghĩa sau:
+Trong giai đoạn đầu của lý thuyết xác suất, các hiện tượng ngẫu nhiên được xét còn tương đối đơn giản: cụ thể là không gian mẫu $\Omega$ là tập hữu hạn, và về trực giác mọi điểm mẫu đều có khả năng xuất hiện như nhau. Vì thế đã hình thành định nghĩa sau:
 
 Nếu một hiện tượng ngẫu nhiên thỏa mãn:
 
@@ -77,7 +77,7 @@ $$
 
 trong đó $\#(\cdot)$ biểu thị phép đo kích thước của một biến cố ngẫu nhiên, tức một tập hợp.
 
-Về sau, người ta phát hiện rằng định nghĩa này có thể được mở rộng trực tiếp sang một phần các tình huống mà $\Omega$ là vô hạn, từ đó có cái gọi là [mô hình xác suất hình học](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B/4035773).
+Về sau, định nghĩa này được nhận thấy có thể mở rộng trực tiếp sang một số tình huống mà $\Omega$ là vô hạn, từ đó dẫn tới [mô hình xác suất hình học](https://baike.baidu.com/item/%E5%87%A0%E4%BD%95%E6%A6%82%E5%9E%8B/4035773).
 
 <span id="định-nghĩa-tiên-đề-hóa"></span>
 #### Định nghĩa tiên đề hóa
@@ -94,7 +94,7 @@ Hàm xác suất $P$ là một ánh xạ từ trường biến cố $\mathcal{F}
 <span id="tính-chất-của-hàm-xác-suất"></span>
 ### Tính chất của hàm xác suất
 
-Với mọi biến cố ngẫu nhiên $A, B \in \mathcal{F}$, ta có:
+Với mọi biến cố ngẫu nhiên $A, B \in \mathcal{F}$, các tính chất sau đúng:
 
 -   **Tính đơn điệu**: nếu $A \subset B$, thì $P(A) \leq P(B)$.
 -   **Nguyên lý bao hàm - loại trừ**: $P(A+B) = P(A) + P(B) - P(AB)$.
@@ -103,9 +103,9 @@ Với mọi biến cố ngẫu nhiên $A, B \in \mathcal{F}$, ta có:
 <span id="không-gian-xác-suất"></span>
 ## Không gian xác suất
 
-Ngay từ đầu ta đã nói rằng khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, ta thường quan tâm đến không gian mẫu $\Omega$, trường biến cố $\mathcal{F}$ và hàm xác suất $P$. Ta gọi bộ ba $(\Omega, \mathcal{F}, P)$ là một không gian xác suất.
+Như đã nêu từ đầu, khi nghiên cứu một hiện tượng ngẫu nhiên cụ thể, các đối tượng thường được xét là không gian mẫu $\Omega$, trường biến cố $\mathcal{F}$ và hàm xác suất $P$. Bộ ba $(\Omega, \mathcal{F}, P)$ được gọi là một không gian xác suất.
 
-Việc thảo luận về xác suất chỉ có ý nghĩa dưới một không gian xác suất đã xác định. Nghịch lý Bertrand đã nhắc ở trên, xét đến cùng, phát sinh do định nghĩa không rõ ràng về không gian mẫu $\Omega$.
+Việc thảo luận về xác suất chỉ có ý nghĩa trong một không gian xác suất đã xác định. Về bản chất, nghịch lý Bertrand đã nhắc ở trên phát sinh do không gian mẫu $\Omega$ được định nghĩa một cách mơ hồ.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

@@ -12,7 +12,7 @@ $$
 
 Nói cách khác: xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra không vượt quá tổng xác suất xảy ra của từng biến cố.
 
-Thực ra, kết luận này còn có thể được tăng cường thêm một chút:
+Kết luận này còn có thể được tăng cường thêm một chút:
 
 -   Xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra **không nhỏ hơn** tổng xác suất xảy ra của từng biến cố, trừ đi tổng xác suất các cặp biến cố cùng xảy ra.
 -   Xác suất có ít nhất một biến cố trong một nhóm biến cố xảy ra **không vượt quá** tổng xác suất xảy ra của từng biến cố, trừ đi tổng xác suất các cặp biến cố cùng xảy ra, rồi cộng thêm tổng xác suất các bộ ba biến cố cùng xảy ra.
@@ -86,13 +86,13 @@ Bất đẳng thức Chernoff tổng quát có thể được suy ra bằng các
 Giả sử $X$ là một biến ngẫu nhiên, khi đó với mọi $t > 0$ đều có
 
 $$
-P\{ X \geq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \geq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{t a} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{t a}}
 $$
 
 Tương tự, khi $t < 0$, có
 
 $$
-P\{ X \leq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{ta} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{ta}}
+P\{ X \leq a \} = P\{ \mathrm{e}^{tX} \geq \mathrm{e}^{t a} \} \leq \frac{E \mathrm{e}^{tX}}{\mathrm{e}^{t a}}
 $$
 
 <span id="bất-đẳng-thức-chernoff-cho-tổng-các-phép-thử-poisson"></span>
