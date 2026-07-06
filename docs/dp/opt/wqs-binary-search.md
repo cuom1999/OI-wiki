@@ -7,7 +7,7 @@ Tìm kiếm nhị phân WQS thường dùng để giải một lớp bài toán 
 
 Ví dụ, giả sử cần chọn $m$ trong $n$ vật phẩm và tối ưu một hàm mục tiêu khá phức tạp. Nếu đặt $f(i,j)$ là giá trị tối ưu của hàm mục tiêu khi chọn $j$ vật phẩm trong $i$ vật phẩm đầu tiên, thì đáp án bài toán gốc là $f(n,m)$. Trong các bài toán dạng này, phương trình chuyển trạng thái thường là hai chiều. Cài đặt trực tiếp phương trình chuyển trạng thái có độ phức tạp thời gian $O(nm)$, thường không chấp nhận được.
 
-Giả sử thêm rằng bài toán tối ưu không có ràng buộc số lượng dễ giải. Tuy nhiên, số lượng được chọn trong nghiệm tối ưu chưa chắc thỏa ràng buộc của bài toán gốc. Nếu số vật phẩm được chọn quá nhiều, có thể thêm một khoản phạt cố định $k$ cho mỗi vật phẩm được chọn (đó là "trọng số" trong "tìm kiếm nhị phân có trọng số"), rồi vẫn giải bài toán tối ưu không có ràng buộc số lượng. Với các giá trị $k$ khác nhau, số lượng được chọn tối ưu cũng khác nhau; hơn nữa, khi $k$ thay đổi, số lượng được chọn tối ưu biến thiên đơn điệu. Vì vậy có thể dùng tìm kiếm nhị phân để tìm $k$ sao cho số lượng được chọn tối ưu đúng bằng $m$. Giả sử khi đó giá trị tối ưu của hàm mục tiêu là $f_k(n)$, thì chỉ cần loại bỏ phần mất mát do khoản phạt phụ thêm gây ra là thu được đáp án bài toán gốc $f(n,m)=f_k(n)+km$. Nếu độ phức tạp của một lần giải bài toán có phạt là $O(T(n))$, thì độ phức tạp tổng thể giảm xuống $O(T(n)\log L)$, trong đó $O(\log L)$ là số lần cần nhị phân trên $k$.
+Giả sử thêm rằng bài toán tối ưu không có ràng buộc số lượng dễ giải. Tuy nhiên, số lượng được chọn trong nghiệm tối ưu không nhất thiết thỏa ràng buộc của bài toán gốc. Nếu số vật phẩm được chọn quá nhiều, có thể thêm một khoản phạt cố định $k$ cho mỗi vật phẩm được chọn (đó là "trọng số" trong "tìm kiếm nhị phân có trọng số"), rồi vẫn giải bài toán tối ưu không có ràng buộc số lượng. Với các giá trị $k$ khác nhau, số lượng được chọn tối ưu cũng khác nhau; hơn nữa, khi $k$ thay đổi, số lượng được chọn tối ưu biến thiên đơn điệu. Vì vậy có thể dùng tìm kiếm nhị phân để tìm $k$ sao cho số lượng được chọn tối ưu đúng bằng $m$. Giả sử khi đó giá trị tối ưu của hàm mục tiêu là $f_k(n)$, thì chỉ cần loại bỏ phần mất mát do khoản phạt phụ thêm gây ra là thu được đáp án bài toán gốc $f(n,m)=f_k(n)+km$. Nếu độ phức tạp của một lần giải bài toán có phạt là $O(T(n))$, thì độ phức tạp tổng thể giảm xuống $O(T(n)\log L)$, trong đó $O(\log L)$ là số lần cần nhị phân trên $k$.
 
 Đó là ý tưởng cơ bản của tìm kiếm nhị phân WQS. Tuy nhiên, để ý tưởng này hoạt động được, $f(n,m)$ phải là hàm lồi theo $m$. Nếu không, có thể không tồn tại khoản phạt phụ thêm $k$ làm cho số lượng tối ưu đúng bằng $m$. Đây cũng là lý do phương pháp tối ưu DP này thường được gọi là "DP tối ưu lồi" hoặc "DP đơn điệu hoàn toàn lồi".
 
@@ -23,7 +23,7 @@ v(y)=\min_{x\in X}\;&f(x)\\
 \end{aligned}
 $$
 
-Ví dụ, với bài toán ràng buộc số lượng đã nêu ở trên, $X$ có thể hiểu là họ tất cả các tập con của tập vật phẩm, $x\in X$ là một tập con cụ thể, $f(x)$ là hàm giá trị của tập con đó, còn $g(x)$ là số phần tử trong tập con $x$. Tất nhiên, $g(x)$ không chỉ có thể là ràng buộc số lượng; phần sau sẽ đưa ra các ví dụ về những điều kiện ràng buộc tổng quát hơn.
+Ví dụ, với bài toán ràng buộc số lượng đã nêu ở trên, $X$ có thể hiểu là họ tất cả các tập con của tập vật phẩm, $x\in X$ là một tập con cụ thể, $f(x)$ là hàm giá trị của tập con đó, còn $g(x)$ là số phần tử trong tập con $x$. Ngoài ràng buộc số lượng, $g(x)$ cũng có thể biểu thị những điều kiện ràng buộc tổng quát hơn; phần sau sẽ đưa ra một số ví dụ tương ứng.
 
 ???+ info "Quy ước"
     Để trình bày thuận tiện, bài viết này chỉ thảo luận các bài toán cực tiểu hóa hàm mục tiêu. Bài toán cực đại hóa hàm mục tiêu cũng tương tự, chỉ cần thay các hàm lồi (dưới) trong bài viết bằng hàm lõm (còn gọi là lồi trên). Hoặc có thể thêm dấu âm để chuyển bài toán cực đại hóa hàm mục tiêu thành bài toán cực tiểu hóa hàm đối của nó.
@@ -81,9 +81,9 @@ Vấn đề đầu tiên gặp phải khi áp dụng quy trình cơ bản là tr
 
 Nếu trên bao lồi dưới của tập điểm $\mathcal D$ có ba điểm đỏ trở lên thẳng hàng, thì trong quy trình cơ bản ở trên, có thể không phán đoán đúng quan hệ giữa $g(x_\lambda)$ và $y$. Chẳng hạn, giả sử ba điểm đỏ thẳng hàng có hoành độ lần lượt là $y_1,y_2,y_3$, và đường thẳng đi qua chúng có hệ số góc $\lambda^*$. Khi đó, để giải đúng $v(y_2)$, phải bảo đảm rằng bài toán được tính ở lần cuối khi thuật toán dừng là $h(\lambda^*)$, vì $\lambda^*$ là hệ số góc duy nhất của đường thẳng có thể đi qua điểm $(y_2,v(y_2))$ khi tối thiểu hóa tung độ gốc. Tuy nhiên, khi giải $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ được ghi lại có thể là bất kỳ giá trị nào trong $y_1,y_2,y_3$. Nếu giá trị ghi được không bằng $y_2$, thuật toán sẽ tiếp tục chạy sai và điều chỉnh khoảng $\lambda$ theo hướng rời xa $y_2$, cuối cùng thu được kết quả sai.
 
-Để xử lý trường hợp thẳng hàng, một cách làm là khi ghi lại $g(x_\lambda)$ của nghiệm tối ưu $x_\lambda$, luôn làm cho nó lớn nhất có thể (hoặc nhỏ nhất có thể). Đồng thời, thay điều kiện dừng của nhị phân từ việc tìm $\lambda$ thỏa chính xác $g(x_\lambda)=y$ thành tìm $\lambda$ nhỏ nhất (hoặc lớn nhất) thỏa $g(x_\lambda)\ge y$ (hoặc $g(x_\lambda)\le y$). Trong ví dụ ở đoạn trước, điều này tương đương với việc khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ xuất ra là $y_3$. Như vậy có thể bảo đảm rằng bài toán được tính ở lần cuối khi thuật toán dừng là $h(\lambda^*)$. Khi cài đặt cách này, cần chú ý giá trị xuất cuối cùng không phải là $h(\lambda)+\lambda g(x_{\lambda})$ mà là $h(\lambda)+\lambda y$, vì $g(x_\lambda)$ được ghi lại chưa chắc bằng ràng buộc thực tế $y$.
+Để xử lý trường hợp thẳng hàng, một cách làm là khi ghi lại $g(x_\lambda)$ của nghiệm tối ưu $x_\lambda$, luôn làm cho nó lớn nhất có thể (hoặc nhỏ nhất có thể). Đồng thời, thay điều kiện dừng của nhị phân từ việc tìm $\lambda$ thỏa chính xác $g(x_\lambda)=y$ thành tìm $\lambda$ nhỏ nhất (hoặc lớn nhất) thỏa $g(x_\lambda)\ge y$ (hoặc $g(x_\lambda)\le y$). Trong ví dụ ở đoạn trước, điều này tương đương với việc khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ xuất ra là $y_3$. Như vậy có thể bảo đảm rằng bài toán được tính ở lần cuối khi thuật toán dừng là $h(\lambda^*)$. Khi cài đặt cách này, giá trị xuất cuối cùng không phải là $h(\lambda)+\lambda g(x_{\lambda})$ mà là $h(\lambda)+\lambda y$, vì $g(x_\lambda)$ được ghi lại không nhất thiết bằng ràng buộc thực tế $y$.
 
-Một cách xử lý khác là nhị phân trên số thực. Nếu các con số trong bài toán đều là số nguyên, hệ số góc trong tìm kiếm nhị phân WQS cũng là số nguyên. Việc đưa số thực vào nhị phân nhằm bảo đảm rằng khi loại nhầm lựa chọn đúng $\lambda^*$, vẫn có thể nhờ phần thập phân để điều chỉnh quay lại và cuối cùng tiệm cận đáp án đúng $\lambda^*$. Ví dụ, trong ví dụ trên, nếu khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ được ghi là $y_1$, nhỏ hơn $y_2$ mong muốn, thuật toán sẽ chuyển sang xét khoảng $(\lambda^*,\lambda_r]$, trong đó $\lambda_r$ là đầu phải của khoảng chứa $\lambda$. Với trường hợp nguyên, khoảng này thực ra phải viết là $[\lambda_*+1,\lambda_r]$, nên đã loại bỏ khả năng tiến gần đáp án đúng $\lambda^*$ trong các bước sau. Nhưng khi nhị phân trên số thực, khoảng được xét vẫn là $(\lambda^*,\lambda_r]$; hơn nữa, với mọi $\lambda$ trong khoảng này, khi giải $h(\lambda)$ thì $g(x_\lambda)$ được ghi luôn không nhỏ hơn $y_3$, do đó lớn hơn hẳn $y_2$. Vì vậy, khi thuật toán tiếp tục, nó sẽ liên tục bỏ nửa phải, cuối cùng bảo đảm khoảng của $\lambda$ nằm gần $\lambda^*$. Vì đã biết hệ số góc cần tìm là một số nguyên, độ chính xác khi dừng nhị phân thực không cần quá cao; chỉ cần bảo đảm trong khoảng nhị phân chỉ còn một số nguyên, số nguyên đó chính là $\lambda^*$ cần tìm.
+Một cách xử lý khác là nhị phân trên số thực. Nếu các con số trong bài toán đều là số nguyên, hệ số góc trong tìm kiếm nhị phân WQS cũng là số nguyên. Việc đưa số thực vào nhị phân nhằm bảo đảm rằng khi loại nhầm lựa chọn đúng $\lambda^*$, vẫn có thể nhờ phần thập phân để điều chỉnh quay lại và cuối cùng tiệm cận đáp án đúng $\lambda^*$. Ví dụ, trong ví dụ trên, nếu khi tính $h(\lambda^*)$, giá trị $g(x_{\lambda^*})$ được ghi là $y_1$, nhỏ hơn $y_2$ mong muốn, thuật toán sẽ chuyển sang xét khoảng $(\lambda^*,\lambda_r]$, trong đó $\lambda_r$ là đầu phải của khoảng chứa $\lambda$. Với trường hợp nguyên, khoảng này phải viết là $[\lambda_*+1,\lambda_r]$, nên đã loại bỏ khả năng tiến gần đáp án đúng $\lambda^*$ trong các bước sau. Nhưng khi nhị phân trên số thực, khoảng được xét vẫn là $(\lambda^*,\lambda_r]$; hơn nữa, với mọi $\lambda$ trong khoảng này, khi giải $h(\lambda)$ thì $g(x_\lambda)$ được ghi luôn không nhỏ hơn $y_3$, do đó lớn hơn hẳn $y_2$. Vì vậy, khi thuật toán tiếp tục, nó sẽ liên tục bỏ nửa phải, cuối cùng bảo đảm khoảng của $\lambda$ nằm gần $\lambda^*$. Vì đã biết hệ số góc cần tìm là một số nguyên, độ chính xác khi dừng nhị phân thực không cần quá cao; chỉ cần bảo đảm trong khoảng nhị phân chỉ còn một số nguyên, số nguyên đó chính là $\lambda^*$ cần tìm.
 
 Sau khi xử lý đúng trường hợp thẳng hàng, tìm kiếm nhị phân WQS đã đủ để giải phần lớn các bài toán WQS trong lập trình thi đấu. Tuy nhiên, phương pháp này vẫn có một số thiếu sót: nó không xử lý được trường hợp khó ghi lại $g(x_\lambda)$, cũng không xử lý được trường hợp nhiều điểm đồng phẳng trong WQS nhiều chiều. Bài viết sẽ tiếp tục khảo sát tính chất của bài toán tối ưu $v(y)$ và đưa ra phương pháp tổng quát hơn.
 
@@ -179,7 +179,7 @@ Nhìn từ biến $x^*$, $f^*(x^*)$ là cận trên đúng của một họ các
     k\cdot x - y = -b.
     $$
     
-    Một vector pháp tuyến của nó là $(k,-1)$. Vì vậy, vector hệ số góc nêu trên thực ra là $d$ thành phần đầu của vector pháp tuyến thu được sau khi chuẩn hóa vector pháp tuyến của siêu phẳng sao cho thành phần cuối của nó bằng $-1$.
+    Một vector pháp tuyến của nó là $(k,-1)$. Vì vậy, vector hệ số góc nêu trên là $d$ thành phần đầu của vector pháp tuyến thu được sau khi chuẩn hóa vector pháp tuyến của siêu phẳng sao cho thành phần cuối của nó bằng $-1$.
 
 Về trực quan hình học, liên hợp lồi của hàm $f(x)$ mô tả điều sau: với mọi siêu phẳng có vector hệ số góc $x^*$ và cắt epigraph
 
@@ -187,7 +187,7 @@ $$
 \operatorname{epi}f = \{(x,y)\in\mathbf R^d\times\mathbf R:f(x)\le y\}
 $$
 
-của hàm $f(x)$, giá trị nhỏ nhất của tung độ gốc $f(x)-x^*\cdot x$ là $-f^*(x^*)$. Nói cách khác, hàm $f(x)$ luôn nằm phía trên siêu phẳng $y = x^*\cdot x-f^*(x^*)$ và tiếp xúc với siêu phẳng đó tại điểm $(x_0,f(x_0))$; tất nhiên có thể tồn tại các điểm tiếp xúc khác. Siêu phẳng như vậy được gọi là **siêu phẳng đỡ** (supporting hyperplane) của $f(x)$ tại $x_0$. Tung độ gốc của một siêu phẳng đỡ của hàm $f(x)$ được xác định duy nhất bởi vector hệ số góc của nó; liên hợp lồi chính là ánh xạ từ vector hệ số góc đến tung độ gốc.
+của hàm $f(x)$, giá trị nhỏ nhất của tung độ gốc $f(x)-x^*\cdot x$ là $-f^*(x^*)$. Nói cách khác, hàm $f(x)$ luôn nằm phía trên siêu phẳng $y = x^*\cdot x-f^*(x^*)$ và tiếp xúc với siêu phẳng đó tại điểm $(x_0,f(x_0))$; vẫn có thể tồn tại các điểm tiếp xúc khác. Siêu phẳng như vậy được gọi là **siêu phẳng đỡ** (supporting hyperplane) của $f(x)$ tại $x_0$. Tung độ gốc của một siêu phẳng đỡ của hàm $f(x)$ được xác định duy nhất bởi vector hệ số góc của nó; liên hợp lồi chính là ánh xạ từ vector hệ số góc đến tung độ gốc.
 
 Việc cực tiểu hóa $f(x)-\lambda\cdot g(x)$ trên tập $X$ tương đương với việc cực tiểu hóa $v(y)-\lambda\cdot y$ trên tập $\{(y,v(y))\}$:
 
@@ -375,7 +375,7 @@ Vì liên hợp lồi cung cấp ánh xạ từ vector hệ số góc của siê
     x^*\cdot x - f(x) \le f^*(x^*).
     $$
     
-    Vì vậy, dấu lớn hơn hoặc bằng trong biểu thức trước thực ra tương đương với dấu bằng, tức tương đương với
+    Vì vậy, dấu lớn hơn hoặc bằng trong biểu thức trước tương đương với dấu bằng, tức tương đương với
     
     $$
     x^*\cdot x = f(x) + f^*(x^*).
@@ -528,7 +528,7 @@ Nhiều bài toán đồ thị có thể viết dưới dạng bài toán quy ho
 Vì vậy, hàm giá trị của các bài toán này đều là hàm lồi (hoặc lõm) theo tham số của bài toán.
 
 ???+ warning "Ràng buộc nguyên"
-    Khi dùng mô hình đồ thị để mô hình hóa bài toán thực tế, thường có ràng buộc nguyên ẩn, ví dụ một cạnh chỉ có thể được chọn hoặc không được chọn, lưu lượng chỉ có thể là số nguyên, v.v. Do đó, chúng chỉ có thể chuyển thành bài toán quy hoạch tuyến tính nguyên (integer linear programming, ILP) chứ không phải bài toán quy hoạch tuyến tính (LP). Vì ILP không phải bài toán tối ưu lồi, hàm giá trị của nó chưa chắc là hàm lồi theo tham số bài toán. Sau khi nới lỏng ràng buộc nguyên trong một bài toán ILP, thu được một bài toán LP, nhưng bài toán sau chưa chắc tồn tại nghiệm tối ưu thỏa ràng buộc nguyên. Vì vậy, giá trị tối ưu của LP sau khi nới lỏng ràng buộc nguyên có thể tốt hơn hẳn bài toán ILP tương ứng; hai bài toán chưa chắc tương đương.
+    Khi dùng mô hình đồ thị để mô hình hóa bài toán thực tế, thường có ràng buộc nguyên ẩn, ví dụ một cạnh chỉ có thể được chọn hoặc không được chọn, lưu lượng chỉ có thể là số nguyên, v.v. Do đó, chúng chỉ có thể chuyển thành bài toán quy hoạch tuyến tính nguyên (integer linear programming, ILP) chứ không phải bài toán quy hoạch tuyến tính (LP). Vì ILP không phải bài toán tối ưu lồi, hàm giá trị của nó không nhất thiết là hàm lồi theo tham số bài toán. Sau khi nới lỏng ràng buộc nguyên trong một bài toán ILP, thu được một bài toán LP, nhưng bài toán sau không nhất thiết tồn tại nghiệm tối ưu thỏa ràng buộc nguyên. Vì vậy, giá trị tối ưu của LP sau khi nới lỏng ràng buộc nguyên có thể tốt hơn hẳn bài toán ILP tương ứng; hai bài toán không nhất thiết tương đương.
     
     Các bài toán đồ thị được liệt kê ở trên đều có thể viết thành một bài toán LP mà không cần áp ràng buộc nguyên; nhưng với một số bài toán khác, chẳng hạn bài toán tập độc lập cực đại trên đồ thị tổng quát, ràng buộc nguyên là cần thiết. Ngoài ra, ngay cả khi một bài toán đồ thị có thể viết dưới dạng LP, sau khi thêm ràng buộc tuyến tính bổ sung vào bài toán, tính tương đương giữa ILP và LP tương ứng vẫn có thể bị phá vỡ, khiến bài toán đồ thị có ràng buộc đó không còn viết được dưới dạng quy hoạch tuyến tính.
 
@@ -561,7 +561,7 @@ Trong lập trình thi đấu, nhiều bài toán có thể quy về các bài t
 Dùng phương pháp này, có chứng minh tính lồi đầu tiên cho bài toán trồng cây:
 
 ??? example "Chứng minh tính lồi 1"
-    Lợi ích lớn nhất của bài toán trồng cây thực ra có thể được suy ra từ mô hình luồng cực đại chi phí lớn nhất sau:
+    Lợi ích lớn nhất của bài toán trồng cây có thể được suy ra từ mô hình luồng cực đại chi phí lớn nhất sau:
     
     -   Từ nguồn $s$ nối một cạnh đến nút $r$ với dung lượng $m$ và chi phí $0$;
     -   từ nút $r$ nối đến mỗi nút lẻ $i=1,3,\cdots,2\lceil n/2\rceil-1$ một cạnh có dung lượng $1$ và chi phí $0$;
@@ -588,7 +588,7 @@ Phương pháp này cũng có thể dùng để chứng minh tính lồi của b
     
     Xem phương trình chuyển trạng thái này là quan hệ truy hồi của hàm $f(i,\cdot)$. Vì trong ký hiệu cực trị có hai hàm khác nhau, nó không thể biểu diễn thành dạng chập lấy cận trên đúng. Tuy nhiên, vẫn có thể chứng minh bằng quy nạp rằng hàm $f(i,\cdot)$ là hàm lõm.
     
-    Thực ra, cần chứng minh quy nạp hai điểm sau:
+    Cần chứng minh quy nạp hai điểm sau:
     
     -   $f(i,j)-f(i-2,j-1)$ giảm theo $j$;
     -   $f(i,j)-f(i-1,j)$ tăng theo $j$.
@@ -678,7 +678,7 @@ Bài toán trồng cây cũng có thể xem là một bài toán phân đoạn k
     \max\{A,B\} + \max\{B,C\} \ge \max\{A,B,C\} + B.
     $$
     
-    Chú ý rằng trong hai hạng tử $\max\{A,B\}$ và $\max\{B,C\}$ ở vế trái, hạng tử lớn hơn đúng bằng $\max\{A,B,C\}$, còn hạng tử nhỏ hơn luôn không nhỏ hơn $B$, nên bất đẳng thức đúng.
+    Trong hai hạng tử $\max\{A,B\}$ và $\max\{B,C\}$ ở vế trái, hạng tử lớn hơn đúng bằng $\max\{A,B,C\}$, còn hạng tử nhỏ hơn luôn không nhỏ hơn $B$, nên bất đẳng thức đúng.
     
     Sau khi chuyển bài toán trồng cây thành bài toán phân đoạn khoảng, chỉ cần dùng bảng ST hoặc cách tương tự để tiền xử lý giá trị cực trị trên khoảng, có thể tính chi phí của một khoảng đơn lẻ trong $O(1)$ mỗi lần, rồi áp dụng thuật toán cho bài toán phân đoạn khoảng với độ phức tạp thời gian $O(n\log n\log L)$ hoặc $O(n(n+m))$. Phương pháp này cũng có thể xử lý bài toán với khoảng cách trồng cây bất kỳ.
 
@@ -701,7 +701,7 @@ Trong các bài toán tối ưu tổ hợp, chứng minh tính lồi của hàm 
     v(m) = \min_{A\subseteq X} f(A) \text{ với ràng buộc }|A|=m
     $$
     
-    **chưa chắc** là hàm lồi theo $m$. Nguyên nhân là từ các nghiệm tối ưu có kích thước tập con lần lượt là $m-1$ và $m+1$, nhìn chung không thể xây dựng được nghiệm khả thi có kích thước tập con $m$ và thỏa quan hệ giá trị nêu trên.
+    **không nhất thiết** là hàm lồi theo $m$. Nguyên nhân là từ các nghiệm tối ưu có kích thước tập con lần lượt là $m-1$ và $m+1$, nhìn chung không thể xây dựng được nghiệm khả thi có kích thước tập con $m$ và thỏa quan hệ giá trị nêu trên.
 
 Lập luận trao đổi cung cấp một cách chứng minh khác cho tính lồi của bài toán trồng cây.
 
@@ -717,7 +717,7 @@ Lập luận trao đổi cung cấp một cách chứng minh khác cho tính l�
     -   Trong một đoạn con liên tiếp khác không, các giá trị $z_i$ nhất định luân phiên giữa $\pm 1$;
     -   các số $0$ ở hai bên của một đoạn con liên tiếp khác không cực đại nhất định biểu thị các hố không được trồng cây trong cả hai phương án.
     
-    Do đó, nếu trong một đoạn con liên tiếp khác không cực đại nào đó, tổng của $z_i$ đúng bằng $+1$, tức trong đoạn hố này phương án $x^{(m+1)}$ trồng nhiều hơn phương án $x^{(m-1)}$ một cây, thì có thể trao đổi vị trí trồng cây của hai phương án trong đoạn đó. Như vậy thu được hai phương án khả thi, mỗi phương án trồng $m$ cây. Vì không thay đổi tổng vị trí và tổng số lượng cây trồng trong hai phương án, mà chỉ phân phối lại chúng, tổng lợi ích không đổi và vẫn là $v(m-1)+v(m+1)$. Nhưng hai phương án trồng $m$ cây này chưa chắc tối ưu, nên lợi ích của từng phương án không vượt quá $v(m)$. Điều này chứng minh
+    Do đó, nếu trong một đoạn con liên tiếp khác không cực đại nào đó, tổng của $z_i$ đúng bằng $+1$, tức trong đoạn hố này phương án $x^{(m+1)}$ trồng nhiều hơn phương án $x^{(m-1)}$ một cây, thì có thể trao đổi vị trí trồng cây của hai phương án trong đoạn đó. Như vậy thu được hai phương án khả thi, mỗi phương án trồng $m$ cây. Vì không thay đổi tổng vị trí và tổng số lượng cây trồng trong hai phương án, mà chỉ phân phối lại chúng, tổng lợi ích không đổi và vẫn là $v(m-1)+v(m+1)$. Nhưng hai phương án trồng $m$ cây này không nhất thiết tối ưu, nên lợi ích của từng phương án không vượt quá $v(m)$. Điều này chứng minh
     
     $$
     v(m-1) + v(m+1) \le 2v(m),
@@ -739,7 +739,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Có $n$ hố cây, được trồng **nhiều nhất** $m$ cây. Không được trồng cây ở hai hố kề nhau. Cho dãy độ dài $n$ là $\{a_i\}$, biểu thị lợi ích khi trồng cây ở mỗi hố, lợi ích có thể dương hoặc âm. Tìm tổng lợi ích lớn nhất có thể sau khi trồng xong các cây này.
 
 ??? note "Lời giải"
-    Hơi khác với bài toán trồng cây đã thảo luận ở trên, bài này yêu cầu trồng nhiều nhất $m$ cây, chứ không phải đúng $m$ cây. Vẫn dùng $v(m)$ để biểu thị hàm giá trị của bài toán trồng cây đã thảo luận, đáp án bài này thực ra là $\tilde v(m)=\max_{k\le m}v(k)$. Vì $v(m)$ là hàm lõm, tức là một hàm đơn đỉnh, đáp án bài này tương đương với việc chỉ giữ phần $v(m)$ tăng lên tới đỉnh, rồi hàm sẽ giữ nguyên ở đỉnh; điều này tương đương với việc chỉ giữ phần có hệ số góc tiếp tuyến không âm. Vì vậy, khác biệt duy nhất giữa bài này và bài đã thảo luận ở trước là khi tìm kiếm nhị phân WQS, phạm vi hệ số góc ban đầu là $[0,\max_ia_i]$ chứ không phải $[\min_ia_i,\max_ia_i]$.
+    Hơi khác với bài toán trồng cây đã thảo luận ở trên, bài này yêu cầu trồng nhiều nhất $m$ cây, chứ không phải đúng $m$ cây. Vẫn dùng $v(m)$ để biểu thị hàm giá trị của bài toán trồng cây đã thảo luận, đáp án bài này là $\tilde v(m)=\max_{k\le m}v(k)$. Vì $v(m)$ là hàm lõm, tức là một hàm đơn đỉnh, đáp án bài này tương đương với việc chỉ giữ phần $v(m)$ tăng lên tới đỉnh, rồi hàm sẽ giữ nguyên ở đỉnh; điều này tương đương với việc chỉ giữ phần có hệ số góc tiếp tuyến không âm. Vì vậy, khác biệt duy nhất giữa bài này và bài đã thảo luận ở trước là khi tìm kiếm nhị phân WQS, phạm vi hệ số góc ban đầu là $[0,\max_ia_i]$ chứ không phải $[\min_ia_i,\max_ia_i]$.
     
     Sau khi dùng tìm kiếm nhị phân WQS để loại bỏ ràng buộc số lượng, bài toán chuyển thành tính tập độc lập trọng số lớn nhất trên một đường thẳng, chỉ khác là dãy lợi ích ban đầu $\{a_i\}$ được thay bằng $\{a_i+k\}$. Đây là bài toán quy hoạch động kinh điển. Có thể đặt $f(i,j)$ là lợi ích lớn nhất của bài toán con trên $i$ hố đầu tiên khi hố thứ $i$ được chọn trồng cây ($j=1$) hoặc không trồng cây ($j=0$). Từ đó viết được phương trình chuyển trạng thái:
     
@@ -1018,4 +1018,4 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 
 [^edge-swap]: Bổ đề này cũng đúng với [matroid](../../math/matroid.md) tổng quát. Nó được gọi là **tính chất trao đổi cơ sở đối xứng** (symmetric base-exchange property); có thể tham khảo [trang Wikipedia](https://en.wikipedia.org/wiki/Basis_of_a_matroid) để biết thêm. Vì vậy, kết luận về tính lồi của bài này có thể mở rộng sang matroid tổng quát.
 
-[^conv-int]: Tất nhiên, $f(a,m)$ và bao lồi của hàm thu được khi giới hạn nó trên các điểm nguyên không giống nhau, vì $f(a,m)$ có thể có điểm cực trị tại vị trí không nguyên. Điều này cho thấy không thể trực tiếp dùng $f(a,m)$ có miền xác định là số thực trong bài toán tối ưu của đề này.
+[^conv-int]: $f(a,m)$ và bao lồi của hàm thu được khi giới hạn nó trên các điểm nguyên không giống nhau, vì $f(a,m)$ có thể có điểm cực trị tại vị trí không nguyên. Điều này cho thấy không thể trực tiếp dùng $f(a,m)$ có miền xác định là số thực trong bài toán tối ưu của đề này.

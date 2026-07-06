@@ -417,7 +417,7 @@ Dưới đây là mã cho bài toán "cộng đoạn, hỏi tổng đoạn":
           int v1 = k * v;
           while (k <= n) {
             t1[k] += v, t2[k] += v1;
-            // Chú ý không được viết t2[k] += k * v, vì k không còn là chỉ số ban đầu.
+            // Không được viết t2[k] += k * v, vì k không còn là chỉ số ban đầu.
             k += lowbit(k);
           }
         }
@@ -642,7 +642,7 @@ Dưới đây là mã:
       for (int X = x; X <= n; X += lowbit(X))
         for (int Y = y; Y <= m; Y += lowbit(Y)) {
           t1[X][Y] += z;
-          t2[X][Y] += z * x;  // Chú ý là z * x chứ không phải z * X; phía sau tương tự.
+          t2[X][Y] += z * x;  // Dùng z * x chứ không phải z * X; phía sau tương tự.
           t3[X][Y] += z * y;
           t4[X][Y] += z * x * y;
         }
@@ -827,7 +827,7 @@ Dưới đây là mã ví dụ cho truy vấn giá trị lớn nhất trên đo�
         ans = max(ans, a[r]);
         --r;
         for (; r - lowbit(r) >= l; r -= lowbit(r)) {
-          // Chú ý, điều kiện vòng lặp không được viết thành r - lowbit(r) + 1 >= l.
+          // Điều kiện vòng lặp không được viết thành r - lowbit(r) + 1 >= l.
           // Nếu không, khi l = 1, r nhảy tới 0 sẽ gây vòng lặp vô hạn.
           ans = max(ans, C[r]);
         }
