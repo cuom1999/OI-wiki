@@ -1,15 +1,15 @@
 author: accelsao, Henry-ZHR, yuhuoji
 
-Trang này đi từ ghép cặp hoàn hảo trọng số lớn nhất trên đồ thị tổng quát đến ghép cặp trọng số lớn nhất trên đồ thị tổng quát. Có thể biến ghép cặp trọng số lớn nhất thành ghép cặp hoàn hảo trọng số lớn nhất bằng cách thêm các cạnh có trọng số bằng 0.
+Trang này trình bày ghép cặp hoàn hảo trọng số lớn nhất trên đồ thị tổng quát, rồi mở rộng sang ghép cặp trọng số lớn nhất trên đồ thị tổng quát. Ghép cặp trọng số lớn nhất có thể được quy về ghép cặp hoàn hảo trọng số lớn nhất bằng cách thêm các cạnh có trọng số bằng 0.
 
 ## Kiến thức chuẩn bị
 
 <span id="blossomhoa-blossom"></span>
 ### Hoa
 
-Điểm khác nhau giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị có thể có chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
+Điểm khác biệt giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị tổng quát có thể chứa chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
 
-Cách xử lý của thuật toán blossom là khi gặp một chu trình lẻ thì co nó lại thành một **hoa**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
+Cách xử lý của thuật toán blossom là co một chu trình lẻ thành một **hoa**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, có thể co cả hoa trực tiếp thành một đỉnh chẵn. Một hoa cũng có thể chứa các hoa khác.
 
 Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến tính và bài toán đối ngẫu, nhưng cần xử lý thêm đối với hoa.
 
@@ -21,7 +21,7 @@ Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến t�
 
 ### Định nghĩa
 
-Vì một hoa có ít nhất ba đỉnh và sau khi co hoa sẽ trở thành một đỉnh, đặt $O$ là tập hợp các tập có kích thước lẻ $≥3$ (bao gồm mọi hoa), và $\gamma(S)$ biểu thị tập các cạnh bên trong tập $S$.
+Vì một hoa có ít nhất ba đỉnh và sau khi co sẽ trở thành một đỉnh, đặt $O$ là tập hợp các tập có kích thước lẻ $≥3$ (bao gồm mọi hoa), và $\gamma(S)$ biểu thị tập các cạnh nằm bên trong tập $S$.
 
 $$
 \begin{aligned}
@@ -53,7 +53,7 @@ Sau đó, dùng phương pháp nguyên thủy - đối ngẫu để chuyển bà
     & \text{Ràng buộc:} \\
     & z_B\geq0:\forall B\in O \\
     & z_e\geq0:\forall e\in E \\
-    & \text{Đặt} e=(u,v),\text{ tại đây} \\
+    & \text{Đặt} e=(u,v),\text{ với} \\
     & \begin{array}{lll}
     z_e & = & z_u + z_v - w(e) + \sum_{\substack{B \in O \\ u,v \in \gamma(B)}} z_B
     \end{array}
@@ -62,19 +62,19 @@ Sau đó, dùng phương pháp nguyên thủy - đối ngẫu để chuyển bà
 
 Các cạnh có $x_e=1$ là cạnh ghép cặp, còn các cạnh có $x_e=0$ là cạnh không thuộc ghép cặp. Giống như đồ thị hai phía, cần thỏa mãn $x_e\in\{0,1\}:\forall e\in E$. Vì vậy, khi tìm ghép cặp hoàn hảo trọng số lớn nhất, mọi cạnh ghép cặp đều phải là **cạnh đẳng thức**.
 
-Khác với đồ thị hai phía, đồ thị tổng quát có thêm $z_B$ cần xử lý. Sau đây xét khi nào $z_B$ lớn hơn $0$.
+Khác với đồ thị hai phía, đồ thị tổng quát có thêm $z_B$ cần xử lý. Tiếp theo xét điều kiện để $z_B$ lớn hơn $0$.
 
-Có thể thấy cách tốt nhất là cố gắng để $z_B=0$, nhưng khi bắt buộc thì vẫn cần cho $z_B>0$. Khi $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{ và } x(\delta(B)) = 1$, có thể đặt $z_B>0$. Ngoài trường hợp này, $z_B>0$ không có ý nghĩa.
+Cách tốt nhất là duy trì $z_B=0$ nếu điều kiện cho phép, nhưng trong trường hợp bắt buộc vẫn cần đặt $z_B>0$. Khi $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{ và } x(\delta(B)) = 1$, có thể đặt $z_B>0$. Ngoài trường hợp này, $z_B>0$ không còn ý nghĩa.
 
 Theo điều kiện bổ đề chặt bổ sung, có các quan hệ tương ứng sau:
 
--   Với cạnh $e$ được chọn, nhất định có $z_e=0$.
+-   Với cạnh $e$ được chọn, luôn có $z_e=0$.
 
     $$
     x_e>0 \longrightarrow z_e=0,\quad \forall e\in E
     $$
 
--   Với tập *B* được chọn, $z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$, tức là mọi tập $B$ có $z_B>0$ đều đã chọn số cạnh bằng một nửa kích thước của tập, cũng có nghĩa tập $B$ là một hoa và chọn một cạnh trong hoa để tăng cường. Đồng thời, thêm một điều kiện: $x(\delta(B))=1$, tức là chỉ khi hoa $B$ nối ra ngoài bằng đúng một cạnh thì $z_B>0$ mới có ý nghĩa.
+-   Với tập *B* được chọn, $z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$, tức là mọi tập $B$ có $z_B>0$ đều đã chọn số cạnh bằng một nửa kích thước của tập. Điều đó cũng có nghĩa tập $B$ là một hoa và có một cạnh trong hoa được chọn để tăng cường. Đồng thời cần thêm điều kiện $x(\delta(B))=1$: chỉ khi hoa $B$ nối ra ngoài bằng đúng một cạnh thì $z_B>0$ mới có ý nghĩa.
 
     $$
     z_B>0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
@@ -84,11 +84,11 @@ Kết hợp khái niệm "**cạnh đẳng thức**" với thuật toán blossom
 
 ### Xử lý hoa
 
-Khi gặp một hoa, cần co nó thành một đỉnh chẵn. Đặt tất cả các đỉnh trong hoa thành đỉnh chẵn và đặt $z_B=0$ của nó.
+Khi gặp một hoa, cần co hoa đó thành một đỉnh chẵn. Tất cả các đỉnh trong hoa được đặt thành đỉnh chẵn, còn nhãn của hoa được đặt là $z_B=0$.
 
-Do sau khi co, hoa được lưu lại cho đến khi thỏa mãn một số điều kiện mới bung ra, không thể dùng cách cũ để ghi nhận hoa.
+Do hoa sau khi co vẫn được lưu lại cho đến khi thỏa mãn một số điều kiện để bung ra, không thể dùng cách cũ để ghi nhận hoa.
 
-Nếu không nói rõ thêm, những đỉnh được nhắc đến trước đây đều bao gồm cả các đỉnh chẵn hình thành từ việc co hoa.
+Nếu không nêu riêng, các đỉnh được nhắc đến đều bao gồm cả các đỉnh chẵn hình thành từ việc co hoa.
 
 Vì hoa cũng có thể được co thành một đỉnh rồi đưa vào hàng đợi, và số lượng hoa không cố định, không thể liệt kê từng đỉnh như trước để kiểm tra có đường tăng cường hay không. Vì vậy, khi thực hiện tìm kiếm theo chiều rộng (BFS), phải đưa mọi đỉnh chưa ghép cặp vào hàng đợi.
 
@@ -109,12 +109,12 @@ Trong giai đoạn tăng cường, vì mọi đỉnh chưa ghép cặp nằm tr�
 
 ### Không tìm được cạnh đẳng thức để mở rộng
 
-Giống như trong đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh nhãn đỉnh.
+Tương tự đồ thị hai phía, cũng có trường hợp không tìm được "cạnh đẳng thức" để mở rộng. Khi đó cần điều chỉnh nhãn đỉnh.
 
 <span id="điều-chỉnh-vertex-labeling"></span>
 ### Điều chỉnh nhãn đỉnh
 
-Nhãn đỉnh vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời cần làm cho $z_B$ nhỏ nhất có thể.
+Nhãn đỉnh vẫn phải duy trì tính chất lớn hơn hoặc bằng, các "cạnh đẳng thức" đã có không được thay đổi, đồng thời $z_B$ cần được giữ nhỏ nhất có thể.
 
 ???+ note "Ký hiệu đỉnh chẵn lẻ"
     Dùng $u^-$ để biểu thị $u$ là đỉnh lẻ trên cây luân phiên.
@@ -133,7 +133,7 @@ d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{aligned}
 $$
 
-Lưu ý rằng trong công thức này, *B* là đỉnh sau khi co hoa, nên có thể có tính chẵn lẻ.
+Trong công thức này, *B* là đỉnh sau khi co hoa, nên có thể có tính chẵn lẻ.
 
 Đặt $d=min(d1,d2,d3)$, cho
 
@@ -153,7 +153,7 @@ Như vậy sẽ tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguy�
 
 ## Ghép cặp trọng số lớn nhất trên đồ thị tổng quát
 
-Phần trên tìm ghép cặp hoàn hảo trọng số lớn nhất. Để tìm ghép cặp trọng số lớn nhất, cần thêm một ràng buộc vào nhãn đỉnh: với mọi đỉnh đã ghép cặp $u$, $z_u>0$.
+Phần trên tìm ghép cặp hoàn hảo trọng số lớn nhất. Để tìm ghép cặp trọng số lớn nhất, cần thêm một ràng buộc vào nhãn đỉnh: với mọi đỉnh đã ghép cặp $u$, phải có $z_u>0$.
 
 Ban đầu đặt mọi $z_u=max(\{w(e):e\in E\})/2$.
 
@@ -162,7 +162,7 @@ Các đỉnh có nhãn đỉnh bằng $0$ cuối cùng sẽ trở thành đỉnh
 <span id="code-tham-khảo"></span>
 ### Mã tham khảo
 
-Trong cài đặt này, để tiện xử lý, nhân trọng số cạnh với $2$ khi tính giá trị $z_e$, nhờ vậy sẽ không có sai số số thực.
+Trong cài đặt này, để tiện xử lý, trọng số cạnh được nhân với $2$ khi tính giá trị $z_e$, nhờ vậy tránh được sai số số thực.
 
 ???+ note "Lưu trữ"
     ```cpp
@@ -593,7 +593,7 @@ int get_lca(int u, int v) {
     ```
 
 ???+ note "Khởi tạo"
-    Rất quan trọng: nhất định phải khởi tạo trước khi dùng.
+    Rất quan trọng: cần khởi tạo trước khi dùng.
     
     ```cpp
     void init_weight_graph() {

@@ -14,7 +14,7 @@ Tương tự các automaton khác, cây hồi văn cũng gồm các cạnh chuy�
 
 Vì độ dài xâu đối xứng có thể là lẻ hoặc chẵn, có thể làm giống Manacher: thêm một ký tự không thuộc bảng chữ cái (chẳng hạn `#`) làm dấu phân cách để biến mọi xâu đối xứng thành độ dài lẻ. Tuy nhiên cách này khá rườm rà. Có cách tốt hơn.
 
-Tất nhiên là có. Cách tốt hơn là xây hai cây: các nút trên một cây tương ứng với những xâu con đối xứng có độ dài lẻ, còn các nút trên cây kia tương ứng với những xâu con đối xứng có độ dài chẵn.
+Cách tốt hơn là xây hai cây: các nút trên một cây tương ứng với những xâu con đối xứng có độ dài lẻ, còn các nút trên cây kia tương ứng với những xâu con đối xứng có độ dài chẵn.
 
 Giống như các automaton khác, con trỏ fail của một nút trỏ tới nút tương ứng với hậu tố đối xứng dài nhất của xâu đối xứng mà nút đó biểu diễn. Tuy nhiên cạnh chuyển không biểu diễn việc thêm một ký tự vào sau xâu ở nút ban đầu, mà biểu diễn việc thêm cùng một ký tự vào cả đầu và cuối xâu đó (điều này tự nhiên vì cần bảo đảm xâu được lưu là đối xứng).
 
@@ -25,7 +25,7 @@ Còn cần duy trì trên mỗi nút độ dài `len` của xâu con đối xứ
 
 Cây hồi văn có hai trạng thái khởi tạo, lần lượt biểu diễn các xâu đối xứng có độ dài $-1,0$. Có thể gọi chúng là gốc lẻ và gốc chẵn. Chúng không biểu diễn xâu thực tế nào, chỉ tồn tại như các trạng thái khởi tạo, tương tự vai trò của nút gốc trong những automaton khác.
 
-Con trỏ fail của gốc chẵn trỏ tới gốc lẻ. Không cần quan tâm con trỏ fail của gốc lẻ, vì gốc lẻ không thể thất bại khi khớp (trạng thái tiếp theo chuyển ra từ gốc lẻ có độ dài $1$, tức là một ký tự đơn, chắc chắn là xâu con đối xứng).
+Con trỏ fail của gốc chẵn trỏ tới gốc lẻ. Không cần quan tâm con trỏ fail của gốc lẻ, vì gốc lẻ không thể thất bại khi khớp (trạng thái tiếp theo chuyển ra từ gốc lẻ có độ dài $1$, tức là một ký tự đơn, luôn là xâu con đối xứng).
 
 Tương tự automaton hậu tố, xây cây hồi văn theo kiểu tăng dần.
 
@@ -41,7 +41,7 @@ Nút tương ứng với `A` được tìm bằng cách nhảy theo con trỏ fa
 
 Tiếp theo cần tìm con trỏ fail cho nút mới tạo. Cách làm tương tự quá trình trên: bắt đầu từ `A`, liên tục nhảy theo con trỏ fail để tìm hậu tố đối xứng dài nhất `XBX` của `XAX`, rồi đặt nút tương ứng làm đích của con trỏ fail.
 
-Nút này không cần tạo mới. $len_B$ ký tự đầu và $len_B$ ký tự cuối của `A` đều giống nhau và đều là `B`; theo quan hệ đối xứng, hai đầu của $len_B$ ký tự đầu đều là `X`, còn phía sau đã được xác định là `X`, nên nút `XBX` chắc chắn đã được chứa trong cây.
+Nút này không cần tạo mới. $len_B$ ký tự đầu và $len_B$ ký tự cuối của `A` đều giống nhau và đều là `B`; theo quan hệ đối xứng, hai đầu của $len_B$ ký tự đầu đều là `X`, còn phía sau đã được xác định là `X`, nên nút `XBX` đã được chứa trong cây.
 
 Nếu fail không khớp được, nối nó tới nút có độ dài $0$; điều này hợp lệ, vì đó là hậu tố của mọi nút.
 
@@ -184,7 +184,7 @@ $x$ là một xâu đối xứng, $y$ là hậu tố đối xứng thực sự d
 Sau khi sắp xếp mọi hậu tố đối xứng của $s$ theo độ dài, có thể chia chúng thành $\log |s|$ đoạn cấp số cộng.
 
 ???+ note "Chứng minh"
-    Giả sử độ dài mọi hậu tố đối xứng của $s$ theo thứ tự tăng dần là $l_1,l_2,\dots,l_k$. Với mọi $2 \le i \le k-1$, nếu $l_{i}-l_{i-1}=l_{i+1}-l_{i}$, thì $l_{i-1},l_{i},l_{i+1}$ tạo thành một cấp số cộng. Ngược lại, nếu $l_{i}-l_{i-1}\neq l_{i+1}-l_{i}$, theo Bổ đề $4$ có $l_{i+1}-l_{i}>l_{i}-l_{i-1}$ và $l_{i+1}-l_{i}>l_{i-1}$, suy ra $l_{i+1}>2l_{i-1}$. Vì vậy, nếu hiệu độ dài của hai cặp hậu tố đối xứng kề nhau thay đổi, thì độ dài lớn nhất chắc chắn đã tăng gấp đôi so với độ dài nhỏ nhất. Việc tăng gấp đôi độ dài chỉ xảy ra nhiều nhất $O(\log |s|)$ lần, tức là các độ dài hậu tố đối xứng của $s$ có thể được chia thành $\log |s|$ đoạn cấp số cộng.
+    Giả sử độ dài mọi hậu tố đối xứng của $s$ theo thứ tự tăng dần là $l_1,l_2,\dots,l_k$. Với mọi $2 \le i \le k-1$, nếu $l_{i}-l_{i-1}=l_{i+1}-l_{i}$, thì $l_{i-1},l_{i},l_{i+1}$ tạo thành một cấp số cộng. Ngược lại, nếu $l_{i}-l_{i-1}\neq l_{i+1}-l_{i}$, theo Bổ đề $4$ có $l_{i+1}-l_{i}>l_{i}-l_{i-1}$ và $l_{i+1}-l_{i}>l_{i-1}$, suy ra $l_{i+1}>2l_{i-1}$. Vì vậy, nếu hiệu độ dài của hai cặp hậu tố đối xứng kề nhau thay đổi, thì độ dài lớn nhất đã tăng gấp đôi so với độ dài nhỏ nhất. Việc tăng gấp đôi độ dài chỉ xảy ra nhiều nhất $O(\log |s|)$ lần, tức là các độ dài hậu tố đối xứng của $s$ có thể được chia thành $\log |s|$ đoạn cấp số cộng.
 
 Hệ quả này cũng có thể được chứng minh bằng bổ đề chu kỳ yếu: phân loại mọi border của hậu tố đối xứng dài nhất của $s$ theo độ dài $x$, với $x \in [2^0,2^1),[2^1,2^2),\dots,[2^k,n)$, rồi xét border dài nhất trong mỗi nhóm trong $\log |s|$ nhóm đó. Chứng minh chi tiết có thể tham khảo bài giảng "Chuyên đề thuật toán xâu" của Jin Ce và luận văn đội tuyển ứng viên IOI Trung Quốc năm 2019 của Chen Sunli, "Các thuật toán liên quan tới truy vấn chu kỳ xâu con và ứng dụng".
 

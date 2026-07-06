@@ -643,7 +643,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     đúng của $\dfrac{1+\sqrt{D}}{2}$.
 
 ??? note "Chứng minh"
-    Trước hết chú ý rằng khi đó $x,y$ nhất định cùng tính chẵn lẻ, nên
+    Trước hết, khi đó $x,y$ nhất định cùng tính chẵn lẻ, nên
     $(x+y)/2$ là số nguyên. Nếu $(x,y)$ là nghiệm của phương trình
     $x^2-Dy^2=4$, thì $x>y\sqrt{D}>2y$, do đó
 
@@ -766,8 +766,8 @@ Các kết quả này cho thấy phương trình $x^2-Dy^2=\pm 4$ có cấu trú
 giản tương tự phương trình $x^2-Dy^2=\pm 1$: tất cả nghiệm đều có thể biểu diễn
 bằng nghiệm nguyên dương nhỏ nhất của nó, không cần giải các phương trình khác.
 
-Thực ra, mọi nghiệm của phương trình $x^2-Dy^2=\pm 1$ đều có thể tìm thấy trong
-nghiệm của phương trình $x^2-Dy^2=\pm 4$; từ góc nhìn này, phương trình
+Mặt khác, mọi nghiệm của phương trình $x^2-Dy^2=\pm 1$ đều có thể tìm thấy
+trong nghiệm của phương trình $x^2-Dy^2=\pm 4$; từ góc nhìn này, phương trình
 $x^2-Dy^2=\pm 4$ có tính cơ bản hơn. Một cặp $(x,y)$ là nghiệm của
 $x^2-Dy^2=\pm 1$ khi và chỉ khi $(2x,2y)$ là nghiệm của $x^2-Dy^2=\pm 4$. Phân
 tích trên chỉ ra rằng khi $D\equiv 2,3\pmod 4$, mọi nghiệm của phương trình
@@ -956,7 +956,7 @@ nhất. Tất cả các $(fA_k,fB_k)$ được ghi nhận trong quá trình này
 bộ nghiệm nguyên dương nhỏ nhất của phương trình $x^2-Dy^2=N$. Dùng
 $(A_{\ell'-1},B_{\ell'-1})$, tức nghiệm cơ bản của phương trình Pell tương ứng,
 có thể sinh tất cả nghiệm của phương trình Pell tổng quát từ các nghiệm nguyên
-dương nhỏ nhất vừa tìm được. Chú ý tùy theo độ dài chu kỳ $\ell$ chẵn hay lẻ,
+dương nhỏ nhất vừa tìm được. Tùy theo độ dài chu kỳ $\ell$ chẵn hay lẻ,
 $\ell'$ nói trên có thể là $\ell$ hoặc $2\ell$.
 
 Với trường hợp $N$ tổng quát hơn, phương pháp trên không còn áp dụng. Trước hết,
@@ -1172,10 +1172,10 @@ trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có th�
 
 [^not-square]: Khi $D$ là số chính phương, chỉ cần phân tích nhân tử là biết $(x+y\sqrt{D})(x-y\sqrt{D})=N$, vì vậy mọi nghiệm có thể tìm bằng cách duyệt các ước của $N$. Đặc biệt, khi $N=1$, phương trình chỉ có nghiệm $(\pm 1,0)$; khi $N=-1$ và $D\neq 1$, phương trình vô nghiệm.
 
-[^neg-pell]: Một số tài liệu tiếng Trung cũng gọi nó là phương trình Pell loại hai.
+[^neg-pell]: Một số tài liệu cũng gọi nó là phương trình Pell loại hai.
 
 [^half-int]: Tức số hữu tỉ có dạng $n+\dfrac12$ với $n\in\mathbf Z$.
 
-[^fundamental-solution]: Chú ý định nghĩa nghiệm cơ bản trong phương trình Pell không trùng với định nghĩa đơn vị cơ bản trong vành số nguyên bậc hai thực. Trước hết, trong một số vành số nguyên bậc hai thực, đơn vị cơ bản $x+y\sqrt{D}$ có $x,y$ là bán nguyên, nên không phải nghiệm của phương trình Pell. Tiếp theo, cùng một vành số nguyên bậc hai thực có bốn đơn vị cơ bản, nhưng nghiệm cơ bản chỉ có một, vì nghiệm cơ bản yêu cầu $x,y$ đều dương.
+[^fundamental-solution]: Định nghĩa nghiệm cơ bản trong phương trình Pell không trùng với định nghĩa đơn vị cơ bản trong vành số nguyên bậc hai thực. Trước hết, trong một số vành số nguyên bậc hai thực, đơn vị cơ bản $x+y\sqrt{D}$ có $x,y$ là bán nguyên, nên không phải nghiệm của phương trình Pell. Tiếp theo, cùng một vành số nguyên bậc hai thực có bốn đơn vị cơ bản, nhưng nghiệm cơ bản chỉ có một, vì nghiệm cơ bản yêu cầu $x,y$ đều dương.
 
 [^solubility-neg-pell]: Một phương pháp và công cụ phán định khá thực dụng có tại [liên kết này](http://www.numbertheory.org/php/hardy_williams.html) và trong tài liệu tham khảo của nó. Danh sách các số nguyên dương $D$ sao cho phương trình $x^2-Dy^2=-1$ có nghiệm là [OEIS A031396](https://oeis.org/A031396).

@@ -50,7 +50,7 @@ Trước khi mô tả chặt chẽ các bước của phương pháp đơn hình
     \end{aligned}
     $$
     
-    Quan sát các ràng buộc đẳng thức của bài toán này, chúng thực ra biểu diễn các biến $x_4,x_5,x_6$ theo các biến $x_1,x_2,x_3$. Viết lại bài toán một chút như sau:
+    Các ràng buộc đẳng thức của bài toán này biểu diễn các biến $x_4,x_5,x_6$ theo các biến $x_1,x_2,x_3$. Viết lại bài toán một chút như sau:
     
     $$
     \begin{array}{rrrrrr}
@@ -490,7 +490,7 @@ Dùng bảng đơn hình đã đủ để giải nhiều bài toán quy hoạch 
 1.  Chuyển bài toán quy hoạch tuyến tính về **dạng bất đẳng thức** (inequality form), tức dạng $\min\{c^Tx : Ax \le b,~ x \ge 0\}$;
 2.  Thêm biến dư $s$ để chuyển bài toán về dạng chuẩn: $\min\{c^Tx : Ax + s = b,~ x\ge 0,~ s \ge 0\}$.
 
-Lợi ích của cách làm này là ma trận hệ số $(A,I)$ của dạng chuẩn thu được luôn đầy hạng, và luôn tồn tại nghiệm cơ bản $(x,s)=(0,b)$ (chưa chắc khả thi). Dạng chuẩn đặc biệt này còn gọi là **dạng dư** (slack form).
+Lợi ích của cách làm này là ma trận hệ số $(A,I)$ của dạng chuẩn thu được luôn đầy hạng, và luôn tồn tại nghiệm cơ bản $(x,s)=(0,b)$ (không nhất thiết khả thi). Dạng chuẩn đặc biệt này còn gọi là **dạng dư** (slack form).
 
 <span id="nghiệm-cơ-bản-khả-thi-ban-đầu"></span>
 ### Nghiệm cơ bản khả thi ban đầu
@@ -584,7 +584,7 @@ $$
 để thu được nghiệm tối ưu của bài toán gốc. Khi cài đặt, không gán cho $M$ một giá trị cụ thể mà xem nó như một số dương chưa biết nhưng đủ lớn để tính toán. Phương pháp này gọi là **phương pháp $M$ lớn** (big $M$ method).
 
 ???+ warning "Hiệu quả thực tế của thuật toán thô là cấp mũ"
-    Vì dạng dư luôn có nghiệm cơ bản ban đầu, chỉ là chưa chắc khả thi, một ý tưởng đơn giản để tìm nghiệm cơ bản khả thi ban đầu là bắt đầu từ một nghiệm cơ bản không khả thi, lặp lại thao tác xoay trục để đưa biến cơ sở không khả thi ra khỏi cơ sở, đồng thời chọn biến không cơ sở ứng với một số âm trên hàng tương ứng vào cơ sở, cho tới khi mọi biến cơ sở đều không âm. Cài đặt tham khảo:
+    Vì dạng dư luôn có nghiệm cơ bản ban đầu, dù nghiệm này không nhất thiết khả thi, một ý tưởng đơn giản để tìm nghiệm cơ bản khả thi ban đầu là bắt đầu từ một nghiệm cơ bản không khả thi, lặp lại thao tác xoay trục để đưa biến cơ sở không khả thi ra khỏi cơ sở, đồng thời chọn biến không cơ sở ứng với một số âm trên hàng tương ứng vào cơ sở, cho tới khi mọi biến cơ sở đều không âm. Cài đặt tham khảo:
     
     ??? example "Cài đặt tham khảo"
         ```cpp
@@ -620,7 +620,7 @@ Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán 
 
     nhỏ nhất theo thứ tự từ điển. Cách chọn biến vào cơ sở không quan trọng.
 
-    Lưu ý rằng nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (chưa chắc khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
+    Nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (không nhất thiết khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
 
 Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, rất dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
 
