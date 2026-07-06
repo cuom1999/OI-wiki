@@ -14,7 +14,7 @@ Khi làm bài mô phỏng, làm theo các gợi ý sau có thể giúp tăng t�
 -   Trong mã, cố gắng mô-đun hóa từng phần thành hàm, struct hoặc class.
 -   Với một số khái niệm có thể được dùng lặp lại, có thể chuyển đổi thống nhất để dễ xử lý. Ví dụ, nếu đề bài cho `"YY-MM-DD giờ:phút"`, nên tách việc xử lý này thành một hàm và chuyển thành giây; làm vậy sẽ giảm nhầm lẫn giữa các khái niệm.
 -   Khi gỡ lỗi, nên gỡ lỗi theo từng khối. Lợi ích của việc mô-đun hóa là có thể kiểm tra riêng từng phần một cách thuận tiện.
--   Khi viết mã, cần giữ mạch suy nghĩ rõ ràng; đừng nghĩ đến đâu viết đến đó, mà nên viết theo các bước đã ghi trên giấy.
+-   Khi viết mã, cần giữ mạch suy nghĩ mạch lạc; không nên nghĩ đến đâu viết đến đó, mà nên viết theo các bước đã ghi trên giấy.
 
 Thực tế, các bước trên cũng rất hữu ích khi giải những dạng bài khác.
 

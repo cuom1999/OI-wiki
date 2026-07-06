@@ -24,7 +24,7 @@ Khi giải bài toán bằng phương pháp liệt kê, nhất định phải su
 
 ### Chọn thứ tự liệt kê phù hợp
 
-Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài ví dụ yêu cầu số nguyên tố lớn nhất thỏa điều kiện, thì hiển nhiên liệt kê từ lớn đến nhỏ sẽ phù hợp hơn.
+Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài ví dụ yêu cầu số nguyên tố lớn nhất thỏa điều kiện, thì liệt kê từ lớn đến nhỏ sẽ phù hợp hơn.
 
 ## Ví dụ
 
@@ -87,7 +87,7 @@ Sau đây là một ví dụ về cách dùng liệt kê để giải bài và t
         ans *= 2;
         ```
     
-    Có thể thấy phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
+    Phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
     
     Vẫn có thể tối ưu thêm.
     

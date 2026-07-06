@@ -19,7 +19,7 @@ Sắp xếp theo thùng được thực hiện theo các bước sau:
 
 Nếu dùng một thuật toán sắp xếp ổn định bên trong mỗi thùng, đồng thời không thay đổi thứ tự tương đối giữa các phần tử khi đưa chúng vào thùng, thì sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
 
-Vì số phần tử trong mỗi thùng thường không nhiều, ta thường dùng sắp xếp chèn. Khi đó sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
+Vì số phần tử trong mỗi thùng thường không nhiều, có thể dùng sắp xếp chèn. Khi đó sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 

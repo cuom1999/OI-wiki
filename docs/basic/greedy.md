@@ -119,7 +119,7 @@ nên có khả năng quay lui theo nghĩa rộng.
     \max (b_{i+1}, a_i\cdot b_i)  < \max (b_i, a_{i+1}\cdot b_{i+1})
     $$
 
-    Khi cài đặt, ta lưu hai số đầu vào bằng một struct và nạp chồng toán tử:
+    Khi cài đặt, lưu hai số đầu vào bằng một struct và nạp chồng toán tử:
 
     ```cpp
     struct uv {
