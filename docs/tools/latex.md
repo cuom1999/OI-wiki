@@ -2,11 +2,11 @@
 
 ### LaTeX là gì
 
-LaTeX (đọc là /ˈlɑːtɛx/ hoặc /ˈleɪtɛx/) là một hệ thống dàn trang giúp tài liệu trông chuyên nghiệp hơn, chứ không phải là một trình xử lý văn bản. Nó đặc biệt phù hợp với những tài liệu dài, có cấu trúc chặt chẽ, và rất mạnh trong việc trình bày công thức. Đây là phần mềm miễn phí và dùng được trên hầu hết các hệ điều hành.
+LaTeX (đọc là /ˈlɑːtɛx/ hoặc /ˈleɪtɛx/) là một hệ thống dàn trang giúp tạo tài liệu chuyên nghiệp, chứ không phải là một trình xử lý văn bản. Nó đặc biệt phù hợp với những tài liệu dài, có cấu trúc chặt chẽ, và hỗ trợ việc trình bày công thức. Đây là phần mềm miễn phí và dùng được trên hầu hết các hệ điều hành.
 
 LaTeX được xây dựng trên TeX, hệ thống dàn trang do Donald Knuth thiết kế năm 1978 cho chế bản số. TeX là một ngôn ngữ cấp thấp mà máy tính có thể xử lý, nhưng phần lớn người dùng thấy nó khó dùng. LaTeX được thiết kế để làm cho TeX dễ sử dụng hơn. Phiên bản LaTeX hiện nay là LaTeX 2e.
 
-Nếu quen dùng Microsoft Office Word để soạn tài liệu, cách làm việc của LaTeX có thể sẽ khá lạ. Word là trình soạn thảo kiểu "thấy gì được nấy", cho phép xem ngay kết quả dàn trang cuối cùng trong khi chỉnh sửa tài liệu. Khi dùng LaTeX, người soạn không xem kết quả cuối cùng một cách trực tiếp như vậy, nhờ đó có thể tập trung vào nội dung thay vì liên tục chỉnh hình thức.
+Nếu quen dùng Microsoft Office Word để soạn tài liệu, cách làm việc của LaTeX có thể sẽ khác biệt. Word là trình soạn thảo kiểu "thấy gì được nấy", cho phép xem ngay kết quả dàn trang cuối cùng trong khi chỉnh sửa tài liệu. Khi dùng LaTeX, người soạn không xem kết quả cuối cùng một cách trực tiếp như vậy, nhờ đó có thể tập trung vào nội dung thay vì liên tục chỉnh hình thức.
 
 Một tài liệu LaTeX là một tệp văn bản có đuôi `.tex`, có thể chỉnh sửa bằng bất kỳ trình soạn thảo văn bản nào, chẳng hạn Notepad. Tuy nhiên, với đa số người dùng, một trình soạn thảo LaTeX phù hợp sẽ giúp quá trình viết dễ hơn nhiều. Trong lúc soạn thảo, người viết đánh dấu cấu trúc của tài liệu. Khi hoàn thành, tài liệu được biên dịch, tức là chuyển sang một định dạng khác. LaTeX hỗ trợ nhiều định dạng, nhưng thông dụng nhất là PDF.
 
@@ -20,11 +20,11 @@ Dưới đây là các ký hiệu được dùng trong bài:
 
 ### Một số khái niệm
 
-Để viết tài liệu LaTeX, cần cài một "bản phân phối". Các bản phân phối thường dùng gồm [TeX Live](http://tug.org/texlive/), [MikTeX](https://miktex.org/) và MacTeX dành cho người dùng macOS (thực chất là phiên bản TeX Live cho macOS). TeX Live và MacTeX đi kèm gần như toàn bộ các gói LaTeX; MikTeX chỉ đi kèm một số gói bắt buộc, các gói khác sẽ được cài khi cần.
+Để viết tài liệu LaTeX, cần cài một "bản phân phối". Các bản phân phối thường dùng gồm [TeX Live](http://tug.org/texlive/), [MikTeX](https://miktex.org/) và MacTeX dành cho người dùng macOS (thực chất là phiên bản TeX Live cho macOS). TeX Live và MacTeX đi kèm hầu hết các gói LaTeX; MikTeX chỉ đi kèm một số gói cần thiết, các gói khác sẽ được cài khi cần.
 
 TeX Live và MikTeX đều đi kèm trình soạn thảo TeXworks. Cũng có thể cài trình soạn thảo nhiều tính năng hơn như TeXstudio, hoặc tự cấu hình Visual Studio Code, Notepad++ và các trình soạn thảo khác. Trình soạn thảo dùng trong phần dưới là TeXworks chạy trên Windows 7.
 
-Phần lớn các bản phân phối đều có nhiều bộ máy, chẳng hạn pdfTeX, XeTeX và LuaTeX. Với văn bản Unicode nhiều dấu như tiếng Việt, XeTeX hoặc LuaTeX thường thuận tiện hơn.
+Phần lớn các bản phân phối đều có nhiều bộ máy, chẳng hạn pdfTeX, XeTeX và LuaTeX. Với văn bản Unicode nhiều dấu như tiếng Việt, XeTeX hoặc LuaTeX thường phù hợp hơn.
 
 TeX có nhiều định dạng, chẳng hạn Plain TeX và LaTeX. Hiện nay thường dùng định dạng LaTeX. Vì vậy, cần dùng bộ máy được đóng gói cùng định dạng đang sử dụng. Ví dụ với pdfTeX, cần dùng pdfLaTeX; với XeTeX thì dùng XeLaTeX.
 
@@ -48,7 +48,7 @@ Một tài liệu mới sẽ tự động được mở.
 
 $\rightarrow$ Vào menu **Format**, chọn **Line Numbers**.
 
-Số dòng không phải là thành phần bắt buộc, nhưng nó giúp đối chiếu mã với thông báo trên màn hình và tìm lỗi.
+Số dòng không phải là thành phần bắt buộc, nhưng giúp đối chiếu mã với thông báo trên màn hình và tìm lỗi.
 
 $\rightarrow$ Vào menu **Format**, chọn **Syntax Coloring**, rồi chọn **LaTeX**.
 
@@ -68,7 +68,7 @@ Lệnh `\documentclass` phải xuất hiện ở đầu mỗi tài liệu LaTeX.
 
 Hai lệnh `\begin{document}` và `\end{document}` bao lấy phần nội dung văn bản. Mọi nội dung trước `\begin{document}` được xem là phần mở đầu và ảnh hưởng đến toàn bộ tài liệu. Mọi nội dung sau `\end{document}` đều bị bỏ qua.
 
-Dòng trống không bắt buộc, nhưng nó giúp tài liệu dài dễ đọc hơn.
+Dòng trống không bắt buộc, nhưng giúp tài liệu dài dễ đọc hơn.
 
 $\rightarrow$ Nhấn nút **Save**; $\rightarrow$ tạo một thư mục tên **LaTeX course** trong **Libraries>Documents**; $\rightarrow$ đặt tên tài liệu là **Doc1** và lưu nó dưới dạng **TeX document** trong thư mục này.
 
@@ -537,7 +537,7 @@ $\rightarrow$ Biên dịch và kiểm tra tệp.
 
 ## Công thức
 
-Một trong những lý do chính để dùng LaTeX là nó có thể dàn công thức rất thuận tiện. Chế độ toán học được dùng để dàn công thức.
+Một trong những lý do chính để dùng LaTeX là khả năng dàn công thức. Chế độ toán học được dùng để dàn công thức.
 
 ### Chèn công thức
 
@@ -681,7 +681,7 @@ Nếu cần trợ giúp, có thể xem [mã nguồn](https://github.com/OI-wiki/
 
 ### Giới thiệu
 
-LaTeX có thể chèn tài liệu tham khảo và mục lục khá thuận tiện. Phần này sẽ giới thiệu cách dùng một tệp BibTeX khác để lưu tài liệu tham khảo.
+LaTeX hỗ trợ chèn tài liệu tham khảo và mục lục. Phần này sẽ giới thiệu cách dùng một tệp BibTeX khác để lưu tài liệu tham khảo.
 
 ### Kiểu tệp BibTeX
 
