@@ -116,8 +116,8 @@ switch (i) {
 
 Trong câu lệnh `switch`, có thể cần thêm câu lệnh `break` để kết thúc nhánh hiện
 tại. Nếu không có `break`, sau khi `case` tương ứng được chọn, chương trình sẽ
-tiếp tục chạy xuống các câu lệnh trong những `case` phía sau và cả `default`.
-Đây gọi là hiện tượng rơi tiếp (`fallthrough`). Ví dụ:
+tiếp tục thực thi các câu lệnh trong những `case` kế tiếp và cả `default`.
+Hiện tượng này gọi là rơi tiếp (`fallthrough`). Ví dụ:
 
 ```cpp
 char i = 'B';
@@ -136,7 +136,7 @@ switch (i) {
 ```
 
 Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI` và `Hello World`. Khi
-không muốn chạy tiếp các nhánh phía sau, cần dùng `break`. Ví dụ:
+không muốn thực thi tiếp các nhánh kế tiếp, cần dùng `break`. Ví dụ:
 
 ```cpp
 char i = 'B';
