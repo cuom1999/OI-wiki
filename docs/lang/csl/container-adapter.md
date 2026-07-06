@@ -5,10 +5,10 @@ author: Xeonacid, ksyx, Early0v0
 ## Ngăn xếp
 
 STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa
-theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy
-vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ
-trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không cung
-cấp bộ lặp.
+theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ cho phép xem
+hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ
+truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không cung cấp
+bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -34,7 +34,7 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này
+-   `top()` truy cập phần tử ở đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này
     gây lỗi)
 -   `push(x)` chèn phần tử `x` vào ngăn xếp
 -   `pop()` xóa phần tử đỉnh ngăn xếp
@@ -62,10 +62,10 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 ## Hàng đợi
 
 STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa
-theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ
-truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không
-hỗ trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự FIFO, `std::queue` cũng không
-cung cấp bộ lặp.
+theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ cho phép
+xem hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không hỗ trợ
+truy cập ngẫu nhiên. Để giữ đúng thứ tự FIFO, `std::queue` cũng không cung cấp
+bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
@@ -143,7 +143,7 @@ std::priority_queue<TypeName, Container, Compare> q;
 // Mặc định dùng vector làm bộ chứa cơ sở
 // Kiểu so sánh là less<TypeName> (khi đó top() trả về giá trị lớn nhất)
 // Nếu muốn top() trả về giá trị nhỏ nhất, có thể đặt kiểu so sánh là greater<TypeName>
-// Lưu ý: không thể bỏ qua Container để truyền trực tiếp Compare
+// Lưu ý: muốn truyền Compare thì vẫn phải ghi rõ Container
 
 // Từ C++11 trở đi, nếu dùng biểu thức lambda để tự định nghĩa Compare
 // thì cần truyền nó vào dưới dạng tham số của hàm khởi tạo, ví dụ:
@@ -161,14 +161,14 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
 
 **Tất cả các hàm sau đều có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+-   `top()` truy cập phần tử ở đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 -   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 -   `size()` trả về số lượng phần tử trong bộ chứa
 
 **Tất cả các hàm sau đều có độ phức tạp logarit**
 
 -   `push(x)` chèn phần tử rồi điều chỉnh lại heap trong bộ chứa cơ sở
--   `pop()` xóa phần tử đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+-   `pop()` xóa phần tử ở đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
 
 <span id="ví-dụ-đơn-giản-hàng-đợi-ưu-tiên"></span>
 
@@ -179,13 +179,13 @@ std::priority_queue<int> q1;
 std::priority_queue<int, std::vector<int>> q2;
 // Sau C++11 có thể bỏ khoảng trắng
 std::priority_queue<int, std::deque<int>, std::greater<int>> q3;
-// q3 là min-heap
+// q3 là heap nhỏ nhất
 for (int i = 1; i <= 5; i++) q1.push(i);
 // Các phần tử trong q1: [1, 2, 3, 4, 5]
 std::cout << q1.top() << std::endl;
 // Kết quả xuất ra: 5
 q1.pop();
-// Các phần tử trong heap: [1, 2, 3, 4]
+// Các phần tử trong q1: [1, 2, 3, 4]
 std::cout << q1.size() << std::endl;
 // Kết quả xuất ra: 4
 for (int i = 1; i <= 5; i++) q3.push(i);
