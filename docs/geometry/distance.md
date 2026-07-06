@@ -20,7 +20,7 @@ $$
 \left | AB \right | = \sqrt{\left ( 2 - 6 \right )^2 + \left ( 2 - 5 \right )^2} = \sqrt{4^2+3^2} = 5
 $$
 
-Ngoài ra, khoảng cách Euclid từ $P(x,y)$ đến gốc tọa độ có thể được biểu diễn bằng công thức:
+Ngoài ra, có thể biểu diễn khoảng cách Euclid từ $P(x,y)$ đến gốc tọa độ bằng công thức:
 
 $$
 |P| = \sqrt{x^2+y^2}
@@ -73,7 +73,7 @@ Khoảng cách Euclid rất hữu ích, nhưng cũng có nhược điểm đáng
 
 ### Định nghĩa
 
-Trong không gian hai chiều, khoảng cách Manhattan (Manhattan distance, còn gọi là khoảng cách khối phố) giữa hai điểm là tổng của trị tuyệt đối hiệu hoành độ và trị tuyệt đối hiệu tung độ. Giả sử hai điểm là $A(x_1,y_1),B(x_2,y_2)$, khoảng cách Manhattan giữa $A$ và $B$ có thể được biểu diễn bằng công thức:
+Trong không gian hai chiều, khoảng cách Manhattan (Manhattan distance, còn gọi là khoảng cách khối phố) giữa hai điểm là tổng của trị tuyệt đối hiệu hoành độ và trị tuyệt đối hiệu tung độ. Giả sử hai điểm là $A(x_1,y_1),B(x_2,y_2)$, có thể biểu diễn khoảng cách Manhattan giữa $A$ và $B$ bằng công thức:
 
 $$
 d(A,B) = |x_1 - x_2| + |y_1 - y_2|
@@ -171,13 +171,13 @@ Còn có cách làm thứ hai: chuyển khoảng cách Manhattan thành khoảng
 
 Khoảng cách Chebyshev (Chebyshev distance) là một loại độ đo trong không gian vectơ; khoảng cách giữa hai điểm được định nghĩa là giá trị lớn nhất trong các hiệu trị tuyệt đối theo từng tọa độ của chúng.[^ref1]
 
-Trong không gian hai chiều, khoảng cách Chebyshev giữa hai điểm là giá trị lớn nhất giữa trị tuyệt đối hiệu hoành độ và trị tuyệt đối hiệu tung độ. Giả sử hai điểm là $A(x_1,y_1),B(x_2,y_2)$, khoảng cách Chebyshev giữa $A$ và $B$ có thể được biểu diễn bằng công thức:
+Trong không gian hai chiều, khoảng cách Chebyshev giữa hai điểm là giá trị lớn nhất giữa trị tuyệt đối hiệu hoành độ và trị tuyệt đối hiệu tung độ. Giả sử hai điểm là $A(x_1,y_1),B(x_2,y_2)$, có thể biểu diễn khoảng cách Chebyshev giữa $A$ và $B$ bằng công thức:
 
 $$
 d(A,B) = \max(|x_1 - x_2|, |y_1 - y_2|)
 $$
 
-Công thức khoảng cách Chebyshev trong không gian $n$ chiều có thể được biểu diễn là:
+Có thể biểu diễn công thức khoảng cách Chebyshev trong không gian $n$ chiều là:
 
 $$
 \begin{aligned}

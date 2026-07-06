@@ -377,7 +377,7 @@ Trước hết, nhận thấy trong phân rã chuỗi dài, số lần chuyển 
 
 #### Tối ưu DP bằng phân rã chuỗi dài
 
-Thông thường, DP có thể được tối ưu bằng phân rã chuỗi dài sẽ có một chiều trạng thái là chiều độ sâu.
+Thông thường, những bài toán DP có thể tối ưu bằng phân rã chuỗi dài đều có một chiều trạng thái là chiều độ sâu.
 
 Có thể cân nhắc dùng phân rã chuỗi dài để tối ưu DP trên cây.
 
@@ -420,7 +420,7 @@ Cụ thể, trạng thái của mỗi đỉnh trực tiếp kế thừa trạng 
 
 Trong trường hợp thông thường, bộ nhớ của mảng DP được cấp phát theo cả một chuỗi nặng, còn các đỉnh khác nhau trên chuỗi có các con trỏ đầu khác nhau.
 
-Độ dài mảng DP có thể được tính theo đỉnh sâu nhất trong cây con.
+Có thể tính độ dài mảng DP theo đỉnh sâu nhất trong cây con.
 
 Có nhiều kỹ thuật tối ưu DP bằng phân rã chuỗi dài, bao gồm nhưng không giới hạn ở việc đánh dấu lười. Phần này không trình bày thêm.
 

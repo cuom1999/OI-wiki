@@ -89,7 +89,7 @@ f(a_2, b_1) & f(a_2, b_2)
 \end{vmatrix} = f(a_1, b_1)\times f(a_2, b_2) - f(a_1, b_2)\times f(a_2, b_1)
 $$
 
-Trong đó $f(a, b)$ là số đường đi từ $a\rightarrow b$ trên đồ thị. Bài toán đếm đường đi có các ô chướng ngại có thể được giải trực tiếp bằng quy hoạch động $O(nm)$, nên dễ tính được $f$. Độ phức tạp cuối cùng là $O(nm)$.
+Trong đó $f(a, b)$ là số đường đi từ $a\rightarrow b$ trên đồ thị. Có thể giải trực tiếp bài toán đếm đường đi có các ô chướng ngại bằng quy hoạch động $O(nm)$, nên dễ tính được $f$. Độ phức tạp cuối cùng là $O(nm)$.
 
 ??? note "Mã tham khảo"
     ```cpp

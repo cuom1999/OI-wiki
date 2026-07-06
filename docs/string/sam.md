@@ -20,12 +20,12 @@ author: GoodCoder666, abc1763613206, ksyx
 
 **Ô-tô-mát hậu tố** (Suffix automaton, SAM) là một cấu trúc dữ liệu mạnh, có thể giải quyết nhiều bài toán liên quan đến xâu.
 
-Ví dụ, các bài toán xâu sau đều có thể được giải bằng SAM trong thời gian tuyến tính:
+Ví dụ, SAM có thể giải các bài toán xâu sau trong thời gian tuyến tính:
 
 -   Tìm mọi lần xuất hiện của một xâu trong một xâu khác;
 -   Đếm số xâu con phân biệt trong một xâu cho trước.
 
-Về trực giác, SAM của một xâu có thể được hiểu là dạng nén của **tất cả xâu con** của xâu đó. Điểm quan trọng là SAM lưu toàn bộ thông tin này dưới dạng nén rất cao. Với một xâu độ dài $n$, độ phức tạp bộ nhớ chỉ là $O(n)$. Hơn nữa, SAM cũng có thể được xây dựng trong $O(n)$. Chính xác hơn, một SAM có nhiều nhất $2n-1$ đỉnh và $3n-4$ cạnh chuyển.
+Về trực giác, có thể hiểu SAM của một xâu là dạng nén của **tất cả xâu con** của xâu đó. Điểm quan trọng là SAM lưu toàn bộ thông tin này dưới dạng nén rất cao. Với một xâu độ dài $n$, độ phức tạp bộ nhớ chỉ là $O(n)$. Hơn nữa, có thể xây dựng SAM trong $O(n)$. Chính xác hơn, một SAM có nhiều nhất $2n-1$ đỉnh và $3n-4$ cạnh chuyển.
 
 <span id="định-nghĩa"></span>
 
@@ -489,13 +489,13 @@ Bây giờ xét một số bài toán có thể giải bằng SAM. Để đơn g
     
     Mỗi xâu con của $S$ tương ứng với một số đường đi trong automaton. Vì vậy số xâu con phân biệt bằng số đường đi khác nhau trong automaton có điểm bắt đầu là $t_0$.
     
-    Vì SAM là đồ thị có hướng không chu trình, số đường đi khác nhau có thể được tính bằng quy hoạch động. Cụ thể, gọi $d_{v}$ là số đường đi bắt đầu từ trạng thái $v$ (bao gồm cả đường đi độ dài không), có công thức truy hồi:
+    Vì SAM là đồ thị có hướng không chu trình, có thể tính số đường đi khác nhau bằng quy hoạch động. Cụ thể, gọi $d_{v}$ là số đường đi bắt đầu từ trạng thái $v$ (bao gồm cả đường đi độ dài không), có công thức truy hồi:
     
     $$
     d_{v}=1+\sum_{w:(v,w,c)\in DAWG}d_{w}
     $$
     
-    Tức $d_{v}$ có thể được biểu diễn bằng tổng trên các điểm cuối của mọi chuyển trạng thái từ $v$; bộ ba $(v,w,c)$ trong $DAWG$ biểu diễn một chuyển trạng thái từ $v$ qua $c$ tới $w$ trong suffix automaton.
+    Tức có thể biểu diễn $d_{v}$ bằng tổng trên các điểm cuối của mọi chuyển trạng thái từ $v$; bộ ba $(v,w,c)$ trong $DAWG$ biểu diễn một chuyển trạng thái từ $v$ qua $c$ tới $w$ trong suffix automaton.
     
     Vì vậy số xâu con phân biệt là $d_{t_0}-1$ (do cần bỏ xâu rỗng).
     
@@ -518,7 +518,7 @@ Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804),
 ??? note "Lời giải 1"
     Cách làm của bài này tương tự bài trước, chỉ khác là bây giờ cần xét quy hoạch động gồm hai phần: số xâu con phân biệt $d_{v}$ và tổng độ dài của chúng $ans_{v}$.
     
-    Ở bài trước đã giới thiệu cách tính $d_{v}$. Giá trị $ans_{v}$ có thể được tính bằng công thức truy hồi sau:
+    Ở bài trước đã giới thiệu cách tính $d_{v}$. Có thể tính giá trị $ans_{v}$ bằng công thức truy hồi sau:
     
     $$
     ans_{v}=\sum_{w:(v,w,c)\in DAWG}d_{w}+ans_{w}

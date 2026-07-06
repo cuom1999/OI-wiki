@@ -132,7 +132,7 @@ Nếu nới lỏng điều kiện trong bài toán hôn nhân ổn định rằn
 
 ### Bài toán phân bổ nhà ở
 
-Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đối với nhau, nên đó là bài toán ghép cặp hai phía. Ngoài ra, cũng có thể xét bài toán ghép cặp một phía. Một bối cảnh thường gặp là **bài toán phân bổ nhà ở**. Có $n$ cư dân, mỗi người sở hữu một căn nhà. Mỗi người có một sở thích nghiêm ngặt đối với tất cả các căn nhà. Yêu cầu là phân bổ lại các căn nhà này cho các cư dân sao cho mỗi cư dân không nhận căn nhà tệ hơn căn ban đầu của mình, và không tồn tại bất kỳ nhóm cư dân nào có thể tự trao đổi nhà với nhau để thu được kết quả hài lòng hơn. Bài toán này có thể được giải bằng thuật toán Top Trading Cycle trong thời gian $O(n^2)$. Các bài toán thuộc loại này cũng xuất hiện trong bối cảnh ghép thận và những tình huống tương tự.
+Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đối với nhau, nên đó là bài toán ghép cặp hai phía. Ngoài ra, cũng có thể xét bài toán ghép cặp một phía. Một bối cảnh thường gặp là **bài toán phân bổ nhà ở**. Có $n$ cư dân, mỗi người sở hữu một căn nhà. Mỗi người có một sở thích nghiêm ngặt đối với tất cả các căn nhà. Yêu cầu là phân bổ lại các căn nhà này cho các cư dân sao cho mỗi cư dân không nhận căn nhà tệ hơn căn ban đầu của mình, và không tồn tại bất kỳ nhóm cư dân nào có thể tự trao đổi nhà với nhau để thu được kết quả hài lòng hơn. Có thể giải bài toán này bằng thuật toán Top Trading Cycle trong thời gian $O(n^2)$. Các bài toán thuộc loại này cũng xuất hiện trong bối cảnh ghép thận và những tình huống tương tự.
 
 ## Bài tập
 

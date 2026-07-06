@@ -122,7 +122,7 @@ Do đó độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
     Các nút ở tầng thấp, chẳng hạn nút gốc của toàn bộ cây, sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong min-heap). Đồng thời, trong cây tìm kiếm mộc mạc, nút được chèn trước cũng có khả năng nằm ở tầng nông hơn. Có thể liên hệ thuộc tính $\textit{priority}$ này với thứ tự chèn để hiểu vì sao Treap có thể dùng $\textit{priority}$ để xáo trộn thứ tự chèn nút.
 
-Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap. Trong đó, tính chất cây tìm kiếm có thể được duy trì khi chèn, còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất. Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
+Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap. Trong đó, thao tác chèn có thể duy trì tính chất cây tìm kiếm, còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất. Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
 
 ## Treap xoay
 

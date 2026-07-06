@@ -8,7 +8,7 @@ Cho một xâu $s$ có độ dài $n$, cần tìm mọi cặp $(i, j)$ sao cho x
 
 Trong trường hợp xấu nhất có thể có $O(n^2)$ xâu đối xứng, nên thoạt nhìn bài toán dường như không có thuật toán tuyến tính.
 
-Tuy nhiên thông tin về các xâu đối xứng có thể được biểu diễn bằng **một cách gọn hơn**: với mỗi vị trí $i = 0 \dots n - 1$, cần tìm hai giá trị $d_1[i]$ và $d_2[i]$. Chúng lần lượt biểu thị số xâu đối xứng độ dài lẻ và độ dài chẵn có tâm tại vị trí $i$. Nhìn theo cách khác, chúng cũng biểu thị bán kính của xâu đối xứng dài nhất có tâm tại $i$ (bán kính $d_1[i]$, $d_2[i]$ đều là số ký tự tính từ vị trí $i$ đến đầu phải của xâu đối xứng, có tính cả ký tự đầu phải).
+Tuy nhiên có thể biểu diễn thông tin về các xâu đối xứng bằng **một cách gọn hơn**: với mỗi vị trí $i = 0 \dots n - 1$, cần tìm hai giá trị $d_1[i]$ và $d_2[i]$. Chúng lần lượt biểu thị số xâu đối xứng độ dài lẻ và độ dài chẵn có tâm tại vị trí $i$. Nhìn theo cách khác, chúng cũng biểu thị bán kính của xâu đối xứng dài nhất có tâm tại $i$ (bán kính $d_1[i]$, $d_2[i]$ đều là số ký tự tính từ vị trí $i$ đến đầu phải của xâu đối xứng, có tính cả ký tự đầu phải).
 
 Ví dụ, xâu $s = \mathtt{abababc}$ có ba xâu đối xứng độ dài lẻ với tâm tại $s[3] = b$; xâu đối xứng dài nhất có bán kính $3$, tức $d_1[3] = 3$:
 

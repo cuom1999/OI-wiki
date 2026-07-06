@@ -369,7 +369,7 @@ Cũng có cách xây cây $\Theta(n)$, xem phần [$\Theta(n)$ xây cây](#theta
 
 Kiến thức cần có: [tổng tiền tố & sai phân](../basic/prefix-sum.md).
 
-Bài toán này có thể được giải bằng hai cây Fenwick duy trì mảng sai phân.
+Có thể giải bài toán này bằng hai cây Fenwick duy trì mảng sai phân.
 
 Xét mảng sai phân $d$ của dãy $a$, trong đó $d[i] = a[i] - a[i - 1]$. Vì tổng tiền tố của mảng sai phân chính là mảng ban đầu, nên $a_i=\sum_{j=1}^i d_j$.
 
@@ -756,7 +756,7 @@ Như vậy, độ phức tạp thời gian giảm xuống $\Theta(\log n)$.
 
 Đọc thêm và cài đặt tham khảo: [cặp nghịch thế](../math/permutation.md#số-nghịch-thế)
 
-Cặp nghịch thế toàn cục cũng có thể được giải khéo léo bằng cây Fenwick theo giá trị. Bài toán như sau: cho dãy $a$ độ dài $n$, cần tính số cặp $(i, j)$ trong $a$ thỏa mãn $i < j$ và $a[i] > a[j]$.
+Cũng có thể giải cặp nghịch thế toàn cục một cách khéo léo bằng cây Fenwick theo giá trị. Bài toán như sau: cho dãy $a$ độ dài $n$, cần tính số cặp $(i, j)$ trong $a$ thỏa mãn $i < j$ và $a[i] > a[j]$.
 
 Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, cần rời rạc hóa rồi xây mảng tần suất giá trị $b$.
 

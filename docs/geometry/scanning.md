@@ -91,7 +91,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
         ```
 
 ???+ note "[Luogu P1908 Inversion Count](https://www.luogu.com.cn/problem/P1908)"
-    Nghịch thế cũng có thể được giải bằng tư duy đường quét. Xét việc chuyển bài toán đếm số nghịch thế thành: liệt kê từng vị trí $i$ từ sau ra trước, rồi tìm số điểm trong đoạn vị trí $[i+1,n]$ có giá trị thuộc đoạn $[0,a_i]$. Phạm vi dữ liệu của đề là $10^9$, nên cần rời rạc hóa trước. Duyệt mảng từ sau ra trước; mỗi khi duyệt đến một số thì cập nhật cây Fenwick, hoặc cây đoạn, rồi thống kê hiện có bao nhiêu số nhỏ hơn số đang liệt kê. Vì duyệt từ sau ra trước, số lượng số nhỏ hơn giá trị hiện tại chính là số nghịch thế do nó tạo ra. Có thể dùng cây Fenwick hoặc cây đoạn để sửa một điểm và truy vấn đoạn.
+    Cũng có thể giải nghịch thế bằng tư duy đường quét. Xét việc chuyển bài toán đếm số nghịch thế thành: liệt kê từng vị trí $i$ từ sau ra trước, rồi tìm số điểm trong đoạn vị trí $[i+1,n]$ có giá trị thuộc đoạn $[0,a_i]$. Phạm vi dữ liệu của đề là $10^9$, nên cần rời rạc hóa trước. Duyệt mảng từ sau ra trước; mỗi khi duyệt đến một số thì cập nhật cây Fenwick, hoặc cây đoạn, rồi thống kê hiện có bao nhiêu số nhỏ hơn số đang liệt kê. Vì duyệt từ sau ra trước, số lượng số nhỏ hơn giá trị hiện tại chính là số nghịch thế do nó tạo ra. Có thể dùng cây Fenwick hoặc cây đoạn để sửa một điểm và truy vấn đoạn.
     
     ??? note "Mã nguồn"
         ```cpp

@@ -6,7 +6,7 @@ DFS là viết tắt của [Depth First Search](https://en.wikipedia.org/wiki/De
 
 Khi được giới thiệu, thuật toán này thường được đặt cạnh BFS. Tuy nhiên, ngoài việc cả hai đều có thể duyệt một thành phần liên thông của đồ thị, mục đích sử dụng của chúng rất khác nhau, và hiếm khi có trường hợp hai thuật toán có thể dùng thay thế lẫn nhau.
 
-DFS thường được dùng để chỉ kiểu tìm kiếm cài đặt bằng hàm đệ quy, nhưng hai khái niệm này không hoàn toàn giống nhau. Về tư tưởng tìm kiếm dạng đó, xem [DFS trong tìm kiếm](../search/dfs.md).
+DFS thường dùng để chỉ kiểu tìm kiếm cài đặt bằng hàm đệ quy, nhưng hai khái niệm này không hoàn toàn giống nhau. Về tư tưởng tìm kiếm dạng đó, xem [DFS trong tìm kiếm](../search/dfs.md).
 
 ## Quy trình
 
@@ -38,7 +38,7 @@ Thuật toán này thường có độ phức tạp thời gian $O(n+m)$ và đ�
 
 ### Cài đặt bằng ngăn xếp
 
-DFS có thể được cài đặt bằng cách dùng [ngăn xếp (Stack)](../ds/stack.md) làm nơi tạm lưu các đỉnh trong quá trình duyệt; cách này tương ứng chặt chẽ với BFS cài đặt bằng [hàng đợi (Queue)](../ds/queue.md).
+Có thể cài đặt DFS bằng cách dùng [ngăn xếp (Stack)](../ds/stack.md) làm nơi tạm lưu các đỉnh trong quá trình duyệt; cách này tương ứng chặt chẽ với BFS cài đặt bằng [hàng đợi (Queue)](../ds/queue.md).
 
 === "C++"
     ```cpp
@@ -87,7 +87,7 @@ DFS có thể được cài đặt bằng cách dùng [ngăn xếp (Stack)](../d
 
 ### Cài đặt bằng đệ quy
 
-Khi một hàm được gọi đệ quy, thứ tự tính toán tương tự thứ tự thêm và xóa phần tử trên ngăn xếp. Vì vậy vùng địa chỉ ảo mà các lời gọi hàm chiếm giữ được gọi là ngăn xếp lời gọi hàm (Call Stack), và DFS có thể được cài đặt bằng đệ quy.
+Khi gọi đệ quy một hàm, thứ tự tính toán tương tự thứ tự thêm và xóa phần tử trên ngăn xếp. Vì vậy vùng địa chỉ ảo mà các lời gọi hàm chiếm giữ được gọi là ngăn xếp lời gọi hàm (Call Stack), và có thể cài đặt DFS bằng đệ quy.
 
 Với cách lưu đồ thị bằng [danh sách kề (Adjacency List)](./save.md#danh-sách-kề):
 

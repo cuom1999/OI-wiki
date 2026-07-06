@@ -117,7 +117,7 @@ Bài ví dụ: [Luogu P3157\[CQOI2011\] Cặp nghịch thế động](https://ww
 > một số trong hoán vị, tính số cặp nghịch thế của hoán vị sau khi xóa
 > số đó.
 
-Bài này có thể được giải bằng CDQ trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n)$; hằng số của CDQ cũng rất tốt.
+Có thể giải bài này bằng CDQ trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n)$; hằng số của CDQ cũng rất tốt.
 
 Nếu bài này được đổi thành bắt buộc xử lý trực tuyến, cách thường dùng là cây Fenwick + cây phân đoạn bền vững theo dạng
 cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ phức tạp không gian là $\Theta(n\log^2n)$, hằng số hơi lớn
@@ -138,7 +138,7 @@ chính là tổng số nút phải đứng trước mỗi nút trái.
 
 Tiếp theo xét thao tác xóa. Khi xóa một nút trái, số cặp nghịch thế của toàn bộ mảng sẽ giảm đi số nút phải đứng trước
 nó; khi xóa một nút phải, số cặp nghịch thế sẽ giảm đi số nút trái đứng sau nó. Vì vậy, có thể động duy trì "số nút phải
-đứng trước mỗi nút trái" và "số nút trái đứng sau mỗi nút phải". Việc này có thể được duy trì đơn giản bằng cây Fenwick.
+đứng trước mỗi nút trái" và "số nút trái đứng sau mỗi nút phải". Có thể duy trì việc này đơn giản bằng cây Fenwick.
 
 Cần lưu ý rằng khi dùng cây Fenwick để duy trì, chỉ được tính đóng góp trong cùng một khối của cây phân hoạch, không được
 nhảy ra ngoài khối. Với cây Fenwick, có một cách xử lý khá gọn cho việc này.

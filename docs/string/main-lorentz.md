@@ -41,7 +41,7 @@ Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ
 Một vài kết luận thú vị về số lượng xâu lặp kép:
 
 -   Nếu xâu gốc của một xâu lặp kép không phải là xâu lặp kép, xâu lặp kép đó được gọi là **xâu lặp kép nguyên thủy (primitive repetition)**. Có thể chứng minh số xâu lặp kép nguyên thủy nhiều nhất là $O(n \log n)$.
--   Nếu nén một xâu lặp kép bằng bộ ba Crochemore $(i, p, r)$, trong đó $i$ là vị trí bắt đầu của xâu lặp kép, $p$ là độ dài của một chu kỳ nào đó của xâu lặp kép (khác với độ dài xâu gốc), và $r$ là số lần chu kỳ đó lặp lại, thì mọi xâu lặp kép của một xâu có thể được biểu diễn bằng $O(n \log n)$ bộ ba Crochemore.
+-   Nếu nén một xâu lặp kép bằng bộ ba Crochemore $(i, p, r)$, trong đó $i$ là vị trí bắt đầu của xâu lặp kép, $p$ là độ dài của một chu kỳ nào đó của xâu lặp kép (khác với độ dài xâu gốc), và $r$ là số lần chu kỳ đó lặp lại, thì có thể biểu diễn mọi xâu lặp kép của một xâu bằng $O(n \log n)$ bộ ba Crochemore.
 -   Xâu Fibonacci được định nghĩa như sau:
 
 $$
