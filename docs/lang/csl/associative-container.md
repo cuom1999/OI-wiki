@@ -1,8 +1,8 @@
 ## `set`
 
-`set` là bộ chứa kết hợp dùng để lưu một tập các đối tượng khóa theo thứ tự.
-Các thao tác tìm kiếm, xóa và chèn có độ phức tạp logarit. Bên trong, `set`
-thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md). Tính chất của
+`set` là bộ chứa kết hợp dùng để lưu một tập khóa theo thứ tự. Các thao tác tìm
+kiếm, xóa và chèn có độ phức tạp logarit. Bên trong, `set` thường được cài đặt
+bằng [cây đỏ-đen](../../ds/rbtree.md). Tính chất của
 [cây nhị phân cân bằng](../../ds/bst.md) khiến `set` rất phù hợp với những bài
 toán cần đồng thời hỗ trợ tìm kiếm, chèn và xóa.
 
@@ -16,11 +16,12 @@ nhau. Nếu cần một tập cho phép phần tử trùng nhau, dùng `multiset
 -   `insert(x)` chèn phần tử `x` vào `set` nếu trong bộ chứa chưa có phần tử
     tương đương.
 -   `erase(x)` xóa **tất cả** phần tử có giá trị bằng `x`, trả về số phần tử đã
-    xóa.
+    xóa. Với `set`, số này chỉ có thể là 0 hoặc 1; với `multiset`, nó có thể lớn
+    hơn 1.
 -   `erase(pos)` xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first, last)` xóa tất cả phần tử có bộ lặp nằm trong khoảng
     $[first,last)$.
--   `clear()` xóa rỗng `set`.
+-   `clear()` xóa tất cả phần tử trong `set`.
 
 ???+ note "Giá trị trả về của hàm `insert`"
     Kiểu trả về của hàm `insert` là `pair<iterator, bool>`, trong đó bộ lặp trỏ
@@ -47,10 +48,11 @@ nhau. Nếu cần một tập cho phép phần tử trùng nhau, dùng `multiset
     Trả về bộ lặp trỏ đến vị trí sau phần tử cuối của dãy duyệt ngược, tương ứng
     với vị trí trước phần tử đầu của bộ chứa; vị trí này không có phần tử.
 
-Trong các bộ lặp liệt kê ở trên, những hàm có chữ cái `c` trả về bộ lặp chỉ đọc;
-bộ lặp chỉ đọc không thể dùng để sửa giá trị phần tử trong `set`. Nếu bản thân
-một `set` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn toàn
-tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
+Trong các bộ lặp liệt kê ở trên, những hàm có chữ cái `c` trả về bộ lặp const.
+Với `set`, ngay cả bộ lặp thông thường cũng không thể dùng để sửa khóa, vì việc
+đổi khóa tại chỗ có thể phá vỡ thứ tự của cây. Nếu bản thân một `set` là const,
+bộ lặp thông thường và bộ lặp const của nó hoàn toàn tương đương. Bộ lặp const
+được hỗ trợ từ C++11.
 
 <span id="thao-tác-tìm-kiếm-set"></span>
 ### Thao tác tìm kiếm
@@ -70,16 +72,19 @@ tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
     $O(\log n)$.
     
     Nhưng nếu dùng các hàm `lower_bound` và `upper_bound` trong tệp tiêu đề
-    `<algorithm>` để tìm kiếm trên `set`, độ phức tạp thời gian sẽ là $O(n)$.
+    `<algorithm>` để tìm kiếm trên `set`, bộ lặp phải di chuyển tuần tự nên độ
+    phức tạp thời gian sẽ là $O(n)$.
 
 ???+ warning "Độ phức tạp thời gian của `nth_element`"
-    `set` không cung cấp `nth_element` sẵn có. Nếu dùng `nth_element` trong tệp
-    tiêu đề `<algorithm>` để tìm phần tử lớn thứ $k$, độ phức tạp thời gian là
-    $O(n)$.
+    `set` không cung cấp `nth_element` sẵn có, còn `std::nth_element` trong
+    `<algorithm>` yêu cầu bộ lặp truy cập ngẫu nhiên nên không thể dùng trực tiếp
+    với bộ lặp của `set`. Nếu sao chép dữ liệu sang `vector` rồi gọi
+    `nth_element`, riêng thao tác chọn phần tử có độ phức tạp trung bình $O(n)$.
     
     Nếu cần cài đặt chức năng tìm phần tử lớn thứ $k$ trong $O(\log n)$ như cây
-    nhị phân cân bằng, cần tự viết cây nhị phân cân bằng hoặc cây phân đoạn
-    theo giá trị, hoặc dùng cây nhị phân cân bằng trong thư viện pb\_ds.
+    nhị phân cân bằng, cần tự viết cây nhị phân cân bằng có lưu kích thước cây
+    con, dùng cây phân đoạn theo giá trị, hoặc dùng cây nhị phân cân bằng trong
+    thư viện `pb_ds`.
 
 <span id="ví-dụ-sử-dụng-set"></span>
 ### Ví dụ sử dụng
@@ -120,8 +125,7 @@ thể là số nguyên không âm, nên không thể dùng tên làm chỉ số 
 này, cách thuận tiện nhất là dùng `map` trong STL.
 
 `map` nạp chồng `operator[]`, cho phép dùng bất kỳ kiểu nào đã định nghĩa
-`operator <` làm chỉ số. Trong `map`, chỉ số này gọi là `key`, tức khóa hoặc chỉ
-mục:
+`operator<` làm khóa truy cập. Trong `map`, khóa này gọi là `key`:
 
 ```cpp
 map<Key, T> yourMap;
@@ -144,33 +148,34 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` gần giống v�
 <span id="thao-tác-chèn-và-xóa-map"></span>
 ### Thao tác chèn và xóa
 
--   Có thể truy cập bằng chỉ số để lấy giá trị hoặc chèn. Ví dụ:
+-   Có thể truy cập bằng khóa để lấy giá trị hoặc chèn. Ví dụ:
     `mp["Alan"] = 100`.
 -   Có thể chèn phần tử bằng cách chèn vào `map` một giá trị có kiểu
     `pair<Key, T>`, ví dụ `mp.insert(pair<string, int>("Alan", 100));`.
 -   Hàm `erase(key)` xóa **tất cả** phần tử có khóa bằng `key`. Giá trị trả về
-    là số phần tử đã xóa.
+    là số phần tử đã xóa; với `map` số này chỉ có thể là 0 hoặc 1.
 -   `erase(pos)`: xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first, last)`: xóa tất cả phần tử có bộ lặp nằm trong khoảng
     $[first,last)$.
--   Hàm `clear()` xóa rỗng toàn bộ bộ chứa.
+-   Hàm `clear()` xóa tất cả phần tử trong bộ chứa.
 
-???+ note "Lưu ý khi truy cập bằng chỉ số"
-    Khi dùng chỉ số để truy cập một phần tử trong `map`, nếu trong `map` không
-    tồn tại phần tử có khóa đó, một phần tử mới sẽ tự động được chèn vào
+???+ note "Lưu ý khi truy cập bằng `operator[]`"
+    Khi dùng `operator[]` để truy cập một phần tử trong `map`, nếu trong `map`
+    không tồn tại phần tử có khóa đó, một phần tử mới sẽ tự động được chèn vào
     `map`, và giá trị của nó được đặt thành giá trị mặc định (với số nguyên là
     0; với kiểu có hàm tạo mặc định, hàm tạo mặc định sẽ được gọi để khởi tạo).
     
-    Nếu thao tác truy cập bằng chỉ số diễn ra quá thường xuyên, bộ chứa có thể
-    sinh ra nhiều phần tử vô nghĩa, làm giảm hiệu quả của `map`. Vì vậy, thông
-    thường nên dùng hàm `find()` để tìm phần tử có khóa cụ thể.
+    Nếu thao tác truy cập bằng `operator[]` diễn ra quá thường xuyên, bộ chứa có
+    thể sinh ra nhiều phần tử vô nghĩa, làm giảm hiệu quả của `map`. Vì vậy,
+    thông thường nên dùng hàm `find()` để tìm phần tử có khóa cụ thể.
 
 <span id="thao-tác-truy-vấn-map"></span>
 ### Thao tác truy vấn
 
--   `count(x)`: trả về số phần tử trong bộ chứa có khóa bằng `x`. Độ phức tạp là
-    $O(\log(size)+ans)$ (logarit theo kích thước bộ chứa, cộng với số phần tử
-    khớp).
+-   `count(x)`: trả về số phần tử trong bộ chứa có khóa bằng `x`. Với `map`, kết
+    quả chỉ có thể là 0 hoặc 1; với `multimap`, kết quả có thể lớn hơn 1. Độ
+    phức tạp là $O(\log(\text{size})+\text{ans})$, trong đó `ans` là số phần tử
+    khớp.
 -   `find(x)`: nếu trong bộ chứa tồn tại phần tử có khóa bằng `x`, trả về bộ lặp
     của phần tử đó; nếu không, trả về `end()`.
 -   `lower_bound(x)`: trả về bộ lặp trỏ đến phần tử đầu tiên không nhỏ hơn khóa
@@ -223,9 +228,10 @@ for (si it = s.begin(); it != s.end(); it++) cout << *it << endl;
 ```
 
 Cần lưu ý rằng khi giải tham chiếu bộ lặp của `map`, kết quả nhận được là một
-cặp khóa-giá trị có kiểu `pair<Key, T>`.
+cặp khóa-giá trị có kiểu gần với `pair<const Key, T>`: khóa không được phép sửa
+trực tiếp, còn giá trị thì có thể sửa nếu bộ lặp không phải const.
 
-Trong C++11, vòng lặp for theo phạm vi giúp mã ngắn gọn hơn nhiều:
+Từ C++11, vòng lặp `for` theo phạm vi giúp mã ngắn gọn hơn nhiều:
 
 ```cpp
 set<int> s;
@@ -244,7 +250,8 @@ một số tình huống đặc biệt, cần tùy biến cách so sánh bên tr
 Khi đó, có thể truyền vào một bộ so sánh tùy biến.
 
 Cụ thể, cần định nghĩa một lớp và
-[nạp chồng toán tử `()`](../op-overload.md#toán-tử-gọi-hàm) trong lớp đó.
+[nạp chồng toán tử `()`](../op-overload.md#toán-tử-gọi-hàm) trong lớp đó. Bộ so
+sánh phải tạo ra một thứ tự yếu nghiêm ngặt, giống yêu cầu của `operator<`.
 
 Ví dụ, nếu muốn duy trì một `set` lưu các số nguyên sao cho giá trị lớn hơn đứng
 trước, có thể cài đặt như sau:
