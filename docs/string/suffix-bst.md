@@ -8,11 +8,11 @@ Thứ tự giữa các hậu tố được định nghĩa theo thứ tự từ �
 <span id="quá-trình-xây-dựng"></span>
 ## Quá trình xây dựng
 
-Để xây dựng cây cân bằng hậu tố cho chuỗi $T$ có độ dài $n$, ta xét việc thêm các hậu tố vào cây cân bằng hậu tố theo thứ tự ngược.
+Để xây dựng cây cân bằng hậu tố cho chuỗi $T$ có độ dài $n$, xét việc thêm các hậu tố vào cây cân bằng hậu tố theo thứ tự ngược.
 
-Gọi tập mà cây cân bằng hậu tố đang duy trì là $X$, hậu tố hiện tại đang thêm là $S$. Khi thêm hậu tố tiếp theo, ta đưa $\texttt{c}S$ vào $X$ (cũng có thể hiểu rằng chuỗi đang được cây cân bằng hậu tố duy trì là $S$, và bước tiếp theo thêm một ký tự $\texttt{c}$ vào đầu $S$). Thao tác này thực chất là chèn một nút vào cây cân bằng.
+Gọi tập mà cây cân bằng hậu tố đang duy trì là $X$, hậu tố hiện tại đang thêm là $S$. Khi thêm hậu tố tiếp theo, đưa $\texttt{c}S$ vào $X$ (cũng có thể hiểu rằng chuỗi đang được cây cân bằng hậu tố duy trì là $S$, và bước tiếp theo thêm một ký tự $\texttt{c}$ vào đầu $S$). Thao tác này thực chất là chèn một nút vào cây cân bằng.
 
-Ở đây dùng một cây cân bằng có chiều cao kỳ vọng $O(\log n)$, chẳng hạn Scapegoat Tree hoặc Treap.
+Dùng một cây cân bằng có chiều cao kỳ vọng $O(\log n)$, chẳng hạn Scapegoat Tree hoặc Treap.
 
 <span id="cách-1"></span>
 ### Cách 1
@@ -33,11 +33,11 @@ Cần chèn tổng cộng $n$ lần, nên độ phức tạp thời gian của c
 <span id="cách-3"></span>
 ### Cách 3
 
-Theo cách 2, nếu có thể xác định quan hệ thứ tự giữa hai nút trong cây cân bằng trong $O(1)$, ta có thể xây dựng cây cân bằng hậu tố trong thời gian $O(n \log n)$.
+Theo cách 2, nếu có thể xác định quan hệ thứ tự giữa hai nút trong cây cân bằng trong $O(1)$, có thể xây dựng cây cân bằng hậu tố trong thời gian $O(n \log n)$.
 
 Gọi $val_i$ là giá trị của nút $i$. Nếu khi dựng cây cân bằng, mỗi nút duy trì thêm một nhãn $tag_i$ sao cho $tag_i > tag_j \iff val_i > val_j$, thì có thể dựa vào độ lớn của $tag_i$ để so sánh hai nút trong cây cân bằng trong $O(1)$.
 
-Ta có thể cho mỗi nút trong cây cân bằng tương ứng với một khoảng số thực, trong đó nút gốc tương ứng với $(0, 1)$. Với nút $i$, gọi khoảng số thực tương ứng của nó là $(l, r)$, khi đó $tag_i = \frac{l + r}{2}$; cây con trái của nó tương ứng với $(l, tag_i)$, còn cây con phải tương ứng với $(tag_i, r)$. Dễ chứng minh rằng $tag_i$ thỏa mãn yêu cầu trên.
+Có thể cho mỗi nút trong cây cân bằng tương ứng với một khoảng số thực, trong đó nút gốc tương ứng với $(0, 1)$. Với nút $i$, gọi khoảng số thực tương ứng của nó là $(l, r)$, khi đó $tag_i = \frac{l + r}{2}$; cây con trái của nó tương ứng với $(l, tag_i)$, còn cây con phải tương ứng với $(tag_i, r)$. Có thể chứng minh rằng $tag_i$ thỏa mãn yêu cầu trên.
 
 Vì dùng cây cân bằng có chiều cao kỳ vọng $O(\log n)$, độ chính xác số học được bảo đảm ở mức nhất định. Khi cài đặt thực tế cũng có thể dùng một khoảng lớn hơn, chẳng hạn cho gốc tương ứng với $(0, 10^{18})$.
 
@@ -49,14 +49,14 @@ Thực ra có thể xây dựng mảng hậu tố trước, rồi dựa trên m�
 <span id="thao-tác-xóa"></span>
 ## Thao tác xóa
 
-Giả sử hậu tố hiện tại được thêm là $\texttt{c}S$, còn hậu tố được thêm trước đó là $S$. Cây cân bằng hậu tố cũng hỗ trợ thao tác xóa hậu tố $\texttt{c}S$ (cũng có thể hiểu rằng chuỗi đang được cây cân bằng hậu tố duy trì là $\texttt{c}S$, và ta xóa ký tự $\texttt{c}$ ở đầu).
+Giả sử hậu tố hiện tại được thêm là $\texttt{c}S$, còn hậu tố được thêm trước đó là $S$. Cây cân bằng hậu tố cũng hỗ trợ thao tác xóa hậu tố $\texttt{c}S$ (cũng có thể hiểu rằng chuỗi đang được cây cân bằng hậu tố duy trì là $\texttt{c}S$, và thao tác xóa ký tự $\texttt{c}$ ở đầu).
 
 Tương tự thao tác chèn, có thể dựa vào thao tác xóa nút của cây cân bằng để xóa $\texttt{c}S$.
 
 <span id="ưu-điểm-của-cây-cân-bằng-hậu-tố"></span>
 ## Ưu điểm của cây cân bằng hậu tố
 
--   Ý tưởng của cây cân bằng hậu tố khá rõ ràng; so với các cấu trúc hậu tố như máy tự động hậu tố, nó dễ hiểu hơn, và biết viết cây cân bằng là có thể cài đặt.
+-   Ý tưởng của cây cân bằng hậu tố khá trực quan; so với các cấu trúc hậu tố như máy tự động hậu tố, nó dễ hiểu hơn, và chỉ cần nắm được cây cân bằng là có thể cài đặt.
 -   Độ phức tạp của cây cân bằng hậu tố không phụ thuộc vào kích thước bảng chữ cái.
 -   Cây cân bằng hậu tố hỗ trợ xóa một ký tự ở đầu chuỗi.
 -   Nếu dùng cây cân bằng hỗ trợ lưu phiên bản, cây cân bằng hậu tố cũng có thể lưu phiên bản.
@@ -86,7 +86,7 @@ Tương tự thao tác chèn, có thể dựa vào thao tác xóa nút của câ
     
     Bài toán **bắt buộc xử lý trực tuyến**, tổng độ dài biến đổi của chuỗi và độ dài ban đầu $\le 8 \times 10^5$, $q \le 10^5$, tổng độ dài các chuỗi truy vấn $\le 3 \times 10^6$.
 
-Với thao tác 1 và thao tác 2, vì cây cân bằng hậu tố xử lý chèn đầu và xóa đầu thuận tiện hơn, ta biến chèn cuối và xóa cuối thành chèn đầu và xóa đầu. Nếu duy trì cây cân bằng hậu tố của chuỗi đảo của $s$, thay vì của chính $s$, phép biến đổi trên sẽ thực hiện được. Thêm và xóa trên cây cân bằng đều tốn $O(\log n)$, nên thêm hoặc xóa một ký tự tốn $O(\log n)$. Gọi tổng số ký tự được thêm và xóa là $N$, phần này có tổng độ phức tạp $O(N \log n)$.
+Với thao tác 1 và thao tác 2, vì cây cân bằng hậu tố xử lý chèn đầu và xóa đầu thuận tiện hơn, có thể biến chèn cuối và xóa cuối thành chèn đầu và xóa đầu. Nếu duy trì cây cân bằng hậu tố của chuỗi đảo của $s$, thay vì của chính $s$, phép biến đổi trên sẽ thực hiện được. Thêm và xóa trên cây cân bằng đều tốn $O(\log n)$, nên thêm hoặc xóa một ký tự tốn $O(\log n)$. Gọi tổng số ký tự được thêm và xóa là $N$, phần này có tổng độ phức tạp $O(N \log n)$.
 
 Với thao tác 3, số lần xuất hiện của $t$ bằng số hậu tố có tiền tố là $t$, mà số hậu tố có tiền tố là $t$ bằng hạng của hậu tố kế tiếp trừ đi hạng của hậu tố đứng trước nó. Thêm một ký tự cực lớn vào sau $t$ sẽ dựng được một phần tử kế tiếp của $t$. Giảm ký tự cuối của $t$ đi $1$ sẽ dựng được một phần tử đứng trước $t$.
 
