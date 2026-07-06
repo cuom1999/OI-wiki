@@ -1,6 +1,6 @@
-Phương pháp kí hiệu (symbolic method) là một cách nhanh để chuyển các đối tượng tổ hợp thành hàm sinh. Ta sẽ xét một số phép toán cụ thể được định nghĩa trên các tập hợp, rồi suy ra phép toán tương ứng trên hàm sinh.
+Phương pháp kí hiệu (symbolic method) là một cách nhanh để chuyển các đối tượng tổ hợp thành hàm sinh. Bài viết sẽ xét một số phép toán cụ thể được định nghĩa trên các tập hợp, rồi suy ra phép toán tương ứng trên hàm sinh.
 
-Ta gọi một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A},\lvert \cdot \rvert)$, trong đó $\mathcal{A}$ là tập các đối tượng tổ hợp, còn hàm $\lvert \cdot \rvert$ ánh xạ mỗi đối tượng tổ hợp tới một số nguyên không âm, thường gọi là hàm kích thước. Cần chú ý rằng số nguyên không âm này không được là vô hạn. Ví dụ, với chuỗi trên bảng chữ cái $\lbrace 0,1\rbrace$, có thể lấy độ dài chuỗi làm hàm kích thước; với cây hoặc đồ thị, có thể lấy số đỉnh làm hàm kích thước. Điều này không phải tuyệt đối: đôi khi ta cũng có thể gán kích thước $0$ cho một vài loại đỉnh đặc biệt.
+Một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A},\lvert \cdot \rvert)$, trong đó $\mathcal{A}$ là tập các đối tượng tổ hợp, còn hàm $\lvert \cdot \rvert$ ánh xạ mỗi đối tượng tổ hợp tới một số nguyên không âm, thường gọi là hàm kích thước. Cần lưu ý rằng số nguyên không âm này không được là vô hạn. Ví dụ, với chuỗi trên bảng chữ cái $\lbrace 0,1\rbrace$, có thể lấy độ dài chuỗi làm hàm kích thước; với cây hoặc đồ thị, có thể lấy số đỉnh làm hàm kích thước. Điều này không phải tuyệt đối: đôi khi cũng có thể gán kích thước $0$ cho một vài loại đỉnh đặc biệt.
 
 Bài viết này là một bản giản lược dựa trên chương 1 của sách Analytic Combinatorics.
 
@@ -8,24 +8,24 @@ Bài viết này là một bản giản lược dựa trên chương 1 của sá
 
 ## Hệ không gắn nhãn
 
-Trong hệ không gắn nhãn, ta dùng hàm sinh thường (OGF). Với tập $\mathcal{A}$, OGF tương ứng được kí hiệu là
+Trong hệ không gắn nhãn, dùng hàm sinh thường (OGF). Với tập $\mathcal{A}$, OGF tương ứng được kí hiệu là
 
 $$
 A(z)=\sum_{\alpha\in\mathcal{A}}z^{\lvert \alpha \rvert}=\sum_{n\geq 0}a_nz^n.
 $$
 
-Ta quy ước dùng cùng một nhóm chữ cái để biểu thị hàm sinh của cùng một lớp. Ví dụ, dùng $a_n$ để biểu thị $\lbrack z^n\rbrack A(z)$, tức hệ số của $z^n$ trong $A(z)$, và dùng $\mathcal{A}_n$ để biểu thị tập các đối tượng trong $\mathcal{A}$ có hàm kích thước bằng $n$; do đó $a_n=\operatorname{card}(\mathcal{A}_n)$, trong đó $\operatorname{card}$ là lực lượng (cardinality).
+Quy ước dùng cùng một nhóm chữ cái để biểu thị hàm sinh của cùng một lớp. Ví dụ, dùng $a_n$ để biểu thị $\lbrack z^n\rbrack A(z)$, tức hệ số của $z^n$ trong $A(z)$, và dùng $\mathcal{A}_n$ để biểu thị tập các đối tượng trong $\mathcal{A}$ có hàm kích thước bằng $n$; do đó $a_n=\operatorname{card}(\mathcal{A}_n)$, trong đó $\operatorname{card}$ là lực lượng (cardinality).
 
-Bài viết này không thảo luận về tính chấp nhận được (admissibility); độc giả có thể tham khảo nội dung trong tài liệu tham khảo.
+Bài viết này không thảo luận về tính chấp nhận được (admissibility); có thể tham khảo thêm nội dung trong tài liệu tham khảo.
 
-Dưới đây ta đưa vào hai lớp tổ hợp và đối tượng tổ hợp đặc biệt:
+Dưới đây là hai lớp tổ hợp và đối tượng tổ hợp đặc biệt:
 
 -   Kí hiệu $\epsilon$ là đối tượng trung hòa (neutral object), và $\mathcal{E}=\lbrace \epsilon \rbrace$ là lớp trung hòa (neutral class). Kích thước của đối tượng trung hòa là $0$, và OGF của lớp trung hòa là $E(z)=1$.
 -   Kí hiệu $\circ$ hoặc $\bullet$ là đối tượng nguyên tử (atom object), và $\mathcal{Z}_{\circ}=\lbrace \circ\rbrace$, $\mathcal{Z}_{\bullet}=\lbrace \bullet\rbrace$, hoặc viết tắt $\mathcal{Z}$, là lớp nguyên tử (atom class). Kích thước của đối tượng nguyên tử là $1$, và OGF của lớp nguyên tử là $Z(z)=z$.
 
 Với hai lớp tổ hợp $\mathcal{A}$ và $\mathcal{B}$, quan hệ đẳng cấu theo nghĩa tổ hợp được kí hiệu là $\mathcal{A}=\mathcal{B}$ hoặc $\mathcal{A}\cong\mathcal{B}$, nhưng kí hiệu sau chỉ được dùng khi đẳng cấu đó không tầm thường.
 
-Ta có
+Có
 
 $$
 \mathcal{A}\cong\mathcal{E}\times \mathcal{A}\cong\mathcal{A}\times\mathcal{E},
@@ -43,7 +43,7 @@ $$
 \mathcal{A}+\mathcal{B}=(\mathcal{E}_{1}\times\mathcal{A})+(\mathcal{E}_2\times\mathcal{B}).
 $$
 
-Cách định nghĩa như vậy không trái với yêu cầu các tập phải rời nhau trong lí thuyết tập hợp. Ta có thể tưởng tượng là tô màu đỏ cho các đối tượng trong $\mathcal{A}$ và tô màu xanh cho các đối tượng trong $\mathcal{B}$.
+Cách định nghĩa như vậy không trái với yêu cầu các tập phải rời nhau trong lí thuyết tập hợp. Có thể hình dung bằng cách tô màu đỏ cho các đối tượng trong $\mathcal{A}$ và tô màu xanh cho các đối tượng trong $\mathcal{B}$.
 
 OGF tương ứng là
 
@@ -75,7 +75,7 @@ $$
 A(z)\cdot B(z).
 $$
 
-Ta định nghĩa kích thước của $(\alpha,\beta)$ là tổng kích thước của các thành phần. Khi đó hiển nhiên cũng có
+Kích thước của $(\alpha,\beta)$ được định nghĩa là tổng kích thước của các thành phần. Khi đó cũng có
 
 $$
 \gamma =(\alpha_1,\alpha_2,\dots ,\alpha_n)\implies \lvert \gamma\rvert =\lvert \alpha_1\rvert +\lvert \alpha_2\rvert +\cdots +\lvert \alpha_n\rvert.
@@ -106,9 +106,9 @@ Cấu trúc Sequence sinh ra tất cả các tổ hợp có thể.
     \end{aligned}
     $$
     
-    Có thể thấy các phần tử như $\lbrace (a,b)\rbrace$ và $\lbrace (b,a)\rbrace$, tức các phần tử có thứ tự thành phần khác nhau, đều được sinh ra. Vì vậy có thể xem cấu trúc Sequence sinh ra các tổ hợp có thứ tự.
+    Các phần tử như $\lbrace (a,b)\rbrace$ và $\lbrace (b,a)\rbrace$, tức các phần tử có thứ tự thành phần khác nhau, đều được sinh ra. Vì vậy có thể xem cấu trúc Sequence sinh ra các tổ hợp có thứ tự.
 
-Ta định nghĩa
+Định nghĩa
 
 $$
 \operatorname{SEQ}(\mathcal{A})=\mathcal{E}+\mathcal{A}+(\mathcal{A}\times \mathcal{A})+(\mathcal{A}\times \mathcal{A}\times \mathcal{A})+\cdots
@@ -125,7 +125,7 @@ $$
 trong đó $Q$ là giả nghịch đảo Pólya (quasi-inversion).
 
 ???+ note "Ví dụ: cây có gốc có thứ tự (ordered rooted tree)"
-    Ta có thể dùng cấu trúc Sequence để định nghĩa cây có gốc có thứ tự, tức cây có gốc mà thứ tự giữa các con có ý nghĩa. Gọi lớp tổ hợp này là $\mathcal{T}$. Khi đó một cây gồm một nút gốc và một Sequence các cây, tức là
+    Có thể dùng cấu trúc Sequence để định nghĩa cây có gốc có thứ tự, tức cây có gốc mà thứ tự giữa các con có ý nghĩa. Gọi lớp tổ hợp này là $\mathcal{T}$. Khi đó một cây gồm một nút gốc và một Sequence các cây, tức là
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})
@@ -156,9 +156,9 @@ Cấu trúc Multiset sinh ra tất cả các tổ hợp có thể, nhưng không
     \end{aligned}
     $$
     
-    Chú ý rằng $\lbrace (b,a)\rbrace$ và $\lbrace (a,b,a)\rbrace$ xuất hiện trong $\operatorname{SEQ}(\lbrace a,b\rbrace)$, nhưng không xuất hiện trong $\operatorname{MSET}(\lbrace a,b\rbrace)$. Có thể xem Multiset sinh ra các tổ hợp không thứ tự.
+    Lưu ý rằng $\lbrace (b,a)\rbrace$ và $\lbrace (a,b,a)\rbrace$ xuất hiện trong $\operatorname{SEQ}(\lbrace a,b\rbrace)$, nhưng không xuất hiện trong $\operatorname{MSET}(\lbrace a,b\rbrace)$. Có thể xem Multiset sinh ra các tổ hợp không thứ tự.
 
-Ta định nghĩa truy hồi của nó là
+Định nghĩa truy hồi của nó là
 
 $$
 \operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{MSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times \operatorname{SEQ}(\lbrace \alpha_n\rbrace).
@@ -176,7 +176,7 @@ $$
 \operatorname{MSET}(\mathcal{A})=\operatorname{SEQ}(\mathcal{A})/\mathbf{R}.
 $$
 
-Trong đó $\mathbf{R}$ là một quan hệ tương đương. Ta nói $(\alpha_1,\dots,\alpha_n)\mathbf{R}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một hoán vị $\sigma$ sao cho với mọi $j$, $\beta_{j}=\alpha_{\sigma(j)}$.
+Trong đó $\mathbf{R}$ là một quan hệ tương đương. Hai bộ $(\alpha_1,\dots,\alpha_n)$ và $(\beta_1,\dots,\beta_n)$ thỏa mãn $(\alpha_1,\dots,\alpha_n)\mathbf{R}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một hoán vị $\sigma$ sao cho với mọi $j$, $\beta_{j}=\alpha_{\sigma(j)}$.
 
 OGF tương ứng là
 
@@ -184,7 +184,7 @@ $$
 \operatorname{Exp}(A(z))=\prod _ {\alpha \in\mathcal{A}}\left(1-z^{\lvert \alpha \rvert}\right)^{-1}=\prod _ {n\geq 1}\left(1-z^n\right)^{-a_n}.
 $$
 
-Chú ý rằng
+Lưu ý rằng
 
 $$
 \ln(1+z)=\frac{z}{1}-\frac{z^2}{2}+\frac{z^3}{3}-\cdots =\sum_{n\geq 1}\frac{(-1)^{n-1}z^n}{n}
@@ -203,7 +203,7 @@ $$
 Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là biến đổi Euler.
 
 ???+ note "Bài tập [LOJ 6268. Số phân hoạch](https://loj.ac/p/6268)"
-    **Đề bài**: gọi $f(n)$ là số cách phân hoạch $n$. Hãy tính $f(1),f(2),\dots,f(10^5)$ modulo $998244353$.
+    **Đề bài**: gọi $f(n)$ là số cách phân hoạch $n$. Tính $f(1),f(2),\dots,f(10^5)$ modulo $998244353$.
     
     **Lời giải**: gọi lớp của toàn bộ các số nguyên dương là $\mathcal{I}$, khi đó $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$, trong đó chỉ số dưới $\geq 1$ là cấu trúc có ràng buộc, xem phần sau. Đại lượng cần tìm là
     
@@ -214,7 +214,7 @@ Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là 
     Các hệ số đầu tiên của OGF tương ứng là `1 2 3 5 7 11 15 22 30 42`; bỏ qua hằng số thì chính là OEIS [A000041](https://oeis.org/A000041).
 
 ???+ note "Bài tập [Luogu P4389. Balo của công chúa Fu](https://www.luogu.com.cn/problem/P4389)"
-    **Đề bài**: cho $n$ loại hàng hóa có thể tích lần lượt là $v_1,\dots ,v_n$ và số nguyên dương $m$. Hãy tính số cách lấp đầy balo có thể tích $1,2,\dots,m$ modulo $998244353$, trong đó số lượng hàng hóa không bị giới hạn và các hàng hóa khác loại nhưng cùng thể tích vẫn được phân biệt. Quy ước $1\leq n,m\leq 10^5$ và $1\leq v_i\leq m$.
+    **Đề bài**: cho $n$ loại hàng hóa có thể tích lần lượt là $v_1,\dots ,v_n$ và số nguyên dương $m$. Tính số cách lấp đầy balo có thể tích $1,2,\dots,m$ modulo $998244353$, trong đó số lượng hàng hóa không bị giới hạn và các hàng hóa khác loại nhưng cùng thể tích vẫn được phân biệt. Quy ước $1\leq n,m\leq 10^5$ và $1\leq v_i\leq m$.
     
     **Lời giải**: gọi lớp tổ hợp của các hàng hóa là $\mathcal{A}$. Đại lượng cần tìm chính là các hệ số của OGF tương ứng với $\operatorname{MSET}(\mathcal{A})$.
 
@@ -250,7 +250,7 @@ Cấu trúc Powerset sinh ra tất cả các tập con.
     \end{aligned}
     $$
 
-Ta định nghĩa truy hồi của nó là
+Định nghĩa truy hồi của nó là
 
 $$
 \operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_n\rbrace)=\operatorname{PSET}(\lbrace \alpha_0,\alpha_1,\dots, \alpha_{n-1}\rbrace)\times (\lbrace \epsilon\rbrace +\lbrace \alpha_n\rbrace).
@@ -277,7 +277,7 @@ $$
 
 Trong đó $\overline{\operatorname{Exp}}$ là chỉ số Pólya sửa đổi.
 
-Dễ thấy $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathcal{A})$.
+Theo định nghĩa, $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathcal{A})$.
 
 <span id="cấu-trúc-cycle-của-tập-hợp"></span>
 
@@ -285,16 +285,16 @@ Dễ thấy $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET}(\mathca
 
 Cấu trúc Cycle sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt các tổ hợp chỉ khác nhau bởi phép quay vòng.
 
-Ta định nghĩa
+Định nghĩa
 
 $$
 \operatorname{CYC}(\mathcal{A})=\left(\operatorname{SEQ}(\mathcal{A})\setminus\lbrace \epsilon\rbrace\right)/\mathbf{S}.
 $$
 
-Trong đó $\mathbf{S}$ là một quan hệ tương đương. Ta nói $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một phép dịch vòng $\tau$ sao cho với mọi $j$, $\beta_j=\alpha_{\tau(j)}$.
+Trong đó $\mathbf{S}$ là một quan hệ tương đương. Hai bộ $(\alpha_1,\dots,\alpha_n)$ và $(\beta_1,\dots,\beta_n)$ thỏa mãn $(\alpha_1,\dots,\alpha_n)\mathbf{S}(\beta_1,\dots,\beta_n)$ khi và chỉ khi tồn tại một phép dịch vòng $\tau$ sao cho với mọi $j$, $\beta_j=\alpha_{\tau(j)}$.
 
 ???+ note "Ví dụ"
-    Để đơn giản, đặt $\texttt{a},\texttt{b}$ đều là kí tự có kích thước $1$. Ở đây chỉ liệt kê các chuỗi có kích thước $3$ và $4$:
+    Để đơn giản, đặt $\texttt{a},\texttt{b}$ đều là kí tự có kích thước $1$. Ví dụ này chỉ liệt kê các chuỗi có kích thước $3$ và $4$:
     
     $$
     \operatorname{CYC}(\lbrace \texttt{a},\texttt{b}\rbrace)_3=\lbrace \texttt{aaa}\rbrace +\lbrace \texttt{aab}\rbrace+\lbrace \texttt{abb}\rbrace+\lbrace \texttt{bbb}\rbrace
@@ -316,13 +316,13 @@ $$
 
 trong đó $\varphi$ là hàm Euler, còn $\operatorname{Log}$ là logarit Pólya.
 
-Vì chứng minh khá phức tạp, độc giả có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Analytic Combinatorics.
+Vì chứng minh khá phức tạp, có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Analytic Combinatorics.
 
 <span id="cấu-trúc-có-ràng-buộc"></span>
 
 ### Cấu trúc có ràng buộc
 
-Với tất cả các cấu trúc nói trên, ta đều chưa ràng buộc số lượng "thành phần". Nếu ở chỉ số dưới của $\operatorname{SEQ}$ ta đặt một vị từ tác động lên số nguyên để ràng buộc số thành phần, chẳng hạn
+Với tất cả các cấu trúc nói trên, số lượng "thành phần" vẫn chưa bị ràng buộc. Nếu ở chỉ số dưới của $\operatorname{SEQ}$ đặt một vị từ tác động lên số nguyên để ràng buộc số thành phần, chẳng hạn
 
 $$
 \operatorname{SEQ}_{=k}(\mathcal{B}),\quad \operatorname{SEQ}_{\geq k}(\mathcal{B}),\quad \operatorname{SEQ}_{1..k}(\mathcal{B}),
@@ -336,13 +336,13 @@ $$
 \mathcal{A}=\mathfrak{K}_k(\mathcal{B}).
 $$
 
-Tức là ta cần với $\alpha\in\mathcal{A}$ có
+Tức là mỗi $\alpha\in\mathcal{A}$ gồm đúng $k$ thành phần lấy từ $\mathcal{B}$, có dạng
 
 $$
-\alpha =\lbrace (\beta_1,\beta_2,\dots ,\beta_k)\mid \beta\in\mathcal{B}\rbrace.
+\alpha=(\beta_1,\beta_2,\dots,\beta_k),\qquad \beta_i\in\mathcal{B}.
 $$
 
-Gọi $\chi$ là hàm tác động lên đối tượng tổ hợp và trả về số lượng thành phần của nó, tức là yêu cầu $\chi(\alpha)=k$. Ta có thể thêm một biến để "theo dõi" số lượng thành phần.
+Gọi $\chi$ là hàm tác động lên đối tượng tổ hợp và trả về số lượng thành phần của nó, tức là yêu cầu $\chi(\alpha)=k$. Có thể thêm một biến để "theo dõi" số lượng thành phần.
 
 Đặt
 
@@ -356,7 +356,7 @@ $$
 A(z,u)=\sum _ {n,k}A _ {n,k}u^kz^n=\sum _ {\alpha\in\mathcal{A}}z^{\lvert \alpha\rvert}u^{\chi(\alpha)}.
 $$
 
-Sau đó ta chỉ cần trích hệ số của $u^k$ là thu được biểu thức tương ứng. Ví dụ, với $\mathcal{A}=\operatorname{SEQ}_k(\mathcal{B})$, ta có thể trực tiếp suy ra
+Sau đó chỉ cần trích hệ số của $u^k$ là thu được biểu thức tương ứng. Ví dụ, với $\mathcal{A}=\operatorname{SEQ}_k(\mathcal{B})$, có thể trực tiếp suy ra
 
 $$
 \begin{aligned}
@@ -365,7 +365,7 @@ $$
 \end{aligned}
 $$
 
-Hiển nhiên cũng có
+Cũng có
 
 $$
 \mathcal{A}=\operatorname{SEQ}_{\geq k}(\mathcal{B})\implies A(z)=\frac{B(z)^k}{1-B(z)}.
@@ -416,9 +416,9 @@ Với $\operatorname{CYC}_k(\mathcal{B})$ cũng tương tự.
     \end{aligned}
     $$
 
-Ta thấy với $\mathcal{A}=\mathfrak{K}_k(\mathcal{B})$, $A(z)$ là một biểu thức theo $B(z),B(z^2),\dots ,B(z^k)$.
+Nhận thấy với $\mathcal{A}=\mathfrak{K}_k(\mathcal{B})$, $A(z)$ là một biểu thức theo $B(z),B(z^2),\dots ,B(z^k)$.
 
-Cần chú ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal{B})$, không yêu cầu $\mathcal{B}_0=\varnothing$.
+Cần lưu ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal{B})$, không yêu cầu $\mathcal{B}_0=\varnothing$.
 
 ???+ note "Các cấu trúc có ràng buộc thường dùng"
     $$
@@ -445,7 +445,7 @@ Cần chú ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal
     \end{aligned}
     $$
 
-Cách tính trên tuy hiệu quả nhưng khá rườm rà. Độc giả có thể đọc thêm các mục [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; Cycle Index cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
+Cách tính trên tuy hiệu quả nhưng khá rườm rà. Có thể đọc thêm các mục [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; Cycle Index cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
 
 ???+ note "Bài tập [LOJ 6538. Đếm alkyl, bản tăng cường hai lần](https://loj.ac/p/6538)"
     **Đề bài**: tính số cây không thứ tự có $n$ đỉnh, có gốc và bậc của nút gốc không vượt quá $3$, còn bậc của các nút còn lại không vượt quá $4$, modulo $998244353$. Quy ước $1\leq n\leq 10^5$.
