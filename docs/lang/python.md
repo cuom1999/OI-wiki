@@ -842,9 +842,17 @@ except ValueError:
 
 ### Kiểu chứa dựng sẵn
 
-Python có sẵn nhiều kiểu chứa mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
+Python có sẵn nhiều kiểu chứa mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của
+chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh
+sách) đã giới thiệu kỹ, còn có `tuple` (bộ),
+[`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ
+điển) và `set` (tập hợp).
 
-Có thể hiểu đơn giản `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple` không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm sau hữu ích khi tạo `dict` và `set`.
+Có thể hiểu `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất
+biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của
+`list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple`
+không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm
+sau hữu ích khi tạo `dict` và `set`.
 
 ```python
 tup = tuple([[1, 2], 4])  # Tạo tuple từ list
@@ -855,12 +863,14 @@ a, b = 0, "I-Wiki"  # Gán nhiều biến là mở gói tuple
 print(id(a), id(b))
 b, a = a, b
 print(id(a), id(b))  # id của a, b đã hoán đổi
-# Điều này càng cho thấy trong Python, biến giống như tên gọi; phép gán chỉ làm tên đó trỏ đến đối tượng
+# Điều này cho thấy biến trong Python giống như tên gọi:
+# phép gán chỉ làm tên đó trỏ đến đối tượng
 ```
 
 `dict` giống [`map`](./csl/associative-container.md#map) trong C++ STL (lưu ý
 phân biệt với hàm dựng sẵn [`map()`](https://docs.python.org/3/library/functions.html#map)
-của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với [JSON](https://docs.python.org/3/library/json.html),
+của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với
+[JSON](https://docs.python.org/3/library/json.html),
 nhưng khóa trong JSON phải là chuỗi đặt trong dấu nháy kép, còn `dict` linh
 hoạt và mạnh hơn: mọi đối tượng có thể băm được đều có thể làm khóa. Cần lưu ý
 sau nhiều lần cập nhật phiên bản Python, tính chất của `dict` đã thay đổi đáng
@@ -891,13 +901,17 @@ except KeyError:
     cnter[key] = 1
 ```
 
-`set` giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu phần tử lặp, có thể xem như `dict` chỉ lưu khóa. Cần lưu ý `set` và `dict` đều dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo `dict` rỗng chứ không phải `set` rỗng. Phần này không đưa thêm ví dụ.
+`set` giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu
+phần tử lặp, có thể xem như `dict` chỉ lưu khóa. Cần lưu ý `set` và `dict` đều
+dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo `dict` rỗng chứ không phải `set` rỗng.
+Phần này không đưa thêm ví dụ.
 
 <a id="viết-hàm"></a>
 
 ### Viết hàm
 
-Trong Python, định nghĩa hàm không cần chỉ định kiểu tham số và kiểu trả về, vô hình trung giảm bớt lượng mã cho người thi OI.
+Trong Python, định nghĩa hàm không cần chỉ định kiểu tham số và kiểu trả về, nên
+lượng mã phải viết khi thi OI thường ít hơn.
 
 ```python
 def add(a, b):
@@ -926,7 +940,10 @@ print(lst1, lst2)
 
 #### Tham số mặc định
 
-Tham số hàm trong Python linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Phần này chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định dễ gây lỗi. Ví dụ đoạn mã sau:
+Tham số hàm trong Python linh hoạt, có tham số từ khóa, tham số biến đổi, v.v.
+Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Phần này chỉ
+giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python
+tham số mặc định dễ gây lỗi. Ví dụ đoạn mã sau:
 
 ```python
 def append_to(element, to=[]):
@@ -942,7 +959,12 @@ print(lst1, lst2)
 # Nhưng kết quả thực tế là [12, 42] [12, 42]
 ```
 
-Kết quả trên xảy ra vì giá trị tham số mặc định chỉ được gán một lần tại thời điểm định nghĩa hàm. Với đối tượng khả biến (như `list`, `dict`, `set`), mỗi lần gọi hàm sẽ dùng chung cùng một đối tượng. `lst1` và `lst2` đều trỏ đến cùng một `list` mặc định trong bộ nhớ. Vì vậy sau lần gọi thứ hai, nội dung `list` dùng chung thành `[12, 42]`. Do đó, giá trị tham số mặc định của hàm nên là đối tượng bất biến; dùng `None` làm giá trị giữ chỗ là thực hành tốt:
+Kết quả trên xảy ra vì giá trị tham số mặc định chỉ được gán một lần tại thời
+điểm định nghĩa hàm. Với đối tượng khả biến (như `list`, `dict`, `set`), mỗi lần
+gọi hàm sẽ dùng chung cùng một đối tượng. `lst1` và `lst2` đều trỏ đến cùng một
+`list` mặc định trong bộ nhớ. Vì vậy sau lần gọi thứ hai, nội dung `list` dùng
+chung thành `[12, 42]`. Do đó, giá trị tham số mặc định của hàm nên là đối tượng
+bất biến; dùng `None` làm giá trị giữ chỗ là thực hành tốt:
 
 ```python
 def append_to(element, to=None):
@@ -963,7 +985,10 @@ print(lst1, lst2)
 
 #### Gợi ý kiểu (type hint)
 
-Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi kiểu biến trong lúc chạy. Vì vậy, một số lỗi trong chương trình có thể chỉ lộ ra lúc chạy:
+Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm
+định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi
+kiểu biến trong lúc chạy. Vì vậy, một số lỗi trong chương trình có thể chỉ lộ ra
+lúc chạy:
 
 ```pycon
 >>> if False:
@@ -977,7 +1002,12 @@ Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách li
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, biết khái niệm là đủ. Có thể gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
+Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu cho tham số hàm và giá
+trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế;
+cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này, ví dụ
+[PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/).
+Vì vậy tính năng này không thật thiết yếu với OIer, biết khái niệm là đủ. Có thể
+gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
 
 ```python
 def headline(
@@ -991,7 +1021,9 @@ def headline(
 print(headline("type comments work", width=40))
 ```
 
-Ngoài tham số hàm, biến cũng có thể có gợi ý kiểu. Có thể gọi `__annotations__` để xem mọi gợi ý kiểu trong hàm. Gợi ý kiểu cho biến đem lại cho Python một phần tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
+Ngoài tham số hàm, biến cũng có thể có gợi ý kiểu. Có thể gọi `__annotations__`
+để xem mọi gợi ý kiểu trong hàm. Gợi ý kiểu cho biến đem lại cho Python một phần
+tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
 
 ```pycon
 >>> nothing: str
