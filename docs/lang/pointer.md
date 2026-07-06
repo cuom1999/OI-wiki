@@ -3,25 +3,25 @@ author: tsagaanbar, Enter-tainer, Xeonacid
 ## Địa chỉ của biến và con trỏ
 
 Trong chương trình, dữ liệu thường nằm ở một địa chỉ nào đó trong bộ nhớ. Mỗi lần
-chương trình chạy, vị trí của biến trong không gian địa chỉ có thể khác nhau. Tuy
-vậy, khi lập trình, vẫn có thể dùng các câu lệnh nhất định để lấy địa chỉ của dữ
-liệu trong bộ nhớ.
+chương trình chạy, vị trí của biến trong không gian địa chỉ có thể khác nhau.
+Tuy vậy, khi lập trình, vẫn có thể dùng các câu lệnh nhất định để lấy địa chỉ
+của dữ liệu trong bộ nhớ.
 
-Địa chỉ cũng là một loại dữ liệu. Biến dùng để lưu địa chỉ có tên gọi đặc biệt
-là "biến con trỏ", đôi khi gọi ngắn gọn là "con trỏ".
+Địa chỉ cũng là một loại dữ liệu. Biến dùng để lưu địa chỉ có tên gọi riêng là
+"biến con trỏ", thường gọi ngắn gọn là "con trỏ".
 
 ???+ note "Kích thước của biến con trỏ"
-    Kích thước của biến con trỏ khác nhau tùy môi trường. Trên các môi trường
+    Kích thước của biến con trỏ phụ thuộc vào môi trường. Trên các môi trường
     32 bit phổ biến, kích thước của một con trỏ thường là 4 byte. Trên các môi
     trường 64 bit phổ biến, kích thước của một con trỏ thường là 8 byte. Khi cần
     giá trị chính xác trong chương trình, dùng `sizeof`.
 
-Địa chỉ là một giá trị dùng để định vị vùng nhớ. Để xử lý dữ liệu thuộc các kiểu
-khác nhau, biến con trỏ cũng có các kiểu khác nhau. Ví dụ, một biến con trỏ kiểu
-`int` lưu địa chỉ bắt đầu của một đối tượng `int`; một biến con trỏ kiểu `char`
-lưu địa chỉ bắt đầu của một đối tượng `char`.
+Địa chỉ là một giá trị dùng để định vị vùng nhớ. Để xử lý dữ liệu thuộc nhiều
+kiểu khác nhau, biến con trỏ cũng có nhiều kiểu tương ứng. Ví dụ, một biến con
+trỏ tới `int` lưu địa chỉ bắt đầu của một đối tượng `int`; một biến con trỏ tới
+`char` lưu địa chỉ bắt đầu của một đối tượng `char`.
 
-Thực tế, cũng có thể khai báo một biến con trỏ trỏ tới một biến con trỏ khác.
+Ngoài ra, cũng có thể khai báo một biến con trỏ trỏ tới một biến con trỏ khác.
 
 Giả sử có một cấu trúc tự định nghĩa:
 
@@ -33,11 +33,15 @@ struct ThreeInt {
 };
 ```
 
-Khi đó, biến con trỏ kiểu `ThreeInt` trỏ tới một đối tượng `ThreeInt`. Kích thước của đối tượng này do bố cục cấu trúc quyết định; trong môi trường thường gặp, ba thành viên `int` chiếm ít nhất `3 * sizeof(int)` byte, và trình biên dịch có thể chèn thêm phần đệm.
+Khi đó, biến con trỏ tới `ThreeInt` trỏ tới một đối tượng `ThreeInt`. Kích thước
+của đối tượng này do bố cục cấu trúc quyết định; trong môi trường thường gặp, ba
+thành viên `int` chiếm ít nhất `3 * sizeof(int)` byte, và trình biên dịch có thể
+chèn thêm phần đệm.
 
 ## Khai báo và sử dụng con trỏ
 
-Trong C/C++, kiểu con trỏ được viết bằng tên kiểu cơ sở kèm dấu sao `*`. Ví dụ, kiểu của con trỏ tới `int` là `int*`.
+Trong C/C++, kiểu con trỏ được viết bằng tên kiểu cơ sở kèm dấu sao `*`. Ví dụ,
+kiểu của con trỏ tới `int` là `int*`.
 
 Có thể dùng ký hiệu `&` để lấy địa chỉ của một biến.
 
@@ -53,7 +57,9 @@ int main() {
 }
 ```
 
-Với biến cấu trúc cũng tương tự. Nếu muốn truy cập thành viên của cấu trúc mà con trỏ trỏ tới, trước hết cần giải tham chiếu con trỏ, rồi dùng toán tử truy cập thành viên `.`. Tuy nhiên, nên dùng cách viết ngắn gọn hơn là toán tử "mũi tên" `->`.
+Với biến cấu trúc cũng tương tự. Nếu muốn truy cập thành viên của cấu trúc mà
+con trỏ trỏ tới, trước hết cần giải tham chiếu con trỏ, rồi dùng toán tử truy
+cập thành viên `.`. Tuy nhiên, cách viết ngắn gọn hơn là toán tử "mũi tên" `->`.
 
 ```cpp
 struct ThreeInt {
@@ -73,9 +79,16 @@ int main() {
 
 ## Dịch chuyển con trỏ
 
-Biến con trỏ cũng có thể thực hiện phép cộng trừ **với số nguyên**. Với con trỏ kiểu `int`, mỗi khi cộng 1, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(int)` byte; nếu cộng 2, địa chỉ đó sẽ dịch đi `2 * sizeof(int)` byte. Tương tự, với con trỏ kiểu `char`, mỗi lần tăng, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(char)` byte, tức 1 byte.
+Biến con trỏ cũng có thể thực hiện phép cộng trừ **với số nguyên**. Với con trỏ
+tới `int`, mỗi khi cộng 1, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(int)` byte;
+nếu cộng 2, địa chỉ đó sẽ dịch đi `2 * sizeof(int)` byte. Tương tự, với con trỏ
+tới `char`, mỗi lần tăng, địa chỉ mà nó trỏ tới sẽ dịch đi `sizeof(char)` byte,
+tức 1 byte.
 
-Cần lưu ý rằng số học con trỏ chỉ có ý nghĩa an toàn khi con trỏ nằm trong cùng một mảng, hoặc trỏ tới vị trí ngay sau phần tử cuối cùng của mảng để so sánh hay làm mốc dừng. Giải tham chiếu một con trỏ không hợp lệ, ví dụ con trỏ null hoặc con trỏ đã vượt ra ngoài vùng hợp lệ, sẽ dẫn đến hành vi không xác định.
+Cần lưu ý rằng số học con trỏ chỉ an toàn khi con trỏ nằm trong cùng một mảng,
+hoặc trỏ tới vị trí ngay sau phần tử cuối cùng của mảng để so sánh hay làm mốc
+dừng. Giải tham chiếu một con trỏ không hợp lệ, ví dụ con trỏ null hoặc con trỏ
+đã vượt ra ngoài vùng hợp lệ, sẽ dẫn đến hành vi không xác định.
 
 ### Dùng dịch chuyển con trỏ để truy cập mảng
 
@@ -96,8 +109,8 @@ int main() {
 ```
 
 Khi truy cập phần tử trong mảng thông qua con trỏ, thường dùng đến "dịch chuyển
-con trỏ". Nói cách khác, lấy một địa chỉ cơ sở, tức địa chỉ bắt đầu của mảng, rồi
-cộng thêm độ lệch.
+con trỏ": lấy một địa chỉ cơ sở, tức địa chỉ bắt đầu của mảng, rồi cộng thêm độ
+lệch.
 
 Thường dùng toán tử `[]` để truy cập phần tử của mảng tại một độ lệch được chỉ
 định, ví dụ `a[3]` hoặc `p[4]`. Cách viết này tương đương với việc tính toán trên
@@ -106,7 +119,8 @@ tương đương.
 
 ## Con trỏ null
 
-Trước C++11, C++ cũng như C dùng macro `NULL` để biểu diễn hằng con trỏ null. Trong C++, `NULL` thường được cài đặt như sau:
+Trước C++11, C++ cũng như C dùng macro `NULL` để biểu diễn hằng con trỏ null.
+Trong C++, `NULL` thường được cài đặt như sau:
 
 ```cpp
 // Trước C++11
@@ -114,25 +128,39 @@ Trước C++11, C++ cũng như C dùng macro `NULL` để biểu diễn hằng c
 ```
 
 ???+ note "Định nghĩa `NULL` trong ngôn ngữ C"
-    Trước C23, ngôn ngữ C có vài cách định nghĩa `NULL`, khác nhau chủ yếu ở kiểu: một là biểu thức hằng kiểu số nguyên, một là biểu thức hằng được chuyển đổi sang kiểu `void *`. Trình biên dịch có thể chọn một trong các cách cài đặt này.
+    Trước C23, ngôn ngữ C có vài cách định nghĩa `NULL`, chủ yếu khác ở kiểu:
+    một là biểu thức hằng kiểu số nguyên, một là biểu thức hằng được
+    chuyển đổi sang kiểu `void *`. Trình biên dịch có thể chọn một trong các
+    cách cài đặt này.
 
-Việc dùng lẫn con trỏ null và số nguyên `0` trong C++ sẽ gây ra nhiều vấn đề, ví dụ:
+Việc dùng lẫn con trỏ null và số nguyên `0` trong C++ sẽ gây ra nhiều vấn đề, ví
+dụ:
 
 ```cpp
 int f(int x);
 int f(int* p);
 ```
 
-Nếu `NULL` được định nghĩa là `0`, lời gọi `f(NULL)` sẽ khớp với hàm `int(int)` chứ không phải `int(int *)`.
+Nếu `NULL` được định nghĩa là `0`, lời gọi `f(NULL)` sẽ khớp với hàm `int(int)`
+chứ không phải `int(int *)`.
 
 ???+ note "Vấn đề do `NULL` gây ra trong ngôn ngữ C"
-    So với C++, vì có nhiều cách định nghĩa, vấn đề do `NULL` gây ra trong ngôn ngữ C còn nghiêm trọng hơn: nếu một hàm nhận tham số biến thiên cần đọc một con trỏ, nhưng người gọi lại truyền vào một `NULL` được định nghĩa là kiểu số nguyên, thì có thể gây ra hành vi không xác định. Nguyên nhân là khi lấy tham số biến thiên bên trong hàm, chương trình đọc một giá trị được truyền với kiểu số nguyên như thể đó là kiểu con trỏ, khiến kiểu thực tế và kiểu được đọc ra không khớp.[^note1]
+    So với C++, vì có nhiều cách định nghĩa, vấn đề do `NULL` gây ra trong ngôn
+    ngữ C còn nghiêm trọng hơn: nếu một hàm nhận tham số biến thiên cần đọc một
+    con trỏ, nhưng người gọi lại truyền vào một `NULL` được định nghĩa là kiểu
+    số nguyên, thì có thể gây ra hành vi không xác định. Nguyên nhân là khi lấy
+    tham số biến thiên bên trong hàm, chương trình đọc một giá trị được truyền
+    với kiểu số nguyên như thể đó là kiểu con trỏ, khiến kiểu thực tế và kiểu
+    được đọc ra không khớp.[^note1]
 
-Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con trỏ null.
+Để giải quyết các vấn đề này, C++11 đã đưa vào từ khóa `nullptr` làm hằng con
+trỏ null.
 
-C++ quy định rằng `nullptr` có thể được chuyển đổi ngầm định sang bất kỳ kiểu con trỏ nào; kết quả của phép chuyển đổi này là giá trị con trỏ null của kiểu đó.
+C++ quy định rằng `nullptr` có thể được chuyển đổi ngầm định sang bất kỳ kiểu con
+trỏ nào; kết quả của phép chuyển đổi này là giá trị con trỏ null của kiểu đó.
 
-Kiểu của `nullptr` là `std::nullptr_t`, gọi là kiểu con trỏ null. Một cách cài đặt có thể như sau:
+Kiểu của `nullptr` là `std::nullptr_t`, gọi là kiểu con trỏ null. Một cách cài
+đặt có thể như sau:
 
 ```cpp
 namespace std {
@@ -140,7 +168,8 @@ typedef decltype(nullptr) nullptr_t;
 }
 ```
 
-Ngoài ra, từ C++11, nên dùng `nullptr` thay cho `NULL`; một số thư viện có thể cài đặt `NULL` theo hướng tương tự:
+Ngoài ra, từ C++11, nên dùng `nullptr` thay cho `NULL`; một số thư viện có thể
+cài đặt `NULL` theo hướng tương tự:
 
 ```cpp
 // Ví dụ minh họa
@@ -148,18 +177,20 @@ Ngoài ra, từ C++11, nên dùng `nullptr` thay cho `NULL`; một số thư vi�
 ```
 
 ???+ note "Cải tiến của ngôn ngữ C đối với hằng con trỏ null"
-    Vì những lý do tương tự, C23 cũng đưa vào `nullptr` làm hằng con trỏ null, đồng thời đưa vào `nullptr_t` làm kiểu của nó.[^note1]
+    Vì những lý do tương tự, C23 cũng đưa vào `nullptr` làm hằng con trỏ null,
+    đồng thời đưa vào `nullptr_t` làm kiểu của nó.[^note1]
 
 ## Sử dụng con trỏ nâng cao
 
-Việc dùng con trỏ cho phép người lập trình thao tác với dữ liệu ở nhiều nơi trong lúc chương trình chạy, thay vì bị giới hạn trong phạm vi hiện tại.
+Việc dùng con trỏ cho phép người lập trình thao tác với dữ liệu ở nhiều nơi
+trong lúc chương trình chạy, thay vì bị giới hạn trong phạm vi hiện tại.
 
 ### Sử dụng tham số kiểu con trỏ
 
 Trong C/C++, khi gọi hàm, các tham số thông thường được truyền vào dưới dạng bản
 sao, ngoại trừ tham chiếu sẽ được giới thiệu ở phần sau. Theo mặc định, hàm chỉ
 có thể trả kết quả về nơi gọi thông qua giá trị trả về. Tuy nhiên, nếu một hàm
-muốn sửa dữ liệu bên ngoài nó, hoặc nếu dữ liệu của một cấu trúc/lớp khá lớn và
+muốn sửa dữ liệu bên ngoài nó, hoặc nếu dữ liệu của một cấu trúc/lớp lớn và
 không phù hợp để sao chép, có thể truyền địa chỉ của dữ liệu bên ngoài vào hàm,
 nhờ đó truy cập, thậm chí sửa đổi dữ liệu đó ngay trong hàm.
 
@@ -182,7 +213,10 @@ int main() {
 }
 ```
 
-C++ đưa vào khái niệm tham chiếu; so với con trỏ trong nhiều tình huống thường gặp, tham chiếu dễ dùng hơn và cũng khó bị dùng sai hơn. Chi tiết có thể xem [C++: Tham chiếu](./reference.md) và [Khác biệt giữa C và C++: Con trỏ và tham chiếu](./cpp-other-langs.md#con-trỏ-và-tham-chiếu).
+C++ đưa vào khái niệm tham chiếu; so với con trỏ trong nhiều tình huống thường
+gặp, tham chiếu dễ dùng hơn và cũng khó bị dùng sai hơn. Xem thêm
+[C++: Tham chiếu](./reference.md) và
+[Khác biệt giữa C và C++: Con trỏ và tham chiếu](./cpp-other-langs.md#con-trỏ-và-tham-chiếu).
 
 ### Khởi tạo động
 
