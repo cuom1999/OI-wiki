@@ -8,12 +8,12 @@ Bài viết này thảo luận định lý nhỏ Fermat, định lý Euler và d
 **Định lý nhỏ Fermat** (Fermat's little theorem) là một trong những định lý cơ bản nhất của số học. Nó cũng là cơ sở lý thuyết của [kiểm tra nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat).
 
 ???+ note "Định lý nhỏ Fermat"
-    Cho $p$ là số nguyên tố. Với mọi số nguyên $a$ thỏa $p\nmid a$, ta có $a^{p-1}\equiv 1\pmod p$.
+    Cho $p$ là số nguyên tố. Với mọi số nguyên $a$ thỏa $p\nmid a$, có $a^{p-1}\equiv 1\pmod p$.
 
 ???+ note "Định lý"
-    Cho $p$ là số nguyên tố. Với mọi số nguyên $a$, ta có $a^{p}\equiv a\pmod p$.
+    Cho $p$ là số nguyên tố. Với mọi số nguyên $a$, có $a^{p}\equiv a\pmod p$.
 
-Khi $p\nmid a$, hai quan hệ đồng dư này là tương đương; còn khi $p\mid a$, ta có hiển nhiên $a^p\equiv 0\equiv a\pmod p$. Vì vậy hai mệnh đề là tương đương, và cả hai thường được gọi là định lý nhỏ Fermat.
+Khi $p\nmid a$, hai quan hệ đồng dư này là tương đương; còn khi $p\mid a$, có $a^p\equiv 0\equiv a\pmod p$. Vì vậy hai mệnh đề là tương đương, và cả hai thường được gọi là định lý nhỏ Fermat.
 
 ??? note "Chứng minh 1"
     Cho $p$ là số nguyên tố và $p\nmid a$. Trước hết chứng minh: với $i=1,2,\cdots,p-1$, các số dư $ia \bmod p$ đôi một khác nhau. Chứng minh phản chứng. Nếu tồn tại $1\le i < j < p$ sao cho
@@ -39,9 +39,9 @@ Khi $p\nmid a$, hai quan hệ đồng dư này là tương đương; còn khi $p
     Nghĩa là vế trái chia hết cho $p$. Tuy nhiên các số $i=1,2,\cdots, p-1$ đều không chia hết cho $p$, nên chỉ có thể là $p\mid (a^{p-1}-1)$; tức định lý nhỏ Fermat được chứng minh.
 
 ??? note "Chứng minh 2"
-    Nhận thấy phát biểu thứ hai của định lý nhỏ Fermat đúng với mọi $a\in\mathbf N$, ta có thể dùng quy nạp toán học. Trường hợp số nguyên âm dễ dàng quy về trường hợp không âm.
+    Nhận thấy phát biểu thứ hai của định lý nhỏ Fermat đúng với mọi $a\in\mathbf N$, có thể dùng quy nạp toán học. Trường hợp số nguyên âm quy về trường hợp không âm.
     
-    Cơ sở quy nạp là $0^p\equiv 0\pmod p$, hiển nhiên đúng. Giả sử mệnh đề đúng với $a\in\mathbf N$, cần chứng minh nó cũng đúng với $a+1$. Theo định lý nhị thức,
+    Cơ sở quy nạp là $0^p\equiv 0\pmod p$, điều này đúng. Giả sử mệnh đề đúng với $a\in\mathbf N$, cần chứng minh nó cũng đúng với $a+1$. Theo định lý nhị thức,
     
     $$
     (a+1)^p=a^p+\binom{p}{1}a^{p-1}+\binom{p}{2}a^{p-2}+\cdots +\binom{p}{p-1}a+1.
@@ -55,7 +55,7 @@ Khi $p\nmid a$, hai quan hệ đồng dư này là tương đương; còn khi $p
     
     Bước thứ hai dùng giả thiết quy nạp. Vậy theo quy nạp toán học, định lý nhỏ Fermat đúng.
 
-Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi với mọi $a$ nguyên tố cùng nhau với $n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn chưa chắc là số nguyên tố. Thảo luận liên quan xem thêm mục [kiểm tra nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat).
+Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi với mọi $a$ nguyên tố cùng nhau với $n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn không nhất thiết là số nguyên tố. Thảo luận liên quan xem thêm mục [kiểm tra nguyên tố Fermat](./prime.md#kiểm-tra-tính-nguyên-tố-fermat).
 
 <span id="định-lý-euler"></span>
 ## Định lý Euler
@@ -63,10 +63,10 @@ Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi 
 **Định lý Euler** (Euler's theorem) mở rộng định lý nhỏ Fermat cho modulo bất kỳ, nhưng vẫn yêu cầu cơ số và modulo nguyên tố cùng nhau.
 
 ???+ note "Định lý Euler"
-    Với số nguyên $m>0$ và số nguyên $a$ thỏa $\gcd(a,m)=1$, ta có $a^{\varphi(m)}\equiv 1\pmod{m}$, trong đó $\varphi(\cdot)$ là [hàm phi Euler](./euler-totient.md).
+    Với số nguyên $m>0$ và số nguyên $a$ thỏa $\gcd(a,m)=1$, có $a^{\varphi(m)}\equiv 1\pmod{m}$, trong đó $\varphi(\cdot)$ là [hàm phi Euler](./euler-totient.md).
 
 ??? note "Chứng minh"
-    Tương tự chứng minh 1 của định lý nhỏ Fermat, ta lấy một dãy số nguyên tố cùng nhau với $m$ rồi thao tác trên dãy đó. Xét tập
+    Tương tự chứng minh 1 của định lý nhỏ Fermat, lấy một dãy số nguyên tố cùng nhau với $m$ rồi thao tác trên dãy đó. Xét tập
     
     $$
     R = \{r\in\mathbf N : 0 < r < m,~\gcd(r,m)=1\}.
@@ -84,9 +84,9 @@ Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi 
     \prod_{r\in R}r \equiv \prod_{r\in R}ar = a^{\varphi(m)}\prod_{r\in R}r. \pmod{m}
     $$
     
-    Lặp lại lập luận khử $\prod_{r\in R}r$ như trước, ta được $a^{\varphi(m)}\equiv 1\pmod m$.
+    Lặp lại lập luận khử $\prod_{r\in R}r$ như trước, thu được $a^{\varphi(m)}\equiv 1\pmod m$.
 
-Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler nói chung không phải số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#hàm-carmichael). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
+Với số nguyên tố $p$, có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler nói chung không phải số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#hàm-carmichael). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
 
 <span id="định-lý-euler-mở-rộng"></span>
 ## Định lý Euler mở rộng
@@ -94,7 +94,7 @@ Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fer
 Định lý Euler mở rộng[^ex-euler] tiếp tục mở rộng kết quả cho trường hợp cơ số và modulo không nguyên tố cùng nhau. Nhờ đó, nó giải quyết hoàn toàn bài toán tính lũy thừa với cơ số bất kỳ dưới modulo bất kỳ: đưa số mũ về nhỏ hơn $2\varphi(m)$, rồi dùng [lũy thừa nhị phân](../binary-exponentiation.md) để tính trong thời gian $O(\log\varphi(m))$.
 
 ???+ note "Định lý Euler mở rộng"
-    Với mọi số nguyên dương $m$, số nguyên $a$ và số nguyên không âm $k$, ta có
+    Với mọi số nguyên dương $m$, số nguyên $a$ và số nguyên không âm $k$, có
     
     $$
     a^k \equiv \begin{cases}
@@ -104,16 +104,16 @@ Với số nguyên tố $p$, ta có $\varphi(p)=p-1$, nên định lý nhỏ Fer
     \end{cases} \pmod m
     $$
 
-Trường hợp thứ hai nói rằng nếu $k < \varphi(m)$ thì không cần tiếp tục giảm số mũ, chỉ cần dùng lũy thừa nhị phân trực tiếp. Khác biệt lớn nhất giữa trường hợp thứ ba và trường hợp thứ nhất là: sau khi lấy dư để giảm số mũ, có cần cộng thêm một lượng $\varphi(m)$ hay không. Tất nhiên, gộp trường hợp thứ nhất vào hai trường hợp thứ hai và thứ ba cũng vẫn đúng.
+Trường hợp thứ hai nói rằng nếu $k < \varphi(m)$ thì không cần tiếp tục giảm số mũ, chỉ cần dùng lũy thừa nhị phân trực tiếp. Khác biệt lớn nhất giữa trường hợp thứ ba và trường hợp thứ nhất là: sau khi lấy dư để giảm số mũ, có cần cộng thêm một lượng $\varphi(m)$ hay không. Việc gộp trường hợp thứ nhất vào hai trường hợp thứ hai và thứ ba cũng vẫn đúng.
 
 <span id="hiểu-trực-quan"></span>
 ### Hiểu trực quan
 
-Trước khi chứng minh chặt chẽ, ta có thể hiểu trực quan ý nghĩa của định lý.
+Trước khi chứng minh chặt chẽ, có thể hiểu trực quan ý nghĩa của định lý.
 
 ![Chu trình của dãy số dư lũy thừa modulo m](./images/fermat.svg)
 
-Xét sự thay đổi của số dư $a^k\bmod m$ khi $k$ tăng. Vì giá trị số dư luôn nằm trong đoạn $[0,m)$, còn $k$ có vô hạn giá trị, nếu xem ánh xạ $a^k\bmod m \mapsto a^{k+1}\bmod m$ là các cạnh có hướng giữa các nút số dư, thì chắc chắn sẽ tạo thành một chu trình như hình vẽ.
+Xét sự thay đổi của số dư $a^k\bmod m$ khi $k$ tăng. Vì giá trị số dư luôn nằm trong đoạn $[0,m)$, còn $k$ có vô hạn giá trị, nếu xem ánh xạ $a^k\bmod m \mapsto a^{k+1}\bmod m$ là các cạnh có hướng giữa các nút số dư, thì sẽ tạo thành một chu trình như hình vẽ.
 
 Định lý Euler mở rộng cho biết các chu trình này có thể là chu trình thuần túy (trường hợp thứ nhất) hoặc chu trình có đoạn dẫn vào (trường hợp thứ hai và thứ ba). Trong chu trình thuần túy, không có nút nào có hai tiền nhiệm; còn trong trường hợp có đoạn dẫn vào thì hiện tượng đó xuất hiện. Vì vậy, với trường hợp tổng quát, chỉ cần tìm được độ dài chu kỳ và độ dài đoạn trước khi vào chu kỳ là có thể dùng tính chất này để giảm số mũ.
 
@@ -123,7 +123,7 @@ Xét sự thay đổi của số dư $a^k\bmod m$ khi $k$ tăng. Vì giá trị 
 Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộng.
 
 ??? note "Chứng minh"
-    Trước hết chứng minh tồn tại $k_0\in\mathbf N$ sao cho số nguyên $a$ nguyên tố cùng nhau với $m':=\dfrac{m}{\gcd(a^{k_0},m)}$. Đặt $\nu_p(n)$ là số mũ của số nguyên tố $p$ trong phân tích thừa số nguyên tố của số nguyên $n$. Ta có thể lấy
+    Trước hết chứng minh tồn tại $k_0\in\mathbf N$ sao cho số nguyên $a$ nguyên tố cùng nhau với $m':=\dfrac{m}{\gcd(a^{k_0},m)}$. Đặt $\nu_p(n)$ là số mũ của số nguyên tố $p$ trong phân tích thừa số nguyên tố của số nguyên $n$. Có thể lấy
     
     $$
     k_0 = \max\left\{\left\lceil\dfrac{\nu_p(m)}{\nu_p(a)}\right\rceil : \nu_p(a)>0\right\}.
@@ -137,7 +137,7 @@ Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộn
     b\equiv a^k. \pmod m
     $$
     
-    Vì $\gcd(a^{k_0},m)=\gcd(a^k,m)\mid b$, chia đồng thời hai vế và cả modulo cho $\gcd(a^{k_0},m)$, ta có
+    Vì $\gcd(a^{k_0},m)=\gcd(a^k,m)\mid b$, chia đồng thời hai vế và cả modulo cho $\gcd(a^{k_0},m)$, có
     
     $$
     \dfrac{b}{\gcd(a^{k_0},m)} = \dfrac{a^{k_0}}{\gcd(a^{k_0},m)}\cdot a^{k-k_0}. \pmod{m'}
@@ -149,7 +149,7 @@ Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộn
     \dfrac{b}{\gcd(a^{k_0},m)} \equiv \dfrac{a^{k_0}}{\gcd(a^{k_0},m)}\cdot a^{(k-k_0)\bmod\varphi(m')}. \pmod{m'}
     $$
     
-    Nhân lại thừa số $\gcd(a^{k_0},m)$, ta được
+    Nhân lại thừa số $\gcd(a^{k_0},m)$, thu được
     
     $$
     b \equiv a^{k_0}\cdot a^{(k-k_0)\bmod\varphi(m')} = a^{k_0 + (k-k_0)\bmod\varphi(m')}. \pmod{m}
@@ -157,7 +157,7 @@ Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộn
     
     Đây chính là dạng của định lý Euler mở rộng. Công thức cho thấy độ dài chu kỳ là $\varphi(m')$, còn độ dài đoạn trước khi vào chu kỳ là $k_0$.
     
-    Các tham số vừa thu được chặt hơn so với phát biểu định lý Euler mở rộng, nhưng việc tính chúng tương đối không dễ. Có thể chứng minh rằng các tham số này được nới lỏng thành dạng trong định lý. Trước hết, từ [công thức của hàm Euler](./euler-totient.md), vì $m'\mid m$, ta có $\varphi(m')\mid\varphi(m)$. Nói cách khác, $\varphi(m)$ cũng là một chu kỳ. Thứ hai, $k_0$ cũng có thể được nới lỏng thành $\varphi(m)$. Lý do là với mọi $m\in\mathbf N_+$ và mọi $p\mid m$, ta có
+    Các tham số vừa thu được chặt hơn so với phát biểu định lý Euler mở rộng, nhưng việc tính chúng tương đối không dễ. Có thể chứng minh rằng các tham số này được nới lỏng thành dạng trong định lý. Trước hết, từ [công thức của hàm Euler](./euler-totient.md), vì $m'\mid m$, có $\varphi(m')\mid\varphi(m)$. Nói cách khác, $\varphi(m)$ cũng là một chu kỳ. Thứ hai, $k_0$ cũng có thể được nới lỏng thành $\varphi(m)$. Lý do là với mọi $m\in\mathbf N_+$ và mọi $p\mid m$, có
     
     $$
     \begin{aligned}
@@ -181,7 +181,7 @@ Mục này đưa ra chứng minh chặt chẽ của định lý Euler mở rộn
 Mục này dùng một bài toán để minh họa một ứng dụng kinh điển của định lý Euler mở rộng: tính tháp lũy thừa dưới modulo bất kỳ. **Tháp lũy thừa** (power tower) là biểu thức dạng $A\uparrow(B\uparrow(C\uparrow(D\uparrow\cdots)))$, trong đó $\uparrow$ là ký hiệu mũi tên Knuth, còn $A,B,C,D,\cdots$ là một dãy số nguyên không âm.
 
 ???+ example "[Library Checker - Tetration Mod](https://judge.yosupo.jp/problem/tetration_mod)"
-    Có $T$ bộ kiểm thử. Trong mỗi bộ, cho $A,B,M$, hãy tính $(A\uparrow\uparrow B)\bmod M$. Ở đây $A\uparrow\uparrow B$ biểu thị tháp lũy thừa gồm $B$ số $A$. Nói chính xác hơn,
+    Có $T$ bộ kiểm thử. Trong mỗi bộ, cho $A,B,M$, cần tính $(A\uparrow\uparrow B)\bmod M$. Trong đó, $A\uparrow\uparrow B$ biểu thị tháp lũy thừa gồm $B$ số $A$. Nói chính xác hơn,
     
     $$
     A \uparrow\uparrow B =
@@ -194,7 +194,7 @@ Mục này dùng một bài toán để minh họa một ứng dụng kinh đi�
     Quy ước $0^0=1$.
 
 ??? note "Lời giải"
-    Dựa theo định nghĩa của $A\uparrow\uparrow B$, chỉ cần tính đệ quy. Để tính $(A\uparrow\uparrow B)\bmod M$, áp dụng định lý Euler mở rộng và tính $(A\uparrow\uparrow(B-1))\bmod\varphi(M)$. Vì $\varphi(\varphi(n)) \le n/2$ với mọi $n\ge 2$, quá trình đệ quy chắc chắn kết thúc trong $O(\log M)$ bước. Do cần áp dụng định lý Euler mở rộng, phải phân biệt kết quả hiện tại có nhỏ hơn hẳn modulo hiện tại hay không. Vì vậy, chỉ cần kiểm tra thêm một bước khi lấy dư. Ngoài ra, cần chú ý xử lý các trường hợp biên.
+    Dựa theo định nghĩa của $A\uparrow\uparrow B$, chỉ cần tính đệ quy. Để tính $(A\uparrow\uparrow B)\bmod M$, áp dụng định lý Euler mở rộng và tính $(A\uparrow\uparrow(B-1))\bmod\varphi(M)$. Vì $\varphi(\varphi(n)) \le n/2$ với mọi $n\ge 2$, quá trình đệ quy kết thúc trong $O(\log M)$ bước. Do cần áp dụng định lý Euler mở rộng, phải phân biệt kết quả hiện tại có nhỏ hơn hẳn modulo hiện tại hay không. Vì vậy, chỉ cần kiểm tra thêm một bước khi lấy dư. Ngoài ra, cần lưu ý xử lý các trường hợp biên.
 
 ??? note "Mã tham khảo"
     ```cpp
