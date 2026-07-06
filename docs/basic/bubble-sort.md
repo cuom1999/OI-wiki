@@ -12,7 +12,8 @@ Nguyên lý hoạt động của thuật toán là liên tục kiểm tra hai ph
 thứ tự của chúng trái với thứ tự sắp xếp cần có, thì hoán đổi hai phần tử đó.
 Khi không còn cặp phần tử kề nhau nào cần hoán đổi, quá trình sắp xếp hoàn tất.
 
-Sau $i$ lượt quét, $i$ phần tử ở cuối dãy là $i$ phần tử lớn nhất. Vì vậy, sắp xếp nổi bọt quét mảng nhiều nhất $n-1$ lần để hoàn tất.
+Sau $i$ lượt quét, $i$ phần tử ở cuối dãy là $i$ phần tử lớn nhất. Vì vậy, sắp
+xếp nổi bọt cần quét mảng nhiều nhất $n-1$ lần để hoàn tất.
 
 ## Tính chất
 
@@ -22,9 +23,11 @@ Sắp xếp nổi bọt là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
-Khi dãy đã hoàn toàn có thứ tự, sắp xếp nổi bọt duyệt mảng một lần và không thực hiện thao tác hoán đổi nào, nên độ phức tạp thời gian là $O(n)$.
+Khi dãy đã hoàn toàn có thứ tự, sắp xếp nổi bọt duyệt mảng một lần và không thực
+hiện thao tác hoán đổi nào, nên độ phức tạp thời gian là $O(n)$.
 
-Trong trường hợp bất lợi nhất, sắp xếp nổi bọt phải thực hiện $\frac{(n-1)n}{2}$ thao tác hoán đổi, với độ phức tạp thời gian là $O(n^2)$.
+Trong trường hợp bất lợi nhất, sắp xếp nổi bọt phải thực hiện
+$\frac{(n-1)n}{2}$ thao tác hoán đổi, với độ phức tạp thời gian là $O(n^2)$.
 
 Độ phức tạp thời gian trung bình của sắp xếp nổi bọt là $O(n^2)$.
 
@@ -34,16 +37,16 @@ Trong trường hợp bất lợi nhất, sắp xếp nổi bọt phải thực 
 
 $$
 \begin{array}{ll}
-1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
-2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm } n \text{ phần tử.} \\
+2 & \textbf{Đầu ra. } A \text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
 4 & flag\gets True\\
 5 & \textbf{trong khi }flag\\
 6 & \qquad flag\gets False\\
 7 & \qquad\textbf{với }i\gets1\textbf{ đến }n-1\\
-8 & \qquad\qquad\textbf{nếu }A[i]>A[i + 1]\\
+8 & \qquad\qquad\textbf{nếu } A[i] > A[i + 1]\\
 9 & \qquad\qquad\qquad flag\gets True\\
-10 & \qquad\qquad\qquad \text{Hoán đổi } A[i]\text{ và }A[i + 1]
+10 & \qquad\qquad\qquad \text{Hoán đổi } A[i]\text{ và } A[i + 1]
 \end{array}
 $$
 

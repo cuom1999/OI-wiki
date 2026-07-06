@@ -23,7 +23,8 @@ Sắp xếp chèn là một thuật toán sắp xếp ổn định.
 Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán hiệu quả
 khi dãy gần có thứ tự.
 
-Độ phức tạp thời gian trong trường hợp bất lợi nhất và trung bình của sắp xếp chèn đều là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp bất lợi nhất và trung bình của sắp xếp
+chèn đều là $O(n^2)$.
 
 ## Cài đặt
 
@@ -31,13 +32,13 @@ khi dãy gần có thứ tự.
 
 $$
 \begin{array}{ll}
-1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
-2 & \textbf{Đầu ra. } A\text{ được sắp xếp không giảm một cách ổn định.} \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm } n \text{ phần tử.} \\
+2 & \textbf{Đầu ra. } A \text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{với } i\gets 2\textbf{ đến }n\\
+4 & \textbf{với } i\gets 2\textbf{ đến } n\\
 5 & \qquad key\gets A[i]\\
-6 & \qquad j\gets i-1\\
-7 & \qquad\textbf{trong khi }j>0\textbf{ và }A[j]>key\\
+6 & \qquad j\gets i - 1\\
+7 & \qquad\textbf{trong khi } j > 0\textbf{ và } A[j] > key\\
 8 & \qquad\qquad A[j + 1]\gets A[j]\\
 9 & \qquad\qquad j\gets j - 1\\
 10 & \qquad A[j + 1]\gets key
@@ -79,7 +80,8 @@ chèn vào đúng vị trí, nên bậc độ phức tạp thời gian không đ
       for (int i = 1; i != len; ++i) {
         int key = arr[i];
         auto index = upper_bound(arr, arr + i, key) - arr;
-        // Dùng memmove để di chuyển phần tử nhanh hơn vòng lặp for, độ phức tạp vẫn là O(n)
+        // Dùng memmove để di chuyển phần tử nhanh hơn vòng lặp for.
+        // Độ phức tạp vẫn là O(n).
         memmove(arr + index + 1, arr + index, (i - index) * sizeof(int));
         arr[index] = key;
       }

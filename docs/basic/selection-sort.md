@@ -25,11 +25,13 @@ xóa tại vị trí bất kỳ trong mảng đều là $O(n)$, thường chỉ 
 để đưa phần tử từ phần chưa sắp xếp sang phần đã sắp xếp. Thao tác hoán đổi làm
 cho sắp xếp chọn cài đặt bằng mảng không ổn định.
 
-Các ví dụ cài đặt sau đây đều dựa trên việc hoán đổi phần tử trong mảng, nên đều **không ổn định**.
+Các ví dụ cài đặt sau đây đều dựa trên việc hoán đổi phần tử trong mảng, nên đều
+**không ổn định**.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của sắp xếp chọn đều là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của
+sắp xếp chọn đều là $O(n^2)$.
 
 ## Cài đặt
 
@@ -37,15 +39,15 @@ Các ví dụ cài đặt sau đây đều dựa trên việc hoán đổi phầ
 
 $$
 \begin{array}{ll}
-1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử.} \\
-2 & \textbf{Đầu ra. } A\text{ được sắp xếp theo thứ tự không giảm.} \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm } n \text{ phần tử.} \\
+2 & \textbf{Đầu ra. } A \text{ được sắp xếp theo thứ tự không giảm.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{với } i\gets 1\textbf{ đến }n-1\\
+4 & \textbf{với } i\gets 1\textbf{ đến } n-1\\
 5 & \qquad ith\gets i\\
-6 & \qquad \textbf{với }j\gets i+1\textbf{ đến }n\\
-7 & \qquad\qquad\textbf{nếu }A[j]<A[ith]\\
+6 & \qquad \textbf{với } j\gets i+1\textbf{ đến } n\\
+7 & \qquad\qquad\textbf{nếu } A[j] < A[ith]\\
 8 & \qquad\qquad\qquad ith\gets j\\
-9 & \qquad \text{hoán đổi }A[i]\text{ và }A[ith]\\
+9 & \qquad \text{hoán đổi } A[i]\text{ và } A[ith]\\
 \end{array}
 $$
 
