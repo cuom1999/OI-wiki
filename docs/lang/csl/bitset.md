@@ -3,7 +3,7 @@ author: i-Yirannn, Xeonacid, ouuan
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-`std::bitset` là một bộ chứa có kích thước cố định trong thư viện chuẩn, dùng để
+`std::bitset` là một bộ chứa kích thước cố định trong thư viện chuẩn, dùng để
 lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
 
 ??? note "`bitset` và STL"
@@ -28,24 +28,24 @@ lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
     Trích từ *The C++ Standard Library 2nd Edition*
     
     Như vậy, `bitset` không thuộc STL mà là một bộ chứa đặc biệt trong thư viện
-    chuẩn. Tuy là một bộ chứa, nó không thỏa mãn các yêu cầu
-    của bộ chứa STL. Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không
-    dựa vào bộ chứa STL nào khác làm lớp cài đặt bên dưới.
+    chuẩn. Tuy là một bộ chứa, nó không thỏa mãn các yêu cầu của bộ chứa STL.
+    Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không dựa trên bộ chứa
+    STL nào khác làm lớp cài đặt bên dưới.
 
 Vì bộ nhớ được đánh địa chỉ theo byte, chứ không phải theo bit, nên một biến
 kiểu `bool`, dù chỉ biểu diễn được `0/1`, vẫn chiếm 1 byte bộ nhớ.
 
-`bitset` dùng cách tối ưu cố định để tám bit trong một byte có thể lần lượt lưu
-8 giá trị `0/1`.
+`bitset` dùng cách lưu trữ nén để tám bit trong một byte lần lượt lưu được 8 giá
+trị `0/1`.
 
 Với một biến `int` 4 byte, nếu chỉ xét mục đích lưu `0/1`, `bitset` chỉ tốn dung
 lượng bằng $\frac{1}{32}$ của nó; khi tính một số thông tin, thời gian cần thiết
 cũng có thể giảm theo tỷ lệ tương tự.
 
-Trong một số trường hợp, `bitset` có thể tối ưu hiệu năng chạy của chương trình.
-Việc tối ưu này được xem là tối ưu độ phức tạp hay chỉ là hằng số phụ thuộc vào
-góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có các cách ghi sau
-(giả sử độ phức tạp ban đầu là $O(n)$):
+Trong một số trường hợp, `bitset` có thể cải thiện hiệu năng chạy của chương
+trình. Việc cải thiện này được xem là tối ưu độ phức tạp hay chỉ giảm hằng số
+phụ thuộc vào góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có các
+cách ghi sau (giả sử độ phức tạp ban đầu là $O(n)$):
 
 1.  $O(n)$: cách ghi này xem như `bitset` hoàn toàn không tối ưu độ phức tạp.
 2.  $O(\frac n{32})$: cách ghi này không thật chặt chẽ (không nên có hằng số
@@ -53,15 +53,16 @@ góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có 
     gian cần thiết xuống $\frac 1{32}$.
 3.  $O(\frac n w)$, trong đó $w=32$ (số bit của kiểu máy); đây là cách ghi được
     chấp nhận phổ biến hơn.
-4.  $O(\frac n {\log w})$, trong đó $w$ là kích thước của một biến số nguyên trên máy tính.
+4.  $O(\frac n {\log w})$, trong đó $w$ là kích thước của một biến số nguyên
+    trên máy tính.
 
 Ngoài ra, phiên bản chuyên biệt hóa `vector<bool>` có cách lưu trữ giống
-`bitset`. Điểm khác là nó hỗ trợ cấp phát kích thước động, còn `bitset` giống
-mảng tĩnh thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên,
-`bitset` có một số hàm thư viện hữu ích; chúng không chỉ thuận tiện mà đôi khi
-còn có thể được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi
-của `vector<bool>` không nhất quán với `vector` thông thường, vì phần tử của nó
-được truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy thông
+`bitset`. Điểm khác là nó hỗ trợ kích thước động, còn `bitset` giống mảng tĩnh
+thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên, `bitset` có
+một số hàm thư viện hữu ích; chúng không chỉ thuận tiện mà đôi khi còn có thể
+được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi của
+`vector<bool>` không nhất quán với `vector` thông thường, vì phần tử của nó được
+truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy, thông
 thường không dùng `vector<bool>`.
 
 <span id="cách-sử-dụng"></span>
@@ -105,7 +106,8 @@ std::bitset<1000> bs;  // một bitset gồm 1000 bit
     Nếu muốn tính theo bit với số nguyên, cần chuyển số nguyên đó thành `bitset`
     trước.
 
--   `operator <<`/`operator >>`/`operator <<=`/`operator >>=`: thực hiện dịch trái/dịch phải nhị phân.
+-   `operator <<`/`operator >>`/`operator <<=`/`operator >>=`: thực hiện dịch
+    trái/dịch phải nhị phân.
 
 Ngoài ra, `bitset` còn hỗ trợ nhập xuất kiểu luồng của C++, nghĩa là có thể nhập
 xuất bằng `cin`/`cout`.
@@ -115,8 +117,8 @@ xuất bằng `cin`/`cout`.
 
 -   `count()`: trả về số bit có giá trị `true`.
 -   `size()`: trả về kích thước của `bitset`.
--   `test(pos)`: có tác dụng giống `at()` trong `vector`; khác với toán tử `[]`
-    ở chỗ có kiểm tra vượt biên.
+-   `test(pos)`: tương tự `at()` trong `vector`; khác với toán tử `[]` ở chỗ có
+    kiểm tra vượt biên.
 -   `any()`: nếu tồn tại ít nhất một bit là `true` thì trả về `true`, ngược lại
     trả về `false`.
 -   `none()`: nếu mọi bit đều là `false` thì trả về `true`, ngược lại trả về
@@ -136,10 +138,10 @@ xuất bằng `cin`/`cout`.
 -   `to_ullong()`: (từ **C++11**) trả về biểu diễn `unsigned long long` sau khi
     chuyển đổi.
 
-    Nếu giá trị của `bitset` không chứa vừa kiểu số nguyên đích, hai hàm chuyển
-    đổi số nguyên này sẽ ném `std::overflow_error`.
+    Nếu giá trị của `bitset` không biểu diễn vừa trong kiểu số nguyên đích, hai
+    hàm chuyển đổi số nguyên này sẽ ném `std::overflow_error`.
 
-Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ khá hữu dụng[^bitset1]:
+Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ hữu dụng[^bitset1]:
 
 -   `_Find_first()`: trả về chỉ số của bit `true` đầu tiên trong `bitset`; nếu
     không có bit `true` nào thì trả về kích thước của `bitset`.
