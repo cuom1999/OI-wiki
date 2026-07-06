@@ -7,7 +7,7 @@ author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Me
 Liên phân số có thể biểu diễn một số thực dưới dạng giới hạn của một dãy số hữu tỉ hội tụ. Các số hữu tỉ trong dãy này dễ tính, đồng thời cho xấp xỉ tốt nhất của số thực đó, nên liên phân số thường xuất hiện trong lập trình thi đấu. Ngoài ra, liên phân số có quan hệ chặt chẽ với thuật toán Euclid, vì vậy có thể áp dụng cho nhiều bài toán số học.
 
 ???+ info "Về các cài đặt thuật toán liên quan đến liên phân số"
-    Bài viết này cung cấp một loạt cài đặt thuật toán về liên phân số. Một số thuật toán không bảo đảm mọi số nguyên trung gian đều nằm trong phạm vi của kiểu số nguyên 32 bit hoặc 64 bit. Trong các trường hợp đó, hãy tham khảo bản cài đặt Python tương ứng, hoặc thay kiểu số nguyên trong bản C++ bằng [lớp số nguyên chính xác cao](../bignum.md). Để tập trung vào ý chính, một số đoạn mã trong bài có thể gọi những hàm đã cài đặt ở phần trước mà không lặp lại phần cài đặt.
+    Bài viết này cung cấp một loạt cài đặt thuật toán về liên phân số. Một số thuật toán không bảo đảm mọi số nguyên trung gian đều nằm trong phạm vi của kiểu số nguyên 32 bit hoặc 64 bit. Trong các trường hợp đó, có thể tham khảo bản cài đặt Python tương ứng, hoặc thay kiểu số nguyên trong bản C++ bằng [lớp số nguyên chính xác cao](../bignum.md). Để tập trung vào ý chính, một số đoạn mã trong bài có thể gọi những hàm đã cài đặt ở phần trước mà không lặp lại phần cài đặt.
 
 <span id="liên-phân-số"></span>
 
@@ -42,10 +42,10 @@ Dĩ nhiên, liên phân số cũng có thể được mở rộng cho trường 
 
 ### Liên phân số đơn giản
 
-Trong số học, ta chủ yếu xét trường hợp các hạng của liên phân số đều là số nguyên.
+Trong số học, trường hợp được xét chủ yếu là các hạng của liên phân số đều là số nguyên.
 
 ???+ abstract "Liên phân số đơn giản"
-    Với liên phân số $[a_0,a_1,\cdots]$, nếu $a_0$ là số nguyên và $a_1,a_2,\cdots$ đều là số nguyên dương, thì nó được gọi là **liên phân số đơn giản** (simple continued fraction), hay gọi tắt là **liên phân số**. Nếu dãy $\{a_i\}$ hữu hạn, ta gọi đó là **liên phân số (đơn giản) hữu hạn**; ngược lại gọi là **liên phân số (đơn giản) vô hạn**. Ngoài ra, $a_0$ được gọi là **phần nguyên** (integer part) của nó.
+    Với liên phân số $[a_0,a_1,\cdots]$, nếu $a_0$ là số nguyên và $a_1,a_2,\cdots$ đều là số nguyên dương, thì nó được gọi là **liên phân số đơn giản** (simple continued fraction), hay gọi tắt là **liên phân số**. Nếu dãy $\{a_i\}$ hữu hạn, đó là **liên phân số (đơn giản) hữu hạn**; ngược lại là **liên phân số (đơn giản) vô hạn**. Ngoài ra, $a_0$ được gọi là **phần nguyên** (integer part) của nó.
 
 Trừ khi nói rõ khác đi, "liên phân số" trong bài này đều chỉ liên phân số đơn giản. Có thể chứng minh rằng liên phân số đơn giản vô hạn luôn hội tụ, và phần dư của liên phân số đơn giản luôn dương.
 
@@ -54,8 +54,8 @@ Liên phân số có các tính chất cơ bản sau:
 ???+ note "Tính chất"
     Giả sử số thực $x=[a_0,a_1,a_2,\cdots]$. Khi đó các tính chất sau đúng:
     
-    1.  Với mọi $k\in\mathbf Z$, ta có $x+k=[a_0+k,a_1,a_2,\cdots]$;
-    2.  Với số thực $x>1$, ta có $a_0>0$, và nghịch đảo của nó là $x^{-1}=[0,a_0,a_1,a_2,\cdots]$.
+    1.  Với mọi $k\in\mathbf Z$, có $x+k=[a_0+k,a_1,a_2,\cdots]$;
+    2.  Với số thực $x>1$, có $a_0>0$, và nghịch đảo của nó là $x^{-1}=[0,a_0,a_1,a_2,\cdots]$.
 
 Liên phân số hữu hạn tương ứng với số hữu tỉ. Mỗi số hữu tỉ có đúng hai cách biểu diễn thành liên phân số, và độ dài của hai cách này tất yếu một chẵn một lẻ. Khác biệt duy nhất giữa hai biểu diễn nằm ở việc hạng cuối có bằng $1$ hay không, tức là
 
@@ -87,15 +87,15 @@ $$
 r_k = [a_k,a_{k+1},\cdots] = [a_k,r_{k+1}] = a_k + \dfrac{1}{r_{k+1}}.
 $$
 
-Hơn nữa, $r_{k+1}>1$. Vì vậy, ta có thể bắt đầu từ $r_0=x$ và tính đệ quy
+Hơn nữa, $r_{k+1}>1$. Vì vậy, có thể bắt đầu từ $r_0=x$ và tính đệ quy
 
 $$
 a_k = \lfloor r_k\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k}.
 $$
 
-Quá trình này luôn xác định duy nhất dãy $\{a_k\}$, trừ khi một phần dư $r_k$ trở thành số nguyên. Nếu xuất hiện $r_k$ nguyên, quá trình nên dừng lại; ta có thể chọn xuất ra biểu diễn chuẩn hoặc biểu diễn không chuẩn tương ứng.
+Quá trình này luôn xác định duy nhất dãy $\{a_k\}$, trừ khi một phần dư $r_k$ trở thành số nguyên. Nếu xuất hiện $r_k$ nguyên, quá trình nên dừng lại; có thể chọn xuất ra biểu diễn chuẩn hoặc biểu diễn không chuẩn tương ứng.
 
-Trong lập trình thi đấu, trường hợp thường gặp là số hữu tỉ $x=\dfrac{p}{q}$. Khi đó, mỗi phần dư $r_k$ đều là số hữu tỉ $\dfrac{p_k}{q_k}$; với $k>0$, vì $r_k>1$ nên luôn có $p_k>q_k$. Tính cụ thể công thức truy hồi trên, ta được
+Trong lập trình thi đấu, trường hợp thường gặp là số hữu tỉ $x=\dfrac{p}{q}$. Khi đó, mỗi phần dư $r_k$ đều là số hữu tỉ $\dfrac{p_k}{q_k}$; với $k>0$, vì $r_k>1$ nên luôn có $p_k>q_k$. Tính cụ thể công thức truy hồi trên, thu được
 
 $$
 a_k = \left\lfloor\frac{p_k}{q_k}\right\rfloor,\ r_{k+1} = \dfrac{1}{r_k-a_k} = \dfrac{q_k}{p_k-a_kq_k} = \dfrac{q_k}{p_k\bmod q_k}.
@@ -147,7 +147,7 @@ Khái niệm phân số tiệm cận đã được giới thiệu trong định 
     x_k = \frac{\phi^{k+2}-(-\phi)^{-(k+2)}}{\phi^{k+1}-(-\phi)^{-(k+1)}},
     $$
     
-    trong đó $\phi=\dfrac{1+\sqrt{5}}{2}$ là tỉ lệ vàng. Khi $k$ tiến tới vô hạn, ta có
+    trong đó $\phi=\dfrac{1+\sqrt{5}}{2}$ là tỉ lệ vàng. Khi $k$ tiến tới vô hạn, có
     
     $$
     x=\lim_{k\rightarrow\infty}x_k=\phi.
@@ -155,13 +155,13 @@ Khái niệm phân số tiệm cận đã được giới thiệu trong định 
     
     Vì vậy, liên phân số $x=[1,1,1,1,\cdots]$ biểu diễn tỉ lệ vàng $\phi$.
 
-Các phân số tiệm cận này tiến tới số thực tương ứng, nên có thể dùng để xấp xỉ số thực đó. Do đó, ta cần hiểu các tính chất của phân số tiệm cận.
+Các phân số tiệm cận này tiến tới số thực tương ứng, nên có thể dùng để xấp xỉ số thực đó. Do đó, cần hiểu các tính chất của phân số tiệm cận.
 
 <span id="quan-hệ-truy-hồi"></span>
 
 ### Quan hệ truy hồi
 
-Trước hết, cần giải quyết bài toán tính các phân số tiệm cận. Dù mỗi phân số tiệm cận chỉ thêm một hạng vào cuối liên phân số, ta không cần tính lại giá trị từ đầu mỗi lần. Thật ra, các phân số tiệm cận có quan hệ truy hồi sau:
+Trước hết, cần giải quyết bài toán tính các phân số tiệm cận. Dù mỗi phân số tiệm cận chỉ thêm một hạng vào cuối liên phân số, không cần tính lại giá trị từ đầu mỗi lần. Thật ra, các phân số tiệm cận có quan hệ truy hồi sau:
 
 ???+ note "Công thức truy hồi"
     Với liên phân số $x=[a_0,a_1,a_2,\cdots]$, giả sử phân số tiệm cận thứ $k$ của nó là $x_k=\dfrac{p_k}{q_k}$. Khi đó,
@@ -186,7 +186,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{Q_k(a_0,a_1, \cdots, a_k)}.
     $$
     
-    Theo định nghĩa phân số tiệm cận, ta có
+    Theo định nghĩa phân số tiệm cận, có
     
     $$
     r_k = a_0 + \frac{1}{[a_1,a_2,\cdots, a_k]}= a_0 + \frac{Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)} = \frac{a_0 P_{k-1}(a_1, \dots, a_k) + Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}.
@@ -222,7 +222,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     P_{-1} = 1,\ P_{-2} = 0,
     $$
     
-    ta có thể kiểm tra rằng quan hệ truy hồi trên cũng đúng với $k=0,1$. Điều này tương đương với việc quy ước các phân số hình thức $r_{-1}=\dfrac{1}{0}$ và $r_{-2}=\dfrac{0}{1}$.
+    có thể kiểm tra rằng quan hệ truy hồi trên cũng đúng với $k=0,1$. Điều này tương đương với việc quy ước các phân số hình thức $r_{-1}=\dfrac{1}{0}$ và $r_{-2}=\dfrac{0}{1}$.
     
     Dãy đa thức $P_k$ thỏa mãn quan hệ truy hồi trên được gọi là **continuant**[^continuant]. Nó có thể được viết dưới dạng định thức:
     
@@ -237,7 +237,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     \end{pmatrix}.
     $$
     
-    Đây là định thức của một [ma trận tam đường chéo](https://en.wikipedia.org/wiki/Tridiagonal_matrix). Khai triển từ góc trên trái, ta có thể kiểm tra rằng nó có quan hệ truy hồi và điều kiện đầu như trên. Ngược lại, khai triển từ góc dưới phải lại thu được quan hệ truy hồi
+    Đây là định thức của một [ma trận tam đường chéo](https://en.wikipedia.org/wiki/Tridiagonal_matrix). Khai triển từ góc trên trái, có thể kiểm tra rằng nó có quan hệ truy hồi và điều kiện đầu như trên. Ngược lại, khai triển từ góc dưới phải lại thu được quan hệ truy hồi
     
     $$
     P_k(a_0, \cdots, a_k) = a_k P_{k-1}(a_0, \cdots, a_{k-1}) + P_{k-2}(a_0, \cdots, a_{k-2}),
@@ -246,7 +246,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     Điều này chứng minh điều cần chứng minh.
 
 ???+ info "Ký hiệu"
-    Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, ta luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Phần sau sẽ chỉ ra rằng cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
+    Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Phần sau sẽ chỉ ra rằng cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
 
 Công thức truy hồi này cho thấy
 
@@ -256,7 +256,7 @@ $$
 
 nằm giữa $x_{k-1}$ và $x_{k-2}$.
 
-Từ quan hệ truy hồi của phân số tiệm cận, ta có các hệ quả sau: định lý đảo thứ tự và định lý nghịch đảo.
+Từ quan hệ truy hồi của phân số tiệm cận, có các hệ quả sau: định lý đảo thứ tự và định lý nghịch đảo.
 
 ???+ note "Định lý đảo thứ tự"
     Giả sử phân số tiệm cận thứ $k$ của số thực $x=[a_0,a_1,a_2,\cdots]$ là $\dfrac{p_k}{q_k}$. Khi đó, tỉ số giữa tử số và mẫu số của hai phân số tiệm cận kề nhau lần lượt là
@@ -271,7 +271,7 @@ Từ quan hệ truy hồi của phân số tiệm cận, ta có các hệ quả 
     Nếu $a_0=0$, liên phân số đầu tiên nên được hiểu là bị cắt tại hạng áp chót, tức $[a_k,a_{k-1},\cdots,a_2]$.
 
 ??? note "Chứng minh"
-    Trong quan hệ truy hồi của $p_k$ và $q_k$, chia hai vế lần lượt cho $p_{k-1}$ và $q_{k-1}$, ta được
+    Trong quan hệ truy hồi của $p_k$ và $q_k$, chia hai vế lần lượt cho $p_{k-1}$ và $q_{k-1}$, thu được
     
     $$
     \begin{aligned}
@@ -292,9 +292,9 @@ Từ quan hệ truy hồi của phân số tiệm cận, ta có các hệ quả 
     Nghịch đảo của các phân số tiệm cận của số thực $x>0$ là các phân số tiệm cận của $x^{-1}$.
 
 ??? note "Chứng minh"
-    Không mất tính tổng quát, giả sử $x>1$ và có biểu diễn liên phân số $[a_0,a_1,a_2,\cdots]$. Khi đó biểu diễn liên phân số của $x^{-1}$ là $[0,a_0,a_1,a_2,\cdots]$. Các phân số tiệm cận của chúng có thể được tính từ quan hệ truy hồi. Hơn nữa, với $x$ có điều kiện đầu $x_{-2}=\dfrac{0}{1}$ và $x_{-1}=\dfrac{1}{0}$; với $y=x^{-1}$ có điều kiện đầu $y_{-1}=\dfrac{1}{0}$ và $y_{0}=\dfrac{0}{1}$. Do đó $x_{-2}=(y_{-1})^{-1}$ và $x_{-1}=(y_0)^{-1}$. Theo quan hệ truy hồi, ta có $x_k=y_{k+1}^{-1}$. Điều này cho thấy nghịch đảo của các phân số tiệm cận của $x$ là các phân số tiệm cận của $y=x^{-1}$. Trường hợp $0<x\le 1$ cũng có thể được thảo luận tương tự.
+    Không mất tính tổng quát, giả sử $x>1$ và có biểu diễn liên phân số $[a_0,a_1,a_2,\cdots]$. Khi đó biểu diễn liên phân số của $x^{-1}$ là $[0,a_0,a_1,a_2,\cdots]$. Các phân số tiệm cận của chúng có thể được tính từ quan hệ truy hồi. Hơn nữa, với $x$ có điều kiện đầu $x_{-2}=\dfrac{0}{1}$ và $x_{-1}=\dfrac{1}{0}$; với $y=x^{-1}$ có điều kiện đầu $y_{-1}=\dfrac{1}{0}$ và $y_{0}=\dfrac{0}{1}$. Do đó $x_{-2}=(y_{-1})^{-1}$ và $x_{-1}=(y_0)^{-1}$. Theo quan hệ truy hồi, có $x_k=y_{k+1}^{-1}$. Điều này cho thấy nghịch đảo của các phân số tiệm cận của $x$ là các phân số tiệm cận của $y=x^{-1}$. Trường hợp $0<x\le 1$ cũng có thể được thảo luận tương tự.
 
-Dùng quan hệ truy hồi trong phần này, ta có thuật toán tính phân số tiệm cận như sau:
+Dùng quan hệ truy hồi trong phần này, thu được thuật toán tính phân số tiệm cận như sau:
 
 ???+ example "Cài đặt tham khảo"
     Cho các hệ số $a_0,a_1,\cdots,a_n$ của một liên phân số, tìm dãy tử số và mẫu số của các phân số tiệm cận $(p_0,q_0),(p_1,q_1),\cdots,(p_n,q_n)$.
@@ -313,7 +313,7 @@ Dùng quan hệ truy hồi trong phần này, ta có thuật toán tính phân s
 
 ### Ước lượng sai số
 
-Dùng công thức truy hồi của phân số tiệm cận, ta có thể ước lượng sai số khi dùng phân số tiệm cận để xấp xỉ số thực.
+Dùng công thức truy hồi của phân số tiệm cận, có thể ước lượng sai số khi dùng phân số tiệm cận để xấp xỉ số thực.
 
 Trước hết, có thể tính hiệu của hai phân số tiệm cận kề nhau:
 
@@ -331,7 +331,7 @@ Trước hết, có thể tính hiệu của hai phân số tiệm cận kề nh
     $$
 
 ??? note "Chứng minh"
-    Theo quan hệ truy hồi, ta có
+    Theo quan hệ truy hồi, có
     
     $$
     \begin{aligned}
@@ -393,7 +393,7 @@ $$
 
 Phân số tiệm cận và phần dư trong định nghĩa liên phân số chính là tổng riêng và phần dư của chuỗi này.
 
-Dùng công thức hiệu, ta cũng có thể trực tiếp ước lượng sai số khi dùng phân số tiệm cận xấp xỉ số thực:
+Dùng công thức hiệu, cũng có thể trực tiếp ước lượng sai số khi dùng phân số tiệm cận xấp xỉ số thực:
 
 ???+ note "Sai số"
     Giả sử $x_k=\dfrac{p_k}{q_k}\neq x$ là phân số tiệm cận thứ $k$ của số thực $x$. Khi đó,
@@ -417,7 +417,7 @@ Dùng công thức hiệu, ta cũng có thể trực tiếp ước lượng sai 
     
     trong đó $r_{k+1}q_k+q_{k-1}$ chính là mẫu số của phân số tiệm cận thứ $k+1$ của liên phân số hình thức này, tính theo công thức truy hồi.
     
-    Để hoàn tất ước lượng bất đẳng thức sau đó, chỉ cần chú ý rằng khi $x_k\neq x$, ta luôn có
+    Để hoàn tất ước lượng bất đẳng thức sau đó, chỉ cần chú ý rằng khi $x_k\neq x$, luôn có
     
     $$
     1\le a_{k+1}\le r_{k+1} \le a_{k+1}+1,
@@ -453,7 +453,7 @@ Thực ra, nghiệm của phương trình Diophantine tuyến tính hai ẩn cũ
 ??? note "Lời giải"
     Dù bài toán này thường được giải bằng [thuật toán Euclid mở rộng](./bezouts.md#trường-hợp-hai-biến), nó cũng có thể được giải bằng liên phân số.
     
-    Giả sử $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$. Ở trên đã chứng minh $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$. Thay $p_k$ và $q_k$ bằng $A$ và $B$, ta được
+    Giả sử $\dfrac{A}{B}=[a_0, a_1, \cdots, a_k]$. Ở trên đã chứng minh $p_k q_{k-1} - p_{k-1} q_k = (-1)^{k-1}$. Thay $p_k$ và $q_k$ bằng $A$ và $B$, thu được
     
     $$
     Aq_{k-1} - Bp_{k-1} = (-1)^{k-1} g,
@@ -481,7 +481,7 @@ Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuy
 
 ### Dùng phân số tiệm cận để xấp xỉ số thực
 
-Trước hết, từ ước lượng sai số của phân số tiệm cận, ta lập tức có kết quả sau:
+Trước hết, từ ước lượng sai số của phân số tiệm cận, lập tức có kết quả sau:
 
 ???+ note "Định lý (Dirichlet)"
     Với số vô tỉ $x$, tồn tại vô hạn phân số tối giản $\dfrac{p}{q}$ sao cho
@@ -493,13 +493,13 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, ta 
     đúng.
 
 ??? note "Chứng minh"
-    Theo ước lượng sai số của phân số tiệm cận, với phân số tiệm cận thứ $k$ là $x_k=\dfrac{p_k}{q_k}$ của số vô tỉ $x$, ta có
+    Theo ước lượng sai số của phân số tiệm cận, với phân số tiệm cận thứ $k$ là $x_k=\dfrac{p_k}{q_k}$ của số vô tỉ $x$, có
     
     $$
     \left|x-\dfrac{p_k}{q_k}\right|\le\frac{1}{q_k^2}.
     $$
     
-    Xem lại chứng minh của công thức sai số, ta thấy với mọi số vô tỉ $x$, điều kiện để xảy ra dấu bằng không thể xảy ra. Vì vậy, tử số và mẫu số của mọi phân số tiệm cận của nó đều thỏa mãn yêu cầu.
+    Xem lại chứng minh của công thức sai số, thấy rằng với mọi số vô tỉ $x$, điều kiện để xảy ra dấu bằng không thể xảy ra. Vì vậy, tử số và mẫu số của mọi phân số tiệm cận của nó đều thỏa mãn yêu cầu.
 
 Định lý này cũng có thể xem là hệ quả của [định lý xấp xỉ Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_approximation_theorem). Đây gần như đã là kết quả tốt nhất: số mũ $2$ ở mẫu của vế phải bất đẳng thức không thể cải thiện thêm, nhưng hằng số thì có thể tốt hơn. Định lý Hurwitz cho biết vế phải có thể giảm xuống $\dfrac{1}{\sqrt{5}q^2}$, và đây là cận tốt nhất.
 
@@ -513,7 +513,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, ta 
     đúng, và $\sqrt{5}$ ở vế phải của bất đẳng thức không thể thay bằng số thực lớn hơn.
 
 ??? note "Chứng minh (Borel)"
-    Borel thật ra đã chứng minh rằng trong ba phân số tiệm cận liên tiếp của số vô tỉ $x$, chắc chắn có ít nhất một phân số thỏa mãn điều kiện trên. Vì có vô hạn phân số tiệm cận và chúng đều tối giản, phần đầu của định lý Hurwitz hiển nhiên đúng.
+    Borel thật ra đã chứng minh rằng trong ba phân số tiệm cận liên tiếp của số vô tỉ $x$, chắc chắn có ít nhất một phân số thỏa mãn điều kiện trên. Vì có vô hạn phân số tiệm cận và chúng đều tối giản, phần đầu của định lý Hurwitz đúng.
     
     Chứng minh phản chứng. Giả sử tồn tại số vô tỉ $x$ cùng ba phân số tiệm cận $x_{k-1},x_k,x_{k+1}$ của nó sao cho
     
@@ -523,7 +523,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, ta 
     \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge\dfrac{1}{\sqrt{5}q_{k+1}^2}
     $$
     
-    đúng. Vì hai phân số tiệm cận kề nhau luôn nằm ở hai phía của $x$, theo công thức hiệu ta có
+    đúng. Vì hai phân số tiệm cận kề nhau luôn nằm ở hai phía của $x$, theo công thức hiệu có
     
     $$
     \dfrac{1}{q_{k-1}q_{k}}=\left|\dfrac{p_{k-1}}{q_{k-1}}-\dfrac{p_{k}}{q_{k}}\right|=\left|x-\dfrac{p_{k-1}}{q_{k-1}}\right|+\left|x-\dfrac{p_{k}}{q_{k}}\right|\ge\dfrac{1}{\sqrt{5}q_{k-1}^2}+\dfrac{1}{\sqrt{5}q_{k}^2}.
@@ -535,7 +535,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, ta 
     \dfrac{q_k}{q_{k-1}}+\dfrac{q_{k-1}}{q_k}\le\sqrt 5.
     $$
     
-    Vì vế trái là số hữu tỉ còn vế phải là số vô tỉ, dấu bằng chắc chắn không xảy ra. Lại do $q_k\ge q_{k-1}$, ta giải được
+    Vì vế trái là số hữu tỉ còn vế phải là số vô tỉ, dấu bằng chắc chắn không xảy ra. Lại do $q_k\ge q_{k-1}$, giải được
     
     $$
     1\le \dfrac{q_{k}}{q_{k-1}} < \dfrac{\sqrt{5}+1}{2}.
@@ -569,7 +569,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, ta 
     x^2-x-1 = (x-\phi)(x-\phi').
     $$
     
-    Thay phân số tối giản $\dfrac{p}{q}$ vào, ta được
+    Thay phân số tối giản $\dfrac{p}{q}$ vào, thu được
     
     $$
     \dfrac{1}{q^2}\le\frac{|p^2-pq-q^2|}{q^2}=\left|\dfrac{p}{q}-\phi\right|\left|\dfrac{p}{q}-\phi'\right|\le\left|\dfrac{p}{q}-\phi\right|\left(\left|\dfrac{p}{q}-\phi\right|+|\phi-\phi'|\right)<\dfrac{1}{Cq^2}\left(\dfrac{1}{Cq^2}+\sqrt{5}\right).
@@ -595,7 +595,7 @@ $$
 để đo mức độ xấp xỉ.
 
 ???+ abstract "Xấp xỉ tốt nhất loại một"
-    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu với mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ ta đều có
+    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ đều thỏa mãn
     
     $$
     \left|x-\dfrac{p}{q}\right|<\left|x-\dfrac{p'}{q'}\right|,
@@ -736,7 +736,7 @@ Vì vậy, nếu sắp tất cả xấp xỉ tốt nhất loại một của s�
 Xấp xỉ tốt nhất loại hai dùng $|qx-p|$ để đo mức độ xấp xỉ.
 
 ???+ abstract "Xấp xỉ tốt nhất loại hai"
-    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu với mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ ta đều có
+    Với số thực $x$ và số hữu tỉ $\dfrac{p}{q}$, nếu mọi $\dfrac{p'}{q'}\neq \dfrac{p}{q}$ và $0<q'\le q$ đều thỏa mãn
     
     $$
     \left|qx-p\right|<\left|q'x-p'\right|,
@@ -758,7 +758,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     Mọi xấp xỉ tốt nhất loại hai đều là phân số tiệm cận, và mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai.
 
 ??? note "Chứng minh"
-    Để chứng minh phần thứ nhất, vì xấp xỉ tốt nhất loại hai cũng chắc chắn là xấp xỉ tốt nhất loại một, chỉ cần chứng minh các phân số trung gian không phải phân số tiệm cận không thể là xấp xỉ tốt nhất loại hai. Đặt $x_{k,t}=\dfrac{p}{q}$ là phân số trung gian nhưng không phải phân số tiệm cận, và giả sử $x_{k,t}<x$, ta có
+    Để chứng minh phần thứ nhất, vì xấp xỉ tốt nhất loại hai cũng chắc chắn là xấp xỉ tốt nhất loại một, chỉ cần chứng minh các phân số trung gian không phải phân số tiệm cận không thể là xấp xỉ tốt nhất loại hai. Đặt $x_{k,t}=\dfrac{p}{q}$ là phân số trung gian nhưng không phải phân số tiệm cận, và giả sử $x_{k,t}<x$, có
     
     $$
     x_{k-1} < x_{k,t} < x_{k+1} < x < x_{k}.
@@ -778,7 +778,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     
     tức mức độ xấp xỉ của $x_{k,t}$ không tốt hơn mức độ xấp xỉ của $x_k$ có mẫu nhỏ hơn, nên nó không thể là xấp xỉ tốt nhất loại hai.
     
-    Ngược lại, để chứng minh phần thứ hai, tức mọi phân số tiệm cận $x_k=\dfrac{p_k}{q_k}$ đều là xấp xỉ tốt nhất loại hai, ta cần chỉ ra rằng với mọi phân số $\dfrac{p}{q}$ có $q\le q_k$, luôn có $|q_kx-p_k|<|qx-p|$. Bỏ qua trường hợp nửa số lẻ, có thể giả sử $k>0$. Trước hết, theo ước lượng sai số của phân số tiệm cận khi xấp xỉ số thực, ta có
+    Ngược lại, để chứng minh phần thứ hai, tức mọi phân số tiệm cận $x_k=\dfrac{p_k}{q_k}$ đều là xấp xỉ tốt nhất loại hai, cần chỉ ra rằng với mọi phân số $\dfrac{p}{q}$ có $q\le q_k$, luôn có $|q_kx-p_k|<|qx-p|$. Bỏ qua trường hợp nửa số lẻ, có thể giả sử $k>0$. Trước hết, theo ước lượng sai số của phân số tiệm cận khi xấp xỉ số thực, có
     
     $$
     |q_{k-1} x-p_{k-1}| \ge \frac{1}{q_{k-1}+q_{k}} \ge \dfrac{1}{q_{k+1}}\ge |q_kx-p_k|.
@@ -827,7 +827,7 @@ Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ đ�
     x−\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
     $$
     
-    đúng. Khai triển số hữu tỉ $\dfrac{p}{q}$ thành liên phân số $[a_0,a_1,\cdots,a_n]$. Ở đây, số hữu tỉ có hai biểu diễn liên phân số, trong đó $n$ chênh nhau đúng một; vì vậy có thể chọn biểu diễn liên phân số sao cho $(-1)^n=\epsilon$, và ký hiệu các phân số tiệm cận của biểu diễn này là $\dfrac{p_k}{q_k}$. Giả sử số thực $\omega$ thỏa mãn
+    đúng. Khai triển số hữu tỉ $\dfrac{p}{q}$ thành liên phân số $[a_0,a_1,\cdots,a_n]$. Số hữu tỉ có hai biểu diễn liên phân số, trong đó $n$ chênh nhau đúng một; vì vậy có thể chọn biểu diễn liên phân số sao cho $(-1)^n=\epsilon$, và ký hiệu các phân số tiệm cận của biểu diễn này là $\dfrac{p_k}{q_k}$. Giả sử số thực $\omega$ thỏa mãn
     
     $$
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}}.
@@ -851,7 +851,7 @@ Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ đ�
     \omega=\dfrac{1}{\theta}-\dfrac{q_{n-1}}{q_n}>1.
     $$
     
-    Khai triển cả $\omega$ thành liên phân số $[b_0,b_1,\cdots]$, ta có
+    Khai triển cả $\omega$ thành liên phân số $[b_0,b_1,\cdots]$, có
     
     $$
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}} = [a_0,a_1,\cdots,a_n,\omega] = [a_0,a_1,\cdots,a_n,b_0,b_1,\cdots].
@@ -941,7 +941,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
     
         Đây chính là hệ thức liên phân số $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$.
     -   Vì mỗi lần cộng véc-tơ làm $\vec\xi\times\vec\xi_{k-1,t}$ thay đổi với bước đúng bằng $|\vec\xi\times\vec\xi_{k-1}|$, khoảng cách còn lại cuối cùng $|\vec\xi\times\vec\xi_k|$ chắc chắn nhỏ hơn nghiêm ngặt $|\vec\xi\times\vec\xi_{k-1}|$. Điều này cho thấy mức độ xấp xỉ của phân số tiệm cận (đo bằng $|qx-p|$) tốt lên nghiêm ngặt khi $k$ tăng.
-    -   Dùng quy tắc tính của tích có hướng, ta có
+    -   Dùng quy tắc tính của tích có hướng, có
     
         $$
         \vec\xi_{k}\times\vec\xi_{k+1} = \vec\xi_{k}\times(a_{k+1}\vec\xi_k+\vec\xi_{k-1}) = \vec\xi_{k}\times\vec\xi_{k-1} = -\vec\xi_{k-1}\times\vec\xi_{k}.
@@ -976,21 +976,21 @@ Hai bao lồi trên và dưới thu được như vậy được gọi là đa g
 
 Bài chính: [Cây Stern-Brocot và dãy Farey](./stern-brocot.md)
 
-Cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) lưu tất cả các phân số nằm trong $[0,\infty]$. Liên phân số hữu hạn thực chất mã hóa đường đi trên cây Stern-Brocot từ gốc tới vị trí của một phân số. Nói cách khác, biểu diễn liên phân số $[a_0,a_1,\cdots,a_{n-1},1]$ của số hữu tỉ $x$ nghĩa là bắt đầu từ gốc cây $\dfrac{1}{1}$, trước hết đi sang con phải $a_0$ lần, rồi sang con trái $a_1$ lần, luân phiên hướng đi như vậy cho tới khi đã đi $a_{n-1}$ lần theo một hướng nào đó. Cần chú ý rằng ở đây chỉ được dùng biểu diễn liên phân số kết thúc bằng $1$.
+Cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) lưu tất cả các phân số nằm trong $[0,\infty]$. Liên phân số hữu hạn thực chất mã hóa đường đi trên cây Stern-Brocot từ gốc tới vị trí của một phân số. Nói cách khác, biểu diễn liên phân số $[a_0,a_1,\cdots,a_{n-1},1]$ của số hữu tỉ $x$ nghĩa là bắt đầu từ gốc cây $\dfrac{1}{1}$, trước hết đi sang con phải $a_0$ lần, rồi sang con trái $a_1$ lần, luân phiên hướng đi như vậy cho tới khi đã đi $a_{n-1}$ lần theo một hướng nào đó. Cần chú ý rằng chỉ được dùng biểu diễn liên phân số kết thúc bằng $1$ trong phần này.
 
 Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot sẽ cho thuật toán so sánh độ lớn của hai liên phân số.
 
 ???+ example "So sánh độ lớn liên phân số"
-    Cho hai liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ và $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$, hãy so sánh độ lớn của chúng.
+    Cho hai liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$ và $\beta=[\beta_0,\beta_1,\cdots,\beta_m]$, cần so sánh độ lớn của chúng.
 
 ??? note "Lời giải"
-    Trước hết, chuyển cả hai biểu diễn liên phân số về dạng kết thúc bằng $1$. Không mất tính tổng quát, giả sử liên phân số đề bài cho đã ở dạng này, tức $\alpha_n=\beta_m=1$. Vì các vị trí chẵn (đánh số từ $0$) là số bước đi sang phải, còn các vị trí lẻ là số bước đi sang trái, nên $\alpha<\beta$ khi và chỉ khi theo so sánh [thứ tự từ điển](../../string/basic.md#thứ-tự-từ-điển), ta có
+    Trước hết, chuyển cả hai biểu diễn liên phân số về dạng kết thúc bằng $1$. Không mất tính tổng quát, giả sử liên phân số đề bài cho đã ở dạng này, tức $\alpha_n=\beta_m=1$. Vì các vị trí chẵn (đánh số từ $0$) là số bước đi sang phải, còn các vị trí lẻ là số bước đi sang trái, nên $\alpha<\beta$ khi và chỉ khi theo so sánh [thứ tự từ điển](../../string/basic.md#thứ-tự-từ-điển), có
     
     $$
     (\alpha_0,-\alpha_1,\alpha_2,\cdots,(-1)^{n-1}\alpha_{n-1},0,\cdots)<(\beta_0,-\beta_1,\beta_2,\cdots,(-1)^{m-1}\beta_{m-1},0,\cdots).
     $$
     
-    So với biểu diễn liên phân số, ta luân phiên thêm dấu dương âm, bỏ hạng $1$ cuối cùng, và điền $0$ vào các vị trí thiếu độ dài.
+    So với biểu diễn liên phân số, cách này luân phiên thêm dấu dương âm, bỏ hạng $1$ cuối cùng, và điền $0$ vào các vị trí thiếu độ dài.
     
     === "C++"
         ```cpp
@@ -1008,7 +1008,7 @@ Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot
 ??? note "Lời giải"
     Vì cây Stern-Brocot vừa là cây tìm kiếm nhị phân của các phân số trong $[0,\infty]$, vừa là [cây Descartes](../../ds/cartesian-tree.md) của cặp $(q,p)$, nên ý bài gần như chuyển thành tìm LCA (tổ tiên chung gần nhất) của hai điểm trên cây Stern-Brocot. Tuy nhiên, LCA chỉ xử lý được trường hợp khoảng đóng, và LCA có thể chính là một đầu mút. Để tránh thảo luận phụ, trước hết có thể dựng $\dfrac{p_0}{q_0}+\varepsilon$ và $\dfrac{p_1}{q_1}-\varepsilon$, rồi tính LCA. Khi đã dùng liên phân số để tính đường đi từ gốc tới nút, LCA chỉ cần lấy đường đi chung dài nhất.
     
-    Để dựng $x\pm\varepsilon$, tại nút $x$ chỉ cần trước hết đi sang phải (trái) một lần, rồi đi sang trái (phải) $\infty$ lần. Chuyển sang ngôn ngữ liên phân số, với phân số $x=[a_0,a_1,\cdots,a_{n-1},1]$, ta biết $x\pm\varepsilon$ chắc chắn là $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ và $[a_0,a_1,\cdots,a_{n-1},1,\infty]$; vì vậy chỉ cần so sánh hai liên phân số này, rồi định nghĩa liên phân số lớn hơn (nhỏ hơn) là $x\pm\varepsilon$.
+    Để dựng $x\pm\varepsilon$, tại nút $x$ chỉ cần trước hết đi sang phải (trái) một lần, rồi đi sang trái (phải) $\infty$ lần. Chuyển sang ngôn ngữ liên phân số, với phân số $x=[a_0,a_1,\cdots,a_{n-1},1]$, hai giá trị $x\pm\varepsilon$ chắc chắn là $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ và $[a_0,a_1,\cdots,a_{n-1},1,\infty]$; vì vậy chỉ cần so sánh hai liên phân số này, rồi định nghĩa liên phân số lớn hơn (nhỏ hơn) là $x\pm\varepsilon$.
     
     === "C++"
         ```cpp
@@ -1080,7 +1080,7 @@ Biến đổi tuyến tính phân thức có các tính chất sau:
     4.  Ma trận hệ số của biến đổi ngược tương ứng với ma trận nghịch đảo của ma trận hệ số, tức nếu $M_1^{-1}=M_2$ thì $L_1^{-1}=L_2$.
 
 ??? note "Chứng minh"
-    Ở đây chỉ đưa ra dạng của hợp thành và biến đổi ngược của biến đổi tuyến tính phân thức. Sau khi có dạng này, mọi tính chất đều dễ kiểm tra.
+    Phần này chỉ đưa ra dạng của hợp thành và biến đổi ngược của biến đổi tuyến tính phân thức. Sau khi có dạng này, mọi tính chất đều dễ kiểm tra.
     
     Hợp thành của hai biến đổi tuyến tính phân thức $L_1$ và $L_2$:
     
@@ -1110,7 +1110,7 @@ $$
 
 Trong đó, giá trị của biến đổi tuyến tính phân thức $L(x)=\dfrac{ax+b}{cx+d}$ tại $x=\infty$ là $\dfrac{a}{c}$, tức giới hạn của hàm khi $x\rightarrow\pm\infty$.
 
-Với liên phân số tổng quát, giả sử phần dư của số thực $x$ là $r_{k+1}$, tức $x=[a_0,\cdots,a_k,r_{k+1}]$, ta có
+Với liên phân số tổng quát, giả sử phần dư của số thực $x$ là $r_{k+1}$, tức $x=[a_0,\cdots,a_k,r_{k+1}]$, có
 
 $$
 x = L_0\circ L_1\circ \cdots L_k(r_{k+1}) = \dfrac{p_kr_{k+1}+p_{k-1}}{q_kr_{k+1}+q_{k-1}}.
@@ -1130,7 +1130,7 @@ $$
 \dfrac{p_{k-1}x+p_{k-2}}{q_{k-1}x+q_{k-2}}
 $$
 
-thì theo công thức hợp thành của biến đổi tuyến tính phân thức, ta có
+thì theo công thức hợp thành của biến đổi tuyến tính phân thức, có
 
 $$
 L_0\circ L_1\circ\cdots\circ L_{k-1}\circ L_k = \dfrac{(p_{k-1}a_k+p_{k-2})x+p_{k-1}}{(q_{k-1}a_k+q_{k-2})x+q_{k-1}} = \dfrac{p_kx+p_{k-1}}{q_kx+q_{k-1}}.
@@ -1142,7 +1142,7 @@ Từ đó có thể thu được dạng trên bằng quy nạp. Biến đổi tu
     Cho mảng số nguyên dương $a_1,\cdots,a_n$ và $m$ truy vấn. Mỗi truy vấn cho $l\le r$ và yêu cầu tính giá trị $[a_l,\cdots,a_r]$.
 
 ??? note "Lời giải"
-    Hiểu liên phân số là giá trị tại $x=\infty$ của hợp thành một dãy biến đổi tuyến tính phân thức, ta chỉ cần có khả năng truy vấn nhiều lần hợp thành của một đoạn biến đổi tuyến tính phân thức. Vì mỗi biến đổi tuyến tính phân thức đều có nghịch đảo, có thể tiền xử lý tiền tố rồi truy vấn bằng phương pháp hiệu, với độ phức tạp $O(n+m)$; nếu cần hỗ trợ cập nhật, cũng có thể lưu bằng cây phân đoạn hoặc cấu trúc tương tự.
+    Hiểu liên phân số là giá trị tại $x=\infty$ của hợp thành một dãy biến đổi tuyến tính phân thức, chỉ cần có khả năng truy vấn nhiều lần hợp thành của một đoạn biến đổi tuyến tính phân thức. Vì mỗi biến đổi tuyến tính phân thức đều có nghịch đảo, có thể tiền xử lý tiền tố rồi truy vấn bằng phương pháp hiệu, với độ phức tạp $O(n+m)$; nếu cần hỗ trợ cập nhật, cũng có thể lưu bằng cây phân đoạn hoặc cấu trúc tương tự.
     
     === "C++"
         ```cpp
@@ -1178,7 +1178,7 @@ Nền tảng của thuật toán là tính biến đổi tuyến tính phân th�
     L(\alpha) = L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_n}(\infty),
     $$
     
-    nên có thể tính độ lớn của $L(\alpha)$ bằng cách lần lượt hợp thành $L_{\alpha_k}$ vào $L$. Tuy nhiên, nếu muốn nhận biểu diễn liên phân số của $L(\alpha)$, ta không cần tính hoàn toàn giá trị $L(\alpha)$ rồi mới tìm biểu diễn liên phân số. Ngay trong quá trình hợp thành các $L_{\alpha_i}$, ta đã có thể xác định các giá trị $\beta_0,\beta_1,\cdots$.
+    nên có thể tính độ lớn của $L(\alpha)$ bằng cách lần lượt hợp thành $L_{\alpha_k}$ vào $L$. Tuy nhiên, nếu muốn nhận biểu diễn liên phân số của $L(\alpha)$, không cần tính hoàn toàn giá trị $L(\alpha)$ rồi mới tìm biểu diễn liên phân số. Ngay trong quá trình hợp thành các $L_{\alpha_i}$, đã có thể xác định các giá trị $\beta_0,\beta_1,\cdots$.
     
     Chẳng hạn, giả sử hiện tại đã tính tới
     
@@ -1202,7 +1202,7 @@ Nền tảng của thuật toán là tính biến đổi tuyến tính phân th�
     
     Thuật toán yêu cầu $c$ và $d$ cùng dấu để bảo đảm điểm gián đoạn của hàm không nằm trong phạm vi $[0,\infty]$. Điều này luôn có thể đạt được, vì định nghĩa liên phân số đơn giản yêu cầu các hệ số (trừ $\alpha_0$) đều là số nguyên dương. Từ đó có thể chứng minh rằng sau hữu hạn bước, $c$ và $d$ chắc chắn cùng dấu, và sau đó luôn giữ cùng dấu.
     
-    Khi cài đặt cụ thể, chỉ cần duy trì ma trận hệ số hiện tại của biến đổi tuyến tính phân thức $\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rồi kiểm tra $c$ và $d$ có cùng dấu hay không, cũng như $\dfrac{a}{c}$ và $\dfrac{b}{d}$ có cùng phần nguyên hay không. Khi hợp thành bên phải với $L_{\alpha_i}$, ta thu được $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$. Nếu hai phần nguyên giống nhau và bằng $\beta_j$, thì thêm $\beta_j$ vào liên phân số kết quả, rồi hợp thành bên trái với $L_{\beta_j}^{-1}$; việc này tương đương với tính $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$.
+    Khi cài đặt cụ thể, chỉ cần duy trì ma trận hệ số hiện tại của biến đổi tuyến tính phân thức $\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rồi kiểm tra $c$ và $d$ có cùng dấu hay không, cũng như $\dfrac{a}{c}$ và $\dfrac{b}{d}$ có cùng phần nguyên hay không. Khi hợp thành bên phải với $L_{\alpha_i}$, thu được $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$. Nếu hai phần nguyên giống nhau và bằng $\beta_j$, thì thêm $\beta_j$ vào liên phân số kết quả, rồi hợp thành bên trái với $L_{\beta_j}^{-1}$; việc này tương đương với tính $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$.
 
 Biến đổi tuyến tính phân thức của liên phân số đã đủ để tính bốn phép toán giữa một phân số và một liên phân số:
 
@@ -1234,10 +1234,10 @@ $$
 
 ## Liên phân số tuần hoàn
 
-Tương tự khái niệm số thập phân tuần hoàn, nếu các hệ số của liên phân số tạo thành chu kỳ thì ta gọi đó là liên phân số tuần hoàn.
+Tương tự khái niệm số thập phân tuần hoàn, nếu các hệ số của liên phân số tạo thành chu kỳ thì đó là liên phân số tuần hoàn.
 
 ???+ abstract "Liên phân số tuần hoàn"
-    Giả sử liên phân số $x=[a_0,a_1,a_2,\cdots]$, và tồn tại số tự nhiên $K$ cùng số nguyên dương $L$ sao cho với mọi $k\ge K$, ta có $a_k=a_{k+L}$. Khi đó $x$ được gọi là **liên phân số tuần hoàn** (periodic continued fraction). Giá trị nhỏ nhất của $L$ thỏa mãn điều kiện này được gọi là chu kỳ dương nhỏ nhất của nó, còn dãy $a_{k},\cdots,a_{k+L-1}$ lặp lại trong liên phân số được gọi là khối tuần hoàn. Dùng khối tuần hoàn, liên phân số tuần hoàn có thể viết là $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$. Nếu có thể lấy $K=0$, tức $x=[\overline{a_0,\cdots,a_{L-1}}]$, thì nó được gọi là **liên phân số thuần tuần hoàn** (purely periodic continued fraction); ngược lại gọi là **liên phân số hỗn tuần hoàn** (eventually periodic continued fraction).
+    Giả sử liên phân số $x=[a_0,a_1,a_2,\cdots]$, và tồn tại số tự nhiên $K$ cùng số nguyên dương $L$ sao cho với mọi $k\ge K$, có $a_k=a_{k+L}$. Khi đó $x$ được gọi là **liên phân số tuần hoàn** (periodic continued fraction). Giá trị nhỏ nhất của $L$ thỏa mãn điều kiện này được gọi là chu kỳ dương nhỏ nhất của nó, còn dãy $a_{k},\cdots,a_{k+L-1}$ lặp lại trong liên phân số được gọi là khối tuần hoàn. Dùng khối tuần hoàn, liên phân số tuần hoàn có thể viết là $x=[a_0,\cdots,a_{k-1},\overline{a_k,\cdots,a_{k+L-1}}]$. Nếu có thể lấy $K=0$, tức $x=[\overline{a_0,\cdots,a_{L-1}}]$, thì nó được gọi là **liên phân số thuần tuần hoàn** (purely periodic continued fraction); ngược lại gọi là **liên phân số hỗn tuần hoàn** (eventually periodic continued fraction).
 
 <span id="số-vô-tỉ-bậc-hai"></span>
 
@@ -1266,7 +1266,7 @@ Kết quả của Euler cho thấy mọi liên phân số tuần hoàn đều l�
     \end{aligned}
     $$
     
-    trong đó $L_0(\cdot)$ và $L_1(\cdot)$ đều là biến đổi tuyến tính phân thức. Do đó, ta thu được phương trình mà $x$ thỏa mãn:
+    trong đó $L_0(\cdot)$ và $L_1(\cdot)$ đều là biến đổi tuyến tính phân thức. Do đó, thu được phương trình mà $x$ thỏa mãn:
     
     $$
     x = L_0\circ L_1\circ L_0^{-1}(x). 
@@ -1308,31 +1308,31 @@ Kết quả của Lagrange cho thấy chiều ngược lại cũng đúng, nên 
     
     trong đó $P_k,Q_k$ là các số nguyên và $Q_k\mid D-P_k^2$. Điều kiện $Q_k\mid D-P_k^2$ bảo đảm hệ số đứng trước $\sqrt{D}$ trong tử số của mọi phần dư đều bằng $1$.
     
-    Để thu được dạng của phần dư, có thể dùng quy nạp toán học. Với $k=0$ thì hiển nhiên. Giả sử đã có dạng của $r_k$, và đặt $a_k=\lfloor r_k\rfloor$, ta có
+    Để thu được dạng của phần dư, có thể dùng quy nạp toán học. Với $k=0$ thì điều này đúng ngay. Giả sử đã có dạng của $r_k$, và đặt $a_k=\lfloor r_k\rfloor$, có
     
     $$
     r_k = a_k+\dfrac{1}{r_{k+1}}.
     $$
     
-    Giả sử $r_{k+1}$ cũng có dạng tương tự, rồi thay cùng với $r_k$ vào công thức trên, ta được
+    Giả sử $r_{k+1}$ cũng có dạng tương tự, rồi thay cùng với $r_k$ vào công thức trên, thu được
     
     $$
     \dfrac{P_k+\sqrt D}{Q_k} = a_k + \dfrac{Q_{k+1}}{P_{k+1}+\sqrt{D}} = a_k + \dfrac{Q_{k+1}P_{k+1}-Q_{k+1}\sqrt{D}}{P_{k+1}^2-D}.
     $$
     
-    Vì cách biểu diễn một số vô tỉ bậc hai dưới dạng $a+b\sqrt{D}$ là duy nhất, so sánh hệ số hai vế ta được
+    Vì cách biểu diễn một số vô tỉ bậc hai dưới dạng $a+b\sqrt{D}$ là duy nhất, so sánh hệ số hai vế thu được
     
     $$
     \dfrac{P_k}{Q_k} = a_k+\dfrac{Q_{k+1}P_{k+1}}{P_{k+1}^2-D},\ \dfrac{1}{Q_k}=-\dfrac{Q_{k+1}}{P_{k+1}^2-D}.
     $$
     
-    Thay đẳng thức thứ hai vào đẳng thức thứ nhất, ta giải được $P_{k+1}$:
+    Thay đẳng thức thứ hai vào đẳng thức thứ nhất, giải được $P_{k+1}$:
     
     $$
     \dfrac{P_k}{Q_k} = a_k-\dfrac{P_{k+1}}{Q_k} \iff P_{k+1} = a_kQ_k-P_k.
     $$
     
-    Thay tiếp vào đẳng thức thứ hai, ta giải được $Q_{k+1}$:
+    Thay tiếp vào đẳng thức thứ hai, giải được $Q_{k+1}$:
     
     $$
     Q_{k+1} = \dfrac{D-P_{k+1}^2}{Q_k} = \dfrac{D-(a_kQ_k-P_k)^2}{Q_k} = -a_k^2Q_k+2a_kP_k+\dfrac{D-P_k^2}{Q_k}.
@@ -1399,7 +1399,7 @@ Chứng minh định lý cũng cung cấp công thức truy hồi để tính ph
 Công thức truy hồi này có thể dùng trực tiếp để tính liên phân số của số vô tỉ bậc hai. Hơn nữa, theo chứng minh định lý, $|P_k|<\sqrt{D}$ và $Q_k\le 2\sqrt{D}$. Độ phức tạp của thuật toán phụ thuộc vào độ dài khối tuần hoàn, và có thể chứng minh độ dài này là $O(\sqrt{D}\log D)$.[^period-surd]
 
 ???+ example "Số vô tỉ bậc hai"
-    Cho số vô tỉ bậc hai $\alpha=\dfrac{x+y\sqrt{n}}{z}$, hãy tìm biểu diễn liên phân số của nó. Trong đó $x,y,z,n\in\mathbf Z$ và $n>0$ không phải số chính phương.
+    Cho số vô tỉ bậc hai $\alpha=\dfrac{x+y\sqrt{n}}{z}$, cần tìm biểu diễn liên phân số của nó. Trong đó $x,y,z,n\in\mathbf Z$ và $n>0$ không phải số chính phương.
 
 ??? note "Lời giải"
     Trước hết biểu diễn số vô tỉ bậc hai thành dạng trên, rồi dùng công thức truy hồi để tính. Các hạng của liên phân số được cho bởi $a_k=\lfloor r_k\rfloor$. Để tìm khối tuần hoàn, cần lưu chỉ số xuất hiện đầu tiên của mỗi $(P_k,Q_k)$.
@@ -1415,7 +1415,7 @@ Công thức truy hồi này có thể dùng trực tiếp để tính liên ph�
         ```
 
 ???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
-    Cho $x$ và $k$, trong đó $x$ không phải số chính phương, $0\le k\le 10^9$. Hãy tìm phân số tiệm cận thứ $k$ là $x_k$ của $\sqrt{x}$.
+    Cho $x$ và $k$, trong đó $x$ không phải số chính phương, $0\le k\le 10^9$. Cần tìm phân số tiệm cận thứ $k$ là $x_k$ của $\sqrt{x}$.
 
 ??? note "Lời giải"
     Trước hết dùng thuật toán trên để tìm chu kỳ của $\sqrt{x}$. Biểu diễn khối tuần hoàn thành biến đổi tuyến tính phân thức, rồi dùng [lũy thừa nhanh](../binary-exponentiation.md) để thu được giá trị $x_k$. Dĩ nhiên, phần chưa đi vào chu kỳ và phần chưa đủ một chu kỳ cần được xử lý riêng.
@@ -1436,7 +1436,7 @@ Công thức truy hồi này có thể dùng trực tiếp để tính liên ph�
 
 Số vô tỉ bậc hai là điều kiện cần và đủ để có biểu diễn liên phân số tuần hoàn; phần này tiếp tục đưa ra điều kiện cần và đủ để một số thực có biểu diễn liên phân số thuần tuần hoàn.
 
-Trước hết, vì liên phân số thuần tuần hoàn có dạng tương tự liên phân số hữu hạn, ta có thể thực hiện thao tác "đảo thứ tự". Tương tự định lý đảo thứ tự, biểu diễn liên phân số thu được theo cách này có quan hệ xác định với biểu diễn liên phân số ban đầu.
+Trước hết, vì liên phân số thuần tuần hoàn có dạng tương tự liên phân số hữu hạn, có thể thực hiện thao tác "đảo thứ tự". Tương tự định lý đảo thứ tự, biểu diễn liên phân số thu được theo cách này có quan hệ xác định với biểu diễn liên phân số ban đầu.
 
 ???+ note "Định lý (Galois)"
     Với liên phân số thuần tuần hoàn
@@ -1509,7 +1509,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     r_k = a_k+\dfrac{1}{r_{k+1}}.
     $$
     
-    Hai vế đều là số vô tỉ bậc hai; lấy liên hợp, ta được
+    Hai vế đều là số vô tỉ bậc hai; lấy liên hợp, thu được
     
     $$
     r_{k}^* = a_k+\dfrac{1}{r_{k+1}^*}.
@@ -1517,7 +1517,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     
     Dùng quan hệ truy hồi này, có thể chứng minh $-1<r_{k}^*<0$ với mọi $k\ge 0$.
     
-    Trước hết, với $k=0$, hiển nhiên $-1<r_0^*=x_0^*<0$. Với $k\ge 0$, theo định nghĩa liên phân số đơn giản và $x>1$, ta có $a_k\ge 1$. Do đó, giả sử $-1<r_k^*<0$, thì
+    Trước hết, với $k=0$, có ngay $-1<r_0^*=x_0^*<0$. Với $k\ge 0$, theo định nghĩa liên phân số đơn giản và $x>1$, có $a_k\ge 1$. Do đó, giả sử $-1<r_k^*<0$, thì
     
     $$
     -1<-\dfrac{1}{a_k}< r_{k+1}^* = \dfrac{1}{r_k^*-a_k} < -\dfrac{1}{1+a_k} < 0.
@@ -1552,7 +1552,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     \sqrt{r} = [\lfloor\sqrt{r}\rfloor,\overline{a_1,\cdots,a_{\ell},2\lfloor\sqrt{r}\rfloor}]
     $$
     
-    và với mọi $1\le k\le\ell$, ta có $a_k = a_{\ell+1-k}$.
+    và với mọi $1\le k\le\ell$, có $a_k = a_{\ell+1-k}$.
 
 ??? note "Chứng minh"
     Với số vô tỉ bậc hai $\sqrt{r}$, vì $\lfloor\sqrt{r}\rfloor+\sqrt{r}>1$ và $-1<\lfloor\sqrt{r}\rfloor-\sqrt{r}<0$, nên $\lfloor\sqrt{r}\rfloor+\sqrt{r}$ là liên phân số thuần tuần hoàn:
@@ -1567,7 +1567,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     \dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor} = [\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
     $$
     
-    Dùng các tính chất cơ bản của liên phân số, ta có
+    Dùng các tính chất cơ bản của liên phân số, có
     
     $$
     \sqrt{r}=\lfloor\sqrt{r}\rfloor+\dfrac{1}{\dfrac{1}{\sqrt{r}-\lfloor\sqrt{r}\rfloor}}=[\lfloor\sqrt{r}\rfloor,\overline{a_\ell,\cdots,a_1,2\lfloor\sqrt{r}\rfloor}].
@@ -1582,7 +1582,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     Vì biểu diễn liên phân số của số vô tỉ là duy nhất, so sánh các hệ số ở giữa cho thấy $a_k=a_{\ell+1-k}$ với mọi $1\le k\le\ell$.
 
 ??? example "Ví dụ: khai triển liên phân số của $\sqrt{74}$"
-    Liên phân số của $\sqrt{74}$ có thể tính như sau: (ở đây chỉ nhằm minh họa; khi lập trình nên dùng thuật toán truy hồi đã nêu ở trên)
+    Liên phân số của $\sqrt{74}$ có thể tính như sau: (phần này chỉ nhằm minh họa; khi lập trình nên dùng thuật toán truy hồi đã nêu ở trên)
     
     $$
     \begin{aligned}
@@ -1618,14 +1618,14 @@ Khai triển liên phân số của số vô tỉ bậc hai $\sqrt{D}$ chủ y�
 Sau khi nắm được các khái niệm cơ bản, cần xét một số ví dụ cụ thể để hiểu cách áp dụng phương pháp liên phân số trong lập trình thi đấu.
 
 ???+ example "Bao lồi dưới đường thẳng"
-    Cho $r=[a_0,a_1,\cdots,a_n]$, hãy tìm bao lồi của tập điểm nguyên $(x,y)$ thỏa mãn $0\le x\le N$ và $0\le y\le rx$.
+    Cho $r=[a_0,a_1,\cdots,a_n]$, cần tìm bao lồi của tập điểm nguyên $(x,y)$ thỏa mãn $0\le x\le N$ và $0\le y\le rx$.
 
 ??? note "Lời giải"
     Với tập không bị chặn $x\ge 0$, bao lồi trên chính là đường thẳng $y=rx$. Tuy nhiên, như hình dưới đây, nếu còn yêu cầu $x\le N$, thì bao lồi trên cuối cùng sẽ lệch khỏi đường thẳng.
     
     ![](./images/lattice-hull.svg)
     
-    Bắt đầu từ $(0,0)$, có thể tìm tất cả điểm nguyên trên bao lồi trên từ trái sang phải. Giả sử điểm nguyên cuối cùng trên bao lồi trên đã tìm được là $(x,y)$. Ta cần tìm điểm nguyên tiếp theo $(x',y')$. Đỉnh $(x',y')$ nằm phía trên bên phải $(x,y)$; ký hiệu $(\Delta x,\Delta y)=(x'-x,y'-y)$ là hiệu giữa hai điểm. Khi đó chắc chắn
+    Bắt đầu từ $(0,0)$, có thể tìm tất cả điểm nguyên trên bao lồi trên từ trái sang phải. Giả sử điểm nguyên cuối cùng trên bao lồi trên đã tìm được là $(x,y)$. Cần tìm điểm nguyên tiếp theo $(x',y')$. Đỉnh $(x',y')$ nằm phía trên bên phải $(x,y)$; ký hiệu $(\Delta x,\Delta y)=(x'-x,y'-y)$ là hiệu giữa hai điểm. Khi đó chắc chắn
     
     $$
     0<\Delta x\le N-x,\ 0\le \Delta y\le r\Delta x.
@@ -1637,9 +1637,9 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     Dĩ nhiên, khi giải thực tế, không cần tìm lại phân số trung gian dưới như vậy cho từng bài toán con. Nên tìm tất cả phân số tiệm cận trước; điều này tương đương với việc có cách duyệt tất cả phân số trung gian dưới. Sau đó duyệt các phân số trung gian dưới theo mẫu giảm dần, mỗi lần thử cộng nó vào điểm nguyên trước đó $(x,y)$, cho tới khi không thể cộng nữa thì mới thử phân số trung gian dưới tiếp theo.
     
-    Có một số tối ưu hiển nhiên. Trước hết, với phân số trung gian dưới $(q,p)$, chắc chắn tồn tại $k$ lẻ và $0\le t<a_k$ sao cho $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$. Chỉ cần tìm $t$ lớn nhất thỏa mãn $q_{k-1}+tq_k+x\le N$, tức $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Không cần lo $t$ vượt giới hạn, vì phân số tiệm cận dưới lớn hơn $(q_{k+2},p_{k+2})$ đã được cộng xong. Mỗi lần xác định số lần cộng, chỉ cần tính trực tiếp $\left\lfloor\dfrac{N-x}{q}\right\rfloor$, không cần thử từng lần.
+    Có một số tối ưu tự nhiên. Trước hết, với phân số trung gian dưới $(q,p)$, chắc chắn tồn tại $k$ lẻ và $0\le t<a_k$ sao cho $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$. Chỉ cần tìm $t$ lớn nhất thỏa mãn $q_{k-1}+tq_k+x\le N$, tức $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Không cần lo $t$ vượt giới hạn, vì phân số tiệm cận dưới lớn hơn $(q_{k+2},p_{k+2})$ đã được cộng xong. Mỗi lần xác định số lần cộng, chỉ cần tính trực tiếp $\left\lfloor\dfrac{N-x}{q}\right\rfloor$, không cần thử từng lần.
     
-    Độ phức tạp của thuật toán sau tối ưu là $O(n)$. Dù có thể có nhiều điểm nguyên tương ứng với các phân số trung gian dưới, số điểm thật sự trở thành gia lượng không nhiều. Ta sẽ chỉ ra rằng trong tất cả phân số trung gian dưới $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ với $0\le t<a_k$, nhiều nhất chỉ có hai gia lượng xuất hiện. Giả sử trong các phân số trung gian dưới này thật sự có gia lượng, khi đó chắc chắn $q_{k-1}\le N-x<q_{k+1}$. Đặt $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Nếu $t=0$, gia lượng có $\Delta x=q_{k-1}$; sau khi cộng gia lượng, ta có $N-x'<q_{k-1}$, nên sẽ không xuất hiện gia lượng mới trong các phân số trung gian dưới này. Nếu $t>0$, sau khi cộng gia lượng, chắc chắn $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$; ngay cả nếu cùng đoạn phân số trung gian dưới này còn xuất hiện gia lượng mới, lần sau cũng chỉ có thể có $t'=0$. Vì vậy, trong một đoạn phân số trung gian dưới như vậy, nhiều nhất chỉ có hai gia lượng. Điều này chứng minh độ phức tạp tổng thể là $O(n)$.
+    Độ phức tạp của thuật toán sau tối ưu là $O(n)$. Dù có thể có nhiều điểm nguyên tương ứng với các phân số trung gian dưới, số điểm thật sự trở thành gia lượng không nhiều. Có thể chỉ ra rằng trong tất cả phân số trung gian dưới $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ với $0\le t<a_k$, nhiều nhất chỉ có hai gia lượng xuất hiện. Giả sử trong các phân số trung gian dưới này thật sự có gia lượng, khi đó chắc chắn $q_{k-1}\le N-x<q_{k+1}$. Đặt $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Nếu $t=0$, gia lượng có $\Delta x=q_{k-1}$; sau khi cộng gia lượng, có $N-x'<q_{k-1}$, nên sẽ không xuất hiện gia lượng mới trong các phân số trung gian dưới này. Nếu $t>0$, sau khi cộng gia lượng, chắc chắn $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$; ngay cả nếu cùng đoạn phân số trung gian dưới này còn xuất hiện gia lượng mới, lần sau cũng chỉ có thể có $t'=0$. Vì vậy, trong một đoạn phân số trung gian dưới như vậy, nhiều nhất chỉ có hai gia lượng. Điều này chứng minh độ phức tạp tổng thể là $O(n)$.
     
     === "C++"
         ```cpp
@@ -1675,7 +1675,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất chắc chắn tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
     
-    Làm tương tự ví dụ trước. Xét tất cả phân số trung gian trên theo mẫu tăng dần; nếu tìm được phân số trung gian trên có cả hoành độ và tung độ không vượt giới hạn, thì cộng nó vào và cập nhật cận trên tương ứng. Khi đã cộng xong mọi phân số trung gian trên khả thi, ta thu được nghiệm tối ưu. So với trước, bài này cần đồng thời bảo đảm cả hoành độ và tung độ không vượt giới hạn, nên cần đặc biệt chú ý. Dựa trên lập luận tương tự ví dụ trước, nhưng lần này dùng $B\Delta y-A\Delta x$ thay cho $\Delta x$, có thể chỉ ra rằng độ phức tạp của thuật toán là $O(\log\min\{A,B\})$.
+    Làm tương tự ví dụ trước. Xét tất cả phân số trung gian trên theo mẫu tăng dần; nếu tìm được phân số trung gian trên có cả hoành độ và tung độ không vượt giới hạn, thì cộng nó vào và cập nhật cận trên tương ứng. Khi đã cộng xong mọi phân số trung gian trên khả thi, thu được nghiệm tối ưu. So với trước, bài này cần đồng thời bảo đảm cả hoành độ và tung độ không vượt giới hạn, nên cần đặc biệt chú ý. Dựa trên lập luận tương tự ví dụ trước, nhưng lần này dùng $B\Delta y-A\Delta x$ thay cho $\Delta x$, có thể chỉ ra rằng độ phức tạp của thuật toán là $O(\log\min\{A,B\})$.
     
     === "C++"
         ```py
@@ -1695,7 +1695,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 ??? note "Lời giải"
     Tổng này bằng số điểm nguyên trong tập $\{(x,y):1\le x\le N,1\le y\le\mathrm{e}x\}$. Sau khi dựng bao lồi của các điểm nguyên dưới đường thẳng $y=\mathrm{e}x$, có thể dùng [định lý Pick](../../geometry/pick.md) để tính số điểm nguyên. Độ phức tạp là $O(\log N)$.
     
-    Bài gốc yêu cầu $N \le 10^{4000}$. Mã C++ ở đây chỉ mang tính minh họa và không cài đặt lớp tính toán chính xác cao.
+    Bài gốc yêu cầu $N \le 10^{4000}$. Mã C++ trong phần này chỉ mang tính minh họa và không cài đặt lớp tính toán chính xác cao.
     
     === "C++"
         ```cpp
@@ -1708,7 +1708,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         ```
 
 ???+ example "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
-    Cho các số nguyên dương $p,q,n$, hãy tính giá trị $\sum\limits_{i=1}^n [pi \bmod q]$.
+    Cho các số nguyên dương $p,q,n$, cần tính giá trị $\sum\limits_{i=1}^n [pi \bmod q]$.
 
 ??? note "Lời giải"
     Vì tổng có thể biến đổi thành
@@ -1731,10 +1731,10 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         ```
 
 ???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
-    Cho các số nguyên dương $N,M,A,B$, hãy tính giá trị $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$.
+    Cho các số nguyên dương $N,M,A,B$, cần tính giá trị $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$.
 
 ??? note "Lời giải"
-    Đây là bài toán phức tạp nhất cho tới đây. Nó có thể được tính bằng [thuật toán kiểu Euclid](./euclidean.md). Ở đây đưa ra thuật toán dựa trên liên phân số, với độ phức tạp $O(\log\min\{A,B\})$.
+    Đây là bài toán phức tạp nhất cho tới đây. Nó có thể được tính bằng [thuật toán kiểu Euclid](./euclidean.md). Phần này đưa ra thuật toán dựa trên liên phân số, với độ phức tạp $O(\log\min\{A,B\})$.
     
     Có thể dựng bao lồi của toàn bộ điểm nguyên nằm dưới đường thẳng $y=\dfrac{Ax+B}{M}$ và thỏa mãn $0\le x< N$, rồi dùng định lý Pick để tính số điểm nguyên. Trường hợp $B=0$ đã được giải ở trước. Với trường hợp tổng quát, có thể chia thành hai bước. Trước hết, cộng các phân số trung gian trên để từng bước tiến gần đường thẳng (ví dụ thứ hai), cho tới khi tìm được điểm gần đường thẳng nhất; sau đó cộng các phân số trung gian dưới để từng bước rời xa đường thẳng (ví dụ thứ nhất).
     
@@ -1749,7 +1749,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Ta có thể hỏi giá trị của $pq^{-1}$ modulo một số nguyên tố $m\in[10^9,10^{12}]$. Hãy xác định $p$ và $q$ trong không quá mười lần hỏi.
+    Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Được phép hỏi giá trị của $pq^{-1}$ modulo một số nguyên tố $m\in[10^9,10^{12}]$. Cần xác định $p$ và $q$ trong không quá mười lần hỏi.
     
     Bài toán này tương đương với việc tìm $x$ trong $[1,N]$ sao cho $Ax\bmod M$ nhỏ nhất.
 
@@ -1806,9 +1806,9 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 
 [^continuant]: Tên gọi này tham khảo bản dịch tiếng Trung chương 6.7 của *Concrete Mathematics* do Zhang Mingyao và Zhang Fan dịch.
 
-[^sqrt5]: Ở đây không thể mặc định phân số tối giản $\dfrac{p}{q}$ chắc chắn là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$ thật ra chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
+[^sqrt5]: Không thể mặc định phân số tối giản $\dfrac{p}{q}$ chắc chắn là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$ thật ra chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
 
-[^semi-range]: Các tài liệu khác nhau có thể xử lý khác nhau về việc miền giá trị của $t$ ở đây có bao gồm hai đầu mút hay không.
+[^semi-range]: Các tài liệu khác nhau có thể xử lý khác nhau về việc miền giá trị của $t$ trong định nghĩa này có bao gồm hai đầu mút hay không.
 
 [^semiconvergent]: Khi $t=0$, nên hiểu đây là liên phân số hình thức, tương đương với việc cắt liên phân số ở hạng áp chót.
 
