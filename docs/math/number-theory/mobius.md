@@ -2,7 +2,7 @@ author: hydingsy, hyp1231, ranwen, 383494
 
 Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposition.md), [tích chập Dirichlet](./dirichlet.md#tích-chập-dirichlet)
 
-Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, ta có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
+Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
 
 <span id="hàm-möbius"></span>
 ## Hàm Möbius
@@ -27,10 +27,10 @@ Cụ thể, giả sử số nguyên dương $n$ có phân tích thừa số nguy
 <span id="tính-chất"></span>
 ### Tính chất
 
-Từ định nghĩa có thể kiểm tra dễ dàng rằng hàm Möbius $\mu(n)$ là hàm nhân tính, nhưng không phải hàm hoàn toàn nhân tính. Ngoài ra, tính chất quan trọng nhất là hằng đẳng thức sau:
+Từ định nghĩa có thể kiểm tra trực tiếp rằng hàm Möbius $\mu(n)$ là hàm nhân tính, nhưng không phải hàm hoàn toàn nhân tính. Ngoài ra, tính chất quan trọng nhất là hằng đẳng thức sau:
 
 ???+ note "Tính chất"
-    Với số nguyên dương $n$, ta có
+    Với số nguyên dương $n$, có
     
     $$
     \sum_{d\mid n}\mu(d) = [n = 1] =
@@ -43,7 +43,7 @@ Từ định nghĩa có thể kiểm tra dễ dàng rằng hàm Möbius $\mu(n)$
     Trong đó $[\cdot]$ là ngoặc Iverson.
 
 ??? note "Chứng minh"
-    Đặt $n=\prod_{i=1}^kp_i^{e_i}$ và $n' = \prod_{i=1}^kp_i$. Theo [định lý nhị thức](../combinatorics/combination.md#định-lý-nhị-thức), ta có
+    Đặt $n=\prod_{i=1}^kp_i^{e_i}$ và $n' = \prod_{i=1}^kp_i$. Theo [định lý nhị thức](../combinatorics/combination.md#định-lý-nhị-thức), có
     
     $$
     \sum_{d\mid n}\mu(d) = \sum_{d\mid n'}\mu(d) = \sum_{i=0}^k\binom{k}{i}(-1)^i = (1 + (-1))^k = [k = 0] = [n = 1].
@@ -62,7 +62,7 @@ Nó biến điều kiện nguyên tố cùng nhau thành một tổng theo hàm 
 <span id="cách-tính"></span>
 ### Cách tính
 
-Nếu cần tính giá trị hàm Möbius $\mu(n)$ cho một $n$ riêng lẻ, có thể dùng [phân tích thừa số nguyên tố](./pollard-rho.md). Chẳng hạn, khi $n$ không quá lớn, ta có thể tính $\mu(n)$ trong thời gian $O(\sqrt{n})$.
+Nếu cần tính giá trị hàm Möbius $\mu(n)$ cho một $n$ riêng lẻ, có thể dùng [phân tích thừa số nguyên tố](./pollard-rho.md). Chẳng hạn, khi $n$ không quá lớn, có thể tính $\mu(n)$ trong thời gian $O(\sqrt{n})$.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -123,7 +123,7 @@ Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đ�
     f = 1 * g \iff g = \mu * f.
     $$
     
-    Dùng $1 * \mu = \varepsilon$, lấy tích chập với $\mu$ ở hai vế của đẳng thức bên trái, ta được
+    Dùng $1 * \mu = \varepsilon$, lấy tích chập với $\mu$ ở hai vế của đẳng thức bên trái, thu được
     
     $$
     f * \mu = (1 * g) * \mu = (1 * \mu) * g = \varepsilon * g = g.
@@ -132,17 +132,17 @@ Nếu cần tiền xử lý giá trị $\mu(n)$ cho $n$ số nguyên dương đ�
 Trong các tổng hàm số học liên quan đến quan hệ chia hết, đảo Möbius là một công cụ biến đổi rất mạnh.
 
 ???+ example "Ví dụ"
-    1.  [Hàm Euler](./euler-totient.md) $\varphi(n)$ thỏa quan hệ $n = \sum_{d\mid n}\varphi(d)$, tức $\mathrm{id}=1*\varphi$. Đảo công thức này, ta được $\varphi = \mu * \mathrm{id}$, tức
+    1.  [Hàm Euler](./euler-totient.md) $\varphi(n)$ thỏa quan hệ $n = \sum_{d\mid n}\varphi(d)$, tức $\mathrm{id}=1*\varphi$. Đảo công thức này, thu được $\varphi = \mu * \mathrm{id}$, tức
     
         $$
         \varphi(n) = \sum_{d\mid n}d\mu\left(\dfrac{n}{d}\right).
         $$
-    2.  Hàm tổng lũy thừa các ước $\sigma_k(n) = \sum_{d\mid n}d^k$, tức $\sigma_k = 1 * \mathrm{id}_k$. Đảo công thức này, ta được $\mathrm{id}_k = \mu * \sigma_k$, tức
+    2.  Hàm tổng lũy thừa các ước $\sigma_k(n) = \sum_{d\mid n}d^k$, tức $\sigma_k = 1 * \mathrm{id}_k$. Đảo công thức này, thu được $\mathrm{id}_k = \mu * \sigma_k$, tức
     
         $$
         n^k = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\sigma_k(d).
         $$
-    3.  Hàm đếm số thừa số nguyên tố phân biệt $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$, tức $\omega = 1* \mathbf{1}_{\mathbf P}$, trong đó $\mathbf{1}_{\mathbf P}$ là hàm chỉ thị của tập số nguyên tố $\mathbf P$. Đảo công thức này, ta được $\mathbf{1}_{\mathbf P} = \mu * \omega$, tức
+    3.  Hàm đếm số thừa số nguyên tố phân biệt $\omega(n)=\sum_{d\mid n}[d\in\mathbf P]$, tức $\omega = 1* \mathbf{1}_{\mathbf P}$, trong đó $\mathbf{1}_{\mathbf P}$ là hàm chỉ thị của tập số nguyên tố $\mathbf P$. Đảo công thức này, thu được $\mathbf{1}_{\mathbf P} = \mu * \omega$, tức
     
         $$
         [n\in\mathbf P] = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)\omega(d).
@@ -158,25 +158,25 @@ Trong các tổng hàm số học liên quan đến quan hệ chia hết, đảo
         $$
 
 ??? note "Phụ lục: chứng minh biểu thức của $\Lambda(n)$"
-    Với lũy thừa nguyên tố $n=p^e~(e\in\mathbf N_+)$, ta có
+    Với lũy thừa nguyên tố $n=p^e~(e\in\mathbf N_+)$, có
     
     $$
     \Lambda(n) = \sum_{i=0}^e\mu(p^{e-i})\log p^i = \log p^{e} - \log p^{e-1} = \log p.
     $$
     
-    Với $n=1$, hiển nhiên $\Lambda(n)=\log 1=0$. Với hợp số $n$ khác, ta có
+    Với $n=1$, suy ra ngay $\Lambda(n)=\log 1=0$. Với hợp số $n$ khác, có
     
     $$
     \Lambda(n) = \sum_{d\mid n}\mu(d)(\log n-\log d) = \left(\sum_{d\mid n}\mu(d)\right)\log n-\sum_{d\mid n}\mu(d)\log d.
     $$
     
-    Theo tính chất của hàm Möbius, hệ số của hạng $\log n$ là $[n=1]=0$. Với hạng phía sau, có thể tiếp tục phân tích $d$ thành tích các thừa số nguyên tố. Với mọi số nguyên tố $p\mid n$, xét hệ số của $\log p$, ta đều có:
+    Theo tính chất của hàm Möbius, hệ số của hạng $\log n$ là $[n=1]=0$. Với hạng phía sau, có thể tiếp tục phân tích $d$ thành tích các thừa số nguyên tố. Với mọi số nguyên tố $p\mid n$, xét hệ số của $\log p$, đều có:
     
     $$
     -\sum_{p\mid d\mid n}\mu(d) = \sum_{(d/p)\mid(n/p)}\mu\left(\dfrac{d}{p}\right) = \left[\dfrac{n}{p}=1\right]=0.
     $$
     
-    Do đó, với mọi hợp số $n$ có nhiều hơn một thừa số nguyên tố, ta đều có $\Lambda(n)=0$.
+    Do đó, với mọi hợp số $n$ có nhiều hơn một thừa số nguyên tố, đều có $\Lambda(n)=0$.
 
 <span id="các-dạng-mở-rộng"></span>
 ### Các dạng mở rộng
@@ -229,7 +229,7 @@ Tiếp theo, đảo Möbius không chỉ giới hạn ở phép cộng; thực r
     \end{aligned}
     $$
     
-    Trong đó $a\uparrow b = a^b$ là ký hiệu mũi tên Knuth. So sánh với chứng minh của dạng cơ bản, ta thấy khác biệt duy nhất là phép cộng được thay bằng phép nhân, còn phép nhân được thay bằng phép lũy thừa.
+    Trong đó $a\uparrow b = a^b$ là ký hiệu mũi tên Knuth. So sánh với chứng minh của dạng cơ bản, khác biệt duy nhất là phép cộng được thay bằng phép nhân, còn phép nhân được thay bằng phép lũy thừa.
 
 Nhìn từ góc độ tích chập Dirichlet, đảo Möbius chỉ dùng sự thật rằng "hàm Möbius là nghịch đảo Dirichlet của hàm hằng". Có thể hình dung các quan hệ tương tự đảo Möbius cũng đúng với [nghịch đảo Dirichlet](./dirichlet.md#tích-chập-dirichlet) tổng quát.
 
@@ -282,7 +282,7 @@ Cuối cùng, đảo Möbius còn có thể được mở rộng cho các hàm p
     $$
 
 ??? note "Chứng minh"
-    Ta có thể bổ sung định nghĩa cho $F$ và $G$: khi $x < 1$, luôn có $F(x)=G(x)=0$. Khi đó mệnh đề tương đương với:
+    Có thể bổ sung định nghĩa cho $F$ và $G$: khi $x < 1$, luôn có $F(x)=G(x)=0$. Khi đó mệnh đề tương đương với:
     
     $$
     F(x) = \sum_n G\left(\dfrac{x}{n}\right) \iff G(x) = \sum_n \mu(n)F\left(\dfrac{x}{n}\right).
@@ -327,7 +327,7 @@ $$
 f(n) = \sum_{d\mid n}g(d) \iff g(n) = \sum_{d\mid n}\mu\left(\dfrac{n}{d}\right)f(d).
 $$
 
-Ở đẳng thức bên trái, giá trị $f(n)$ là tổng các giá trị của $g(n)$ tại mọi ước của $n$. Nếu hiểu $a\mid b$ là $a$ đứng trước $b$, thì $f(n)$ có thể được xem như một dạng tổng tiền tố của $g(n)$. Vì vậy, trong giới thi lập trình Trung Quốc, quá trình tính $\{f(k)\}_{k=1}^n$ từ $\{g(k)\}_{k=1}^n$ còn được gọi là **tổng tiền tố Dirichlet**, còn quá trình ngược lại được gọi là sai phân Dirichlet. Các phương pháp này chủ yếu xuất hiện khi cần tiền xử lý giá trị của một hàm số học tại $N$ điểm đầu tiên.
+Ở đẳng thức bên trái, giá trị $f(n)$ là tổng các giá trị của $g(n)$ tại mọi ước của $n$. Nếu hiểu $a\mid b$ là $a$ đứng trước $b$, thì $f(n)$ có thể được xem như một dạng tổng tiền tố của $g(n)$. Vì vậy, trong giới lập trình thi đấu Trung Quốc, quá trình tính $\{f(k)\}_{k=1}^n$ từ $\{g(k)\}_{k=1}^n$ còn được gọi là **tổng tiền tố Dirichlet**, còn quá trình ngược lại được gọi là sai phân Dirichlet. Các phương pháp này chủ yếu xuất hiện khi cần tiền xử lý giá trị của một hàm số học tại $N$ điểm đầu tiên.
 
 Tiếp theo, xét cách tính tổng tiền tố Dirichlet. Nếu xem mỗi số nguyên tố là một chiều, đây chính là một dạng tổng tiền tố nhiều chiều. Nhắc lại [thuật toán tổng tiền tố theo từng chiều](../../basic/prefix-sum.md#tổng-tiền-tố-theo-từng-chiều) của tổng tiền tố nhiều chiều: lần lượt duyệt mọi chiều và cộng giá trị của mỗi vị trí sang vị trí kế tiếp theo chiều đó. Với hàm số học, điều này tương đương với việc duyệt các số nguyên tố $p$ theo thứ tự tăng dần, rồi cộng giá trị hàm tại $n$ sang $np$. Thứ tự duyệt này trùng với [sàng Eratosthenes](./sieve.md#sàng-eratosthenes). Do đó, thuật toán này có thể tính tổng tiền tố Dirichlet của một dãy độ dài $n$ trong thời gian $O(n\log\log n)$. Tương tự, dùng sai phân theo từng chiều cũng có thể tính sai phân Dirichlet của dãy trong cùng độ phức tạp.
 
@@ -347,10 +347,10 @@ Cách tính này có thể mở rộng sang tổng trên các bội (mở rộng
 <span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
-Phần này dùng các bài tập để minh họa cách ứng dụng đảo Möbius và một số kỹ thuật biến đổi thường gặp. Trước hết, hãy làm quen với kỹ thuật cơ bản để xử lý điều kiện ước chung lớn nhất trong tổng.
+Phần này dùng các bài tập để minh họa cách ứng dụng đảo Möbius và một số kỹ thuật biến đổi thường gặp. Trước hết, làm quen với kỹ thuật cơ bản để xử lý điều kiện ước chung lớn nhất trong tổng.
 
 ???+ example "[Luogu P2522 \[HAOI 2011\] Problem b](https://www.luogu.com.cn/problem/P2522)"
-    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, tính:
     
     $$
     \sum_{i=x}^{n}\sum_{j=y}^{m}[\gcd(i,j)=k].
@@ -367,7 +367,7 @@ Phần này dùng các bài tập để minh họa cách ứng dụng đảo Mö
     
     Với loại biểu thức này, tiếp theo là một quy trình suy luận chuẩn: tách ước chung, áp dụng tính chất của hàm Möbius, rồi đổi thứ tự lấy tổng.
     
-    Trước hết, vì $i,j$ đều chỉ có thể nhận các bội của $k$, ta có thể tách nhân tử này ra trước, tương đương với thay $i=ki'$ và $j=kj'$, thu được:
+    Trước hết, vì $i,j$ đều chỉ có thể nhận các bội của $k$, có thể tách nhân tử này ra trước, tương đương với thay $i=ki'$ và $j=kj'$, thu được:
     
     $$
     f(n,m,k)=\sum_{i=1}^{\lfloor n/k\rfloor}\sum_{j=1}^{\lfloor m/k\rfloor}[\gcd(i,j)=1].
@@ -379,7 +379,7 @@ Phần này dùng các bài tập để minh họa cách ứng dụng đảo Mö
     [\gcd(i,j)=1] = \sum_{d\mid\gcd(i,j)}\mu(d) = \sum_d[d\mid i][d\mid j]\mu(d).
     $$
     
-    Thay nó vào biểu thức và đổi thứ tự lấy tổng, ta được:
+    Thay nó vào biểu thức và đổi thứ tự lấy tổng, thu được:
     
     $$
     f(n,m,k)=\sum_d\mu(d)\left(\sum_{i=1}^{\lfloor n/k\rfloor}[d\mid i]\right)\left(\sum_{j=1}^{\lfloor m/k\rfloor}[d\mid j]\right).
@@ -407,7 +407,7 @@ Phần này dùng các bài tập để minh họa cách ứng dụng đảo Mö
 Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước chung, đồng thời dùng [sàng](./sieve.md#hàm-nhân-tính-tổng-quát) để tính giá trị của hàm nhân tính tổng quát.
 
 ???+ example "[SPOJ LCMSUM](https://www.spoj.com/problems/LCMSUM/)"
-    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, tính:
     
     $$
     \sum_{i=1}^n \operatorname{lcm}(i,n).
@@ -428,7 +428,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     f(n)=n\sum_{k\mid n}\sum_{i=1}^n\dfrac{i}{k}[\gcd(i,n)=k].
     $$
     
-    Với tổng bên trong, đây là dạng thường gặp nhất có chứa ước chung lớn nhất. Lặp lại quy trình chuẩn, ta có:
+    Với tổng bên trong, đây là dạng thường gặp nhất có chứa ước chung lớn nhất. Lặp lại quy trình chuẩn, có:
     
     $$
     \begin{aligned}
@@ -438,7 +438,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     \end{aligned}
     $$
     
-    Một lần nữa, tổng theo $i$ được tách khỏi phần còn lại và có thể xử lý riêng. Tổng cuối thực chất là tổng cấp số cộng: lấy $i=di'$, ta có
+    Một lần nữa, tổng theo $i$ được tách khỏi phần còn lại và có thể xử lý riêng. Tổng cuối thực chất là tổng cấp số cộng: lấy $i=di'$, có
     
     $$
     \sum_{i=1}^{n/k}i[d\mid i] = d\frac{1}{2}\left(\dfrac{n}{kd}+1\right)\dfrac{n}{kd}=:dG\left(\dfrac{n}{kd}\right).
@@ -474,7 +474,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     H_s(n) = \sum_{\ell}\left(\dfrac{n}{\ell}\right)^sF(\ell),~s=1,2.
     $$
     
-    Để suy ra biểu thức của chúng, chỉ cần xác định giá trị tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, ta có
+    Để suy ra biểu thức của chúng, chỉ cần xác định giá trị tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, có
     
     $$
     \begin{aligned}
@@ -506,7 +506,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     F(d)=\sum_{i=1}^{d}i[i\perp d] = \sum_{i=1}^{d}(d-i)[i\perp d] = \dfrac{1}{2}d\sum_{i=1}^{d}[i\perp d] = \dfrac{1}{2}d\varphi(d).
     $$
     
-    Với $d=1$, ta có
+    Với $d=1$, có
     
     $$
     F(d)=1=\dfrac{1}{2}+\dfrac{1}{2}d\varphi(d).
@@ -518,7 +518,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     f(n) = \dfrac{1}{2}n\left(\sum_{d\mid n}d\varphi(d) + 1\right).
     $$
     
-    Vì $G(n)=\sum_{d\mid n}d\varphi(d)$ là tích chập Dirichlet của hàm nhân tính $n\varphi(n)$ với hàm hằng $1$, nên nó cũng là hàm nhân tính và có thể tiền xử lý bằng sàng tuyến tính. Để làm điều đó, chỉ cần xác định giá trị của nó tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, ta có
+    Vì $G(n)=\sum_{d\mid n}d\varphi(d)$ là tích chập Dirichlet của hàm nhân tính $n\varphi(n)$ với hàm hằng $1$, nên nó cũng là hàm nhân tính và có thể tiền xử lý bằng sàng tuyến tính. Để làm điều đó, chỉ cần xác định giá trị của nó tại lũy thừa nguyên tố. Với số nguyên tố $p$ và số mũ dương $e$, có
     
     $$
     G(p^e) = 1 + \sum_{i=1}^ep^e(p^e-1) = G(p^{e-1}) + p^{2e} - p^{2e-1}.
@@ -526,7 +526,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     
     Có thể thấy biểu thức này nhất quán với kết quả suy ra ở lời giải 1. Độ phức tạp thời gian tổng thể của phương pháp này vẫn là $O(N+T)$.
     
-    Cuối cùng, dùng biểu thức hàm nhân tính của bài này, ta có thể tối ưu thêm quá trình tính bằng sàng tuyến tính. Với số nguyên tố $p$, ta có
+    Cuối cùng, dùng biểu thức hàm nhân tính của bài này, có thể tối ưu thêm quá trình tính bằng sàng tuyến tính. Với số nguyên tố $p$, có
     
     $$
     G(p) = 1 - p + p^2.
@@ -538,7 +538,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     G(pn) = G(p)G(n).
     $$
     
-    Ngược lại, khi $p\mid n$, đặt $n=p^em$ và $p\perp m$, ta có
+    Ngược lại, khi $p\mid n$, đặt $n=p^em$ và $p\perp m$, có
     
     $$
     \begin{aligned}
@@ -554,7 +554,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     G(n) - G\left(\dfrac{n}{p}\right) = (p^{2e}-p^{2e-1})G(m).
     $$
     
-    Thay vào biểu thức trên, ta được
+    Thay vào biểu thức trên, thu được
     
     $$
     G(pn) = G(n) + p^2\left(G(n) - G\left(\dfrac{n}{p}\right)\right).
@@ -583,7 +583,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     f(n,m) = \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j).
     $$
     
-    Vẫn chuyển bội chung nhỏ nhất thành ước chung lớn nhất, liệt kê ước chung và áp dụng quy trình xử lý chuẩn, ta được
+    Vẫn chuyển bội chung nhỏ nhất thành ước chung lớn nhất, liệt kê ước chung và áp dụng quy trình xử lý chuẩn, thu được
     
     $$
     \begin{aligned}
@@ -595,13 +595,13 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     \end{aligned}
     $$
     
-    Một lần nữa, tổng được tách rời theo $i$ và $j$. Trước hết tính các tổng bên trong này; tách nhân tử, tức lấy $i=di'$, ta có
+    Một lần nữa, tổng được tách rời theo $i$ và $j$. Trước hết tính các tổng bên trong này; tách nhân tử, tức lấy $i=di'$, có
     
     $$
     \sum_{i=1}^{\lfloor n/k\rfloor}i[d\mid i] = d\sum_{i=1}^{\lfloor\lfloor n/k\rfloor/d\rfloor}i = dG\left(\left\lfloor\dfrac{\lfloor n/k\rfloor}{d}\right\rfloor\right) = dG\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right).
     $$
     
-    Trong đó $G(n)=\dfrac{1}{2}n(n+1)$ là tổng cấp số cộng, còn dấu bằng cuối dùng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên). Tổng còn lại được tính tương tự. Thay trở lại biểu thức trước đó, ta có
+    Trong đó $G(n)=\dfrac{1}{2}n(n+1)$ là tổng cấp số cộng, còn dấu bằng cuối dùng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên). Tổng còn lại được tính tương tự. Thay trở lại biểu thức trước đó, có
     
     $$
     f(n,m) = \sum_k k\sum_{d}\mu(d)d^2G\left(\left\lfloor\dfrac{n}{kd}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{kd}\right\rfloor\right).
@@ -629,7 +629,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
 Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm đếm số ước của một tích.
 
 ???+ example "[LOJ 2185. \[SDOI2015\] Sum of Divisor Counts](https://loj.ac/problem/2185)"
-    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, hãy tính:
+    Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, tính:
     
     $$
     \sum_{i=1}^n\sum_{j=1}^m\sigma_0(ij).
@@ -640,7 +640,7 @@ Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm
     Giới hạn dữ liệu: $1\le n,m,T\le 5\times 10^4$.
 
 ??? note "Lời giải"
-    Điểm khó của bài này là biến đổi $\sigma_0(ij)$ thành biểu thức theo ước chung lớn nhất. Vì $\sigma_0$ là hàm nhân tính, trước hết có thể xét trường hợp lũy thừa nguyên tố. Với số nguyên tố $p$ và các số mũ không âm $e_1,e_2$, đặt $i=p^{e_1},~j=p^{e_2}$, ta có
+    Điểm khó của bài này là biến đổi $\sigma_0(ij)$ thành biểu thức theo ước chung lớn nhất. Vì $\sigma_0$ là hàm nhân tính, trước hết có thể xét trường hợp lũy thừa nguyên tố. Với số nguyên tố $p$ và các số mũ không âm $e_1,e_2$, đặt $i=p^{e_1},~j=p^{e_2}$, có
     
     $$
     \sigma_0(ij) = 1 + e_1 + e_2 = \sum_{x\mid i}\sum_{y\mid j}[x\perp y].
@@ -686,7 +686,7 @@ Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm
     \end{aligned}
     $$
     
-    Đặt $G(n)=\sum_{i=1}^n\sigma_0(i)$, ta có
+    Đặt $G(n)=\sum_{i=1}^n\sigma_0(i)$, có
     
     $$
     f(n,m)=\sum_{d}\mu(d)G\left(\left\lfloor\dfrac{n}{d}\right\rfloor\right)G\left(\left\lfloor\dfrac{m}{d}\right\rfloor\right).
@@ -750,19 +750,19 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/k\rfloor}\prod_{j=1}^{\lfloor n/k\rfloor}k\uparrow(\mu(d)[d\mid i][d\mid j]).
     $$
     
-    Tiếp tục tách nhân tử, tức đặt $i=di'$, $j=dj'$, và áp dụng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên), ta được:
+    Tiếp tục tách nhân tử, tức đặt $i=di'$, $j=dj'$, và áp dụng tính chất của [hàm lấy phần nguyên dưới](./basic.md#hàm-lấy-phần-nguyên), thu được:
     
     $$
     g(n) = \prod_k\prod_d\prod_{i=1}^{\lfloor n/(kd)\rfloor}\prod_{j=1}^{\lfloor n/(kd)\rfloor}k\uparrow\mu(d).
     $$
     
-    Sau đó tách tích theo $i,j$. Ta thấy trong tích không còn chứa $i,j$, nên điều này tương đương với lấy lũy thừa của tích:
+    Sau đó tách tích theo $i,j$. Trong tích không còn chứa $i,j$, nên điều này tương đương với lấy lũy thừa của tích:
     
     $$
     g(n) = \prod_k\prod_d k\uparrow\left(\mu(d)\left\lfloor\dfrac{n}{kd}\right\rfloor^2\right).
     $$
     
-    Vì phía trước đã liệt kê ước chung, với biểu thức này cần đổi thứ tự lấy tích một lần nữa. Đặt $\ell = kd$, ta có:
+    Vì phía trước đã liệt kê ước chung, với biểu thức này cần đổi thứ tự lấy tích một lần nữa. Đặt $\ell = kd$, có:
     
     $$
     \begin{aligned}
@@ -777,7 +777,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
     $$
     
-    Dễ thấy đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, ta vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
+    Đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Tất nhiên, vì dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
     
     $$
     F(n) = 
@@ -789,16 +789,16 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     
     [Hàm von Mangoldt](#đảo-möbius) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
     
-    Cần chú ý rằng khi tính các tích, ta thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
+    Cần chú ý rằng khi tính các tích, thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
 
 ??? note "Lời giải 2"
-    Điểm khó của suy luận phiên bản nhân nằm ở việc xử lý tích và lũy thừa còn khá lạ. Vì vậy, với loại bài này cũng có thể lấy logarit rồi suy luận. Trong bài này, chỉ xét phần suy luận cho $g(n)$. Lấy logarit, ta có:
+    Điểm khó của suy luận phiên bản nhân nằm ở việc xử lý tích và lũy thừa còn khá lạ. Vì vậy, với loại bài này cũng có thể lấy logarit rồi suy luận. Trong bài này, chỉ xét phần suy luận cho $g(n)$. Lấy logarit, có:
     
     $$
     \log g(n) = \sum_{i=1}^n\sum_{j=1}^n\log\gcd(i,j).
     $$
     
-    Với dạng biểu thức chứa ước chung lớn nhất như vậy, áp dụng trực tiếp quy trình suy luận chuẩn, ta được:
+    Với dạng biểu thức chứa ước chung lớn nhất như vậy, áp dụng trực tiếp quy trình suy luận chuẩn, thu được:
     
     $$
     \begin{aligned}
@@ -812,7 +812,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     \end{aligned}
     $$
     
-    Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#đảo-möbius). Lấy mũ kết quả suy luận này, ta thu được kết quả của lời giải 1.
+    Trong đó $\Lambda(n)$ là [hàm von Mangoldt](#đảo-möbius). Lấy mũ kết quả suy luận này sẽ thu được kết quả của lời giải 1.
 
 ??? note "Mã tham khảo"
     ```cpp
