@@ -24,7 +24,7 @@ Cụ thể, giả sử $(V,+)$ là một nhóm Abel, và $\Bbb{P}$ là một tr�
 3.  **Luật kết hợp của nhân vô hướng (phù hợp với phép nhân trong trường)**: với $a,b\in \Bbb{P},\mathbf u\in V$, $a(b\mathbf u)=(ab)\mathbf u$.
 4.  **Phần tử đơn vị của nhân vô hướng**: gọi $1\in \Bbb{P}$ là phần tử đơn vị của phép nhân trong $\Bbb{P}$, thì với $u\in V$, $1\mathbf u=\mathbf u$.
 
-Khi đó hệ đại số $(V,+,\cdot,\mathbb{P})$ được gọi là một **không gian tuyến tính** trên $\Bbb{P}$ do $V$ cùng với $+,\cdot$ tạo thành; $\Bbb{P}$ là **trường cơ sở** của không gian tuyến tính; các phần tử của $V$ gọi là **vectơ**, còn các phần tử của $\Bbb{P}$ gọi là **vô hướng**. Khi trường $\Bbb{P}$ là trường số thực, ta gọi đó là không gian tuyến tính thực. Khi trường $\Bbb{P}$ là trường số phức, ta gọi đó là không gian tuyến tính phức.
+Khi đó hệ đại số $(V,+,\cdot,\mathbb{P})$ được gọi là một **không gian tuyến tính** trên $\Bbb{P}$ do $V$ cùng với $+,\cdot$ tạo thành; $\Bbb{P}$ là **trường cơ sở** của không gian tuyến tính; các phần tử của $V$ gọi là **vectơ**, còn các phần tử của $\Bbb{P}$ gọi là **vô hướng**. Khi trường $\Bbb{P}$ là trường số thực, đó là không gian tuyến tính thực. Khi trường $\Bbb{P}$ là trường số phức, đó là không gian tuyến tính phức.
 
 Dù là một dãy số, một mũi tên hay một đối tượng khác, miễn thỏa mãn các tiên đề trên thì đều có thể được xem là vectơ, và do đó có thể được nghiên cứu bằng lý thuyết đại số tuyến tính.
 
@@ -38,7 +38,7 @@ Phép cộng trừ vectơ trong nhóm Abel ban đầu, cùng với phép nhân v
     1.  Các phần tử của $V$ sẽ không được in đậm.
     2.  Hệ đại số $(V,+,\cdot,\mathbb{P})$ thỏa mãn định nghĩa không gian tuyến tính cũng sẽ được gọi tắt là không gian tuyến tính.
     
-    Cần chú ý phân biệt theo ngữ cảnh.
+    Cần phân biệt theo ngữ cảnh.
 
 <span id="cách-hiểu-trực-quan"></span>
 ### Cách hiểu trực quan
@@ -63,7 +63,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 6.  Không có ước không: $\forall\alpha\in V,k\in\mathbb{P}$, có $k\alpha=\theta\implies k=0\lor\alpha=\theta$.
 7.  Luật khử của phép cộng: $\forall\alpha,\beta,\gamma\in V$, có $\alpha+\beta=\alpha+\gamma\implies\beta=\gamma$.
 
-    > Thật ra, luật khử của phép cộng là tính chất của nhóm Abel.
+    > Luật khử của phép cộng là tính chất của nhóm Abel.
 
 <span id="ví-dụ"></span>
 ### Ví dụ
@@ -83,7 +83,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
 1.  $a_1,a_2,\dots,a_n\in V$ được gọi là một **hệ vectơ** của $V$.
 2.  Với $k_1,k_2,\dots,k_n\in\Bbb{P}$, $\sum_{i=1}^nk_ia_i$ được gọi là một **tổ hợp tuyến tính** của hệ vectơ $a_1,a_2,\dots,a_n$.
-3.  Nếu vectơ $\beta\in V$ có thể được biểu diễn thành một tổ hợp tuyến tính của hệ vectơ $a_1,a_2,\dots,a_n$, ta nói $\beta$ có thể được **biểu diễn tuyến tính** bởi hệ vectơ $a_1,a_2,\dots,a_n$.
+3.  Nếu vectơ $\beta\in V$ có thể được biểu diễn thành một tổ hợp tuyến tính của hệ vectơ $a_1,a_2,\dots,a_n$, thì $\beta$ có thể được **biểu diễn tuyến tính** bởi hệ vectơ $a_1,a_2,\dots,a_n$.
 4.  Với $k_1,k_2,\dots,k_n\in\Bbb{P}$, nếu hệ vectơ $a_1,a_2,\dots,a_n$ thỏa mãn $\sum_{i=1}^nk_ia_i=\theta\iff k_i=0, i=1,2,\dots,n$, thì hệ vectơ $a_1,a_2,\dots,a_n$ được gọi là **độc lập tuyến tính**; ngược lại gọi là **phụ thuộc tuyến tính**.
 
 Quy ước rằng vectơ không phụ thuộc tuyến tính với mọi vectơ.
@@ -96,11 +96,11 @@ $$
 
 Theo thói quen, các vectơ $a$ được viết cạnh nhau theo thứ tự ở bên trái; các vô hướng $k$ được viết dọc theo thứ tự ở bên phải, tạo thành một "vectơ cột".
 
-Chú ý: "vectơ cột" tạo bởi các vô hướng ở đây chỉ là ký hiệu hình thức cho tiện, không thuộc không gian $V$, và về bản chất khác với các vectơ ở bên trái. Nếu các vectơ bên trái tình cờ là vectơ cột, việc ghép chúng cạnh nhau có thể hình thức tạo thành một "ma trận"; tích trên khi đó đúng là dạng "ma trận nhân trái với vectơ cột" thường gặp trong ma trận.
+Lưu ý: "vectơ cột" tạo bởi các vô hướng trong biểu thức này chỉ là ký hiệu hình thức cho tiện, không thuộc không gian $V$, và về bản chất khác với các vectơ ở bên trái. Nếu các vectơ bên trái tình cờ là vectơ cột, việc ghép chúng cạnh nhau có thể hình thức tạo thành một "ma trận"; tích trên khi đó đúng là dạng "ma trận nhân trái với vectơ cột" thường gặp trong ma trận.
 
-Phần sau sẽ chỉ ra rằng biểu diễn tuyến tính ở đây cũng tương đương với việc vectơ $\beta$ nằm trong không gian ảnh của ma trận $(a_1,a_2\cdots,a_r)$.
+Phần sau sẽ chỉ ra rằng biểu diễn tuyến tính nêu trên cũng tương đương với việc vectơ $\beta$ nằm trong không gian ảnh của ma trận $(a_1,a_2\cdots,a_r)$.
 
-Theo định nghĩa bên dưới, vectơ không chắc chắn nằm trong không gian ảnh. Nếu nhìn từ góc độ ánh xạ tuyến tính, phụ thuộc tuyến tính tương đương với việc có nhiều vectơ sau biến đổi đi tới vectơ không, còn độc lập tuyến tính tương đương với việc chỉ bản thân vectơ không đi tới vectơ không.
+Theo định nghĩa bên dưới, vectơ không nhất thiết nằm trong không gian ảnh. Nếu nhìn từ góc độ ánh xạ tuyến tính, phụ thuộc tuyến tính tương đương với việc có nhiều vectơ sau biến đổi đi tới vectơ không, còn độc lập tuyến tính tương đương với việc chỉ bản thân vectơ không đi tới vectơ không.
 
 <span id="tính-chất"></span>
 #### Tính chất
@@ -129,7 +129,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
     Quy ước hệ con độc lập tuyến tính cực đại của hệ vectơ $\theta,\theta,\dots,\theta$ là tập rỗng; vì thế hệ vectơ tương ứng với ma trận toàn $0$ không có hệ con độc lập tuyến tính cực đại không rỗng.
 
-    Cách xóa vectơ khỏi hệ vectơ không duy nhất, nên hệ con độc lập tuyến tính cực đại cũng không duy nhất. Theo thói quen, ta xóa theo thứ tự từ trái sang phải.
+    Cách xóa vectơ khỏi hệ vectơ không duy nhất, nên hệ con độc lập tuyến tính cực đại cũng không duy nhất. Theo thói quen, việc xóa được thực hiện theo thứ tự từ trái sang phải.
 
     Một điều khá thú vị là nếu xóa theo thứ tự, các vectơ còn lại đúng là các cột chứa phần tử $1$ trong ma trận dạng bậc thang rút gọn sau khử Gauss khi nhìn theo quan điểm "theo hàng".
 
@@ -137,7 +137,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
     Do đó, định nghĩa hạng của hệ vectơ hoàn toàn nhất quán với định nghĩa hạng của ma trận.
 
-2.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể biểu diễn tuyến tính mọi vectơ trong hệ $b_1,b_2,\dots,b_m$, ta nói hệ vectơ $b_1,b_2,\dots,b_m$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$.
+2.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể biểu diễn tuyến tính mọi vectơ trong hệ $b_1,b_2,\dots,b_m$, thì hệ vectơ $b_1,b_2,\dots,b_m$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$.
 
 3.  Nếu hệ vectơ $a_1,a_2,\dots,a_n$ có thể được biểu diễn tuyến tính bởi hệ vectơ $b_1,b_2,\dots,b_m$, đồng thời hệ vectơ $b_1,b_2,\dots,b_m$ có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì hai hệ vectơ được gọi là **tương đương**, ký hiệu $\{a_1,a_2,\dots,a_n\}\cong\{b_1,b_2,\dots,b_m\}$.
 
@@ -171,7 +171,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
 Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$, tập $\left\{v=\sum_{i=1}^nk_ia_i:a_i\in V,k_i\in\Bbb{P},i=1,2,\dots,n\right\}$ cũng tạo thành một không gian tuyến tính, gọi là không gian tuyến tính **sinh bởi** hệ vectơ $a_1,a_2,\dots,a_n$ (hoặc **bao tuyến tính**), ký hiệu $\operatorname{span}\{a_1,a_2,\dots,a_n\}$.
 
-$n$ vectơ $a$ ở đây không nhất thiết độc lập tuyến tính.
+$n$ vectơ $a$ nêu trên không nhất thiết độc lập tuyến tính.
 
 <span id="không-gian-con-tuyến-tính"></span>
 ### Không gian con tuyến tính
@@ -188,7 +188,7 @@ Mọi không gian $V$ đều có hai **không gian con tầm thường**: chính
 
 Nếu thay $\subseteq$ trong điều 2 bằng $\subset$, thì $V_1$ được gọi là không gian con tuyến tính thực sự của $V$, ký hiệu $V_1<V$.
 
-Không khó để chứng minh: tập con không rỗng $V_1$ của không gian tuyến tính $V$ là không gian con tuyến tính của nó khi và chỉ khi các phép toán tuyến tính đóng trên $V_1$, tức:
+Có thể chứng minh rằng tập con không rỗng $V_1$ của không gian tuyến tính $V$ là không gian con tuyến tính của nó khi và chỉ khi các phép toán tuyến tính đóng trên $V_1$, tức:
 
 1.  $\forall u,v\in V_1$,$u+v\in V_1$.
 2.  $\forall v\in V_1$,$\forall k\in \Bbb{P}$,$kv\in V_1$.
@@ -198,7 +198,7 @@ Không khó để chứng minh: tập con không rỗng $V_1$ của không gian 
 
 Với các không gian tuyến tính $(V_1,+,\cdot,\Bbb{P})$ và $(V_2,+,\cdot,\Bbb{P})$:
 
-1.  Không khó kiểm tra rằng phép cộng và nhân vô hướng đóng trên $V_1\cap V_2$, nên $V_1\cap V_2$ được gọi là **giao** của các không gian tuyến tính $V_1$ và $V_2$.
+1.  Phép cộng và nhân vô hướng đóng trên $V_1\cap V_2$, nên $V_1\cap V_2$ được gọi là **giao** của các không gian tuyến tính $V_1$ và $V_2$.
 
     Tương tự, có thể định nghĩa giao của nhiều không gian tuyến tính $\bigcap_{i=1}^m V_i$.
 
@@ -299,7 +299,7 @@ thì $\sigma$ được gọi là **ánh xạ đẳng cấu** từ $V$ tới $V'$
 2.  (Hệ quả của 1) Không gian tuyến tính $n$ chiều trên trường $\Bbb{P}$ đẳng cấu với không gian tuyến tính $\Bbb{P}^n$.
 
     ???+ note "Ghi chú"
-        Tính chất này cho thấy về cơ bản ta có thể xem tọa độ và vectơ như nhau.
+        Tính chất này cho thấy về cơ bản có thể xem tọa độ và vectơ như nhau.
 
 <span id="quan-hệ-giữa-không-gian-euclid-và-không-gian-tuyến-tính"></span>
 ## Quan hệ giữa không gian Euclid và không gian tuyến tính
@@ -320,7 +320,7 @@ Lấy không gian Euclid ba chiều quen thuộc nhất làm ví dụ, một s�
 
 Từ phần này trở đi chủ yếu trình bày quan điểm "nhìn theo cột" đối với hệ phương trình tuyến tính.
 
-Bản thân ma trận $A$ cũng được tạo bởi các vectơ cột. Hãy xem $A$ như một hệ vectơ cột, còn $x$ là các hệ số chưa biết, và xét liệu hệ vectơ cột trong $A$ có thể phối hợp với các ẩn để tạo ra vectơ cột $b$ hay không. Lúc này vectơ cột $x$ hoàn toàn chưa biết.
+Bản thân ma trận $A$ cũng được tạo bởi các vectơ cột. Có thể xem $A$ như một hệ vectơ cột, còn $x$ là các hệ số chưa biết, và xét liệu hệ vectơ cột trong $A$ có thể phối hợp với các ẩn để tạo ra vectơ cột $b$ hay không. Lúc này vectơ cột $x$ hoàn toàn chưa biết.
 
 Phương trình đang xét $Ax=b$ được viết lại thành:
 
@@ -328,7 +328,7 @@ $$
 \alpha_1 x_1 +\alpha_2 x_2 +\cdots+\alpha_n x_n=b 
 $$
 
-Khi đó trong phép nhân ma trận, ma trận $A$ ở bên trái có thể được xem là một hệ vectơ, tức một hệ vectơ cột. Hệ vectơ cột này, với vai trò một hệ cơ sở, sinh ra một không gian; ta xét xem vectơ cột $b$ có nằm trong không gian đó hay không.
+Khi đó trong phép nhân ma trận, ma trận $A$ ở bên trái có thể được xem là một hệ vectơ, tức một hệ vectơ cột. Hệ vectơ cột này, với vai trò một hệ cơ sở, sinh ra một không gian; cần xét xem vectơ cột $b$ có nằm trong không gian đó hay không.
 
 <span id="nhìn-nghiệm-của-hệ-phương-trình-tuyến-tính-theo-cột"></span>
 ### Nhìn nghiệm của hệ phương trình tuyến tính theo cột
@@ -354,7 +354,7 @@ Tương đương nghiệm của hệ phương trình cũng mạnh hơn điều k
 
 So sánh với tương đương của hệ vectơ: tương đương của hệ vectơ yêu cầu ghép ma trận theo chiều ngang mà hạng không đổi. Do đó có quan hệ sau:
 
-Tương đương ma trận không nhất thiết kéo theo tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình; nhưng nếu có tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình thì chắc chắn có tương đương ma trận tương ứng (hạng bằng nhau).
+Tương đương ma trận không nhất thiết kéo theo tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình; nhưng nếu có tương đương hệ vectơ hoặc tương đương nghiệm của hệ phương trình thì luôn có tương đương ma trận tương ứng (hạng bằng nhau).
 
 Nếu hệ vectơ tương ứng với ma trận là tương đương, thì sau khi chuyển vị ma trận, hệ phương trình tương ứng là tương đương nghiệm, và ngược lại.
 
@@ -391,7 +391,7 @@ Tương tự, có thể định nghĩa **không gian hàng** của $A$, tức mi
 
 Vì hạng hàng của ma trận bằng hạng cột, số chiều của không gian hàng cũng bằng hạng của ma trận. Do đó phép chuyển vị làm thay đổi không gian ảnh, nhưng không làm thay đổi số chiều của không gian ảnh.
 
-Tại đây có thể liên hệ với phần trước:
+Có thể liên hệ với phần trước:
 
 Tương đương của hệ vectơ tương đương với việc không gian ảnh $R(A)$ của ma trận tương ứng là như nhau.
 

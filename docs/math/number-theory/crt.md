@@ -74,7 +74,7 @@ Bài toán "không biết số vật" ở trên là một ví dụ của hệ ph
 
 Cần chứng minh rằng $x$ do thuật toán trên tính được thỏa $x\equiv a_i \pmod {n_i}$ với mọi $i=1,2,\cdots,k$.
 
-Khi $i\neq j$, ta có $m_j \equiv 0 \pmod {n_i}$, nên $c_j \equiv m_j \equiv 0 \pmod {n_i}$. Lại có $c_i \equiv m_i \cdot (m_i^{-1} \bmod {n_i}) \equiv 1 \pmod {n_i}$, vì vậy:
+Khi $i\neq j$, có $m_j \equiv 0 \pmod {n_i}$, nên $c_j \equiv m_j \equiv 0 \pmod {n_i}$. Đồng thời $c_i \equiv m_i \cdot (m_i^{-1} \bmod {n_i}) \equiv 1 \pmod {n_i}$, vì vậy:
 
 $$
 \begin{aligned}
@@ -116,7 +116,7 @@ a &\equiv a_k \pmod {p_k} \\
 \end{cases}
 $$
 
-ta có thể biểu diễn $a$ dưới dạng sau, gọi là biểu diễn cơ số hỗn hợp của $a$:
+Số $a$ có thể được biểu diễn dưới dạng sau, gọi là biểu diễn cơ số hỗn hợp của $a$:
 
 $$
 a = x_1 + x_2 p_1 + x_3 p_1 p_2 + \ldots + x_k p_1 \ldots p_{k-1}
@@ -130,19 +130,19 @@ $$
 p_i \cdot r_{i,j} \equiv 1 \pmod{p_j}
 $$
 
-Thay $a$ vào phương trình thứ nhất, ta được:
+Thay $a$ vào phương trình thứ nhất, thu được:
 
 $$
 a_1 \equiv x_1 \pmod{p_1}
 $$
 
-Thay vào phương trình thứ hai, ta được:
+Thay vào phương trình thứ hai, thu được:
 
 $$
 a_2 \equiv x_1 + x_2 p_1 \pmod{p_2}
 $$
 
-Trừ $x_1$ hai vế rồi chia cho $p_1$, ta có
+Trừ $x_1$ hai vế rồi chia cho $p_1$, thu được
 
 $$
 \begin{aligned}
@@ -152,7 +152,7 @@ $$
 \end{aligned}
 $$
 
-Tương tự, ta có:
+Tương tự, suy ra:
 
 $$
 x_k=(\dots((a_k-x_1)r_{1,k}-x_2)r_{2,k})-\dots)r_{k-1,k} \bmod p_k
@@ -182,7 +182,7 @@ $$
                     x[i] = x[i] + p[i]
         ```
 
-Độ phức tạp thời gian của thuật toán này là $O(k^2)$. Thực ra thuật toán Garner không yêu cầu các modulo là số nguyên tố; chỉ cần chúng đôi một nguyên tố cùng nhau. Ta có mã giả sau:
+Độ phức tạp thời gian của thuật toán này là $O(k^2)$. Thuật toán Garner không yêu cầu các modulo là số nguyên tố; chỉ cần chúng đôi một nguyên tố cùng nhau. Mã giả như sau:
 
 $$
 \begin{array}{ll}
@@ -200,27 +200,27 @@ $$
 \end{array}
 $$
 
-Có thể thấy phép tính ở dòng 6 tương ứng với biểu diễn cơ số hỗn hợp ở trên.
+Phép tính ở dòng 6 tương ứng với biểu diễn cơ số hỗn hợp ở trên.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
 
 Trong một số bài toán đếm hoặc bài toán số học, để kéo dài mã nguồn, tăng độ khó, hoặc vì một lý do khác nào đó, modulo được cho **không phải số nguyên tố**.
 
-Tuy nhiên, khi phân tích thừa số nguyên tố của nó, ta thấy nó không có thừa số chính phương; tức modulo đó là tích của một số nguyên tố khác nhau.
+Tuy nhiên, khi phân tích thừa số nguyên tố, modulo này không có thừa số chính phương; tức modulo đó là tích của một số nguyên tố khác nhau.
 
-Khi đó, ta có thể tính riêng theo các modulo này, rồi dùng CRT để ghép đáp án cuối cùng.
+Khi đó, có thể tính riêng theo các modulo này, rồi dùng CRT để ghép đáp án cuối cùng.
 
 Bài sau là một ví dụ tốt.
 
 ???+ note "[Luogu P2480, SDOI2010: văn bản lợn cổ đại](https://www.luogu.com.cn/problem/P2480)"
-    Cho $G,n$ ($1 \leq G,n \leq 10^9$), hãy tính:
+    Cho $G,n$ ($1 \leq G,n \leq 10^9$), tính:
     
     $$
     G^{\sum_{k\mid n}\binom{n}{k}} \bmod 999~911~659
     $$
 
-Trước hết, khi $G=999~911~659$, giá trị cần tìm hiển nhiên bằng $0$.
+Trước hết, khi $G=999~911~659$, giá trị cần tìm bằng $0$.
 
 Ngược lại, theo [định lý Euler](./fermat.md#định-lý-euler), giá trị cần tìm là:
 
@@ -236,9 +236,9 @@ $$
 
 Vì $999~911~658$ không phải số nguyên tố, không thể bảo đảm mọi $x \in [1,999~911~657]$ đều có nghịch đảo, nên biểu thức trên không thể được tính trực tiếp theo cách thông thường.
 
-Chú ý $999~911~658=2 \times 3 \times 4679 \times 35617$, trong đó bậc cao nhất của mỗi thừa số nguyên tố đều bằng một. Vì vậy có thể lần lượt tính $\sum_{k\mid n}\binom{n}{k}$ theo các modulo nguyên tố $2$, $3$, $4679$, $35617$, rồi dùng định lý số dư Trung Hoa để ghép đáp án.
+Phân tích $999~911~658=2 \times 3 \times 4679 \times 35617$, trong đó bậc cao nhất của mỗi thừa số nguyên tố đều bằng một. Vì vậy có thể lần lượt tính $\sum_{k\mid n}\binom{n}{k}$ theo các modulo nguyên tố $2$, $3$, $4679$, $35617$, rồi dùng định lý số dư Trung Hoa để ghép đáp án.
 
-Nói cách khác, thực chất ta cần tìm nghiệm của hệ phương trình tuyến tính sau:
+Nói cách khác, bài toán trở thành tìm nghiệm của hệ phương trình tuyến tính sau:
 
 $$
 \begin{cases}

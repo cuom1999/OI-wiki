@@ -14,13 +14,13 @@ Trên mặt phẳng, đa giác lồi nhỏ nhất có thể chứa tất cả c�
 
 Có thể hình dung bao lồi như hình dạng của một sợi dây cao su bao quanh tất cả các điểm đã cho.
 
-Bao lồi bao quanh toàn bộ các điểm đã cho với chu vi nhỏ nhất. Nếu một đa giác lõm bao quanh tất cả các điểm, chu vi của nó chắc chắn không nhỏ nhất, như hình dưới đây. Theo bất đẳng thức tam giác, đa giác lồi chắc chắn là tối ưu về chu vi.
+Bao lồi bao quanh toàn bộ các điểm đã cho với chu vi nhỏ nhất. Nếu một đa giác lõm bao quanh tất cả các điểm, chu vi của nó không nhỏ nhất, như hình dưới đây. Theo bất đẳng thức tam giác, đa giác lồi là tối ưu về chu vi.
 
 ![](./images/ch.png)
 
 ### Thuật toán Andrew để tìm bao lồi
 
-Các cách thường dùng để tìm bao lồi gồm quét Graham và thuật toán Andrew; ở đây chủ yếu giới thiệu thuật toán Andrew.
+Các cách thường dùng để tìm bao lồi gồm quét Graham và thuật toán Andrew; phần này chủ yếu giới thiệu thuật toán Andrew.
 
 #### Tính chất
 
@@ -30,9 +30,9 @@ Các cách thường dùng để tìm bao lồi gồm quét Graham và thuật t
 
 Trước hết, sắp xếp tất cả các điểm theo hoành độ làm khóa thứ nhất và tung độ làm khóa thứ hai.
 
-Rõ ràng phần tử nhỏ nhất và phần tử lớn nhất sau khi sắp xếp chắc chắn nằm trên bao lồi. Hơn nữa, vì đây là đa giác lồi, nếu đi ngược chiều kim đồng hồ từ một điểm, quỹ đạo luôn "rẽ trái"; một khi xuất hiện rẽ phải, điều đó cho thấy đoạn này không nằm trên bao lồi. Vì vậy, ta có thể dùng một stack đơn điệu để duy trì vỏ lồi dưới và vỏ lồi trên.
+Phần tử nhỏ nhất và phần tử lớn nhất sau khi sắp xếp nằm trên bao lồi. Hơn nữa, vì đây là đa giác lồi, nếu đi ngược chiều kim đồng hồ từ một điểm, quỹ đạo luôn "rẽ trái"; một khi xuất hiện rẽ phải, điều đó cho thấy đoạn này không nằm trên bao lồi. Vì vậy, có thể dùng một stack đơn điệu để duy trì vỏ lồi dưới và vỏ lồi trên.
 
-Khi nhìn từ trái sang phải, hướng quay của vỏ lồi dưới và vỏ lồi trên là khác nhau. Để stack đơn điệu phát huy tác dụng, trước hết ta **duyệt tăng dần** để tìm vỏ lồi dưới, sau đó **duyệt giảm dần** để tìm vỏ lồi trên.
+Khi nhìn từ trái sang phải, hướng quay của vỏ lồi dưới và vỏ lồi trên là khác nhau. Để stack đơn điệu phát huy tác dụng, trước hết **duyệt tăng dần** để tìm vỏ lồi dưới, sau đó **duyệt giảm dần** để tìm vỏ lồi trên.
 
 Khi tìm vỏ lồi, nếu phát hiện điểm sắp được đưa vào stack ($P$) và hai điểm trên đỉnh stack ($S_1,S_2$, trong đó $S_1$ là đỉnh stack) tạo hướng di chuyển quay sang phải, tức tích có hướng nhỏ hơn $0$: $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}<0$, thì loại đỉnh stack, quay lại bước trước và tiếp tục kiểm tra, cho đến khi $\overrightarrow{S_2S_1}\times \overrightarrow{S_1P}\ge 0$ hoặc trong stack chỉ còn một phần tử.
 
@@ -120,11 +120,11 @@ Tương tự thuật toán Andrew, độ phức tạp thời gian của quét Gr
 
 #### Quy trình
 
-Trước hết tìm điểm $P$ có tung độ nhỏ nhất trong tất cả các điểm. Theo định nghĩa bao lồi, ta biết điểm này chắc chắn nằm trên bao lồi. Sau đó sắp xếp tất cả các điểm theo góc cực so với điểm $P$.
+Trước hết tìm điểm $P$ có tung độ nhỏ nhất trong tất cả các điểm. Theo định nghĩa bao lồi, điểm này nằm trên bao lồi. Sau đó sắp xếp tất cả các điểm theo góc cực so với điểm $P$.
 
 ![](./images/ch1.svg)
 
-Tương tự thuật toán Andrew, xét việc đi ngược chiều kim đồng hồ trên bao lồi bắt đầu từ điểm $P$; mọi điểm ta đi qua đều phải là các lần "rẽ trái". Nói một cách hình thức, với ba điểm liên tiếp bất kỳ $P_1, P_2, P_3$ trên bao lồi theo chiều ngược kim đồng hồ, luôn có $\overrightarrow{P_1 P_2} \times \overrightarrow{P_2 P_3} \ge 0$.
+Tương tự thuật toán Andrew, xét việc đi ngược chiều kim đồng hồ trên bao lồi bắt đầu từ điểm $P$; mọi điểm đi qua đều phải là các lần "rẽ trái". Nói một cách hình thức, với ba điểm liên tiếp bất kỳ $P_1, P_2, P_3$ trên bao lồi theo chiều ngược kim đồng hồ, luôn có $\overrightarrow{P_1 P_2} \times \overrightarrow{P_2 P_3} \ge 0$.
 
 Tạo một stack mới để lưu thông tin bao lồi, trước tiên đẩy $P$ vào stack, rồi lần lượt thử thêm từng điểm theo thứ tự góc cực. Nếu điểm sắp vào stack $P_0$ và hai điểm trên đỉnh stack $P_1, P_2$ (trong đó $P_1$ là đỉnh stack) tạo hướng di chuyển "rẽ phải", thì loại $P_1$ khỏi đỉnh stack. Lặp lại quá trình trên cho đến khi điểm sắp vào stack và hai điểm trên đỉnh stack thỏa điều kiện, hoặc trong stack chỉ còn một phần tử, rồi đẩy $P_0$ vào stack.
 
@@ -179,7 +179,7 @@ Tạo một stack mới để lưu thông tin bao lồi, trước tiên đẩy $
 
 ### Định nghĩa
 
-Tổng Minkowski $P+Q$ của tập điểm $P$ và tập điểm $Q$ được định nghĩa là $P+Q=\{a+b|a\in P,b\in Q\}$. Nói cách khác, xem mỗi điểm trong tập điểm $Q$ là một vector, tịnh tiến mỗi điểm trong tập điểm $P$ theo các vector đó, thì tập hợp các kết quả cuối cùng chính là tập điểm $P+Q$. Ở đây chỉ xét tổng Minkowski của **bao lồi**.
+Tổng Minkowski $P+Q$ của tập điểm $P$ và tập điểm $Q$ được định nghĩa là $P+Q=\{a+b|a\in P,b\in Q\}$. Nói cách khác, xem mỗi điểm trong tập điểm $Q$ là một vector, tịnh tiến mỗi điểm trong tập điểm $P$ theo các vector đó, thì tập hợp các kết quả cuối cùng chính là tập điểm $P+Q$. Phần này chỉ xét tổng Minkowski của **bao lồi**.
 
 Ví dụ: với tập điểm $P=\{(0,0),(-3,3),(2,1)\}$ và tập điểm $Q=\{(0,0),(-1,3),(1,4),(2,2)\}$,
 
@@ -189,7 +189,7 @@ Tịnh tiến $P$ theo từng vector của $Q$:
 
 ![](./images/convex-hull2.svg)
 
-Dễ thấy hình mới cũng là một **bao lồi**:
+Hình mới cũng là một **bao lồi**:
 
 ![](./images/convex-hull3.svg)
 
@@ -198,7 +198,7 @@ Dễ thấy hình mới cũng là một **bao lồi**:
 1.  Nếu các tập điểm $P$, $Q$ là tập lồi, thì tổng Minkowski $P+Q$ của chúng cũng là tập lồi.
 
     ??? note "Chứng minh"
-        Giả sử $e,f\in P+Q$, khi đó tồn tại $a,b \in P$, $c,d\in Q$ sao cho $e=a+c,f=b+d$. Với mọi $t\in[0,1]$, ta có:
+        Giả sử $e,f\in P+Q$, khi đó tồn tại $a,b \in P$, $c,d\in Q$ sao cho $e=a+c,f=b+d$. Với mọi $t\in[0,1]$, có:
         
         $$
         \begin{aligned}
@@ -216,9 +216,9 @@ Dễ thấy hình mới cũng là một **bao lồi**:
         
         Gọi $U$ là điểm thấp nhất của $Q$ lúc này, và $A$ là điểm **thấp nhất** đồng thời **ở bên trái nhất** của $P+Q$.
         
-        Ta có $\vec{A} = \vec{X} + \vec{U}$, nên $A$ chắc chắn nằm trên biên của $P+Q$.
+        Có $\vec{A} = \vec{X} + \vec{U}$, nên $A$ nằm trên biên của $P+Q$.
         
-        Tương tự, với điểm $B$ **thấp nhất** đồng thời **ở bên phải nhất** trong $P+Q$, ta có $\vec{B} = \vec{Y} + \vec{U}$, nên $B$ cũng chắc chắn nằm trên biên của $P+Q$.
+        Tương tự, với điểm $B$ **thấp nhất** đồng thời **ở bên phải nhất** trong $P+Q$, có $\vec{B} = \vec{Y} + \vec{U}$, nên $B$ cũng nằm trên biên của $P+Q$.
         
         Do đó, có $\vec{AB} = \vec{XY} + \vec{U}$.
         
@@ -228,7 +228,7 @@ Dễ thấy hình mới cũng là một **bao lồi**:
 
 ### Cài đặt
 
-Theo tính chất 2, ta có thể sắp xếp các tập lồi $P,Q$ theo góc cực để thu được thứ tự xuất hiện của chúng trên $P+Q$. Xem $P_1+Q_1$ là điểm bắt đầu của $P+Q$, sau đó dùng cách tương tự **trộn** để lần lượt đặt các cạnh.
+Theo tính chất 2, có thể sắp xếp các tập lồi $P,Q$ theo góc cực để thu được thứ tự xuất hiện của chúng trên $P+Q$. Xem $P_1+Q_1$ là điểm bắt đầu của $P+Q$, sau đó dùng cách tương tự **trộn** để lần lượt đặt các cạnh.
 
 Độ phức tạp thời gian: $O(n+m)$
 
@@ -294,7 +294,7 @@ Theo tính chất 2, ta có thể sắp xếp các tập lồi $P,Q$ theo góc c
 Quy trình tìm bao lồi như sau:
 
 -   Trước hết nhiễu loạn rất nhỏ các điểm để tránh trường hợp bốn điểm đồng phẳng.
--   Với một bao lồi đã biết, thêm một điểm mới $P$. Xem $P$ như một nguồn sáng điểm và chiếu các tia về phía bao lồi; khi đó có thể biết rằng các mặt nhìn thấy ánh sáng và các mặt không nhìn thấy ánh sáng chắc chắn bị ngăn cách bởi một số cạnh.
+-   Với một bao lồi đã biết, thêm một điểm mới $P$. Xem $P$ như một nguồn sáng điểm và chiếu các tia về phía bao lồi; khi đó các mặt nhìn thấy ánh sáng và các mặt không nhìn thấy ánh sáng bị ngăn cách bởi một số cạnh.
 -   Xóa các mặt nhìn thấy ánh sáng, rồi thêm các mặt phẳng tạo bởi $P$ và các cạnh phân cách đó.
     Lặp lại quá trình này là có thể thu được kết quả. Theo [định lý Pick](./pick.md), công thức Euler (trong đa diện lồi, số đỉnh $V$, số cạnh $E$ và số mặt $F$ thỏa mãn $V-E+F=2$) và phép nghịch đảo đường tròn, độ phức tạp là $O(n^2)$.[^3d-v]
 
