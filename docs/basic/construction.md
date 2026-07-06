@@ -6,75 +6,74 @@ Trang này giới thiệu ngắn gọn về dạng bài xây dựng.
 
 Bài xây dựng là một dạng bài thường gặp trong các cuộc thi.
 
-Xét về hình thức, đáp án của bài thường có một quy luật nào đó, nhờ vậy khi
-kích thước bài toán tăng nhanh, vẫn có cơ hội tìm được đáp án theo quy luật đó.
+Về hình thức, đáp án của dạng bài này thường tuân theo một quy luật nào đó. Nhờ
+vậy, ngay cả khi kích thước bài toán tăng nhanh, ta vẫn có cơ hội tìm được đáp
+án bằng cách khai thác quy luật đó.
 
-Điều này đòi hỏi khi giải bài phải phân tích việc tăng kích thước bài toán
+Điều này đòi hỏi người giải phải phân tích xem việc tăng kích thước bài toán
 ảnh hưởng đến đáp án như thế nào, và ảnh hưởng đó có thể tổng quát hóa hay
-không. Chẳng hạn khi thiết kế quy hoạch động, cần xét việc chuyển từ một
-trạng thái sang trạng thái kế tiếp gây ra tác động gì.
+không. Chẳng hạn, khi thiết kế quy hoạch động, cần xét việc chuyển từ một trạng
+thái sang trạng thái kế tiếp gây ra tác động gì.
 
 ## Đặc điểm
 
 Một đặc điểm nổi bật của bài xây dựng là độ tự do cao. Nói cách khác, một bài
-có thể có nhiều cách xây dựng, nhưng thường tồn tại một cách đơn giản thỏa mãn
-đề bài. Thoạt nhìn yêu cầu có vẻ được nới lỏng và bài trở nên dễ hơn, nhưng
-nhiều khi chính độ tự do cao này làm bài không có hướng đi cụ thể và khiến việc
+có thể có nhiều cách xây dựng, và thường tồn tại một cách đơn giản thỏa mãn đề
+bài. Thoạt nhìn, yêu cầu có vẻ được nới lỏng nên bài trở nên dễ hơn; nhưng
+nhiều khi chính độ tự do cao này làm bài thiếu hướng đi cụ thể và khiến việc
 bắt đầu trở nên khó khăn.
 
-Một đặc điểm khác là hình thức linh hoạt và biến hóa đa dạng. Không có một lời
-giải tổng quát hay khuôn mẫu nào giải được mọi bài xây dựng; thậm chí khó tìm
-ra điểm chung trong tư duy giải.
+Một đặc điểm khác là hình thức linh hoạt và rất đa dạng. Không có một lời giải
+tổng quát hay khuôn mẫu nào giải được mọi bài xây dựng; thậm chí nhiều bài còn
+khó tìm ra điểm chung trong tư duy giải.
 
 ## Bài ví dụ
 
 Sau đây là một số bài ví dụ giúp người đọc cảm nhận tư tưởng của dạng bài xây
-dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem lời giải sẽ hữu
-ích. Những bài xây dựng thú vị khác cũng đáng được chia sẻ thêm.
+dựng và gợi mở hướng suy nghĩ. Nên tự suy nghĩ kỹ trước khi xem lời giải. Những
+bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
 ### Bài ví dụ 1
 
 ???+ note "[Codeforces Round #384 (Div. 2) C. Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
-    Xây dựng một bộ $x,y,z$ sao cho với $n$ cho trước, đẳng thức sau đúng:
+    Với $n$ cho trước, hãy xây dựng một bộ $x,y,z$ sao cho đẳng thức sau đúng:
     $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$.
 
 ??? note "Ý tưởng giải"
     Ví dụ thứ hai gợi ra cách xây dựng của bài này.
 
-    Bộ $n,n+1,n(n+1)$ là một nghiệm hợp lệ. Trường hợp đặc biệt
-    $n=1$ thì vô nghiệm, vì khi đó $n+1$ và $n(n+1)$ bằng nhau.
+    Bộ $n,n+1,n(n+1)$ là một nghiệm hợp lệ. Trường hợp đặc biệt $n=1$ thì vô
+    nghiệm, vì khi đó $n+1$ và $n(n+1)$ bằng nhau.
 
-    Việc nghĩ ra cách xây dựng này có lẽ đến từ quan sát ví dụ cộng với trực
-    giác số học. Bài này thuận lợi với người có trực giác toán tốt.
+    Cách xây dựng này có lẽ đến từ việc quan sát ví dụ kết hợp với trực giác số
+    học. Bài này khá thuận lợi với người có trực giác toán tốt.
 
 ### Bài ví dụ 2
 
 ???+ note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
-    Nhiệm vụ 1: Xét xem có thể xây dựng một hoán vị độ dài $n$ của
-    $1\dots n$ sao cho $n$ tổng tiền tố của nó đôi một khác nhau modulo $n$
-    hay không, và nếu có thì xây dựng.
+    Nhiệm vụ 1: Xét xem có thể xây dựng một hoán vị độ dài $n$ của $1\dots n$
+    sao cho $n$ tổng tiền tố của nó đôi một khác nhau modulo $n$ hay không; nếu
+    có thì hãy xây dựng.
 
-    Nhiệm vụ 2: Xét xem có thể xây dựng một hoán vị độ dài $n$ của
-    $1\dots n$ sao cho $n$ tích tiền tố của nó đôi một khác nhau modulo $n$
-    hay không, và nếu có thì xây dựng.
+    Nhiệm vụ 2: Xét xem có thể xây dựng một hoán vị độ dài $n$ của $1\dots n$
+    sao cho $n$ tích tiền tố của nó đôi một khác nhau modulo $n$ hay không; nếu
+    có thì hãy xây dựng.
 
 ??? note "Ý tưởng giải"
     Với nhiệm vụ 1:
 
     Khi $n$ là số lẻ, không thể xây dựng nghiệm hợp lệ.
 
-    Khi $n$ là số chẵn, có thể xây dựng một dãy dạng
-    $n,1,n-2,3,\cdots$.
+    Khi $n$ là số chẵn, có thể xây dựng một dãy dạng $n,1,n-2,3,\cdots$.
 
-    Trước hết, $n$ phải xuất hiện ở vị trí đầu tiên của dãy.
-    Nếu không, hai tổng tiền tố trước và sau khi $n$ xuất hiện sẽ
-    bằng nhau theo modulo.
+    Trước hết, $n$ phải xuất hiện ở vị trí đầu tiên của dãy. Nếu không, hai tổng
+    tiền tố trước và sau khi $n$ xuất hiện sẽ bằng nhau theo modulo.
 
     Sau đó xét cách xây dựng toàn bộ dãy:
 
-    Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Nhận xét rằng
-    hiệu giữa hai tổng tiền tố bất kỳ không được bằng nhau theo modulo, vì dãy
-    sai phân của dãy tổng tiền tố tương ứng với hoán vị ban đầu.
+    Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Nhận xét rằng hiệu
+    giữa hai tổng tiền tố bất kỳ không được trùng nhau theo modulo, vì dãy sai
+    phân của dãy tổng tiền tố tương ứng với hoán vị ban đầu.
 
     Vì vậy, thử xây dựng dãy tổng tiền tố theo modulo dưới dạng
 
@@ -88,7 +87,7 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
 
     Khi $n$ là hợp số khác $4$, không thể xây dựng nghiệm hợp lệ.
 
-    Khi $n$ là số nguyên tố hoặc $4$, có thể xây dựng một dãy dạng
+    Khi $n$ là số nguyên tố hoặc bằng $4$, có thể xây dựng một dãy dạng
     $1,\dfrac{2}{1},\dfrac{3}{2},\cdots,\dfrac{n-1}{n-2},n$.
 
     Trước hết xét khi nào có nghiệm:
@@ -102,17 +101,16 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
 
     Tiếp theo xét cách xây dựng dãy:
 
-    Tương tự nhiệm vụ 1, $1$ phải xuất hiện ở vị trí đầu tiên,
-    nếu không hai tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau.
-    Còn $n$ phải xuất hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện
-    của $n$, mọi tích tiền tố theo modulo đều bằng $0$. Sau khi phân tích vài
-    ví dụ trong đề, các ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
-    tiền tố theo modulo là $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu
-    ở trên để thỏa điều kiện này. Khi đó cần chứng minh $n$ số này đôi một khác
-    nhau.
+    Tương tự nhiệm vụ 1, $1$ phải xuất hiện ở vị trí đầu tiên; nếu không, hai
+    tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau. Còn $n$ phải xuất
+    hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện của $n$, mọi tích tiền tố
+    theo modulo đều bằng $0$. Sau khi phân tích vài ví dụ trong đề, ta thấy các
+    ví dụ đều có một nghiệm hợp lệ sao cho dãy tích tiền tố theo modulo là
+    $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu ở trên để thỏa điều
+    kiện này. Khi đó cần chứng minh $n$ số này đôi một khác nhau.
 
-    Các số đó đều là nghịch đảo của $1\cdots n-2$ cộng thêm $1$,
-    nên chúng đôi một khác nhau. Bài toán được giải.
+    Các số đó đều là nghịch đảo của $1\cdots n-2$ cộng thêm $1$, nên chúng đôi
+    một khác nhau. Bài toán được giải.
 
 ### Bài ví dụ 3
 
@@ -130,15 +128,15 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     Bằng cách phân tích các trường hợp $n=3,4,5$, có thể tìm ra một cách
     xây dựng.
 
-    Xây dựng một đồ thị $k$-phần đầy đủ, sao cho tổng chỉ số trong mỗi phần
-    bằng nhau. Khi đó $S$ của mỗi đỉnh đều bằng
+    Xây dựng một đồ thị $k$-phần đầy đủ sao cho tổng chỉ số trong mỗi phần bằng
+    nhau. Khi đó $S$ của mỗi đỉnh đều bằng
     $\dfrac{(k-1)\sum_{i=1}^{n}i}{k}$.
 
     Nếu $n$ chẵn, ghép các số đầu-cuối thành từng cặp:
     $\{1,n\},\{2,n-1\}\cdots$.
 
-    Nếu $n$ lẻ, tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn
-    lại: $\{n\},\{1,n-1\},\{2,n-2\}\cdots$.
+    Nếu $n$ lẻ, tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn lại:
+    $\{n\},\{1,n-1\},\{2,n-2\}\cdots$.
 
     Tính liên thông của đồ thị khi $n\ge 3$ được suy ra từ cách ghép trên, nên
     không trình bày thêm trong phần này.
@@ -164,22 +162,22 @@ dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem
     $n$ và $v$. Viết chương trình giúp Tiểu Q nhớ lại đầu vào mẫu năm xưa.
 
 ??? note "Ý tưởng giải"
-    Đây là một trong những bài xây dựng có độ tự do cao nhất. Chính điều đó làm
+    Đây là một trong những bài xây dựng có độ tự do rất cao. Chính điều đó làm
     người giải dễ rơi vào tình trạng không có manh mối và khó bắt đầu.
 
-    Trước hết, modulo không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự do,
-    luôn có thể khiến số cách không vượt quá modulo.
+    Trước hết, modulo không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự
+    do, luôn có thể khiến số cách không vượt quá modulo.
 
     Một hướng xây dựng gián tiếp hơn là dùng $n$ đồ vật nhỏ có thể tích $1$ và
     một vài đồ vật lớn có thể tích lớn hơn $\dfrac{w}{2}$.
 
-    Vì mỗi đồ vật lớn chỉ có thể chọn nhiều nhất một cái, nên một đồ vật lớn có
-    thể tích $x$ đóng góp $\dbinom{n}{w-x}$ vào số cách.
+    Vì mỗi đồ vật lớn chỉ có thể được chọn nhiều nhất một lần, một đồ vật lớn có
+    thể tích $x$ sẽ đóng góp $\dbinom{n}{w-x}$ vào số cách.
 
     Gọi $f_{i,j}$ là số đồ vật lớn ít nhất cần dùng khi có $i$ đồ vật thể tích
     $1$ và số cách là $j$.
 
-    Dùng DP để tiền xử lý $f$. Tính toán cho thấy tiền xử lý mọi giá trị với
-    $i\le 20$ là đủ.
+    Dùng DP để tiền xử lý $f$. Tính toán cho thấy chỉ cần tiền xử lý các giá trị
+    với $i\le 20$ là đủ.
 
     Bài toán được giải.
