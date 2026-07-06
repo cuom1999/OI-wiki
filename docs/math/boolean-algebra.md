@@ -4,18 +4,18 @@ Trong logic toán học, đại số Boolean (boolean algebra) là một nhánh 
 ## Hàm Boolean
 
 ???+ abstract "Định nghĩa"
-    **Hàm Boolean** (boolean function) là hàm có dạng $f:\mathbf{B}^k\to \mathbf{B}$, trong đó $\mathbf{B}=\{0,1\}$ là **miền Boolean** (boolean domain), và số nguyên không âm $k$ là **số ngôi** (arity) của hàm Boolean này. Hàm Boolean với $k=1$ là hàm một ngôi, và tương tự cho các trường hợp khác. Khi $k=0$, ta xem hàm suy biến thành một hằng trong $\mathbf{B}$.
+    **Hàm Boolean** (boolean function) là hàm có dạng $f:\mathbf{B}^k\to \mathbf{B}$, trong đó $\mathbf{B}=\{0,1\}$ là **miền Boolean** (boolean domain), và số nguyên không âm $k$ là **số ngôi** (arity) của hàm Boolean này. Hàm Boolean với $k=1$ là hàm một ngôi, và tương tự cho các trường hợp khác. Khi $k=0$, hàm được xem là suy biến thành một hằng trong $\mathbf{B}$.
 
-Thông thường ta chỉ nghiên cứu các hàm Boolean một ngôi và hai ngôi. Nếu không nói rõ thêm, các hàm Boolean dưới đây chỉ xét trong hai trường hợp một ngôi và hai ngôi.
+Thông thường, phạm vi nghiên cứu chỉ gồm các hàm Boolean một ngôi và hai ngôi. Nếu không nói rõ thêm, các hàm Boolean dưới đây chỉ xét trong hai trường hợp một ngôi và hai ngôi.
 
-Ngoài cách biểu diễn hàm thông thường, ta còn có thể dùng **bảng chân trị** (truth table), **cổng logic** (logic gate), hoặc [biểu đồ Venn](https://en.wikipedia.org/wiki/Venn_diagram) để biểu diễn hàm Boolean.
+Ngoài cách biểu diễn hàm thông thường, có thể dùng **bảng chân trị** (truth table), **cổng logic** (logic gate), hoặc [biểu đồ Venn](https://en.wikipedia.org/wiki/Venn_diagram) để biểu diễn hàm Boolean.
 
 ???+ abstract "Bảng chân trị"
-    Với một hàm Boolean, ta liệt kê tất cả các trường hợp đầu vào của nó, rồi lập thành một bảng gồm đầu vào và đầu ra tương ứng. Bảng đó được gọi là bảng chân trị.
+    Với một hàm Boolean, liệt kê tất cả các trường hợp đầu vào của nó, rồi lập thành một bảng gồm đầu vào và đầu ra tương ứng. Bảng đó được gọi là bảng chân trị.
 
 Hàm Boolean $n$ ngôi cũng có thể được biểu diễn bằng **công thức mệnh đề** (propositional formula) gồm $n$ biến. Hai công thức mệnh đề $p$ và $q$ **tương đương logic** (logically equivalent) khi và chỉ khi chúng mô tả cùng một hàm Boolean, ký hiệu là $p\iff q$.
 
-Sau đây là một số hàm Boolean thường gặp; ta cũng gọi chung các hàm Boolean này là **liên từ logic** (logical connective) hoặc **toán tử logic** (logical operator):
+Sau đây là một số hàm Boolean thường gặp; các hàm Boolean này còn được gọi chung là **liên từ logic** (logical connective) hoặc **toán tử logic** (logical operator):
 
 | Tên (logic toán học)                                      | Tên khác                               | Ký hiệu                          |
 | --------------------------------------------------------- | -------------------------------------- | -------------------------------- |
@@ -46,9 +46,9 @@ Biểu đồ Venn và [biểu đồ Hasse](./order-theory.md#biểu-diễn-trự
 
 Vì đầu vào của hàm Boolean $n$ ngôi có $2^n$ trường hợp, nên có $2\uparrow (2\uparrow n)$ hàm Boolean $n$ ngôi, trong đó $\uparrow$ là mũi tên Knuth.
 
-Ta gọi tổ hợp các toán tử logic là **biểu thức logic** (logical expression).
+Tổ hợp các toán tử logic được gọi là **biểu thức logic** (logical expression).
 
-Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#lớp-đồng-dư-và-hệ-thặng-dư) modulo $2$, thì XOR tương đương với phép cộng modulo $2$, còn AND tương đương với phép nhân modulo $2$. Vì vậy đôi khi ta cũng dùng $\mathbf{Z}_2$ để biểu thị miền Boolean.
+Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#lớp-đồng-dư-và-hệ-thặng-dư) modulo $2$, thì XOR tương đương với phép cộng modulo $2$, còn AND tương đương với phép nhân modulo $2$. Vì vậy đôi khi $\mathbf{Z}_2$ cũng được dùng để biểu thị miền Boolean.
 
 <span id="thứ-tự-ưu-tiên"></span>
 ### Thứ tự ưu tiên
@@ -62,10 +62,10 @@ Quy ước trong C++ xem tại [bảng tổng hợp thứ tự ưu tiên toán t
 <span id="toán-tử-tự-túc-và-tập-toán-tử-đầy-đủ"></span>
 ### Toán tử tự túc và tập toán tử đầy đủ
 
-Thực ra, chỉ cần NAND hoặc NOR là có thể biểu diễn các toán tử logic còn lại; CPU cũng được xây dựng dựa trên điểm này. Tuy nhiên, do bốn toán tử logic **AND, OR, NOT, XOR** có tính chất tốt hơn, nên khi nghiên cứu đại số Boolean ta thường chỉ dùng bốn hàm này.
+Chỉ cần NAND hoặc NOR là có thể biểu diễn các toán tử logic còn lại; CPU cũng được xây dựng dựa trên điểm này. Tuy nhiên, do bốn toán tử logic **AND, OR, NOT, XOR** có tính chất tốt hơn, nên khi nghiên cứu đại số Boolean thường chỉ sử dụng bốn hàm này.
 
 ??? example "Cách dùng riêng NAND và NOR để biểu diễn các toán tử logic còn lại"
-    Ta có
+    Có các đẳng thức
     
     -   $\lnot p=p\bar{\land} p=p\bar{\lor} p$,
     -   $p\land q=(p\bar{\land}q)\bar{\land}(p\bar{\land}q)=(p\bar{\lor}p)\bar{\lor}(q\bar{\lor}q)$,
@@ -81,12 +81,12 @@ Thực ra, chỉ cần NAND hoặc NOR là có thể biểu diễn các toán t�
     -   $p\gets q=q\to p$,
     -   $p\nleftarrow q=\lnot(p\gets q)$.
 
-Liệu ta có thể dùng một số toán tử logic được chỉ định để mô tả tất cả các toán tử logic hay không? Câu hỏi này dẫn đến định nghĩa tập toán tử đầy đủ.
+Một câu hỏi tự nhiên là liệu một số toán tử logic được chỉ định có đủ để mô tả tất cả các toán tử logic hay không. Câu hỏi này dẫn đến định nghĩa tập toán tử đầy đủ.
 
 ???+ abstract "Định nghĩa"
     Với một tập toán tử logic cho trước, nếu chỉ dùng các hàm trong tập đó mà có thể mô tả tất cả các toán tử logic, thì tập đó được gọi là **tập toán tử đầy đủ** (functionally complete operator set). Đặc biệt, nếu chỉ cần một toán tử logic để mô tả tất cả các toán tử logic, thì toán tử đó được gọi là **toán tử tự túc** (sole sufficient operator) hoặc **hàm Sheffer** (Sheffer function).
     
-    Nếu xóa bất kỳ một phần tử nào khỏi một tập toán tử đầy đủ thì tập con thu được không còn mô tả được tất cả các toán tử logic, ta gọi tập ban đầu là **tập toán tử đầy đủ cực tiểu** (minimal functionally complete operator set).
+    Nếu xóa bất kỳ một phần tử nào khỏi một tập toán tử đầy đủ thì tập con thu được không còn mô tả được tất cả các toán tử logic, tập ban đầu được gọi là **tập toán tử đầy đủ cực tiểu** (minimal functionally complete operator set).
 
 Có thể chứng minh rằng trong các toán tử logic, chỉ có $\bar{\land}$ và $\bar{\lor}$ là toán tử tự túc.
 
@@ -109,7 +109,7 @@ Trước hết là các tính chất liên quan đến cấu trúc đại số:
 -   XOR và XNOR đều lập thành [nhóm](./algebra/basic.md#nhóm) trên $\mathbf{B}$. Tức là phép XOR và phép XNOR đều có tính giao hoán, tính kết hợp, phần tử đơn vị ($x\oplus 0=x\odot 1=x$) và phần tử nghịch đảo ($x\oplus x=0$, $x\odot x=1$).
 -   NAND và NOR đều không có tính kết hợp, nên không lập thành nửa nhóm.
 
-Với $\land$ và $\lor$, ta có:
+Với $\land$ và $\lor$, có các tính chất sau:
 
 -   Luật phân phối:
     -   $a\land(b\diamond c)=(a\land b)\diamond (a\land c)$, trong đó $\diamond$ có thể là $\land$, $\lor$, $\oplus$,
@@ -122,9 +122,9 @@ Với $\land$ và $\lor$, ta có:
     -   $a \land b \iff \lnot((a \to \lnot b) \lor (b \to \lnot a))$.
 
 ???+ abstract "Tính đơn điệu của hàm Boolean"
-    Với một hàm Boolean $f(x_1,\dots,x_n)$ và hai phần tử $(a_1,\dots,a_n),(b_1,\dots,b_n)$ trong $\mathbf{B}^n$, nếu cứ $a_i\leq b_i,~~\forall i=1,\dots,n$ thì luôn có $f(a_1,\dots,a_n)\leq f(b_1,\dots,b_n)$, ta gọi hàm Boolean đó là đơn điệu.
+    Với một hàm Boolean $f(x_1,\dots,x_n)$ và hai phần tử $(a_1,\dots,a_n),(b_1,\dots,b_n)$ trong $\mathbf{B}^n$, nếu cứ $a_i\leq b_i,~~\forall i=1,\dots,n$ thì luôn có $f(a_1,\dots,a_n)\leq f(b_1,\dots,b_n)$, hàm Boolean đó được gọi là đơn điệu.
 
-Ta còn có các tính chất sau:
+Ngoài ra còn có các tính chất sau:
 
 -   **Luật loại trừ trung gian** (law of excluded middle): $p\lor\lnot p$ luôn đúng.
 -   $\lnot p\iff p\to\bot$.
@@ -135,10 +135,10 @@ Ta còn có các tính chất sau:
 <span id="chuẩn-hóa-biểu-thức-logic"></span>
 ## Chuẩn hóa biểu thức logic
 
-Theo các tính chất trên, ta có thể thực hiện một số phép biến đổi tương đương trên biểu thức logic để đưa nó về những dạng chuẩn nhất định; điều này có thể được dùng trong chứng minh định lý tự động. Các dạng chuẩn hóa thường gặp gồm **dạng chuẩn hội** (conjunctive normal form, CNF), **dạng chuẩn tuyển** (disjunctive normal form, DNF) và **dạng chuẩn đại số** (algebraic normal form, ANF).
+Theo các tính chất trên, có thể thực hiện một số phép biến đổi tương đương trên biểu thức logic để đưa nó về những dạng chuẩn nhất định; điều này có thể được dùng trong chứng minh định lý tự động. Các dạng chuẩn hóa thường gặp gồm **dạng chuẩn hội** (conjunctive normal form, CNF), **dạng chuẩn tuyển** (disjunctive normal form, DNF) và **dạng chuẩn đại số** (algebraic normal form, ANF).
 
 ???+ abstract "Dạng chuẩn hội và dạng chuẩn tuyển"
-    Ta định nghĩa đệ quy như sau:
+    Định nghĩa đệ quy như sau:
     
     1.  **Literal** (trực kiện): với biến $x$, $x$ và $\lnot x$ là trực kiện.
     2.  Mệnh đề con:
@@ -169,7 +169,7 @@ Các biểu thức logic sau không phải dạng chuẩn hội cũng không ph�
 -   $\lnot(A\land B)$,
 -   $A\land (B\lor (C\land D))$.
 
-Ta có thể đưa một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$ về DNF bằng các bước sau:
+Một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$ có thể được đưa về DNF bằng các bước sau:
 
 $$
 \begin{array}{rcccl}
@@ -184,7 +184,7 @@ $$
 Để thu được CNF của biểu thức $X$, chỉ cần tìm DNF của $\lnot X$, sau đó phủ định lại và áp dụng luật De Morgan.
 
 ???+ abstract "Dạng chuẩn đại số"
-    Trước hết, ta dùng định nghĩa đệ quy sau để định nghĩa mệnh đề con:
+    Trước hết, dùng định nghĩa đệ quy sau để định nghĩa mệnh đề con:
     
     -   Biến $x$ là mệnh đề con,
     -   Nếu $A$ là mệnh đề con và $x$ là biến, thì $x\land A$ là mệnh đề con.
@@ -195,9 +195,9 @@ $$
     2.  XOR của một số mệnh đề con không tương đương nhau, chẳng hạn $a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$,
     3.  XOR của một số mệnh đề con không tương đương nhau và duy nhất một $1$, chẳng hạn $1\oplus a\oplus b\oplus(a\land b)\oplus(a\land b\land c)$.
 
-Chú ý rằng dạng chuẩn đại số tương ứng một-một với đa thức trên $\mathbf{Z}_2$, nên dạng chuẩn đại số cũng được gọi là **đa thức Zhegalkin** (Zhegalkin polynomial).
+Dạng chuẩn đại số tương ứng một-một với đa thức trên $\mathbf{Z}_2$, nên dạng chuẩn đại số cũng được gọi là **đa thức Zhegalkin** (Zhegalkin polynomial).
 
-Ta có thể đưa một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$, $\oplus$ về ANF bằng các bước sau:
+Một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\land$, $\lor$, $\oplus$ có thể được đưa về ANF bằng các bước sau:
 
 1.  $\oplus$: khai triển trực tiếp, chẳng hạn $(1\oplus x)\oplus(1\oplus x\oplus y)=1\oplus x\oplus 1\oplus x\oplus y=y$,
 2.  $\land$: khai triển bằng luật phân phối, chẳng hạn $x\land(1\oplus x\oplus y)=(x\land 1)\oplus (x\land x)\oplus (x\land y)=x\oplus (x\land y)$,

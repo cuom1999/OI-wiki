@@ -1,10 +1,10 @@
 author: cesonic, Enter-tainer, Great-designer, Ir1d, ksyx, lychees, MegaOwIer, RUIN-RISE, wjy-yy, rsdbkhusky, ouuan, Menci, Tiphereth-A
 
-Nhớ lại khái niệm vectơ cơ sở trong hình học không gian ở bậc phổ thông: trong không gian Euclid ba chiều, ta có thể tìm một bộ vectơ cơ sở $\boldsymbol{i}$, $\boldsymbol{j}$, $\boldsymbol{k}$; khi đó mọi vectơ trong không gian đều có thể được biểu diễn bởi bộ vectơ cơ sở này. Nói cách khác, ta có thể **mô tả một không gian ba chiều vô hạn bằng một số hữu hạn vectơ cơ sở**, điều này đủ cho thấy tầm quan trọng của vectơ cơ sở.
+Nhớ lại khái niệm vectơ cơ sở trong hình học không gian ở bậc phổ thông: trong không gian Euclid ba chiều, có thể tìm một bộ vectơ cơ sở $\boldsymbol{i}$, $\boldsymbol{j}$, $\boldsymbol{k}$; khi đó mọi vectơ trong không gian đều có thể được biểu diễn bởi bộ vectơ cơ sở này. Nói cách khác, có thể **mô tả một không gian ba chiều vô hạn bằng một số hữu hạn vectơ cơ sở**, điều này đủ cho thấy tầm quan trọng của vectơ cơ sở.
 
 Không gian Euclid ba chiều là một trường hợp đặc biệt của [không gian tuyến tính](./vector-space.md); vectơ cơ sở của không gian Euclid ba chiều được khái quát trong không gian tuyến tính thành cơ sở tuyến tính.
 
-Trong OI, các ứng dụng liên quan đến cơ sở tuyến tính thường chỉ xét hai loại không gian tuyến tính: không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ và không gian tuyến tính $n$ chiều trên [trường Boolean](https://en.wikipedia.org/wiki/Boolean_domain) $\mathbf{Z}_2^n$. Chúng ta sẽ giới thiệu chi tiết trong phần [ứng dụng](#ứng-dụng). Nếu chưa quen với đại số tuyến tính, bạn nên bắt đầu đọc từ phần ứng dụng.
+Trong OI, các ứng dụng liên quan đến cơ sở tuyến tính thường chỉ xét hai loại không gian tuyến tính: không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ và không gian tuyến tính $n$ chiều trên [trường Boolean](https://en.wikipedia.org/wiki/Boolean_domain) $\mathbf{Z}_2^n$. Hai loại này sẽ được giới thiệu chi tiết trong phần [ứng dụng](#ứng-dụng). Nếu chưa quen với đại số tuyến tính, nên bắt đầu đọc từ phần ứng dụng.
 
 Phần dưới sẽ xuất phát từ không gian tuyến tính tổng quát để giới thiệu cơ sở tuyến tính và nêu các tính chất thường gặp của nó.
 
@@ -19,7 +19,7 @@ Một hệ con độc lập tuyến tính cực đại của không gian tuyến
 
 Quy ước rằng cơ sở của không gian tuyến tính $\{\theta\}$ là tập rỗng.
 
-Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ sở tuyến tính[^existence_basis]. Ta định nghĩa **số chiều** của không gian tuyến tính $V$ là số phần tử (hoặc lực lượng) của một cơ sở tuyến tính, ký hiệu $\dim V$.
+Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ sở tuyến tính[^existence_basis]. **Số chiều** của không gian tuyến tính $V$ được định nghĩa là số phần tử (hoặc lực lượng) của một cơ sở tuyến tính, ký hiệu $\dim V$.
 
 <span id="tính-chất"></span>
 ## Tính chất
@@ -56,7 +56,7 @@ Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ s�
         
         Khi đó $\sum_{i=1}^{n_2-m} t_ic_i=-\sum_{i=1}^m r_ia_i-\sum_{i=1}^{n_1-m} s_ib_i$.
         
-        Chú ý rằng vế trái nằm trong $V_2$, còn vế phải nằm trong $V_1$, nên cả hai vế đều nằm trong $V_1\cap V_2$. Do đó $\sum_{i=1}^{n_2-m} t_ic_i=\sum_{i=1}^m k_ia_i$.
+        Lưu ý rằng vế trái nằm trong $V_2$, còn vế phải nằm trong $V_1$, nên cả hai vế đều nằm trong $V_1\cap V_2$. Do đó $\sum_{i=1}^{n_2-m} t_ic_i=\sum_{i=1}^m k_ia_i$.
         
         Suy ra $t_1=t_2=\dots=t_{n_2-m}=k_1=k_2=\dots=k_m=0$, tiếp đó $r_1=r_2=\dots=r_m=s_1=s_2=\dots=s_{n_1-m}=t_1=t_2=\dots=t_{n_2-m}=0$.
 
@@ -112,7 +112,7 @@ Mọi cơ sở của không gian tuyến tính hữu hạn chiều $V$ đều c�
 <span id="ứng-dụng"></span>
 ## Ứng dụng
 
-Từ các nội dung phía trước, ta có thể dùng cơ sở tuyến tính để:
+Từ các nội dung phía trước, có thể dùng cơ sở tuyến tính để:
 
 1.  Tìm hạng của một hệ vectơ cho trước.
 2.  Với một hệ vectơ cho trước, tìm một hệ con độc lập tuyến tính cực đại (hoặc một cơ sở của không gian tuyến tính do nó sinh ra).
@@ -120,7 +120,7 @@ Từ các nội dung phía trước, ta có thể dùng cơ sở tuyến tính �
 4.  Với một hệ con độc lập tuyến tính cực đại (hoặc cơ sở) đã tìm được, phán đoán một vectơ có thể được biểu diễn tuyến tính bởi nó hay không.
 5.  Với một hệ con độc lập tuyến tính cực đại (hoặc cơ sở) đã tìm được, tìm các phần tử đặc biệt trong không gian tuyến tính do nó sinh ra, chẳng hạn phần tử lớn nhất, nhỏ nhất, v.v.
 
-Trong OI, ta thường gọi cơ sở tuyến tính trong không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ là **cơ sở tuyến tính thực**, và cơ sở tuyến tính trong không gian tuyến tính $n$ chiều trên trường Boolean $\mathbf{Z}_2^n$ là **cơ sở tuyến tính XOR**.
+Trong OI, cơ sở tuyến tính trong không gian tuyến tính thực $n$ chiều $\mathbf{R}^n$ thường được gọi là **cơ sở tuyến tính thực**, còn cơ sở tuyến tính trong không gian tuyến tính $n$ chiều trên trường Boolean $\mathbf{Z}_2^n$ thường được gọi là **cơ sở tuyến tính XOR**.
 
 ???+ tip "Mẹo"
     Trong $\mathbf{Z}_2$, phép cộng là XOR, phép nhân là AND; có thể chứng minh $\mathbf{Z}_2$ là một trường.
@@ -137,13 +137,13 @@ Trong OI, ta thường gọi cơ sở tuyến tính trong không gian tuyến t�
     
     Tức phép cộng là XOR, nhân vô hướng là AND.
 
-Lấy cơ sở tuyến tính XOR làm ví dụ. Với một hệ dãy Boolean cho trước $X=\{x_1,\dots,x_m\}$, ta có thể xây dựng một cơ sở tuyến tính XOR $B=\{b_1,\dots,b_n\}$. Cơ sở này có các tính chất sau:
+Lấy cơ sở tuyến tính XOR làm ví dụ. Với một hệ dãy Boolean cho trước $X=\{x_1,\dots,x_m\}$, có thể xây dựng một cơ sở tuyến tính XOR $B=\{b_1,\dots,b_n\}$. Cơ sở này có các tính chất sau:
 
 1.  XOR của mọi tập con không rỗng của $B$ khác $0$.
 2.  Với mọi phần tử $x$ trong $X$, có thể lấy một số phần tử trong $B$ sao cho XOR của chúng bằng $x$.
 3.  Với mọi tập $B'$ thỏa mãn hai điều trên, số phần tử của nó không nhỏ hơn số phần tử của $B$.
 
-Ta có thể dùng cơ sở tuyến tính XOR để:
+Có thể dùng cơ sở tuyến tính XOR để:
 
 1.  Kiểm tra một số có thể được biểu diễn thành XOR của một tập con của một tập số hay không.
 2.  Tính số cách biểu diễn một số thành XOR của một tập con của một tập số.
@@ -162,7 +162,7 @@ Với mỗi số $p$ trong tập ban đầu, chuyển nó sang dạng nhị phâ
 
 Để truy vấn giá trị lớn nhất của XOR của một số phần tử bất kỳ trong tập ban đầu, chỉ cần quét cơ sở tuyến tính từ bit cao xuống bit thấp; nếu XOR với $a_x$ hiện đang quét làm đáp án lớn hơn, thì XOR đáp án với $a_x$.
 
-Vì sao cách này đúng? Vì khi quét từ cao xuống thấp, nếu đang quét tới bit thứ $i$, ta có thể đảm bảo bit thứ $i$ của đáp án là $1$, và về sau không còn cơ hội thay đổi bit thứ $i$ nữa.
+Vì sao cách này đúng? Vì khi quét từ cao xuống thấp, nếu đang quét tới bit thứ $i$, có thể bảo đảm bit thứ $i$ của đáp án là $1$, và về sau không còn cơ hội thay đổi bit thứ $i$ nữa.
 
 Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong tập ban đầu chính là phần tử nhỏ nhất trong tập cơ sở tuyến tính.
 
@@ -176,7 +176,7 @@ Giá trị nhỏ nhất của XOR của một số phần tử bất kỳ trong 
 <span id="phương-pháp-khử-gauss"></span>
 #### Phương pháp khử Gauss
 
-Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tuyến tính từ góc độ hệ phương trình tuyến tính, nên tính đúng đắn là hiển nhiên.
+Phương pháp khử Gauss tương đương với việc xây dựng cơ sở tuyến tính từ góc độ hệ phương trình tuyến tính, nên tính đúng đắn suy ra trực tiếp.
 
 ??? example "Mã nguồn (Luogu P3812 [Mẫu: cơ sở tuyến tính](https://www.luogu.com.cn/problem/P3812))"
     ```cpp
@@ -246,7 +246,7 @@ Cơ sở tuyến tính sinh bởi phương pháp khử Gauss:
 0000000000
 ```
 
-Đây là một tính chất rất hữu ích, giúp ta giải nhiều bài toán thuận tiện hơn. Ví dụ: cho một số số, chọn một vài số trong đó để XOR lại và tìm giá trị XOR lớn nhất. Nếu dùng phương pháp tham lam để xây dựng cơ sở tuyến tính, cần làm thêm một lần tham lam: nếu bit hiện tại của `ans` là `0`, thì XOR chắc chắn tốt hơn; nếu bit hiện tại là `1`, thì chắc chắn không tốt hơn. Còn sau khi dùng khử Gauss để xây dựng cơ sở tuyến tính, chỉ cần XOR tất cả phần tử trong cơ sở tuyến tính rồi xuất ra.
+Đây là một tính chất rất hữu ích, giúp giải nhiều bài toán thuận tiện hơn. Ví dụ: cho một số số, chọn một vài số trong đó để XOR lại và tìm giá trị XOR lớn nhất. Nếu dùng phương pháp tham lam để xây dựng cơ sở tuyến tính, cần làm thêm một lần tham lam: nếu bit hiện tại của `ans` là `0`, thì XOR sẽ tốt hơn; nếu bit hiện tại là `1`, thì XOR không tốt hơn. Còn sau khi dùng khử Gauss để xây dựng cơ sở tuyến tính, chỉ cần XOR tất cả phần tử trong cơ sở tuyến tính rồi xuất ra.
 
 Với các bài toán kinh điển khác như truy vấn một số có thể được XOR ra hay không, truy vấn số lớn thứ $k$ có thể được XOR ra, v.v., cơ sở tuyến tính thu được từ khử Gauss cũng giải quyết thuận tiện hơn.
 
@@ -277,7 +277,7 @@ Giả sử hai cơ sở tuyến tính cần tìm giao lần lượt là $\alpha$
 -   Nếu chèn thành công, tức đã chèn vectơ $\beta_j'$ vào bit thứ $x$ của cơ sở tuyến tính, thì đổi $b_x$ được ghi ở bit thứ $x$ thành đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ trong quá trình thu được $\beta_j'$.
 -   Nếu chèn không thành công, thì chèn đóng góp $b$ của các phần tử trong cơ sở tuyến tính $\beta$ đã ghi trong quá trình đó vào $\gamma$.
 
-Cơ sở tuyến tính $\gamma$ thu được theo cách này chính là giao cần tìm. Tất nhiên, thuật toán này đồng thời cũng tìm được tổng của các cơ sở tuyến tính.
+Cơ sở tuyến tính $\gamma$ thu được theo cách này chính là giao cần tìm. Thuật toán này đồng thời cũng tìm được tổng của các cơ sở tuyến tính.
 
 ??? note "Giải thích thuật toán"
     Giả sử cơ sở tuyến tính sau khi hợp nhất là $\{\alpha_1,\cdots,\alpha_m,\beta'_{j_1},\cdots,\beta'_{j_\ell}\}$, trong đó $\beta'_{j_k}$ là vectơ cuối cùng thu được khi chèn $\beta_{j_k}$. Khi đó $\{\alpha_1,\cdots,\alpha_m,\beta_{j_1},\cdots,\beta_{j_\ell}\}$ cũng là một cơ sở tuyến tính sau khi hợp nhất. Ký hiệu $\beta^+$ là tập $\{\beta_{j_1},\cdots,\beta_{j_\ell}\}$, thì cơ sở sau hợp nhất có thể viết là $\alpha\cup\beta^+$. Hơn nữa, mọi vectơ $c$ trong không gian tổng đều có thể được biểu diễn duy nhất dưới dạng
@@ -288,23 +288,23 @@ Cơ sở tuyến tính $\gamma$ thu được theo cách này chính là giao c�
     
     trong đó $a\in\operatorname{span}\alpha$ và $b\in\operatorname{span}\beta^+$. Thành phần $b$ trong phân rã này chính là "đóng góp của các phần tử trong cơ sở tuyến tính $\beta$" mà thuật toán phía trước **cố gắng** ghi lại. Nói chặt chẽ hơn, đó chỉ là đóng góp của những vectơ trong $\beta$ đã được chèn thành công cuối cùng.
     
-    Với một lần chèn thành công, $b$ được ghi lại cuối cùng chính là thành phần $b$ trong phân rã trên. Giả sử $\beta_j\in\beta^+$. Ban đầu, $\beta_j=0\oplus\beta_j$, đã là phân rã đúng của $\beta_j$ trên cơ sở $\alpha\cup\beta^+$. Khi cập nhật $\beta'_j=a\oplus b$ thành $\beta'_j\oplus c_x$, vì $\beta_j'\oplus c_x=(a\oplus a_x)\oplus(b\oplus b_x)$, nên chỉ cần cập nhật $b$ thành $b\oplus b_x$ là vẫn đảm bảo phân rã đúng. Vì thế theo quy nạp, khi cuối cùng chèn $\beta'_j$ vào cơ sở tuyến tính sau hợp nhất, đóng góp $b$ được ghi lại chính là thành phần $b$ trong phân rã nói trên.
+    Với một lần chèn thành công, $b$ được ghi lại cuối cùng chính là thành phần $b$ trong phân rã trên. Giả sử $\beta_j\in\beta^+$. Ban đầu, $\beta_j=0\oplus\beta_j$, đã là phân rã đúng của $\beta_j$ trên cơ sở $\alpha\cup\beta^+$. Khi cập nhật $\beta'_j=a\oplus b$ thành $\beta'_j\oplus c_x$, vì $\beta_j'\oplus c_x=(a\oplus a_x)\oplus(b\oplus b_x)$, nên chỉ cần cập nhật $b$ thành $b\oplus b_x$ là vẫn bảo đảm phân rã đúng. Vì thế theo quy nạp, khi cuối cùng chèn $\beta'_j$ vào cơ sở tuyến tính sau hợp nhất, đóng góp $b$ được ghi lại chính là thành phần $b$ trong phân rã nói trên.
     
-    Với một lần chèn không thành công, biến cuối cùng cần chèn chắc chắn trở thành $0$, và đóng góp $b$ lúc này cần được chèn vào $\gamma$. Nếu lặp lại lập luận phía trên, ta sẽ thấy trong quá trình chèn vẫn luôn đảm bảo $\beta_j'=a\oplus b$, với $a\in\operatorname{span}\alpha$, chỉ là $b$ không còn thuộc $\operatorname{span}\beta^+$. Nguyên nhân là ở thời điểm khởi tạo, trong $\beta_j=0\oplus\beta_j$ thì $\beta_j\notin\beta^+$. Ngoài điểm này, các hạng tử được XOR khi cập nhật đóng góp đều thuộc $\operatorname{span}\beta^+$. Vì vậy thực ra có $b\oplus\beta_j\in\operatorname{span}\beta^+$.
+    Với một lần chèn không thành công, biến cuối cùng cần chèn nhất định trở thành $0$, và đóng góp $b$ lúc này cần được chèn vào $\gamma$. Nếu lặp lại lập luận phía trên, trong quá trình chèn vẫn luôn bảo đảm $\beta_j'=a\oplus b$, với $a\in\operatorname{span}\alpha$, chỉ là $b$ không còn thuộc $\operatorname{span}\beta^+$. Nguyên nhân là ở thời điểm khởi tạo, trong $\beta_j=0\oplus\beta_j$ thì $\beta_j\notin\beta^+$. Ngoài điểm này, các hạng tử được XOR khi cập nhật đóng góp đều thuộc $\operatorname{span}\beta^+$. Vì vậy thực chất có $b\oplus\beta_j\in\operatorname{span}\beta^+$.
     
-    Vậy vì sao chèn tất cả các $b$ từ những lần chèn không thành công vào $\gamma$ lại thu được cơ sở tuyến tính của không gian giao? Trước hết, nếu chèn $\beta_j$ không thành công, cuối cùng chắc chắn thu được $0=a\oplus b$, trong đó $a\in\operatorname{span}\alpha$ và $b\in\operatorname{span}(\beta^+\cup\{\beta_j\})\subseteq\operatorname{span}\beta$. Do đó $b=a$ nhất định nằm trong không gian giao $\operatorname{span}\alpha\cap\operatorname{span}\beta$. Ngược lại, giả sử $c$ là một phần tử bất kỳ trong không gian giao. Vì $c\in\operatorname{span}\beta$, nên $c$ có thể được biểu diễn thành tổ hợp tuyến tính (XOR) của các phần tử trong $\beta$:
+    Vậy vì sao chèn tất cả các $b$ từ những lần chèn không thành công vào $\gamma$ lại thu được cơ sở tuyến tính của không gian giao? Trước hết, nếu chèn $\beta_j$ không thành công, cuối cùng thu được $0=a\oplus b$, trong đó $a\in\operatorname{span}\alpha$ và $b\in\operatorname{span}(\beta^+\cup\{\beta_j\})\subseteq\operatorname{span}\beta$. Do đó $b=a$ nhất định nằm trong không gian giao $\operatorname{span}\alpha\cap\operatorname{span}\beta$. Ngược lại, giả sử $c$ là một phần tử bất kỳ trong không gian giao. Vì $c\in\operatorname{span}\beta$, nên $c$ có thể được biểu diễn thành tổ hợp tuyến tính (XOR) của các phần tử trong $\beta$:
     
     $$
     c = \bigoplus_{\beta_j\in\beta}\lambda_j\beta_j,
     $$
     
-    trong đó $\lambda_j\in\{0,1\}$. Với mỗi $\beta_j\notin\beta^+$, gọi đóng góp tương ứng được chèn vào $\gamma$ là $b_j$, ta có
+    trong đó $\lambda_j\in\{0,1\}$. Với mỗi $\beta_j\notin\beta^+$, gọi đóng góp tương ứng được chèn vào $\gamma$ là $b_j$, có
     
     $$
     c\oplus\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j = \bigoplus_{\beta_j\in\beta^+}\lambda_j\beta_j+\bigoplus_{\beta_j\notin\beta^+}\lambda_j(\beta_j\oplus b_j),
     $$
     
-    Chú ý rằng $b_j$ và $c$ đều nằm trong không gian giao, nên vế trái cũng nhất định nằm trong không gian giao; do đó vế trái có thể viết thành tổ hợp tuyến tính của các phần tử trong $\alpha$. Đồng thời, mọi hạng tử ở vế phải hoặc là $\beta_j\in\beta^+$, hoặc là $\beta_j\notin\beta^+$ và $\beta_j\oplus b_j\in\beta^+$; vì vậy vế phải thực chất là tổ hợp tuyến tính của các phần tử trong $\beta^+$. Nhưng $\alpha\cup\beta^+$ độc lập tuyến tính, nên mọi hệ số đều bằng $0$, tức $c=\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j\in\operatorname{span}\{b_1,\cdots,b_j\}$. Điều này chứng tỏ các đóng góp $b$ của những vectơ không thể chèn cùng nhau sinh ra không gian giao.
+    Lưu ý rằng $b_j$ và $c$ đều nằm trong không gian giao, nên vế trái cũng nhất định nằm trong không gian giao; do đó vế trái có thể viết thành tổ hợp tuyến tính của các phần tử trong $\alpha$. Đồng thời, mọi hạng tử ở vế phải hoặc là $\beta_j\in\beta^+$, hoặc là $\beta_j\notin\beta^+$ và $\beta_j\oplus b_j\in\beta^+$; vì vậy vế phải thực chất là tổ hợp tuyến tính của các phần tử trong $\beta^+$. Nhưng $\alpha\cup\beta^+$ độc lập tuyến tính, nên mọi hệ số đều bằng $0$, tức $c=\bigoplus_{\beta_j\notin\beta^+}\lambda_jb_j\in\operatorname{span}\{b_1,\cdots,b_j\}$. Điều này chứng tỏ các đóng góp $b$ của những vectơ không thể chèn cùng nhau sinh ra không gian giao.
     
     Theo cách giải thích này, mục đích của việc duy trì đóng góp $b$ trong quá trình là để duy trì phân rã $a\oplus b$; hơn nữa khi cuối cùng chèn đóng góp vào $\gamma$ thì luôn có $a=b$. Vì vậy, dù duy trì đóng góp của các phần tử trong $\alpha$ hay trong $\beta$ (tức duy trì $a$ hay $b$), kết quả đều đúng. Nếu muốn duy trì đóng góp của các phần tử trong cơ sở tuyến tính $\alpha$, chỉ cần sửa giá trị đóng góp tương ứng lúc khởi tạo: mỗi vectơ $\alpha_i$ trong $\alpha$ ban đầu có đóng góp $\alpha_i$, còn $\beta_j$ được chèn vào có đóng góp ban đầu là $0$.
 
@@ -327,11 +327,11 @@ Các bước cụ thể như sau:
 -   Chèn mỗi phần tử $\beta_j$ trong $\beta$ vào $\gamma$ dưới dạng $(\beta_j,0)$.
 -   Trong tất cả phần tử khác không $(c_k,d_k)$ của cơ sở tuyến tính $\gamma$ cuối cùng, tập các thành phần $c_k$ của những vectơ có $c_k$ khác không tạo thành cơ sở tuyến tính của tổng của $\alpha$ và $\beta$; tập các thành phần $d_k$ của những vectơ có $c_k$ bằng không tạo thành cơ sở tuyến tính của giao của $\alpha$ và $\beta$.
 
-Phương pháp xây dựng cơ sở tuyến tính trong thuật toán có thể là [phương pháp tham lam](#phương-pháp-tham-lam) hoặc [phương pháp khử Gauss](#phương-pháp-khử-gauss), miễn là đảm bảo cơ sở tuyến tính trong $\gamma$ tạo thành một ma trận bậc thang theo hàng.
+Phương pháp xây dựng cơ sở tuyến tính trong thuật toán có thể là [phương pháp tham lam](#phương-pháp-tham-lam) hoặc [phương pháp khử Gauss](#phương-pháp-khử-gauss), miễn là bảo đảm cơ sở tuyến tính trong $\gamma$ tạo thành một ma trận bậc thang theo hàng.
 
-So sánh các bước khử trong thuật toán Zassenhaus với thuật toán đơn giản phía trên, rất dễ thấy thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\alpha$. Nếu chuyển sang chèn trước tất cả $(\alpha_i,0)$, rồi chèn tất cả $(\beta_j,\beta_j)$, thì thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\beta$. Từ tính tương đương của các bước khử, tính đúng đắn của thuật toán Zassenhaus cũng được đảm bảo.
+So sánh các bước khử trong thuật toán Zassenhaus với thuật toán đơn giản phía trên, có thể nhận thấy thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\alpha$. Nếu chuyển sang chèn trước tất cả $(\alpha_i,0)$, rồi chèn tất cả $(\beta_j,\beta_j)$, thì thuật toán Zassenhaus dựa trên tham lam tương đương với thuật toán đơn giản duy trì đóng góp của các phần tử trong $\beta$. Từ tính tương đương của các bước khử, tính đúng đắn của thuật toán Zassenhaus cũng được bảo đảm.
 
-Ngoài ra, ta cũng có thể đưa ra một chứng minh đại số độc lập và tổng quát hơn:
+Ngoài ra, cũng có thể đưa ra một chứng minh đại số độc lập và tổng quát hơn:
 
 ??? note "Chứng minh tính đúng đắn"
     Giả sử $V$ là một không gian tuyến tính, và có các không gian con $U=\operatorname{span}\alpha$ và $W=\operatorname{span}\beta$. Bản thân thuật toán tương đương với việc tìm một cơ sở $\gamma$ của không gian con
@@ -340,7 +340,7 @@ Ngoài ra, ta cũng có thể đưa ra một chứng minh đại số độc l�
     H = \operatorname{span}(\{(\alpha_i,\alpha_i):\alpha_i\in\alpha\}\cup\{(\beta_j,0):\beta_j\in\beta\})
     $$
     
-    bằng cách rút gọn về dạng bậc thang theo hàng. Sau cùng, các phần tử $(c_k,d_k)$ trong $\gamma$ cần được chia thành hai loại theo việc $c_k\neq 0$ hay không, nên ta xét ánh xạ chiếu $\pi:H\rightarrow V$ với $\pi(a,b)=a$. Khi đó $\pi(H)=U+W$ và dễ kiểm tra rằng
+    bằng cách rút gọn về dạng bậc thang theo hàng. Sau cùng, các phần tử $(c_k,d_k)$ trong $\gamma$ cần được chia thành hai loại theo việc $c_k\neq 0$ hay không, nên xét ánh xạ chiếu $\pi:H\rightarrow V$ với $\pi(a,b)=a$. Khi đó $\pi(H)=U+W$ và dễ kiểm tra rằng
     
     $$
     \begin{aligned}
@@ -350,7 +350,7 @@ Ngoài ra, ta cũng có thể đưa ra một chứng minh đại số độc l�
     
     Theo [các định lý liên quan của ánh xạ tuyến tính](./linear-mapping.md#không-gian-hạt-nhân-và-không-gian-ảnh-của-ánh-xạ-tuyến-tính), có $\dim H = \dim\pi(H)+\dim\ker\pi = \dim(U+W)+\dim(U\cap W)$.
     
-    Các cột đầu của một ma trận bậc thang theo hàng vẫn là một ma trận bậc thang theo hàng, nên số hàng có $c_k\neq 0$ đúng bằng hạng hàng của $\alpha\cup\beta$, tức $\dim(U+W)$; hơn nữa, tập các $c_k$ trong những hàng này tạo thành một cơ sở của $U+W$. Các hàng khác không còn lại đúng bằng $\dim(U\cap W)$ hàng và đều thỏa mãn $c_k=0$. Với các $d_k$ trong những hàng này, vì $(0,d_k)\in\ker\pi$, nên $d_k\in U\cap W$; hơn nữa, các $(0,d_k)$ là các hàng của một ma trận bậc thang theo hàng nên nhất định độc lập tuyến tính. Tổng hợp lại, các $d_k$ này là một hệ độc lập tuyến tính trong không gian giao $U\cap W$ có kích thước $\dim(U\cap W)$, nên chắc chắn là một cơ sở của không gian đó.
+    Các cột đầu của một ma trận bậc thang theo hàng vẫn là một ma trận bậc thang theo hàng, nên số hàng có $c_k\neq 0$ đúng bằng hạng hàng của $\alpha\cup\beta$, tức $\dim(U+W)$; hơn nữa, tập các $c_k$ trong những hàng này tạo thành một cơ sở của $U+W$. Các hàng khác không còn lại đúng bằng $\dim(U\cap W)$ hàng và đều thỏa mãn $c_k=0$. Với các $d_k$ trong những hàng này, vì $(0,d_k)\in\ker\pi$, nên $d_k\in U\cap W$; hơn nữa, các $(0,d_k)$ là các hàng của một ma trận bậc thang theo hàng nên nhất định độc lập tuyến tính. Tổng hợp lại, các $d_k$ này là một hệ độc lập tuyến tính trong không gian giao $U\cap W$ có kích thước $\dim(U\cap W)$, nên là một cơ sở của không gian đó.
 
 Mã mẫu cho bài toán mẫu như sau:
 
@@ -359,7 +359,7 @@ Mã mẫu cho bài toán mẫu như sau:
     --8<-- "docs/math/code/basis/basis_intersect_2.cpp"
     ```
 
-Chú ý rằng khi xuất, chỉ cần xét những vectơ có $n$ bit đầu đều bằng không.
+Lưu ý rằng khi xuất, chỉ cần xét những vectơ có $n$ bit đầu đều bằng không.
 
 <span id="mở-rộng-cơ-sở-tuyến-tính-tiền-tố"></span>
 ### Mở rộng: cơ sở tuyến tính tiền tố
@@ -368,15 +368,15 @@ Phần này chỉ thảo luận trường hợp cơ sở tuyến tính XOR, đ�
 
 Với tình huống cần nhiều lần truy vấn giá trị XOR lớn nhất trên đoạn, một cách thường gặp là dùng [cat tree](../../ds/cat-tree.md) kết hợp với cơ sở tuyến tính, có độ phức tạp thời gian $O(nm\log m+n^2q)$, trong đó $n$ là độ dài vectơ, $m$ là độ dài dãy, $q$ là số truy vấn. Một cách khả thi khác là dùng cơ sở tuyến tính tiền tố (còn gọi là cơ sở tuyến tính dấu thời gian), giúp giảm độ phức tạp xuống $O(n(m+q))$.
 
-Cơ sở tuyến tính tiền tố cho phép với mỗi tiền tố của dãy, duy trì cơ sở tuyến tính của mọi hậu tố của tiền tố đó, nhờ vậy hỗ trợ truy vấn cơ sở tuyến tính của mỗi đoạn. Chú ý rằng cơ sở tuyến tính của mọi hậu tố $[j,i]$ của một tiền tố $[1,i]$ của dãy có quan hệ chứa nhau: cơ sở tuyến tính của $[j,i]$ luôn chứa cơ sở tuyến tính của $[j+1,i]$. Vì vậy trong các cơ sở tuyến tính của những hậu tố này, nhiều nhất chỉ có $n$ loại khác nhau, và luôn có thể thu được toàn bộ cơ sở tuyến tính của các hậu tố từ $[i,i]$ đến $[1,i]$ bằng cách từng bước thêm vectơ mới vào tập rỗng. Do đó, lợi dụng tính đơn điệu này, chỉ cần với mỗi vectơ $v$ được thêm vào, đánh dấu chỉ số xuất hiện lớn nhất $t$ của nó, là có thể lưu mọi cơ sở tuyến tính của hậu tố trong không gian $O(n)$. Hơn nữa, khi truy vấn cơ sở tuyến tính tương ứng với đoạn $[j,i]$, chỉ cần trong cơ sở tuyến tính tiền tố tại $i$ giữ lại các vectơ có nhãn $t\ge j$.
+Cơ sở tuyến tính tiền tố cho phép với mỗi tiền tố của dãy, duy trì cơ sở tuyến tính của mọi hậu tố của tiền tố đó, nhờ vậy hỗ trợ truy vấn cơ sở tuyến tính của mỗi đoạn. Lưu ý rằng cơ sở tuyến tính của mọi hậu tố $[j,i]$ của một tiền tố $[1,i]$ của dãy có quan hệ chứa nhau: cơ sở tuyến tính của $[j,i]$ luôn chứa cơ sở tuyến tính của $[j+1,i]$. Vì vậy trong các cơ sở tuyến tính của những hậu tố này, nhiều nhất chỉ có $n$ loại khác nhau, và luôn có thể thu được toàn bộ cơ sở tuyến tính của các hậu tố từ $[i,i]$ đến $[1,i]$ bằng cách từng bước thêm vectơ mới vào tập rỗng. Do đó, lợi dụng tính đơn điệu này, chỉ cần với mỗi vectơ $v$ được thêm vào, đánh dấu chỉ số xuất hiện lớn nhất $t$ của nó, là có thể lưu mọi cơ sở tuyến tính của hậu tố trong không gian $O(n)$. Hơn nữa, khi truy vấn cơ sở tuyến tính tương ứng với đoạn $[j,i]$, chỉ cần trong cơ sở tuyến tính tiền tố tại $i$ giữ lại các vectơ có nhãn $t\ge j$.
 
-Ta gọi nhãn $t$ của mỗi vectơ $v$ là dấu thời gian của nó. Một vectơ $v$ trong cơ sở tuyến tính luôn có thể được biểu diễn thành XOR của một số phần tử trong dãy ban đầu, chẳng hạn $v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}$. Trong tất cả các biểu diễn khả dĩ như vậy, giá trị lớn nhất của chỉ số nhỏ nhất chính là $t$, tức:
+Nhãn $t$ của mỗi vectơ $v$ được gọi là dấu thời gian của nó. Một vectơ $v$ trong cơ sở tuyến tính luôn có thể được biểu diễn thành XOR của một số phần tử trong dãy ban đầu, chẳng hạn $v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}$. Trong tất cả các biểu diễn khả dĩ như vậy, giá trị lớn nhất của chỉ số nhỏ nhất chính là $t$, tức:
 
 $$
 t(v) = \max\{j:\exists i_1,\cdots,i_k\in[j,i]\text{ với điều kiện }v=v_{i_1}\oplus v_{i_2}\oplus\cdots\oplus v_{i_k}\}.
 $$
 
-Biểu thức này chỉ là cách viết hình thức cho mô tả ở đoạn trước. Nó gợi ý rằng để duy trì dấu thời gian của mỗi vectơ $v$ trong cơ sở tuyến tính, ta chỉ cần tham lam chọn vectơ mới nhất có thể để thay thế vectơ cũ.
+Biểu thức này chỉ là cách viết hình thức cho mô tả ở đoạn trước. Nó gợi ý rằng để duy trì dấu thời gian của mỗi vectơ $v$ trong cơ sở tuyến tính, chỉ cần tham lam chọn vectơ mới nhất có thể để thay thế vectơ cũ.
 
 Dựa trên [phương pháp tham lam](#phương-pháp-tham-lam) xây dựng cơ sở tuyến tính đã nêu ở trên, cơ sở tuyến tính tiền tố điều chỉnh quá trình xây dựng như sau:
 
