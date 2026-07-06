@@ -2,9 +2,9 @@ author: DanJoshua, opsiff, yzy-1, yingqi-z20
 
 ## Định nghĩa
 
-Vì không còn cố định khái niệm **điểm nguồn và điểm đích**, ta cần định nghĩa lại khái niệm **lát cắt**.
+Vì không còn cố định khái niệm **điểm nguồn và điểm đích**, cần định nghĩa lại khái niệm **lát cắt**.
 
-Thật ra, định nghĩa về lát cắt trong phần luồng mạng không hoàn toàn trùng với định nghĩa trên Wikipedia. Chỉ vì các lát cắt ta thường gặp đều thuộc "bài toán lát cắt nhỏ nhất có nguồn và đích", nên cách hiểu đó dần trở thành quy ước.
+Thật ra, định nghĩa về lát cắt trong phần luồng mạng không hoàn toàn trùng với định nghĩa trên Wikipedia. Chỉ vì các lát cắt thường gặp đều thuộc "bài toán lát cắt nhỏ nhất có nguồn và đích", nên cách hiểu đó dần trở thành quy ước.
 
 ### Lát cắt
 
@@ -20,7 +20,7 @@ Theo định nghĩa trong [lát cắt nhỏ nhất](./flow/min-cut.md).
 
 Đây là lát cắt có tổng trọng số các cạnh chứa trong nó nhỏ nhất. Bài toán này còn gọi là bài toán lát cắt nhỏ nhất toàn cục.
 
-Rõ ràng, chạy trực tiếp luồng mạng là không khả thi về độ phức tạp.
+Việc chạy trực tiếp luồng mạng không khả thi về độ phức tạp.
 
 ***
 
@@ -44,19 +44,19 @@ Cài đặt của thuật toán dựa trên sự thật cơ bản sau: giả s�
 
 Gộp hai đỉnh $s, t$: xóa cạnh nối $(s, t)$ giữa chúng. Với mỗi đỉnh $k$ bất kỳ trong $G \setminus \{s, t\}$, xóa cạnh $(t, k)$, rồi cộng trọng số cạnh đó $d(t, k)$ vào $d(s, k)$.
 
-Giải thích: nếu $s, t$ nằm trong cùng một thành phần liên thông, với một đỉnh $k$ trong $G \setminus \{s, t\}$, giả sử $(k, s) \in C_{\min}$ thì $(k, t) \in C_{\min}$ cũng nhất định đúng. Nếu không, vì $s, t$ liên thông và $k, t$ liên thông, ta sẽ suy ra $s, k$ nằm trong cùng một thành phần liên thông; khi đó $C = C_{\min} \setminus \{(t, k)\}$ sẽ tốt hơn $C_{\min}$. Chiều ngược lại cũng tương tự. Vì vậy, $s, t$ có thể được xem như cùng một đỉnh.
+Giải thích: nếu $s, t$ nằm trong cùng một thành phần liên thông, với một đỉnh $k$ trong $G \setminus \{s, t\}$, giả sử $(k, s) \in C_{\min}$ thì $(k, t) \in C_{\min}$ cũng nhất định đúng. Nếu không, vì $s, t$ liên thông và $k, t$ liên thông, suy ra $s, k$ nằm trong cùng một thành phần liên thông; khi đó $C = C_{\min} \setminus \{(t, k)\}$ sẽ tốt hơn $C_{\min}$. Chiều ngược lại cũng tương tự. Vì vậy, $s, t$ có thể được xem như cùng một đỉnh.
 
 Bước 1 xét trường hợp $s,t$ không nằm trong cùng một thành phần liên thông, còn bước 2 xét các trường hợp còn lại. Vì mỗi lần thực hiện bước 2 đều làm $|V|$ giảm đi $1$, thuật toán sẽ kết thúc sau $|V| - 1$ lần thực hiện.
 
 ### Cách tìm lát cắt nhỏ nhất S-T
 
-Rõ ràng không dùng luồng mạng.
+Không sử dụng luồng mạng cho bước này.
 
-Giả sử sau một số lần gộp, đồ thị hiện tại là $G'=(V', E')$, và ta đang thực hiện bước 1.
+Giả sử sau một số lần gộp, đồ thị hiện tại là $G'=(V', E')$, và đang thực hiện bước 1.
 
-Ta xây dựng một tập $A$, ban đầu đặt $A = \varnothing$.
+Xây dựng một tập $A$, ban đầu đặt $A = \varnothing$.
 
-Mỗi lần, trong tất cả các đỉnh của $V'$, ta chọn đỉnh thỏa mãn $i \notin A$ và có hàm trọng số $w(A, i)$ lớn nhất để thêm vào tập $A$, cho đến khi $|A| = |V'|$.
+Mỗi lần, trong tất cả các đỉnh của $V'$, chọn đỉnh thỏa mãn $i \notin A$ và có hàm trọng số $w(A, i)$ lớn nhất để thêm vào tập $A$, cho đến khi $|A| = |V'|$.
 
 Hàm trọng số được định nghĩa như sau:
 
@@ -64,7 +64,7 @@ $w(A, i) = \sum_{j \in A} d(i, j)$
 
 Nếu $(i, j) \notin E'$, thì $d(i, j) = 0$.
 
-Dễ thấy thứ tự thêm tất cả các đỉnh vào $A$ là cố định. Gọi $\operatorname{ord}(i)$ là đỉnh thứ $i$ được thêm vào $A$, $t = \operatorname{ord}(|V'|)$; gọi $\operatorname{pos}(v)$ là kích thước của $|A|$ ngay sau khi $v$ được thêm vào, tức thứ tự mà $v$ được thêm.
+Theo quy tắc chọn trên, thứ tự thêm tất cả các đỉnh vào $A$ là cố định. Gọi $\operatorname{ord}(i)$ là đỉnh thứ $i$ được thêm vào $A$, $t = \operatorname{ord}(|V'|)$; gọi $\operatorname{pos}(v)$ là kích thước của $|A|$ ngay sau khi $v$ được thêm vào, tức thứ tự mà $v$ được thêm.
 
 Khi đó, với một đỉnh $s$ bất kỳ khác $t$, lát cắt tách $t$ khỏi các đỉnh còn lại là một lát cắt $s$-$t$, và trọng số của nó là $w(t)$.
 
@@ -81,19 +81,19 @@ Như hình vẽ, vùng màu xanh lam và vùng màu vàng là hai thành phần 
 Định nghĩa lát cắt cảm sinh $C_v$ là $C \cap E_v$. Khi đó $w(C_v) = \sum_{(i,j) \in C_v} d(i, j)$.
 
 ???+ note "Bổ đề 1"
-    Với mọi đỉnh được kích hoạt $v$, ta có $w(A_v, v) \le w(C_v)$.
+    Với mọi đỉnh được kích hoạt $v$, có $w(A_v, v) \le w(C_v)$.
     
     Chứng minh: dùng quy nạp toán học.
     
-    Với đỉnh đầu tiên được kích hoạt $v_0$, theo định nghĩa ta có $w(A_{v_0}, v_0) = w(C_{v_0})$.
+    Với đỉnh đầu tiên được kích hoạt $v_0$, theo định nghĩa có $w(A_{v_0}, v_0) = w(C_{v_0})$.
     
     Với hai đỉnh được kích hoạt tiếp theo $u, v$, giả sử $\operatorname{pos}(v) < \operatorname{pos}(u)$, khi đó:
     
     $w(A_u, u) = w(A_v, u) + w(A_u - A_v, u)$
     
-    Mặt khác, ta đã biết:
+    Mặt khác, đã biết:
     
-    $w(A_v, u) \le w(A_v, v)$ và $w(A_v, v) \le w(C_v)$. Kết hợp hai bất đẳng thức này, ta được:
+    $w(A_v, u) \le w(A_v, v)$ và $w(A_v, v) \le w(C_v)$. Kết hợp hai bất đẳng thức này, thu được:
     
     $w(A_u, u) \le w(C_v) + w(A_u - A_v, u)$
     
@@ -103,7 +103,7 @@ Như hình vẽ, vùng màu xanh lam và vùng màu vàng là hai thành phần 
     
     Theo quy nạp, bổ đề được chứng minh.
 
-Vì $\operatorname{pos}(s) < \operatorname{pos}(t)$, đồng thời $s, t$ không nằm trong cùng một thành phần liên thông, nên $t$ sẽ được kích hoạt. Do đó, ta có $w(A_t, t) \le w(C_t) = w(C)$.
+Vì $\operatorname{pos}(s) < \operatorname{pos}(t)$, đồng thời $s, t$ không nằm trong cùng một thành phần liên thông, nên $t$ sẽ được kích hoạt. Do đó, có $w(A_t, t) \le w(C_t) = w(C)$.
 
 ??? note "[P5632 [Mẫu] Thuật toán Stoer-Wagner](https://www.luogu.com.cn/problem/P5632)"
     ```cpp
