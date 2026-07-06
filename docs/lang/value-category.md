@@ -1,9 +1,9 @@
-Loại giá trị là một khái niệm quan trọng trong C++. Tuy trong lập trình thi
-đấu có thể không được dùng nhiều, hiểu nó giúp phát hiện và tránh những phép
+Loại giá trị là một khái niệm quan trọng trong C++. Dù trong lập trình thi đấu
+không phải lúc nào cũng cần nhắc đến, hiểu nó giúp phát hiện và tránh những phép
 sao chép không cần thiết, từ đó cải thiện hiệu quả và hiệu năng của mã.
 
 Khái niệm loại giá trị đã trải qua nhiều lần phát triển trong ngôn ngữ C, C++98,
-C++11 và C++17, rồi dần trở thành một khái niệm tương đối phức tạp.
+C++11 và C++17, rồi dần trở thành một khái niệm phức tạp.
 
 ## Sao chép không cần thiết
 
@@ -25,10 +25,10 @@ int main() {
 Trong quá trình đưa chuỗi vào `vec`, cả `str` và phần tử mới trong
 `vec` đều giữ một bản, làm lượng bộ nhớ sử dụng tăng lên.
 
-Nếu nhất định muốn tiết kiệm phần bộ nhớ này, có thể tự cài đặt một thao tác
-di chuyển đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ
-trỏ tới vùng dữ liệu chuỗi. Khi đó, sao chép con trỏ sang nơi mới là đủ,
-đồng thời cẩn thận dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
+Nếu muốn tiết kiệm phần bộ nhớ này, có thể tự cài đặt một thao tác di chuyển
+đơn giản: tự định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới
+vùng dữ liệu chuỗi. Khi đó, sao chép con trỏ sang nơi mới là đủ, đồng thời phải
+dọn con trỏ của đối tượng gốc để tránh bị hủy sai.
 
 ```cpp
 struct MyString {
@@ -82,7 +82,7 @@ Các hiểu lầm thường gặp:
 
 ## Loại giá trị trong C++98
 
-C++98 gần như giống ngôn ngữ C về loại giá trị, nhưng bổ sung một số quy tắc mới:
+C++98 gần với ngôn ngữ C về loại giá trị, nhưng bổ sung một số quy tắc mới:
 
 -   Biểu thức chỉ định hàm là trái trị, vì có thể lấy địa chỉ.
 -   Biểu thức là tên của biến tham chiếu trái trị (`T&`) là trái trị, vì có thể
@@ -141,14 +141,14 @@ struct MyString {
 };
 ```
 
-Lúc này các tính chất biểu thức cần quan tâm tăng thêm một điểm:
+Lúc này cần xét thêm các tính chất của biểu thức:
 
 -   Có danh tính hay không: có xác định một thực thể cụ thể hay không, tức có thể
     phân biệt bằng địa chỉ hay không.
--   Có thể di chuyển từ hay không: biểu thức có thể xem như nguồn để di
-    chuyển tài nguyên hay không.
+-   Có thể di chuyển từ hay không: biểu thức có thể dùng làm nguồn để di chuyển
+    tài nguyên hay không.
 
-Vì vậy có ba loại giá trị:
+Từ đó có các trường hợp sau:
 
 -   Có danh tính, không thể di chuyển: trái trị (lvalue).
 -   Có danh tính, có thể di chuyển: giá trị sắp hết hạn (xvalue).
@@ -198,8 +198,8 @@ int main() {
 ```
 
 > Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các
-> chuỗi ngắn được lưu trực tiếp bên trong đối tượng. Cần nhập chuỗi dài hơn mới
-> dễ quan sát việc vùng dữ liệu được chuyển giao khi di chuyển.
+> chuỗi ngắn được lưu ngay bên trong đối tượng. Cần nhập chuỗi dài hơn mới dễ
+> quan sát việc vùng dữ liệu được chuyển giao khi di chuyển.
 
 ## Loại giá trị trong C++17
 
@@ -213,12 +213,11 @@ C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trước C++
 đây có thể không tạo thao tác di chuyển nếu trình biên dịch áp dụng RVO.
 
 C++17 yêu cầu giá trị thuần phải không nhất thiết phải được vật chất hóa thành
-đối tượng tạm riêng, mà được khởi tạo trực tiếp vào vùng lưu trữ của đích cuối
-cùng; trước khi khởi tạo, đối tượng tạm đó còn chưa tồn tại. Vì vậy trong C++17,
-không còn bước tạo rồi trả về một đối tượng tạm riêng, và cũng không cần phụ
-thuộc vào RVO cho trường hợp này. Cũng có thể hiểu là URVO (RVO không tên,
-unnamed RVO) đã trở thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn
-không bắt buộc.
+đối tượng tạm riêng, mà được khởi tạo vào vùng lưu trữ của đích cuối cùng; trước
+khi khởi tạo, đối tượng tạm đó còn chưa tồn tại. Vì vậy trong C++17, không còn
+bước tạo rồi trả về một đối tượng tạm riêng, và cũng không cần phụ thuộc vào RVO
+cho trường hợp này. Có thể hiểu là URVO (RVO không tên, unnamed RVO) đã trở
+thành bắt buộc, nhưng NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
 
 ```cpp
 std::string urvo() { return std::string("123"); }
