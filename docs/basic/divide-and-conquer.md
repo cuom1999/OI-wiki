@@ -1,7 +1,7 @@
 author: fudonglai, AngelKitty, labuladong
 
-Trang này giới thiệu sự khác biệt giữa đệ quy và chia để trị, cũng như cách
-kết hợp chúng trong thuật toán.
+Trang này giới thiệu sự khác biệt giữa đệ quy và chia để trị, cũng như cách kết
+hợp hai tư tưởng này khi thiết kế thuật toán.
 
 ## Đệ quy
 
@@ -17,8 +17,8 @@ bài toán thành các bài toán con cùng loại.
 > Muốn hiểu đệ quy, trước hết phải hiểu đệ quy là gì.
 
 Ý tưởng cơ bản của đệ quy là một hàm gọi trực tiếp hoặc gián tiếp chính nó. Nhờ
-đó, việc giải bài toán ban đầu được chuyển thành việc giải nhiều bài toán con
-có cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, cần tập trung vào cách chia
+đó, việc giải bài toán ban đầu được chuyển thành việc giải nhiều bài toán con có
+cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, cần tập trung vào cách chia
 bài toán gốc thành các bài toán con hợp lệ, thay vì lần theo chi tiết giải từng
 bài toán con.
 
@@ -37,8 +37,8 @@ nghĩa hình thức của số tự nhiên là: 1 là một số tự nhiên; m�
 một số kế tiếp, và số kế tiếp đó cũng là số tự nhiên.
 
 Hai đặc trưng quan trọng nhất của mã đệ quy là điều kiện dừng và lời gọi chính
-nó. Lời gọi chính nó dùng để giải bài toán con, còn điều kiện dừng định nghĩa
-đáp án của bài toán con nhỏ nhất.
+nó. Lời gọi chính nó dùng để giải bài toán con, còn điều kiện dừng xác định đáp
+án của bài toán con nhỏ nhất.
 
 ```cpp
 int func(giá_trị_đầu_vào) {
@@ -113,8 +113,9 @@ lời gọi hàm, ngăn xếp thêm một khung ngăn xếp; mỗi khi hàm tr�
 bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, nên nếu tầng đệ
 quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
-Trong một số trường hợp đệ quy hiệu quả, chẳng hạn sắp xếp trộn (merge sort);
-nhưng **cũng có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người
+Trong một số trường hợp, đệ quy rất hiệu quả, chẳng hạn sắp xếp trộn
+(merge sort). Nhưng **cũng có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi
+lông trên người
 Tôn Ngộ Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có
 thể không tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ
 dài của nó.
@@ -134,7 +135,9 @@ int size_recursion(Node *head) {
 }
 ```
 
-![[So sánh hai cách, trình biên dịch là Clang 10.0, mức tối ưu là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, trình biên dịch là Clang 10.0, mức tối ưu là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![So sánh hai cách, trình biên dịch là Clang 10.0, mức tối ưu là O1](images/divide-and-conquer-2.svg)
+
+Nguồn benchmark: [Quick-Bench][recursion-bench].
 
 ### Tối ưu đệ quy
 
@@ -148,11 +151,10 @@ gian. Khi đó cần tối ưu đệ quy.[^ref1]
 
 ### Định nghĩa
 
-Chia để trị (divide and conquer), hiểu theo nghĩa đen là "chia ra để xử lý",
-là cách tách một bài toán phức tạp thành hai hoặc nhiều bài toán con giống hoặc
-tương tự nhau, cho đến khi bài toán con đủ đơn giản để giải ngay.
-Nghiệm của bài toán ban đầu được tạo bằng cách hợp nhất nghiệm của các bài toán
-con.
+Chia để trị (divide and conquer), hiểu theo nghĩa đen là "chia ra để xử lý", là
+cách tách một bài toán phức tạp thành hai hoặc nhiều bài toán con giống hoặc
+tương tự nhau, cho đến khi bài toán con đủ đơn giản để giải ngay. Nghiệm của bài
+toán ban đầu được tạo bằng cách hợp nhất nghiệm của các bài toán con.
 
 ### Quy trình
 
@@ -168,8 +170,8 @@ Những bài toán giải được bằng chia để trị thường có các đ
 
 -   Khi kích thước bài toán giảm đến một mức nhất định, có thể giải ngay.
 -   Có thể chia bài toán thành một số bài toán nhỏ cùng dạng; tức là bài
-    toán có tính chất cấu trúc con tối ưu, và nghiệm của các bài toán con có
-    thể gộp thành nghiệm của bài toán ban đầu.
+    toán có cấu trúc con tối ưu, và nghiệm của các bài toán con có thể gộp
+    thành nghiệm của bài toán ban đầu.
 -   Các bài toán con được tách ra độc lập với nhau; giữa chúng không có bài
     toán con chung.
 
@@ -193,10 +195,10 @@ void merge_sort(một_mảng) {
 ```
 
 Khi truyền cho nó nửa mảng, sau khi xử lý xong thì nửa mảng đó đã được sắp xếp.
-Hàm `merge_sort` giống mẫu duyệt hậu tự của cây nhị phân. Vì khuôn mẫu của chia
-để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**: trước hết chia trái
-phải, sau đó xử lý gộp; bước quay lui chính là khi ngăn xếp lời gọi trả về,
-tương đương hậu tự.
+Hàm `merge_sort` giống mẫu duyệt hậu tự của cây nhị phân. Khuôn mẫu của chia để
+trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**: trước hết chia trái phải,
+sau đó xử lý gộp. Bước quay lui chính là khi ngăn xếp lời gọi trả về, tương
+đương hậu tự.
 
 Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên kết đã sắp xếp.
 
@@ -221,7 +223,7 @@ void traverse(TreeNode* root) {
 
 Vài dòng này đã đủ để duyệt bất kỳ cây nhị phân nào. Với hàm đệ quy
 `traverse(root)`, hãy tin rằng khi đưa cho nó một nút gốc `root`, nó có thể
-duyệt cả cây đó. Vì vậy, truyền tiếp nút trái và nút phải cho hàm là đủ.
+duyệt cả cây đó. Vì vậy, chỉ cần truyền tiếp nút trái và nút phải cho hàm.
 
 Mở rộng tương tự sang duyệt cây N phân. Cách viết gần như giống cây nhị phân,
 chỉ có điều cây N phân không có duyệt trung tự theo nghĩa thông thường.
@@ -347,4 +349,7 @@ loại bài toán.
 
 ## Tài liệu tham khảo và ghi chú
 
-[^ref1]: [Ghi chú thuật toán của labuladong - giải thích chi tiết về đệ quy](https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie)
+[^ref1]: [Ghi chú thuật toán của labuladong - giải thích chi tiết về đệ quy][labuladong-recursion]
+
+[recursion-bench]: https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc
+[labuladong-recursion]: https://labuladong.gitbook.io/algo/suan-fa-si-wei-xi-lie/di-gui-xiang-jie
