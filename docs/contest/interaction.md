@@ -54,7 +54,7 @@ Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng chỉ
 
 Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$, rải trực tiếp 1000 điểm; lúc này khoảng cách kỳ vọng giữa các điểm này rất nhỏ, và có thể bắt đầu duyệt về sau từ giá trị lớn nhất nhỏ hơn $x$. Có thể chứng minh rằng trước khi đến điểm tiếp theo đã thu được đáp án. Trong quá trình duyệt, hễ tìm được phần tử lớn hơn hoặc bằng $x$ thì có thể suy ra trực tiếp.
 
-Tuy ý tưởng tổng thể đơn giản, nhưng trên thực tế nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
+Tuy ý tưởng tổng thể đơn giản, nhưng nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
 
 Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình tạo dữ liệu hack cho các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 

@@ -9,7 +9,7 @@ struct DSU {
 
   explicit DSU(size_t size_, size_t m)
       : id(size_ * 2), pa(size_ * 2 + m), size(size_ * 2 + m, 1) {
-    // Nửa đầu của size thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
+    // Nửa đầu của size không được dùng; chỉ để tính chỉ số đơn giản hơn.
     std::iota(pa.begin(), pa.begin() + size_,
               size_);  // Cho i trỏ đến nút ảo i + size_
     std::iota(pa.begin() + size_, pa.end(), size_);  // Mọi nút ảo trỏ đến chính nó

@@ -49,7 +49,7 @@ class undirectedgraph : public graph<T> {
 // blossom / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
-  std::mt19937 rng(114514);  // Seed ngẫu nhiên ở đây không quan trọng.
+  std::mt19937 rng(114514);  // Seed ngẫu nhiên tại đây không quan trọng.
   // Cũng có thể dùng chrono::steady_clock::now().time_since_epoch().count()
   // để lấy thời gian hiện tại.
   vector<int> match(g.n, -1);   // Ghép cặp.
@@ -108,7 +108,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       q.pop();
     }
     q.push(root);
-    // Đặt điểm ban đầu là "o"; ở đây dùng "0" thay "o", "1" thay "i".
+    // Đặt điểm ban đầu là "o"; tại đây dùng "0" thay "o", "1" thay "i".
     label[root] = 0;
     while (!q.empty()) {
       int v = q.front();

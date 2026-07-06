@@ -118,7 +118,7 @@ Cấu hình khuyến nghị cho phòng thi như sau.
 ;;;"bsd" tất cả dấu ngoặc nhọn xuống dòng
 ;;;"java" tất cả dấu ngoặc nhọn không xuống dòng. else nằm sau dấu ngoặc nhọn phải
 ;;;"awk" chỉ dấu ngoặc nhọn cạnh namespace, định nghĩa lớp, định nghĩa hàm mới xuống dòng. else nằm sau dấu ngoặc nhọn phải
-;;;"linux" chỉ dấu ngoặc nhọn cạnh namespace, định nghĩa lớp, định nghĩa hàm mới xuống dòng. else nằm sau dấu ngoặc nhọn phải. Nói chung kiểu này nên có thụt lề 8 dấu cách
+;;;"linux" chỉ dấu ngoặc nhọn cạnh namespace, định nghĩa lớp, định nghĩa hàm mới xuống dòng. else nằm sau dấu ngoặc nhọn phải. Kiểu này thường có thụt lề 8 dấu cách
 (setq-default c-default-style "awk")
 ```
 

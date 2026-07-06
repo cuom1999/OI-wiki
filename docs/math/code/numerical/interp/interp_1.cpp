@@ -14,7 +14,7 @@ int inv(int k) {
 }
 
 // Trả về f sao cho f(x_i) = y_i.
-// Nếu bỏ qua chi phí tính nghịch đảo nhân, rõ ràng độ phức tạp là O(n^2).
+// Nếu bỏ qua chi phí tính nghịch đảo nhân, độ phức tạp là O(n^2).
 std::vector<int> lagrange_interpolation(const std::vector<int> &x,
                                         const std::vector<int> &y) {
   const int n = x.size();

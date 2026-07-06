@@ -280,7 +280,7 @@ Trong ứng dụng thực tế, không thể tính toán với $|E|$ biến. Tuy
 
 **Định lý**: $\operatorname{rank}\tilde{A}$ không vượt quá hai lần kích thước ghép cặp lớn nhất của $G$, và xác suất để hai đại lượng này bằng nhau ít nhất là $1 - \frac n p$.
 
-Xét rằng trong bài toán ghép cặp lớn nhất trên đồ thị tổng quát, $n$ thường không vượt quá $10^3$, nên trên thực tế chọn $p$ là một số nguyên tố cỡ $10^9$ là đủ.
+Xét rằng trong bài toán ghép cặp lớn nhất trên đồ thị tổng quát, $n$ thường không vượt quá $10^3$, nên chọn $p$ là một số nguyên tố cỡ $10^9$ là đủ.
 
 Từ định lý suy ra rằng nếu chỉ cần tìm số lượng cạnh trong ghép cặp lớn nhất mà không cần phương án ghép cặp, thì chỉ cần dùng một lần khử Gauss để tính $\operatorname{rank}\tilde{A}$, ngắn gọn hơn cây hoa rất nhiều. Tuy nhiên, nếu cần xuất phương án, bài toán sẽ phức tạp hơn một chút và cần dùng thuật toán được giới thiệu dưới đây.
 
@@ -323,7 +323,7 @@ $$
 B^{-1} = \hat B - \frac {\hat u \hat v^T} {\hat a_{1, 1}}
 $$
 
-Định lý mô tả trường hợp khử hàng đầu tiên và cột đầu tiên. Trên thực tế, nó có thể được mở rộng trực tiếp sang trường hợp khử một hàng và một cột bất kỳ. Do đó chỉ cần tính $\tilde{A}^{-1}$ một lần ở đầu thuật toán; về sau mỗi lần xóa hai đỉnh, chỉ cần thực hiện hai lần quá trình khử $O(n^2)$.
+Định lý mô tả trường hợp khử hàng đầu tiên và cột đầu tiên. Kết quả này có thể được mở rộng trực tiếp sang trường hợp khử một hàng và một cột bất kỳ. Do đó chỉ cần tính $\tilde{A}^{-1}$ một lần ở đầu thuật toán; về sau mỗi lần xóa hai đỉnh, chỉ cần thực hiện hai lần quá trình khử $O(n^2)$.
 
 ??? note "Mô tả hơi trừu tượng, có thể tham khảo mã C++"
     ```cpp

@@ -98,7 +98,7 @@ void solve() {
           bool dn = A[i + 1][j], rt = A[i][j + 1];
           if (lt && up) {
             if (lt == up) {  // Trong bài toán một đường đi, ta không được ghép hai đầu nối giống nhau.
-              // Không thể đặt chuyển trạng thái ở đây...
+              // Không thể đặt chuyển trạng thái tại đây...
             } else {  // Hai đầu nối tham gia ghép có thể có đầu nối độc lập, nhưng vẫn xử lý bằng cùng đoạn mã
               for (int i = 0; i < m + 1; i++)
                 if (b[i] == lt) b[i] = up;

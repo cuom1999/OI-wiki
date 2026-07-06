@@ -1,5 +1,5 @@
 #include <cstring>
-constexpr int MAXN = 100000;  // Ở đây MAXN là cận của phần tử trong mảng.
+constexpr int MAXN = 100000;  // Tại đây MAXN là cận của phần tử trong mảng.
 
 int solve(int n, int a[]) {
   bool met[MAXN * 2 + 1];  // Tạo bucket chứa được đoạn [-MAXN, MAXN].

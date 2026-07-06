@@ -82,7 +82,7 @@ int tim[30];
 
 void pushdown(int dep)  // Co cạnh
 {
-  tr.clear();  // Cần sao chép một bản ở đây để vẫn có thể rollback
+  tr.clear();  // Cần sao chép một bản tại đây để vẫn có thể rollback
   for (int i = 0; i < ve[dep].size(); i++) {
     tr.push_back(ve[dep][i]);
   }

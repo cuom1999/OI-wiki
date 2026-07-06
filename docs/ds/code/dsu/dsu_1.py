@@ -1,6 +1,6 @@
 class Dsu:
     def __init__(self, size):
-        # Nửa đầu của size và sum thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
+        # Nửa đầu của size và sum không được dùng; chỉ để tính chỉ số đơn giản hơn.
         self.pa = list(range(size, size * 2)) * 2
         self.size = [1] * size * 2
         self.sum = list(range(size)) * 2

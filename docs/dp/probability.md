@@ -8,7 +8,7 @@ DP xác suất được dùng để giải các bài toán về xác suất và 
 <span id="dp-xác-suất"></span>
 ## DP xác suất
 
-Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái ban đầu tới kết quả. Tương tự DP nói chung, điểm khó vẫn là mô tả phương trình chuyển trạng thái; chỉ có điều dạng bài này được bọc trong kiến thức xác suất.
+Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái ban đầu tới kết quả. Tương tự DP thông thường, điểm khó vẫn là mô tả phương trình chuyển trạng thái; chỉ có điều dạng bài này được bọc trong kiến thức xác suất.
 
 <span id="ví-dụ"></span>
 ### Ví dụ

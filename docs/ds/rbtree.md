@@ -264,7 +264,7 @@ rồi tô $d$ thành đen là có thể kết thúc việc duy trì cân bằng.
 
 ## Quan hệ với cây 2-3-4
 
-Cây 2-3-4 là cây B bậc 4. Giống như cây B nói chung, cây 2-3-4 có thể thực hiện tìm kiếm, chèn và xóa trong thời gian
+Cây 2-3-4 là cây B bậc 4. Giống như cây B thông thường, cây 2-3-4 có thể thực hiện tìm kiếm, chèn và xóa trong thời gian
 $O(\log n)$. Các nút của cây 2-3-4 được chia thành ba loại: nút 2, nút 3 và nút 4, lần lượt chứa một, hai hoặc ba phần
 tử dữ liệu. Tất cả các nút lá đều ở cùng một độ sâu (tầng dưới cùng), và mọi dữ liệu đều được lưu trữ có thứ tự.
 

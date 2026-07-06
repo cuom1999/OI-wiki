@@ -4,7 +4,7 @@ class Dsu:
         self.id = size * 2
         # Cho i trỏ đến nút ảo i + size_; mọi nút ảo trỏ đến chính nó.
         self.pa = list(range(size, size * 2)) + list(range(size, size * 2 + m))
-        # Nửa đầu của size thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
+        # Nửa đầu của size không được dùng; chỉ để tính chỉ số đơn giản hơn.
         self.size = [1] * (size * 2 + m)
 
     def find(self, x):

@@ -16,7 +16,7 @@ void counting_sort(int p) {
   memset(cnt, 0, sizeof(cnt));
   for (int i = 1; i <= n; ++i) ++cnt[a[i].key[p]];
   for (int i = 1; i <= w; ++i) cnt[i] += cnt[i - 1];
-  // Để bảo đảm tính ổn định của sắp xếp, vòng lặp i ở đây phải đi từ n về 1.
+  // Để bảo đảm tính ổn định của sắp xếp, vòng lặp i tại đây phải đi từ n về 1.
   // Khi hai phần tử có cùng khóa, phần tử vốn đứng sau vẫn đứng sau khi sắp xếp.
   for (int i = n; i >= 1; --i) b[cnt[a[i].key[p]]--] = a[i];
   memcpy(a, b, sizeof(a));

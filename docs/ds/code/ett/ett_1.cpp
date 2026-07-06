@@ -95,7 +95,7 @@ void add(long long x, long long v) {
   long long a, b, c;
   split(rt, rnk(s[x]) - 1, a, b);
   split(b, rnk(e[x]) - rnk(s[x]) + 1, b,
-        c);  // Ở đây b là dãy ngoặc của cây con cần thao tác.
+        c);  // Tại đây b là dãy ngoặc của cây con cần thao tác.
   setTag(b, v);
   rt = merge(merge(a, b), c);
 }

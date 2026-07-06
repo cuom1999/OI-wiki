@@ -50,7 +50,7 @@ void build() {
   for (int i = 0; i < 26; i++)
     if (tr[0].son[i]) {
       q.push(tr[0].son[i]);
-      g[0].push_back(tr[0].son[i]);  // Đừng quên cạnh fail ở đây
+      g[0].push_back(tr[0].son[i]);  // Đừng quên cạnh fail tại đây
     }
   while (!q.empty()) {
     int u = q.front();

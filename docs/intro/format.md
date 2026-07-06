@@ -554,7 +554,7 @@ Có thể dùng một bảng để tóm tắt các nội dung trên. Lưu ý b�
 
 #### Yêu cầu định dạng bổ sung đối với công thức toán
 
-Vui lòng lưu ý, mặc dù cú pháp nhập công thức nói trên rất giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp rất giống LaTeX mà thôi. Trên thực tế, giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
+Vui lòng lưu ý, mặc dù cú pháp nhập công thức nói trên rất giống hệ thống dàn trang LaTeX thực sự, **MathJax và LaTeX là hai thứ hoàn toàn không liên quan**, MathJax chỉ sử dụng một phần cú pháp rất giống LaTeX mà thôi. Giữa hai bên có nhiều khác biệt chi tiết, và các khác biệt này thường làm công thức viết ra không dùng chung được giữa hai bên.
 
 Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên bộ máy dàn trang LaTeX, cần nhấn mạnh tính tương thích của công thức giữa MathJax và LaTeX. **Khi viết công thức toán trong Wiki, vui lòng lưu ý các điểm sau.**
 

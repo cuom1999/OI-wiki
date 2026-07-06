@@ -32,7 +32,7 @@ void calcsiz(int x, int f) {
   maxx[x] =
       max(maxx[x], sum - siz[x]);  // maxx[x] là kích thước cây con lớn nhất khi lấy x làm gốc.
   if (maxx[x] < maxx[rt])
-    rt = x;  // Không được viết <= ở đây, để lần calcsiz thứ hai không đổi rt.
+    rt = x;  // Không được viết <= tại đây, để lần calcsiz thứ hai không đổi rt.
 }
 
 struct heap {

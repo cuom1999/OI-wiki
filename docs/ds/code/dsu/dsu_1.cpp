@@ -10,7 +10,7 @@ struct dsu {
 
   explicit dsu(size_t size_)
       : pa(size_ * 2), size(size_ * 2, 1), sum(size_ * 2) {
-    // Nửa đầu của size và sum thực ra không được dùng; chỉ để tính chỉ số đơn giản hơn.
+    // Nửa đầu của size và sum không được dùng; chỉ để tính chỉ số đơn giản hơn.
     iota(pa.begin(), pa.begin() + size_, size_);
     iota(pa.begin() + size_, pa.end(), size_);
     iota(sum.begin() + size_, sum.end(), 0);

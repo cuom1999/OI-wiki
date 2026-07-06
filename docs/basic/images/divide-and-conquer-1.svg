@@ -58,6 +58,6 @@
   <line x1="340" y1="239" x2="478" y2="239" stroke="#1a73e8" stroke-width="4"/>
 
   <text class="muted" x="360" y="296" font-size="31">Khoảng 6.580.000 kết quả (0,48 giây)</text>
-  <text x="360" y="383" font-size="38">Có phải bạn muốn tìm:</text>
+  <text x="360" y="383" font-size="38">Gợi ý tìm kiếm:</text>
   <text class="red" x="760" y="383" font-size="38">đệ quy</text>
 </svg>
