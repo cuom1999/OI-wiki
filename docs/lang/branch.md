@@ -1,7 +1,7 @@
 Mặc định, các câu lệnh trong chương trình được thực thi theo thứ tự xuất hiện.
 Trong nhiều trường hợp, một số câu lệnh chỉ được thực thi khi một điều kiện nhất
-định thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh rẽ nhánh
-phù hợp giúp logic chương trình mạch lạc hơn.
+định thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Chọn câu lệnh rẽ nhánh phù hợp
+giúp logic chương trình mạch lạc hơn.
 
 ## Câu lệnh if
 
@@ -16,7 +16,7 @@ if (dieu_kien) {
 ```
 
 Câu lệnh `if` đánh giá điều kiện; nếu điều kiện đúng, các câu lệnh trong phần
-thân được thực thi, ngược lại thì bị bỏ qua.
+thân được thực thi, nếu không thì bị bỏ qua.
 
 Nếu phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn. Tuy vậy,
 khi mới học hoặc khi mã có nhiều nhánh lồng nhau, giữ lại dấu ngoặc nhọn thường
@@ -35,7 +35,7 @@ if (dieu_kien) {
 Câu lệnh `if...else` tương tự câu lệnh `if`; phần `else` không cần viết thêm
 điều kiện. Khi điều kiện của `if` thỏa mãn, phần thân của `if` sẽ được thực thi;
 khi điều kiện không thỏa mãn, phần thân của `else` sẽ được thực thi. Tương tự,
-khi phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
+nếu phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
 
 ### Câu lệnh else if
 
@@ -51,16 +51,16 @@ if (dieu_kien1) {
 }
 ```
 
-Câu lệnh `else if` là sự kết hợp giữa `if` và `else`, dùng để xét nhiều điều
-kiện và chọn một trong nhiều nhánh câu lệnh. Câu lệnh `else` cuối cùng không cần
-viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1; nếu điều
-kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3; chỉ khi
-tất cả điều kiện đều sai mới thực thi thân 4.
+Câu lệnh `else if` là sự kết hợp giữa `if` và `else`, dùng để xét nhiều điều kiện
+và chọn một trong nhiều nhánh câu lệnh. Câu lệnh `else` cuối cùng không cần viết
+thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1; nếu điều kiện 3
+đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3; chỉ khi tất cả
+điều kiện đều sai mới thực thi thân 4.
 
 Về bản chất, câu lệnh này tương đương với việc đặt một câu lệnh `if` trong nhánh
-`else` của `if` đầu tiên, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền
-nhau. Nếu các điều kiện có quan hệ ngang hàng, cách viết này giúp logic của mã
-mạch lạc hơn.
+`else` của `if` đầu tiên, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền nhau.
+Nếu các điều kiện có quan hệ ngang hàng, cách viết này giúp logic của mã mạch lạc
+hơn.
 
 Về mặt logic, nó tương tự đoạn mô tả sau:
 
@@ -156,8 +156,8 @@ switch (i) {
 ```
 
 Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI`. Vì có `break`, các câu
-lệnh ở những nhánh tiếp theo sẽ không được thực thi. Câu lệnh cuối cùng không
-cần `break`, vì sau đó không còn câu lệnh nào nữa.
+lệnh ở những nhánh tiếp theo sẽ không được thực thi. Nhánh cuối cùng không cần
+`break`, vì sau đó không còn câu lệnh nào nữa.
 
 Giá trị của các nhãn `case` không được trùng nhau, nhưng thứ tự xuất hiện của
 từng `case` (bao gồm cả `default`) có thể tùy ý. Ví dụ:
