@@ -69,7 +69,7 @@ Trong đó, `<y>` là số hiệu dữ liệu, bắt đầu từ 1. Hậu tố m
 
 Nếu cần đổi định dạng `out` đã sinh trước đó thành định dạng `ans`, trong NOI Linux 2.0 có thể dùng lệnh `rename` để đổi hàng loạt, còn trong Windows có thể dùng lệnh `ren`. Phần sau sẽ giới thiệu cách dùng các lệnh này.
 
-Không cần đặt dữ liệu kiểm thử của từng bài trong thư mục riêng của bài đó; chỉ cần đặt chung với nhau là được.
+Không cần đặt dữ liệu kiểm thử của từng bài trong thư mục riêng của bài đó; có thể đặt chung các tệp dữ liệu với nhau.
 
 Sau đó bắt đầu cấu hình thư mục chấm.
 
@@ -86,13 +86,13 @@ thư mục kỳ thi, bao gồm cả dấu tiếng Việt, để hạn chế lỗ
 
 ![Thêm bài trong Arbiter](./images/arbiter_addproblem.png)
 
-Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
+Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi"; sau đó trên nhãn kỳ thi, chọn "nhấp chuột phải" - "Thêm bài" để tạo bài mới.
 
 Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên
 bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ
 nhớ và cách so sánh. Không nên dùng cách so sánh "so sánh trực tiếp toàn văn", vì
 cách này dễ gặp vấn đề với dữ liệu được tạo trên Windows. Có thể tự chọn trình
-kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra
+kiểm tra đáp án theo bài, nhưng cần lưu ý phải chọn một trình kiểm tra
 đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
 
 ![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
@@ -162,7 +162,7 @@ biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết q
 được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ
 hai là điểm, với 10 điểm là điểm tối đa.
 
-Tên trình kiểm tra đáp án tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn trình kiểm tra đáp án tùy chỉnh rồi chọn trình kiểm tra đáp án cần dùng.
+Tên trình kiểm tra đáp án tùy chỉnh sau khi biên dịch phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn trình kiểm tra đáp án tùy chỉnh rồi chọn trình kiểm tra đáp án cần dùng.
 
 Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp
 đáp án, rồi chọn trình kiểm tra đáp án tùy chỉnh; cách này có thể kiểm thử bài
@@ -177,7 +177,7 @@ Các điểm đã xác nhận cần lưu ý:
 -   Do giới hạn ngăn xếp (stack) khi chạy trên Linux, nếu muốn mở ngăn xếp không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
 -   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter từ GNOME, tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
 -   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu
-    cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không
+    cách, khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định có thể không
     được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu
     chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời tệp kết quả sinh
     ra sẽ có thông báo `Compile Failed.` (`Biên dịch thất bại.`).
