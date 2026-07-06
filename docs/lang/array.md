@@ -24,9 +24,9 @@ arr2 = arr1;      // sai
 ```
 
 Nên cố gắng định nghĩa các mảng lớn ở phạm vi toàn cục. Vì biến cục bộ thường
-được tạo trên stack, mảng quá lớn (lớn hơn giới hạn stack) có thể làm tràn stack
-và dẫn đến lỗi thực thi (RE). Nếu khai báo mảng ở phạm vi toàn cục, mảng sẽ nằm
-trong vùng nhớ tĩnh.
+được tạo trên ngăn xếp, mảng quá lớn (lớn hơn giới hạn ngăn xếp) có thể làm tràn
+ngăn xếp và dẫn đến lỗi thực thi (RE). Nếu khai báo mảng ở phạm vi toàn cục,
+mảng sẽ nằm trong vùng nhớ tĩnh.
 
 ## Truy cập phần tử mảng
 

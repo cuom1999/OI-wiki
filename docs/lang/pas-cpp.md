@@ -681,15 +681,15 @@ int main(int argc, char const* argv[]) {
 ```
 
 Đoạn C++ này liên quan đến **kiểu tham chiếu**. Khi dùng tham chiếu để
-gọi một số thư viện STL hoặc thư viện template, có thể gặp một số vấn đề; lúc đó
-cần tự khai báo kiểu riêng. Tài liệu cụ thể có thể tra trong *C++ Primer* bản thứ
-năm hoặc tài liệu trên mạng.
+gọi một số thư viện STL hoặc thư viện viết bằng template, có thể gặp một số vấn
+đề; lúc đó cần tự khai báo kiểu riêng. Tài liệu cụ thể có thể tra trong *C++
+Primer* bản thứ năm hoặc tài liệu trên mạng.
 
 C++ còn có các cách truyền tham số khác. Một trong số đó là **truyền tham số bằng
 cách dùng trực tiếp biến toàn cục**; nếu chưa biết dùng con trỏ, có thể tạm dùng
-cách này. Nhưng khuyết điểm của cách này là không có stack để lưu dữ liệu, nên
-**không thể truyền tham số trong hàm đệ quy**. (Trừ khi tự viết stack; lưu ý, tự
-viết stack cũng là một cách vượt qua giới hạn stack hệ thống.)
+cách này. Nhưng khuyết điểm của cách này là không có ngăn xếp để lưu dữ liệu,
+nên **không thể truyền tham số trong hàm đệ quy**. (Trừ khi tự viết ngăn xếp;
+lưu ý, tự viết ngăn xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.)
 
 ## Thư viện chuẩn C++ và tài liệu tham khảo
 

@@ -2,9 +2,13 @@ Trang này giới thiệu ngắn gọn về sắp xếp chèn.
 
 ## Định nghĩa
 
-Sắp xếp chèn (tiếng Anh: Insertion sort) là một thuật toán sắp xếp đơn giản và trực quan. Nguyên lý của nó là chia các phần tử cần sắp xếp thành hai phần "đã sắp xếp" và "chưa sắp xếp"; mỗi lần chọn một phần tử từ phần "chưa sắp xếp" rồi chèn vào đúng vị trí trong phần "đã sắp xếp".
+Sắp xếp chèn (insertion sort) là một thuật toán sắp xếp đơn giản và trực quan.
+Nguyên lý của nó là chia các phần tử cần sắp xếp thành hai phần "đã sắp xếp" và
+"chưa sắp xếp"; mỗi lần chọn một phần tử từ phần "chưa sắp xếp" rồi chèn vào
+đúng vị trí trong phần "đã sắp xếp".
 
-Một thao tác tương tự sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn nó vào tay bài theo thứ tự giá trị, rồi mới lấy lá tiếp theo.
+Một thao tác tương tự sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn
+nó vào tay bài theo thứ tự giá trị, rồi mới lấy lá tiếp theo.
 
 ![Minh họa động sắp xếp chèn](images/insertion-sort-animate.svg)
 
@@ -16,7 +20,8 @@ Sắp xếp chèn là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán rất hiệu quả khi dãy gần như đã có thứ tự.
+Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán rất hiệu
+quả khi dãy gần như đã có thứ tự.
 
 Độ phức tạp thời gian xấu nhất và trung bình của sắp xếp chèn đều là $O(n^2)$.
 

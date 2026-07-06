@@ -2,19 +2,27 @@ Trang này giới thiệu ngắn gọn về các thuật toán sắp xếp.
 
 ## Định nghĩa
 
-**Thuật toán sắp xếp** (tiếng Anh: Sorting algorithm) là thuật toán sắp xếp một tập dữ liệu nhất định theo một thứ tự nào đó. Có rất nhiều thuật toán sắp xếp, và tính chất của chúng cũng thường khác nhau.
+**Thuật toán sắp xếp** (sorting algorithm) là thuật toán sắp xếp một tập dữ liệu
+nhất định theo một thứ tự nào đó. Có rất nhiều thuật toán sắp xếp, và tính chất
+của chúng cũng thường khác nhau.
 
 ## Tính chất
 
 ### Tính ổn định
 
-Tính ổn định nói đến việc thứ tự tương đối của các phần tử bằng nhau có thay đổi sau khi sắp xếp hay không.
+Tính ổn định nói đến việc thứ tự tương đối của các phần tử bằng nhau có thay đổi
+sau khi sắp xếp hay không.
 
-Một thuật toán có tính ổn định sẽ giữ nguyên thứ tự tương đối của các bản ghi vốn có khóa bằng nhau. Nói cách khác, nếu một thuật toán sắp xếp là ổn định, với hai bản ghi $R$ và $S$ có khóa bằng nhau, và $R$ đứng trước $S$ trong danh sách ban đầu, thì $R$ cũng sẽ đứng trước $S$ trong danh sách sau khi sắp xếp.
+Một thuật toán có tính ổn định sẽ giữ nguyên thứ tự tương đối của các bản ghi
+vốn có khóa bằng nhau. Nói cách khác, nếu một thuật toán sắp xếp là ổn định, với
+hai bản ghi $R$ và $S$ có khóa bằng nhau, và $R$ đứng trước $S$ trong danh sách
+ban đầu, thì $R$ cũng sẽ đứng trước $S$ trong danh sách sau khi sắp xếp.
 
-Sắp xếp cơ số, sắp xếp đếm, sắp xếp chèn, sắp xếp nổi bọt và sắp xếp trộn là các thuật toán sắp xếp ổn định.
+Sắp xếp cơ số, sắp xếp đếm, sắp xếp chèn, sắp xếp nổi bọt và sắp xếp trộn là các
+thuật toán sắp xếp ổn định.
 
-Sắp xếp chọn, sắp xếp vun đống, sắp xếp nhanh và sắp xếp Shell không phải là các thuật toán sắp xếp ổn định.
+Sắp xếp chọn, sắp xếp vun đống, sắp xếp nhanh và sắp xếp Shell không phải là các
+thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 

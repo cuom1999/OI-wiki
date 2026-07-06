@@ -1,18 +1,18 @@
 author: sbofgayschool
 
-`std::pair` là một template lớp được định nghĩa trong thư viện chuẩn. Nó dùng
-để ghép hai giá trị lại với nhau thành một "cặp", và kiểu dữ liệu của hai giá trị
-có thể khác nhau.
+`std::pair` là một mẫu lớp (class template) được định nghĩa trong thư viện chuẩn.
+Nó dùng để ghép hai giá trị lại với nhau thành một "cặp", và kiểu dữ liệu của
+hai giá trị có thể khác nhau.
 
-??? note "Template lớp"
-    Bản thân template lớp không phải là một lớp cụ thể, mà là một "khuôn mẫu" có thể
+??? note "Mẫu lớp"
+    Bản thân mẫu lớp không phải là một lớp cụ thể, mà là một "khuôn mẫu" có thể
     sinh ra **các lớp khác nhau** theo **các kiểu dữ liệu khác nhau**.
 
     Khi sử dụng, trình biên dịch sẽ sinh lớp tương ứng theo kiểu dữ liệu được
     truyền vào, rồi tạo đối tượng tương ứng.
 
-    Template là một tính năng tương đối nâng cao của C++; trong thi đấu tin học
-    gần như không cần tự viết `template`. Nếu quan tâm, có thể đọc thêm
+    Cơ chế template là một tính năng tương đối nâng cao của C++; trong thi đấu
+    tin học gần như không cần tự viết `template`. Nếu quan tâm, có thể đọc thêm
     "C++ Primer" để học sâu hơn về C++.
 
 Sử dụng `pair` linh hoạt giúp xử lý hiệu quả các tình huống **cần ghép hai dữ liệu
