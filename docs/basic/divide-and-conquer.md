@@ -18,9 +18,9 @@ bài toán thành các bài toán con cùng loại.
 
 Ý tưởng cơ bản của đệ quy là một hàm gọi trực tiếp hoặc gián tiếp chính nó. Nhờ
 đó, việc giải bài toán ban đầu được chuyển thành việc giải nhiều bài toán con
-có cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, chỉ cần quan tâm cách chia
-bài toán gốc thành các bài toán con hợp lệ, không cần đào quá sâu vào cách từng
-bài toán con được giải.
+có cùng bản chất nhưng kích thước nhỏ hơn. Khi giải, cần tập trung vào cách chia
+bài toán gốc thành các bài toán con hợp lệ, thay vì lần theo chi tiết giải từng
+bài toán con.
 
 Một số ví dụ giúp hiểu đệ quy:
 
@@ -32,9 +32,9 @@ Một số ví dụ giúp hiểu đệ quy:
     người đó sinh năm 1999.
 4.  ![Một ví dụ để hiểu đệ quy](images/divide-and-conquer-1.svg)
 
-Đệ quy rất thường gặp trong toán học. Chẳng hạn trong lý thuyết tập hợp, một
-định nghĩa hình thức của số tự nhiên là: 1 là một số tự nhiên; mỗi số tự nhiên
-có một số kế tiếp, và số kế tiếp đó cũng là số tự nhiên.
+Đệ quy thường gặp trong toán học. Chẳng hạn trong lý thuyết tập hợp, một định
+nghĩa hình thức của số tự nhiên là: 1 là một số tự nhiên; mỗi số tự nhiên có
+một số kế tiếp, và số kế tiếp đó cũng là số tự nhiên.
 
 Hai đặc trưng quan trọng nhất của mã đệ quy là điều kiện dừng và lời gọi chính
 nó. Lời gọi chính nó dùng để giải bài toán con, còn điều kiện dừng định nghĩa
@@ -98,9 +98,9 @@ int func(giá_trị_đầu_vào) {
         ```
 
     Phiên bản đệ quy dễ hiểu hơn phiên bản không đệ quy. Cách làm của phiên bản
-    đệ quy rất trực quan: sắp xếp nửa trái, sắp xếp nửa phải, rồi trộn hai nửa.
-    Phiên bản không đệ quy thì khó đọc hơn, chứa nhiều chi tiết tính biên khó
-    hiểu, rất dễ lỗi và khó gỡ lỗi.
+    đệ quy trực quan: sắp xếp nửa trái, sắp xếp nửa phải, rồi trộn hai nửa.
+    Phiên bản không đệ quy khó đọc hơn, chứa nhiều chi tiết tính biên khó hiểu,
+    dễ lỗi và khó gỡ lỗi.
 
 2.  Rèn luyện khả năng phân tích cấu trúc bài toán. Khi nhận ra bài toán có thể
     được tách thành các bài toán nhỏ có cùng cấu trúc, việc quen viết đệ quy sẽ
@@ -113,11 +113,11 @@ lời gọi hàm, ngăn xếp thêm một khung ngăn xếp; mỗi khi hàm tr�
 bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, nên nếu tầng đệ
 quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
-Trong một số trường hợp đệ quy rất hiệu quả, chẳng hạn sắp xếp trộn (merge
-sort); nhưng **cũng có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông
-trên người Tôn Ngộ Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn
-giản có thể không tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết,
-tính độ dài của nó.
+Trong một số trường hợp đệ quy hiệu quả, chẳng hạn sắp xếp trộn (merge sort);
+nhưng **cũng có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người
+Tôn Ngộ Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có
+thể không tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ
+dài của nó.
 
 ```cpp
 // khung duyệt lặp điển hình
@@ -134,7 +134,7 @@ int size_recursion(Node *head) {
 }
 ```
 
-![[So sánh hai cách, trình biên dịch đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, trình biên dịch đặt là Clang 10.0, tối ưu đặt là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
+![[So sánh hai cách, trình biên dịch là Clang 10.0, mức tối ưu là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)](images/divide-and-conquer-2.svg "[So sánh hai cách, trình biên dịch là Clang 10.0, mức tối ưu là O1](https://quick-bench.com/q/rZ7jWPmSdltparOO5ndLgmS9BVc)")
 
 ### Tối ưu đệ quy
 
@@ -149,8 +149,8 @@ gian. Khi đó cần tối ưu đệ quy.[^ref1]
 ### Định nghĩa
 
 Chia để trị (divide and conquer), hiểu theo nghĩa đen là "chia ra để xử lý",
-là cách tách một bài toán phức tạp thành hai hoặc nhiều bài toán con giống
-hoặc tương tự nhau, cho đến khi bài toán con đủ đơn giản để giải trực tiếp.
+là cách tách một bài toán phức tạp thành hai hoặc nhiều bài toán con giống hoặc
+tương tự nhau, cho đến khi bài toán con đủ đơn giản để giải ngay.
 Nghiệm của bài toán ban đầu được tạo bằng cách hợp nhất nghiệm của các bài toán
 con.
 
@@ -166,7 +166,7 @@ Quy trình khái quát gồm ba bước: chia -> giải -> gộp.
 
 Những bài toán giải được bằng chia để trị thường có các đặc điểm sau:
 
--   Khi kích thước bài toán giảm đến một mức nhất định, có thể giải trực tiếp.
+-   Khi kích thước bài toán giảm đến một mức nhất định, có thể giải ngay.
 -   Có thể chia bài toán thành một số bài toán nhỏ cùng dạng; tức là bài
     toán có tính chất cấu trúc con tối ưu, và nghiệm của các bài toán con có
     thể gộp thành nghiệm của bài toán ban đầu.
@@ -185,18 +185,18 @@ với sắp xếp nửa trái, sắp xếp nửa phải, rồi gộp chúng thà
 
 ```cpp
 void merge_sort(một_mảng) {
-  if (có_thể_xử_lý_rất_dễ) return;
+  if (có_thể_xử_lý_dễ_dàng) return;
   merge_sort(nửa_trái_của_mảng);
   merge_sort(nửa_phải_của_mảng);
   merge(nửa_trái_của_mảng, nửa_phải_của_mảng);
 }
 ```
 
-Khi truyền cho nó nửa mảng, sau khi xử lý xong thì nửa mảng đó đã được sắp
-xếp. Hàm `merge_sort` rất giống mẫu duyệt hậu tự của cây nhị phân. Vì khuôn mẫu
-của chia để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**:
-trước hết chia trái phải, sau đó xử lý gộp; bước quay lui chính là khi ngăn xếp
-lời gọi trả về, tương đương hậu tự.
+Khi truyền cho nó nửa mảng, sau khi xử lý xong thì nửa mảng đó đã được sắp xếp.
+Hàm `merge_sort` giống mẫu duyệt hậu tự của cây nhị phân. Vì khuôn mẫu của chia
+để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**: trước hết chia trái
+phải, sau đó xử lý gộp; bước quay lui chính là khi ngăn xếp lời gọi trả về,
+tương đương hậu tự.
 
 Cách cài đặt hàm `merge` giống với việc gộp hai danh sách liên kết đã sắp xếp.
 
@@ -220,8 +220,8 @@ void traverse(TreeNode* root) {
 ```
 
 Vài dòng này đã đủ để duyệt bất kỳ cây nhị phân nào. Với hàm đệ quy
-`traverse(root)`, chỉ cần tin rằng khi đưa cho nó một nút gốc `root`, nó có thể
-duyệt cả cây đó. Vì vậy, chỉ cần truyền tiếp nút trái và nút phải cho hàm.
+`traverse(root)`, hãy tin rằng khi đưa cho nó một nút gốc `root`, nó có thể
+duyệt cả cây đó. Vì vậy, truyền tiếp nút trái và nút phải cho hàm là đủ.
 
 Mở rộng tương tự sang duyệt cây N phân. Cách viết gần như giống cây nhị phân,
 chỉ có điều cây N phân không có duyệt trung tự theo nghĩa thông thường.
@@ -290,7 +290,7 @@ loại bài toán.
     ```
 
 ??? note "Phân tích bài toán"
-    Đề bài trông phức tạp, nhưng mã lại cực kỳ ngắn gọn.
+    Đề bài trông phức tạp, nhưng mã lại ngắn gọn.
 
     Trước hết cần xác định rõ: giải bài toán trên cây bằng đệ quy cần duyệt toàn
     bộ cây, nên khung duyệt cây nhị phân, tức gọi đệ quy chính hàm đó trên cây

@@ -3,9 +3,9 @@ Trang này giới thiệu ngắn gọn về thuật toán tham lam.
 ## Mở đầu
 
 Thuật toán tham lam (greedy algorithm) là quá trình dùng máy tính mô phỏng một
-người "tham lam" ra quyết định. Người này rất tham: ở mỗi bước luôn chọn thao
-tác tốt nhất theo một tiêu chí nào đó. Đồng thời người này cũng thiển cận: chỉ
-nhìn lợi ích trước mắt và không xét ảnh hưởng có thể xảy ra về sau.
+người "tham lam" ra quyết định: ở mỗi bước luôn chọn thao tác tốt nhất theo một
+tiêu chí nào đó. Đồng thời người này cũng thiển cận: chỉ nhìn lợi ích trước mắt
+và không xét ảnh hưởng có thể xảy ra về sau.
 
 Có thể hình dung rằng không phải lúc nào tham lam cũng cho nghiệm tối ưu. Vì
 vậy khi dùng thuật toán tham lam, thường cần chứng minh được tính đúng đắn của
@@ -22,8 +22,8 @@ rồi từ nghiệm tối ưu của các bài toán con suy ra nghiệm tối ư
 
 ### Chứng minh
 
-Có hai cách chứng minh thuật toán tham lam: phản chứng và quy nạp. Thông
-thường, một bài chỉ cần dùng một trong hai cách.
+Có hai cách chứng minh thuật toán tham lam thường gặp: phản chứng và quy nạp.
+Thông thường, một bài dùng một trong hai cách là đủ.
 
 1.  Phản chứng: nếu sau khi đổi chỗ hai phần tử bất kỳ hoặc hai phần tử kề
     nhau trong phương án mà đáp án không tốt hơn, có thể suy ra nghiệm hiện tại
@@ -36,13 +36,12 @@ thường, một bài chỉ cần dùng một trong hai cách.
 
 ### Dạng bài thường gặp
 
-Trong các bài có độ khó không quá nhóm nâng cao, hai dạng tham lam thường gặp
-nhất là:
+Trong các bài không quá nâng cao, hai dạng tham lam thường gặp nhất là:
 
 -   "Sắp xếp XXX theo một thứ tự nào đó, rồi chọn theo một thứ tự nào đó, chẳng
     hạn từ nhỏ đến lớn."
 -   "Mỗi lần lấy phần tử lớn nhất/nhỏ nhất trong XXX, rồi cập nhật XXX." Đôi
-    khi phần "phần tử lớn nhất/nhỏ nhất trong XXX" có thể được tối ưu, ví dụ
+    khi phần "phần tử lớn nhất/nhỏ nhất trong XXX" có thể được cải thiện, ví dụ
     dùng hàng đợi ưu tiên để duy trì.
 
 Khác biệt giữa hai dạng là: dạng đầu là xử lý ngoại tuyến, xử lý trước rồi chọn;
@@ -168,8 +167,8 @@ nên có khả năng quay lui theo nghĩa rộng.
 
 ??? note "Phân tích độ phức tạp"
     -   Độ phức tạp bộ nhớ: khi nhập $n$ công việc, dùng $n$ phần tử mảng `a`.
-        Trong trường hợp xấu nhất, hàng đợi ưu tiên cũng lưu $n$ phần tử, nên
-        độ phức tạp bộ nhớ là $O(n)$.
+        Trong trường hợp bất lợi nhất, hàng đợi ưu tiên cũng lưu $n$ phần tử,
+        nên độ phức tạp bộ nhớ là $O(n)$.
     -   Độ phức tạp thời gian: `std::sort` có độ phức tạp $O(n\log n)$, việc
         duy trì hàng đợi ưu tiên cũng có độ phức tạp $O(n\log n)$. Tổng hợp
         lại, độ phức tạp thời gian là $O(n\log n)$.
