@@ -101,7 +101,7 @@ Trang này dùng để quản lý dữ liệu.
 
 Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
 
-"Testset" ("Tập kiểm thử") là một tập kiểm thử. Nếu ra đề cho CF, cần tự thêm tập kiểm thử tên `pretests`, và `pretests` cần là tập con của `tests`.
+"Testset" ("Tập kiểm thử") dùng để nhóm các bộ kiểm thử. Nếu ra đề cho CF, cần tự thêm tập kiểm thử tên `pretests`, và `pretests` cần là tập con của `tests`.
 
 "Add Test" ("Thêm bộ kiểm thử") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
@@ -129,9 +129,9 @@ Trang này dùng để đặt mã nguồn lời giải của bài, có thể là
 
 Trang này dùng để chạy lời giải.
 
-Chọn mã nguồn và test rồi chạy; sau đó có thể nhấp vào mục trong danh sách "View" ("Xem") để xem thông tin chi tiết.
+Chọn mã nguồn và bộ kiểm thử rồi chạy; sau đó có thể nhấp vào mục trong danh sách "View" ("Xem") để xem thông tin chi tiết.
 
-Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua xác thực hoặc trình xác thực dữ liệu/trình kiểm tra đáp án/trình tương tác bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay test đầu tiên.
+Trạng thái chấm "FL" nghĩa là chấm bị lỗi, thường là dữ liệu không qua xác thực hoặc trình xác thực dữ liệu/trình kiểm tra đáp án/trình tương tác bị RE. "RJ" có hai trường hợp: một là đã xuất hiện "FL", hai là mã nguồn này không qua ngay bộ kiểm thử đầu tiên.
 
 Nếu thời gian chạy nằm trong khoảng từ một nửa đến hai lần giới hạn thời gian, nó sẽ được đánh dấu màu vàng.
 

@@ -4,7 +4,7 @@ Trang này chủ yếu giới thiệu cách viết SPJ cho một số công cụ
 
 ## Giới thiệu
 
-**Trình chấm đặc biệt** (Special Judge, viết tắt: SPJ, còn gọi là checker hoặc trình kiểm tra đáp án) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
+**Trình chấm đặc biệt** (Special Judge, viết tắt: SPJ, còn gọi là trình kiểm tra đáp án, checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
 
 ???+ warning "Cảnh báo"
     SPJ cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
@@ -14,7 +14,7 @@ Trang này chủ yếu giới thiệu cách viết SPJ cho một số công cụ
     Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay chưa, để tránh làm SPJ bị lỗi chạy. Một số OJ xử lý lỗi chạy của SPJ như lỗi hệ thống.
 
 ???+ note "Ghi chú"
-    Các ví dụ bên dưới đều dùng C++ làm ngôn ngữ lập trình, với tình huống mẫu: yêu cầu sai khác giữa đáp án chuẩn và đáp án thí sinh nhỏ hơn `1e-3`, tên tệp là `num`, và điểm tối đa của một test là 10.
+    Các ví dụ bên dưới đều dùng C++ làm ngôn ngữ lập trình, với tình huống mẫu: yêu cầu sai khác giữa đáp án chuẩn và đáp án thí sinh nhỏ hơn `1e-3`, tên tệp là `num`, và điểm tối đa của một bộ kiểm thử là 10.
 
 ## Testlib
 
@@ -28,9 +28,9 @@ Các công cụ chấm/OJ có thể dùng Testlib làm SPJ: LibreOJ ([Lyrio](htt
 
 Phiên bản Testlib đã chỉnh sửa cần cho SYZOJ 2 được lưu tại [pastebin](https://pastebin.com/3GANXMG7)[^1], nhưng phiên bản này chưa chỉnh sửa chế độ tương tác. Tại [syzoj/testlib](https://github.com/syzoj/testlib) có lưu một bản Testlib có thể dùng chế độ tương tác trên SYZOJ 2.
 
-Phiên bản Testlib đã chỉnh sửa cần cho Lemon được lưu tại [GitHub - GitPinkRabbit/Testlib-for-Lemons](https://github.com/GitPinkRabbit/Testlib-for-Lemons). Lưu ý rằng khi đăng ký checker bằng phiên bản Testlib này, nên dùng `registerLemonChecker()` thay vì `registerTestlibCmd()`. Phiên bản này kế thừa từ [bản cũ của matthew99](https://paste.ubuntu.com/p/JsTspHHnmB/) và bổ sung một số chức năng mới của Testlib. Nếu dùng LemonLime, có thể dùng Testlib gốc.
+Phiên bản Testlib đã chỉnh sửa cần cho Lemon được lưu tại [GitHub - GitPinkRabbit/Testlib-for-Lemons](https://github.com/GitPinkRabbit/Testlib-for-Lemons). Lưu ý rằng khi đăng ký trình kiểm tra đáp án bằng phiên bản Testlib này, nên dùng `registerLemonChecker()` thay vì `registerTestlibCmd()`. Phiên bản này kế thừa từ [bản cũ của matthew99](https://paste.ubuntu.com/p/JsTspHHnmB/) và bổ sung một số chức năng mới của Testlib. Nếu dùng LemonLime, có thể dùng Testlib gốc.
 
-Phiên bản Testlib đã chỉnh sửa cần cho DOMJudge được lưu tại [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge). Phiên bản Testlib này có thể dùng đồng thời làm checker cho SPJ và interactor cho bài tương tác.
+Phiên bản Testlib đã chỉnh sửa cần cho DOMJudge được lưu tại [cn-xcpc-tools/testlib-for-domjudge](https://github.com/cn-xcpc-tools/testlib-for-domjudge). Phiên bản Testlib này có thể dùng đồng thời làm trình kiểm tra đáp án cho SPJ và trình tương tác cho bài tương tác.
 
 Phiên bản Testlib đã chỉnh sửa cần cho Arbiter được lưu tại [testlib-for-arbiter](https://github.com/HeRaNO/ChickenRibs/tree/master/testlib-for-arbiter).
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
 ???+ note "Ghi chú"
     Lemon có sẵn phiên bản [Testlib](#testlib) đã chỉnh sửa, nên khuyến nghị dùng Testlib.
 
-    Phiên bản LemonLime mới nhất đã hỗ trợ dùng Testlib gốc để viết checker; nếu dùng LemonLime, khuyến nghị dùng Testlib.
+    Phiên bản LemonLime mới nhất đã hỗ trợ dùng Testlib gốc để viết trình kiểm tra đáp án; nếu dùng LemonLime, khuyến nghị dùng Testlib.
 
 ```cpp
 #include <cmath>
@@ -74,7 +74,7 @@ int main(int argc, char* argv[]) {
    * argv[1]: đầu vào
    * argv[2]: đầu ra của thí sinh
    * argv[3]: đầu ra chuẩn
-   * argv[4]: điểm của một test
+   * argv[4]: điểm của một bộ kiểm thử
    * argv[5]: ghi điểm cuối cùng (0 ~ argv[4])
    * argv[6]: ghi báo cáo lỗi
    */
@@ -109,7 +109,7 @@ int main(int argc, char* argv[]) {
   /*
    * FILENAME.in: đầu vào
    * FILENAME.out: đầu ra của thí sinh
-   * argv[1]: điểm của một test
+   * argv[1]: điểm của một bộ kiểm thử
    * argv[2]: đầu ra chuẩn
    * score.log: ghi điểm cuối cùng (0 ~ argv[1])
    * report.log: ghi báo cáo lỗi
@@ -316,7 +316,7 @@ AC
 ???+ note "Ghi chú"
     SYZOJ 2 có sẵn phiên bản [Testlib](#testlib) đã chỉnh sửa, nên khuyến nghị dùng Testlib.
 
-    Phiên bản mới nhất của LibreOJ không còn dựa trên SYZOJ nữa, mà dựa trên [Lyrio](https://github.com/lyrio-dev/lyrio). Lyrio hỗ trợ dùng Testlib gốc để viết checker; đây cũng là cách tổng quát hơn và được khuyến nghị hơn.
+    Phiên bản mới nhất của LibreOJ không còn dựa trên SYZOJ nữa, mà dựa trên [Lyrio](https://github.com/lyrio-dev/lyrio). Lyrio hỗ trợ dùng Testlib gốc để viết trình kiểm tra đáp án; đây cũng là cách tổng quát hơn và được khuyến nghị hơn.
 
 ```cpp
 #include <cmath>
