@@ -1,4 +1,4 @@
-Trước khi học cây khung đường kính nhỏ nhất (Minimum Diameter Spanning Tree), bạn nên đọc nội dung về [đường kính của cây](./tree-diameter.md).
+Trước khi học cây khung đường kính nhỏ nhất (Minimum Diameter Spanning Tree), nên đọc nội dung về [đường kính của cây](./tree-diameter.md).
 
 ## Định nghĩa
 
@@ -10,7 +10,7 @@ Trong tất cả các cây khung của một đồ thị vô hướng, cây khun
 
 Theo định nghĩa của **tâm tuyệt đối của đồ thị**, có thể biết rằng có ít nhất hai đỉnh xa tâm tuyệt đối nhất.
 
-Gọi $d(i,j)$ là độ dài đường đi ngắn nhất giữa hai đỉnh $i,j$. Ta dùng thuật toán đường đi ngắn nhất đa nguồn để tính đường đi ngắn nhất giữa mọi cặp đỉnh.
+Gọi $d(i,j)$ là độ dài đường đi ngắn nhất giữa hai đỉnh $i,j$. Dùng thuật toán đường đi ngắn nhất đa nguồn để tính đường đi ngắn nhất giữa mọi cặp đỉnh.
 
 $\textit{rk}(i,j)$ ghi lại đỉnh có khoảng cách nhỏ thứ $j$ từ đỉnh $i$ trong tất cả các đỉnh còn lại.
 
@@ -22,7 +22,7 @@ Lấy một đỉnh $i$ làm ví dụ, quan hệ vị trí giữa đỉnh này v
 
 ![Quan hệ vị trí giữa đỉnh và tâm tuyệt đối của đồ thị](./images/mdst-graph.svg)
 
-Khi tâm tuyệt đối của đồ thị $c$ thay đổi vị trí trên cạnh, ta thu được đồ thị hàm số biểu diễn khoảng cách theo vị trí của $c$. Rõ ràng, đồ thị hàm số của $d(c,i)$ hiện tại là một đường gấp khúc gồm hai đoạn thẳng có hệ số góc cố định.
+Khi tâm tuyệt đối của đồ thị $c$ thay đổi vị trí trên cạnh, thu được đồ thị hàm số biểu diễn khoảng cách theo vị trí của $c$. Đồ thị hàm số của $d(c,i)$ hiện tại là một đường gấp khúc gồm hai đoạn thẳng có hệ số góc cố định.
 
 ![Đồ thị hàm khoảng cách từ tâm tuyệt đối đến một đỉnh](./images/mdst-plot1.svg)
 
@@ -85,9 +85,9 @@ Tâm tuyệt đối của đồ thị cũng có thể nằm tại một đỉnh.
 
 ## Cây khung đường kính nhỏ nhất
 
-Theo định nghĩa của tâm tuyệt đối của đồ thị, dễ thấy tâm tuyệt đối của đồ thị là trung điểm của đường kính trong cây khung đường kính nhỏ nhất.
+Theo định nghĩa của tâm tuyệt đối của đồ thị, tâm tuyệt đối của đồ thị là trung điểm của đường kính trong cây khung đường kính nhỏ nhất.
 
-Để tìm cây khung đường kính nhỏ nhất, trước hết cần tìm tâm tuyệt đối của đồ thị. Lấy tâm tuyệt đối của đồ thị làm điểm bắt đầu và sinh một cây đường đi ngắn nhất, khi đó ta thu được cây khung đường kính nhỏ nhất.
+Để tìm cây khung đường kính nhỏ nhất, trước hết cần tìm tâm tuyệt đối của đồ thị. Lấy tâm tuyệt đối của đồ thị làm điểm bắt đầu và sinh một cây đường đi ngắn nhất, khi đó thu được cây khung đường kính nhỏ nhất.
 
 ??? note "Cài đặt"
     ```cpp

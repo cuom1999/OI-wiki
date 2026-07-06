@@ -15,7 +15,7 @@ Không mất tính tổng quát, giả sử $x < y < z$.
 
 Gọi $d_i$ là tầng thấp nhất $p$ có thể đạt được chỉ bằng **thao tác 2** và **thao tác 3**, đồng thời thỏa $p\bmod x = i$. Nói cách khác, $d_i$ là số nhỏ nhất đồng dư với $i$ theo modulo $x$ có thể thu được sau khi thực hiện **thao tác 2** và **thao tác 3**; giá trị này dùng để tính số lượng số trong lớp đồng dư đó thỏa điều kiện.
 
-Ta có hai phép chuyển trạng thái:
+Có hai phép chuyển trạng thái:
 
 -   $i \xrightarrow{y} (i+y) \bmod x$
 
@@ -23,7 +23,7 @@ Ta có hai phép chuyển trạng thái:
 
 Chú ý thường chọn số nhỏ nhất trong tập $a_i$ để lấy modulo, tức là $x$ trong ví dụ này, nhằm giảm tối đa độ phức tạp bộ nhớ (hệ thặng dư nhỏ nhất).
 
-Khi đó, về bản chất ta đang thực hiện thao tác xây cạnh trong bài toán đường đi ngắn nhất:
+Khi đó, về bản chất đang thực hiện thao tác xây cạnh trong bài toán đường đi ngắn nhất:
 
 `add(i, (i+y) % x, y)`
 
@@ -36,7 +36,7 @@ Tiếp theo chỉ cần tìm $d_0, d_1, d_2, \dots, d_{x-1}$; chạy một lần
     --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
 
-Tuy nhiên, thực ra cũng không cần giải đường đi ngắn nhất theo cách thông thường. Hãy chú ý hai tính chất đặc biệt:
+Tuy nhiên, thực ra cũng không cần giải đường đi ngắn nhất theo cách thông thường. Chú ý hai tính chất đặc biệt:
 
 Thứ nhất, chỉ có hai loại trọng số cạnh; với mỗi đường đi, do tính giao hoán của phép cộng, thứ tự đi qua hai loại trọng số không ảnh hưởng đến kết quả. Vì vậy có thể xét chạy đường đi ngắn nhất hai lần, mỗi lần chỉ xây các cạnh thuộc một loại trọng số.
 
@@ -71,9 +71,9 @@ Khi cài đặt, chú ý phạm vi của $h$ là $h \leq 2^{63}-1$, nên trướ
 ### Ví dụ 2
 
 ???+ note "[ARC084B Small Multiple](https://atcoder.jp/contests/arc084/tasks/arc084_b)"
-    Tóm tắt đề bài: cho $n$, hãy tìm tổng chữ số của bội số của $n$ có tổng chữ số nhỏ nhất. ($1\le n\le 10^5$)
+    Tóm tắt đề bài: cho $n$, cần tìm tổng chữ số của bội số của $n$ có tổng chữ số nhỏ nhất. ($1\le n\le 10^5$)
 
-Bài này có thể giải trong $O(n\log^2 n)$ bằng ba lô đầy đủ tối ưu bằng tích chập vòng, nhưng ta muốn có một thuật toán tuyến tính.
+Bài này có thể giải trong $O(n\log^2 n)$ bằng ba lô đầy đủ tối ưu bằng tích chập vòng, nhưng có thể tìm một thuật toán tuyến tính.
 
 Quan sát rằng mọi số nguyên dương đều có thể được tạo ra từ $1$ bằng cách thực hiện các thao tác nhân $10$ và cộng $1$ theo một thứ tự nào đó; số lần thực hiện thao tác cộng $1$ chính là tổng chữ số của số đó. Điều này gợi ý dùng đường đi ngắn nhất.
 
