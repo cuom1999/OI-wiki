@@ -23,7 +23,7 @@ $$
 S_0 = 0,~ S_i = S_{i-1} + a_i
 $$
 
-Để truy vấn tổng của dãy trên đoạn $[l,r]$, chỉ cần tính hiệu
+Để truy vấn tổng của dãy trên đoạn $[l,r]$, tính hiệu
 
 $$
 S([l,r]) = S_r - S_{l-1}.
@@ -62,7 +62,7 @@ $$
 S_{i,j} = A_{i,j} + S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1}. 
 $$
 
-Khi cài đặt, chỉ cần duyệt trực tiếp các $(i,j)$ để tính tổng.
+Khi cài đặt, duyệt trực tiếp các $(i,j)$ để tính tổng.
 
 ???+ note "Ví dụ"
     Xét một ví dụ cụ thể.
@@ -114,11 +114,11 @@ Từ công thức trên, tổng tiền tố $k$ chiều chính là thực hiện
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_4.cpp:core"
     ```
 
-Vì khi xét mỗi chiều, chỉ cần duyệt toàn bộ mảng một lần, độ phức tạp của thuật toán này là $O(kN)$ và thường chấp nhận được.
+Vì khi xét mỗi chiều, thuật toán duyệt toàn bộ mảng một lần, độ phức tạp của thuật toán này là $O(kN)$ và thường chấp nhận được.
 
 #### Trường hợp đặc biệt: DP tổng trên tập con
 
-Trường hợp số chiều khá lớn thường xuất hiện trong một lớp bài toán gọi là **tổng trên tập con** (sum over subsets, SOS). Đây là một trường hợp đặc biệt của tổng tiền tố nhiều chiều.
+Trường hợp số chiều lớn thường xuất hiện trong một lớp bài toán gọi là **tổng trên tập con** (sum over subsets, SOS). Đây là một trường hợp đặc biệt của tổng tiền tố nhiều chiều.
 
 Mô tả bài toán như sau. Xét một hàm $f$ được định nghĩa trên toàn bộ các tập con của một tập kích thước $n$. Cần tính hàm tổng trên tập con $g$, thỏa mãn
 
@@ -147,7 +147,7 @@ Phép ngược của tổng trên tập con cần thực hiện bằng [nguyên 
 
 ### Tổng tiền tố trên cây
 
-Tổng tiền tố một chiều còn có thể mở rộng sang trường hợp cây có gốc (gốc cây là $1$). Bằng cách tiền xử lý tổng tiền tố, có thể nhanh chóng tính tổng trọng số trên một đường đi của cây.
+Tổng tiền tố một chiều còn có thể mở rộng sang trường hợp cây có gốc (gốc cây là $1$). Bằng cách tiền xử lý tổng tiền tố, có thể tính nhanh tổng trọng số trên một đường đi của cây.
 
 #### Trường hợp trọng số đỉnh
 
@@ -167,7 +167,7 @@ Trong đó, $\operatorname{lca}(x, y)$ biểu thị [tổ tiên chung gần nh�
 
 #### Trường hợp trọng số cạnh
 
-Trường hợp trọng số lưu trên cạnh gần như có thể chuyển về trường hợp trọng số đỉnh. Với mọi đỉnh không phải gốc $x\neq 1$, ký hiệu $\operatorname{edge}(x)$ là cạnh nối đỉnh $x$ với cha của nó $\operatorname{fa}(x)$. Khi đó, có thể giả sử trọng số cạnh được lưu ở đỉnh xa gốc hơn. Nói cách khác, tại đỉnh $x$ lưu trọng số của cạnh $\operatorname{edge}(x)$. Trọng số lưu ở đỉnh gốc là $0$. Khi đó, bằng công thức truy hồi đã thảo luận ở tiểu mục trước, cũng có thể tiền xử lý tổng trọng số $S_x$ của tất cả các cạnh trên đường đi từ gốc tới đỉnh $x$.
+Trường hợp trọng số lưu trên cạnh có thể chuyển về trường hợp trọng số đỉnh. Với mọi đỉnh không phải gốc $x\neq 1$, ký hiệu $\operatorname{edge}(x)$ là cạnh nối đỉnh $x$ với cha của nó $\operatorname{fa}(x)$. Khi đó, có thể giả sử trọng số cạnh được lưu ở đỉnh xa gốc hơn. Nói cách khác, tại đỉnh $x$ lưu trọng số của cạnh $\operatorname{edge}(x)$. Trọng số lưu ở đỉnh gốc là $0$. Khi đó, bằng công thức truy hồi đã thảo luận ở tiểu mục trước, cũng có thể tiền xử lý tổng trọng số $S_x$ của tất cả các cạnh trên đường đi từ gốc tới đỉnh $x$.
 
 Lúc này, tổng trọng số cạnh trên đường đi nối đỉnh $x$ và $y$ có thể được truy vấn bằng
 
@@ -261,7 +261,7 @@ D_{x_2+1,y_2+1} &\gets D_{x_2+1,y_2+1} + v.
 \end{aligned}
 $$
 
-Sau khi mọi thao tác sửa đổi kết thúc, chỉ cần thực hiện một lần tổng tiền tố hai chiều để nhanh chóng truy vấn giá trị của mảng sau cập nhật.
+Sau khi mọi thao tác sửa đổi kết thúc, thực hiện một lần tổng tiền tố hai chiều để truy vấn nhanh giá trị của mảng sau cập nhật.
 
 ??? example "Mã tham khảo"
     ```cpp
@@ -287,14 +287,14 @@ D_{\operatorname{fa}(\operatorname{lca}(x, y))} &\gets D_{\operatorname{fa}(\ope
 \end{aligned}
 $$
 
-Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con là có thể nhận được trọng số đỉnh sau cập nhật.
+Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con để nhận được trọng số đỉnh sau cập nhật.
 
 ???+ example "Ví dụ"
     Khi thực hiện thao tác cộng đoạn trên trọng số đỉnh của đường đi giữa hai đỉnh $S$ và $T$, hai công thức đầu ở trên là thao tác sai phân một chiều trên đường đi trong khung màu xanh, còn hai công thức sau là thao tác sai phân một chiều trên đường đi trong khung màu đỏ:
     
     ![](./images/prefix_sum1.svg)
     
-    Tính tổng từ dưới lên tương đương với tính tổng tiền tố từ dưới lên trên hai đoạn này. Từ đó, so sánh với thao tác sai phân một chiều ở trên là có thể hiểu tính đúng đắn của sai phân đỉnh.
+    Tính tổng từ dưới lên tương đương với tính tổng tiền tố từ dưới lên trên hai đoạn này. Từ đó, so sánh với thao tác sai phân một chiều ở trên để hiểu tính đúng đắn của sai phân đỉnh.
 
 #### Sai phân cạnh
 
@@ -308,14 +308,14 @@ D_{\operatorname{lca}(x, y)} &\gets D_{\operatorname{lca}(x, y)} - 2v.
 \end{aligned}
 $$
 
-Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con là có thể nhận được trọng số cạnh sau cập nhật.
+Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây con để nhận được trọng số cạnh sau cập nhật.
 
 ???+ example "Ví dụ"
     Như hình vẽ, thao tác sai phân cạnh có thể dùng để giải bài toán cộng đoạn trên trọng số cạnh của đường đi màu đỏ.
     
     ![](./images/prefix_sum2.svg)
     
-    Vì thực hiện sai phân trực tiếp trên cạnh khá khó, chuyển giá trị vốn cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới sẽ làm thao tác thuận tiện hơn. So sánh với công thức sai phân đỉnh là có thể hiểu công thức sai phân cạnh.
+    Vì thực hiện sai phân trực tiếp trên cạnh tương đối khó, chuyển giá trị vốn cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới sẽ làm thao tác gọn hơn. So sánh với công thức sai phân đỉnh để hiểu công thức sai phân cạnh.
 
 ### Bài mẫu
 
@@ -325,7 +325,7 @@ Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây 
     FJ có $K(1 \le K \le 100,000)$ tuyến vận chuyển sữa. Tuyến thứ $i$ vận chuyển từ ngăn $s_i$ tới ngăn $t_i$. Một tuyến vận chuyển sẽ tạo một đơn vị áp lực vận chuyển lên hai ngăn ở hai đầu mút của nó cũng như mọi ngăn đi qua ở giữa. Cần tính áp lực lớn nhất trên một ngăn là bao nhiêu.
 
 ??? note "Ý tưởng giải"
-    Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể nhanh chóng thu được số lần đi qua mỗi đỉnh. Lời giải này dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
+    Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể thu được nhanh số lần đi qua mỗi đỉnh. Lời giải này dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
 
 ??? note "Mã tham khảo"
     ```cpp
