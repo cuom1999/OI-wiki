@@ -1,9 +1,9 @@
-Phép hợp thành và nghịch đảo hợp thành của chuỗi lũy thừa hình thức cũng là những thao tác thường gặp trên chuỗi lũy thừa hình thức. Với $f$ không có tính chất đặc biệt, trước đây ta thường dùng thuật toán $O\left(n^2\right)$ (vẫn cần FFT) để tính $f(g) \bmod{x^n}$, trong đó $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$. Tuy nhiên, do hiệu năng thấp nên cách này ít được áp dụng. Phần này giới thiệu thuật toán $O\left(\mathsf{M}\left(n\right)\log n\right)$ của Kinoshita-Li, trong đó $O\left(\mathsf{M}\left(n\right)\right)$ là thời gian nhân hai đa thức bậc $O\left(n\right)$.
+Phép hợp thành và nghịch đảo hợp thành của chuỗi lũy thừa hình thức cũng là những thao tác thường gặp trên chuỗi lũy thừa hình thức. Với $f$ không có tính chất đặc biệt, trước đây thường dùng thuật toán $O\left(n^2\right)$ (vẫn cần FFT) để tính $f(g) \bmod{x^n}$, trong đó $f\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$. Tuy nhiên, do hiệu năng thấp nên cách này ít được áp dụng. Phần này giới thiệu thuật toán $O\left(\mathsf{M}\left(n\right)\log n\right)$ của Kinoshita-Li, trong đó $O\left(\mathsf{M}\left(n\right)\right)$ là thời gian nhân hai đa thức bậc $O\left(n\right)$.
 
 <span id="hợp-thành-chuỗi-lũy-thừa-hình-thứcđa-thức"></span>
 ## Hợp thành chuỗi lũy thừa hình thức/đa thức
 
-Để tính $f\left(g\left(x\right)\right)\bmod{x^n}$, mỗi hệ số của $f\left(g\left(x\right)\right)$ phải là tổng hữu hạn số hạng. Vì vậy trước đây ta yêu cầu $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$; nếu $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ thì điều kiện này cũng được thỏa mãn. Vì ta cần cắt cụt hệ số của $f\left(g\left(x\right)\right)$, có thể trực tiếp xét trường hợp cả $f(x)$ và $g(x)$ đều là đa thức. Với $f(x)=\sum_{j=0}^{n-1}f_jx^j$, ta có
+Để tính $f\left(g\left(x\right)\right)\bmod{x^n}$, mỗi hệ số của $f\left(g\left(x\right)\right)$ phải là tổng hữu hạn số hạng. Vì vậy trước đây cần yêu cầu $f(x)\in\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack,g(x)\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$; nếu $f(x),g(x)\in\mathbb{C}\left\lbrack x\right\rbrack$ thì điều kiện này cũng được thỏa mãn. Vì cần cắt cụt hệ số của $f\left(g\left(x\right)\right)$, có thể trực tiếp xét trường hợp cả $f(x)$ và $g(x)$ đều là đa thức. Với $f(x)=\sum_{j=0}^{n-1}f_jx^j$, có
 
 $$
 f\left(g\left(x\right)\right)=\sum_{j=0}^{n-1}f_jg\left(x\right)^j
@@ -28,13 +28,13 @@ $$
 \end{aligned}
 $$
 
-Khi tính đệ quy như vậy, tại $n=1$ ta chỉ cần tính
+Khi tính đệ quy như vậy, tại $n=1$ chỉ cần tính
 
 $$
 \frac{P(y)}{Q(x,y)}\bmod{x}=\frac{P(y)}{Q(0,y)}\in\mathbb{C}\left(\left( y\right)\right)
 $$
 
-Khi tính $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$, ta không cần giữ tất cả hệ số theo $y$, vì cuối cùng chỉ cần lấy hệ số của $y^0$. Do đó các hệ số của $y^{>0}$ là không cần thiết. Mặt khác, sau khi tính được biểu thức trên, ta phải nhân nó với một số "**đa thức**" có dạng $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$, nên chỉ cần giữ những hệ số có đóng góp vào $y^0$. Ta có giả mã sau:
+Khi tính $\dfrac{P(y)}{V(z,y)}\bmod{z^{\left\lceil n/2\right\rceil}}\in\mathbb{C}\left\lbrack z\right\rbrack\left(\left( y\right)\right)$, không cần giữ tất cả hệ số theo $y$, vì cuối cùng chỉ cần lấy hệ số của $y^0$. Do đó các hệ số của $y^{>0}$ là không cần thiết. Mặt khác, sau khi tính được biểu thức trên, cần nhân nó với một số "**đa thức**" có dạng $Q(-x,y)\in\mathbb{C}\left\lbrack x,y\right\rbrack$, nên chỉ cần giữ những hệ số có đóng góp vào $y^0$. Giả mã như sau:
 
 $$
 \begin{array}{ll}
@@ -58,9 +58,9 @@ $$
 f\left(g\left(x\right)\right)\bmod{x^n}=\operatorname{\mathsf{Comp}}\left(f\left(y^{-1}\right),1-y\cdot g(x),\max\left\lbrace 1+\deg f,n\right\rbrace ,1\right)\bmod{x^n}
 $$
 
-Lưu ý tham số thứ ba là để xử lí trường hợp $g(0)$ có thể khác không. Nếu $\deg f\geq n$ thì lúc này không thể cắt cụt $f(x)$ để tính $f\left(g(x)\right)$. Ta cũng có thể chọn tính $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$; khi đó đặt $F:=f\left(x+g(0)\right)\bmod{x^n}$ và $G:=g-g(0)$, rồi chuyển sang tính $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$.
+Lưu ý tham số thứ ba là để xử lí trường hợp $g(0)$ có thể khác không. Nếu $\deg f\geq n$ thì lúc này không thể cắt cụt $f(x)$ để tính $f\left(g(x)\right)$. Cũng có thể chọn tính $f(g)=f\circ \left(x+g(0)\right)\circ \left(g-g(0)\right)$; khi đó đặt $F:=f\left(x+g(0)\right)\bmod{x^n}$ và $G:=g-g(0)$, rồi chuyển sang tính $\operatorname{\mathsf{Comp}}\left(F\left(y^{-1}\right),1-y\cdot G(x),n,1\right)$.
 
-Ngoài ra, do giới hạn của lời gọi, khi đệ quy kết thúc thì $Q(0,y)^{-1}$ có thể được suy ra trực tiếp, không cần dùng thuật toán nghịch đảo nhân của chuỗi lũy thừa hình thức. Ta chỉ cần tính một phép nhân rồi trích các hệ số cần thiết.
+Ngoài ra, do giới hạn của lời gọi, khi đệ quy kết thúc thì $Q(0,y)^{-1}$ có thể được suy ra trực tiếp, không cần dùng thuật toán nghịch đảo nhân của chuỗi lũy thừa hình thức. Chỉ cần tính một phép nhân rồi trích các hệ số cần thiết.
 
 <span id="các-dạng-hợp-thành-đặc-biệt-thường-gặp"></span>
 ## Các dạng hợp thành đặc biệt thường gặp
@@ -76,16 +76,16 @@ g(0)=1&,\space g^e=1+\dfrac{e}{1!}(g-1)+\dfrac{e(e-1)}{2!}(g-1)^2+\cdots
 \end{aligned}
 $$
 
-Trong quá trình tính nghịch đảo hợp thành, ta cũng sẽ dùng đến hàm lũy thừa.
+Trong quá trình tính nghịch đảo hợp thành, cũng sẽ dùng đến hàm lũy thừa.
 
 <span id="thế-kronecker"></span>
 ### Thế Kronecker
 
-Trước khi phân tích độ phức tạp thời gian, ta xét cách thực hiện phép nhân đa thức hai biến. Một ý tưởng là "đóng gói" các hệ số. Phương pháp này được Kronecker đưa ra năm 1882: thông qua phép thay $y\mapsto x^N$, phép nhân trên $R\left\lbrack x,y\right\rbrack$ được đưa về phép nhân trên $R\left\lbrack x\right\rbrack$, với điều kiện $N$ đủ lớn.
+Trước khi phân tích độ phức tạp thời gian, xét cách thực hiện phép nhân đa thức hai biến. Một ý tưởng là "đóng gói" các hệ số. Phương pháp này được Kronecker đưa ra năm 1882: thông qua phép thay $y\mapsto x^N$, phép nhân trên $R\left\lbrack x,y\right\rbrack$ được đưa về phép nhân trên $R\left\lbrack x\right\rbrack$, với điều kiện $N$ đủ lớn.
 
-Giả sử $\deg_x \left(AB\right)<N$. Khi đó sau khi tính $A\left(x,x^N\right)B\left(x,x^N\right)$, ta vẫn có thể khôi phục $A(x,y)B(x,y)$, và thời gian "đóng gói" cũng như "mở gói" là tuyến tính.
+Giả sử $\deg_x \left(AB\right)<N$. Khi đó sau khi tính $A\left(x,x^N\right)B\left(x,x^N\right)$, vẫn có thể khôi phục $A(x,y)B(x,y)$, và thời gian "đóng gói" cũng như "mở gói" là tuyến tính.
 
-Ta dùng thế Kronecker rồi tính phép nhân đa thức một biến. Không khó thấy rằng, khi $n$ là lũy thừa của hai, thuật toán trên hoàn thành trong $O\left(\mathsf{M}\left(n\right)\log n\right)$ thời gian, vì trong mỗi lần đệ quy bậc theo $y$ tăng gấp đôi còn bậc theo $x$ giảm một nửa.
+Dùng thế Kronecker rồi tính phép nhân đa thức một biến. Khi $n$ là lũy thừa của hai, thuật toán trên hoàn thành trong $O\left(\mathsf{M}\left(n\right)\log n\right)$ thời gian, vì trong mỗi lần đệ quy bậc theo $y$ tăng gấp đôi còn bậc theo $x$ giảm một nửa.
 
 ??? note "Mẫu ([P5373 Mẫu hàm hợp thành đa thức](https://www.luogu.com.cn/problem/P5373))"
     Mã đã được đơn giản hóa và sửa đổi một phần so với thuật toán gốc, giúp ngắn gọn hơn.
@@ -97,15 +97,15 @@ Ta dùng thế Kronecker rồi tính phép nhân đa thức một biến. Không
 <span id="nghịch-đảo-hợp-thành-của-chuỗi-lũy-thừa-hình-thức"></span>
 ## Nghịch đảo hợp thành của chuỗi lũy thừa hình thức
 
-Cho $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ và $f'(0)\neq 0$. Hãy tìm $g(x)\bmod{x^n}$ sao cho $f(g)\equiv g(f)\equiv x\pmod{x^n}$.
+Cho $f\in x\mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$ và $f'(0)\neq 0$. Cần tìm $g(x)\bmod{x^n}$ sao cho $f(g)\equiv g(f)\equiv x\pmod{x^n}$.
 
-Theo [nghịch đảo Lagrange](./lagrange-inversion.md), với $n>1,k\geq 0$ ta có
+Theo [nghịch đảo Lagrange](./lagrange-inversion.md), với $n>1,k\geq 0$ có
 
 $$
 \left\lbrack x^{n-1}\right\rbrack f(x)^k=\frac{k}{n-1}\left\lbrack x^{n-1-k}\right\rbrack \left(\frac{g(x)}{x}\right)^{-(n-1)}
 $$
 
-Nghĩa là nếu tính được $\left\lbrack x^{n-1}\right\rbrack f(x)^k$ cho $k=0,1,\dots ,n-1$, ta có thể suy ra nghịch đảo hợp thành.
+Nghĩa là nếu tính được $\left\lbrack x^{n-1}\right\rbrack f(x)^k$ cho $k=0,1,\dots ,n-1$, có thể suy ra nghịch đảo hợp thành.
 
 Kinoshita và Li chỉ ra rằng có thể xét hàm hữu tỉ hai biến
 
@@ -113,13 +113,13 @@ $$
 \frac{1}{1-y\cdot f(x)}=\sum_{j\geq 0}f(x)^jy^j
 $$
 
-Vấn đề này có một dạng tổng quát hơn, gọi là bài toán Power Projection: ta xét việc tính
+Vấn đề này có một dạng tổng quát hơn, gọi là bài toán Power Projection: xét việc tính
 
 $$
 u:=\left\lbrack x^{n-1}\right\rbrack\frac{P(x,y)}{Q(x,y)}\bmod{y^m}
 $$
 
-Khi $n-1=0$, rõ ràng $u=\dfrac{P(0,y)}{Q(0,y)}\bmod{y^m}$. Ngược lại, ta có
+Khi $n-1=0$, có $u=\dfrac{P(0,y)}{Q(0,y)}\bmod{y^m}$. Ngược lại, có
 
 $$
 \frac{P(x,y)}{Q(x,y)}=\frac{P(x,y)Q(-x,y)}{Q(x,y)Q(-x,y)}=\frac{U_e\left(x^2,y\right)+xU_o\left(x^2,y\right)}{V\left(x^2,y\right)}
@@ -163,7 +163,7 @@ $$
 \end{array}
 $$
 
-Tương tự, ta cũng có thể suy ra trực tiếp $Q(0,y)^{-1}$ mà không cần tính nghịch đảo nhân của chuỗi lũy thừa hình thức. Khi đó thuật toán nghịch đảo hợp thành là
+Tương tự, cũng có thể suy ra trực tiếp $Q(0,y)^{-1}$ mà không cần tính nghịch đảo nhân của chuỗi lũy thừa hình thức. Khi đó thuật toán nghịch đảo hợp thành là
 
 $$
 \begin{array}{ll} &\textbf{Thuật toán }\operatorname{\mathsf{Rev}}(f(x),n)\text{:} \\
@@ -188,7 +188,7 @@ $$
 <span id="suy-ra-từ-nguyên-lý-chuyển-vị"></span>
 ### Suy ra từ nguyên lý chuyển vị
 
-Bài toán Power Projection là bài toán chuyển vị của Modular Composition. Kinoshita và Li chỉ ra rằng thuật toán hợp thành ở phần trên có thể thu được trực tiếp bằng cách chuyển vị thuật toán Power Projection. Tương tự, nếu một tối ưu hóa áp dụng được cho thuật toán Power Projection thì nó cũng áp dụng được cho thuật toán Modular Composition. Ta bỏ qua chi tiết.
+Bài toán Power Projection là bài toán chuyển vị của Modular Composition. Kinoshita và Li chỉ ra rằng thuật toán hợp thành ở phần trên có thể thu được trực tiếp bằng cách chuyển vị thuật toán Power Projection. Tương tự, nếu một tối ưu hóa áp dụng được cho thuật toán Power Projection thì nó cũng áp dụng được cho thuật toán Modular Composition. Phần chi tiết được lược bỏ.
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo

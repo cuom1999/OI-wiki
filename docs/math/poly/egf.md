@@ -31,7 +31,7 @@ $$
 <span id="dạng-đóng"></span>
 ## Dạng đóng
 
-Ta cũng xét dạng đóng của hàm sinh mũ.
+Tiếp theo xét dạng đóng của hàm sinh mũ.
 
 Hàm sinh mũ của dãy $\langle 1,1,1,\cdots\rangle$ là:
 
@@ -39,7 +39,7 @@ $$
 \hat{F}(x) = \sum_{n \ge 0}\frac{x^n}{n!} = \mathrm{e}^x
 $$
 
-Vì khai triển Taylor của $\mathrm{e}^x$ tại $x = 0$ chính là chuỗi vô hạn này.
+Vì khai triển Maclaurin của $\mathrm{e}^x$ chính là chuỗi vô hạn này.
 
 Tương tự, hàm sinh mũ của cấp số nhân $\langle 1,p,p^2,\cdots\rangle$ là:
 
@@ -50,20 +50,20 @@ $$
 <span id="hàm-sinh-mũ-và-hàm-sinh-thường"></span>
 ## Hàm sinh mũ và hàm sinh thường
 
-Hiểu hàm sinh mũ như thế nào? Ta định nghĩa hàm sinh mũ của dãy $a$ là:
+Hàm sinh mũ có thể được hiểu từ định nghĩa của nó. Hàm sinh mũ của dãy $a$ là:
 
 $$
 F(x)=\sum_{n\ge 0}a_n\frac{x^n}{n!}
 $$
 
-Nhưng thực ra $F(x)$ cũng là hàm sinh thường của dãy $\left\langle \dfrac{a_n}{n!} \right\rangle$.
+Mặt khác, $F(x)$ cũng là hàm sinh thường của dãy $\left\langle \dfrac{a_n}{n!} \right\rangle$.
 
 Cả hai cách hiểu đều không có vấn đề. Nói cách khác, các loại hàm sinh khác nhau chỉ là những cách chuyển đổi góc nhìn đối với bài toán.
 
 <span id="ý-nghĩa-tổ-hợp-của-exp-đa-thức-trong-egf"></span>
 ## Ý nghĩa tổ hợp của exp đa thức trong EGF
 
-Nếu bạn chưa học exp đa thức, hãy tạm bỏ qua phần này. Đây là ý nghĩa được rút ra từ cách hiểu exp, và ở một mức độ nào đó có thể giúp hiểu EGF sâu hơn.
+Có thể bỏ qua phần này nếu chưa học exp đa thức. Nội dung dưới đây rút ra ý nghĩa từ cách hiểu exp và giúp làm rõ hơn EGF.
 
 Trong EGF, $f$ trong $f^n(x)$ mặc định là một EGF. Trước hết xét tích của hai EGF bất kỳ:
 
@@ -74,9 +74,9 @@ $$
 Với $[x^k]\hat{H}(x)$ thu được từ tích của hai EGF, về bản chất đó là một tích chập. Nếu xét $[x^k]\hat{H}(x)$ thu được từ tích của nhiều EGF, thì đó là tổng hệ số của mọi cách chọn một hạng tử $x^{a_i}$ từ mỗi EGF sao cho $\sum_ia_i=k$.
 Nhìn theo góc độ tập hợp, đó là số cách chia $n$ phần tử có nhãn thành $k>0$ tập hợp có nhãn.
 
-> Nếu $k=0$ thì hệ số hiển nhiên bằng tích các hằng số của từng EGF. Tuy nhiên, một số yêu cầu trong exp đa thức khiến hằng số của $f(x)$ trong $\exp$ phải bằng $0$; nguyên nhân cụ thể sẽ được giải thích ở bên dưới.
+> Nếu $k=0$ thì hệ số bằng tích các hằng số của từng EGF. Tuy nhiên, một số yêu cầu trong exp đa thức khiến hằng số của $f(x)$ trong $\exp$ phải bằng $0$; nguyên nhân cụ thể sẽ được giải thích ở bên dưới.
 
-Trong định nghĩa hệ số đa thức (xem ý nghĩa tổ hợp của hệ số đa thức trong phần hoán vị và tổ hợp), mặc định các tập hợp có thứ tự. Nhưng trong $\exp(f(x))$, các EGF thu được từ $f^k(x)$, tức tích của $k$ bản sao $f(x)$, là như nhau; còn phép chia tập hợp rõ ràng là không có thứ tự. Vì vậy hệ số phải nhân thêm $\dfrac{1}{k!}$.
+Trong định nghĩa hệ số đa thức (xem ý nghĩa tổ hợp của hệ số đa thức trong phần hoán vị và tổ hợp), mặc định các tập hợp có thứ tự. Nhưng trong $\exp(f(x))$, các EGF thu được từ $f^k(x)$, tức tích của $k$ bản sao $f(x)$, là như nhau; còn phép chia tập hợp không có thứ tự. Vì vậy hệ số phải nhân thêm $\dfrac{1}{k!}$.
 
 Gọi $F_k(n)$ là số cách chia $n$ phần tử có nhãn thành $k$ tập con không rỗng, không thứ tự (vì là $\exp$ nên yêu cầu không rỗng). Gọi $f_i$ là số cấu trúc tổ hợp cụ thể trên một tập hữu hạn gồm $i$ phần tử khi một tập có $i$ phần tử (đây là EGF ban đầu, đếm phương án trên phần tử của một tập, chỉ phụ thuộc vào kích thước tập). Khi đó
 
@@ -90,7 +90,7 @@ $$
 \hat{F}(x) = \sum_{n \geq 0} f_n\frac{x^n}{n!}
 $$
 
-Gọi EGF của $F_k(n)$ là $G_k(x)$, ta có:
+Gọi EGF của $F_k(n)$ là $G_k(x)$, thu được:
 
 $$
 \begin{aligned}
@@ -107,7 +107,7 @@ $$
 \sum_{k \geq 0}G_k(x) = \sum_{k \geq 0}\frac{\hat{F}^k(x)}{k!} = \exp{\hat{F}(x)}
 $$
 
-Phần trên là cách lập biểu thức trực tiếp từ góc độ tổ hợp. Ta cũng có thể chứng minh quan hệ giữa $\exp(f(x))$ và $f(x)$ bằng truy hồi.
+Phần trên là cách lập biểu thức trực tiếp từ góc độ tổ hợp. Quan hệ giữa $\exp(f(x))$ và $f(x)$ cũng có thể được chứng minh bằng truy hồi.
 
 Tương tự, gọi $F_k(n)$ là số cách chia $n$ phần tử có nhãn thành $k$ tập con không rỗng (không có nhãn), $g_i$ là số phương án bên trong một tập gồm $i$ phần tử (ý nghĩa giống $f_i$ ở trên). Đặt $G(x)$ là EGF của $\{g_i\}$ và $H_k(x)$ là EGF của $\{F_k(n)\}$.
 
@@ -124,7 +124,7 @@ $$
 
 Cận trên xuất phát từ điều kiện chia thành các tập không rỗng: $n-(k-1)\geq i$ (mỗi tập trong $k-1$ tập trước ít nhất có một phần tử). Nếu đặt $F_{k-1}(n-i)=0$ khi vượt quá cận liệt kê, kết quả không đổi.
 
-Sau khi có truy hồi, ta khai triển đệ quy với biên $H_1(x)=G(x)$ khi $k=1$.
+Sau khi có truy hồi, khai triển đệ quy với biên $H_1(x)=G(x)$ khi $k=1$.
 
 $$
 \begin{aligned}
@@ -144,7 +144,7 @@ $$
 \end{aligned}
 $$
 
-Rõ ràng, **định nghĩa là chia thành các tập không rỗng** ($g_0=0$) phù hợp với ý nghĩa vốn có. Nếu **cho phép tập rỗng** ($g_0=1$), thì trong $[x^n]G^k$ sẽ có đóng góp từ $[x^n]G^y,y>k$ (do chọn hằng số ở ít nhất một $G$), gây đếm lặp và không thu được đại lượng cần tìm.
+Do đó, **định nghĩa là chia thành các tập không rỗng** ($g_0=0$) phù hợp với ý nghĩa vốn có. Nếu **cho phép tập rỗng** ($g_0=1$), thì trong $[x^n]G^k$ sẽ có đóng góp từ $[x^n]G^y,y>k$ (do chọn hằng số ở ít nhất một $G$), gây đếm lặp và không thu được đại lượng cần tìm.
 
 Từ góc độ truy hồi, tích của nhiều EGF cũng có thể xem như một dạng tổ hợp giống bài toán ba lô (quá trình gộp hai nhóm đối tượng đếm).
 
@@ -161,7 +161,7 @@ $$
 
 Hoán vị vòng được định nghĩa là số cách xếp $1,2,\cdots,n$ thành một vòng. Nói cách khác, các cách chỉ khác nhau bởi phép quay là tương đương (nhưng phép lật thì không tương đương).
 
-Số hoán vị vòng của $n$ số rõ ràng là $(n-1)!$. Vì vậy hàm sinh mũ của số hoán vị vòng của $n$ số là
+Số hoán vị vòng của $n$ số là $(n-1)!$. Vì vậy hàm sinh mũ của số hoán vị vòng của $n$ số là
 
 $$
 \hat{Q}(x)=\sum_{n\ge 1}\frac{(n-1)!x^n}{n!}=\sum_{n\ge 1}\frac{x^n}{n}=-\ln(1-x)=\ln\left( \frac{1}{1-x} \right)
@@ -173,7 +173,7 @@ Một hoán vị được tạo bởi một số chu trình hoán vị. Ví dụ
 
 ![](./images/p1.png)
 
-(tức là ta nối cạnh có hướng từ $p_i$ tới $i$)
+(tức là nối cạnh có hướng từ $p_i$ tới $i$)
 
 Các chu trình hoán vị khác nhau sẽ dẫn đến các hoán vị khác nhau. Ví dụ đổi chu trình hoán vị thứ hai thành
 
@@ -186,7 +186,7 @@ Nói cách khác, số phương án của hoán vị độ dài $n$ là:
 1.  Chia $1,2,\cdots,n$ thành một số tập.
 2.  Mỗi tập tạo thành một chu trình hoán vị.
 
-Số cách để các phần tử trong một tập tạo thành chu trình hoán vị rõ ràng chính là số hoán vị vòng theo kích thước của tập đó. Vì vậy số hoán vị độ dài $n$ bằng số cách chia $1,2,\cdots,n$ thành một số tập, rồi lấy tích số phương án hoán vị vòng của từng tập.
+Số cách để các phần tử trong một tập tạo thành chu trình hoán vị chính là số hoán vị vòng theo kích thước của tập đó. Vì vậy số hoán vị độ dài $n$ bằng số cách chia $1,2,\cdots,n$ thành một số tập, rồi lấy tích số phương án hoán vị vòng của từng tập.
 
 Đó là trực giác của $\exp$ đa thức.
 
@@ -201,7 +201,7 @@ Tổng quát hơn:
 
     Vì vậy muốn tính EGF trước, chỉ cần thực hiện một lần $\ln$ đa thức.
 
-Tiếp theo ta xem một số ứng dụng của hàm sinh mũ.
+Tiếp theo xét một số ứng dụng của hàm sinh mũ.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
@@ -212,7 +212,7 @@ Tiếp theo ta xem một số ứng dụng của hàm sinh mũ.
 ???+ note "Số derangement"
     Định nghĩa một derangement độ dài $n$ là một hoán vị thỏa mãn $p_i\ne i$.
     
-    Hãy tìm hàm sinh mũ của số derangement.
+    Tìm hàm sinh mũ của số derangement.
 
 Xét theo góc độ chu trình hoán vị, derangement nghĩa là trong các chu trình hoán vị không tồn tại vòng tự thân. Nói cách khác, không có chu trình hoán vị độ dài $1$. Hàm sinh mũ của phần còn lại là
 
@@ -259,11 +259,11 @@ Khi đó hàm sinh mũ của đáp án là $\exp \hat{F}_k(x)$. Chỉ cần lấ
     -   Cộng $\prod_{i\ne x}a_i$ vào $s$.
     -   Giảm $a_x$ đi một.
     
-    Hãy tính kỳ vọng của $s$ sau $k$ thao tác.
+    Tính kỳ vọng của $s$ sau $k$ thao tác.
     
     $1\le n\le 5000,1\le k\le 10^9,0\le a_i\le 10^9$.
 
-Giả sử sau $k$ thao tác, $a_i$ đã giảm đi $b_i$. Khi đó thực ra
+Giả sử sau $k$ thao tác, $a_i$ đã giảm đi $b_i$. Khi đó
 
 $$
 s=\prod_{i=1}^n a_i-\prod_{i=1}^n(a_i- b_i)
@@ -271,7 +271,7 @@ $$
 
 Vì vậy bài toán chuyển thành tìm kỳ vọng của $\prod_{i=1}^n (a_i- b_i)$ sau $k$ thao tác.
 
-Ta xét việc tính tổng $\prod_{i=1}^n (a_i- b_i)$ trên mọi phương án, rồi cuối cùng chia cho $n^k$.
+Xét việc tính tổng $\prod_{i=1}^n (a_i- b_i)$ trên mọi phương án, rồi cuối cùng chia cho $n^k$.
 
 Trong chuỗi $k$ thao tác, số phương án để $i$ xuất hiện $b_i$ lần là
 
@@ -293,7 +293,7 @@ $$
 [x^k]\prod_{j=1}^nF_j(x)
 $$
 
-Để tính nhanh đáp án, ta cần chuyển $F_j(x)$ sang dạng đóng:
+Để tính nhanh đáp án, cần chuyển $F_j(x)$ sang dạng đóng:
 
 $$
 \begin{aligned}
