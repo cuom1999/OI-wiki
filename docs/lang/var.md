@@ -2,10 +2,10 @@
 
 ## Kiểu dữ liệu
 
-Hệ thống kiểu của C++ gồm các phần sau:
+Hệ thống kiểu của C++ gồm các nhóm sau:
 
 1.  Kiểu cơ bản (trong ngoặc là từ khóa hoặc kiểu đại diện)
-    1.  Kiểu không có giá trị, tức kiểu `void` (`void`)
+    1.  Kiểu không chứa giá trị, tức kiểu `void` (`void`)
     2.  (Từ C++11) kiểu con trỏ null (`std::nullptr_t`)
     3.  Kiểu số học
         1.  Kiểu số nguyên (`int`)
@@ -59,7 +59,7 @@ tùy thuộc nền tảng, nhưng thường là $8$ bit.
 
 ### Kiểu số nguyên
 
-Kiểu số nguyên dùng để lưu các giá trị nguyên. Kiểu số nguyên cơ bản nhất là
+Kiểu số nguyên dùng để lưu giá trị nguyên. Kiểu số nguyên cơ bản nhất là
 `int`.
 
 ???+ warning "Lưu ý"
@@ -86,12 +86,12 @@ rộng cố định](#kiểu-số-nguyên-có-độ-rộng-cố-định).
 
 Với từ khóa `int`, có thể dùng các từ khóa bổ nghĩa sau:
 
-Tính có dấu:
+Theo dấu:
 
 -   `signed`: biểu thị số nguyên có dấu (mặc định);
 -   `unsigned`: biểu thị số nguyên không dấu.
 
-Kích thước:
+Theo kích thước:
 
 -   `short`: biểu thị số nguyên **ít nhất** $16$ bit;
 -   `long`: biểu thị số nguyên **ít nhất** $32$ bit;
@@ -114,7 +114,7 @@ kiểu có thể khác bảng này):
 | `long long`, `long long int`, `signed long long`, `signed long long int` | `long long int`        | $\geq 64$               | $64$                     | -                                        |
 | `unsigned long long`, `unsigned long long int`                        | `unsigned long long int` | $\geq 64$               | $64$                     | -                                        |
 
-Khi độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là
+Với độ rộng bit là $x$, phạm vi biểu diễn của kiểu có dấu là
 $-2^{x-1}\sim 2^{x-1}-1$[^note16], còn phạm vi biểu diễn của kiểu không dấu là
 $0 \sim 2^x-1$. Cụ thể như bảng sau:
 
@@ -136,8 +136,8 @@ $0 \sim 2^x-1$. Cụ thể như bảng sau:
 Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên mở rộng. Chẳng hạn
 GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu
 `__uint128_t`. Nếu muốn dùng các kiểu này trong kỳ thi, **cần đọc kỹ quy định
-của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép hoặc
-được hỗ trợ hay không.
+của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng có được cho phép và
+được môi trường chấm hỗ trợ hay không.
 
 ???+ warning "Lưu ý"
     STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc
@@ -176,13 +176,13 @@ của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng
 
     Mã ví dụ trên có các vấn đề sau:
 
-    1.  Trong `__int128_t f3(__int128_t)`, hàm trị tuyệt đối được dùng là hàm
+    1.  Trong `__int128_t f3(__int128_t)`, hàm lấy trị tuyệt đối được dùng là hàm
         kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị chuyển kiểu
         thành `int`, rồi mới gọi hàm `abs`.
-    2.  Trong `__int128_t f4(__int128_t)`, hàm trị tuyệt đối được dùng là hàm
+    2.  Trong `__int128_t f4(__int128_t)`, hàm lấy trị tuyệt đối được dùng là hàm
         kiểu C++. Hàm này không có overload với chữ ký
         `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
-    3.  Xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
+    3.  Toán tử xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
 
     Sau đây là một cách giải quyết:
 
@@ -228,7 +228,7 @@ Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký t�
 kỳ thi lập trình thuật toán ít dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu
 kiểu ký tự hẹp.
 
-Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số
+Kiểu ký tự hẹp thường có $8$ bit. Ở mức biểu diễn trong bộ nhớ, ký tự vẫn là số
 nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên
 thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
 
@@ -260,19 +260,19 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
 
 ### Kiểu số thực dấu phẩy động
 
-Dùng để lưu "số thực" (lưu ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà
-là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
+Dùng để lưu "số thực" (lưu ý rằng đây không phải số thực theo nghĩa toán học
+chặt chẽ, mà là giá trị xấp xỉ theo một số quy tắc nhất định), gồm ba kiểu sau:
 
 -   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp
     với định dạng IEEE-754 binary32.
 -   `double`: kiểu dấu phẩy động độ chính xác kép. Nếu được hỗ trợ, kiểu này khớp
     với định dạng IEEE-754 binary64.
 -   `long double`: kiểu dấu phẩy động độ chính xác mở rộng. Nếu được hỗ trợ, kiểu
-    này khớp với định dạng IEEE-754 binary128; nếu không, nếu được hỗ trợ thì
-    khớp với định dạng mở rộng IEEE-754 binary64; nếu không nữa thì khớp với một
-    định dạng dấu phẩy động mở rộng không phải IEEE-754 có độ chính xác tốt hơn
-    binary64 và miền giá trị ít nhất tốt bằng binary64; nếu không nữa thì khớp
-    với định dạng IEEE-754 binary64.
+    này khớp với định dạng IEEE-754 binary128; nếu không, nó có thể khớp với
+    định dạng mở rộng IEEE-754 binary64. Trường hợp còn lại, nó có thể là một
+    định dạng dấu phẩy động mở rộng không thuộc IEEE-754 nhưng có độ chính xác
+    tốt hơn binary64 và miền giá trị ít nhất bằng binary64, hoặc chỉ tương đương
+    IEEE-754 binary64.
 
 | Định dạng dấu phẩy động            | Độ rộng bit | Số dương lớn nhất              | Số chữ số chính xác |
 | ---------------------------------- | ----------- | ------------------------------ | ------------------- |
@@ -300,7 +300,7 @@ Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá tr�
 
 ### Kiểu không có giá trị
 
-Kiểu `void` là kiểu không có giá trị. Khác với các kiểu ở trên, không thể khai
+Kiểu `void` là kiểu không chứa giá trị. Khác với các kiểu ở trên, không thể khai
 báo một biến có kiểu `void`. Tuy nhiên, giá trị trả về của hàm được phép có kiểu
 `void`, biểu thị rằng hàm đó không trả về giá trị.
 
@@ -316,8 +316,8 @@ Vui lòng xem [phần tương ứng](./pointer.md#con-trỏ-null) của bài v�
 
 Từ C++11, C++ cung cấp hỗ trợ cho số nguyên có độ rộng cố định, cụ thể như sau:
 
--   `<cstdint>`: cung cấp một số kiểu số nguyên có độ rộng cố định và các hằng
-    macro như giá trị lớn nhất, giá trị nhỏ nhất của từng kiểu số nguyên có độ
+-   `<cstdint>`: cung cấp một số kiểu số nguyên có độ rộng cố định và các macro
+    biểu diễn giá trị lớn nhất, giá trị nhỏ nhất của từng kiểu số nguyên có độ
     rộng cố định.
 -   `<cinttypes>`: cung cấp các hằng macro định dạng dùng cho họ hàm
     `std::fprintf` và họ hàm `std::fscanf` đối với các kiểu số nguyên có độ rộng
@@ -332,7 +332,7 @@ Số nguyên có độ rộng cố định có các loại sau:
 -   `int_leastN_t`: kiểu số nguyên có dấu **nhỏ nhất** có độ rộng **ít nhất**
     $N$ bit, ví dụ `int_least32_t`.
 
-Phiên bản không dấu thêm tiền tố `u` trước phiên bản có dấu, ví dụ `uint32_t`,
+Phiên bản không dấu thêm tiền tố `u` vào trước phiên bản có dấu, ví dụ `uint32_t`,
 `uint_least8_t`.
 
 Chuẩn quy định phải triển khai 16 kiểu sau:
@@ -351,8 +351,9 @@ Trên cơ sở đó, hầu hết trình biên dịch còn triển khai thêm 8 k
 
 `uint8_t`, `uint16_t`, `uint32_t`, `uint64_t`.
 
-Khi đã triển khai kiểu tương ứng, chuẩn C++ quy định phải triển khai các hằng
-macro biểu diễn giá trị lớn nhất, giá trị nhỏ nhất và độ rộng bit của kiểu đó.
+Khi một kiểu tương ứng được triển khai, chuẩn C++ quy định cũng phải triển khai
+các macro biểu diễn giá trị lớn nhất, giá trị nhỏ nhất và độ rộng bit của kiểu
+đó.
 Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang chữ hoa và thêm hậu tố:
 
 -   `_MAX` biểu thị giá trị lớn nhất, ví dụ `INT32_MAX` là giá trị lớn nhất của
@@ -361,7 +362,7 @@ Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang ch�
     `int32_t`.
 
 ???+ warning "Lưu ý"
-    Về bản chất, kiểu số nguyên có độ rộng cố định là bí danh kiểu của các kiểu
+    Về bản chất, kiểu số nguyên có độ rộng cố định là bí danh của các kiểu
     số nguyên thông thường, nên việc trộn lẫn kiểu số nguyên có độ rộng cố định
     và kiểu số nguyên thông thường có thể ảnh hưởng đến khả năng biên dịch đa nền
     tảng. Ví dụ:
@@ -387,8 +388,8 @@ Tên của chúng có dạng: bỏ `_t` ở cuối tên kiểu, đổi sang ch�
     `std::max` yêu cầu hai tham số đầu vào phải có cùng kiểu.
 
 Ngoài ra, từ C++17, `<limits>` cung cấp mẫu lớp `std::numeric_limits`, dùng để
-truy vấn các tính chất của nhiều kiểu số học khác nhau, chẳng hạn giá trị lớn
-nhất, giá trị nhỏ nhất, có phải kiểu số nguyên hay không, có dấu hay không.
+truy vấn tính chất của nhiều kiểu số học khác nhau, chẳng hạn giá trị lớn nhất,
+giá trị nhỏ nhất, có phải kiểu số nguyên hay không, và có dấu hay không.
 
 ```cpp
 #include <cstdint>
@@ -409,7 +410,7 @@ std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị k�
 Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến
 truyền vào lại có kiểu `double`), cần chuyển một kiểu nào đó thành một kiểu khác.
 
-Cơ chế chuyển đổi kiểu trong C++ phức tạp. Phần này chủ yếu giới thiệu hai
+Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Phần này chủ yếu giới thiệu hai
 loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số
 học.
 
@@ -420,8 +421,8 @@ học.
 Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
 
 ???+ note "Ghi chú"
-    Danh sách tham số biến thiên kiểu C sẽ thực hiện nâng hạng tham số mặc định
-    khi truyền giá trị. Ví dụ:
+    Hàm có danh sách tham số biến thiên kiểu C sẽ thực hiện nâng hạng tham số mặc
+    định khi truyền giá trị. Ví dụ:
 
     ???+ note "Mã ví dụ"
         ```c
@@ -436,11 +437,11 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
           va_start(valist, tot);
 
           for (i = 0; i < tot; ++i) {
-            // Lấy giá trị của biến thứ i
+            // Lấy giá trị của tham số thứ i
             double xx = va_arg(valist, double);  // Đúng
             // float xx = va_arg(valist, float); // Sai
 
-            // In biểu diễn lưu trữ tầng dưới của biến thứ i
+            // In biểu diễn nhị phân của tham số thứ i
             printf("i = %d, value = 0x%016llx\n", i, *(long long *)(&xx));
           }
 
@@ -458,8 +459,8 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
         }
         ```
 
-    Khi gọi `test`, `f` được nâng hạng thành `double`, nên biểu diễn lưu trữ tầng
-    dưới giống với `fd`; kết quả in ra là
+    Khi gọi `test`, `f` được nâng hạng thành `double`, nên biểu diễn nhị phân
+    giống với `fd`; kết quả in ra là
 
     ```text
     i = 0, value = 0x405ec00000000000
@@ -494,8 +495,8 @@ Giá trị thuần phải (prvalue) của kiểu số nguyên nhỏ (như `char`
 chuyển thành giá trị thuần phải của kiểu số nguyên lớn hơn (như `int`).
 
 Nói cụ thể hơn, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép
-chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ được áp dụng
-tự động.
+chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ tự động
+được áp dụng.
 
 Cụ thể có các quy tắc sau:
 
@@ -511,11 +512,11 @@ Cụ thể có các quy tắc sau:
     `1`.
 -   Nếu phạm vi giá trị của kiểu đích chứa phạm vi giá trị của kiểu nguồn, và
     phạm vi giá trị của kiểu nguồn không thể được chứa bởi `int` và
-    `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích.[^note12]
+    `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích[^note12].
 
 ???+ warning "Lưu ý"
-    `char`->`short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng
-    hạng thành `int / unsigned int`, sau đó mới là `int / unsigned int`->`short`,
+    `char` -> `short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng
+    hạng thành `int`/`unsigned int`, sau đó mới là `int`/`unsigned int` -> `short`,
     không thỏa điều kiện của nâng hạng số học.
 
 Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit,
@@ -634,8 +635,8 @@ Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển 
 
     Nếu giá trị đó không thể chứa trong kiểu đích, hành vi là không xác định.
 
-    Nếu kiểu nguồn là `bool`, thì `false` chuyển thành không, còn `true` chuyển
-    thành một.
+    Nếu kiểu nguồn là `bool`, thì `false` chuyển thành `0`, còn `true` chuyển
+    thành `1`.
 
 <a id="chuyển-đổi-luận-lý"></a>
 
@@ -649,7 +650,7 @@ Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuy
 ## Định nghĩa biến
 
 Nói ngắn gọn[^note14], để định nghĩa một biến, cần có bộ mô tả kiểu (chỉ rõ kiểu
-của biến) và tên biến cần định nghĩa.
+của biến) và tên biến.
 
 Ví dụ, các câu lệnh sau đều là câu lệnh định nghĩa biến.
 
@@ -672,14 +673,14 @@ có thể gây ra lỗi khó phát hiện.
 
 ## Phạm vi của biến
 
-Phạm vi là khối mã mà biến có thể có hiệu lực.
+Phạm vi là vùng mã mà trong đó biến có hiệu lực.
 
 Phạm vi của biến toàn cục bắt đầu từ nơi nó được định nghĩa[^note15] cho đến cuối
 tệp.
 
 Phạm vi của biến cục bộ bắt đầu từ nơi nó được định nghĩa cho đến cuối khối mã.
 
-Một số câu lệnh được bao bởi một cặp ngoặc nhọn tạo thành một khối mã.
+Một nhóm câu lệnh được bao bởi một cặp ngoặc nhọn tạo thành một khối mã.
 
 ```cpp
 int g = 20;  // Định nghĩa biến toàn cục
@@ -701,7 +702,7 @@ ngoài dự kiến, nên cố gắng tránh để biến cục bộ trùng tên 
 
 ## Hằng
 
-Hằng là giá trị cố định, không thay đổi trong quá trình chương trình thực thi.
+Hằng là giá trị cố định, không thay đổi trong quá trình thực thi chương trình.
 
 Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, thêm từ
 khóa `const`.
