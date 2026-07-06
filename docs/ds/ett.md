@@ -18,15 +18,15 @@ cây động trong thời gian $O(\log n)$. Nếu dùng cây tìm kiếm cân b�
 Có thể hiểu ETT như một tư tưởng: duy trì một dãy tương ứng một-một với cây ban đầu, từ đó duy trì cây ban đầu. Bài viết
 này chỉ giới thiệu một vài cách cài đặt và ứng dụng khả thi của tư tưởng đó.
 
-## Biểu diễn chu trình Euler của cây
+## Biểu diễn Euler tour của cây
 
 Nếu xem mỗi cạnh của cây là hai cạnh có hướng, có thể biểu diễn một cây thành một chu trình Euler trong đồ thị có hướng.
-Biểu diễn này được gọi là biểu diễn chu trình Euler của cây (Euler tour representation, ETR).
+Biểu diễn này được gọi là biểu diễn Euler tour của cây (Euler tour representation, ETR).
 
 Dãy cần duy trì ở phần sau là một biến thể của ETR: xem các đỉnh trong cây như các khuyên tự nối và cũng đưa
 chúng vào ETR. Tuy nhiên, vì tác giả trong bài báo gốc không đặt tên mới cho biến thể này, bài viết vẫn gọi nó là ETR.
 
-Có thể thu được biểu diễn chu trình Euler của cây $T$ bằng thuật toán sau:
+Có thể thu được biểu diễn Euler tour của cây $T$ bằng thuật toán sau:
 
 $$
 \begin{array}{ll}
@@ -41,7 +41,7 @@ $$
 \end{array}
 $$
 
-Biểu diễn chu trình Euler $\operatorname{ETR}(T)$ của cây $T$ ban đầu rỗng. Trong quá trình DFS, mỗi khi thăm một đỉnh
+Biểu diễn Euler tour $\operatorname{ETR}(T)$ của cây $T$ ban đầu rỗng. Trong quá trình DFS, mỗi khi thăm một đỉnh
 hoặc một cạnh có hướng, thêm nó vào cuối $\operatorname{ETR}(T)$; làm như vậy sẽ thu được $\operatorname{ETR}(T)$.
 
 Nếu $T$ có $n$ đỉnh thì nó chứa $2n - 2$ cạnh có hướng. Trong quá trình DFS, mỗi đỉnh và mỗi cạnh có hướng đều được thăm
@@ -52,15 +52,15 @@ hướng. Có thể cắt chu trình Euler tại một vị trí nào đó và x
 dán chuỗi đó lại tại chỗ cắt để trở về chu trình Euler. Ngoài ra, có thể thêm một vài cạnh mới để ghép hai chuỗi như vậy
 thành một chu trình Euler mới.
 
-Trong phần sau, nếu không nói rõ, dãy được duy trì mặc định là biểu diễn chu trình Euler của cây.
+Trong phần sau, nếu không nói rõ, dãy được duy trì mặc định là biểu diễn Euler tour của cây.
 
 ## Các thao tác cơ bản của ETT
 
 Ba thao tác sau được xem là các thao tác cơ bản của ETT. Chúng đều có thể chuyển thành một số hằng thao tác trên dãy, vì
 vậy độ phức tạp của ba thao tác này cùng bậc với thao tác trên dãy.
 
-Cách trình bày dưới đây chỉ là một cài đặt khả thi; chỉ cần dùng được một số hằng thao tác trên dãy để ghép ra dãy tương
-ứng sau khi sửa đổi là được.
+Cách trình bày dưới đây chỉ là một cài đặt khả thi; miễn là dùng được một số hằng thao tác trên dãy để ghép ra dãy tương
+ứng sau khi sửa đổi là đủ.
 
 ### MakeRoot(u)
 
@@ -115,9 +115,9 @@ Giả sử dãy chứa $u$ là $L$. Tách $L$ tại $u$ thành hai dãy $L^1$ v�
 $L$ cùng với $u$, còn dãy sau chứa các phần tử còn lại.
 
 Nếu mỗi nút của Treap duy trì thêm nút cha của chính nó, có thể tính vị trí trong dãy của phần tử tương ứng với một nút
-Treap trong thời gian $O(\log n)$, rồi dựa vào vị trí đó để `Split` và thực hiện chức năng trên.
+Treap trong thời gian $O(\log n)$, rồi dựa vào vị trí đó để `Split` và thực hiện thao tác trên.
 
-Cũng có thể tách từ dưới lên để thực hiện chức năng trên; cách này hiệu quả hơn so với phương pháp vừa nêu. Cụ thể, trong
+Cũng có thể tách từ dưới lên để thực hiện thao tác trên; cách này hiệu quả hơn so với phương pháp vừa nêu. Cụ thể, trong
 quá trình nhảy từ nút tương ứng với $u$ lên gốc, dựa vào tính chất của cây tìm kiếm nhị phân, có thể xác định mỗi nút nằm
 trước hay sau $u$ trong $L$. Từ đó có thể tính vị trí của $u$ trong dãy, đồng thời xác định mỗi nút thuộc cây nào sau khi
 tách.
@@ -282,8 +282,8 @@ yêu cầu thông tin được duy trì phải có **tính trừ được**.
 
 Các thao tác trên dãy tương ứng với thao tác cây động đã giới thiệu ở trên có thể di chuyển ngoặc phải trong dãy ngoặc lên
 trước ngoặc trái. Vì vậy, khi duy trì các thông tin như tổng trọng số đỉnh trên đường đi của cây, cần đặc biệt lưu ý rằng
-thao tác không được làm thay đổi thứ tự trước-sau của cặp ngoặc trái và phải tương ứng. Điều này có thể đòi hỏi phải suy
-nghĩ lại các thao tác trên dãy tương ứng với thao tác cây động, thậm chí suy nghĩ lại việc nên duy trì dãy DFS nào.
+thao tác không được làm thay đổi thứ tự trước-sau của cặp ngoặc trái và phải tương ứng. Điều này có thể buộc ta phải
+thiết kế lại các thao tác trên dãy tương ứng với thao tác cây động, thậm chí cân nhắc lại việc nên duy trì dãy DFS nào.
 
 Ngoài ra, ETT rất khó duy trì các phép sửa đổi trên đường đi của cây.
 
