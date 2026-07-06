@@ -1,10 +1,10 @@
 author: c-forrest, Enter-tainer, hhc0001, Ir1d, KingMario, ksyx, Lutra-Fs, MegaOwIer, niujiaxing, StudyingFather, Tiphereth-A, TOMWT-qwq, ZnPdCo
 
-**Hệ cơ số có nhớ** (carry system), còn gọi là **hệ cơ số**, **hệ ghi số theo vị trí** (positional notation), **cách ghi theo giá trị hàng** (place-value notation) hay **hệ thống số theo vị trí** (positional numeral system), là một hệ thống chữ số có thể biểu diễn mọi số tự nhiên bằng một số hữu hạn ký hiệu. Số lượng ký hiệu mà một hệ cơ số có thể dùng được gọi là **cơ số** (radix/base). Hệ có cơ số $n$ được gọi là hệ cơ số $n$ ($n>1$). Ví dụ, hệ thập phân mà ta dùng thường xuyên nhất thường chỉ dùng mười ký hiệu `0, 1, 2, 3, 4, 5, 6, 7, 8, 9` để ghi số. Phép nhớ là thao tác: khi một chữ số ở một hàng đạt đến cơ số, đặt nó thành 0 và cộng 1 vào hàng cao hơn.
+**Hệ cơ số có nhớ** (carry system), còn gọi là **hệ cơ số**, **hệ ghi số theo vị trí** (positional notation), **cách ghi theo giá trị hàng** (place-value notation) hay **hệ thống số theo vị trí** (positional numeral system), là một hệ thống chữ số có thể biểu diễn mọi số tự nhiên bằng một số hữu hạn ký hiệu. Số lượng ký hiệu mà một hệ cơ số có thể dùng được gọi là **cơ số** (radix/base). Hệ có cơ số $n$ được gọi là hệ cơ số $n$ ($n>1$). Ví dụ, hệ thập phân được dùng thường xuyên nhất thường chỉ dùng mười ký hiệu `0, 1, 2, 3, 4, 5, 6, 7, 8, 9` để ghi số. Phép nhớ là thao tác: khi một chữ số ở một hàng đạt đến cơ số, đặt nó thành 0 và cộng 1 vào hàng cao hơn.
 
-Thông thường, ta ký hiệu một số trong hệ cơ số $n$ là $(a_k\cdots a_1a_0)_n$, $(a_k\cdots a_1a_0)_{(n)}$, ${a_k\cdots a_1a_0}_{(n)}$, ${a_k\cdots a_1a_0}_{n}$, v.v. Nếu cơ số đã rõ từ ngữ cảnh, ta cũng có thể bỏ chỉ số dưới. Lưu ý rằng $a_k\cdots a_1a_0$ ở đây không phải tích của $k+1$ số, mà là một dãy ký hiệu.
+Thông thường, một số trong hệ cơ số $n$ được ký hiệu là $(a_k\cdots a_1a_0)_n$, $(a_k\cdots a_1a_0)_{(n)}$, ${a_k\cdots a_1a_0}_{(n)}$, ${a_k\cdots a_1a_0}_{n}$, v.v. Nếu cơ số đã rõ từ ngữ cảnh, cũng có thể bỏ chỉ số dưới. Lưu ý rằng $a_k\cdots a_1a_0$ trong ngữ cảnh này không phải tích của $k+1$ số, mà là một dãy ký hiệu.
 
-Với số hệ $k$ là $a_n\cdots a_1a_0$, giá trị của nó là $a_nk^n+\cdots+a_1k^1+a_0k^0=\sum_{i=0}^n a_ik^i$. Với một số $m$, giả sử biểu diễn của nó trong hệ $k$ là $a_n\cdots a_1a_0$, ta có:
+Với số hệ $k$ là $a_n\cdots a_1a_0$, giá trị của nó là $a_nk^n+\cdots+a_1k^1+a_0k^0=\sum_{i=0}^n a_ik^i$. Với một số $m$, giả sử biểu diễn của nó trong hệ $k$ là $a_n\cdots a_1a_0$, có:
 
 $$
 \begin{array}{cc}
@@ -19,7 +19,7 @@ trong đó $f(x)=\lfloor x\rfloor$.
 
 Độ dài biểu diễn của số $n$ trong hệ $k$ là $\lceil\log_k (n+1)\rceil$.
 
-Thông thường, ta thêm dấu thập phân "$.$" để biểu diễn số thập phân[^note4], thêm dấu trừ "$-$" để biểu diễn số âm, và thêm gạch ngang trên một đoạn cuối phần thập phân để biểu diễn số thập phân vô hạn tuần hoàn. Để dễ đọc, ta có thể chèn ký hiệu phân cách sau mỗi vài chữ số (như khoảng trắng, $,$, `'`, v.v.), chẳng hạn $12~345$ biểu diễn $12345$.
+Thông thường, dấu thập phân "$.$" được thêm để biểu diễn số thập phân[^note4], dấu trừ "$-$" để biểu diễn số âm, và gạch ngang trên một đoạn cuối phần thập phân để biểu diễn số thập phân vô hạn tuần hoàn. Để dễ đọc, có thể chèn ký hiệu phân cách sau mỗi vài chữ số (như khoảng trắng, $,$, `'`, v.v.), chẳng hạn $12~345$ biểu diễn $12345$.
 
 Trong máy tính, các hệ cơ số thường dùng gồm nhị phân, bát phân và thập lục phân.
 
@@ -29,7 +29,7 @@ Trong máy tính, các hệ cơ số thường dùng gồm nhị phân, bát ph�
 <span id="từ-thập-phân-sang-hệ-cơ-số-khác"></span>
 ### Từ thập phân sang hệ cơ số khác
 
-Ở đây ta minh họa bằng hệ nhị phân; nguyên lý của các hệ cơ số khác cũng tương tự.
+Phần này minh họa bằng hệ nhị phân; nguyên lý của các hệ cơ số khác cũng tương tự.
 
 Với phần nguyên, liên tục chia số thập phân cho $2$ cho đến khi thương bằng $0$, sau đó lấy tất cả các số dư theo thứ tự từ dưới lên trên; đó chính là các chữ số của phần nguyên trong hệ nhị phân. Với phần thập phân, nhân nó với $2$, lấy phần nguyên của kết quả, rồi tiếp tục lặp lại với phần thập phân mới cho đến khi phần thập phân bằng $0$; sau đó lấy các phần nguyên thu được theo thứ tự từ trên xuống dưới, đó chính là các chữ số của phần thập phân trong hệ nhị phân.
 
@@ -102,16 +102,16 @@ Xem thêm: [Mã bù một và mã bù hai](../bit.md#số-nguyên-và-chuỗi-bi
 
 Với số $n$ chữ số $a$ trong hệ cơ số $b$, **số bù theo cơ số** của nó (radix complement, gọi là bù $b$) là $b^n-a$; **số bù theo cơ số giảm** của nó (diminished radix complement, gọi là bù $b-1$, gọi tắt là **bù giảm**) là $b^n-1-a$. Trong hệ nhị phân, số bù theo cơ số được gọi là bù $2$ (two's complement), hay **mã bù hai**; số bù theo cơ số giảm được gọi là bù $1$ (ones' complement), hay **mã bù một**. Trong hệ thập phân, số bù theo cơ số còn gọi là bù $10$ (ten's complement), số bù theo cơ số giảm còn gọi là bù $9$ (nine's complement); các hệ cơ số khác suy ra tương tự.
 
-Với hai số $n$ chữ số $x,y$ trong hệ cơ số $b$, khi tính $x-y$, ta có các cách sau (nếu kết quả vượt quá $n$ chữ số thì bỏ phần cao hơn):
+Với hai số $n$ chữ số $x,y$ trong hệ cơ số $b$, khi tính $x-y$, có các cách sau (nếu kết quả vượt quá $n$ chữ số thì bỏ phần cao hơn):
 
 1.  Xét bù giảm $x'=b^n-1-x$ của $x$, tính $x'+y=b^n-1-x+y$; bù giảm của kết quả này chính là đáp án.
 2.  Xét bù giảm $y'=b^n-1-y$ của $y$, tính $x+y'=b^n-1+x-y$; cộng thêm một trực tiếp sẽ được đáp án.
 3.  Xét bù theo cơ số $x'=b^n-x$ của $x$, tính $x'+y=b^n-x+y$; bù theo cơ số của kết quả này chính là đáp án.
 4.  Xét bù theo cơ số $y'=b^n-y$ của $y$, tính $x+y'=b^n+x-y$; đây chính là đáp án.
 
-Ngoài ra, với số trong hệ $k$, đặt $d=k-1$, ta có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$. Do đó, với số $n$ chữ số $x$, giả sử biểu diễn theo hệ $k$ của số bù theo cơ số của nó là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}a_{n-1}\cdots a_1a_0$ bằng $\sum_{i=0}^{n-1}a_ik^i+\sum_{i=n}^{\infty} dk^i=k^n-x+(-k^n)=-x$. Ý tưởng về "số có vô hạn chữ số" này có thể tổng quát thành [**số $p$-adic**](https://en.wikipedia.org/wiki/P-adic_number) ($p$-adic number).
+Ngoài ra, với số trong hệ $k$, đặt $d=k-1$, có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$. Do đó, với số $n$ chữ số $x$, giả sử biểu diễn theo hệ $k$ của số bù theo cơ số của nó là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}a_{n-1}\cdots a_1a_0$ bằng $\sum_{i=0}^{n-1}a_ik^i+\sum_{i=n}^{\infty} dk^i=k^n-x+(-k^n)=-x$. Ý tưởng về "số có vô hạn chữ số" này có thể tổng quát thành [**số $p$-adic**](https://en.wikipedia.org/wiki/P-adic_number) ($p$-adic number).
 
-Bên cạnh đó, ta có một định lý thú vị về phần bù và số thập phân vô hạn tuần hoàn:
+Bên cạnh đó, có một định lý thú vị về phần bù và số thập phân vô hạn tuần hoàn:
 
 ???+ note "Định lý Midy"
     Giả sử $a$ là số nguyên dương, $p$ là số nguyên tố dương, và biểu diễn của $a/p$ trong hệ cơ số $b$ là $0.\overline{a_1a_2\cdots a_l}$, trong đó $l$ là độ dài chu kỳ (ngắn nhất). Nếu $l$ là số chẵn[^note5], đặt $l=2k$, thì $a_1a_2\cdots a_k$ là bù giảm của $a_{k+1}a_{k+2}\cdots a_{2k}$, tức là:
@@ -122,7 +122,7 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
     Hơn nữa, nếu $l$ có ước không tầm thường $k$, đặt $l=nk$, thì $\sum_{i=0}^{n-1}a_{ik+1}a_{ik+2}\cdots a_{(i+1)k}$ là bội của $b^k-1$.
 
 ??? example "Ví dụ"
-    Với $1/19=0.\overline{052~631~578~947~368~421}=0.\overline{032~745}_{(8)}$, ta có:
+    Với $1/19=0.\overline{052~631~578~947~368~421}=0.\overline{032~745}_{(8)}$, có:
     
     -   $052~631~578+947~368~421=999~999~999$,
     -   $052+631+578+947+368+421=3\times 999$,
@@ -130,9 +130,9 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
     -   $03_{(8)}+27_{(8)}+45_{(8)}=77_{(8)}$.
 
 ??? note "Chứng minh"
-    Với $a,b,p,l,n,k$ trong định lý, dễ thấy rằng $1\leq a<p$, $b>1$ và $(a,p)=(b,p)=1$.
+    Với $a,b,p,l,n,k$ trong định lý, nhận thấy rằng $1\leq a<p$, $b>1$ và $(a,p)=(b,p)=1$.
     
-    Với số nguyên $0\leq i<l$, đặt $f(i)=b^i\cdot a/p-\lfloor b^i\cdot a/p\rfloor$, ta có
+    Với số nguyên $0\leq i<l$, đặt $f(i)=b^i\cdot a/p-\lfloor b^i\cdot a/p\rfloor$, có
     
     $$
     0<f(i)=0.\overline{a_{i+1}a_{i+2}\cdots a_{nk}a_1a_2\cdots a_i}<1 \implies 0<pf(i)<p.
@@ -140,7 +140,7 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
     
     Lưu ý $pf(i)\in\mathbf{N}_+$ và $pf(i)\equiv ab^i\pmod p$, nên $pf(i)=ab^i\bmod p$.
     
-    Đặt $S_n=\sum_{i=0}^{n-1}f(ik)=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{nk}a_1a_2\cdots a_{ik}}$. Ta có thể "hoán đổi" một số chữ số giữa các số thập phân (ví dụ $0.\overline{{\color{Orchid}{14}}{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}}+0.\overline{{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}{\color{Orchid}{14}}}+0.\overline{{\color{YellowGreen}{57}}{\color{Orchid}{14}}{\color{RoyalBlue}{28}}}=0.\overline{\color{Orchid}{141414}}+0.\overline{\color{RoyalBlue}{282828}}+0.\overline{\color{YellowGreen}{575757}}=0.\overline{\color{Orchid}{14}}+0.\overline{\color{RoyalBlue}{28}}+0.\overline{\color{YellowGreen}{57}}=14/99+28/99+57/99=1$), do đó
+    Đặt $S_n=\sum_{i=0}^{n-1}f(ik)=\sum_{i=0}^{n-1}0.\overline{a_{ik+1}a_{ik+2}\cdots a_{nk}a_1a_2\cdots a_{ik}}$. Có thể "hoán đổi" một số chữ số giữa các số thập phân (ví dụ $0.\overline{{\color{Orchid}{14}}{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}}+0.\overline{{\color{RoyalBlue}{28}}{\color{YellowGreen}{57}}{\color{Orchid}{14}}}+0.\overline{{\color{YellowGreen}{57}}{\color{Orchid}{14}}{\color{RoyalBlue}{28}}}=0.\overline{\color{Orchid}{141414}}+0.\overline{\color{RoyalBlue}{282828}}+0.\overline{\color{YellowGreen}{575757}}=0.\overline{\color{Orchid}{14}}+0.\overline{\color{RoyalBlue}{28}}+0.\overline{\color{YellowGreen}{57}}=14/99+28/99+57/99=1$), do đó
     
     $$
     \begin{aligned}
@@ -176,7 +176,7 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
     $$
 
 ???+ note "Hệ quả"
-    Với $b,n,k,p$ như trên, ta có
+    Với $b,n,k,p$ như trên, có
     
     $$
     \sum_{i=0}^{n-1} b^{ik}\equiv 0\pmod p.
@@ -185,7 +185,7 @@ Bên cạnh đó, ta có một định lý thú vị về phần bù và số th
 <span id="hệ-cơ-số-tổng-quát"></span>
 ## Hệ cơ số tổng quát
 
-Trong hệ cơ số tiêu chuẩn, cơ số $b$ luôn là một số dương cố định, mỗi chữ số được chọn từ $b$ ký hiệu khác nhau để biểu diễn một số không âm (không xét dấu thập phân và dấu âm). Thực ra vẫn có nhiều hệ ghi số và hệ cơ số có đặc điểm tương tự, nhưng không hoàn toàn phù hợp với định nghĩa của hệ cơ số. Ta gọi các hệ ghi số như vậy là **hệ cơ số tổng quát** hay **hệ cơ số phi chuẩn** (Non-standard positional numeral systems). Dưới đây là một số hệ cơ số tổng quát thường gặp.
+Trong hệ cơ số tiêu chuẩn, cơ số $b$ luôn là một số dương cố định, mỗi chữ số được chọn từ $b$ ký hiệu khác nhau để biểu diễn một số không âm (không xét dấu thập phân và dấu âm). Tuy nhiên, vẫn có nhiều hệ ghi số và hệ cơ số có đặc điểm tương tự, nhưng không hoàn toàn phù hợp với định nghĩa của hệ cơ số. Các hệ ghi số như vậy được gọi là **hệ cơ số tổng quát** hay **hệ cơ số phi chuẩn** (Non-standard positional numeral systems). Dưới đây là một số hệ cơ số tổng quát thường gặp.
 
 <span id="hệ-ghi-số-song-ánh"></span>
 ### Hệ ghi số song ánh
@@ -197,7 +197,7 @@ Hệ song ánh cơ số $k$ ($k\geq 1$) dùng tập số $\{1,2,\dots,k\}$ để
 1.  Dùng chuỗi rỗng để biểu diễn $0$;
 2.  Dùng chuỗi khác rỗng $a_n\cdots a_1a_0$ để biểu diễn số $a_nk^n+\cdots+a_1k^1+a_0k^0=\sum_{i=0}^n a_ik^i$.
 
-Với một số dương $m$, giả sử biểu diễn của nó trong hệ song ánh cơ số $k$ là $a_n\cdots a_1a_0$, ta có:
+Với một số dương $m$, giả sử biểu diễn của nó trong hệ song ánh cơ số $k$ là $a_n\cdots a_1a_0$, có:
 
 $$
 \begin{array}{cc}
@@ -212,9 +212,9 @@ trong đó $f(x)=\lceil x\rceil-1$.
 
 Ví dụ, nhãn cột trong Microsoft Excel dùng hệ song ánh cơ số $26$.
 
-Trong hệ ghi số song ánh, ta có [hệ một phân](https://en.wikipedia.org/wiki/Unary_numeral_system); chuỗi khác rỗng trong hệ một phân chỉ gồm các ký hiệu $1$, và độ dài chuỗi chính là số mà nó biểu diễn.
+Trong hệ ghi số song ánh, có [hệ một phân](https://en.wikipedia.org/wiki/Unary_numeral_system); chuỗi khác rỗng trong hệ một phân chỉ gồm các ký hiệu $1$, và độ dài chuỗi chính là số mà nó biểu diễn.
 
-Tương tự mô tả trong [phương pháp bù](#phương-pháp-bù), với hệ song ánh cơ số $k$ và $k>1$, đặt $d=k-1$, ta có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$, suy ra $\overline{d}k=0$. Do đó, nếu biểu diễn của $x$ trong hệ song ánh cơ số $k$ là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}ka_{n-1}\cdots a_1a_0$ chính là $-x$.
+Tương tự mô tả trong [phương pháp bù](#phương-pháp-bù), với hệ song ánh cơ số $k$ và $k>1$, đặt $d=k-1$, có $\cdots dd=:\overline{d}=\sum_{i=0}^{\infty} dk^i=-1$, suy ra $\overline{d}k=0$. Do đó, nếu biểu diễn của $x$ trong hệ song ánh cơ số $k$ là $a_{n-1}\cdots a_1a_0$, thì $\overline{d}ka_{n-1}\cdots a_1a_0$ chính là $-x$.
 
 Dưới đây là một số tính chất của số trong hệ song ánh cơ số $k$:
 
@@ -244,9 +244,9 @@ Mã Gray còn gọi là **mã nhị phân vòng** hoặc **mã nhị phân phả
 <span id="hệ-cơ-số-không-dương"></span>
 ### Hệ cơ số không dương
 
-Ta biết với số hệ $k$ là $a_n\cdots a_1a_0$, giá trị của nó là $\sum_{i=0}^n a_ik^i$. Chỉ cần sửa đổi nhẹ, ta có thể định nghĩa số hệ $-k$ là ${a_n\cdots a_1a_0}_{(-k)}$ biểu diễn $\sum_{i=0}^n a_i(-k)^i$, trong đó $a_n,\dots,a_1,a_0\in \{0,1,\dots,k-1\}$. Ví dụ $12345_{(-10)}=8265_{(10)}$. Hệ cơ số này được gọi là [**hệ cơ số âm**](https://en.wikipedia.org/wiki/Negative_base) (negative-base system).
+Với số hệ $k$ là $a_n\cdots a_1a_0$, giá trị của nó là $\sum_{i=0}^n a_ik^i$. Chỉ cần sửa đổi nhẹ là có thể định nghĩa số hệ $-k$ là ${a_n\cdots a_1a_0}_{(-k)}$ biểu diễn $\sum_{i=0}^n a_i(-k)^i$, trong đó $a_n,\dots,a_1,a_0\in \{0,1,\dots,k-1\}$. Ví dụ $12345_{(-10)}=8265_{(10)}$. Hệ cơ số này được gọi là [**hệ cơ số âm**](https://en.wikipedia.org/wiki/Negative_base) (negative-base system).
 
-Tương tự, ta cũng có thể định nghĩa [**hệ cơ số phức**](https://en.wikipedia.org/wiki/Complex-base_system) (complex-base system), như [**hệ cơ số $2\mathrm{i}$**](https://en.wikipedia.org/wiki/Quater-imaginary_base) (quater-imaginary base, quater-imaginary numeral system). Ta còn có thể định nghĩa [**hệ cơ số không nguyên**](https://en.wikipedia.org/wiki/Non-integer_base_of_numeration) (non-integer base of numeration) để biểu diễn **khai triển $\beta$** ($\beta$-expansion) của số thực, v.v.
+Tương tự, cũng có thể định nghĩa [**hệ cơ số phức**](https://en.wikipedia.org/wiki/Complex-base_system) (complex-base system), như [**hệ cơ số $2\mathrm{i}$**](https://en.wikipedia.org/wiki/Quater-imaginary_base) (quater-imaginary base, quater-imaginary numeral system). Cũng có thể định nghĩa [**hệ cơ số không nguyên**](https://en.wikipedia.org/wiki/Non-integer_base_of_numeration) (non-integer base of numeration) để biểu diễn **khai triển $\beta$** ($\beta$-expansion) của số thực, v.v.
 
 <span id="hệ-cơ-số-hỗn-hợp"></span>
 ### Hệ cơ số hỗn hợp
@@ -287,7 +287,7 @@ Với số không âm, C++ biểu diễn một literal số nguyên bằng `<ti�
 -   [Midy's theorem - Wikipedia](https://en.wikipedia.org/wiki/Midy%27s_theorem)
 -   [N3472 - Binary Literals in the C++ Core Language](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472.pdf)
 
-[^note1]: Các chữ số $0$ nằm trước chữ số khác $0$ cao nhất được gọi là [**số 0 dẫn đầu**](https://en.wikipedia.org/wiki/Leading_zero) (leading zero). Tương tự, ta có thể định nghĩa [**số 0 theo sau**](https://en.wikipedia.org/wiki/Trailing_zero) (trailing zero).
+[^note1]: Các chữ số $0$ nằm trước chữ số khác $0$ cao nhất được gọi là [**số 0 dẫn đầu**](https://en.wikipedia.org/wiki/Leading_zero) (leading zero). Tương tự, có thể định nghĩa [**số 0 theo sau**](https://en.wikipedia.org/wiki/Trailing_zero) (trailing zero).
 
 [^note2]: Cơ số tương ứng với $a_i$ là $i+1$, và $0\leq a_i\leq i$. Lưu ý $(n+1)!-n!=n\cdot n!$, nên biểu diễn của một số trong hệ cơ số giai thừa là duy nhất nếu bỏ các số 0 dẫn đầu.
 
