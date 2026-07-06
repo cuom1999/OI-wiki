@@ -33,7 +33,7 @@ Trang chính: [Trò chơi tổng bằng không](./zero-sum-game.md)
 
 Trong **trò chơi đồng thời** (simultaneous game), tất cả người tham gia đưa ra quyết định cùng lúc mà không biết lựa chọn của người khác. Ví dụ, oẳn tù tì là một trò chơi đồng thời điển hình. Loại trò chơi này thường được biểu diễn bằng ma trận lợi ích và thường không liên quan đến khái niệm thời gian.
 
-Đối lập với nó là **trò chơi tuần tự** (sequential game), tức người tham gia lần lượt hành động. Cần chú ý rằng người hành động sau ít nhất phải quan sát được một phần hành vi của người hành động trước; nếu không, thứ tự trước sau sẽ không có ý nghĩa. Trò chơi tuần tự thường được mô tả bằng cây trò chơi.
+Đối lập với nó là **trò chơi tuần tự** (sequential game), tức người tham gia lần lượt hành động. Người hành động sau ít nhất phải quan sát được một phần hành vi của người hành động trước; nếu không, thứ tự trước sau sẽ không có ý nghĩa. Trò chơi tuần tự thường được mô tả bằng cây trò chơi.
 
 <span id="trò-chơi-thông-tin-hoàn-hảo-không-hoàn-hảo"></span>
 ### Trò chơi thông tin hoàn hảo / không hoàn hảo
@@ -60,7 +60,7 @@ Trang chính: [Trò chơi tổ hợp công bằng](./impartial-game.md)
 **Trò chơi công bằng** (impartial game) là trò chơi tổ hợp thỏa các điều kiện sau:
 
 -   Ở mọi trạng thái xác định, các hành động mà mọi người tham gia có thể chọn là hoàn toàn giống nhau, chỉ phụ thuộc vào trạng thái hiện tại và không phụ thuộc vào danh tính;
--   Cùng một trạng thái trong trò chơi không thể được đạt tới nhiều lần; trò chơi kết thúc khi người tham gia không thể hành động, và trò chơi chắc chắn kết thúc sau hữu hạn bước với kết quả không hòa.
+-   Cùng một trạng thái trong trò chơi không thể được đạt tới nhiều lần; trò chơi kết thúc khi người tham gia không thể hành động, và trò chơi luôn kết thúc sau hữu hạn bước với kết quả không hòa.
 
 Trò chơi công bằng luôn là trò chơi đối xứng.
 

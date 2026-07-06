@@ -7,45 +7,43 @@ Xem thêm [thảo luận trên Zhihu](https://www.zhihu.com/question/59195374).
     **Cây phân đoạn hàm** là cây phân đoạn được xây dựng theo tư tưởng lập trình hàm.
     Trong lập trình hàm, phép tính của máy tính được xem như hàm toán học,
     đồng thời tránh trạng thái hoặc biến có thể thay đổi.
-    Có thể thấy cây phân đoạn hàm là [hoàn toàn bền vững](persistent.md#hoàn-toàn-bền-vững-fully-persistent).
+    Vì vậy, cây phân đoạn hàm là [hoàn toàn bền vững](persistent.md#hoàn-toàn-bền-vững-fully-persistent).
 
 ## Dẫn nhập
 
-Trước hết xét một bài toán:
+Xét bài toán sau:
 cho dãy $a$ gồm $n$ số nguyên,
-với mỗi khoảng đóng $[l, r]$ được chỉ định,
-truy vấn giá trị nhỏ thứ $k$ trong khoảng đó.
+với mỗi truy vấn trên khoảng đóng $[l, r]$,
+cần tìm giá trị nhỏ thứ $k$ trong khoảng đó.
 
 Một phương án khả thi là dùng cây chủ tịch.
-Ý tưởng chính của cây chủ tịch là lưu lại phiên bản lịch sử sau mỗi thao tác chèn, từ đó truy vấn phần tử nhỏ thứ $k$
-trong một đoạn.
+Ý tưởng chính của cây chủ tịch là lưu các phiên bản lịch sử sau mỗi thao tác chèn,
+từ đó truy vấn phần tử nhỏ thứ $k$ trong một khoảng.
 
 Cách đơn giản nhất là mỗi lần tạo một cây phân đoạn mới.
 Tuy nhiên, cách này tiêu tốn bộ nhớ quá lớn.
 
 ## Giải thích
 
-Phân tích kỹ hơn, có thể thấy số nút bị sửa đổi trong mỗi thao tác sửa là như nhau.
+Phân tích kỹ hơn, mỗi thao tác sửa chỉ thay đổi các nút trên một đường đi từ gốc xuống lá.
 (Ví dụ trong hình dưới, sửa nút tương ứng với giá trị 1 trong $[1,8]$;
 các nút màu đỏ là các nút bị thay đổi.)
 ![](./images/persistent-seg.png)
 
-Mỗi lần chỉ thay đổi $O(\log{n})$ nút và các nút đó tạo thành một đường từ gốc xuống lá. Nói cách khác, số nút thay đổi
-mỗi lần bằng chiều cao của cây.
-Chú ý rằng cây chủ tịch không thể dùng cách lưu kiểu heap,
+Do đó, mỗi lần chỉ thay đổi $O(\log{n})$ nút, bằng chiều cao của cây.
+Cây chủ tịch không thể dùng cách lưu kiểu heap,
 tức không thể dùng $x\times 2$ và $x\times 2+1$ để biểu diễn con trái/phải.
 Thay vào đó, cần cấp phát nút động và lưu chỉ số con trái/phải của từng nút.
-Vì vậy, trên cơ sở đã lưu con trái/phải, chỉ cần lưu nút gốc tại thời điểm chèn từng số là có thể đạt được tính bền
-vững.
+Khi đã lưu con trái/phải, chỉ cần lưu nút gốc tại thời điểm chèn từng số để đạt được tính bền vững.
 
 Đơn giản hóa bài toán: mỗi lần chỉ cần tìm giá trị nhỏ thứ $k$ trong khoảng $[1,r]$.
 Chỉ cần tìm phiên bản nút gốc sau khi đã chèn đến $r$,
 rồi xử lý như trên cây phân đoạn theo giá trị thông thường
 (còn gọi là cây phân đoạn khóa/miền giá trị).
 
-Điều này khá dễ hiểu. Quay lại bài toán ban đầu: tìm giá trị nhỏ thứ $k$ trong khoảng $[l,r]$.
-Lúc này liên hệ đến một kiến thức khác: **tổng tiền tố**.
-Kỹ thuật nhỏ này tận dụng tính chất trừ đoạn: sau khi tiền xử lý, mỗi truy vấn có thể được trả lời trong $O(1)$.
+Quay lại bài toán ban đầu: tìm giá trị nhỏ thứ $k$ trong khoảng $[l,r]$.
+Cách xử lý liên hệ đến một kiến thức khác: **tổng tiền tố**.
+Kỹ thuật này tận dụng tính chất trừ đoạn: sau khi tiền xử lý, mỗi truy vấn có thể được trả lời trong $O(1)$.
 
 Thông tin thống kê trong cây chủ tịch cũng thỏa tính chất này.
 Vì vậy, nếu cần lấy thông tin thống kê của $[l,r]$, chỉ cần lấy thông tin của $[1,r]$ trừ đi thông tin của $[1,l - 1]$.
@@ -62,7 +60,7 @@ mỗi lần sửa nhiều nhất tăng thêm $\lceil\log_2{10^5}\rceil+1 = 18$ n
 nên tổng số nút sau $n$ lần sửa là $2\times 10^5-1+18\times 10^5$;
 bỏ qua $-1$ thì xấp xỉ $20\times 10^5$.
 
-Cuối cùng là một lưu ý thực tế: không nên cấp phát quá sát giới hạn ước tính.
+Cuối cùng là một điểm cần lưu ý trong cài đặt: không nên cấp phát quá sát giới hạn ước tính.
 Trong đa số bài, giới hạn bộ nhớ khá rộng nên thường không cần quá lo vượt bộ nhớ.
 Có thể cấp $2^5\times 10^5$, gần gấp đôi dung lượng ước tính ban đầu, tức `n << 5`.
 

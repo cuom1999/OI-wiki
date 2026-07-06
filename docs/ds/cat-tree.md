@@ -3,14 +3,14 @@ author: ChungZH, billchenchina, Chrogeek, Early0v0, ethan-enhe, HeRaNO, hsfzLZH1
 ## Dẫn nhập
 
 Cây phân đoạn hỗ trợ truy vấn nhanh thông tin hợp nhất của một đoạn, chẳng hạn tổng đoạn con lớn nhất, tổng đoạn, tích
-liên tiếp của các ma trận trên đoạn, v.v.
+các ma trận liên tiếp trên đoạn, v.v.
 
 Tuy nhiên, với một số bài toán có yêu cầu thời gian rất chặt, truy vấn đoạn của cây phân đoạn thông thường đôi khi vẫn còn chậm.
 
-Nói ngắn gọn, quá trình xây cây phân đoạn cần thực hiện $O(n)$ phép hợp nhất,
+Quá trình xây cây phân đoạn cần thực hiện $O(n)$ phép hợp nhất,
 còn mỗi truy vấn đoạn cần $O(\log{n})$ phép hợp nhất.
 Với những thông tin như tổng đoạn thì chi phí này vẫn chấp nhận được.
-Nhưng nếu cần truy vấn cơ sở tuyến tính trên đoạn, nơi độ phức tạp hợp nhất có thể lên tới $O(\log^2{w})$,
+Nhưng nếu cần truy vấn cơ sở tuyến tính trên đoạn, với độ phức tạp hợp nhất có thể lên tới $O(\log^2{w})$,
 thì ngay cả $O(\log{n})$ lần hợp nhất đôi khi cũng không đạt yêu cầu thời gian.
 
 "Cây mèo" là một dạng cây phân đoạn tĩnh: không hỗ trợ sửa đổi, chỉ hỗ trợ truy vấn đoạn nhanh.
@@ -22,25 +22,25 @@ Khi xử lý những thông tin đặc biệt như cơ sở tuyến tính, thậ
 
 ## Nguyên lý
 
-Khi truy vấn thông tin hợp nhất của đoạn $[l,r]$,
+Để truy vấn thông tin hợp nhất của đoạn $[l,r]$,
 lấy LCA trên cây phân đoạn của nút biểu diễn $[l,l]$ và nút biểu diễn $[r,r]$.
 Giả sử nút này là $p$ và đoạn mà nó biểu diễn là $[L,R]$.
-Khi đó có hai tính chất quan trọng:
+Khi đó tồn tại hai tính chất quan trọng:
 
-1.  Đoạn $[L,R]$ chắc chắn chứa $[l,r]$,
+1.  Đoạn $[L,R]$ luôn chứa $[l,r]$,
     vì nó vừa là tổ tiên của $l$ vừa là tổ tiên của $r$.
 
-2.  Đoạn $[l,r]$ chắc chắn cắt qua trung điểm của $[L,R]$.
+2.  Đoạn $[l,r]$ luôn cắt qua trung điểm của $[L,R]$.
     Vì $p$ là LCA của $l$ và $r$, con trái của $p$ là tổ tiên của $l$ nhưng không phải tổ tiên của $r$,
     còn con phải của $p$ là tổ tiên của $r$ nhưng không phải tổ tiên của $l$.
-    Do đó $l$ chắc chắn nằm trong đoạn $[L,\mathit{mid}]$,
-    còn $r$ chắc chắn nằm trong đoạn $(\mathit{mid},R]$.
+    Do đó $l$ nằm trong đoạn $[L,\mathit{mid}]$,
+    còn $r$ nằm trong đoạn $(\mathit{mid},R]$.
 
 Nhờ hai tính chất này, có thể giảm độ phức tạp truy vấn xuống $O(1)$.
 
 ## Cài đặt
 
-Cụ thể, khi xây cây, xét một nút trên cây phân đoạn biểu diễn đoạn $(l,r]$.
+Trong lúc xây cây, xét một nút trên cây phân đoạn biểu diễn đoạn $(l,r]$.
 
 Khác với cây phân đoạn truyền thống chỉ lưu thông tin hợp nhất của $[l,r]$ trong nút này,
 cây mèo lưu thêm mảng thông tin hậu tố của $(l,\mathit{mid}]$ và mảng thông tin tiền tố của $(\mathit{mid},r]$.
@@ -48,14 +48,14 @@ cây mèo lưu thêm mảng thông tin hậu tố của $(l,\mathit{mid}]$ và m
 Như vậy độ phức tạp xây cây là $T(n)=2T(n/2)+O(n)=O(n\log{n})$;
 tương tự, độ phức tạp bộ nhớ cũng tăng từ $O(n)$ ban đầu lên $O(n\log{n})$.
 
-Phần then chốt nhất là truy vấn.
+Phần then chốt là truy vấn.
 
 Nếu đoạn cần hỏi là $[l,r]$,
 lấy LCA của nút biểu diễn $[l,l]$ và nút biểu diễn $[r,r]$, ký hiệu là $p$.
 
-Theo hai tính chất trên, $l,r$ nằm trong đoạn mà $p$ bao phủ và đoạn truy vấn chắc chắn cắt qua trung điểm của $p$.
+Theo hai tính chất trên, $l,r$ nằm trong đoạn mà $p$ bao phủ và đoạn truy vấn luôn cắt qua trung điểm của $p$.
 
-Điều này dẫn đến một sự thật rất quan trọng:
+Từ đó rút ra điểm quan trọng:
 có thể dùng mảng tiền tố và mảng hậu tố trong $p$ để tách $[l,r]$ thành $[l,\mathit{mid}]+(\mathit{mid},r]$,
 từ đó ghép lại đoạn $[l,r]$.
 
@@ -69,20 +69,20 @@ còn chuyển sang bảng ST thì chi phí lại quá lớn.
 
 ## Dựng cây kiểu heap
 
-Cụ thể, đệm dãy thành độ dài là một lũy thừa nguyên của $2$, rồi xây cây phân đoạn.
+Đệm dãy để độ dài trở thành một lũy thừa của $2$, rồi xây cây phân đoạn.
 
 Khi đó, số hiệu LCA của hai nút trên cây phân đoạn chính là tiền tố chung dài nhất (LCP)
 của biểu diễn nhị phân của hai số hiệu đó.
 
-Từ biểu diễn nhị phân của $x$ và $y$ có công thức `lcp(x,y)=x>>digits[x^y]`.
-Trong đó `digits[x]` biểu thị số bit của $x$ trong hệ nhị phân, tức $\lfloor \log_2 x \rfloor+1$.
+Từ biểu diễn nhị phân của $x$ và $y$ có công thức `lcp(x,y)=x>>digits[x^y]`,
+trong đó `digits[x]` biểu thị số bit của $x$ trong hệ nhị phân, tức $\lfloor \log_2 x \rfloor+1$.
 
 Vì vậy, chỉ cần tiền xử lý mảng `digits` là có thể tìm LCA.
 
 Như vậy đã xây dựng được một cây mèo.
 
 Do quá trình xây cây cần tính tiền tố và hậu tố,
-nên với những thông tin như cơ sở tuyến tính, dù phép hợp nhất là $O(\log^2{w})$ nhưng mỗi lần cập nhật tiền tố/hậu tố chỉ
+nên với những thông tin như cơ sở tuyến tính, dù phép hợp nhất có độ phức tạp $O(\log^2{w})$ nhưng mỗi lần cập nhật tiền tố/hậu tố chỉ
 cần $O(\log{w})$.
 Cây mèo có thể tối ưu cơ sở tuyến tính tĩnh trên đoạn
 từ độ phức tạp $O(n\log^2{w}+m\log^2{w}\log{n})$ xuống $O(n\log{n}\log{w}+m\log^2{w})$.
