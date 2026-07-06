@@ -11,9 +11,9 @@ DFS (tìm kiếm theo chiều sâu) là một khái niệm trong lý thuyết đ
 Xét ví dụ sau:
 
 ???+ note "Bài toán ví dụ"
-    Phân tích số nguyên dương $n$ thành $3$ số nguyên dương, chẳng hạn $6=1+2+3$. Số đứng sau phải lớn hơn hoặc bằng số đứng trước. Hãy in ra tất cả các phương án.
+    Phân tích số nguyên dương $n$ thành $3$ số nguyên dương, chẳng hạn $6=1+2+3$. Số đứng sau phải lớn hơn hoặc bằng số đứng trước. In ra tất cả các phương án.
 
-Với bài toán này, nếu chưa biết tìm kiếm thì nên làm thế nào? Tất nhiên có thể dùng ba vòng lặp lồng nhau; mã tham khảo như sau:
+Với bài toán này, nếu chưa biết tìm kiếm thì nên xử lý thế nào? Một cách trực tiếp là dùng ba vòng lặp lồng nhau; mã tham khảo như sau:
 
 ???+ note "Cài đặt"
     === "C++"
@@ -46,11 +46,11 @@ Với bài toán này, nếu chưa biết tìm kiếm thì nên làm thế nào?
 
 Vậy nếu cần phân tích thành bốn số nguyên thì sao? Thêm một vòng lặp nữa? Nếu cần phân tích thành không quá $m$ số nguyên thì sao?
 
-Lúc này ta cần dùng tìm kiếm đệ quy. Đặc điểm của lớp thuật toán tìm kiếm này là chia mục tiêu cần tìm thành nhiều "tầng"; mỗi tầng dựa trên trạng thái của các tầng trước đó để đưa ra quyết định, cho đến khi đạt tới trạng thái mục tiêu.
+Khi đó cần dùng tìm kiếm đệ quy. Đặc điểm của lớp thuật toán tìm kiếm này là chia mục tiêu cần tìm thành nhiều "tầng"; mỗi tầng dựa trên trạng thái của các tầng trước đó để đưa ra quyết định, cho đến khi đạt tới trạng thái mục tiêu.
 
 Xét lại bài toán trên: phân tích số nguyên dương $n$ thành tổng của không quá $m$ số nguyên dương, trong đó số đứng sau phải lớn hơn hoặc bằng số đứng trước, rồi in ra tất cả các phương án.
 
-Giả sử một phương án phân tích số nguyên dương $n$ thành tổng của $k$ số nguyên dương $a_1, a_2, \ldots, a_k$. Ta chia bài toán thành các tầng, trong đó tầng thứ $i$ quyết định $a_i$. Để ra quyết định ở tầng thứ $i$, ta cần ghi lại ba biến trạng thái: $n-\sum_{j=1}^i{a_j}$, biểu thị tổng các số nguyên dương còn lại; $a_{i-1}$, biểu thị số nguyên dương ở tầng trước, để bảo đảm dãy không giảm; và $i$, để bảo đảm ta in ra tối đa $m$ số nguyên dương. Để ghi lại phương án, ta dùng mảng `arr`, trong đó phần tử thứ $i$ biểu thị $a_i$. Lưu ý rằng `arr` về bản chất là một ngăn xếp có độ dài $i$.
+Giả sử một phương án phân tích số nguyên dương $n$ thành tổng của $k$ số nguyên dương $a_1, a_2, \ldots, a_k$. Bài toán được chia thành các tầng, trong đó tầng thứ $i$ quyết định $a_i$. Để ra quyết định ở tầng thứ $i$, cần ghi lại ba biến trạng thái: $n-\sum_{j=1}^i{a_j}$, biểu thị tổng các số nguyên dương còn lại; $a_{i-1}$, biểu thị số nguyên dương ở tầng trước, để bảo đảm dãy không giảm; và $i$, để số lượng phần tử được in ra không vượt quá $m$. Để ghi lại phương án, dùng mảng `arr`, trong đó phần tử thứ $i$ biểu thị $a_i$. Về bản chất, `arr` là một ngăn xếp có độ dài $i$.
 
 Mã như sau:
 
@@ -67,7 +67,7 @@ Mã như sau:
           if (i <= m) {
             for (int j = a; j <= n; ++j) {
               arr[i] = j;
-              dfs(n - j, i + 1, j);  // Hãy suy nghĩ kỹ ý nghĩa của dòng này.
+              dfs(n - j, i + 1, j);  // Chuyển sang tầng kế tiếp.
             }
           }
         }
@@ -88,7 +88,7 @@ Mã như sau:
             if i <= m:
                 for j in range(a, n + 1):
                     arr[i] = j
-                    dfs(n - j, i + 1, j)  # Hãy suy nghĩ kỹ ý nghĩa của dòng này.
+                    dfs(n - j, i + 1, j)  # Chuyển sang tầng kế tiếp.
         
         
         # Hàm chính
@@ -111,7 +111,7 @@ Mã như sau:
             if (i <= m) {
                 for (int j = a; j <= n; ++j) {
                     arr[i] = j;
-                    dfs(n - j, i + 1, j); // Hãy suy nghĩ kỹ ý nghĩa của dòng này.
+                    dfs(n - j, i + 1, j); // Chuyển sang tầng kế tiếp.
                 }
             }
         }

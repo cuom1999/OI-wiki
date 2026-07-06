@@ -48,11 +48,11 @@ Bản chất của nó là: đi không được thì quay lại.
     
     Số hiệu cột $a_i$: $\{2,4,6,1,3,5\}$
     
-    Đây chỉ là một phương án đặt quân. Hãy viết chương trình tìm mọi phương án
-    và xuất chúng theo cách biểu diễn bằng dãy như trên, theo thứ tự từ điển.
-    Bạn chỉ cần xuất $3$ lời giải đầu tiên và ở dòng cuối xuất tổng số lời giải.
-    Đặc biệt chú ý: cần tối ưu chương trình để bảo đảm hiệu suất với kích thước
-    bàn cờ lớn hơn.
+    Đây chỉ là một phương án đặt quân. Yêu cầu là viết chương trình tìm mọi
+    phương án và xuất chúng theo cách biểu diễn bằng dãy như trên, theo thứ tự
+    từ điển. Chỉ cần xuất $3$ lời giải đầu tiên và ở dòng cuối xuất tổng số lời
+    giải. Đặc biệt lưu ý: cần tối ưu chương trình để bảo đảm hiệu suất với kích
+    thước bàn cờ lớn hơn.
 
 ??? note "Mã tham khảo"
     ```cpp
