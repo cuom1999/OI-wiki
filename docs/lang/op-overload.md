@@ -5,10 +5,10 @@ Khi một toán tử xuất hiện trong biểu thức và ít nhất một toá
 lớp hoặc kiểu liệt kê, C++ sẽ dùng cơ chế phân giải nạp chồng (overload
 resolution) để quyết định hàm `operator` nào cần được gọi.[^ref1]
 
-Nói đơn giản, nếu xem việc sử dụng "toán tử" như lời gọi một hàm đặc biệt (ví dụ
-xem `1 + 2` như gọi `add(1, 2)`), và ít nhất một toán hạng có kiểu `class`,
-`struct` hoặc `enum`, thì trình biên dịch cần dựa vào kiểu của các toán hạng để
-quyết định nên gọi hàm tùy biến nào.
+Nói ngắn gọn, việc dùng "toán tử" giống như gọi một hàm đặc biệt. Ví dụ, có thể
+hình dung `1 + 2` như lời gọi `add(1, 2)`. Khi ít nhất một toán hạng có kiểu
+`class`, `struct` hoặc `enum`, trình biên dịch sẽ dựa vào kiểu của các toán hạng
+để quyết định hàm tùy biến nào cần được gọi.
 
 Trong C++, có thể nạp chồng gần như mọi toán tử khả dụng.
 
@@ -35,7 +35,8 @@ Nạp chồng toán tử có các giới hạn sau:
     `?:` (toán tử ba ngôi).
 -   Sau khi nạp chồng, độ ưu tiên, số lượng toán hạng và tính kết hợp của toán tử
     không được thay đổi.
--   Nếu nạp chồng `&&` (AND logic) và `||` (OR logic), chúng sẽ mất tính chất đánh giá ngắn mạch.
+-   Nếu nạp chồng `&&` (AND logic) và `||` (OR logic), chúng sẽ mất tính chất đánh
+    giá ngắn mạch.
 
 ## Cài đặt
 
@@ -66,8 +67,8 @@ Sau đây là một vài ví dụ về nạp chồng toán tử.
 
 ### Toán tử số học cơ bản
 
-Ví dụ sau định nghĩa một cấu trúc vector hai chiều `Vector2D` và cài đặt nạp
-chồng cho phép cộng cùng tích vô hướng.
+Ví dụ sau định nghĩa cấu trúc vector hai chiều `Vector2D`, rồi nạp chồng phép
+cộng và tích vô hướng.
 
 ??? note "Ví dụ nạp chồng toán tử số học"
     ```cpp
@@ -118,7 +119,7 @@ hậu tố trả về giá trị cũ trước khi tăng/giảm. Dù toán tử s
 cần tuân theo quy ước này, về mặt ngữ nghĩa vẫn nên giữ kiểu trả về nhất quán
 với toán tử có sẵn.
 
-Với kiểu `T`, định nghĩa nạp chồng toán tử tăng điển hình như sau:
+Với kiểu `T`, cách định nghĩa điển hình cho toán tử tăng là:
 
 | Định nghĩa nạp chồng (lấy `++` làm ví dụ) | Hàm thành viên               | Hàm không phải thành viên      |
 | ----------------------------------------- | ---------------------------- | ------------------------------ |
@@ -134,9 +135,9 @@ hàm.
 Một ứng dụng phổ biến của nạp chồng toán tử `()` là truyền một cấu trúc đã nạp
 chồng `()` làm hàm so sánh tùy biến vào các bộ chứa STL như hàng đợi ưu tiên.
 
-Sau đây là một ví dụ: cho tên và điểm của $n$ học sinh, sắp xếp theo điểm giảm
-dần; nếu điểm bằng nhau thì sắp xếp tên theo thứ tự từ điển tăng dần; in tên và
-điểm của người có thứ hạng cao nhất.
+Sau đây là một ví dụ: cho tên và điểm của $n$ học sinh, cần sắp xếp theo điểm
+giảm dần. Nếu điểm bằng nhau, sắp xếp tên theo thứ tự từ điển tăng dần. Cuối cùng
+in tên và điểm của người có thứ hạng cao nhất.
 
 Bên dưới định nghĩa một cấu trúc so sánh để cài đặt thứ tự ưu tiên tùy biến cho
 hàng đợi ưu tiên.
@@ -160,11 +161,11 @@ hàng đợi ưu tiên.
 
 ### Toán tử so sánh
 
-Trong `std::sort` và một số bộ chứa STL, cần dùng đến toán tử `<`. Khi sử dụng
-kiểu tự định nghĩa, cần tự nạp chồng toán tử này nếu muốn các công cụ đó biết
-cách so sánh hai đối tượng.
+`std::sort` và một số bộ chứa STL cần dùng toán tử `<`. Với kiểu tự định nghĩa,
+cần tự nạp chồng toán tử này nếu muốn các công cụ đó biết cách so sánh hai đối
+tượng.
 
-Sau đây là một ví dụ cài đặt cùng chức năng với phần trước.
+Ví dụ sau cài đặt cùng chức năng với phần trước.
 
 ??? note "Ví dụ nạp chồng toán tử so sánh"
     ```cpp
@@ -200,8 +201,8 @@ thành hàm không phải thành viên.
     priority_queue<student> pq;
     ```
 
-Chỉ cần có toán tử `<`, năm toán tử so sánh còn lại cũng có thể được cài đặt
-theo các mẫu đơn giản.
+Khi đã có toán tử `<`, năm toán tử so sánh còn lại cũng có thể được cài đặt theo
+các mẫu quen thuộc.
 
 ```cpp
 /* clang-format off */
@@ -236,7 +237,8 @@ bool operator!=(const T& lhs, const T& rhs) { return !(lhs == rhs); }
     -   Nếu `a > b`, thì `(a <=> b) > 0`;
     -   Nếu `a` và `b` bằng nhau hoặc tương đương, thì `(a <=> b) == 0`.
 
-    Xem chi tiết cài đặt tại [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison).
+    Xem chi tiết cài đặt tại
+    [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison).
 
 Tài liệu tham khảo và chú thích:
 
@@ -244,6 +246,7 @@ Tài liệu tham khảo và chú thích:
 
 [^ref2]: [Literal do người dùng định nghĩa - cppreference](https://en.cppreference.com/w/cpp/language/user_literal)
 
-[^ref3]: [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)
+[^ref3]:
+    [Toán tử so sánh # so sánh ba chiều - cppreference](https://en.cppreference.com/w/cpp/language/operator_comparison#Three-way_comparison)
 
 [^ref4]: [So sánh mặc định - cppreference](https://en.cppreference.com/w/cpp/language/default_comparisons)
