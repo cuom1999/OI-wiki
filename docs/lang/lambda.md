@@ -11,9 +11,9 @@ hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu 
 
 Biểu thức lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng
 với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp, trình biên
-dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh: các
-biến được bắt giữ trở thành thành viên, còn danh sách tham số và thân hàm được
-dùng để cài đặt toán tử gọi hàm `operator()`.
+dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh, thường
+gọi là đối tượng closure: các biến được bắt giữ trở thành thành viên, còn danh
+sách tham số và thân hàm được dùng để cài đặt toán tử gọi hàm `operator()`.
 
 ??? note "Đối tượng hàm"
     Đối tượng hàm là một đối tượng lớp, thường được cài đặt bằng cách nạp chồng
@@ -27,8 +27,8 @@ Một dạng cú pháp của lambda là:
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-Kiểu của biểu thức lambda là một kiểu lớp ẩn danh; nếu khai triển gần đúng thì có
-dạng như sau:
+Kiểu của biểu thức lambda là một kiểu lớp ẩn danh. Nếu khai triển gần đúng, có
+thể hình dung nó có dạng như sau:
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -69,14 +69,14 @@ toàn cục và các tên nhìn thấy được trong phạm vi, nó còn có th
 ### Mệnh đề bắt giữ
 
 Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào từ
-phạm vi bên ngoài được đưa vào lambda. Danh sách bắt giữ có thể rỗng, hoặc chỉ
-định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua
-[tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo
-giá trị.
+phạm vi bên ngoài được đưa vào đối tượng closure. Danh sách bắt giữ có thể rỗng,
+hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua
+[tham chiếu](./reference.md), còn biến không có tiền tố này được sao chép theo
+giá trị vào closure.
 
 Có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến
 trong lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham
-chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
+chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được sao chép theo giá trị.
 
 Sau chế độ bắt giữ mặc định, vẫn có thể chỉ định **tường minh** chế độ bắt giữ
 cho một biến cụ thể.
@@ -104,9 +104,13 @@ auto f3 = [v = a + 1]() {
   return v + 1;
 };  // Hợp lệ, dùng bộ khởi tạo để khai báo biến v, có cùng kiểu với a
 
-// Lưu ý: khi bắt giữ bằng tham chiếu, cần bảo đảm a chưa bị hủy lúc gọi
+// Lưu ý: khi bắt giữ bằng tham chiếu, cần bảo đảm a vẫn còn sống lúc gọi
 auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, không cần truyền a qua tham số
 ```
+
+Khi bắt giữ theo giá trị, lambda giữ bản sao tại thời điểm tạo closure. Khi bắt
+giữ bằng tham chiếu, lambda không kéo dài vòng đời của biến bên ngoài; nếu biến
+đó đã bị hủy trước lúc gọi lambda, chương trình sẽ có tham chiếu treo.
 
 <a id="generalized-capture-bắt-giữ-có-khởi-tạo-c14"></a>
 
@@ -220,8 +224,8 @@ Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
 Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda;
 trong các ví dụ trên là biến $f$. Lý do là lambda được biểu diễn bằng một kiểu
-lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của
-lớp này, ví dụ:
+lớp, và nội dung trong mệnh đề bắt giữ tương ứng với các thành viên của lớp này,
+ví dụ:
 
 ```cpp
 int main() {
@@ -248,9 +252,9 @@ for (auto i : x) std::cout << i << " ";
 
 Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-Vì **danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai
-báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có
-kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
+Vì **danh sách tham số** là tùy chọn, nếu lambda không nhận tham số, không dùng
+[mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì
+có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
     Từ **C++14** trở đi, nếu tham số dùng `auto` để khai báo kiểu, một
@@ -275,7 +279,8 @@ cout << nth_fibonacci(10u);
 
 ### Đặc tả `mutable`
 
-Đặc tả `mutable` cho phép thân hàm sửa đổi các biến được bắt giữ theo giá trị.
+Đặc tả `mutable` cho phép thân hàm sửa đổi các thành viên của closure được tạo
+từ những biến bắt giữ theo giá trị.
 
 ```cpp
 int a = 0;
@@ -287,8 +292,8 @@ by_ref();
 ```
 
 Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị
-1, nhưng biến `a` bên ngoài vẫn là 0.
-Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thành 1.
+1, nhưng biến `a` bên ngoài vẫn là 0. Còn sau khi thực thi `by_ref()`, giá trị
+của `a` bên ngoài trở thành 1.
 
 <a id="kiểu-trả-về"></a>
 
@@ -360,8 +365,8 @@ auto dfs = [&](int i) -> void {
 Đoạn mã này thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu
 của $dfs$ là `auto`, nên phải chờ suy luận xong kiểu của vế phải dấu bằng mới xác
 định được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ $dfs$, trình biên dịch
-lại cần biết kiểu của $dfs$ trước để tạo biến tham chiếu tương ứng. Kết quả là
-hai bước này phụ thuộc lẫn nhau.
+lại cần biết kiểu của $dfs$ trước để tạo thành viên tham chiếu tương ứng. Kết
+quả là hai bước này phụ thuộc lẫn nhau.
 
 Có một số cách giải quyết vấn đề này:
 
@@ -382,9 +387,9 @@ Có một số cách giải quyết vấn đề này:
         ```
 
     ??? warning "Không khuyến nghị dùng [`std::function`](./new.md#stdfunction) để cài đặt đệ quy"
-        Kỹ thuật xóa kiểu của `std::function` thường cần cấp phát thêm bộ nhớ.
-        Đồng thời, lời gọi gián tiếp làm tăng chi phí định địa chỉ, khiến hiệu
-        năng tiếp tục giảm.
+        Kỹ thuật xóa kiểu của `std::function` có thể cần cấp phát thêm bộ nhớ.
+        Đồng thời, lời gọi gián tiếp làm tăng chi phí, khiến hiệu năng tiếp tục
+        giảm.
         
         Trong bài [đo kiểm](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c),
         với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt
@@ -448,7 +453,7 @@ Có một số cách giải quyết vấn đề này:
             
             BENCHMARK(template_lambda_fib);
             ```
-2.  Không lấy $dfs$ bằng cách bắt giữ, mà truyền nó qua tham số hàm.
+2.  Không lấy $dfs$ bằng cách bắt giữ, mà truyền chính lambda qua tham số.
 
     ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
@@ -476,8 +481,8 @@ Có một số cách giải quyết vấn đề này:
         lambda và các tối ưu tương ứng.
 
         Với `auto self`, lời gọi sẽ tạo bản sao của đối tượng lambda. Kích thước
-        bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là
-        biến thành viên riêng của lớp lambda này.
+        bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều
+        là thành viên của lớp lambda này.
 3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; nhờ đó
     có thể khai báo kiểu của $dfs$.
 
@@ -506,8 +511,8 @@ Có một số cách giải quyết vấn đề này:
 
     Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định
     thành con trỏ hàm. Khi đó, có thể khai báo lambda là `static`, đồng thời khai
-    báo kiểu con trỏ hàm là `static`. Nhờ vậy, lambda truy cập được con trỏ hàm mà
-    không cần bắt giữ biến nào, từ đó thực hiện được đệ quy.
+    báo biến con trỏ hàm là `static`. Nhờ vậy, lambda truy cập được con trỏ hàm
+    mà không cần bắt giữ biến nào, từ đó thực hiện được đệ quy.
 
     ???+ example "Ví dụ"
         ```cpp
@@ -580,8 +585,8 @@ void solution(const vector<int>& input) {
 ```
 
 So với phạm vi khối lệnh, lambda có giá trị trả về nên mã ngắn gọn hơn. So với
-hàm riêng, lambda không cần thêm tên hàm và không phải khai báo lại các tham số đã
-được bắt giữ, nên mã tập trung hơn vào logic đang viết.
+hàm riêng, lambda không cần thêm tên hàm và không phải khai báo lại các tham số
+đã được bắt giữ, nên mã tập trung hơn vào logic đang viết.
 
 <a id="tài-liệu-tham-khảo"></a>
 
