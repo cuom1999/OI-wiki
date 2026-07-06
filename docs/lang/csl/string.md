@@ -3,27 +3,28 @@ author: johnvp22, Ir1d
 ## `string` là gì
 
 `std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (lưu ý:
-không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất, nó là bí danh của
+không phải thư viện `<string.h>` của ngôn ngữ C). Về bản chất, nó là bí danh của
 `std::basic_string<char>`.
 
 ## Vì sao nên dùng `string`
 
 Ngôn ngữ C cũng có các thao tác xử lý chuỗi, nhưng chuỗi thường được biểu diễn
 bằng mảng ký tự. Trong C++, `string` là một lớp dễ dùng và được sử dụng rộng rãi
-trong các cuộc thi OI. So với nhiều bộ chứa STL khác, `string` có chi phí hằng
-số nhỏ, gần như không thua mảng ký tự.
+trong các cuộc thi OI. So với nhiều bộ chứa STL khác, `string` có hằng số ẩn nhỏ,
+gần như không thua mảng ký tự trong nhiều thao tác thường gặp.
 
 ### `string` có thể cấp phát bộ nhớ động
 
 Giống nhiều bộ chứa STL khác, `string` có thể cấp phát bộ nhớ động, nhờ đó có
-thể nhập bằng `std::cin`, dù cách nhập này vẫn chậm. Điều này cũng giúp giảm
-nhu cầu tự quản lý bộ nhớ.
+thể nhập bằng `std::cin` mà không cần tự chuẩn bị mảng đủ lớn, dù cách nhập này
+vẫn chậm hơn các cách nhập tối ưu cho thi đấu. Điều này cũng giúp giảm nhu cầu
+tự quản lý bộ nhớ.
 
 ### `string` nạp chồng toán tử cộng và toán tử so sánh
 
 Toán tử cộng của `string` có thể nối hai chuỗi, hoặc nối một chuỗi với một ký
 tự. Tương tự `std::vector`, `string` nạp chồng toán tử so sánh theo thứ tự từ
-điển, nên có thể dùng `std::sort` để sắp xếp nhiều chuỗi.
+điển, nên có thể dùng `std::sort` để sắp xếp một dãy chuỗi.
 
 ## Cách dùng
 
@@ -45,8 +46,8 @@ hai hàm đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng;
 với chuẩn cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
 
 ```cpp
-printf("%s", s);          // lỗi biên dịch
-printf("%s", s.data());   // biên dịch được từ C++11 trở đi
+printf("%s", s);          // sai: printf cần con trỏ char, không phải std::string
+printf("%s", s.data());   // dùng như chuỗi C an toàn từ C++11 trở đi
 printf("%s", s.c_str());  // xuất đúng
 ```
 
@@ -76,9 +77,8 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
 
 Hàm `find(str, pos)` dùng để tìm vị trí xuất hiện đầu tiên của một ký tự hoặc
 chuỗi trong chuỗi, bắt đầu từ vị trí `pos` (bao gồm `pos`; nếu không truyền tham
-số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về
-`string::npos` (được định nghĩa là `-1`, nhưng kiểu vẫn là
-`size_t`/`unsigned long`).
+số `pos` thì mặc định là `0`). Nếu không xuất hiện thì trả về `string::npos`,
+thường được hiểu là `size_t(-1)`.
 
 Ví dụ:
 
@@ -107,7 +107,8 @@ trong s, chuỗi u xuất hiện lần đầu từ vị trí pos ở vị trí 6
 
 Hàm `substr(pos, len)` trả về chuỗi gồm tối đa `len` ký tự được cắt từ vị trí
 `pos` (nếu hậu tố bắt đầu từ `pos` có độ dài nhỏ hơn `len` thì cắt toàn bộ hậu
-tố đó).
+tố đó). Nếu không truyền `len`, hàm sẽ lấy đến hết chuỗi; nếu `pos > size()`,
+hàm ném ngoại lệ `std::out_of_range`.
 
 Ví dụ:
 
@@ -134,7 +135,8 @@ chuỗi `str` tại `index`.
 
 Hàm `erase(index, count)` xóa `count` ký tự bắt đầu từ vị trí `index` của chuỗi
 (bao gồm `index`; nếu không truyền tham số `count` thì xóa toàn bộ phần chuỗi từ
-`index` trở đi).
+`index` trở đi). Nếu `count` vượt quá phần còn lại của chuỗi, hàm chỉ xóa đến
+hết chuỗi.
 
 Ví dụ:
 
