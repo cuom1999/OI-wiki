@@ -6,19 +6,19 @@ Xem thêm [thảo luận trên Zhihu](https://www.zhihu.com/question/59195374).
 ???+ warning "Về cây phân đoạn hàm"
     **Cây phân đoạn hàm** là cây phân đoạn được xây dựng theo tư tưởng lập trình hàm.
     Trong lập trình hàm, phép tính của máy tính được xem như hàm toán học,
-    đồng thời tránh trạng thái hoặc biến có thể thay đổi.
+    đồng thời tránh trạng thái hoặc biến có thể bị thay đổi.
     Vì vậy, cây phân đoạn hàm là [hoàn toàn bền vững](persistent.md#hoàn-toàn-bền-vững-fully-persistent).
 
 ## Dẫn nhập
 
 Xét bài toán sau:
 cho dãy $a$ gồm $n$ số nguyên,
-với mỗi truy vấn trên khoảng đóng $[l, r]$,
-cần tìm giá trị nhỏ thứ $k$ trong khoảng đó.
+với mỗi truy vấn trên đoạn đóng $[l, r]$,
+cần tìm giá trị nhỏ thứ $k$ trong đoạn đó.
 
 Một phương án khả thi là dùng cây chủ tịch.
-Ý tưởng chính của cây chủ tịch là lưu các phiên bản lịch sử sau mỗi thao tác chèn,
-từ đó truy vấn phần tử nhỏ thứ $k$ trong một khoảng.
+Ý tưởng chính của cây chủ tịch là lưu lại các phiên bản lịch sử sau mỗi thao tác chèn,
+từ đó truy vấn phần tử nhỏ thứ $k$ trong một đoạn.
 
 Cách đơn giản nhất là mỗi lần tạo một cây phân đoạn mới.
 Tuy nhiên, cách này tiêu tốn bộ nhớ quá lớn.
@@ -34,23 +34,24 @@ Do đó, mỗi lần chỉ thay đổi $O(\log{n})$ nút, bằng chiều cao c�
 Cây chủ tịch không thể dùng cách lưu kiểu heap,
 tức không thể dùng $x\times 2$ và $x\times 2+1$ để biểu diễn con trái/phải.
 Thay vào đó, cần cấp phát nút động và lưu chỉ số con trái/phải của từng nút.
-Khi đã lưu con trái/phải, chỉ cần lưu nút gốc tại thời điểm chèn từng số để đạt được tính bền vững.
+Khi đã lưu con trái/phải, chỉ cần lưu gốc của phiên bản sau mỗi lần chèn để đạt được tính bền vững.
 
 Đơn giản hóa bài toán: mỗi lần chỉ cần tìm giá trị nhỏ thứ $k$ trong khoảng $[1,r]$.
-Chỉ cần tìm phiên bản nút gốc sau khi đã chèn đến $r$,
+Chỉ cần lấy phiên bản gốc sau khi đã chèn đến vị trí $r$,
 rồi xử lý như trên cây phân đoạn theo giá trị thông thường
 (còn gọi là cây phân đoạn khóa/miền giá trị).
 
 Quay lại bài toán ban đầu: tìm giá trị nhỏ thứ $k$ trong khoảng $[l,r]$.
 Cách xử lý liên hệ đến một kiến thức khác: **tổng tiền tố**.
-Kỹ thuật này tận dụng tính chất trừ đoạn: sau khi tiền xử lý, có thể trả lời mỗi truy vấn trong $O(1)$.
+Kỹ thuật này tận dụng tính chất lấy hiệu hai tiền tố: sau khi tiền xử lý, có thể trả lời mỗi truy vấn trong $O(1)$.
 
 Thông tin thống kê trong cây chủ tịch cũng thỏa tính chất này.
-Vì vậy, nếu cần lấy thông tin thống kê của $[l,r]$, chỉ cần lấy thông tin của $[1,r]$ trừ đi thông tin của $[1,l - 1]$.
+Vì vậy, nếu cần lấy thông tin thống kê của $[l,r]$, chỉ cần lấy thông tin của phiên bản $[1,r]$ trừ đi thông tin của
+phiên bản $[1,l - 1]$.
 
 Đến đây, bài toán đã được giải quyết.
 
-Về vấn đề không gian, phân tích như sau:
+Về không gian, có thể phân tích như sau:
 vì cấp phát nút động, một cây phân đoạn chỉ có $2n-1$ nút.
 Sau đó có $n$ lần sửa, mỗi lần nhiều nhất tăng thêm $\lceil\log_2{n}\rceil+1$ nút.
 Do đó trong trường hợp xấu nhất,
@@ -60,9 +61,9 @@ mỗi lần sửa nhiều nhất tăng thêm $\lceil\log_2{10^5}\rceil+1 = 18$ n
 nên tổng số nút sau $n$ lần sửa là $2\times 10^5-1+18\times 10^5$;
 bỏ qua $-1$ thì xấp xỉ $20\times 10^5$.
 
-Cuối cùng là một điểm cần lưu ý trong cài đặt: không nên cấp phát quá sát giới hạn ước tính.
+Cuối cùng là một điểm cần lưu ý khi cài đặt: không nên cấp phát quá sát giới hạn ước tính.
 Trong đa số bài, giới hạn bộ nhớ khá rộng nên thường không cần quá lo vượt bộ nhớ.
-Có thể cấp $2^5\times 10^5$, gần gấp đôi dung lượng ước tính ban đầu, tức `n << 5`.
+Có thể cấp $2^5\times 10^5$, gần gấp đôi dung lượng ước tính ban đầu, tức dùng `n << 5`.
 
 ## Cài đặt
 
@@ -90,7 +91,7 @@ int build(int l, int r) {  // Xây cây
   return root;  // Trả về nút gốc của cây con này
 }
 
-int update(int k, int l, int r, int root) {  // Thao tác chèn
+int update(int k, int l, int r, int root) {  // Thao tác chèn một giá trị
   int dir = ++tot;
   ls[dir] = ls[root], rs[dir] = rs[root], sum[dir] = sum[root] + 1;
   if (l == r) return dir;
@@ -104,7 +105,7 @@ int update(int k, int l, int r, int root) {  // Thao tác chèn
 
 int query(int u, int v, int l, int r, int k) {  // Thao tác truy vấn
   int mid = l + r >> 1,
-      x = sum[ls[v]] - sum[ls[u]];  // Số giá trị nằm trong con trái, tính bằng phép trừ đoạn
+      x = sum[ls[v]] - sum[ls[u]];  // Số giá trị nằm trong con trái, tính bằng hiệu hai phiên bản
   if (l == r) return l;
   if (k <= x)  // Nếu k <= x, số nhỏ thứ k nằm trong con trái
     return query(ls[u], ls[v], l, mid, k);
