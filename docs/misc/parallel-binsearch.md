@@ -1,6 +1,6 @@
 ## Mở đầu
 
-Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, ta sẽ dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán ngoại tuyến. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
+Trong các kỳ thi lập trình thi đấu, có một số bài có thể giải bằng chặt nhị phân. Tuy nhiên, khi dạng bài này có nhiều truy vấn và việc chặt nhị phân trực tiếp cho từng truy vấn có thể dẫn đến TLE, nên dùng chặt nhị phân tổng thể. Ý tưởng chính của chặt nhị phân tổng thể là xử lý nhiều truy vấn cùng lúc. Vì vậy, đây là một thuật toán ngoại tuyến. Thuật ngữ này cũng thường được gọi là chặt nhị phân song song.
 
 Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏa mãn các tính chất sau[^ref1]:
 
@@ -12,20 +12,20 @@ Những bài có thể giải bằng chặt nhị phân tổng thể cần thỏ
 
 ## Giải thích
 
-Ký hiệu $[l,r]$ là miền giá trị của đáp án, $[L,R]$ là miền xác định của đáp án. Nói cách khác, khi tìm đáp án, ta chỉ xét các thao tác và truy vấn có chỉ số nằm trong đoạn $[L,R]$, và đáp án của các truy vấn này nằm trong $[l,r]$.
+Ký hiệu $[l,r]$ là miền giá trị của đáp án, $[L,R]$ là miền xác định của đáp án. Nói cách khác, khi tìm đáp án, chỉ xét các thao tác và truy vấn có chỉ số nằm trong đoạn $[L,R]$, và đáp án của các truy vấn này nằm trong $[l,r]$.
 
--   Trước hết, ta lưu tất cả thao tác vào một mảng **theo thứ tự thời gian**, rồi bắt đầu chia để trị.
+-   Trước hết, lưu tất cả thao tác vào một mảng **theo thứ tự thời gian**, rồi bắt đầu chia để trị.
 -   Ở mỗi tầng chia để trị, dùng một cấu trúc dữ liệu, thường là cây Fenwick, để thống kê quan hệ giữa đáp án của truy vấn hiện tại và $mid$.
 -   Dựa trên quan hệ giữa kết quả truy vấn được và $mid$, tức nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, chia dãy thao tác hiện đang xử lý thành hai phần $q1$ và $q2$, rồi đệ quy xử lý từng phần.
 -   Khi $l=r$, đáp án đã được xác định, chỉ cần ghi lại đáp án rồi trả về.
 
-Cần chú ý rằng trong quá trình chặt nhị phân tổng thể, nếu miền giá trị đang xử lý là $[l,r]$, thì các truy vấn có phạm vi đáp án cuối cùng không nằm trong $[l,r]$ sẽ được xử lý ở thời điểm khác.
+Cần lưu ý rằng trong quá trình chặt nhị phân tổng thể, nếu miền giá trị đang xử lý là $[l,r]$, thì các truy vấn có phạm vi đáp án cuối cùng không nằm trong $[l,r]$ sẽ được xử lý ở thời điểm khác.
 
 ## Quy trình
 
-???+ tip "Chú ý"
+???+ tip "Lưu ý"
     1.  Để dễ đọc, mã trong bài có thể không dùng đúng phong cách thường gặp trong thi đấu thực tế.
-    2.  Nếu thấy một đoạn mã nào đó khó hiểu, hãy tham khảo trước phần giải thích của các bài trước đó, vì những nội dung đã giải thích để tiết kiệm độ dài sẽ không được lặp lại.
+    2.  Nếu thấy một đoạn mã nào đó khó hiểu, nên tham khảo trước phần giải thích của các bài trước đó; để tiết kiệm độ dài, những nội dung đã giải thích sẽ không được lặp lại.
 
 Bắt đầu từ chặt nhị phân thông thường:
 
@@ -35,17 +35,17 @@ Bắt đầu từ chặt nhị phân thông thường:
     Truy vấn số nhỏ thứ $k$ trong một dãy số.
 
 ??? note "Lời giải"
-    Tất nhiên có thể sắp xếp trực tiếp. Nếu dùng chặt nhị phân thì sao? Ta có thể dùng cấu trúc dữ liệu để ghi nhận trong mỗi khoảng giá trị có bao nhiêu số, rồi dùng chặt nhị phân để đoán và dùng cấu trúc dữ liệu để kiểm tra.
+    Có thể sắp xếp trực tiếp. Nếu dùng chặt nhị phân thì sao? Khi đó, dùng cấu trúc dữ liệu để ghi nhận trong mỗi khoảng giá trị có bao nhiêu số, rồi dùng chặt nhị phân để đoán và dùng cấu trúc dữ liệu để kiểm tra.
 
 ???+ note "Bài 2"
     Trong một dãy số, truy vấn nhiều lần phần tử nhỏ thứ $k$.
 
 ??? note "Lời giải"
-    Có thể thực hiện một lần chặt nhị phân cho mỗi truy vấn. Nhưng ta cũng có thể đưa tất cả truy vấn vào cùng một quá trình chặt nhị phân.
+    Có thể thực hiện một lần chặt nhị phân cho mỗi truy vấn. Tuy nhiên, cũng có thể đưa tất cả truy vấn vào cùng một quá trình chặt nhị phân.
     
-    Trước hết xét bản chất của chặt nhị phân: giả sử cần đoán một số trong $[l,r]$, sau khi đoán ta sẽ biết mình đoán lớn hơn, nhỏ hơn hay đúng. Tất nhiên có thể liệt kê từ $l$ đến $r$, nhưng cách tốt hơn là chặt nhị phân: đoán đáp án là $m = \lfloor\frac{l + r}{2}\rfloor$, sau đó kiểm tra tính đúng đắn của $m$ rồi điều chỉnh biên. Như vậy, độ phức tạp cho mỗi truy vấn là $O(\log n)$. Nếu có $q$ truy vấn, độ phức tạp thời gian là $O(q\log n)$.
+    Trước hết xét bản chất của chặt nhị phân: giả sử cần đoán một số trong $[l,r]$, sau khi đoán sẽ biết giá trị vừa đoán lớn hơn, nhỏ hơn hay đúng. Có thể liệt kê từ $l$ đến $r$, nhưng cách tốt hơn là chặt nhị phân: đoán đáp án là $m = \lfloor\frac{l + r}{2}\rfloor$, sau đó kiểm tra tính đúng đắn của $m$ rồi điều chỉnh biên. Như vậy, độ phức tạp cho mỗi truy vấn là $O(\log n)$. Nếu có $q$ truy vấn, độ phức tạp thời gian là $O(q\log n)$.
     
-    Quay lại với tất cả truy vấn hiện tại, ta có thể đoán đáp án của mọi truy vấn đều là $mid$, rồi lần lượt kiểm tra đáp án của mỗi truy vấn phải nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, sau đó chia truy vấn thành hai phần, không lớn hơn và lớn hơn. Với mỗi phần, tiếp tục chặt nhị phân. Chú ý: nếu đáp án của một truy vấn lớn hơn $mid$, trước khi chuyển nó sang bên phải cần cập nhật $k$ của nó. Cụ thể, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Nếu một phần đã có $l = r$, quá trình chặt nhị phân của phần đó kết thúc. Dựa trên kiến thức về cây đoạn, mỗi lần ta chia toàn bộ khoảng mà đáp án có thể nằm trong đó $[1,n]$, giả sử đã rời rạc hóa, thành một số phần. Việc chia như vậy được thực hiện tổng cộng $O(\log n)$ lần, và một lần chia sẽ xử lý toàn bộ dãy thao tác một lần. Nếu độ phức tạp để xử lý toàn bộ dãy và hỗ trợ các truy vấn tương ứng là $O(T)$, thì độ phức tạp thời gian của chặt nhị phân tổng thể là $O(T\log n)$.
+    Quay lại với tất cả truy vấn hiện tại, có thể đoán đáp án của mọi truy vấn đều là $mid$, rồi lần lượt kiểm tra đáp án của mỗi truy vấn phải nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, sau đó chia truy vấn thành hai phần, không lớn hơn và lớn hơn. Với mỗi phần, tiếp tục chặt nhị phân. Lưu ý: nếu đáp án của một truy vấn lớn hơn $mid$, trước khi chuyển nó sang bên phải cần cập nhật $k$ của nó. Cụ thể, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Nếu một phần đã có $l = r$, quá trình chặt nhị phân của phần đó kết thúc. Dựa trên kiến thức về cây đoạn, mỗi lần chia toàn bộ khoảng mà đáp án có thể nằm trong đó $[1,n]$, giả sử đã rời rạc hóa, thành một số phần. Việc chia như vậy được thực hiện tổng cộng $O(\log n)$ lần, và một lần chia sẽ xử lý toàn bộ dãy thao tác một lần. Nếu độ phức tạp để xử lý toàn bộ dãy và hỗ trợ các truy vấn tương ứng là $O(T)$, thì độ phức tạp thời gian của chặt nhị phân tổng thể là $O(T\log n)$.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -91,7 +91,7 @@ Bắt đầu từ chặt nhị phân thông thường:
     Trong một dãy số, truy vấn nhiều lần phần tử nhỏ thứ $k$ trên một đoạn.
 
 ??? note "Lời giải"
-    Khi có truy vấn trên một đoạn cho trước, nếu tiếp tục chặt nhị phân theo cách trước thì độ phức tạp thời gian của hàm `check` sẽ bùng nổ. Vẫn xét quan hệ giữa truy vấn và trung điểm miền giá trị $m$: nếu trong đoạn truy vấn có $t$ số nhỏ hơn hoặc bằng $m$, và truy vấn hỏi số nhỏ thứ $k$ trong đoạn, thì khi $k \leq t$, đáp án phải nhỏ hơn hoặc bằng $m$; ngược lại, đáp án phải lớn hơn $m$. Chú ý xử lý biên. Ở đây cần ghi nhận số lượng phần tử trong một đoạn nhỏ hơn hoặc bằng một số được chỉ định, tức cộng điểm và truy vấn tổng đoạn, có thể xử lý nhanh bằng cây Fenwick. Để tăng hiệu quả, chỉ thống kê các số trong dãy có giá trị nằm trong khoảng miền giá trị $[l,r]$. Tức là trước khi đệ quy tiếp, không chỉ chia truy vấn mà còn chia các số hiện đang xử lý thành hai nửa theo miền giá trị.
+    Khi có truy vấn trên một đoạn cho trước, nếu tiếp tục chặt nhị phân theo cách trước thì độ phức tạp thời gian của hàm `check` sẽ bùng nổ. Vẫn xét quan hệ giữa truy vấn và trung điểm miền giá trị $m$: nếu trong đoạn truy vấn có $t$ số nhỏ hơn hoặc bằng $m$, và truy vấn hỏi số nhỏ thứ $k$ trong đoạn, thì khi $k \leq t$, đáp án phải nhỏ hơn hoặc bằng $m$; ngược lại, đáp án phải lớn hơn $m$. Cần xử lý biên cẩn thận. Lúc này cần ghi nhận số lượng phần tử trong một đoạn nhỏ hơn hoặc bằng một số được chỉ định, tức cộng điểm và truy vấn tổng đoạn, có thể xử lý nhanh bằng cây Fenwick. Để tăng hiệu quả, chỉ thống kê các số trong dãy có giá trị nằm trong khoảng miền giá trị $[l,r]$. Tức là trước khi đệ quy tiếp, không chỉ chia truy vấn mà còn chia các số hiện đang xử lý thành hai nửa theo miền giá trị.
 
 ??? note "Mã tham khảo (phần chính)"
     ```cpp
@@ -149,7 +149,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
     Cho một dãy số, cần hỗ trợ sửa đổi tại một điểm và truy vấn phần tử nhỏ thứ $k$ trên đoạn.
 
 ??? note "Lời giải"
-    Có thể hiểu trực tiếp một thao tác sửa đổi là xóa một số khỏi dãy gốc rồi thêm một số mới. Để tiện, ta gọi chung truy vấn và sửa đổi là "thao tác". Vì các thao tác phía sau phụ thuộc vào các thao tác trước đó, không thể tách việc thống kê và xử lý truy vấn như Bài 3. Do đó, có thể lưu tất cả thao tác vào một mảng, dùng nhãn để phân biệt loại, rồi lần lượt xử lý từng thao tác. Để tiện xử lý cây Fenwick, thao tác sửa đổi có thể tách thành thao tác xóa và thao tác chèn.
+    Có thể hiểu trực tiếp một thao tác sửa đổi là xóa một số khỏi dãy gốc rồi thêm một số mới. Để tiện, gọi chung truy vấn và sửa đổi là "thao tác". Vì các thao tác phía sau phụ thuộc vào các thao tác trước đó, không thể tách việc thống kê và xử lý truy vấn như Bài 3. Do đó, có thể lưu tất cả thao tác vào một mảng, dùng nhãn để phân biệt loại, rồi lần lượt xử lý từng thao tác. Để tiện xử lý cây Fenwick, thao tác sửa đổi có thể tách thành thao tác xóa và thao tác chèn.
     
     **Tối ưu**
     
@@ -216,7 +216,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
     Cho một dãy, truy vấn phần tử nhỏ thứ $k$ trên đoạn.
 
 ??? note "Lời giải"
-    Cả cây lồng cây và chặt nhị phân tổng thể khi cài đặt bài toán phần tử nhỏ thứ $k$ trên đoạn có sửa đổi đều có độ phức tạp $O(n \log^2 n)$. Nhưng bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh có thể giải bằng cây đoạn bền vững trong độ phức tạp thời gian $O(n \log n)$, trong khi hầu hết mã chặt nhị phân tổng thể cho bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh đều có độ phức tạp $O(n \log^2 n)$, nên có nguy cơ TLE khi phạm vi dữ liệu lớn. Ở đây mặc định miền giá trị cùng bậc với độ dài dãy; nếu miền giá trị và độ dài dãy khác bậc, có thể dùng rời rạc hóa để chuyển về trường hợp cùng bậc.
+    Cả cây lồng cây và chặt nhị phân tổng thể khi cài đặt bài toán phần tử nhỏ thứ $k$ trên đoạn có sửa đổi đều có độ phức tạp $O(n \log^2 n)$. Nhưng bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh có thể giải bằng cây đoạn bền vững trong độ phức tạp thời gian $O(n \log n)$, trong khi hầu hết mã chặt nhị phân tổng thể cho bài toán phần tử nhỏ thứ $k$ trên đoạn tĩnh đều có độ phức tạp $O(n \log^2 n)$, nên có nguy cơ TLE khi phạm vi dữ liệu lớn. Phần này mặc định miền giá trị cùng bậc với độ dài dãy; nếu miền giá trị và độ dài dãy khác bậc, có thể dùng rời rạc hóa để chuyển về trường hợp cùng bậc.
     
     **Tối ưu**
     
@@ -229,7 +229,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
     
     Vì cần theo dõi tâm chia để trị, phải cho $pos$ cập nhật cây Fenwick chính xác. Trước khi chặt nhị phân tổng thể, sắp xếp dãy theo giá trị phần tử và ghi lại chỉ số tương ứng của từng phần tử; khi con trỏ di chuyển, sửa đổi chỉ số tương ứng trong cây Fenwick. Với phần lớn các bài **có thể giải bằng chặt nhị phân tổng thể và không có sửa đổi**, đều có thể áp dụng tối ưu này để giảm mạnh số lần sử dụng cấu trúc dữ liệu.
     
-    Nhờ giảm rất nhiều thao tác nạp và xóa cây Fenwick, áp dụng tối ưu này thường cải thiện rõ rệt hiệu quả của chặt nhị phân tổng thể, dù chỉ là tối ưu hằng số. Đối với bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh, hiệu quả hoàn toàn không kém cây đoạn bền vững có độ phức tạp thời gian tốt hơn. Đáng chú ý là bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh cũng có cài đặt chặt nhị phân tổng thể với độ phức tạp thời gian $O(n \log n)$.
+    Nhờ giảm rất nhiều thao tác nạp và xóa cây Fenwick, áp dụng tối ưu này thường cải thiện rõ rệt hiệu quả của chặt nhị phân tổng thể, dù chỉ là tối ưu hằng số. Đối với bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh, hiệu quả hoàn toàn không kém cây đoạn bền vững có độ phức tạp thời gian tốt hơn. Ngoài ra, bài toán giá trị nhỏ thứ $k$ trên đoạn tĩnh cũng có cài đặt chặt nhị phân tổng thể với độ phức tạp thời gian $O(n \log n)$.
 
 ??? note "Mã tham khảo (phần chính)"
     ```cpp
@@ -262,7 +262,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
         if (s[i].k <= now)
           t1[++cnt1] = s[i];
         else
-          t2[++cnt2] = s[i];  // chú ý: không nên sửa đổi thông tin truy vấn
+          t2[++cnt2] = s[i];  // lưu ý: không nên sửa đổi thông tin truy vấn
       }
       for (int i = 1; i <= cnt1; i++) s[l + i - 1] = t1[i];
       for (int i = 1; i <= cnt2; i++) s[l + cnt1 + i - 1] = t2[i];
@@ -305,7 +305,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
 ### Xây dựng dãy có tính đơn điệu
 
 ???+ note "Bài 7 ([Sequence](https://www.luogu.com.cn/problem/P4597))"
-    Cho một dãy, mỗi thao tác có thể tăng một số nào đó thêm $1$ hoặc giảm đi $1$. Yêu cầu biến dãy thành không giảm đơn điệu, và dãy sau khi sửa chỉ được chứa các số đã xuất hiện trong dãy trước khi sửa. Hãy xuất ra số thao tác ít nhất.
+    Cho một dãy, mỗi thao tác có thể tăng một số nào đó thêm $1$ hoặc giảm đi $1$. Yêu cầu biến dãy thành không giảm đơn điệu, và dãy sau khi sửa chỉ được chứa các số đã xuất hiện trong dãy trước khi sửa. Cần xuất ra số thao tác ít nhất.
 
 ??? note "Lời giải"
     Dạng bài này cũng có thể giải bằng quy hoạch động hoặc tham lam có hối tiếc.
@@ -314,7 +314,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
     
     Vì yêu cầu dãy cuối cùng không giảm đơn điệu, có thể dùng chặt nhị phân tổng thể. Mỗi vòng chặt nhị phân tổng thể kiểm tra miền giá trị của đoạn dãy cuối cùng $[l,r]$; lúc này miền giá trị đáp án là $[ql,qr]$. Đặt $mid=\lfloor\frac{ql + qr}{2}\rfloor$. Khi bắt đầu mỗi vòng chặt nhị phân, mặc định chia mọi số vào $[mid+1,qr]$, tức số lượng phần tử cần chia vào $[ql,mid]$ được đặt là $0$, và chi phí ban đầu là số thao tác để đặt toàn bộ đoạn dãy $[l,r]$ thành $mid+1$. Sau đó lần lượt liệt kê từng số $i$ trong đoạn $[l,r]$ và tính tổng số thao tác để đặt $[l,i]$ thành $mid$ và đặt $[i+1,r]$ thành $mid+1$. Nếu tổng này tốt hơn số thao tác trước đó, cập nhật số thao tác nhỏ nhất và số lượng phần tử cần chia vào $[ql,mid]$.
     
-    Khi chia, tính đơn điệu của dãy cuối cùng đã được bảo đảm không bị phá vỡ. Đồng thời, vì mỗi lần đều lấy số thao tác nhỏ nhất, các phần tử cuối cùng được chia vào khoảng trái chắc chắn chọn $mid$ tốt hơn chọn $mid+1$. Do đó, dãy thu được bằng chặt nhị phân tổng thể chắc chắn không giảm đơn điệu và có số thao tác nhỏ nhất. Chỉ cần tính số thao tác rồi xuất ra.
+    Khi chia, tính đơn điệu của dãy cuối cùng đã được duy trì. Đồng thời, vì mỗi lần đều lấy số thao tác nhỏ nhất, với các phần tử cuối cùng được chia vào khoảng trái, chọn $mid$ tốt hơn chọn $mid+1$. Do đó, dãy thu được bằng chặt nhị phân tổng thể không giảm đơn điệu và có số thao tác nhỏ nhất. Chỉ cần tính số thao tác rồi xuất ra.
 
 ??? note "Mã tham khảo (phần chính)"
     ```cpp

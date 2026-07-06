@@ -2,11 +2,11 @@ Trang này sẽ giới thiệu ngắn gọn về hai con trỏ.
 
 ## Mở đầu
 
-Hai con trỏ là một kỹ thuật và tư tưởng đơn giản nhưng linh hoạt. Khi dùng riêng, nó có thể giải dễ dàng một số bài toán đặc thù; khi kết hợp với các thuật toán khác, nó cũng phát huy được nhiều tác dụng khác nhau.
+Hai con trỏ là một kỹ thuật và tư tưởng đơn giản nhưng linh hoạt. Khi dùng riêng, nó có thể giải gọn một số bài toán đặc thù; khi kết hợp với các thuật toán khác, nó cũng phát huy được nhiều tác dụng khác nhau.
 
-Đúng như tên gọi, hai con trỏ là việc đồng thời dùng hai con trỏ: trên cấu trúc dãy hoặc danh sách liên kết, chúng trỏ vào vị trí; trên cây hoặc đồ thị, chúng trỏ vào đỉnh. Bằng cách di chuyển cùng chiều hoặc ngược chiều, ta duy trì và thống kê thông tin cần thiết.
+Đúng như tên gọi, hai con trỏ là việc đồng thời dùng hai con trỏ: trên cấu trúc dãy hoặc danh sách liên kết, chúng trỏ vào vị trí; trên cây hoặc đồ thị, chúng trỏ vào đỉnh. Bằng cách di chuyển cùng chiều hoặc ngược chiều, thuật toán duy trì và thống kê thông tin cần thiết.
 
-Sau đây ta xét một vài cách dùng cụ thể của hai con trỏ.
+Sau đây là một vài cách dùng cụ thể của hai con trỏ.
 
 ## Duy trì thông tin đoạn
 
@@ -15,7 +15,7 @@ Nếu không kết hợp với cấu trúc dữ liệu khác, mẫu đơn giản
 ### Ví dụ 1
 
 ???+ note "Ví dụ 1 [leetcode 713. Số mảng con có tích nhỏ hơn K](https://leetcode-cn.com/problems/subarray-product-less-than-k/)"
-    Cho một mảng số nguyên dương $\mathit{nums}$ độ dài $n$ và một số nguyên $k$, hãy tìm số lượng mảng con liên tiếp có tích nhỏ hơn $k$ trong mảng này.
+    Cho một mảng số nguyên dương $\mathit{nums}$ độ dài $n$ và một số nguyên $k$, tìm số lượng mảng con liên tiếp có tích nhỏ hơn $k$ trong mảng này.
     
     Trong đó, $1 \leq n \leq 3 \times 10^4, 1 \leq nums[i] \leq 1000, 0 \leq k \leq 10^6$.
 
@@ -45,7 +45,7 @@ Dùng hai con trỏ để duy trì thông tin đoạn cũng có thể kết hợ
 Tiếp theo là một bài ví dụ dùng hai con trỏ trên cây và kết hợp với sai phân trên cây:
 
 ???+ note "Ví dụ 2 [luogu P3066 Running Away From the Barn G](https://www.luogu.com.cn/problem/P3066)"
-    Cho một cây có gốc gồm $n$ đỉnh, các cạnh có trọng số, các đỉnh được đánh số từ 1 đến $n$, và đỉnh 1 là gốc của cây. Cho thêm một tham số $t$; với mỗi đỉnh $u$ trên cây, hãy tính trong cây con của $u$ có bao nhiêu đỉnh mà khoảng cách từ đỉnh đó đến $u$ không vượt quá $t$. Phạm vi dữ liệu: $1\leq n \leq 2\times 10^5,1 \leq t \leq 10^{18},1 \leq p_i \lt i,1 \leq w_i \leq 10^{12}$
+    Cho một cây có gốc gồm $n$ đỉnh, các cạnh có trọng số, các đỉnh được đánh số từ 1 đến $n$, và đỉnh 1 là gốc của cây. Cho thêm một tham số $t$; với mỗi đỉnh $u$ trên cây, tính trong cây con của $u$ có bao nhiêu đỉnh mà khoảng cách từ đỉnh đó đến $u$ không vượt quá $t$. Phạm vi dữ liệu: $1\leq n \leq 2\times 10^5,1 \leq t \leq 10^{18},1 \leq p_i \lt i,1 \leq w_i \leq 10^{12}$
 
 #### Quá trình
 
@@ -60,7 +60,7 @@ Cần lưu ý không thể trực tiếp di chuyển $p$ bằng vét cạn, nế
 ## Khớp dãy con
 
 ???+ note "Ví dụ 3 [leetcode 524. Từ dài nhất trong từ điển có thể khớp bằng cách xóa ký tự](https://leetcode-cn.com/problems/longest-word-in-dictionary-through-deleting/)"
-    Cho một chuỗi $s$ và một mảng chuỗi $\mathit{dictionary}$ làm từ điển, hãy tìm và trả về chuỗi dài nhất trong từ điển có thể nhận được bằng cách xóa một số ký tự trong $s$.
+    Cho một chuỗi $s$ và một mảng chuỗi $\mathit{dictionary}$ làm từ điển, tìm và trả về chuỗi dài nhất trong từ điển có thể nhận được bằng cách xóa một số ký tự trong $s$.
 
 ### Quá trình
 
@@ -96,17 +96,17 @@ Phương pháp hai con trỏ trỏ vào hai đối tượng khác nhau rồi l�
 Nhiều khi việc dùng hai con trỏ trên dãy có thể đạt đúng mục tiêu là nhờ một số tính chất của dãy; thường gặp nhất là tận dụng tính sắp xếp của dãy.
 
 ???+ note "Ví dụ 4 [leetcode 167. Tổng hai số II - mảng đầu vào đã sắp xếp](https://leetcode-cn.com/problems/two-sum-ii-input-array-is-sorted/)"
-    Cho một mảng số nguyên `numbers` đã được sắp xếp theo **thứ tự tăng dần**, hãy tìm hai số trong mảng sao cho tổng của chúng bằng số mục tiêu `target`.
+    Cho một mảng số nguyên `numbers` đã được sắp xếp theo **thứ tự tăng dần**, tìm hai số trong mảng sao cho tổng của chúng bằng số mục tiêu `target`.
 
 ### Quá trình
 
 Đây cũng là một ứng dụng kinh điển của hai con trỏ. Tìm kiếm nhị phân cũng khá tiện, nhưng độ phức tạp thời gian sẽ thêm một thừa số $\log{n}$, và mã cũng không gọn bằng.
 
-Sau đây là cách làm bằng hai con trỏ: vì cần tìm hai số và hai số này không thể ở cùng một vị trí, nên vị trí của chúng chắc chắn là một trái một phải. Do tổng hai số cố định, trong hai số đó, nếu số nhỏ hơn càng lớn thì số lớn hơn càng nhỏ. Dựa trên các tính chất này, ta có thể thu hẹp dần từ hai đầu.
+Sau đây là cách làm bằng hai con trỏ: vì cần tìm hai số và hai số này không thể ở cùng một vị trí, nên vị trí của chúng phải là một trái một phải. Do tổng hai số cố định, trong hai số đó, nếu số nhỏ hơn càng lớn thì số lớn hơn càng nhỏ. Dựa trên các tính chất này, có thể thu hẹp dần từ hai đầu.
 
-Trước hết giả sử đáp án là 1 và n. Nếu thấy $num[1]+num[n]\gt \mathit{target}$, điều đó cho thấy cần làm nhỏ đi một trong hai phần tử, mà $\mathit{num}[1]$ không thể nhỏ hơn được nữa, nên ta giảm con trỏ đang trỏ tới $n$ đi một để làm số lớn hơn nhỏ lại.
+Trước hết giả sử đáp án là 1 và n. Nếu thấy $num[1]+num[n]\gt \mathit{target}$, điều đó cho thấy cần làm nhỏ đi một trong hai phần tử, mà $\mathit{num}[1]$ không thể nhỏ hơn được nữa, nên giảm con trỏ đang trỏ tới $n$ đi một để làm số lớn hơn nhỏ lại.
 
-Tương tự, nếu thấy $num[1]+num[n]\lt \mathit{target}$, ta cần làm lớn hơn một trong hai phần tử, nhưng $\mathit{num}[n]$ không thể lớn hơn được nữa, nên tăng con trỏ đang trỏ tới 1 lên một để làm số nhỏ hơn lớn lên.
+Tương tự, nếu thấy $num[1]+num[n]\lt \mathit{target}$, cần làm lớn hơn một trong hai phần tử, nhưng $\mathit{num}[n]$ không thể lớn hơn được nữa, nên tăng con trỏ đang trỏ tới 1 lên một để làm số nhỏ hơn lớn lên.
 
 Mở rộng sang trường hợp tổng quát, nếu lúc này hai con trỏ lần lượt trỏ vào $l,r$ và $l\lt r$, khi $num[l]+num[r]\gt \mathit{target}$ thì giảm $r$ đi một; khi $num[l]+num[r]\lt \mathit{target}$ thì tăng $l$ lên một. Như vậy $l$ liên tục đi sang phải, $r$ liên tục đi sang trái, và cuối cùng hai con trỏ sẽ cùng tiến gần một đáp án.
 
@@ -146,7 +146,7 @@ Ban đầu hai con trỏ đều trỏ vào đầu danh sách liên kết. Cho m�
 
 Nếu có chu trình, làm sao tìm được điểm bắt đầu của chu trình?
 
-Ta viết công thức để quan sát. Giả sử tại thời điểm gặp nhau, con trỏ chậm đã đi tổng cộng $k$ bước, trong đó đi $l$ bước trên chu trình (khi hai con trỏ nhanh chậm gặp nhau trên chu trình, con trỏ chậm chắc chắn chưa đi hết một vòng). Con trỏ nhanh đã đi $2k$ bước. Gọi độ dài chu trình là $C$, khi đó có
+Viết công thức để quan sát. Giả sử tại thời điểm gặp nhau, con trỏ chậm đã đi tổng cộng $k$ bước, trong đó đi $l$ bước trên chu trình (khi hai con trỏ nhanh chậm gặp nhau trên chu trình, con trỏ chậm chưa đi hết một vòng). Con trỏ nhanh đã đi $2k$ bước. Gọi độ dài chu trình là $C$, khi đó có
 
 $$
 \begin{align}
@@ -155,7 +155,7 @@ $$
 \end{align}
 $$
 
-Tại lần gặp đầu tiên, $n$ lấy số nguyên dương nhỏ nhất là 1. Nói cách khác, $k=C$. Dựa vào đẳng thức này, sau khi hai con trỏ gặp nhau, ta chuyển một con trỏ về đầu danh sách, để cả hai cùng đi từng bước một; vị trí chúng gặp lại chính là điểm bắt đầu của chu trình.
+Tại lần gặp đầu tiên, $n$ lấy số nguyên dương nhỏ nhất là 1. Nói cách khác, $k=C$. Dựa vào đẳng thức này, sau khi hai con trỏ gặp nhau, chuyển một con trỏ về đầu danh sách, để cả hai cùng đi từng bước một; vị trí chúng gặp lại chính là điểm bắt đầu của chu trình.
 
 ### Cài đặt
 
