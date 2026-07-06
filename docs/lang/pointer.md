@@ -7,7 +7,8 @@ chương trình chạy, vị trí của biến trong không gian địa chỉ c�
 vậy, khi lập trình, vẫn có thể dùng các câu lệnh nhất định để lấy địa chỉ của dữ
 liệu trong bộ nhớ.
 
-Địa chỉ cũng là một loại dữ liệu. Biến dùng để lưu địa chỉ có tên gọi đặc biệt là "biến con trỏ", đôi khi gọi ngắn gọn là "con trỏ".
+Địa chỉ cũng là một loại dữ liệu. Biến dùng để lưu địa chỉ có tên gọi đặc biệt
+là "biến con trỏ", đôi khi gọi ngắn gọn là "con trỏ".
 
 ???+ note "Kích thước của biến con trỏ"
     Kích thước của biến con trỏ khác nhau tùy môi trường. Trên các môi trường
@@ -15,11 +16,14 @@ liệu trong bộ nhớ.
     trường 64 bit phổ biến, kích thước của một con trỏ thường là 8 byte. Khi cần
     giá trị chính xác trong chương trình, dùng `sizeof`.
 
-Địa chỉ là một giá trị dùng để định vị vùng nhớ. Để xử lý dữ liệu thuộc các kiểu khác nhau, biến con trỏ cũng có các kiểu khác nhau. Ví dụ, một biến con trỏ kiểu `int` lưu địa chỉ bắt đầu của một đối tượng `int`; một biến con trỏ kiểu `char` lưu địa chỉ bắt đầu của một đối tượng `char`.
+Địa chỉ là một giá trị dùng để định vị vùng nhớ. Để xử lý dữ liệu thuộc các kiểu
+khác nhau, biến con trỏ cũng có các kiểu khác nhau. Ví dụ, một biến con trỏ kiểu
+`int` lưu địa chỉ bắt đầu của một đối tượng `int`; một biến con trỏ kiểu `char`
+lưu địa chỉ bắt đầu của một đối tượng `char`.
 
 Thực tế, cũng có thể khai báo một biến con trỏ trỏ tới một biến con trỏ khác.
 
-Giả sử người dùng tự định nghĩa một cấu trúc:
+Giả sử có một cấu trúc tự định nghĩa:
 
 ```cpp
 struct ThreeInt {
@@ -232,7 +236,9 @@ int main() {
 ```
 
 ???+ note "Khởi tạo bằng danh sách"
-    Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo do người dùng định nghĩa. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
+    Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo tự định
+    nghĩa. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở
+    nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
 
 Khi vùng nhớ được cấp phát bằng `new` không còn được sử dụng, cần
 dùng `delete` để giải phóng vùng nhớ này. Không được giải phóng cùng một vùng nhớ

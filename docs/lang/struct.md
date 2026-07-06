@@ -1,8 +1,9 @@
 author: Ir1d, cjsoft, Lans1ot
 
-**Cấu trúc** (`struct`) có thể xem là một kiểu gom nhiều thành viên liên quan lại với nhau.
+**Cấu trúc** (`struct`) có thể xem là một kiểu gom nhiều thành viên liên quan lại
+với nhau.
 
-`struct` cũng có thể xem là một kiểu dữ liệu do người dùng tự định nghĩa.
+`struct` cũng có thể xem là một kiểu dữ liệu tự định nghĩa.
 
 ???+ note "Ghi chú"
     `struct` được mô tả trong trang này không hoàn toàn giống `struct` trong C.
@@ -49,7 +50,8 @@ struct Edge {
 };
 ```
 
-Ví dụ trên chỉ để minh họa cách một cấu trúc có thể chứa con trỏ tới chính kiểu của nó.
+Ví dụ trên chỉ để minh họa cách một cấu trúc có thể chứa con trỏ tới chính kiểu
+của nó.
 
 ## Truy cập/sửa thành viên
 

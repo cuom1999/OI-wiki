@@ -43,8 +43,8 @@ void move_to(MyString& src, MyString& dst) {
 }
 ```
 
-Nhu cầu chuyển tài nguyên của đối tượng một cách hiệu quả theo kiểu này khá
-thường gặp, nhưng lại khó phối hợp với các thao tác như khởi tạo và hủy của C++.
+Nhu cầu chuyển tài nguyên của đối tượng một cách hiệu quả theo kiểu này thường
+gặp, nhưng lại khó phối hợp với các thao tác như khởi tạo và hủy của C++.
 Vì thế C++11 đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
 
 ## Loại giá trị trong ngôn ngữ C
