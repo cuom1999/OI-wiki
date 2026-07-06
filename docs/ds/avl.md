@@ -6,10 +6,10 @@ không quá phức tạp.
 
 1.  Cây nhị phân rỗng là một cây AVL.
 2.  Nếu T là một cây AVL, thì cây con trái và cây con phải của nó cũng là cây AVL, đồng thời
-    $|h(ls) - h(rs)| \leq 1$, trong đó h là chiều cao của cây con trái/phải tương ứng.
+    $|h(ls) - h(rs)| \leq 1$, trong đó $h$ là chiều cao của cây con trái/phải tương ứng.
 3.  Chiều cao của cây là $O(\log n)$.
 
-Hệ số cân bằng: chiều cao cây con phải - chiều cao cây con trái.
+Hệ số cân bằng được định nghĩa là: chiều cao cây con phải trừ chiều cao cây con trái.
 
 ???+ note "Chứng minh chiều cao của cây"
     Gọi $f_n$ là số nút ít nhất trong một cây AVL có chiều cao $n$, có:
@@ -47,9 +47,10 @@ chèn nút, dựa vào hệ số cân bằng để quyết định có cần đi
 
 ### Xóa nút
 
-Thao tác xóa tương tự cây tìm kiếm nhị phân: hoán đổi nút cần xóa với nút kế tiếp của nó rồi xóa.
+Thao tác xóa tương tự cây tìm kiếm nhị phân: hoán đổi nút cần xóa với nút kế nhiệm của nó rồi xóa.
 
-Việc xóa có thể làm thay đổi chiều cao cây và hệ số cân bằng. Khi đó cần điều chỉnh dọc theo đường đi từ nút bị xóa đến gốc.
+Việc xóa có thể làm thay đổi chiều cao cây và hệ số cân bằng. Khi đó cần điều chỉnh dọc theo đường đi từ nút bị xóa đến
+gốc.
 
 ### Duy trì cân bằng
 
@@ -58,8 +59,8 @@ vừa được chèn/xóa đến gốc. Nếu tại một nút nào đó, tính 
 hưởng đến chiều cao cây không vượt quá 1; vì thế trị tuyệt đối của hệ số cân bằng tại nút đó nhiều nhất là 2.
 
 Do tính đối xứng, chỉ xét trường hợp cây con trái cao hơn cây con phải 2 đơn vị, tức $h(B)-h(E)=2$ trong hình dưới. Khi
-đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Vì quá trình duy trì cân bằng
-đi từ dưới lên trên, với mọi hậu duệ của nút D, tính chất 2 vẫn đang được thỏa mãn.
+đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Vì quá trình duy trì cân bằng đi từ dưới lên
+trên, với mọi hậu duệ của nút D, tính chất 2 vẫn đang được thỏa mãn.
 
 ![](./images/avl1.svg)
 
@@ -91,7 +92,7 @@ $$
 \end{cases}
 $$
 
-Vì vậy sau phép xoay, các nút B và D cũng thỏa mãn tính chất 2.
+Vì vậy sau phép xoay, các nút B và D đều thỏa mãn tính chất 2.
 
 #### Trường hợp 2: chiều cao cây tại A nhỏ hơn chiều cao cây tại C
 
@@ -123,7 +124,7 @@ $$
 \end{cases}
 $$
 
-Vì vậy sau các phép xoay, các nút B, C, D cũng thỏa mãn tính chất 2.
+Vì vậy sau các phép xoay, các nút B, C, D đều thỏa mãn tính chất 2.
 
 ???+ note "Thao tác duy trì cân bằng: mã giả"
     $$
@@ -150,7 +151,8 @@ Giống như các cây tìm kiếm nhị phân cân bằng khác, các thông ti
 
 ## Các thao tác khác
 
-Các thao tác khác trên cây AVL (Predecessor, Successor, Select, Rank, v.v.) giống như trên cây tìm kiếm nhị phân thông thường.
+Các thao tác khác trên cây AVL (Predecessor, Successor, Select, Rank, v.v.) giống như trên cây tìm kiếm nhị phân thông
+thường.
 
 ## Mã tham khảo
 
