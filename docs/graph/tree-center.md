@@ -7,8 +7,8 @@ Trong một cây, nếu khi chọn đỉnh $x$ làm gốc, đường đi dài nh
 ## Tính chất
 
 -   Tâm của cây không nhất thiết là duy nhất, nhưng có nhiều nhất $2$ tâm, và nếu có hai tâm thì chúng kề nhau.
--   Tâm của cây chắc chắn nằm trên đường kính của cây.
--   Với mọi đỉnh trên cây, đường đi từ đỉnh đó đến đỉnh xa nhất của nó chắc chắn giao nhau tại tâm của cây.
+-   Tâm của cây nằm trên đường kính của cây.
+-   Với mọi đỉnh trên cây, đường đi từ đỉnh đó đến đỉnh xa nhất của nó đều giao nhau tại tâm của cây.
 -   Khi lấy tâm của cây làm gốc, hai đường đi từ tâm đến hai đầu mút của đường kính lần lượt là đường dài nhất và đường dài thứ hai.
 -   Khi nối hai cây bằng một cạnh để gộp thành một cây, nối hai tâm của hai cây sẽ làm đường kính của cây mới nhỏ nhất.
 -   Khoảng cách từ tâm của cây đến bất kỳ đỉnh nào khác không vượt quá một nửa đường kính của cây.
@@ -21,7 +21,7 @@ Tìm một đỉnh $x$ sao cho khi chọn nó làm gốc, độ dài đường �
 
 1.  Duy trì $len1_x$, biểu thị đường đi dài nhất trong cây con của đỉnh $x$.
 2.  Duy trì $len2_x$, biểu thị đường đi dài nhất không trùng với $len1_x$.
-3.  Duy trì $up_x$, biểu thị đường đi dài nhất nằm ngoài cây con của đỉnh $x$; đường đi này chắc chắn đi qua cha của $x$.
+3.  Duy trì $up_x$, biểu thị đường đi dài nhất nằm ngoài cây con của đỉnh $x$; đường đi này đi qua cha của $x$.
 4.  Tìm đỉnh $x$ sao cho $\max(len1_x, up_x)$ nhỏ nhất; khi đó $x$ chính là tâm của cây.
 
 ???+ note "Mã tham khảo"

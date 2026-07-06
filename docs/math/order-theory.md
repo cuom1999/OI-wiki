@@ -209,7 +209,7 @@ Với tập có thứ tự bộ phận hữu hạn $S$ và thứ tự bộ phậ
     ??? note "Chứng minh"
         Gọi độ dài xích dài nhất của $S$ là $d$. Theo định nghĩa, số phản xích ít nhất cần để phủ $S$ ít nhất là $d$.
 
-        Gọi $f(s)$ là độ dài xích dài nhất có $s$ làm phần tử nhỏ nhất. Chú ý rằng nếu $f(s)=f(t)$ thì $s$ và $t$ không so sánh được; do đó $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ đều là phản xích, trong đó $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ được gọi là [tập mức (level set)](https://en.wikipedia.org/wiki/Level_set).
+        Gọi $f(s)$ là độ dài xích dài nhất có $s$ làm phần tử nhỏ nhất. Nếu $f(s)=f(t)$ thì $s$ và $t$ không so sánh được; do đó $(\forall~n\in\mathbf{N})~~f^{-1}(\{n\})$ đều là phản xích, trong đó $f^{-1}(\{n\}):=\{a\in S:f(a)=n\}$ được gọi là [tập mức (level set)](https://en.wikipedia.org/wiki/Level_set).
 
         Vì vậy suy ra $\{f^{-1}(\{i\}):1\leq i\leq d\}$ là một phủ phản xích, nên số phản xích ít nhất cần để phủ không vượt quá $d$.
 
@@ -265,7 +265,7 @@ Có thể dùng định lý Dilworth để chứng minh định lý sau:
 
         Vì vậy, đại lượng cần tìm là tổng trọng số lớn nhất của một phản xích trong lưới đã cho.
 
-        Gọi $a_{ij}$ là trọng số của lưới tại đỉnh $(i,j)$, và $f(i,j)$ là đáp án trong lưới con từ $(i,j)$ đến $(1,m)$. Chú ý rằng mỗi đỉnh đều không kề với các đỉnh ở góc trên bên phải của nó, nên phương trình chuyển trạng thái là:
+        Gọi $a_{ij}$ là trọng số của lưới tại đỉnh $(i,j)$, và $f(i,j)$ là đáp án trong lưới con từ $(i,j)$ đến $(1,m)$. Mỗi đỉnh đều không kề với các đỉnh ở góc trên bên phải của nó, nên phương trình chuyển trạng thái là:
 
         $$
         f(i,j)=\max\{f(i-1,j),f(i,j+1),f(i-1,j+1)+a_{ij}\}
@@ -307,7 +307,7 @@ Trong các [thuật toán và cấu trúc dữ liệu cần dùng so sánh](http
 6.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
 7.  Kai-Cheng Lu, Hua-Ming Lu, [Combinatorics, ấn bản thứ 3](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
 8.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
-9.  [Bàn về ứng dụng của sắp xếp bằng hoán đổi hai phần tử kề và các vấn đề cần chú ý, bởi ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+9.  [Bàn về ứng dụng của sắp xếp bằng hoán đổi hai phần tử kề và những lưu ý liên quan, bởi ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
 10. [One thing you should know about comparators: Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
 11. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)
 12. [Dilworth's Theorem | Brilliant Math & Science Wiki](https://brilliant.org/wiki/dilworths-theorem/)

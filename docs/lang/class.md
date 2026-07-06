@@ -135,7 +135,7 @@ Nếu muốn gọi hàm thành viên `print` của `var`, có thể dùng `var.p
     Nếu các hàm cùng tên khác nhau từng đôi một ở một hoặc nhiều yếu tố trong
     loại tham số hoặc số lượng tham số, chúng được xem là các hàm khác nhau.
 
-    Cần chú ý: nếu hai hàm cùng tên chỉ khác nhau ở kiểu giá trị trả về thì
+    Lưu ý: nếu hai hàm cùng tên chỉ khác nhau ở kiểu giá trị trả về thì
     không thể nạp chồng; lúc này trình biên dịch sẽ từ chối biên dịch.
 
     Nếu khi gọi không xảy ra nhập nhằng, tức khi gọi một hàm cùng tên nào đó có
@@ -245,8 +245,8 @@ hàm tạo.
     số. Đây là điểm khác với hàm tạo nói chung. Cách định nghĩa hàm tạo và hàm
     tạo mặc định gần giống nhau, chỉ khác ở danh sách tham số.
 
-    Hàm tạo có thể được nạp chồng; lần đầu viết tất nhiên cũng có thể gọi là
-    định nghĩa. Cần chú ý rằng nếu đã định nghĩa hàm tạo, trình biên dịch sẽ
+    Hàm tạo có thể được nạp chồng; lần đầu viết cũng có thể gọi là
+    định nghĩa. Nếu đã định nghĩa hàm tạo, trình biên dịch sẽ
     không tự sinh hàm tạo mặc định không tham số nữa. Điều này có thể khiến hành
     vi thử tạo biến theo cách mặc định, tức không điền tham số khởi tạo, bị lỗi
     biên dịch.
@@ -336,7 +336,7 @@ Object C{1, 2};  // hợp lệ (C++11)
     ```
 
     Nghĩa là `Node a = 1` sẽ báo lỗi, nhưng `Node a = Node(1)` thì không, vì đoạn
-    sau gọi hàm tạo một cách tường minh. Dĩ nhiên đa số người sẽ không viết đoạn
+    sau gọi hàm tạo một cách tường minh. Thông thường, ít người sẽ viết đoạn
     sau, nhưng ví dụ này đủ để minh họa tác dụng của `explicit`.
 
     *Tuy vậy trong lập trình thi đấu, cách thường dùng để tránh tình huống này là
