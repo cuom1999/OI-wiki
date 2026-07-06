@@ -1,11 +1,11 @@
-Trong tổ hợp, đếm đồ thị (Graph Enumeration) là nhánh nghiên cứu bài toán đếm các đồ thị thỏa mãn những tính chất nhất định. [Hàm sinh](../poly/intro.md), [định lý đếm Polya](./polya.md), [phương pháp ký hiệu](../poly/symbolic-method.md#cấu-trúc-cycle-của-tập-hợp) và [OEIS](https://oeis.org/) là những công cụ toán học quan trọng nhất khi giải lớp bài toán này. Đếm đồ thị có thể chia thành hai nhóm lớn: có nhãn và không nhãn. Trong đa số trường hợp[^1], phiên bản có nhãn đơn giản hơn phiên bản không nhãn tương ứng, vì vậy ta sẽ xét việc đếm các bài toán có nhãn trước.
+Trong tổ hợp, đếm đồ thị (Graph Enumeration) là nhánh nghiên cứu bài toán đếm các đồ thị thỏa mãn những tính chất nhất định. [Hàm sinh](../poly/intro.md), [định lý đếm Polya](./polya.md), [phương pháp ký hiệu](../poly/symbolic-method.md#cấu-trúc-cycle-của-tập-hợp) và [OEIS](https://oeis.org/) là những công cụ toán học quan trọng nhất khi giải lớp bài toán này. Đếm đồ thị có thể chia thành hai nhóm lớn: có nhãn và không nhãn. Trong đa số trường hợp[^1], phiên bản có nhãn đơn giản hơn phiên bản không nhãn tương ứng, vì vậy phần này xét việc đếm các bài toán có nhãn trước.
 
 [^1]: Có lẽ cây nhị phân không nhãn là một phản ví dụ. Khi cấu trúc đơn giản, nhóm hoán vị tương ứng là nhóm đồng nhất (Identity Group), lúc đó phiên bản có nhãn có thể thu được trực tiếp bằng cách nhân với $n!$.
 
 <span id="cây-có-nhãn"></span>
 ## Cây có nhãn
 
-Đây chính là công thức Cayley; xem bài về [dãy Prüfer](../../graph/prufer.md). Ta cũng có thể dùng [định lý cây ma trận Kirchhoff](../../graph/matrix-tree.md), hoặc [hàm sinh](../poly/intro.md#hàm-sinh) và [định lý Lagrange](https://codeforces.com/blog/entry/104184) để thu được kết quả này.
+Đây chính là công thức Cayley; xem bài về [dãy Prüfer](../../graph/prufer.md). Cũng có thể dùng [định lý cây ma trận Kirchhoff](../../graph/matrix-tree.md), hoặc [hàm sinh](../poly/intro.md#hàm-sinh) và [định lý Lagrange](https://codeforces.com/blog/entry/104184) để thu được kết quả này.
 
 <span id="bài-tập"></span>
 ### Bài tập
@@ -38,7 +38,7 @@ Chuyển vế thu được công thức truy hồi $O(n^2)$ cho dãy $c_n$, đ�
 ???+ note "Ví dụ [\"Bài tập đội tuyển tập huấn 2013\" Quy hoạch thành phố](https://www.luogu.com.cn/problem/P4841)"
     Tóm tắt đề bài: tính số cách lập đồ thị liên thông có nhãn trên $n$ đỉnh ($n \leq 130000$).
 
-Với các bài toán về dãy có miền dữ liệu lớn hơn, ta thường cần xây dựng hàm sinh của các dãy này để có thể dùng các thuật toán đa thức hiệu quả.
+Với các bài toán về dãy có miền dữ liệu lớn hơn, thường cần xây dựng hàm sinh của các dãy này để có thể dùng các thuật toán đa thức hiệu quả.
 
 <span id="cách-1-chia-để-trị-fft"></span>
 #### Cách 1: chia để trị FFT
@@ -96,11 +96,11 @@ Dùng [ln đa thức](../poly/elementary-func.md#hàm-logarit-và-hàm-mũ-của
     -   Đồ thị Euler [A033678](https://oeis.org/A033678).
     -   Đồ thị hai phía [A047864](https://oeis.org/A047864).
 
-Bài này giới hạn độ dài mã nguồn, nên không thể trực tiếp dùng template đa thức, nhưng hàm sinh vẫn giúp ta phân tích.
+Bài này giới hạn độ dài mã nguồn, nên không thể trực tiếp dùng template đa thức, nhưng hàm sinh vẫn giúp ích cho phân tích.
 
-Bài toán đồ thị liên thông đã được giải trong các ví dụ trước; bây giờ xét đồ thị Euler. Chú ý rằng vài cách đếm đồ thị liên thông ở trên đều có thể mở rộng cho đồ thị liên thông có nhãn thỏa mãn một tính chất bất kỳ. Chẳng hạn, trong công thức truy hồi liên thông, ta có thể thay $g_n$ từ "đồ thị bất kỳ" thành "đồ thị mà mọi đỉnh đều có bậc chẵn"; khi đó $c_n$ thu được chính là số đồ thị Euler.
+Bài toán đồ thị liên thông đã được giải trong các ví dụ trước; bây giờ xét đồ thị Euler. Lưu ý rằng vài cách đếm đồ thị liên thông ở trên đều có thể mở rộng cho đồ thị liên thông có nhãn thỏa mãn một tính chất bất kỳ. Chẳng hạn, trong công thức truy hồi liên thông, có thể thay $g_n$ từ "đồ thị bất kỳ" thành "đồ thị mà mọi đỉnh đều có bậc chẵn"; khi đó $c_n$ thu được chính là số đồ thị Euler.
 
-Ta đóng gói quá trình truy hồi liên thông hóa của POJ 1737 thành hàm liên thông hóa:
+Đóng gói quá trình truy hồi liên thông hóa của POJ 1737 thành hàm liên thông hóa:
 
 ```cpp
 void ln(Int C[], Int G[]) {
@@ -112,7 +112,7 @@ void ln(Int C[], Int G[]) {
 }
 ```
 
-Hai câu đầu có thể giải dễ dàng:
+Hai câu đầu có thể giải trực tiếp:
 
 ```cpp
 for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i][2]);
@@ -121,7 +121,7 @@ for (int i = 1; i <= n; ++i) G[i] = pow(2, binom[i - 1][2]);
 ln(E, G);
 ```
 
-Chú ý rằng quá trình truy hồi liên thông hóa ở đây thực ra tương đương với việc lấy ln đa thức trên EGF của nó. Tương tự, ta cũng có thể viết hàm liên thông hóa ngược, tương đương với việc lấy exp đa thức trên EGF.
+Lưu ý rằng quá trình truy hồi liên thông hóa này thực chất tương đương với việc lấy ln đa thức trên EGF của nó. Tương tự, cũng có thể viết hàm liên thông hóa ngược, tương đương với việc lấy exp đa thức trên EGF.
 
 ```cpp
 void exp(Int G[], Int C[]) {
@@ -135,7 +135,7 @@ void exp(Int G[], Int C[]) {
 
 Tiếp theo thảo luận việc đếm đồ thị hai phía có nhãn.
 
-Đặt $b_n$ là số đồ thị hai phía trên n đỉnh, và $g_n$ là số đồ thị trên $n$ đỉnh sau khi tô 2 màu các đỉnh sao cho không tồn tại cạnh giữa hai đỉnh cùng màu. Liệt kê số đỉnh của một trong hai màu, ta có[^2]:
+Đặt $b_n$ là số đồ thị hai phía trên n đỉnh, và $g_n$ là số đồ thị trên $n$ đỉnh sau khi tô 2 màu các đỉnh sao cho không tồn tại cạnh giữa hai đỉnh cùng màu. Liệt kê số đỉnh của một trong hai màu, có[^2]:
 
 $$
 g_n = \sum_{i=0}^{n} \binom{n}{i}2^{i(n-i)}
@@ -143,12 +143,12 @@ $$
 
 [^2]: [Blog của PinkRabbit](https://www.luogu.com.cn/blog/PinkRabbit/solution-sp4420) cho biết dãy này cũng có thể tối ưu bằng [Chirp Z-Transform](../poly/czt.md).
 
-Tiếp theo ta dùng hai cách khác nhau để lập quan hệ giữa $g_n$ và $b_n$.
+Tiếp theo dùng hai cách khác nhau để lập quan hệ giữa $g_n$ và $b_n$.
 
 <span id="cách-1-đếm-hai-lần"></span>
 #### Cách 1: đếm hai lần
 
-Đặt $c_{n, k}$ là số đồ thị hai phía có k thành phần liên thông; khi đó dễ thấy có quan hệ sau:
+Đặt $c_{n, k}$ là số đồ thị hai phía có k thành phần liên thông; khi đó có quan hệ sau:
 
 $$
 \begin{align}
@@ -157,7 +157,7 @@ g_n &= \sum_{i=1}^{n} c_{n, i} 2^i
 \end{align}
 $$
 
-So sánh hai biểu diễn của $g_n$ và khai triển, ta được:
+So sánh hai biểu diễn của $g_n$ và khai triển, thu được:
 
 $$
 \begin{align}
@@ -166,14 +166,14 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 \end{align}
 $$
 
-Không khó để suy ra truy hồi cho $b_n$, với độ phức tạp $O(n^3)$. Nếu tiếp tục dùng nguyên lý bao hàm - loại trừ, có thể tối ưu xuống $O(n^2)$ và qua bài này.
+Từ đó suy ra truy hồi cho $b_n$, với độ phức tạp $O(n^3)$. Nếu tiếp tục dùng nguyên lý bao hàm - loại trừ, có thể tối ưu xuống $O(n^2)$ và qua bài này.
 
 <span id="cách-2-truy-hồi-liên-thông-hóa"></span>
 #### Cách 2: truy hồi liên thông hóa
 
 Cả cách 2 và cách 3 đều dùng số đồ thị hai phía liên thông $b1_n$ [A001832](https://oeis.org/A001832) để làm cầu nối giữa $g_n$ và $b_n$.
 
-Chú ý rằng với mỗi đồ thị hai phía liên thông, ta có đúng hai cách tô màu khác nhau, tương ứng với hai đồ thị tô 2 màu liên thông khác nhau. Vì vậy liên thông hóa $g_n$ sẽ cho dãy đúng bằng hai lần $b1_n$, còn $b_n$ thu được bằng cách liên thông hóa ngược từ $b1_n$.
+Lưu ý rằng với mỗi đồ thị hai phía liên thông, có đúng hai cách tô màu khác nhau, tương ứng với hai đồ thị tô 2 màu liên thông khác nhau. Vì vậy liên thông hóa $g_n$ sẽ cho dãy đúng bằng hai lần $b1_n$, còn $b_n$ thu được bằng cách liên thông hóa ngược từ $b1_n$.
 
 Do đó:
 
@@ -192,9 +192,9 @@ Cả hai quá trình truy hồi đều có độ phức tạp $O(n^2)$ và đề
 <span id="cách-3-exp-của-đa-thức_1"></span>
 #### Cách 3: exp của đa thức
 
-Ta cũng có thể dùng EGF để hiểu quá trình truy hồi ở trên.
+Cũng có thể dùng EGF để hiểu quá trình truy hồi ở trên.
 
-Đặt $G(x)$ là EGF của $g_n$, $B1(x)$ là EGF của $b1_n$, và $B(x)$ là EGF của $b_n$. Áp dụng cách 2, ta có:
+Đặt $G(x)$ là EGF của $g_n$, $B1(x)$ là EGF của $b1_n$, và $B(x)$ là EGF của $b_n$. Áp dụng cách 2, có:
 
 $$
 \begin{align}
@@ -205,7 +205,7 @@ B(x) &= \exp(B1(x))  \\
 \end{align}
 $$
 
-Ta có thể đạo hàm hai vế của đẳng thức rồi so sánh hệ số hai vế để thu được công thức truy hồi dễ cài đặt, đủ để qua bài này. Chú ý rằng cách 2 và cách 3 về bản chất là như nhau, và trong trường hợp tổng quát cách 3 có thể đạt độ phức tạp tốt hơn.
+Có thể đạo hàm hai vế của đẳng thức rồi so sánh hệ số hai vế để thu được công thức truy hồi dễ cài đặt, đủ để qua bài này. Lưu ý rằng cách 2 và cách 3 về bản chất là như nhau, và trong trường hợp tổng quát cách 3 có thể đạt độ phức tạp tốt hơn.
 
 $$
 \begin{align}
@@ -286,11 +286,11 @@ Lấy hệ số là được.
 <span id="cây-không-gốc"></span>
 #### Cây không gốc
 
-Xét bao hàm - loại trừ: ta lấy số phương án cây có gốc trừ đi số phương án mà gốc không phải trọng tâm, và thảo luận theo tính chẵn lẻ của $n$.
+Xét bao hàm - loại trừ: lấy số phương án cây có gốc trừ đi số phương án mà gốc không phải trọng tâm, và thảo luận theo tính chẵn lẻ của $n$.
 
 Khi $n$ lẻ:
 
-Tất yếu tồn tại một cây con có kích thước $\geq \left\lceil \frac{n}{2}\right\rceil$; liệt kê kích thước của cây con đó, ta có:
+Tất yếu tồn tại một cây con có kích thước $\geq \left\lceil \frac{n}{2}\right\rceil$; liệt kê kích thước của cây con đó, có:
 
 $$
 g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i}
@@ -298,7 +298,7 @@ $$
 
 Khi $n$ chẵn:
 
-Chú ý rằng khi có hai trọng tâm, quá trình trên chỉ trừ một lần, nên cần trừ thêm
+Lưu ý rằng khi có hai trọng tâm, quá trình trên chỉ trừ một lần, nên cần trừ thêm
 
 $$
 g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
@@ -321,7 +321,7 @@ Với miền dữ liệu lớn hơn, cách làm cũng tương tự; sau biến �
 ???+ note "Ví dụ [\"SGU 282. Isomorphism\" Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     Tóm tắt đề bài: tính số cách tô m màu các cạnh của đồ thị đầy đủ không nhãn trên n đỉnh.
 
-Chú ý rằng khi m = 2, đối tượng cần tính chính là đồ thị đơn không nhãn [A000088](https://oeis.org/A000088). Xét định lý đếm Polya:
+Lưu ý rằng khi m = 2, đối tượng cần tính chính là đồ thị đơn không nhãn [A000088](https://oeis.org/A000088). Xét định lý đếm Polya:
 
 $$
 \frac{1}{|G|}\sum_{g\in G} m^{c(g)}
@@ -329,19 +329,19 @@ $$
 
 Trong bài này, nhóm hoán vị $G$ là nhóm hoán vị trên tập cạnh sinh bởi nhóm đối xứng cấp $n$ trên các đỉnh, nhưng cách làm vét cạn liệt kê $O(n!)$ trường hợp nên không qua được.
 
-Xét phân loại theo cấu trúc chu trình của hoán vị; mỗi cấu trúc chu trình tương ứng với một phân hoạch số. Ta dùng dfs() để sinh các phân hoạch, khi đó bài toán chuyển thành tính số hoán vị $w(p)$ ứng với mỗi phân hoạch $p$ và số chu trình $c(p)$ trong mỗi lớp hoán vị. Đáp án là
+Xét phân loại theo cấu trúc chu trình của hoán vị; mỗi cấu trúc chu trình tương ứng với một phân hoạch số. Dùng dfs() để sinh các phân hoạch, khi đó bài toán chuyển thành tính số hoán vị $w(p)$ ứng với mỗi phân hoạch $p$ và số chu trình $c(p)$ trong mỗi lớp hoán vị. Đáp án là
 
 $$
 \frac{1}{|G|} \sum_{p \in P} w(p) m^{c(p)}
 $$
 
-Xét $w(p)$: mỗi phân hoạch tương ứng với một sắp xếp chu trình, đồng thời thứ tự giữa các phần có cùng kích thước là không quan trọng, nên ta có:
+Xét $w(p)$: mỗi phân hoạch tương ứng với một sắp xếp chu trình, đồng thời thứ tự giữa các phần có cùng kích thước là không quan trọng, nên có:
 
 $$
 w(p) = \frac{n!}{\prod_{i}(p_i)\prod_{i}(q_i!)} 
 $$
 
-Ở đây $q_i$ biểu thị số lần phần có kích thước $i$ xuất hiện trong $p$.
+Trong đó $q_i$ biểu thị số lần phần có kích thước $i$ xuất hiện trong $p$.
 
 Xét $c(p)$: các chu trình trên tập đỉnh bị $p$ tác động có số lượng là $|p|$, nhưng đề bài xét tô màu cạnh, nên cần xét thêm hoán vị cạnh do hoán vị đỉnh sinh ra.
 
