@@ -37,7 +37,7 @@ mặc định là:
 
 Ví dụ:
 
--   Nếu so sánh các số tự nhiên, sau khi căn các số theo hàng đơn vị và bù $0$
+-   Nếu so sánh các số tự nhiên, sau khi căn phải các số theo hàng đơn vị và bù $0$
     ở các chữ số cao còn thiếu, chữ số thứ $i$ tính từ trái sang phải có thể
     được xem là khóa thứ $i$;
 -   Nếu so sánh xâu theo thứ tự từ điển, ký tự thứ $i$ tính từ trái sang phải
@@ -96,26 +96,27 @@ Vì một phép so sánh hai xâu có thể tốn thời gian tuyến tính theo
 trong bài toán sắp xếp xâu, sắp xếp cơ số MSD thường tốt hơn nhiều thuật toán
 sắp xếp dựa trên so sánh cả về độ phức tạp thời gian lẫn thời gian chạy thực tế.
 
-### Quan hệ với sắp xếp theo xô
+### Quan hệ với sắp xếp theo thùng
 
-Kiến thức cần biết trước: [Sắp xếp theo xô](./bucket-sort.md)
+Kiến thức cần biết trước: [Sắp xếp theo thùng](./bucket-sort.md)
 
-Sắp xếp theo xô cần các thuật toán sắp xếp khác để sắp xếp các phần tử bên
-trong từng xô. Tuy nhiên, hoàn toàn có thể tiếp tục thực hiện sắp xếp theo xô
-trên mỗi xô cho đến khi số phần tử trong xô $\le 1$.
+Sắp xếp theo thùng cần các thuật toán sắp xếp khác để sắp xếp các phần tử bên
+trong từng thùng. Tuy nhiên, hoàn toàn có thể tiếp tục thực hiện sắp xếp theo
+thùng trên mỗi thùng cho đến khi số phần tử trong thùng $\le 1$.
 
-Vì vậy, một cách hiểu khác về sắp xếp cơ số MSD là: sắp xếp theo xô được cài
-đặt bằng chính sắp xếp theo xô.
+Vì vậy, một cách hiểu khác về sắp xếp cơ số MSD là: sắp xếp theo thùng được cài
+đặt bằng chính sắp xếp theo thùng.
 
 Cũng từ đó, có thể đưa ra một cách tối ưu hằng số thời gian cho sắp xếp cơ số
-MSD: nếu ở một bước nào đó số phần tử trong xô $\le B$ (với $B$ là một hằng số
-tự chọn), thì trực tiếp chạy sắp xếp chèn rồi trả về, nhằm giảm số lần đệ quy.
+MSD: nếu ở một bước nào đó số phần tử trong thùng $\le B$ (với $B$ là một hằng
+số tự chọn), thì trực tiếp chạy sắp xếp chèn rồi trả về, nhằm giảm số lần đệ
+quy.
 
 ## Sắp xếp cơ số LSD
 
 Sắp xếp cơ số MSD so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, nên cần
-dùng đệ quy hoặc lặp để cài đặt; hằng số thời gian lớn hơn, và khi so sánh số
-tự nhiên thì cách cài đặt cũng phức tạp hơn.
+dùng đệ quy hoặc lặp để cài đặt. Hằng số thời gian thường lớn hơn, và khi so
+sánh số tự nhiên thì cách cài đặt cũng phức tạp hơn.
 
 Nếu đảo ngược thao tác đệ quy, tức so sánh lần lượt từ khóa thứ $k$ đến khóa
 thứ $1$, sẽ thu được sắp xếp cơ số LSD, một thuật toán sắp xếp có thể hoàn
@@ -172,11 +173,11 @@ sẽ thu được sắp xếp cơ số LSD.
 
 $$
 \begin{array}{ll}
-1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ phần tử, mỗi phần tử có }k\text{ khóa.}\\
-2 & \textbf{Đầu ra. } \text{Mảng }A\text{ được sắp xếp không giảm một cách ổn định.} \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm } n \text{ phần tử, mỗi phần tử có } k \text{ khóa.}\\
+2 & \textbf{Đầu ra. } \text{Mảng } A \text{ được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
-4 & \textbf{với }i\gets k\textbf{ giảm đến }1\\
-5 & \qquad\text{sắp xếp }A\text{ theo thứ tự không giảm dựa trên khóa thứ }i\text{ một cách ổn định}
+4 & \textbf{với } i\gets k\textbf{ giảm đến }1\\
+5 & \qquad\text{sắp xếp } A \text{ theo thứ tự không giảm dựa trên khóa thứ } i \text{ một cách ổn định}
 \end{array}
 $$
 
@@ -189,8 +190,8 @@ Sau đây là cách dùng sắp xếp cơ số LSD để sắp xếp phần tử
     --8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
     ```
 
-Để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra trước; có
-thể thực hiện trên mảng `cnt` một thao tác tương đương với
+Để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra trước.
+Có thể thực hiện trên mảng `cnt` một thao tác tương đương với
 `std::exclusive_scan`.
 
 ???+ note "Bài mẫu [Luogu P1177 [Mẫu] Sắp xếp](https://www.luogu.com.cn/problem/P1177)"
@@ -249,7 +250,7 @@ khan hiếm, các thuật toán hoán vị tại chỗ (chẳng hạn như sắp
 là lựa chọn tốt hơn.[^ref1]
 
 Nếu miền giá trị của mỗi khóa đều không lớn, có thể dùng
-[sắp xếp đếm](./counting-sort.md) làm thuật toán sắp xếp bên trong; khi đó độ
+[sắp xếp đếm](./counting-sort.md) làm thuật toán sắp xếp bên trong. Khi đó độ
 phức tạp là $O(kn+\sum\limits_{i=1}^k w_i)$, trong đó $w_i$ là kích thước miền
 giá trị của khóa thứ $i$. Nếu miền giá trị của khóa quá lớn, có thể trực tiếp
 dùng sắp xếp dựa trên so sánh với độ phức tạp $O(nk\log n)$ mà không cần dùng
@@ -262,4 +263,6 @@ $O(k+n)$.
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein.*Introduction to Algorithms*(3rd ed.). MIT Press and McGraw-Hill, 2009. ISBN 978-0-262-03384-8. "8.3 Radix sort", pp. 199.
+[^ref1]: Thomas H. Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford
+    Stein. *Introduction to Algorithms* (3rd ed.). MIT Press and McGraw-Hill,
+    2009. ISBN 978-0-262-03384-8. "8.3 Radix sort", pp. 199.
