@@ -8,7 +8,7 @@ Vim là một trình soạn thảo văn bản phát triển từ vi. Vim cung c�
 
 ## Cài đặt
 
-Hệ thống Linux thường có sẵn Vim; mở trình dòng lệnh và nhập `vim` là có thể dùng.
+Hệ thống Linux thường có sẵn Vim; mở trình dòng lệnh và nhập `vim` để sử dụng.
 
 Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) của Vim có [tài liệu hướng dẫn tải xuống](https://www.vim.org/download.php); biên dịch và cài đặt theo nhu cầu.
 
@@ -16,7 +16,7 @@ Nếu cần cài thủ công, [trang web chính thức](https://www.vim.org/) c�
 
 Các thao tác cơ bản của Vim sẽ được giới thiệu trong hướng dẫn nhập môn đi kèm Vim. Mở trình dòng lệnh và nhập `vimtutor` để vào hướng dẫn này.
 
-Thông thường cần khoảng hai đến ba mươi phút để làm quen sơ bộ với các thao tác này.
+Thông thường cần khoảng hai mươi đến ba mươi phút để làm quen sơ bộ với các thao tác này.
 
 ### Chế độ lệnh
 
@@ -183,7 +183,7 @@ Cách sửa thứ nhất là dùng kết hợp với lệnh `s` trong chế đ�
 
 Cách sửa thứ hai tiết kiệm thời gian hơn là dùng chế độ tìm kiếm để sửa. Gõ `/bok`, nhấn Enter, dùng phím `n` tới chữ cái đầu của tên mảng sai đầu tiên, gõ `3s tên_mảng_mới <Esc>`, cuối cùng lặp lại `n.`.
 
-Cách sửa thứ ba là lệnh tìm kiếm đơn giản `f`. Trong chế độ thường trên một dòng, `f + một ký tự` sẽ tìm ký tự đó trong dòng này và đưa con trỏ tới vị trí ký tự; nhấn `;` để tìm tiếp, `,` để tìm trước đó. Vì vậy với đoạn mã trên, chỉ cần gõ `fb;;;`, sau đó vào chế độ nhập để sửa, rồi dùng `;.` là được. Cách này phù hợp khi chỉ cần di chuyển trong cùng một dòng.
+Cách sửa thứ ba là lệnh tìm kiếm đơn giản `f`. Trong chế độ thường trên một dòng, `f + một ký tự` sẽ tìm ký tự đó trong dòng này và đưa con trỏ tới vị trí ký tự; nhấn `;` để tìm tiếp, `,` để tìm trước đó. Vì vậy với đoạn mã trên, gõ `fb;;;`, sau đó vào chế độ nhập để sửa, rồi dùng `;.` là được. Cách này phù hợp khi chỉ di chuyển trong cùng một dòng.
 
 ### Macro tự động hóa
 
