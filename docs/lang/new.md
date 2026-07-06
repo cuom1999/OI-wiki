@@ -9,15 +9,15 @@ C++14, C++17, v.v. sẽ được nhắc đến tùy trường hợp và được
 ## Bộ chỉ định kiểu `auto`
 
 Bộ chỉ định kiểu `auto` dùng để yêu cầu trình biên dịch tự suy luận kiểu của biến
-và một số ngữ cảnh khác. Ví dụ:
+và trong một số ngữ cảnh khác. Ví dụ:
 
 ```cpp
 auto a = 1;        // a có kiểu int
 auto b = a + 0.1;  // b có kiểu double
 ```
 
-Khi khai báo biến bằng `auto` đơn thuần, kiểu được suy luận sẽ bỏ phần tham
-chiếu. Nếu không muốn tạo bản sao, cần chỉ định tham chiếu một cách tường minh:
+Khi khai báo biến bằng `auto` đơn thuần, kiểu được suy luận sẽ bỏ phần tham chiếu.
+Nếu không muốn tạo bản sao, cần chỉ định tham chiếu một cách tường minh:
 
 ```cpp
 int a = 1;
@@ -56,7 +56,7 @@ int main() {
 ## Vòng lặp `for` dựa trên phạm vi
 
 Dùng vòng lặp `for` dựa trên phạm vi để duyệt đối tượng có thể lặp, với hiệu suất
-tương đương cách duyệt bằng bộ lặp. Khi chỉ cần đi qua từng phần tử, hai cách này
+tương đương cách duyệt bằng bộ lặp. Khi chỉ cần đi qua từng phần tử, cách viết này
 thường phù hợp hơn duyệt bằng chỉ số vì không cần tự quản lý chỉ số.
 
 Sau đây là cú pháp cơ bản của vòng lặp `for` dựa trên phạm vi:
@@ -264,15 +264,16 @@ std::cout << x << std::endl;
 ```
 
 `std::tie` gán các phần tử của tuple cho những biến đã có; có thể dùng
-`std::ignore` để bỏ qua phần tử không cần. Ràng buộc có cấu trúc khai báo biến
-mới ngay tại chỗ (hỗ trợ ràng buộc theo giá trị hoặc theo tham chiếu), và phải
-nhận tất cả phần tử.
+`std::ignore` để bỏ qua phần tử không cần. Ràng buộc có cấu trúc khai báo biến mới
+ngay tại chỗ (hỗ trợ ràng buộc theo giá trị hoặc theo tham chiếu), và phải nhận
+tất cả phần tử.
 
 <a id="đối-tượng-hàm"></a>
 
 ## Đối tượng hàm
 
-Đối tượng có thể được gọi bằng toán tử gọi hàm `operator()` là đối tượng hàm.
+Đối tượng có thể được gọi bằng toán tử gọi hàm `operator()` được gọi là đối tượng
+hàm.
 
 Đây không phải một tính năng cú pháp riêng của ngôn ngữ, mà là một
 [khái niệm/yêu cầu](https://en.cppreference.com/w/cpp/named_req/FunctionObject)
@@ -305,8 +306,8 @@ hàm.
     Nên cân nhắc dùng [**Biểu thức lambda**](./lambda.md) hoặc
     [**đối tượng hàm**](#đối-tượng-hàm) thay thế.
 
-`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong
-tệp tiêu đề `<functional>`.
+`std::function` là một bộ bao bọc hàm đa hình tổng quát, được định nghĩa trong tệp
+tiêu đề `<functional>`.
 
 Một thể hiện của `std::function` có thể lưu trữ, sao chép và gọi bất kỳ
 [**đối tượng có thể gọi**](https://en.cppreference.com/w/cpp/named_req/Callable)
@@ -367,17 +368,17 @@ Trước C++11, cả mẫu lớp và mẫu hàm đều chỉ có thể nhận s�
 
 Phần này chỉ giới thiệu ngắn gọn về mẫu **hàm** tham số biến thiên.
 
-Mẫu hàm `fun` được khai báo trong đoạn mã sau có thể nhận số lượng tùy ý các
-tham số mẫu với kiểu bất kỳ.
+Mẫu hàm `fun` được khai báo trong đoạn mã sau có thể nhận số lượng tùy ý các tham
+số mẫu với kiểu bất kỳ.
 
 ```cpp
 template <typename... Clazz>
 void fun(Clazz... paras) {}
 ```
 
-`paras` là một gói tham số hàm (function parameter pack), nhận 0 hoặc nhiều đối
-số hàm. `Clazz` là một gói tham số mẫu (template parameter pack), nhận 0 hoặc
-nhiều đối số mẫu (đối số không phải kiểu, kiểu hoặc mẫu); khi được đánh dấu bằng
+`paras` là một gói tham số hàm (function parameter pack), nhận 0 hoặc nhiều đối số
+hàm. `Clazz` là một gói tham số mẫu (template parameter pack), nhận 0 hoặc nhiều
+đối số mẫu (đối số không phải kiểu, kiểu hoặc mẫu); khi được đánh dấu bằng
 `typename` thì chỉ nhận kiểu.
 
 Có thể tóm tắt như sau:
@@ -399,8 +400,8 @@ fun(1, 0.0, "abc");
 
 #### Cú pháp mở rộng gói tham số
 
-Để mở rộng gói tham số, dùng `...`; các phần tử sẽ tự động được phân tách bằng
-dấu phẩy. Ví dụ:
+Để mở rộng gói tham số, dùng `...`; các phần tử sẽ tự động được phân tách bằng dấu
+phẩy. Ví dụ:
 
 ```cpp
 template <class A, class... C>
@@ -513,8 +514,8 @@ Khung nhìn (`view`) là một đối tượng nhẹ, cài đặt một số tha
 đặc thù, chẳng hạn bộ lặp tự định nghĩa. Nhờ đó, nó cung cấp nhiều cách duyệt khác
 nhau cho phạm vi.
 
-Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia
-thành hai loại:
+Thư viện ranges cài đặt sẵn một số khung nhìn thường dùng, có thể chia thành hai
+loại:
 
 1.  **Bộ sinh phạm vi** (range factory), dùng để xây dựng một số phạm vi đặc
     biệt. Loại bộ sinh này cho phép bỏ qua bước tự xây dựng bộ chứa, giảm chi phí
@@ -533,8 +534,8 @@ ghép với nhau như toán tử ống dẫn (pipe).
     bit. Cách dùng này bắt nguồn từ
     [pipe](https://en.wikipedia.org/wiki/Pipeline_(Unix)) trong Linux.
 
-Khi thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và tuân theo quy
-tắc sau:
+Khi thao tác phức tạp, cách viết này vẫn giữ được tính dễ đọc và tuân theo quy tắc
+sau:
 
 Nếu A, B, C là các đối tượng bao đóng bộ chuyển đổi phạm vi, R là một phạm vi nào
 đó, còn các chữ cái khác là tham số hợp lệ, thì biểu thức
@@ -636,10 +637,10 @@ int main() {
 }
 ```
 
-`ranges::sort` và `sort` có cùng cách cài đặt thuật toán, nhưng cung cấp cách
-nạp chồng dựa trên phạm vi, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán
-khác trong không gian tên `std` cũng có phiên bản nạp chồng tương ứng cho phạm
-vi nằm trong không gian tên `ranges`.
+`ranges::sort` và `sort` có cùng cách cài đặt thuật toán, nhưng cung cấp cách nạp
+chồng dựa trên phạm vi, giúp truyền tham số ngắn gọn hơn. Đa số thuật toán khác
+trong không gian tên `std` cũng có phiên bản nạp chồng tương ứng cho phạm vi nằm
+trong không gian tên `ranges`.
 
 Dùng các tham số đầu vào dạng phạm vi này, kết hợp với khung nhìn ở phần trước,
 giúp mã vẫn dễ đọc khi viết những thao tác phức tạp. Ví dụ:
