@@ -6,17 +6,19 @@ cấu trúc dữ liệu dựa trên chính sách.
 Thư viện pb\_ds cung cấp nhiều cấu trúc dữ liệu, chẳng hạn bảng băm (hash
 table), cây nhị phân cân bằng, trie, heap (hàng đợi ưu tiên), v.v.
 
-Giống như `vector`, `set`, `map`, các thành phần của pb\_ds đều tuân theo các
+Giống như `vector`, `set`, `map`, nhiều thành phần của pb\_ds cố gắng tuân theo
 quy ước giao diện của STL. Một số thành phần (như hàng đợi ưu tiên) có đầy đủ
-chức năng của thành phần tương ứng trong STL, đồng thời cung cấp thêm nhiều
-chức năng hơn.
+chức năng của thành phần tương ứng trong STL, đồng thời cung cấp thêm nhiều chức
+năng hơn.
 
-pb\_ds chỉ dùng được với trình biên dịch sử dụng libstdc++ làm thư viện chuẩn.
+pb\_ds là phần mở rộng của GNU libstdc++, nên chỉ dùng được với trình biên dịch
+sử dụng libstdc++ làm thư viện chuẩn.
 
-Có thể dùng `begin()` và `end()` để lấy bộ lặp rồi duyệt các phần tử.
+Với các cấu trúc hỗ trợ duyệt, có thể dùng `begin()` và `end()` để lấy bộ lặp
+rồi duyệt các phần tử.
 
-Một số cấu trúc hỗ trợ `increase_key`, `decrease_key` và xóa từng phần tử riêng
-lẻ.
+Một số cấu trúc hỗ trợ thao tác sửa khóa, chẳng hạn `increase_key`,
+`decrease_key`, và xóa từng phần tử riêng lẻ.
 
 Vì nội dung chính của thư viện pb\_ds nằm trong không gian tên `__gnu_pbds`, bắt
 đầu bằng dấu gạch dưới, tính hợp lệ của nó trong các hoạt động thuộc hệ thống

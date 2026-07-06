@@ -1,6 +1,7 @@
 ## `__gnu_pbds::tree`
 
-Kèm theo: [tài liệu chính thức](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
+Kèm theo:
+[tài liệu chính thức](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
 
 ```cpp
 #include <ext/pb_ds/assoc_container.hpp>  // định nghĩa tree
@@ -13,16 +14,15 @@ __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
 
 ## Tham số mẫu
 
--   `Key`: kiểu phần tử được lưu trữ. Nếu muốn lưu nhiều phần tử có cùng `Key`,
+-   `Key`: kiểu khóa được lưu trữ. Nếu muốn lưu nhiều phần tử có cùng khóa,
     cần dùng một kiểu có thể phân biệt từng phần tử, chẳng hạn `std::pair` hoặc
     `struct`, rồi kết hợp các hàm thành viên `lower_bound` và `upper_bound` để
     tìm kiếm.
--   `Mapped`: kiểu chính sách ánh xạ (mapped policy). Nếu muốn biểu diễn
-    bộ chứa kết hợp là **tập hợp**, tương tự lưu phần tử trong `std::set`, cần
-    điền `null_type` tại đây; với phiên bản `g++` cũ, vị trí này là
-    `null_mapped_type`. Nếu muốn biểu diễn bộ chứa kết hợp là **ánh xạ**,
-    tương tự lưu phần tử trong `std::map`, cần điền kiểu `Value`
-    giống như trong `std::map<Key, Value>`.
+-   `Mapped`: kiểu giá trị ánh xạ. Nếu muốn biểu diễn bộ chứa kết hợp là
+    **tập hợp**, tương tự lưu phần tử trong `std::set`, cần điền `null_type` tại
+    đây; với phiên bản `g++` cũ, vị trí này là `null_mapped_type`. Nếu muốn biểu
+    diễn bộ chứa kết hợp là **ánh xạ**, tương tự lưu phần tử trong `std::map`,
+    cần điền kiểu `Value` giống như trong `std::map<Key, Value>`.
 -   `Cmp_Fn`: đối tượng hàm so sánh khóa, ví dụ `std::less<Key>`.
 -   `Tag`: chọn loại cấu trúc dữ liệu nền; mặc định là `rb_tree_tag`.
     `__gnu_pbds` cung cấp ba loại cây cân bằng khác nhau:
@@ -57,8 +57,8 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
     công hay không (nếu khóa không tồn tại thì xóa thất bại).
 -   `order_of_key(x)`: trả về số phần tử nhỏ hơn nghiêm ngặt `x` (theo logic so
     sánh của `Cmp_Fn`), tức thứ hạng bắt đầu từ $0$.
--   `find_by_order(x)`: trả về bộ lặp của phần tử ứng với thứ hạng theo so
-    sánh của `Cmp_Fn`.
+-   `find_by_order(x)`: trả về bộ lặp của phần tử ứng với thứ hạng `x` theo so
+    sánh của `Cmp_Fn`; nếu `x >= size()`, trả về `end()`.
 -   `lower_bound(x)`: trả về bộ lặp của phần tử đầu tiên không nhỏ hơn `x`
     (theo logic so sánh của `Cmp_Fn`).
 -   `upper_bound(x)`: trả về bộ lặp của phần tử đầu tiên lớn hơn nghiêm ngặt

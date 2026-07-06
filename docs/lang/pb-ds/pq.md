@@ -2,7 +2,8 @@ author: Xeonacid, ouuan, Ir1d, WAAutoMaton, Chrogeek, abc1763613206, Planet6174,
 
 ## `__gnu_pbds::priority_queue`
 
-Kèm theo: [tài liệu chính thức về độ phức tạp và kiểm thử hệ số hằng](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
+Kèm theo:
+[tài liệu chính thức về độ phức tạp và kiểm thử hệ số hằng](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/pq_performance_tests.html#std_mod1)
 
 ```cpp
 #include <ext/pb_ds/priority_queue.hpp>
@@ -18,8 +19,8 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
     định là `pairing_heap_tag`. Năm loại này gồm:
     -   `pairing_heap_tag`: heap ghép cặp (pairing heap)
         Tài liệu chính thức cho rằng heap ghép cặp có hiệu năng tốt nhất với
-        phần tử không nguyên thủy (như `struct` tự định nghĩa, `std::string`,
-        `pair`).
+        phần tử không nguyên thủy, chẳng hạn `struct` tự định nghĩa,
+        `std::string`, `pair`.
     -   `binary_heap_tag`: heap nhị phân
         Tài liệu chính thức cho rằng heap nhị phân có hiệu năng tốt nhất với
         phần tử nguyên thủy, nhưng kết quả thử nghiệm của tác giả không tốt đến
@@ -28,22 +29,22 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
         Heap nhị thức có hiệu năng hợp nhất tốt hơn heap nhị phân, nhưng thao
         tác loại bỏ phần tử đầu heap có độ phức tạp cao hơn heap nhị phân.
     -   `rc_binomial_heap_tag`: heap nhị thức đếm dư thừa
-    -   `thin_heap_tag`: một thẻ có mọi độ phức tạp giống heap Fibonacci, trừ
+    -   `thin_heap_tag`: một thẻ có hầu hết độ phức tạp giống heap Fibonacci, trừ
         thao tác hợp nhất.
 -   `Allocator`: bộ cấp phát bộ nhớ; vì hiếm gặp trong OI nên không giải thích ở
     đây.
 
-Vì bài này hướng đến người học lập trình thi đấu, bốn thẻ còn lại chỉ được
-giới thiệu sơ lược qua độ phức tạp; thẻ đầu tiên sẽ được trình bày kỹ hơn về
-hàm thành viên và cách dùng.
+Vì bài này hướng đến người học lập trình thi đấu, bốn thẻ còn lại chỉ được giới
+thiệu sơ lược qua độ phức tạp; thẻ đầu tiên sẽ được trình bày kỹ hơn về hàm
+thành viên và cách dùng.
 
 Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
 Dijkstra, có thể rút ra nhận xét: ít nhất với người học OI, bốn thẻ ngoài heap
-ghép cặp đều không đáng dùng trong thực tế, vì hoặc không đem lại lợi ích rõ
-ràng, hoặc có hệ số hằng lớn đến mức thua `std`, thậm chí có thể gây MLE.
-Vì vậy, chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
-tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
+ghép cặp thường không đáng dùng trong thực tế, vì hoặc không đem lại lợi ích rõ
+ràng, hoặc có hệ số hằng lớn đến mức thua `std`, thậm chí có thể gây MLE. Vì
+vậy, thường chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
+tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>` trong các thử nghiệm này.
 
 ## Cách khởi tạo
 
@@ -60,13 +61,14 @@ id = q.push(1);
 
 ## Hàm thành viên
 
--   `push()`: đưa một phần tử vào heap, trả về bộ lặp tại vị trí phần tử đó.
--   `pop()`: loại bỏ phần tử đầu heap.
--   `top()`: trả về phần tử đầu heap.
+-   `push()`: đưa một phần tử vào heap, trả về bộ lặp kiểu điểm trỏ tới phần tử
+    đó.
+-   `pop()`: loại bỏ phần tử ở đỉnh heap.
+-   `top()`: trả về phần tử ở đỉnh heap.
 -   `size()`: trả về số phần tử.
 -   `empty()`: trả về `true` nếu heap rỗng, ngược lại trả về `false`.
 -   `modify(point_iterator, const key)`: sửa phần tử tại vị trí bộ lặp thành
-    giá trị `key` truyền vào, rồi điều chỉnh lại cấu trúc lưu trữ nội bộ.
+    giá trị `key` truyền vào, rồi điều chỉnh lại cấu trúc heap bên trong.
 -   `erase(point_iterator)`: xóa phần tử tại vị trí bộ lặp khỏi heap.
 -   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
     làm rỗng `other`.
@@ -124,11 +126,11 @@ int main() {
 }
 ```
 
-## Đảm bảo vô hiệu hóa bộ lặp của `__gnu_pbds` (`invalidation_guarantee`)
+## Bảo đảm vô hiệu hóa bộ lặp của `__gnu_pbds` (`invalidation_guarantee`)
 
 Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap `pb_ds` của
 chương này để viết thuật toán đường đi ngắn nhất từ một nguồn), ta thường cần
-lưu và dùng bộ lặp của heap (như
+lưu và dùng bộ lặp của heap, chẳng hạn
 `__gnu_pbds::priority_queue<int>::point_iterator`).
 
 Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,
@@ -152,9 +154,9 @@ tự từ yếu đến mạnh:
     `__gnu_pbds::tree`, và `pat_trie_tag` dùng cho `__gnu_pbds::trie`.
 
 Từ kết quả chạy đoạn mã sau, ngoại trừ `binary_heap_tag` là
-`basic_invalidation_guarantee` và bộ lặp sẽ bị vô hiệu sau khi sửa, các thẻ
-còn lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ bộ lặp kiểu
-điểm (`point_iterator`) không bị vô hiệu sau khi sửa.
+`basic_invalidation_guarantee` và bộ lặp sẽ bị vô hiệu sau khi sửa, các thẻ còn
+lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ bộ lặp kiểu điểm
+(`point_iterator`) không bị vô hiệu sau khi sửa.
 
 ```cpp
 #include <iostream>
