@@ -16,11 +16,13 @@ giống như trong LCT.
 Tuy nhiên, cây nhị phân cân bằng toàn cục là cây tĩnh;
 khác với LCT, sau khi xây xong thì hình dạng cây không thay đổi.
 
-Cây nhị phân cân bằng toàn cục là một cấu trúc dữ liệu có thể xử lý cập nhật/truy vấn trên đường đi trong cây, đạt được:
+Cây nhị phân cân bằng toàn cục là một cấu trúc dữ liệu hỗ trợ cập nhật và truy vấn trên đường đi trong cây, với các độ
+phức tạp sau:
 
 -   $O(\log n)$ cho cập nhật toàn bộ một đường.
 -   $O(\log n)$ cho truy vấn toàn bộ một đường.
--   $O(\log n)$ cho tìm tổ tiên chung gần nhất, cập nhật cây con, truy vấn cây con, v.v.; các độ phức tạp này giống với phân rã chuỗi nặng.
+-   $O(\log n)$ cho tìm tổ tiên chung gần nhất, cập nhật cây con, truy vấn cây con, v.v.; các độ phức tạp này giống với
+    phân rã nặng-nhẹ.
 
 ## Tính chất chính
 
@@ -40,7 +42,7 @@ Cây nhị phân cân bằng toàn cục là một cấu trúc dữ liệu có t
     Lưu ý rằng các cạnh trong cây nhị phân cân bằng toàn cục
     không có quan hệ tương ứng với các cạnh trong cây gốc.
 3.  Tính cả cạnh nặng và cạnh nhẹ,
-    chiều cao của cây nhị phân cân bằng toàn cục ở cấp độ $O(\log n)$.
+    chiều cao của cây nhị phân cân bằng toàn cục là $O(\log n)$.
     Đây là tính chất bảo đảm độ phức tạp thời gian của cây nhị phân cân bằng toàn cục.
 
 Dưới đây là một ví dụ xây cây nhị phân cân bằng toàn cục.
@@ -57,14 +59,14 @@ mỗi cây nhị phân được biểu diễn bằng một vòng tròn đỏ.
 
 ## Xây cây
 
-Trước hết, giống như phân rã chuỗi nặng thông thường,
+Trước hết, giống như phân rã nặng-nhẹ thông thường,
 dùng một lần DFS để tìm con nặng của mỗi đỉnh.
 Sau đó bắt đầu từ gốc, tìm chuỗi nặng chứa đỉnh gốc.
 Với các con nhẹ của những đỉnh này, đệ quy xây cây và nối cạnh nhẹ.
 Tiếp theo cần xây một cây nhị phân cho các đỉnh trên chuỗi nặng.
 Trước tiên lưu các đỉnh trên chuỗi nặng vào một mảng,
 tính tổng kích thước cây con của các con nhẹ của mỗi đỉnh cộng thêm một
-(tức là size do chính đỉnh đó đóng góp).
+(tức là phần kích thước do chính đỉnh đó đóng góp).
 Sau đó dựa vào giá trị này để tìm trung điểm có trọng số của chuỗi nặng,
 lấy nó làm gốc của cây nhị phân, rồi đệ quy xây hai phía và nối cạnh nặng.
 
@@ -121,7 +123,7 @@ Mã như sau:
       y = 0;
       do {
         b[y++] = x;                              // Lưu các đỉnh trên chuỗi nặng
-        bs[y] = bs[y - 1] + sz[x] - sz[son[x]];  // bs: size con nhẹ + 1, lấy tổng tiền tố
+        bs[y] = bs[y - 1] + sz[x] - sz[son[x]];  // bs: kích thước con nhẹ + 1, lấy tổng tiền tố
       } while (x = son[x]);
       return cbuild(0, y);
     }
@@ -131,10 +133,10 @@ Từ mã trên, độ phức tạp thời gian để xây cây là $O(n\log n)$.
 Tiếp theo có thể chứng minh chiều cao cây là $O(\log n)$:
 xét việc nhảy theo đỉnh cha từ một đỉnh bất kỳ lên gốc.
 Nhảy qua cạnh nhẹ tương đương với việc nhảy sang một chuỗi nặng khác trong cây gốc.
-Theo tính chất của phân rã chuỗi nặng,
+Theo tính chất của phân rã nặng-nhẹ,
 số cạnh nhẹ phải nhảy tối đa là $O(\log n)$.
 Vì khi xây cây nhị phân, đỉnh gốc được chọn là trung điểm có trọng số tính theo các con nhẹ,
-nên mỗi lần nhảy qua cạnh nặng thì size tính cả các con nhẹ ít nhất tăng gấp đôi.
+nên mỗi lần nhảy qua cạnh nặng thì kích thước tính cả các con nhẹ ít nhất tăng gấp đôi.
 Do đó số cạnh nặng phải nhảy cũng tối đa là $O(\log n)$.
 Vì vậy chiều cao tổng thể của cây là $O(\log n)$.
 
@@ -330,7 +332,7 @@ từ đó có thể làm bài
           }
       tp = 0;
       for (int pos = u; pos; pos = son[pos]) stk[++tp] = pos;  // Lấy chuỗi nặng ra
-      int ret = SBuild(1, tp);  // SBuild riêng cho chuỗi nặng (tôi đoán là Special Build?)
+      int ret = SBuild(1, tp);  // SBuild riêng cho chuỗi nặng
       return ret;               // Trả về gốc cây nhị phân của chuỗi nặng hiện tại
     }
     
