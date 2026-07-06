@@ -215,7 +215,7 @@ Những thiếu sót thường gặp trong giới hạn dữ liệu:
 Cần chắc rằng lời giải chuẩn có thể chạy qua **bất kỳ bộ dữ liệu nào** thỏa mãn giới hạn được nêu trong đề.
 
 ???+ note "Về việc 'dữ liệu được sinh ngẫu nhiên'"
-    Một số bài sẽ ghi rằng "dữ liệu được sinh ngẫu nhiên". Trong rất nhiều trường hợp, ràng buộc như vậy không phải là phương án tối ưu, vì "sinh ngẫu nhiên" không đưa ra giới hạn cụ thể cho dữ liệu, gây khó khăn cho việc xác định phạm vi dữ liệu cụ thể và cung cấp dữ liệu hack.
+    Một số bài sẽ ghi rằng "dữ liệu được sinh ngẫu nhiên". Trong rất nhiều trường hợp, ràng buộc như vậy không phải là phương án tối ưu, vì "sinh ngẫu nhiên" không đưa ra giới hạn cụ thể cho dữ liệu, gây khó khăn cho việc xác định phạm vi dữ liệu cụ thể và cung cấp dữ liệu phản ví dụ để hack.
     
     Thông thường, câu "dữ liệu được sinh ngẫu nhiên" có thể được thay bằng tính chất dữ liệu mà lời giải cần. Ví dụ, sinh ngẫu nhiên một cây thường có thể được thay bằng giới hạn chiều cao của cây.
     
@@ -420,7 +420,7 @@ Cần đặc biệt nhắc rằng nếu có khả năng tràn số nguyên, nh�
 
 Nếu có bộ kiểm thử sơ bộ (pretests), các bộ này nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, cần đưa tất cả các điểm yếu đã biết của bài vào bộ kiểm thử sơ bộ bằng số lượng bộ kiểm thử ít nhất có thể.
 
-Nếu kỳ vọng có một lượng nhỏ FST chứ không phải không có FST, vẫn cần giữ độ mạnh của bộ kiểm thử sơ bộ, vì trong cuộc thi thật rất có thể xuất hiện những lỗi ngoài dự kiến, khiến số lượng FST cao hơn dự kiến rất nhiều.
+Nếu kỳ vọng có một lượng nhỏ FST (bài nộp trượt kiểm thử hệ thống) chứ không phải không có FST, vẫn cần giữ độ mạnh của bộ kiểm thử sơ bộ, vì trong cuộc thi thật rất có thể xuất hiện những lỗi ngoài dự kiến, khiến số lượng FST cao hơn dự kiến rất nhiều.
 
 ### Định dạng dữ liệu
 

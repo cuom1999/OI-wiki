@@ -56,7 +56,7 @@ Với trường hợp $n < 2000$ thì liệt kê trực tiếp. Khi $n \ge 2000$
 
 Tuy ý tưởng tổng thể đơn giản, nhưng nếu chưa từng học các thuật toán ngẫu nhiên không hoàn hảo như mô phỏng luyện kim, việc nghĩ ra có thể sẽ khó hơn một chút.
 
-Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình tạo dữ liệu hack cho các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
+Đồng thời, vì Codeforces có cơ chế hack, nhiều người sẽ cố tình tạo dữ liệu phản ví dụ để hack các mã không khởi tạo hạt giống ngẫu nhiên, nên trước hàm `random_shuffle()` cần gọi `srand((size_t)new char)`.
 
 ??? note "Mã tham khảo"
     ```cpp

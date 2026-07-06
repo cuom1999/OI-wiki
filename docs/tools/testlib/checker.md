@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
   registerTestlibCmd(argc, argv);
   int n = inf.readInt();  // Không cần readSpace() hoặc readEoln()
   int m = inf.readInt();  // Vì không cần kiểm tra tính hợp lệ của đầu vào chuẩn
-                          // trong checker (đã có validator)
+                          // trong trình kiểm tra đáp án (đã có trình xác thực dữ liệu)
   for (int i = 0; i < m; i++) {
     int a = inf.readInt();
     int b = inf.readInt();
@@ -213,18 +213,18 @@ Cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp l�
     vector<int> lst;
     for (int i = 0; i < k; i++)  // k = 0 và k = -5 có tác dụng như nhau trong đoạn này (không vào vòng lặp)
       lst.push_back(ouf.readInt());
-    // Nhưng checker không nên chấp nhận một danh sách có độ dài -5.
+    // Nhưng trình kiểm tra đáp án không nên chấp nhận một danh sách có độ dài -5.
     // ....
     int pos = ouf.readInt();
     int x = A[pos];
-    // Có thể có người in ra -42, 2147483456 hoặc số không hợp lệ khác làm checker RE
+    // Có thể có người in ra -42, 2147483456 hoặc số không hợp lệ khác làm trình kiểm tra đáp án RE
     ```
 
     -   Ví dụ đúng
 
     ```cpp
     // ....
-    int k = ouf.readInt(0, n);  // Độ dài không hợp lệ sẽ bị WA ngay, không tiếp tục check rồi RE
+    int k = ouf.readInt(0, n);  // Độ dài không hợp lệ sẽ bị WA ngay, không tiếp tục kiểm tra rồi RE
     vector<int> lst;
     for (int i = 0; i < k; i++) lst.push_back(ouf.readInt());
     // ....

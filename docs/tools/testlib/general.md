@@ -7,7 +7,7 @@ Trang này giới thiệu một số trạng thái, đối tượng và hàm dù
 | Ok                 | `_ok`        | Đáp án đúng.                                                                                                                     |
 | Wrong Answer       | `_wa`        | Đáp án sai.                                                                                                                      |
 | Presentation Error | `_pe`        | Định dạng đáp án sai. Lưu ý rằng nhiều OJ, bao gồm Codeforces, không phân biệt PE và WA.                                        |
-| Partially Correct  | `_pc(score)` | Đáp án đúng một phần. Chỉ dùng cho các test có điểm thành phần; `score` là một số nguyên dương từ $0$ (không có điểm) đến $100$ (điểm tối đa có thể đạt). (`quitf+_pc` chỉ nhằm tương thích với pascal-testlib cũ; nếu muốn xuất điểm thành phần, nên dùng `quitp`[^1].) |
+| Partially Correct  | `_pc(score)` | Đáp án đúng một phần. Chỉ dùng cho các bộ kiểm thử có điểm thành phần; `score` là một số nguyên dương từ $0$ (không có điểm) đến $100$ (điểm tối đa có thể đạt). (`quitf+_pc` chỉ nhằm tương thích với pascal-testlib cũ; nếu muốn xuất điểm thành phần, nên dùng `quitp`[^1].) |
 | Fail               | `_fail`      | Trong trình xác thực dữ liệu, trạng thái này nghĩa là đầu vào không hợp lệ và không qua kiểm tra.<br>Trong trình kiểm tra, trạng thái này biểu thị lỗi nội bộ của chương trình, đầu ra chuẩn sai, hoặc đầu ra của thí sinh tốt hơn đầu ra chuẩn, cần giám khảo/người ra đề xem xét. Nói cách khác, lỗi thuộc về đề. |
 
 Thông thường kết quả được biểu thị bằng giá trị trả về của chương trình, nhưng cũng có một số cách khác: tạo tệp XML đầu ra, in thông tin ra `stdout` (đầu ra chuẩn) hoặc vị trí khác, v.v. Các cách này đều được thực hiện thông qua hàm `quitf` trong bảng hàm bên dưới.
@@ -56,7 +56,7 @@ Hàm thành viên của luồng:
 | `string readString(string regex)`/`string readLine(string regex)`                                                                                                 | Đọc một dòng, dòng đó bắt buộc phải khớp với `regex` |
 | `void readEoln()`                                                                                                                                                 | Đọc EOLN (`LF` trong môi trường Linux, `CR LF` trong môi trường Windows) |
 | `void readEof()`                                                                                                                                                  | Đọc EOF |
-| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)`                                                                   | Kết thúc chương trình; nếu luồng `Stream` là `ouf` thì trả về kết quả chấm `verdict`, nếu không thì trả về `_fail`; xuất thông báo `message` |
+| `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)`                                                                   | Kết thúc chương trình; nếu luồng hiện tại là `ouf` thì trả về kết quả chấm `verdict`, nếu không thì trả về `_fail`; xuất thông báo `message` |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                                                                                               | Nếu `condition` đúng, gọi `quitf(verdict, message, ...)` |
 
 Nội dung còn được bổ sung tiếp...
@@ -103,7 +103,7 @@ Hàm này có phiên bản rút gọn `ensure()`: có thể dùng trực tiếp 
     
     Hàm toàn cục `::ensuref/ensure()` thường dùng trong trình sinh dữ liệu và trình xác thực dữ liệu; nếu kiểm tra thất bại, chúng sẽ luôn trả về `_fail`.
     
-    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định đầu ra của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong trình kiểm tra đáp án, việc này nên được thực hiện trong trình xác thực dữ liệu) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang Checker](./checker.md).
+    Hàm thành viên `InStream::ensuref/ensure()` thường dùng để xác định đầu ra của thí sinh và chương trình tham chiếu có hợp lệ hay không. Khi `InStream` là `ouf`, chúng trả về `_wa`; khi là `inf` (thông thường không kiểm tra dữ liệu đầu vào trong trình kiểm tra đáp án, việc này nên được thực hiện trong trình xác thực dữ liệu) hoặc `ans`, chúng trả về `_fail`. Xem thêm phần viết hàm `readAns` trong [trang trình kiểm tra đáp án](./checker.md).
 
 **Bài viết này chủ yếu được dịch và tổng hợp từ loạt bài [Testlib - Codeforces](https://codeforces.com/testlib). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**
 
