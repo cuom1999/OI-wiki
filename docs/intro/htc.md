@@ -14,7 +14,7 @@ tốt hơn với các cộng tác viên trong cộng đồng.
 
 ## Tham gia cộng tác
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Trước khi bắt đầu viết một phần nội dung, cần xem
     [Issues](https://github.com/cuom1999/OI-wiki/issues), xác nhận chưa có ai
     đang làm cùng việc, rồi mở một [issue mới](https://github.com/cuom1999/OI-wiki/issues/new)
@@ -33,7 +33,7 @@ nghị người đóng góp cân nhắc các điểm sau trước khi chỉnh s�
     giúp tạo ra nội dung chất lượng cao.
 2.  **Thận trọng với lĩnh vực mới**: nếu mới bắt đầu học hoặc chưa hiểu rõ một
     chủ đề, nên đọc và học thêm để hiểu sâu hơn, rồi chỉnh sửa khi đã
-    có đủ sự chắc chắn.
+    có đủ độ tin cậy.
 3.  **Tra cứu tài liệu liên quan**: khi thêm nội dung hoặc sửa đổi một mục từ,
     nên tra cứu các tài liệu và nguồn tham khảo có uy tín để bảo đảm thông tin
     chính xác. Cũng có thể đặt câu hỏi ở khu bình luận của trang hoặc trong
@@ -143,7 +143,7 @@ làm theo phần [chỉnh sửa nội dung trong một trang](#chinh-sua-noi-dun
 
 ### Sử dụng Git để chỉnh sửa cục bộ
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Với người dùng phổ thông, chúng tôi khuyến nghị dùng trình chỉnh sửa web
     của GitHub đã nêu ở trên.
 
@@ -185,7 +185,7 @@ Khi thêm trang mới, có thể tham khảo định dạng sẵn có. Tuy nhiê
 kết tham chiếu của các trang đã có**; những thay đổi không cần thiết trong
 Pull Requests cũng sẽ bị từ chối.
 
-Nếu vẫn muốn sửa liên kết, cần chú ý cập nhật trường author và tệp chuyển
+Nếu vẫn muốn sửa liên kết, cần lưu ý cập nhật trường author và tệp chuyển
 hướng.
 
 <a id="author-field"></a>
