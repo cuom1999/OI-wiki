@@ -3,18 +3,17 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn, ChenZ01
 ## `vector`
 
 `std::vector` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài thay đổi được**
-(cũng có thể xem là một danh sách) do STL cung cấp. Nó hỗ trợ chèn và xóa với
-độ phức tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp
-hằng số.
+do STL cung cấp. Có thể xem nó như một dãy động: hỗ trợ chèn và xóa với độ phức
+tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
 <span id="vì-sao-nên-dùng-vector"></span>
 
 ### Vì sao nên dùng `vector`
 
-Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn rất nhiều so với độ
-ổn định ở mức dự án phần mềm. Do `vector` xử lý bộ nhớ động, trong một số trường
-hợp hiệu năng thời gian của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ
-không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường,
+Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn nhiều so với độ ổn
+định ở mức dự án phần mềm. Do `vector` quản lý bộ nhớ động, trong một số trường
+hợp thời gian chạy của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ không
+bật tối ưu hóa đầy đủ. Vì vậy, khi chỉ cần lưu trữ dữ liệu thông thường,
 `vector` thường không phải lựa chọn ưu tiên. Sau đây là một số điểm mạnh nổi bật
 của `vector`; khi cần đến những điểm này, `vector` rất hữu ích.
 
@@ -22,21 +21,21 @@ của `vector`; khi cần đến những điểm này, `vector` rất hữu ích
 
 #### `vector` có thể cấp phát bộ nhớ động
 
-Nhiều khi không thể mở sẵn một vùng nhớ lớn như vậy (ví dụ: tiền xử lý tất cả
-ước của các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ
-nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó cần dùng `vector` để
-khống chế mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng
-dung lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng.
+Nhiều khi không thể mở sẵn một vùng nhớ lớn (ví dụ: tiền xử lý tất cả ước của
+các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ nhớ,
+từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó cần dùng `vector` để kiểm
+soát mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng dung
+lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng.
 
 <span id="vector-nạp-chồng-toán-tử-so-sánh-và-toán-tử-gán"></span>
 
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
 `vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều
-này cho phép kiểm tra hai bộ chứa có bằng nhau hay không (độ phức tạp
-tuyến tính theo kích thước bộ chứa). Chẳng hạn có thể dùng `vector<char>` để so
-sánh chuỗi, dù `std::string` vẫn nhanh và tiện hơn. Ngoài ra,
-`vector` cũng nạp chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
+này cho phép kiểm tra hai bộ chứa có bằng nhau hay không, với độ phức tạp tuyến
+tính theo kích thước bộ chứa. Chẳng hạn, có thể dùng `vector<char>` để so sánh
+chuỗi, dù `std::string` vẫn nhanh và tiện hơn. Ngoài ra, `vector` cũng nạp
+chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
 
 <span id="khởi-tạo-vector-thuận-tiện"></span>
 
@@ -51,7 +50,7 @@ ví dụ `vector<int> data {1, 2, 3};`.
 
 ### Cách dùng `vector`
 
-Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
+Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/vector).
 
 <span id="hàm-khởi-tạo-vector"></span>
@@ -175,15 +174,17 @@ toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 
 #### Độ dài và dung lượng
 
-`vector` có các hàm sau liên quan đến độ dài và dung lượng bộ chứa. Lưu ý, độ
+`vector` có các hàm sau liên quan đến độ dài và dung lượng bộ chứa. Lưu ý: độ
 dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng (`capacity`) là
 độ dài vùng nhớ thực tế đã cấp phát; chi tiết xem phần về cách cài đặt ở sau.
 
 **Liên quan đến độ dài**:
 
--   `empty()` trả về một giá trị `bool`, tức `v.begin() == v.end()`; `true` nghĩa là rỗng, `false` nghĩa là không rỗng.
+-   `empty()` trả về một giá trị `bool`, tức `v.begin() == v.end()`; `true`
+    nghĩa là rỗng, `false` nghĩa là không rỗng.
 
--   `size()` trả về độ dài bộ chứa (số phần tử), tức `std::distance(v.begin(), v.end())`.
+-   `size()` trả về độ dài bộ chứa (số phần tử), tức
+    `std::distance(v.begin(), v.end())`.
 
 -   `resize(n)` thay đổi độ dài của `vector` thành `n`. Nếu `n` lớn hơn độ dài
     hiện tại, các phần tử sẽ được bổ sung; nếu tham số có cung cấp giá trị cần
@@ -222,27 +223,25 @@ dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng
 
 ### Chi tiết cài đặt của `vector`
 
-Về bản chất cài đặt, `vector` vẫn là mảng có độ dài cố định. Lý do nó mở rộng động
-được là vì có thêm thao tác cấp phát lại để tránh vượt quá dung lượng. Trước hết
-cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng
-nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau;
-`vector` lưu riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu dung
-lượng hiện tại không đủ, bộ chứa sẽ cấp phát một mảng lớn hơn, sao chép dữ liệu
-cũ từ vị trí ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp
-tiệm cận của thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của
-nó là $O(1)$. Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$.
-Vì vậy, chỉ cần ước lượng kích thước `vector` hợp lý và tận dụng `resize()` cùng
-`reserve()`, hiệu năng của `vector` sẽ không thua mảng có độ dài cố định quá
-nhiều.
+Về bản chất cài đặt, `vector` vẫn là mảng có độ dài cố định. Nó mở rộng động
+được nhờ thao tác cấp phát lại khi sắp vượt quá dung lượng. Trước hết cần nói
+rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng nhớ đã
+cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau; `vector` lưu
+riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu dung lượng hiện tại
+không đủ, bộ chứa sẽ cấp phát một mảng lớn hơn, sao chép dữ liệu cũ từ vị trí
+ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp tiệm cận của
+thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của nó là $O(1)$.
+Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$. Vì vậy, nếu ước
+lượng kích thước `vector` hợp lý và tận dụng `resize()` cùng `reserve()`, hiệu
+năng của `vector` sẽ không thua mảng có độ dài cố định quá nhiều.
 
 ## `vector<bool>`
 
 Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bool`: mỗi
-"`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên kiểu trả
+"`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên, kiểu trả
 về của `operator[]` không phải `bool&` mà là `vector<bool>::reference`. Vì vậy
 cần thận trọng khi dùng `vector<bool>`; có thể cân nhắc thay bằng `deque<bool>`
-hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng trực tiếp
-[`bitset`](./bitset.md).
+hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng [`bitset`](./bitset.md).
 
 ## `array` (C++11)
 
