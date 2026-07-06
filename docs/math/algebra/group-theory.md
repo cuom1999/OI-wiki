@@ -29,7 +29,7 @@ Không thể hiểu đại số trừu tượng nếu tách rời các ví dụ.
     |   $sr$   |       Quay $120^\circ$ trước, rồi lật           |  2  |       $(13)$      |
     |  $sr^2$  |       Quay $240^\circ$ trước, rồi lật           |  2  |       $(12)$      |
     
-    Dễ kiểm tra rằng các phép biến đổi này thật sự tạo thành một nhóm. Chẳng hạn, phần tử đơn vị của nhóm là $e$, và nghịch đảo của $sr$ là chính nó. Hơn nữa, nhóm $D_6$ không giao hoán; ví dụ có thể kiểm tra trực tiếp $rs=sr^{-1}$.
+    Các phép biến đổi này tạo thành một nhóm. Chẳng hạn, phần tử đơn vị của nhóm là $e$, và nghịch đảo của $sr$ là chính nó. Hơn nữa, nhóm $D_6$ không giao hoán; ví dụ có thể kiểm tra trực tiếp $rs=sr^{-1}$.
     
     Các phép biến đổi ghi trong bảng không phải là cách mô tả đối xứng duy nhất ứng với ký hiệu đó. Chẳng hạn, "lật qua đường nối $2$ với tâm" cũng là một phép đối xứng của tam giác; nó không xuất hiện trong bảng, nhưng kết quả trùng với phép "quay $120^\circ$ trước, rồi lật". Các khái niệm như "cấp" và "biểu diễn hoán vị" trong bảng sẽ được giải thích bên dưới.
 
@@ -41,9 +41,9 @@ Không thể hiểu đại số trừu tượng nếu tách rời các ví dụ.
     Cho nhóm $(G,\cdot)$ và một tập con $H\subseteq G$. Nếu $(H,\cdot)$ cũng là một nhóm, thì $H$ được gọi là một **nhóm con** (subgroup) của $G$, ký hiệu $H\le G$.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
-    Trong $D_6$, dễ kiểm tra thấy các nhóm con của nó là $\{e\}$, $\{e,s\}$, $\{e,sr\}$, $\{e,sr^2\}$, $\{e,r,r^2\}$ và chính $D_6$, tổng cộng sáu nhóm. Ngoài $D_6$, cấu trúc của các nhóm con này đơn giản hơn và chứa một phần thông tin về nhóm ban đầu.
+    Trong $D_6$, các nhóm con của nó là $\{e\}$, $\{e,s\}$, $\{e,sr\}$, $\{e,sr^2\}$, $\{e,r,r^2\}$ và chính $D_6$, tổng cộng sáu nhóm. Ngoài $D_6$, cấu trúc của các nhóm con này đơn giản hơn và chứa một phần thông tin về nhóm ban đầu.
 
-Để xác định một tập con $H\subseteq G$ có phải là nhóm con hay không, không cần kiểm tra từng tiên đề trong định nghĩa nhóm: tính kết hợp tự nhiên đúng; để tập con trở thành nhóm con, chỉ cần bảo đảm nó đóng đối với phép toán hai ngôi, có đơn vị và đóng đối với lấy nghịch đảo. Thực ra, các điều kiện này có thể gộp lại thành một điều kiện.
+Để xác định một tập con $H\subseteq G$ có phải là nhóm con hay không, không cần kiểm tra từng tiên đề trong định nghĩa nhóm: tính kết hợp tự nhiên đúng; để tập con trở thành nhóm con, chỉ cần bảo đảm nó đóng đối với phép toán hai ngôi, có đơn vị và đóng đối với lấy nghịch đảo. Các điều kiện này có thể gộp lại thành một điều kiện.
 
 ???+ note "Định lý (tiêu chuẩn nhận biết nhóm con)"
     Tập con $H$ của nhóm $G$ là nhóm con khi và chỉ khi với mọi $g,h \in H$ đều có $g^{-1}h\in H$.
@@ -100,7 +100,7 @@ Cấp của một nhóm là số phần tử của nhóm. Cấp của một ph�
 ???+ abstract "Cấp của phần tử"
     **Cấp** (order) của phần tử $x\in G$ trong nhóm $G$ là số nguyên dương nhỏ nhất $n$ sao cho $x^n=e$, ký hiệu $|x|$; nếu không tồn tại $n$ như vậy, phần tử $x$ được nói là có cấp vô hạn, ký hiệu $|x|=\infty$.
 
-Cấp của phần tử luôn không vượt quá cấp của nhóm; thực ra phần sau sẽ chứng minh cấp của phần tử luôn là ước của cấp của nhóm. Tuy nhiên, cấp của nhóm không phải lúc nào cũng là giá trị lớn nhất trong các cấp phần tử. Chẳng hạn, $D_6$ là nhóm cấp sáu, nhưng cấp lớn nhất của phần tử chỉ là $3$. Cấp của nhóm cũng không phải lúc nào cũng là bội chung nhỏ nhất của cấp các phần tử; ví dụ nhóm bốn Klein[^klein] $V_4$ có cấp $4$, nhưng chỉ có các phần tử cấp $1$ và cấp $2$.
+Cấp của phần tử luôn không vượt quá cấp của nhóm; phần sau sẽ chứng minh cấp của phần tử luôn là ước của cấp của nhóm. Tuy nhiên, cấp của nhóm không phải lúc nào cũng là giá trị lớn nhất trong các cấp phần tử. Chẳng hạn, $D_6$ là nhóm cấp sáu, nhưng cấp lớn nhất của phần tử chỉ là $3$. Cấp của nhóm cũng không phải lúc nào cũng là bội chung nhỏ nhất của cấp các phần tử; ví dụ nhóm bốn Klein[^klein] $V_4$ có cấp $4$, nhưng chỉ có các phần tử cấp $1$ và cấp $2$.
 
 ???+ note "Định lý"
     Trong nhóm vòng hữu hạn $C_n=\langle x\rangle$, cấp của phần tử $x^k$ là
@@ -137,7 +137,7 @@ Với một nhóm con cho trước, có thể định nghĩa lớp kề của n�
 Bản thân nhóm con cũng là một lớp kề của nó. Với một nhóm con cho trước, toàn bộ các lớp kề tạo thành một phân hoạch của nhóm, tức nhóm là hợp rời nhau của tất cả các lớp kề. Một phân hoạch luôn có thể được xem là các lớp tương đương của một quan hệ tương đương. Đối với phân hoạch bằng lớp kề trái, quan hệ tương đương là $g_1\sim g_2$ khi và chỉ khi $g_1^{-1}g_2\in H$; đối với phân hoạch bằng lớp kề phải, quan hệ tương đương là $g_1\sim g_2$ khi và chỉ khi $g_1g_2^{-1}\in H$.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
-    Theo ngôn ngữ lớp kề, trong ví dụ trên, $D_6$ có thể được chia thành $\langle r\rangle\cup s\langle r\rangle$ và $\langle s\rangle\cup \langle s\rangle r \cup \langle s\rangle r^2$. Cách đầu chia nhóm thành các lớp kề trái, cách sau chia nhóm thành các lớp kề phải. Cần chú ý rằng việc chọn đại diện không có gì đặc biệt; chẳng hạn có thể kiểm tra $s\langle r\rangle=sr\langle r\rangle$. Mọi phần tử trong một lớp kề đều có thể làm đại diện của lớp kề đó.
+    Theo ngôn ngữ lớp kề, trong ví dụ trên, $D_6$ có thể được chia thành $\langle r\rangle\cup s\langle r\rangle$ và $\langle s\rangle\cup \langle s\rangle r \cup \langle s\rangle r^2$. Cách đầu chia nhóm thành các lớp kề trái, cách sau chia nhóm thành các lớp kề phải. Việc chọn đại diện không có gì đặc biệt; chẳng hạn có thể kiểm tra $s\langle r\rangle=sr\langle r\rangle$. Mọi phần tử trong một lớp kề đều có thể làm đại diện của lớp kề đó.
 
 Các lớp kề khác nhau của cùng một nhóm con có cùng kích thước, bằng kích thước của nhóm con tương ứng. Vì toàn bộ các lớp kề của một nhóm con cho trước tạo thành một phân hoạch của nhóm, cấp của nhóm hữu hạn phải là bội nguyên của cấp nhóm con. Kết quả này gọi là định lý Lagrange.
 
@@ -182,7 +182,7 @@ $$
 g_1N\circ g_2N=(g_1g_2)N.
 $$
 
-Có thể chứng minh kết quả của phép toán không phụ thuộc vào cách chọn đại diện[^quotient]. Khi đó, $(G/N,\circ)$ thật sự có cấu trúc nhóm, gọi là **nhóm thương** (quotient group) của $G$ theo $N$. Nhóm thương $G/N$ không phải nhóm con của $G$; mỗi phần tử của nó là một tập con của nhóm $G$.
+Có thể chứng minh kết quả của phép toán không phụ thuộc vào cách chọn đại diện[^quotient]. Khi đó, $(G/N,\circ)$ có cấu trúc nhóm, gọi là **nhóm thương** (quotient group) của $G$ theo $N$. Nhóm thương $G/N$ không phải nhóm con của $G$; mỗi phần tử của nó là một tập con của nhóm $G$.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Trong nhóm $D_6$, ý nghĩa của nhóm thương $G/\langle r\rangle$ khá trực quan. Nó tương đương với việc trong tất cả các phép đối xứng này, bỏ qua góc quay của tam giác và chỉ quan tâm phép đó có lật tam giác hay không. Hợp thành hai phép cùng lật tam giác tương đương với không lật tam giác ban đầu; còn nếu một phép lật và phép kia không lật, thì hợp thành tất yếu vẫn lật tam giác. Thuộc tính có lật hay không cũng có cấu trúc nhóm. Về mặt đại số, việc bỏ qua chi tiết quay trong nhóm $D_6$ và chỉ xét có lật hay không chính là lấy nhóm thương $D_6/\langle r\rangle$. Các lập luận này không đúng cho nhóm con $\langle s\rangle$, vì nếu bỏ qua việc có lật hay không thì không thể xác định rõ góc quay; đây là lý do $G/\langle s\rangle$ không có cấu trúc nhóm thương.
@@ -213,7 +213,7 @@ Với một đồng cấu $\varphi:G\rightarrow H$ từ nhóm $G$ đến nhóm $
 Hai nhóm đẳng cấu có cấu trúc hoàn toàn như nhau. Nếu chỉ quan tâm cấu trúc nhóm, hai nhóm đẳng cấu không cần phân biệt. Định lý phân loại nhóm vòng ở trên được phát biểu theo nghĩa đẳng cấu.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
-    Quay lại ví dụ trên, mỗi phép đối xứng của tam giác đều tương ứng duy nhất với một phép hoán vị trên tập các đỉnh. Toàn bộ các hoán vị của tập đỉnh cũng tạo thành một nhóm, là $S_3$. Dễ kiểm tra, ánh xạ thu được $\varphi:D_6\rightarrow S_3$ là đồng cấu nhóm; hơn nữa, nó là đẳng cấu nhóm. Do đó $D_6\cong S_3$. Thực ra, nhóm cấp sáu hoặc đẳng cấu với $C_6$, hoặc đẳng cấu với $S_3$ (phần chứng minh nằm bên dưới).
+    Quay lại ví dụ trên, mỗi phép đối xứng của tam giác đều tương ứng duy nhất với một phép hoán vị trên tập các đỉnh. Toàn bộ các hoán vị của tập đỉnh cũng tạo thành một nhóm, là $S_3$. Ánh xạ thu được $\varphi:D_6\rightarrow S_3$ là đồng cấu nhóm; hơn nữa, nó là đẳng cấu nhóm. Do đó $D_6\cong S_3$. Mọi nhóm cấp sáu đều hoặc đẳng cấu với $C_6$, hoặc đẳng cấu với $S_3$ (phần chứng minh nằm bên dưới).
 
 Phân loại cấu trúc các nhóm hữu hạn có cấp cho trước là nội dung nghiên cứu quan trọng của lý thuyết nhóm, nhưng vượt quá phạm vi bài này.
 
@@ -251,11 +251,11 @@ Hạt nhân $\ker\varphi$ của đồng cấu thực sự mô tả phần thông
 Nói cách khác, hạt nhân của đồng cấu $\varphi$ là một nhóm con chuẩn tắc của $G$, và nhóm thương $G/\ker\varphi$ thu được khi chia cho $\ker\varphi$ đẳng cấu với ảnh $\varphi(G)$ của đồng cấu; ảnh này lại chính là một nhóm con của $H$.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
-    Hạt nhân của đồng cấu $\varphi: D_6 \rightarrow C_2$ ở trên là $\langle r\rangle$. Phần thảo luận về nhóm con chuẩn tắc đã cho thấy $D_6/\langle r\rangle$ thật sự đẳng cấu với $C_2$.
+    Hạt nhân của đồng cấu $\varphi: D_6 \rightarrow C_2$ ở trên là $\langle r\rangle$. Phần thảo luận về nhóm con chuẩn tắc đã cho thấy $D_6/\langle r\rangle$ đẳng cấu với $C_2$.
 
 ### Đồng cấu tự nhiên
 
-Kết quả này không bất ngờ. Lý do là khi xây dựng đồng cấu $\varphi: D_6 \rightarrow C_2$, chính ý nghĩa hình học của nhóm thương $D_6/\langle r\rangle$ đã được dùng. Hiện tượng này không hiếm. Thực ra, với mọi nhóm thương, đều có thể xây dựng một đồng cấu nhóm sao cho ảnh của đồng cấu đẳng cấu với nhóm thương đã cho.
+Kết quả này không bất ngờ. Khi xây dựng đồng cấu $\varphi: D_6 \rightarrow C_2$, chính ý nghĩa hình học của nhóm thương $D_6/\langle r\rangle$ đã được dùng. Hiện tượng này không hiếm: với mọi nhóm thương, đều có thể xây dựng một đồng cấu nhóm sao cho ảnh của đồng cấu đẳng cấu với nhóm thương đã cho.
 
 ???+ abstract "Đồng cấu tự nhiên"
     Cho nhóm $G$ và nhóm con chuẩn tắc $N\trianglelefteq G$. Ánh xạ $\pi: G\rightarrow G/N$ cho bởi $\pi(g)=gN$ là một toàn đồng cấu từ $G$ đến $G/N$, gọi là **đồng cấu tự nhiên** (natural homomorphism) hay **ánh xạ tự nhiên** từ nhóm $G$ đến nhóm thương $G/N$.
@@ -277,7 +277,7 @@ Công cụ mạnh để hiểu cấu trúc nhóm là các định lý đẳng c�
 ???+ abstract "Tích của các tập con"
     Cho nhóm $G$ và các tập con $A,B\subseteq G$. **Tích** (product) của $A$ và $B$ là tập con $AB=\{ab:a\in A,b\in B\}$.
 
-Tích của các nhóm con không phải lúc nào cũng là nhóm con. Chẳng hạn, trong nhóm $D_6$, tích của nhóm con $A=\langle s\rangle$ và nhóm con $B=\langle sr\rangle$ là $AB=\{e,s,r,sr\}$, không phải nhóm con của $G$, vì $(sr)s=r^2\notin AB$. Thực ra, những phản ví dụ có dạng $a\in A$, $b\in B$ nhưng $ba\notin AB$ chính là lý do căn bản làm tích không phải nhóm con. Có định lý sau.
+Tích của các nhóm con không phải lúc nào cũng là nhóm con. Chẳng hạn, trong nhóm $D_6$, tích của nhóm con $A=\langle s\rangle$ và nhóm con $B=\langle sr\rangle$ là $AB=\{e,s,r,sr\}$, không phải nhóm con của $G$, vì $(sr)s=r^2\notin AB$. Những phản ví dụ có dạng $a\in A$, $b\in B$ nhưng $ba\notin AB$ chính là lý do căn bản làm tích không phải nhóm con. Có định lý sau.
 
 ???+ note "Định lý"
     Cho nhóm $G$ và các nhóm con $A,B\le G$. Tích $AB$ là nhóm con khi và chỉ khi $AB=BA$.
@@ -321,7 +321,7 @@ Chẳng hạn, nhóm đối xứng của tam giác đều trong bài này đư�
     Cho nhóm $G$, tập $X$ và ánh xạ $G\times X\rightarrow X$. Ký hiệu ảnh của $(g,x)$ dưới ánh xạ này là $g\cdot x$. Nếu ánh xạ thỏa $g_1\cdot(g_2\cdot x)=(g_1g_2)\cdot x$ và $e\cdot x=x$ với mọi $g_1,g_2\in G$ và $x\in X$, thì ánh xạ đó được gọi là **tác động nhóm** (group action) của $G$ lên $X$.
 
 ??? info "\"Tác động trái\" và \"tác động phải\""
-    Định nghĩa tác động nhóm trong mục này ở một số nơi[^group-action] được gọi là tác động trái (left action), vì trong ký hiệu $g\cdot x$, phần tử của nhóm được viết bên trái phần tử của tập. Tương ứng, khi phần tử hợp thành $g_1g_2$ tác động lên tập hợp, cần thực hiện tác động của $g_2$ trước, rồi đến tác động của $g_1$. Tất nhiên, cũng có thể định nghĩa tác động phải, ký hiệu $x\cdot g$. Khi đó thứ tự hợp thành các phần tử nhóm ngược với tác động trái, tức $x\cdot (g_1g_2)=(x\cdot g_1)\cdot g_2$. Hai cách này chỉ khác nhau về ký hiệu, không khác bản chất; vì vậy bài này mặc định dùng ký hiệu tác động trái.
+    Định nghĩa tác động nhóm trong mục này ở một số nơi[^group-action] được gọi là tác động trái (left action), vì trong ký hiệu $g\cdot x$, phần tử của nhóm được viết bên trái phần tử của tập. Tương ứng, khi phần tử hợp thành $g_1g_2$ tác động lên tập hợp, cần thực hiện tác động của $g_2$ trước, rồi đến tác động của $g_1$. Cũng có thể định nghĩa tác động phải, ký hiệu $x\cdot g$. Khi đó thứ tự hợp thành các phần tử nhóm ngược với tác động trái, tức $x\cdot (g_1g_2)=(x\cdot g_1)\cdot g_2$. Hai cách này chỉ khác nhau về ký hiệu, không khác bản chất; vì vậy bài này mặc định dùng ký hiệu tác động trái.
 
 Với tác động nhóm thỏa định nghĩa trên, tự nhiên có cấu trúc sau:
 
@@ -357,7 +357,7 @@ Tác động nhóm là ánh xạ hai ngôi. Nếu cố định phần tử $g$ c
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Chẳng hạn, nếu xét tác động của nhóm $\langle s\rangle\le D_6$ lên tập các đỉnh của tam giác đều, quỹ đạo của đỉnh $1$ là $\{1\}$, còn quỹ đạo của đỉnh $2$ và $3$ là $\{2,3\}$. Tuy nhiên, tác động của nhóm $\langle r\rangle\le D_6$ lên tập đỉnh chỉ có một quỹ đạo, là toàn bộ tập đỉnh.
 
-Dễ chứng minh, toàn bộ các quỹ đạo của tập $X$ dưới tác động của $G$ tạo thành một phân hoạch của tập đó, ký hiệu $X/G$. Khác với lớp kề, các quỹ đạo này không nhất thiết có cùng độ dài.
+Toàn bộ các quỹ đạo của tập $X$ dưới tác động của $G$ tạo thành một phân hoạch của tập đó, ký hiệu $X/G$. Khác với lớp kề, các quỹ đạo này không nhất thiết có cùng độ dài.
 
 ### Bộ ổn định
 
@@ -374,7 +374,7 @@ Dưới tác động nhóm, độ dài quỹ đạo của một phần tử tron
 Hạt nhân của tác động nhóm chính là giao của bộ ổn định của tất cả các phần tử trong tập.
 
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
-    Xét tác động của nhóm $D_6$ lên tập các đỉnh. Bộ ổn định của đỉnh $1$ là $\{e,s\}=\langle s\rangle$, một nhóm con của $D_6$. Vì $D_6$ có thể chia thành các lớp kề trái $\langle s\rangle$, $r\langle s\rangle$ và $r^2\langle s\rangle$, có thể thấy mỗi lớp kề trái cho cùng một kết quả khi tác động lên đỉnh $1$.
+    Xét tác động của nhóm $D_6$ lên tập các đỉnh. Bộ ổn định của đỉnh $1$ là $\{e,s\}=\langle s\rangle$, một nhóm con của $D_6$. Vì $D_6$ có thể chia thành các lớp kề trái $\langle s\rangle$, $r\langle s\rangle$ và $r^2\langle s\rangle$, mỗi lớp kề trái cho cùng một kết quả khi tác động lên đỉnh $1$.
 
 Ví dụ này cho thấy các phần tử trên quỹ đạo tương ứng một-một với các lớp kề trái của bộ ổn định. Do đó có kết quả sau.
 
@@ -405,7 +405,7 @@ Bổ đề này đưa ra công thức tính số quỹ đạo của tác động
     Trong công thức này, $X^g=\{x\in X:gx=x\}$ là tập điểm bất động của hoán vị ứng với phần tử $g\in G$.
 
 ??? note "Chứng minh"
-    Chứng minh của định lý này rất ngắn gọn. Chú ý rằng số quỹ đạo có thể viết là
+    Chứng minh của định lý này rất ngắn gọn. Số quỹ đạo có thể viết là
     
     $$
     |X/G|=\sum_{o\in X/G}1=\sum_{x\in X}\frac{1}{|Gx|}=\frac1{|G|}\sum_{x\in X}|G_x|.
@@ -417,7 +417,7 @@ Bổ đề này đưa ra công thức tính số quỹ đạo của tác động
 
 ### Định lý Cayley
 
-Dùng tác động nhóm để nghiên cứu cấu trúc nhóm đòi hỏi chọn một tập hợp phù hợp. Thực ra, chính nhóm là một tập hợp như vậy. Vì thế, tiếp theo xét hai tác động nhóm thường gặp của nhóm lên chính nó và dùng chúng để phân tích cấu trúc nhóm.
+Dùng tác động nhóm để nghiên cứu cấu trúc nhóm đòi hỏi chọn một tập hợp phù hợp. Bản thân nhóm là một tập hợp như vậy. Vì thế, tiếp theo xét hai tác động nhóm thường gặp của nhóm lên chính nó và dùng chúng để phân tích cấu trúc nhóm.
 
 Tác động đầu tiên là **tác động nhân trái** (left multiplication) của nhóm lên chính nó. Biểu diễn hoán vị của nó như sau.
 
@@ -477,7 +477,7 @@ Nó có thể dùng để phân tích cấu trúc nhóm, chẳng hạn để ch�
 
 ### Bộ chuẩn hóa và bộ trung tâm hóa
 
-Thực ra, tập lũy thừa của nhóm cũng có thể làm đối tượng cho tác động nhóm. Phần này tập trung xét tác động liên hợp của nhóm lên toàn bộ các tập con $X=\mathcal P(G)$ của nó. Biểu diễn hoán vị của tác động này như sau.
+Tập lũy thừa của nhóm cũng có thể làm đối tượng cho tác động nhóm. Phần này tập trung xét tác động liên hợp của nhóm lên toàn bộ các tập con $X=\mathcal P(G)$ của nó. Biểu diễn hoán vị của tác động này như sau.
 
 $$
 \begin{aligned}
@@ -499,7 +499,7 @@ Bộ trung tâm hóa cũng có thể mở rộng tương tự cho tập con.
 ???+ abstract "Bộ trung tâm hóa"
     Cho nhóm $G$ và tập con $S\subseteq G$. **Bộ trung tâm hóa** (centralizer) của tập con $S$ trong $G$ là $C_G(S)=\{g\in G:\forall s\in S(gsg^{-1}=s)\}$.
 
-Bộ trung tâm hóa thực ra là hạt nhân của tác động liên hợp của nhóm $N_G(S)$ lên $S$. Do đó tất yếu $C_G(S)\trianglelefteq N_G(S)\le G$; theo tính chất bắc cầu của nhóm con, bộ trung tâm hóa cũng là nhóm con. Đặc biệt, tâm của nhóm $Z(G)=C_G(G)\trianglelefteq N_G(G)=G$ tất yếu là nhóm con chuẩn tắc.
+Bộ trung tâm hóa là hạt nhân của tác động liên hợp của nhóm $N_G(S)$ lên $S$. Do đó tất yếu $C_G(S)\trianglelefteq N_G(S)\le G$; theo tính chất bắc cầu của nhóm con, bộ trung tâm hóa cũng là nhóm con. Đặc biệt, tâm của nhóm $Z(G)=C_G(G)\trianglelefteq N_G(G)=G$ tất yếu là nhóm con chuẩn tắc.
 
 ### Định lý Sylow
 
@@ -517,7 +517,7 @@ Phân tích sâu hơn tác động liên hợp của nhóm hữu hạn sẽ thu 
 ???+ note "Định lý Cauchy"
     Nếu số nguyên tố $p$ chia hết cấp của nhóm $G$, thì tất yếu tồn tại phần tử cấp $p$.
 
-Định lý Cauchy bảo đảm sự tồn tại của nhóm con $p$. Thực ra, thông qua phân tích tinh vi hơn, có thể thu được kết luận mạnh hơn: sự tồn tại của nhóm con Sylow $p$.
+Định lý Cauchy bảo đảm sự tồn tại của nhóm con $p$. Thông qua phân tích tinh vi hơn, có thể thu được kết luận mạnh hơn: sự tồn tại của nhóm con Sylow $p$.
 
 ???+ abstract "Nhóm con Sylow $p$"
     Cho nhóm $G$ và nhóm con $P\le G$. Nếu $|G|=p^\alpha m$, $p\perp m$ và $|P|=p^\alpha$, thì $P$ được gọi là **nhóm con Sylow $p$** (Sylow $p$-subgroup).
@@ -546,7 +546,7 @@ Nói cách khác, nhóm con Sylow $p$ là nhóm con $p$ cực đại. Định l�
     |\mathcal S|=\sum_{i=1}^r[Q:Q\cap N_G(P_i)].
     $$
     
-    Trong đó, $Q\cap N_G(P_i)$ là bộ ổn định của $P_i$ dưới tác động nhóm nói trên. Đặt $H=Q\cap N_G(P_i)$. Khi đó $H\le N_G(P_i)$, nên theo định lý đẳng cấu thứ hai của nhóm, $P_iH/P_i\cong H/(P_i\cap H)$. Do đó $|P_iH|=|P_i||H|/|P_i\cap H|$; vế phải là một lũy thừa của $p$, nên vế trái cũng phải là lũy thừa của $p$, và cần có $|P_i|\le |P_iH|$. Nhưng $P_i$ đã là nhóm con có lũy thừa của $p$ lớn nhất trong các nhóm con của $G$, nên $P_i=P_iH$. Thế vào quan hệ đẳng cấu trên, có $H=P_i\cap H=Q\cap P_i$. Ở bước này dùng quan hệ trực tiếp $P_i\le N_G(P_i)$. Như vậy bộ ổn định $Q\cap N_G(P_i)$ thực ra là $Q\cap P_i$. Vì thế công thức trên có thể viết thành
+    Trong đó, $Q\cap N_G(P_i)$ là bộ ổn định của $P_i$ dưới tác động nhóm nói trên. Đặt $H=Q\cap N_G(P_i)$. Khi đó $H\le N_G(P_i)$, nên theo định lý đẳng cấu thứ hai của nhóm, $P_iH/P_i\cong H/(P_i\cap H)$. Do đó $|P_iH|=|P_i||H|/|P_i\cap H|$; vế phải là một lũy thừa của $p$, nên vế trái cũng phải là lũy thừa của $p$, và cần có $|P_i|\le |P_iH|$. Nhưng $P_i$ đã là nhóm con có lũy thừa của $p$ lớn nhất trong các nhóm con của $G$, nên $P_i=P_iH$. Thế vào quan hệ đẳng cấu trên, có $H=P_i\cap H=Q\cap P_i$. Bước này dùng quan hệ trực tiếp $P_i\le N_G(P_i)$. Như vậy bộ ổn định $Q\cap N_G(P_i)$ là $Q\cap P_i$. Vì thế công thức trên có thể viết thành
     
     $$
     |\mathcal S|=\sum_{i=1}^r[Q:Q\cap P_i].
@@ -554,7 +554,7 @@ Nói cách khác, nhóm con Sylow $p$ là nhóm con $p$ cực đại. Định l�
     
     Đẳng thức này đúng với mọi nhóm con $p$ là $Q$.
     
-    Đặc biệt, nhóm con Sylow $p$ là $P$ cũng là một nhóm con $p$. Thế $Q=P$ vào đẳng thức trên, vế phải có đúng một hạng bằng $1$, các hạng còn lại đều là bội của $p$. Vì vậy, kích thước $|\mathcal S|$ của lớp liên hợp của nhóm con Sylow $p$ là $P$ tất yếu dư $1$ modulo $p$. Đồng thời, vì công thức này đúng với mọi nhóm con $p$ là $Q$, tự nhiên tồn tại $g\in G$ sao cho $Q\le gPg^{-1}$; nếu không, với mọi $P_i$ trong đẳng thức trên đều có $|Q\cap P_i|<|Q|$, mâu thuẫn với $|\mathcal S|\equiv 1\pmod p$. Nếu lúc này cho $Q$ là một nhóm con Sylow $p$ khác $P$, tất yếu $Q=gPg^{-1}$ với một $g\in G$, tức mọi nhóm con Sylow $p$ đều liên hợp. Do đó, số nhóm con Sylow $p$, $n_p$, chính là $|\mathcal S|$, nên $n_p\equiv 1\pmod p$. Cuối cùng, vì $n_p=|\mathcal S|=[G:N_G(P)]$ và $P\le N_G(P)$, suy ra $n_p\mid m$. Như vậy chứng minh đầy đủ phần thứ hai và thứ ba.
+    Đặc biệt, nhóm con Sylow $p$ là $P$ cũng là một nhóm con $p$. Thế $Q=P$ vào đẳng thức trên, vế phải có đúng một hạng bằng $1$, các hạng còn lại đều là bội của $p$. Vì vậy, kích thước $|\mathcal S|$ của lớp liên hợp của nhóm con Sylow $p$ là $P$ tất yếu dư $1$ modulo $p$. Đồng thời, vì công thức này đúng với mọi nhóm con $p$ là $Q$, suy ra tồn tại $g\in G$ sao cho $Q\le gPg^{-1}$; nếu không, với mọi $P_i$ trong đẳng thức trên đều có $|Q\cap P_i|<|Q|$, mâu thuẫn với $|\mathcal S|\equiv 1\pmod p$. Nếu lúc này cho $Q$ là một nhóm con Sylow $p$ khác $P$, tất yếu $Q=gPg^{-1}$ với một $g\in G$, tức mọi nhóm con Sylow $p$ đều liên hợp. Do đó, số nhóm con Sylow $p$, $n_p$, chính là $|\mathcal S|$, nên $n_p\equiv 1\pmod p$. Cuối cùng, vì $n_p=|\mathcal S|=[G:N_G(P)]$ và $P\le N_G(P)$, suy ra $n_p\mid m$. Như vậy chứng minh đầy đủ phần thứ hai và thứ ba.
 
 ??? example "Ứng dụng: theo nghĩa đẳng cấu, nhóm cấp sáu chỉ có $C_6$ và $S_3$"
     Giả sử $G$ có cấp $6$. Theo định lý Sylow, nó có nhóm con Sylow $2$, và số nhóm con đó thỏa $n_2\equiv 1\pmod 2$ và $n_2\mid 3$, nên chỉ có hai trường hợp: $n_2=1$ hoặc $n_2=3$. Tương tự, có thể chứng minh $G$ có đúng một nhóm con Sylow $3$, tức $n_3=1$.
@@ -585,13 +585,13 @@ Phần trên chủ yếu phân tích cách phân ra một nhóm thành các nhó
 
 Với tích trực tiếp $G\times H$, có các phép nhúng tự nhiên $g\mapsto(g,e_H)$ và $h\mapsto(e_G,h)$. Ngược lại, ánh xạ $(g,h)\mapsto g$ và ánh xạ $(g,h)\mapsto h$ là các đồng cấu nhóm, có hạt nhân lần lượt là $\{e_G\}\times H$ và $G\times\{e_H\}$. Hai hạt nhân này chính là ảnh của hai phép nhúng nói trên, và giao của chúng là tầm thường, tức $\{(e_G,e_H)\}$. Vì vậy trong tích trực tiếp $G\times H$ có hai nhóm con, đều chuẩn tắc, giao nhau tầm thường, và tích của chúng là chính $G\times H$.
 
-Phân tích này thực ra cho một điều kiện cần và đủ để một nhóm viết được thành tích trực tiếp của hai nhóm con của nó.
+Phân tích này cho một điều kiện cần và đủ để một nhóm viết được thành tích trực tiếp của hai nhóm con của nó.
 
 ???+ note "Định lý"
     Cho nhóm $G$ và các nhóm con $H_1,H_2\le G$. Có $G\cong H_1\times H_2$ khi và chỉ khi $H_1,H_2\trianglelefteq G$, $H_1\cap H_2=\{e\}$ và $G=H_1H_2$.
 
 ??? note "Chứng minh"
-    Tính cần thiết của các điều kiện đã được thảo luận trong phần chính; dưới đây chứng minh tính đủ. Xét ánh xạ $\varphi:G\rightarrow H_1\times H_2$ thỏa $h_1h_2\mapsto(h_1,h_2)$. Ánh xạ $\varphi$ xác định tốt, vì với mọi $h_1,k_1\in H_1$ và $h_2,k_2\in H_2$, nếu $h_1h_2=k_1k_2$ thì $h_1=k_1$ và $h_2=k_2$; lý do là $k_1^{-1}h_1=k_2h_2^{-1}\in H_1\cap H_2=\{e\}$. Để chỉ ra $\varphi$ là đồng cấu nhóm, cần chỉ ra $(h_1h_2)(k_1k_2)=h_1k_1h_2k_2$, tương đương với $k_1$ và $h_2$ giao hoán, tức $k_1h_2k_1^{-1}h_2^{-1}=e$. Để chứng minh quan hệ này, chỉ cần chú ý $k_1h_2k_1^{-1}h_2^{-1}=(k_1h_2k_1^{-1})h_2^{-1}\in (k_1H_2k_1^{-1})H_2=H_2$; tương tự cũng có $k_1(h_2k_1^{-1}h_2^{-1})\in H_1$, nên $k_1h_2k_1^{-1}h_2^{-1}\in H_1\cap H_2=\{e\}$. Như vậy $\varphi$ là đồng cấu nhóm. Nó là song ánh theo cách xây dựng, nên là đẳng cấu, tức $G\cong H_1\times H_2$.
+    Tính cần thiết của các điều kiện đã được thảo luận trong phần chính; dưới đây chứng minh tính đủ. Xét ánh xạ $\varphi:G\rightarrow H_1\times H_2$ thỏa $h_1h_2\mapsto(h_1,h_2)$. Ánh xạ $\varphi$ xác định tốt, vì với mọi $h_1,k_1\in H_1$ và $h_2,k_2\in H_2$, nếu $h_1h_2=k_1k_2$ thì $h_1=k_1$ và $h_2=k_2$; lý do là $k_1^{-1}h_1=k_2h_2^{-1}\in H_1\cap H_2=\{e\}$. Để chỉ ra $\varphi$ là đồng cấu nhóm, cần chỉ ra $(h_1h_2)(k_1k_2)=h_1k_1h_2k_2$, tương đương với $k_1$ và $h_2$ giao hoán, tức $k_1h_2k_1^{-1}h_2^{-1}=e$. Để chứng minh quan hệ này, dùng $k_1h_2k_1^{-1}h_2^{-1}=(k_1h_2k_1^{-1})h_2^{-1}\in (k_1H_2k_1^{-1})H_2=H_2$; tương tự cũng có $k_1(h_2k_1^{-1}h_2^{-1})\in H_1$, nên $k_1h_2k_1^{-1}h_2^{-1}\in H_1\cap H_2=\{e\}$. Như vậy $\varphi$ là đồng cấu nhóm. Nó là song ánh theo cách xây dựng, nên là đẳng cấu, tức $G\cong H_1\times H_2$.
 
 Trong tích trực tiếp, các phần tử của hai nhân tử tích trực tiếp tất yếu giao hoán với nhau, vì $hg=(e_G,h)(g,e_H)=(g,h)=gh$. Do đó, nếu hai nhân tử trực tiếp đều là nhóm Abel, tích trực tiếp cũng là nhóm Abel.
 
@@ -631,7 +631,7 @@ Trước hết, định lý khẳng định mọi nhóm Abel hữu hạn sinh đ
     
     Khi đó thu được một phần tử sinh $y_1$ có cấp nhỏ hơn $x_1$, mâu thuẫn với cách chọn $x_1$. Do đó phân tích tích trực tiếp tất yếu đúng; theo nguyên lý quy nạp, kết quả cần chứng minh đúng.
 
-Tất nhiên, nhóm vòng có thể có cấp vô hạn hoặc cấp hữu hạn; chúng lần lượt là phần $C_\infty$ và phần $C_{n_i}$ trong phân tích trên. Sau đó, định lý mô tả cấu trúc của nhóm vòng hữu hạn $C_n$. Phần phân tích thành ước số sơ cấp trong định lý thực ra dựa vào quan sát sau.
+Nhóm vòng có thể có cấp vô hạn hoặc cấp hữu hạn; chúng lần lượt là phần $C_\infty$ và phần $C_{n_i}$ trong phân tích trên. Sau đó, định lý mô tả cấu trúc của nhóm vòng hữu hạn $C_n$. Phần phân tích thành ước số sơ cấp trong định lý dựa vào quan sát sau.
 
 ???+ note "Bổ đề"
     Nếu $m$ và $n$ nguyên tố cùng nhau, thì $C_{mn}\cong C_m\times C_n$.
@@ -642,7 +642,7 @@ Tất nhiên, nhóm vòng có thể có cấp vô hạn hoặc cấp hữu hạn
 Cho nhóm vòng $C_{n}$. Nếu theo định lý cơ bản của số học có $n=p_1^{r_1}\cdots p_k^{r_k}$, thì lặp lại bổ đề trên sẽ chứng minh được $C_n=C_{p_1^{r_1}}\times\cdots\times C_{p_k^{r_k}}$. Sau hai bước phân tích này, về thực chất đã thu được phân tích thành ước số sơ cấp trong định lý. Sau đó, lại dùng bổ đề để ghép lại các nhóm vòng có cấp là lũy thừa số nguyên tố sao cho cấp của chúng thỏa yêu cầu, sẽ thu được phân tích thành nhân tử bất biến trong định lý. Tính duy nhất trong định lý có thể chứng minh bằng quy nạp.
 
 ??? example "Ví dụ: phân loại các nhóm Abel cấp 24"
-    Làm ví dụ, từ định lý có thể biết tất cả các nhóm Abel cấp 24 có tổng cộng ba loại, liệt kê như sau.
+    Làm ví dụ, từ định lý suy ra tất cả các nhóm Abel cấp 24 có tổng cộng ba loại, liệt kê như sau.
     
     |      Phân tích nhân tử bất biến     |             Phân tích ước số sơ cấp            |
     | :---------------------------------: | :---------------------------------------------: |
@@ -665,7 +665,7 @@ Cho nhóm vòng $C_{n}$. Nếu theo định lý cơ bản của số học có $
 
 [^group-action]: Chẳng hạn [Group action - Wikipedia](https://en.wikipedia.org/wiki/Group_action).
 
-[^cayley]: Bản thân định lý Cayley không phản ánh nhiều thông tin về cấu trúc nội tại của nhóm, vì nhóm $S_G$ thường có kích thước rất lớn, và khó nói một nhóm con nào đó của nó có kích thước đúng bằng $|G|$ sẽ có tính chất xác định nào. Tuy nhiên, sự phát triển thời kỳ đầu của lý thuyết nhóm chủ yếu tập trung vào nhóm hoán vị. Vì vậy, định lý Cayley thực ra nói rằng mọi cấu trúc nhóm có thể đều nằm trong những đối tượng đã được nghiên cứu kỹ này, dù khi nghiên cứu thực tế cần công cụ tinh vi hơn.
+[^cayley]: Bản thân định lý Cayley không phản ánh nhiều thông tin về cấu trúc nội tại của nhóm, vì nhóm $S_G$ thường có kích thước rất lớn, và khó nói một nhóm con nào đó của nó có kích thước đúng bằng $|G|$ sẽ có tính chất xác định nào. Tuy nhiên, sự phát triển thời kỳ đầu của lý thuyết nhóm chủ yếu tập trung vào nhóm hoán vị. Vì vậy, định lý Cayley nói rằng mọi cấu trúc nhóm có thể đều nằm trong những đối tượng đã được nghiên cứu kỹ này, dù khi nghiên cứu thực tế cần công cụ tinh vi hơn.
 
 [^conjugate]: Tổng quát hơn, các phần tử liên hợp trong nhóm hoán vị tất yếu có cùng [kiểu](../permutation.md#kiểu-chu-trình-của-hoán-vị).
 

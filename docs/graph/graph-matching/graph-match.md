@@ -26,9 +26,9 @@ Kích thước của ghép cặp $M$ là số cạnh mà nó chứa. Với ghép
 
     ![ghép cặp lớn nhất có trọng số lớn nhất](images/graph-match-4.svg)
 
--   **Ghép cặp hoàn hảo** (perfect matching): ghép cặp mà mọi đỉnh đều là đỉnh đã ghép cặp. Ghép cặp hoàn hảo chắc chắn là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh chẵn luôn tồn tại ghép cặp hoàn hảo.
+-   **Ghép cặp hoàn hảo** (perfect matching): ghép cặp mà mọi đỉnh đều là đỉnh đã ghép cặp. Mọi ghép cặp hoàn hảo đều là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh chẵn luôn tồn tại ghép cặp hoàn hảo.
 
--   **Ghép cặp gần hoàn hảo** (near-perfect matching): ghép cặp có đúng một đỉnh chưa ghép cặp. Điều này chỉ có thể xảy ra khi số đỉnh của đồ thị là lẻ. Ghép cặp gần hoàn hảo cũng chắc chắn là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh lẻ luôn tồn tại ghép cặp gần hoàn hảo.
+-   **Ghép cặp gần hoàn hảo** (near-perfect matching): ghép cặp có đúng một đỉnh chưa ghép cặp. Điều này chỉ có thể xảy ra khi số đỉnh của đồ thị là lẻ. Mọi ghép cặp gần hoàn hảo cũng là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh lẻ luôn tồn tại ghép cặp gần hoàn hảo.
 
 Trong lập trình thi đấu, các bài toán ghép cặp trong đồ thị chủ yếu nói đến ghép cặp lớn nhất hoặc ghép cặp trọng số lớn nhất.
 
@@ -57,26 +57,26 @@ Bổ đề Berge cho biết phương pháp cải thiện ghép cặp bằng đư
     Với đồ thị $G=(V,E)$ và một ghép cặp $M$ của nó, $M$ là ghép cặp lớn nhất khi và chỉ khi không tồn tại đường tăng đối với ghép cặp $M$.
 
 ??? note "Chứng minh"
-    Như đã nói ở trên, nếu tồn tại đường tăng $P$, thì $M\oplus P$ là một ghép cặp lớn hơn $M$, vì vậy $M$ chắc chắn không phải là ghép cặp lớn nhất.
+    Như đã nêu ở trên, nếu tồn tại đường tăng $P$, thì $M\oplus P$ là một ghép cặp lớn hơn $M$, vì vậy $M$ không phải là ghép cặp lớn nhất.
     
-    Ngược lại, cần chứng minh rằng nếu tồn tại một ghép cặp $M'$ lớn hơn ghép cặp $M$, thì chắc chắn tồn tại một đường tăng $P$ đối với $M$. Xét hiệu đối xứng $M\oplus M'$. Trong đồ thị $(V,M\oplus M')$, bậc của mỗi đỉnh chỉ có thể là $0$, $1$ hoặc $2$; các thành phần liên thông của đồ thị như vậy tất yếu là đường đi, chu trình hoặc đỉnh cô lập. Hơn nữa, hai cạnh kề với một đỉnh bậc $2$ chắc chắn đến từ hai ghép cặp khác nhau, nên trong mỗi chu trình này, số cạnh đến từ $M$ và $M'$ là như nhau. Vì $M'$ lớn hơn $M$, nên tồn tại ít nhất một đường đi mà số cạnh đến từ $M'$ nhiều hơn số cạnh đến từ $M$; gọi đường đi đó là $P$. Khi đó, hai đầu mút của $P$ đều là đỉnh chưa ghép cặp theo $M$, và $P$ là đường xen kẽ đối với $M$, nên $P$ chắc chắn là đường tăng đối với $M$. Chứng minh hoàn tất.
+    Ngược lại, cần chứng minh rằng nếu tồn tại một ghép cặp $M'$ lớn hơn ghép cặp $M$, thì tồn tại một đường tăng $P$ đối với $M$. Xét hiệu đối xứng $M\oplus M'$. Trong đồ thị $(V,M\oplus M')$, bậc của mỗi đỉnh chỉ có thể là $0$, $1$ hoặc $2$; các thành phần liên thông của đồ thị như vậy tất yếu là đường đi, chu trình hoặc đỉnh cô lập. Hơn nữa, hai cạnh kề với một đỉnh bậc $2$ phải đến từ hai ghép cặp khác nhau, nên trong mỗi chu trình này, số cạnh đến từ $M$ và $M'$ là như nhau. Vì $M'$ lớn hơn $M$, nên tồn tại ít nhất một đường đi mà số cạnh đến từ $M'$ nhiều hơn số cạnh đến từ $M$; gọi đường đi đó là $P$. Khi đó, hai đầu mút của $P$ đều là đỉnh chưa ghép cặp theo $M$, và $P$ là đường xen kẽ đối với $M$, nên $P$ là đường tăng đối với $M$. Chứng minh hoàn tất.
 
 Từ định lý này, ý tưởng cốt lõi để tìm ghép cặp lớn nhất là:
 
 -   Duyệt tất cả các đỉnh chưa ghép cặp, tìm đường tăng cho đến khi không còn tìm được đường tăng nào nữa.
 
-Thực ra, sau mỗi phép tăng, không cần duyệt lại tất cả các đỉnh chưa ghép cặp. Trong toàn bộ quá trình tìm ghép cặp lớn nhất, mỗi đỉnh chỉ cần được duyệt một lần.
+Sau mỗi phép tăng, không cần duyệt lại tất cả các đỉnh chưa ghép cặp. Trong toàn bộ quá trình tìm ghép cặp lớn nhất, mỗi đỉnh chỉ cần được duyệt một lần.
 
 ??? note "Chứng minh"
     Chỉ cần chứng minh rằng nếu khi đang xét đỉnh $v$ không tồn tại đường tăng bắt đầu từ $v$, thì sau một số lượt tăng, vẫn không tồn tại đường tăng bắt đầu từ $v$. Điều này cho thấy dù phép tăng làm thay đổi ghép cặp, cũng không cần kiểm tra lại các đỉnh chưa ghép cặp đã được duyệt trước đó.
     
-    Giả sử ngược lại. Tức là, giả sử $v$ là một đỉnh chưa ghép cặp đã được duyệt, và sau một lượt tăng dọc theo đường tăng $P$ từ $u$ đến $w$, xuất hiện một đường tăng mới $P'$ bắt đầu từ $v$ mà trước đó không tồn tại. Khi đó, đường $P'$ chắc chắn phải có cạnh chung với $P$; nếu không, việc tăng dọc theo $P$ sẽ không làm thay đổi trạng thái ghép cặp của các cạnh trong $P'$, và $P'$ sẽ không phải là đường tăng mới xuất hiện do lượt tăng này.
+    Giả sử ngược lại. Tức là, giả sử $v$ là một đỉnh chưa ghép cặp đã được duyệt, và sau một lượt tăng dọc theo đường tăng $P$ từ $u$ đến $w$, xuất hiện một đường tăng mới $P'$ bắt đầu từ $v$ mà trước đó không tồn tại. Khi đó, đường $P'$ phải có cạnh chung với $P$; nếu không, việc tăng dọc theo $P$ sẽ không làm thay đổi trạng thái ghép cặp của các cạnh trong $P'$, và $P'$ sẽ không phải là đường tăng mới xuất hiện do lượt tăng này.
     
     ![Đường tăng mới giao với đường tăng vừa sử dụng](./images/augment-2.svg)
     
     (Trong hình, màu đen biểu thị cạnh không ghép cặp, màu đỏ và màu xanh biểu thị các trạng thái ghép cặp khác nhau.)
     
-    Gọi $x$ là đỉnh đầu tiên thuộc $P$ gặp được khi xuất phát từ $v$ và đi dọc theo đường $P'$. Vì trước lượt tăng này đã tồn tại một đường xen kẽ từ $v$ đến $x$, nên $x$ chắc chắn là đỉnh đã ghép cặp, do đó không thể là một trong hai đỉnh $u$ hoặc $w$. Vì vậy, trên đường tăng $P$, có hai cạnh kề với $x$ và trạng thái ghép cặp của chúng trái ngược nhau. Điều này có nghĩa là bất kể khi đến đỉnh $x$ dọc theo đường xen kẽ bắt đầu từ $v$, trạng thái ghép cặp của cạnh cuối là gì, đều có thể kéo dài đường xen kẽ dọc theo $P$ đến một trong hai đỉnh $u$ hoặc $w$. Như vậy trước khi tăng đã tồn tại một đường tăng bắt đầu từ $v$, mâu thuẫn với giả thiết.
+    Gọi $x$ là đỉnh đầu tiên thuộc $P$ gặp được khi xuất phát từ $v$ và đi dọc theo đường $P'$. Vì trước lượt tăng này đã tồn tại một đường xen kẽ từ $v$ đến $x$, nên $x$ là đỉnh đã ghép cặp, do đó không thể là một trong hai đỉnh $u$ hoặc $w$. Vì vậy, trên đường tăng $P$, có hai cạnh kề với $x$ và trạng thái ghép cặp của chúng trái ngược nhau. Điều này có nghĩa là bất kể khi đến đỉnh $x$ dọc theo đường xen kẽ bắt đầu từ $v$, trạng thái ghép cặp của cạnh cuối là gì, đều có thể kéo dài đường xen kẽ dọc theo $P$ đến một trong hai đỉnh $u$ hoặc $w$. Như vậy trước khi tăng đã tồn tại một đường tăng bắt đầu từ $v$, mâu thuẫn với giả thiết.
 
 ### Cây xen kẽ
 
@@ -96,7 +96,7 @@ Trong lý thuyết ghép cặp đồ thị, có hai định lý tồn tại quan
 
 Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với một ghép cặp $M$ của đồ thị $G$, nếu mọi đỉnh trong $X$ đều là đỉnh đã ghép cặp, thì $M$ được gọi là một **ghép cặp $X$-hoàn hảo**, đôi khi cũng gọi tắt là ghép cặp hoàn hảo (của đồ thị hai phía $G$). Đây là ghép cặp lớn nhất có thể đạt được trong đồ thị hai phía. Định lý Hall đưa ra điều kiện cần và đủ để xác định kiểu ghép cặp này có tồn tại hay không.
 
-Định lý Hall nói rằng chỉ cần bảo đảm rằng với mọi tập con của $X$, trong $Y$ có đủ nhiều đỉnh để ghép với nó, thì chắc chắn tồn tại ghép cặp $X$-hoàn hảo.
+Định lý Hall nói rằng nếu với mọi tập con của $X$, trong $Y$ có đủ nhiều đỉnh để ghép với nó, thì tồn tại ghép cặp $X$-hoàn hảo.
 
 ???+ note "Định lý Hall"
     Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với mọi $W\subseteq X$, ký hiệu $N_G(W)$ là tập tất cả các đỉnh trong đồ thị $G$ kề với các đỉnh thuộc $W$. Khi đó, ghép cặp $X$-hoàn hảo tồn tại khi và chỉ khi $|W|\le |N_G(W)|$ đúng với mọi $W\subseteq X$.
@@ -104,17 +104,17 @@ Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với một g
 ??? note "Chứng minh"
     Tính cần thiết là trực tiếp. Giả sử tồn tại ghép cặp $X$-hoàn hảo $M$, thì mỗi đỉnh trong $X$ được ghép với một đỉnh khác nhau trong $Y$. Tập $N_G(W)$ ít nhất chứa các đỉnh được ghép với các đỉnh trong $W$, nên kích thước của nó ít nhất là $|W|$.
     
-    Điều kiện cũng là đủ. Giả sử không tồn tại ghép cặp $X$-hoàn hảo, khi đó tồn tại một ghép cặp lớn nhất $M$ sao cho một đỉnh $v\in X$ vẫn chưa được ghép cặp. Gọi $Z$ là tập các đỉnh có thể đi tới bằng đường xen kẽ xuất phát từ $v$, và đặt $S=Z\cap X$, $T=Z\cap Y$. Tập $S\setminus\{v\}$ chắc chắn toàn là đỉnh đã ghép cặp, nếu không sẽ xuất hiện chu trình lẻ, mâu thuẫn với việc $G$ là đồ thị hai phía; tập $T$ cũng chắc chắn toàn là đỉnh đã ghép cặp, nếu không sẽ tồn tại đường tăng, mâu thuẫn với việc $M$ là ghép cặp lớn nhất theo bổ đề Berge. Vì tất cả đều là đỉnh đã ghép cặp, và ghép cặp chỉ có thể xảy ra giữa $X$ và $Y$, nên các đỉnh trong $S\setminus\{v\}$ và $T$ tương ứng một-một, tức là $|T|=|S|-1$. Đồng thời, vì các đỉnh trong $T$ đã được ghép với các đỉnh trong $S$, ít nhất có $T\subseteq N_G(S)$; nhưng trong $N_G(S)$ không tồn tại đỉnh chưa ghép cặp $u$, bởi nếu giả sử nó kề với một đỉnh $v'$ trong $S$, thì có thể kéo dài đường xen kẽ đi tới $v'$ để thu được một đường xen kẽ đi tới $u$. Điều này cho thấy $T=N_G(S)$. Các lập luận trên suy ra $|N_G(S)|<|S|$, mâu thuẫn với điều kiện của định lý Hall. Do đó ghép cặp $X$-hoàn hảo tồn tại.
+    Điều kiện cũng là đủ. Giả sử không tồn tại ghép cặp $X$-hoàn hảo, khi đó tồn tại một ghép cặp lớn nhất $M$ sao cho một đỉnh $v\in X$ vẫn chưa được ghép cặp. Gọi $Z$ là tập các đỉnh có thể đi tới bằng đường xen kẽ xuất phát từ $v$, và đặt $S=Z\cap X$, $T=Z\cap Y$. Tập $S\setminus\{v\}$ chỉ gồm các đỉnh đã ghép cặp, nếu không sẽ xuất hiện chu trình lẻ, mâu thuẫn với việc $G$ là đồ thị hai phía; tập $T$ cũng chỉ gồm các đỉnh đã ghép cặp, nếu không sẽ tồn tại đường tăng, mâu thuẫn với việc $M$ là ghép cặp lớn nhất theo bổ đề Berge. Vì tất cả đều là đỉnh đã ghép cặp, và ghép cặp chỉ có thể xảy ra giữa $X$ và $Y$, nên các đỉnh trong $S\setminus\{v\}$ và $T$ tương ứng một-một, tức là $|T|=|S|-1$. Đồng thời, vì các đỉnh trong $T$ đã được ghép với các đỉnh trong $S$, ít nhất có $T\subseteq N_G(S)$; nhưng trong $N_G(S)$ không tồn tại đỉnh chưa ghép cặp $u$, bởi nếu giả sử nó kề với một đỉnh $v'$ trong $S$, thì có thể kéo dài đường xen kẽ đi tới $v'$ để thu được một đường xen kẽ đi tới $u$. Điều này cho thấy $T=N_G(S)$. Các lập luận trên suy ra $|N_G(S)|<|S|$, mâu thuẫn với điều kiện của định lý Hall. Do đó ghép cặp $X$-hoàn hảo tồn tại.
 
 ???+ note "Hệ quả"
     Mọi đồ thị hai phía chính quy đều có ghép cặp hoàn hảo.
 
 ??? note "Chứng minh"
-    Trong đồ thị hai phía chính quy, mọi đỉnh đều có cùng bậc, gọi là $k$. Trước hết kiểm tra điều kiện Hall, tức là với mọi $W\subseteq X$, có $|N_G(W)|\ge |W|$. Số cạnh kề với các đỉnh trong $W$ là $k|W|$, còn mỗi đỉnh trong tập $N_G(W)$ kề với nhiều nhất $k$ cạnh trong số đó, nên chắc chắn $k|W|\le k|N_G(W)|$, tức là $|W|\le |N_G(W)|$. Đặc biệt, $|X|\le |Y|$; vì $X$ và $Y$ đối xứng, cũng có $|X|=|Y|$. Điều này cho thấy trong đồ thị hai phía chính quy, ghép cặp $X$-hoàn hảo cũng chắc chắn là ghép cặp hoàn hảo. Vì định lý Hall bảo đảm tồn tại ghép cặp $X$-hoàn hảo, nên ghép cặp hoàn hảo cũng chắc chắn tồn tại.
+    Trong đồ thị hai phía chính quy, mọi đỉnh đều có cùng bậc, gọi là $k$. Trước hết kiểm tra điều kiện Hall, tức là với mọi $W\subseteq X$, có $|N_G(W)|\ge |W|$. Số cạnh kề với các đỉnh trong $W$ là $k|W|$, còn mỗi đỉnh trong tập $N_G(W)$ kề với nhiều nhất $k$ cạnh trong số đó, nên $k|W|\le k|N_G(W)|$, tức là $|W|\le |N_G(W)|$. Đặc biệt, $|X|\le |Y|$; vì $X$ và $Y$ đối xứng, cũng có $|X|=|Y|$. Điều này cho thấy trong đồ thị hai phía chính quy, ghép cặp $X$-hoàn hảo cũng là ghép cặp hoàn hảo. Vì định lý Hall bảo đảm tồn tại ghép cặp $X$-hoàn hảo, nên ghép cặp hoàn hảo cũng tồn tại.
 
 ### Định lý Tutte
 
-Định lý Tutte đưa ra điều kiện cần và đủ để xác định trong đồ thị tổng quát có tồn tại ghép cặp hoàn hảo hay không. Điều kiện này bắt nguồn từ một quan sát trực tiếp: đồ thị có số đỉnh lẻ chắc chắn không tồn tại ghép cặp hoàn hảo.
+Định lý Tutte đưa ra điều kiện cần và đủ để xác định trong đồ thị tổng quát có tồn tại ghép cặp hoàn hảo hay không. Điều kiện này bắt nguồn từ một quan sát trực tiếp: đồ thị có số đỉnh lẻ không tồn tại ghép cặp hoàn hảo.
 
 ???+ note "Định lý Tutte"
     Đồ thị $G=(V,E)$ tồn tại ghép cặp hoàn hảo khi và chỉ khi với mọi $U\subseteq V$, có $\operatorname{odd}(G-U)\le |U|$, trong đó $G-U$ là đồ thị con thu được bằng cách xóa khỏi $G$ các đỉnh thuộc $U$ cùng các cạnh kề với chúng, còn $\operatorname{odd}(G-U)$ là số thành phần liên thông có số đỉnh lẻ trong đồ thị con $G-U$.
@@ -126,7 +126,7 @@ Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với một g
     
     Tính đủ của điều kiện phức tạp hơn. Giả sử $G$ thỏa điều kiện Tutte nhưng không có ghép cặp hoàn hảo. Vì thêm bất kỳ cạnh nào vào $G$ vẫn giữ điều kiện Tutte đúng, nên không mất tính tổng quát, giả sử $G$ là một đồ thị cực đại như vậy: $G$ không có ghép cặp hoàn hảo, nhưng thêm bất kỳ cạnh $e$ nào chưa tồn tại vào $G$ thì $G+e$ đều có ghép cặp hoàn hảo. Gọi $U\subseteq V$ là tập tất cả các đỉnh có bậc bằng $|V|-1$. Có thể chứng minh rằng mỗi thành phần liên thông của $G-U$ đều là một đồ thị đầy đủ. Từ đó có thể xây dựng một ghép cặp hoàn hảo của $G$: trước hết lấy ghép cặp lớn nhất trong mỗi thành phần liên thông của $G-U$, khi đó chỉ những thành phần có số đỉnh lẻ mới để lại một đỉnh chưa ghép cặp; ghép các đỉnh chưa ghép cặp này với các đỉnh trong $U$; vì số đỉnh của $G$ là chẵn (lấy $U=\varnothing$ trong điều kiện Tutte), nên số đỉnh còn lại chưa được ghép trong $U$ cũng là chẵn, rồi ghép chúng từng cặp. Mâu thuẫn này cho thấy không tồn tại đồ thị $G$ thỏa điều kiện Tutte nhưng không có ghép cặp hoàn hảo.
     
-    Điểm mấu chốt là phải chứng minh mỗi thành phần liên thông của $G-U$ đều là đồ thị đầy đủ. Giả sử ngược lại. Không mất tính tổng quát, giả sử các đỉnh $x,y,z$ thuộc một thành phần liên thông như vậy, với $(x,y)\in E$, $(y,z)\in E$, $(x,z)\notin E$. Hơn nữa, vì $y\notin U$, chắc chắn tồn tại $w\in V\setminus U$ nhưng $(y,w)\notin E$. Do tính cực đại của $G$, các đồ thị $G+(x,z)$ và $G+(y,w)$ lần lượt có các ghép cặp hoàn hảo $M_1$ và $M_2$. Xét hiệu đối xứng $M_1\oplus M_2$. Vì trong đồ thị $(V,M_1\oplus M_2)$, bậc của mọi đỉnh hoặc là $0$ hoặc là $2$, nên $M_1\oplus M_2$ thực ra là hợp rời của một số chu trình chẵn, và mỗi chu trình chẵn được tạo bởi các cạnh ghép cặp của $M_1$ và $M_2$ xen kẽ nhau.
+    Điểm mấu chốt là phải chứng minh mỗi thành phần liên thông của $G-U$ đều là đồ thị đầy đủ. Giả sử ngược lại. Không mất tính tổng quát, giả sử các đỉnh $x,y,z$ thuộc một thành phần liên thông như vậy, với $(x,y)\in E$, $(y,z)\in E$, $(x,z)\notin E$. Hơn nữa, vì $y\notin U$, tồn tại $w\in V\setminus U$ nhưng $(y,w)\notin E$. Do tính cực đại của $G$, các đồ thị $G+(x,z)$ và $G+(y,w)$ lần lượt có các ghép cặp hoàn hảo $M_1$ và $M_2$. Xét hiệu đối xứng $M_1\oplus M_2$. Vì trong đồ thị $(V,M_1\oplus M_2)$, bậc của mọi đỉnh hoặc là $0$ hoặc là $2$, nên $M_1\oplus M_2$ là hợp rời của một số chu trình chẵn, và mỗi chu trình chẵn được tạo bởi các cạnh ghép cặp của $M_1$ và $M_2$ xen kẽ nhau.
     
     ![](images/tutte-proof.svg)
     
@@ -147,13 +147,13 @@ Giả sử $G=(X,Y,E)$ là đồ thị hai phía và $|X|\le |Y|$. Với một g
     3|V(G_i)| = \sum_{v\in V(G_i)} d(v) = 2|E(G_i)| + m_i.
     $$
     
-    Do đó, $m_i$ chắc chắn là số lẻ. Vì $G$ không có cầu (tức là cạnh cắt), nên $m_i\ge 3$. Điều này cho thấy
+    Do đó, $m_i$ là số lẻ. Vì $G$ không có cầu (tức là cạnh cắt), nên $m_i\ge 3$. Điều này cho thấy
     
     $$
     \operatorname{odd}(G-U) = n \le \dfrac{1}{3}\sum_{i=1}^n m_i \le \dfrac{1}{3}\sum_{v\in U} d(v) = |U|.
     $$
     
-    Vì vậy, điều kiện Tutte đúng và đồ thị $G$ chắc chắn có ghép cặp hoàn hảo.
+    Vì vậy, điều kiện Tutte đúng và đồ thị $G$ có ghép cặp hoàn hảo.
 
 ## Các thuật toán thường gặp
 
@@ -189,13 +189,13 @@ Ghép cặp lớn nhất (có trọng số) có liên hệ chặt chẽ với nh
 
 ### Ghép cặp lớn nhất có trọng số lớn nhất
 
-Bài toán ghép cặp lớn nhất có trọng số lớn nhất và bài toán ghép cặp trọng số lớn nhất có thể quy về nhau. Một khác biệt rất đáng chú ý giữa chúng là trong ghép cặp lớn nhất có trọng số lớn nhất có thể tồn tại cạnh trọng số âm, nhưng trong ghép cặp trọng số lớn nhất sẽ không tồn tại cạnh trọng số âm.
+Bài toán ghép cặp lớn nhất có trọng số lớn nhất và bài toán ghép cặp trọng số lớn nhất có thể quy về nhau. Một khác biệt quan trọng giữa chúng là ghép cặp lớn nhất có trọng số lớn nhất có thể chứa cạnh trọng số âm, còn ghép cặp trọng số lớn nhất thì không.
 
-Trước hết, bài toán ghép cặp trọng số lớn nhất có thể quy về bài toán ghép cặp lớn nhất có trọng số lớn nhất. Đầu tiên, đặt trọng số của mọi cạnh âm trong đồ thị $G$ thành $0$; sau đó mở rộng đồ thị thành đồ thị đầy đủ $G'$ bằng cách nối thêm một số cạnh có trọng số $0$. Chú ý rằng trong đồ thị đầy đủ có trọng số cạnh không âm, ghép cặp lớn nhất có trọng số lớn nhất và ghép cặp trọng số lớn nhất là như nhau. Vì vậy, chỉ cần tính ghép cặp lớn nhất có trọng số lớn nhất $M'$ của $G'$, rồi xóa tất cả các cạnh trọng số không trong $M'$, tập cạnh $M$ thu được chính là ghép cặp trọng số lớn nhất của đồ thị $G$.[^other-approach]
+Trước hết, bài toán ghép cặp trọng số lớn nhất có thể quy về bài toán ghép cặp lớn nhất có trọng số lớn nhất. Đầu tiên, đặt trọng số của mọi cạnh âm trong đồ thị $G$ thành $0$; sau đó mở rộng đồ thị thành đồ thị đầy đủ $G'$ bằng cách nối thêm một số cạnh có trọng số $0$. Trong đồ thị đầy đủ có trọng số cạnh không âm, ghép cặp lớn nhất có trọng số lớn nhất và ghép cặp trọng số lớn nhất là như nhau. Vì vậy, chỉ cần tính ghép cặp lớn nhất có trọng số lớn nhất $M'$ của $G'$, rồi xóa tất cả các cạnh trọng số không trong $M'$, tập cạnh $M$ thu được chính là ghép cặp trọng số lớn nhất của đồ thị $G$.[^other-approach]
 
 ![Quy bài toán ghép cặp trọng số lớn nhất về ghép cặp lớn nhất có trọng số lớn nhất](images/graph-match-5.svg)
 
-Ngược lại, bài toán ghép cặp lớn nhất có trọng số lớn nhất cũng có thể quy về bài toán ghép cặp trọng số lớn nhất. Chỉ cần cộng một số dương đủ lớn $K$ vào trọng số của mọi cạnh trong đồ thị $G$, có thể bảo đảm rằng ghép cặp trọng số lớn nhất của đồ thị $G'$ thu được cũng chắc chắn là ghép cặp lớn nhất, và do đó tất yếu là ghép cặp lớn nhất có trọng số lớn nhất. Lý do là việc tính ghép cặp trọng số lớn nhất của $G'$ tương đương với tối đa hóa biểu thức sau trên tất cả các ghép cặp của đồ thị $G$:
+Ngược lại, bài toán ghép cặp lớn nhất có trọng số lớn nhất cũng có thể quy về bài toán ghép cặp trọng số lớn nhất. Chỉ cần cộng một số dương đủ lớn $K$ vào trọng số của mọi cạnh trong đồ thị $G$, có thể bảo đảm rằng ghép cặp trọng số lớn nhất của đồ thị $G'$ thu được cũng là ghép cặp lớn nhất, và do đó là ghép cặp lớn nhất có trọng số lớn nhất. Lý do là việc tính ghép cặp trọng số lớn nhất của $G'$ tương đương với tối đa hóa biểu thức sau trên tất cả các ghép cặp của đồ thị $G$:
 
 $$
 K|M| + \sum_{e\in M}w(e).
@@ -233,6 +233,6 @@ Với đồ thị có trọng số, bài toán phủ cạnh trọng số nhỏ n
 8.  [Wikiwand - Hopcroft–Karp algorithm](https://www.wikiwand.com/en/Hopcroft%E2%80%93Karp_algorithm)
 9.  Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
 
-[^other-approach]: Tất nhiên, đây không phải cách quy về duy nhất. Với đồ thị $G=(V,E)$, cũng có thể lấy một bản sao $\tilde G=(\tilde V,\tilde E)$ của nó, nối từng đỉnh của bản sao vào đồ thị ban đầu, và đặt trọng số của mọi cạnh mới so với đồ thị gốc $G$ (bao gồm cả các cạnh trong bản sao) bằng $0$, thu được đồ thị $G'=(V',E')$. Nói cách khác, tập đỉnh của đồ thị mới $G'$ là $V\cup \tilde V$, còn tập cạnh của nó ngoài các cạnh trong đồ thị $G$ còn có cạnh trọng số không nối mỗi đỉnh $v\in V$ với bản sao $\tilde v\in \tilde V$ của nó, và với mọi cạnh $(u,v)\in E$, có cạnh trọng số không nối $\tilde u$ với $\tilde v$. Mọi ghép cặp $M$ trong đồ thị $G$ đều tương ứng với một ghép cặp hoàn hảo trong đồ thị $G'$ có cùng tổng trọng số: chỉ cần ghép mọi đỉnh chưa ghép cặp $v$ của $G$ với bản sao $\tilde v$ của nó, và với mỗi cạnh ghép cặp $(u,v)$, ghép $\tilde u$ với $\tilde v$. Do đó, ghép cặp lớn nhất có trọng số lớn nhất trong đồ thị $G'$, tức là ghép cặp hoàn hảo trọng số lớn nhất, khi giới hạn lại trên $E$ sẽ cho ghép cặp trọng số lớn nhất của đồ thị $G$. Ưu điểm của cách quy về này là nếu đồ thị $G$ là đồ thị hai phía hoặc đồ thị thưa, thì đồ thị mở rộng $G'$ thu được cũng tương ứng là đồ thị hai phía hoặc đồ thị thưa.
+[^other-approach]: Đây không phải cách quy về duy nhất. Với đồ thị $G=(V,E)$, cũng có thể lấy một bản sao $\tilde G=(\tilde V,\tilde E)$ của nó, nối từng đỉnh của bản sao vào đồ thị ban đầu, và đặt trọng số của mọi cạnh mới so với đồ thị gốc $G$ (bao gồm cả các cạnh trong bản sao) bằng $0$, thu được đồ thị $G'=(V',E')$. Nói cách khác, tập đỉnh của đồ thị mới $G'$ là $V\cup \tilde V$, còn tập cạnh của nó ngoài các cạnh trong đồ thị $G$ còn có cạnh trọng số không nối mỗi đỉnh $v\in V$ với bản sao $\tilde v\in \tilde V$ của nó, và với mọi cạnh $(u,v)\in E$, có cạnh trọng số không nối $\tilde u$ với $\tilde v$. Mọi ghép cặp $M$ trong đồ thị $G$ đều tương ứng với một ghép cặp hoàn hảo trong đồ thị $G'$ có cùng tổng trọng số: chỉ cần ghép mọi đỉnh chưa ghép cặp $v$ của $G$ với bản sao $\tilde v$ của nó, và với mỗi cạnh ghép cặp $(u,v)$, ghép $\tilde u$ với $\tilde v$. Do đó, ghép cặp lớn nhất có trọng số lớn nhất trong đồ thị $G'$, tức là ghép cặp hoàn hảo trọng số lớn nhất, khi giới hạn lại trên $E$ sẽ cho ghép cặp trọng số lớn nhất của đồ thị $G$. Ưu điểm của cách quy về này là nếu đồ thị $G$ là đồ thị hai phía hoặc đồ thị thưa, thì đồ thị mở rộng $G'$ thu được cũng tương ứng là đồ thị hai phía hoặc đồ thị thưa.
 
 [^edge-cover]: Với mỗi ghép cặp hoàn hảo $M'$ của đồ thị $G'$, đều có thể theo cách mô tả trong mục này để thu được một phủ cạnh $C$ của đồ thị $G$, và tổng trọng số của $C$ bằng một nửa tổng trọng số của $M'$; đảo ngược quá trình xây dựng này, với mỗi phủ cạnh $C$ của đồ thị $G$, đều có thể xây dựng một ghép cặp hoàn hảo $M'$ của đồ thị $G'$, và tổng trọng số của $M'$ không vượt quá hai lần tổng trọng số của $C$. Điều đó chứng minh phép quy về là đúng.

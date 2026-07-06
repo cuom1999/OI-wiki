@@ -103,7 +103,7 @@ Top tree có các tính chất sau:
 
 Top tree giản lược đáng kể quá trình co rút cây, từ đó cho thấy có thể duy trì thông tin trên cây bằng cách duy trì quá trình co rút cây. SATT duy trì thông tin trên cây dựa trên nguyên lý này.
 
-Chú ý rằng quá trình co rút cây cũng là quá trình thông tin trên cây liên tục được thêm vào. Khi thực hiện một lần `compress(x)`, thông tin của đỉnh $x$ bắt đầu xuất hiện trong một cụm kể từ thời điểm đó và ảnh hưởng đến kết quả thống kê.
+Quá trình co rút cây cũng là quá trình thông tin trên cây liên tục được thêm vào. Khi thực hiện một lần `compress(x)`, thông tin của đỉnh $x$ bắt đầu xuất hiện trong một cụm kể từ thời điểm đó và ảnh hưởng đến kết quả thống kê.
 
 Giả sử hiện tại dùng top tree để duy trì một cây $T$, mỗi đỉnh và cạnh trên cây đều có trọng số, và cần duy trì tổng trọng số của $T$.
 
@@ -123,7 +123,7 @@ Trước hết, gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm 
 
 Như hình, chọn một cặp đầu mút cho cụm gốc; khi đánh dấu cụm, cả đầu mút cũng được khoanh vào.
 
-Từ các thao tác cơ bản của co rút cây, có thể thấy thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác nén, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác gom lá.
+Từ các thao tác cơ bản của co rút cây, thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác nén, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác gom lá.
 
 Tách riêng đường cụm ra. Đây là một cây có hình dạng đặc biệt, cụ thể là một dây chuyền, và dựng một top tree cho cây này với thứ tự co rút cây tùy ý.
 
@@ -133,7 +133,7 @@ Cấu trúc này được gọi là **cây nén** (Compress Tree), vì trong top
 
 Các nút trong cây nén được gọi là **nút nén** (Compress Node). Nếu chỉ xét đường cụm hiện tại, một nút nén không phải lá đại diện cho một quá trình nén: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Cây nén này duy trì thông tin của đường cụm của $C(k,g)$.
 
-Ngoài ra, trong cây nén còn đặt thêm một số ràng buộc lên top tree được sử dụng. Chú ý rằng cây nén duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong cây nén phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng tương tự.
+Ngoài ra, trong cây nén còn đặt thêm một số ràng buộc lên top tree được sử dụng. Cây nén duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong cây nén phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng tương tự.
 
 Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách gom lá lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại được biểu diễn bằng một cây tam phân. Cấu trúc này được gọi là **cây gom lá** (Rake Tree), và các nút trong cây gom lá tương ứng được gọi là **nút gom lá** (Rake Node). Mỗi nút gom lá đều đại diện cho một cụm, được hình thành bằng cách gom lá con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; mỗi nút trong cây gom lá đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
@@ -282,7 +282,7 @@ void splay(int x, int type, int goal = 0) {
 }
 ```
 
-Đáng chú ý là hai hàm `direction` và `isroot` khác với Splay thông thường, vì dù nút này xoay thế nào thì con giữa của nó cũng không thay đổi.
+Hai hàm `direction` và `isroot` khác với Splay thông thường, vì dù nút này xoay thế nào thì con giữa của nó cũng không thay đổi.
 
 #### Các hàm access
 
@@ -304,9 +304,9 @@ if (rs(x)) {
 
 Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hiện các bước sau để nó vượt qua cây gom lá phía trên:
 
-1.  Đưa nút cha của nó (chắc chắn là một nút gom lá) splay lên gốc của cây gom lá của nó.
+1.  Đưa nút cha của nó (luôn là một nút gom lá) splay lên gốc của cây gom lá của nó.
 
-2.  Đưa nút ông của $x$ (chắc chắn là một nút nén) splay lên gốc của cây nén của nó.
+2.  Đưa nút ông của $x$ (luôn là một nút nén) splay lên gốc của cây nén của nó.
 
 3.  Nếu nút ông của $x$ có một con phải, hoán đổi đỉnh x với con phải của nút ông, cập nhật thông tin, rồi thoát.
 
@@ -322,7 +322,7 @@ Hàm `Delete(x)` nói trên hoạt động như sau:
 
 `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần nối tách, lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần nối tách tiếp theo.
 
-Cuối cùng, đỉnh $x$ ban đầu cần thao tác chắc chắn nằm ở đầu phải nhất của cây nén của cụm gốc. Chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
+Cuối cùng, đỉnh $x$ ban đầu cần thao tác nằm ở đầu phải nhất của cây nén của cụm gốc. Chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
 
 ```cpp
 // ls con trái của một nút SATT
@@ -530,7 +530,7 @@ $$
 a\leq 3r_3(B)+3r_3(B)+3r_2(\gamma)-3r_3(\gamma)-3r_2(B)-3r_1(\gamma)+3
 $$
 
-Gọi điểm của lần nối tách tiếp theo là $X$ (tức điểm $B$ trong trạng thái 4), giá trị $r$ của nó là $r'(X)$. Đồng thời chú ý rằng $r_3(\gamma),r_1(\gamma) \ge r_1(X)$, $r_3(B),r_2(\gamma) \leq r'(X)$ và $r_3(B)=r_2(B)$, nên
+Gọi điểm của lần nối tách tiếp theo là $X$ (tức điểm $B$ trong trạng thái 4), giá trị $r$ của nó là $r'(X)$. Đồng thời do $r_3(\gamma),r_1(\gamma) \ge r_1(X)$, $r_3(B),r_2(\gamma) \leq r'(X)$ và $r_3(B)=r_2(B)$, nên
 
 $$
 a\leq  9(r'(X)-r(X))+3
@@ -546,7 +546,7 @@ $$
 
 trong đó $k$ là số lần nối tách.
 
-Nhìn qua thì $a$ có thêm hạng $3k+1$, khiến độ phức tạp khấu hao dường như khó phân tích. Có thể xử lý bằng cách chú ý rằng các phép xoay zig-zig/zig-zag có thể được khấu hao như sau
+Thoạt nhìn, $a$ có thêm hạng $3k+1$, khiến độ phức tạp khấu hao dường như khó phân tích. Có thể xử lý bằng cách dùng khấu hao cho các phép xoay zig-zig/zig-zag như sau
 
 $$
 \begin{aligned}
@@ -557,7 +557,7 @@ $$
 
 Nếu tìm được đủ nhiều thao tác zig-zig, zig-zag, có thể phân bổ $3k+1$ này vào các thao tác đó để triệt tiêu nó.
 
-Trong splay toàn cục có đủ nhiều thao tác zig-zig, zag-zig để dùng, vì số nút trong splay toàn cục chắc chắn lớn hơn $k$, còn số nút trên đường từ đỉnh $x$ đến gốc splay toàn cục chắc chắn không nhỏ hơn $k$. Nói cách khác, trong một lần `access(x)` chắc chắn có ít nhất $\dfrac k2$ thao tác zig-zag. Tính thêm độ phức tạp khấu hao của splay toàn cục là $a \leq 3\log n +1$, độ phức tạp khấu hao của một lần `access(x)` khi không tính `delete(x)` là
+Trong splay toàn cục có đủ nhiều thao tác zig-zig, zag-zig để dùng, vì số nút trong splay toàn cục lớn hơn $k$, còn số nút trên đường từ đỉnh $x$ đến gốc splay toàn cục không nhỏ hơn $k$. Nói cách khác, trong một lần `access(x)` có ít nhất $\dfrac k2$ thao tác zig-zag. Tính thêm độ phức tạp khấu hao của splay toàn cục là $a \leq 3\log n +1$, độ phức tạp khấu hao của một lần `access(x)` khi không tính `delete(x)` là
 
 $$
 \begin{aligned}
@@ -582,7 +582,7 @@ $$
 \end{aligned}
 $$
 
-Chú ý rằng bản chất của thao tác `delete(x)` là xóa một nút gom lá, nhưng trong $m$ lần thao tác, nhiều nhất chỉ thêm $m$ nút gom lá. Theo định nghĩa của nút gom lá, ban đầu có nhiều nhất $n$ nút gom lá, tức tổng cộng chỉ thực hiện nhiều nhất $m+n$ lần `delete(x)`. Từ $a' \leq 3\log n +1$ suy ra
+Bản chất của thao tác `delete(x)` là xóa một nút gom lá, nhưng trong $m$ lần thao tác, nhiều nhất chỉ thêm $m$ nút gom lá. Theo định nghĩa của nút gom lá, ban đầu có nhiều nhất $n$ nút gom lá, tức tổng cộng chỉ thực hiện nhiều nhất $m+n$ lần `delete(x)`. Từ $a' \leq 3\log n +1$ suy ra
 
 $$
 \sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n
@@ -628,7 +628,7 @@ void pushup(int x, int op) {
 
 Trong đó $diam$ là đáp án của nút hiện tại, tức đường kính của cụm do nút này đại diện. $len$ biểu diễn độ dài đường cụm của nút nén hiện tại, còn $maxs_{0/1}$ biểu diễn khoảng cách lớn nhất từ nút nén đến đỉnh trong và đầu mút của cụm khi không chọn con đường cụm/không chọn cha. Nếu là nút gom lá thì chỉ lưu $maxs_0$, tức khoảng cách lớn nhất từ đầu mút trên của cụm hiện tại đến đỉnh trong và đầu mút của cụm. Mỗi lần truy vấn chỉ cần lấy $diam$ của nút gốc SATT.
 
-Chú ý cần sửa `Pushrev(x)` đôi chút.
+Cần sửa `Pushrev(x)` đôi chút.
 
 ```cpp
 void pushrev(int x) {
@@ -656,7 +656,7 @@ $diam$ được duy trì ở trên cũng là thông tin cục bộ.
 
 Quay lại vấn đề chính, trọng tâm là thông tin phi cục bộ, không thể duy trì bằng `pushup(x)` đơn giản. Xét cách tìm kiếm trên SATT:
 
-Tìm kiếm bắt đầu từ nút gốc của SATT, tức cụm gốc. Chú ý rằng trọng tâm có một tính chất rất tốt: nếu một phía của một cạnh có số đỉnh lớn hơn hoặc bằng phía còn lại, thì phía đó của cạnh chắc chắn có ít nhất một trọng tâm (trọng tâm có thể có hai).
+Tìm kiếm bắt đầu từ nút gốc của SATT, tức cụm gốc. Trọng tâm có một tính chất rất tốt: nếu một phía của một cạnh có số đỉnh lớn hơn hoặc bằng phía còn lại, thì phía đó của cạnh có ít nhất một trọng tâm (trọng tâm có thể có hai).
 
 Gọi $sum$ là số đỉnh của một cụm, $maxs$ là giá trị $sum$ lớn nhất trong các con giữa của mọi nút gom lá thuộc một cây gom lá.
 
@@ -685,7 +685,7 @@ Thực hiện các phép so sánh sau:
 
 3.  So sánh giá trị $sum$ của cụm nhỏ hơn có $sum$ lớn nhất trong cây gom lá là con giữa của điểm $x$ với giá trị $sum$ của hợp giữa cụm $compress(Y)$, cụm $A$, đỉnh $X$ và các cụm nhỏ hơn còn lại (tạm gọi là cụm $Y$). Nếu giá trị $sum$ của cụm nhỏ hơn đó lớn hơn hoặc bằng vế sau, nghĩa là có ít nhất một trọng tâm trong cây con của cụm nhỏ hơn đó, đệ quy tìm kiếm vào nó. Nếu hai vế bằng nhau, đỉnh $X$ cũng là một trọng tâm và cần ghi nhận.
 
-4.  Nếu các phép so sánh trên đều không đệ quy, thì đỉnh $X$ chắc chắn là một trọng tâm; ghi nhận rồi thoát.
+4.  Nếu các phép so sánh trên đều không đệ quy, thì đỉnh $X$ là một trọng tâm; ghi nhận rồi thoát.
 
 Bước tìm kiếm đầu tiên là đúng. Vấn đề là các bước sau cần tìm như thế nào.
 
