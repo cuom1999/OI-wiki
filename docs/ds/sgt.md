@@ -2,15 +2,12 @@ author: Ir1d, 0xis-cn
 
 ## Dẫn nhập
 
-**Cây scapegoat** là một loại cây cân bằng theo trọng số,
-duy trì cân bằng bằng các thao tác xây lại.
-Sau mỗi thao tác chèn hoặc xóa,
-cây scapegoat kiểm tra xem cây có bị mất cân bằng hay không;
-nếu có, nó sẽ xây lại phần thích hợp để khôi phục cân bằng.
+**Cây scapegoat** là một loại cây cân bằng theo trọng số, duy trì cân bằng bằng thao tác xây lại. Sau mỗi thao tác chèn
+hoặc xóa, cây scapegoat kiểm tra xem cây có bị mất cân bằng hay không; nếu có, nó sẽ xây lại phần thích hợp để khôi phục
+cân bằng.
 
-Nhìn chung, cây scapegoat không hỗ trợ thao tác trên đoạn
-và cũng không thể bền vững hóa hoàn toàn.
-Bù lại, nó có ưu điểm là cài đặt đơn giản và hằng số nhỏ.
+Nhìn chung, cây scapegoat không hỗ trợ thao tác trên đoạn và cũng không thể bền vững hóa hoàn toàn. Bù lại, nó có ưu
+điểm là cài đặt đơn giản và hằng số nhỏ.
 
 ## Cấu trúc và thao tác cơ bản
 
@@ -48,8 +45,9 @@ Cần phân biệt cách cập nhật `tot[x]` và `sz[x]`.
 
 Khi cây bị mất cân bằng, cần xây lại một cây con nào đó sao cho nó cân bằng nhất có thể. Việc xây lại gồm hai bước:
 
--   Duyệt inorder cây con cần xây lại, đưa tất cả nút chưa bị xóa vào một dãy;
--   Xây cây bằng cách chia đôi, tức là lấy phần tử giữa làm gốc, đệ quy xây cây con ở hai phía trái và phải, rồi cập nhật thông tin nút.
+-   Duyệt trung thứ tự cây con cần xây lại, đưa tất cả nút chưa bị xóa vào một dãy;
+-   Xây cây bằng cách chia đôi, tức là lấy phần tử giữa làm gốc, đệ quy xây cây con ở hai phía trái và phải, rồi cập nhật
+    thông tin nút.
 
 Cài đặt tham khảo như sau:
 
@@ -60,18 +58,16 @@ Cài đặt tham khảo như sau:
 
 Khi xây cây, cần duy trì đầy đủ thông tin nút, bao gồm cả thông tin của nút lá.
 
-Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$.
-Vì vậy, nếu lần nào chèn hoặc xóa cũng xây lại,
-độ phức tạp sẽ khó chấp nhận.
-Ý tưởng cốt lõi của cây scapegoat nằm ở việc chọn thời điểm xây lại,
-nhờ đó đạt được độ phức tạp khấu hao $O(\log n)$.
+Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$. Vì vậy, nếu lần nào chèn hoặc xóa cũng xây lại, độ phức tạp sẽ khó
+chấp nhận. Ý tưởng cốt lõi của cây scapegoat nằm ở việc chọn thời điểm xây lại, nhờ đó đạt được độ phức tạp khấu hao
+$O(\log n)$.
 
 ### Thao tác chèn
 
 Thao tác chèn có thể làm cây mất cân bằng.
 Để xác định mất cân bằng, cần đưa vào tham số $\alpha\in(0.5,1)$,
 thường chọn trong khoảng $0.7\sim 0.8$.
-Tham số này còn được gọi là hệ số cân bằng alpha.
+Tham số này còn được gọi là hệ số cân bằng $\alpha$.
 
 Nếu độ sâu của nút mới chèn vượt quá $\lfloor\log_{1/\alpha}|T|\rfloor$,
 trong đó $|T|$ là kích thước cây sau khi cập nhật,
@@ -87,8 +83,8 @@ và nút con phải của $x$, còn $|T_x|$ là kích thước cây con gốc $x
 
 Các bước cụ thể của thao tác chèn như sau:
 
--   Trước hết dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí của giá trị cần chèn,
-    đồng thời ghi lại độ sâu trong quá trình đi xuống;
+-   Trước hết dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí của giá trị cần chèn, đồng thời ghi lại độ
+    sâu trong quá trình đi xuống;
 -   Nếu đã có nút tương ứng, chỉ cần sửa thông tin nút; nếu chưa thì tạo nút mới;
 -   Nếu nút mới quá sâu, cần quay lui từ dưới lên tới gốc,
     cập nhật thông tin nút và ghi lại nút đầu tiên
@@ -111,19 +107,13 @@ Nút mất cân bằng đầu tiên trong quá trình quay lui chính là "scape
 
 ### Thao tác xóa
 
-Cách xử lý thao tác xóa rất đơn giản.
-Chiến lược xóa của cây scapegoat là "xóa lười":
-khi một nút trở thành rỗng, không loại bỏ nút đó ngay mà để xử lý sau.
+Thao tác xóa được xử lý khá đơn giản. Chiến lược xóa của cây scapegoat là "xóa lười": khi một nút trở thành rỗng, không
+loại bỏ nút đó ngay mà để xử lý sau.
 
-Nếu trong cây có quá nhiều nút rỗng,
-hiệu suất truy cập sẽ giảm mạnh.
-Vì vậy, cây scapegoat duy trì hai bộ đếm:
-số nút chưa bị xóa trong toàn bộ cây
-và số nút thực tế đã dùng trong toàn bộ cây.
-Với một ngưỡng đã chọn[^threshold] $\alpha\in(0,1)$,
-khi tỉ lệ giữa bộ đếm thứ nhất và bộ đếm thứ hai giảm xuống dưới $\alpha$,
-xây lại toàn bộ cây một lần.
-Trong quá trình xây lại, tất cả nút rỗng sẽ bị loại bỏ.
+Nếu trong cây có quá nhiều nút rỗng, hiệu suất truy cập sẽ giảm mạnh. Vì vậy, cây scapegoat duy trì hai bộ đếm: số nút
+chưa bị xóa trong toàn bộ cây và số nút thực tế đã dùng trong toàn bộ cây. Với một ngưỡng đã chọn[^threshold]
+$\alpha\in(0,1)$, khi tỉ lệ giữa bộ đếm thứ nhất và bộ đếm thứ hai giảm xuống dưới $\alpha$, xây lại toàn bộ cây một
+lần. Trong quá trình xây lại, tất cả nút rỗng sẽ bị loại bỏ.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -233,7 +223,7 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
 
 ## Thao tác cây cân bằng
 
-Phần này giới thiệu cách dùng cây scapegoat để duy trì một multiset.
+Phần này giới thiệu cách dùng cây scapegoat để duy trì một đa tập.
 
 Ngoài các thao tác đã giới thiệu ở phần trước,
 các thao tác còn lại đều là thao tác thường gặp của cây cân bằng.
@@ -242,7 +232,8 @@ các thao tác này cũng cần được điều chỉnh tương ứng.
 
 ### Truy vấn hạng
 
-Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí nút, đồng thời ghi lại số lượng giá trị được lưu ở bên trái đường đi là đủ.
+Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí nút, đồng thời ghi lại số lượng giá trị được lưu ở bên
+trái đường đi là đủ.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -282,7 +273,8 @@ Cuối phần này là cài đặt tham khảo cho bài mẫu [Cây cân bằng 
 
 ## Tài liệu tham khảo
 
--   Galperin, Igal, and Ronald L. Rivest. "Scapegoat trees." Proceedings of the fourth annual ACM-SIAM Symposium on Discrete algorithms. 1993.
+-   Galperin, Igal, and Ronald L. Rivest. "Scapegoat trees." Proceedings of the fourth annual ACM-SIAM Symposium on
+    Discrete Algorithms. 1993.
 -   [Scapegoat Tree - Wikipedia](https://en.wikipedia.org/wiki/Scapegoat_tree)
 -   [Bài viết của riteme về cây scapegoat](https://riteme.site/blog/2016-4-6/scapegoat.html)
 
