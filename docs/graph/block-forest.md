@@ -6,9 +6,9 @@ Trước khi đọc nội dung dưới đây, cần nắm chắc phần [các kh
 
 ## Dẫn nhập
 
-Ai cũng biết cây (hoặc rừng) có nhiều tính chất tốt, và dễ được duy trì bằng nhiều cấu trúc dữ liệu thông dụng.
+Cây (hoặc rừng) có nhiều tính chất tốt và thuận tiện để duy trì bằng nhiều cấu trúc dữ liệu thông dụng.
 
-Ngược lại, đồ thị tổng quát không có những tính chất tốt như vậy. May mắn là trong một số trường hợp, có thể chuyển một số bài toán trên đồ thị tổng quát về bài toán trên cây.
+Ngược lại, đồ thị tổng quát không có những tính chất tốt như vậy. Trong một số trường hợp, có thể chuyển một số bài toán trên đồ thị tổng quát về bài toán trên cây.
 
 Cây tròn-vuông (Block forest hoặc Round-square tree) [^ref1] là một cách biến đồ thị thành cây. Bài viết này sẽ giới thiệu cách xây dựng, các tính chất và một số ứng dụng của cây tròn-vuông.
 
@@ -21,7 +21,7 @@ Cây tròn-vuông ban đầu là một công cụ để xử lý "đồ thị ca
 Để giới thiệu cây tròn-vuông, trước hết cần giới thiệu **thành phần song liên thông theo đỉnh**.
 
 Một cách định nghĩa **đồ thị song liên thông theo đỉnh** là: giữa hai đỉnh phân biệt bất kỳ trong đồ thị luôn có ít nhất hai đường đi không lặp đỉnh.
-"Không lặp đỉnh" vừa có nghĩa là các đỉnh trên một đường đi không lặp lại (đường đi đơn), vừa có nghĩa là giao của hai đường đi là rỗng (tất nhiên hai đường đi đều phải đi qua đỉnh bắt đầu và đỉnh kết thúc; hai đỉnh này không tính vào phạm vi đang xét).
+"Không lặp đỉnh" vừa có nghĩa là các đỉnh trên một đường đi không lặp lại (đường đi đơn), vừa có nghĩa là giao của hai đường đi là rỗng (ngoài đỉnh bắt đầu và đỉnh kết thúc mà cả hai đường đi đều đi qua; hai đỉnh này không tính vào phạm vi đang xét).
 
 Khá khó định nghĩa đồ thị chỉ có một đỉnh có phải là một thành phần song liên thông theo đỉnh hay không; phần này tạm thời không xét các đồ thị có số đỉnh bằng $1$.
 
@@ -46,9 +46,9 @@ Hình dưới đây cho thấy các thành phần song liên thông theo đỉnh
 
 ![](./images/block-forest1.svg)![](./images/block-forest2.svg)![](./images/block-forest3.svg)
 
-Số đỉnh của cây tròn-vuông nhỏ hơn $2n$, vì số đỉnh khớp nhỏ hơn $n$. Do đó cần chú ý khai báo các mảng với kích thước gấp đôi.
+Số đỉnh của cây tròn-vuông nhỏ hơn $2n$, vì số đỉnh khớp nhỏ hơn $n$. Do đó cần khai báo các mảng với kích thước gấp đôi.
 
-Thực ra, chỉ khi đồ thị gốc liên thông thì "cây tròn-vuông" mới là một cây. Nếu đồ thị gốc có $k$ thành phần liên thông, cây tròn-vuông của nó cũng sẽ tạo thành một rừng gồm $k$ cây.
+Chỉ khi đồ thị gốc liên thông thì "cây tròn-vuông" mới là một cây. Nếu đồ thị gốc có $k$ thành phần liên thông, cây tròn-vuông của nó cũng sẽ tạo thành một rừng gồm $k$ cây.
 
 Nếu một thành phần liên thông nào đó trong đồ thị gốc chỉ có một đỉnh, cần phân tích tùy tình huống cụ thể; trong các thảo luận tiếp theo, không xét đỉnh cô lập.
 
@@ -70,7 +70,7 @@ Nếu chưa từng nghe về thuật toán Tarjan, điều này có thể hơi k
 
 ![](./images/block-forest4.svg)
 
-(Có thể thấy đồ thị này thực ra tương đương với đồ thị trong các hình bên trên.)
+(Đồ thị này tương đương với đồ thị trong các hình bên trên.)
 Trong hình, cạnh cây được vẽ bằng đường thẳng từ trên xuống dưới, cạnh ngược lên tổ tiên được vẽ bằng đường cong từ dưới lên trên. Số hiệu của đỉnh chính là thứ tự DFS của nó.
 
 Khi đó mảng `low` như sau:
@@ -79,7 +79,7 @@ Khi đó mảng `low` như sau:
 | :---------------: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: | :-: |
 | $\mathrm{low}[i]$ | $1$ | $1$ | $1$ | $3$ | $3$ | $4$ | $3$ | $3$ | $7$ |
 
-Điều này không quá khó hiểu. Chú ý rằng `low` của $9$ là $7$; nó khác một vài cách tìm đỉnh khớp, vì để tiện lợi quy ước có thể đi lên bằng cạnh cha, nhưng ý tưởng chính vẫn giống nhau.
+Điểm cần lưu ý là `low` của $9$ là $7$; giá trị này khác một vài cách tìm đỉnh khớp, vì để tiện lợi quy ước có thể đi lên bằng cạnh cha, nhưng ý tưởng chính vẫn giống nhau.
 
 Có thể viết hàm DFS tính `dfn` và `low` rất gọn (ban đầu mảng `dfn` được gán bằng không):
 
@@ -113,9 +113,9 @@ Có thể viết hàm DFS tính `dfn` và `low` rất gọn (ban đầu mảng `
 
 Tiếp theo, xét mối liên hệ giữa thành phần song liên thông theo đỉnh, cây DFS và hai mảng này.
 
-Có thể thấy mỗi thành phần song liên thông theo đỉnh là một cây con liên thông trên cây DFS và chứa ít nhất hai đỉnh; đặc biệt, đỉnh trên cùng chỉ nối xuống một đỉnh trong thành phần đó.
+Mỗi thành phần song liên thông theo đỉnh là một cây con liên thông trên cây DFS và chứa ít nhất hai đỉnh; đặc biệt, đỉnh trên cùng chỉ nối xuống một đỉnh trong thành phần đó.
 
-Đồng thời, có thể thấy mỗi cạnh cây nằm đúng trong một thành phần song liên thông theo đỉnh.
+Đồng thời, mỗi cạnh cây nằm đúng trong một thành phần song liên thông theo đỉnh.
 
 Xét đỉnh trên cùng $u$ của một thành phần song liên thông theo đỉnh trong cây DFS. Thành phần này sẽ được xác định tại $u$, vì cây con của $u$ đã chứa toàn bộ thông tin của thành phần đó.
 
@@ -130,11 +130,11 @@ Vấn đề này có thể xử lý bằng cách duy trì một ngăn xếp tron
 
 Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh trong thành phần đó ngoài $u$ đều tập trung ở đầu ngăn xếp; chỉ cần liên tục pop cho đến khi pop ra $v$.
 
-Tất nhiên, có thể xử lý các đỉnh bị pop ra ngay lúc đó: chỉ cần nối chúng với đỉnh vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
+Các đỉnh bị pop ra có thể được xử lý ngay lúc đó: chỉ cần nối chúng với đỉnh vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
 
 Như vậy việc xây dựng cây tròn-vuông được hoàn tất một cách tự nhiên. Có thể đánh số các đỉnh vuông bằng các số nguyên bắt đầu từ $n+1$, nhờ đó phân biệt hiệu quả đỉnh tròn và đỉnh vuông.
 
-Phần này có thể được trình bày chưa đủ rõ. Bên dưới là một đoạn mã kèm chú thích chi tiết, các câu lệnh in giúp hiểu quá trình và một ví dụ. Khuyến nghị sao chép mã và tự thực hành để hiểu, vì mã nguồn thường là cách giúp hiểu rõ nhất (đừng quên bật `c++11`).
+Phần này có thể chưa được trình bày đủ rõ. Bên dưới là một đoạn mã kèm chú thích chi tiết, các câu lệnh in giúp hiểu quá trình và một ví dụ. Có thể sao chép mã và tự thực hành để hiểu, vì mã nguồn thường là cách giúp hiểu rõ nhất (cần bật `c++11`).
 
 ???+ note "Cài đặt"
     ```cpp
@@ -244,10 +244,10 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         -   Với các trường hợp còn lại, xét mô hình luồng trên mạng: nguồn nối đến $c$ bằng một cạnh dung lượng $2$, $u$ và $v$ nối đến đích bằng các cạnh dung lượng $1$.
         -   Mỗi cạnh vô hướng $\langle x,y\rangle$ trong đồ thị gốc được biến thành một cạnh có hướng từ $x$ đến $y$ dung lượng $1$ và một cạnh có hướng từ $y$ đến $x$ dung lượng $1$.
         -   Cuối cùng, gán dung lượng $1$ cho mỗi đỉnh ngoài nguồn, đích và $c$; có thể thực hiện bằng tách đỉnh.
-        -   Vì cạnh từ nguồn đến $c$ có dung lượng $2$, nếu luồng cực đại của mạng này bằng $2$ thì chứng minh được chắc chắn có đường đi qua $c$.
+        -   Vì cạnh từ nguồn đến $c$ có dung lượng $2$, nếu luồng cực đại của mạng này bằng $2$ thì chứng minh được sự tồn tại của đường đi qua $c$.
         -   Theo định lý luồng cực đại - lát cắt cực tiểu, lát cắt cực tiểu không vượt quá $2$; tiếp theo chỉ cần chứng minh lát cắt cực tiểu lớn hơn $1$.
         -   Điều này tương đương với việc chứng minh cắt bỏ một cạnh bất kỳ có dung lượng $1$ không thể làm nguồn và đích mất liên thông.
-        -   Nếu cắt bỏ cạnh nối $u$ hoặc $v$ với đích, theo định nghĩa thứ nhất của song liên thông theo đỉnh, chắc chắn tồn tại đường đi đơn từ $c$ đến đỉnh còn lại chưa bị cắt.
+        -   Nếu cắt bỏ cạnh nối $u$ hoặc $v$ với đích, theo định nghĩa thứ nhất của song liên thông theo đỉnh, vẫn tồn tại đường đi đơn từ $c$ đến đỉnh còn lại chưa bị cắt.
         -   Nếu cắt bỏ một cạnh sinh ra khi tách đỉnh, điều này tương đương với xóa một đỉnh; theo định nghĩa thứ hai của song liên thông theo đỉnh, đồ thị còn lại vẫn liên thông.
         -   Nếu cắt bỏ một cạnh được tạo từ cạnh ban đầu, điều này tương đương với xóa một cạnh; đây là thao tác yếu hơn xóa một đỉnh, nên vẫn tồn tại đường đi.
         -   Vì vậy đã chứng minh lát cắt cực tiểu lớn hơn $1$, tức luồng cực đại bằng $2$. Chứng minh hoàn tất.
@@ -267,14 +267,14 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         
         Đổi góc nhìn, thống kê đóng góp của mỗi đỉnh vào đáp án, tức trọng số nhân với số đường đi đi qua nó; việc này có thể tính bằng DP trên cây đơn giản.
         
-        Cuối cùng, đừng quên xử lý trường hợp đồ thị không liên thông. Bên dưới là mã tương ứng:
+        Cuối cùng, cần xử lý trường hợp đồ thị không liên thông. Bên dưới là mã tương ứng:
     
     ??? note "Mã tham khảo"
         ```cpp
         --8<-- "docs/graph/code/block-forest/block-forest_1.cpp"
         ```
     
-    Tiện thể, test case vừa rồi có đáp án $212$ trong bài này.
+    Với test case vừa rồi, đáp án của bài này là $212$.
 
 ???+ note "[Codeforces #487 E. Tourists](https://codeforces.com/contest/487/problem/E)"
     ??? note "Tóm tắt đề bài"
@@ -295,7 +295,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         
         Để duy trì các đỉnh vuông, chỉ cần mở một `multiset` cho mỗi đỉnh vuông để lưu tập trọng số.
         
-        Cần chú ý khi truy vấn: nếu LCA là đỉnh vuông, còn cần xét thêm trọng số của đỉnh tròn cha của LCA.
+        Khi truy vấn, nếu LCA là đỉnh vuông, còn cần xét thêm trọng số của đỉnh tròn cha của LCA.
         
         Lưu ý: số đỉnh của cây tròn-vuông phải khai báo gấp đôi số đỉnh đồ thị gốc, nếu không sẽ truy cập vượt mảng.
     
@@ -322,7 +322,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         
         Cuối cùng, nếu đỉnh có độ sâu nhỏ nhất trong đồ thị con là đỉnh tròn, đáp án còn phải cộng thêm $1$, vì chưa thống kê đến nó.
         
-        Vì có nhiều bộ dữ liệu, cần chú ý khởi tạo mảng.
+        Vì có nhiều bộ dữ liệu, cần khởi tạo lại mảng.
     
     ??? note "Mã tham khảo"
         ```cpp

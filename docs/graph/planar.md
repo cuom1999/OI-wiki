@@ -43,7 +43,7 @@ Một tính chất quan trọng của đồ thị phẳng đã nhúng là **côn
     $$
 
 ??? note "Chứng minh"
-    Chứng minh bằng quy nạp theo số mặt $|F|$. Cơ sở quy nạp là $|F|=1$. Khi đó, đồ thị phẳng đã nhúng chỉ có đúng một mặt ngoài, và mọi cạnh đều là cạnh cầu. Vì thế, $G$ là một cây, nên tất yếu $|E|=|V|-1$; thay vào công thức Euler thì thấy công thức đúng. Giả sử công thức Euler đúng với mọi đồ thị phẳng đã nhúng có $|F| = k$ mặt. Xét một đồ thị phẳng đã nhúng $G$ có $|F|=k + 1$ mặt. Khi đó chắc chắn tồn tại một cạnh không phải cạnh cầu $e$, là cạnh chung của hai mặt khác nhau. Xóa cạnh $e$ khỏi đồ thị, thu được đồ thị $G-e$ có $|V|$ đỉnh, $|E|-1$ cạnh và $|F|-1$ mặt. Theo giả thiết quy nạp, công thức Euler đúng với $G-e$, tức là $|V|-(|E|-1)+(|F|-1)=2$. Biến đổi lại thu được công thức Euler cho $G$. Do đó, theo nguyên lý quy nạp toán học, công thức Euler đúng với mọi đồ thị phẳng đã nhúng liên thông.
+    Chứng minh bằng quy nạp theo số mặt $|F|$. Cơ sở quy nạp là $|F|=1$. Khi đó, đồ thị phẳng đã nhúng chỉ có đúng một mặt ngoài, và mọi cạnh đều là cạnh cầu. Vì thế, $G$ là một cây, nên tất yếu $|E|=|V|-1$; thay vào công thức Euler thu được đẳng thức đúng. Giả sử công thức Euler đúng với mọi đồ thị phẳng đã nhúng có $|F| = k$ mặt. Xét một đồ thị phẳng đã nhúng $G$ có $|F|=k + 1$ mặt. Khi đó tồn tại một cạnh không phải cạnh cầu $e$, là cạnh chung của hai mặt khác nhau. Xóa cạnh $e$ khỏi đồ thị, thu được đồ thị $G-e$ có $|V|$ đỉnh, $|E|-1$ cạnh và $|F|-1$ mặt. Theo giả thiết quy nạp, công thức Euler đúng với $G-e$, tức là $|V|-(|E|-1)+(|F|-1)=2$. Biến đổi lại thu được công thức Euler cho $G$. Do đó, theo nguyên lý quy nạp toán học, công thức Euler đúng với mọi đồ thị phẳng đã nhúng liên thông.
 
 ???+ note "Hệ quả"
     Với đồ thị phẳng đã nhúng $G$ có $k$ thành phần liên thông, có
@@ -89,8 +89,8 @@ Từ đó, có thể suy ra quan hệ giữa số cạnh và số đỉnh của 
     
     Khi $G$ không liên thông, chia thành hai trường hợp:
     
-    -   Nếu tồn tại thành phần liên thông có số đỉnh ít nhất là $3$, thì với từng thành phần liên thông có ít nhất $3$ đỉnh, có bất đẳng thức $|E_i|\le 3|V_i|-6$. Còn các thành phần liên thông có ít hơn $3$ đỉnh chắc chắn thỏa $|E_i|\le |V_i| \le 3|V_i|$. Cộng các bất đẳng thức ứng với mọi thành phần liên thông lại, thu được $|E|\le 3|V|-6$.
-    -   Nếu mọi thành phần liên thông đều có ít hơn $3$ đỉnh, thì toàn bộ đồ thị chắc chắn thỏa $|E|\le |V|$. Lại vì khi $|V|\ge 3$ thì $|V|\le 3|V|-6$, nên vẫn có $|E|\le 3|V|-6$.
+    -   Nếu tồn tại thành phần liên thông có số đỉnh ít nhất là $3$, thì với từng thành phần liên thông có ít nhất $3$ đỉnh, có bất đẳng thức $|E_i|\le 3|V_i|-6$. Còn các thành phần liên thông có ít hơn $3$ đỉnh đều thỏa $|E_i|\le |V_i| \le 3|V_i|$. Cộng các bất đẳng thức ứng với mọi thành phần liên thông lại, thu được $|E|\le 3|V|-6$.
+    -   Nếu mọi thành phần liên thông đều có ít hơn $3$ đỉnh, thì toàn bộ đồ thị thỏa $|E|\le |V|$. Lại vì khi $|V|\ge 3$ thì $|V|\le 3|V|-6$, nên vẫn có $|E|\le 3|V|-6$.
     
     Tóm lại, mệnh đề được chứng minh.
 
@@ -115,7 +115,7 @@ Giả sử $G$ là một đồ thị phẳng đã nhúng. Có thể vẽ đồ t
 ??? note "Chứng minh"
     Việc $G^*$ là đồ thị phẳng đã nhúng được bảo đảm bởi chính quá trình dựng nó. Còn cần chứng minh $G^*$ liên thông. Với hai đỉnh bất kỳ $v^*_i,v^*_j$ trong $G^*$, giả sử đoạn thẳng trong mặt phẳng nối $v^*_i$ và $v^*_j$ lần lượt đi qua các mặt và cạnh của $G$ là $f_i,e_{s_1},f_{s_1},\cdots,f_{s_{r-1}},e_{s_r},f_j$. Chúng lần lượt tương ứng với các đỉnh và cạnh $v_i^*,e_{s_1}^*,v^*_{s_1},\cdots,v^*_{s_{r-1}},e^*_{s_r},v^*_j$ trong đồ thị đối ngẫu. Từ cách dựng $G^*$, các đỉnh và cạnh kề nhau trong dãy này là liên thuộc với nhau, nên dãy đó mô tả một đường đi trong $G^*$. Vì vậy, $G^*$ liên thông.
     
-    Đồ thị $G^{**}$ là đồ thị đối ngẫu của $G^*$, nên chắc chắn liên thông. Do đó, điều kiện cần để $G$ đẳng cấu với $G^{**}$ là $G$ liên thông. Tiếp theo, chứng minh điều kiện này cũng đủ. Để làm vậy, chỉ cần chứng minh rằng khi $G$ liên thông, đồ thị $G$ thỏa các yêu cầu trong phép dựng đồ thị đối ngẫu của $G^*$. Vì các cạnh của $G^*$ và các cạnh của $G$ tương ứng tự nhiên với nhau, chỉ cần chứng minh mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Với một mặt bất kỳ $f^*$ của $G^*$, lấy một cạnh $e^*$ trên biên của nó; khi đó, một trong hai đầu mút của cạnh tương ứng $e$ trong $G$ chắc chắn nằm bên trong mặt $f^*$. Vì vậy, trong $f^*$ có ít nhất một đỉnh của $G$. Do cả $G^*$ và $G$ đều liên thông, công thức Euler áp dụng được; mà $G$ và $G^*$ có cùng số cạnh, số mặt của $G$ bằng số đỉnh của $G^*$, nên số đỉnh của $G$ bằng số mặt của $G^*$. Vì thế, mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Mệnh đề được chứng minh.
+    Đồ thị $G^{**}$ là đồ thị đối ngẫu của $G^*$, nên liên thông. Do đó, điều kiện cần để $G$ đẳng cấu với $G^{**}$ là $G$ liên thông. Tiếp theo, chứng minh điều kiện này cũng đủ. Để làm vậy, chỉ cần chứng minh rằng khi $G$ liên thông, đồ thị $G$ thỏa các yêu cầu trong phép dựng đồ thị đối ngẫu của $G^*$. Vì các cạnh của $G^*$ và các cạnh của $G$ tương ứng tự nhiên với nhau, chỉ cần chứng minh mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Với một mặt bất kỳ $f^*$ của $G^*$, lấy một cạnh $e^*$ trên biên của nó; khi đó, một trong hai đầu mút của cạnh tương ứng $e$ trong $G$ nằm bên trong mặt $f^*$. Vì vậy, trong $f^*$ có ít nhất một đỉnh của $G$. Do cả $G^*$ và $G$ đều liên thông, công thức Euler áp dụng được; mà $G$ và $G^*$ có cùng số cạnh, số mặt của $G$ bằng số đỉnh của $G^*$, nên số đỉnh của $G$ bằng số mặt của $G^*$. Vì thế, mỗi mặt của $G^*$ chứa đúng một đỉnh của $G$. Mệnh đề được chứng minh.
 
 Giữa cấu trúc của một đồ thị phẳng đã nhúng và đồ thị đối ngẫu của nó có nhiều quan hệ tương ứng:
 
@@ -123,7 +123,7 @@ Giữa cấu trúc của một đồ thị phẳng đã nhúng và đồ thị �
 -   Khuyên trong $G$ tương ứng với cạnh cầu trong $G^*$; khuyên trong $G^*$ tương ứng với cạnh cầu trong $G$.
 -   Tập cắt cạnh trong $G$ tương ứng với chu trình trong $G^*$; chu trình trong $G^*$ tương ứng với tập cắt cạnh trong $G$.
 
-Cần chú ý rằng khái niệm đồ thị đối ngẫu chỉ có nghĩa đối với một đồ thị phẳng đã nhúng cụ thể, chứ không thể định nghĩa trên một đồ thị phẳng tùy ý nếu chưa chỉ rõ phép nhúng. Thật vậy, hai đồ thị phẳng đã nhúng đẳng cấu chưa chắc có đồ thị đối ngẫu đẳng cấu. Nói cách khác, các phép nhúng phẳng khác nhau của cùng một đồ thị có thể cho các đồ thị đối ngẫu khác nhau.
+Cần lưu ý rằng khái niệm đồ thị đối ngẫu chỉ có nghĩa đối với một đồ thị phẳng đã nhúng cụ thể, chứ không thể định nghĩa trên một đồ thị phẳng tùy ý nếu chưa chỉ rõ phép nhúng. Thật vậy, hai đồ thị phẳng đã nhúng đẳng cấu không nhất thiết có đồ thị đối ngẫu đẳng cấu. Nói cách khác, các phép nhúng phẳng khác nhau của cùng một đồ thị có thể cho các đồ thị đối ngẫu khác nhau.
 
 ???+ example "Ví dụ"
     Hình dưới đây vẽ hai đồ thị phẳng đã nhúng đẳng cấu, nhưng đồ thị đối ngẫu của chúng không đẳng cấu.
@@ -138,7 +138,7 @@ Chuyển một bài toán trên đồ thị phẳng sang đồ thị đối ng�
 
 Như hình minh họa, chọn một phép nhúng phẳng phù hợp sao cho $s,t$ nằm trên biên mặt ngoài của $G$. Ngoài ra, thêm các tia kéo dài từ $s$ và $t$ ra ngoài để chia mặt ngoài thành hai phần $f_{+}$ và $f_{-}$. Dựa trên hình này, dựng đồ thị đối ngẫu và gán trọng số cho các cạnh tương ứng trong đồ thị đối ngẫu. Khi đó, các đường đi giữa hai đỉnh tương ứng với hai mặt $f_{+}$ và $f_{-}$ trong đồ thị đối ngẫu $G^*$ (nét đỏ đậm) tương ứng một-một với các tập cắt cạnh $s$-$t$ của đồ thị $G$ (nét đen đậm), và hai bên có cùng trọng số. Vì vậy, tìm đường đi ngắn nhất trong đồ thị đối ngẫu sẽ cho lát cắt $s$-$t$ nhỏ nhất trong $G$.
 
-Một hiểu lầm thường gặp là từ phép chuyển đổi trên mà kết luận rằng lát cắt nhỏ nhất trong đồ thị phẳng luôn bằng đường đi ngắn nhất trong đồ thị đối ngẫu. Thật ra, điều này chỉ áp dụng khi tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ cùng nằm trên một mặt; trong các bài lập trình thi đấu kiểm tra kiến thức này, đồ thị được cho thường có, và kèm theo, một phép nhúng như vậy. Dưới đây là một định lý có thể dùng để kiểm tra sự tồn tại của nó.
+Một hiểu lầm thường gặp là từ phép chuyển đổi trên mà kết luận rằng lát cắt nhỏ nhất trong đồ thị phẳng luôn bằng đường đi ngắn nhất trong đồ thị đối ngẫu. Tuy nhiên, điều này chỉ áp dụng khi tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ cùng nằm trên một mặt; trong các bài lập trình thi đấu kiểm tra kiến thức này, đồ thị được cho thường có, và kèm theo, một phép nhúng như vậy. Dưới đây là một định lý có thể dùng để kiểm tra sự tồn tại của nó.
 
 ???+ note "Định lý"
     Với hai đỉnh $s,t$ của đồ thị phẳng $G=(V,E)$, tồn tại một phép nhúng phẳng của $G$ sao cho $s,t$ nằm trên cùng một mặt khi và chỉ khi $(V,E \cup \{(s,t)\})$ là đồ thị phẳng.
@@ -154,7 +154,7 @@ Chẳng hạn, trong hình dưới đây, sau khi thêm cạnh $(s,t)$ sẽ thu 
 
 ### Một số kết quả khác
 
-Dĩ nhiên, đồ thị phẳng còn có nhiều kết quả nổi tiếng khác. Phần này chỉ liệt kê ngắn gọn mà không thảo luận thêm.
+Ngoài ra, đồ thị phẳng còn có nhiều kết quả nổi tiếng khác. Phần này chỉ liệt kê ngắn gọn mà không thảo luận thêm.
 
 ???+ note "Định lý bốn màu"
     Mọi đồ thị phẳng không có khuyên đều tô được bằng $4$ màu.
@@ -190,7 +190,7 @@ Trước hết, $K_5$ và $K_{3,3}$ không phải là đồ thị phẳng.
     
     Trong đó, $l$ là bậc nhỏ nhất của các mặt. Với $K_5$, có $l=3,~|V|=5,~|E|=10$, nên $K_5$ không thể vẽ thành đồ thị phẳng đã nhúng. Với $K_{3,3}$, có $l=4,~|V|=6,~|E|=9$, nên $K_{3,3}$ cũng không thể vẽ thành đồ thị phẳng đã nhúng.
 
-Thật ra, chúng chính là các cấu trúc nhỏ nhất làm cho một đồ thị không phẳng. Nói cách khác, miễn là đồ thị không chứa hai đồ thị này làm cấu trúc con theo một nghĩa nào đó, thì đồ thị đó chắc chắn phẳng.
+Hai đồ thị này chính là các cấu trúc nhỏ nhất làm cho một đồ thị không phẳng. Nói cách khác, miễn là đồ thị không chứa hai đồ thị này làm cấu trúc con theo một nghĩa nào đó, thì đồ thị đó là đồ thị phẳng.
 
 Định lý kiểm tra tính phẳng đầu tiên là định lý Kuratowski. Định lý này dùng khái niệm đồng phôi đồ thị: nếu hai đồ thị $G_1$ và $G_2$ đẳng cấu, hoặc trở nên đẳng cấu sau khi lặp lại thao tác chèn hoặc xóa đỉnh bậc $2$, thì chúng được gọi là **đồng phôi** (homeomorphic). Từ đó, có thể phát biểu kết quả sau:
 
@@ -202,11 +202,11 @@ Một định lý liên quan khác là định lý Wagner. Định lý này dùn
 ???+ note "Định lý Wagner"
     Đồ thị $G$ là đồ thị phẳng khi và chỉ khi $G$ không có đồ thị con nào có thể co về $K_5$ hoặc $K_{3,3}$.
 
-Việc đồ thị phẳng không chứa các loại đồ thị con này là tương đối trực tiếp, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ chắc chắn có thể co về chúng, nhưng chiều ngược lại không nhất thiết đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
+Việc đồ thị phẳng không chứa các loại đồ thị con này là tương đối trực tiếp, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ đều có thể co về chúng, nhưng chiều ngược lại không nhất thiết đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
 
 ### Thuật toán kiểm tra tính phẳng
 
-Dù trông có vẻ không dễ, bài toán kiểm tra tính phẳng thực ra có nhiều thuật toán tuyến tính. Tuy nhiên, do các thuật toán này thường khá phức tạp khi cài đặt, chúng gần như không xuất hiện trong lập trình thi đấu.
+Dù trông có vẻ không đơn giản, bài toán kiểm tra tính phẳng trên thực tế có nhiều thuật toán tuyến tính. Tuy nhiên, do các thuật toán này thường khá phức tạp khi cài đặt, chúng gần như không xuất hiện trong lập trình thi đấu.
 
 Thuật toán tuyến tính sớm nhất là thuật toán Hopcroft-Tarjan[^ht74], nhưng cách cài đặt của nó khá phức tạp. Thuật toán de Fraysseix-Ossona de Mendez-Rosenstiehl, còn gọi là thuật toán kiểm tra tính phẳng LR[^dor06][^df08][^bra09], cải tiến thêm quy trình của thuật toán Hopcroft-Tarjan và là một trong các thuật toán kiểm tra tính phẳng tốt nhất hiện nay. Thư viện NetworkX của Python có [cài đặt](https://github.com/networkx/networkx/blob/main/networkx/algorithms/planarity.py) thuật toán này.
 
@@ -223,12 +223,12 @@ Phần này giới thiệu một vài lớp đồ thị phẳng đặc biệt.
 Với đồ thị phẳng đơn $G$, nếu thêm cạnh giữa hai đỉnh không kề nhau bất kỳ của nó đều làm cho đồ thị thu được không còn phẳng, thì $G$ được gọi là **đồ thị phẳng cực đại** (maximal planar graph). Một phép nhúng phẳng của đồ thị phẳng cực đại được gọi là **đồ thị phẳng đã nhúng cực đại**.
 
 ???+ note "Định lý"
-    Đồ thị phẳng cực đại $G$ chắc chắn liên thông. Hơn nữa, khi số đỉnh $|V|\ge 3$, đồ thị $G$ không có cạnh cầu.
+    Đồ thị phẳng cực đại $G$ liên thông. Hơn nữa, khi số đỉnh $|V|\ge 3$, đồ thị $G$ không có cạnh cầu.
 
 ??? note "Chứng minh"
-    Nếu đồ thị phẳng $G$ không liên thông, thì với bất kỳ phép nhúng phẳng nào của nó, đều có thể chọn hai đỉnh thuộc hai thành phần liên thông khác nhau và nối chúng trong mặt ngoài; đồ thị thu được vẫn phẳng. Điều này cho thấy $G$ không phải là đồ thị phẳng cực đại. Vì vậy, nếu $G$ là đồ thị phẳng cực đại thì $G$ chắc chắn liên thông.
+    Nếu đồ thị phẳng $G$ không liên thông, thì với bất kỳ phép nhúng phẳng nào của nó, đều có thể chọn hai đỉnh thuộc hai thành phần liên thông khác nhau và nối chúng trong mặt ngoài; đồ thị thu được vẫn phẳng. Điều này cho thấy $G$ không phải là đồ thị phẳng cực đại. Vì vậy, nếu $G$ là đồ thị phẳng cực đại thì $G$ liên thông.
     
-    Nếu đồ thị phẳng $G$ có số đỉnh $|V|\ge 3$ và có cạnh cầu $e=(u,v)$, thì đồ thị $G - e$ sau khi xóa cạnh $e$ có đúng hai thành phần liên thông, và $u,v$ thuộc hai thành phần khác nhau. Giả sử thành phần liên thông chứa $v$ có ít nhất hai đỉnh. Khi đó, có thể vẽ thành phần liên thông $G_1$ chứa $u$ trên mặt phẳng, chọn một mặt bất kỳ $f$ của $G_1$ có biên chứa $u$, rồi vẽ thành phần liên thông còn lại $G_2$ bên trong mặt $f$. Vì $G_2$ là đồ thị đơn, biên mặt ngoài của nó chắc chắn không phải là một khuyên, nên còn tồn tại ít nhất một đỉnh khác $w\neq u,v$. Nối lần lượt $v,w$ với $u$, thu được một đồ thị phẳng chứa $G$ làm đồ thị con. Vì vậy, $G$ không phải là đồ thị phẳng cực đại. Do đó, đồ thị phẳng cực đại có $|V|\ge 3$ chắc chắn không có cạnh cầu.
+    Nếu đồ thị phẳng $G$ có số đỉnh $|V|\ge 3$ và có cạnh cầu $e=(u,v)$, thì đồ thị $G - e$ sau khi xóa cạnh $e$ có đúng hai thành phần liên thông, và $u,v$ thuộc hai thành phần khác nhau. Giả sử thành phần liên thông chứa $v$ có ít nhất hai đỉnh. Khi đó, có thể vẽ thành phần liên thông $G_1$ chứa $u$ trên mặt phẳng, chọn một mặt bất kỳ $f$ của $G_1$ có biên chứa $u$, rồi vẽ thành phần liên thông còn lại $G_2$ bên trong mặt $f$. Vì $G_2$ là đồ thị đơn, biên mặt ngoài của nó không thể là một khuyên, nên còn tồn tại ít nhất một đỉnh khác $w\neq u,v$. Nối lần lượt $v,w$ với $u$, thu được một đồ thị phẳng chứa $G$ làm đồ thị con. Vì vậy, $G$ không phải là đồ thị phẳng cực đại. Do đó, đồ thị phẳng cực đại có $|V|\ge 3$ không có cạnh cầu.
 
 Cấu trúc của đồ thị phẳng đã nhúng cực đại có thể được mô tả chính xác hơn.
 
@@ -262,17 +262,17 @@ Với đồ thị ngoài phẳng, cũng có thể xét khái niệm đồ thị 
 ??? note "Chứng minh"
     Chứng minh bằng quy nạp theo $|V|$. Cơ sở quy nạp là $|V|=3$. Khi đó, $G$ là chu trình tam giác và chỉ có $1$ mặt trong, nên mệnh đề đúng. Giả sử mệnh đề đúng với $|V| = k$. Cần chứng minh rằng khi $|V| = k+1$, mệnh đề vẫn đúng.
     
-    Trước hết, đồ thị $G$ chắc chắn có đỉnh bậc $2$. Nếu không, ngoài các đỉnh kề nhau trên biên mặt ngoài, mọi đỉnh đều cần nối với một đỉnh thứ ba. Không mất tính tổng quát, đánh số các đỉnh trên biên mặt ngoài theo thứ tự, và với mỗi $i = 1,2,\cdots,k+1$, định nghĩa $f(i)$ là chỉ số nhỏ nhất của một đỉnh nối với đỉnh $i$ và có chỉ số không kề với $i$. Xét các giá trị có thể của $f(i)$. Trước hết, $1 < f(1)$. Vì đỉnh $1$ đã nối với $f(1)$, đoạn nối giữa đỉnh $2$ và $f(2)$ không thể vượt qua cạnh $(1,f(1))$, nên tất yếu $1 < 2 < f(2) < f(1)$. Tương tự, $2 < 3 < f(3) < f(2)$. Vì số đỉnh là hữu hạn, quá trình thu hẹp dần này chắc chắn dừng sau hữu hạn bước. Gọi $i^*$ là giá trị lớn nhất của chỉ số $i$ thỏa $1 < \cdots < i-1 < i < f(i) < f(i-1) < \cdots < f(1)$. Khi đó, do đỉnh $i^*$ và đỉnh $f(i^*)$ không kề nhau, chắc chắn có $i^* < i^* + 1 < f(i^*)$. Lặp lại lập luận trước đó, vẫn phải có $i^* < i^*+1 < f(i^*+1) < f(i^*)$, mâu thuẫn với tính lớn nhất của $i^*$. Mâu thuẫn này cho thấy $G$ chắc chắn có đỉnh bậc $2$.
+    Trước hết, đồ thị $G$ có đỉnh bậc $2$. Nếu không, ngoài các đỉnh kề nhau trên biên mặt ngoài, mọi đỉnh đều cần nối với một đỉnh thứ ba. Không mất tính tổng quát, đánh số các đỉnh trên biên mặt ngoài theo thứ tự, và với mỗi $i = 1,2,\cdots,k+1$, định nghĩa $f(i)$ là chỉ số nhỏ nhất của một đỉnh nối với đỉnh $i$ và có chỉ số không kề với $i$. Xét các giá trị có thể của $f(i)$. Trước hết, $1 < f(1)$. Vì đỉnh $1$ đã nối với $f(1)$, đoạn nối giữa đỉnh $2$ và $f(2)$ không thể vượt qua cạnh $(1,f(1))$, nên tất yếu $1 < 2 < f(2) < f(1)$. Tương tự, $2 < 3 < f(3) < f(2)$. Vì số đỉnh là hữu hạn, quá trình thu hẹp dần này phải dừng sau hữu hạn bước. Gọi $i^*$ là giá trị lớn nhất của chỉ số $i$ thỏa $1 < \cdots < i-1 < i < f(i) < f(i-1) < \cdots < f(1)$. Khi đó, do đỉnh $i^*$ và đỉnh $f(i^*)$ không kề nhau, có $i^* < i^* + 1 < f(i^*)$. Lặp lại lập luận trước đó, vẫn phải có $i^* < i^*+1 < f(i^*+1) < f(i^*)$, mâu thuẫn với tính lớn nhất của $i^*$. Mâu thuẫn này cho thấy $G$ có đỉnh bậc $2$.
     
-    Gọi $v$ là một đỉnh bậc $2$. Xóa đỉnh này khỏi $G$, thu được một đồ thị ngoài phẳng $G-v$ có $k$ đỉnh. Nó chắc chắn là đồ thị ngoài phẳng cực đại, vì nếu có cách thêm cạnh hợp lệ vào nó, thì cách đó cũng áp dụng được cho $G$. Theo giả thiết quy nạp, $G-v$ có đúng $k-2$ mặt trong; khi xóa đỉnh $v$, mất đúng một mặt trong của $G$. Vì vậy, số mặt trong của $G$ là $k-1$. Mệnh đề được chứng minh.
+    Gọi $v$ là một đỉnh bậc $2$. Xóa đỉnh này khỏi $G$, thu được một đồ thị ngoài phẳng $G-v$ có $k$ đỉnh. Nó là đồ thị ngoài phẳng cực đại, vì nếu có cách thêm cạnh hợp lệ vào nó, thì cách đó cũng áp dụng được cho $G$. Theo giả thiết quy nạp, $G-v$ có đúng $k-2$ mặt trong; khi xóa đỉnh $v$, mất đúng một mặt trong của $G$. Vì vậy, số mặt trong của $G$ là $k-1$. Mệnh đề được chứng minh.
 
 ???+ note "Định lý"
     Với đồ thị ngoài phẳng đã nhúng $G$ có số đỉnh $|V|\ge 3$ và mọi đỉnh đều nằm trên biên mặt ngoài, $G$ là đồ thị ngoài phẳng đã nhúng cực đại khi và chỉ khi biên mặt ngoài của $G$ là một chu trình độ dài $|V|$, và biên của mọi mặt trong đều là chu trình độ dài $3$.
 
 ??? note "Chứng minh"
-    Tính đủ là trực tiếp. Thật vậy, xét việc nối hai đỉnh không kề nhau trên biên mặt ngoài. Nếu nối trong mặt ngoài, thì không thể để mọi đỉnh cùng nằm trên biên của một mặt; nếu không nối trong mặt ngoài, đoạn nối đó tất yếu cắt biên của một mặt trong.
+    Tính đủ là trực tiếp. Cụ thể, xét việc nối hai đỉnh không kề nhau trên biên mặt ngoài. Nếu nối trong mặt ngoài, thì không thể để mọi đỉnh cùng nằm trên biên của một mặt; nếu không nối trong mặt ngoài, đoạn nối đó tất yếu cắt biên của một mặt trong.
     
-    Tiếp theo, chứng minh tính cần. Giả sử biên mặt ngoài của $G$ là $v_1v_2v_3\cdots v_nv_1~(n = |V|)$ nhưng không phải là một chu trình. Khi đó, biên này đi qua một đỉnh nhiều lần, tức là tồn tại $i\neq j$ và $i-j\neq\pm 1\pmod{n}$ sao cho $v_i=v_j$. Không mất tính tổng quát, giả sử $1 < i < j < n$. Khi đó, các cạnh liên thuộc với $v_{i-1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_jv_{j+1}\cdots v_nv_1\cdots v_{i-1}v_i$, còn các cạnh liên thuộc với $v_{i+1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_iv_{i+1}\cdots v_{j-1}v_{j}$. Vì vậy, $v_{i-1}$ và $v_{i+1}$ không thể kề nhau. Có thể thêm một cạnh $e$ nối $v_{i-1}$ với $v_{i+1}$ bên trong mặt ngoài, thu được đồ thị $G+e$. Đây vẫn là một đồ thị phẳng đã nhúng, và biên mặt ngoài của nó vẫn chứa mọi đỉnh. Điều này mâu thuẫn với tính cực đại ngoài phẳng của $G$. Do đó, mặt ngoài của $G$ chắc chắn là một chu trình độ dài $|V|$. Lý do biên của mọi mặt trong của $G$ đều là chu trình độ dài $3$ giống với trường hợp đồ thị phẳng cực đại, nên không nhắc lại.
+    Tiếp theo, chứng minh tính cần. Giả sử biên mặt ngoài của $G$ là $v_1v_2v_3\cdots v_nv_1~(n = |V|)$ nhưng không phải là một chu trình. Khi đó, biên này đi qua một đỉnh nhiều lần, tức là tồn tại $i\neq j$ và $i-j\neq\pm 1\pmod{n}$ sao cho $v_i=v_j$. Không mất tính tổng quát, giả sử $1 < i < j < n$. Khi đó, các cạnh liên thuộc với $v_{i-1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_jv_{j+1}\cdots v_nv_1\cdots v_{i-1}v_i$, còn các cạnh liên thuộc với $v_{i+1}$ chỉ có thể nằm trong miền bị chặn bởi mạch $v_iv_{i+1}\cdots v_{j-1}v_{j}$. Vì vậy, $v_{i-1}$ và $v_{i+1}$ không thể kề nhau. Có thể thêm một cạnh $e$ nối $v_{i-1}$ với $v_{i+1}$ bên trong mặt ngoài, thu được đồ thị $G+e$. Đây vẫn là một đồ thị phẳng đã nhúng, và biên mặt ngoài của nó vẫn chứa mọi đỉnh. Điều này mâu thuẫn với tính cực đại ngoài phẳng của $G$. Do đó, mặt ngoài của $G$ là một chu trình độ dài $|V|$. Lý do biên của mọi mặt trong của $G$ đều là chu trình độ dài $3$ giống với trường hợp đồ thị phẳng cực đại, nên không nhắc lại.
 
 ???+ note "Hệ quả"
     Với đồ thị ngoài phẳng đã nhúng cực đại $G$ có số đỉnh $|V|\ge 3$, có:
