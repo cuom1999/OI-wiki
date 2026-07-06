@@ -1,8 +1,8 @@
 author: isdanni
 
 ???+ warning "Lưu ý"
-    Chương này là nội dung đọc thêm. Trước khi đọc, nên có hiểu biết nhất định về lập trình hàm (Functional
-    Programming).
+    Chương này là nội dung đọc thêm. Trước khi đọc, nên có hiểu biết nhất định về lập trình hàm (functional
+    programming).
 
 ## Giới thiệu
 
@@ -16,16 +16,15 @@ phần tử thỏa điều kiện, và tách dãy thành các dãy con. Tuy nhi�
 Ngay cả khi có cách cài đặt tương ứng, chúng thường rất phức tạp và khó dùng trong thực tế.
 
 Cây ngón tay cung cấp một cấu trúc dữ liệu dãy thuần hàm. Nó có thể thực hiện các thao tác như truy cập, thêm vào đầu và
-cuối dãy trong thời gian hằng số khấu hao (amortized constant time), đồng thời hỗ trợ phép nối và truy cập ngẫu nhiên
-trong thời gian lôgarit (logarithmic time). Ngoài các cận tiệm cận tốt về thời gian chạy, cây ngón tay còn rất linh
-hoạt: khi kết hợp với nhãn vị nhóm ([monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)) trên các phần tử,
-cây ngón tay có thể dùng để cài đặt hiệu quả dãy truy cập ngẫu nhiên, dãy có thứ tự, cây khoảng và hàng đợi ưu tiên.
+cuối dãy trong thời gian hằng số khấu hao, đồng thời hỗ trợ phép nối và truy cập ngẫu nhiên trong thời gian logarit.
+Ngoài các cận tiệm cận tốt về thời gian chạy, cây ngón tay còn rất linh hoạt: khi kết hợp với nhãn theo vị nhóm
+([monoidal tag](https://en.wikipedia.org/wiki/Monoidal_category)) trên các phần tử, cây ngón tay có thể dùng để cài đặt
+hiệu quả dãy truy cập ngẫu nhiên, dãy có thứ tự, cây khoảng và hàng đợi ưu tiên.
 
 ## Cấu trúc cơ bản
 
 Cây ngón tay lưu dữ liệu tại các "ngón tay" (lá) của cây, với thời gian truy cập khấu hao là hằng số. Ngón tay là một
-điểm cho phép truy cập vào một phần của cấu trúc dữ liệu. Trong ngôn ngữ mệnh lệnh (imperative language), khái niệm này
-tương ứng với con trỏ.
+điểm cho phép truy cập vào một phần của cấu trúc dữ liệu. Trong ngôn ngữ mệnh lệnh, khái niệm này tương ứng với con trỏ.
 
 Trong cây ngón tay, "ngón tay" là cấu trúc trỏ tới đầu mút của dãy hoặc tới nút lá. Mỗi nút trong của cây ngón tay cũng
 lưu kết quả của việc áp dụng một số phép toán kết hợp lên các hậu duệ của nút đó. Dữ liệu được lưu trong các nút trong có
@@ -54,8 +53,8 @@ mức. Xem hình dưới đây (hình lấy từ bài báo về cây ngón tay):
 
 Ngón tay là "một cấu trúc cho phép truy cập hiệu quả tới các nút của cây ở gần một vị trí cụ thể". Để tạo cây ngón tay,
 đặt các ngón tay ở hai đầu trái và phải của cây, lấy các nút trong ngoài cùng bên trái và ngoài cùng bên phải của cây
-rồi kéo chúng lên, để phần còn lại của cây treo giữa chúng. Điều này cho thời gian truy cập hằng số khấu hao tới các đầu
-mút của dãy.
+rồi kéo chúng lên, để phần còn lại của cây treo giữa chúng. Cách làm này cho thời gian truy cập hằng số khấu hao tới các
+đầu mút của dãy.
 
 ![](./images/finger-tree-2.png)
 
@@ -80,22 +79,22 @@ ngón tay cho phép có từ $1$ tới $4$ cây con ở mỗi cấp. Các `Digit
 sách, chẳng hạn:
 
 ```haskell
-type Digit a = One a | Two a a | Three a a a | Four a a a a
+data Digit a = One a | Two a a | Three a a a | Four a a a a
 ```
 
 Tầng trên cùng có các phần tử kiểu $a$; tầng tiếp theo có các phần tử kiểu nút $a$, vì đây là các nút nằm giữa xương
 sống và lá. Điều này thường có nghĩa là tầng thứ $n$ của cây có kiểu phần tử là $Node^{n}$ $a$, hoặc là các cây 2-3 có
-độ sâu $n$. Vì vậy, một dãy gồm $n$ phần tử được biểu diễn bằng một cây có độ sâu `Θ(log n)`. Phần tử cách đầu mút gần
-nhất một khoảng $d$ được lưu trong cây ở độ sâu `Θ(log d)`.
+độ sâu $n$. Vì vậy, một dãy gồm $n$ phần tử được biểu diễn bằng một cây có độ sâu $\Theta(\log n)$. Phần tử cách đầu mút
+gần nhất một khoảng $d$ được lưu trong cây ở độ sâu $\Theta(\log d)$.
 
 ### Thao tác hàng đợi hai đầu
 
 Cây ngón tay cũng có thể tạo ra một hàng đợi hai đầu hiệu quả. Dù cấu trúc có tính bền vững (persistent) hay không, mọi
-thao tác đều cần thời gian `Θ(1)`. Có thể xem nó là một phần mở rộng của hàng đợi hai đầu ẩn[^okasaki1999purely]:
+thao tác đều cần thời gian $\Theta(1)$. Có thể xem nó là một phần mở rộng của hàng đợi hai đầu ẩn[^okasaki1999purely]:
 
 1.  Thay thế cặp bằng các nút 2-3 cung cấp đủ độ linh hoạt để hỗ trợ phép nối hiệu quả. Để giữ các thao tác hàng đợi hai
     đầu trong thời gian hằng số, cần mở rộng `Digit` thành bốn phần tử.
-2.  Chú thích các nút trong bằng vị nhóm cho phép tách hiệu quả.
+2.  Chú thích các nút trong bằng vị nhóm để cho phép tách hiệu quả.
 
 ```haskell
 data ImplicitDeque a = Empty
@@ -108,7 +107,7 @@ data Digit a = One a | Two a a | Three a a a
 ## Độ phức tạp thời gian
 
 Cây ngón tay cung cấp truy cập thời gian hằng số khấu hao tới các "ngón tay" (lá) của cây, nơi lưu dữ liệu, đồng thời hỗ
-trợ phép nối và tách trong thời gian lôgarit theo kích thước của phần nhỏ hơn. Mỗi nút trong cũng lưu kết quả của việc áp
+trợ phép nối và tách trong thời gian logarit theo kích thước của phần nhỏ hơn. Mỗi nút trong cũng lưu kết quả của việc áp
 dụng một số phép toán kết hợp lên các hậu duệ của nó. Dữ liệu "tóm tắt" này có thể dùng để cung cấp chức năng của những
 cấu trúc dữ liệu khác ngoài cây.
 
@@ -125,9 +124,9 @@ cấu trúc dữ liệu khác ngoài cây.
 
 ## Ứng dụng
 
-Cây ngón tay có thể dùng để xây dựng các cây khác. Ví dụ, có thể cài đặt hàng đợi ưu tiên bằng cách gắn nhãn các nút trong
-theo độ ưu tiên nhỏ nhất của các nút con trong cây, hoặc cài đặt danh sách/mảng có chỉ số bằng cách gắn nhãn nút theo số
-lượng lá trong các nút con của nó. Các ứng dụng khác bao gồm dãy truy cập ngẫu nhiên, dãy có thứ tự và cây
+Cây ngón tay có thể dùng để xây dựng các cây khác. Ví dụ, có thể cài đặt hàng đợi ưu tiên bằng cách gắn nhãn các nút
+trong theo độ ưu tiên nhỏ nhất của các nút con trong cây, hoặc cài đặt danh sách/mảng có chỉ số bằng cách gắn nhãn nút
+theo số lượng lá trong các nút con của nó. Các ứng dụng khác bao gồm dãy truy cập ngẫu nhiên, dãy có thứ tự và cây
 khoảng.
 
 Cây ngón tay có thể cung cấp thao tác đẩy, đảo ngược và lấy ra với thời gian trung bình $O(1)$, cùng với nối và tách
@@ -147,6 +146,5 @@ tính lười cho phép một cài đặt đơn giản hơn.
     (2006) pp 197-217.
 2.  [Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
 
-[^okasaki1999purely]: [Purely Functional Data
-    Structures](https://www.cambridge.org/us/academic/subjects/computer-science/programming-languages-and-applied-logic/purely-functional-data-structures),
+[^okasaki1999purely]: [Purely Functional Data Structures](https://doi.org/10.1017/CBO9780511530104),
     Chris Okasaki (1999)
