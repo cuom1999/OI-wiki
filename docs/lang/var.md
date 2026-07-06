@@ -20,10 +20,12 @@ Hệ thống kiểu của C++ gồm các phần sau:
 
 Một biến kiểu `bool` chỉ có thể nhận một trong hai giá trị: `true` và `false`.
 
-Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số bit trong một byte tùy thuộc nền tảng, nhưng thường là $8$ bit.
+Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số bit trong một byte
+tùy thuộc nền tảng, nhưng thường là $8$ bit.
 
 ???+ tip "Mẹo"
-    Có thể lấy số bit trong một byte thông qua hằng macro `CHAR_BIT` trong tệp tiêu đề `<climits>` (C++)/`<limits.h>` (C).
+    Có thể lấy số bit trong một byte thông qua hằng macro `CHAR_BIT` trong tệp
+    tiêu đề `<climits>` (C++)/`<limits.h>` (C).
 
 ???+ note "Kiểu luận lý trong ngôn ngữ C"
     Xem thêm [Khác biệt giữa C++ và các ngôn ngữ thường dùng khác - bool](./cpp-other-langs.md#bool).
@@ -37,7 +39,8 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
         bằng không và khác không nữa, mà được định nghĩa là kiểu có thể lưu hai
         hằng `true` và `false`.
 
-    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, thường được định nghĩa như sau:
+    Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`,
+    thường được định nghĩa như sau:
 
     ```c
     #define bool _Bool
@@ -49,22 +52,28 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
     đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay
     thế[^note10].
 
-    Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng macro `BOOL_WIDTH` trong `<limits.h>`.
+    Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng
+    macro `BOOL_WIDTH` trong `<limits.h>`.
 
 <a id="kiểu-số-nguyên"></a>
 
 ### Kiểu số nguyên
 
-Kiểu số nguyên dùng để lưu các giá trị nguyên. Kiểu số nguyên cơ bản nhất là `int`.
+Kiểu số nguyên dùng để lưu các giá trị nguyên. Kiểu số nguyên cơ bản nhất là
+`int`.
 
 ???+ warning "Lưu ý"
-    Do nguyên nhân lịch sử, trong C++, kiểu luận lý và kiểu ký tự được xem là các kiểu số nguyên đặc biệt.
+    Do nguyên nhân lịch sử, trong C++, kiểu luận lý và kiểu ký tự được xem là các
+    kiểu số nguyên đặc biệt.
 
-    Trong hầu hết mọi trường hợp, **không nên** dùng các kiểu ký tự khác `signed char` và `unsigned char` như kiểu số nguyên.
+    Trong hầu hết mọi trường hợp, **không nên** dùng các kiểu ký tự như
+    `signed char` và `unsigned char` thay cho kiểu số nguyên thông thường.
 
-Các kiểu số nguyên thường được chia thành 5 mức theo độ rộng bit: `char`, `short`, `int`, `long`, `long long`.
+Các kiểu số nguyên thường được chia thành 5 mức theo độ rộng bit: `char`,
+`short`, `int`, `long`, `long long`.
 
-Chuẩn C++ bảo đảm `1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
+Chuẩn C++ bảo đảm
+`1 == sizeof(char) <= sizeof(short) <= sizeof(int) <= sizeof(long) <= sizeof(long long)`.
 
 Do nguyên nhân lịch sử, độ rộng bit của kiểu số nguyên có nhiều mô hình phổ biến
 khác nhau. Để giải quyết vấn đề này, C99/C++11 đã đưa vào [kiểu số nguyên có độ
@@ -121,7 +130,8 @@ $0 \sim 2^x-1$. Cụ thể như bảng sau:
     chỉnh thứ tự của các từ khóa bổ nghĩa. Điều này có nghĩa là cùng một kiểu có
     thể có nhiều cách viết tương đương.
 
-    Ví dụ, `int`, `signed`, `int signed`, `signed int` biểu thị cùng một kiểu, còn `unsigned long` và `unsigned long int` biểu thị cùng một kiểu.
+    Ví dụ, `int`, `signed`, `int signed`, `signed int` biểu thị cùng một kiểu,
+    còn `unsigned long` và `unsigned long int` biểu thị cùng một kiểu.
 
 Ngoài ra, một số trình biên dịch triển khai các kiểu số nguyên mở rộng. Chẳng hạn
 GCC hỗ trợ số nguyên 128 bit: bản có dấu `__int128_t` và bản không dấu
@@ -130,7 +140,8 @@ của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng
 được hỗ trợ hay không.
 
 ???+ warning "Lưu ý"
-    STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc biệt cẩn thận khi dùng chúng.
+    STL không nhất thiết hỗ trợ đầy đủ các kiểu số nguyên mở rộng, vì vậy cần đặc
+    biệt cẩn thận khi dùng chúng.
 
     ???+ note "Mã ví dụ"
         ```cpp
@@ -213,17 +224,20 @@ của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng
 
 ### Kiểu ký tự
 
-Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi
-lập trình thuật toán ít dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu kiểu
-ký tự hẹp.
+Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong các
+kỳ thi lập trình thuật toán ít dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu
+kiểu ký tự hẹp.
 
 Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số
 nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên
 thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba loại sau:
 
--   `signed char`: kiểu biểu diễn ký tự có dấu, phạm vi biểu diễn từ $-128 \sim 127$.
--   `unsigned char`: kiểu biểu diễn ký tự không dấu, phạm vi biểu diễn từ $0 \sim 255$.
--   `char` có cùng cách biểu diễn và căn chỉnh với một trong hai kiểu `signed char` hoặc `unsigned char`, nhưng luôn là một kiểu độc lập.
+-   `signed char`: kiểu biểu diễn ký tự có dấu, phạm vi biểu diễn từ
+    $-128 \sim 127$.
+-   `unsigned char`: kiểu biểu diễn ký tự không dấu, phạm vi biểu diễn từ
+    $0 \sim 255$.
+-   `char` có cùng cách biểu diễn và căn chỉnh với một trong hai kiểu
+    `signed char` hoặc `unsigned char`, nhưng luôn là một kiểu độc lập.
 
     Tính có dấu của `char` phụ thuộc vào trình biên dịch và nền tảng đích: cấu
     hình mặc định trên ARM và PowerPC thường là không dấu, còn cấu hình mặc định
@@ -236,9 +250,11 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
     ABI, khiến chương trình không hoạt động bình thường.
 
 ???+ warning "Lưu ý"
-    Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là **ba kiểu khác nhau**.
+    Khác với các kiểu số nguyên khác, `char`, `signed char`, `unsigned char` là
+    **ba kiểu khác nhau**.
 
-    Thông thường, không nên dùng `signed char`, `unsigned char` để lưu ký tự. Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
+    Thông thường, không nên dùng `signed char`, `unsigned char` để lưu ký tự.
+    Trong hầu hết trường hợp, hai kiểu này được xem như kiểu số nguyên.
 
 <a id="kiểu-số-thực-dấu-phẩy-động"></a>
 
@@ -247,8 +263,10 @@ thường được hiểu theo [mã ASCII](http://www.asciitable.com/). Có ba l
 Dùng để lưu "số thực" (lưu ý rằng đây không phải số thực theo nghĩa chặt chẽ, mà
 là giá trị xấp xỉ của số thực theo một số quy tắc nhất định), gồm ba kiểu sau:
 
--   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary32.
--   `double`: kiểu dấu phẩy động độ chính xác kép. Nếu được hỗ trợ, kiểu này khớp với định dạng IEEE-754 binary64.
+-   `float`: kiểu dấu phẩy động độ chính xác đơn. Nếu được hỗ trợ, kiểu này khớp
+    với định dạng IEEE-754 binary32.
+-   `double`: kiểu dấu phẩy động độ chính xác kép. Nếu được hỗ trợ, kiểu này khớp
+    với định dạng IEEE-754 binary64.
 -   `long double`: kiểu dấu phẩy động độ chính xác mở rộng. Nếu được hỗ trợ, kiểu
     này khớp với định dạng IEEE-754 binary128; nếu không, nếu được hỗ trợ thì
     khớp với định dạng mở rộng IEEE-754 binary64; nếu không nữa thì khớp với một
@@ -263,9 +281,11 @@ là giá trị xấp xỉ của số thực theo một số quy tắc nhất đ�
 | Định dạng mở rộng IEEE-754 binary64 | $\geq 80$  | $\geq 1.2\times 10^{4932}$     | $\geq 18\sim 21$    |
 | Định dạng IEEE-754 binary128       | $128$       | $1.2\times 10^{4932}$          | $33\sim 36$         |
 
-> Số âm nhỏ nhất của định dạng dấu phẩy động IEEE-754 là số đối của số dương lớn nhất.
+> Số âm nhỏ nhất của định dạng dấu phẩy động IEEE-754 là số đối của số dương lớn
+> nhất.
 
-Vì kiểu `float` có phạm vi biểu diễn nhỏ và độ chính xác không cao, trong thực tế thường dùng kiểu `double` để biểu diễn số thực dấu phẩy động.
+Vì kiểu `float` có phạm vi biểu diễn nhỏ và độ chính xác không cao, trong thực tế
+thường dùng kiểu `double` để biểu diễn số thực dấu phẩy động.
 
 Ngoài ra, kiểu dấu phẩy động có thể hỗ trợ một số giá trị đặc biệt:
 
