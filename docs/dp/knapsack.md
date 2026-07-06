@@ -5,7 +5,7 @@ Kiến thức nền: [Giới thiệu phần quy hoạch động](./index.md).
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Trước khi nói cụ thể "DP ba lô" là gì, hãy xem bài ví dụ sau:
+Trước khi nói cụ thể "DP ba lô" là gì, xét bài ví dụ sau:
 
 ???+ note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
     Tóm tắt đề bài: có $n$ vật phẩm và một ba lô có sức chứa $W$. Mỗi vật phẩm có hai thuộc tính là trọng lượng $w_{i}$ và giá trị $v_{i}$. Cần chọn một số vật phẩm cho vào ba lô sao cho tổng giá trị các vật phẩm trong ba lô là lớn nhất, đồng thời tổng trọng lượng không vượt quá sức chứa của ba lô.
@@ -30,20 +30,20 @@ $$
 f_{i,j}=\max(f_{i-1,j},f_{i-1,j-w_{i}}+v_{i})
 $$
 
-Nếu trực tiếp dùng mảng hai chiều để lưu trạng thái, chương trình có thể bị MLE. Ta có thể cân nhắc dùng mảng cuốn để tối ưu.
+Nếu trực tiếp dùng mảng hai chiều để lưu trạng thái, chương trình có thể bị MLE. Có thể cân nhắc dùng mảng cuốn để tối ưu.
 
-Vì $f_i$ chỉ chịu ảnh hưởng từ $f_{i-1}$, có thể bỏ chiều thứ nhất và dùng trực tiếp $f_{i}$ để biểu diễn giá trị lớn nhất khi đã xử lý đến vật phẩm hiện tại và sức chứa ba lô là $i$. Khi đó ta được phương trình sau:
+Vì $f_i$ chỉ chịu ảnh hưởng từ $f_{i-1}$, có thể bỏ chiều thứ nhất và dùng trực tiếp $f_{i}$ để biểu diễn giá trị lớn nhất khi đã xử lý đến vật phẩm hiện tại và sức chứa ba lô là $i$. Khi đó thu được phương trình sau:
 
 $$
 f_j=\max \left(f_j,f_{j-w_i}+v_i\right)
 $$
 
-**Hãy ghi nhớ và hiểu thật rõ phương trình chuyển trạng thái này, vì phần lớn các phương trình chuyển của bài toán ba lô đều được suy ra dựa trên nó.**
+**Cần ghi nhớ và hiểu thật rõ phương trình chuyển trạng thái này, vì phần lớn các phương trình chuyển của bài toán ba lô đều được suy ra dựa trên nó.**
 
 <span id="cài-đặt"></span>
 ### Cài đặt
 
-Còn một điểm cần chú ý: rất dễ viết ra đoạn **mã lõi sai** như sau:
+Còn một điểm cần lưu ý: rất dễ viết ra đoạn **mã lõi sai** như sau:
 
 === "C++"
     ```cpp
@@ -65,9 +65,9 @@ Còn một điểm cần chú ý: rất dễ viết ra đoạn **mã lõi sai** 
 
 Đoạn mã này sai ở đâu? Sai ở thứ tự duyệt.
 
-Quan sát kỹ đoạn mã có thể thấy: với vật phẩm đang xử lý $i$ và trạng thái hiện tại $f_{i,j}$, khi $j\geqslant w_{i}$, $f_{i,j}$ sẽ bị ảnh hưởng bởi $f_{i,j-w_{i}}$. Điều này tương đương với việc vật phẩm $i$ có thể được cho vào ba lô nhiều lần, không đúng với đề bài. (Thực ra đây chính là cách giải cho bài toán ba lô đầy đủ.)
+Quan sát kỹ đoạn mã sẽ thấy: với vật phẩm đang xử lý $i$ và trạng thái hiện tại $f_{i,j}$, khi $j\geqslant w_{i}$, $f_{i,j}$ sẽ bị ảnh hưởng bởi $f_{i,j-w_{i}}$. Điều này tương đương với việc vật phẩm $i$ có thể được cho vào ba lô nhiều lần, không đúng với đề bài. (Về bản chất, đây chính là cách giải cho bài toán ba lô đầy đủ.)
 
-Để tránh tình huống này, ta có thể đổi thứ tự duyệt, duyệt từ $W$ xuống $w_{i}$. Khi đó lỗi trên sẽ không xuất hiện, vì $f_{i,j}$ luôn được cập nhật trước $f_{i,j-w_{i}}$.
+Để tránh tình huống này, có thể đổi thứ tự duyệt, duyệt từ $W$ xuống $w_{i}$. Khi đó lỗi trên sẽ không xuất hiện, vì $f_{i,j}$ luôn được cập nhật trước $f_{i,j-w_{i}}$.
 
 Vì vậy, mã lõi đúng là:
 
@@ -97,9 +97,9 @@ Vì vậy, mã lõi đúng là:
 
 Mô hình ba lô đầy đủ tương tự ba lô 0-1; điểm khác biệt so với ba lô 0-1 là mỗi loại vật phẩm có thể được chọn vô hạn lần, chứ không chỉ được chọn một lần.
 
-Ta có thể mượn ý tưởng của ba lô 0-1 để định nghĩa trạng thái: đặt $f_{i,j}$ là giá trị lớn nhất có thể đạt được với ba lô có sức chứa $j$ khi chỉ được chọn trong $i$ loại vật phẩm đầu tiên.
+Có thể mượn ý tưởng của ba lô 0-1 để định nghĩa trạng thái: đặt $f_{i,j}$ là giá trị lớn nhất có thể đạt được với ba lô có sức chứa $j$ khi chỉ được chọn trong $i$ loại vật phẩm đầu tiên.
 
-Cần chú ý rằng tuy định nghĩa giống ba lô 0-1, phương trình chuyển trạng thái của nó lại không giống ba lô 0-1.
+Cần lưu ý rằng tuy định nghĩa giống ba lô 0-1, phương trình chuyển trạng thái của nó lại không giống ba lô 0-1.
 
 <span id="quá-trình"></span>
 ### Quá trình
@@ -118,9 +118,9 @@ $$
 f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)
 $$
 
-Lý do là khi ta chuyển như vậy, $f_{i,j-w_i}$ đã từng được cập nhật từ $f_{i,j-2\times w_i}$, nên $f_{i,j-w_i}$ đã là kết quả tối ưu sau khi xét đầy đủ số lần chọn vật phẩm thứ $i$. Nói cách khác, ta lặp lại quá trình duyệt trước đó thông qua tính chất cấu trúc con tối ưu cục bộ, từ đó tối ưu độ phức tạp của phép duyệt.
+Lý do là khi chuyển như vậy, $f_{i,j-w_i}$ đã từng được cập nhật từ $f_{i,j-2\times w_i}$, nên $f_{i,j-w_i}$ đã là kết quả tối ưu sau khi xét đầy đủ số lần chọn vật phẩm thứ $i$. Nói cách khác, quá trình duyệt trước đó được lặp lại thông qua tính chất cấu trúc con tối ưu cục bộ, từ đó tối ưu độ phức tạp của phép duyệt.
 
-Giống ba lô 0-1, ta có thể bỏ chiều thứ nhất để tối ưu độ phức tạp bộ nhớ. Nếu đã hiểu cách tối ưu của ba lô 0-1, sẽ không khó để thấy vòng lặp sau khi nén phải duyệt xuôi (chính là "tối ưu sai" đã nhắc ở trên).
+Giống ba lô 0-1, có thể bỏ chiều thứ nhất để tối ưu độ phức tạp bộ nhớ. Nếu đã hiểu cách tối ưu của ba lô 0-1, sẽ thấy vòng lặp sau khi nén phải duyệt xuôi (chính là "tối ưu sai" đã nhắc ở trên).
 
 ??? note "[Luogu P1616 - Thu hái thảo dược điên cuồng](https://www.luogu.com.cn/problem/P1616)"
     Tóm tắt đề bài: có $n$ loại vật phẩm và một ba lô có sức chứa $W$. Mỗi loại vật phẩm có hai thuộc tính là trọng lượng $w_{i}$ và giá trị $v_{i}$. Cần chọn một số vật phẩm cho vào ba lô sao cho tổng giá trị các vật phẩm trong ba lô là lớn nhất, đồng thời tổng trọng lượng không vượt quá sức chứa của ba lô.
@@ -158,19 +158,19 @@ $$
 <span id="tối-ưu-bằng-phân-nhóm-nhị-phân"></span>
 ### Tối ưu bằng phân nhóm nhị phân
 
-Xét tối ưu. Ta vẫn xét việc chuyển ba lô nhiều vật phẩm thành mô hình ba lô 0-1 để giải.
+Xét tối ưu. Vẫn xét việc chuyển ba lô nhiều vật phẩm thành mô hình ba lô 0-1 để giải.
 
 <span id="giải-thích_2"></span>
 ### Giải thích
 
-Hiển nhiên phần $O(nW)$ trong độ phức tạp không thể tối ưu thêm, nên ta chỉ có thể bắt đầu từ phần $O(\sum k_i)$. Để tiện trình bày, dùng $A_{i,j}$ biểu diễn vật phẩm thứ $j$ được tách ra từ loại vật phẩm thứ $i$.
+Phần $O(nW)$ trong độ phức tạp không thể tối ưu thêm, nên chỉ có thể bắt đầu từ phần $O(\sum k_i)$. Để tiện trình bày, dùng $A_{i,j}$ biểu diễn vật phẩm thứ $j$ được tách ra từ loại vật phẩm thứ $i$.
 
-Trong cách làm ngây thơ, với $\forall j\le k_i$, mọi $A_{i,j}$ đều biểu diễn cùng một loại vật phẩm. Vì vậy nguyên nhân chính khiến hiệu suất thấp là ta đã làm rất nhiều việc lặp lại. Ví dụ, ta xét hai trường hợp "đồng thời chọn $A_{i,1},A_{i,2}$" và "đồng thời chọn $A_{i,2},A_{i,3}$"; hai trường hợp này hoàn toàn tương đương. Ta đã thực hiện kiểu công việc trùng lặp như vậy rất nhiều lần. Do đó, tối ưu cách tách vật phẩm trở thành điểm then chốt để giải quyết bài toán.
+Trong cách làm ngây thơ, với $\forall j\le k_i$, mọi $A_{i,j}$ đều biểu diễn cùng một loại vật phẩm. Vì vậy nguyên nhân chính khiến hiệu suất thấp là có rất nhiều việc bị lặp lại. Ví dụ, xét hai trường hợp "đồng thời chọn $A_{i,1},A_{i,2}$" và "đồng thời chọn $A_{i,2},A_{i,3}$"; hai trường hợp này hoàn toàn tương đương. Kiểu công việc trùng lặp như vậy xuất hiện rất nhiều lần. Do đó, tối ưu cách tách vật phẩm trở thành điểm then chốt để giải quyết bài toán.
 
 <span id="quá-trình_1"></span>
 ### Quá trình
 
-Ta có thể dùng cách "phân nhóm nhị phân" để việc tách vật phẩm đẹp hơn.
+Có thể dùng cách "phân nhóm nhị phân" để việc tách vật phẩm đẹp hơn.
 
 Cụ thể, cho $A_{i,j}\left(j\in\left[0,\lfloor \log_2(k_i+1)\rfloor-1\right]\right)$ lần lượt biểu diễn các vật phẩm lớn được "gói" từ $2^{j}$ vật phẩm đơn lẻ. Đặc biệt, nếu $k_i+1$ không phải là lũy thừa nguyên của $2$, cần thêm vào cuối một vật phẩm lớn được "gói" từ $k_i-2^{\lfloor \log_2(k_i+1)\rfloor-1}$ vật phẩm đơn lẻ để bù đủ.
 
@@ -181,7 +181,7 @@ Một vài ví dụ:
 -   $18=1+2+4+8+3$
 -   $31=1+2+4+8+16$
 
-Hiển nhiên, với cách tách trên, ta có thể biểu diễn mọi cách chọn tương đương với số lượng vật phẩm $\le k_i$. Sau khi tách từng loại vật phẩm theo cách trên, chỉ cần dùng phương pháp ba lô 0-1 để giải.
+Với cách tách trên, có thể biểu diễn mọi cách chọn tương đương với số lượng vật phẩm $\le k_i$. Sau khi tách từng loại vật phẩm theo cách trên, chỉ cần dùng phương pháp ba lô 0-1 để giải.
 
 Độ phức tạp thời gian là $O(W\sum_{i=1}^n\log_2k_i)$.
 
@@ -252,7 +252,7 @@ với mỗi loại vật phẩm {
 ### Bài ví dụ
 
 ???+ note "[Luogu P1833 - Hoa anh đào](https://www.luogu.com.cn/problem/P1833)"
-    Có $n$ loại cây hoa anh đào và tổng thời gian dài $T$. Có loại cây chỉ có thể ngắm một lần, có loại cây được ngắm nhiều nhất $A_{i}$ lần, và có loại cây có thể ngắm vô hạn lần. Mỗi cây hoa anh đào có một giá trị thẩm mỹ $C_{i}$. Hãy tìm cách ngắm các cây trong thời gian $T$ sao cho tổng giá trị thẩm mỹ là cao nhất.
+    Có $n$ loại cây hoa anh đào và tổng thời gian dài $T$. Có loại cây chỉ có thể ngắm một lần, có loại cây được ngắm nhiều nhất $A_{i}$ lần, và có loại cây có thể ngắm vô hạn lần. Mỗi cây hoa anh đào có một giá trị thẩm mỹ $C_{i}$. Tìm cách ngắm các cây trong thời gian $T$ sao cho tổng giá trị thẩm mỹ là cao nhất.
 
 ??? note "Mã lõi"
     ```cpp
@@ -281,9 +281,9 @@ Bài tập: [HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.p
     
     Hiện có $T$ phút và $W$ đồng để xử lý các nhiệm vụ này. Hỏi tối đa có thể hoàn thành bao nhiêu nhiệm vụ.
 
-Bài này rõ ràng là bài toán ba lô 0-1, nhưng điểm khác là chọn một vật phẩm sẽ tiêu hao hai loại giá trị (kinh phí và thời gian). Chỉ cần tăng thêm một chiều trong trạng thái để lưu loại giá trị thứ hai.
+Bài này là bài toán ba lô 0-1, nhưng điểm khác là chọn một vật phẩm sẽ tiêu hao hai loại giá trị (kinh phí và thời gian). Chỉ cần tăng thêm một chiều trong trạng thái để lưu loại giá trị thứ hai.
 
-Lúc này cần chú ý rằng mở thêm một chiều để lưu số thứ tự vật phẩm là không phù hợp, vì dễ bị MLE.
+Lúc này cần lưu ý rằng mở thêm một chiều để lưu số thứ tự vật phẩm là không phù hợp, vì dễ bị MLE.
 
 <span id="cài-đặt_2"></span>
 ### Cài đặt
@@ -308,9 +308,9 @@ Lúc này cần chú ý rằng mở thêm một chiều để lưu số thứ t�
 ## Ba lô theo nhóm
 
 ???+ note "[Luogu P1757 - Ba lô phân nhóm vươn tới trời cao](https://www.luogu.com.cn/problem/P1757)"
-    Có $n$ vật phẩm và một ba lô có kích thước $m$. Giá trị của vật phẩm thứ $i$ là $w_i$, thể tích là $v_i$. Đồng thời, mỗi vật phẩm thuộc một nhóm, và trong cùng một nhóm chỉ được chọn nhiều nhất một vật phẩm. Hãy tìm tổng giá trị lớn nhất của các vật phẩm mà ba lô có thể chứa.
+    Có $n$ vật phẩm và một ba lô có kích thước $m$. Giá trị của vật phẩm thứ $i$ là $w_i$, thể tích là $v_i$. Đồng thời, mỗi vật phẩm thuộc một nhóm, và trong cùng một nhóm chỉ được chọn nhiều nhất một vật phẩm. Tìm tổng giá trị lớn nhất của các vật phẩm mà ba lô có thể chứa.
 
-Với dạng bài này nên nghĩ thế nào? Thực ra bài toán đã chuyển từ "chọn một vật phẩm trong tất cả vật phẩm" thành "chọn một vật phẩm trong nhóm hiện tại", nên chỉ cần thực hiện một lần ba lô 0-1 cho mỗi nhóm.
+Với dạng bài này nên nghĩ thế nào? Bài toán đã chuyển từ "chọn một vật phẩm trong tất cả vật phẩm" thành "chọn một vật phẩm trong nhóm hiện tại", nên chỉ cần thực hiện một lần ba lô 0-1 cho mỗi nhóm.
 
 Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn số thứ tự của vật phẩm thứ $i$ trong nhóm thứ $k$, rồi dùng $\mathit{cnt}_k$ để biểu diễn số vật phẩm trong nhóm thứ $k$.
 
@@ -338,7 +338,7 @@ Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn 
                     )  # Chuyen trang thai nhu ba lo 0-1
     ```
 
-Ở đây cần chú ý: **tuyệt đối không được nhầm thứ tự vòng lặp**, như vậy mới bảo đảm tính đúng đắn.
+Lưu ý: **tuyệt đối không được nhầm thứ tự vòng lặp**, như vậy mới bảo đảm tính đúng đắn.
 
 <span id="ba-lô-có-phụ-thuộc"></span>
 ## Ba lô có phụ thuộc
@@ -348,7 +348,7 @@ Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn 
     
     Mục tiêu là tối đa hóa tổng $v_i \times p_i$ của tất cả vật phẩm được mua.
 
-Xét bằng cách chia trường hợp. Với một vật phẩm chính và một số phụ kiện của nó, có các khả năng sau: chỉ mua vật phẩm chính, hoặc mua vật phẩm chính + một số phụ kiện. Vì trong các khả năng này chỉ được chọn một, ta có thể xem đây là ba lô theo nhóm.
+Xét bằng cách chia trường hợp. Với một vật phẩm chính và một số phụ kiện của nó, có các khả năng sau: chỉ mua vật phẩm chính, hoặc mua vật phẩm chính + một số phụ kiện. Vì trong các khả năng này chỉ được chọn một, có thể xem đây là ba lô theo nhóm.
 
 Nếu là một tập các cây đa phân, cần tính tập của các nút con trước, rồi cuối cùng mới tính tập của nút cha.
 
@@ -371,7 +371,7 @@ Theo nguyên lý tham lam, khi chi phí bằng nhau thì chỉ cần giữ vật
 <span id="xuất-phương-án"></span>
 #### Xuất phương án
 
-Xuất phương án thực chất là ghi lại một trạng thái nào đó trong ba lô được suy ra như thế nào. Ta có thể dùng $g_{i,v}$ để biểu diễn khi vật phẩm thứ $i$ chiếm dung lượng $v$ thì có chọn vật phẩm này hay không. Sau đó, trong lúc chuyển trạng thái, ghi lại đã dùng chiến lược nào (chọn hoặc không chọn). Mã giả khi xuất:
+Xuất phương án thực chất là ghi lại một trạng thái nào đó trong ba lô được suy ra như thế nào. Có thể dùng $g_{i,v}$ để biểu diễn khi vật phẩm thứ $i$ chiếm dung lượng $v$ thì có chọn vật phẩm này hay không. Sau đó, trong lúc chuyển trạng thái, ghi lại đã dùng chiến lược nào (chọn hoặc không chọn). Mã giả khi xuất:
 
 ```plain
 int v = V;  // Ghi lại dung lượng lưu trữ hiện tại
@@ -407,7 +407,7 @@ Vì khi sức chứa bằng $0$ cũng có một phương án, tức là không c
 <span id="đếm-tổng-số-phương-án-tối-ưu"></span>
 #### Đếm tổng số phương án tối ưu
 
-Để đếm tổng số phương án tối ưu, ta cần sửa nhẹ định nghĩa của mảng $\mathit{dp}$ trong ba lô 0-1: trạng thái DP $f_{i,j}$ là tổng giá trị lớn nhất có thể đạt được khi ba lô có sức chứa $j$ được "lấp đầy chính xác" và chỉ được xét $i$ vật phẩm đầu tiên.
+Để đếm tổng số phương án tối ưu, cần sửa nhẹ định nghĩa của mảng $\mathit{dp}$ trong ba lô 0-1: trạng thái DP $f_{i,j}$ là tổng giá trị lớn nhất có thể đạt được khi ba lô có sức chứa $j$ được "lấp đầy chính xác" và chỉ được xét $i$ vật phẩm đầu tiên.
 
 Sau khi sửa như vậy, mỗi trạng thái DP đều có thể dùng một $g_{i,j}$ để biểu diễn số phương án.
 
@@ -435,7 +435,7 @@ g[0] = 1;  // Khong chon gi cung la mot phuong an
 
 Vì thể tích lớn nhất của ba lô có thể không lấp đầy được, nghiệm tối ưu không nhất thiết là $f_{m}$.
 
-Cuối cùng, ta tìm giá trị của nghiệm tối ưu, rồi cộng tất cả số phương án trong mảng $g_{j}$ tương ứng với các vị trí đạt nghiệm tối ưu.
+Cuối cùng, tìm giá trị của nghiệm tối ưu, rồi cộng tất cả số phương án trong mảng $g_{j}$ tương ứng với các vị trí đạt nghiệm tối ưu.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -464,8 +464,8 @@ Cuối cùng, ta tìm giá trị của nghiệm tối ưu, rồi cộng tất c�
 <span id="nghiệm-tốt-thứ-k-của-bài-toán-ba-lô"></span>
 #### Nghiệm tốt thứ $k$ của bài toán ba lô
 
-Ba lô 0-1 thông thường yêu cầu nghiệm tối ưu. Trên phương pháp DP ba lô thông thường, chỉ cần sửa nhẹ bằng cách thêm một chiều để ghi các nghiệm tốt nhất thứ 1 đến thứ $k$ dưới trạng thái hiện tại, ta sẽ thu được thuật toán tìm nghiệm tốt thứ $k$ của ba lô 0-1.
-Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có thể đạt được khi xét $i$ vật phẩm đầu tiên và tổng thể tích các vật phẩm được chọn là $j$. Có thể hiểu trạng thái này là mở rộng $\mathit{dp_{i,j}}$ của ba lô 0-1 thông thường, vốn chỉ cần ghi một dữ liệu, thành việc ghi một dãy nghiệm tốt có thứ tự. Khi chuyển trạng thái, cách tìm nghiệm tối ưu trong ba lô thông thường là $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$; còn bây giờ ta cần hợp nhất hai dãy giảm dần có kích thước $k$, gồm $\mathit{dp_{i-1,j}}$ và $\mathit{dp_{i-1,j-v_{i}}}+w_{i}$, rồi giữ lại $k$ giá trị lớn nhất sau khi hợp nhất trong $\mathit{dp_{i,j}}$. Bước này dùng phương pháp hai con trỏ, có độ phức tạp $O(k)$; độ phức tạp thời gian tổng thể là $O(nmk)$. Về bộ nhớ, phương pháp này cũng có thể nén bỏ chiều thứ nhất như ba lô thông thường, với độ phức tạp $O(mk)$.
+Ba lô 0-1 thông thường yêu cầu nghiệm tối ưu. Trên phương pháp DP ba lô thông thường, chỉ cần sửa nhẹ bằng cách thêm một chiều để ghi các nghiệm tốt nhất thứ 1 đến thứ $k$ dưới trạng thái hiện tại, sẽ thu được thuật toán tìm nghiệm tốt thứ $k$ của ba lô 0-1.
+Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có thể đạt được khi xét $i$ vật phẩm đầu tiên và tổng thể tích các vật phẩm được chọn là $j$. Có thể hiểu trạng thái này là mở rộng $\mathit{dp_{i,j}}$ của ba lô 0-1 thông thường, vốn chỉ cần ghi một dữ liệu, thành việc ghi một dãy nghiệm tốt có thứ tự. Khi chuyển trạng thái, cách tìm nghiệm tối ưu trong ba lô thông thường là $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$; còn bây giờ cần hợp nhất hai dãy giảm dần có kích thước $k$, gồm $\mathit{dp_{i-1,j}}$ và $\mathit{dp_{i-1,j-v_{i}}}+w_{i}$, rồi giữ lại $k$ giá trị lớn nhất sau khi hợp nhất trong $\mathit{dp_{i,j}}$. Bước này dùng phương pháp hai con trỏ, có độ phức tạp $O(k)$; độ phức tạp thời gian tổng thể là $O(nmk)$. Về bộ nhớ, phương pháp này cũng có thể nén bỏ chiều thứ nhất như ba lô thông thường, với độ phức tạp $O(mk)$.
 
 ??? note "Bài ví dụ [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
     Tìm nghiệm tốt thứ $k$ nghiêm ngặt của ba lô 0-1. $n \leq 100,v \leq 1000,k \leq 30$
