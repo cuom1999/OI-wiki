@@ -1,5 +1,5 @@
 ???+ note "Gợi ý"
-    Bài viết này đang được chỉnh sửa và thảo luận; hoan nghênh bạn bổ sung lộ trình học nâng cao hơn hoặc nêu ý kiến trong phần bình luận!
+    Bài viết này đang được chỉnh sửa và thảo luận; mọi bổ sung về lộ trình học nâng cao hơn hoặc ý kiến trong phần bình luận đều được hoan nghênh!
 
 Bài viết này sẽ giới thiệu lộ trình học lập trình thi đấu.
 
@@ -7,20 +7,20 @@ Lộ trình này vừa là hướng dẫn cho người mới học kiến thức
 
 ## 1 Nền tảng ngôn ngữ C++
 
-Hãy bắt đầu từ cú pháp C++, từng bước một.
+Nên bắt đầu từ cú pháp C++, từng bước một.
 
 ### 1.1 Hello, World!
 
-Hãy bắt đầu hành trình lập trình thi đấu bằng một dòng `Hello, World!`.
+Bước đầu của hành trình lập trình thi đấu là một dòng `Hello, World!`.
 
-Đồng thời, hãy tìm hiểu khung cơ bản của một chương trình nguồn C++ trông như thế nào.
+Đồng thời, cần tìm hiểu khung cơ bản của một chương trình nguồn C++.
 
 -   [Hello, World!](../lang/helloworld.md)
 -   [Nền tảng cú pháp C++](../lang/basic.md)
 
 ### 1.2 Biến và phép toán
 
-Mục đích ban đầu của máy tính khi ra đời là tính toán. Vì vậy, trước hết hãy học cách hoàn thành một số nhiệm vụ tính toán đơn giản.
+Mục đích ban đầu của máy tính khi ra đời là tính toán. Vì vậy, trước hết cần học cách hoàn thành một số nhiệm vụ tính toán đơn giản.
 
 -   [Biến](../lang/var.md)
 -   [Phép toán](../lang/op.md)
@@ -29,7 +29,7 @@ Mục đích ban đầu của máy tính khi ra đời là tính toán. Vì vậ
 
 #### 1.3.1 Cấu trúc rẽ nhánh
 
-Đôi khi ta cần chọn thực hiện các câu lệnh khác nhau trong những điều kiện khác nhau; khi đó cần dùng đến câu lệnh rẽ nhánh.
+Đôi khi cần chọn thực hiện các câu lệnh khác nhau trong những điều kiện khác nhau; khi đó cần dùng đến câu lệnh rẽ nhánh.
 
 -   [Rẽ nhánh](../lang/branch.md)
 
@@ -42,7 +42,7 @@ Câu lệnh rẽ nhánh gồm các loại sau:
 
 #### 1.3.2 Cấu trúc vòng lặp
 
-Khi cần lặp lại một số câu lệnh nhiều lần, ta dùng câu lệnh vòng lặp.
+Khi cần lặp lại một số câu lệnh nhiều lần, câu lệnh vòng lặp sẽ được dùng.
 
 -   [Vòng lặp](../lang/loop.md)
 
@@ -63,7 +63,7 @@ Mảng dùng để lưu trữ lượng lớn dữ liệu cùng kiểu. Struct c�
 
 Dùng hàm để mô-đun hóa chương trình và giảm chi phí cài đặt.
 
-Đệ quy là một ngưỡng khó với người mới. “Tự gọi chính mình” nghe có vẻ không dễ hiểu, nhưng nếu xét kỹ bản chất, bạn sẽ thấy “tự gọi chính mình” và “gọi người khác” không có khác biệt căn bản.
+Đệ quy là một ngưỡng khó với người mới. “Tự gọi chính mình” nghe có vẻ không dễ hiểu, nhưng xét kỹ bản chất thì “tự gọi chính mình” và “gọi người khác” không có khác biệt căn bản.
 
 -   [Hàm](../lang/func.md)
 -   [Đệ quy & chia để trị](../basic/divide-and-conquer.md)
@@ -72,9 +72,9 @@ Dùng hàm để mô-đun hóa chương trình và giảm chi phí cài đặt.
 
 ### 2.1 Liệt kê và mô phỏng
 
-Từ bây giờ, bạn đã có thể dùng C++ để hoàn thành một số nhiệm vụ đơn giản, nhưng như vậy còn xa mới đủ.
+Đến giai đoạn này, người học đã có thể dùng C++ để hoàn thành một số nhiệm vụ đơn giản, nhưng như vậy còn xa mới đủ.
 
-Để làm đúng một số bài đơn giản, bạn cần học cách cài đặt mã bằng cách liệt kê hoặc mô phỏng logic trong đầu. Cách này trông không hiệu quả lắm, nhưng đôi khi rất hữu dụng.
+Để làm đúng một số bài đơn giản, cần học cách cài đặt mã bằng cách liệt kê hoặc mô phỏng logic trong đầu. Cách này trông không hiệu quả lắm, nhưng đôi khi rất hữu dụng.
 
 -   [Liệt kê](../basic/enumerate.md)
 -   [Mô phỏng](../basic/simulate.md)
@@ -87,16 +87,16 @@ Từ bây giờ, bạn đã có thể dùng C++ để hoàn thành một số nh
 
 ### 2.3 Xâu
 
-Khi làm bài Tin học, một kiểu dữ liệu thường gặp là xâu; bạn cần học một số hàm STL dùng để thao tác trên xâu. Tất nhiên, mô phỏng cũng là một cách tốt để giải các bài về xâu.
+Khi làm bài Tin học, một kiểu dữ liệu thường gặp là xâu; người học cần nắm một số hàm STL dùng để thao tác trên xâu. Mô phỏng cũng là một cách tốt để giải các bài về xâu.
 
 -   [Nền tảng xâu](../string/basic.md)
 -   [Hàm STL](../string/lib-func.md)
 
 ### 2.4 Sắp xếp
 
-Khi có một nhóm dữ liệu, làm thế nào để biến chúng từ không có thứ tự thành có thứ tự cũng là một vấn đề rất quan trọng. Khi chưa có ý tưởng, bạn có thể cân nhắc sắp xếp mảng. Đây cũng là nền tảng cho nhiều thuật toán tiếp theo.
+Khi có một nhóm dữ liệu, làm thế nào để biến chúng từ không có thứ tự thành có thứ tự cũng là một vấn đề rất quan trọng. Khi chưa có ý tưởng, có thể cân nhắc sắp xếp mảng. Đây cũng là nền tảng cho nhiều thuật toán tiếp theo.
 
-Có khá nhiều phương pháp sắp xếp, nhưng sau khi hiểu thì không khó để ghi nhớ chúng.
+Số lượng phương pháp sắp xếp khá nhiều, nhưng sau khi hiểu thì việc ghi nhớ chúng không quá nặng.
 
 -   [Giới thiệu về sắp xếp](../basic/sort-intro.md)
 -   [Sắp xếp chọn](../basic/selection-sort.md)
@@ -114,7 +114,7 @@ Trong đề cương NOI, mức nhập môn chỉ yêu cầu học sắp xếp ch
 
 ### 2.5 Tìm kiếm nhị phân và nhân đôi
 
-Tìm kiếm nhị phân về bản chất là vận dụng tư tưởng chia để trị, liên tục thu hẹp phạm vi tìm kiếm cho đến khi tìm được đáp án. Tuy nhiên cần chú ý rằng cách tìm này phải được áp dụng trên cấu trúc dữ liệu có thứ tự.
+Tìm kiếm nhị phân về bản chất là vận dụng tư tưởng chia để trị, liên tục thu hẹp phạm vi tìm kiếm cho đến khi tìm được đáp án. Tuy nhiên cần lưu ý rằng cách tìm này phải được áp dụng trên cấu trúc dữ liệu có thứ tự.
 
 -   [Tìm kiếm nhị phân](../basic/binary.md)
 
@@ -140,7 +140,7 @@ Thiết kế mỗi trạng thái thành một đỉnh trong đồ thị, từ đ
 
 #### 2.6.3 Tối ưu tìm kiếm
 
-Nhiều bài có thể giải bằng DFS, nhưng độ phức tạp của thuật toán này rõ ràng là không thể vượt qua giới hạn. Vì vậy cần một số tối ưu để nó chạy nhanh hơn. Những tối ưu như vậy có thể giảm các thử nghiệm chắc chắn không thành công, gọi là “cắt tỉa”. Tối ưu liên quan đến BFS linh hoạt hơn, nhưng tư tưởng cơ bản cũng giống ở đây.
+Nhiều bài có thể giải bằng DFS, nhưng độ phức tạp của thuật toán này thường vượt quá giới hạn. Vì vậy cần một số tối ưu để nó chạy nhanh hơn. Những tối ưu như vậy có thể giảm các thử nghiệm không có khả năng thành công, gọi là “cắt tỉa”. Tối ưu liên quan đến BFS linh hoạt hơn, nhưng tư tưởng cơ bản cũng tương tự.
 
 -   [Tối ưu cắt tỉa DFS](../search/opt.md)
 
@@ -183,7 +183,7 @@ Trong quy hoạch động, một trong những phần khó nhất là thiết k�
 
 Tìm kiếm có nhớ là cách cài đặt tìm kiếm ghi lại thông tin của các trạng thái đã duyệt, nhờ đó tránh duyệt lặp lại cùng một trạng thái. Một số bài cũng có thể dùng tìm kiếm có nhớ để giảm độ khó tư duy.
 
-Vì tìm kiếm có nhớ đảm bảo mỗi trạng thái chỉ được truy cập một lần, nó cũng là một cách cài đặt quy hoạch động thường gặp.
+Vì tìm kiếm có nhớ bảo đảm mỗi trạng thái chỉ được truy cập một lần, nó cũng là một cách cài đặt quy hoạch động thường gặp.
 
 -   [Tìm kiếm có nhớ](../dp/memo.md)
 
@@ -232,4 +232,4 @@ Các thao tác bit cơ bản có 6 loại: AND bit, OR bit, XOR bit, NOT bit, d�
 
 ***
 
-Đến đây, bạn đã học xong toàn bộ các thuật toán trong phạm vi nhóm nhập môn, nhưng để nắm vững chúng, bạn cần tiếp tục làm đủ nhiều bài để củng cố các kiến thức đã học.
+Đến đây, người học đã hoàn thành toàn bộ các thuật toán trong phạm vi nhóm nhập môn, nhưng để nắm vững chúng, cần tiếp tục làm đủ nhiều bài để củng cố các kiến thức đã học.

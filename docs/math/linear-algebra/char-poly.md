@@ -1,8 +1,8 @@
 Phần về đặc trưng này chỉ xét ma trận vuông, tức là biến đổi tuyến tính tương ứng với ma trận $A$ ánh xạ $n$ vectơ thành $n$ vectơ.
 
-Trong các bài toán thực tế, ta thường phải xét việc thực hiện liên tiếp các biến đổi lặp lại. Nếu chỉ dùng mô tả "biến đổi tuyến tính tương ứng với ma trận $A$ biến ma trận đơn vị $I$ thành $A$", thì sẽ rất trừu tượng. Lúc này cách tốt nhất là tìm "điểm bất động", tức phần không thay đổi trong biến đổi.
+Trong các bài toán thực tế, thường phải xét việc thực hiện liên tiếp các biến đổi lặp lại. Nếu chỉ dùng mô tả "biến đổi tuyến tính tương ứng với ma trận $A$ biến ma trận đơn vị $I$ thành $A$", thì sẽ rất trừu tượng. Lúc này cách tốt nhất là tìm "điểm bất động", tức phần không thay đổi trong biến đổi.
 
-Tuy nhiên trên thực tế, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên ta lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
+Tuy nhiên trên thực tế, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên cần lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
 
 <span id="giá-trị-riêng-và-vectơ-riêng"></span>
 ## Giá trị riêng và vectơ riêng
@@ -19,7 +19,7 @@ thì $\lambda$ được gọi là một **giá trị riêng** của $T$, còn $\
 
 Các vectơ riêng nằm trên cùng một đường thẳng vẫn giữ nguyên hướng dưới tác dụng của biến đổi tuyến tính (bị nén về không cũng được xem là không đổi hướng). Vectơ riêng không duy nhất; mọi vectơ cộng tuyến với một vectơ riêng đều là vectơ riêng, nhưng theo quy ước vectơ không không phải là vectơ riêng, vì vectơ có hướng đương nhiên phải khác không. Giá trị riêng của một vectơ riêng chính là hệ số co giãn của nó.
 
-Trong ứng dụng thực tế, với các vectơ riêng có cùng giá trị riêng, người ta thường chọn một cơ sở làm đại diện cho toàn bộ chúng.
+Trong ứng dụng thực tế, với các vectơ riêng có cùng giá trị riêng, thường chọn một cơ sở làm đại diện cho toàn bộ chúng.
 
 Giả sử $\alpha_1,\alpha_2,\cdots,\alpha_n$ là một cơ sở của $V$, và ma trận của $T$ theo cơ sở này là $A$, tức là:
 
@@ -73,7 +73,7 @@ p_A(\lambda)=\det(\lambda I_n-A)=\begin{vmatrix}
 \end{vmatrix}
 $$
 
-Trong đó $I_n$ là ma trận đơn vị $n\times n$. Một số nơi định nghĩa $p_A(\lambda)=\det(A-\lambda I_n)$; định nghĩa đó chỉ khác định nghĩa của chúng ta một dấu $(-1)^n$. Với định nghĩa ở đây, $p_A(\lambda)$ chắc chắn là đa thức monic, còn định nghĩa kia chỉ monic khi $n$ chẵn. Cần chú ý rằng định thức của ma trận $0\times 0$ bằng $1$ là một định nghĩa tốt.
+Trong đó $I_n$ là ma trận đơn vị $n\times n$. Một số nơi định nghĩa $p_A(\lambda)=\det(A-\lambda I_n)$; định nghĩa đó chỉ khác định nghĩa đang dùng một dấu $(-1)^n$. Theo định nghĩa này, $p_A(\lambda)$ là đa thức monic, còn định nghĩa kia chỉ monic khi $n$ chẵn. Cần lưu ý rằng định thức của ma trận $0\times 0$ bằng $1$ là một định nghĩa tốt.
 
 Vectơ nghiệm khác không $X$ tương ứng với $(\lambda_0 I-A)X=0$ được gọi là vectơ riêng của $A$ ứng với $\lambda_0$.
 
@@ -159,7 +159,7 @@ x-a_{1,1}&-a_{1,2}&\cdots &-a_{1,n}\\
 \end{aligned}
 $$
 
-ta có thể tính rất dễ; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, ta cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
+có thể tính rất dễ; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
 
 <span id="định-nghĩa"></span>
 ### Định nghĩa
@@ -239,11 +239,11 @@ $$
 
 Với ma trận $n\times n$ $B$, có thể thực hiện khử Gauss; các thao tác cơ bản là các phép biến đổi sơ cấp trên hàng.
 
-Sau khi áp dụng các thao tác trên cho ma trận (nhân trái với ma trận sơ cấp), lại nhân phải với ma trận nghịch đảo của nó thì ta được một biến đổi tương tự. Nhân trái là biến đổi hàng, và dễ thấy nhân phải tương ứng với biến đổi cột.
+Sau khi áp dụng các thao tác trên cho ma trận (nhân trái với ma trận sơ cấp), lại nhân phải với ma trận nghịch đảo của nó thì thu được một biến đổi tương tự. Nhân trái là biến đổi hàng, còn nhân phải tương ứng với biến đổi cột.
 
-Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể dễ dàng tính đa thức đặc trưng. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
+Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể tính đa thức đặc trưng khá dễ. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
 
-Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách dễ dàng.
+Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách thuận tiện.
 
 <span id="ma-trận-hessenberg-trên"></span>
 ### Ma trận Hessenberg trên
@@ -263,7 +263,7 @@ $$
 
 được gọi là ma trận Hessenberg trên, trong đó $\beta$ là đường chéo phụ.
 
-Ta dùng biến đổi tương tự để khử các phần tử bên dưới đường chéo phụ về không, từ đó thu được ma trận Hessenberg trên; còn việc tính đa thức đặc trưng của một ma trận Hessenberg trên $n\times n$ có thể hoàn thành trong thời gian $O(n^3)$.
+Dùng biến đổi tương tự để khử các phần tử bên dưới đường chéo phụ về không, từ đó thu được ma trận Hessenberg trên; còn việc tính đa thức đặc trưng của một ma trận Hessenberg trên $n\times n$ có thể hoàn thành trong thời gian $O(n^3)$.
 
 Ký hiệu $H_i$ là ma trận chỉ giữ lại $i$ hàng đầu và $i$ cột đầu của $H$, ký hiệu $p_i(x)=\det(xI_i-H_i)$. Khi đó:
 
@@ -291,7 +291,7 @@ H_2=
 p_2(x)=\det(xI_2-H_2)=(x-\alpha_2)p_1(x)-\beta_2h_{12}p_0(x)
 $$
 
-Khi tính định thức, ta thường chọn khai triển theo phần bù đại số của hàng hoặc cột có nhiều số không nhất. Phần bù tương ứng với một phần tử là ma trận thu được sau khi xóa hàng và cột chứa phần tử đang xét. Ở đây ta chọn khai triển theo hàng cuối, có:
+Khi tính định thức, thường chọn khai triển theo phần bù đại số của hàng hoặc cột có nhiều số không nhất. Phần bù tương ứng với một phần tử là ma trận thu được sau khi xóa hàng và cột chứa phần tử đang xét. Trong phần này chọn khai triển theo hàng cuối, có:
 
 $$
 \begin{aligned}
@@ -311,7 +311,7 @@ x-\alpha_1&-h_{13}\\
 \end{aligned}
 $$
 
-Quan sát và quy nạp, với $2\leq i\leq n$ ta có:
+Quan sát và quy nạp, với $2\leq i\leq n$ có:
 
 $$
 p_i(x)=(x-\alpha_i)p_{i-1}(x)-
@@ -338,7 +338,7 @@ Từ định lý này có thể biết rằng, với mọi ma trận $A$, luôn 
 
 Giả sử $V$ là một không gian vectơ $n$ chiều. Vì ma trận tương ứng với một biến đổi tuyến tính có $n^2$ phần tử, nên toàn bộ các biến đổi tuyến tính tạo thành một không gian tuyến tính $n^2$ chiều.
 
-Với một biến đổi tuyến tính cụ thể $T$, xét từ tác dụng $0$ lần đến tác dụng $n$ lần, tổng cộng có $n^2+1$ biến đổi tuyến tính; các ma trận tương ứng với chúng chắc chắn phụ thuộc tuyến tính. Vì vậy tồn tại đa thức khác không $f$ sao cho $f(T)$ là biến đổi không; ta nói biến đổi $T$ thỏa mãn đa thức $f$. Trong tất cả các đa thức $f$ mà $T$ thỏa mãn, tồn tại một đa thức có bậc thấp nhất.
+Với một biến đổi tuyến tính cụ thể $T$, xét từ tác dụng $0$ lần đến tác dụng $n$ lần, tổng cộng có $n^2+1$ biến đổi tuyến tính; các ma trận tương ứng với chúng phụ thuộc tuyến tính. Vì vậy tồn tại đa thức khác không $f$ sao cho $f(T)$ là biến đổi không; khi đó nói biến đổi $T$ thỏa mãn đa thức $f$. Trong tất cả các đa thức $f$ mà $T$ thỏa mãn, tồn tại một đa thức có bậc thấp nhất.
 
 Đa thức monic có bậc nhỏ nhất có thể triệt tiêu ma trận $A$ được gọi là đa thức tối tiểu của $A$, ký hiệu $m_A(\lambda)$.
 
@@ -351,7 +351,7 @@ Theo phép chia Euclid của đa thức, đa thức tối tiểu là duy nhất 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
 
-Trong tin học, ta thường xét các ma trận trên $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$; thông thường $m$ là số nguyên tố, khi đó thực hiện các biến đổi tương tự ở trên là đơn giản. Khi $m$ là hợp số, ta có thể xét cách làm tương tự thuật toán Euclid.
+Trong tin học, thường xét các ma trận trên $(\mathbb{Z}/m\mathbb{Z})^{n\times n}$; thông thường $m$ là số nguyên tố, khi đó thực hiện các biến đổi tương tự ở trên là đơn giản. Khi $m$ là hợp số, có thể xét cách làm tương tự thuật toán Euclid.
 
 ??? note "Cài đặt"
     ```cpp
@@ -476,7 +476,7 @@ Trong tin học, ta thường xét các ma trận trên $(\mathbb{Z}/m\mathbb{Z}
 
 Thuật toán Hessenberg ở trên không ổn định về mặt số học, vì vậy với ma trận trên $\mathbb{R}^{n\times n}$ cần dùng thuật toán khác để điều chỉnh trước khi áp dụng, hoặc chuyển sang thuật toán khác có tính ổn định số tốt hơn.
 
-Ta có thể liên hệ đa thức đặc trưng với truy hồi tuyến tính thuần nhất hệ số hằng, cũng có thể kết hợp định lý Cayley-Hamilton và phép lấy dư đa thức để tăng tốc một số thuật toán tính lũy thừa ma trận trên trường.
+Có thể liên hệ đa thức đặc trưng với truy hồi tuyến tính thuần nhất hệ số hằng, cũng có thể kết hợp định lý Cayley-Hamilton và phép lấy dư đa thức để tăng tốc một số thuật toán tính lũy thừa ma trận trên trường.
 
 Định lý Cayley-Hamilton chỉ ra:
 
@@ -489,9 +489,9 @@ $$
 
 trong đó $O$ là ma trận không $n\times n$, $A\in\mathbb{C}^{n\times n}$ và $p_A(x)=x^n+\sum_{i=1}^nc_ix^{n-i}\in\mathbb{C}[x]$ là đa thức đặc trưng của $A$.
 
-Nếu cần tính $A^K$ với $K$ khá lớn, ta có thể tìm $f(x)=x^K\bmod{p_A(x)}$ rồi dùng $f(A)=A^K$.
+Nếu cần tính $A^K$ với $K$ khá lớn, có thể tìm $f(x)=x^K\bmod{p_A(x)}$ rồi dùng $f(A)=A^K$.
 
-Hiển nhiên $\deg(f(x))\lt n$. Đặt $f(x)=\sum_{i=0}^{n-1}f_ix^i$ và $n=km$, khi đó:
+Có $\deg(f(x))\lt n$. Đặt $f(x)=\sum_{i=0}^{n-1}f_ix^i$ và $n=km$, khi đó:
 
 $$
 \begin{aligned}
@@ -502,7 +502,7 @@ f_{km-1}x^{km-1}+\cdots +f_1x+f_0&=(\cdots (f_{km-1}x^{k-1}+\cdots +f_{k(m-1)})x
 \end{aligned}
 $$
 
-Lấy $k=\sqrt{n}$, có thể thấy việc tính $f(A)$ cần khoảng $O(\sqrt{n})$ phép nhân ma trận với ma trận.
+Lấy $k=\sqrt{n}$, việc tính $f(A)$ cần khoảng $O(\sqrt{n})$ phép nhân ma trận với ma trận.
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
