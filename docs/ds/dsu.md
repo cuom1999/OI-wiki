@@ -126,7 +126,7 @@ Có thể nối cây có ít nút hơn hoặc độ sâu nhỏ hơn vào cây c�
     thì so với phương án ngược lại, các thao tác tìm sau đó sẽ tốn ít thời gian hơn
     và cho độ phức tạp xấu nhất tốt hơn.
 
-    Tất nhiên, không phải lúc nào cũng gặp đúng trường hợp một tập hợp vừa ít nút hơn vừa nông hơn.
+    Không phải lúc nào cũng gặp đúng trường hợp một tập hợp vừa ít nút hơn vừa nông hơn.
     Vì hai đặc trưng số nút và độ sâu đều dễ duy trì,
     thường chọn một trong hai làm hàm đánh giá.
     Dù chọn cách nào, độ phức tạp đều là $O (m\alpha(m,n))$;
@@ -364,11 +364,11 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
     nếu $x$ ăn $y$, thì $x - y \equiv 1 \pmod 3$.
     Như vậy, bài toán được chuyển về bài mẫu ở phần trước.
 
-    Cụ thể, với mỗi phát biểu, ngoài các phát biểu chắc chắn sai như $x>n$ hoặc $y>n$,
+    Cụ thể, với mỗi phát biểu, ngoài các phát biểu sai ngay như $x>n$ hoặc $y>n$,
     cần kiểm tra $x$ và $y$ đã được nối hay chưa:
     nếu đã nối, tính khoảng cách giữa chúng theo modulo rồi so sánh với thông tin mà phát biểu khẳng định;
     nếu chưa nối, nối chúng theo thông tin do phát biểu cung cấp.
-    Trừ các trường hợp chắc chắn sai,
+    Trừ các trường hợp sai ngay,
     một phát biểu là sai khi và chỉ khi hai nút được nhắc tới đã được nối,
     và khoảng cách tương ứng mâu thuẫn với thông tin mà phát biểu khẳng định.
 
@@ -433,7 +433,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
     XOR chính là quan hệ "giống nhau" hoặc "khác nhau" trên từng bit nhị phân.
     Vì vậy, nếu tách mọi bit nhị phân của $A_i$,
     quan hệ XOR có thể được duy trì bằng DSU có trọng số hoặc DSU phân loại.
-    Các phần tử trong cùng một thành phần liên thông chắc chắn tương ứng với cùng một bit của các số khác nhau trong $A$.
+    Các phần tử trong cùng một thành phần liên thông tương ứng với cùng một bit của các số khác nhau trong $A$.
     Khi thống kê đáp án, các phần tử trong cùng một thành phần liên thông thường được chia thành hai nhóm;
     hai nhóm phải nhận giá trị khác nhau.
     Chỉ cần gán nhóm lớn hơn bằng $0$ và nhóm còn lại bằng $1$ là bảo đảm tổng trọng số nhỏ nhất.

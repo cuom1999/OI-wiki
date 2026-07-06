@@ -1,6 +1,6 @@
-Nếu đã học kiến thức liên quan đến số phức, có thể bỏ qua trang này.
+Nếu đã nắm các kiến thức liên quan đến số phức, có thể bỏ qua trang này.
 
-Để học số phức cần một phần nền tảng về vectơ; nếu chưa học về vectơ, vui lòng chuyển sang [trang vectơ](../math/linear-algebra/vector.md).
+Việc học số phức cần một phần nền tảng về vectơ; nếu chưa học về vectơ, nên đọc [trang vectơ](../math/linear-algebra/vector.md) trước.
 
 ## Số phức
 
@@ -11,13 +11,13 @@ Nếu đã học kiến thức liên quan đến số phức, có thể bỏ qua
 
 Nhìn từ góc độ phương trình, việc một số thực âm có căn bậc hai hay không chính là việc phương trình $x^2+a=0 (a>0)$ có nghiệm hay không; tiếp đó có thể quy về việc phương trình $x^2+1=0$ có nghiệm hay không.
 
-Nhìn lại quá trình mở rộng các tập số đã biết, có thể thấy mỗi lần mở rộng đều gắn chặt với nhu cầu thực tế. Chẳng hạn, để giải quyết việc đo đường chéo hình vuông, cũng như vấn đề phương trình $x^2-2=0$ không có nghiệm trong tập số hữu tỉ, tập số hữu tỉ đã được mở rộng thành tập số thực. Sau khi mở rộng tập số, phép cộng và phép nhân được quy định trong tập số thực vẫn tương thích với phép cộng và phép nhân vốn có trong tập số hữu tỉ; đồng thời phép cộng và phép nhân đều thỏa mãn tính giao hoán và tính kết hợp, còn phép nhân phân phối đối với phép cộng.
+Nhìn lại quá trình mở rộng các tập số đã biết, mỗi lần mở rộng đều gắn chặt với nhu cầu thực tế. Chẳng hạn, để giải quyết việc đo đường chéo hình vuông, cũng như vấn đề phương trình $x^2-2=0$ không có nghiệm trong tập số hữu tỉ, tập số hữu tỉ đã được mở rộng thành tập số thực. Sau khi mở rộng tập số, phép cộng và phép nhân được quy định trong tập số thực vẫn tương thích với phép cộng và phép nhân vốn có trong tập số hữu tỉ; đồng thời phép cộng và phép nhân đều thỏa mãn tính giao hoán và tính kết hợp, còn phép nhân phân phối đối với phép cộng.
 
-Theo tư tưởng đó, để giải quyết vấn đề phương trình $x^2+1=0$ không có nghiệm trong hệ số thực, có thể hình dung việc đưa vào một số mới $\mathrm{i}$ sao cho $x=\mathrm{i}$ là nghiệm của phương trình $x^2+1=0$, tức là $\mathrm{i}^2=-1$.
+Theo tư tưởng đó, để giải quyết vấn đề phương trình $x^2+1=0$ không có nghiệm trong tập số thực, có thể hình dung việc đưa vào một số mới $\mathrm{i}$ sao cho $x=\mathrm{i}$ là nghiệm của phương trình $x^2+1=0$, tức là $\mathrm{i}^2=-1$.
 
-Khi thêm số mới $\mathrm{i}$ vào tập số thực, cần giữ cho $\mathrm{i}$ và các số thực vẫn có thể thực hiện phép cộng và phép nhân giống như giữa các số thực; đồng thời mong muốn phép cộng và phép nhân đều thỏa mãn tính giao hoán, tính kết hợp, và phép nhân phân phối đối với phép cộng. Vậy sau khi hệ số thực được mở rộng, hệ số mới gồm những số nào?
+Khi thêm số mới $\mathrm{i}$ vào tập số thực, cần giữ cho $\mathrm{i}$ và các số thực vẫn có thể thực hiện phép cộng và phép nhân giống như giữa các số thực; đồng thời mong muốn phép cộng và phép nhân đều thỏa mãn tính giao hoán, tính kết hợp, và phép nhân phân phối đối với phép cộng. Vậy sau khi tập số thực được mở rộng, tập số mới gồm những số nào?
 
-Theo giả thiết trên, nhân số thực $b$ với $\mathrm{i}$, kết quả được viết là $b\mathrm{i}$; cộng số thực $a$ với $b\mathrm{i}$, kết quả được viết là $a+b\mathrm{i}$. Chú ý rằng mọi số thực và cả $\mathrm{i}$ đều có thể viết dưới dạng $a+b\mathrm{i}(a,b\in \mathbf{R})$, vì thế các số này đều nằm trong tập số mới sau khi mở rộng.
+Theo giả thiết trên, nhân số thực $b$ với $\mathrm{i}$, kết quả được viết là $b\mathrm{i}$; cộng số thực $a$ với $b\mathrm{i}$, kết quả được viết là $a+b\mathrm{i}$. Mọi số thực và cả $\mathrm{i}$ đều có thể viết dưới dạng $a+b\mathrm{i}(a,b\in \mathbf{R})$, vì thế các số này đều nằm trong tập số mới sau khi mở rộng.
 
 ### Định nghĩa
 
@@ -37,11 +37,11 @@ Quan hệ giữa số thuần ảo, số ảo, số thực và số phức đư�
 
 Những số có dạng tương tự $a+b\mathrm{i}$ đã được gọi là số phức, đồng thời đã có định nghĩa và phân loại; tiếp theo có thể khai thác các tính chất sâu hơn.
 
-Đặt mọi số thực lên trục số sẽ thấy các điểm trên trục số tương ứng một-một với các số thực. Có thể xử lý số phức theo cách tương tự.
+Khi đặt mọi số thực lên trục số, các điểm trên trục số tương ứng một-một với các số thực. Số phức có thể được xử lý theo cách tương tự.
 
 Trước hết, định nghĩa **hai số phức bằng nhau**: hai số phức $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$ bằng nhau khi và chỉ khi $a=c$ và $b=d$.
 
-Định nghĩa này khá tự nhiên nên không giải thích thêm.
+Định nghĩa này xuất phát trực tiếp từ dạng đại số của số phức.
 
 Nói cách khác, có thể dùng duy nhất một cặp số thực có thứ tự $(a,b)$ để biểu diễn một số phức $z=a+b\mathrm{i}$. Từ đó, liên hệ với hệ tọa độ Descartes trong mặt phẳng cho thấy **tập số phức tương ứng một-một với tập các điểm trong hệ tọa độ Descartes phẳng**. Như vậy, thu được một ý nghĩa hình học của số phức.
 
@@ -53,7 +53,7 @@ Do đó, chuyển kiến thức về vectơ sang số phức, định nghĩa **m
 
 Để thuận tiện, thường gọi số phức $z=a+b\mathrm{i}$ là điểm $Z$ hoặc vectơ $\overrightarrow {OZ}$, và quy ước các vectơ bằng nhau biểu diễn cùng một số phức.
 
-Từ kiến thức vectơ cũng có thể thấy các số ảo không thể so sánh lớn nhỏ (nhưng các số thực thì có thể).
+Từ kiến thức vectơ cũng suy ra các số ảo không thể so sánh lớn nhỏ (nhưng các số thực thì có thể).
 
 ### Phép cộng và phép trừ
 
@@ -96,7 +96,7 @@ z_1z_2&=(a+b\mathrm{i})(c+d\mathrm{i})\\
 \end{aligned}
 $$
 
-Có thể thấy nhân hai số phức tương tự như nhân hai đa thức: chỉ cần thay $\mathrm{i}^2$ bằng $-1$, rồi gộp riêng phần thực và phần ảo.
+Phép nhân hai số phức tương tự phép nhân hai đa thức: chỉ cần thay $\mathrm{i}^2$ bằng $-1$, rồi gộp riêng phần thực và phần ảo.
 
 Phép nhân số phức có dạng tương tự tích vectơ của vectơ.
 
@@ -136,7 +136,7 @@ Với các số phức $z,w$, phép liên hợp phức có các tính chất sau
 
 Nếu lấy đơn vị thực $1$ làm hướng ngang dương và đơn vị ảo $\mathrm{i}$ làm hướng thẳng đứng dương, sẽ thu được mặt phẳng phức dưới góc nhìn tọa độ Descartes.
 
-Vị trí của số phức $z$ cũng có thể được xác định nhờ tọa độ cực $(r, \theta)$. Ở trên đã nói $r$ là môđun của số phức $z$.
+Vị trí của số phức $z$ cũng có thể được xác định nhờ tọa độ cực $(r, \theta)$. Phần trên đã nêu $r$ là môđun của số phức $z$.
 
 Góc $\theta$ từ chiều dương của trục thực đến vectơ tương ứng với số phức **khác không** $z=x+\mathrm{i}y$ thỏa mãn quan hệ:
 
@@ -158,7 +158,7 @@ $$
 
 Gọi $\operatorname{Arg} z$ là **giá trị chính của argument** hoặc **argument chính**. Argument là giá trị chính cộng thêm một số nguyên lần (có thể bằng không hoặc là số nguyên âm) của $2k\pi$, tức $\arg z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$.
 
-Cần chú ý rằng tổng của hai giá trị chính của argument không nhất thiết vẫn là giá trị chính của argument, còn tổng của hai argument thì luôn là một argument hợp lệ.
+Tổng của hai giá trị chính của argument không nhất thiết vẫn là giá trị chính của argument, còn tổng của hai argument thì luôn là một argument hợp lệ.
 
 Số phức có môđun nhỏ hơn $1$ tạo thành hình **đĩa đơn vị** trên mặt phẳng phức. Số phức có môđun bằng $1$ được gọi là **số phức đơn vị**; toàn bộ các số phức đơn vị tạo thành **đường tròn đơn vị** trên mặt phẳng phức. Khi không gây nhầm lẫn, đôi khi đường tròn đơn vị cũng được gọi tắt là vòng tròn đơn vị.
 
@@ -256,12 +256,12 @@ $$
 
 Nếu không nói rõ, căn đơn vị bậc $n$ trong các phát biểu thông thường chỉ nghiệm đầu tiên tính từ $1$ theo chiều ngược chiều kim đồng hồ, tức $\omega_n$ ở trên; các nghiệm khác đều có thể biểu diễn bằng lũy thừa của $\omega_n$.
 
-???+ tip "Vì sao khi thường nhắc đến căn đơn vị bậc $n$, thường chỉ xét nghiệm đầu tiên?"
+???+ tip "Vì sao khi nhắc đến căn đơn vị bậc $n$, thường chỉ xét nghiệm đầu tiên?"
     Chủ yếu là để thuận tiện khi áp dụng. Tất cả các căn đơn vị bậc $n$ đều có thể biểu diễn thành lũy thừa của căn đơn vị bậc $n$ đầu tiên $\omega_n$; hơn nữa, với mọi $k < n$, số phức $\omega_n$ đều không phải là căn đơn vị bậc $k$.
 
 ### Căn đơn vị nguyên thủy
 
-Thật ra, trong các căn đơn vị bậc $n$, không chỉ $\omega_n$ có tính chất tương tự. Gọi các phần tử trong tập
+Trong các căn đơn vị bậc $n$, không chỉ $\omega_n$ có tính chất tương tự. Gọi các phần tử trong tập
 
 $$
 \{\omega_n^k\mid 0\le k<n,~\gcd(n,k)=1\}
@@ -306,7 +306,7 @@ Tệp tiêu đề `<complex.h>` cung cấp đơn vị ảo `I`; khi đưa tệp 
 
 Đối với một số phức đơn lẻ, `<complex.h>` cung cấp một số thao tác: hàm `creal` dùng để trích phần thực, hàm `cimag` dùng để trích phần ảo, hàm `cabs` dùng để tính môđun, hàm `carg` dùng để tính giá trị chính của argument.
 
-Mỗi hàm đều có ba phiên bản tùy theo kiểu. Ví dụ hàm `creal` có ba phiên bản `creal`, `crealf`, `creall`, dùng để xử lý ba kiểu tương ứng là `double`, `float` và `long double`. Phiên bản không có hậu tố ở cuối mặc định xử lý kiểu `double`. Tất cả các hàm dưới đây đều tuân theo quy luật này, nên sẽ không giải thích riêng nữa.
+Mỗi hàm đều có ba phiên bản tùy theo kiểu. Ví dụ hàm `creal` có ba phiên bản `creal`, `crealf`, `creall`, dùng để xử lý ba kiểu tương ứng là `double`, `float` và `long double`. Phiên bản không có hậu tố ở cuối mặc định xử lý kiểu `double`. Tất cả các hàm dưới đây đều tuân theo quy luật này, nên không giải thích riêng nữa.
 
 Giá trị trả về của các hàm này đều là số chấm động thông thường. Có thể gán trực tiếp số chấm động thông thường cho số phức, nhưng không thể gán trực tiếp số phức cho số chấm động; khi đó cần dùng các thao tác trích xuất nói trên.
 
@@ -322,7 +322,7 @@ Trong C, `<ctype.h>` khi sang C++ sẽ trở thành `<cctype>`; gần như mọi
 
 Tuy nhiên, `<complex.h>` không tuân theo quy tắc đó: C++ không có tệp tiêu đề `<ccomplex>`. Số phức trong C++ trực tiếp nằm trong `<complex>`, và nội dung bên trong hoàn toàn khác với C.
 
-Điều này khá thú vị. Lý do là ngay từ phiên bản đầu tiên của C++, C++98, đã có `<complex>`, còn ngôn ngữ C đến C99 mới thêm số phức.
+Khác biệt này xuất phát từ lịch sử của hai ngôn ngữ: ngay từ phiên bản đầu tiên của C++, C++98, đã có `<complex>`, còn ngôn ngữ C đến C99 mới thêm số phức.
 
 Trong C++, kiểu số phức được định nghĩa bằng `complex<float>`, `complex<double>` và `complex<long double>`. Do tính đa hình của lập trình hướng đối tượng, tên các hàm dưới đây đều là duy nhất, không cần hậu tố f hoặc l.
 

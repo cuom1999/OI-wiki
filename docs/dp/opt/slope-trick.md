@@ -64,9 +64,9 @@ Vì với mọi hàm lõm $f$, hàm $-f$ luôn là hàm lồi, nên mục này c
     convex function). Điều này đã đủ để hiểu các nội dung cần dùng trong lập
     trình thi đấu.
 
-Tất nhiên, hàm $f$ thường không được định nghĩa trên mọi số thực. Nếu miền xác
-định của $f$ chỉ là một tập con của $\mathbf R$, có thể mở rộng nó thành hàm
-trên $\mathbf R$:
+Trong nhiều bài toán, hàm $f$ không được định nghĩa trên mọi số thực. Nếu miền
+xác định của $f$ chỉ là một tập con của $\mathbf R$, có thể mở rộng nó thành
+hàm trên $\mathbf R$:
 
 $$
 \tilde f(x) = \begin{cases} f(x), & x\in\operatorname{dom}f,\\ +\infty,& x\notin\operatorname{dom}f.\end{cases}
@@ -168,8 +168,7 @@ Nói cách khác, chỉ cần độ dốc (sai phân) đơn điệu không giả
 <span id="hai-cách-đặc-trưng-hàm-lồi"></span>
 ### Hai cách đặc trưng hàm lồi
 
-Thực ra, cách đặc trưng hàm lồi bằng độ dốc cũng có thể mở rộng cho trường hợp
-tổng quát.
+Cách đặc trưng hàm lồi bằng độ dốc còn có thể mở rộng cho trường hợp tổng quát.
 
 ???+ note "Đặc trưng hàm lồi bằng độ dốc"
     Cho $S$ là $\mathbf R$ hoặc tập con rời rạc của nó. Hàm
@@ -209,8 +208,8 @@ tổng quát.
     $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
 
     Xét hai trường hợp. Nếu $i_1=i_2$, thì
-    $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bất đẳng thức hiển
-    đúng trực tiếp. Ngược lại, có
+    $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bất đẳng thức đúng
+    trực tiếp. Ngược lại, có
 
     $$
     \Delta\tilde f(x_1,x_2) = \dfrac{1}{x_2-x_1}\left((s_{i_1+1}-x_1)\Delta_{i_1}+(x_2-s_{i_2})\Delta_{i_2}+\sum_{j=i_1+1}^{i_2-1}(s_{j+1}-s_j)\Delta_j\right).
@@ -318,12 +317,12 @@ lồi.
     mỗi điểm thượng đồ thị của $f$ (đường đứt nét màu đỏ trong hình thứ ba) là
     gốc tọa độ, rồi vẽ đồ thị của $g$ (đường đứt nét màu xanh trong hình thứ ba)
     trong hệ tọa độ tương ứng. Khi gốc tọa độ di chuyển dọc theo đồ thị của
-    $f$, biến dạng quỹ đạo mà đồ thị (thượng đồ thị) của $g$ quét ra, cụ thể là
-    bao lồi dưới, chính là đồ thị của $h$. Có thể thấy mỗi đoạn độ dốc của $h$
-    hoặc là đoạn độ dốc của $f$, hoặc là đoạn độ dốc của $g$: chúng chỉ được sắp
-    xếp lại theo độ lớn độ dốc. Trong quá trình này, vai trò của $f$ và $g$ có
-    thể hoán đổi; nếu cho đồ thị của $f$ di chuyển dọc theo đồ thị của $g$, kết
-    quả vẫn như nhau.
+    $f$, quỹ đạo biến dạng mà đồ thị (thượng đồ thị) của $g$ quét ra, cụ thể là
+    bao lồi dưới, chính là đồ thị của $h$. Mỗi đoạn độ dốc của $h$ hoặc là đoạn
+    độ dốc của $f$, hoặc là đoạn độ dốc của $g$: chúng chỉ được sắp xếp lại theo
+    độ lớn độ dốc. Trong quá trình này, vai trò của $f$ và $g$ có thể hoán đổi;
+    nếu cho đồ thị của $f$ di chuyển dọc theo đồ thị của $g$, kết quả vẫn như
+    nhau.
 
 Về trực giác hình học, $\operatorname{epi}h$ chính là
 [tổng Minkowski](../../geometry/convex-hull.md#tổng-minkowski) của
@@ -411,7 +410,7 @@ hoặc tìm cách xử lý riêng theo bài toán cụ thể.
 ### Phép toán cực trị
 
 Giá trị lớn nhất của hai hàm lồi vẫn là hàm lồi, nhưng giá trị nhỏ nhất của hai
-hàm lồi chưa chắc còn là hàm lồi.
+hàm lồi không nhất thiết còn là hàm lồi.
 
 Nhiều phép lấy nhỏ nhất thường gặp có thể chuyển thành tích chập dưới đúng:
 
@@ -525,10 +524,10 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
         của $g(x)$ tương đương với xóa tất cả đoạn độ dốc dương.
 
     Sau khi làm rõ các thao tác này, đã có thể trực tiếp dùng cây cân bằng để
-    duy trì tất cả đoạn độ dốc, nhưng code sẽ phức tạp. Chú ý rằng trong bài này
-    độ dốc mỗi lần thay đổi nhiều nhất $1$, nên giá trị tuyệt đối của mỗi đoạn
-    độ dốc không vượt quá $n$. Thay vì trực tiếp duy trì các đoạn độ dốc, duy
-    trì trực tiếp các điểm gãy của độ dốc sẽ tiện hơn.
+    duy trì tất cả đoạn độ dốc, nhưng code sẽ phức tạp. Trong bài này, độ dốc
+    mỗi lần thay đổi nhiều nhất $1$, nên giá trị tuyệt đối của mỗi đoạn độ dốc
+    không vượt quá $n$. Thay vì trực tiếp duy trì các đoạn độ dốc, duy trì trực
+    tiếp các điểm gãy của độ dốc sẽ tiện hơn.
 
     Giả sử tập điểm gãy của $f_{i-1}(x)$ là
     $\xi_{-k}\le\cdots\le\xi_{-1}\le\xi_{1}\le\cdots\le\xi_{\ell}$. Khi đó hai
@@ -547,7 +546,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
     1.  Chèn $a'_i$ hai lần;
     2.  Pop đỉnh heap.
 
-    Tất nhiên, sau mỗi lần cần duy trì giá trị nhỏ nhất hiện tại của hàm. Vì sau
+    Sau mỗi lần thao tác, cần duy trì giá trị nhỏ nhất hiện tại của hàm. Vì sau
     khi thao tác kết thúc không còn đoạn độ dốc dương, giá trị nhỏ nhất của hàm
     là giá trị tại đỉnh max-heap. Giả sử trước mỗi thao tác, đỉnh heap là
     $\xi_{-1}$ và giá trị nhỏ nhất là $f_{i-1}(\xi_{-1})$. Vì đỉnh heap bị pop
@@ -566,9 +565,9 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
     Bài này còn yêu cầu in một phương án tối ưu. Vì khi thao tác cuối kết thúc,
     nghiệm tối ưu chính là đỉnh heap, nên có thể xác định trực tiếp giá trị của
     $b'_n$. Nếu đã biết nghiệm tối ưu thứ $i$ là $b'_i$, để tìm nghiệm tối ưu
-    của $f_{i-1}(x)$ thỏa mãn $x\le b'_i$, chỉ cần chú ý rằng do
-    $f_{i-1}(x)$ là hàm lồi, điểm càng gần điểm cực tiểu toàn cục của nó thì
-    nghiệm càng tốt. Vì vậy, chỉ cần ghi lại điểm cực tiểu toàn cục của
+    của $f_{i-1}(x)$ thỏa mãn $x\le b'_i$, do $f_{i-1}(x)$ là hàm lồi, điểm
+    càng gần điểm cực tiểu toàn cục của nó thì nghiệm càng tốt. Vì vậy, chỉ cần
+    ghi lại điểm cực tiểu toàn cục của
     $f_{i-1}(x)$, rồi lấy min với $b'_i$, sẽ thu được $b'_{i-1}$ tối ưu.
 
     Độ phức tạp thời gian là $O(n\log n)$.
@@ -730,7 +729,7 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
 
     So sánh cách cài đặt thuật toán này với code của phần
     [dãy tăng với chi phí nhỏ nhất](#ví-dụ-dãy-tăng-với-chi-phí-nhỏ-nhất)
-    ở trên có thể thấy, thuật toán này tương đương với bài toán biến dãy giá cổ
+    ở trên cho thấy thuật toán này tương đương với bài toán biến dãy giá cổ
     phiếu thành dãy không tăng với chi phí nhỏ nhất.
 
     Độ phức tạp thời gian là $O(n\log n)$.
