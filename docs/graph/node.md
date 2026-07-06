@@ -24,7 +24,7 @@ $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{f
 
 Trong đó, $from$ biểu diễn đỉnh cha của $i$, còn $w$ biểu diễn trọng số của cạnh đang đi. Khi $j - 1 \geq k$, $\text{dis}_{from, j}$=$\infty$.
 
-Thực ra, DP này tương đương với việc tách mỗi đỉnh thành $k+1$ đỉnh, mỗi đỉnh mới biểu diễn việc đến đỉnh tương ứng trong đồ thị gốc sau khi đã dùng một số lượt đi miễn phí khác nhau. Nói cách khác, mỗi đỉnh $u_i$ biểu diễn trạng thái đến đỉnh $u$ sau khi đã dùng $i$ lượt đi miễn phí.
+Có thể xem DP này là việc tách mỗi đỉnh thành $k+1$ đỉnh, mỗi đỉnh mới biểu diễn việc đến đỉnh tương ứng trong đồ thị gốc sau khi đã dùng một số lượt đi miễn phí khác nhau. Nói cách khác, mỗi đỉnh $u_i$ biểu diễn trạng thái đến đỉnh $u$ sau khi đã dùng $i$ lượt đi miễn phí.
 
 ??? note "[\[JLOI2011\] Đường bay](https://www.luogu.com.cn/problem/P4568)"
     Đề bài: cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, được phép chọn $k$ con đường để đi với chi phí bằng không. Cần tìm chi phí nhỏ nhất từ $s$ đến $t$.

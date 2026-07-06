@@ -12,9 +12,9 @@ Có thể tìm đường kính của cây trong thời gian $O(n)$ bằng hai l�
 
 Trước hết, bắt đầu lần DFS thứ nhất từ một đỉnh bất kỳ $y$, tìm đỉnh xa nhất tính từ $y$ và ký hiệu đỉnh đó là $z$. Sau đó bắt đầu lần DFS thứ hai từ $z$, tìm đỉnh xa nhất tính từ $z$ và ký hiệu đỉnh đó là $z'$. Khi đó $\delta(z,z')$ chính là đường kính của cây.
 
-Nếu đỉnh $z$ mà lần DFS thứ nhất tìm được là một đầu mút của đường kính, thì đỉnh $z'$ mà lần DFS thứ hai tìm được chắc chắn là một đầu mút của đường kính. Chỉ cần chứng minh rằng trong mọi trường hợp, $z$ luôn là một đầu mút của đường kính.
+Nếu đỉnh $z$ mà lần DFS thứ nhất tìm được là một đầu mút của đường kính, thì đỉnh $z'$ mà lần DFS thứ hai tìm được cũng là một đầu mút của đường kính. Chỉ cần chứng minh rằng trong mọi trường hợp, $z$ luôn là một đầu mút của đường kính.
 
-Định lý: Trên một cây, nếu bắt đầu DFS từ một đỉnh bất kỳ $y$, thì đỉnh $z$ xa $y$ nhất tìm được chắc chắn là một đầu mút của đường kính.
+Định lý: Trên một cây, nếu bắt đầu DFS từ một đỉnh bất kỳ $y$, thì đỉnh $z$ xa $y$ nhất tìm được luôn là một đầu mút của đường kính.
 
 ???+ note "Chứng minh"
     Chứng minh bằng phản chứng. Gọi đỉnh xuất phát là $y$. Giả sử đường kính thật sự là $\delta(s,t)$, còn đỉnh $z$ xa $y$ nhất do lần DFS thứ nhất từ $y$ tìm được không phải là $t$ hay $s$. Xét ba trường hợp:

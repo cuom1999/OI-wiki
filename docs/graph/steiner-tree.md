@@ -36,7 +36,7 @@ Trước hết, dùng một bài mẫu để làm quen với bài toán cây Ste
 
 Đề bài yêu cầu: cho đồ thị liên thông $G$ có $n$ đỉnh và $k$ đỉnh quan trọng, cần nối $k$ đỉnh quan trọng sao cho tổng trọng số của mọi cạnh trong cây sinh ra là nhỏ nhất.
 
-Kết hợp với phần trên, có thể thấy tổng trọng số khi nối trực tiếp $k$ đỉnh quan trọng chưa chắc đã nhỏ nhất, hoặc $k$ đỉnh quan trọng này không nhất thiết nối trực tiếp (kề nhau). Vì vậy cần sử dụng thêm $n-k$ đỉnh còn lại.
+Kết hợp với phần trên, tổng trọng số khi nối trực tiếp $k$ đỉnh quan trọng không nhất thiết là nhỏ nhất, hoặc $k$ đỉnh quan trọng này không nhất thiết nối trực tiếp (kề nhau). Vì vậy cần sử dụng thêm $n-k$ đỉnh còn lại.
 
 Dùng quy hoạch động nén trạng thái để giải. Gọi $f(i,S)$ là tổng trọng số cạnh nhỏ nhất của một cây gốc $i$ chứa mọi đỉnh trong tập $S$.
 
@@ -61,7 +61,7 @@ Xét chuyển trạng thái:
 
 -   $f(i,S)\leftarrow \min(f(i,S),f(j,S)+w(j,i))$.
 
-Có thể thấy chuyển trạng thái tương tự bài mẫu ở trên; phần rắc rối là xuất đáp án, vì trong quá trình DP còn phải ghi lại đường đi.
+Chuyển trạng thái tương tự bài mẫu ở trên; phần rắc rối là xuất đáp án, vì trong quá trình DP còn phải ghi lại đường đi.
 
 Dùng `pre[i][s]` để ghi thông tin về đỉnh và tập khi chuyển đến trạng thái có gốc $i$ và tập trạng thái liên thông là $s$. Sau khi DP kết thúc, bắt đầu từ `pre[root][S]`, tìm các đỉnh nối với những đỉnh trong tập rồi dần phân rã tập $S$. Dùng mảng `ans` để ghi các đỉnh đã được sử dụng; khi tập đã phân rã xong thì quá trình tìm kiếm cũng kết thúc.
 

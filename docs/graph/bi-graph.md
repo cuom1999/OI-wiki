@@ -27,7 +27,7 @@ Tính chất thứ hai phức tạp hơn một chút. Có thể thử tô màu �
 
 ![](./images/bi-graph-2.svg)
 
-Tiếp theo, xét những cạnh không nằm trong cây sinh. Nếu hai đầu mút của mọi cạnh ngoài cây này đều có màu khác nhau, thì cách tô màu hiện tại là hợp lệ; ngược lại, không tồn tại cách tô màu hợp lệ. Hơn nữa, hai đỉnh có màu khác nhau khi và chỉ khi khoảng cách từ chúng đến gốc cây $s$ có một giá trị lẻ và một giá trị chẵn; điều này lại tương đương với việc thêm cạnh ngoài cây đó tạo ra một chu trình chẵn chứ không phải chu trình lẻ. Vì vậy, miễn là không có chu trình lẻ, các cạnh ngoài cây này chắc chắn nối hai đỉnh có màu khác nhau, do đó toàn bộ đồ thị có thể được tô bằng hai màu, và đồ thị nhất định là đồ thị hai phía.
+Tiếp theo, xét những cạnh không nằm trong cây sinh. Nếu hai đầu mút của mọi cạnh ngoài cây này đều có màu khác nhau, thì cách tô màu hiện tại là hợp lệ; ngược lại, không tồn tại cách tô màu hợp lệ. Hơn nữa, hai đỉnh có màu khác nhau khi và chỉ khi khoảng cách từ chúng đến gốc cây $s$ có một giá trị lẻ và một giá trị chẵn; điều này lại tương đương với việc thêm cạnh ngoài cây đó tạo ra một chu trình chẵn chứ không phải chu trình lẻ. Vì vậy, miễn là không có chu trình lẻ, các cạnh ngoài cây này sẽ nối hai đỉnh có màu khác nhau, do đó toàn bộ đồ thị có thể được tô bằng hai màu, và đồ thị là đồ thị hai phía.
 
 ## Kiểm tra
 
