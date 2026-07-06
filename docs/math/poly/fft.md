@@ -7,7 +7,7 @@ Bài viết này giới thiệu một thuật toán hỗ trợ tính tích của
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Ta xét hai đa thức $A$ và $B$:
+Xét hai đa thức $A$ và $B$:
 
 $$
 \begin{aligned}
@@ -16,7 +16,7 @@ B ={}& 7x^2 + 2x + 1 \\
 \end{aligned}
 $$
 
-Tích $C = A \times B$ của hai đa thức có thể tính trong độ phức tạp thời gian $O(n^2)$ (ở đây $n$ là bậc của đa thức $A$ hoặc $B$):
+Tích $C = A \times B$ của hai đa thức có thể tính trong độ phức tạp thời gian $O(n^2)$ (trong đó $n$ là bậc của đa thức $A$ hoặc $B$):
 
 $$
 \begin{aligned}
@@ -25,9 +25,9 @@ C ={}& A \times B \\
 \end{aligned}
 $$
 
-Rõ ràng hệ số $c_i$ của đa thức $C$ thỏa mãn $c_i = \sum_{j = 0}^i a_j b_{i - j}$. Với thuật toán trực tiếp này, mỗi hạng cần thời gian $O(n)$ để tính, và có tổng cộng $O(n)$ hạng, nên độ phức tạp thời gian là $O(n^2)$.
+Hệ số $c_i$ của đa thức $C$ thỏa mãn $c_i = \sum_{j = 0}^i a_j b_{i - j}$. Với thuật toán trực tiếp này, mỗi hạng cần thời gian $O(n)$ để tính, và có tổng cộng $O(n)$ hạng, nên độ phức tạp thời gian là $O(n^2)$.
 
-Có thể tăng tốc để giảm độ phức tạp thời gian không? Nếu dùng biến đổi Fourier nhanh, ta có thể giảm độ phức tạp xuống $O(n \log n)$.
+Có thể tăng tốc để giảm độ phức tạp thời gian không? Nếu dùng biến đổi Fourier nhanh, độ phức tạp có thể giảm xuống $O(n \log n)$.
 
 <span id="biến-đổi-fourier"></span>
 ## Biến đổi Fourier
@@ -83,9 +83,9 @@ $$
 x=\mathcal{F}^{-1}\hat{x}
 $$
 
-Thực ra, hệ số chuẩn hóa đứng trước các tổng trong công thức DFT và IDFT không quá quan trọng. Trong định nghĩa trên, hệ số trước DFT và IDFT lần lượt là $1$ và $\frac {1}{N}$. Đôi khi ta sẽ đổi cả hai hệ số thành $\frac{1}{{\sqrt{N}}}$.
+Thực ra, hệ số chuẩn hóa đứng trước các tổng trong công thức DFT và IDFT không quá quan trọng. Trong định nghĩa trên, hệ số trước DFT và IDFT lần lượt là $1$ và $\frac {1}{N}$. Đôi khi cả hai hệ số được đổi thành $\frac{1}{{\sqrt{N}}}$.
 
-Biến đổi Fourier rời rạc vẫn là phép biến đổi từ miền thời gian sang miền tần số. Do dạng tổng có tính chất đặc biệt, ta có thể giải thích nó theo những cách khác.
+Biến đổi Fourier rời rạc vẫn là phép biến đổi từ miền thời gian sang miền tần số. Do dạng tổng có tính chất đặc biệt, có thể giải thích nó theo những cách khác.
 
 Nếu xem dãy $x_n$ là các hệ số của hạng $x^n$ trong đa thức $f(x)$, thì $X_k$ tính được đúng bằng giá trị của đa thức $f(x)$ tại căn đơn vị $\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}}$, tức $f(\mathrm{e}^{\frac{-2\pi \mathrm{i}k}{N}})$.
 
@@ -103,7 +103,7 @@ $$
 f(x)={(1+x)}^n=\dbinom{n}{0}x^0+\dbinom{n}{1}x^1+\dbinom{n}{2}x^2+\dbinom{n}{3}x^3+\ldots
 $$
 
-Khi thay căn bậc bốn của đơn vị $f(\mathrm{i})$, ta thu được dãy sau:
+Khi thay căn bậc bốn của đơn vị $f(\mathrm{i})$, thu được dãy sau:
 
 $$
 f(\mathrm{i})={(1+\mathrm{i})}^n=\dbinom{n}{0}+\dbinom{n}{1}\mathrm{i}-\dbinom{n}{2}-\dbinom{n}{3}\mathrm{i}+\ldots
@@ -160,7 +160,7 @@ Trong đó $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$.
 
 FFT là một thuật toán cài đặt DFT hiệu quả, gọi là biến đổi Fourier nhanh (Fast Fourier Transform, FFT). Nó không phát hiện thêm điều gì mới về lý thuyết biến đổi Fourier, nhưng đối với việc ứng dụng biến đổi Fourier rời rạc trong hệ thống máy tính, hay nói cách khác là hệ thống số, có thể nói đây là một bước tiến lớn. Biến đổi số học nhanh (NTT) là cách cài đặt biến đổi Fourier nhanh (FFT) trên cơ sở số học.
 
-Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. Thực ra FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên người ta chưa nhận ra tầm quan trọng của FFT. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Nhưng thực tế Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
+Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. Thực ra FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên tầm quan trọng của FFT chưa được nhận ra. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Nhưng thực tế Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
 
 <span id="cài-đặt-bằng-chia-để-trị"></span>
 ### Cài đặt bằng chia để trị
@@ -197,7 +197,7 @@ $$
 f(x)=G\left(x^2\right) + x  \times  H\left(x^2\right)
 $$
 
-Dùng tính chất của căn đơn vị bậc chẵn $\omega^i_n = -\omega^{i + n/2}_n$, và vì $G\left(x^2\right)$ cũng như $H\left(x^2\right)$ là các hàm chẵn, ta biết trên mặt phẳng phức, tại $\omega^i_n$ và $\omega^{i+n/2}_n$, các giá trị tương ứng của $G(x^2)$ và $H(x^2)$ là như nhau. Suy ra:
+Dùng tính chất của căn đơn vị bậc chẵn $\omega^i_n = -\omega^{i + n/2}_n$, và vì $G\left(x^2\right)$ cũng như $H\left(x^2\right)$ là các hàm chẵn, trên mặt phẳng phức, tại $\omega^i_n$ và $\omega^{i+n/2}_n$, các giá trị tương ứng của $G(x^2)$ và $H(x^2)$ là như nhau. Suy ra:
 
 $$
 \begin{aligned}
@@ -217,17 +217,17 @@ f(\omega_n^{k+n/2}) &= G(\omega_n^{2k+n}) + \omega_n^{k+n/2}  \times H(\omega_n^
 \end{aligned}
 $$
 
-Do đó sau khi tính được $G(\omega_{n/2}^k)$ và $H(\omega_{n/2}^k)$, ta có thể đồng thời tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$. Vì vậy chỉ cần đệ quy DFT riêng cho $G$ và $H$.
+Do đó sau khi tính được $G(\omega_{n/2}^k)$ và $H(\omega_{n/2}^k)$, có thể đồng thời tính $f(\omega_n^k)$ và $f(\omega_n^{k+n/2})$. Vì vậy chỉ cần đệ quy DFT riêng cho $G$ và $H$.
 
 Vì DFT chia để trị chỉ xử lý được độ dài đa thức bằng $2^m(m \in \mathbf{N}^ \ast )$; nếu không, khi chia để trị hai bên sẽ không dài bằng nhau và phần bên phải sẽ không lấy được hệ số. Vì thế trước lần DFT đầu tiên cần bổ sung dãy lên độ dài $2^m(m \in \mathbf{N}^\ast )$ (bổ sung hệ số bậc cao bằng $0$), thành một đa thức có bậc cao nhất là $2^m-1$.
 
-Khi thay giá trị, vì cần thay $n$ giá trị khác nhau, ta thay $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in \mathbf{N}^ \ast ))$, tổng cộng $2^m$ giá trị khác nhau.
+Khi thay giá trị, vì cần thay $n$ giá trị khác nhau, các giá trị được thay là $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in \mathbf{N}^ \ast ))$, tổng cộng $2^m$ giá trị khác nhau.
 
 Về cài đặt, STL cung cấp mẫu số phức; tất nhiên cũng có thể tự cài đặt thủ công. Điểm khác nhau là khi dùng `complex` của STL, có thể gọi hàm `exp` để tính $\omega_n$. Nhưng thực ra dùng số phức thu được từ công thức Euler để tính $\omega_n$ cũng tương đương.
 
 Trên đây là phần giới thiệu DFT trong thuật toán FFT: nó chuyển một đa thức từ biểu diễn hệ số sang biểu diễn bằng giá trị tại điểm.
 
-Cần lưu ý là, vì ta dùng các căn phức của đơn vị, nên cần bổ sung các hạng bậc cao của đa thức $n$ hạng bằng không, sao cho $n = 2 ^ k, k \in \mathbf{N}^ \ast$.
+Cần lưu ý là, vì dùng các căn phức của đơn vị, nên cần bổ sung các hạng bậc cao của đa thức $n$ hạng bằng không, sao cho $n = 2 ^ k, k \in \mathbf{N}^ \ast$.
 
 ???+ note "FFT đệ quy"
     ```cpp
@@ -276,7 +276,7 @@ Cần lưu ý là, vì ta dùng các căn phức của đơn vị, nên cần b�
 <span id="cài-đặt-bằng-phương-pháp-nhân-đôi"></span>
 ### Cài đặt bằng phương pháp nhân đôi
 
-Thuật toán này còn có thể tiếp tục tối ưu theo góc nhìn "chia để trị". Với FFT cơ số 2, mỗi lần ta tách hệ số của các hạng bậc lẻ và bậc chẵn trong toàn bộ đa thức, cho đến khi chỉ còn một hệ số. Tuy nhiên, quá trình đệ quy này cần nhiều bộ nhớ hơn. Do đó, ta có thể trước hết "mô phỏng đệ quy" để "tách" các hệ số này ngay trong mảng ban đầu, rồi sau đó "nhân đôi" để gộp các giá trị đã tính.
+Thuật toán này còn có thể tiếp tục tối ưu theo góc nhìn "chia để trị". Với FFT cơ số 2, mỗi lần tách hệ số của các hạng bậc lẻ và bậc chẵn trong toàn bộ đa thức, cho đến khi chỉ còn một hệ số. Tuy nhiên, quá trình đệ quy này cần nhiều bộ nhớ hơn. Do đó, có thể trước hết "mô phỏng đệ quy" để "tách" các hệ số này ngay trong mảng ban đầu, rồi sau đó "nhân đôi" để gộp các giá trị đã tính.
 
 Việc "tách" có thể thực hiện bằng hoán vị đảo bit.
 
@@ -292,9 +292,9 @@ Lấy đa thức $8$ hạng làm ví dụ, mô phỏng quá trình tách:
 -   Sau hai lần chia đôi: $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_5\},\{x_3, x_7 \}$
 -   Sau ba lần chia đôi: $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$
 
-Quy luật: thực ra đó là dãy ban đầu, mỗi số được biểu diễn nhị phân, rồi đảo ngược các bit nhị phân, ta được chỉ số của vị trí cuối cùng. Ví dụ $x_1$ là 001, đảo ngược thành 100, tức là 4, và vị trí cuối cùng thật sự là 4. Ta gọi phép biến đổi này là hoán vị đảo bit (bit-reversal permutation); phần chứng minh dành cho bạn đọc tự kiểm chứng.
+Quy luật: thực ra đó là dãy ban đầu, mỗi số được biểu diễn nhị phân, rồi đảo ngược các bit nhị phân, sẽ thu được chỉ số của vị trí cuối cùng. Ví dụ $x_1$ là 001, đảo ngược thành 100, tức là 4, và vị trí cuối cùng thật sự là 4. Phép biến đổi này được gọi là hoán vị đảo bit (bit-reversal permutation); phần chứng minh có thể tự kiểm chứng.
 
-Theo định nghĩa, ta có thể tính kết quả biến đổi của mỗi số trong thời gian $O(n)$:
+Theo định nghĩa, có thể tính kết quả biến đổi của mỗi số trong thời gian $O(n)$:
 
 ???+ note "Cài đặt hoán vị đảo bit ($O(n)$)"
     ```cpp
@@ -307,10 +307,10 @@ Theo định nghĩa, ta có thể tính kết quả biến đổi của mỗi s�
       // Ban đầu i là 0...01, còn j là 10...0; chúng đối xứng nhau trong nhị phân.
       // Sau đó i tăng dần một đơn vị, còn j vẫn duy trì đối xứng ngược với i cho đến i = 1...11.
       for (int i = 1, j = len / 2, k; i < len - 1; i++) {
-        // Hoán đổi hai phần tử có chỉ số đảo bit của nhau; i < j đảm bảo chỉ đổi một lần
+        // Hoán đổi hai phần tử có chỉ số đảo bit của nhau; i < j để mỗi cặp chỉ đổi một lần
         if (i < j) swap(y[i], y[j]);
         // i tăng bình thường thêm 1, j tăng theo kiểu đảo bit, luôn giữ i và j là đảo bit của nhau.
-        // Ở đây k biểu thị bit cao nhất nơi 0 xuất hiện. j trước hết trừ đi số có các bit cao đều là 1,
+        // k biểu thị bit cao nhất nơi 0 xuất hiện. j trước hết trừ đi số có các bit cao đều là 1,
         // cho đến khi gặp 0, sau đó cộng lại là được.
         // Xét số lần lật bit trong j: bit cao nhất sẽ lật n lần,
         // bit cao thứ hai sẽ lật n/2 lần, và cứ tiếp tục như vậy, nên độ phức tạp thời gian là:
@@ -329,7 +329,7 @@ Hoán vị đảo bit cũng có thể được suy dẫn từ nhỏ đến lớn
 
 Trước hết $R(0)=0$.
 
-Ta tính $R(x)$ từ nhỏ đến lớn. Vì vậy khi tính $R(x)$, giá trị $R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ đã biết. Do đó ta dịch phải $x$ một bit (chia cho $2$), rồi đảo bit, sau đó dịch phải một bit, sẽ thu được kết quả đảo bit của $x$ **trừ bit hàng đơn vị (trong nhị phân)**.
+Tính $R(x)$ từ nhỏ đến lớn. Vì vậy khi tính $R(x)$, giá trị $R\left(\left\lfloor \dfrac{x}{2} \right\rfloor\right)$ đã biết. Do đó dịch phải $x$ một bit (chia cho $2$), rồi đảo bit, sau đó dịch phải một bit, sẽ thu được kết quả đảo bit của $x$ **trừ bit hàng đơn vị (trong nhị phân)**.
 
 Xét kết quả đảo của bit hàng đơn vị: nếu bit hàng đơn vị là $0$, sau khi đảo, bit cao nhất là $0$. Nếu bit hàng đơn vị là $1$, sau khi đảo, bit cao nhất là $1$, nên còn phải cộng $\dfrac{len}{2}=2^{k-1}$. Tóm lại
 
@@ -339,12 +339,12 @@ $$
 
 Ví dụ: đặt $k=5$, $len=(100000)_2$. Để đảo $(11001)_2$:
 
-1.  Xét $(1100)_2$, ta biết $R((1100)_2)=R((01100)_2)=(00110)_2$, dịch phải một bit sẽ được $(00011)_2$.
+1.  Xét $(1100)_2$, có $R((1100)_2)=R((01100)_2)=(00110)_2$, dịch phải một bit sẽ được $(00011)_2$.
 2.  Xét bit hàng đơn vị: nếu là $1$, nó sẽ được đảo lên bit cao nhất của số, tức là cộng thêm $(10000)_2=2^{k-1}$ vào số đã đảo; nếu là $0$ thì không cần thay đổi.
 
 ???+ note "Cài đặt hoán vị đảo bit ($O(n)$)"
     ```cpp
-    // Cũng cần đảm bảo len là lũy thừa của 2
+    // Cũng cần giữ len là lũy thừa của 2
     // Gọi rev[i] là giá trị sau khi đảo bit của i
     void change(Complex y[], int len) {
       for (int i = 0; i < len; ++i) {
@@ -391,7 +391,7 @@ Giải thích chi tiết hơn cách dùng phép toán cánh bướm để hoàn 
 <span id="biến-đổi-fourier-ngược-nhanh"></span>
 ## Biến đổi Fourier ngược nhanh
 
-Biến đổi Fourier ngược có thể biểu diễn bằng biến đổi Fourier. Ta có hai cách hiểu điều này.
+Biến đổi Fourier ngược có thể biểu diễn bằng biến đổi Fourier. Có hai cách hiểu điều này.
 
 <span id="theo-góc-nhìn-đại-số-tuyến-tính"></span>
 ### Theo góc nhìn đại số tuyến tính
@@ -410,19 +410,19 @@ $$
 \begin{bmatrix} a_0 \\ a_1 \\ a_2 \\ a_3 \\ \vdots \\ a_{n-1} \end{bmatrix}
 $$
 
-Bây giờ ta đã có kết quả ở vế trái. Các giá trị $x$ trong ma trận giữa cũng tương ứng một-một với biểu diễn bằng giá trị tại điểm của đa thức mục tiêu. Vì vậy, theo kiến thức cơ bản về ma trận, chỉ cần nhân bên trái cả hai vế với ma trận nghịch đảo của ma trận lớn ở giữa.
+Kết quả ở vế trái đã biết. Các giá trị $x$ trong ma trận giữa cũng tương ứng một-một với biểu diễn bằng giá trị tại điểm của đa thức mục tiêu. Vì vậy, theo kiến thức cơ bản về ma trận, chỉ cần nhân bên trái cả hai vế với ma trận nghịch đảo của ma trận lớn ở giữa.
 
 Do các phần tử của ma trận này rất đặc biệt, ma trận nghịch đảo của nó cũng có tính chất đặc biệt: chỉ cần **lấy nghịch đảo** từng phần tử, rồi **chia cho độ dài biến đổi $n$**, là thu được ma trận nghịch đảo.
 
 Lưu ý: độ dài của biến đổi Fourier không phải là độ dài của đa thức; độ dài biến đổi phải lớn hơn độ dài của đa thức tích. Các đa thức cần nhân nếu chưa đủ dài thì cần bổ sung $0$ ở các hạng bậc cao.
 
-Để kết quả tính được là nghịch đảo của ban đầu, theo công thức Euler, ta có
+Để kết quả tính được là nghịch đảo của ban đầu, theo công thức Euler, có
 
 $$
 \frac{1}{\omega_k}=\omega_k^{-1}=\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}=\cos\left(\frac{2\pi}{k}\right)+\mathrm{i} \sin\left(-\frac{2\pi}{k}\right)
 $$
 
-Do đó ta có thể thử chọn căn đơn vị $\omega_k$ là $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$, như vậy kết quả tính được sẽ thành nghịch đảo của ban đầu; sau đó thao tác duy nhất thêm vào là **chia cho độ dài $n$** của nó, còn các thao tác khác hoàn toàn giống DFT. Ta có thể định nghĩa một hàm, thêm một tham số $1$ hoặc $-1$ trong hàm, rồi nhân nó với $\pi$. Truyền vào $1$ là DFT, truyền vào $-1$ là IDFT.
+Do đó có thể thử chọn căn đơn vị $\omega_k$ là $\mathrm{e}^{-\frac{2\pi \mathrm{i}}{k}}$, như vậy kết quả tính được sẽ thành nghịch đảo của ban đầu; sau đó thao tác duy nhất thêm vào là **chia cho độ dài $n$** của nó, còn các thao tác khác hoàn toàn giống DFT. Có thể định nghĩa một hàm, thêm một tham số $1$ hoặc $-1$ trong hàm, rồi nhân nó với $\pi$. Truyền vào $1$ là DFT, truyền vào $-1$ là IDFT.
 
 <span id="tính-chu-kỳ-của-căn-phức-đơn-vị"></span>
 ### Tính chu kỳ của căn phức đơn vị
@@ -439,7 +439,7 @@ $$
 
 Tương đương với việc xem $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$ là biểu diễn hệ số của đa thức $A$.
 
-Lúc này ta có hai cách suy diễn, tương ứng với hai cách cài đặt.
+Lúc này có hai cách suy diễn, tương ứng với hai cách cài đặt.
 
 <span id="cách-1"></span>
 #### Cách 1
@@ -494,23 +494,23 @@ $$
 \end{aligned}
 $$
 
-Tóm lại, ta lấy căn đơn vị thành nghịch đảo của nó, chạy FFT một lần trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, rồi chia cho $n$ là thu được biểu diễn hệ số của $f(x)$.
+Tóm lại, lấy căn đơn vị thành nghịch đảo của nó, chạy FFT một lần trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, rồi chia cho $n$ là thu được biểu diễn hệ số của $f(x)$.
 
 <span id="cách-2"></span>
 #### Cách 2
 
-Ta trực tiếp thế $\omega_n^i$ vào $A(x)$.
+Trực tiếp thế $\omega_n^i$ vào $A(x)$.
 
-Quá trình suy diễn gần giống cách 1; cuối cùng ta thu được $A(\omega_n^k) = \sum_{j=0}^{n-1}a_jS\left(\omega_n^{j+k}\right)$.
+Quá trình suy diễn gần giống cách 1; cuối cùng thu được $A(\omega_n^k) = \sum_{j=0}^{n-1}a_jS\left(\omega_n^{j+k}\right)$.
 
 Khi và chỉ khi $j+k=0 \pmod{n}$ thì $S\left(\omega_n^{j+k}\right) = n$, ngược lại bằng $0$. Do đó $A(\omega_n^k) = a_{n-k}\cdot n$.
 
-Điều này có nghĩa là sau khi thực hiện DFT trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, chia cho $n$, rồi đảo ngược $n - 1$ phần tử phía sau, ta cũng khôi phục được biểu diễn hệ số của $f(x)$.
+Điều này có nghĩa là sau khi thực hiện DFT trên $\{y_0,y_1,y_2,\cdots,y_{n-1}\}$, chia cho $n$, rồi đảo ngược $n - 1$ phần tử phía sau, cũng khôi phục được biểu diễn hệ số của $f(x)$.
 
 <span id="cài-đặt-mã-nguồn"></span>
 ### Cài đặt mã nguồn
 
-Vì vậy hàm FFT của ta có thể kiêm nhiệm cả DFT lẫn IDFT. Cài đặt như sau:
+Vì vậy cùng một hàm FFT có thể kiêm nhiệm cả DFT lẫn IDFT. Cài đặt như sau:
 
 ???+ note "FFT không đệ quy (tương ứng cách 1)"
     ```cpp
