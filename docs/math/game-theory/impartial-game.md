@@ -448,7 +448,7 @@ Trò chơi lật đồng xu cũng là một lớp trò chơi tổ hợp công b�
 ???+ abstract "Trò chơi lật đồng xu"
     Cho $(S,\preceq)$ là một [tập có thứ tự bộ phận nền tảng](../order-theory.md), ánh xạ $f:S\rightarrow\mathcal P\mathcal PS$ thỏa với mọi $s\in S$, tập $f(s)$ không rỗng; với mọi $T\in f(s)$ đều có $s\in T$; hơn nữa với mọi $t\in T$ đều có $t\preceq s$. Tại mỗi phần tử của tập $S$ đặt một đồng xu, có thể ngửa hoặc sấp. Hai người chơi lần lượt hành động: chọn một đồng xu ngửa $s$ và một tập $T\in f(s)$, rồi lật tất cả đồng xu trong tập $T$. Người lật tất cả đồng xu thành mặt sấp thắng.
 
-Trò chơi lật đồng xu thực ra là một lớp lớn các trò chơi. Tùy theo lựa chọn cụ thể của tập thứ tự bộ phận $S$ và ánh xạ $f$, hình thức cụ thể của trò chơi lật đồng xu cũng khác nhau. Trong mô tả trò chơi, các điều kiện mà ánh xạ $f$ cần thỏa đang nói rằng trong tập đồng xu $T$ được người chơi chọn để lật mỗi lượt, nhất định tồn tại một đồng xu ngửa $s$ sao cho mọi phần tử trong $T$ đều đứng trước $s$. Điều này bảo đảm trò chơi có thể kết thúc sau hữu hạn bước.
+Trò chơi lật đồng xu là một lớp lớn các trò chơi. Tùy theo lựa chọn cụ thể của tập thứ tự bộ phận $S$ và ánh xạ $f$, hình thức cụ thể của trò chơi lật đồng xu cũng khác nhau. Trong mô tả trò chơi, các điều kiện mà ánh xạ $f$ cần thỏa đang nói rằng trong tập đồng xu $T$ được người chơi chọn để lật mỗi lượt, phải tồn tại một đồng xu ngửa $s$ sao cho mọi phần tử trong $T$ đều đứng trước $s$. Điều này bảo đảm trò chơi có thể kết thúc sau hữu hạn bước.
 
 ???+ example "Ví dụ"
     1.  Cho $S=\{1,2,\cdots,n\}$ và $f(s)=\{\{t,s\}:t \le s\}$. Điều này tương đương với việc có một hàng $n$ đồng xu; mỗi lần lật một đồng xu đang ngửa và có thể chọn thêm một đồng xu ở bên trái nó để lật.
@@ -489,7 +489,7 @@ $$
 
 Kiến thức cần có: [ghép cặp lớn nhất trên đồ thị hai phía](../../graph/graph-matching/bigraph-match.md)
 
-Phần cuối của mục này thảo luận trò chơi trên đồ thị hai phía. Mặc dù trò chơi này thường được gọi là trò chơi trên đồ thị hai phía, mô tả và chứng minh kết luận của nó đều không phụ thuộc vào cấu trúc hai phía của đồ thị, nên kết luận thực ra đúng với đồ thị vô hướng tổng quát. Tuy nhiên, ghép cặp lớn nhất trên đồ thị tổng quát phức tạp hơn, vì vậy kết luận này thường xuất hiện trong các bài về đồ thị hai phía.
+Phần cuối của mục này thảo luận trò chơi trên đồ thị hai phía. Mặc dù trò chơi này thường được gọi là trò chơi trên đồ thị hai phía, mô tả và chứng minh kết luận của nó đều không phụ thuộc vào cấu trúc hai phía của đồ thị, nên kết luận cũng đúng với đồ thị vô hướng tổng quát. Tuy nhiên, ghép cặp lớn nhất trên đồ thị tổng quát phức tạp hơn, vì vậy kết luận này thường xuất hiện trong các bài về đồ thị hai phía.
 
 ???+ abstract "Trò chơi trên đồ thị hai phía"
     Hai người chơi lần lượt hành động. Cục diện mà mỗi người chơi đối mặt gồm một đồ thị vô hướng $G=(V,E)$ và một đỉnh $v\in V$ của nó. Trong lượt của một người chơi, nếu cục diện hiện tại là $(G,v)$, người chơi đó phải chọn một đỉnh $u$ kề với $v$. Sau đó, xóa đỉnh $v$ và mọi cạnh liên thuộc với nó khỏi đồ thị $G$, thu được đồ thị còn lại $G'$. Cục diện mới là $(G',u)$ và được giao cho người chơi tiếp theo. Nếu một người chơi bắt đầu lượt của mình mà đỉnh hiện tại $v$ không có đỉnh kề trong đồ thị, tức không tồn tại lựa chọn hợp lệ, thì người chơi đó không thể hành động và thua.
@@ -600,7 +600,7 @@ Phần này thảo luận một số bài tập điển hình.
     4 4 4 4 4 4 4 4 
     ```
     
-    Có thể thấy bảng nén này bằng giá trị ở cùng vị trí trong bảng đầy đủ phía trước cộng thêm một. Thực ra bài toán đã được giải quyết. Giả sử chỉ số bắt đầu từ $0$, giá trị $g(i,j)$ tại vị trí $(i,j)$ của bảng có thể được cho bởi công thức truy hồi:
+    Bảng nén này bằng giá trị ở cùng vị trí trong bảng đầy đủ phía trước cộng thêm một. Đến đây bài toán đã được giải quyết. Giả sử chỉ số bắt đầu từ $0$, giá trị $g(i,j)$ tại vị trí $(i,j)$ của bảng có thể được cho bởi công thức truy hồi:
     
     $$
     g(i,j) =
@@ -612,7 +612,7 @@ Phần này thảo luận một số bài tập điển hình.
     
     Hàm SG cần tìm là $f(i,j)=g(i-1,j-1)$. Dùng công thức truy hồi này, thuật toán có thể tính giá trị $f(i,j)$ trong thời gian $O(\log\min\{i,j\})$.
     
-    Bằng quy nạp đơn giản, $g(i,j)$ thực ra là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
+    Bằng quy nạp đơn giản, $g(i,j)$ là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
     
     Trong loại bài này, sau khi quan sát từ bảng và nhận được biểu thức hàm SG, biểu thức đó thường rất dễ chứng minh bằng quy nạp; vì vậy điểm mấu chốt khi giải bài là thu được các kết luận này bằng một hình thức nào đó, chứ không phải suy diễn từ đầu. Ví dụ, sau khi biết kết luận, quan hệ truy hồi trong bài này có thể được chứng minh quy nạp như sau. Gọi $S_k$ là tập các giá trị SG của các cục diện có thể nhận được khi chia $k$ viên đá thành hai đống không rỗng. Khi đó $f(i,j) = \operatorname{mex}(S_i \cup S_j)$. Vì vậy $S_k$ có quan hệ truy hồi:
     
@@ -644,7 +644,7 @@ Phần này thảo luận một số bài tập điển hình.
     Có $n$ đống đá, đống thứ $i$ có $a_i$ viên. Hai người chơi lần lượt lấy đá; mỗi lần chỉ được chọn một đống ở ngoài cùng bên trái hoặc ngoài cùng bên phải để lấy đi tùy ý nhiều viên đá, nhưng không được không lấy. Người lấy viên đá cuối cùng thắng. Hỏi người đi trước có tất thắng hay không.
 
 ??? note "Lời giải"
-    Vì bài này không tồn tại các trò chơi con độc lập với nhau, về nguyên tắc chỉ dùng [bổ đề phán định trạng thái tất bại và tất thắng](#np-lem). Bắt đầu phân tích từ trường hợp đơn giản nhất. Khi $n\le 2$, đây là trò chơi Nim. Khi $n \ge 3$, bài toán trở nên phức tạp. Tuy nhiên, vì các đống đá có thể thao tác chỉ là hai đống ở hai đầu, giả sử số đá của chúng lần lượt là $x$ và $y$. Tiếp đó, gọi $f(x,y)$ là hàm chỉ thị trạng thái người đi trước tất thắng, tức $f(x,y)=1$ nếu người đi trước tất thắng, ngược lại $f(x,y)=0$. Giá trị của $f(x,y)$ thỏa quan hệ truy hồi: $f(x,y)=0$ khi và chỉ khi với mọi $s < x$ và $t < y$ đều có $f(x,t)=f(s,y)=1$. Cơ sở truy hồi nằm ở $x=0$ hoặc $y=0$; khi đó trò chơi đã còn chưa tới $n$ đống đá, nên cần xét thêm số đá ở các đống giữa. Vì vậy, tạm giả sử $f(x,0)$ và $f(0,y)$ đã biết, rồi xét cách suy ra toàn bộ giá trị $f(x,y)$ từ chúng. Xét ma trận vô hạn có tập chỉ số là $\mathbf N\times\mathbf N$; việc tính $f(x,y)$ tương đương với điền $0$ và $1$ vào ma trận, cần thỏa điều kiện rằng mỗi hàng và mỗi cột có nhiều nhất một số $0$, và nếu các vị trí trước đó trong cùng hàng hoặc cùng cột đều chưa xuất hiện số $0$, thì vị trí này nhất định là $0$. Vị trí của số $0$ trong mỗi hàng thực ra định nghĩa một hàm từ số hàng $x$ tới số cột $y$. Sau khi thử một vài ví dụ đơn giản, tức lập bảng, nếu $x_0$ là $x$ duy nhất sao cho $f(x,0)=0$, và $y_0$ là $y$ duy nhất sao cho $f(0,y)=0$, thì với mọi $x$, giá trị $y$ làm $f(x,y)=0$ là
+    Vì bài này không tồn tại các trò chơi con độc lập với nhau, về nguyên tắc chỉ dùng [bổ đề phán định trạng thái tất bại và tất thắng](#np-lem). Bắt đầu phân tích từ trường hợp đơn giản nhất. Khi $n\le 2$, đây là trò chơi Nim. Khi $n \ge 3$, bài toán trở nên phức tạp. Tuy nhiên, vì các đống đá có thể thao tác chỉ là hai đống ở hai đầu, giả sử số đá của chúng lần lượt là $x$ và $y$. Tiếp đó, gọi $f(x,y)$ là hàm chỉ thị trạng thái người đi trước tất thắng, tức $f(x,y)=1$ nếu người đi trước tất thắng, ngược lại $f(x,y)=0$. Giá trị của $f(x,y)$ thỏa quan hệ truy hồi: $f(x,y)=0$ khi và chỉ khi với mọi $s < x$ và $t < y$ đều có $f(x,t)=f(s,y)=1$. Cơ sở truy hồi nằm ở $x=0$ hoặc $y=0$; khi đó số đống đá đã nhỏ hơn $n$, nên cần xét thêm số đá ở các đống giữa. Vì vậy, tạm giả sử $f(x,0)$ và $f(0,y)$ đã biết, rồi xét cách suy ra toàn bộ giá trị $f(x,y)$ từ chúng. Xét ma trận vô hạn có tập chỉ số là $\mathbf N\times\mathbf N$; việc tính $f(x,y)$ tương đương với điền $0$ và $1$ vào ma trận, cần thỏa điều kiện rằng mỗi hàng và mỗi cột có nhiều nhất một số $0$, và nếu các vị trí trước đó trong cùng hàng hoặc cùng cột đều chưa xuất hiện số $0$, thì vị trí này phải là $0$. Vị trí của số $0$ trong mỗi hàng định nghĩa một hàm từ số hàng $x$ tới số cột $y$. Sau khi thử một vài ví dụ đơn giản, tức lập bảng, nếu $x_0$ là $x$ duy nhất sao cho $f(x,0)=0$, và $y_0$ là $y$ duy nhất sao cho $f(0,y)=0$, thì với mọi $x$, giá trị $y$ làm $f(x,y)=0$ là
     
     $$
     y = \begin{cases}

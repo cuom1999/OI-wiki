@@ -7,24 +7,24 @@ author: Ir1d, Tiphereth-A, sshwy, ksyx, Marcythm, orzAtalod, Xeonacid, Enter-tai
 
 Về bản chất, ô-tô-mát AC là một ô-tô-mát trên Trie.
 
-Trước khi đọc bài này, nên đọc trước [KMP](./kmp.md) và [Trie](./trie.md).
+Kiến thức nền cần có gồm [KMP](./kmp.md) và [Trie](./trie.md).
 
 <span id="giải-thích"></span>
 ## Giải thích
 
-Nói đơn giản, việc xây dựng một ô-tô-mát AC gồm hai bước:
+Quá trình xây dựng một ô-tô-mát AC gồm hai bước:
 
 1.  Cấu trúc Trie cơ bản: đưa tất cả các xâu mẫu vào một cây Trie;
 2.  Ý tưởng của KMP: xây dựng con trỏ thất bại cho mọi đỉnh trên cây Trie.
 
-Sau khi xây dựng xong, có thể dùng nó để khớp nhiều mẫu.
+Sau khi xây dựng xong, cấu trúc này dùng được cho bài toán khớp nhiều mẫu.
 
 <span id="xây-dựng-trie"></span>
 ## Xây dựng Trie
 
-Ban đầu, ô-tô-mát AC chèn một số xâu mẫu vào một Trie, rồi xây dựng ô-tô-mát AC trên Trie đó. Trie này là Trie thông thường, chỉ cần xây dựng theo cách dựng cây Trie cơ bản.
+Trước hết, ô-tô-mát AC chèn một số xâu mẫu vào một Trie, rồi xây dựng ô-tô-mát AC trên Trie đó. Trie này là Trie thông thường, chỉ cần xây dựng theo cách dựng cây Trie cơ bản.
 
-Cần chú ý rằng mỗi đỉnh trong Trie biểu diễn một tiền tố của một xâu mẫu nào đó. Ở các phần sau, đỉnh này cũng được gọi là một trạng thái. Một đỉnh biểu diễn một trạng thái, còn các cạnh của Trie là các phép chuyển trạng thái.
+Mỗi đỉnh trong Trie biểu diễn một tiền tố của một xâu mẫu nào đó. Trong các phần sau, đỉnh này cũng được gọi là một trạng thái. Một đỉnh biểu diễn một trạng thái, còn các cạnh của Trie là các phép chuyển trạng thái.
 
 Nói một cách hình thức, với các xâu mẫu $s_1,s_2,\cdots,s_n$, sau khi xây dựng Trie từ chúng, gọi tập tất cả các trạng thái là $Q$.
 
@@ -40,7 +40,7 @@ So sánh con trỏ `fail` với con trỏ `next` trong [KMP](./kmp.md):
 1.  Điểm giống nhau: cả hai đều là con trỏ dùng để nhảy khi khớp thất bại.
 2.  Điểm khác nhau: con trỏ `next` tìm Border dài nhất (tiền tố và hậu tố giống nhau dài nhất), còn con trỏ `fail` trỏ tới tiền tố của một xâu mẫu nào đó khớp với hậu tố dài nhất của trạng thái hiện tại.
 
-Lý do là KMP chỉ khớp một xâu mẫu, còn ô-tô-mát AC phải khớp nhiều xâu mẫu. Có thể đỉnh mà con trỏ `fail` trỏ tới tương ứng với một xâu mẫu khác, nên tiền tố của hai xâu có thể khác nhau.
+Nguyên nhân là KMP chỉ khớp một xâu mẫu, còn ô-tô-mát AC phải khớp nhiều xâu mẫu. Đỉnh mà con trỏ `fail` trỏ tới có thể tương ứng với một xâu mẫu khác, nên tiền tố của hai xâu có thể khác nhau.
 
 Tóm lại, con trỏ thất bại của ô-tô-mát AC trỏ tới trạng thái hậu tố dài nhất của trạng thái hiện tại.
 
@@ -59,12 +59,12 @@ Xét đỉnh hiện tại $u$ trong Trie. Cha của $u$ là $p$, và $p$ trỏ t
 2.  Nếu $\operatorname{trie}(\operatorname{fail}(p), c)$ không tồn tại: tiếp tục tìm $\operatorname{trie}(\operatorname{fail}(\operatorname{fail}(p)), c)$. Lặp lại quá trình này, liên tục nhảy theo con trỏ `fail` cho tới gốc;
 3.  Nếu vẫn không tồn tại, đặt con trỏ `fail` trỏ tới đỉnh gốc.
 
-Như vậy đã xây dựng xong $\operatorname{fail}(u)$.
+Như vậy $\operatorname{fail}(u)$ đã được xác định.
 
 <span id="ví-dụ"></span>
 ### Ví dụ
 
-Dưới đây dùng một số ảnh GIF để minh họa quá trình xây dựng con trỏ `fail` cho Trie tạo bởi các xâu $\mathtt{i}$, $\mathtt{he}$, $\mathtt{his}$, $\mathtt{she}$, $\mathtt{hers}$:
+Các ảnh GIF sau minh họa quá trình xây dựng con trỏ `fail` cho Trie tạo bởi các xâu $\mathtt{i}$, $\mathtt{he}$, $\mathtt{his}$, $\mathtt{she}$, $\mathtt{hers}$:
 
 1.  Đỉnh màu vàng: đỉnh hiện tại $u$.
 2.  Đỉnh màu xanh lá: đỉnh đã được BFS duyệt xong.
@@ -73,13 +73,13 @@ Dưới đây dùng một số ảnh GIF để minh họa quá trình xây dựn
 
 ![Quá trình xây con trỏ fail trong ô-tô-mát AC](./images/ac-automaton1.gif)
 
-Phân tích kỹ việc xây dựng con trỏ `fail` của đỉnh $6$:
+Xét chi tiết cách xây dựng con trỏ `fail` của đỉnh $6$:
 
 ![Ví dụ tính con trỏ fail của đỉnh 6](./images/ac-automaton1.png)
 
 Tìm cha của $6$ là đỉnh $5$, $\operatorname{fail}(5)=10$. Tuy nhiên đỉnh $10$ không có cạnh đi ra bằng chữ $\mathtt{s}$; tiếp tục nhảy tới con trỏ `fail` của $10$, tức $\operatorname{fail}(10)=0$. Đỉnh $0$ có cạnh đi ra bằng chữ $\mathtt{s}$ tới đỉnh $7$; vì vậy $\operatorname{fail}(6)=7$.
 
-Hình dưới đây thể hiện trạng thái sau khi xây dựng xong:
+Hình sau thể hiện trạng thái sau khi xây dựng xong:
 
 ![Trạng thái sau khi xây xong con trỏ fail](./images/ac-automaton4.png)
 
@@ -88,7 +88,7 @@ Hình dưới đây thể hiện trạng thái sau khi xây dựng xong:
 
 Xét hàm xây dựng `build`. Hàm này có hai mục tiêu: xây dựng con trỏ `fail` và xây dựng ô-tô-mát. Các biến liên quan được định nghĩa như sau:
 
-1.  `tr[u].son[c]`: có hai cách hiểu. Có thể hiểu đơn giản là một cạnh trên Trie, tức $\operatorname{trie}(u, c)$; cũng có thể hiểu là trạng thái (đỉnh) đạt được khi thêm một ký tự $c$ vào sau trạng thái (đỉnh) $u$, tức một hàm chuyển trạng thái $\operatorname{trans}(u, c)$. Để thuận tiện, bên dưới dùng cách hiểu thứ hai.
+1.  `tr[u].son[c]`: có hai cách hiểu. Có thể hiểu đơn giản là một cạnh trên Trie, tức $\operatorname{trie}(u, c)$; cũng có thể hiểu là trạng thái (đỉnh) đạt được khi thêm một ký tự $c$ vào sau trạng thái (đỉnh) $u$, tức một hàm chuyển trạng thái $\operatorname{trans}(u, c)$. Để thuận tiện, phần sau dùng cách hiểu thứ hai.
 2.  Hàng đợi `q`: dùng để BFS trên Trie.
 3.  `tr[u].fail`: con trỏ `fail` của đỉnh $u$.
 
@@ -143,16 +143,16 @@ Cách xử lý này dùng phần mã trong nhánh `else` để sửa cấu trúc
 
 Còn $\operatorname{trans}(S, c)$ tương đương với việc thêm ký tự $c$ vào sau $S$ để trở thành một trạng thái khác $S'$. Nếu $S'$ tồn tại, nghĩa là có một tiền tố của xâu mẫu bằng $S'$; nếu không, cho $\operatorname{trans}(S, c)$ trỏ tới $\operatorname{trans}(\operatorname{fail}(S), c)$. Vì xâu tương ứng với $\operatorname{fail}(S)$ là một hậu tố của $S$, nên xâu tương ứng với $\operatorname{trans}(\operatorname{fail}(S), c)$ cũng là một hậu tố của $S'$.
 
-Nói cách khác, khi chuyển trên Trie, chỉ đi từ $S$ tới $S'$, tương đương với việc khớp được một $S'$; còn khi chuyển trên ô-tô-mát AC, sẽ đi từ $S$ tới một hậu tố của $S'$. Tức là sau khi khớp một ký tự $c$, bỏ đi một phần tiền tố của $S$. Phần tiền tố bị bỏ chắc chắn vẫn cho phép tiếp tục khớp. Đồng thời, nếu xâu văn bản khớp được $S$, nó cũng khớp được hậu tố của $S$, nên con trỏ `fail` cũng đang bỏ đi tiền tố. Con trỏ `fail` thực ra chính là một tập các hậu tố của $S$.
+Nói cách khác, phép chuyển trên Trie chỉ đi từ $S$ tới $S'$, tương đương với việc khớp được một $S'$; còn phép chuyển trên ô-tô-mát AC đi từ $S$ tới một hậu tố của $S'$. Sau khi khớp một ký tự $c$, một phần tiền tố của $S$ bị loại bỏ, nhưng trạng thái còn lại vẫn giữ khả năng tiếp tục khớp. Đồng thời, nếu xâu văn bản khớp được $S$, nó cũng khớp được hậu tố của $S$, nên con trỏ `fail` cũng loại bỏ tiền tố. Về bản chất, con trỏ `fail` biểu diễn một tập các hậu tố của $S$.
 
-Mảng con `son` của các đỉnh Trie còn có một cách hiểu đơn giản hơn: nếu tại vị trí $u$ bị khớp thất bại, sẽ nhảy tới vị trí $\operatorname{fail}(u)$. Chú ý rằng điều này có thể khiến quá trình phải nhảy theo mảng `fail` nhiều lần mới tới được vị trí tiếp theo có thể khớp. Vì vậy có thể dùng `son` để ghi trực tiếp vị trí tiếp theo có thể khớp, nhờ đó bảo đảm độ phức tạp thời gian của chương trình.
+Mảng con `son` của các đỉnh Trie còn có một cách hiểu đơn giản hơn: nếu tại vị trí $u$ bị khớp thất bại, sẽ nhảy tới vị trí $\operatorname{fail}(u)$. Cách xử lý này có thể khiến quá trình phải nhảy theo mảng `fail` nhiều lần mới tới được vị trí tiếp theo có thể khớp. Vì vậy có thể dùng `son` để ghi trực tiếp vị trí tiếp theo có thể khớp, nhờ đó giữ được độ phức tạp thời gian của chương trình.
 
 Việc sửa cấu trúc Trie trong phần này giúp các phép chuyển khi khớp trở nên đầy đủ hơn. Đồng thời nó nén đường đi nhảy theo con trỏ `fail`, biến việc phải nhảy nhiều lần thành chỉ nhảy một lần.
 
 <span id="quá-trình"></span>
 ### Quá trình
 
-Phần này vẫn dùng một số ảnh GIF để minh họa quá trình xây dựng:
+Phần này tiếp tục dùng một số ảnh GIF để minh họa quá trình xây dựng:
 
 ![Quá trình xây đồ thị từ điển của ô-tô-mát AC](./images/ac-automaton2.gif)
 
@@ -163,7 +163,7 @@ Phần này vẫn dùng một số ảnh GIF để minh họa quá trình xây d
 5.  Cạnh màu vàng: con trỏ `fail`.
 6.  Cạnh màu xám: cạnh của Trie.
 
-Rất nhiều cạnh đen đan xen đã biến Trie thành **đồ thị từ điển**. Trong hình đã lược bỏ các cạnh đen trỏ về gốc (nếu không hình sẽ rối hơn). Phân tích kỹ trường hợp khi duyệt đỉnh $5$. Cần tính con trỏ `fail` của $\operatorname{trans}(5, \mathtt{s})=6$:
+Rất nhiều cạnh đen đan xen đã biến Trie thành **đồ thị từ điển**. Trong hình đã lược bỏ các cạnh đen trỏ về gốc (nếu không hình sẽ rối hơn). Xét chi tiết trường hợp khi duyệt đỉnh $5$. Cần tính con trỏ `fail` của $\operatorname{trans}(5, \mathtt{s})=6$:
 
 ![Ví dụ chuyển trạng thái khi duyệt đỉnh 5](./images/ac-automaton2.png)
 
@@ -174,7 +174,7 @@ Chiến lược ban đầu là tìm theo con trỏ `fail`: nhảy tới $\operat
 <span id="khớp-nhiều-mẫu"></span>
 ## Khớp nhiều mẫu
 
-Tiếp theo phân tích hàm khớp `query`:
+Tiếp theo là hàm khớp `query`:
 
 ???+ note "Cài đặt"
     === "C++"
@@ -208,7 +208,7 @@ Tiếp theo phân tích hàm khớp `query`:
 <span id="giải-thích_2"></span>
 ### Giải thích
 
-Trong đoạn mã trên, $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Dùng con trỏ `fail` để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, sẽ bỏ bớt một phần tiền tố để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng xem lại một hình với ô-tô-mát vừa rồi:
+Trong đoạn mã trên, $u$ là đỉnh hiện đang khớp tới trên Trie, còn `res` là đáp án trả về. Vòng lặp duyệt xâu cần khớp, $u$ theo dõi ký tự hiện tại trên Trie. Con trỏ `fail` được dùng để tìm mọi xâu mẫu đã khớp và cộng vào đáp án. Sau đó đặt số lần xuất hiện của xâu đã khớp thành không còn xét nữa, để tránh đếm lặp cùng một xâu. Như đã phân tích ở trên, cấu trúc Trie thực chất là một hàm `trans`; sau khi xây dựng hàm này, trong quá trình khớp xâu, một phần tiền tố sẽ bị bỏ để đạt tới mức khớp tối thiểu. Con trỏ `fail` thì trỏ tới nhiều trạng thái khớp hơn. Cuối cùng, xét lại hình của ô-tô-mát vừa rồi:
 
 ![Ô-tô-mát AC sau khi xây dựng](./images/ac-automaton3.png)
 
@@ -228,20 +228,20 @@ Bài toán tham khảo: Luogu [P5357 - Mẫu ô-tô-mát AC](https://www.luogu.c
 
 Trong ô-tô-mát AC ở trên, mỗi lần khớp sẽ liên tục nhảy theo các cạnh `fail` để tìm tất cả các lần khớp. Cách này có hiệu suất khá thấp và sẽ quá thời gian ở một số bài.
 
-Vậy cần tối ưu như thế nào? Trước hết cần biết một tính chất của con trỏ `fail`: trong một ô-tô-mát AC, nếu chỉ giữ lại các cạnh `fail`, đồ thị còn lại chắc chắn là một cây.
+Cách tối ưu dựa trên một tính chất của con trỏ `fail`: trong một ô-tô-mát AC, nếu chỉ giữ lại các cạnh `fail`, đồ thị còn lại luôn là một cây.
 
 Điều này đúng vì `fail` không tạo chu trình và độ sâu luôn nhỏ hơn hiện tại.
 
 Như vậy, việc khớp trên ô-tô-mát AC có thể chuyển thành bài toán tính tổng trên một đường đi trong cây `fail`; chỉ cần tối ưu phần này là đủ.
 
-Dưới đây đưa ra hai hướng.
+Có hai hướng tối ưu.
 
 <span id="tối-ưu-bằng-sắp-xếp-topo"></span>
 ### Tối ưu bằng sắp xếp topo
 
-Quan sát thấy thời gian chủ yếu bị lãng phí do mỗi lần đều phải nhảy theo `fail`. Nếu có thể ghi nhận trước rồi cuối cùng cộng dồn một lượt, hiệu suất sẽ được cải thiện.
+Thời gian chủ yếu bị lãng phí do mỗi lần đều phải nhảy theo `fail`. Nếu ghi nhận trước rồi cuối cùng cộng dồn một lượt, hiệu suất sẽ được cải thiện.
 
-Vì vậy thực hiện một lần sắp xếp topo trên cây hướng vào theo cây `fail`, từ đó có thể tính số lần xuất hiện của mọi xâu mẫu trong một lượt.
+Vì vậy có thể thực hiện một lần sắp xếp topo trên cây hướng vào theo cây `fail`, từ đó tính số lần xuất hiện của mọi xâu mẫu trong một lượt.
 
 Hàm `build` được bổ sung phần thống kê bậc vào so với phiên bản ban đầu, để chuẩn bị cho sắp xếp topo.
 
@@ -316,9 +316,9 @@ Cuối cùng là hàm `main`:
 <span id="tối-ưu-bằng-dfs"></span>
 ### Tối ưu bằng DFS
 
-Ý tưởng gần giống với sắp xếp topo, nhưng dùng DFS thay cho sắp xếp topo. Thực ra bản chất hai cách này giống nhau: đều tính tổng các cây con trên cây `fail`.
+Ý tưởng gần giống với sắp xếp topo, nhưng dùng DFS thay cho sắp xếp topo. Về bản chất, hai cách này giống nhau: đều tính tổng các cây con trên cây `fail`.
 
-Mã đầy đủ xem ở mẫu tổng kết 3.
+Mã đầy đủ nằm ở mẫu tổng kết 3.
 
 <span id="dp-trên-ac-automaton"></span>
 ## DP trên ô-tô-mát AC
@@ -327,7 +327,7 @@ Phần này dùng bài [P2292 [HNOI2004] Ngôn ngữ L](https://www.luogu.com.cn
 
 Một hướng đơn giản là xây dựng ô-tô-mát AC, chuyển trạng thái theo mọi xâu con trên các con trỏ `fail` trong ô-tô-mát AC, rồi lấy giá trị lớn nhất làm đáp án.
 
-Phần mã chính như sau. Nếu chưa quen với các định nghĩa kiểu trong mã, có thể xem mã đầy đủ ở cuối phần này:
+Phần mã chính như sau. Các định nghĩa kiểu xuất hiện trong mã đầy đủ ở cuối phần này:
 
 ???+ note "Mã chính của phần truy vấn"
     ```cpp
@@ -350,7 +350,7 @@ Phần mã chính như sau. Nếu chưa quen với các định nghĩa kiểu tr
 
 Tuy nhiên hướng này không có độ phức tạp tuyến tính (vì phải nhảy theo `fail` của từng đỉnh), nên sẽ quá thời gian ở subtasks thứ hai; do đó cần tối ưu.
 
-Nhìn lại tính chất đặc biệt của bài toán, mọi từ đều có độ dài chỉ $20$, vì vậy có thể nghĩ tới tối ưu bằng nén trạng thái.
+Nhìn lại tính chất đặc biệt của bài toán, mọi từ đều có độ dài chỉ $20$, vì vậy có thể tối ưu bằng nén trạng thái.
 
 Nút thắt thời gian hiện tại chủ yếu nằm ở bước nhảy theo `fail`. Nếu tối ưu bước này xuống $O(1)$, toàn bộ bài toán có thể được giải trong thời gian tuyến tính chặt.
 

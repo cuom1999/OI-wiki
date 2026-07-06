@@ -14,7 +14,7 @@ Tổ tiên chung gần nhất được viết tắt là LCA (Lowest Common Ances
 3.  Nếu $u$ không phải là tổ tiên của $v$ và $v$ không phải là tổ tiên của $u$, thì $u,v$ lần lượt nằm trong hai cây con khác nhau của $\text{LCA}(u,v)$;
 4.  Trong duyệt tiền thứ tự, $\text{LCA}(S)$ xuất hiện trước mọi phần tử trong $S$; trong duyệt hậu thứ tự, $\text{LCA}(S)$ xuất hiện sau mọi phần tử trong $S$;
 5.  Tổ tiên chung gần nhất của hợp hai tập đỉnh là tổ tiên chung gần nhất của hai LCA tương ứng, tức là $\text{LCA}(A\cup B)=\text{LCA}(\text{LCA}(A), \text{LCA}(B))$;
-6.  Tổ tiên chung gần nhất của hai đỉnh chắc chắn nằm trên đường đi ngắn nhất giữa hai đỉnh đó trên cây;
+6.  Tổ tiên chung gần nhất của hai đỉnh nằm trên đường đi ngắn nhất giữa hai đỉnh đó trên cây;
 7.  $d(u,v)=h(u)+h(v)-2h(\text{LCA}(u,v))$, trong đó $d$ là khoảng cách giữa hai đỉnh trên cây, còn $h$ biểu thị khoảng cách từ một đỉnh đến gốc của cây.
 
 ## Cách tìm
@@ -23,8 +23,8 @@ Tổ tiên chung gần nhất được viết tắt là LCA (Lowest Common Ances
 
 #### Quy trình
 
-Mỗi lần có thể chọn đỉnh có độ sâu lớn hơn rồi đưa đỉnh đó lên tổ tiên của nó. Trên cây, cuối cùng hai đỉnh này chắc chắn sẽ gặp nhau, và vị trí gặp nhau chính là LCA cần tìm.
-Một cách khác là trước hết điều chỉnh đỉnh có độ sâu lớn hơn lên trên để hai đỉnh có cùng độ sâu, sau đó đưa đồng thời cả hai đỉnh lên tổ tiên của chúng; cuối cùng chúng cũng chắc chắn sẽ gặp nhau.
+Mỗi lần có thể chọn đỉnh có độ sâu lớn hơn rồi đưa đỉnh đó lên tổ tiên của nó. Trên cây, cuối cùng hai đỉnh này sẽ gặp nhau, và vị trí gặp nhau chính là LCA cần tìm.
+Một cách khác là trước hết điều chỉnh đỉnh có độ sâu lớn hơn lên trên để hai đỉnh có cùng độ sâu, sau đó đưa đồng thời cả hai đỉnh lên tổ tiên của chúng; cuối cùng chúng cũng sẽ gặp nhau.
 
 #### Tính chất
 
@@ -97,7 +97,7 @@ Trong phần dưới, ký hiệu vị trí xuất hiện đầu tiên của nút
 
 Khi đã có dãy Euler, bài toán LCA có thể được chuyển thành bài toán RMQ trong thời gian tuyến tính: trên đoạn $E[\min(pos(u), pos(v))..\max(pos(u), pos(v))]$, LCA của $u$ và $v$ là đỉnh có độ sâu nhỏ nhất.
 
-Có thể lý giải như sau: trong quá trình đi từ $u$ đến $v$ chắc chắn sẽ đi qua $LCA(u,v)$, nhưng sẽ không đi qua tổ tiên của $LCA(u,v)$. Vì vậy, đỉnh có độ sâu nhỏ nhất xuất hiện trên đoạn Euler tương ứng với quá trình từ $u$ đến $v$ chính là $LCA(u, v)$.
+Lập luận cho nhận xét trên như sau: trong quá trình đi từ $u$ đến $v$ sẽ đi qua $LCA(u,v)$, nhưng sẽ không đi qua tổ tiên của $LCA(u,v)$. Vì vậy, đỉnh có độ sâu nhỏ nhất xuất hiện trên đoạn Euler tương ứng với quá trình từ $u$ đến $v$ chính là $LCA(u, v)$.
 
 Thời gian dùng DFS để tính dãy Euler là $O(n)$, và độ dài của dãy Euler cũng là $O(n)$, nên bài toán LCA có thể được chuyển thành bài toán RMQ cùng quy mô trong thời gian $O(n)$.
 
@@ -163,7 +163,7 @@ Trong trường hợp không có các thao tác như link và cut, độ phức 
 
 Phần trước đã nói đến việc dùng thứ tự Euler để chuyển bài toán LCA thành bài toán RMQ; phần cốt lõi còn lại là RMQ. Nếu có thể giải RMQ với $O(n) \sim O(1)$, thì cũng có thể giải LCA với $O(n) \sim O(1)$.
 
-Chú ý rằng dãy độ sâu theo thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#rmq-cộng-trừ-1) với $O(n) \sim O(1)$ để xử lý.
+Dãy độ sâu theo thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#rmq-cộng-trừ-1) với $O(n) \sim O(1)$ để xử lý.
 
 Độ phức tạp thời gian là $O(n) \sim O(1)$, độ phức tạp không gian là $O(n)$, hỗ trợ truy vấn trực tuyến, nhưng hằng số khá lớn.
 

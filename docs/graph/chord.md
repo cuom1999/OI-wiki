@@ -58,9 +58,9 @@ Chứng minh: nếu $N(a)$ chỉ chứa đỉnh thuộc nhiều nhất một tro
 
 **Bổ đề 6**: đồ thị con cảm sinh bởi tập cắt đỉnh cực tiểu giữa hai đỉnh bất kỳ trên đồ thị dây cung luôn là một clique.
 
-Chứng minh: khi kích thước tập cắt đỉnh cực tiểu $\le 1$, đồ thị con cảm sinh chắc chắn là một clique.
+Chứng minh: khi kích thước tập cắt đỉnh cực tiểu $\le 1$, đồ thị con cảm sinh là một clique.
 
-Ngược lại, giả sử trong tập cắt đỉnh cực tiểu có hai đỉnh $x,y$. Theo **Bổ đề 5**, trong $N(x)$ có các đỉnh thuộc $V_1,V_2$, ký hiệu là $x_1,x_2$. Tương tự, ký hiệu các đỉnh tương ứng với $y$ là $y_1,y_2$. Lưu ý rằng có thể có $x_1=y_1,x_2=y_2$.
+Ngược lại, giả sử trong tập cắt đỉnh cực tiểu có hai đỉnh $x,y$. Theo **Bổ đề 5**, trong $N(x)$ có các đỉnh thuộc $V_1,V_2$, ký hiệu là $x_1,x_2$. Tương tự, ký hiệu các đỉnh tương ứng với $y$ là $y_1,y_2$. Trường hợp $x_1=y_1,x_2=y_2$ vẫn được phép xảy ra.
 
 Vì $V_1,V_2$ đều là các thành phần liên thông, nên giữa hai cặp đỉnh $x_1,y_1$ và $x_2,y_2$ tồn tại các đường đi ngắn nhất. Gọi các đường đi ngắn nhất bên trong $V_1,V_2$ lần lượt là $x-x_1\sim y_1-y,x-x_2\sim y_2-y$. Khi đó trong đồ thị tồn tại một chu trình $x-x_1\sim y_1-y-y_2\sim x_2-x$, chu trình này có độ dài ít nhất $4$. Theo định nghĩa đồ thị dây cung, trên chu trình đó phải tồn tại một dây cung.
 
@@ -135,11 +135,11 @@ Xét chỉ số nhỏ nhất $j\in(1,k]$ sao cho $v_jx$ kề nhau. Có thể suy
 
 Nếu $\alpha(x)<\alpha(v_0)$, thì $v_0,v_1,\dots,v_j,x$ cũng là một dãy thỏa mãn các tính chất trên; nếu $\alpha(v_0)<\alpha(x)$, thì $x,v_j,\dots,v_1,v_0$ cũng là một dãy thỏa mãn các tính chất trên.
 
-Trong suy luận trên, giá trị $\min(\alpha(v_0),\alpha(v_k))$ đã tăng. Cứ tiếp tục như vậy thì chắc chắn sẽ dẫn tới mâu thuẫn.
+Trong suy luận trên, giá trị $\min(\alpha(v_0),\alpha(v_k))$ đã tăng. Tiếp tục quá trình này sẽ dẫn tới mâu thuẫn.
 
-**Định lý 1**: với mọi đồ thị dây cung, thứ tự do thuật toán Maximum Cardinality Search tìm được chắc chắn là một thứ tự khử hoàn hảo.
+**Định lý 1**: với mọi đồ thị dây cung, thứ tự do thuật toán Maximum Cardinality Search tìm được là một thứ tự khử hoàn hảo.
 
-Chứng minh: xét ba đỉnh bất kỳ $u,v,w$ thỏa mãn $\alpha(u)<\alpha(v)<\alpha(w)$. Cần chứng minh rằng nếu $uv$ kề nhau và $uw$ kề nhau thì $vw$ chắc chắn kề nhau.
+Chứng minh: xét ba đỉnh bất kỳ $u,v,w$ thỏa mãn $\alpha(u)<\alpha(v)<\alpha(w)$. Cần chứng minh rằng nếu $uv$ kề nhau và $uw$ kề nhau thì $vw$ kề nhau.
 
 Dùng phản chứng, giả sử $vw$ không kề nhau. Khi đó $w,u,v$ là một dãy thỏa mãn các tính chất trong **Bổ đề 10**. Dãy như vậy đã được chứng minh là không tồn tại, nên mâu thuẫn. Do đó $vw$ kề nhau.
 
@@ -204,19 +204,19 @@ else
   printf("Perfect\n");
 ```
 
-Như vậy, **bài toán nhận biết đồ thị dây cung** có thể được giải trong độ phức tạp thời gian $O(n+m)$.
+Vì thế, **bài toán nhận biết đồ thị dây cung** giải được trong độ phức tạp thời gian $O(n+m)$.
 
 ## Clique cực đại của đồ thị dây cung
 
-Gọi $N(x)$ là tập các đỉnh kề trực tiếp với $x$ và đứng sau $x$ trong thứ tự khử hoàn hảo. Khi đó các clique cực đại của đồ thị dây cung chắc chắn có dạng $\{x\}\cup N(x)$.
+Gọi $N(x)$ là tập các đỉnh kề trực tiếp với $x$ và đứng sau $x$ trong thứ tự khử hoàn hảo. Khi đó các clique cực đại của đồ thị dây cung có dạng $\{x\}\cup N(x)$.
 
-Chứng minh: xét một clique cực đại $V$ của đồ thị dây cung. Gọi $x$ là đỉnh trong clique này xuất hiện đầu tiên trong thứ tự khử hoàn hảo. Khi đó chắc chắn có $V\subseteq \{x\}\cup N(x)$. Lại vì $V$ là clique cực đại, nên $V=\{x\}\cup N(x)$.
+Chứng minh: xét một clique cực đại $V$ của đồ thị dây cung. Gọi $x$ là đỉnh trong clique này xuất hiện đầu tiên trong thứ tự khử hoàn hảo. Khi đó $V\subseteq \{x\}\cup N(x)$. Lại vì $V$ là clique cực đại, nên $V=\{x\}\cup N(x)$.
 
 Đồ thị dây cung có nhiều nhất $n$ clique cực đại. Để tìm từng clique cực đại của đồ thị dây cung, có thể kiểm tra mỗi $\{x\}\cup N(x)$ có phải là clique cực đại hay không.
 
 Đặt $A=\{x\}\cup N(x),B=\{y\}\cup N(y)$. Nếu $A\subsetneqq B$, thì $A$ không phải là clique cực đại. Khi đó suy ra trong thứ tự khử hoàn hảo, $y$ đứng trước $x$.
 
-Gọi $nxt_x$ là đỉnh đứng sớm nhất trong thứ tự khử hoàn hảo trong $N(x)$, và gọi $y^*$ là đỉnh đứng muộn nhất trong mọi $y$ thỏa mãn $A\subseteq B$. Khi đó chắc chắn có $nxt_{y^*}=x$; nếu không, $y^*$ không phải là đỉnh muộn nhất, vì đặt $y^*=nxt_{y^*}$ vẫn thỏa mãn điều kiện.
+Gọi $nxt_x$ là đỉnh đứng sớm nhất trong thứ tự khử hoàn hảo trong $N(x)$, và gọi $y^*$ là đỉnh đứng muộn nhất trong mọi $y$ thỏa mãn $A\subseteq B$. Khi đó $nxt_{y^*}=x$; nếu không, $y^*$ không phải là đỉnh muộn nhất, vì đặt $y^*=nxt_{y^*}$ vẫn thỏa mãn điều kiện.
 
 $A\subsetneqq B$ khi và chỉ khi $|A|+1\le |B|$.
 
@@ -284,4 +284,4 @@ for (int i = 1; i <= n; i++)
 
 [Tổng kết về đồ thị dây cung - Zu Suyu](https://www.cnblogs.com/zhoushuyu/p/8716935.html)
 
-[R. E. Tarjan and M. Yannakakis, Simple linear-time algorithms to test chordality of graphs,test acyclicity of hypergraphs,and selectively reduce acyclic hypergraphs, SIAM J. Comput., 13 (1984), pp. 566-579.](https://dl.acm.org/doi/abs/10.1137/0213035)
+[R. E. Tarjan and M. Yannakakis, Simple linear-time algorithms to test chordality of graphs, test acyclicity of hypergraphs, and selectively reduce acyclic hypergraphs, SIAM J. Comput., 13 (1984), pp. 566-579.](https://dl.acm.org/doi/abs/10.1137/0213035)

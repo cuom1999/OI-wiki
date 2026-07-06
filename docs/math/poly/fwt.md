@@ -29,9 +29,9 @@ Dưới đây lấy $\cup$ (OR theo bit), $\cap$ (AND theo bit) và $\oplus$ (XO
 <span id="phép-or"></span>
 ### Phép OR
 
-Nếu có $k=i\cup j$, thì các vị trí bit bằng $1$ của $i$ và các vị trí bit bằng $1$ của $j$ chắc chắn đều là tập con của các vị trí bit bằng $1$ của $k$.
+Nếu có $k=i\cup j$, thì các vị trí bit bằng $1$ của $i$ và các vị trí bit bằng $1$ của $j$ đều nằm trong tập các vị trí bit bằng $1$ của $k$.
 
-Bây giờ muốn có $FWT[C] = FWT[A] \cdot FWT[B]$, cần xây dựng quy tắc cho FWT này.
+Để có $FWT[C] = FWT[A] \cdot FWT[B]$, cần xây dựng quy tắc cho FWT này.
 
 Theo định nghĩa, có thể xây dựng $FWT[A]_i = A'_i = \sum_{i=i\cup j}A_{j}$, biểu diễn tổng trên các $j$ sao cho tập vị trí bit $1$ của $j$ là tập con của tập vị trí bit $1$ của $i$.
 
@@ -48,7 +48,7 @@ $$
 
 Tiếp theo xét cách tính $FWT[A]$.
 
-Không thể duyệt tất cả, vì độ phức tạp sẽ là $O(n^2)$. Khi không thể duyệt toàn bộ, xét cách chia để trị.
+Duyệt toàn bộ sẽ dẫn đến độ phức tạp $O(n^2)$, nên cần dùng chia để trị.
 
 Chia đôi toàn bộ đoạn. Sau khi chia đôi đoạn, chỉ số viết dưới dạng nhị phân sẽ có quy luật.
 
@@ -62,7 +62,7 @@ Trong đó `merge` nghĩa là ghép hai mảng lại như ghép chuỗi, còn $+
 
 Như vậy, bằng cách chia đôi có thể hoàn thành việc ghép qua $O(\log{n})$ tầng; mỗi lần ghép cần thực hiện một lượt tính toán. Vì thế thu được $FWT[A]$ trong $O(n\log{n})$.
 
-Phần còn lại là biến đổi ngược. Biến đổi ngược thực ra rất đơn giản: đã biết các tập con của $A_0$ chỉ nằm trong chính nó ($A_0 = FWT[A_0]$), còn tập con của $A_1$ là $FWT[A_0] + FWT[A_1]$, nên có thể suy ra trực tiếp công thức truy hồi cho biến đổi ngược:
+Phần còn lại là biến đổi ngược. Từ việc các tập con của $A_0$ chỉ nằm trong chính nó ($A_0 = FWT[A_0]$), còn tập con của $A_1$ là $FWT[A_0] + FWT[A_1]$, có thể suy ra trực tiếp công thức truy hồi cho biến đổi ngược:
 
 $$
 UFWT[A'] = merge(UFWT[A_0'], UFWT[A_1'] - UFWT[A_0'])
@@ -151,7 +151,7 @@ $$
 FWT[A] = merge(FWT[A_0] + FWT[A_1], FWT[A_0] - FWT[A_1])
 $$
 
-Biến đổi ngược dễ suy ra:
+Biến đổi ngược được suy ra tương tự:
 
 $$
 UFWT[A'] = merge(\frac{UFWT[A_0'] + UFWT[A_1']}{2}, \frac{UFWT[A_0'] - UFWT[A_1']}{2})
@@ -222,7 +222,7 @@ $$
 FWT[A]_i = \sum_{j=0}^{n/2-1} c(i,j) A_j+\sum_{j=n/2}^{n-1} c(i,j) A_j
 $$
 
-Xét sự khác nhau của $i,j$ trong biểu thức trước và biểu thức sau, có thể thấy chỉ có bit cao nhất là khác nhau.
+Khi so sánh $i,j$ trong hai biểu thức trên, điểm khác biệt duy nhất là bit cao nhất.
 
 Do đó loại bỏ bit cao nhất của $i,j$ để được $i',j'$, và ký hiệu $i_0$ là bit cao nhất của $i$. Khi đó:
 
@@ -261,7 +261,7 @@ $$
 A_i = \sum_{j=0}^n c^{-1}(i,j) FWT[A]_j
 $$
 
-Ma trận nghịch đảo không phải lúc nào cũng tồn tại. Chẳng hạn, nếu có một hàng toàn $0$ hoặc một cột toàn $0$, ma trận sẽ không có nghịch đảo; vì vậy cần đặc biệt cẩn thận khi xây dựng.
+Ma trận nghịch đảo không phải lúc nào cũng tồn tại. Chẳng hạn, nếu có một hàng toàn $0$ hoặc một cột toàn $0$, ma trận sẽ không có nghịch đảo; vì vậy việc xây dựng cần được kiểm tra cẩn thận.
 
 <span id="or-theo-bit"></span>
 ### OR theo bit
@@ -510,7 +510,7 @@ $$
 
 Nhưng cách làm này có thể sinh ước không, tức **một số có nhiều cách biểu diễn**; không thể xác định giá trị thật của một số.
 
-Vì thế không tính theo $\bmod {x^K-1}$ nữa, mà tính theo $\bmod$ đa thức cyclotomic $\Phi_{K}(x)$. Đa thức này bảo đảm cấp của $x$ là $k$ và bất khả quy trên $\mathbb{Q}$. Do đó, định nghĩa phép tính bên trên được thực hiện dưới $\bmod {\Phi_{K}(x)}$.
+Vì thế không tính theo $\bmod {x^K-1}$ nữa, mà tính theo $\bmod$ đa thức cyclotomic $\Phi_{K}(x)$. Đa thức này khiến cấp của $x$ bằng $k$ và bất khả quy trên $\mathbb{Q}$. Do đó, định nghĩa phép tính bên trên được thực hiện dưới $\bmod {\Phi_{K}(x)}$.
 
 Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số lớn (vì bản thân $\Phi$ là một đa thức). Nhưng vì $\Phi_{K}(x)\mid x^k-1$, khi tính chỉ cần lấy $\bmod x^k -1$, đến cuối mới lấy tiếp $\bmod \Phi_{K}(x)$.
 
@@ -532,10 +532,10 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
         
         Đa thức cyclotomic trong trường hợp này là $\Phi_{10}(x)=x^4-x^3+x^2-x+1$.
         
-        Tuy nhiên khi UFWT, cần chia cho cơ số $10$, mà $10$ không có nghịch đảo modulo $2^{58}$. Thực ra $5$ có nghịch đảo modulo $2^{58}$: $57646075230342349$; chỉ cần chia thêm một thừa số $2$. Giả sử đáp án sau khi đã chia cho $5$ là $x$, đáp án thật là $y$, tức $2^5y\equiv x\pmod{2^{64}}$. Khi đó $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$, tức $y\equiv \frac{x}{2^5}\pmod{2^{59}}$. Vì vậy chỉ cần chia đáp án cuối cùng cho $2^5$. Mặc dù không rõ vì sao tác giả đề bài lại yêu cầu modulo $2^{58}$, sau đó chỉ cần lấy modulo lại là đủ.
+        Tuy nhiên khi UFWT, cần chia cho cơ số $10$, mà $10$ không có nghịch đảo modulo $2^{58}$. Số $5$ có nghịch đảo modulo $2^{58}$: $57646075230342349$; phần còn lại là chia thêm một thừa số $2$. Giả sử đáp án sau khi đã chia cho $5$ là $x$, đáp án thật là $y$, tức $2^5y\equiv x\pmod{2^{64}}$. Khi đó $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$, tức $y\equiv \frac{x}{2^5}\pmod{2^{59}}$. Vì vậy chỉ cần chia đáp án cuối cùng cho $2^5$. Mặc dù không rõ vì sao tác giả đề bài lại yêu cầu modulo $2^{58}$, sau đó chỉ cần lấy modulo lại là đủ.
 
 ???+ note "[CF103329F, XXII Opencup, Grand Prix of XiAn - The Struggle](https://codeforces.com/gym/103329/problem/F)"
-    Cho một ellipse $E$, trong đó tọa độ của mọi điểm nguyên đều nằm trong $[1,4 \cdot 10^6]$. Tính giá trị $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$.
+    Cho một elip $E$, trong đó tọa độ của mọi điểm nguyên đều nằm trong $[1,4 \cdot 10^6]$. Tính giá trị $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$.
     
     ??? note "Lời giải"
         Đây là một bài không quá mẫu mực. Tác giả đề bài đã cung cấp lời giải tiếng Anh chi tiết; xem cụ thể tại [liên kết này](https://codeforces.com/blog/entry/96518).
