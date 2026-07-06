@@ -416,7 +416,7 @@ Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi 
 
 Nếu biết một lời giải sai về tính đúng đắn mà người bình thường có thể nghĩ ra và viết ra, nên cố gắng chặn nó.
 
-Cần đặc biệt nhắc rằng nếu có khả năng tràn số nguyên, nhất định phải chặn các lời giải sẽ bị tràn. Trong thể thức có điểm thành phần, không nên để người không dùng long long nhận điểm bằng với brute force, thậm chí thấp hơn.
+Cần đặc biệt nhắc rằng nếu có khả năng tràn số nguyên, nhất định phải chặn các lời giải sẽ bị tràn. Trong thể thức có điểm thành phần, không nên để người không dùng long long nhận điểm bằng với lời giải vét cạn, thậm chí thấp hơn.
 
 Nếu có bộ kiểm thử sơ bộ (pretests), các bộ này nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, cần đưa tất cả các điểm yếu đã biết của bài vào bộ kiểm thử sơ bộ bằng số lượng bộ kiểm thử ít nhất có thể.
 

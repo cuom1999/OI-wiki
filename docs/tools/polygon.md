@@ -83,7 +83,7 @@ Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces
 
 Nếu cần tự viết trình kiểm tra đáp án, tham khảo [hướng dẫn viết trình kiểm tra đáp án](./testlib/checker.md).
 
-"Checker tests" ("Kiểm thử checker") bên dưới dùng "Add test" ("Thêm bộ kiểm thử") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy kiểm thử") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
+"Checker tests" ("Kiểm thử trình kiểm tra") bên dưới dùng "Add test" ("Thêm bộ kiểm thử") để thêm nhiều nhóm đầu ra cùng kết quả chấm mong muốn tương ứng; sau đó nhấp "Run tests" ("Chạy kiểm thử") để kiểm tra trình kiểm tra đáp án có trả về đúng kết quả chấm hay không.
 
 ### Trình tương tác
 
@@ -93,7 +93,7 @@ Chỉ bài tương tác kiểu IO mới cần mục này; tham khảo [hướng 
 
 Trình kiểm tra dữ liệu dùng để kiểm tra tính hợp lệ của dữ liệu. Cách viết xem [hướng dẫn viết trình kiểm tra dữ liệu](./testlib/validator.md).
 
-"Validator tests" ("Kiểm thử validator") bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
+"Validator tests" ("Kiểm thử trình xác thực") bên dưới tương tự "Checker tests"; cần cung cấp đầu vào và kỳ vọng hợp lệ hay không, dùng để kiểm thử trình kiểm tra dữ liệu.
 
 ### Dữ liệu kiểm thử
 

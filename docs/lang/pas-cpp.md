@@ -413,7 +413,7 @@ Khi viết thủ tục/hàm Pascal, rất dễ quên khai báo biến cục bộ
 Thông thường chương trình chính lại có vòng lặp, nên trong đa số trường hợp `i`
 và `j` đều là biến toàn cục. Khi đó, việc thao tác với `i` trong thủ tục/hàm rất
 dễ gây lỗi. Tệ hơn nữa, nếu quên khai báo các biến cục bộ kiểu này, trình biên
-dịch không báo lỗi và chương trình vẫn chạy. (Rất nhiều bug khó tìm xuất phát từ
+dịch không báo lỗi và chương trình vẫn chạy. (Rất nhiều lỗi khó tìm xuất phát từ
 đây.)
 
 Vì vậy, khi dùng C++, nên khai báo biến, chẳng hạn `i` dùng trong vòng lặp, theo

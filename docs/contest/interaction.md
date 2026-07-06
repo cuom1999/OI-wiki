@@ -158,7 +158,7 @@ Chia thành hai subtasks để thảo luận:
 
 Yêu cầu $h \le 7$, số lần truy vấn $\le 16$ rất chặt, nên cần tận dụng tối đa thông tin thu được từ mỗi lần thăm.
 
-Khi $h \le 4$ có thể brute force trực tiếp. Tuy nhiên khi $h > 4$ cần một thuật toán duyệt rất hiệu quả.
+Khi $h \le 4$ có thể vét cạn trực tiếp. Tuy nhiên khi $h > 4$ cần một thuật toán duyệt rất hiệu quả.
 
 Rải điểm ngẫu nhiên không phải cách tốt, vì nó không thể xác định bản thân đã đủ gần nút gốc hay chưa. Nếu chỉ rải điểm ngẫu nhiên đơn thuần, xác suất ít nhất một lần chạm nút gốc là $1 - (\frac{2 ^ h - 2}{2 ^ h - 1})$; ngay cả khi loại bỏ trường hợp rải trùng điểm, xác suất chạm nút gốc vẫn rất nhỏ.
 
@@ -291,7 +291,7 @@ Từ đó có thể suy ra phương pháp thử sai để xác định robot có
 
 Có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để xác định ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để xác định robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
 
-Sau khi tìm ra các ô chưa biết, cần xác định quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp xác định toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
+Sau khi tìm ra các ô chưa biết, cần xác định quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần vét cạn cách ghép cặp. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp xác định toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
 Hiện tại, mã dưới đây chỉ được chấp nhận trên bản sao UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không được chấp nhận ở đề gốc UVa. Sau khi sửa lời giải chuẩn của Liu Rujia trên UOJ vẫn chưa được chấp nhận, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy mã dưới đây lấy UOJ làm chuẩn.
 

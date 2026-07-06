@@ -45,17 +45,17 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
 ### Ví dụ
 
 ???+ example "[POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
-    Một phần mềm có $s$ hệ thống con và có thể sinh ra $n$ loại bug. Mỗi ngày một người phát hiện một bug; bug này thuộc một loại bug nào đó và cũng thuộc một hệ thống con nào đó. Xác suất mỗi bug thuộc một hệ thống con cụ thể là $\dfrac{1}{s}$, và xác suất thuộc một loại bug cụ thể là $\dfrac{1}{n}$. Tính số ngày kỳ vọng để phát hiện đủ $n$ loại bug và để mỗi hệ thống con trong $s$ hệ thống con đều đã có bug được tìm thấy.
+    Một phần mềm có $s$ hệ thống con và có thể sinh ra $n$ loại lỗi. Mỗi ngày một người phát hiện một lỗi; lỗi này thuộc một loại lỗi nào đó và cũng thuộc một hệ thống con nào đó. Xác suất mỗi lỗi thuộc một hệ thống con cụ thể là $\dfrac{1}{s}$, và xác suất thuộc một loại lỗi cụ thể là $\dfrac{1}{n}$. Tính số ngày kỳ vọng để phát hiện đủ $n$ loại lỗi và để mỗi hệ thống con trong $s$ hệ thống con đều đã có lỗi được tìm thấy.
 
 ??? note "Lời giải"
-    Gọi $f_{i,j}$ là số ngày kỳ vọng để đạt trạng thái mục tiêu khi đã tìm được $i$ loại bug và đã có bug ở $j$ hệ thống con. Trạng thái mục tiêu là tìm đủ $n$ loại bug và cả $s$ hệ thống con đều đã có bug. Khi đó $f_{n,s}=0$, vì đã đạt trạng thái mục tiêu nên không cần thêm ngày nào để phát hiện bug nữa. Do đó bắt đầu truy hồi từ trạng thái mục tiêu, và đáp án là $f_{0,0}$.
+    Gọi $f_{i,j}$ là số ngày kỳ vọng để đạt trạng thái mục tiêu khi đã tìm được $i$ loại lỗi và đã có lỗi ở $j$ hệ thống con. Trạng thái mục tiêu là tìm đủ $n$ loại lỗi và cả $s$ hệ thống con đều đã có lỗi. Khi đó $f_{n,s}=0$, vì đã đạt trạng thái mục tiêu nên không cần thêm ngày nào để phát hiện lỗi nữa. Do đó bắt đầu truy hồi từ trạng thái mục tiêu, và đáp án là $f_{0,0}$.
     
     Xét chuyển trạng thái của $f_{i,j}$:
     
-    -   $f_{i,j}$, phát hiện một bug thuộc một trong $i$ loại bug đã phát hiện và một trong $j$ hệ thống con đã phát hiện, xác suất là $p_1=\dfrac{i}{n}\cdot\dfrac{j}{s}$.
-    -   $f_{i,j+1}$, phát hiện một bug thuộc một trong $i$ loại bug đã phát hiện, nhưng không thuộc hệ thống con đã phát hiện, xác suất là $p_2=\dfrac{i}{n}\cdot(1-\dfrac{j}{s})$.
-    -   $f_{i+1,j}$, phát hiện một bug không thuộc loại bug đã phát hiện, nhưng thuộc một trong $j$ hệ thống con đã phát hiện, xác suất là $p_3=(1-\dfrac{i}{n})\cdot\dfrac{j}{s}$.
-    -   $f_{i+1,j+1}$, phát hiện một bug không thuộc loại bug đã phát hiện và cũng không thuộc hệ thống con đã phát hiện, xác suất là $p_4=(1-\dfrac{i}{n})\cdot(1-\dfrac{j}{s})$.
+    -   $f_{i,j}$, phát hiện một lỗi thuộc một trong $i$ loại lỗi đã phát hiện và một trong $j$ hệ thống con đã phát hiện, xác suất là $p_1=\dfrac{i}{n}\cdot\dfrac{j}{s}$.
+    -   $f_{i,j+1}$, phát hiện một lỗi thuộc một trong $i$ loại lỗi đã phát hiện, nhưng không thuộc hệ thống con đã phát hiện, xác suất là $p_2=\dfrac{i}{n}\cdot(1-\dfrac{j}{s})$.
+    -   $f_{i+1,j}$, phát hiện một lỗi không thuộc loại lỗi đã phát hiện, nhưng thuộc một trong $j$ hệ thống con đã phát hiện, xác suất là $p_3=(1-\dfrac{i}{n})\cdot\dfrac{j}{s}$.
+    -   $f_{i+1,j+1}$, phát hiện một lỗi không thuộc loại lỗi đã phát hiện và cũng không thuộc hệ thống con đã phát hiện, xác suất là $p_4=(1-\dfrac{i}{n})\cdot(1-\dfrac{j}{s})$.
     
     Theo tính tuyến tính của kỳ vọng, thu được phương trình chuyển trạng thái:
     
