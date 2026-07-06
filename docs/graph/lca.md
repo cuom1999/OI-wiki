@@ -3,7 +3,7 @@ author:ouuan, Backl1ght, billchenchina, CCXXXI, ChickenHu, ChungZH, cjsoft, coun
 ## Định nghĩa
 
 Tổ tiên chung gần nhất được viết tắt là LCA (Lowest Common Ancestor). Tổ tiên chung gần nhất của hai nút là tổ tiên chung xa gốc nhất trong các tổ tiên chung của hai nút đó.
-Để thuận tiện, ta ký hiệu tổ tiên chung gần nhất của một tập đỉnh $S=\{v_1,v_2,\ldots,v_n\}$ là $\text{LCA}(v_1,v_2,\ldots,v_n)$ hoặc $\text{LCA}(S)$.
+Để thuận tiện, ký hiệu tổ tiên chung gần nhất của một tập đỉnh $S=\{v_1,v_2,\ldots,v_n\}$ là $\text{LCA}(v_1,v_2,\ldots,v_n)$ hoặc $\text{LCA}(S)$.
 
 ## Tính chất
 
@@ -23,32 +23,32 @@ Tổ tiên chung gần nhất được viết tắt là LCA (Lowest Common Ances
 
 #### Quy trình
 
-Mỗi lần có thể chọn đỉnh có độ sâu lớn hơn rồi cho nó nhảy lên trên. Rõ ràng trên cây, cuối cùng hai đỉnh này chắc chắn sẽ gặp nhau, và vị trí gặp nhau chính là LCA cần tìm.
-Một cách khác là trước hết điều chỉnh đỉnh có độ sâu lớn hơn lên trên để hai đỉnh có cùng độ sâu, sau đó cho cả hai cùng nhảy lên trên; cuối cùng chúng cũng chắc chắn sẽ gặp nhau.
+Mỗi lần có thể chọn đỉnh có độ sâu lớn hơn rồi đưa đỉnh đó lên tổ tiên của nó. Trên cây, cuối cùng hai đỉnh này chắc chắn sẽ gặp nhau, và vị trí gặp nhau chính là LCA cần tìm.
+Một cách khác là trước hết điều chỉnh đỉnh có độ sâu lớn hơn lên trên để hai đỉnh có cùng độ sâu, sau đó đưa đồng thời cả hai đỉnh lên tổ tiên của chúng; cuối cùng chúng cũng chắc chắn sẽ gặp nhau.
 
 #### Tính chất
 
-Khi tiền xử lý, thuật toán đơn giản cần dfs toàn bộ cây, nên độ phức tạp thời gian là $O(n)$; độ phức tạp thời gian cho một truy vấn là $\Theta(n)$. Nếu cây thỏa mãn tính ngẫu nhiên, độ phức tạp thời gian liên quan đến chiều cao kỳ vọng của loại cây ngẫu nhiên đó.
+Khi tiền xử lý, thuật toán đơn giản cần DFS toàn bộ cây, nên độ phức tạp thời gian là $O(n)$; độ phức tạp thời gian cho một truy vấn là $\Theta(n)$. Nếu cây được sinh ngẫu nhiên theo một mô hình nhất định, độ phức tạp thời gian liên quan đến chiều cao kỳ vọng của loại cây ngẫu nhiên đó.
 
 ### Thuật toán nhân đôi
 
 #### Quy trình
 
-Thuật toán nhân đôi là cách tìm LCA kinh điển nhất, là cải tiến của thuật toán đơn giản. Bằng cách tiền xử lý mảng $\text{fa}_{x,i}$, con trỏ có thể di chuyển nhanh, qua đó giảm đáng kể số lần nhảy. $\text{fa}_{x,i}$ biểu thị tổ tiên thứ $2^i$ của đỉnh $x$. Mảng $\text{fa}_{x,i}$ có thể được tiền xử lý bằng dfs.
+Thuật toán nhân đôi là cách tìm LCA kinh điển nhất, là cải tiến của thuật toán đơn giản. Bằng cách tiền xử lý mảng $\text{fa}_{x,i}$, có thể nhảy nhanh qua các tổ tiên, qua đó giảm đáng kể số lần nhảy. $\text{fa}_{x,i}$ biểu thị tổ tiên thứ $2^i$ của đỉnh $x$. Mảng $\text{fa}_{x,i}$ có thể được tiền xử lý bằng DFS.
 
-Bây giờ ta xem cách tối ưu các bước nhảy này:
-Ở giai đoạn đầu khi điều chỉnh con trỏ, ta cần đưa hai đỉnh $u,v$ về cùng một độ sâu. Có thể tính hiệu độ sâu của $u,v$, giả sử là $y$. Bằng cách phân tách $y$ theo nhị phân, ta tối ưu $y$ lần nhảy con trỏ thành số lần nhảy bằng "số bit `1` trong biểu diễn nhị phân của $y$".
-Ở giai đoạn thứ hai, ta bắt đầu thử lặp từ $i$ lớn nhất xuống đến $0$ (bao gồm $0$). Nếu $\text{fa}_{u,i}\not=\text{fa}_{v,i}$, thì đặt $u\gets\text{fa}_{u,i},v\gets\text{fa}_{v,i}$; khi đó LCA cuối cùng là $\text{fa}_{u,0}$.
+Xét cách tối ưu các bước nhảy này:
+Ở giai đoạn đầu khi điều chỉnh con trỏ, cần đưa hai đỉnh $u,v$ về cùng một độ sâu. Có thể tính hiệu độ sâu của $u,v$, giả sử là $y$. Bằng cách phân tách $y$ theo nhị phân, có thể tối ưu $y$ lần nhảy con trỏ thành số lần nhảy bằng "số bit `1` trong biểu diễn nhị phân của $y$".
+Ở giai đoạn thứ hai, bắt đầu thử lặp từ $i$ lớn nhất xuống đến $0$ (bao gồm $0$). Nếu $\text{fa}_{u,i}\not=\text{fa}_{v,i}$, thì đặt $u\gets\text{fa}_{u,i},v\gets\text{fa}_{v,i}$; khi đó LCA cuối cùng là $\text{fa}_{u,0}$.
 
 #### Tính chất
 
 Độ phức tạp thời gian tiền xử lý của thuật toán nhân đôi là $O(n \log n)$, và độ phức tạp thời gian cho một truy vấn là $O(\log n)$.
-Ngoài ra, thuật toán nhân đôi có thể hoán đổi hai chiều của mảng `fa` để đặt chiều nhỏ hơn lên trước. Cách này có thể giảm số lần cache miss và nâng cao hiệu suất chương trình.
+Ngoài ra, thuật toán nhân đôi có thể đổi thứ tự hai chiều của mảng `fa` để đặt chiều nhỏ hơn lên trước. Cách này có thể giảm số lần cache miss và nâng cao hiệu suất chương trình.
 
 ??? note "Ví dụ"
     [HDU 2586 How far away?](https://acm.hdu.edu.cn/showproblem.php?pid=2586) Truy vấn đường đi ngắn nhất trên cây.
 
-Có thể tìm LCA trước rồi kết hợp với tính chất $7$ để trả lời. Cũng có thể trực tiếp tính kết quả trong lúc tìm LCA.
+Có thể tìm LCA trước rồi kết hợp với tính chất $7$ để trả lời. Hoặc có thể tính trực tiếp kết quả trong lúc tìm LCA.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -59,12 +59,12 @@ Có thể tìm LCA trước rồi kết hợp với tính chất $7$ để trả
 
 #### Quy trình
 
-Thuật toán Tarjan là một **thuật toán ngoại tuyến**, cần dùng [DSU](../ds/dsu.md) để ghi nhận nút tổ tiên của một nút nào đó. Cách làm như sau:
+Thuật toán Tarjan là một **thuật toán ngoại tuyến**, cần dùng [DSU](../ds/dsu.md) để ghi nhận tổ tiên đại diện của mỗi tập. Cách làm như sau:
 
-1.  Trước hết nhận các cạnh đầu vào (danh sách kề) và các cạnh truy vấn (lưu trong một danh sách kề khác). Cạnh truy vấn thực chất là cạnh ảo được thêm vào; để thuận tiện, mỗi khi nhập một cạnh truy vấn, ta thêm cả cạnh đó và cạnh ngược của nó vào mảng `queryEdge`.
+1.  Trước hết đọc các cạnh của cây (danh sách kề) và các cạnh truy vấn (lưu trong một danh sách kề khác). Cạnh truy vấn thực chất là cạnh ảo được thêm vào; để thuận tiện, mỗi khi nhập một cạnh truy vấn, thêm cả cạnh đó và cạnh ngược của nó vào mảng `queryEdge`.
 2.  Sau đó thực hiện một lần duyệt DFS, đồng thời dùng mảng `visited` để ghi nhận một nút đã được thăm hay chưa, và dùng `parent` để ghi nhận nút cha của nút hiện tại.
-3.  Ở đây có dùng **ý tưởng quay lui**. Mỗi khi duyệt đến một nút nào đó, ta xem nút gốc của nó là chính nó. Sau khi toàn bộ DFS lấy nút đó làm gốc đã duyệt xong, ta lại đặt nút gốc của nút đó thành nút cha trực tiếp của nó.
-4.  Khi quay lui, nếu với nút hiện tại làm điểm xuất phát, nút còn lại của cạnh truy vấn trong `queryEdge` cũng vừa hay đã được thăm, thì cập nhật trực tiếp kết quả LCA của cạnh truy vấn đó.
+3.  Bước này dùng **ý tưởng quay lui**. Mỗi khi duyệt đến một nút nào đó, đặt đại diện của tập chứa nút đó là chính nó. Sau khi DFS trên cây con của nút đó kết thúc, đặt lại đại diện của tập chứa nút đó thành nút cha trực tiếp của nó.
+4.  Khi quay lui, nếu với nút hiện tại làm điểm xuất phát, nút còn lại của cạnh truy vấn trong `queryEdge` đã được thăm, thì cập nhật trực tiếp kết quả LCA của cạnh truy vấn đó.
 5.  Cuối cùng xuất kết quả.
 
 #### Tính chất
@@ -74,7 +74,7 @@ Thuật toán Tarjan cần khởi tạo DSU, vì vậy độ phức tạp thời
 Thuật toán Tarjan đơn giản xử lý toàn bộ $m$ truy vấn trong độ phức tạp thời gian $O(m \alpha(m+n, n) + n)$, nhưng hằng số của thuật toán Tarjan lớn hơn thuật toán nhân đôi. Tồn tại cách cài đặt $O(m + n)$.
 
 ???+ warning "Lưu ý"
-    Không tồn tại nhận định rằng "tính chất của DSU dùng trong thuật toán Tarjan LCA đơn giản tương đối đặc biệt, nên độ phức tạp thời gian của một lần gọi hàm `find()` là $O(1)$ trung bình".
+    Không nên cho rằng "tính chất của DSU dùng trong thuật toán Tarjan LCA đơn giản tương đối đặc biệt, nên độ phức tạp thời gian của một lần gọi hàm `find()` là $O(1)$ trung bình".
 
     Cài đặt Tarjan đơn giản dưới đây có độ phức tạp $O(m \alpha(m+n, n) + n)$. Nếu cần đạt tuyến tính nghiêm ngặt, có thể tham khảo [bài báo năm 1983 của Gabow và Tarjan](https://dl.acm.org/doi/pdf/10.1145/800061.808753). Bài báo đưa ra một cách làm có độ phức tạp $O(m + n)$.
 
@@ -89,15 +89,15 @@ Thuật toán Tarjan đơn giản xử lý toàn bộ $m$ truy vấn trong độ
 
 #### Định nghĩa
 
-Thực hiện DFS trên một cây; bất kể là lần đầu truy cập hay khi quay lui, mỗi lần đi đến một nút đều ghi lại số hiệu của nó, ta thu được một dãy có độ dài $2n-1$. Dãy này được gọi là dãy Euler của cây.
+Thực hiện DFS trên một cây; mỗi khi lần đầu đi vào một nút hoặc quay lui về nút đó, đều ghi lại số hiệu của nút, từ đó thu được một dãy có độ dài $2n-1$. Dãy này được gọi là dãy Euler của cây.
 
 Trong phần dưới, ký hiệu vị trí xuất hiện đầu tiên của nút $u$ trong dãy Euler là $pos(u)$ (cũng gọi là thứ tự Euler của nút $u$), và ký hiệu chính dãy Euler là $E[1..2n-1]$.
 
 #### Quy trình
 
-Khi đã có dãy Euler, bài toán LCA có thể được chuyển thành bài toán RMQ trong thời gian tuyến tính, tức là $pos(LCA(u, v))=\min\{pos(k)|k\in E[pos(u)..pos(v)]\}$.
+Khi đã có dãy Euler, bài toán LCA có thể được chuyển thành bài toán RMQ trong thời gian tuyến tính: trên đoạn $E[\min(pos(u), pos(v))..\max(pos(u), pos(v))]$, LCA của $u$ và $v$ là đỉnh có độ sâu nhỏ nhất.
 
-Đẳng thức này không khó hiểu: trong quá trình đi từ $u$ đến $v$ chắc chắn sẽ đi qua $LCA(u,v)$, nhưng sẽ không đi qua tổ tiên của $LCA(u,v)$. Vì vậy, nút có thứ tự Euler nhỏ nhất đi qua trong quá trình từ $u$ đến $v$ chính là $LCA(u, v)$.
+Có thể lý giải như sau: trong quá trình đi từ $u$ đến $v$ chắc chắn sẽ đi qua $LCA(u,v)$, nhưng sẽ không đi qua tổ tiên của $LCA(u,v)$. Vì vậy, đỉnh có độ sâu nhỏ nhất xuất hiện trên đoạn Euler tương ứng với quá trình từ $u$ đến $v$ chính là $LCA(u, v)$.
 
 Thời gian dùng DFS để tính dãy Euler là $O(n)$, và độ dài của dãy Euler cũng là $O(n)$, nên bài toán LCA có thể được chuyển thành bài toán RMQ cùng quy mô trong thời gian $O(n)$.
 
@@ -106,13 +106,13 @@ Thời gian dùng DFS để tính dãy Euler là $O(n)$, và độ dài của d�
 ???+ note "Mã tham khảo"
     ```cpp
     int dfn[N << 1], pos[N], tot, st[30][(N << 1) + 2],
-        rev[30][(N << 1) + 2];  // rev biểu thị số hiệu nút có độ sâu nhỏ nhất
+        rev[30][(N << 1) + 2];  // rev biểu thị số hiệu đỉnh có độ sâu nhỏ nhất
 
     void dfs(int cur, int dep) {
       dfn[++tot] = cur;
       depth[tot] = dep;
       pos[cur] = tot;
-      for (int i = head[t]; i; i = side[i].next) {
+      for (int i = head[cur]; i; i = side[i].next) {
         int v = side[i].to;
         if (!pos[v]) {
           dfs(v, dep + 1);
@@ -123,7 +123,7 @@ Thời gian dùng DFS để tính dãy Euler là $O(n)$, và độ dài của d�
 
     void init() {
       for (int i = 2; i <= tot + 1; ++i)
-        lg[i] = lg[i >> 1] + 1;  // tiền xử lý lg thay log2 của thư viện để tối ưu hằng số
+        lg[i] = lg[i >> 1] + 1;  // tiền xử lý lg thay cho log2 của thư viện để tối ưu hằng số
       for (int i = 1; i <= tot; i++) st[0][i] = depth[i], rev[0][i] = dfn[i];
       for (int i = 1; i <= lg[tot]; i++)
         for (int j = 1; j + (1 << i) - 1 <= tot; j++)
@@ -141,13 +141,13 @@ Thời gian dùng DFS để tính dãy Euler là $O(n)$, và độ dài của d�
     }
     ```
 
-Khi cần truy vấn LCA của một cặp điểm $(u, v)$, chỉ cần truy vấn nút được đại diện bởi giá trị nhỏ nhất trên đoạn $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$.
+Khi cần truy vấn LCA của một cặp đỉnh $(u, v)$, chỉ cần truy vấn đỉnh tương ứng với độ sâu nhỏ nhất trên đoạn $[\min\{pos[u], pos[v]\}, \max\{pos[u], pos[v]\}]$.
 
 Nếu dùng bảng ST để giải bài toán RMQ, thuật toán này không hỗ trợ sửa đổi trực tuyến; độ phức tạp thời gian tiền xử lý là $O(n\log n)$, và độ phức tạp thời gian của mỗi truy vấn LCA là $O(1)$.
 
 ### Phân rã cây theo chuỗi
 
-LCA là đỉnh mà con trỏ có độ sâu nhỏ hơn trỏ tới khi hai con trỏ đã nhảy lên cùng một chuỗi nặng.
+LCA là đỉnh nông hơn trong hai đỉnh khi hai con trỏ đã nhảy lên cùng một chuỗi nặng.
 
 Độ phức tạp thời gian tiền xử lý của phân rã cây theo chuỗi là $O(n)$, độ phức tạp thời gian cho một truy vấn là $O(\log n)$, và hằng số khá nhỏ.
 
@@ -155,15 +155,15 @@ LCA là đỉnh mà con trỏ có độ sâu nhỏ hơn trỏ tới khi hai con 
 
 ### Cây Link-Cut
 
-Trong [cây Link-Cut](../ds/lct.md), giả sử hai điểm được thực hiện thao tác [access](../ds/lct.md#access) liên tiếp lần lượt là `u` và `v`, thì điểm do thao tác [access](../ds/lct.md#access) thứ hai trả về chính là LCA của `u` và `v`.
+Trong [cây Link-Cut](../ds/lct.md), giả sử hai đỉnh được thực hiện thao tác [access](../ds/lct.md#access) liên tiếp lần lượt là `u` và `v`, thì đỉnh do thao tác [access](../ds/lct.md#access) thứ hai trả về chính là LCA của `u` và `v`.
 
 Trong trường hợp không có các thao tác như link và cut, độ phức tạp thời gian cho một truy vấn khi dùng cây Link-Cut là $O(\log n)$.
 
 ### RMQ chuẩn
 
-Phần trước đã nói đến việc dùng thứ tự Euler để chuyển bài toán LCA thành bài toán RMQ; nút thắt nằm ở RMQ. Nếu có thể giải RMQ với $O(n) \sim O(1)$, thì cũng có thể giải LCA với $O(n) \sim O(1)$.
+Phần trước đã nói đến việc dùng thứ tự Euler để chuyển bài toán LCA thành bài toán RMQ; phần cốt lõi còn lại là RMQ. Nếu có thể giải RMQ với $O(n) \sim O(1)$, thì cũng có thể giải LCA với $O(n) \sim O(1)$.
 
-Chú ý rằng thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#rmq-cộng-trừ-1) với $O(n) \sim O(1)$ để làm.
+Chú ý rằng dãy độ sâu theo thứ tự Euler thỏa mãn hiệu giữa hai số kề nhau là 1 hoặc -1, nên có thể dùng [RMQ cộng trừ 1](../topic/rmq.md#rmq-cộng-trừ-1) với $O(n) \sim O(1)$ để xử lý.
 
 Độ phức tạp thời gian là $O(n) \sim O(1)$, độ phức tạp không gian là $O(n)$, hỗ trợ truy vấn trực tuyến, nhưng hằng số khá lớn.
 
