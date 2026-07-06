@@ -1,20 +1,20 @@
 author: ouuan, HeRaNO
 
-Heap (đống) là một cây mà mỗi nút có một khóa.
-Tùy theo loại heap, khóa của mỗi nút luôn lớn hơn hoặc bằng, hoặc luôn nhỏ hơn hoặc bằng, khóa của nút cha.
+Heap (đống) là một cây mà mỗi nút có một khóa. Tùy theo loại heap, khóa của mỗi
+nút luôn lớn hơn hoặc bằng, hoặc luôn nhỏ hơn hoặc bằng, khóa của nút cha.
 
-Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của nút cha được gọi là heap nhỏ;
-trường hợp ngược lại được gọi là heap lớn.
+Heap trong đó khóa của mỗi nút đều lớn hơn hoặc bằng khóa của nút cha được gọi
+là heap nhỏ; trường hợp ngược lại được gọi là heap lớn.
 [`priority_queue` trong STL](../lang/csl/container-adapter.md#hàng-đợi-ưu-tiên) thực chất là một heap lớn.
 
-Heap nhỏ chủ yếu hỗ trợ các thao tác:
-chèn một số, truy vấn giá trị nhỏ nhất, xóa giá trị nhỏ nhất,
-hợp nhất hai heap, và giảm khóa của một phần tử.
+Heap nhỏ chủ yếu hỗ trợ các thao tác: chèn một số, truy vấn giá trị nhỏ nhất,
+xóa giá trị nhỏ nhất, hợp nhất hai heap và giảm khóa của một phần tử.
 
-Một số biến thể mạnh hơn, thường gọi là heap có thể hợp nhất, còn hỗ trợ hiệu quả thao tác `merge`.
+Một số biến thể mạnh hơn, thường gọi là heap có thể hợp nhất, còn hỗ trợ hiệu
+quả thao tác `merge`.
 
-Một số biến thể khác còn hỗ trợ tính bền vững,
-tức có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
+Một số biến thể khác còn hỗ trợ tính bền vững, tức có thể truy vấn hoặc thao tác
+trên bất kỳ phiên bản lịch sử nào và sinh ra phiên bản mới.
 
 <span id="phân-loại-heap"></span>
 
@@ -31,7 +31,8 @@ tức có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch
 
 [^ref1]: Độ phức tạp của một lần chèn đơn lẻ là $O(\log n)$,
     nhưng nếu có $k$ lần chèn liên tiếp,
-    có thể tạo một heap nhị thức chỉ chứa các phần tử cần chèn rồi hợp nhất heap này với heap nhị thức ban đầu;
+    có thể tạo một heap nhị thức chỉ chứa các phần tử cần chèn rồi hợp nhất heap
+    này với heap nhị thức ban đầu;
     độ phức tạp khấu hao là $O(1)$.
 
 [^ref2]: Có thể lưu một con trỏ tới phần tử nhỏ nhất
@@ -42,4 +43,5 @@ tức có thể truy vấn hoặc thao tác trên bất kỳ phiên bản lịch
 
 [^ref4]: Bảng lấy từ [Wikipedia](https://en.wikipedia.org/wiki/Priority_queue#Summary_of_running_times).
 
-Theo thói quen, khi nhắc đến "heap" mà không nói rõ thêm, mặc định thường là heap nhị phân.
+Theo thói quen, khi nhắc đến "heap" mà không nói rõ thêm, mặc định thường là
+heap nhị phân.
