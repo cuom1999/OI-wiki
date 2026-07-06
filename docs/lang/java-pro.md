@@ -889,7 +889,7 @@ public class Main {
     
     public static void main(String[] args) {
         List<Integer> list1 = new LinkedList<>();  // Tạo danh sách liên kết đôi tên list1
-        List<Integer> list2 = new LinkedList<>(list1);  // Tạo danh sách liên kết đôi tên list2, thêm vào mọi phần tử trong list1
+        List<Integer> list2 = new LinkedList<>(list1);  // Tạo list2 và sao chép mọi phần tử trong list1
     }
 }
 ```
@@ -968,7 +968,7 @@ public class Main {
             out.println(array.get(i));  // Duyệt mảng tự tăng, độ phức tạp O(n)
         }
         for (int i = 0; i < linked.size(); i++) {
-            out.println(linked.get(i));  // Duyệt danh sách liên kết đôi, độ phức tạp O(n^2), vì get(i) của LinkedList có độ phức tạp O(i)
+            out.println(linked.get(i));  // Duyệt LinkedList theo chỉ số, tổng độ phức tạp O(n^2)
         }
     }
     
@@ -996,15 +996,20 @@ public class Main {
 ```
 
 ???+ warning "Lưu ý"
-    Không xóa phần tử trong quá trình duyệt `List` bằng `for` hoặc `foreach`, nếu không chương trình sẽ ném ngoại lệ.
+    Không xóa phần tử trong quá trình duyệt `List` bằng `for` hoặc `foreach`;
+    nếu làm vậy, chương trình có thể ném ngoại lệ.
     
-    Lý do cũng đơn giản: `list.size()` đã thay đổi, nhưng số lần đã lặp trong vòng lặp không thay đổi theo. Dữ liệu vốn dự kiến ở `index` tiếp theo, sau thao tác xóa, trở thành dữ liệu ở `index` hiện tại; khi chạy vòng lặp tiếp theo, thao tác sẽ chuyển sang dữ liệu vốn dự kiến ở `index` sau nữa. Kết quả là dữ liệu được thao tác không còn đúng như mong đợi.
+    Lý do là `list.size()` đã thay đổi, nhưng biến đếm của vòng lặp không biết
+    đến thay đổi đó. Sau khi xóa một phần tử, phần tử vốn nằm ở `index` tiếp theo
+    sẽ dồn về `index` hiện tại; ở lượt kế tiếp, vòng lặp lại nhảy sang vị trí sau
+    nữa. Kết quả là phần tử được xử lý không còn đúng như mong đợi.
 
 ### Queue
 
 #### LinkedList
 
-Có thể dùng `LinkedList` để hiện thực hàng đợi thông thường; bên dưới là hàng đợi mô phỏng bằng danh sách liên kết.
+Có thể dùng `LinkedList` để triển khai hàng đợi thông thường; ví dụ dưới đây dùng
+danh sách liên kết để mô phỏng hàng đợi.
 
 <span id="linkedlist-queue-khởi-tạo"></span>
 ##### Khởi tạo
@@ -1013,11 +1018,13 @@ Có thể dùng `LinkedList` để hiện thực hàng đợi thông thường; 
 Queue<Integer> q = new LinkedList<>();
 ```
 
-Bên dưới, `LinkedList` hiện thực cả giao diện `List` và giao diện `Deque`; `Deque` lại kế thừa từ giao diện `Queue`, nên `LinkedList` có thể đồng thời hiện thực `List` và `Queue`.
+`LinkedList` triển khai cả giao diện `List` và `Deque`; `Deque` lại kế thừa từ
+`Queue`, nên `LinkedList` có thể dùng đồng thời như `List` và `Queue`.
 
 #### ArrayDeque
 
-Có thể dùng `ArrayDeque` để hiện thực hàng đợi thông thường; bên dưới là hàng đợi mô phỏng bằng mảng.
+Có thể dùng `ArrayDeque` để triển khai hàng đợi thông thường; ví dụ dưới đây dùng
+mảng động để mô phỏng hàng đợi.
 
 <span id="arraydeque-queue-khởi-tạo"></span>
 ##### Khởi tạo
@@ -1026,17 +1033,26 @@ Có thể dùng `ArrayDeque` để hiện thực hàng đợi thông thường; 
 Queue<Integer> q = new ArrayDeque<>();
 ```
 
-Bên dưới, `ArrayDeque` hiện thực giao diện `Deque`; `Deque` lại kế thừa từ giao diện `Queue`, nên `ArrayDeque` có thể hiện thực `Queue`.
+`ArrayDeque` triển khai giao diện `Deque`; `Deque` lại kế thừa từ `Queue`, nên
+`ArrayDeque` có thể dùng như một `Queue`.
 
 <span id="khác-biệt-giữa-linkedlist-và-arraydeque-khi-hiện-thực-queue"></span>
-#### Khác biệt giữa LinkedList và ArrayDeque khi hiện thực Queue
+#### Khác biệt giữa LinkedList và ArrayDeque khi triển khai Queue
 
-1.  Cấu trúc dữ liệu: về cấu trúc dữ liệu, `ArrayDeque` và `LinkedList` đều hiện thực giao diện deque hai đầu `Deque` của Java. Nhưng `ArrayDeque` không hiện thực giao diện danh sách `List` của Java, nên không có thao tác theo vị trí chỉ số.
+1.  Cấu trúc dữ liệu: `ArrayDeque` và `LinkedList` đều triển khai giao diện hàng
+    đợi hai đầu `Deque` của Java. Tuy nhiên, `ArrayDeque` không triển khai giao
+    diện danh sách `List`, nên không có thao tác theo vị trí chỉ số.
 2.  An toàn luồng: `ArrayDeque` và `LinkedList` đều không xử lý đồng bộ luồng, nên không bảo đảm thread-safe.
-3.  Hiện thực bên dưới: `ArrayDeque` dựa trên mảng động, còn `LinkedList` dựa trên danh sách liên kết đôi.
-4.  Tốc độ duyệt: `ArrayDeque` là một vùng bộ nhớ liên tục, theo nguyên lý locality nên dễ trúng cache line CPU hơn; `LinkedList` là các vùng bộ nhớ rời rạc nên không thân thiện với cache line.
-5.  Tốc độ thao tác: hành vi stack và queue của `ArrayDeque` và `LinkedList` đều có độ phức tạp thời gian $O(1)$. Thao tác push/enqueue của `ArrayDeque` có thể kích hoạt mở rộng mảng, nhưng theo phân tích amortized vẫn là $O(1)$.
-6.  Bộ nhớ phụ: `ArrayDeque` có vùng trống ngoài con trỏ đầu và con trỏ cuối của mảng, còn `LinkedList` thêm con trỏ trước và sau trên mỗi nút.
+3.  Cấu trúc bên dưới: `ArrayDeque` dựa trên mảng động, còn `LinkedList` dựa trên
+    danh sách liên kết đôi.
+4.  Tốc độ duyệt: `ArrayDeque` dùng vùng bộ nhớ liên tục, nên theo nguyên lý
+    locality sẽ dễ trúng cache line CPU hơn; `LinkedList` dùng các nút rời rạc nên
+    kém thân thiện với cache hơn.
+5.  Tốc độ thao tác: thao tác stack và queue của `ArrayDeque` và `LinkedList` đều
+    có độ phức tạp thời gian $O(1)$. Thao tác push/enqueue của `ArrayDeque` có thể
+    kích hoạt mở rộng mảng, nhưng theo phân tích amortized vẫn là $O(1)$.
+6.  Bộ nhớ phụ: `ArrayDeque` có thể còn vùng trống ngoài con trỏ đầu và con trỏ
+    cuối của mảng, còn `LinkedList` cần thêm con trỏ trước và sau trên mỗi nút.
 
 #### PriorityQueue
 
@@ -1077,14 +1093,14 @@ public class Main {
     static Queue<Integer> q1 = new LinkedList<>();
     static Queue<Integer> q2 = new PriorityQueue<>();
     
-    static void add() {  // add và offer không khác nhau về chức năng; khác biệt là có ném ngoại lệ hay không
+    static void add() {  // add và offer cùng chèn phần tử; khác nhau ở cách báo lỗi
         q1.add(1);  // Độ phức tạp thời gian O(1)
         q2.add(1);  // Độ phức tạp thời gian O(logn)
     }
     
     static void isEmpty() {
         q1.isEmpty();  // Độ phức tạp thời gian O(1)
-        q2.isEmpty();  // Độ phức tạp không gian O(1)
+        q2.isEmpty();  // Độ phức tạp thời gian O(1)
     }
     
     static void size() {
@@ -1132,7 +1148,8 @@ public class Main {
 
 ### Deque
 
-`Deque` là hàng đợi hai đầu trong `Java`; thường dùng nó để thao tác hàng đợi và thao tác stack.
+`Deque` là hàng đợi hai đầu trong Java; thường dùng cho cả thao tác hàng đợi và
+thao tác stack.
 
 <span id="deque-hàm-chính"></span>
 #### Hàm chính
