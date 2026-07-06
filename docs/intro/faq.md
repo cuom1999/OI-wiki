@@ -5,14 +5,14 @@ Trang này chủ yếu trả lời một số câu hỏi thường gặp.
 Hỏi: Vì sao dự án xây dựng Wiki này?
 
 Đáp: Khi mới học **OI**, nhiều người dễ cảm thấy choáng ngợp trước hệ thống kiến
-thức rất rộng. **OI Wiki** được xây dựng với mong muốn giúp người học, đặc biệt
-là những người thiếu tài liệu học tập và luyện thi, tiếp cận kiến thức thuận
-tiện hơn. Ngoài ra, dự án cũng xuất phát từ mong muốn đóng góp cho sự phát
+thức rộng. **OI Wiki** được xây dựng với mong muốn giúp người học, đặc biệt
+là những người thiếu tài liệu học tập và luyện thi, dễ tiếp cận kiến thức hơn.
+Ngoài ra, dự án cũng xuất phát từ mong muốn đóng góp cho sự phát
 triển của cộng đồng **OI**.
 
 ***
 
-Hỏi: Tôi rất quan tâm, làm sao để tham gia?
+Hỏi: Tôi quan tâm đến dự án, làm sao để tham gia?
 
 Đáp: **OI Wiki tiếng Việt** hiện được lưu trữ trên GitHub; có thể truy cập trực tiếp
 [kho](https://github.com/cuom1999/OI-wiki) này để xem tiến độ mới nhất. Các
@@ -42,7 +42,7 @@ yếu do nhóm **OI Wiki** duy trì; bên dưới là thống kê cộng tác vi
 
 <a href="https://github.com/OI-wiki/OI-wiki/graphs/contributors"><img src="https://opencollective.com/oi-wiki/contributors.svg?width=890&button=false"/></a>
 
-Chỉ với nguồn lực hiện có, rất khó để hoàn thiện dự án ở mọi mặt. Chúng tôi rất
+Với nguồn lực hiện có, việc hoàn thiện dự án ở mọi mặt vẫn còn khó. Chúng tôi
 mong nhận được sự chung tay hoàn thiện **OI Wiki**.
 
 ***
@@ -190,7 +190,7 @@ Hỏi: Tôi đã clone xong, vì sao không triển khai được?
 
 ***
 
-Hỏi: Tôi đã clone kho từ rất lâu trước rồi, làm sao cập nhật lên phiên bản mới?
+Hỏi: Tôi đã clone kho từ lâu, làm sao cập nhật lên phiên bản mới?
 
 Đáp: Vui lòng tham khảo trang trợ giúp chính thức của GitHub
 [Syncing a fork - GitHub Docs](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork).
@@ -288,7 +288,7 @@ Hỏi: Vì sao phần thống kê tác giả không có tên tôi?
 
 ***
 
-Cảm ơn vì đã đọc đến cuối. Sự đóng góp của cộng đồng là điều dự án đang rất cần.
+Cảm ơn vì đã đọc đến cuối. Dự án luôn cần sự đóng góp của cộng đồng.
 
 Nhóm dự án **OI Wiki**
 
