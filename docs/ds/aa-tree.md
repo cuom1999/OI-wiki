@@ -1,6 +1,6 @@
-Cây AA là một cấu trúc cây cân bằng dùng để lưu trữ và truy xuất dữ liệu có thứ tự một cách hiệu quả. Giáo sư Arne
+Cây AA là một cấu trúc cây cân bằng dùng để lưu trữ và truy vấn dữ liệu có thứ tự một cách hiệu quả. Giáo sư Arne
 Andersson giới thiệu cấu trúc này vào năm 1993 trong bài báo "Balanced search trees made simple", với mục tiêu giảm số
-trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hiện tìm kiếm, chèn và xóa trong thời gian $O(\log N)$. Dưới
+trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hiện tìm kiếm, chèn và xóa trong thời gian $O(\log n)$. Dưới
 đây là một ví dụ về cây AA.
 
 ![Ví dụ cây AA](images/aa-tree-1.jpg)
@@ -8,6 +8,7 @@ trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hi
 Cây AA là một biến thể của cây đỏ-đen. Khác với cây đỏ-đen, trong cây AA, nút đỏ chỉ được phép xuất hiện dưới dạng con
 phải. Điều này khiến cây AA mô phỏng cây 2-3 thay vì cây 2-3-4, qua đó đơn giản hóa đáng kể các thao tác duy trì cân
 bằng.
+
 Thuật toán duy trì cân bằng của cây đỏ-đen cần xét bảy trường hợp khác nhau để cân bằng cây một cách chính xác.
 
 ![Cây đỏ-đen tương ứng](images/aa-tree-2.svg)
@@ -69,7 +70,7 @@ không.
 Trường hợp cần tách xuất hiện khi có một chuỗi liên kết ngang liên tiếp sang phải, tức ba nút liên tiếp theo hướng con
 phải cùng thuộc một mức; nút R và nút X đều tương ứng với các liên kết đỏ.
 
-Khi đó xoay trái nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức này là một cây con.
+Khi đó xoay trái nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức của *T* là một cây con.
 
 1.  Con phải của gốc cây con trở thành gốc mới của cây con;
 2.  Gốc cũ của cây con trở thành con trái của gốc mới;
@@ -81,7 +82,8 @@ Khi đó xoay trái nút *T*, xem các nút có mức nhỏ hơn hoặc bằng m
     $$
     \begin{array}{ll}
     1 & \textbf{hàm } \text{split}(\text{root}) \\
-    2 & \qquad \textbf{nếu } \text{root}\rightarrow\text{right}\rightarrow\text{right}\rightarrow\text{level} == \text{root}\rightarrow\text{level} \\
+    2 & \qquad \textbf{nếu } \text{root}\rightarrow\text{right}\rightarrow\text{right}\rightarrow\text{level} \\
+      & \qquad\qquad == \text{root}\rightarrow\text{level} \\
     3 & \qquad\qquad \text{rotate\_left}(\text{root}) \\
     4 & \textbf{kết thúc hàm}
     \end{array}
@@ -92,7 +94,7 @@ Khi đó xoay trái nút *T*, xem các nút có mức nhỏ hơn hoặc bằng m
 Trường hợp cần nghiêng xuất hiện khi có một liên kết ngang sang trái, tức là hai nút liên tiếp theo hướng con trái cùng
 thuộc một mức.
 
-Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức này là một cây con.
+Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức của *T* là một cây con.
 
 1.  Con trái của gốc cây con trở thành gốc mới của cây con;
 2.  Gốc cũ của cây con trở thành con phải của gốc mới.
@@ -112,7 +114,7 @@ Xoay phải nút *T*, xem các nút có mức nhỏ hơn hoặc bằng mức nà
 ## Các thao tác trên cây AA
 
 Bản thân cây AA là một cây tìm kiếm nhị phân, nên thao tác tìm kiếm giống như trên các cây tìm kiếm nhị phân khác. Thao
-tác chèn và xóa giống cây *AVL*: trước hết chèn hoặc xóa khóa trong cây, sau đó đi ngược theo đường tìm kiếm về nút gốc
+tác chèn và xóa giống cây AVL: trước hết chèn hoặc xóa khóa trong cây, sau đó đi ngược theo đường tìm kiếm về nút gốc
 và tái cấu trúc cây trong quá trình đó.
 
 ### Chèn
@@ -123,7 +125,8 @@ và tái cấu trúc cây trong quá trình đó.
     1 & \textbf{hàm } \text{insert}(\text{root}, \text{add}) \\
     2 & \qquad \textbf{nếu } \text{root} == \text{NULL} \\
     3 & \qquad\qquad \text{root} \gets \text{add} \\
-    4 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} < \text{root}\rightarrow\text{key} \qquad // \text{nếu cho phép phần tử trùng lặp thì dùng } <= \\
+    4 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} < \text{root}\rightarrow\text{key} \\
+      & \qquad\qquad \text{// nếu cho phép phần tử trùng lặp thì dùng <=} \\
     5 & \qquad\qquad \text{insert}(\text{root}\rightarrow\text{left}, \text{add}) \\
     6 & \qquad \textbf{ngược lại nếu } \text{add}\rightarrow\text{key} > \text{root}\rightarrow\text{key} \\
     7 & \qquad\qquad \text{insert}(\text{root}\rightarrow\text{right}, \text{add}) \\
@@ -137,9 +140,10 @@ và tái cấu trúc cây trong quá trình đó.
 
 ### Xóa
 
-Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển việc xóa một nút trong thành việc xóa một nút
-lá. Cụ thể, thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có mức lớn hơn
-1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 tương đối đơn giản.
+Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển thao tác xóa một nút trong thành thao tác xóa
+một nút lá. Cụ thể, thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có mức
+lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 tương đối đơn
+giản.
 
 ???+ note "Cài đặt giả mã"
     $$
