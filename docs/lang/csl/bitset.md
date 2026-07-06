@@ -3,8 +3,8 @@ author: i-Yirannn, Xeonacid, ouuan
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-`std::bitset` là một bộ chứa kích thước cố định trong thư viện chuẩn, dùng để
-lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
+`std::bitset` là một lớp trong thư viện chuẩn dùng để lưu một dãy bit có kích
+thước cố định. Nói chặt chẽ, nó không thuộc STL.
 
 ??? note "`bitset` và STL"
     > Thư viện chuẩn C++ cung cấp một số lớp bộ chứa đặc biệt, gọi là bộ chuyển
@@ -33,14 +33,14 @@ lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
     STL nào khác làm lớp cài đặt bên dưới.
 
 Vì bộ nhớ được đánh địa chỉ theo byte, chứ không phải theo bit, nên một biến
-kiểu `bool`, dù chỉ biểu diễn được `0/1`, vẫn chiếm 1 byte bộ nhớ.
+kiểu `bool`, dù chỉ biểu diễn được `0/1`, thường vẫn chiếm 1 byte bộ nhớ.
 
-`bitset` dùng cách lưu trữ nén để tám bit trong một byte lần lượt lưu được 8 giá
-trị `0/1`.
+`bitset` dùng cách lưu trữ nén để tám bit trong một byte có thể lần lượt lưu 8
+giá trị `0/1`.
 
-Với một biến `int` 4 byte, nếu chỉ xét mục đích lưu `0/1`, `bitset` chỉ tốn dung
-lượng bằng $\frac{1}{32}$ của nó; khi tính một số thông tin, thời gian cần thiết
-cũng có thể giảm theo tỷ lệ tương tự.
+So với một biến `int` 4 byte dùng chỉ để lưu `0/1`, `bitset` chỉ cần khoảng
+$\frac{1}{32}$ dung lượng; khi tính một số thông tin, thời gian cần thiết cũng
+có thể giảm theo tỷ lệ tương tự.
 
 Trong một số trường hợp, `bitset` có thể cải thiện hiệu năng chạy của chương
 trình. Việc cải thiện này được xem là tối ưu độ phức tạp hay chỉ giảm hằng số
@@ -51,19 +51,19 @@ cách ghi sau (giả sử độ phức tạp ban đầu là $O(n)$):
 2.  $O(\frac n{32})$: cách ghi này không thật chặt chẽ (không nên có hằng số
     trong ký hiệu độ phức tạp), nhưng thể hiện rằng `bitset` có thể giảm thời
     gian cần thiết xuống $\frac 1{32}$.
-3.  $O(\frac n w)$, trong đó $w=32$ (số bit của kiểu máy); đây là cách ghi được
-    chấp nhận phổ biến hơn.
-4.  $O(\frac n {\log w})$, trong đó $w$ là kích thước của một biến số nguyên
-    trên máy tính.
+3.  $O(\frac n w)$, trong đó $w$ là số bit trong một word máy, chẳng hạn $32$
+    hoặc $64$; đây là cách ghi được chấp nhận phổ biến hơn.
+4.  $O(\frac n {\log w})$, nếu xem độ dài word máy là bậc $\log w$ theo miền giá
+    trị cần biểu diễn.
 
 Ngoài ra, phiên bản chuyên biệt hóa `vector<bool>` có cách lưu trữ giống
-`bitset`. Điểm khác là nó hỗ trợ kích thước động, còn `bitset` giống mảng tĩnh
-thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên, `bitset` có
-một số hàm thư viện hữu ích; chúng không chỉ thuận tiện mà đôi khi còn có thể
-được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi của
-`vector<bool>` không nhất quán với `vector` thông thường, vì phần tử của nó được
-truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy, thông
-thường không dùng `vector<bool>`.
+`bitset`. Điểm khác là nó hỗ trợ kích thước động, còn `bitset` giống mảng tĩnh:
+kích thước được xác định từ lúc biên dịch. Tuy nhiên, `bitset` có một số hàm
+thư viện hữu ích; chúng không chỉ thuận tiện mà đôi khi còn có thể được cài đặt
+bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi của `vector<bool>`
+không nhất quán với `vector` thông thường, vì phần tử của nó được truy cập qua
+đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy, thông thường không dùng
+`vector<bool>` khi không thật sự cần.
 
 <span id="cách-sử-dụng"></span>
 ## Cách sử dụng
@@ -81,20 +81,22 @@ Xem [std::bitset - cppreference.com](https://en.cppreference.com/w/cpp/utility/b
 ### Chỉ định kích thước
 
 ```cpp
-std::bitset<1000> bs;  // một bitset gồm 1000 bit
+std::bitset<1000> bs;  // một bitset gồm 1000 bit, đánh số từ 0 đến 999
 ```
 
 <span id="hàm-khởi-tạo"></span>
 ### Hàm khởi tạo
 
 -   `bitset()`: mọi bit đều là `false`.
--   `bitset(unsigned long val)`: khởi tạo từ biểu diễn nhị phân của `val`.
--   `bitset(const string& str)`: khởi tạo từ xâu `str` gồm các ký tự `0`/`1`.
+-   `bitset(unsigned long val)`: khởi tạo từ biểu diễn nhị phân của `val`, lấy
+    các bit thấp của `val`.
+-   `bitset(const string& str)`: khởi tạo từ chuỗi `str` gồm các ký tự `0`/`1`;
+    ký tự cuối của chuỗi tương ứng với bit có chỉ số 0.
 
 <span id="toán-tử"></span>
 ### Toán tử
 
--   `operator[]`: truy cập một bit cụ thể.
+-   `operator[]`: truy cập một bit cụ thể, không kiểm tra vượt biên.
 
 -   `operator ==`/`operator !=`: so sánh xem nội dung hai `bitset` có hoàn toàn
     giống nhau hay không.
@@ -118,7 +120,7 @@ xuất bằng `cin`/`cout`.
 -   `count()`: trả về số bit có giá trị `true`.
 -   `size()`: trả về kích thước của `bitset`.
 -   `test(pos)`: tương tự `at()` trong `vector`; khác với toán tử `[]` ở chỗ có
-    kiểm tra vượt biên.
+    kiểm tra vượt biên và ném `std::out_of_range` nếu `pos` không hợp lệ.
 -   `any()`: nếu tồn tại ít nhất một bit là `true` thì trả về `true`, ngược lại
     trả về `false`.
 -   `none()`: nếu mọi bit đều là `false` thì trả về `true`, ngược lại trả về
@@ -133,7 +135,7 @@ xuất bằng `cin`/`cout`.
 -   `flip()`: lật mọi bit ($0\leftrightarrow1$, tương đương XOR với một `bitset`
     toàn bit $1$).
 -   `flip(pos)`: lật một bit cụ thể.
--   `to_string()`: trả về biểu diễn xâu sau khi chuyển đổi.
+-   `to_string()`: trả về biểu diễn chuỗi sau khi chuyển đổi.
 -   `to_ulong()`: trả về biểu diễn `unsigned long` sau khi chuyển đổi.
 -   `to_ullong()`: (từ **C++11**) trả về biểu diễn `unsigned long long` sau khi
     chuyển đổi.
@@ -141,7 +143,8 @@ xuất bằng `cin`/`cout`.
     Nếu giá trị của `bitset` không biểu diễn vừa trong kiểu số nguyên đích, hai
     hàm chuyển đổi số nguyên này sẽ ném `std::overflow_error`.
 
-Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ hữu dụng[^bitset1]:
+Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ hữu dụng[^bitset1].
+Đây là mở rộng riêng của libstdc++, không phải giao diện chuẩn của C++:
 
 -   `_Find_first()`: trả về chỉ số của bit `true` đầu tiên trong `bitset`; nếu
     không có bit `true` nào thì trả về kích thước của `bitset`.
@@ -202,9 +205,10 @@ tại.
     ```
 
 Vì cài đặt của libstdc++ nén các bit theo từng nhóm
-`__CHAR_BIT__ * sizeof(unsigned long)`[^bitset2], trên một số nền là $32$. Do
-đó, có thể tự viết `bitset` chỉ hỗ trợ thao tác dịch trái rồi OR, và nén theo
-nhóm $64$ bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
+`__CHAR_BIT__ * sizeof(unsigned long)`[^bitset2], kích thước nhóm có thể là $32$
+trên một số nền. Do đó, có thể tự viết `bitset` chỉ hỗ trợ thao tác dịch trái rồi
+OR, và nén theo nhóm $64$ bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để
+tối ưu tiếp:
 
 ??? note "Bản nộp: [bitset tự viết](https://loj.ac/submission/395619)"
     ```cpp
@@ -359,7 +363,7 @@ số bình phương. Khi tính đáp án, thực hiện AND rồi gọi `count()
 Như vậy, độ phức tạp cho mỗi truy vấn là $O(\frac v w)$ ($v=7000,\,w=32$).
 
 Một cách tiền xử lý sơ cấp đạt $O(v\sqrt v)$ hoặc $O(v^2)$. Cách tiền xử lý theo
-$\log$ như trong mã dưới đây có độ phức tạp là tổng điều hòa, nên là
+các bội như trong mã dưới đây có tổng số bước dạng chuỗi điều hòa, nên đạt
 $O(v\log v)$.
 
 ??? note "Mã tham khảo"
@@ -443,8 +447,8 @@ $O(v\log v)$.
 <span id="kết-hợp-với-sàng-eratosthenes"></span>
 ### Kết hợp với sàng Eratosthenes
 
-Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp
-với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes)
+Do thao tác trên các bit liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết
+hợp với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes)
 khi tạo bảng số nguyên tố.
 
 Cách dùng là thay mảng `bool` trong sàng Eratosthenes bằng `bitset`.
