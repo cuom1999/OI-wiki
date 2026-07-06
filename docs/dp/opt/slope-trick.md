@@ -2,7 +2,7 @@
 ## Dẫn nhập
 
 Với một lớp bài toán DP hai chiều, nếu hàm giá trị $f(i,x)$ là hàm lồi theo
-$x$ với mọi $i$ cố định, ta có thể xem toàn bộ hàm $f(i,\cdot)$ là trạng thái
+$x$ với mọi $i$ cố định, có thể xem toàn bộ hàm $f(i,\cdot)$ là trạng thái
 tại $i$, và duy trì sai phân (hay độ dốc) của nó
 
 $$
@@ -15,7 +15,7 @@ hóa phép chuyển trạng thái, và được gọi là Slope Trick.
 ???+ info "\"Độ dốc\""
     Trong phần lớn bài toán, các hàm chỉ được lấy giá trị tại các điểm nguyên,
     nên việc gọi nó là sai phân hay độ dốc về bản chất không khác nhau. Trong
-    bài viết này, theo thuật ngữ Slope Trick, ta thống nhất gọi là độ dốc.
+    bài viết này, theo thuật ngữ Slope Trick, thống nhất gọi là độ dốc.
 
 Trong từng bài cụ thể, cách duy trì độ dốc có thể khác nhau. Nếu miền giá trị
 của độ dốc hẹp, việc duy trì các điểm mà độ dốc thay đổi (tức điểm gãy) sẽ tiện
@@ -53,7 +53,7 @@ khác nhau trên hàm lồi.
     nào, hoặc cộng với bất kỳ số thực nào, đều bằng chính nó; và với mọi số thực
     $x\in\mathbf R$ luôn có $-\infty<x<+\infty$.
 
-Tất nhiên, nếu đổi dấu bất đẳng thức thành $\ge$, ta tương ứng có hàm lõm[^convex-def].
+Nếu đổi dấu bất đẳng thức thành $\ge$, tương ứng thu được hàm lõm[^convex-def].
 Vì với mọi hàm lõm $f$, hàm $-f$ luôn là hàm lồi, nên mục này chỉ xét hàm lồi.
 
 ???+ info "Bài viết chỉ xét hàm lồi đúng"
@@ -65,17 +65,17 @@ Vì với mọi hàm lõm $f$, hàm $-f$ luôn là hàm lồi, nên mục này c
     trình thi đấu.
 
 Tất nhiên, hàm $f$ thường không được định nghĩa trên mọi số thực. Nếu miền xác
-định của $f$ chỉ là một tập con của $\mathbf R$, ta có thể mở rộng nó thành hàm
+định của $f$ chỉ là một tập con của $\mathbf R$, có thể mở rộng nó thành hàm
 trên $\mathbf R$:
 
 $$
 \tilde f(x) = \begin{cases} f(x), & x\in\operatorname{dom}f,\\ +\infty,& x\notin\operatorname{dom}f.\end{cases}
 $$
 
-Khi đó, ta nói $f$ là hàm lồi khi và chỉ khi hàm mở rộng tương ứng $\tilde f$
+Khi đó, nói $f$ là hàm lồi khi và chỉ khi hàm mở rộng tương ứng $\tilde f$
 thỏa mãn định nghĩa hàm lồi ở trên. Vì vậy, nếu không nói rõ thêm, miền xác định
 của các hàm lồi được nhắc đến trong bài viết này đều là tập số thực $\mathbf R$.
-Hiển nhiên, hàm lồi $f$ chỉ có thể nhận giá trị hữu hạn trên một khoảng (tức một
+Hàm lồi $f$ chỉ có thể nhận giá trị hữu hạn trên một khoảng (tức một
 tập con lồi của $\mathbf R$).
 
 ???+ example "Ví dụ đơn giản"
@@ -88,7 +88,7 @@ tập con lồi của $\mathbf R$).
         $0_{[a,b]}(x)$ (trong ngữ cảnh giải tích lồi, hàm này cũng được gọi là
         hàm chỉ thị của $[a,b]$).
 
-Tất nhiên, có thể kết hợp các phép biến đổi bảo toàn tính lồi được nêu bên dưới
+Có thể kết hợp các phép biến đổi bảo toàn tính lồi được nêu bên dưới
 để tạo ra những hàm lồi phức tạp hơn.
 
 <span id="hàm-lồi-trên-tập-điểm-rời-rạc"></span>
@@ -106,7 +106,7 @@ của nó.
 ???+ abstract "Hàm lồi trên tập điểm rời rạc"
     Cho $S\subset\mathbf R$ là tập điểm rời rạc, nghĩa là với mọi khoảng đóng
     $[a,b]$, tập $S\cap[a,b]$ đều hữu hạn. Với hàm
-    $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$, ta có thể định nghĩa hàm
+    $f:S\rightarrow\mathbf R\cup\{\pm\infty\}$, có thể định nghĩa hàm
     $\tilde f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$ sao cho:
 
     -   Khi $x\in S$, $\tilde f(x)=f(x)$,
@@ -142,7 +142,7 @@ Hàm lồi trên tập số nguyên $\mathbf Z$ có một định nghĩa tương
 ??? note "Chứng minh"
     Mệnh đề này là hệ quả đơn giản của cách đặc trưng hàm lồi bằng độ dốc.
 
-    Nếu $f$ là hàm lồi trên $\mathbf Z$, theo tính chất độ dốc không giảm, ta có
+    Nếu $f$ là hàm lồi trên $\mathbf Z$, theo tính chất độ dốc không giảm, có
 
     $$
     \Delta f(x-1,x)\le \Delta f(x-1,x+1) \le\Delta f(x,x+1).
@@ -150,15 +150,15 @@ Hàm lồi trên tập số nguyên $\mathbf Z$ có một định nghĩa tương
 
     Đây chính là điều kiện ở trên.
 
-    Ngược lại, nếu điều kiện ở trên đúng, thì với mọi $x_1<x_2$, ta có
+    Ngược lại, nếu điều kiện ở trên đúng, thì với mọi $x_1<x_2$, có
 
     $$
     \Delta f(x_1,x_2) = \dfrac{1}{x_2-x_1}\sum_{i=x_1}^{x_2-1}\left(f(i+1)-f(i)\right).
     $$
 
     Giá trị này là trung bình cộng của các sai phân với $x_1\le i<x_2$. Nếu
-    tăng $x_2$ thêm một, ta tương đương chèn thêm một sai phân lớn hơn; nếu tăng
-    $x_1$ thêm một, ta tương đương bỏ đi sai phân nhỏ nhất. Cả hai thao tác đều
+    tăng $x_2$ thêm một, tương đương chèn thêm một sai phân lớn hơn; nếu tăng
+    $x_1$ thêm một, tương đương bỏ đi sai phân nhỏ nhất. Cả hai thao tác đều
     làm trung bình tăng lên. Điều đó cho thấy độ dốc $\Delta f(x_1,x_2)$ không
     giảm, tức $f$ là hàm lồi trên $\mathbf Z$.
 
@@ -204,13 +204,13 @@ tổng quát.
     giờ cần chứng minh tính đủ. Để làm việc này, chỉ cần chứng minh
     $\Delta\tilde f(x_1,x_2)$ cũng không giảm. Đặt $S=\{s_i\}$ với $s_i$ tăng
     nghiêm ngặt theo $i$, và giả sử $s_{i_1}\le x_1\le s_{i_1+1}$,
-    $s_{i_2}\le x_2\le s_{i_2+1}$; hiển nhiên $i_1\le i_2$. Đặt
+    $s_{i_2}\le x_2\le s_{i_2+1}$; khi đó $i_1\le i_2$. Đặt
     $\Delta_i=\Delta f(s_i,s_{i+1})$. Khi đó, có thể chứng minh
     $\Delta_{i_1}\le\Delta\tilde f(x_1,x_2)\le\Delta_{i_2}$.
 
     Xét hai trường hợp. Nếu $i_1=i_2$, thì
     $\Delta_{i_1}=\Delta\tilde f(x_1,x_2)=\Delta_{i_2}$, bất đẳng thức hiển
-    nhiên đúng. Ngược lại, ta có
+    đúng trực tiếp. Ngược lại, có
 
     $$
     \Delta\tilde f(x_1,x_2) = \dfrac{1}{x_2-x_1}\left((s_{i_1+1}-x_1)\Delta_{i_1}+(x_2-s_{i_2})\Delta_{i_2}+\sum_{j=i_1+1}^{i_2-1}(s_{j+1}-s_j)\Delta_j\right).
@@ -230,12 +230,12 @@ tổng quát.
     Thay biểu thức của $x_3$ vào sẽ thu được tính lồi của $\tilde f(x)$.
 
 Độ dốc đơn điệu không giảm có thể xem là một định nghĩa tương đương của hàm lồi.
-Chính vì độ dốc của hàm lồi có tính đơn điệu, khi duy trì độ dốc, ta thường cần
+Chính vì độ dốc của hàm lồi có tính đơn điệu, khi duy trì độ dốc, thường cần
 chọn các cấu trúc dữ liệu như [heap (hàng đợi ưu tiên)](../../ds/heap.md) hoặc
 [cây cân bằng](../../ds/bst.md).
 
 Bài viết này còn dùng một đặc trưng tương đương khác của hàm lồi. Với hàm
-$f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$, ta có thể xét vùng nằm phía
+$f:\mathbf R\rightarrow\mathbf R\cup\{\pm\infty\}$, có thể xét vùng nằm phía
 trên đồ thị của hàm trong mặt phẳng, tức
 
 $$
@@ -251,8 +251,7 @@ hàm tương đương với tính lồi của thượng đồ thị:
 
 ??? note "Chứng minh"
     Nếu $f$ là hàm lồi, thì với
-    $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ và bất kỳ $\alpha\in(0,1)$, ta
-    có
+    $(x_1,y_1),(x_2,y_2)\in\operatorname{epi}f$ và bất kỳ $\alpha\in(0,1)$, có
 
     $$
     \alpha y_1+(1-\alpha)y_2 \ge \alpha f(x_1)+(1-\alpha)f(x_2) \ge f(\alpha x_1+(1-\alpha) x_2).
@@ -261,7 +260,7 @@ hàm tương đương với tính lồi của thượng đồ thị:
     Do đó, $\alpha(x_1,y_1)+(1-\alpha)(x_2,y_2)\in\operatorname{epi}f$.
 
     Ngược lại, nếu $\operatorname{epi}f$ là tập lồi, thì với mọi $x_1<x_2$ và
-    $\alpha\in(0,1)$, ta có
+    $\alpha\in(0,1)$, có
 
     $$
     \alpha(x_1,f(x_1))+(1-\alpha)(x_2,f(x_2)) \in \operatorname{epi}f.
@@ -271,7 +270,7 @@ hàm tương đương với tính lồi của thượng đồ thị:
     $\alpha f(x_1)+(1-\alpha)f(x_2)\ge f\left(\alpha x_1+(1-\alpha)x_2\right)$,
     tức tính lồi của $f$.
 
-Lát nữa ta sẽ thấy, bằng thượng đồ thị, có thể liên hệ tích chập dưới đúng của
+Phần sau sẽ cho thấy, bằng thượng đồ thị, có thể liên hệ tích chập dưới đúng của
 hàm lồi với tổng Minkowski của tập lồi.
 
 <span id="các-phép-biến-đổi-hàm-lồi"></span>
@@ -341,7 +340,7 @@ nó có thể xem là kết quả trộn (rồi sắp xếp lại) các đoạn 
     h(x_i) + \varepsilon > f(y_i) + g(z_i).
     $$
 
-    Do đó, kết hợp tính lồi của $f,g$ và định nghĩa của $h$, ta có
+    Do đó, kết hợp tính lồi của $f,g$ và định nghĩa của $h$, có
 
     $$
     \begin{aligned}
@@ -380,18 +379,18 @@ nó có thể xem là kết quả trộn (rồi sắp xếp lại) các đoạn 
     Do đó, $(x,y)\in\operatorname{epi}h$. Điều này cho thấy
     $\operatorname{epi} f + \operatorname{epi} g\subseteq \operatorname{epi}h$.
 
-    Ngược lại, với mọi $(x,y)\in\operatorname{epi}h$, ta có $y\ge h(x)$. Theo
+    Ngược lại, với mọi $(x,y)\in\operatorname{epi}h$, có $y\ge h(x)$. Theo
     định nghĩa của $h$, với mọi $\varepsilon>0$, tồn tại $x_1+x_2=x$ sao cho
 
     $$
     y + \varepsilon > f(x_1) + g(x_2).
     $$
 
-    Đặt $y_1=f(x_1)$ và $y_2=g(x_2)$, ta có $y+\varepsilon>y_1+y_2$. Điều này
+    Đặt $y_1=f(x_1)$ và $y_2=g(x_2)$, có $y+\varepsilon>y_1+y_2$. Điều này
     nói rằng với mọi $\varepsilon>0$, điểm
     $(x_1,y_1)+(x_2,y_2)\in\operatorname{epi} f + \operatorname{epi} g$ nằm trên
     đoạn thẳng nối $(x,y)$ và $(x,y+\varepsilon)$. Cho
-    $\varepsilon\rightarrow 0$, ta được
+    $\varepsilon\rightarrow 0$, thu được
     $\operatorname{epi}h \subseteq \operatorname{cl}(\operatorname{epi} f + \operatorname{epi} g)$.
 
     Vì vậy, $\operatorname{epi} f + \operatorname{epi} g = \operatorname{epi}h$
@@ -447,7 +446,7 @@ thành dạng tích chập dưới đúng, hàm giá trị vẫn có thể giữ
 thực tế, thường cần kết hợp lập bảng và dự đoán để tìm cách chuyển độ dốc hợp
 lý cho loại bài này.
 
-Sau khi hiểu hàm lồi và các phép biến đổi thường gặp của nó, ta có thể thông qua
+Sau khi hiểu hàm lồi và các phép biến đổi thường gặp của nó, có thể thông qua
 các bài toán cụ thể để nắm cách tối ưu hóa DP bằng Slope Trick. Các ví dụ trong
 bài viết được chia đại khái thành hai nhóm: duy trì điểm gãy và duy trì độ dốc,
 nhằm giúp hiểu các thao tác thường gặp và chi tiết cài đặt của hai cách duy trì
@@ -487,7 +486,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 ### Ví dụ: dãy tăng với chi phí nhỏ nhất
 
 ???+ example "[\[BalticOI 2004\] Sequence](https://www.luogu.com.cn/problem/P4331)"
-    Cho dãy $\{a_i\}$ độ dài $n$. Hãy tìm một dãy tăng nghiêm ngặt $\{b_i\}$ sao
+    Cho dãy $\{a_i\}$ độ dài $n$. Tìm một dãy tăng nghiêm ngặt $\{b_i\}$ sao
     cho $\sum_i|a_i-b_i|$ nhỏ nhất, và in ra giá trị nhỏ nhất cùng một phương án
     tối ưu bất kỳ $\{b_i\}$.
 
@@ -505,7 +504,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
     f_i(x) = \min\sum_{j=1}^i|a'_j-b'_j|\text{ với điều kiện }b'_1\le b'_2\le\cdots\le b'_i\le x.
     $$
 
-    Dễ thấy phương trình chuyển trạng thái là
+    Phương trình chuyển trạng thái là
 
     $$
     f_i(x) = \min_{y\le x}f_{i-1}(y)+|a'_i-y|.
@@ -525,7 +524,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
         độ dốc bằng $0$ và kéo dài vô hạn sang phải, chèn nó vào các đoạn độ dốc
         của $g(x)$ tương đương với xóa tất cả đoạn độ dốc dương.
 
-    Sau khi làm rõ các thao tác này, ta đã có thể trực tiếp dùng cây cân bằng để
+    Sau khi làm rõ các thao tác này, đã có thể trực tiếp dùng cây cân bằng để
     duy trì tất cả đoạn độ dốc, nhưng code sẽ phức tạp. Chú ý rằng trong bài này
     độ dốc mỗi lần thay đổi nhiều nhất $1$, nên giá trị tuyệt đối của mỗi đoạn
     độ dốc không vượt quá $n$. Thay vì trực tiếp duy trì các đoạn độ dốc, duy
@@ -570,7 +569,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
     của $f_{i-1}(x)$ thỏa mãn $x\le b'_i$, chỉ cần chú ý rằng do
     $f_{i-1}(x)$ là hàm lồi, điểm càng gần điểm cực tiểu toàn cục của nó thì
     nghiệm càng tốt. Vì vậy, chỉ cần ghi lại điểm cực tiểu toàn cục của
-    $f_{i-1}(x)$, rồi lấy min với $b'_i$, ta sẽ thu được $b'_{i-1}$ tối ưu.
+    $f_{i-1}(x)$, rồi lấy min với $b'_i$, sẽ thu được $b'_{i-1}$ tối ưu.
 
     Độ phức tạp thời gian là $O(n\log n)$.
 
@@ -590,7 +589,7 @@ Bài mẫu:
 ### Ví dụ: trường hợp chuyển trạng thái có ràng buộc
 
 ???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
-    Cho dãy $\{a_i\}$ độ dài $n$. Hãy tìm dãy $\{b_i\}$ sao cho
+    Cho dãy $\{a_i\}$ độ dài $n$. Tìm dãy $\{b_i\}$ sao cho
     $|b_i-b_{i-1}|\le h$ với mọi $1<i\le n$, và làm $\sum_i|a_i-b_i|$ nhỏ nhất.
     In ra giá trị nhỏ nhất.
 
@@ -625,8 +624,8 @@ Bài mẫu:
         dương sang phải $h$;
     2.  Chèn $a_i$ hai lần.
 
-    Hiển nhiên, với bài này, duy trì riêng các đoạn độ dốc âm và dương sẽ tiện
-    lợi hơn. Vì thao tác chủ yếu tập trung quanh đoạn độ dốc bằng không, ta dùng
+    Với bài này, duy trì riêng các đoạn độ dốc âm và dương sẽ tiện
+    lợi hơn. Vì thao tác chủ yếu tập trung quanh đoạn độ dốc bằng không, dùng
     [hai heap đối đỉnh](../../ds/binary-heap.md#heap-đối-đỉnh),
     tức dùng riêng max-heap và min-heap để duy trì các điểm gãy của đoạn độ dốc
     âm và dương. Các phép tịnh tiến toàn bộ điểm gãy được thực hiện bằng lazy
@@ -684,7 +683,7 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
 ???+ example "[Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)"
     Cho dãy giá cổ phiếu $\{p_i\}$ trong $n$ ngày (đều dương). Ban đầu nắm giữ
     $0$ cổ phiếu. Mỗi ngày có thể mua một cổ phiếu, bán một cổ phiếu hoặc không
-    giao dịch. Hãy tính lợi nhuận lớn nhất sau $n$ ngày.
+    giao dịch. Tính lợi nhuận lớn nhất sau $n$ ngày.
 
 ??? note "Lời giải"
     Trước hết xét lời giải DP trực tiếp. Đặt $f_i(x)$ là lợi nhuận lớn nhất khi
@@ -706,17 +705,17 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
         h_i(x) = \begin{cases}p_i,&x=-1,\\0,&x=0,\\-p_i,&x=1\end{cases}
         $$
 
-        (rõ ràng là hàm lõm);
+        (đây là hàm lõm);
     2.  Vì việc này làm hàm có giá trị hữu hạn trên khoảng $[-1,0)$, trái với
         yêu cầu $x\ge 0$, nên cần cắt lấy phần của hàm trên $[0,+\infty)$.
 
-    Chuyển chúng thành thay đổi trên các đoạn độ dốc, ta có hai bước sau:
+    Chuyển chúng thành thay đổi trên các đoạn độ dốc, có hai bước sau:
 
     1.  Chèn một đoạn độ dốc có độ dài $2$ và độ dốc $-p_i$;
     2.  Trong các đoạn độ dốc hữu hạn, xóa một đoạn có độ dài $1$ và độ dốc lớn
         nhất.
 
-    Vì độ dài của các đoạn độ dốc luôn là số tự nhiên, ta có thể duy trì nhiều
+    Vì độ dài của các đoạn độ dốc luôn là số tự nhiên, có thể duy trì nhiều
     đoạn độ dài một, như vậy chỉ cần ghi lại độ dốc của mỗi đoạn. Vì chỉ cần
     chèn và truy cập giá trị lớn nhất, chỉ cần dùng một max-heap. Thao tác gồm
     hai bước:
@@ -752,7 +751,7 @@ Bài mẫu:
     hiện có và lượng đất cần có trong vườn thứ $i$ (không được thừa cũng không
     được thiếu). Mua một đơn vị đất và đặt vào một vườn bất kỳ tốn $X$; chuyển
     một đơn vị đất ra khỏi một vườn bất kỳ tốn $Y$; vận chuyển một đơn vị đất từ
-    vườn $i$ sang vườn $j$ tốn $Z|i-j|$. Hãy tính chi phí nhỏ nhất để thỏa mãn
+    vườn $i$ sang vườn $j$ tốn $Z|i-j|$. Tính chi phí nhỏ nhất để thỏa mãn
     nhu cầu của mọi vườn. ($a_i,b_i\le 10$)
 
 ??? note "Lời giải"
@@ -773,7 +772,7 @@ Bài mẫu:
     h(\delta) = \max\{0,\delta\}X + \max\{0,-\delta\}Y = \max\{\delta X,-\delta Y\}.
     $$
 
-    Hàm này rõ ràng là hàm lồi. Ý nghĩa của phương trình chuyển trạng thái là:
+    Hàm này là hàm lồi. Ý nghĩa của phương trình chuyển trạng thái là:
 
     -   Khi $i-1$ vườn trước còn dư ròng $y$ đơn vị đất, chi phí nhỏ nhất là
         $f_{i-1}(y)$;
@@ -834,7 +833,7 @@ Bài mẫu:
 ## Bài tập
 
 Cuối bài viết, dưới đây là một số bài toán từng xuất hiện trong các kỳ thi lập
-trình, có thể giải bằng Slope Trick, để bạn luyện tập.
+trình, có thể giải bằng Slope Trick để luyện tập.
 
 -   [Luogu P3642 \[APIO2016\] Fireworks](https://www.luogu.com.cn/problem/P3642)
 -   [Luogu P9962 \[THUPC 2024 Preliminary\] A Tree](https://www.luogu.com.cn/problem/P9962)
