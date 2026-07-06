@@ -434,15 +434,15 @@ giải thích chi tiết hơn tại bài
 ## `list`
 
 `std::list` là cấu trúc [danh sách liên kết đôi](../../ds/linked-list.md) do STL
-cung cấp. Có thể truy cập phần tử bằng cách duyệt tuyến tính, còn thao tác chèn
-và xóa có độ phức tạp hằng số.
+cung cấp. Việc truy cập phần tử cần duyệt tuyến tính, còn thao tác chèn và xóa
+có độ phức tạp hằng số khi đã có vị trí tương ứng.
 
 <span id="cách-dùng-list"></span>
 
 ### Cách dùng `list`
 
-Cách dùng `list` gần giống `deque`, nhưng độ phức tạp của thao tác thêm,
-xóa và truy cập khác nhau. Nội dung chi tiết có thể xem trong
+Cách dùng `list` gần giống `deque`, nhưng độ phức tạp của thao tác thêm, xóa và
+truy cập khác nhau. Nội dung chi tiết xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/list). Các hàm liên
 quan đến bộ lặp, độ dài, thêm, xóa và sửa phần tử của `list` giống `deque`, nên
 không trình bày chi tiết.
@@ -462,20 +462,20 @@ cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng 
 #### Thao tác
 
 Kiểu `list` còn cung cấp một số hàm thuật toán STL được cài đặt riêng theo tính
-chất của nó. Vì các thuật toán chuẩn tương ứng thường cần
-[bộ lặp truy cập ngẫu nhiên](./iterator.md), `list` cung cấp các phiên bản đặc
-biệt để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`,
+chất của danh sách liên kết. Vì các thuật toán chuẩn tương ứng thường cần
+[bộ lặp truy cập ngẫu nhiên](./iterator.md), `list` cung cấp các phiên bản riêng
+để tiện sử dụng. Các thuật toán này gồm `splice()`, `remove()`, `sort()`,
 `unique()`, `merge()` và các hàm tương tự.
 
 ## `forward_list` (C++11)
 
 `std::forward_list` là cấu trúc [danh sách liên kết đơn](../../ds/linked-list.md)
-do STL cung cấp; so với `std::list`, nó giảm chi phí bộ nhớ.
+do STL cung cấp; so với `std::list`, nó dùng ít bộ nhớ hơn.
 
 <span id="cách-dùng-forward-list"></span>
 
 ### Cách dùng `forward_list`
 
-Cách dùng `forward_list` gần như giống `list`, nhưng bộ lặp chỉ là một chiều, nên
-phần này không trình bày chi tiết. Nội dung chi tiết có thể xem trong
+Cách dùng `forward_list` gần như giống `list`, nhưng bộ lặp chỉ đi theo một
+chiều, nên phần này không trình bày chi tiết. Nội dung chi tiết xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).
