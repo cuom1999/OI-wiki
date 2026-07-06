@@ -4,7 +4,7 @@ Trang này giới thiệu các bài toán bước đi ngẫu nhiên trên đồ 
 
 Cho một đồ thị đơn có hướng $G=(V, E)(V=\{v_1, v_2, \cdots, v_{|V|}\})$, đỉnh xuất phát $s \in V$ và đỉnh kết thúc $t \in V$. Mỗi cạnh $e=\left(x, y\right)$ có trọng số dương $w_e$, thỏa mãn $\forall x \in V \backslash\left\{t\right\}$, $\sum_{\left(x, y\right) \in E} w_{\left(x, y\right)}=1$, và với mọi đỉnh $x$ đều tồn tại một đường đi từ $x$ đến $t$. Một quân cờ xuất phát từ đỉnh đầu; mỗi giây, nếu đang ở đỉnh $x$, nó chọn cạnh ra $\left(x, y\right)$ với xác suất $w_{(x, y)}$ rồi đi tới $y$. Khi đến đỉnh kết thúc thì dừng lại. Cần tính kỳ vọng thời gian di chuyển.
 
-Thực ra, bài toán này cũng có thể viết dưới dạng ma trận. Định nghĩa ma trận $P$:
+Bài toán này cũng có thể viết dưới dạng ma trận. Định nghĩa ma trận $P$:
 
 $$
 P_{x, y}=
@@ -20,7 +20,7 @@ $$
 \sum_{k \geq 0} k \times\left(P^k\right)_{s, t}
 $$
 
-Trong đó $\left(P^k\right)_{s, t}$ biểu thị xác suất lần đầu đến đỉnh kết thúc sau đúng $k$ bước. Khi đồ thị hữu hạn và mọi đỉnh đều đi được đến đỉnh kết thúc, từ định nghĩa của $P$ có thể chứng minh mọi giá trị riêng của nó đều nhỏ hơn 1, nên đáp án chắc chắn hội tụ.
+Trong đó $\left(P^k\right)_{s, t}$ biểu thị xác suất lần đầu đến đỉnh kết thúc sau đúng $k$ bước. Khi đồ thị hữu hạn và mọi đỉnh đều đi được đến đỉnh kết thúc, từ định nghĩa của $P$ có thể chứng minh mọi giá trị riêng của nó đều nhỏ hơn 1, nên đáp án hội tụ.
 
 Để tiện trình bày, trong trang này nếu không nói gì thêm, $n$ chỉ $|V|$ và $m$ chỉ $|E|$.
 
@@ -236,7 +236,7 @@ Trong quá trình giải phương trình, gặp một vấn đề: $(I - P)$ kh�
     $$
 
     Đặt $X_{n,i} = 0$, có thể giải ra một nghiệm riêng, ký hiệu là $Y$. Tiếp theo điều chỉnh nghiệm riêng thành nghiệm thực sự.
-    Chú ý $X_{n,i} = 0$; xét ý nghĩa tổ hợp, có $Y_{i,j} = 1 + Y_{j,j} + P_{i,k}X_{k,j}$, từ đó suy ra $X_{i,j} = Y_{i,j} - Y_{j,j}$.
+    Với $X_{n,i} = 0$, xét ý nghĩa tổ hợp, có $Y_{i,j} = 1 + Y_{j,j} + P_{i,k}X_{k,j}$, từ đó suy ra $X_{i,j} = Y_{i,j} - Y_{j,j}$.
     Cuối cùng, bài toán này được giải trong độ phức tạp thời gian $O(n^3)$.
 
 ## Tham khảo

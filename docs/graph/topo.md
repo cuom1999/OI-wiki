@@ -4,7 +4,7 @@ author: marscheng1
 
 Sắp xếp topo (Topological sorting) giải quyết bài toán sắp thứ tự tất cả các đỉnh của một đồ thị có hướng không chu trình.
 
-Có thể mô tả quá trình này bằng ví dụ xếp lịch học theo từng học kỳ ở đại học. Giả sử các môn học gồm "Lập trình", "Ngôn ngữ thuật toán", "Giải tích cao cấp", "Toán rời rạc", "Kỹ thuật biên dịch", "Vật lý đại cương", "Cấu trúc dữ liệu", "Hệ quản trị cơ sở dữ liệu", v.v. Theo quan hệ tiên quyết trong ví dụ, muốn học "Cấu trúc dữ liệu" thì trước đó phải học "Toán rời rạc"; sau khi học xong môn này, người học có điều kiện tiên quyết để học "Kỹ thuật biên dịch". Tất nhiên, "Kỹ thuật biên dịch" còn có một môn học trước đó nữa là "Ngôn ngữ thuật toán". Các môn học này tương ứng với các đỉnh $u$, còn cạnh có hướng $(u,v)$ giữa các đỉnh tương ứng với thứ tự học. Việc phòng đào tạo sắp xếp các môn này thành một thời khóa biểu thỏa mãn các quan hệ logic chính là quá trình sắp xếp topo.
+Có thể mô tả quá trình này bằng ví dụ xếp lịch học theo từng học kỳ ở đại học. Giả sử các môn học gồm "Lập trình", "Ngôn ngữ thuật toán", "Giải tích cao cấp", "Toán rời rạc", "Kỹ thuật biên dịch", "Vật lý đại cương", "Cấu trúc dữ liệu", "Hệ quản trị cơ sở dữ liệu", v.v. Theo quan hệ tiên quyết trong ví dụ, muốn học "Cấu trúc dữ liệu" thì trước đó phải học "Toán rời rạc"; sau khi học xong môn này, người học có điều kiện tiên quyết để học "Kỹ thuật biên dịch". Ngoài ra, "Kỹ thuật biên dịch" còn có một môn học trước đó nữa là "Ngôn ngữ thuật toán". Các môn học này tương ứng với các đỉnh $u$, còn cạnh có hướng $(u,v)$ giữa các đỉnh tương ứng với thứ tự học. Việc phòng đào tạo sắp xếp các môn này thành một thời khóa biểu thỏa mãn các quan hệ logic chính là quá trình sắp xếp topo.
 
 ![Ví dụ sắp xếp topo cho lịch học](images/topo-example-1.svg)
 
@@ -75,7 +75,7 @@ Ban đầu, tập $S$ chứa tất cả các đỉnh có bậc vào bằng $0$, 
 
 Mỗi lần, lấy một đỉnh $u$ bất kỳ từ $S$ và đưa vào $L$, sau đó xóa tất cả các cạnh $(u, v_1), (u, v_2), (u, v_3) \cdots$ xuất phát từ $u$. Với mỗi cạnh $(u, v)$, nếu sau khi xóa cạnh này bậc vào của đỉnh $v$ trở thành $0$, thì đưa $v$ vào $S$.
 
-Lặp lại quá trình trên cho đến khi tập $S$ rỗng. Sau đó kiểm tra trong đồ thị còn cạnh nào không. Nếu còn, đồ thị chắc chắn có chu trình; ngược lại trả về $L$, và thứ tự các đỉnh trong $L$ chính là dãy topo đã xây dựng.
+Lặp lại quá trình trên cho đến khi tập $S$ rỗng. Sau đó kiểm tra trong đồ thị còn cạnh nào không. Nếu còn, đồ thị có chu trình; ngược lại trả về $L$, và thứ tự các đỉnh trong $L$ chính là dãy topo đã xây dựng.
 
 Trước hết, xét mã giả từ [Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting#Kahn's_algorithm):
 
@@ -247,7 +247,7 @@ Vì vậy tổng độ phức tạp thời gian là $O(E+V)$.
 
 ### Chứng minh tính đúng đắn
 
-Xét một đồ thị. Sau khi xóa một đỉnh có bậc vào bằng $0$, nếu đồ thị mới có thể sắp xếp topo, thì đồ thị ban đầu cũng chắc chắn có thể sắp xếp topo. Ngược lại, nếu đồ thị ban đầu có thể sắp xếp topo, thì sau khi xóa đỉnh đó, đồ thị còn lại cũng có thể sắp xếp topo.
+Xét một đồ thị. Sau khi xóa một đỉnh có bậc vào bằng $0$, nếu đồ thị mới có thể sắp xếp topo, thì đồ thị ban đầu cũng có thể sắp xếp topo. Ngược lại, nếu đồ thị ban đầu có thể sắp xếp topo, thì sau khi xóa đỉnh đó, đồ thị còn lại cũng có thể sắp xếp topo.
 
 ### Ứng dụng
 

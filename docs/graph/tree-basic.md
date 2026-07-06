@@ -100,7 +100,7 @@ Cách này cung cấp được khá ít thông tin, không thuận tiện cho vi
         std::vector<int> children[N];
         int parent[N];
         ```
-        Tất nhiên cũng có thể dùng cách khác, chẳng hạn danh sách liên kết, để thay thế `std::vector`.
+        Cũng có thể dùng cách khác, chẳng hạn danh sách liên kết, để thay thế `std::vector`.
 
 ### Biểu diễn con trái, anh em phải
 
@@ -286,7 +286,7 @@ Khi `cur` thăm nút 2 lần đầu, tìm nút ngoài cùng bên phải trên c�
 
 ![Ví dụ duyệt Morris khôi phục liên kết](images/tree-basic-morris-1.svg)
 
-Thứ tự thăm toàn bộ cây là `1242513637`. Có thể thấy các nút có cây con trái được thăm hai lần, còn các nút không có cây con trái chỉ được thăm một lần.
+Thứ tự thăm toàn bộ cây là `1242513637`. Các nút có cây con trái được thăm hai lần, còn các nút không có cây con trái chỉ được thăm một lần.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -322,7 +322,7 @@ Thứ tự thăm toàn bộ cây là `1242513637`. Có thể thấy các nút c�
 
 #### Quy trình
 
-Duyệt cây nói chung là duyệt theo chiều sâu. Trong quá trình này, điều quan trọng nhất cần chú ý là tránh thăm lặp lại các nút.
+Duyệt cây nói chung là duyệt theo chiều sâu. Trong quá trình này, điều quan trọng nhất là tránh thăm lặp lại các nút.
 
 Vì cây là đồ thị không có chu trình, chỉ cần ghi lại nút hiện tại được thăm từ nút nào, rồi sau đó đi vào tất cả các nút kề ngoại trừ nút đó, là có thể tránh thăm lặp lại.
 
