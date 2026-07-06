@@ -36,7 +36,7 @@ struct Node {
 };
 ```
 
-Từ định nghĩa có thể thấy, so với các cấu trúc heap thường gặp khác,
+Từ định nghĩa, so với các cấu trúc heap thường gặp khác,
 heap ghép cặp không duy trì thêm bất kỳ thông tin nào như kích thước cây,
 độ sâu, hạng, v.v.
 Heap nhị phân cũng không duy trì thông tin phụ,
@@ -58,7 +58,7 @@ Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting
 
 ### Truy vấn phần tử nhỏ nhất
 
-Từ định nghĩa của heap ghép cặp, có thể thấy trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
+Theo định nghĩa của heap ghép cặp, trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
 
 <span id="hợp-nhất"></span>
 
@@ -143,7 +143,7 @@ Câu cuối cùng là phần cốt lõi của hàm này, gồm ba phần:
 2.  `merges(c)` đệ quy hợp nhất c và các anh em của nó.
 3.  Hợp nhất hai cây mới sinh ra từ hai thao tác trên.
 
-Cần chú ý rằng hướng hợp nhất trong bước thứ hai là bắt buộc:
+Hướng hợp nhất trong bước thứ hai là bắt buộc:
 phải hợp nhất từ phải sang trái.
 Cài đặt đệ quy của hàm này đã bảo đảm thứ tự đó.
 Nếu tự cài đặt phiên bản lặp, cũng cần bảo đảm thứ tự này;

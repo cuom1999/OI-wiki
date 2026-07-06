@@ -29,10 +29,10 @@ Trong phần sau, khi dùng $k,w$, mặc định $k$ thỏa tính chất cây t�
 Xét việc lần lượt chèn các phần tử vào cây Descartes hiện tại theo thứ tự tăng dần của $k$.
 
 Với một cây Descartes, "chuỗi phải" là chuỗi thu được bằng cách bắt đầu từ nút gốc rồi liên tục đi theo con phải cho đến
-một nút lá. Sau khi chèn một nút, nút đó chắc chắn nằm trên chuỗi phải.
+một nút lá. Sau khi chèn một nút, nút đó luôn nằm trên chuỗi phải.
 
 Vì các nút được chèn theo thứ tự tăng dần của $k$, mà $k$ là khóa thỏa tính chất cây tìm kiếm nhị phân, nút mới chèn
-chắc chắn nằm ở **đầu mút phải** của cây. Nút này không thể là con trái và cũng không có con phải.
+nằm ở **đầu mút phải** của cây. Nút này không thể là con trái và cũng không có con phải.
 
 Do đó, quy trình chèn có thể thực hiện như sau: so sánh $w$ của các nút trên chuỗi phải với nút hiện tại $u$ từ dưới
 lên. Nếu tìm được một nút $x$ trên chuỗi phải sao cho $w_x < w_u$, gắn $u$ làm con phải của $x$, còn cây con phải ban
@@ -48,7 +48,7 @@ cây Descartes hiện tại. Khi một điểm không còn nằm trên chuỗi p
 và ra một lần, độ phức tạp là $O(n)$.
 
 ???+ note "Cây Descartes và Treap"
-    Thực ra Treap là một dạng cây Descartes, chỉ khác ở chỗ giá trị $w$ trong Treap hoàn toàn ngẫu nhiên. Treap có thuật
+    Treap là một dạng cây Descartes, chỉ khác ở chỗ giá trị $w$ trong Treap hoàn toàn ngẫu nhiên. Treap có thuật
     toán dựng tuyến tính; nếu sắp xếp trước các khóa $k$, có thể dùng thuật toán ngăn xếp đơn điệu ở trên để hoàn thành
     quá trình dựng cây, nhưng cách này hiếm khi được sử dụng.
 

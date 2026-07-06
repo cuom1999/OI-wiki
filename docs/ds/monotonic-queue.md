@@ -16,7 +16,7 @@ $O(n \times k)$.
 
 Cách này thực hiện rất nhiều công việc lặp lại. Ngoài $k-1$ số ở đầu và
 $k-1$ số ở cuối, mỗi số đều bị so sánh $k$ lần; trong khi $100\%$ dữ liệu của
-bài có $n \le 1000000$, nên khi $k$ tương đối lớn thì chắc chắn sẽ TLE.
+bài có $n \le 1000000$, nên khi $k$ tương đối lớn thì sẽ TLE.
 
 Lúc này cần dùng hàng đợi đơn điệu.
 
@@ -49,7 +49,7 @@ rồi mới thật sự push số hiện tại vào cuối hàng đợi.
 Điều này tương đương với việc duy trì một hàng đợi giảm dần, phù hợp với định
 nghĩa hàng đợi đơn điệu và giảm số lần so sánh lặp lại. Hơn nữa, vì hàng đợi
 được duy trì chỉ gồm các phần tử trong phạm vi truy vấn và đang giảm dần, đầu
-hàng đợi chắc chắn là giá trị lớn nhất trong vùng truy vấn, nên khi in kết quả
+hàng đợi là giá trị lớn nhất trong vùng truy vấn, nên khi in kết quả
 chỉ cần in đầu hàng đợi.
 
 Trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều nhất một lần,

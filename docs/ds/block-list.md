@@ -42,7 +42,7 @@ Còn một điểm cần nói thêm.
 Khi chèn (hoặc xóa) phần tử, $n$ thay đổi, nên $\sqrt{n}$ cũng thay đổi.
 Như vậy kích thước khối sẽ thay đổi; có cần bảo trì lại kích thước khối sau mỗi thao tác không?
 
-Thực ra không cần.
+Không cần.
 Chỉ cần đặt $\sqrt{n}$ thành một hằng số cố định.
 Chẳng hạn nếu phạm vi đề bài cho là $10^6$,
 đặt $\sqrt{n}$ thành hằng số kích thước $10^3$ và không cần thay đổi nó.

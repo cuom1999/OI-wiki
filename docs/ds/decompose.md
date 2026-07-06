@@ -19,7 +19,7 @@ Chia khối là một tư tưởng rất linh hoạt.
 So với cây Fenwick và cây đoạn, ưu điểm của chia khối là tính tổng quát cao hơn:
 nó có thể duy trì nhiều loại thông tin mà cây Fenwick và cây đoạn khó xử lý.
 
-Tất nhiên, nhược điểm của chia khối là độ phức tạp tiệm cận thường không tốt bằng cây đoạn hay cây Fenwick.
+Nhược điểm của chia khối là độ phức tạp tiệm cận thường không tốt bằng cây đoạn hay cây Fenwick.
 
 Tuy vậy, trong phần lớn bài toán phù hợp, chia khối vẫn là một lựa chọn hiệu quả.
 

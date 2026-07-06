@@ -7,7 +7,7 @@ của chúng.
 ## Dẫn nhập
 
 Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước
-chắc chắn sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được
+sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được
 gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
 
 <span id="cài-đặt"></span>
@@ -135,7 +135,7 @@ Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
 Cách dùng mảng để mô phỏng hàng đợi hai đầu giống với hàng đợi thông thường.
 
 Tương tự, cũng có thể dùng ý tưởng mô phỏng hàng đợi bằng hai ngăn xếp để duy
-trì hàng đợi hai đầu. Tuy nhiên, cần chú ý rằng khi một ngăn xếp rỗng, việc
+trì hàng đợi hai đầu. Tuy nhiên, khi một ngăn xếp rỗng, việc
 truy vấn luân phiên đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu
 lực. Khi cần chuyển phần tử, chỉ chuyển một nửa số phần tử của ngăn xếp không
 rỗng sang ngăn xếp rỗng, đồng thời giữ đúng tính chất của ngăn xếp phía đầu và

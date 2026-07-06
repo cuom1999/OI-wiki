@@ -1,5 +1,5 @@
 Cây AVL là một loại cây tìm kiếm nhị phân cân bằng. Do nhiều giáo trình thuật toán trình bày AVL khá dài dòng, không ít
-người có ấn tượng rằng cây AVL phức tạp và thiếu thực dụng. Thực ra, nguyên lý của cây AVL đơn giản, cách cài đặt cũng
+người có ấn tượng rằng cây AVL phức tạp và thiếu thực dụng. Tuy vậy, nguyên lý của cây AVL đơn giản, cách cài đặt cũng
 không quá phức tạp.
 
 ## Tính chất
@@ -58,7 +58,7 @@ vừa được chèn/xóa đến gốc. Nếu tại một nút nào đó, tính 
 hưởng đến chiều cao cây không vượt quá 1; vì thế trị tuyệt đối của hệ số cân bằng tại nút đó nhiều nhất là 2.
 
 Do tính đối xứng, chỉ xét trường hợp cây con trái cao hơn cây con phải 2 đơn vị, tức $h(B)-h(E)=2$ trong hình dưới. Khi
-đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Cần chú ý rằng vì quá trình duy trì cân bằng
+đó còn cần chia hai trường hợp theo quan hệ lớn nhỏ giữa $h(A)$ và $h(C)$. Vì quá trình duy trì cân bằng
 đi từ dưới lên trên, với mọi hậu duệ của nút D, tính chất 2 vẫn đang được thỏa mãn.
 
 ![](./images/avl1.svg)

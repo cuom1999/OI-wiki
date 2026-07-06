@@ -53,7 +53,7 @@ vì vậy có thể định nghĩa các phép giao, hợp, hiệu trên đoạn 
 4.  $A\cup B=(P,[\min(a,x),\max(b,y)])$.
 5.  $A\setminus B=(P,\{i|i\in[a,b]\wedge i\notin[x,y]\})$.
 
-Thực ra các phép toán này chỉ là giao, hợp, hiệu thông thường của tập hợp đặt lên các đoạn.
+Các phép toán này chỉ là giao, hợp, hiệu thông thường của tập hợp đặt lên các đoạn.
 
 ### Tính chất của đoạn liên tiếp
 
@@ -118,7 +118,7 @@ Trước hết đưa ra định nghĩa, sau đó sẽ thảo luận về tính �
     **Nút lá không có hoán vị con cũng được xem là nút hợp nhất**.
 5.  **Nút phân tách**: Nút không phải nút hợp nhất là nút phân tách.
 
-Từ hình có thể thấy chỉ có $[1,10]$ không phải nút hợp nhất. Vì hoán vị con của $[1,10]$ là $\{3,1,4,2\}$.
+Trong hình, chỉ có $[1,10]$ không phải nút hợp nhất, vì hoán vị con của $[1,10]$ là $\{3,1,4,2\}$.
 
 ### Tính chất của nút phân tách và nút hợp nhất
 
@@ -190,8 +190,8 @@ Nút hiện tại là $P_i$, nút đỉnh ngăn xếp ký hiệu là $t$.
 
 1.  Nếu $L_i$ không tồn tại, nút hiện tại không thể gộp.
 2.  Nếu $t_l=L_i$, thì đây là gộp hai nút, và sau khi gộp thu được một **nút hợp nhất**.
-3.  Ngược lại, trong ngăn xếp nhất định tồn tại một nút $t'$ có đầu trái ${t'}_l=L_i$,
-    khi đó chắc chắn có thể gộp từ nút hiện tại đến $t'$ để tạo thành một **nút phân tách**.
+3.  Ngược lại, trong ngăn xếp tồn tại một nút $t'$ có đầu trái ${t'}_l=L_i$,
+    khi đó có thể gộp từ nút hiện tại đến $t'$ để tạo thành một **nút phân tách**.
 
 #### Kiểm tra có thể gộp
 
