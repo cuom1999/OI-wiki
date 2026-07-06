@@ -21,11 +21,11 @@ Một **matroid** có thể được biểu diễn bởi $M = (E, \mathcal{I})$,
 
     -   **Không rỗng**: tập rỗng là độc lập, tức là $\emptyset \in \mathcal{I}$.
 
-    -   **Tính di truyền**: mọi tập con của một tập độc lập cũng là độc lập. Nếu $I \in \mathcal{I}$ thì với mọi $I' \subseteq I$ ta có $I' \in \mathcal{I}$.
+    -   **Tính di truyền**: mọi tập con của một tập độc lập cũng là độc lập. Nếu $I \in \mathcal{I}$ thì mọi $I' \subseteq I$ đều thuộc $\mathcal{I}$.
 
     -   **Tính mở rộng**: nếu $I, J \in \mathcal{I}$ và $|I| < |J|$, thì tồn tại $j \in J \setminus I$ sao cho $I \cup \{j\} \in \mathcal{I}$.
 
-Nếu một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất trên, ta gọi nó là một matroid.
+Một cấu trúc dạng $(E, \mathcal{I})$ thỏa mãn ba tính chất trên được gọi là một matroid.
 
 <span id="cơ-sở"></span>
 
@@ -57,11 +57,11 @@ $$
 
 **Tính chất**:
 
-1.  **Không âm**: với mọi $S \subseteq E$, ta có $0 \leq r(S) \leq |S|$.
+1.  **Không âm**: với mọi $S \subseteq E$, bất đẳng thức $0 \leq r(S) \leq |S|$ luôn đúng.
 
 2.  **Đơn điệu**: nếu $A \subseteq B \subseteq E$ thì $r(A) \leq r(B)$.
 
-3.  **Dưới mô-đun**: với mọi $A, B \subseteq E$, ta có $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$.
+3.  **Dưới mô-đun**: với mọi $A, B \subseteq E$, bất đẳng thức $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$ luôn đúng.
 
 <span id="các-ví-dụ-điển-hình"></span>
 
@@ -169,27 +169,27 @@ Chẳng hạn, xét một đồ thị tam giác đơn giản $G$ có tập cạn
 
 **Xóa** (Deletion):
 
-Với $A \subseteq E$, sau khi xóa $A$ khỏi matroid $M$, ta thu được matroid mới $M \setminus A$ có họ tập độc lập $\mathcal{I}'$ được định nghĩa bởi:
+Với $A \subseteq E$, sau khi xóa $A$ khỏi matroid $M$, matroid mới $M \setminus A$ có họ tập độc lập $\mathcal{I}'$ được định nghĩa bởi:
 
 $$
 \mathcal{I}' = \{ I \subseteq E \setminus A \mid I \in \mathcal{I} \}.
 $$
 
-Có thể thấy phép xóa chỉ loại bỏ một số phần tử khỏi matroid và giữ lại các tập độc lập tạo bởi những phần tử còn lại; nó không làm thay đổi tính độc lập gốc, mà chỉ bỏ bớt phần tử.
+Phép xóa chỉ loại bỏ một số phần tử khỏi matroid và giữ lại các tập độc lập tạo bởi những phần tử còn lại; nó không làm thay đổi quan hệ độc lập trên phần tập nền còn lại.
 
 **Co** (Contraction):
 
-Với $A \subseteq E$, sau khi co $A$ trong matroid $M$, ta thu được matroid $M / A$ có họ tập độc lập $\mathcal{I}''$ được định nghĩa bởi:
+Với $A \subseteq E$, sau khi co $A$ trong matroid $M$, matroid $M / A$ có họ tập độc lập $\mathcal{I}''$ được định nghĩa bởi:
 
 $$
 \mathcal{I}'' = \left\{ I \subseteq E \setminus A \,\bigg|\, \exists B \subseteq A,\, B \in \mathcal{I},\, r(B) = r(A),\, I \cup B \in \mathcal{I} \right\}
 $$
 
-Phép co có thể được hiểu là co các phần tử trong tập $A$, rồi xét các phần tử còn lại khi ghép với một cơ sở của $A$ để tạo thành tập độc lập. Kết quả của phép co phụ thuộc vào cơ sở của $A$; các tập độc lập sau khi co thực chất là kết quả rút gọn các tập con có hạng cao hơn trong matroid ban đầu.
+Phép co có thể được hiểu là co các phần tử trong tập $A$, rồi xét các phần tử còn lại khi ghép với một cơ sở của $A$ để tạo thành tập độc lập. Matroid sau khi co không phụ thuộc vào cách chọn cơ sở của $A$; các tập độc lập sau khi co tương ứng với phần còn lại của những tập độc lập trong matroid ban đầu sau khi đã cố định phần có hạng $r(A)$ bên trong $A$.
 
 **Ví dụ - matroid đồ thị**:
 
--   **Xóa**: trong matroid đồ thị, phép xóa tương ứng với việc xóa một số cạnh khỏi đồ thị. Sau khi một đồ thị $G$ bị xóa một cạnh, ta xét các tập độc lập tạo bởi những cạnh còn lại, tức là các tập cạnh không chứa chu trình. Ví dụ, nếu xóa một cạnh khỏi đồ thị tam giác, hai cạnh còn lại vẫn là một rừng.
+-   **Xóa**: trong matroid đồ thị, phép xóa tương ứng với việc xóa một số cạnh khỏi đồ thị. Sau khi một cạnh bị xóa khỏi đồ thị $G$, các tập độc lập được xét trên những cạnh còn lại, tức là các tập cạnh không chứa chu trình. Ví dụ, nếu xóa một cạnh khỏi đồ thị tam giác, hai cạnh còn lại vẫn là một rừng.
 
 -   **Co**: phép co tương ứng với việc co một cạnh thành một đỉnh. Với matroid đồ thị, co một cạnh tương đương với hợp nhất hai đầu mút của cạnh đó thành một đỉnh rồi xóa cạnh đó; sau khi hợp nhất đỉnh, các cạnh còn lại trong đồ thị vẫn có thể tạo thành tập độc lập. Ví dụ, trong một đồ thị tam giác, co bất kỳ một cạnh nào sẽ hợp nhất hai đỉnh thành một, và hai cạnh còn lại sẽ tạo thành một matroid mới.
 
@@ -205,7 +205,7 @@ $$
 \max_{A \in \mathcal{I}} w(A) = \max_{A \in \mathcal{I}} \sum_{x \in A} w(x)
 $$
 
-Rõ ràng, tập độc lập có trọng số lớn nhất phải là tập độc lập cực đại. Nếu một tập độc lập $A$ chưa cực đại, thì tồn tại một phần tử $x$ có thể thêm vào $A$; do $w(x) > 0$, sau khi thêm phần tử đó thì tổng trọng số tăng lên, nên $A$ không thể là tập độc lập có trọng số lớn nhất.
+Tập độc lập có trọng số lớn nhất phải là tập độc lập cực đại. Nếu một tập độc lập $A$ chưa cực đại, thì tồn tại một phần tử $x$ có thể thêm vào $A$; do $w(x) > 0$, sau khi thêm phần tử đó thì tổng trọng số tăng lên, nên $A$ không thể là tập độc lập có trọng số lớn nhất.
 
 <span id="các-bước"></span>
 
@@ -244,14 +244,14 @@ Vì $|A'|< |T|$, theo **tính mở rộng** của matroid, tồn tại $x \in T 
 
 Dùng **tính mở rộng**, liên tục thêm $x$ vào $A'$ để cuối cùng xây dựng được một tập độc lập mới $A''$ sao cho $|A''| = |T|$.
 
-Đặt $K = A'' \cap T$. Khi đó có $x = T \setminus K$ và $y = A'' \setminus K$. Vì $y$ là phần tử có trọng số lớn nhất trong $P$, ta có $w(x) \leq w(y)$.
+Đặt $K = A'' \cap T$. Khi đó $x = T \setminus K$ và $y = A'' \setminus K$. Vì $y$ là phần tử có trọng số lớn nhất trong $P$, suy ra $w(x) \leq w(y)$.
 
 Do đó $w(A'') = w(K) + w(y) \geq w(K) + w(x) = w(T)$. Khi ấy:
 
 -   Nếu $w(A'') > w(T)$, thì $T$ không phải là tập độc lập có trọng số lớn nhất, mâu thuẫn với giả thiết.
 -   Nếu $w(A'') = w(T)$, thì $A''$ là một tập độc lập có trọng số lớn nhất và $A'$ là tập con của nó, mâu thuẫn với giả thiết rằng $A'$ không phải là tập con của bất kỳ tập độc lập có trọng số lớn nhất nào.
 
-Tóm lại, giả thiết không đúng; tức là $A' = A \cup \{ y \}$ phải là tập con của một tập độc lập có trọng số lớn nhất nào đó. Vì vậy, bằng cách liên tục áp dụng chiến lược tham lam, cuối cùng ta có thể tìm được tập độc lập có trọng số lớn nhất.
+Tóm lại, giả thiết không đúng; tức là $A' = A \cup \{ y \}$ phải là tập con của một tập độc lập có trọng số lớn nhất nào đó. Vì vậy, việc liên tục áp dụng chiến lược tham lam sẽ tìm được tập độc lập có trọng số lớn nhất.
 
 <span id="ví-dụ"></span>
 
@@ -263,7 +263,7 @@ Cho một đồ thị vô hướng liên thông $G = (V, E)$, mỗi cạnh $e \i
 
 **Xây dựng matroid**:
 
-Để hình thức hóa bài toán cây khung nhỏ nhất thành bài toán matroid, ta có thể xây dựng matroid đồ thị $M(G)$:
+Để hình thức hóa bài toán cây khung nhỏ nhất thành bài toán matroid, có thể xây dựng matroid đồ thị $M(G)$:
 
 -   **Tập nền**: $S = E$, tức là tất cả các cạnh trong đồ thị.
 -   **Họ tập độc lập**: $\mathcal{I}$ gồm tất cả các tập cạnh không chứa chu trình, tức là tất cả các rừng.
@@ -287,7 +287,7 @@ Trong khuôn khổ matroid đồ thị, [thuật toán Kruskal](../graph/mst.md#
 
 Với hai matroid $M_1 = (S, \mathcal{I}_1)$ và $M_2 = (S, \mathcal{I}_2)$ được định nghĩa trên cùng tập nền $S$, nếu $\mathcal{I} = \mathcal{I}_1 \cap \mathcal{I}_2$ thỏa mãn ba tính chất của họ tập độc lập trong định nghĩa matroid, thì $M = (S, \mathcal{I})$ được gọi là **giao** của $M_1$ và $M_2$.
 
-**Chú ý**: không phải giao của hai matroid bất kỳ cũng là một matroid. Chỉ khi giao của hai họ tập độc lập thỏa mãn ba tính chất trong định nghĩa họ tập độc lập của matroid thì giao đó mới tạo thành một matroid.
+**Lưu ý**: không phải giao của hai matroid bất kỳ cũng là một matroid. Chỉ khi giao của hai họ tập độc lập thỏa mãn ba tính chất trong định nghĩa họ tập độc lập của matroid thì giao đó mới tạo thành một matroid.
 
 <span id="mô-tả-bài-toán"></span>
 
@@ -364,7 +364,7 @@ Cho một đồ thị vô hướng $G = (V, E)$ có nhiều màu, mỗi cạnh c
 
         -   **Matroid đồ thị ($M_1$)**: định nghĩa bởi tất cả các tập cạnh không tạo thành chu trình, tức là họ tập độc lập $\mathcal{I}_1$ chứa mọi tập cạnh không chứa chu trình.
         -   **Matroid màu ($M_2$)**: định nghĩa bởi các tập cạnh có số cạnh của mỗi màu không vượt quá $k$, tức là họ tập độc lập $\mathcal{I}_2$ chứa mọi tập cạnh thỏa mãn số cạnh của mỗi màu $\leq k$.
-    2.  **Giải giao matroid**: bằng cách giải $M = M_1 \cap M_2$, ta tìm được tập cạnh lớn nhất vừa không tạo chu trình vừa thỏa mãn số cạnh mỗi màu không vượt quá $k$.
+    2.  **Giải giao matroid**: giải $M = M_1 \cap M_2$ để thu được tập cạnh lớn nhất vừa không tạo chu trình vừa thỏa mãn số cạnh mỗi màu không vượt quá $k$.
 
 **Bài toán phân bổ tài nguyên có ràng buộc**:
 
@@ -377,7 +377,7 @@ Trong một bài toán phân bổ tài nguyên, có một tập tài nguyên $R 
 
         -   **Matroid nhu cầu ($M_1$)**: định nghĩa bởi các phương án phân bổ thỏa mãn nhu cầu tài nguyên của từng dự án, tức là họ tập độc lập $\mathcal{I}_1$ chứa mọi tập phân bổ tài nguyên thỏa mãn nhu cầu dự án.
         -   **Matroid cung ứng ($M_2$)**: định nghĩa bởi các phương án phân bổ không vượt quá lượng cung ứng của từng loại tài nguyên, tức là họ tập độc lập $\mathcal{I}_2$ chứa mọi tập phân bổ thỏa mãn giới hạn cung ứng tài nguyên.
-    2.  **Giải giao matroid**: bằng cách giải $M = M_1 \cap M_2$, ta tìm được phương án phân bổ tài nguyên vừa thỏa mãn nhu cầu của mọi dự án vừa không vượt quá lượng cung ứng tài nguyên.
+    2.  **Giải giao matroid**: giải $M = M_1 \cap M_2$ để thu được phương án phân bổ tài nguyên vừa thỏa mãn nhu cầu của mọi dự án vừa không vượt quá lượng cung ứng tài nguyên.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 

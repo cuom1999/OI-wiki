@@ -8,7 +8,7 @@ Một đường thẳng cùng với một phía của đường thẳng đó t�
 
 Dạng giải tích thường là $Ax+By+C\ge 0$.
 
-Trong hình học tính toán, ta biểu diễn bằng vectơ; trong cùng một bài, toàn bộ nửa mặt phẳng thường được thống nhất là phía trái hoặc phía phải của vectơ.
+Trong hình học tính toán, nửa mặt phẳng thường được biểu diễn bằng vectơ; trong cùng một bài, toàn bộ nửa mặt phẳng thường được thống nhất là phía trái hoặc phía phải của vectơ.
 
 ![Nửa mặt phẳng](./images/hpi1.svg)
 
@@ -42,45 +42,45 @@ Ngôn ngữ C có một hàm thư viện tên là `atan2(double y,double x)`, tr
 
 Gọi trực tiếp hàm này trên vectơ làm đối số, rồi sắp xếp theo giá trị trả về để thu được tập cạnh, tức tập vectơ, mới.
 
-Khi sắp xếp, nếu gặp các vectơ thẳng hàng và cùng hướng, hãy giữ vectơ gần miền khả thi hơn. Ví dụ, nếu hai vectơ có cùng góc cực và ta cần nửa mặt phẳng bên trái vectơ, thì chỉ cần giữ vectơ nằm bên trái. Cách kiểm tra là lấy đầu hoặc cuối của một vectơ so với vectơ còn lại, rồi xét điểm đó ở bên trái hay bên phải.
+Khi sắp xếp, nếu gặp các vectơ thẳng hàng và cùng hướng, cần giữ vectơ gần miền khả thi hơn. Ví dụ, nếu hai vectơ có cùng góc cực và cần nửa mặt phẳng bên trái vectơ, thì chỉ cần giữ vectơ nằm bên trái. Cách kiểm tra là lấy đầu hoặc cuối của một vectơ so với vectơ còn lại, rồi xét điểm đó ở bên trái hay bên phải.
 
 ### Duy trì hàng đợi đơn điệu
 
-Vì giao nửa mặt phẳng là một đa giác lồi, ta cần duy trì một bao lồi. Cạnh được thêm sau chỉ có thể ảnh hưởng tới cạnh được thêm sớm nhất hoặc muộn nhất, khi bao lồi hiện tại còn liên thông. Do đó ta chỉ cần xóa phần tử ở đầu và cuối hàng đợi, nên dùng hàng đợi đơn điệu.
+Vì giao nửa mặt phẳng là một đa giác lồi, cần duy trì một bao lồi. Cạnh được thêm sau chỉ có thể ảnh hưởng tới cạnh được thêm sớm nhất hoặc muộn nhất, khi bao lồi hiện tại còn liên thông. Do đó chỉ cần xóa phần tử ở đầu và cuối hàng đợi, nên dùng hàng đợi đơn điệu.
 
-Ta duyệt các vectơ đã được sắp xếp, đồng thời duy trì thêm một mảng giao điểm. Khi hàng đợi có hơn 2 phần tử, các vectơ trong đó sẽ tạo ra các giao điểm.
+Duyệt các vectơ đã được sắp xếp, đồng thời duy trì thêm một mảng giao điểm. Khi hàng đợi có hơn 2 phần tử, các vectơ trong đó sẽ tạo ra các giao điểm.
 
 Với vectơ hiện tại, nếu giao điểm trước đó nằm ở **phía đối diện** với nửa mặt phẳng mà vectơ này biểu diễn, thì cạnh trước đó không còn ý nghĩa.
 
 ![Hàng đợi đơn điệu](./images/hpi2.svg)
 
-Trong hình trên, giả sử ta lấy nửa mặt phẳng bên trái vectơ. Sau khi sắp xếp theo góc cực, thứ tự duyệt phải là $\vec a\to\vec b\to\vec c$. Khi $\vec a$ và $\vec b$ vào hàng đợi, mảng giao điểm sẽ có một điểm $D$, trong đó mảng giao điểm lưu giao điểm của vectơ ở cùng chỉ số trong hàng đợi với vectơ đứng trước nó.
+Trong hình trên, giả sử lấy nửa mặt phẳng bên trái vectơ. Sau khi sắp xếp theo góc cực, thứ tự duyệt phải là $\vec a\to\vec b\to\vec c$. Khi $\vec a$ và $\vec b$ vào hàng đợi, mảng giao điểm sẽ có một điểm $D$, trong đó mảng giao điểm lưu giao điểm của vectơ ở cùng chỉ số trong hàng đợi với vectơ đứng trước nó.
 
-Tiếp theo khi xét đến $\vec c$, ta thấy $D$ nằm bên phải $\vec c$. Vì **các vectơ tạo ra**  $D$  **chắc chắn có góc cực nhỏ hơn** $\vec c$, nên vectơ tạo ra $D$, tức $\vec b$, sẽ không còn ảnh hưởng tới giao nửa mặt phẳng.
+Tiếp theo khi xét đến $\vec c$, điểm $D$ nằm bên phải $\vec c$. Vì **các vectơ tạo ra**  $D$  **đều có góc cực nhỏ hơn** $\vec c$, nên vectơ tạo ra $D$, tức $\vec b$, sẽ không còn ảnh hưởng tới giao nửa mặt phẳng.
 
 Còn một khả năng khác là khi gần kết thúc, vectơ mới thêm vào sẽ bắt đầu gây ảnh hưởng từ đầu hàng đợi.
 
 ![Ảnh hưởng ở đầu hàng đợi](./images/hpi7.svg)
 
-Vẫn giả sử ta lấy nửa mặt phẳng bên trái vectơ. Sau khi thêm vectơ $\vec f$, giao điểm đầu tiên $G$ nằm bên phải $\vec f$. Đảo ngược tiêu chuẩn phán đoán ở trên, ta biết lúc này nên xóa vectơ $\vec a$, tức vectơ ở **đầu hàng đợi**.
+Vẫn giả sử lấy nửa mặt phẳng bên trái vectơ. Sau khi thêm vectơ $\vec f$, giao điểm đầu tiên $G$ nằm bên phải $\vec f$. Đảo ngược tiêu chuẩn phán đoán ở trên, lúc này nên xóa vectơ $\vec a$, tức vectơ ở **đầu hàng đợi**.
 
 Cuối cùng, dùng vectơ ở đầu hàng đợi để loại bỏ các vectơ thừa ở cuối hàng đợi. Lý do là vectơ ở đầu hàng đợi sẽ bị các ràng buộc phía sau hạn chế, còn vectơ ở cuối hàng đợi thì không. Khi đó các vectơ đã tạo thành một vòng, nên vectơ ở đầu có thể ràng buộc vectơ ở cuối.
 
 ### Thu được giao nửa mặt phẳng
 
-Nếu giao nửa mặt phẳng là một đa giác lồi $n$ cạnh, cuối cùng mảng giao điểm sẽ chứa $n$ điểm. Nối chúng theo thứ tự đầu-cuối, ta thu được một đa giác $n$ cạnh có hướng thống nhất, thuận hoặc ngược chiều kim đồng hồ.
+Nếu giao nửa mặt phẳng là một đa giác lồi $n$ cạnh, cuối cùng mảng giao điểm sẽ chứa $n$ điểm. Nối chúng theo thứ tự đầu-cuối sẽ thu được một đa giác $n$ cạnh có hướng thống nhất, thuận hoặc ngược chiều kim đồng hồ.
 
 Khi đó có thể dùng phép chia tam giác để tính diện tích. Đây là dạng bài cơ bản nhất.
 
-Đôi khi giao nửa mặt phẳng không tồn tại hoặc có diện tích bằng 0, cần chú ý xử lý biên.
+Đôi khi giao nửa mặt phẳng không tồn tại hoặc có diện tích bằng 0, cần xử lý biên cẩn thận.
 
 ### Lưu ý
 
-Khi xuất hiện một vectơ có thể đẩy toàn bộ các điểm trong hàng đợi ra ngoài, tức mọi điểm trong hàng đợi đều nằm bên phải vectơ đó, ta **bắt buộc** phải xử lý cuối hàng đợi trước rồi mới xử lý đầu hàng đợi. Vì vậy trong vòng lặp, ta phải duyệt phần `--r;` trước rồi mới duyệt phần `++l;`, nếu không sẽ sai. Lý do như sau.
+Khi xuất hiện một vectơ có thể đẩy toàn bộ các điểm trong hàng đợi ra ngoài, tức mọi điểm trong hàng đợi đều nằm bên phải vectơ đó, **bắt buộc** phải xử lý cuối hàng đợi trước rồi mới xử lý đầu hàng đợi. Vì vậy trong vòng lặp, cần duyệt phần `--r;` trước rồi mới duyệt phần `++l;`, nếu không sẽ sai. Lý do như sau.
 
 ![](./images/hpi4.svg)
 
-Thông thường, khi thêm một cạnh, tức vectơ $\vec w$, vào sau hàng đợi có thứ tự $\left\{\vec{u},\vec{v}\right\}$, ta sẽ tạo ra một giao điểm $N$ và thu hẹp phạm vi phía sau $\vec{v}$.
+Thông thường, khi thêm một cạnh, tức vectơ $\vec w$, vào sau hàng đợi có thứ tự $\left\{\vec{u},\vec{v}\right\}$, sẽ tạo ra một giao điểm $N$ và thu hẹp phạm vi phía sau $\vec{v}$.
 
 ![](./images/hpi5.svg)
 
@@ -88,11 +88,11 @@ Nhưng vì mỗi thao tác đều là thao tác tổng quát, cũng có thể x�
 
 ![](./images/hpi6.svg)
 
-Nếu lúc này xuất hiện vectơ $\vec a$ sao cho $M$ nằm bên phải $\vec a$, thì $M$ phải rời hàng đợi. Nếu khi đó duyệt `++l` từ đầu hàng đợi, rõ ràng ta đang mở rộng phạm vi. Thực tế, điểm $M$ do $\vec u$ và $\vec v$ cùng tạo thành, nên cần xét xem tác động tới tiến trình hiện tại đến từ $\vec u$ hay $\vec v$. Vì sau khi sắp xếp theo góc cực, các vectơ theo thứ tự ngược chiều kim đồng hồ, ảnh hưởng của $\vec v$ sẽ lớn hơn.
+Nếu lúc này xuất hiện vectơ $\vec a$ sao cho $M$ nằm bên phải $\vec a$, thì $M$ phải rời hàng đợi. Nếu khi đó duyệt `++l` từ đầu hàng đợi, phạm vi đang bị mở rộng. Thực tế, điểm $M$ do $\vec u$ và $\vec v$ cùng tạo thành, nên cần xét xem tác động tới tiến trình hiện tại đến từ $\vec u$ hay $\vec v$. Vì sau khi sắp xếp theo góc cực, các vectơ theo thứ tự ngược chiều kim đồng hồ, ảnh hưởng của $\vec v$ sẽ lớn hơn.
 
-Như hình trên, nếu xác nhận $M$ nằm bên phải $\vec a$, thì lúc này ảnh hưởng của $\vec v$ chắc chắn không đóng góp gì cho đáp án giao nửa mặt phẳng.
+Như hình trên, nếu xác nhận $M$ nằm bên phải $\vec a$, thì lúc này ảnh hưởng của $\vec v$ không còn đóng góp gì cho đáp án giao nửa mặt phẳng.
 
-Còn lý do ta loại bỏ đầu hàng đợi là **ràng buộc của vectơ hiện tại mạnh hơn vectơ ở đầu hàng đợi**; điều kiện này giả định trong hàng đợi có nhiều hơn hai đoạn thẳng, tức vectơ. Nếu không, sẽ xuất hiện tình huống như trên.
+Còn lý do loại bỏ đầu hàng đợi là **ràng buộc của vectơ hiện tại mạnh hơn vectơ ở đầu hàng đợi**; điều kiện này giả định trong hàng đợi có nhiều hơn hai đoạn thẳng, tức vectơ. Nếu không, sẽ xuất hiện tình huống như trên.
 
 Vì vậy nhất định phải loại bỏ cuối hàng đợi trước rồi mới loại bỏ đầu hàng đợi.
 
@@ -119,7 +119,7 @@ Vì vậy nhất định phải loại bỏ cuối hàng đợi trước rồi m
     int l = 0, r = 0;
     for (int i = 1; i <= n; ++i)
       if (s[i] != s[i - 1]) {
-        // Chú ý phải kiểm tra cuối hàng đợi trước
+        // Cần kiểm tra cuối hàng đợi trước
         while (r - l > 1 && (s[i].b - t[r]) * (s[i].a - t[r]) >
                                 eps)  // Nếu giao điểm trước nằm bên phải vectơ thì loại bỏ cuối hàng đợi
           --r;
@@ -130,16 +130,16 @@ Vì vậy nhất định phải loại bỏ cuối hàng đợi trước rồi m
         if (r - l > 1) t[r] = its(q[r], q[r - 1]);  // Tính giao điểm mới
       }
     while (r - l > 1 &&
-           (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  // Chú ý xóa phần tử thừa
+           (q[l + 1].b - t[r]) * (q[l + 1].a - t[r]) > eps)  // Xóa phần tử thừa
       --r;
     t[r + 1] = its(q[l + 1], q[r]);  // Tính thêm giao điểm mới
     ++r;
-    // Ở đây không thể ++r ngay trong t, cần chú ý.
+    // Không thể ++r ngay trong t tại vị trí này.
     ```
 
 ## Bài tập
 
-[POJ 2451 Uyuw's Concert](http://poj.org/problem?id=2451) chú ý biên
+[POJ 2451 Uyuw's Concert](http://poj.org/problem?id=2451) xử lý biên
 
 [POJ 1279 Art Gallery](http://poj.org/problem?id=1279) tìm nhân đa giác
 

@@ -50,7 +50,7 @@ Sau đó biên dịch và chạy thử để xem kết quả.
 Dòng đầu tiên, `#include <iostream>`, có nghĩa là nạp thư viện `iostream`.
 
 ??? note "Tệp thư viện trong Pascal"
-    Pascal thực ra cũng có tệp thư viện, chỉ là người mới học thường ít dùng đến.
+    Pascal cũng có tệp thư viện, nhưng người mới học thường ít dùng đến.
 
 `main` xuất hiện ở dòng thứ ba. Chương trình bắt đầu thực thi từ `main`.
 
@@ -60,8 +60,8 @@ Câu lệnh quan trọng nhất tiếp theo là
 std::cout << "Hello World!" << std::endl;
 ```
 
-`std::cout` là lệnh xuất dữ liệu. Trong một số chương trình C++ cũng có thể thấy
-cách viết trực tiếp là `cout`.
+`std::cout` là lệnh xuất dữ liệu. Một số chương trình C++ cũng viết trực tiếp là
+`cout`.
 
 ??? note "Về tiền tố std::"
     Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới [phần này](basic.md#cin-và-cout).
@@ -70,13 +70,13 @@ Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; t
 
 `std::endl` là lệnh **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong Pascal, nhưng trong C++ không có `coutln`. Điểm khác nhau giữa Pascal và C++ là `write('Hello World!')` tương đương với `std::cout << "Hello World!"`, còn `writeln('Hello World!')` tương đương với `std::cout << "Hello World!" << std::endl`.
 
-Ở đây `"Hello World!"` là chuỗi. Trong Pascal, chuỗi dùng dấu nháy đơn `'` chứ không dùng dấu nháy kép; còn trong C++, chuỗi phải dùng dấu nháy kép. Ký tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ nhắc lại.
+Trong câu này, `"Hello World!"` là chuỗi. Trong Pascal, chuỗi dùng dấu nháy đơn `'` chứ không dùng dấu nháy kép; còn trong C++, chuỗi phải dùng dấu nháy kép. Ký tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ nhắc lại.
 
 Đến đây, phần Hello World gần như đã được giải thích xong.
 
 Có thể sẽ có thắc mắc `return 0` phía sau nghĩa là gì, hoặc `int main()` nghĩa là
 gì. **Tạm thời chưa cần bận tâm**; khi mới bắt đầu viết chương trình, có thể xem
-nó như một khuôn mẫu để viết theo (ở đây cũng dùng đúng khuôn mẫu đó). Vì khi
+nó như một khuôn mẫu để viết theo (ví dụ này cũng dùng đúng khuôn mẫu đó). Vì khi
 nhập môn chưa dùng đến tham số trong `main`, không cần viết thành
 `int main(int argc, char const *argv[])`.
 
@@ -111,7 +111,7 @@ Ghi chú: mã trên có khá nhiều dòng trống; nếu chưa quen có thể b
 
 `std::cin` dùng để đọc dữ liệu vào (`cin` tức là C-in), và cú pháp `>>` cũng tương tự cú pháp xuất dữ liệu.
 
-Trong các câu lệnh mới ở đây, quan trọng nhất có hai câu. Câu đầu tiên là câu lệnh khai báo biến.
+Trong các câu lệnh mới của ví dụ này, quan trọng nhất có hai câu. Câu đầu tiên là câu lệnh khai báo biến.
 
 ```cpp
 int a, b, c;
@@ -124,7 +124,7 @@ var
 a, b, c: integer;
 ```
 
-Khai báo trong C++ bắt đầu trực tiếp bằng tên kiểu dữ liệu. Ở đây, `int` (kiểu số nguyên) đứng đầu để cho biết các biến tiếp theo sẽ được khai báo.
+Khai báo trong C++ bắt đầu trực tiếp bằng tên kiểu dữ liệu. Trong ví dụ này, `int` (kiểu số nguyên) đứng đầu để cho biết các biến tiếp theo sẽ được khai báo.
 
 Câu lệnh quan trọng tiếp theo là câu lệnh gán.
 
@@ -228,15 +228,15 @@ Ghi chú:
 5.  Trong phép toán Boolean của C++, giá trị không phải Boolean có thể tự động chuyển thành Boolean.
 
 ???+ warning "Nhắc lỗi dễ mắc"
-    Đặc biệt chú ý: **đừng viết `==` thành `=`!**
+    Đặc biệt lưu ý: **đừng viết `==` thành `=`!**
 
     Vì cú pháp C/C++ linh hoạt hơn Pascal, nếu viết `if (a=b)` trong câu lệnh điều kiện, chương trình vẫn chạy tiếp bình thường, vì trong C++ biểu thức `a=b` có giá trị trả về.
 
 #### `case` và `switch`
 
-Không dùng quá nhiều, nên ở đây không triển khai chi tiết.
+Không dùng quá nhiều, nên phần này không triển khai chi tiết.
 
-Cần chú ý: C++ không có `1..n`, và cũng không có bất đẳng thức liên tiếp (ví dụ `1 < x < 2`).
+Cần lưu ý: C++ không có `1..n`, và cũng không có bất đẳng thức liên tiếp (ví dụ `1 < x < 2`).
 
 ### Vòng lặp
 
@@ -244,7 +244,7 @@ Ba loại vòng lặp sau, với sáu đoạn mã, đều thực hiện cùng m�
 
 #### Vòng lặp `while`
 
-`while` rất giống nhau. (Đoạn C++ ở đây không phải chương trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương tự.)
+`while` rất giống nhau. (Đoạn C++ trong mục này không phải chương trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương tự.)
 
 ```pas
 var i: integer;
@@ -294,12 +294,12 @@ Ghi chú:
 2.  Câu lệnh đầu tiên `int i = 1;` khai báo một biến cục bộ `i` và khởi tạo nó. (Thiết kế này hợp lý hơn Pascal khá nhiều.)
 3.  Câu lệnh thứ hai `i <= 10;` là điều kiện để xác định vòng lặp có tiếp tục hay không.
 4.  Câu lệnh thứ ba `i++` được thực hiện ở cuối mỗi vòng lặp, ý nghĩa gần giống
-    `inc(i)` trong Pascal. Viết `++i` ở đây cũng như nhau. Sự khác nhau giữa
+    `inc(i)` trong Pascal. Viết `++i` trong vòng lặp này cũng cho kết quả như nhau. Sự khác nhau giữa
     `i++` và `++i` có thể tham khảo trong tài liệu khác.
 
 #### Vòng lặp `repeat until` và `do while`
 
-Chú ý, `repeat until` và `do while` không giống nhau. So sánh các đoạn mã sau:
+`repeat until` và `do while` không giống nhau. So sánh các đoạn mã sau:
 
 ```pas
 var i: integer;
@@ -349,7 +349,7 @@ int main() {
     int t;
     std::cin >> t;
     a.push_back(t);  // đưa số t vừa đọc vào cuối vector a; thao tác này có độ phức tạp O(1)
-    /* Không thể dùng truy cập chỉ số để gán giá trị ở đây, vì khi khai báo,
+    /* Không thể dùng truy cập chỉ số để gán giá trị trong trường hợp này, vì khi khai báo,
     kích thước của a vẫn rỗng.
     Dùng `a[i] = t;` tại đây là cách làm sai.
     */
@@ -357,7 +357,7 @@ int main() {
 
   // in ra tất cả các số đã đọc vào a
   for (int i = 0; i < n; i++) {
-    std::cout << a[i] << ", ";  // !chú ý, số đầu tiên trong a là a[0];
+    std::cout << a[i] << ", ";  // !lưu ý, số đầu tiên trong a là a[0];
     // Nếu chỉ số vượt biên, nó sẽ trả về một giá trị không xác định (tràn), chứ không báo lỗi
   }
   std::cout << std::endl;
@@ -400,7 +400,7 @@ Tham khảo nội dung trong trang [Mảng](array.md).
 Nếu cần dùng mảng có độ dài thay đổi, nên dùng `vector`, không nên dùng mảng kiểu
 C.
 
-Mảng kiểu C có quan hệ rất chặt chẽ với con trỏ, nên ở đây không trình bày thêm.
+Mảng kiểu C có quan hệ rất chặt chẽ với con trỏ, nên bài này không trình bày thêm.
 
 ## Những điểm khác biệt quan trọng
 
@@ -464,7 +464,7 @@ int b = a + 1;            // b = 49
 std::cout << (a == '0');  // true xuất ra 1
 ```
 
-Thực ra trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
+Trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
 
 Chi tiết xem bài [Implicit conversions - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
 
@@ -558,14 +558,14 @@ int main() {
 }
 ```
 
-`return` của C++ có một điểm rất khác so với việc gán giá trị cho biến hàm trong Pascal. Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm, mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có thể dùng trực tiếp `return`. Ví dụ (vì thật sự khó nghĩ ra đoạn mã vừa ngắn vừa thực dụng, nên tạm dùng như sau):
+`return` của C++ có một điểm rất khác so với việc gán giá trị cho biến hàm trong Pascal. Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm, mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có thể dùng trực tiếp `return`. Ví dụ:
 
 ```cpp
 #include <iostream>
 
 void printWarning(int x) {
   if (x >= 0) {
-    return;  // câu lệnh này ở đây tương đương với `exit;` trong Pascal
+    return;  // câu lệnh này tương đương với `exit;` trong Pascal
   }
   std::cout << "Cảnh báo: đầu vào là số âm.";
 }
@@ -587,11 +587,11 @@ function abs(x:integer):integer;
 begin
     if x < 0 then
         begin
-            abs := -x; exit; // !chú ý chỗ này
+            abs := -x; exit; // !lưu ý chỗ này
         end
     else
         begin
-            abs := x;  exit; // !chú ý chỗ này
+            abs := x;  exit; // !lưu ý chỗ này
         end;
 end;
 ```
@@ -610,7 +610,7 @@ int abs(int x) {
     Trong C++, `exit` là thoát khỏi chương trình; đừng tiện tay gõ `exit`; nên
     dùng `return`.
 
-C++ coi cả hàm lẫn thủ tục đều là hàm, kể cả `main` cũng không ngoại lệ. Ví dụ khi viết `int main`, C++ xem `main` là một hàm kiểu số nguyên; ở đây giá trị trả về là `0`. Đây là một quy ước thông dụng: trả về `0` nghĩa là chương trình kết thúc bình thường.
+C++ coi cả hàm lẫn thủ tục đều là hàm, kể cả `main` cũng không ngoại lệ. Ví dụ khi viết `int main`, C++ xem `main` là một hàm kiểu số nguyên; giá trị trả về là `0`. Đây là một quy ước thông dụng: trả về `0` nghĩa là chương trình kết thúc bình thường.
 
 Các tham số trong `main(int argc, char const *argv[])` là `int argc` và
 `char const *argv[]`; ý nghĩa của chúng có thể tham khảo trong tài liệu khác.
@@ -657,7 +657,7 @@ int main() {
 }
 ```
 
-Chú ý, đoạn C++ ở đây **liên quan đến con trỏ**. Con trỏ là vấn đề khá rắc rối,
+Đoạn C++ này **liên quan đến con trỏ**. Con trỏ là vấn đề khá rắc rối,
 nên đọc thêm tài liệu liên quan.
 
 ```cpp
@@ -680,7 +680,7 @@ int main(int argc, char const* argv[]) {
 }
 ```
 
-Chú ý, đoạn C++ ở đây liên quan đến **kiểu tham chiếu**. Khi dùng tham chiếu để
+Đoạn C++ này liên quan đến **kiểu tham chiếu**. Khi dùng tham chiếu để
 gọi một số thư viện STL hoặc thư viện template, có thể gặp một số vấn đề; lúc đó
 cần tự khai báo kiểu riêng. Tài liệu cụ thể có thể tra trong *C++ Primer* bản thứ
 năm hoặc tài liệu trên mạng.
@@ -739,7 +739,7 @@ ký tự trong chuỗi, v.v. không phù hợp với một bài viết ngắn g�
 những thứ đó ra thì đây sẽ trở thành giáo trình nhập môn C++, nên cần tận dụng
 đầy đủ Wiki này, sổ tay tham khảo và công cụ tìm kiếm.
 
-Cần chỉ ra một điểm: cú pháp C++ nói ở trên thực ra có rất nhiều phần đến từ ngôn ngữ C. Tiêu đề viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
+Cần chỉ ra một điểm: cú pháp C++ nói ở trên có rất nhiều phần đến từ ngôn ngữ C. Tiêu đề viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
 
 Pascal là một ngôn ngữ rất phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn
 C, nhưng cùng với sự phổ biến của hệ thống UNIX và việc Microsoft sử dụng C,
@@ -750,7 +750,7 @@ Pascal nay đã trở thành lịch sử. Pascal về sau vẫn có phát triể
 chẳng hạn Gameboy, máy chơi game Nintendo từ thế kỷ trước. Một công dụng khác là
 xuất hiện dưới dạng mã giả (mã giả phong cách Pascal) trong nhiều sách giáo khoa.
 
-Cuối cùng, cộng đồng Pascal thực ra rất nhỏ, còn cộng đồng C/C++ rất lớn; tài
+Cuối cùng, cộng đồng Pascal khá nhỏ, còn cộng đồng C/C++ rất lớn; tài
 liệu trợ giúp và giáo trình rất nhiều, rất đầy đủ. Tiếng Anh là kỹ năng rất quan
 trọng khi đọc tài liệu kỹ thuật. Trên thế giới còn rất nhiều ngôn ngữ lập trình,
 và ngành khoa học máy tính cùng kỹ thuật máy tính không chỉ có thi lập trình và
