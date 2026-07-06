@@ -5,7 +5,7 @@ Trang này giới thiệu ngắn gọn về thuật toán liệt kê.
 ## Giới thiệu
 
 Liệt kê (enumeration) là một chiến lược giải bài toán bằng cách dựa trên thông
-tin đã biết để dự đoán đáp án.
+tin đã biết để thử các khả năng và tìm ra đáp án.
 
 Ý tưởng của liệt kê là liên tục thử các khả năng: lần lượt xét từng phần tử
 trong tập ứng viên, rồi kiểm tra điều kiện của bài toán có được thỏa mãn hay
@@ -17,8 +17,8 @@ không.
 
 Trước hết cần xây dựng một mô hình toán học rõ ràng.
 
-Khi liệt kê, cần xác định rõ các trường hợp có thể xảy ra và những yếu tố cần
-duyệt.
+Khi liệt kê, cần xác định rõ các trường hợp có thể xảy ra và những yếu tố thật
+sự cần duyệt.
 
 ### Thu hẹp không gian liệt kê
 
@@ -32,7 +32,7 @@ không sẽ phát sinh chi phí thời gian không cần thiết.
 
 Cần quyết định thứ tự duyệt dựa trên yêu cầu của bài toán. Chẳng hạn, nếu đề
 bài yêu cầu tìm số nguyên tố lớn nhất thỏa điều kiện, liệt kê từ lớn đến nhỏ sẽ
-phù hợp hơn.
+phù hợp hơn liệt kê từ nhỏ đến lớn.
 
 ## Ví dụ
 
@@ -44,7 +44,7 @@ kê.
     cặp số trong mảng có tổng bằng $0$.
 
 ??? note "Ý tưởng giải"
-    Có thể viết ngay đoạn mã liệt kê hai số.
+    Có thể bắt đầu bằng đoạn mã liệt kê trực tiếp hai số.
     
     === "C++"
         ```cpp
@@ -73,8 +73,7 @@ kê.
     là một đáp án, thì `(b, a)` cũng là một đáp án. Trong tình huống này, ta có
     thể tự đặt thêm một thứ tự khi đếm, rồi cuối cùng nhân kết quả với $2$.
     
-    Chẳng hạn, chỉ đếm những cặp mà số thứ nhất xuất hiện ở vị trí phía sau.
-    Đoạn mã như sau:
+    Chẳng hạn, chỉ đếm những cặp mà số thứ nhất xuất hiện ở vị trí phía sau:
     
     === "C++"
         ```cpp
@@ -101,16 +100,16 @@ kê.
         ans *= 2;
         ```
     
-    Phạm vi liệt kê của $j$ đã được giảm, nhờ đó chi phí thời gian của đoạn mã
-    cũng giảm theo.
+    Phạm vi liệt kê của $j$ đã được thu hẹp, nhờ đó chi phí thời gian của đoạn
+    mã cũng giảm theo.
     
     Vẫn có thể cải thiện thêm.
     
     Có nhất thiết phải liệt kê cả hai số không? Sau khi chọn một số, điều kiện
     của bài toán đã xác định số còn lại cần tìm. Nếu có cách kiểm tra nhanh số
     đó có tồn tại hay không, ta có thể bỏ qua vòng liệt kê thứ hai. Tiến thêm
-    một bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các
-    số đã duyệt.
+    một bước nữa, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại
+    các số đã duyệt.
     
     === "C++"
         ```cpp
@@ -149,6 +148,9 @@ kê.
 
 ## Chú thích
 
-[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#thuật-toán-offline)
-    và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)
+[^1]: [Sắp xếp thùng](../basic/bucket-sort.md),
+    [Bài toán phần tử chính](../misc/main-element.md#thuật-toán-offline)
+    và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow][bucket-so]
     (tiếng Anh)
+
+[bucket-so]: https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure
