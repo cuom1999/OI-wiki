@@ -1,12 +1,12 @@
 Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng không
 có tên riêng mà được truy cập thông qua vị trí của chúng. Sau khi khai báo, kích
-thước của mảng là cố định và không thể tùy ý thay đổi.
+thước của mảng là cố định và không thể thay đổi tùy ý.
 
 ## Định nghĩa mảng
 
 Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử
-trong mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên
-dịch; tức `d` phải là một biểu thức hằng kiểu nguyên.
+trong mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên dịch,
+tức `d` phải là một biểu thức hằng kiểu nguyên.
 
 ```cpp
 unsigned int d1 = 42;
@@ -15,7 +15,7 @@ int arr1[d1];  // sai: d1 không phải biểu thức hằng
 int arr2[d2];  // đúng: arr2 là một mảng có độ dài 42
 ```
 
-Không thể gán một mảng cho một mảng khác bằng toán tử gán:
+Không thể dùng toán tử gán để gán nguyên một mảng cho một mảng khác:
 
 ```cpp
 int arr1[3];
@@ -84,15 +84,15 @@ int main() {
 
 Chỉ số mảng $\mathit{idx}$ phải thỏa mãn
 $0\leq \mathit{idx}< \mathit{size}$. Nếu chỉ số không nằm trong phạm vi này,
-chương trình có hành vi không xác định: có thể sinh ra hậu quả khó dự đoán, như
-lỗi segmentation fault, đọc dữ liệu rác hoặc sửa nhầm biến ngoài dự kiến.
+chương trình có hành vi không xác định: có thể sinh ra hậu quả khó dự đoán, chẳng
+hạn lỗi segmentation fault, đọc dữ liệu rác hoặc sửa nhầm biến ngoài dự kiến.
 
 ## Mảng nhiều chiều
 
 Bản chất của mảng nhiều chiều là "mảng của mảng", tức phần tử của mảng ngoài
-cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: số phần tử
-của mảng ngoài và số phần tử của mỗi mảng bên trong. Khi truy cập mảng hai
-chiều, cần viết hai chỉ số:
+cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: số phần tử của
+mảng ngoài và số phần tử của mỗi mảng bên trong. Khi truy cập mảng hai chiều, cần
+viết hai chỉ số:
 
 ```cpp
 int arr[3][4];  // một mảng có 3 phần tử, mỗi phần tử là một mảng có 4 phần tử
