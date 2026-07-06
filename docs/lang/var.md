@@ -458,7 +458,8 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
         }
         ```
 
-    Khi gọi `test`, `f` được nâng hạng thành `double`, nên biểu diễn lưu trữ tầng dưới giống với `fd`; kết quả in ra là
+    Khi gọi `test`, `f` được nâng hạng thành `double`, nên biểu diễn lưu trữ tầng
+    dưới giống với `fd`; kết quả in ra là
 
     ```text
     i = 0, value = 0x405ec00000000000
@@ -466,7 +467,9 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
     i = 2, value = 0x407c800000000000
     ```
 
-    Nếu đổi `double xx = va_arg(valist, double);` thành `float xx = va_arg(valist, float);`, GCC sẽ đưa ra một cảnh báo tương tự như sau:
+    Nếu đổi `double xx = va_arg(valist, double);` thành
+    `float xx = va_arg(valist, float);`, GCC sẽ đưa ra một cảnh báo tương tự như
+    sau:
 
     ```text
     In file included from test.c:2:
@@ -480,38 +483,64 @@ Trong quá trình nâng hạng số học, bản thân giá trị không đổi.
 
     Khi đó chương trình sẽ kết thúc trước khi in kết quả.
 
-    Điều này cũng giải thích vì sao `%f` của `printf` có thể khớp cả `float` lẫn `double`.
+    Điều này cũng giải thích vì sao `%f` của `printf` có thể khớp cả `float` lẫn
+    `double`.
 
 <a id="nâng-hạng-số-nguyên"></a>
 
 #### Nâng hạng số nguyên
 
-Giá trị thuần phải (prvalue) của kiểu số nguyên nhỏ (như `char`) có thể được chuyển thành giá trị thuần phải của kiểu số nguyên lớn hơn (như `int`).
+Giá trị thuần phải (prvalue) của kiểu số nguyên nhỏ (như `char`) có thể được
+chuyển thành giá trị thuần phải của kiểu số nguyên lớn hơn (như `int`).
 
-Nói cụ thể hơn, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ tự động được áp dụng.
+Nói cụ thể hơn, toán tử số học không nhận kiểu nhỏ hơn `int` làm đối số. Sau phép
+chuyển từ lvalue sang rvalue, nếu phù hợp thì nâng hạng số nguyên sẽ được áp dụng
+tự động.
 
 Cụ thể có các quy tắc sau:
 
--   Khi kiểu nguồn là `signed char`, `signed short / short`, có thể nâng hạng thành `int`.
--   Khi kiểu nguồn là `unsigned char`, `unsigned short`, nếu `int` có thể chứa toàn bộ phạm vi giá trị của kiểu nguồn thì có thể nâng hạng thành `int`, nếu không thì nâng hạng thành `unsigned int`. (Từ `C++20`, `char8_t` cũng áp dụng quy tắc này.)
--   Quy tắc nâng hạng của `char` phụ thuộc vào kiểu tầng dưới của nó là `signed char` hay `unsigned char`.
--   Kiểu `bool` có thể chuyển sang `int`: `false` trở thành `0`, `true` trở thành `1`.
--   Nếu phạm vi giá trị của kiểu đích chứa phạm vi giá trị của kiểu nguồn, và phạm vi giá trị của kiểu nguồn không thể được chứa bởi `int` và `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích.[^note12]
+-   Khi kiểu nguồn là `signed char`, `signed short / short`, có thể nâng hạng
+    thành `int`.
+-   Khi kiểu nguồn là `unsigned char`, `unsigned short`, nếu `int` có thể chứa
+    toàn bộ phạm vi giá trị của kiểu nguồn thì có thể nâng hạng thành `int`, nếu
+    không thì nâng hạng thành `unsigned int`. (Từ `C++20`, `char8_t` cũng áp dụng
+    quy tắc này.)
+-   Quy tắc nâng hạng của `char` phụ thuộc vào kiểu tầng dưới của nó là
+    `signed char` hay `unsigned char`.
+-   Kiểu `bool` có thể chuyển sang `int`: `false` trở thành `0`, `true` trở thành
+    `1`.
+-   Nếu phạm vi giá trị của kiểu đích chứa phạm vi giá trị của kiểu nguồn, và
+    phạm vi giá trị của kiểu nguồn không thể được chứa bởi `int` và
+    `unsigned int`, thì kiểu nguồn có thể được nâng hạng thành kiểu đích.[^note12]
 
 ???+ warning "Lưu ý"
-    `char`->`short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng hạng thành `int / unsigned int`, sau đó mới là `int / unsigned int`->`short`, không thỏa điều kiện của nâng hạng số học.
+    `char`->`short` không phải là nâng hạng số học, vì `char` được ưu tiên nâng
+    hạng thành `int / unsigned int`, sau đó mới là `int / unsigned int`->`short`,
+    không thỏa điều kiện của nâng hạng số học.
 
-Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit, `signed char` và `unsigned char` là 8 bit, `bool` là 1 bit):
+Ví dụ (sau đây giả sử `int` là 32 bit, `unsigned short` là 16 bit,
+`signed char` và `unsigned char` là 8 bit, `bool` là 1 bit):
 
--   `(signed char)'\0' - (signed char)'\xff'` trước hết sẽ nâng `(signed char)'\0'` thành `(int)0`, nâng `(signed char)'\xff'` thành `(int)-1`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)1`.
--   `(unsigned char)'\0' - (unsigned char)'\xff'` trước hết sẽ nâng `(unsigned char)'\0'` thành `(int)0`, nâng `(unsigned char)'\xff'` thành `(int)255`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-255`.
--   `false - (unsigned short)12` trước hết sẽ nâng `false` thành `(int)0`, nâng `(unsigned short)12` thành `(int)12`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là `(int)-12`.
+-   `(signed char)'\0' - (signed char)'\xff'` trước hết sẽ nâng
+    `(signed char)'\0'` thành `(int)0`, nâng `(signed char)'\xff'` thành
+    `(int)-1`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là
+    `(int)1`.
+-   `(unsigned char)'\0' - (unsigned char)'\xff'` trước hết sẽ nâng
+    `(unsigned char)'\0'` thành `(int)0`, nâng `(unsigned char)'\xff'` thành
+    `(int)255`, rồi thực hiện phép toán giữa các `int`; kết quả cuối cùng là
+    `(int)-255`.
+-   `false - (unsigned short)12` trước hết sẽ nâng `false` thành `(int)0`, nâng
+    `(unsigned short)12` thành `(int)12`, rồi thực hiện phép toán giữa các `int`;
+    kết quả cuối cùng là `(int)-12`.
 
 <a id="nâng-hạng-dấu-phẩy-động"></a>
 
 #### Nâng hạng dấu phẩy động
 
-Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâng hạng thành số dấu phẩy động có độ rộng bit lớn hơn (ví dụ khi một biến kiểu `float` và một biến kiểu `double` tham gia phép toán số học, biến kiểu `float` sẽ được nâng hạng thành biến kiểu `double`), và giá trị của nó không đổi.
+Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâng hạng thành số dấu phẩy
+động có độ rộng bit lớn hơn. Ví dụ, khi một biến kiểu `float` và một biến kiểu
+`double` tham gia phép toán số học, biến kiểu `float` sẽ được nâng hạng thành
+biến kiểu `double`, và giá trị của nó không đổi.
 
 <a id="chuyển-đổi-số-học"></a>
 
@@ -520,7 +549,8 @@ Số dấu phẩy động có độ rộng bit nhỏ hơn có thể được nâ
 Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 
 ???+ warning "Lưu ý"
-    Nâng hạng số học có độ ưu tiên cao hơn chuyển đổi số học. Ví dụ, `bool`->`int` là nâng hạng số học chứ không phải chuyển đổi số học.
+    Nâng hạng số học có độ ưu tiên cao hơn chuyển đổi số học. Ví dụ, `bool`->`int`
+    là nâng hạng số học chứ không phải chuyển đổi số học.
 
 <a id="chuyển-đổi-số-nguyên"></a>
 
@@ -528,32 +558,58 @@ Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
--   Nếu kiểu đích là kiểu số nguyên không dấu có độ rộng bit $x$, kết quả chuyển đổi là giá trị ban đầu sau khi lấy $\bmod 2^x$.
+-   Nếu kiểu đích là kiểu số nguyên không dấu có độ rộng bit $x$, kết quả chuyển
+    đổi là giá trị ban đầu sau khi lấy $\bmod 2^x$.
 
     -   Nếu độ rộng bit của kiểu đích lớn hơn độ rộng bit của kiểu nguồn:
 
-        -   Nếu kiểu nguồn là kiểu có dấu, thông thường cần mở rộng bit dấu trước rồi mới chuyển đổi.
+        -   Nếu kiểu nguồn là kiểu có dấu, thông thường cần mở rộng bit dấu trước
+            rồi mới chuyển đổi.
 
             Ví dụ:
 
-            -   Khi chuyển `(short)-1` (`(short)0b1111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bit dấu, thu được `0b1111'1111'1111'1111'1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`).
-            -   Khi chuyển `(short)32'767` (`(short)0b0111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bit dấu, thu được `0b0000'0000'0000'0000'0111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)32'767` (`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`).
+            -   Khi chuyển `(short)-1` (`(short)0b1111'1111'1111'1111`) sang kiểu
+                `unsigned int`, trước hết mở rộng bit dấu, thu được
+                `0b1111'1111'1111'1111'1111'1111'1111'1111`, rồi thực hiện
+                chuyển đổi số nguyên; kết quả là `(unsigned int)4'294'967'295`
+                (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`).
+            -   Khi chuyển `(short)32'767` (`(short)0b0111'1111'1111'1111`) sang
+                kiểu `unsigned int`, trước hết mở rộng bit dấu, thu được
+                `0b0000'0000'0000'0000'0111'1111'1111'1111`, rồi thực hiện
+                chuyển đổi số nguyên; kết quả là `(unsigned int)32'767`
+                (`(unsigned int)0b0000'0000'0000'0000'0111'1111'1111'1111`).
 
-        -   Nếu kiểu nguồn là kiểu không dấu, cần mở rộng bằng bit 0 trước rồi mới chuyển đổi.
+        -   Nếu kiểu nguồn là kiểu không dấu, cần mở rộng bằng bit 0 trước rồi
+            mới chuyển đổi.
 
-            Ví dụ, khi chuyển `(unsigned short)65'535` (`(unsigned short)0b1111'1111'1111'1111`) sang kiểu `unsigned int`, trước hết mở rộng bằng bit 0, thu được `0b0000'0000'0000'0000'1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned int)65'535` (`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`).
+            Ví dụ, khi chuyển `(unsigned short)65'535`
+            (`(unsigned short)0b1111'1111'1111'1111`) sang kiểu `unsigned int`,
+            trước hết mở rộng bằng bit 0, thu được
+            `0b0000'0000'0000'0000'1111'1111'1111'1111`, rồi thực hiện chuyển
+            đổi số nguyên; kết quả là `(unsigned int)65'535`
+            (`(unsigned int)0b0000'0000'0000'0000'1111'1111'1111'1111`).
 
-    -   Nếu độ rộng bit của kiểu đích không lớn hơn độ rộng bit của kiểu nguồn, cần cắt bớt trước rồi mới chuyển đổi.
+    -   Nếu độ rộng bit của kiểu đích không lớn hơn độ rộng bit của kiểu nguồn,
+        cần cắt bớt trước rồi mới chuyển đổi.
 
-        Ví dụ, khi chuyển `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu `unsigned short`, trước hết cắt bớt, thu được `0b1111'1111'1111'1111`, rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned short)65'535` (`(unsigned short)0b1111'1111'1111'1111`).
+        Ví dụ, khi chuyển `(unsigned int)4'294'967'295`
+        (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu
+        `unsigned short`, trước hết cắt bớt, thu được `0b1111'1111'1111'1111`,
+        rồi thực hiện chuyển đổi số nguyên; kết quả là `(unsigned short)65'535`
+        (`(unsigned short)0b1111'1111'1111'1111`).
 
--   Nếu kiểu đích là kiểu số nguyên có dấu có độ rộng bit $x$, thì **trong trường hợp thông thường**, kết quả chuyển đổi có thể được xem là kết quả của giá trị ban đầu sau khi lấy $\bmod 2^x$.[^note13]
+-   Nếu kiểu đích là kiểu số nguyên có dấu có độ rộng bit $x$, thì **trong trường
+    hợp thông thường**, kết quả chuyển đổi có thể được xem là kết quả của giá trị
+    ban đầu sau khi lấy $\bmod 2^x$.[^note13]
 
-    Ví dụ, khi chuyển `(unsigned int)4'294'967'295` (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu `short`, kết quả là `(short)-1` (`(short)0b1111'1111'1111'1111`).
+    Ví dụ, khi chuyển `(unsigned int)4'294'967'295`
+    (`(unsigned int)0b1111'1111'1111'1111'1111'1111'1111'1111`) sang kiểu
+    `short`, kết quả là `(short)-1` (`(short)0b1111'1111'1111'1111`).
 
 -   Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#chuyển-đổi-luận-lý).
 
--   Nếu kiểu nguồn là `bool`, thì `false` chuyển thành 0 của kiểu tương ứng, còn `true` chuyển thành 1 của kiểu tương ứng.
+-   Nếu kiểu nguồn là `bool`, thì `false` chuyển thành 0 của kiểu tương ứng, còn
+    `true` chuyển thành 1 của kiểu tương ứng.
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
@@ -561,33 +617,39 @@ Trong quá trình chuyển đổi số học, giá trị có thể thay đổi.
 
 #### Chuyển đổi dấu phẩy động
 
-Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển sang số dấu phẩy động có độ rộng bit nhỏ hơn, số đó sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
+Khi số dấu phẩy động có độ rộng bit lớn hơn được chuyển sang số dấu phẩy động có
+độ rộng bit nhỏ hơn, số đó sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
 
 <a id="chuyển-đổi-giữa-dấu-phẩy-động-và-số-nguyên"></a>
 
 #### Chuyển đổi giữa dấu phẩy động và số nguyên
 
--   Khi chuyển số dấu phẩy động sang số nguyên, toàn bộ phần thập phân của số dấu phẩy động sẽ bị bỏ đi.
+-   Khi chuyển số dấu phẩy động sang số nguyên, toàn bộ phần thập phân của số dấu
+    phẩy động sẽ bị bỏ đi.
 
     Nếu kiểu đích là `bool`, đó là [chuyển đổi luận lý](#chuyển-đổi-luận-lý).
 
--   Khi chuyển số nguyên sang số dấu phẩy động, giá trị sẽ được làm tròn về giá trị gần nhất trong kiểu đích.
+-   Khi chuyển số nguyên sang số dấu phẩy động, giá trị sẽ được làm tròn về giá
+    trị gần nhất trong kiểu đích.
 
     Nếu giá trị đó không thể chứa trong kiểu đích, hành vi là không xác định.
 
-    Nếu kiểu nguồn là `bool`, thì `false` chuyển thành không, còn `true` chuyển thành một.
+    Nếu kiểu nguồn là `bool`, thì `false` chuyển thành không, còn `true` chuyển
+    thành một.
 
 <a id="chuyển-đổi-luận-lý"></a>
 
 #### Chuyển đổi luận lý
 
-Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuyển thành `false`, giá trị khác không chuyển thành `true`.
+Khi chuyển các kiểu khác sang kiểu `bool`, giá trị bằng không chuyển thành
+`false`, giá trị khác không chuyển thành `true`.
 
 <a id="định-nghĩa-biến"></a>
 
 ## Định nghĩa biến
 
-Nói đơn giản[^note14], để định nghĩa một biến, cần có bộ mô tả kiểu (chỉ rõ kiểu của biến) và tên biến cần định nghĩa.
+Nói ngắn gọn[^note14], để định nghĩa một biến, cần có bộ mô tả kiểu (chỉ rõ kiểu
+của biến) và tên biến cần định nghĩa.
 
 Ví dụ, các câu lệnh sau đều là câu lệnh định nghĩa biến.
 
@@ -597,9 +659,14 @@ double wiki;
 char org = 'c';
 ```
 
-Trong các đoạn chương trình cơ bản trong phần này, biến được định nghĩa trong phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa cần xét trong phần nhập môn này.
+Trong các đoạn chương trình cơ bản trong phần này, biến được định nghĩa trong
+phạm vi được bao bởi cặp ngoặc nhọn là biến cục bộ, còn biến được định nghĩa bên
+ngoài các khối đó là biến toàn cục. C++ vẫn có ngoại lệ phức tạp hơn, nhưng chưa
+cần xét trong phần nhập môn này.
 
-Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$. Biến cục bộ không có tính chất này, nên cần gán giá trị ban đầu cụ thể; nếu không có thể gây ra lỗi khó phát hiện.
+Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ được khởi tạo bằng $0$.
+Biến cục bộ không có tính chất này, nên cần gán giá trị ban đầu cụ thể; nếu không
+có thể gây ra lỗi khó phát hiện.
 
 <a id="phạm-vi-của-biến"></a>
 
@@ -607,7 +674,8 @@ Biến toàn cục không có giá trị khởi tạo khi định nghĩa sẽ đ
 
 Phạm vi là khối mã mà biến có thể có hiệu lực.
 
-Phạm vi của biến toàn cục bắt đầu từ nơi nó được định nghĩa[^note15] cho đến cuối tệp.
+Phạm vi của biến toàn cục bắt đầu từ nơi nó được định nghĩa[^note15] cho đến cuối
+tệp.
 
 Phạm vi của biến cục bộ bắt đầu từ nơi nó được định nghĩa cho đến cuối khối mã.
 
@@ -623,9 +691,11 @@ int main() {
 }
 ```
 
-Nếu trong khối lồng bên trong của một khối mã có định nghĩa biến cùng tên, thì tên ở khối bên trong sẽ che khuất biến cùng tên ở khối bên ngoài.
+Nếu trong khối lồng bên trong của một khối mã có định nghĩa biến cùng tên, thì
+tên ở khối bên trong sẽ che khuất biến cùng tên ở khối bên ngoài.
 
-Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi ngoài dự kiến, nên cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
+Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. Vì vậy, để tránh lỗi
+ngoài dự kiến, nên cố gắng tránh để biến cục bộ trùng tên với biến toàn cục.
 
 <a id="hằng"></a>
 
@@ -633,14 +703,16 @@ Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. V
 
 Hằng là giá trị cố định, không thay đổi trong quá trình chương trình thực thi.
 
-Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, thêm từ khóa `const`.
+Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, thêm từ
+khóa `const`.
 
 ```cpp
 const int a = 2;
 a = 3;
 ```
 
-Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn biên dịch: `error: assignment of read-only variable 'a'`.
+Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn biên dịch:
+`error: assignment of read-only variable 'a'`.
 
 <a id="tài-liệu-tham-khảo-và-chú-thích"></a>
 
@@ -658,14 +730,29 @@ Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn b
 
 [^note10]: Xem <https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3054.pdf>
 
-[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm và các kiểu khác. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó không được giới thiệu cụ thể tại đây. Xem chi tiết tại [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
+[^note11]: Bao gồm kiểu mảng, kiểu tham chiếu, kiểu con trỏ, kiểu lớp, kiểu hàm và
+    các kiểu khác. Vì bài viết này hướng tới người mới bắt đầu, nên các kiểu đó
+    không được giới thiệu cụ thể tại đây. Xem chi tiết tại
+    [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
 
-[^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
+[^note12]: Không bao gồm kiểu ký tự rộng, trường bit và kiểu liệt kê; xem chi
+    tiết tại
+    [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
-[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do bản triển khai định nghĩa (implementation-defined). Xem chi tiết tại [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
+[^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do bản triển khai định
+    nghĩa (implementation-defined). Xem chi tiết tại
+    [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
-[^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ mô tả khác. Xem chi tiết tại [khai báo - cppreference](https://en.cppreference.com/w/cpp/language/declarations).
+[^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ
+    mô tả khác. Xem chi tiết tại
+    [khai báo - cppreference](https://en.cppreference.com/w/cpp/language/declarations).
 
-[^note15]: Nói chính xác hơn là [điểm khai báo](https://en.cppreference.com/w/cpp/language/scope#Point_of_declaration).
+[^note15]: Nói chính xác hơn là
+    [điểm khai báo](https://en.cppreference.com/w/cpp/language/scope#Point_of_declaration).
 
-[^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm vi biểu diễn của [mã bù một](../math/bit.md#số-nguyên-và-chuỗi-bit) (tức $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng hầu hết bản triển khai đều dùng [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
+[^note16]: Trước C++20, chuẩn quy định số nguyên có dấu ít nhất phải bao phủ phạm
+    vi biểu diễn của [mã bù một](../math/bit.md#số-nguyên-và-chuỗi-bit) (tức
+    $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng hầu hết bản triển khai đều dùng
+    [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định
+    thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại
+    [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
