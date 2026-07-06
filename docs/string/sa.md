@@ -1,22 +1,22 @@
 <span id="một-số-quy-ước"></span>
 ## Một số quy ước
 
-Các định nghĩa liên quan đến xâu có thể xem ở [Cơ sở về xâu](./basic.md).
+Các định nghĩa liên quan đến xâu được trình bày trong [Cơ sở về xâu](./basic.md).
 
 Chỉ số của xâu bắt đầu từ $1$.
 
 Độ dài của xâu $s$ là $n$.
 
-"Hậu tố $i$" chỉ hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, dùng $i$ để đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
+"Hậu tố $i$" là hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, chỉ số $i$ đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
 
 <span id="mảng-hậu-tố-là-gì"></span>
 ## Mảng hậu tố là gì?
 
-Mảng hậu tố (Suffix Array) chủ yếu liên quan đến hai mảng: $sa$ và $rk$.
+Mảng hậu tố (Suffix Array) chủ yếu xoay quanh hai mảng: $sa$ và $rk$.
 
-Trong đó, $sa[i]$ là chỉ số của hậu tố nhỏ thứ $i$ sau khi sắp xếp tất cả hậu tố. Đây chính là mảng hậu tố; về sau cũng gọi là mảng chỉ số $sa$.
+Trong đó, $sa[i]$ là chỉ số của hậu tố nhỏ thứ $i$ sau khi sắp xếp tất cả hậu tố. Đây chính là mảng hậu tố; các phần sau cũng gọi là mảng chỉ số $sa$.
 
-$rk[i]$ là thứ hạng của hậu tố $i$, một mảng phụ quan trọng; về sau cũng gọi là mảng thứ hạng $rk$.
+$rk[i]$ là thứ hạng của hậu tố $i$, một mảng phụ quan trọng; các phần sau cũng gọi là mảng thứ hạng $rk$.
 
 Hai mảng này thỏa tính chất: $sa[rk[i]]=rk[sa[i]]=i$.
 
@@ -33,7 +33,7 @@ Ví dụ về mảng hậu tố:
 <span id="cách-on2log-n"></span>
 ### Cách $O(n^2\log n)$
 
-Cách này khá dễ tự nghĩ ra: đưa tất cả hậu tố vào một mảng rồi sắp xếp bằng `sort`. Việc sắp xếp cần $O(n\log n)$ lần so sánh xâu, mỗi lần so sánh xâu tốn $O(n)$ phép so sánh ký tự, nên độ phức tạp thời gian là $O(n^2\log n)$.
+Ý tưởng trực tiếp là đưa tất cả hậu tố vào một mảng rồi sắp xếp bằng `sort`. Việc sắp xếp cần $O(n\log n)$ lần so sánh xâu, mỗi lần so sánh xâu tốn $O(n)$ phép so sánh ký tự, nên độ phức tạp thời gian là $O(n^2\log n)$.
 
 <span id="cách-onlog2-n"></span>
 ### Cách $O(n\log^2 n)$
@@ -48,7 +48,7 @@ Quá trình nhân đôi:
 
 2.  Tiếp theo, dùng thứ hạng của hai xâu con độ dài $2$, tức $rk_2[i]$ và $rk_2[i+2]$, làm hai khóa sắp xếp để sắp xếp mỗi xâu con độ dài $4$ của $s$: $\{s[i\dots \min(i+3, n)]\ |\ i \in [1,\ n]\}$, thu được $sa_4$ và $rk_4$.
 
-3.  Cứ tiếp tục nhân đôi như vậy: dùng thứ hạng của hai xâu con độ dài $w/2$, tức $rk_{w/2}[i]$ và $rk_{w/2}[i+w/2]$, làm hai khóa sắp xếp để sắp xếp mỗi xâu con độ dài $w$ của $s$, là $s[i\dots \min(i+w-1,\ n)]$, thu được $sa_w$ và $rk_w$. Tương tự quy tắc thứ tự từ điển, khi $i+w>n$ thì xem $rk_w[i+w]$ là âm vô cực.
+3.  Lặp lại quá trình nhân đôi: dùng thứ hạng của hai xâu con độ dài $w/2$, tức $rk_{w/2}[i]$ và $rk_{w/2}[i+w/2]$, làm hai khóa sắp xếp để sắp xếp mỗi xâu con độ dài $w$ của $s$, là $s[i\dots \min(i+w-1,\ n)]$, thu được $sa_w$ và $rk_w$. Tương tự quy tắc thứ tự từ điển, khi $i+w>n$ thì xem $rk_w[i+w]$ là âm vô cực.
 
 4.  $rk_w[i]$ chính là thứ hạng của xâu con $s[i\dots i + w - 1]$. Khi $w \geqslant n$, mảng chỉ số $sa_w$ thu được chính là mảng hậu tố cần tìm.
 
@@ -61,7 +61,7 @@ Sơ đồ minh họa sắp xếp bằng nhân đôi:
 
 Quá trình nhân đôi có $O(\log n)$ vòng. Trong mỗi vòng, dùng `sort` để sắp xếp các xâu con tốn $O(n\log n)$, còn mỗi lần so sánh xâu con chỉ cần $2$ phép so sánh ký tự.
 
-Ngoài ra, sau khi `sort` ở mỗi vòng còn có thao tác cập nhật $rk$ tốn thêm $O(n)$, nhưng so với $O(n\log n)$ thì có thể bỏ qua.
+Sau khi `sort` ở mỗi vòng còn có thao tác cập nhật $rk$ tốn thêm $O(n)$, nhưng phần chi phí này không ảnh hưởng đến độ phức tạp tổng thể so với $O(n\log n)$.
 
 Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
 
@@ -115,11 +115,11 @@ Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
 <span id="cách-onlog-n"></span>
 ### Cách $O(n\log n)$
 
-Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu có thể sắp xếp trong $O(n)$, mảng hậu tố sẽ được tính trong $O(n\log n)$.
+Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu thay bước sắp xếp bằng một thuật toán $O(n)$, mảng hậu tố sẽ được tính trong $O(n\log n)$.
 
 Kiến thức chuẩn bị: [sắp xếp đếm](../basic/counting-sort.md), [sắp xếp cơ số](../basic/radix-sort.md).
 
-Trong quá trình tính mảng hậu tố, khóa sắp xếp là thứ hạng, có miền giá trị $O(n)$, và đây là phép sắp xếp theo hai khóa. Do đó có thể dùng sắp xếp cơ số để tối ưu xuống $O(n)$.
+Trong quá trình tính mảng hậu tố, khóa sắp xếp là thứ hạng, có miền giá trị $O(n)$, và phép sắp xếp dùng hai khóa. Do đó có thể dùng sắp xếp cơ số để tối ưu xuống $O(n)$.
 
 ??? note "Cài đặt"
     ```cpp
@@ -198,7 +198,7 @@ Nguyên nhân là hằng số của đoạn mã trên thực sự khá lớn.
 <span id="khóa-thứ-hai-không-cần-sắp-xếp-đếm"></span>
 #### Khóa thứ hai không cần sắp xếp đếm
 
-Xét bản chất của việc sắp xếp theo khóa thứ hai: thực ra chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
+Xét bản chất của việc sắp xếp theo khóa thứ hai: chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
 
 ```cpp
 int cur = 0;
@@ -210,12 +210,12 @@ for (int i = 1; i <= n; i++)
 <span id="tối-ưu-miền-giá-trị-của-sắp-xếp-đếm"></span>
 #### Tối ưu miền giá trị của sắp xếp đếm
 
-Sau mỗi lần cập nhật $rk$, luôn tính được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
+Sau mỗi lần cập nhật $rk$, luôn thu được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
 
 <span id="nếu-mọi-thứ-hạng-đều-khác-nhau-thì-có-thể-tạo-ngay-mảng-hậu-tố"></span>
 #### Nếu mọi thứ hạng đều khác nhau thì có thể tạo ngay mảng hậu tố
 
-Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi thứ hạng đều khác nhau, lúc này không cần sắp xếp tiếp.
+Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi thứ hạng đều khác nhau, khi đó không cần sắp xếp tiếp.
 
 ??? note "Cài đặt"
     ```cpp
@@ -274,17 +274,17 @@ Xét mảng $rk$ mới: nếu miền giá trị của nó là $[1,n]$ thì mọi
 <span id="cách-on"></span>
 ### Cách $O(n)$
 
-Trong đa số bài toán thông thường, cách nhân đôi với hằng số nhỏ đã hoàn toàn đủ dùng. Những phần khác ngoài việc tính mảng hậu tố cũng thường có độ phức tạp $O(n\log n)$, nên bước tính mảng hậu tố bằng nhân đôi không trở thành nút thắt.
+Trong đa số bài toán thông thường, cách nhân đôi với hằng số nhỏ đã đủ dùng. Những phần khác ngoài việc tính mảng hậu tố cũng thường có độ phức tạp $O(n\log n)$, nên bước tính mảng hậu tố bằng nhân đôi không trở thành nút thắt.
 
-Nhưng nếu gặp bài đặc biệt, giới hạn thời gian chặt, hoặc muốn rút ngắn thời gian chạy hơn nữa, cần học các phương pháp xây dựng mảng hậu tố trong $O(n)$.
+Với các bài đặc biệt, giới hạn thời gian chặt, hoặc yêu cầu thời gian chạy ngắn hơn nữa, cần dùng các phương pháp xây dựng mảng hậu tố trong $O(n)$.
 
 #### SA-IS
 
-Có thể tham khảo [Induced Sorting and SA-IS Algorithm](https://riteme.site/blog/2016-6-19/sais.html); [trang bình luận](https://github.com/riteme/riteme.github.io/issues/28) của bài viết này cũng có giá trị tham khảo.
+Tham khảo [Induced Sorting and SA-IS Algorithm](https://riteme.site/blog/2016-6-19/sais.html); [trang bình luận](https://github.com/riteme/riteme.github.io/issues/28) của bài viết này cũng có giá trị tham khảo.
 
 #### DC3
 
-Có thể tham khảo [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2].
+Tham khảo [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2].
 
 <span id="ứng-dụng-của-mảng-hậu-tố"></span>
 ## Ứng dụng của mảng hậu tố
@@ -292,24 +292,24 @@ Có thể tham khảo [[2009] Suffix Array: A Powerful Tool for String Processin
 <span id="tìm-vị-trí-dịch-vòng-nhỏ-nhất"></span>
 ### Tìm vị trí dịch vòng nhỏ nhất
 
-Sao chép xâu $S$ một lần để thành $SS$, bài toán sẽ chuyển thành bài toán sắp xếp hậu tố.
+Sao chép xâu $S$ một lần để thu được $SS$, bài toán sẽ chuyển thành bài toán sắp xếp hậu tố.
 
 Ví dụ: [JSOI2007 - Character Encryption](https://www.luogu.com.cn/problem/P4051).
 
 <span id="tìm-xâu-con-trong-xâu"></span>
 ### Tìm xâu con trong xâu
 
-Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là xâu chính $T$ đã biết trước, nhưng xâu mẫu $S$ chỉ được biết khi có truy vấn. Có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó chắc chắn là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Chú ý rằng nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng rất đơn giản.
+Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là xâu chính $T$ đã biết trước, nhưng xâu mẫu $S$ chỉ được biết khi có truy vấn. Có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó phải là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng đơn giản.
 
 <span id="lấy-ký-tự-từ-hai-đầu-để-tối-thiểu-hóa-thứ-tự-từ-điển"></span>
 ### Lấy ký tự từ hai đầu để tối thiểu hóa thứ tự từ điển
 
 Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
 
-Đề bài: Cho một xâu. Mỗi lần lấy một ký tự ở đầu hoặc cuối để tạo xâu mới. Hỏi trong tất cả các xâu có thể tạo được, xâu nào có thứ tự từ điển nhỏ nhất.
+Đề bài: Cho một xâu. Mỗi lần lấy một ký tự ở đầu hoặc cuối để tạo xâu mới. Cần tìm xâu có thứ tự từ điển nhỏ nhất trong tất cả các xâu có thể tạo được.
 
 ??? note "Lời giải"
-    Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Chỉ cần tối ưu bước phán đoán này.
+    Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Cần tối ưu bước phán đoán này.
     
     Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
 
@@ -333,7 +333,7 @@ Trong phần sau, $lcp(i,j)$ biểu thị độ dài tiền tố chung dài nh�
 
 $height[i]=lcp(sa[i],sa[i-1])$, tức tiền tố chung dài nhất của hậu tố hạng $i$ và hậu tố đứng ngay trước nó.
 
-Có thể xem $height[1]$ là $0$.
+Quy ước $height[1]$ là $0$.
 
 <span id="bổ-đề-cần-dùng-để-tính-mảng-height-trong-on"></span>
 ### Bổ đề cần dùng để tính mảng height trong $O(n)$
@@ -353,7 +353,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
     
     Khi đó hậu tố $i-1$ có thể viết thành $aAD$, còn hậu tố $sa[rk[i-1]-1]$ có thể viết thành $aAB$, với $B < D$, $B$ có thể rỗng và $D$ không rỗng.
     
-    Suy ra hậu tố $i$ có dạng $AD$, và tồn tại hậu tố $(sa[rk[i-1]-1]+1)$ có dạng $AB$.
+    Suy ra hậu tố $i$ có dạng $AD$, đồng thời tồn tại hậu tố $(sa[rk[i-1]-1]+1)$ có dạng $AB$.
     
     Vì hậu tố $sa[rk[i]-1]$ đứng ngay trước hậu tố $sa[rk[i]]$, tức hậu tố $i$, trong thứ tự sắp xếp, và $AB < AD$,
     
@@ -364,7 +364,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
 <span id="cài-đặt-tính-mảng-height-trong-on"></span>
 ### Cài đặt tính mảng height trong $O(n)$
 
-Chỉ cần dùng bổ đề trên để tính trực tiếp:
+Dùng bổ đề trên để tính trực tiếp:
 
 ```cpp
 for (i = 1, k = 0; i <= n; ++i) {
@@ -385,9 +385,9 @@ $k$ không vượt quá $n$ và giảm nhiều nhất $n$ lần, nên cũng tăn
 
 $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
-Trực giác: nếu $height$ luôn lớn hơn một giá trị nào đó, thì bấy nhiêu ký tự đầu vẫn không đổi; ngược lại, vì các hậu tố đã được sắp xếp, sau khi đã thay đổi thì không thể quay lại như cũ.
+Trực giác: nếu $height$ luôn lớn hơn một giá trị nào đó, thì bấy nhiêu ký tự đầu vẫn không đổi; ngược lại, vì các hậu tố đã được sắp xếp, sau khi đã thay đổi thì không thể quay lại trạng thái cũ.
 
-Chứng minh chặt chẽ có thể tham khảo [[2004] Suffix Array, by Xu Zhilei][1].
+Chứng minh chặt chẽ được trình bày trong [[2004] Suffix Array, by Xu Zhilei][1].
 
 Với định lý này, bài toán tìm tiền tố chung dài nhất của hai xâu con được chuyển thành [bài toán RMQ](../topic/rmq.md).
 
@@ -405,9 +405,9 @@ Ngược lại, $A<B\iff rk[a]< rk[c]$.
 
 Xâu con chính là tiền tố của một hậu tố, nên có thể duyệt từng hậu tố, tính tổng số tiền tố rồi trừ đi phần trùng lặp.
 
-"Tổng số tiền tố" thực ra chính là số xâu con, bằng $n(n+1)/2$.
+"Tổng số tiền tố" chính là số xâu con, bằng $n(n+1)/2$.
 
-Nếu duyệt các hậu tố theo thứ tự đã sắp xếp, những xâu con mới được thêm ở mỗi bước chính là các tiền tố còn lại sau khi bỏ phần LCP với hậu tố trước đó. Các tiền tố này chắc chắn là mới, nếu không sẽ mâu thuẫn với tính chất $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$. Chỉ các tiền tố này là mới, vì phần LCP đã được tính khi duyệt hậu tố trước.
+Nếu duyệt các hậu tố theo thứ tự đã sắp xếp, những xâu con mới được thêm ở mỗi bước chính là các tiền tố còn lại sau khi bỏ phần LCP với hậu tố trước đó. Các tiền tố này đều mới; nếu không, tính chất $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$ sẽ bị mâu thuẫn. Chỉ các tiền tố này là mới, vì phần LCP đã được tính khi duyệt hậu tố trước.
 
 Vì vậy đáp án là:
 
@@ -433,7 +433,7 @@ Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
 <span id="kiểm-tra-một-xâu-có-xuất-hiện-ít-nhất-hai-lần-không-chồng-lấp-trong-văn-bản-hay-không"></span>
 ### Kiểm tra một xâu có xuất hiện ít nhất hai lần không chồng lấp trong văn bản hay không
 
-Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ thành các đoạn liên tiếp có LCP lớn hơn hoặc bằng $|s|$, rồi dùng RMQ để tìm chỉ số lớn nhất và nhỏ nhất xuất hiện trong từng đoạn. Nếu khoảng cách giữa hai chỉ số đó thỏa điều kiện, chắc chắn tồn tại một xâu độ dài $|s|$ xuất hiện hai lần không chồng lấp.
+Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ thành các đoạn liên tiếp có LCP lớn hơn hoặc bằng $|s|$, rồi dùng RMQ để tìm chỉ số lớn nhất và nhỏ nhất xuất hiện trong từng đoạn. Nếu khoảng cách giữa hai chỉ số đó thỏa điều kiện, tồn tại một xâu độ dài $|s|$ xuất hiện hai lần không chồng lấp.
 
 <span id="một-số-xâu-con-giống-nhau-liên-tiếp"></span>
 ### Một số xâu con giống nhau liên tiếp

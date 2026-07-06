@@ -77,7 +77,7 @@ Liên hệ với cách tìm thành phần liên thông mạnh: trong đồ thị
 
 Ngược lại, một thành phần liên thông mạnh trên cây sinh DFS tương ứng với một thành phần song liên thông cạnh trong đồ thị vô hướng ban đầu.
 
-Do đó, có thể thấy quá trình tìm thành phần song liên thông cạnh thực chất giống với quá trình tìm thành phần liên thông mạnh.
+Do đó, quá trình tìm thành phần song liên thông cạnh thực chất giống với quá trình tìm thành phần liên thông mạnh.
 
 Độ phức tạp thời gian là $O(n+m)$.
 
@@ -98,7 +98,7 @@ Như hình trên, các cạnh màu đen và màu xanh lá là cạnh cây, còn 
 
 Trong hình, các cạnh cây màu xanh lá được **ít nhất** một cạnh ngoài cây phủ, còn các cạnh cây màu đen không được **bất kỳ** cạnh ngoài cây nào phủ.
 
-Vì vậy, **cạnh ngoài cây** và **cạnh cây màu xanh lá** chắc chắn không phải là cầu, còn **cạnh cây màu đen** chắc chắn là cầu.
+Vì vậy, **cạnh ngoài cây** và **cạnh cây màu xanh lá** không phải là cầu, còn **cạnh cây màu đen** là cầu.
 
 Trước hết xét một cách làm vét cạn: với mỗi cạnh ngoài cây, lần lượt đánh dấu màu xanh lá cho từng cạnh cây mà nó phủ. Độ phức tạp thời gian là $O(nm)$.
 
@@ -136,12 +136,12 @@ Cần nắm phần đỉnh khớp trước; có thể xem phần đỉnh khớp 
 
 Trước hết nêu hai tính chất:
 
-1.  Hai thành phần song liên thông đỉnh có nhiều nhất một đỉnh chung, và đỉnh chung đó chắc chắn là đỉnh khớp.
-2.  Với một thành phần song liên thông đỉnh, đỉnh có giá trị dfn nhỏ nhất trong cây tìm kiếm DFS chắc chắn là đỉnh khớp hoặc là gốc cây.
+1.  Hai thành phần song liên thông đỉnh có nhiều nhất một đỉnh chung, và đỉnh chung đó là đỉnh khớp.
+2.  Với một thành phần song liên thông đỉnh, đỉnh có giá trị dfn nhỏ nhất trong cây tìm kiếm DFS là đỉnh khớp hoặc là gốc cây.
 
 Dựa trên tính chất thứ hai, xét theo từng trường hợp:
 
-1.  Khi đỉnh này là đỉnh khớp, nó chắc chắn là gốc của thành phần song liên thông đỉnh, vì nếu bao gồm cả đỉnh cha của nó thì nó vẫn là đỉnh khớp.
+1.  Khi đỉnh này là đỉnh khớp, nó là gốc của thành phần song liên thông đỉnh, vì nếu bao gồm cả đỉnh cha của nó thì nó vẫn là đỉnh khớp.
 2.  Khi đỉnh này là gốc cây:
     1.  Nếu có từ hai cây con trở lên, nó là một đỉnh khớp.
     2.  Nếu chỉ có một cây con, nó là gốc của một thành phần song liên thông đỉnh.

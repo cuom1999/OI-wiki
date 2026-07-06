@@ -24,11 +24,11 @@
 Trước hết, định hướng tất cả các cạnh. Quy ước cạnh đi từ đỉnh có bậc nhỏ hơn đến đỉnh có bậc lớn hơn; nếu hai bậc bằng nhau thì đi từ đỉnh có số thứ tự nhỏ hơn đến đỉnh có số thứ tự lớn hơn. Khi đó đồ thị thu được là một đồ thị có hướng không chu trình (DAG).
 
 ??? note "Chứng minh đồ thị không có chu trình"
-    Dùng phản chứng. Giả sử tồn tại một chu trình, khi đó bậc của các đỉnh trên chu trình phải tăng dần. Để tạo thành chu trình, bậc của tất cả các đỉnh phải bằng nhau, nhưng số thứ tự của chúng chắc chắn khác nhau, mâu thuẫn.
+    Dùng phản chứng. Giả sử tồn tại một chu trình, khi đó bậc của các đỉnh trên chu trình phải tăng dần. Để tạo thành chu trình, bậc của tất cả các đỉnh phải bằng nhau, nhưng số thứ tự của chúng phải khác nhau, mâu thuẫn.
     
-    Vì vậy đồ thị sau khi định hướng chắc chắn không có chu trình.
+    Vì vậy đồ thị sau khi định hướng không có chu trình.
     
-    Thực ra, có thể dựa vào quy tắc định hướng trên để xây dựng một [thứ tự bộ phận](../math/order-theory.md#quan-hệ-hai-ngôi), nên đồ thị được xây dựng theo quy tắc này (tức [biểu đồ Hasse](../math/order-theory.md#biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse) của thứ tự bộ phận đó) chắc chắn là một DAG.
+    Có thể dựa vào quy tắc định hướng trên để xây dựng một [thứ tự bộ phận](../math/order-theory.md#quan-hệ-hai-ngôi), nên đồ thị được xây dựng theo quy tắc này (tức [biểu đồ Hasse](../math/order-theory.md#biểu-diễn-trực-quan-tập-có-thứ-tự-bộ-phận-biểu-đồ-hasse) của thứ tự bộ phận đó) là một DAG.
 
 Liệt kê $u$ và các đỉnh $v$ mà $u$ trỏ tới, rồi trong các đỉnh mà $v$ trỏ tới tiếp tục liệt kê $w$; cuối cùng chỉ cần kiểm tra $u$ có nối với $w$ hay không.
 
@@ -45,7 +45,7 @@ Liệt kê $u$ và các đỉnh $v$ mà $u$ trỏ tới, rồi trong các đỉn
     
     Tổng độ phức tạp thời gian là $O(n+m+n\sqrt m+m\sqrt m)=O(m\sqrt m)$.
     
-    Thực ra, nếu định hướng cạnh từ đỉnh có bậc lớn hơn đến đỉnh có bậc nhỏ hơn, độ phức tạp vẫn đúng. Chỉ cần hoán đổi hai đỉnh $u,\ w$, chứng minh trên vẫn áp dụng được.
+    Nếu định hướng cạnh từ đỉnh có bậc lớn hơn đến đỉnh có bậc nhỏ hơn, độ phức tạp vẫn giữ nguyên. Chỉ cần hoán đổi hai đỉnh $u,\ w$, chứng minh trên vẫn áp dụng được.
 
 ???+ note "Mã mẫu ([Luogu P1989 Đếm chu trình ba đỉnh trong đồ thị vô hướng](https://www.luogu.com.cn/problem/P1989))"
     ```cpp
@@ -79,11 +79,11 @@ Trước hết, xét việc sắp xếp các đỉnh: đỉnh có bậc nhỏ h�
 
 Xét việc liệt kê đỉnh $a$ đứng sau cùng. Khi đó, với mỗi đỉnh $c$ đứng trước $a$, chỉ cần tính có bao nhiêu đỉnh $b$ cũng đứng trước $a$ và thỏa mãn $(a,\ b)$, $(b,\ c)$ đều có cạnh. Sau đó, chọn bất kỳ hai đỉnh trong các đỉnh $b$ này đều có thể tạo thành một chu trình bốn đỉnh. Để tính số lượng $b$, chỉ cần duyệt một lượt các đỉnh $b$ và $c$.
 
-Chú ý rằng độ phức tạp của phép liệt kê này về bản chất tương đương với việc liệt kê chu trình ba đỉnh, nên độ phức tạp thời gian cũng là $O(m\sqrt m)$ (giả sử $n,\ m$ cùng bậc).
+Độ phức tạp của phép liệt kê này về bản chất tương đương với việc liệt kê chu trình ba đỉnh, nên độ phức tạp thời gian cũng là $O(m\sqrt m)$ (giả sử $n,\ m$ cùng bậc).
 
-Điểm đáng chú ý là $(a,\ b,\ c,\ d)$ và $(a,\ c,\ b,\ d)$ có thể là hai chu trình bốn đỉnh khác nhau.
+Cần phân biệt rằng $(a,\ b,\ c,\ d)$ và $(a,\ c,\ b,\ d)$ có thể là hai chu trình bốn đỉnh khác nhau.
 
-Ngoài ra, các đỉnh có cùng bậc vẫn phải có thứ hạng khác nhau, và cần chú ý kiểm tra $a\neq c$.
+Ngoài ra, các đỉnh có cùng bậc vẫn phải có thứ hạng khác nhau, và cần kiểm tra $a\neq c$.
 
 ???+ note "Mã mẫu ([LibreOJ P191 Đếm chu trình bốn đỉnh trong đồ thị vô hướng](https://loj.ac/p/191))"
     ```cpp
@@ -102,7 +102,7 @@ Ngoài ra, các đỉnh có cùng bậc vẫn phải có thứ hạng khác nhau
     
     Với hình sao, chỉ cần liệt kê bậc của các đỉnh rồi dùng tổ hợp. Chu trình bốn đỉnh có thể được tính trực tiếp bằng thuật toán ở trên. Với phần chu trình ba đỉnh, chỉ cần liệt kê chu trình ba đỉnh $(u,\ v,\ w)$; khi đó đóng góp vào đáp án là $[d(u)-2]+[d(v)-2]+[d(w)-2]$.
     
-    Tiếp theo xét trường hợp thứ tư. Liệt kê đỉnh $x$ đóng vai trò đỉnh bậc $2$, rồi liệt kê một đỉnh $y$ kề với nó làm đỉnh bậc $3$. Lúc này đóng góp vào đáp án là $[d(x)-1]\cdot\dbinom{d(y)-1}2$. Tuy nhiên, cần chú ý rằng đỉnh kề của $y$ có thể trùng với đỉnh kề của $x$; khi đó hình thu được tương đương với trường hợp thứ ba. Mỗi trường hợp thứ ba bị tính thừa như vậy sẽ bị tính thừa hai lần (vì có hai đỉnh bậc $3$), nên cần trừ đi hai lần số lượng trường hợp thứ ba.
+    Tiếp theo xét trường hợp thứ tư. Liệt kê đỉnh $x$ đóng vai trò đỉnh bậc $2$, rồi liệt kê một đỉnh $y$ kề với nó làm đỉnh bậc $3$. Lúc này đóng góp vào đáp án là $[d(x)-1]\cdot\dbinom{d(y)-1}2$. Tuy nhiên, đỉnh kề của $y$ có thể trùng với đỉnh kề của $x$; khi đó hình thu được tương đương với trường hợp thứ ba. Mỗi trường hợp thứ ba bị tính thừa như vậy sẽ bị tính thừa hai lần (vì có hai đỉnh bậc $3$), nên cần trừ đi hai lần số lượng trường hợp thứ ba.
     
     Với trường hợp cuối cùng, trước hết liệt kê đỉnh ở giữa $x$. Khi đó đóng góp vào đáp án là
     

@@ -92,10 +92,10 @@ Sau khi chèn xong, cần điều chỉnh dựa trên trạng thái của nút v
 ???+ note "Ghi chú"
     Để hiểu sâu hơn, có thể tự kiểm tra xem sau khi duy trì cân bằng thì tính chất 4 có được thỏa mãn hay không.
 
-Vì nút vừa chèn, nếu không phải nút gốc, chắc chắn có màu đỏ, nên thao tác chèn có thể vi phạm tính chất 3 và cần duy trì
+Vì nút vừa chèn, nếu không phải nút gốc, luôn có màu đỏ, nên thao tác chèn có thể vi phạm tính chất 3 và cần duy trì
 cân bằng.
 
-Gọi nút được chèn là $n$, nút cha là $p$, nút ông là $g$, nút chú là $u$. Theo tính chất 3, $g$ chắc chắn có màu đen.
+Gọi nút được chèn là $n$, nút cha là $p$, nút ông là $g$, nút chú là $u$. Theo tính chất 3, $g$ phải có màu đen.
 
 Bắt đầu từ vị trí chèn, quá trình duy trì cân bằng tiếp tục đệ quy lên phía trên. Nếu $p$ có màu đen thì có thể dừng; nếu
 không, chia thành 3 trường hợp.
@@ -149,8 +149,8 @@ So với cây tìm kiếm nhị phân thông thường, thao tác xóa của câ
 
 -   Nếu nút cần xóa $n$ có hai nút con, hoán đổi dữ liệu của $n$ với nút nhỏ nhất $s$ trong cây con phải,
     rồi đặt $n$ thành $s$. Khi đó $n$ không thể có hai nút con.
--   Nếu nút cần xóa $n$ có một nút con $s$, theo tính chất 4, $s$ chắc chắn có màu đỏ;
-    tiếp đó theo tính chất 3, $n$ chắc chắn có màu đen.
+-   Nếu nút cần xóa $n$ có một nút con $s$, theo tính chất 4, $s$ phải có màu đỏ;
+    tiếp đó theo tính chất 3, $n$ phải có màu đen.
     Vì vậy chỉ cần thay con trỏ tương ứng của $n$ trong nút cha $p$ bằng địa chỉ của $s$,
     thay con trỏ cha của $s$ bằng địa chỉ của $p$, rồi tô $s$ thành đen.
 -   Nếu nút cần xóa $n$ không có nút con, và $n$ là nút gốc hoặc nút đỏ, thì có thể xóa trực tiếp.
@@ -208,7 +208,7 @@ Lúc này chỉ cần tô $s$ thành đỏ.
 
 ![](images/rbtree-remove-case2.svg)
 
-Cần chú ý rằng nếu $p$ có màu đỏ thì sẽ vi phạm tính chất 3.
+Điểm cần lưu ý là nếu $p$ có màu đỏ thì sẽ vi phạm tính chất 3.
 Tuy nhiên nếu $p$ có màu đỏ thì vòng lặp sẽ thoát trực tiếp, nên cuối cùng chỉ cần tô nó thành đen.
 
 ???+ note "Cài đặt"
@@ -344,7 +344,7 @@ Mã nguồn:
     [`__gnu_cxx::rb_tree`](https://github.com/gcc-mirror/gcc/blob/master/libstdc%2B%2B-v3/include/ext/rb_tree) trong
     `<ext/rb_tree>`.
     Nó kế thừa `std::_Rb_tree` và có thể xem là một bí danh kiểu dành cho sử dụng bên ngoài.
-    Cần chú ý rằng header này **không phải** là một phần của tiêu chuẩn C++,
+    Điểm cần lưu ý là header này **không phải** là một phần của tiêu chuẩn C++,
     nên không khuyến nghị sử dụng nếu không thật cần thiết.
 
     [`pb_ds`](../lang/pb-ds/tree.md) của `libstdc++` cũng cung cấp cây đỏ-đen.
