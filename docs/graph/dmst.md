@@ -62,19 +62,19 @@ bool solve() {
 
 Tarjan đề xuất một thuật toán giải bài toán arborescence nhỏ nhất trong thời gian $O(m+n\log n)$.
 
-Phần mô tả thuật toán và mã tham khảo ở đây dựa trên bài giảng của Giáo sư Uri Zwick; có thể xem tài liệu gốc để biết thêm chi tiết.
+Phần mô tả thuật toán và mã tham khảo trong mục này dựa trên bài giảng của Giáo sư Uri Zwick; có thể xem tài liệu gốc để biết thêm chi tiết.
 
 ### Quy trình
 
-Thuật toán của Tarjan gồm hai giai đoạn: **co** và **mở rộng**. Trước hết ta xét giai đoạn **co**.
+Thuật toán của Tarjan gồm hai giai đoạn: **co** và **mở rộng**. Trước hết xét giai đoạn **co**.
 
-Ta cần giả sử đồ thị đầu vào là liên thông mạnh. Nếu không, thêm $O(n)$ cạnh có trọng số vô cùng lớn để đồ thị thỏa điều kiện này.
+Cần giả sử đồ thị đầu vào là liên thông mạnh. Nếu không, thêm $O(n)$ cạnh có trọng số vô cùng lớn để đồ thị thỏa điều kiện này.
 
-Ta cần một heap để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh. Vì các bước sau cần thao tác gộp heap, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt. Ở mỗi bước của thuật toán, chọn một đỉnh tùy ý $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap. Sau đó đưa cạnh vào nhỏ nhất của $v$ vào heap. Nếu cạnh mới thêm khiến các cạnh trong heap tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; ta gọi các đỉnh đã được co như vậy là **siêu đỉnh**. Tiếp tục quá trình này, và khi toàn bộ các đỉnh đã được co thành một siêu đỉnh, giai đoạn co kết thúc. Sau toàn bộ giai đoạn co, ta thu được một cây co, rồi sẽ thực hiện thao tác mở rộng trên cây đó.
+Cần một heap để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh. Vì các bước sau cần thao tác gộp heap, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt. Ở mỗi bước của thuật toán, chọn một đỉnh tùy ý $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap. Sau đó đưa cạnh vào nhỏ nhất của $v$ vào heap. Nếu cạnh mới thêm khiến các cạnh trong heap tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; các đỉnh đã được co như vậy được gọi là **siêu đỉnh**. Tiếp tục quá trình này, và khi toàn bộ các đỉnh đã được co thành một siêu đỉnh, giai đoạn co kết thúc. Sau toàn bộ giai đoạn co, thu được một cây co, rồi sẽ thực hiện thao tác mở rộng trên cây đó.
 
 Các cạnh trong heap luôn tạo thành một đường đi $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$. Vì đồ thị liên thông mạnh, đường đi này chắc chắn tồn tại; mỗi $v_i$ có thể là một đỉnh đơn ban đầu hoặc một siêu đỉnh sau khi co.
 
-Ban đầu có $v_o=a$, trong đó $a$ là một đỉnh bất kỳ trong đồ thị. Mỗi lần chọn một cạnh vào nhỏ nhất $v_k\leftarrow u$. Nếu $u$ không phải một trong các đỉnh $v_0,v_1,\dots,v_k$, ta mở rộng đường đi tới $v_{k+1}=u$. Nếu $u$ là một đỉnh $v_i$ trong số đó, ta đã tìm được chu trình $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$, rồi co các đỉnh này thành một siêu đỉnh $c$.
+Ban đầu có $v_o=a$, trong đó $a$ là một đỉnh bất kỳ trong đồ thị. Mỗi lần chọn một cạnh vào nhỏ nhất $v_k\leftarrow u$. Nếu $u$ không phải một trong các đỉnh $v_0,v_1,\dots,v_k$, mở rộng đường đi tới $v_{k+1}=u$. Nếu $u$ là một đỉnh $v_i$ trong số đó, đã tìm được chu trình $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$, rồi co các đỉnh này thành một siêu đỉnh $c$.
 
 Đưa tất cả các đỉnh hoặc siêu đỉnh vào hàng đợi $P$, đồng thời ban đầu chọn một đỉnh tùy ý $a$. Chừng nào hàng đợi còn chưa rỗng, thực hiện các bước sau:
 
