@@ -11,7 +11,7 @@ nó vừa thỏa tính chất heap, vừa hỗ trợ hợp nhất nhanh.
 
 ## Định nghĩa và tính chất của cây lệch trái
 
-Với một cây nhị phân, **nút ngoài** là nút có số con nhỏ hơn hai.
+Trong một cây nhị phân, **nút ngoài** là nút có ít hơn hai con.
 $\mathrm{dist}$ của một nút là số cạnh trên đường đi từ nút đó tới nút ngoài gần nhất trong cây con của nó.
 $\mathrm{dist}$ của nút rỗng là $0$.
 
@@ -34,9 +34,9 @@ Cần lưu ý rằng $\mathrm{dist}$ không phải là độ sâu.
 ## Thao tác cốt lõi: hợp nhất (merge)
 
 Khi hợp nhất hai heap, trước hết chọn gốc có giá trị nhỏ hơn làm gốc của heap kết quả để giữ tính chất heap (bài này xét
-min-heap). Sau đó giữ nguyên con trái của gốc này, rồi đệ quy hợp nhất con phải của nó với heap còn lại để tạo con phải
-mới. Để giữ tính chất lệch trái, sau khi hợp nhất, nếu $\mathrm{dist}$ của con trái nhỏ hơn $\mathrm{dist}$ của con phải
-thì đổi chỗ hai con.
+min-heap). Sau đó giữ nguyên con trái của gốc này, rồi đệ quy hợp nhất con phải của nó với heap còn lại để tạo ra con
+phải mới. Để giữ tính chất lệch trái, sau khi hợp nhất, nếu $\mathrm{dist}$ của con trái nhỏ hơn $\mathrm{dist}$ của con
+phải thì đổi chỗ hai con.
 
 Mã tham khảo:
 
@@ -48,12 +48,12 @@ Mã tham khảo:
       t[x].rs = merge(t[x].rs, y);          // Đệ quy hợp nhất con phải với heap còn lại
       if (t[t[x].rs].d > t[t[x].ls].d)
         swap(t[x].ls, t[x].rs);   // Nếu không thỏa tính chất lệch trái thì đổi hai con
-      t[x].d = t[t[x].rs].d + 1;  // Cập nhật dist
+      t[x].d = t[t[x].rs].d + 1;  // Cập nhật dist.
       return x;
     }
     ```
 
-Nhờ tính chất lệch trái, mỗi khi đệ quy xuống một tầng, $\mathrm{dist}$ của gốc ở một trong hai heap sẽ giảm $1$.
+Nhờ tính chất lệch trái, mỗi khi đệ quy xuống một tầng, $\mathrm{dist}$ của gốc trong một trong hai heap sẽ giảm $1$.
 Mặt khác, trong một cây nhị phân có $n$ nút, $\mathrm{dist}$ của gốc không vượt quá $\left\lceil\log (n+1)\right\rceil$.
 Vì vậy, độ phức tạp khi hợp nhất hai heap có kích thước lần lượt là $n$ và $m$ là $O(\log n+\log m)$.
 
@@ -105,13 +105,13 @@ Chỉ cần hợp nhất hai con trái và phải của gốc.
 #### Cách làm
 
 Trước hết hợp nhất hai con trái và phải, rồi cập nhật $\mathrm{dist}$ từ dưới lên.
-Nếu không thỏa tính chất lệch trái thì đổi chỗ hai con; khi $\mathrm{dist}$ không cần cập nhật nữa thì kết thúc đệ quy.
+Nếu không thỏa tính chất lệch trái thì đổi chỗ hai con; khi $\mathrm{dist}$ không còn thay đổi thì kết thúc đệ quy.
 
 ???+ note "Cài đặt"
     ```cpp
     int& rs(int x) { return t[x].ch[t[t[x].ch[1]].d < t[t[x].ch[0]].d]; }
     
-    // Với pushup, chỉ cần merge hai con là xóa được nút mà vẫn giữ tính chất lệch trái.
+    // Với pushup, chỉ cần merge hai con là có thể xóa nút mà vẫn giữ tính chất lệch trái.
     int merge(int x, int y) {
       if (!x || !y) return x | y;
       if (t[x].val < t[y].val) swap(x, y);
@@ -275,7 +275,7 @@ Tiếp theo xét truy vấn một nút. Nếu dùng cách thông thường để
 cần truy vấn tổng các đánh dấu trên đường từ nút đó tới gốc; trường hợp xấu nhất có thể đạt $O(n)$.
 Nếu chỉ gốc heap có đánh dấu thì có thể truy vấn nhanh, nhưng làm thế nào để đạt được điều đó?
 
-Có thể dùng cách tương tự hợp nhất theo kinh nghiệm: mỗi lần hợp nhất, đẩy đánh dấu của heap nhỏ hơn xuống từng nút bằng
+Có thể dùng cách tương tự hợp nhất theo kích thước: mỗi lần hợp nhất, đẩy đánh dấu của heap nhỏ hơn xuống từng nút bằng
 duyệt tuyến tính, rồi dùng đánh dấu của heap lớn hơn làm đánh dấu của heap sau hợp nhất. Vì sau khi hợp nhất sẽ dùng
 đánh dấu của heap còn lại, khi đẩy đánh dấu của heap nhỏ hơn xuống cần đẩy lượng bằng đánh dấu của nó trừ đánh dấu của
 heap kia. Mỗi lần một nút được hợp nhất, kích thước heap chứa nó ít nhất nhân đôi, nên mỗi nút bị đẩy đánh dấu xuống
