@@ -1,16 +1,16 @@
-C++ định nghĩa một hệ thống đầy đủ để khai báo các giá trị chỉ đọc. Mọi biến
-được bổ nghĩa bằng `const` đều là giá trị chỉ đọc; trình biên dịch sẽ kiểm tra
-xung đột trong giai đoạn biên dịch để tránh việc sửa đổi các giá trị chỉ đọc,
-đồng thời có thể thực hiện một số tối ưu hóa.
+C++ cung cấp một hệ thống đầy đủ để khai báo các giá trị chỉ đọc. Mọi biến được
+đánh dấu bằng `const` đều là giá trị chỉ đọc; trình biên dịch sẽ kiểm tra xung
+đột trong giai đoạn biên dịch để tránh việc sửa đổi các giá trị chỉ đọc, đồng
+thời có thể thực hiện một số tối ưu hóa.
 
 Trong điều kiện thông thường, nên dùng `const` cho biến và tham số nhiều nhất có
-thể để tăng độ vững chắc của mã.
+thể để mã chắc chắn hơn.
 
 ## Bộ định tính kiểu `const`
 
 ### Hằng
 
-Biến được bổ nghĩa bằng `const` không thể thay đổi giá trị sau khi khởi tạo.
+Biến được đánh dấu `const` không thể thay đổi giá trị sau khi khởi tạo.
 
 ```cpp
 const int a = 0;  // kiểu của a là const int
@@ -18,10 +18,10 @@ const int a = 0;  // kiểu của a là const int
 // a = 1; // không thể sửa đổi hằng
 ```
 
-### Tham chiếu hằng, con trỏ tới hằng
+### Tham chiếu tới hằng, con trỏ tới hằng
 
-Tham chiếu hằng và con trỏ tới hằng đều giới hạn việc sửa đổi giá trị mà chúng
-trỏ tới hoặc tham chiếu tới.
+Tham chiếu tới hằng và con trỏ tới hằng đều ngăn việc sửa đổi giá trị mà chúng
+tham chiếu tới hoặc trỏ tới.
 
 ```cpp
 int a = 0;
@@ -50,7 +50,7 @@ int a = 0, other = 1;
 const int b = 0;
 
 int* const p1 = &a;  // hằng con trỏ: không đổi được địa chỉ trỏ tới, nhưng đổi được giá trị được trỏ tới
-const int* p2 = &a;  // con trỏ tới hằng: không đổi được giá trị sau khi giải tham chiếu, nhưng có thể trỏ tới biến int khác
+const int* p2 = &a;  // con trỏ tới hằng: không đổi được giá trị qua giải tham chiếu, nhưng có thể trỏ tới biến int khác
 const int* const p3 = &b;  // hằng con trỏ tới hằng: không đổi được giá trị, cũng không đổi được địa chỉ trỏ tới
 
 *p1 = 2;       // hợp lệ
@@ -64,8 +64,8 @@ using ptr_to_const_int = const_int*;
 using const_ptr_to_const_int = const ptr_to_const_int;
 ```
 
-Dùng `const` để giới hạn kiểu tham số trong tham số hàm có thể tránh việc biến
-bị sửa đổi nhầm, đồng thời tăng tính dễ đọc của mã.
+Dùng `const` trong khai báo tham số hàm có thể tránh việc biến bị sửa đổi nhầm,
+đồng thời tăng tính dễ đọc của mã.
 
 ```cpp
 void sum(const std::vector<int>& data, int& total) {
@@ -76,8 +76,8 @@ void sum(const std::vector<int>& data, int& total) {
 
 ## Hàm thành viên `const`
 
-Trong một kiểu, hàm thành viên được giới hạn bằng `const` có thể dùng để hạn chế
-việc sửa đổi các thành viên.
+Trong một kiểu, hàm thành viên được đánh dấu `const` có thể dùng để hạn chế việc
+sửa đổi các thành viên.
 
 ```cpp
 #include <iostream>
@@ -110,19 +110,19 @@ int main() {
 ## Biểu thức hằng `constexpr` (C++11)
 
 Biểu thức hằng là biểu thức có thể tính ra kết quả trong lúc biên dịch.
-`constexpr` cho biết một biến hoặc hàm có thể tham gia vào ngữ cảnh cần biểu thức
-hằng. Với biến `constexpr`, giá trị khởi tạo phải là biểu thức hằng. Với hàm
-`constexpr`, lời gọi hàm có thể được tính trong lúc biên dịch nếu tham số và ngữ
-cảnh cho phép.
+`constexpr` cho biết một biến hoặc hàm có thể tham gia vào ngữ cảnh cần biểu
+thức hằng. Với biến `constexpr`, giá trị khởi tạo phải là biểu thức hằng. Với
+hàm `constexpr`, lời gọi hàm có thể được tính trong lúc biên dịch nếu tham số và
+ngữ cảnh cho phép.
 
 Việc tính toán trong lúc biên dịch cho phép tối ưu hóa tốt hơn, chẳng hạn ghi
-cứng kết quả vào assembly để loại bỏ chi phí tính toán khi chạy. Khác với tối ưu
-hóa mà `const` có thể mang lại, biến được bổ nghĩa bằng `constexpr` phải có giá
-trị xác định được trong lúc biên dịch.
+trực tiếp kết quả vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác
+với tối ưu hóa mà `const` có thể mang lại, biến được đánh dấu `constexpr` phải
+có giá trị xác định được trong lúc biên dịch.
 
 ???+ note "Cách hiểu trực quan"
     ```cpp
-    constexpr int a = 10;  // định nghĩa hằng trực tiếp
+    constexpr int a = 10;  // định nghĩa hằng có giá trị biết được lúc biên dịch
 
     constexpr int FivePlus(int x) { return 5 + x; }
 
@@ -157,7 +157,7 @@ Ví dụ sau minh họa rõ sự khác nhau giữa `const` và `constexpr`. Mã 
     }
     ```
 
-???+ note "Một đoạn assembly có thể sinh ra sau khi biên dịch (dùng Compiler Explorer, Clang 19)"
+???+ note "Một đoạn assembly có thể sinh ra sau khi biên dịch (Compiler Explorer, Clang 19)"
     ```nasm
     fib1(unsigned int):
             push    r14
@@ -209,24 +209,23 @@ Ví dụ sau minh họa rõ sự khác nhau giữa `const` và `constexpr`. Mã 
             ret
     ```
 
-Hàm `fib0` được bổ nghĩa bằng `constexpr` và được gọi trong ngữ cảnh khởi tạo
+Hàm `fib0` được đánh dấu `constexpr` và được gọi trong ngữ cảnh khởi tạo
 biến `constexpr` với tham số hằng, nên lời gọi này được tính trong lúc biên dịch.
 Vì lời gọi đó không cần thực thi lúc chạy, trình biên dịch cũng xác định rằng
 không cần sinh mã assembly cho `fib0` trong ví dụ này.
 
-Đồng thời, assembly cho thấy `v0` không có mã khởi tạo. Trong đoạn
-mã gọi `cout` để xuất `v0`, `v0` đã được thay bằng kết quả tính cuối cùng, cho
-thấy giá trị biến đã được tính trong lúc biên dịch và phép tính lúc chạy đã bị
-tối ưu bỏ.
-Còn quá trình khởi tạo `v1` vẫn là một lời gọi đệ quy `fib1` thông thường.
+Đoạn assembly cũng cho thấy `v0` không có mã khởi tạo. Trong đoạn mã gọi `cout`
+để xuất `v0`, `v0` đã được thay bằng kết quả tính cuối cùng, cho thấy giá trị
+biến đã được tính trong lúc biên dịch và phép tính lúc chạy đã bị tối ưu bỏ. Còn
+quá trình khởi tạo `v1` vẫn là một lời gọi đệ quy `fib1` thông thường.
 
-Vì vậy, có thể dùng `constexpr` để thay thế các hằng được định nghĩa bằng macro,
+Do đó, có thể dùng `constexpr` để thay thế các hằng được định nghĩa bằng macro,
 tránh [rủi ro của định nghĩa macro](./basic.md#lệnh-define).
 
 Trong bài toán thuật toán, có thể dùng `constexpr` để lưu các giá trị tính trước
 với quy mô nhỏ nhằm loại bỏ chi phí tính toán lúc chạy. Một trường hợp thường
 gặp là kỹ thuật "[lập bảng](../contest/dictionary.md)", dùng các vùng chứa như
-mảng được bổ nghĩa bằng `constexpr` để lưu đáp án.
+mảng được khai báo `constexpr` để lưu đáp án.
 
 ???+ note "Lượng tính toán trong lúc biên dịch quá lớn sẽ gây lỗi biên dịch"
     Trình biên dịch sẽ giới hạn chi phí tính toán trong lúc biên dịch. Nếu lượng
