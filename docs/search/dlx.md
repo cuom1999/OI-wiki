@@ -8,7 +8,7 @@ Trang này giới thiệu bài toán phủ chính xác, bài toán phủ lặp, 
 <span id="định-nghĩa"></span>
 ### Định nghĩa
 
-Bài toán phủ chính xác (tiếng Anh: Exact Cover Problem) là bài toán: cho nhiều tập hợp $S_i (1 \le i \le n)$ và một tập hợp $X$, hãy tìm một bộ nhiều phần tử không xét thứ tự $(T_1, T_2, \cdots , T_m)$ thỏa mãn các điều kiện sau:
+Bài toán phủ chính xác (tiếng Anh: Exact Cover Problem) là bài toán: cho nhiều tập hợp $S_i (1 \le i \le n)$ và một tập hợp $X$, tìm một bộ nhiều phần tử không xét thứ tự $(T_1, T_2, \cdots , T_m)$ thỏa mãn các điều kiện sau:
 
 1.  $\forall i, j \in [1, m],T_i\bigcap T_j = \varnothing (i \neq j)$
 2.  $X = \bigcup\limits_{i = 1}^{m}T_i$
@@ -36,9 +36,9 @@ thì $(S_1, S_4, S_5)$ là một nghiệm hợp lệ.
 <span id="chuyển-đổi-bài-toán"></span>
 ### Chuyển đổi bài toán
 
-Rời rạc hóa tất cả các số trong $\bigcup\limits_{i = 1}^{n}S_i$, ta thu được mô hình sau:
+Rời rạc hóa tất cả các số trong $\bigcup\limits_{i = 1}^{n}S_i$, thu được mô hình sau:
 
-> Cho một ma trận 01. Ta có thể chọn một số hàng (row), sao cho cuối cùng mỗi cột (column)[^note1] đều có đúng một ô bằng 1.
+> Cho một ma trận 0-1. Cần chọn một số hàng (row), sao cho cuối cùng mỗi cột (column)[^note1] đều có đúng một ô bằng 1.
 > Chẳng hạn, mô hình hóa ví dụ phía trên sẽ cho ma trận sau:
 
 $$
@@ -98,7 +98,7 @@ mỗi lần kiểm tra cần $O(nm)$ thời gian. Vì vậy độ phức tạp t
 <span id="vét-cạn-2"></span>
 #### Vét cạn 2
 
-Xét tính chất đặc biệt của ma trận 01, mỗi hàng có thể được xem như một số nhị phân $m$ bit.
+Xét tính chất đặc biệt của ma trận 0-1, mỗi hàng có thể được xem như một số nhị phân $m$ bit.
 
 Do đó, bài toán ban đầu được chuyển thành:
 
@@ -147,7 +147,7 @@ Donald E. Knuth đề xuất thuật toán X. Ý tưởng của nó khá giống
 <span id="quy-trình"></span>
 ### Quy trình
 
-Tiếp tục dùng ví dụ ở trên, ta có ma trận 01 sau:
+Tiếp tục dùng ví dụ ở trên, có ma trận 0-1 sau:
 
 $$
 \begin{pmatrix}
@@ -201,7 +201,7 @@ $$
 
     **Điều này biểu thị rằng hàng này đã được chọn, và tất cả các cột chứa số $1$ trên hàng đó không được phép có số $1$ nào khác**.
 
-    Khi đó ta thu được một ma trận 01 nhỏ hơn:
+    Khi đó thu được một ma trận 0-1 nhỏ hơn:
 
     $$
     \begin{pmatrix}
@@ -241,7 +241,7 @@ $$
     \end{pmatrix}
     $$
 
-    Như vậy ta thu được một ma trận rỗng. Tuy nhiên, hàng vừa bị xóa ở lần trước là `1 0 1 1`, không phải hàng toàn $1$, nên lựa chọn này sai;
+    Như vậy thu được một ma trận rỗng. Tuy nhiên, hàng vừa bị xóa ở lần trước là `1 0 1 1`, không phải hàng toàn $1$, nên lựa chọn này sai;
 
     $$
     \begin{pmatrix}
@@ -278,7 +278,7 @@ $$
       \end{pmatrix}
     $$
 
-    Khi đó ta thu được ma trận sau:
+    Khi đó thu được ma trận sau:
 
     $$
     \begin{pmatrix}
@@ -297,7 +297,7 @@ $$
 
     Đáp án chính là ba hàng đã bị xóa: $1, 4, 5$.
 
-Rất nên tự mô phỏng một lần quá trình xóa ma trận, khôi phục và quay lui trước khi đọc tiếp phần dưới.
+Việc tự mô phỏng một lần quá trình xóa ma trận, khôi phục và quay lui sẽ giúp phần dưới dễ theo dõi hơn.
 
 Từ các bước trên, có thể tóm tắt quy trình của thuật toán X như sau:
 
@@ -311,7 +311,7 @@ Từ các bước trên, có thể tóm tắt quy trình của thuật toán X n
 
     Nếu $M'$ không rỗng, nhảy về bước 1.
 
-Dễ thấy thuật toán X cần rất nhiều thao tác "xóa hàng", "xóa cột", "khôi phục hàng" và "khôi phục cột".
+Thuật toán X cần rất nhiều thao tác "xóa hàng", "xóa cột", "khôi phục hàng" và "khôi phục cột".
 
 Một ý tưởng đơn giản là dùng mảng hai chiều để lưu ma trận, rồi dùng bốn mảng để lưu chỉ số các hàng lân cận của mỗi hàng; khi xóa và khôi phục chỉ cần cập nhật các phần tử trong bốn mảng đó. Tuy nhiên, trong ma trận của các bài toán thông thường, số lượng ô 0 thường nhiều hơn rất nhiều so với số lượng ô 1, nên độ phức tạp bộ nhớ của cách làm này khó chấp nhận.
 
@@ -341,7 +341,7 @@ Một danh sách liên kết hai chiều cỡ lớn sẽ phức tạp hơn:
 
 Mỗi hàng có một chỉ thị đầu hàng, mỗi cột có một chỉ thị cột.
 
-Chỉ thị đầu hàng là `first[]`; chỉ thị cột là $c + 1$ nút lính canh do ta tạo mới. Cần chú ý rằng **chỉ thị đầu hàng không phải là nút lính canh trong danh sách liên kết**. Nó là phần tử ảo, tương tự mảng `first[]` trong danh sách kề, và **trỏ trực tiếp** tới phần tử đầu tiên của hàng đó.
+Chỉ thị đầu hàng là `first[]`; chỉ thị cột là $c + 1$ nút lính canh được tạo mới. Cần lưu ý rằng **chỉ thị đầu hàng không phải là nút lính canh trong danh sách liên kết**. Nó là phần tử ảo, tương tự mảng `first[]` trong danh sách kề, và **trỏ trực tiếp** tới phần tử đầu tiên của hàng đó.
 
 Đồng thời, mỗi cột có một `siz[]` biểu diễn số phần tử trong cột đó.
 
@@ -372,12 +372,12 @@ Tức là `L[R[c]] = L[c], R[L[c]] = R[c];`.
 
 Sau đó đi xuống dọc theo cột này, xóa từng hàng đi qua.
 
-Xóa từng hàng như thế nào? Ta liệt kê con trỏ $j$ trên hàng hiện tại. Khi đó:
+Để xóa từng hàng, liệt kê con trỏ $j$ trên hàng hiện tại. Khi đó:
 
 -   Nút phía trên của $j$ phải có nút phía dưới là nút phía dưới của $j$.
 -   Nút phía dưới của $j$ phải có nút phía trên là nút phía trên của $j$.
 
-Chú ý phải cập nhật số phần tử của từng cột.
+Lưu ý phải cập nhật số phần tử của từng cột.
 
 Tức là `U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];`.
 
@@ -403,9 +403,9 @@ Mã cài đặt hàm `remove` như sau:
 
 `recover(c)` biểu diễn việc khôi phục cột thứ $c$ và các hàng, cột liên quan đến nó trong Dancing Links.
 
-`recover(c)` chính là thao tác ngược của `remove(c)`, nên ở đây không nhắc lại chi tiết.
+`recover(c)` chính là thao tác ngược của `remove(c)`, nên phần này không nhắc lại chi tiết.
 
-**Cần chú ý rằng** mọi thao tác trong `recover(c)` **có thứ tự đúng ngược lại với** các thao tác trong `remove(c)`.
+**Cần lưu ý rằng** mọi thao tác trong `recover(c)` **có thứ tự đúng ngược lại với** các thao tác trong `remove(c)`.
 
 Mã cài đặt `recover(c)` như sau:
 
@@ -427,7 +427,7 @@ Tạo mới $c + 1$ nút làm chỉ thị cột.
 
 Nút thứ $i$ có nút bên trái là $i - 1$, nút bên phải là $i + 1$, nút phía trên là $i$, nút phía dưới là $i$. Đặc biệt, nút $0$ có nút bên trái là $c$, còn nút $c$ có nút bên phải là $0$.
 
-Như vậy ta thu được một danh sách liên kết hai chiều dạng vòng:
+Như vậy thu được một danh sách liên kết hai chiều dạng vòng:
 
 ![Danh sách vòng của các chỉ thị cột sau khi xây dựng](./images/dlx-5.svg)
 
@@ -471,14 +471,14 @@ Thao tác chèn được chia thành hai trường hợp:
         -   Nút phía trên của $idx$ là $c$;
         -   Nút phía dưới của $c$ là $idx$.
 
-        Chú ý ghi lại cột và hàng chứa $idx$, đồng thời cập nhật số phần tử của cột này.
+        Lưu ý ghi lại cột và hàng chứa $idx$, đồng thời cập nhật số phần tử của cột này.
 
         ```cpp
         col[++idx] = c, row[idx] = r, ++siz[c];
         U[idx] = c, D[idx] = D[c], U[D[c]] = idx, D[c] = idx;
         ```
 
-        Rất nên nắm chắc hoàn toàn thứ tự của các bước này trước khi đọc tiếp.
+        Cần nắm chắc thứ tự của các bước này trước khi xét phần tiếp theo.
 
     -   Chèn $idx$ ngay bên phải `first(r)`. Khi đó:
 
@@ -492,13 +492,13 @@ Thao tác chèn được chia thành hai trường hợp:
         L[R[first[r]]] = idx, R[first[r]] = idx;
         ```
 
-        Rất nên nắm chắc hoàn toàn thứ tự của các bước này trước khi đọc tiếp.
+        Cần nắm chắc thứ tự của các bước này trước khi xét phần tiếp theo.
 
 Có thể dùng hình sau để hỗ trợ hiểu thao tác `insert(r, c)`:
 
 ![Chèn một nút vào hàng và cột trong Dancing Links](./images/dlx-6.svg)
 
-Hãy chú ý hướng của các mũi tên cong.
+Lưu ý hướng của các mũi tên cong.
 
 Mã cài đặt `insert(r, c)` như sau:
 
@@ -552,9 +552,9 @@ Mã cài đặt `dance()` như sau:
 
 Trong đó `stk[]` dùng để ghi đáp án.
 
-Chú ý rằng mỗi lần ta ưu tiên chọn cột có số phần tử ít nhất để xóa. Như vậy chương trình có một mức độ theo kinh nghiệm nhất định, làm số nhánh của cây tìm kiếm nhỏ nhất.
+Lưu ý rằng mỗi lần chương trình ưu tiên chọn cột có số phần tử ít nhất để xóa. Như vậy chương trình có một mức độ theo kinh nghiệm nhất định, làm số nhánh của cây tìm kiếm nhỏ nhất.
 
-Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (tương tự trong [A\*](astar.md)) để cắt tỉa: nếu trong trường hợp tốt nhất hiện tại, số hàng đã chọn vẫn vượt quá nghiệm tối ưu hiện có, ta có thể trả về ngay.
+Với bài toán phủ lặp, khi tìm kiếm có thể dùng hàm đánh giá (tương tự trong [A\*](astar.md)) để cắt tỉa: nếu trong trường hợp tốt nhất hiện tại, số hàng đã chọn vẫn vượt quá nghiệm tối ưu hiện có, có thể trả về ngay.
 
 <span id="mẫu"></span>
 ## Mẫu
@@ -576,15 +576,15 @@ Tuy nhiên trong thực tế, DLX hoạt động tốt và thường giải đư
 
 Khó khăn của DLX không hoàn toàn nằm ở việc xây dựng danh sách liên kết, mà nằm ở bước mô hình hóa.
 
-Hãy chắc chắn rằng bạn đã nắm vững hoàn toàn mẫu DLX trước khi đọc tiếp.
+Phần dưới giả định rằng mẫu DLX đã được nắm vững.
 
-Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu diễn:
+Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễn:
 
 -   Hàng biểu diễn *quyết định*, vì mỗi hàng tương ứng với một tập hợp, tức tương ứng với việc chọn hoặc không chọn;
 
 -   Cột biểu diễn *trạng thái*, vì cột thứ $i$ tương ứng với một điều kiện $P_i$.
 
-Đối với một hàng, do giá trị ở các cột khác nhau không giống nhau, ta **định nghĩa một quyết định thông qua các trạng thái khác nhau**.
+Đối với một hàng, do giá trị ở các cột khác nhau không giống nhau, cần **định nghĩa một quyết định thông qua các trạng thái khác nhau**.
 
 <span id="ví-dụ-1-p1784-sudoku"></span>
 ### Ví dụ 1 [P1784 Sudoku](https://www.luogu.com.cn/problem/P1784)
@@ -594,13 +594,13 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     
     Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ ba có thứ tự dạng $(r, c, w)$.
     
-    Chú ý rằng "khối" không phải là tham số của quyết định, vì nó **có thể được xác định bởi mỗi cặp $(r, c)$ cụ thể**.
+    Lưu ý rằng "khối" không phải là tham số của quyết định, vì nó **có thể được xác định bởi mỗi cặp $(r, c)$ cụ thể**.
     
     Vì vậy có $9 \times 9 \times 9 = 729$ hàng.
     
     Tiếp theo xét trạng thái là gì.
     
-    Ta suy nghĩ xem quyết định $(r, c, w)$ sẽ gây ra ảnh hưởng gì. Gọi $b$ là khối chứa ô $(r, c)$.
+    Xét ảnh hưởng của quyết định $(r, c, w)$. Gọi $b$ là khối chứa ô $(r, c)$.
     
     1.  Hàng thứ $r$ đã dùng một số $w$ (biểu diễn bằng $9 \times 9 = 81$ cột);
     2.  Cột thứ $c$ đã dùng một số $w$ (biểu diễn bằng $9 \times 9 = 81$ cột);
@@ -609,7 +609,7 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     
     Vì vậy có $81 \times 4 = 324$ cột, tổng cộng $729 \times 4 = 2916$ ô $1$.
     
-    Đến đây, ta đã chuyển thành công bài toán Sudoku $9 \times 9$ thành một bài toán phủ chính xác **có $729$ hàng, $324$ cột, tổng cộng $2916$ ô $1$**.
+    Đến đây, bài toán Sudoku $9 \times 9$ đã được chuyển thành một bài toán phủ chính xác **có $729$ hàng, $324$ cột, tổng cộng $2916$ ô $1$**.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -637,19 +637,19 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
 ??? note "Ý tưởng giải"
     Định nghĩa: hình dạng Smart Bead mà đề bài cho được gọi là *hình dạng chuẩn* của Smart Bead đó.
     
-    Rõ ràng, ta có thể thay đổi hình dạng của Smart Bead bằng cách thay đổi hai tham số $d$ (biểu thị số lần xoay thuận chiều kim đồng hồ $90^{\circ}$) và $f$ (có lật ngang hay không).
+    Có thể thay đổi hình dạng của Smart Bead bằng cách thay đổi hai tham số $d$ (biểu thị số lần xoay thuận chiều kim đồng hồ $90^{\circ}$) và $f$ (có lật ngang hay không).
     
-    Vẫn như trước, ta xét quyết định là gì.
+    Vẫn như trước, xét quyết định là gì.
     
     Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ năm có thứ tự dạng $(v, d, f, i)$.
     
     Nó biểu thị vị trí góc trên bên trái của *hình dạng chuẩn* của Smart Bead thứ $i$, có số thứ tự là $v$, sau khi đã xoay thuận chiều kim đồng hồ $90^{\circ}$ tổng cộng $d$ lần.
     
-    Tình cờ là ta có thể quy ước $f = 1$ nghĩa là không lật ngang, $f = -1$ nghĩa là lật ngang, từ đó đơn giản hóa mã.
+    Có thể quy ước $f = 1$ nghĩa là không lật ngang, $f = -1$ nghĩa là lật ngang, từ đó đơn giản hóa mã.
     
     Vì vậy có $55 \times 4 \times 2 \times 12 = 5280$ hàng.
     
-    Cần chú ý rằng do có một số cách đặt không hợp lệ, chẳng hạn $(1, 0, 1, 4)$,
+    Cần lưu ý rằng do có một số cách đặt không hợp lệ, chẳng hạn $(1, 0, 1, 4)$,
     
     nên **trong cài đặt thực tế, bàn Smart Beads rỗng cũng chỉ cần xây dựng $2730$ hàng**.
     
@@ -657,14 +657,14 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
     
     Trạng thái của bài này tương đối đơn giản.
     
-    Ta suy nghĩ xem quyết định $(v, d, f, i)$ sẽ gây ra ảnh hưởng gì.
+    Xét ảnh hưởng của quyết định $(v, d, f, i)$.
     
     1.  Một số ô bị chiếm (biểu diễn bằng $55$ cột);
     2.  Smart Bead thứ $i$ đã được dùng (biểu diễn bằng $12$ cột).
     
     Vì vậy có $55 + 12 = 67$ cột, tổng cộng $5280 \times (5 + 1) = 31680$ ô $1$.
     
-    Đến đây, ta đã chuyển thành công trò chơi Smart Beads thành một bài toán phủ chính xác **có $5280$ hàng, $67$ cột, tổng cộng $31680$ ô $1$**.
+    Đến đây, trò chơi Smart Beads đã được chuyển thành một bài toán phủ chính xác **có $5280$ hàng, $67$ cột, tổng cộng $31680$ ô $1$**.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -687,4 +687,4 @@ Khi gặp một bài toán, ta nên xét ý nghĩa mà hàng và cột biểu di
 <span id="chú-thích"></span>
 ## Chú thích
 
-[^note1]: Ghi chú thuật ngữ giữa các vùng dùng tiếng Trung: Taiwan dùng "vertical line" cho column và "horizontal row" cho row.
+[^note1]: Ghi chú thuật ngữ giữa các vùng dùng tiếng Trung: Đài Loan dùng "vertical line" cho column và "horizontal row" cho row.
