@@ -84,7 +84,7 @@ Tìm một đỉnh $x$ sao cho khi chọn nó làm gốc, độ dài đường �
 
 ### Ví dụ
 
-Giả sử ta có một cây như sau:
+Giả sử có một cây như sau:
 
 ```text
            A

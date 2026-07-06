@@ -126,7 +126,7 @@ Chính xác hơn, với một cạnh cây $u\to v$, hai đỉnh $u,v$ nằm tron
 
 Như vậy có thể xác định trong quá trình DFS những chỗ nào tồn tại thành phần song liên thông theo đỉnh, nhưng vẫn chưa thể xác định chính xác tập đỉnh của từng thành phần.
 
-Vấn đề này không khó xử lý. Có thể duy trì một ngăn xếp trong quá trình DFS, lưu các đỉnh chưa được xác định thuộc thành phần song liên thông theo đỉnh nào (có thể là nhiều thành phần).
+Vấn đề này có thể xử lý bằng cách duy trì một ngăn xếp trong quá trình DFS, lưu các đỉnh chưa được xác định thuộc thành phần song liên thông theo đỉnh nào (có thể là nhiều thành phần).
 
 Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh trong thành phần đó ngoài $u$ đều tập trung ở đầu ngăn xếp; chỉ cần liên tục pop cho đến khi pop ra $v$.
 

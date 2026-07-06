@@ -494,7 +494,7 @@ tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
 
 ### Hợp nhất (merge)
 
-Quá trình hợp nhất nhận hai tham số: con trỏ gốc của Treap trái $\textit{u}$ và con trỏ gốc của Treap phải $\textit{v}$. Cần thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn hoặc bằng mọi nút trong $\textit{v}$. Thông thường, hai Treap được hợp nhất đều tách ra từ một Treap ban đầu, nên không khó để thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn $\textit{v}$.
+Quá trình hợp nhất nhận hai tham số: con trỏ gốc của Treap trái $\textit{u}$ và con trỏ gốc của Treap phải $\textit{v}$. Cần thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn hoặc bằng mọi nút trong $\textit{v}$. Thông thường, hai Treap được hợp nhất đều tách ra từ một Treap ban đầu, nên điều kiện mọi nút trong $\textit{u}$ có giá trị nhỏ hơn $\textit{v}$ được thỏa mãn tự nhiên.
 
 Trong Treap xoay, thao tác xoay được dùng để duy trì $\textit{priority}$ thỏa mãn tính chất heap, đồng thời khi xoay không được làm thay đổi tính chất cây. Trong Treap không xoay, thao tác hợp nhất đạt hiệu ứng tương tự.
 
@@ -507,7 +507,7 @@ Node *merge(Node *u, Node *v) {
   // Hai cây truyền vào đã thỏa mãn tính chất cây tìm kiếm ở bên trong
   // Và mọi nút trong u có giá trị < mọi nút trong v
   // Nên khi hợp nhất cần duy trì tính chất heap
-  // Ở đây dùng min-heap
+  // Đoạn này dùng min-heap
   if (u == nullptr && v == nullptr) return nullptr;
   if (u != nullptr && v == nullptr) return u;
   if (v != nullptr && u == nullptr) return v;
@@ -652,7 +652,7 @@ int qprev(int val) {
   auto temp = split(root, val - 1);
   // temp.first là cây con gồm các giá trị nhỏ hơn val
   int ret = qval_by_rank(temp.first, temp.first->siz);
-  // Ở đây truy vấn giá trị lớn nhất trong tất cả nút nhỏ hơn val
+  // Truy vấn giá trị lớn nhất trong tất cả nút nhỏ hơn val
   root = merge(temp.first, temp.second);
   return ret;
 }
@@ -694,7 +694,7 @@ Cách 3: Nhận thấy Treap là cây Descartes, nên chỉ cần dùng phương
 
 Một lợi thế lớn của Treap không xoay so với Treap xoay là có thể cài đặt nhiều loại thao tác trên đoạn. Phần dưới lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng nghệ thuật làm ví dụ để giới thiệu thao tác đoạn của Treap.
 
-> Bạn cần viết một cấu trúc dữ liệu (có thể tham khảo tiêu đề bài) để duy trì một dãy có thứ tự.
+> Cần viết một cấu trúc dữ liệu (có thể tham khảo tiêu đề bài) để duy trì một dãy có thứ tự.
 >
 > Cần cung cấp thao tác sau: đảo ngược một đoạn. Ví dụ dãy có thứ tự ban đầu là $5\ 4\ 3\ 2\ 1$, nếu đoạn đảo ngược là $[2,4]$, kết quả là $5\ 2\ 3\ 4\ 1$.
 > Với $100\%$ dữ liệu, $1 \le n, m \le 10^5$, trong đó $n$ là độ dài dãy ban đầu và $m$ là số lần đảo ngược.

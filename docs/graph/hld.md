@@ -422,7 +422,7 @@ Chú ý rằng trong trường hợp thông thường, bộ nhớ của mảng D
 
 Độ dài mảng DP có thể được tính theo đỉnh sâu nhất trong cây con.
 
-Dĩ nhiên các kỹ thuật tối ưu DP bằng phân rã chuỗi dài rất nhiều, bao gồm nhưng không giới hạn ở việc đánh dấu lười. Ở đây không trình bày thêm.
+Dĩ nhiên các kỹ thuật tối ưu DP bằng phân rã chuỗi dài rất nhiều, bao gồm nhưng không giới hạn ở việc đánh dấu lười. Phần này không trình bày thêm.
 
 Tham khảo [blog của Zusu Yu](https://www.cnblogs.com/zhoushuyu/p/9468669.html).
 

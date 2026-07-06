@@ -26,7 +26,7 @@ bảng LIFO.
 
     Nếu nhìn toàn bộ quá trình, $1$ vào ngăn xếp đầu tiên và cũng ra đầu tiên,
     $2$ vào ngăn xếp cuối cùng và cũng ra cuối cùng; như vậy lại giống bảng vào
-    trước ra trước, rõ ràng là sai.
+    trước ra trước, điều này là sai.
 
     Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái
     của các phần tử đang nằm trong container tại thời điểm đó.

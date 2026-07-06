@@ -123,7 +123,7 @@ có thể dùng chiến lược kết hợp xoay đơn và xoay kép nói trên 
     \rho_1 = \dfrac{y}{x+y}, ~\rho_2 = \dfrac{w}{x}, ~\rho_3 = \dfrac{v}{w}.
     $$
     
-    Khi đó, có $\rho_1<\alpha\le\rho_2,\rho_3\le 1-\alpha$. Ở đây còn một điều kiện ngầm về phạm vi giá trị của $\rho_1$:
+    Khi đó, có $\rho_1<\alpha\le\rho_2,\rho_3\le 1-\alpha$. Trong đó còn một điều kiện ngầm về phạm vi giá trị của $\rho_1$:
     
     -   Nếu mất cân bằng do chèn một phần tử đơn lẻ, thì phải có
     

@@ -11,9 +11,9 @@ Mạng (network) là một đồ thị có hướng đặc biệt $G=(V,E)$. Đi
 Với mạng $G=(V, E)$, luồng (flow) là một hàm từ tập cạnh $E$ đến tập số nguyên hoặc tập số thực, thỏa mãn các tính chất sau.
 
 1.  Ràng buộc dung lượng: với mỗi cạnh, lượng luồng đi qua cạnh đó không được vượt quá dung lượng của cạnh, tức là $0 \leq f(u,v) \leq c(u,v)$.
-2.  Bảo toàn luồng: ngoài đỉnh nguồn và đỉnh đích, luồng ròng của mọi đỉnh $u$ đều bằng $0$. Ở đây, luồng ròng của $u$ được định nghĩa là $f(u) = \sum_{x \in V} f(u, x) - \sum_{x \in V} f(x, u)$.
+2.  Bảo toàn luồng: ngoài đỉnh nguồn và đỉnh đích, luồng ròng của mọi đỉnh $u$ đều bằng $0$. Trong định nghĩa này, luồng ròng của $u$ là $f(u) = \sum_{x \in V} f(u, x) - \sum_{x \in V} f(x, u)$.
 
-Với mạng $G = (V, E)$ và một luồng $f$ trên mạng đó, ta định nghĩa giá trị luồng $|f|$ là luồng ròng $f(s)$ của đỉnh nguồn $s$. Từ tính bảo toàn luồng, giá trị này cũng bằng số đối của luồng ròng tại đỉnh đích, tức $-f(t)$.
+Với mạng $G = (V, E)$ và một luồng $f$ trên mạng đó, giá trị luồng $|f|$ được định nghĩa là luồng ròng $f(s)$ của đỉnh nguồn $s$. Từ tính bảo toàn luồng, giá trị này cũng bằng số đối của luồng ròng tại đỉnh đích, tức $-f(t)$.
 
 Với mạng $G = (V, E)$, nếu $\{S, T\}$ là một phân hoạch của $V$ (tức $S \cup T = V$ và $S \cap T = \varnothing$), đồng thời thỏa mãn $s \in S, t \in T$, thì $\{S, T\}$ được gọi là một lát cắt $s$-$t$ (cut) của $G$. Dung lượng của lát cắt $s$-$t$ $\{S, T\}$ được định nghĩa là $||S, T|| = \sum_{u \in S} \sum_{v \in T} c(u, v)$.
 

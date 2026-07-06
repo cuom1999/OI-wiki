@@ -4,9 +4,9 @@ Tách đỉnh là một tư tưởng mô hình hóa trong lý thuyết đồ th�
 
 ## Luồng cực đại khi đỉnh có giới hạn lưu lượng
 
-Nếu chuyển đỉnh thành cạnh, ta có thể áp dụng trực tiếp khuôn mẫu lời giải.
+Nếu chuyển đỉnh thành cạnh, có thể áp dụng trực tiếp khuôn mẫu lời giải.
 
-Ta xét cách chuyển một đỉnh có giới hạn lưu lượng thành cấu trúc sau: một phần gồm hai đỉnh $u,v$ và một cạnh $\left\langle u,v \right\rangle$. Trong đó, đỉnh $u$ nhận tất cả các cạnh đi từ những đỉnh khác trong đồ thị gốc đến đỉnh này, còn đỉnh $v$ phát ra tất cả các cạnh đi từ đỉnh này đến những đỉnh khác trong đồ thị gốc. Giới hạn lưu lượng của cạnh $\left\langle u,v \right\rangle$ chính là giới hạn lưu lượng của đỉnh tương ứng trong đồ thị gốc. Sau đó chỉ cần áp dụng khuôn mẫu là giải được bài toán. Đây là tư tưởng cơ bản của tách đỉnh.
+Xét cách chuyển một đỉnh có giới hạn lưu lượng thành cấu trúc sau: một phần gồm hai đỉnh $u,v$ và một cạnh $\left\langle u,v \right\rangle$. Trong đó, đỉnh $u$ nhận tất cả các cạnh đi từ những đỉnh khác trong đồ thị gốc đến đỉnh này, còn đỉnh $v$ phát ra tất cả các cạnh đi từ đỉnh này đến những đỉnh khác trong đồ thị gốc. Giới hạn lưu lượng của cạnh $\left\langle u,v \right\rangle$ chính là giới hạn lưu lượng của đỉnh tương ứng trong đồ thị gốc. Sau đó chỉ cần áp dụng khuôn mẫu là giải được bài toán. Đây là tư tưởng cơ bản của tách đỉnh.
 
 Nếu đồ thị gốc như sau:
 
@@ -18,7 +18,7 @@ Sau khi tách đỉnh, đồ thị có dạng:
 
 ## Đường đi ngắn nhất trên đồ thị phân tầng
 
-Đường đi ngắn nhất trên đồ thị phân tầng, chẳng hạn: được phép đi qua $k$ cạnh với chi phí bằng không, hãy tìm tổng chi phí nhỏ nhất. Với dạng bài này, ta có thể dùng tư tưởng liên quan đến DP. Đặt $\text{dis}_{i, j}$ là đường đi ngắn nhất hiện tại khi đến đỉnh $i$ từ đỉnh xuất phát sau khi đã dùng $j$ lượt đi miễn phí. Rõ ràng, mảng $\text{dis}$ có thể chuyển như sau:
+Đường đi ngắn nhất trên đồ thị phân tầng, chẳng hạn: được phép đi qua $k$ cạnh với chi phí bằng không, cần tìm tổng chi phí nhỏ nhất. Với dạng bài này, có thể dùng tư tưởng liên quan đến DP. Đặt $\text{dis}_{i, j}$ là đường đi ngắn nhất hiện tại khi đến đỉnh $i$ từ đỉnh xuất phát sau khi đã dùng $j$ lượt đi miễn phí. Mảng $\text{dis}$ có thể chuyển như sau:
 
 $\text{dis}_{i, j} = \min\{\min\{\text{dis}_{from, j - 1}\}, \min\{\text{dis}_{from,j} + w\}\}$
 
@@ -27,7 +27,7 @@ Trong đó, $from$ biểu diễn đỉnh cha của $i$, còn $w$ biểu diễn t
 Thực ra, DP này tương đương với việc tách mỗi đỉnh thành $k+1$ đỉnh, mỗi đỉnh mới biểu diễn việc đến đỉnh tương ứng trong đồ thị gốc sau khi đã dùng một số lượt đi miễn phí khác nhau. Nói cách khác, mỗi đỉnh $u_i$ biểu diễn trạng thái đến đỉnh $u$ sau khi đã dùng $i$ lượt đi miễn phí.
 
 ??? note "[\[JLOI2011\] Đường bay](https://www.luogu.com.cn/problem/P4568)"
-    Đề bài: cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, bạn có thể chọn $k$ con đường để đi với chi phí bằng không. Hãy tìm chi phí nhỏ nhất từ $s$ đến $t$.
+    Đề bài: cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, được phép chọn $k$ con đường để đi với chi phí bằng không. Cần tìm chi phí nhỏ nhất từ $s$ đến $t$.
     
     Mã lõi tham khảo:
     

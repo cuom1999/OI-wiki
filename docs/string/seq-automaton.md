@@ -1,4 +1,4 @@
-Trước khi đọc bài này, hãy đọc trước [tự động hữu hạn](../misc/fsm.md).
+Nên đọc trước [tự động hữu hạn](../misc/fsm.md) trước khi đọc bài này.
 
 <span id="định-nghĩa"></span>
 ## Định nghĩa
@@ -21,7 +21,7 @@ Mọi trạng thái trên tự động dãy đều là trạng thái chấp nh�
 <span id="chuyển-trạng-thái"></span>
 ### Chuyển trạng thái
 
-Từ định nghĩa trạng thái, ta có $\delta(u, c)=\min\{i|i>u,s[i]=c\}$, tức vị trí xuất hiện tiếp theo của ký tự $c$.
+Từ định nghĩa trạng thái, suy ra $\delta(u, c)=\min\{i|i>u,s[i]=c\}$, tức vị trí xuất hiện tiếp theo của ký tự $c$.
 
 Tại sao là vị trí xuất hiện "tiếp theo"? Vì nếu $i>j$, tập dãy con của hậu tố $s[i..|s|]$ là tập con của tập dãy con của hậu tố $s[j..|s|]$; chọn vị trí càng sớm càng tốt là tối ưu.
 
@@ -51,7 +51,7 @@ $$
 ## Ví dụ
 
 ???+ example "[HEOI2015] Xâu con không chung ngắn nhất](https://loj.ac/problem/2123)"
-    Cho hai xâu $A$ và $B$ gồm chữ cái tiếng Anh thường ($1\le |A|, |B|\le 2000$), hãy tìm:
+    Cho hai xâu $A$ và $B$ gồm chữ cái tiếng Anh thường ($1\le |A|, |B|\le 2000$), cần tìm:
     
     1.  một xâu con liên tiếp ngắn nhất của $A$ không phải xâu con liên tiếp của $B$;
     2.  một xâu con liên tiếp ngắn nhất của $A$ không phải dãy con của $B$;
@@ -59,7 +59,7 @@ $$
     4.  một dãy con ngắn nhất của $A$ không phải dãy con của $B$.
 
 ??? note "Lời giải"
-    Câu 1 và câu 3 của bài cần hậu tố tự động, hơn nữa cách làm tương tự nhau; ở đây chỉ giải thích câu 2 và câu 4.
+    Câu 1 và câu 3 của bài cần hậu tố tự động, hơn nữa cách làm tương tự nhau; phần này chỉ giải thích câu 2 và câu 4.
     
     Câu 2 khá đơn giản: duyệt các xâu con liên tiếp của $A$ rồi đưa vào tự động dãy của $B$; nếu không được chấp nhận thì cập nhật đáp án.
     

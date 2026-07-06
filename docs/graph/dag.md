@@ -28,7 +28,7 @@ Dĩ nhiên cũng có cách khác: chạy một lượt [DFS](../search/dfs.md) t
 
 Trên đồ thị tổng quát, độ phức tạp thời gian tốt nhất để tìm đường đi dài nhất (ngắn nhất) đơn nguồn là $O(nm)$ ([thuật toán Bellman–Ford](./shortest-path.md#thuật-toán-bellman-ford), dùng được cho đồ thị có trọng số âm) hoặc $O(m \log m)$ ([thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra), dùng cho đồ thị không có trọng số âm).
 
-Nhưng trên DAG, ta có thể dùng DP để tìm đường đi dài nhất (ngắn nhất), đưa độ phức tạp thời gian xuống $O(n+m)$. Phương trình chuyển trạng thái là $dis_v = min(dis_v, dis_u + w_{u,v})$ hoặc $dis_v = max(dis_v, dis_u + w_{u,v})$.
+Nhưng trên DAG, có thể dùng DP để tìm đường đi dài nhất (ngắn nhất), đưa độ phức tạp thời gian xuống $O(n+m)$. Phương trình chuyển trạng thái là $dis_v = min(dis_v, dis_u + w_{u,v})$ hoặc $dis_v = max(dis_v, dis_u + w_{u,v})$.
 
 Sau khi sắp xếp tô pô, duyệt từng đỉnh theo thứ tự tô pô và dùng đỉnh hiện tại để cập nhật các đỉnh đứng sau nó.
 

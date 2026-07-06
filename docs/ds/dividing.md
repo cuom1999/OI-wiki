@@ -73,7 +73,7 @@ Trước hết nhắc lại một chút về cây phân đoạn bền vững. Kh
 sang trái. Cây phân hoạch cũng xử lý tương tự.
 
 Phần khó hiểu của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$, nên ở
-tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Ở đây, $[\text{trái},\text{phải}]$ là đoạn sau khi thu hẹp (đoạn mục
+tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Trong đó, $[\text{trái},\text{phải}]$ là đoạn sau khi thu hẹp (đoạn mục
 tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Cần đánh dấu đoạn mục tiêu vì đó là **cơ sở để phán đoán đáp án nằm ở
 bên trái hay bên phải**.
 

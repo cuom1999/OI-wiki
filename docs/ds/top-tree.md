@@ -204,7 +204,7 @@ void pushup(int x, int type) {
 
 Tiếp theo xét việc đẩy thông tin xuống, tức hàm `Pushdown(x)`. Nếu muốn cập nhật toàn bộ một cây con trong cây ban đầu, một ý tưởng rất tự nhiên là: đưa trực tiếp nút này Access lên gốc SATT, rồi đánh dấu vào con giữa của nó. Tương tự, truy vấn cây con thì sau Access trực tiếp truy vấn con giữa.
 
-Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, cần expose hai đầu mút của đường đi. Ở đây `expose(x, y)` nghĩa là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này cây nén của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào cây nén của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
+Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, cần expose hai đầu mút của đường đi. Trong ngữ cảnh này, `expose(x, y)` được hiểu là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này cây nén của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào cây nén của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
 
 Như vậy, các thao tác trong phần đặt vấn đề đều đã có cách xử lý.
 

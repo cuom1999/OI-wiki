@@ -62,7 +62,7 @@ Vì vậy, độ phức tạp khi hợp nhất hai heap có kích thước lần
     cây có ít nhất $2^x-1$ nút.
     Tính chất này đúng với mọi cây nhị phân, không phải tính chất riêng của cây lệch trái.
 
-Cây lệch trái còn có một cách viết không cần hoán đổi rõ ràng con trái và con phải: xem con có $\mathrm{dist}$ lớn hơn
+Cây lệch trái còn có một cách viết không cần hoán đổi tường minh con trái và con phải: xem con có $\mathrm{dist}$ lớn hơn
 là con trái, con có $\mathrm{dist}$ nhỏ hơn là con phải.
 
 ???+ note "Cài đặt"

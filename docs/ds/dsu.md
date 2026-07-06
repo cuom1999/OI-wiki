@@ -207,7 +207,7 @@ Cài đặt đầy đủ của DSU có nén đường đi và hợp nhất theo 
 
 Sau khi dùng đồng thời nén đường đi và hợp nhất theo heuristic,
 thời gian trung bình cho mỗi thao tác của DSU chỉ là $O(\alpha(n))$.
-Ở đây, $\alpha$ là hàm ngược của hàm Ackermann, tăng cực kỳ chậm.
+Trong đó, $\alpha$ là hàm ngược của hàm Ackermann, tăng cực kỳ chậm.
 Nói cách khác, thời gian chạy trung bình của một thao tác DSU có thể xem như một hằng số rất nhỏ.
 Chứng minh độ phức tạp nằm ở [trang này](./dsu-complexity.md).
 

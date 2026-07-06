@@ -118,7 +118,7 @@ Cận trên cho tổng số vòng tăng luồng là $O(|V||E|)$. Mệnh đề n�
     
     Khoảng cách từ $s$ đến bất kỳ đỉnh nào không thể vượt quá $|V|$. Kết hợp tính chất trên, mỗi cạnh được chọn làm cạnh bão hòa $O(|V|)$ lần. Nhân với số cạnh, thu được cận trên $O(|V||E|)$ cho tổng số vòng tăng luồng.
     
-    Tiếp theo chứng minh bổ đề khoảng cách ngắn nhất không giảm, tức $d_{f'}(u) \geq d_f(u)$. Chứng minh này không khó, nhưng có thể hơi vòng vèo.
+    Tiếp theo chứng minh bổ đề khoảng cách ngắn nhất không giảm, tức $d_{f'}(u) \geq d_f(u)$. Chứng minh này tương đối vòng vèo.
     
     ???+ note "Chứng minh bổ đề khoảng cách ngắn nhất không giảm"
         Xét phản chứng. Với một vòng tăng luồng nào đó, giả sử tồn tại một số đỉnh mà sau vòng tăng luồng này, khoảng cách đến $s$ giảm so với trước khi tăng. Gọi $v$ là đỉnh có khoảng cách đến $s$ nhỏ nhất trong số đó, tức $v = \arg \min_{x \in V, d_{f'}(x) < d_f(x)} d_{f'}(x)$. Chú ý rằng theo giả thiết phản chứng, lúc này $d_{f'}(v) < d_f(v)$ là điều đã biết.

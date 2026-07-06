@@ -279,7 +279,7 @@ void Update(int p) {
 
 -   Tầm quan trọng của `Make_Root()` không hề kém `Access()`. Khi cần duy trì thông tin đường đi, chắc chắn sẽ có trường hợp độ sâu trên đường đi không tăng nghiêm ngặt; theo tính chất của AuxTree, kiểu đường đi này không thể xuất hiện trong một Splay.
 -   Lúc này cần dùng `Make_Root()`.
--   Tác dụng của `Make_Root()` là biến điểm được chỉ định thành gốc của cây gốc. Hãy xét cách cài đặt thao tác này.
+-   Tác dụng của `Make_Root()` là biến điểm được chỉ định thành gốc của cây gốc. Xét cách cài đặt thao tác này.
 -   Giả sử giá trị trả về của `Access(x)` là $y$, khi đó đường đi từ $x$ tới gốc hiện tại vừa đúng tạo thành một Splay, và gốc của Splay này là $y$.
 -   Biểu diễn cây bằng đồ thị có hướng, gán cho mỗi cạnh một hướng từ con tới cha. Khi đó đổi gốc tương đương đảo hướng mọi cạnh trên đường đi từ $x$ tới gốc.
 -   Vì vậy chỉ cần đảo đường đi từ $x$ tới gốc hiện tại.
@@ -895,7 +895,7 @@ Dùng phần tử đại diện của DSU sau khi hợp nhất để thay thế 
 LCT không thể trực tiếp xử lý trọng số cạnh. Khi đó cần tạo một điểm tương ứng cho mỗi cạnh để tiện truy vấn thông tin cạnh trên chuỗi. Dùng kỹ thuật này có thể duy trì cây khung một cách động.
 
 ???+ note "Ví dụ [luogu P4234 - Cây khung có hiệu nhỏ nhất](https://www.luogu.com.cn/problem/P4234)"
-    Cho một đồ thị vô hướng có trọng số gồm $n$ điểm và $m$ cạnh. Hãy tìm cây khung sao cho hiệu giữa trọng số cạnh lớn nhất và trọng số cạnh nhỏ nhất là nhỏ nhất, rồi xuất hiệu đó.
+    Cho một đồ thị vô hướng có trọng số gồm $n$ điểm và $m$ cạnh. Cần tìm cây khung sao cho hiệu giữa trọng số cạnh lớn nhất và trọng số cạnh nhỏ nhất là nhỏ nhất, rồi xuất hiệu đó.
     
     Dữ liệu bảo đảm tồn tại ít nhất một cây khung.
     

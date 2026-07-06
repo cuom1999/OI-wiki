@@ -168,7 +168,7 @@ struct hash_map {  // Mẫu bảng băm
 
   int hash(long long u) { return (u % SZ + SZ) % SZ; }
 
-  // Ở đây dùng (u % SZ + SZ) % SZ thay vì u % SZ vì
+  // Dùng (u % SZ + SZ) % SZ thay vì u % SZ vì
   // phép toán % trong C++ không thể chuyển số âm thành số dương
 
   int& operator[](long long u) {

@@ -101,7 +101,7 @@ Nói một cách dễ hiểu, tập các đỉnh thống trị của một đỉ
 
 Để nâng cao hiệu suất, trong mỗi vòng lặp nên để càng nhiều đỉnh tiền nhiệm của đỉnh đang xét đã hoàn thành vòng lặp hiện tại càng tốt. Vì vậy cần dùng thứ tự duyệt sâu để lấy thứ tự hậu tố ngược của đồ thị, rồi lặp theo thứ tự đó.
 
-Dưới đây là một cài đặt tham khảo của phần mã cốt lõi. Ở đây cần tiền xử lý tập đỉnh tiền nhiệm của mỗi đỉnh và thứ tự hậu tố ngược của đồ thị, nhưng đó không phải nội dung chính của bài viết này nên không cung cấp cài đặt tham khảo.
+Dưới đây là một cài đặt tham khảo của phần mã cốt lõi. Phần cài đặt này cần tiền xử lý tập đỉnh tiền nhiệm của mỗi đỉnh và thứ tự hậu tố ngược của đồ thị, nhưng đó không phải nội dung chính của bài viết này nên không cung cấp cài đặt tham khảo.
 
 ```cpp
 std::vector<int> pre[N];  // Các đỉnh tiền nhiệm của mỗi đỉnh
@@ -501,7 +501,7 @@ void tar(int st) {
 
 Có thể chỉ cần tìm quan hệ thống trị và trong quá trình đó ghi lại mỗi đỉnh thống trị bao nhiêu đỉnh; cũng có thể xây cây thống trị rồi tìm kích thước cây con của từng đỉnh.
 
-Ở đây đưa ra mã cho cách giải thứ hai.
+Phần này đưa ra mã cho cách giải thứ hai.
 
 ??? note "Mã tham khảo"
     ```cpp

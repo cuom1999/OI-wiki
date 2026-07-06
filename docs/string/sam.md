@@ -242,7 +242,7 @@ Trước khi bàn về cài đặt chi tiết, dùng hình minh họa để cả
         **Giải thích**: đặt $s_2=\operatorname{longest}(p_2)$. Khi đó mọi đỉnh đi tiếp sau đó đều ứng với hậu tố của $s_2$. Nếu $s_2+c$ cũng xuất hiện trong $s$, thì hậu tố của $s_2$ cộng thêm $c$ cũng chắc chắn xuất hiện trong $s$, nên các đỉnh đó đều có chuyển trạng thái qua $c$.
     -   Dù các đỉnh có thể đi qua ký tự $c$ tới đỉnh $q_i$ chắc chắn tạo thành một đoạn liên tiếp trên cây liên kết hậu tố, đoạn liên tiếp này không nhất thiết nằm hoàn toàn trên đường đi hậu tố từ $p_0$ tới gốc. Đặc biệt, chỉ một số đỉnh đầu của đoạn liên tiếp ứng với đỉnh đầu tiên $q_1$ là **có thể** không nằm trên đường đi hậu tố này. Ví dụ trong hình, đỉnh $q_1$ ứng với các đỉnh $p_1'\rightarrow p_2\rightarrow p_3$, trong đó $p_1'$ không nằm trên đường đi hậu tố của $p_0$.
     
-        **Giải thích**: đặt $s_2=\operatorname{longest}(p_2)$. Khi đó $s_2+c$ ứng với $q_1$, nhưng trong hình rõ ràng $s_2+c\neq\operatorname{longest}(q_1)$, vì vế sau là $\operatorname{longest}(p'_1)+c$. Điều này cho thấy một phần các xâu ứng với $q_1$ không thể thu được bằng cách chuyển từ $s_2$ và các hậu tố của nó. Ngược lại, các xâu trong $q_2$ chắc chắn là hậu tố của $s_2+c$, nên sau khi bỏ ký tự $c$ ở cuối, chúng chắc chắn là hậu tố của $s_2$. Tức là các đỉnh chuyển qua $c$ tới $q_2$ chắc chắn nằm trên đường đi hậu tố bắt đầu từ $p_2$. Đó cũng là lý do chỉ một phần các đỉnh trong đoạn liên tiếp ứng với $q_1$ ban đầu có thể không nằm trên đường đi hậu tố của $p_0$.
+        **Giải thích**: đặt $s_2=\operatorname{longest}(p_2)$. Khi đó $s_2+c$ ứng với $q_1$, nhưng trong hình $s_2+c\neq\operatorname{longest}(q_1)$, vì vế sau là $\operatorname{longest}(p'_1)+c$. Điều này cho thấy một phần các xâu ứng với $q_1$ không thể thu được bằng cách chuyển từ $s_2$ và các hậu tố của nó. Ngược lại, các xâu trong $q_2$ chắc chắn là hậu tố của $s_2+c$, nên sau khi bỏ ký tự $c$ ở cuối, chúng chắc chắn là hậu tố của $s_2$. Tức là các đỉnh chuyển qua $c$ tới $q_2$ chắc chắn nằm trên đường đi hậu tố bắt đầu từ $p_2$. Đó cũng là lý do chỉ một phần các đỉnh trong đoạn liên tiếp ứng với $q_1$ ban đầu có thể không nằm trên đường đi hậu tố của $p_0$.
     
     Với hình minh họa này, nếu thêm một ký tự $c$ vào cuối xâu cũ $s$ và xây đường đi hậu tố tương ứng, điều gì sẽ xảy ra? Câu trả lời được thể hiện trong hình sau:
     
@@ -329,7 +329,7 @@ Giả sử kích thước bảng chữ cái là **hằng số**, tức mỗi tha
     
     Dùng sự thật rằng kích thước của SAM (số trạng thái và số chuyển trạng thái) là **tuyến tính**. Với số trạng thái, chứng minh tuyến tính chính là bản thân thuật toán; với số chuyển trạng thái, chứng minh tuyến tính sẽ được đưa ra sau khi cài đặt thuật toán.
     
-    Vì vậy tổng độ phức tạp của **phần thứ nhất và phần thứ hai** rõ ràng là tuyến tính, vì theo trung bình mỗi thao tác chỉ thêm một chuyển trạng thái mới vào ô-tô-mát.
+    Vì vậy tổng độ phức tạp của **phần thứ nhất và phần thứ hai** là tuyến tính, vì theo trung bình mỗi thao tác chỉ thêm một chuyển trạng thái mới vào ô-tô-mát.
     
     Còn cần ước lượng tổng độ phức tạp của **phần thứ ba**, nơi nối lại các chuyển trạng thái ban đầu trỏ tới $q$ sang $\textit{clone}$. Gọi $v=\operatorname{longest}(p)$; đây là một hậu tố của xâu $s$. Mỗi lần lặp, độ dài của $v$ giảm đi, nên vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ chắc chắn dịch sang phải. Do đó, số lần $p$ di chuyển theo liên kết hậu tố trong vòng lặp không vượt quá quãng đường mà vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ dịch sang phải. Vì $p$ phải di chuyển ít nhất một lần để kết thúc vòng lặp, và $p$ ít nhất là kết quả của một lần đi theo liên kết hậu tố từ $last$, nên khi vòng lặp kết thúc, vị trí bắt đầu của $v$ với vai trò hậu tố của $s$ không nằm trước vị trí bắt đầu của xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$. Hơn nữa, khi vòng lặp kết thúc, vị trí bắt đầu của xâu $v$ với vai trò hậu tố của $s$ đúng bằng vị trí bắt đầu của $v+c$ với vai trò hậu tố của $s+c$; còn với vai trò hậu tố của $s+c$, xâu $v+c$ đúng là xâu $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{cur}))$. Vì $cur$ là giá trị mới của $last$, số lần di chuyển trong vòng lặp không vượt quá quãng đường vị trí bắt đầu của $\operatorname{longest}(\operatorname{link}(\operatorname{link}(\textit{last}))$ với vai trò hậu tố của xâu hiện tại dịch sang phải trước và sau cập nhật, cộng thêm một (số lần di chuyển bắt buộc để kết thúc vòng lặp).
     
@@ -642,7 +642,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     \operatorname{firstpos}(\textit{clone})=\operatorname{firstpos}(q).
     $$
     
-    (Vì lựa chọn duy nhất khác là $\operatorname{firstpos}(\textit{cur})$, rõ ràng quá lớn.)
+    (Vì lựa chọn duy nhất khác là $\operatorname{firstpos}(\textit{cur})$, giá trị này quá lớn.)
     
     Khi đó đáp án truy vấn là $\operatorname{firstpos}(t)-\left|P\right|+1$, trong đó $t$ là trạng thái ứng với xâu $P$. Mỗi truy vấn chỉ cần thời gian $O(\left|P\right|)$.
 

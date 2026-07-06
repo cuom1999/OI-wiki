@@ -75,11 +75,11 @@ using namespace __gnu_cxx;
 ```
 
 ???+ warning "Về các hàm thư viện bắt đầu bằng hai dấu gạch dưới"
-    Trong OI, việc có được dùng các hàm thư viện bắt đầu bằng hai dấu gạch dưới hay không từng không rõ ràng.
+    Trong OI, quy định về việc có được dùng các hàm thư viện bắt đầu bằng hai dấu gạch dưới hay không từng chưa rõ.
     Năm 2021, CCF công bố
     [thuyết minh bổ sung về hạn chế sử dụng ngôn ngữ lập trình trong chuỗi hoạt động NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml),
     trong đó nêu rằng được phép dùng các hàm thư viện hoặc macro bắt đầu bằng dấu gạch dưới,
-    trừ các hàm thư viện và macro có thao tác bị cấm rõ ràng.
+    trừ các hàm thư viện và macro có thao tác được nêu là bị cấm.
     Vì vậy hiện nay `rope` có thể dùng bình thường trong OI.
 
 <span id="thao-tác-cơ-bản"></span>

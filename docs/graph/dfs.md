@@ -6,7 +6,7 @@ DFS là viết tắt của [Depth First Search](https://en.wikipedia.org/wiki/De
 
 Khi được giới thiệu, thuật toán này thường được đặt cạnh BFS. Tuy nhiên, ngoài việc cả hai đều có thể duyệt một thành phần liên thông của đồ thị, mục đích sử dụng của chúng rất khác nhau, và hiếm khi có trường hợp hai thuật toán có thể dùng thay thế lẫn nhau.
 
-DFS thường được dùng để chỉ kiểu tìm kiếm cài đặt bằng hàm đệ quy, nhưng thực ra hai khái niệm này không hoàn toàn giống nhau. Về tư tưởng tìm kiếm dạng đó, hãy xem [DFS trong tìm kiếm](../search/dfs.md).
+DFS thường được dùng để chỉ kiểu tìm kiếm cài đặt bằng hàm đệ quy, nhưng thực ra hai khái niệm này không hoàn toàn giống nhau. Về tư tưởng tìm kiếm dạng đó, xem [DFS trong tìm kiếm](../search/dfs.md).
 
 ## Quy trình
 
@@ -23,7 +23,7 @@ Nói cụ thể hơn, DFS có cấu trúc đại khái như sau:
       kết thúc vòng lặp
     kết thúc hàm
 
-Đoạn giả mã trên chỉ chứa cấu trúc chính bắt buộc của DFS. Trong cài đặt thực tế, ta thường bổ sung thêm một số thao tác dựa trên các tính chất của DFS.
+Đoạn giả mã trên chỉ chứa cấu trúc chính bắt buộc của DFS. Trong cài đặt thực tế, thường bổ sung thêm một số thao tác dựa trên các tính chất của DFS.
 
 ## Tính chất
 
@@ -157,7 +157,7 @@ Lấy [sao tiến dạng liên kết](./save.md#forward-star-dạng-liên-kết)
 
 Dãy DFS là dãy các số hiệu đỉnh được thăm trong quá trình gọi DFS.
 
-Ta có thể thấy mỗi cây con tương ứng với một đoạn liên tiếp, tức một khoảng, trong dãy DFS.
+Mỗi cây con tương ứng với một đoạn liên tiếp, tức một khoảng, trong dãy DFS.
 
 ### Dãy ngoặc
 
@@ -173,6 +173,6 @@ Với đồ thị liên thông, dãy DFS thường không duy nhất.
 
 Chú ý: dãy DFS của cây cũng không duy nhất.
 
-Trong quá trình DFS, bằng cách ghi lại mỗi đỉnh được thăm từ đỉnh nào, ta có thể xây dựng một cấu trúc cây gọi là cây DFS. Cây DFS là một cây khung của đồ thị ban đầu.
+Trong quá trình DFS, bằng cách ghi lại mỗi đỉnh được thăm từ đỉnh nào, có thể xây dựng một cấu trúc cây gọi là cây DFS. Cây DFS là một cây khung của đồ thị ban đầu.
 
 [Cây DFS](./scc.md#cây-sinh-dfs) có nhiều tính chất, chẳng hạn có thể dùng để tìm [thành phần liên thông mạnh](./scc.md).
