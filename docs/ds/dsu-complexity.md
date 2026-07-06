@@ -25,7 +25,7 @@ $$
 
 Đây chính là hàm Ackermann.
 
-Ở đây, $f^i(x)$ biểu thị việc áp dụng liên tiếp $f$ lên $x$ tổng cộng $i$ lần,
+Trong định nghĩa này, $f^i(x)$ biểu thị việc áp dụng liên tiếp $f$ lên $x$ tổng cộng $i$ lần,
 tức là $f^0(x)=x$, $f^i(x)=f(f^{i-1}(x))$.
 
 Tiếp theo, định nghĩa $\alpha(n)$ là giá trị nguyên nhỏ nhất sao cho $A_{\alpha(n)}(1)\geq n$.
@@ -35,11 +35,11 @@ dù sao tốc độ tăng của chúng đều rất chậm, và giá trị đề
 <span id="định-nghĩa-cơ-bản"></span>
 ### Định nghĩa cơ bản
 
-Mỗi nút đều có một hạng. Ở đây hạng không phải là số lượng nút, mà là độ sâu.
+Mỗi nút đều có một hạng. Hạng trong ngữ cảnh này không phải là số lượng nút, mà là độ sâu.
 Hạng ban đầu của một nút là 0. Khi hợp nhất, nếu hạng của hai nút khác nhau thì gắn nút có hạng nhỏ hơn vào nút có hạng
 lớn hơn, đồng thời không cập nhật hạng của nút lớn hơn.
 Nếu hạng bằng nhau, tùy ý gắn một nút vào nút còn lại và tăng hạng của nút gốc thêm 1.
-Ở đây hạng của nút gốc cho biết chiều cao của cây.
+Hạng của nút gốc cho biết chiều cao của cây.
 Ký hiệu hạng của $x$ là $rnk(x)$; tương tự, ký hiệu nút cha của $x$ là $fa(x)$.
 Luôn có $rnk(x)+1\leq rnk(fa(x))$.
 
@@ -104,7 +104,7 @@ Trước hết, chứng minh rằng thế năng của một nút con $c$ của $
 nếu giảm thì giảm ít nhất $1$.
 
 Gọi thế năng của $c$ trước thao tác là $\Phi(c)$ và sau thao tác là $\Phi(c')$.
-Ở đây $c$ có thể là bất kỳ nút không phải gốc nào với $rnk(c)>0$,
+Trong phần này, $c$ có thể là bất kỳ nút không phải gốc nào với $rnk(c)>0$,
 và thao tác có thể là bất kỳ thao tác nào, bao gồm cả thao tác find bên dưới.
 Xét bốn trường hợp.
 
@@ -133,7 +133,7 @@ Vì vậy, độ phức tạp thời gian khấu hao của thao tác $union$ là
 <span id="thao-tác-finda"></span>
 ### Thao tác find(a)
 
-Nếu đường tìm kiếm chứa $\Theta(s)$ nút, rõ ràng thời gian tìm kiếm là $\Theta(s)$.
+Nếu đường tìm kiếm chứa $\Theta(s)$ nút, thời gian tìm kiếm là $\Theta(s)$.
 Nếu thao tác tìm kiếm không làm nút nào tăng thế năng, đồng thời có ít nhất $s-\alpha(n)$ nút giảm thế năng ít nhất $1$,
 thì có thể chứng minh độ phức tạp thời gian của thao tác $find(a)$ là $\Theta(\alpha(n))$.
 Để tránh nhầm lẫn, phần này dùng $a$ làm tham số,
@@ -163,7 +163,7 @@ $rnk(root_x)\geq A_{k(x)}(A_{k(x)}^{i(x)}(rnk(x)))$.
 
 Đến đây công thức có thể khá khó theo dõi; có thể đọc lại vài lần, hoặc tạm bỏ qua một số chi tiết rồi quay lại sau.
 
-Ở đây cần thêm một lớp $A_{k(x)}$ ở bên ngoài, nghĩa là cần tìm thêm một điểm $y$.
+Để có thêm một lớp $A_{k(x)}$ ở bên ngoài, cần tìm thêm một điểm $y$.
 Cho $y$ là điểm nằm sau $x$ trên đường tìm kiếm và thỏa $k(y)=k(x)$;
 trong ngữ cảnh này, "nằm sau trên đường tìm kiếm" tương đương với "là tổ tiên của $x$".
 Không phải mọi $x$ đều có một $y$ như vậy.
