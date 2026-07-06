@@ -2,14 +2,14 @@ Trang này quy định cách viết khuyến nghị cho các ký hiệu toán h�
 
 Trang này được hiệu chỉnh dựa trên [GB/T 3102.11-1993](https://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=3DE79450D562E62D41CB6E79FF411054), [ISO 80000-2:2019](https://www.iso.org/standard/64973.html) và bảng ký hiệu trong *Concrete Mathematics*, nên về cơ bản tương thích với hệ ký hiệu trong các giáo trình thông dụng và các ký hiệu thường dùng trong bối cảnh OI.
 
-Về cách viết LaTeX của các ký hiệu, hãy tham khảo [mã nguồn của bài viết này](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/docs/intro/symbol.md?plain=1).
+Về cách viết LaTeX của các ký hiệu, tham khảo [mã nguồn của bài viết này](https://github.com/cuom1999/OI-wiki/blob/vietnamese-translation/docs/intro/symbol.md?plain=1).
 
 ## Logic toán học
 
 | Số hiệu | Ký hiệu, biểu thức | Ý nghĩa, cách diễn đạt tương đương | Ghi chú và ví dụ |
 | ------- | ----------------- | ---------------------------------- | ---------------- |
 | <a id="n1.1"></a>n1.1 | $p \land q$ | Hội của $p$ và $q$ | $p$ và $q$. |
-| <a id="n1.2"></a>n1.2 | $p \lor q$ | Tuyển của $p$ và $q$ | $p$ hoặc $q$;<br>"hoặc" ở đây là hoặc bao hàm, tức nếu một trong $p$, $q$ là mệnh đề đúng thì $p \lor q$ đúng. |
+| <a id="n1.2"></a>n1.2 | $p \lor q$ | Tuyển của $p$ và $q$ | $p$ hoặc $q$;<br>"hoặc" trong ngữ cảnh này là hoặc bao hàm, tức nếu một trong $p$, $q$ là mệnh đề đúng thì $p \lor q$ đúng. |
 | <a id="n1.3"></a>n1.3 | $\lnot p$ | Phủ định của $p$ | Không phải $p$. |
 | <a id="n1.4"></a>n1.4 | $p \implies q$ | $p$ kéo theo $q$;<br>nếu $p$ đúng thì $q$ đúng | $q \impliedby p$ và $p \implies q$ đồng nghĩa. |
 | <a id="n1.5"></a>n1.5 | $p \iff q$ | $p$ tương đương với $q$ | $(p \implies q) \land (q \implies p)$ và $p \iff q$ đồng nghĩa. |
@@ -26,7 +26,7 @@ Về cách viết LaTeX của các ký hiệu, hãy tham khảo [mã nguồn c�
 | <a id="n2.4"></a>n2.4 | $\{x \in A ~\vert~ p(x)\}$ | Tập hợp gồm mọi phần tử trong $A$ làm cho mệnh đề $p(x)$ đúng | Ví dụ $\{x \in \textbf{R} ~\vert~ x \geq 5\}$;<br>nếu từ ngữ cảnh có thể biết tập đang xét là $A$, có thể dùng ký hiệu $\{x ~\vert~ p(x)\}$ (chẳng hạn khi chỉ xét tập số thực, có thể dùng $\{x ~\vert~ x \geq 5\}$).<br>$\vert$ cũng có thể thay bằng dấu hai chấm, như $\{x \in A : p(x)\}$. |
 | <a id="n2.5"></a>n2.5 | $\operatorname{card} A$;<br>$\vert A\vert$;<br>$\# A$ | Số phần tử trong $A$, lực lượng của $A$ | |
 | <a id="n2.6"></a>n2.6 | $\varnothing$ | Tập rỗng | Không nên dùng $\emptyset$. |
-| <a id="n2.7"></a>n2.7 | $B \subseteq A$ | $B$ được chứa trong $A$, $B$ là tập con của $A$ | Mọi phần tử của $B$ đều thuộc $A$.<br>$\subset$ cũng có thể được dùng với nghĩa này, nhưng hãy xem phần giải thích tại [n2.8](#n2.8).<br>$A \supseteq B$ và $B \subseteq A$ đồng nghĩa. |
+| <a id="n2.7"></a>n2.7 | $B \subseteq A$ | $B$ được chứa trong $A$, $B$ là tập con của $A$ | Mọi phần tử của $B$ đều thuộc $A$.<br>$\subset$ cũng có thể được dùng với nghĩa này, nhưng xem phần giải thích tại [n2.8](#n2.8).<br>$A \supseteq B$ và $B \subseteq A$ đồng nghĩa. |
 | <a id="n2.8"></a>n2.8 | $B \subset A$ | $B$ được chứa thật sự trong $A$, $B$ là tập con thực sự của $A$ | Mọi phần tử của $B$ đều thuộc $A$, và trong $A$ có ít nhất một phần tử không thuộc $B$.<br>Nếu $\subset$ được hiểu theo nghĩa ở [n2.7](#n2.7), thì ký hiệu tương ứng với [n2.8](#n2.8) nên dùng $\subsetneq$.<br>$A \supset B$ và $B \subset A$ đồng nghĩa. |
 | <a id="n2.9"></a>n2.9 | $A \cup B$ | Hợp của $A$ và $B$ | $A \cup B := \{x ~\vert~ x \in A \lor x \in B\}$;<br>định nghĩa của $:=$ xem tại [n4.3](#n4.3). |
 | <a id="n2.10"></a>n2.10 | $A \cap B$ | Giao của $A$ và $B$ | $A \cap B := \{x ~\vert~ x \in A \land x \in B\}$;<br>định nghĩa của $:=$ xem tại [n4.3](#n4.3). |
@@ -149,8 +149,8 @@ Trong mục này, $n$ và $k$ là số tự nhiên, $a$ là số phức, và $k\
 | <a id="n8.9"></a>n8.9 | $f:x\mapsto y$ | $f(x)=y$, $f$ ánh xạ $x$ tới $y$ | |
 | <a id="n8.10"></a>n8.10 | $f\vert_a^b$;<br>$f(\dots, u, \dots)\vert_{u=a}^{u=b}$ | $f(b)-f(a)$;<br>$f(\dots, b, \dots)-f(\dots, a, \dots)$ | Chủ yếu dùng trong tính tích phân xác định. |
 | <a id="n8.11"></a>n8.11 | $\displaystyle \lim\limits_{x\to a}f(x)$;<br>$\lim\nolimits_{x\to a}f(x)$ | Giới hạn của $f(x)$ khi $x$ tiến tới $a$ | $\lim\nolimits_{x\to a}f(x)=b$ có thể viết thành $f(x)\to b\quad (x \to a)$.<br>Ký hiệu của giới hạn phải và giới hạn trái lần lượt là $\lim\nolimits_{x\to a+}f(x)$ và<br>$\lim\nolimits_{x\to a-}f(x)$. |
-| <a id="n8.12"></a>n8.12 | $f(x) = O(g(x))$ | $\lvert f(x)/g(x)\rvert$ bị chặn trên trong giới hạn ngầm định bởi ngữ cảnh; bậc của $f(x)$ không cao hơn $g(x)$ | Khi cả $f/g$ và $g/f$ đều bị chặn, gọi $f$ và $g$ là cùng bậc.<br>Việc dùng ký hiệu "$=$" là do lý do lịch sử; ở đây nó không biểu thị quan hệ tương đương, vì không thỏa tính bắc cầu.<br>Ví dụ:<br>$\sin x=O(x)\quad (x\to 0)$. |
-| <a id="n8.13"></a>n8.13 | $f(x) = o(g(x))$ | Trong giới hạn ngầm định bởi ngữ cảnh có $f(x)/g(x)\to 0$; bậc của $f(x)$ cao hơn $g(x)$ | Việc dùng ký hiệu "$=$" là do lý do lịch sử; ở đây nó không biểu thị quan hệ tương đương, vì không thỏa tính bắc cầu.<br>Ví dụ:<br>$\cos x=1+o(x)\quad (x\to 0)$. |
+| <a id="n8.12"></a>n8.12 | $f(x) = O(g(x))$ | $\lvert f(x)/g(x)\rvert$ bị chặn trên trong giới hạn ngầm định bởi ngữ cảnh; bậc của $f(x)$ không cao hơn $g(x)$ | Khi cả $f/g$ và $g/f$ đều bị chặn, gọi $f$ và $g$ là cùng bậc.<br>Việc dùng ký hiệu "$=$" là do lý do lịch sử; trong ngữ cảnh này nó không biểu thị quan hệ tương đương, vì không thỏa tính bắc cầu.<br>Ví dụ:<br>$\sin x=O(x)\quad (x\to 0)$. |
+| <a id="n8.13"></a>n8.13 | $f(x) = o(g(x))$ | Trong giới hạn ngầm định bởi ngữ cảnh có $f(x)/g(x)\to 0$; bậc của $f(x)$ cao hơn $g(x)$ | Việc dùng ký hiệu "$=$" là do lý do lịch sử; trong ngữ cảnh này nó không biểu thị quan hệ tương đương, vì không thỏa tính bắc cầu.<br>Ví dụ:<br>$\cos x=1+o(x)\quad (x\to 0)$. |
 | <a id="n8.14"></a>n8.14 | $\Delta f$ | Lượng tăng hữu hạn của $f$ | Hiệu của hai giá trị hàm được ngầm định bởi ngữ cảnh. Ví dụ:<br>$\Delta x=x_2-x_1$;<br>$\Delta f(x)=f(x_2)-f(x_1)$. |
 | <a id="n8.15"></a>n8.15 | $\dfrac{\mathrm{d}f}{\mathrm{d}x}$;<br>$f'$ | Đạo hàm của $f$ theo $x$ | Chỉ dùng cho hàm một biến.<br>Có thể chỉ rõ biến độc lập, như $\dfrac{\mathrm{d}f(x)}{\mathrm{d}x}$, $f'(x)$. |
 | <a id="n8.16"></a>n8.16 | $\left(\dfrac{\mathrm{d}f}{\mathrm{d}x}\right)_{x=a}$;<br>$f'(a)$ | Giá trị đạo hàm của $f$ tại $a$ | Xem [n8.15](#n8.15). |

@@ -6,7 +6,7 @@ $$
 000,001,011,010,110,111,101,100
 $$
 
-Chú ý rằng chỉ số của dãy bắt đầu từ $0$, tức $G(0)=000,G(4)=110$.
+Lưu ý rằng chỉ số của dãy bắt đầu từ $0$, tức $G(0)=000,G(4)=110$.
 
 Mã Gray do Frank Gray ở Bell Labs đề xuất vào thập niên 1940 và được cấp bằng sáng chế năm 1953.
 
@@ -54,7 +54,7 @@ $$
 <span id="cách-tính"></span>
 ### Cách tính
 
-Quan sát biểu diễn nhị phân của $n$ và $G(n)$. Có thể thấy bit thứ $i$ trong biểu diễn nhị phân của $G(n)$ bằng $1$ khi và chỉ khi bit thứ $i$ của $n$ bằng $1$ còn bit thứ $i+1$ bằng $0$, hoặc bit thứ $i$ bằng $0$ còn bit thứ $i+1$ bằng $1$. Vì vậy có thể xem đây là phép xor:
+Quan sát biểu diễn nhị phân của $n$ và $G(n)$. Bit thứ $i$ trong biểu diễn nhị phân của $G(n)$ bằng $1$ khi và chỉ khi bit thứ $i$ của $n$ bằng $1$ còn bit thứ $i+1$ bằng $0$, hoặc bit thứ $i$ bằng $0$ còn bit thứ $i+1$ bằng $1$. Vì vậy có thể xem đây là phép xor:
 
 $$
 G(n)=n\oplus \left\lfloor\frac{n}{2}\right\rfloor
@@ -69,7 +69,7 @@ int g(int n) { return n ^ (n >> 1); }
 
 Tiếp theo chứng minh dãy mã Gray sinh theo công thức trên có đúng một bit khác nhau giữa hai mã kề nhau.
 
-Xét sự khác biệt giữa $n$ và $n+1$. Cộng $1$ vào $n$ tương đương với việc đảo toàn bộ đoạn `1` liên tiếp ở cuối biểu diễn nhị phân của $n$, rồi đổi bit `0` thấp nhất thành `1`. Ta biểu diễn các bit của $n$ và $n+1$ như sau:
+Xét sự khác biệt giữa $n$ và $n+1$. Cộng $1$ vào $n$ tương đương với việc đảo toàn bộ đoạn `1` liên tiếp ở cuối biểu diễn nhị phân của $n$, rồi đổi bit `0` thấp nhất thành `1`. Biểu diễn các bit của $n$ và $n+1$ như sau:
 
 $$
 \begin{aligned}
@@ -119,7 +119,7 @@ Mã Gray có nhiều ứng dụng rất hữu ích, một số ứng dụng khá
 
     Gọi số đĩa là $n$. Bắt đầu từ mã Gray toàn `0` dài $n$ bit $G(0)$, rồi lần lượt chuyển sang mã Gray kế tiếp ($G(i)$ sang $G(i+1)$). Bit thứ $i$ trong biểu diễn nhị phân của mã Gray hiện tại biểu thị đĩa thứ $i$ theo thứ tự từ nhỏ đến lớn.
 
-    Vì mỗi lần chỉ có một bit nhị phân thay đổi, khi bit thứ $i$ thay đổi, ta di chuyển đĩa thứ $i$. Trong quá trình di chuyển, ngoài đĩa nhỏ nhất, mọi đĩa khác khi cần di chuyển chỉ có một lựa chọn đặt hợp lệ. Khi di chuyển đĩa thứ nhất, luôn có hai lựa chọn đặt. Vì vậy chiến lược là:
+    Vì mỗi lần chỉ có một bit nhị phân thay đổi, khi bit thứ $i$ thay đổi, di chuyển đĩa thứ $i$. Trong quá trình di chuyển, ngoài đĩa nhỏ nhất, mọi đĩa khác khi cần di chuyển chỉ có một lựa chọn đặt hợp lệ. Khi di chuyển đĩa thứ nhất, luôn có hai lựa chọn đặt. Vì vậy chiến lược là:
 
     Nếu $n$ là số lẻ, đường đi của đĩa là $f\to t\to r\to f\to t\to r\to\cdots$, trong đó $f$ là cọc ban đầu, $t$ là cọc đích, $r$ là cọc trung gian.
 

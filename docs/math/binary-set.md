@@ -10,7 +10,7 @@ Biểu diễn nhị phân của một số có thể được xem như một t�
 | Hiệu | $a \setminus b$ | $a \operatorname{AND} \operatorname{NOT} b$ |
 | Hiệu đối xứng | $a\triangle b$  | $a \operatorname{XOR} b$  |
 
-Trước khi giới thiệu thao tác duyệt tập con của tập hợp, hãy xem một vài ứng dụng liên quan của phép toán bit.
+Trước khi giới thiệu thao tác duyệt tập con của tập hợp, xét một vài ứng dụng liên quan của phép toán bit.
 
 <span id="lấy-modulo-lũy-thừa-của-2"></span>
 ### Lấy modulo lũy thừa của 2
@@ -93,7 +93,7 @@ Hai bước trên tương đương với việc cắt mặt nạ $s-1$ để l�
 
 Vì vậy thuật toán sinh mọi mặt nạ con của mặt nạ theo thứ tự giảm dần, mỗi vòng lặp chỉ thực hiện hai thao tác.
 
-Trường hợp đặc biệt là $s=0$. Sau khi thực hiện $s-1$, ta nhận được $-1$, có mọi bit đều là `1`. Sau thao tác `(s - 1) & m`, $s$ mới sẽ bằng $m$. Do đó nếu vòng lặp không kết thúc tại $s=0$, thuật toán sẽ không dừng.
+Trường hợp đặc biệt là $s=0$. Sau khi thực hiện $s-1$, thu được $-1$, có mọi bit đều là `1`. Sau thao tác `(s - 1) & m`, $s$ mới sẽ bằng $m$. Do đó nếu vòng lặp không kết thúc tại $s=0$, thuật toán sẽ không dừng.
 
 Ký hiệu $\text{popcount}(m)$ là số bit `1` trong biểu diễn nhị phân của $m$. Với cách này, có thể duyệt các tập con của tập $m$ trong thời gian $O(2^{\text{popcount}(m)})$.
 

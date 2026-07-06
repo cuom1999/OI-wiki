@@ -26,7 +26,7 @@ Ví dụ, trong các hoán vị của các số từ $1$ đến $3$, có $4$ ho�
 
 Vì vậy, theo định nghĩa $A(n, m)$: nếu $n=3$ và $m=1$, giá trị số Eulerian là $4$, biểu thị rằng có tổng cộng $4$ hoán vị có đúng $1$ phần tử lớn hơn phần tử đứng trước nó.
 
-Với các giá trị nhỏ của $n$ và $m$, ta có thể nhận được kết quả trực tiếp:
+Với các giá trị nhỏ của $n$ và $m$, có thể nhận được kết quả trực tiếp:
 
 | $A(n, m)$ | Hoán vị thỏa mãn yêu cầu                         | Số lượng |
 | --------- | ------------------------------------------------ | -------- |

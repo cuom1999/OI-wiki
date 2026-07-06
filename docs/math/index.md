@@ -4,7 +4,7 @@ rạc và cụ thể như số học, tổ hợp, xác suất - kỳ vọng và 
 nhấn mạnh. Chúng chú trọng cài đặt chương trình và bài toán thực tế, đồng thời
 có thể xuất hiện trong hầu như mọi dạng bài.
 
-Thực ra, thuật toán, cấu trúc dữ liệu, automaton và nhiều nội dung khác trong
+Thuật toán, cấu trúc dữ liệu, automaton và nhiều nội dung khác trong
 lập trình thi đấu cũng có thể được xem là thuộc phạm vi toán học. Tuy vậy,
 chúng được tách vào các chương cụ thể như xâu để gắn với bối cảnh ứng dụng và
 dễ hiểu hơn. Chương này chủ yếu giới thiệu một số khái niệm cơ bản trong toán
@@ -19,5 +19,5 @@ có thể giúp tối ưu những thuật toán và cấu trúc dữ liệu khá
     không đơn trên đồ thị theo modulo, rồi duy trì bằng DSU có trọng số.
 
 Ngoài ra, toán phổ thông là nền tảng của toán trong thi đấu Tin học. Nắm chắc
-các khái niệm và tính chất cơ bản trong sách giáo khoa sẽ giúp bạn học chương
+các khái niệm và tính chất cơ bản trong sách giáo khoa sẽ giúp việc học chương
 này tốt hơn.

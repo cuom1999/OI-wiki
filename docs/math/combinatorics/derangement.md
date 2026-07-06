@@ -33,7 +33,7 @@ $$
 \left|\bigcap_{i=1}^{k}\overline{S_{a_i}}\right|=(n-k)!
 $$
 
-Có $\dbinom{n}{k}$ cách chọn $k$ số này, nên sau khi lấy tổng ta có:
+Có $\dbinom{n}{k}$ cách chọn $k$ số này, nên sau khi lấy tổng có:
 
 $$
 \begin{aligned}

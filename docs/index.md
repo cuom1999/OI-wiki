@@ -16,7 +16,7 @@ trước đây ACM từng tài trợ cuộc thi này, nhiều người vẫn que
 
 **OI Wiki** hướng tới việc trở thành một kho tri thức **lập trình thi đấu
 (competitive programming)** miễn phí, mở và được cập nhật liên tục. Tại đây,
-bạn có thể tìm thấy kiến thức thú vị và hữu ích về thi đấu lập trình: nền tảng
+có thể tìm thấy kiến thức thú vị và hữu ích về thi đấu lập trình: nền tảng
 cơ bản, dạng bài thường gặp, hướng giải, công cụ và kinh nghiệm học tập.
 
 Bản tiếng Việt này dịch dần từ dự án gốc, giữ nguyên cấu trúc nguồn để dễ theo
