@@ -76,9 +76,9 @@ Hai ma trận có số hàng và số cột tương ứng bằng nhau được g
 <span id="ma-trận-vuông"></span>
 ### Ma trận vuông
 
-Ma trận có số hàng bằng số cột được gọi là ma trận vuông. Ma trận vuông là một loại ma trận đặc biệt. Cách nói quen thuộc "ma trận bậc $n$" thực ra chỉ ma trận vuông bậc $n$. Các ma trận vuông cùng bậc là ma trận cùng dạng.
+Ma trận có số hàng bằng số cột được gọi là ma trận vuông. Ma trận vuông là một loại ma trận đặc biệt. Cách nói quen thuộc "ma trận bậc $n$" chỉ ma trận vuông bậc $n$. Các ma trận vuông cùng bậc là ma trận cùng dạng.
 
-Khi nghiên cứu hệ phương trình, hệ vectơ, hạng của ma trận, ta dùng ma trận tổng quát. Khi nghiên cứu giá trị riêng, vectơ riêng và dạng toàn phương, ta dùng ma trận vuông.
+Khi nghiên cứu hệ phương trình, hệ vectơ, hạng của ma trận, dùng ma trận tổng quát. Khi nghiên cứu giá trị riêng, vectơ riêng và dạng toàn phương, dùng ma trận vuông.
 
 <span id="đường-chéo-chính"></span>
 #### Đường chéo chính
@@ -151,13 +151,13 @@ $$
 
 Trong phép nhân ma trận, số ở hàng $i$ cột $j$ của ma trận kết quả $C$ được tạo bằng cách lấy $M$ số ở hàng thứ $i$ của ma trận $A$ và $M$ số ở cột thứ $j$ của ma trận $B$, rồi **nhân từng cặp và cộng lại**. Việc **nhân rồi cộng** này chính là tích trong của vectơ. Phần tử ở hàng $i$ cột $j$ của ma trận tích đúng bằng tích trong của vectơ hàng thứ $i$ của ma trận nhân $A$ và vectơ cột thứ $j$ của ma trận nhân $B$, khẩu quyết là **trái hàng, phải cột**.
 
-Các vectơ được nghiên cứu trong đại số tuyến tính phần lớn là vectơ cột. Theo cách định nghĩa phép nhân ma trận như trên, ta thường nghiên cứu phép nhân trái một ma trận vào vectơ cột; đồng thời ở đây cũng thấy được tư tưởng "đóng gói xử lý", tức xử lý nhiều tích trong của vectơ cùng lúc.
+Các vectơ được nghiên cứu trong đại số tuyến tính phần lớn là vectơ cột. Theo cách định nghĩa phép nhân ma trận như trên, thường nghiên cứu phép nhân trái một ma trận vào vectơ cột; đồng thời qua đó cũng thấy được tư tưởng "đóng gói xử lý", tức xử lý nhiều tích trong của vectơ cùng lúc.
 
 Phép nhân ma trận thỏa tính kết hợp, nhưng nói chung không thỏa tính giao hoán.
 
 Dùng tính kết hợp, phép nhân ma trận có thể được tối ưu bằng tư tưởng [lũy thừa nhanh](../binary-exponentiation.md).
 
-Trong thi đấu, vì truy hồi tuyến tính có thể biểu diễn dưới dạng nhân ma trận, người ta cũng thường dùng lũy thừa ma trận nhanh để tính một số hạng của dãy truy hồi tuyến tính.
+Trong thi đấu, vì truy hồi tuyến tính có thể biểu diễn dưới dạng nhân ma trận, lũy thừa ma trận nhanh cũng thường được dùng để tính một số hạng của dãy truy hồi tuyến tính.
 
 <span id="tối-ưu"></span>
 #### Tối ưu
@@ -268,7 +268,7 @@ Có hai góc nhìn để xem ma trận $A$, hoặc biến đổi $A$.
 
 Góc nhìn thứ nhất: nhìn theo hàng, quan sát từng hàng của $A$. Khi đó xem $A$ như một hệ phương trình, từ đó có quá trình khử để giải phương trình.
 
-Góc nhìn thứ hai: nhìn theo cột, quan sát từng cột của $A$. Bản thân $A$ cũng được tạo bởi các vectơ cột. Khi đó tương đương với việc xem bản thân biến đổi $A$ như một hệ vectơ cột, còn $x$ là hệ số chưa biết; ta suy nghĩ xem nhóm vectơ cột trong $A$ có thể ghép với các hệ số chưa biết để tạo ra vectơ cột $b$ hay không.
+Góc nhìn thứ hai: nhìn theo cột, quan sát từng cột của $A$. Bản thân $A$ cũng được tạo bởi các vectơ cột. Khi đó tương đương với việc xem bản thân biến đổi $A$ như một hệ vectơ cột, còn $x$ là hệ số chưa biết; cần xét nhóm vectơ cột trong $A$ có thể ghép với các hệ số chưa biết để tạo ra vectơ cột $b$ hay không.
 
 Ví dụ ở đầu bài trở thành:
 
@@ -315,7 +315,7 @@ $$
 
 Định nghĩa ma trận ban đầu $\text{ans} = \begin{bmatrix}F_2 & F_1\end{bmatrix} = \begin{bmatrix}1 & 1\end{bmatrix}, \text{base} = \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}$. Khi đó $F_n$ bằng phần tử hàng thứ nhất cột thứ nhất của ma trận $\text{ans} \text{base}^{n-2}$, tức phần tử hàng thứ nhất cột thứ nhất của $\begin{bmatrix}1 & 1\end{bmatrix} \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2}$.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Phép nhân ma trận không thỏa tính giao hoán, nên tuyệt đối không được viết thành phần tử hàng thứ nhất cột thứ nhất của $\begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix}^{n-2} \begin{bmatrix}1 & 1\end{bmatrix}$. Ngoài ra, với trường hợp $n \leq 2$, chỉ cần xuất trực tiếp $1$, không cần thực hiện lũy thừa ma trận nhanh.
 
 Tại sao phải nhân với lũy thừa $n-2$ của ma trận $\text{base}$ mà không phải lũy thừa $n$? Vì $F_1, F_2$ không cần phép nhân ma trận cũng có thể tính được. Nói cách khác, chỉ thực hiện một phép nhân đã tính được $F_3$. Nếu vẫn chưa hiểu vì sao số mũ là $n-2$, nên tự tính tay một lần.
@@ -371,7 +371,7 @@ f_{n} = 7f_{n-1}+6f_{n-2}+5n+4\times 3^n
 \end{gathered}
 $$
 
-Ta nhận thấy $f_n$ liên quan đến $f_{n-1}, f_{n-2}, n$, nên xét xây dựng một ma trận để mô tả trạng thái.
+Vì $f_n$ liên quan đến $f_{n-1}, f_{n-2}, n$, xét xây dựng một ma trận để mô tả trạng thái.
 
 Nhưng nếu ma trận chỉ có ba phần tử $\begin{bmatrix}f_n& f_{n-1}& n\end{bmatrix}$ thì khó xây dựng phương trình chuyển, vì phép lũy thừa và phép $+1$ không thể được mô tả bằng ma trận đó.
 
@@ -381,7 +381,7 @@ $$
 \begin{bmatrix}f_n& f_{n-1}& n& 3^n & 1\end{bmatrix}
 $$
 
-Ta muốn xây dựng một ma trận truy hồi để chuyển sang
+Cần xây dựng một ma trận truy hồi để chuyển sang
 
 $$
 \begin{bmatrix}
@@ -407,7 +407,7 @@ $$
 ???+ note "[THUSCH 2017 Đại pháp sư](https://loj.ac/p/2980)"
     Tiểu L, một đại pháp sư, chế tạo $n$ quả cầu pha lê ma lực. Mỗi quả cầu pha lê có ba thuộc tính năng lượng: nước, lửa, đất. Tiểu L xếp $n$ quả cầu pha lê này thành một hàng trên mặt đất từ trước ra sau, rồi bắt đầu buổi biểu diễn ma pháp hôm nay.
     
-    Ta dùng $A_i,\ B_i,\ C_i$ lần lượt biểu thị giá trị năng lượng nước, lửa, đất của quả cầu pha lê thứ $i$ từ trước ra sau (chỉ số bắt đầu từ $1$).
+    Dùng $A_i,\ B_i,\ C_i$ lần lượt biểu thị giá trị năng lượng nước, lửa, đất của quả cầu pha lê thứ $i$ từ trước ra sau (chỉ số bắt đầu từ $1$).
     
     Tiểu L dự định thi triển $m$ lần ma pháp. Mỗi lần, cậu chọn một đoạn $[l, r]$, rồi thi triển một trong $3$ nhóm lớn, tổng cộng $7$ loại ma pháp sau:
     
@@ -417,13 +417,13 @@ $$
         -   Nguyên tố đất kích phát năng lượng lửa: đặt $B_i = B_i + C_i$.
         -   Nguyên tố nước kích phát năng lượng đất: đặt $C_i = C_i + A_i$.
     
-            **Cần chú ý rằng tăng cường năng lượng của một thuộc tính sẽ không làm thay đổi năng lượng của thuộc tính còn lại; ví dụ $A_i = A_i + B_i$ không làm $B_i$ tăng hoặc giảm.**
+            **Cần lưu ý rằng tăng cường năng lượng của một thuộc tính sẽ không làm thay đổi năng lượng của thuộc tính còn lại; ví dụ $A_i = A_i + B_i$ không làm $B_i$ tăng hoặc giảm.**
     2.  Tăng cường ma lực: Tiểu L vung pháp trượng, tiêu hao $v$ điểm pháp lực của bản thân để thay đổi năng lượng của một **thuộc tính nhất định** trong mỗi quả cầu pha lê trong đoạn. Cụ thể có ba dạng:
     
         -   Tăng cố định năng lượng nguyên tố lửa: đặt $A_i = A_i + v$.
         -   Tăng gấp bội năng lượng nguyên tố nước: đặt $B_i=B_i \cdot v$.
         -   Hấp thu dung hợp năng lượng nguyên tố đất: đặt $C_i = v$.
-    3.  Giải phóng ma lực: Tiểu L gom năng lượng của tất cả quả cầu pha lê trong đoạn lại, dung hợp thành một quả cầu pha lê mới, rồi tặng cho khán giả ngoài sân. Giá trị năng lượng của mỗi thuộc tính trong quả cầu pha lê tạo ra bằng tổng đại số của các giá trị năng lượng thuộc tính tương ứng trong đoạn. **Cần chú ý rằng quá trình giải phóng ma lực không thật sự thay đổi năng lượng của các quả cầu pha lê trong đoạn**.
+    3.  Giải phóng ma lực: Tiểu L gom năng lượng của tất cả quả cầu pha lê trong đoạn lại, dung hợp thành một quả cầu pha lê mới, rồi tặng cho khán giả ngoài sân. Giá trị năng lượng của mỗi thuộc tính trong quả cầu pha lê tạo ra bằng tổng đại số của các giá trị năng lượng thuộc tính tương ứng trong đoạn. **Cần lưu ý rằng quá trình giải phóng ma lực không thật sự thay đổi năng lượng của các quả cầu pha lê trong đoạn**.
     
     Đáng nói là nguyên liệu tạo và dung hợp cầu pha lê của Tiểu L đều là cầu pha lê phiên bản tùy chỉnh từ nhà máy OI, nên các quả cầu pha lê này có ngưỡng năng lượng $998244353$. Khi giá trị năng lượng của một thuộc tính trong quả cầu pha lê lớn hơn hoặc bằng ngưỡng này, giá trị năng lượng sẽ tự động lấy modulo theo ngưỡng để tránh quả cầu pha lê phát nổ.
     
@@ -505,19 +505,19 @@ $$
 ### Đếm đường đi độ dài cố định
 
 ???+ note "Mô tả bài toán"
-    Cho một đồ thị có hướng bậc $n$, mỗi cạnh có trọng số bằng $1$, rồi cho một số nguyên $k$. Nhiệm vụ của bạn là với mọi cặp đỉnh $(u,v)$, tìm số đường đi từ $u$ đến $v$ có độ dài bằng $k$ (không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần).
+    Cho một đồ thị có hướng bậc $n$, mỗi cạnh có trọng số bằng $1$, rồi cho một số nguyên $k$. Nhiệm vụ là với mọi cặp đỉnh $(u,v)$, tìm số đường đi từ $u$ đến $v$ có độ dài bằng $k$ (không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần).
 
-Ta biểu diễn đồ thị này bằng ma trận kề $G$: với cạnh $(u\to v)$ trong đồ thị, đặt $G[u,v]=1$, các vị trí khác bằng $0$; nếu có cạnh song song, thì đặt $G[u,v]$ bằng số cạnh song song. Thuật toán dưới đây cũng áp dụng được khi đồ thị có khuyên.
+Biểu diễn đồ thị này bằng ma trận kề $G$: với cạnh $(u\to v)$ trong đồ thị, đặt $G[u,v]=1$, các vị trí khác bằng $0$; nếu có cạnh song song, thì đặt $G[u,v]$ bằng số cạnh song song. Thuật toán dưới đây cũng áp dụng được khi đồ thị có khuyên.
 
-Rõ ràng ma trận kề này chính là đáp án khi $k=1$.
+Ma trận kề này chính là đáp án khi $k=1$.
 
-Giả sử ta đã biết ma trận gồm số đường đi có độ dài $k$, ký hiệu là ma trận $C_k$, và muốn tìm $C_{k+1}$. Rõ ràng có phương trình chuyển DP:
+Giả sử đã biết ma trận gồm số đường đi có độ dài $k$, ký hiệu là ma trận $C_k$, và muốn tìm $C_{k+1}$. Có phương trình chuyển DP:
 
 $$
 C_{k+1}[i,j] = \sum_{p = 1}^{n} C_k[i,p] \cdot G[p,j]
 $$
 
-Ta có thể xem nó như một phép nhân ma trận, vì vậy chuyển trạng thái trên có thể mô tả là
+Có thể xem nó như một phép nhân ma trận, vì vậy chuyển trạng thái trên có thể mô tả là
 
 $$
 C_{k+1} = C_k \cdot G
@@ -535,17 +535,17 @@ $$
 ### Đường đi ngắn nhất có độ dài cố định
 
 ???+ note "Mô tả bài toán"
-    Cho một đồ thị có hướng có trọng số bậc $n$ và một số nguyên $k$. Với mỗi cặp đỉnh $(u,v)$, hãy tìm độ dài đường đi ngắn nhất từ $u$ đến $v$ chứa đúng $k$ cạnh. (Không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần.)
+    Cho một đồ thị có hướng có trọng số bậc $n$ và một số nguyên $k$. Với mỗi cặp đỉnh $(u,v)$, tìm độ dài đường đi ngắn nhất từ $u$ đến $v$ chứa đúng $k$ cạnh. (Không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần.)
 
-Ta vẫn xây dựng ma trận kề $G$ của đồ thị, trong đó $G[i,j]$ biểu thị trọng số cạnh từ $i$ đến $j$. Nếu giữa hai đỉnh $i,j$ không có cạnh, thì $G[i,j]=\infty$. (Nếu có cạnh song song thì lấy trọng số nhỏ nhất.)
+Vẫn xây dựng ma trận kề $G$ của đồ thị, trong đó $G[i,j]$ biểu thị trọng số cạnh từ $i$ đến $j$. Nếu giữa hai đỉnh $i,j$ không có cạnh, thì $G[i,j]=\infty$. (Nếu có cạnh song song thì lấy trọng số nhỏ nhất.)
 
-Rõ ràng ma trận trên là đáp án của bài toán khi $k=1$. Ta vẫn giả sử đã biết đáp án với $k$, ký hiệu là ma trận $L_k$. Bây giờ muốn tìm đáp án với $k+1$. Rõ ràng có phương trình chuyển:
+Ma trận trên là đáp án của bài toán khi $k=1$. Giả sử đã biết đáp án với $k$, ký hiệu là ma trận $L_k$. Bây giờ muốn tìm đáp án với $k+1$. Có phương trình chuyển:
 
 $$
 L_{k+1}[i,j] = \min_{1\le p \le n} \left\{L_k[i,p] + G[p,j]\right\}
 $$
 
-Thực ra có thể tương tự phép nhân ma trận: chuyển trạng thái trên chỉ thay "nhân rồi cộng" trong phép nhân ma trận bằng "cộng rồi lấy nhỏ nhất". Vì vậy ta định nghĩa phép toán này là $\odot$, tức
+Có thể xem tương tự phép nhân ma trận: chuyển trạng thái trên chỉ thay "nhân rồi cộng" trong phép nhân ma trận bằng "cộng rồi lấy nhỏ nhất". Vì vậy định nghĩa phép toán này là $\odot$, tức
 
 $$
 A \odot B = C~~\Longleftrightarrow~~C[i,j]=\min_{1\le p \le n}\left\{A[i,p] + B[p,j]\right\}
@@ -563,17 +563,17 @@ $$
 L_k = \underbrace{G \odot \ldots \odot G}_{k\text{ lần}} = G^{\odot k}
 $$
 
-Ta vẫn có thể dùng phương pháp lũy thừa ma trận nhanh để tính biểu thức trên, vì phép toán này hiển nhiên có tính kết hợp. Độ phức tạp thời gian là $O(n^3 \log k)$.
+Vẫn có thể dùng phương pháp lũy thừa ma trận nhanh để tính biểu thức trên, vì phép toán này có tính kết hợp. Độ phức tạp thời gian là $O(n^3 \log k)$.
 
 <span id="đếm-đường-đi-đường-đi-ngắn-nhất-với-giới-hạn-độ-dài"></span>
 ### Đếm đường đi/đường đi ngắn nhất với giới hạn độ dài
 
-Thuật toán trên chỉ áp dụng cho trường hợp số cạnh cố định. Tuy nhiên, ta có thể cải tiến thuật toán để giải trường hợp số cạnh nhỏ hơn hoặc bằng $k$. Cụ thể, xét bài toán sau:
+Thuật toán trên chỉ áp dụng cho trường hợp số cạnh cố định. Tuy nhiên, có thể cải tiến thuật toán để giải trường hợp số cạnh nhỏ hơn hoặc bằng $k$. Cụ thể, xét bài toán sau:
 
 ???+ note "Mô tả bài toán"
-    Cho một đồ thị có hướng bậc $n$, trọng số cạnh bằng $1$, rồi cho một số nguyên $k$. Nhiệm vụ của bạn là với mỗi cặp đỉnh $(u,v)$, tìm số đường đi từ $u$ đến $v$ có độ dài nhỏ hơn hoặc bằng $k$ (không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần).
+    Cho một đồ thị có hướng bậc $n$, trọng số cạnh bằng $1$, rồi cho một số nguyên $k$. Nhiệm vụ là với mỗi cặp đỉnh $(u,v)$, tìm số đường đi từ $u$ đến $v$ có độ dài nhỏ hơn hoặc bằng $k$ (không nhất thiết là đường đi đơn, tức các đỉnh hoặc cạnh trên đường đi có thể được đi qua nhiều lần).
 
-Với mỗi đỉnh $v$, ta tạo một đỉnh ảo $v'$ để ghi đáp án, đồng thời thêm hai cạnh $(v,v')$ và $(v',v')$ vào đồ thị. Khi đó với cặp đỉnh $(u,v)$, số đường đi từ $u$ đến $v$ có số cạnh nhỏ hơn hoặc bằng $k$ bằng số đường đi từ $u$ đến $v'$ có số cạnh đúng bằng $k+1$. Lý do là với mọi đường đi có số cạnh $m(m \le k)$ là $(p_0=u)\to p_1\to p_2 \to \dots \to p_{m-1} \to (p_m=v)$, đều tồn tại một đường đi có số cạnh $k+1$ là $(p_0=u)\to p_1 \to p_2 \to \dots \to p_{m-1} \to (p_m=v) \to v'  \to \dots \to v'$ tương ứng một-một với nó.
+Với mỗi đỉnh $v$, tạo một đỉnh ảo $v'$ để ghi đáp án, đồng thời thêm hai cạnh $(v,v')$ và $(v',v')$ vào đồ thị. Khi đó với cặp đỉnh $(u,v)$, số đường đi từ $u$ đến $v$ có số cạnh nhỏ hơn hoặc bằng $k$ bằng số đường đi từ $u$ đến $v'$ có số cạnh đúng bằng $k+1$. Lý do là với mọi đường đi có số cạnh $m(m \le k)$ là $(p_0=u)\to p_1\to p_2 \to \dots \to p_{m-1} \to (p_m=v)$, đều tồn tại một đường đi có số cạnh $k+1$ là $(p_0=u)\to p_1 \to p_2 \to \dots \to p_{m-1} \to (p_m=v) \to v'  \to \dots \to v'$ tương ứng một-một với nó.
 
 Với bài toán tìm đường đi ngắn nhất có số cạnh nhỏ hơn hoặc bằng $k$, chỉ cần thêm cho mỗi đỉnh một khuyên có trọng số $0$.
 
