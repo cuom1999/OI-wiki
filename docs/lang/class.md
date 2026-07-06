@@ -1,19 +1,19 @@
 author: Ir1d, cjsoft, Lans1ot, JasonkayZK
 
-Lớp (`class`) là phần mở rộng của cấu trúc: nó không chỉ có thành viên dữ liệu,
-mà còn có hàm thành viên.
+Lớp (`class`) là phần mở rộng của cấu trúc: ngoài thành viên dữ liệu, nó còn có
+hàm thành viên.
 
 Trong lập trình hướng đối tượng (OOP), đối tượng là một thực thể của lớp, tức
 một giá trị hoặc biến thuộc kiểu lớp đó.
 
-Trong C++, thứ được định nghĩa bằng từ khóa `struct` cũng là lớp. Định nghĩa
-**cấu trúc** ở phần trước gần với cách dùng trong C. Vì một số nguyên nhân lịch
-sử, C++ giữ lại và mở rộng `struct`.
+Trong C++, kiểu được định nghĩa bằng từ khóa `struct` cũng là lớp. Định nghĩa
+**cấu trúc** ở phần trước gần với cách dùng trong C. Vì lý do lịch sử, C++ giữ
+lại và mở rộng `struct`.
 
 ## Định nghĩa lớp
 
-Lớp được định nghĩa bằng từ khóa `class` hoặc `struct`; phần sau lấy
-`class` làm ví dụ.
+Lớp được định nghĩa bằng từ khóa `class` hoặc `struct`; phần sau dùng `class`
+làm ví dụ.
 
 ```cpp
 class ClassName {
@@ -40,7 +40,7 @@ Cách định nghĩa con trỏ tới lớp giống với [`struct`](./struct.md)
 
 ### Bộ chỉ định truy cập
 
-Khác với ví dụ trong [`struct`](./struct.md), ví dụ này có `public`, đây là một
+Khác với ví dụ trong [`struct`](./struct.md), ví dụ này có `public`; đây là một
 bộ chỉ định truy cập.
 
 -   `public`: mọi thành viên sau bộ chỉ định truy cập này đều có thể được truy
@@ -57,7 +57,7 @@ Với `struct`, mọi thành viên mặc định đều là `public`. Với `cla
 viên mặc định đều là `private`.
 
 ??? note "Khái niệm cơ bản về friend và lớp dẫn xuất"
-    Friend (`friend`): dùng từ khóa `friend` để bổ nghĩa một hàm hoặc một lớp.
+    Friend (`friend`): dùng từ khóa `friend` để khai báo một hàm hoặc một lớp.
     Điều này cho phép **thực thể được khai báo là friend** truy cập thành viên
     riêng tư (`private`) hoặc được bảo vệ (`protected`) của lớp đó mà không cần
     trở thành hàm thành viên hoặc lớp thành viên. Nói đơn giản, khi một hàm hoặc
@@ -72,9 +72,9 @@ viên mặc định đều là `private`.
     Lớp dẫn xuất giống quan hệ "là một". Ví dụ, mèo (lớp dẫn xuất) "là một" động
     vật có vú (lớp cơ sở).
 
-    Với khác biệt giữa `private` và `protected` ở trên, có thể hiểu rằng lớp dẫn
-    xuất có thể truy cập thành viên `protected` của lớp cơ sở, nhưng không thể
-    truy cập thành viên `private`.
+    Từ khác biệt giữa `private` và `protected` ở trên, có thể thấy lớp dẫn xuất
+    truy cập được thành viên `protected` của lớp cơ sở, nhưng không truy cập được
+    thành viên `private`.
 
 ## Truy cập và sửa giá trị thành viên
 
@@ -129,23 +129,22 @@ Nếu muốn gọi hàm thành viên `print` của `var`, có thể dùng `var.p
 ### Nạp chồng toán tử
 
 ??? note "Nạp chồng là gì?"
-    C++ cho phép người viết chỉ định các định nghĩa khác nhau cho hàm hoặc toán
-    tử cùng tên. Điều này được gọi là **nạp chồng** (overload).
+    C++ cho phép người viết cung cấp nhiều định nghĩa cho hàm hoặc toán tử cùng
+    tên. Điều này được gọi là **nạp chồng** (overload).
 
-    Nếu các hàm cùng tên khác nhau từng đôi một ở một hoặc nhiều yếu tố trong
-    loại tham số hoặc số lượng tham số, chúng được xem là các hàm khác nhau.
+    Nếu các hàm cùng tên có khác biệt ở kiểu tham số hoặc số lượng tham số, chúng
+    được xem là các hàm khác nhau.
 
-    Lưu ý: nếu hai hàm cùng tên chỉ khác nhau ở kiểu giá trị trả về thì
-    không thể nạp chồng; lúc này trình biên dịch sẽ từ chối biên dịch.
+    Lưu ý: nếu hai hàm cùng tên chỉ khác nhau ở kiểu giá trị trả về thì không
+    thể nạp chồng; lúc này trình biên dịch sẽ từ chối biên dịch.
 
-    Nếu khi gọi không xảy ra nhập nhằng, tức khi gọi một hàm cùng tên nào đó có
-    thể dựa vào loại và số lượng tham số đã truyền để xác định duy nhất hàm cần
-    gọi, trình biên dịch sẽ dựa vào tham số khi gọi để quyết định nên gọi hàm
-    nào. Trường hợp nhập nhằng thường gặp ở các hàm có tham số mặc định.
+    Nếu lời gọi không nhập nhằng, tức có thể dựa vào kiểu và số lượng tham số đã
+    truyền để xác định duy nhất hàm cần gọi, trình biên dịch sẽ chọn hàm tương
+    ứng. Trường hợp nhập nhằng thường gặp ở các hàm có tham số mặc định.
 
     Quá trình trên được gọi là phân giải nạp chồng.
 
-Nạp chồng toán tử có thể thay thế hàm ở một mức độ nhất định và làm mã ngắn gọn
+Nạp chồng toán tử có thể thay thế hàm trong một số trường hợp và làm mã ngắn gọn
 hơn.
 
 Sau đây là ví dụ nạp chồng toán tử.
@@ -179,7 +178,7 @@ Vector Vector::operator-(const Vector& other) const {
 Ví dụ này định nghĩa một lớp vector và nạp chồng các toán tử `*`, `+`, `-`, lần
 lượt đại diện cho tích vô hướng vector, cộng vector và trừ vector.
 
-Mẫu nạp chồng toán tử đại khái có thể chia thành các phần sau:
+Mẫu nạp chồng toán tử thường có các dạng sau:
 
 ```text
 /* nạp chồng trong định nghĩa lớp */ kiểu_trả_về operator_ký_hiệu(tham_số){...}
@@ -188,10 +187,10 @@ Mẫu nạp chồng toán tử đại khái có thể chia thành các phần sa
 ```
 
 Với lớp tự định nghĩa, nếu đã nạp chồng một số toán tử, thường chỉ cần nạp chồng
-toán tử so sánh `<`, thì có thể dùng các container hoặc thuật toán STL tương
-ứng, chẳng hạn [`sort`](../basic/stl-sort.md).
+toán tử so sánh `<` là có thể dùng các container hoặc thuật toán STL tương ứng,
+chẳng hạn [`sort`](../basic/stl-sort.md).
 
-Để tìm hiểu thêm, có thể xem mục thứ tư trong "Tài liệu tham khảo".
+Để tìm hiểu thêm, xem mục thứ tư trong "Tài liệu tham khảo".
 
 ??? note "Các toán tử có thể được nạp chồng"
     ```text
