@@ -1,7 +1,7 @@
 ## Khung chương trình
 
 Ở giai đoạn mới học, nếu chưa tìm hiểu sâu nguyên lý phía sau, có thể ghi nhớ
-"khung" sau:
+"khung" chương trình sau:
 
 ```cpp
 #include <cstdio>
@@ -14,31 +14,31 @@ int main() {
 ```
 
 ??? note "`#include` là gì?"
-    `#include` thực chất là một lệnh tiền xử lý, nghĩa là "đặt" một tệp vào vị
-    trí của câu lệnh này; tệp được đặt vào đó gọi là tệp tiêu đề. Khi biên dịch,
-    trình biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề `iostream` rồi "dán"
-    vào vị trí câu lệnh `#include <iostream>`. Nhờ vậy, có thể dùng các đối tượng
-    mà `iostream` cung cấp như `std::cin`, `std::cout`, `std::endl`, v.v.
+    `#include` thực chất là một lệnh tiền xử lý, nghĩa là "đặt" một tệp vào vị trí
+    của câu lệnh này; tệp được đặt vào đó gọi là tệp tiêu đề. Khi biên dịch, trình
+    biên dịch sẽ "sao chép" nội dung trong tệp tiêu đề `iostream` rồi "dán" vào vị
+    trí câu lệnh `#include <iostream>`. Nhờ vậy, có thể dùng các đối tượng mà
+    `iostream` cung cấp như `std::cin`, `std::cout`, `std::endl`, v.v.
 
     Trong C++ hiện nay, các tệp tiêu đề thường gặp không có hậu tố `.h`, còn các
     tệp tiêu đề `xx.h` của C thường có dạng `cxx`, chẳng hạn `stdio.h` trở thành
     `cstdio`. Để tương thích với C, C++ cũng cung cấp các tệp tiêu đề của C; để
     phân biệt tệp tiêu đề C++ với tệp tiêu đề C, C++ dùng tiền tố `c`.
 
-    Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa trên
-    nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu đề, thời
-    gian biên dịch có thể tăng, nhưng thời gian chạy thường không bị ảnh hưởng. Ở
-    phần hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và `cstdio`; nếu chỉ
-    dùng `scanf` và `printf`, thì không cần `#include <iostream>`.
+    Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa trên nhu
+    cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu đề, thời gian
+    biên dịch có thể tăng, nhưng thời gian chạy thường không bị ảnh hưởng. Ở phần
+    hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và `cstdio`; nếu chỉ dùng
+    `scanf` và `printf`, thì không cần `#include <iostream>`.
 
     Có thể `#include` tệp tiêu đề tự viết không? Câu trả lời là có.
 
-    Có thể tự viết một tệp tiêu đề, ví dụ `myheader.h`. Sau đó đặt nó vào
-    cùng thư mục với mã nguồn, rồi dùng `#include "myheader.h"` là được. Tệp tiêu
-    đề tự định nghĩa phải dùng dấu ngoặc kép thay vì dấu ngoặc nhọn. Ngoài ra,
-    có thể dùng tùy chọn biên dịch `-I <header_file_path>` để cho trình biên dịch
-    biết cần tìm tệp tiêu đề ở đâu; khi đó không cần đặt tệp tiêu đề cùng thư mục
-    với mã nguồn nữa.
+    Có thể tự viết một tệp tiêu đề, ví dụ `myheader.h`. Sau đó đặt nó vào cùng thư
+    mục với mã nguồn, rồi dùng `#include "myheader.h"` là được. Tệp tiêu đề tự
+    định nghĩa phải dùng dấu ngoặc kép thay vì dấu ngoặc nhọn. Ngoài ra, có thể
+    dùng tùy chọn biên dịch `-I <header_file_path>` để cho trình biên dịch biết
+    cần tìm tệp tiêu đề ở đâu; khi đó không cần đặt tệp tiêu đề cùng thư mục với mã
+    nguồn nữa.
 
 ??? note "`main()` là gì?"
     Khi chương trình chạy, các đoạn mã trong `main()` sẽ được thực thi.
@@ -47,10 +47,10 @@ int main() {
     khi gọi chương trình từ dòng lệnh, hệ thống sẽ gọi hàm `main` trong chương
     trình đó (trước đó việc khởi tạo các [biến](./var.md) toàn cục đã hoàn tất).
 
-    Câu lệnh `return 0;` cuối cùng biểu thị chương trình chạy thành công. Theo
-    mặc định, khi chương trình kết thúc, trả về 0 nghĩa là mọi thứ bình thường;
-    ngược lại, giá trị trả về biểu thị mã lỗi (trên Windows, dạng thập lục phân
-    của mã lỗi này có thể tra cứu trên trang
+    Câu lệnh `return 0;` cuối cùng biểu thị chương trình chạy thành công. Theo mặc
+    định, khi chương trình kết thúc, trả về 0 nghĩa là mọi thứ bình thường; ngược
+    lại, giá trị trả về biểu thị mã lỗi (trên Windows, dạng thập lục phân của mã
+    lỗi này có thể tra cứu trên trang
     [Windows Error Codes](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/)).
     Giá trị này được trả về cho hệ thống hoặc chương trình bên ngoài đã gọi
     chương trình; khi chương trình kết thúc, nơi gọi chương trình sẽ nhận được
@@ -74,8 +74,8 @@ Trong mã C++, chú thích có hai cách viết:
     thích, có thể trải qua nhiều dòng.
 
 Chú thích không ảnh hưởng đến việc chạy chương trình. Chúng có thể dùng để giải
-thích ý nghĩa của chương trình, hoặc để khiến một đoạn mã không được thực thi
-nhưng vẫn được giữ lại trong tệp nguồn.
+thích ý nghĩa của chương trình, hoặc để giữ một đoạn mã trong tệp nguồn nhưng
+không cho đoạn mã đó được thực thi.
 
 Trong phát triển phần mềm, chú thích giúp việc bảo trì về sau và việc đọc mã của
 người khác dễ dàng hơn.
@@ -113,8 +113,8 @@ int main() {
 ### `scanf` và `printf`
 
 `scanf` và `printf` là các hàm do ngôn ngữ C cung cấp. Trong đa số trường hợp,
-chúng nhanh hơn `cin` và `cout`, đồng thời hỗ trợ điều khiển định dạng nhập xuất
-rõ ràng hơn.
+chúng nhanh hơn `cin` và `cout`, đồng thời hỗ trợ điều khiển định dạng đầu vào/đầu
+ra rõ ràng hơn.
 
 ???+ note "Tối ưu nhập xuất"
     Về khác biệt cụ thể giữa `cin`/`cout` và `scanf`/`printf`, cũng như tối ưu
@@ -209,8 +209,8 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
 ### Ký tự trắng trong C++
 
 Trong C++, tất cả ký tự trắng (dấu cách, tab, xuống dòng), dù nhiều hay một, đều
-được xem như nhau. Quy tắc này không áp dụng cho các ký tự nằm trong dấu ngoặc
-kép và được xem là một phần của chuỗi.
+được xem như nhau. Quy tắc này không áp dụng cho các ký tự nằm trong dấu ngoặc kép
+và được xem là một phần của chuỗi.
 
 Vì vậy, có thể sử dụng nhiều phong cách viết mã khác nhau. Ngoại lệ là chú thích
 trên dòng, literal chuỗi và lệnh tiền xử lý phải nằm trong một dòng.
@@ -231,8 +231,8 @@ cách mà **OI Wiki** yêu cầu:
 
 ### Lệnh `#define`
 
-`#define` là một lệnh tiền xử lý dùng để định nghĩa macro; về bản chất, nó là
-phép thay thế văn bản. Ví dụ:
+`#define` là một lệnh tiền xử lý dùng để định nghĩa macro; về bản chất, nó là phép
+thay thế văn bản. Ví dụ:
 
 ```cpp
 #include <iostream>
@@ -259,11 +259,11 @@ int main() {
     `int`, `for`, `if`) không thể dùng làm định danh.
 
 ??? note "Lệnh tiền xử lý là gì?"
-    Lệnh tiền xử lý là lệnh mà bộ tiền xử lý chấp nhận, dùng để thực hiện các
-    biến đổi văn bản sơ bộ trên mã, chẳng hạn thao tác bao gồm tệp `#include` và
-    xử lý macro `#define` cùng các thao tác tương tự. Với GCC, theo mặc định tệp
-    đầu ra `.i` của giai đoạn tiền xử lý sẽ không được giữ lại. Có thể dùng tùy
-    chọn `-E` để giữ lại tệp đầu ra.
+    Lệnh tiền xử lý là lệnh mà bộ tiền xử lý chấp nhận, dùng để thực hiện các biến
+    đổi văn bản sơ bộ trên mã, chẳng hạn thao tác bao gồm tệp `#include` và xử lý
+    macro `#define` cùng các thao tác tương tự. Với GCC, theo mặc định tệp đầu ra
+    `.i` của giai đoạn tiền xử lý sẽ không được giữ lại. Có thể dùng tùy chọn `-E`
+    để giữ lại tệp đầu ra.
 
 Macro có thể mang tham số; macro có tham số có thể được dùng với cú pháp giống
 hàm:
@@ -278,8 +278,8 @@ int main() {
 }
 ```
 
-Macro có tham số khác với hàm. Vì macro là thay thế văn bản, nên nó có thể gây
-ra nhiều vấn đề. Ví dụ:
+Macro có tham số khác với hàm. Vì macro là thay thế văn bản, nên nó có thể gây ra
+nhiều vấn đề. Ví dụ:
 
 ```cpp
 #include <iostream>
@@ -309,8 +309,8 @@ Tuy vậy, trong OI, `#define` vẫn có những chỗ hữu dụng. Hai cách d
 nên dùng thường xuyên, vì sẽ làm giảm tính chuẩn mực của mã:
 
 1.  `#define int long long`+`signed main()`. Cách này thường được dùng để tránh
-    lỗi do quên dùng `long long`, hoặc để loại trừ khả năng đó khi gỡ lỗi. Nó
-    cũng có thể làm hằng số tăng đến mức TLE, hoặc gây MLE vì vượt bộ nhớ.
+    lỗi do quên dùng `long long`, hoặc để loại trừ khả năng đó khi gỡ lỗi. Nó cũng
+    có thể làm hệ số hằng tăng đến mức TLE, hoặc gây MLE vì vượt bộ nhớ.
 2.  `#define For(i, l, r) for (int i = (l); i <= (r); ++i)`,
     `#define pb push_back`, `#define mid ((l + r) / 2)`, dùng để rút ngắn độ dài
     mã.
