@@ -6,7 +6,7 @@ Trang này giới thiệu ngắn gọn về kỹ thuật nhảy nhị phân.
 
 Nhảy nhị phân (binary lifting) là kỹ thuật nhảy theo các bước có độ dài tăng
 theo lũy thừa, thường là lũy thừa của 2.
-Khi thực hiện truy hồi, nếu không gian trạng thái rất lớn và truy hồi tuyến
+Khi thực hiện truy hồi, nếu không gian trạng thái lớn và truy hồi tuyến
 tính thông thường không đáp ứng được yêu cầu về thời gian hoặc bộ nhớ, có
 thể chỉ truy hồi các giá trị đại diện tại những vị trí là lũy thừa nguyên của
 $k$. Khi cần giá trị ở vị trí khác, dùng tính chất "mọi số nguyên đều có thể
@@ -44,11 +44,11 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     Đáp án là dùng năm quả cân có khối lượng 1, 2, 4, 8, 16. Chúng có thể cân
     được mọi khối lượng trong $[0,31]$. Tương tự, nếu cần cân mọi khối lượng
     trong $[0,127]$, có thể dùng bảy quả cân 1, 2, 4, 8, 16, 32, 64. Mỗi
-    lần chọn khối lượng là lũy thừa nguyên của 2, nhờ đó có thể dùng rất ít
+    lần chọn khối lượng là lũy thừa nguyên của 2, nhờ đó có thể dùng ít
     quả cân để tạo ra bất kỳ khối lượng cần thiết nào.
 
-    Vì sao gọi là rất ít? Nếu cần đo mọi khối lượng trong $[0,1023]$, chỉ
-    cần 10 quả cân; nếu cần đo mọi khối lượng trong $[0,1048575]$, chỉ cần
+    Vì sao gọi là ít? Nếu cần đo mọi khối lượng trong $[0,1023]$, dùng
+    10 quả cân là đủ; nếu cần đo mọi khối lượng trong $[0,1048575]$, dùng
     20 quả. Khi phạm vi khối lượng mục tiêu tăng gấp đôi, số quả cân chỉ tăng
     thêm 1. Đây là tốc độ tăng "cấp logarit", vì số quả cân cần dùng tỉ lệ với
     logarit của phạm vi khối lượng mục tiêu.
@@ -77,12 +77,12 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
 
     Quay lại bài này. Cần tiền xử lý một lượng thông tin không quá lớn, rồi
     dùng thông tin đó để ghép đáp án nhanh nhất có thể. Vì vậy có thể tiền xử
-    lý thông tin theo các đơn vị là lũy thừa của 2. Khi tiền xử lý chỉ cần xử
+    lý thông tin theo các đơn vị là lũy thừa của 2. Khi tiền xử lý chỉ phải xử
     lý ít lớp thông tin, và khi ghép đáp án cũng không phức tạp.
 
     Cụ thể trong bài này, tiền xử lý kết quả khi bắt đầu từ mỗi điểm rồi
     nhảy 1, 2, 4, 8,... bước, gồm điểm kết thúc và tổng trọng số. Nếu cần nhảy
-    13 bước, chỉ cần nhảy $1+4+8$ bước: đầu tiên nhảy 1 bước từ điểm xuất
+    13 bước, có thể nhảy $1+4+8$ bước: đầu tiên nhảy 1 bước từ điểm xuất
     phát, sau đó nhảy 4 bước từ điểm vừa đến, rồi tiếp tục nhảy 8 bước, đồng
     thời cộng các tổng trọng số đã tiền xử lý. Như vậy biết được tổng trọng
     số của 13 bước nhảy.
@@ -103,8 +103,8 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     cần cộng trực tiếp hai phần tổng trọng số, không phải lo điểm cuối của đoạn
     đầu và điểm đầu của đoạn sau bị tính lặp.
 
-    Trong bài này $m\leq 10^{18}$ trông có vẻ rất lớn, nhưng thực tế chỉ cần
-    tiền xử lý $i$ đến khoảng $65$ là đủ để giải, nhanh hơn rất nhiều so
+    Trong bài này $m\leq 10^{18}$ trông có vẻ lớn, nhưng thực tế tiền xử lý
+    $i$ đến khoảng $65$ là đủ để giải, nhanh hơn đáng kể so
     với liệt kê vét cạn. Theo thuật ngữ độ phức tạp, cách làm này có
     [độ phức tạp thời gian](./complexity.md) tiền xử lý $\Theta(n\log m)$ và
     mỗi truy vấn $\Theta(\log m)$.
