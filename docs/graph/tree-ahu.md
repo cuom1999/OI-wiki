@@ -18,7 +18,7 @@ $$
 \forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
 $$
 
-**và** $\varphi(r_1)=r_2$, thì ta nói hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$ đẳng cấu.
+**và** $\varphi(r_1)=r_2$, thì nói hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$ đẳng cấu.
 
 ### Đẳng cấu cây không gốc
 
@@ -28,7 +28,7 @@ $$
 \forall u,v \in V_1,(u,v) \in E_1 \iff (\varphi(u),\varphi(v))  \in E_2
 $$
 
-thì ta nói hai cây không gốc $T_1(V_1,E_1)$ và $T_2(V_2,E_2)$ đẳng cấu.
+thì nói hai cây không gốc $T_1(V_1,E_1)$ và $T_2(V_2,E_2)$ đẳng cấu.
 
 Nói đơn giản, nếu có thể đánh nhãn lại toàn bộ các đỉnh của cây $T_1$ để $T_1$ và $T_2$ **hoàn toàn giống nhau**, thì hai cây đó được gọi là đẳng cấu.
 
@@ -42,9 +42,9 @@ Với hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$, trước hết t
 -   Nếu mỗi cây không gốc đều có đúng $1$ trọng tâm, lần lượt ký hiệu là $c_1$ và $c_2$, thì nếu cây có gốc $T_1(V_1,E_1,c_1)$ và cây có gốc $T_2(V_2,E_2,c_2)$ đẳng cấu, hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$ cũng đẳng cấu. Ngược lại, chúng không đẳng cấu.
 -   Nếu mỗi cây không gốc đều có đúng $2$ trọng tâm, lần lượt ký hiệu là $c_1,c'_1$ và $c_2,c'_2$, thì nếu cây có gốc $T_1(V_1,E_1,c_1)$ và cây có gốc $T_2(V_2,E_2,c_2)$ đẳng cấu **hoặc** cây có gốc $T_1(V_1,E_1,c'_1)$ và $T_2(V_2,E_2,c_2)$ đẳng cấu, hai cây không gốc $T_1(V_1, E_1)$ và $T_2(V_2,E_2)$ đẳng cấu. Ngược lại, chúng không đẳng cấu.
 
-Vì vậy, chỉ cần giải được bài toán đẳng cấu cây có gốc, ta có thể chuyển bài toán đẳng cấu cây không gốc thành bài toán đẳng cấu cây có gốc theo cách trên, từ đó giải bài toán đẳng cấu cây không gốc.
+Vì vậy, chỉ cần giải được bài toán đẳng cấu cây có gốc, có thể chuyển bài toán đẳng cấu cây không gốc thành bài toán đẳng cấu cây có gốc theo cách trên, từ đó giải bài toán đẳng cấu cây không gốc.
 
-Giả sử có một thuật toán giải bài toán đẳng cấu cây có gốc trong $O(\left|V\right|)$, thì theo cách trên ta cũng có thể giải bài toán đẳng cấu cây không gốc trong thời gian $O(\left|V\right|)$.
+Giả sử có một thuật toán giải bài toán đẳng cấu cây có gốc trong $O(\left|V\right|)$, thì theo cách trên cũng có thể giải bài toán đẳng cấu cây không gốc trong thời gian $O(\left|V\right|)$.
 
 ## Thuật toán AHU đơn giản
 
@@ -52,7 +52,7 @@ Thuật toán AHU đơn giản dựa trên dãy ngoặc.
 
 ### Nguyên lý 1
 
-Ta biết rằng một dãy ngoặc hợp lệ tương ứng duy nhất với một cây có gốc, và dãy ngoặc của một cây được tạo bằng cách nối các dãy ngoặc của những cây con của nó. Nếu ta thay đổi thứ tự nối các dãy ngoặc của cây con để thu được một dãy ngoặc mới, thì cây tương ứng với dãy ngoặc mới đẳng cấu với cây tương ứng với dãy ngoặc ban đầu.
+Một dãy ngoặc hợp lệ tương ứng duy nhất với một cây có gốc, và dãy ngoặc của một cây được tạo bằng cách nối các dãy ngoặc của những cây con của nó. Nếu thay đổi thứ tự nối các dãy ngoặc của cây con để thu được một dãy ngoặc mới, thì cây tương ứng với dãy ngoặc mới đẳng cấu với cây tương ứng với dãy ngoặc ban đầu.
 
 ### Nguyên lý 2
 
@@ -60,7 +60,7 @@ Quan hệ đẳng cấu của cây có tính bắc cầu. Tức là nếu $T_1$ 
 
 ### Hệ quả
 
-Xét thuật toán đệ quy để tính dãy ngoặc của cây: khi quay lui, ta nối các dãy ngoặc của cây con. Nếu khi nối, ta đặt các dãy có thứ tự từ điển nhỏ hơn lên trước, và ký hiệu kết quả cuối cùng là $NAME$.
+Xét thuật toán đệ quy để tính dãy ngoặc của cây: khi quay lui, nối các dãy ngoặc của cây con. Nếu khi nối, đặt các dãy có thứ tự từ điển nhỏ hơn lên trước, và ký hiệu kết quả cuối cùng là $NAME$.
 
 Lấy $NAME$ của cây con gốc tại đỉnh $r$ làm $NAME$ của đỉnh $r$, ký hiệu là $NAME(r)$. Khi đó với hai cây có gốc $T_1(V_1,E_1,r_1)$ và $T_2(V_2,E_2,r_2)$, nếu $NAME(r_1)=NAME(r_2)$, thì $T_1$ và $T_2$ đẳng cấu.
 
@@ -106,7 +106,7 @@ Với một cây có gốc gồm $n$ đỉnh, giả sử cây có dạng một �
 
 ## Thuật toán AHU tối ưu hóa
 
-Nhược điểm của thuật toán AHU đơn giản là độ dài $NAME$ của cây có thể quá lớn, nên ta có thể tối ưu ở điểm này.
+Nhược điểm của thuật toán AHU đơn giản là độ dài $NAME$ của cây có thể quá lớn, nên có thể tối ưu ở điểm này.
 
 ### Nguyên lý 1
 
@@ -116,11 +116,11 @@ Chia cây thành các tầng: đỉnh ở tầng thứ $i$ có khoảng cách ng
 
 Trong cùng một tầng, $NAME$ của một đỉnh có thể được biểu diễn duy nhất bằng thứ hạng của nó trong tầng đó.
 
-**Lưu ý**, thứ hạng ở đây được xét trên cả hai cây. Giả sử đỉnh $u$ nằm ở tầng thứ $i$, thì thứ hạng của đỉnh $u$ bằng số đỉnh ở tầng thứ $i$ của cả $T_1$ và $T_2$ có $NAME$ nhỏ hơn $NAME(u)$.
+**Lưu ý**, thứ hạng trong phần này được xét trên cả hai cây. Giả sử đỉnh $u$ nằm ở tầng thứ $i$, thì thứ hạng của đỉnh $u$ bằng số đỉnh ở tầng thứ $i$ của cả $T_1$ và $T_2$ có $NAME$ nhỏ hơn $NAME(u)$.
 
 ### Hệ quả
 
-Ta có thể thay $NAME$ ban đầu của một đỉnh bằng thứ hạng của nó trong tầng, rồi thay thao tác nối các $NAME$ của đỉnh bằng thao tác thêm phần tử vào mảng.
+Có thể thay $NAME$ ban đầu của một đỉnh bằng thứ hạng của nó trong tầng, rồi thay thao tác nối các $NAME$ của đỉnh bằng thao tác thêm phần tử vào mảng.
 
 Cách dùng số nguyên và mảng để thay thế chuỗi này không ảnh hưởng đến tính đúng đắn của thuật toán, đồng thời giảm đáng kể độ phức tạp.
 
@@ -131,13 +131,13 @@ Trước hết, nhận thấy tổng độ dài của các $NAME$ được tạo
 1.  Có thể dùng sắp xếp cơ số để hoàn thành việc sắp xếp trong $O(L+|\Sigma|)$, trong đó $|\Sigma|$ là kích thước bảng chữ cái. Có một số chi tiết cài đặt, xem phần tài liệu tham khảo.
 2.  Có thể dùng quicksort để hoàn thành việc sắp xếp trong $O(L \log m)$. Ý tưởng chứng minh đại khái là chiều cao của cây đệ quy quicksort là $O(\log m)$, và độ phức tạp khi so sánh trực tiếp hai chuỗi có độ dài $\ell_1$ và $\ell_2$ là $O(\min\{\ell_1,\ell_2\})$.
 
-Trong thuật toán AHU, kích thước bảng chữ cái của các chuỗi ở tầng thứ $i$ nhiều nhất bằng số đỉnh ở tầng thứ $i+1$, tức $L_i$, nên độ phức tạp của sắp xếp cơ số là tuyến tính. Từ $\sum_i L_i=O(n)$, cộng độ phức tạp của từng tầng lại, ta thấy nếu dùng sắp xếp cơ số cho chuỗi thì tổng độ phức tạp của thuật toán là $T(n)=O(n)$. Tương tự, nếu dùng quicksort để sắp xếp chuỗi, thì $T(n)=O(n \log n)$.
+Trong thuật toán AHU, kích thước bảng chữ cái của các chuỗi ở tầng thứ $i$ nhiều nhất bằng số đỉnh ở tầng thứ $i+1$, tức $L_i$, nên độ phức tạp của sắp xếp cơ số là tuyến tính. Từ $\sum_i L_i=O(n)$, cộng độ phức tạp của từng tầng lại, có thể thấy nếu dùng sắp xếp cơ số cho chuỗi thì tổng độ phức tạp của thuật toán là $T(n)=O(n)$. Tương tự, nếu dùng quicksort để sắp xếp chuỗi, thì $T(n)=O(n \log n)$.
 
 ## Bài tập ví dụ
 
 [SPOJ-TREEISO](https://www.spoj.com/problems/TREEISO/en/)
 
-Dịch đề: Cho hai cây không gốc, hãy xác định hai cây đó có đẳng cấu hay không.
+Dịch đề: Cho hai cây không gốc, cần xác định hai cây đó có đẳng cấu hay không.
 
 ???+ note "Mã tham khảo"
     ```cpp
