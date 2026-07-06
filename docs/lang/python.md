@@ -61,8 +61,8 @@ chương trình.
 
 Khi gõ `python3` trên dòng lệnh hoặc vừa mở IDLE, môi trường lập trình tương tác
 sẽ được mở ra; môi trường này còn gọi là "REPL" (vòng lặp "đọc - đánh giá - in
-kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, rất tiện
-để kiểm tra cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
+kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, phù hợp
+để kiểm tra nhanh cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
 
 Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết là tạo một tệp văn bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh để xem kết quả.
 
@@ -277,7 +277,7 @@ Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org
 ```pycon
 >>> s1 = "O"  # Dấu nháy đơn và dấu nháy kép đều bao được chuỗi; đôi khi giúp tiết kiệm ký tự thoát
 >>> s1 += 'I-Wiki'  # Để đồng bộ với C++, nên dùng dấu nháy kép
->>> 'OI' in s1  # Kiểm tra chuỗi con rất tiện
+>>> 'OI' in s1  # Kiểm tra chuỗi con trực tiếp
 True
 >>> len(s1)  # Gần như s.length() trong C++, nhưng tổng quát hơn
 7

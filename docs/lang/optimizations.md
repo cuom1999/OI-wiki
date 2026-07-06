@@ -322,9 +322,21 @@ gọi hàm rất nhiều.
     }
     ```
 
-Tách mã nóng/lạnh là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không hẳn tốt hơn quyết định của trình biên dịch.
+Tách mã nóng/lạnh là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu
+hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn.
+Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình
+chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến,
+nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để
+tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên
+quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết
+định nội tuyến không hẳn tốt hơn quyết định của trình biên dịch.
 
-Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên hồ sơ chạy) là chạy chương trình nhiều lần trong các phép đo và thử nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực; thông tin này có thể giúp bố cục mã tốt hơn.
+Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất
+nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức
+nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên
+hồ sơ chạy) là chạy chương trình nhiều lần trong các phép đo và thử nghiệm hiệu
+năng để thu được xác suất nhánh trong môi trường thực; thông tin này giúp bố cục
+mã tốt hơn.
 
 <a id="nội-tuyến-hàm-function-inlining"></a>
 ### Nội tuyến hàm

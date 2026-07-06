@@ -81,11 +81,10 @@ nhưng vẫn được giữ lại trong tệp nguồn.
 Trong phát triển phần mềm, chú thích giúp việc bảo trì về sau và việc đọc mã của
 người khác thuận tiện hơn.
 
-Trong OI, rất ít người viết nhiều chú thích, nhưng chú thích có thể giúp làm rõ
-suy nghĩ khi viết mã, hoặc tiện cho việc ôn lại sau này. Hơn nữa, nếu cần
-viết lời giải hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc dễ
-hiểu ý đồ của mã hơn. Nên hình thành thói quen viết chú thích vừa đủ và đúng
-chỗ.
+Trong OI, rất ít người viết nhiều chú thích, nhưng chú thích giúp làm rõ suy nghĩ
+khi viết mã và thuận tiện cho việc ôn lại sau này. Hơn nữa, nếu cần viết lời
+giải hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc hiểu ý đồ của
+mã hơn. Nên hình thành thói quen viết chú thích vừa đủ và đúng chỗ.
 
 ## Nhập và xuất
 

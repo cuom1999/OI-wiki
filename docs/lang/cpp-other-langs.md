@@ -1,9 +1,9 @@
 Bài viết này giới thiệu khác biệt giữa C++ và các ngôn ngữ thường dùng khác,
 tập trung vào những khác biệt quan trọng hoặc dễ bị bỏ qua giữa C và C++. Dù C++
 thường được xem là khá gần với C, không phải mọi mã C đều giữ nguyên ý nghĩa khi
-biên dịch bằng C++. Hiểu các khác biệt quan trọng giữa C/C++ có thể giúp tránh
-một số lỗi khó hiểu. Với OIer đang dùng C làm ngôn ngữ chính, bài viết này
-cũng giúp việc chuyển sang C++ thuận lợi hơn. Các tính năng riêng mà C++ bổ sung
+biên dịch bằng C++. Hiểu các khác biệt quan trọng giữa C/C++ giúp tránh một số
+lỗi khó hiểu. Với OIer đang dùng C làm ngôn ngữ chính, bài viết này cũng giúp
+việc chuyển sang C++ thuận lợi hơn. Các tính năng riêng mà C++ bổ sung
 so với C có thể đọc trong phần hướng dẫn [C++ nâng cao](./class.md). Ngoài ra,
 bài viết cũng giới thiệu ngắn gọn khác biệt giữa Python, Java và C++.
 

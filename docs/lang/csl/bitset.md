@@ -58,11 +58,11 @@ góc nhìn phân tích. Thông thường, độ phức tạp của `bitset` có 
 Ngoài ra, phiên bản chuyên biệt hóa `vector<bool>` có cách lưu trữ giống
 `bitset`. Điểm khác là nó hỗ trợ cấp phát kích thước động, còn `bitset` giống
 mảng tĩnh thông thường: kích thước được xác định từ lúc biên dịch. Tuy nhiên,
-`bitset` có một số hàm thư viện rất tiện dụng; chúng không chỉ thuận tiện mà đôi
-khi còn có thể được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần
-hành vi của `vector<bool>` không nhất quán với `vector` thông thường, vì phần tử
-của nó được truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy
-thông thường không dùng `vector<bool>`.
+`bitset` có một số hàm thư viện hữu ích; chúng không chỉ thuận tiện mà đôi khi
+còn có thể được cài đặt bằng SIMD để giảm hằng số. Bên cạnh đó, một phần hành vi
+của `vector<bool>` không nhất quán với `vector` thông thường, vì phần tử của nó
+được truy cập qua đối tượng proxy thay vì tham chiếu `bool&` thật. Vì vậy thông
+thường không dùng `vector<bool>`.
 
 <span id="cách-sử-dụng"></span>
 ## Cách sử dụng

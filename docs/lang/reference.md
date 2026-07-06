@@ -157,8 +157,8 @@ Sau đây là các ví dụ thường gặp về tham chiếu treo:
 Khi sử dụng tham chiếu, cần luôn lưu ý tới thời gian sống của đối tượng mà tham
 chiếu gắn với để tránh tạo ra tham chiếu treo.
 
-Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt có thể giúp tránh
-vấn đề tham chiếu treo.
+Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt giúp hạn chế vấn đề
+tham chiếu treo.
 
 ## Kỹ thuật tối ưu liên quan đến tham chiếu
 
