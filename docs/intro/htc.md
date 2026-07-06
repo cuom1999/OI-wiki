@@ -1,4 +1,4 @@
-Trước khi bắt đầu, toàn thể thành viên dự án **OI Wiki** rất hoan nghênh mọi
+Trước khi bắt đầu, toàn thể thành viên dự án **OI Wiki** luôn hoan nghênh mọi
 đóng góp cho dự án. Chính nhờ hàng trăm người đóng góp mà **OI Wiki** mới có
 được diện mạo hôm nay!
 
@@ -21,9 +21,8 @@ tốt hơn với các cộng tác viên trong cộng đồng.
     để ghi lại nội dung cần viết.
 
 ???+ tip "Gợi ý"
-    Trong Issues cũng có rất nhiều vấn đề đang chờ sửa hoặc giải quyết, đặc
-    biệt là kế hoạch lặp của chúng tôi. Nhận việc từ đây là
-    một khởi đầu rất tốt!
+    Trong Issues cũng có nhiều vấn đề đang chờ sửa hoặc giải quyết, đặc biệt là
+    kế hoạch lặp của chúng tôi. Nhận việc từ đây là một cách bắt đầu phù hợp.
 
 Để bảo đảm tính chuyên môn và độ chính xác của nội dung mục từ, chúng tôi đề
 nghị người đóng góp cân nhắc các điểm sau trước khi chỉnh sửa:
@@ -51,8 +50,8 @@ từ Wikipedia:
 
 Việc tham gia biên soạn **OI Wiki** **cần** một tài khoản GitHub (có thể
 đăng ký tại [trang đăng ký tài khoản GitHub](https://github.com/signup)), nhưng
-**không cần** kỹ năng GitHub cao siêu. Ngay cả với người mới, chỉ cần làm theo
-các bước dưới đây vẫn có thể hoàn thành việc chỉnh sửa **rất tốt**.
+**không cần** kỹ năng GitHub cao siêu. Ngay cả với người mới, làm theo các bước
+dưới đây cũng có thể hoàn thành việc chỉnh sửa.
 
 ???+ tip "Gợi ý"
     Trước khi thay đổi được hợp nhất vào kho chính của **OI Wiki**, mọi sửa đổi
@@ -218,8 +217,8 @@ Mỗi dòng biểu thị một quy tắc chuyển hướng, lần lượt ghi UR
 /path/to/src /path/to/desc
 ```
 
-Lưu ý: tất cả chuyển hướng đều là chuyển hướng 301, và chỉ cần sửa khi việc sửa
-URL trong mục lục gây ra liên kết chết.
+Lưu ý: tất cả chuyển hướng đều là chuyển hướng 301; chỉ sửa khi việc sửa URL
+trong mục lục gây ra liên kết chết.
 
 <a id="commit-format"></a>
 
