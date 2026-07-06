@@ -32,13 +32,13 @@ Với mã nguồn C/C++ tên `qwq.c/cpp`, có thể dùng `make qwq` để tự 
 
 Nếu cần thêm tùy chọn biên dịch, có thể dùng `export CFLAGS="xxx"` (chương trình C) hoặc `export CXXFLAGS="xxx"` (chương trình C++) để chỉ định. Nếu cần thêm tùy chọn tiền xử lý, có thể dùng `export CPPFLAGS="xxx"` để chỉ định. Các thiết lập trên cũng có thể viết dưới dạng `CFLAGS="xxx" CPPFLAGS="xxx" make qwq` để chỉ định biến môi trường cho một lần chạy lệnh.
 
-### Công cụ sanitizer
+### Công cụ kiểm lỗi Sanitizer
 
 #### Giới thiệu
 
-Sanitizer là nhóm công cụ được tích hợp trong trình biên dịch để gỡ lỗi mã C/C++. Các công cụ này chèn mã kiểm tra trong quá trình biên dịch để phát hiện các lỗi khi chạy như truy cập bộ nhớ vượt biên, hành vi không xác định, v.v.
+Sanitizer là nhóm công cụ kiểm lỗi được tích hợp trong trình biên dịch để gỡ lỗi mã C/C++. Các công cụ này chèn mã kiểm tra trong quá trình biên dịch để phát hiện các lỗi khi chạy như truy cập bộ nhớ vượt biên, hành vi không xác định, v.v.
 
-Sanitizer được chia thành các loại sau:
+Các công cụ Sanitizer thường được chia thành các loại sau:
 
 -   AddressSanitizer[^address-sanitizer]: phát hiện truy cập vượt biên trên heap, ngăn xếp và biến toàn cục, giải phóng bộ nhớ không hợp lệ, rò rỉ bộ nhớ (thử nghiệm).
 -   ThreadSanitizer[^thread-sanitizer]: phát hiện tranh chấp dữ liệu trong đa luồng.
@@ -47,20 +47,20 @@ Sanitizer được chia thành các loại sau:
 
 #### Cách sử dụng
 
-Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp sanitizer, nhưng chức năng và cách dùng có khác nhau. Phần này lấy clang++ làm ví dụ; cách dùng như sau:
+Các phiên bản mới của clang++, g++ và MSVC (hỗ trợ một phần) đều đã tích hợp Sanitizer, nhưng chức năng và cách dùng có khác nhau. Phần này lấy clang++ làm ví dụ; cách dùng như sau:
 
 ```console
 $ clang++ -fsanitize=<name> test.cc
 ```
 
-Trong đó `<name>` là chức năng cần bật (có thể hiểu mỗi sanitizer là một tập hợp chức năng), ví dụ:
+Trong đó `<name>` là chức năng cần bật (có thể hiểu mỗi Sanitizer là một tập hợp chức năng), ví dụ:
 
 ```console
 $ clang++ -fsanitize=memory test.cc # Bật MemorySanitizer
 $ clang++ -fsanitize=signed-integer-overflow test.cc # Bật kiểm tra tràn số nguyên có dấu
 ```
 
-Sau đó chạy tệp thực thi như bình thường. Nếu sanitizer phát hiện lỗi, nó sẽ xuất thông tin ra luồng `stderr`, ví dụ:
+Sau đó chạy tệp thực thi như bình thường. Nếu Sanitizer phát hiện lỗi, nó sẽ xuất thông tin ra luồng `stderr`, ví dụ:
 
 ```console
 $ ./a.out
@@ -68,7 +68,7 @@ test.cc:3:5: runtime error: signed integer overflow: 2147483647 + 1 cannot be re
 ```
 
 ???+ warning "Cảnh báo"
-    g++ trên Windows không hỗ trợ sanitizer; cần dùng [MinGW64 đã được chỉnh sửa](https://github.com/ssbssa/gcc/releases) hoặc dùng trình biên dịch khác.
+    g++ trên Windows không hỗ trợ Sanitizer; cần dùng [MinGW64 đã được chỉnh sửa](https://github.com/ssbssa/gcc/releases) hoặc dùng trình biên dịch khác.
 
     Từ MSVC 16.0 đến phiên bản 17.14, MSVC chỉ hỗ trợ AddressSanitizer.
 
