@@ -4,9 +4,20 @@ Trang này giới thiệu các kiến thức cơ bản về độ phức tạp k
 
 ## Dẫn nhập
 
-Phân tích khấu hao là một kỹ thuật dùng để phân tích hiệu năng của thuật toán và cấu trúc dữ liệu động. Nó không chỉ quan tâm đến chi phí của một thao tác đơn lẻ, mà còn đánh giá chi phí trung bình trên một chuỗi thao tác để đưa ra nhận định chính xác hơn về hiệu năng tổng thể. Phân tích khấu hao không liên quan đến xác suất; nó chỉ bảo đảm thời gian trung bình cho mỗi thao tác trong trường hợp xấu nhất, chứ không xác nhận hiệu năng trung bình của hệ thống. Trong trường hợp xấu nhất, phân tích khấu hao phân bổ chi phí của các thao tác đắt đỏ sang các thao tác rẻ hơn, từ đó bảo đảm chi phí trung bình của toàn bộ chuỗi thao tác vẫn nằm trong phạm vi hợp lý.
+Phân tích khấu hao là một kỹ thuật dùng để phân tích hiệu năng của thuật toán và
+cấu trúc dữ liệu động. Nó không chỉ quan tâm đến chi phí của một thao tác đơn lẻ
+mà còn đánh giá chi phí trung bình trên một chuỗi thao tác, từ đó đưa ra nhận
+định chính xác hơn về hiệu năng tổng thể. Phân tích khấu hao không liên quan đến
+xác suất; nó bảo đảm chi phí trung bình cho mỗi thao tác trên mọi chuỗi thao tác,
+kể cả trong trường hợp bất lợi nhất. Ý tưởng chính là phân bổ chi phí của các
+thao tác đắt đỏ sang các thao tác rẻ hơn, nhờ đó chi phí trung bình của toàn bộ
+chuỗi thao tác vẫn nằm trong phạm vi hợp lý.
 
-Phân tích khấu hao thường dùng ba phương pháp chính: phân tích gộp, phân tích kế toán và phân tích thế năng. Mỗi phương pháp có trọng tâm riêng và phù hợp với các tình huống khác nhau, nhưng mục tiêu chung của chúng là cân bằng chi phí thao tác, qua đó tối ưu hiệu năng tổng thể của cấu trúc dữ liệu trong trường hợp xấu nhất.
+Phân tích khấu hao thường dùng ba phương pháp chính: phân tích gộp, phân tích kế
+toán và phân tích thế năng. Mỗi phương pháp có trọng tâm riêng và phù hợp với
+các tình huống khác nhau, nhưng mục tiêu chung là cân bằng chi phí thao tác, qua
+đó kiểm soát hiệu năng tổng thể của cấu trúc dữ liệu trong trường hợp bất lợi
+nhất.
 
 ## Nội dung
 
@@ -16,7 +27,8 @@ Tiếp theo, dùng thao tác chèn vào mảng động làm ví dụ và phân t
 
 ### Phân tích gộp
 
-Phân tích gộp tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
+Phân tích gộp tính tổng chi phí của một chuỗi thao tác rồi chia đều cho từng
+thao tác, từ đó thu được độ phức tạp thời gian khấu hao của mỗi thao tác.
 
 Với ví dụ mảng động, trước hết có hai loại chi phí chính của thao tác chèn:
 
@@ -25,14 +37,21 @@ Với ví dụ mảng động, trước hết có hai loại chi phí chính c�
 
 Vì vậy, để tính tổng chi phí của $n$ thao tác chèn, có thể tách thành hai phần:
 
-1.  **Chi phí thao tác chèn**: chi phí trực tiếp của mỗi lần chèn phần tử mới là thời gian hằng số $O(1)$; với $n$ thao tác, tổng chi phí là $O(n)$.
+1.  **Chi phí thao tác chèn**: chi phí của mỗi lần chèn phần tử mới là thời gian
+    hằng số $O(1)$; với $n$ thao tác, tổng chi phí là $O(n)$.
 2.  **Chi phí mở rộng mảng**: mỗi lần mở rộng cần sao chép các phần tử của mảng cũ sang mảng mới. Các thao tác này xảy ra khi kích thước mảng là $1, 2, 4, \ldots , 2^k$, trong đó $2^k$ là lũy thừa lớn nhất không vượt quá $n$. Chi phí của các lần mở rộng lần lượt là $1, 2, 4, \ldots , 2^{k-1}$, tổng là $1 + 2 + 4 + \ldots  + 2^{k-1} = 2^k - 1$. Đây là tổng của một cấp số nhân, nên kết quả là $O(n)$.
 
-Do đó, tổng chi phí chèn của mảng là $O(n)$, và chi phí khấu hao trên mỗi thao tác là $O(1)$. Ngay cả trong trường hợp xấu nhất, chi phí trung bình cho mỗi lần chèn vẫn là thời gian hằng số.
+Do đó, tổng chi phí chèn của mảng là $O(n)$, và chi phí khấu hao trên mỗi thao
+tác là $O(1)$. Ngay cả trong trường hợp bất lợi nhất, chi phí trung bình cho mỗi
+lần chèn vẫn là thời gian hằng số.
 
 ### Phân tích kế toán
 
-Phương pháp kế toán gán trước một chi phí khấu hao cố định cho mỗi thao tác để bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các thao tác có chi phí thấp sẽ lưu lại một phần “tín dụng” để trả cho các thao tác có chi phí cao trong tương lai.
+Phương pháp kế toán gán trước một chi phí khấu hao cố định cho mỗi thao tác để
+bảo đảm tổng chi phí thực tế của mọi thao tác không vượt quá tổng chi phí đã
+phân bổ trước. Phương pháp kế toán giống một cơ chế **trả trước chi phí**: các
+thao tác có chi phí thấp sẽ lưu lại một phần "tín dụng" để trả cho các thao tác
+có chi phí cao trong tương lai.
 
 Với ví dụ mảng động, có thể phân bổ một chi phí khấu hao cố định cho mỗi thao tác chèn để bảo đảm khi cần mở rộng dung lượng, chi phí đã được dự trữ đủ.
 
@@ -68,7 +87,11 @@ Quá trình trên cho thấy chi phí khấu hao được lưu lại từ mỗi 
 
 ### Phân tích thế năng
 
-Phân tích thế năng định nghĩa một hàm thế năng (thường ký hiệu là $\Phi$) để đo **năng lượng tiềm ẩn** của cấu trúc dữ liệu, tức các tài nguyên dự trữ trong trạng thái hệ thống có thể dùng để trả cho các thao tác đắt đỏ trong tương lai. Sự thay đổi thế năng được dùng để cân bằng tổng chi phí của chuỗi thao tác, từ đó bảo đảm chi phí khấu hao của toàn bộ thuật toán nằm trong phạm vi hợp lý.
+Phân tích thế năng định nghĩa một hàm thế năng (thường ký hiệu là $\Phi$) để đo
+**năng lượng tiềm ẩn** của cấu trúc dữ liệu, tức các tài nguyên dự trữ trong
+trạng thái hệ thống có thể dùng để trả cho các thao tác đắt đỏ trong tương lai.
+Sự thay đổi thế năng được dùng để cân bằng tổng chi phí của chuỗi thao tác, từ
+đó bảo đảm chi phí khấu hao của toàn bộ thuật toán nằm trong phạm vi hợp lý.
 
 #### Nguyên lý
 
@@ -99,7 +122,7 @@ $$
 \sum_{i=1}^m c_i = \sum_{i=1}^m p_i + \Phi(S_0) - \Phi(S_m)
 $$
 
-Vì $\Phi(S) \geq \Phi(S_0)$, cận trên của tổng chi phí thời gian là:
+Vì $\Phi(S_m) \geq \Phi(S_0)$, cận trên của tổng chi phí thời gian là:
 
 $$
 \sum_{i=1}^m p_i \geq \sum_{i=1}^m c_i
@@ -109,28 +132,32 @@ Vì vậy, nếu $p_i = O(T(n))$, thì $O(T(n))$ là một cận trên của đ�
 
 #### Ví dụ: phân tích mở rộng mảng động
 
-Với thao tác chèn của mảng động `vector`, định nghĩa hàm thế năng $\Phi(h)$ như sau:
+Với thao tác chèn của mảng động `vector`, định nghĩa hàm thế năng $\Phi(h)$ như
+sau:
 
 $$
-\Phi(h) = 2n - m
+\Phi(h) = 2n - m + 1
 $$
 
-Trong đó $n$ là số phần tử trong mảng, còn $m$ là dung lượng hiện tại của mảng. Hàm thế năng này phản ánh lượng không gian còn khả dụng trong mảng, tức chênh lệch giữa dung lượng hiện tại và không gian thực sự đã dùng.
+Trong đó $n$ là số phần tử trong mảng, còn $m$ là dung lượng hiện tại của mảng.
+Hàm thế năng này phản ánh mức độ mảng đã được lấp đầy so với dung lượng hiện
+tại; hằng số $+1$ giúp thế năng ở trạng thái ban đầu bằng $0$ khi $n=0, m=1$.
 
 1.  **Thao tác chèn (không cần mở rộng)**:
-    -   **Chi phí thao tác**: $O(1)$, vì chỉ cần chèn một phần tử.
+    -   **Chi phí thao tác**: $O(1)$, vì thao tác chỉ chèn một phần tử.
     -   **Độ thay đổi thế năng**: sau khi chèn, số phần tử tăng thêm 1, thế năng tăng $2$.
-        -   $\Phi(h') - \Phi(h) = 2(n + 1) - m - (2n - m) = 2$
+        -   $\Phi(h') - \Phi(h) = (2(n + 1) - m + 1) - (2n - m + 1) = 2$
     -   **Chi phí khấu hao**: $1 + 2 = 3$
 
 2.  **Thao tác chèn (kích hoạt mở rộng)**:
     -   Giả sử dung lượng hiện tại $m = n$; khi chèn một phần tử mới, thao tác mở rộng được kích hoạt và dung lượng mới trở thành $2n$.
     -   **Chi phí thao tác**: $O(n)$, vì cần sao chép tất cả phần tử sang mảng mới và chèn phần tử mới.
     -   **Độ thay đổi thế năng**: sau khi mở rộng, dung lượng tăng, thế năng giảm, độ thay đổi là $2 - n$.
-        -   $\Phi(h') - \Phi(h) = 2(n + 1) - 2n - (2n - n) = 2 - n$
+        -   $\Phi(h') - \Phi(h) = (2(n + 1) - 2n + 1) - (2n - n + 1) = 2 - n$
     -   **Chi phí khấu hao**: $n + 1 + (2 - n) = 3$
 
-Từ phân tích trên, dù chi phí thực tế của thao tác mở rộng khá cao, nhờ cách thiết kế hàm thế năng, chi phí khấu hao tổng thể vẫn giữ ở mức hằng số $O(1)$.
+Từ phân tích trên, dù chi phí thực tế của thao tác mở rộng cao, nhờ cách thiết
+kế hàm thế năng, chi phí khấu hao tổng thể vẫn giữ ở mức hằng số $O(1)$.
 
 ## Ví dụ mở rộng: thao tác ngăn xếp
 
@@ -150,9 +177,14 @@ Phân tích gộp tính tổng chi phí của tất cả thao tác rồi chia đ
 
 1.  Với $n_{push}$ thao tác `push(x)`, mỗi thao tác có chi phí $O(1)$, nên tổng chi phí là $O(n_{push})$.
 2.  Với $n_{pop}$ thao tác `pop()`, mỗi thao tác có chi phí $O(1)$, nên tổng chi phí là $O(n_{pop})$.
-3.  Với $n_{multi-pop}$ thao tác `multi-pop(k)`, dù chi phí thực tế của mỗi thao tác là $O(\min(\lvert S \rvert, k))$, tổng số phần tử bị lấy ra bởi các thao tác này không vượt quá số phần tử đã được `push(x)` trước đó, nên tổng chi phí vẫn bị chặn bởi $n_{push}$.
+3.  Với $n_{multi-pop}$ thao tác `multi-pop(k)`, dù chi phí thực tế của mỗi thao
+    tác là $O(\min(\lvert S \rvert, k))$, tổng số phần tử bị lấy ra bởi các thao
+    tác này không vượt quá số phần tử đã được `push(x)` trước đó, nên phần chi
+    phí do lấy phần tử ra bị chặn bởi $n_{push}$.
 
-Vì tổng số thao tác $n = n_{push} + n_{pop} + n_{multi-pop} \leq 2 \times n_{push}$, tổng chi phí là $O(n_{push}) = O(n)$, và chi phí khấu hao của mỗi thao tác là $O(n)/n = O(1)$.
+Mỗi thao tác vẫn có chi phí điều khiển hằng số. Vì vậy, nếu tổng số thao tác là
+$n = n_{push} + n_{pop} + n_{multi-pop}$, tổng chi phí là $O(n+n_{push})=O(n)$,
+và chi phí khấu hao của mỗi thao tác là $O(1)$.
 
 ### Phương pháp phân tích kế toán
 
