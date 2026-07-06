@@ -1,14 +1,14 @@
 <span id="mô-tả"></span>
 ## Mô tả
 
-Cho một xâu $s$ có độ dài $n$, hãy tìm mọi cặp $(i, j)$ sao cho xâu con $s[i \dots j]$ là một xâu đối xứng. Một xâu $t$ là xâu đối xứng khi $t = t_{\text{rev}}$, trong đó $t_{\text{rev}}$ là xâu đảo ngược của $t$.
+Cho một xâu $s$ có độ dài $n$, cần tìm mọi cặp $(i, j)$ sao cho xâu con $s[i \dots j]$ là một xâu đối xứng. Một xâu $t$ là xâu đối xứng khi $t = t_{\text{rev}}$, trong đó $t_{\text{rev}}$ là xâu đảo ngược của $t$.
 
 <span id="giải-thích"></span>
 ## Giải thích
 
-Rõ ràng trong trường hợp xấu nhất có thể có $O(n^2)$ xâu đối xứng, nên thoạt nhìn bài toán dường như không có thuật toán tuyến tính.
+Trong trường hợp xấu nhất có thể có $O(n^2)$ xâu đối xứng, nên thoạt nhìn bài toán dường như không có thuật toán tuyến tính.
 
-Tuy nhiên thông tin về các xâu đối xứng có thể được biểu diễn bằng **một cách gọn hơn**: với mỗi vị trí $i = 0 \dots n - 1$, ta tìm hai giá trị $d_1[i]$ và $d_2[i]$. Chúng lần lượt biểu thị số xâu đối xứng độ dài lẻ và độ dài chẵn có tâm tại vị trí $i$. Nhìn theo cách khác, chúng cũng biểu thị bán kính của xâu đối xứng dài nhất có tâm tại $i$ (bán kính $d_1[i]$, $d_2[i]$ đều là số ký tự tính từ vị trí $i$ đến đầu phải của xâu đối xứng, có tính cả ký tự đầu phải).
+Tuy nhiên thông tin về các xâu đối xứng có thể được biểu diễn bằng **một cách gọn hơn**: với mỗi vị trí $i = 0 \dots n - 1$, cần tìm hai giá trị $d_1[i]$ và $d_2[i]$. Chúng lần lượt biểu thị số xâu đối xứng độ dài lẻ và độ dài chẵn có tâm tại vị trí $i$. Nhìn theo cách khác, chúng cũng biểu thị bán kính của xâu đối xứng dài nhất có tâm tại $i$ (bán kính $d_1[i]$, $d_2[i]$ đều là số ký tự tính từ vị trí $i$ đến đầu phải của xâu đối xứng, có tính cả ký tự đầu phải).
 
 Ví dụ, xâu $s = \mathtt{abababc}$ có ba xâu đối xứng độ dài lẻ với tâm tại $s[3] = b$; xâu đối xứng dài nhất có bán kính $3$, tức $d_1[3] = 3$:
 
@@ -31,7 +31,7 @@ Một sự thật đáng chú ý là tồn tại một thuật toán tuyến tí
 
 Nhìn chung, bài toán này có nhiều cách giải: dùng hash xâu có thể giải trong $O(n \log n)$, còn dùng mảng hậu tố và LCA nhanh có thể giải trong $O(n)$.
 
-Tuy nhiên thuật toán mô tả ở đây **đơn giản hơn hẳn**, đồng thời có hằng số nhỏ hơn về cả thời gian lẫn bộ nhớ. Thuật toán này do **Glenn K. Manacher** đề xuất năm 1975.
+Tuy nhiên thuật toán mô tả trong phần này **đơn giản hơn hẳn**, đồng thời có hằng số nhỏ hơn về cả thời gian lẫn bộ nhớ. Thuật toán này do **Glenn K. Manacher** đề xuất năm 1975.
 
 <span id="thuật-toán-đơn-giản"></span>
 ## Thuật toán đơn giản
@@ -79,20 +79,20 @@ Cài đặt thuật toán đơn giản như sau:
 <span id="thuật-toán-manacher"></span>
 ## Thuật toán Manacher
 
-Ở đây chỉ mô tả trường hợp tìm mọi xâu con đối xứng có độ dài lẻ, tức chỉ tính $d_1[]$; thuật toán tìm mọi xâu con đối xứng độ dài chẵn (tức tính mảng $d_2[]$) chỉ cần sửa một chút từ trường hợp lẻ.
+Phần này chỉ mô tả trường hợp tìm mọi xâu con đối xứng có độ dài lẻ, tức chỉ tính $d_1[]$; thuật toán tìm mọi xâu con đối xứng độ dài chẵn (tức tính mảng $d_2[]$) chỉ cần sửa một chút từ trường hợp lẻ.
 
-Để tính nhanh, ta duy trì **biên $[l, r]$** của xâu con đối xứng đã tìm được có đầu phải xa nhất (tức xâu đối xứng có giá trị $r$ lớn nhất, trong đó $l$ và $r$ lần lượt là vị trí biên trái và biên phải của xâu đối xứng đó). Ban đầu đặt $l = 0$ và $r = -1$ (`-1` ở đây cần phân biệt với chỉ số đảo ngược; chỉ cần là một số âm bất kỳ để thuận tiện khi khởi tạo vòng lặp).
+Để tính nhanh, thuật toán duy trì **biên $[l, r]$** của xâu con đối xứng đã tìm được có đầu phải xa nhất (tức xâu đối xứng có giá trị $r$ lớn nhất, trong đó $l$ và $r$ lần lượt là vị trí biên trái và biên phải của xâu đối xứng đó). Ban đầu đặt $l = 0$ và $r = -1$ (`-1` cần phân biệt với chỉ số đảo ngược; chỉ cần là một số âm bất kỳ để thuận tiện khi khởi tạo vòng lặp).
 
 <span id="quy-trình"></span>
 ### Quy trình
 
-Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá trị trước đó của $d_1[]$ đã được tính. Ta tính như sau:
+Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá trị trước đó của $d_1[]$ đã được tính. Cách tính như sau:
 
--   Nếu $i$ nằm ngoài xâu con đối xứng hiện tại, tức $i > r$, ta gọi thuật toán đơn giản.
+-   Nếu $i$ nằm ngoài xâu con đối xứng hiện tại, tức $i > r$, gọi thuật toán đơn giản.
 
     Khi đó liên tục tăng $d_1[i]$, đồng thời ở mỗi bước kiểm tra xâu con hiện tại $[i - d_1[i] \dots i + d_1[i]]$ ($d_1[i]$ biểu thị bán kính, dưới đây cũng vậy) có phải xâu đối xứng hay không. Nếu gặp cặp ký tự đầu tiên khác nhau, hoặc chạm biên của $s$, thuật toán dừng. Trong cả hai trường hợp, $d_1[i]$ đã được tính xong. Sau đó vẫn cần nhớ cập nhật $(l, r)$.
 
--   Bây giờ xét trường hợp $i \le r$. Ta sẽ cố gắng lấy một phần thông tin từ các giá trị $d_1[]$ đã tính. Trước hết phản chiếu vị trí $i$ trong xâu con đối xứng $(l, r)$, thu được $j = l + (r - i)$. Xét giá trị $d_1[j]$. Vì vị trí $j$ đối xứng với vị trí $i$, ta **gần như luôn** có thể đặt $d_1[i] = d_1[j]$. Ý tưởng được minh họa như sau (có thể hiểu là xâu đối xứng tâm $j$ được "sao chép" sang vị trí tâm $i$):
+-   Bây giờ xét trường hợp $i \le r$. Thuật toán sẽ cố gắng tận dụng một phần thông tin từ các giá trị $d_1[]$ đã tính. Trước hết phản chiếu vị trí $i$ trong xâu con đối xứng $(l, r)$, thu được $j = l + (r - i)$. Xét giá trị $d_1[j]$. Vì vị trí $j$ đối xứng với vị trí $i$, **gần như luôn** có thể đặt $d_1[i] = d_1[j]$. Ý tưởng được minh họa như sau (có thể hiểu là xâu đối xứng tâm $j$ được "sao chép" sang vị trí tâm $i$):
 
     $$
     \ldots\
@@ -110,7 +110,7 @@ Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá tr
     \ldots
     $$
 
-    Tuy nhiên có một **trường hợp khó** cần xử lý đúng: khi xâu đối xứng "bên trong" chạm biên của xâu đối xứng "bên ngoài", tức $j - d_1[j] + 1 \le l$ (hoặc tương đương $i + d_1[j] - 1 \ge r$). Vì tính đối xứng ngoài phạm vi xâu đối xứng "bên ngoài" không được bảo đảm, đặt thẳng $d_1[i] = d_1[j]$ là không đúng: ta không có đủ thông tin để khẳng định xâu đối xứng tại vị trí $i$ có cùng độ dài.
+    Tuy nhiên có một **trường hợp khó** cần xử lý đúng: khi xâu đối xứng "bên trong" chạm biên của xâu đối xứng "bên ngoài", tức $j - d_1[j] + 1 \le l$ (hoặc tương đương $i + d_1[j] - 1 \ge r$). Vì tính đối xứng ngoài phạm vi xâu đối xứng "bên ngoài" không được bảo đảm, đặt thẳng $d_1[i] = d_1[j]$ là không đúng: không có đủ thông tin để khẳng định xâu đối xứng tại vị trí $i$ có cùng độ dài.
 
     Thực tế, để xử lý đúng trường hợp này, cần "cắt ngắn" độ dài xâu đối xứng, tức đặt $d_1[i] = r - i + 1$. Sau đó chạy thuật toán đơn giản để cố gắng tăng $d_1[i]$ nhiều nhất có thể.
 
@@ -129,10 +129,10 @@ Giả sử cần tính $d_1[i]$ cho vị trí tiếp theo $i$, và mọi giá tr
     }^\text{đối xứng}\
     \underbrace{
         \ldots \ldots \ldots \ldots \ldots
-    }_\text{thử mở rộng ở đây}
+    }_\text{thử mở rộng}
     $$
 
-    Hình này cho thấy dù xâu đối xứng tâm $j$ có thể dài hơn và vượt ra ngoài xâu đối xứng "bên ngoài", tại vị trí $i$ ta chỉ có thể dùng phần hoàn toàn nằm trong xâu đối xứng "bên ngoài". Tuy nhiên đáp án tại vị trí $i$ có thể lớn hơn giá trị này, nên tiếp theo ta chạy thuật toán đơn giản để thử mở rộng ra ngoài xâu đối xứng "bên ngoài", tức vùng được đánh dấu "thử mở rộng ở đây".
+    Hình này cho thấy dù xâu đối xứng tâm $j$ có thể dài hơn và vượt ra ngoài xâu đối xứng "bên ngoài", tại vị trí $i$ chỉ có thể dùng phần hoàn toàn nằm trong xâu đối xứng "bên ngoài". Tuy nhiên đáp án tại vị trí $i$ có thể lớn hơn giá trị này, nên tiếp theo cần chạy thuật toán đơn giản để thử mở rộng ra ngoài xâu đối xứng "bên ngoài", tức vùng được đánh dấu "thử mở rộng".
 
 Cuối cùng, cần nhắc lại rằng sau khi tính xong mỗi $d_1[i]$, phải nhớ cập nhật $(l, r)$.
 
@@ -141,13 +141,13 @@ Cuối cùng, cần nhắc lại rằng sau khi tính xong mỗi $d_1[i]$, phả
 <span id="độ-phức-tạp-của-thuật-toán-manacher"></span>
 ## Độ phức tạp của thuật toán Manacher
 
-Vì khi tính đáp án cho một vị trí cụ thể ta luôn chạy thuật toán đơn giản, thoạt nhìn không hiển nhiên rằng thuật toán có thời gian tuyến tính.
+Vì khi tính đáp án cho một vị trí cụ thể luôn phải chạy thuật toán đơn giản, thoạt nhìn chưa thấy ngay vì sao thuật toán có thời gian tuyến tính.
 
 Tuy nhiên phân tích kỹ hơn cho thấy thuật toán có độ phức tạp tuyến tính. Cần lưu ý rằng [thuật toán tính hàm Z](./z-func.md) khá giống thuật toán này và cũng có độ phức tạp thời gian tuyến tính.
 
 Thực tế, mỗi lần lặp của thuật toán đơn giản đều làm $r$ tăng thêm $1$, và $r$ không bao giờ giảm trong quá trình thuật toán chạy. Hai quan sát này cho thấy thuật toán đơn giản chỉ thực hiện tổng cộng $O(n)$ lần lặp.
 
-Phần còn lại của thuật toán Manacher hiển nhiên cũng tuyến tính, nên tổng độ phức tạp là $O(n)$.
+Phần còn lại của thuật toán Manacher cũng chỉ tốn thời gian tuyến tính, nên tổng độ phức tạp là $O(n)$.
 
 <span id="cài-đặt-thuật-toán-manacher"></span>
 ## Cài đặt thuật toán Manacher
@@ -155,7 +155,7 @@ Phần còn lại của thuật toán Manacher hiển nhiên cũng tuyến tính
 <span id="tách-hai-trường-hợp"></span>
 ### Tách hai trường hợp
 
-Để tính $d_1[]$, ta có đoạn mã sau:
+Để tính $d_1[]$, dùng đoạn mã sau:
 
 === "C++"
     ```cpp
@@ -224,13 +224,13 @@ Mã tính $d_2[]$ rất giống, chỉ khác một chút trong các biểu thứ
 <span id="xử-lý-thống-nhất"></span>
 ### Xử lý thống nhất
 
-Mặc dù trong phần giải thích và cài đặt ở trên ta tách riêng việc tính $d_1[]$ và $d_2[]$, trên thực tế có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
+Mặc dù phần giải thích và cài đặt ở trên tách riêng việc tính $d_1[]$ và $d_2[]$, trên thực tế có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
 
 Cho một xâu $s$ có độ dài $n$, chèn ký tự phân tách $\#$ vào $n+1$ khoảng trống của nó để xây một xâu $s'$ có độ dài $2n+1$. Ví dụ, với xâu $s = \mathtt{abababc}$, xâu tương ứng là $s' = \mathtt{\#a\#b\#a\#b\#a\#b\#c\#}$.
 
 Ký tự $\#$ giữa các chữ cái có ý nghĩa là "khoảng trống" tương ứng trong $s$. Hai ký tự $\#$ ở hai đầu dùng để thuận tiện khi cài đặt.
 
-Chú ý rằng sau khi tính $d_1[]$ cho $s'$, với một vị trí $i$, xâu con đối xứng dài nhất mà $d_1[i]$ mô tả nhất định kết thúc bằng $\#$ (nếu kết thúc bằng chữ cái, vì hai bên chữ cái đều có một $\#$, nó có thể mở rộng thêm một bước để dài hơn). Do đó, với một xâu con đối xứng cực đại trong $s$ có tâm là chữ cái và độ dài $m+1$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là chữ cái tương ứng và độ dài $2m+3$; còn với một xâu con đối xứng cực đại trong $s$ có tâm là khoảng trống và độ dài $m$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là ký tự $\#$ biểu diễn khoảng trống đó và độ dài $2m+1$ (trong cả hai trường hợp, $m$ đều là số chẵn, nhưng tính chất này không ảnh hưởng đến kết luận). Kết hợp các quan sát trên với một chút tính toán, ta được rằng trong $s'$, $d_1[i]$ biểu thị **tổng độ dài cộng một** của xâu con đối xứng cực đại trong $s$ có tâm tại vị trí tương ứng.
+Chú ý rằng sau khi tính $d_1[]$ cho $s'$, với một vị trí $i$, xâu con đối xứng dài nhất mà $d_1[i]$ mô tả nhất định kết thúc bằng $\#$ (nếu kết thúc bằng chữ cái, vì hai bên chữ cái đều có một $\#$, nó có thể mở rộng thêm một bước để dài hơn). Do đó, với một xâu con đối xứng cực đại trong $s$ có tâm là chữ cái và độ dài $m+1$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là chữ cái tương ứng và độ dài $2m+3$; còn với một xâu con đối xứng cực đại trong $s$ có tâm là khoảng trống và độ dài $m$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là ký tự $\#$ biểu diễn khoảng trống đó và độ dài $2m+1$ (trong cả hai trường hợp, $m$ đều là số chẵn, nhưng tính chất này không ảnh hưởng đến kết luận). Kết hợp các quan sát trên với một chút tính toán, suy ra rằng trong $s'$, $d_1[i]$ biểu thị **tổng độ dài cộng một** của xâu con đối xứng cực đại trong $s$ có tâm tại vị trí tương ứng.
 
 Kết luận trên thiết lập quan hệ giữa $d_1[]$ của $s'$ với $d_1[]$ và $d_2[]$ của $s$.
 
