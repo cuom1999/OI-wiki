@@ -145,7 +145,7 @@ Trong trường hợp liên tục, khái niệm tương ứng được mô tả 
 
 Nhiều tính chất của kỳ vọng có điều kiện có thể suy ra từ xác suất có điều kiện, nên phần này không trình bày thêm.
 
-Điều đáng nói là $E[X | Y]$ nói chung là một hàm của biến ngẫu nhiên $Y$, và hàm này thường không tuyến tính. Tuy nhiên, luôn có:
+Điều đáng nói là $E[X | Y]$ trong trường hợp tổng quát là một hàm của biến ngẫu nhiên $Y$, và hàm này thường không tuyến tính. Tuy nhiên, luôn có:
 
 $$
 E[E[X|Y]] = EX
@@ -213,7 +213,7 @@ Nếu phương sai của biến ngẫu nhiên $X$ tồn tại, thì:
 
 ## Hiệp phương sai và hệ số tương quan
 
-Nói chung, đẳng thức $D(X + Y) = DX + DY$ không đúng. Từ đó xuất hiện hai câu hỏi:
+Trong trường hợp tổng quát, đẳng thức $D(X + Y) = DX + DY$ không đúng. Từ đó xuất hiện hai câu hỏi:
 
 -   Phần chênh lệch giữa $D(X + Y)$ và $DX + DY$ rốt cuộc là gì?
 -   Trong trường hợp nào thì $D(X + Y)$ bằng $DX + DY$?

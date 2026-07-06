@@ -28,7 +28,7 @@ Ngoài ra, trong quá trình tăng luồng Ford–Fulkerson, với mỗi cạnh 
 ???+ tip "Mẹo"
     Trong cài đặt các thuật toán luồng cực đại, thường cần hỗ trợ truy cập nhanh cạnh ngược. Với ma trận kề, thao tác này là trực tiếp ($g_{u, v} \leftrightarrow g_{v, u}$). Tuy nhiên, cách cài đặt phổ biến hơn và tốt hơn là forward-star dạng danh sách liên kết. Một mẹo thường dùng là đánh số cạnh bắt đầu từ số chẵn, thường là $0$, và khi thêm cạnh luôn thêm ngay cạnh ngược của nó để hai cạnh có chỉ số kề nhau. Khi đó, cạnh có chỉ số $i$ và cạnh có chỉ số $i \oplus 1$ luôn là cạnh ngược của nhau.
 
-Người mới tiếp xúc với phương pháp này có thể gặp một tình huống trái trực giác: luồng trên cạnh ngược $f(v, u)$ có thể là số âm. Trong quá trình tăng luồng Ford–Fulkerson, đại lượng thật sự có ý nghĩa là dung lượng còn dư $c_f$, còn trị tuyệt đối của $f(v, u)$ không quan trọng. Việc giảm luồng trên cạnh ngược có thể được hiểu là làm tăng dung lượng còn dư $c_f(v, u)$ của cạnh ngược. Điều này cũng phù hợp với ý nghĩa của hoàn luồng: dung lượng còn dư trên cạnh ngược tăng lên nghĩa là sau đó có thể đi qua cạnh ngược để triệt tiêu lần tăng luồng theo chiều thuận trước đó, tương đương với một thao tác "hối lại".
+Người mới tiếp xúc với phương pháp này có thể gặp một tình huống trái trực giác: luồng trên cạnh ngược $f(v, u)$ có thể là số âm. Trong quá trình tăng luồng Ford–Fulkerson, đại lượng thật sự có ý nghĩa là dung lượng còn dư $c_f$, còn trị tuyệt đối của $f(v, u)$ không quan trọng. Việc giảm luồng trên cạnh ngược có thể được hiểu là làm tăng dung lượng còn dư $c_f(v, u)$ của cạnh ngược. Điều này cũng phù hợp với ý nghĩa của hoàn luồng: dung lượng còn dư trên cạnh ngược tăng lên nghĩa là sau đó có thể đi qua cạnh ngược để triệt tiêu lần tăng luồng theo chiều thuận trước đó, tương đương với một thao tác hoàn tác luồng trước đó.
 
 Ví dụ sau minh họa quá trình này. Giả sử $G$ là một mạng dung lượng đơn vị, xét quá trình sau:
 
@@ -229,9 +229,9 @@ Sau khi định nghĩa đồ thị tầng và luồng chặn, quy trình của t
 
 Lúc này $f$ là luồng cực đại.
 
-Trước khi phân tích độ phức tạp của thuật toán này, cần đặc biệt giải thích quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù BFS đồ thị tầng khá trực tiếp, quá trình DFS luồng chặn cần một chút kỹ thuật: cần đưa vào tối ưu cung hiện tại.
+Trước khi phân tích độ phức tạp của thuật toán này, cần đặc biệt giải thích quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù việc dùng BFS để xây dựng đồ thị tầng khá đơn giản, quá trình DFS luồng chặn cần một chút kỹ thuật: cần đưa vào tối ưu cung hiện tại.
 
-Trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo thói quen, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
+Trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo quy ước, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
 
 ??? note "Tăng luồng nhiều đường"
     Tăng luồng nhiều đường là một tối ưu hằng số của thuật toán Dinic. Nếu tìm được một đường tăng luồng $p$ từ $s$ đến $t$ trên đồ thị tầng, thì tiếp theo không nhất thiết phải quay lại từ $s$ để tìm đường tăng luồng kế tiếp, mà có thể bắt đầu từ vị trí cuối cùng trên $p$ vẫn còn dung lượng còn dư để tìm một nhánh rẽ và tăng luồng. Xét sự nhất quán với dạng quay lui, tối ưu này cũng tự nhiên trong cài đặt DFS.
@@ -647,7 +647,7 @@ Khi $d_s \geq n$, trên đồ thị không tồn tại đường tăng luồng, 
 
 Giống Dinic, trong ISAP cũng có **tối ưu cung hiện tại**.
 
-ISAP còn có một tối ưu khác: ghi lại số lượng đỉnh có tầng bằng $i$ là $num_i$. Mỗi khi cập nhật tầng của một đỉnh từ $x$ thành $y$, đồng thời cập nhật giá trị mảng $num$. Nếu sau cập nhật $num_x=0$, điều đó nghĩa là trên đồ thị xuất hiện một khoảng trống tầng, không thể tìm thêm đường tăng luồng nữa. Khi đó có thể trực tiếp kết thúc thuật toán; khi cài đặt, trực tiếp đánh dấu $d_s$ thành $n$. Tối ưu này được gọi là **tối ưu GAP**.
+ISAP còn có một tối ưu khác: ghi lại số lượng đỉnh có tầng bằng $i$ là $num_i$. Mỗi khi cập nhật tầng của một đỉnh từ $x$ thành $y$, đồng thời cập nhật giá trị mảng $num$. Nếu sau cập nhật $num_x=0$, điều đó nghĩa là trên đồ thị xuất hiện một khoảng trống tầng, không thể tìm thêm đường tăng luồng nữa. Khi đó có thể kết thúc thuật toán ngay; khi cài đặt, chỉ cần đánh dấu $d_s$ thành $n$. Tối ưu này được gọi là **tối ưu GAP**.
 
 #### Cài đặt
 
@@ -843,7 +843,7 @@ Như trong hình, giữa mỗi đỉnh biểu diễn số hiệu, góc trái dư
 
 ![Trạng thái ban đầu của thuật toán push-relabel](./images/2148.png)
 
-Hình dưới minh họa toàn bộ quá trình của thuật toán. Tác giả dùng một thuật toán vét cạn, tức quét vét cạn xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
+Hình dưới minh họa toàn bộ quá trình của thuật toán. Tác giả dùng cách mô phỏng thô: quét toàn bộ để xem có đỉnh đang hoạt động nào không; nếu có thì cập nhật.
 
 ![Quá trình chạy thuật toán push-relabel](./images/2149.gif)
 
@@ -853,7 +853,7 @@ Kết quả cuối cùng:
 
 Cuối cùng, một phần luồng dư đã quay về $s$, và ngoài nguồn và đích, các đỉnh khác đều không còn đang hoạt động. Khi đó hàm luồng $f$ thỏa mãn bảo toàn luồng, là luồng cực đại, và giá trị luồng là $e(t)$.
 
-Tuy nhiên, trên thực tế bài báo[^ref1] chỉ ra rằng chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$ cũng có thể thu được đúng giá trị luồng cực đại. Trong trường hợp đó, khi thuật toán kết thúc, tiền luồng vẫn chưa thỏa mãn tính chất của hàm luồng, nên không biết được luồng thực sự trên từng cạnh.
+Tuy nhiên, bài báo[^ref1] chỉ ra rằng chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$ cũng có thể thu được đúng giá trị luồng cực đại. Trong trường hợp đó, khi thuật toán kết thúc, tiền luồng vẫn chưa thỏa mãn tính chất của hàm luồng, nên không biết được luồng thực sự trên từng cạnh.
 
 #### Cài đặt
 
@@ -913,7 +913,7 @@ Trong khi BFS, đồng thời kiểm tra tính liên thông của đồ thị đ
 
 Cài đặt dưới đây dùng phương pháp trong bài báo[^ref2], sử dụng $N*2-1$ xô `B`, trong đó `B[i]` ghi lại tất cả các đỉnh đang hoạt động hiện có độ cao $i$. Cài đặt đã thêm hai tối ưu nói trên, và chỉ xử lý các đỉnh đang hoạt động có độ cao nhỏ hơn $n$.
 
-Một chi tiết cần lưu ý là xô trong bài báo[^ref2] được cài đặt bằng stack dựa trên danh sách liên kết, còn container mặc định của `stack` trong STL là `deque`. Qua kiểm thử đơn giản, `vector`, `deque`, `list` không khác biệt nhiều về hiệu suất trong quá trình chạy thực tế của bài này.
+Một chi tiết cần lưu ý là xô trong bài báo[^ref2] được cài đặt bằng stack dựa trên danh sách liên kết, còn kiểu chứa mặc định của `stack` trong STL là `deque`. Qua kiểm thử đơn giản, `vector`, `deque`, `list` không khác biệt nhiều về hiệu suất trong quá trình chạy thực tế của bài này.
 
 #### Cài đặt
 
@@ -1034,7 +1034,7 @@ Xem qua quá trình chạy:
 
 ![Quá trình chạy HLPP với tối ưu GAP](./images/1152.png)
 
-Trong đó từ pic13 đến pic14 thực hiện Relabel(4), đồng thời thực hiện tối ưu GAP.
+Trong đó từ hình 13 đến hình 14, thực hiện `Relabel(4)` đồng thời áp dụng tối ưu GAP.
 
 ## Chú thích
 

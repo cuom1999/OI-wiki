@@ -271,7 +271,7 @@ Chu kỳ thu được theo cách này có thể chỉ là một bội của chu 
 <span id="chứng-minh"></span>
 ### Chứng minh
 
-Cuối cùng, bài viết chứng minh ngắn gọn các kết luận nêu trên về chu kỳ Pisano. Cần lưu ý rằng phương pháp dưới đây có thể mở rộng cho dãy truy hồi tuyến tính thuần nhất bậc hai với hệ số hằng nói chung. Dù hằng số cụ thể khác nhau, chu kỳ Pisano modulo $m$ của các dãy này đều là $O(m)$.
+Cuối cùng, bài viết chứng minh ngắn gọn các kết luận nêu trên về chu kỳ Pisano. Cần lưu ý rằng phương pháp dưới đây có thể mở rộng cho dãy truy hồi tuyến tính thuần nhất bậc hai với hệ số hằng tổng quát. Dù hằng số cụ thể khác nhau, chu kỳ Pisano modulo $m$ của các dãy này đều là $O(m)$.
 
 Quan sát đầu tiên là: nhờ [định lý số dư Trung Hoa](../number-theory/crt.md), có thể giới hạn việc thảo luận ở trường hợp modulo lũy thừa nguyên tố. Giả sử $m_1,m_2$ là hai modulo nguyên tố cùng nhau. Chu kỳ của dãy Fibonacci modulo $m_1$ là $\pi(m_1)$ và các bội của nó; chu kỳ modulo $m_2$ là $\pi(m_2)$ và các bội của nó. Do đó chu kỳ dương nhỏ nhất modulo $m_1m_2$ chính là bội chung nhỏ nhất của $\pi(m_1)$ và $\pi(m_2)$. Đây là kết luận 1 bên trên.
 

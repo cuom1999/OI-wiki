@@ -94,7 +94,7 @@ $$
 \beta=k_1a_1+k_2a_2+\cdots+k_ra_r=(a_1,a_2,\cdots,a_r)\begin{pmatrix} k_1 \\ k_2 \\ \vdots \\ k_r \end{pmatrix}
 $$
 
-Theo thói quen, các vectơ $a$ được viết cạnh nhau theo thứ tự ở bên trái; các vô hướng $k$ được viết dọc theo thứ tự ở bên phải, tạo thành một "vectơ cột".
+Theo quy ước, các vectơ $a$ được viết cạnh nhau theo thứ tự ở bên trái; các vô hướng $k$ được viết dọc theo thứ tự ở bên phải, tạo thành một "vectơ cột".
 
 Lưu ý: "vectơ cột" tạo bởi các vô hướng trong biểu thức này chỉ là ký hiệu hình thức cho tiện, không thuộc không gian $V$, và về bản chất khác với các vectơ ở bên trái. Nếu các vectơ bên trái tình cờ là vectơ cột, việc ghép chúng cạnh nhau có thể hình thức tạo thành một "ma trận"; tích trên khi đó đúng là dạng "ma trận nhân trái với vectơ cột" thường gặp trong ma trận.
 
@@ -129,7 +129,7 @@ Với không gian tuyến tính $(V,+,\cdot,\Bbb{P})$:
 
     Quy ước hệ con độc lập tuyến tính cực đại của hệ vectơ $\theta,\theta,\dots,\theta$ là tập rỗng; vì thế hệ vectơ tương ứng với ma trận toàn $0$ không có hệ con độc lập tuyến tính cực đại không rỗng.
 
-    Cách xóa vectơ khỏi hệ vectơ không duy nhất, nên hệ con độc lập tuyến tính cực đại cũng không duy nhất. Theo thói quen, việc xóa được thực hiện theo thứ tự từ trái sang phải.
+    Cách xóa vectơ khỏi hệ vectơ không duy nhất, nên hệ con độc lập tuyến tính cực đại cũng không duy nhất. Thông thường, việc xóa được thực hiện theo thứ tự từ trái sang phải.
 
     Một điều khá thú vị là nếu xóa theo thứ tự, các vectơ còn lại đúng là các cột chứa phần tử $1$ trong ma trận dạng bậc thang rút gọn sau khử Gauss khi nhìn theo quan điểm "theo hàng".
 

@@ -29,7 +29,7 @@ $$
 P\{ X \geq a \} \leq \frac{EX}{a}
 $$
 
-Trên thực tế, vì bản thân bất đẳng thức Markov không dùng bất kỳ thông tin nào liên quan đến phân phối của biến ngẫu nhiên ngoài kỳ vọng, nên ràng buộc thu được khi áp dụng trực tiếp bất đẳng thức này thường khá lỏng.
+Vì bản thân bất đẳng thức Markov không dùng bất kỳ thông tin nào liên quan đến phân phối của biến ngẫu nhiên ngoài kỳ vọng, ràng buộc thu được khi áp dụng trực tiếp bất đẳng thức này thường khá lỏng.
 
 <span id="chứng-minh"></span>
 ### Chứng minh

@@ -209,7 +209,7 @@ Ma trận số $A$ và $B$ tương tự khi và chỉ khi các ma trận đặc 
 
 Với ma trận đặc trưng $\lambda I-A$, biến đổi sơ cấp giữ tính tương đương, nên không làm thay đổi hạng.
 
-Quan sát ba loại biến đổi sơ cấp: vì phép cộng bội duy nhất được sửa đổi không làm thay đổi định thức, trên thực tế ba loại biến đổi sơ cấp chỉ làm đa thức kết quả của định thức thay đổi bởi một bội hằng số, do đó không làm thay đổi phân tích nhân tử và bậc của đa thức kết quả của định thức.
+Quan sát ba loại biến đổi sơ cấp: vì phép cộng bội duy nhất được sửa đổi không làm thay đổi định thức, ba loại biến đổi sơ cấp chỉ làm đa thức kết quả của định thức thay đổi bởi một bội hằng số, do đó không làm thay đổi phân tích nhân tử và bậc của đa thức kết quả của định thức.
 
 Vì vậy định thức của ma trận đặc trưng $\lambda I-A$ là đa thức bậc $n$. Sau khi dùng biến đổi sơ cấp đưa nó về dạng chuẩn Smith, do hạng là $n$, định thức chính là tích của toàn bộ các nhân tử bất biến trên đường chéo chính, cũng bằng tích của toàn bộ các nhân tử sơ cấp. Do đó, tổng bậc của toàn bộ các nhân tử sơ cấp của ma trận đặc trưng $\lambda I-A$ bằng $n$.
 

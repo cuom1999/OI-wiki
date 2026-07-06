@@ -153,7 +153,7 @@ Trong phép nhân ma trận, số ở hàng $i$ cột $j$ của ma trận kết 
 
 Các vectơ được nghiên cứu trong đại số tuyến tính phần lớn là vectơ cột. Theo cách định nghĩa phép nhân ma trận như trên, thường nghiên cứu phép nhân trái một ma trận vào vectơ cột; đồng thời qua đó cũng thấy được tư tưởng "đóng gói xử lý", tức xử lý nhiều tích trong của vectơ cùng lúc.
 
-Phép nhân ma trận thỏa tính kết hợp, nhưng nói chung không thỏa tính giao hoán.
+Phép nhân ma trận thỏa tính kết hợp, nhưng trong trường hợp tổng quát không thỏa tính giao hoán.
 
 Dùng tính kết hợp, phép nhân ma trận có thể được tối ưu bằng tư tưởng [lũy thừa nhanh](../binary-exponentiation.md).
 
@@ -208,7 +208,7 @@ Ma trận nghịch đảo không nhất thiết tồn tại. Nếu tồn tại, 
 <span id="mã-tham-khảo"></span>
 ## Mã tham khảo
 
-Nói chung, có thể dùng mảng hai chiều để mô phỏng ma trận.
+Thông thường, có thể dùng mảng hai chiều để mô phỏng ma trận.
 
 ```cpp
 struct mat {

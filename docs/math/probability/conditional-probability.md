@@ -38,7 +38,7 @@ $$
 <span id="công-thức-bayes"></span>
 ### Công thức Bayes
 
-Nói chung, giả sử các nguyên nhân có thể dẫn đến biến cố $B$ là $A_1, A_2, \cdots, A_n$. Khi đã biết $P(A_i)$ và $P(B|A_i)$, có thể dùng công thức xác suất toàn phần để tính xác suất xảy ra của biến cố $B$. Tuy nhiên, trong nhiều trường hợp, cần suy ngược từ kết quả "biến cố $B$ đã xảy ra" để tính xác suất xảy ra của từng biến cố nguyên nhân. Khi đó thu được
+Giả sử các nguyên nhân có thể dẫn đến biến cố $B$ là $A_1, A_2, \cdots, A_n$. Khi đã biết $P(A_i)$ và $P(B|A_i)$, có thể dùng công thức xác suất toàn phần để tính xác suất xảy ra của biến cố $B$. Tuy nhiên, trong nhiều trường hợp, cần suy ngược từ kết quả "biến cố $B$ đã xảy ra" để tính xác suất xảy ra của từng biến cố nguyên nhân. Khi đó thu được
 
 $$
 P(A_i|B) = \frac{P(A_iB)}{P(B)} = \frac{P(A_i)P(B|A_i)}{\sum_{j=1}^{n} P(A_j)P(B|A_j)}
@@ -69,7 +69,7 @@ $$
 <span id="tính-độc-lập-của-nhiều-biến-cố"></span>
 ### Tính độc lập của nhiều biến cố
 
-Với nhiều biến cố, nói chung không thể suy ra độc lập đồng thời chỉ từ độc lập từng đôi. Xét phản ví dụ sau:
+Với nhiều biến cố, trong trường hợp tổng quát không thể suy ra độc lập đồng thời chỉ từ độc lập từng đôi. Xét phản ví dụ sau:
 
 Có một con xúc xắc tứ diện đều, trong đó ba mặt lần lượt được tô màu đỏ, xanh lá và xanh dương, còn mặt còn lại có đủ cả ba màu. Gieo con xúc xắc một lần, gọi các biến cố $A$, $B$, $C$ lần lượt là mặt tiếp xúc với bàn có chứa màu đỏ, màu xanh lá, màu xanh dương.
 

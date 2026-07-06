@@ -82,7 +82,7 @@ Các đỉnh mới tạo ra được gán thông tin phù hợp theo yêu cầu 
 
 Phân tích độ phức tạp cho thấy số đỉnh tăng thêm nhiều nhất là $O(n)$, nên tổng độ phức tạp là $O(n\log n)$.
 
-Gần như mọi bài có thể làm bằng phân trị theo đỉnh đều có thể làm bằng phân trị theo cạnh, tuy hằng số khác nhau nhưng thường không bị chặn gắt. Vì vậy, mục này không đưa thêm ví dụ.
+Gần như mọi bài có thể làm bằng phân trị theo đỉnh đều có thể làm bằng phân trị theo cạnh, tuy hằng số khác nhau nhưng thường vẫn chấp nhận được. Vì vậy, mục này không đưa thêm ví dụ.
 
 ## Cây phân rã trọng tâm
 

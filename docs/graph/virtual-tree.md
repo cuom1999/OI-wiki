@@ -42,7 +42,7 @@ Trong hình chỉ có hai đỉnh màu đỏ là **đỉnh then chốt**, các �
 
 Với bài này, chỉ cần bảo đảm các đỉnh màu đỏ không thể đi đến đỉnh số $1$.
 
-Từ hình vẽ, cây con bên phải của đỉnh số $1$ (trên thực tế có thể có nhiều cây con, nhưng trong ví dụ này chỉ có hai cây con nên tạm gọi như vậy) không có đỉnh màu đỏ nào, **vì thế không cần DP trên nó**.
+Từ hình vẽ, cây con bên phải của đỉnh số $1$ (có thể có nhiều cây con; trong ví dụ này chỉ có hai cây con nên tạm gọi như vậy) không có đỉnh màu đỏ nào, **vì thế không cần DP trên nó**.
 
 Xét ràng buộc của đề bài, tổng số đỉnh màu đỏ (đỉnh then chốt) cùng bậc với $n$, tức là trong một truy vấn, các đỉnh màu đỏ trên toàn bộ cây thường rất thưa. Vì vậy sẽ tốt hơn nếu độ phức tạp được quyết định bởi tổng số đỉnh màu đỏ.
 
@@ -107,7 +107,7 @@ Tại sao nối $\operatorname{LCA}(x,y)$ với $y$ lại không bị thừa hay
     
     Ngoài ra, việc đỉnh đầu tiên không được một đỉnh nào nối tới có ảnh hưởng không? Không, vì đỉnh đầu tiên nhất định là gốc của cây này, nên tổng số cạnh là $m-1$.
 
-Vì cần ít nhất hai đỉnh thực mới phát sinh một đỉnh ảo, cộng thêm một đỉnh gốc, số đỉnh của cây ảo bằng hai lần số đỉnh thực.
+Vì cần ít nhất hai đỉnh thực mới phát sinh một đỉnh ảo, cộng thêm một đỉnh gốc, số đỉnh của cây ảo không vượt quá hai lần số đỉnh thực.
 
 Độ phức tạp thời gian là $O(m\log n)$, trong đó $m$ là số đỉnh then chốt, $n$ là tổng số đỉnh.
 
