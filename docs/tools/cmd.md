@@ -224,7 +224,7 @@ Với ống dẫn có tên, có thể cho hai chương trình tương tác theo 
 
 ```console
 $ mkfifo input output
-$ ./checker > input < output # Cần viết > input trước; nếu không shell sẽ mở ống dẫn output trước, khi ống dẫn này chưa có dữ liệu nên checker sẽ bị chặn.
+$ ./checker > input < output # Cần viết > input trước; nếu không shell sẽ mở ống dẫn output trước, khi ống dẫn này chưa có dữ liệu nên trình kiểm tra đáp án sẽ bị chặn.
 $ ./my_code < input > output
 ```
 

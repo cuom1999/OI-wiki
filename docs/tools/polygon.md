@@ -47,9 +47,9 @@ Phần lớn chức năng của Polygon không cần học riêng; đọc hiểu
 ???+ warning "Cảnh báo"
     Đề bài không thể dùng Markdown, chỉ có thể dùng TeX.
 
--   Invocation (lượt chạy kiểm thử) dùng để kiểm thử lời giải.
+-   Mục Invocation (lượt chạy kiểm thử) dùng để kiểm thử lời giải.
 
--   Stress dùng để kiểm thử stress.
+-   Mục Stress dùng để kiểm thử stress.
 
 -   Dữ liệu được tạo bằng trình sinh dữ liệu trong mục "Tests"; trình sinh dữ liệu được tải lên trong mục "Files".
 

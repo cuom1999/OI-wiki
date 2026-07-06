@@ -507,7 +507,7 @@ khác nhau.
     nhau ở mỗi lần gọi, cách viết `max` này còn cho kết quả sai. Ví dụ
     `func1()` là `return ++a;` và `a` là biến toàn cục.
 
-    Ví dụ: mã sau có thể bị hack thành mỗi truy vấn $\Theta(n)$ và dẫn đến TLE.
+    Ví dụ: mã sau có thể bị hack bằng dữ liệu phản ví dụ, khiến mỗi truy vấn mất $\Theta(n)$ và dẫn đến TLE.
 
     ```cpp
     #define max(x, y) ((x) > (y) ? (x) : (y))
@@ -684,7 +684,7 @@ khác nhau.
 
     -   Thường là vì vòng lặp chèn vào STL bị lặp vô hạn.
 
-    -   Cũng có thể là bị hack.
+    -   Cũng có thể là bị hack bằng dữ liệu phản ví dụ.
 
 ### Lỗi làm hằng số quá lớn
 
