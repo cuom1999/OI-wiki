@@ -1,7 +1,7 @@
 Chương này giới thiệu thuật toán sắp xếp hậu tố tại chỗ với độ phức tạp tuyến tính[^in-place-sa-sort] (Optimal In-Place Suffix Sorting).
 
 ???+ warning "Cảnh báo"
-    Chỉ nên đọc chương này khi bạn **rất, rất quen thuộc** với SA-IS[^nzc09a][^sa-is-gioi-thieu].
+    Người đọc chỉ nên đọc chương này khi đã **rất, rất quen thuộc** với SA-IS[^nzc09a][^sa-is-gioi-thieu].
 
 <span id="thiết-lập-chung"></span>
 ## Thiết lập chung
@@ -13,14 +13,14 @@ Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ 
 
 Thực ra phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
 
-Đây là thuật toán có phần mô tả chi tiết tương đối rõ ràng trong bài gốc, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
+Đây là thuật toán có phần mô tả chi tiết tương đối đầy đủ trong bài gốc, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
 
 Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các bucket S và L, rồi dùng thêm $O(n)$ thao tác để thay cho bucket kiểu.
 
 <span id="đổi-tên-xâu-mục-tiêu-pat"></span>
 ### Đổi tên xâu mục tiêu Pat
 
-Nói ngắn gọn, ta đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, nhằm chỉ ra đầu bucket hoặc cuối bucket.
+Nói ngắn gọn, đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, nhằm chỉ ra đầu bucket hoặc cuối bucket.
 
 Cách đổi tên là thay ký tự kiểu S trong $\texttt{Pat}$ bằng chỉ số cuối bucket của nó, và thay ký tự kiểu L bằng chỉ số đầu bucket của nó.
 
@@ -49,20 +49,20 @@ Trong cùng một bucket, hậu tố của ký tự kiểu L nhỏ hơn nên n�
 
 Các bước đổi tên cụ thể:
 
-1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của chúng (sắp xếp đếm) để xây dựng bucket S/L; khác biệt là ở đây dùng $\texttt{SA}$ để chứa các tổng tiền tố này.
+1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của chúng (sắp xếp đếm) để xây dựng bucket S/L; khác biệt là biến thể này dùng $\texttt{SA}$ để chứa các tổng tiền tố này.
 2.  Quét từng ký tự của $\texttt{Pat}$ từ cuối lên đầu. Khi đó chỉ cần ghi nhớ kiểu của ký tự trước đó là có thể xác định động kiểu của từng ký tự, rồi đổi tên theo tổng tiền tố.
 
 <span id="sắp-xếp-ký-tự-lms"></span>
 ### Sắp xếp ký tự LMS
 
-Điểm chính ở đây là kỹ thuật dùng bộ đếm nội bộ.
+Kỹ thuật trọng tâm là dùng bộ đếm nội bộ.
 
 <span id="khởi-tạo"></span>
 #### Khởi tạo
 
 Ban đầu đặt mọi phần tử của $\texttt{SA}$ thành E (EMPTY).
 
-Quét $\texttt{Pat}$ từ cuối lên đầu. Nếu phát hiện ký tự LMS $\texttt{Pat[i]}$, ta đặt dấu cho $\texttt{SA[Pat[i]]}$:
+Quét $\texttt{Pat}$ từ cuối lên đầu. Nếu phát hiện ký tự LMS $\texttt{Pat[i]}$, đặt dấu cho $\texttt{SA[Pat[i]]}$:
 
 Nếu $\texttt{SA[Pat[i]]}$ là E, đặt nó thành U (UNIQUE).
 
@@ -95,7 +95,7 @@ M: nghĩa là trong bucket có ít nhất hai ký tự LMS.
     Chèn ký tự LMS mới bắt đầu từ vị trí thứ ba tính từ cuối, rồi tăng bộ đếm tạm thêm 1.
     Nếu phát hiện bucket đã đầy, dịch toàn bộ phần tử từ đầu bucket đến vị trí thứ ba tính từ cuối sang phải 2 vị trí, rồi chèn phần tử mới vào vị trí thứ hai của bucket (vị trí đầu bucket điền E).
 
-2.  Nếu bucket có đúng 2 ký tự LMS, rõ ràng không cần bộ đếm; chỉ cần chèn theo thứ tự từ phải sang trái.
+2.  Nếu bucket có đúng 2 ký tự LMS thì không cần bộ đếm; chỉ cần chèn theo thứ tự từ phải sang trái.
 
 Giá trị bình thường:
 
@@ -136,7 +136,7 @@ $$
 <span id="sắp-xếp-cảm-ứng-tiền-tố-lms"></span>
 #### Sắp xếp cảm ứng tiền tố LMS
 
-Thực hiện sắp xếp cảm ứng các tiền tố LMS. Giống SA-IS, phần này hoàn toàn giống bước sắp xếp cảm ứng hậu tố ở phía sau (dùng cùng một hàm), nên ở đây bỏ qua chi tiết.
+Thực hiện sắp xếp cảm ứng các tiền tố LMS. Giống SA-IS, phần này hoàn toàn giống bước sắp xếp cảm ứng hậu tố ở phía sau (dùng cùng một hàm), nên phần chi tiết được lược bỏ.
 
 Dưới đây là kết quả sắp xếp:
 
@@ -224,7 +224,7 @@ $$
 
 Phần này dùng lại kỹ thuật bộ đếm nội bộ ở trên để thực hiện sắp xếp cảm ứng phiên bản tại chỗ.
 
-Giả sử ta đã có các hậu tố LMS được sắp xếp (ở cuối bucket), dùng chúng để cảm ứng các hậu tố kiểu L[^thu-tu-cam-ung]:
+Giả sử đã có các hậu tố LMS được sắp xếp (ở cuối bucket), dùng chúng để cảm ứng các hậu tố kiểu L[^thu-tu-cam-ung]:
 
 $$
 \begin{aligned}
@@ -244,7 +244,7 @@ $$
 \end{aligned}
 $$
 
-Quét SA từ trái sang phải. Giống khi sắp xếp ký tự LMS, điểm phức tạp hơn là cần xác định kiểu của $\texttt{suf[SA[i] - 1]}$, phải chia trường hợp để xét (chi tiết xem code):
+Quét SA từ trái sang phải. Giống khi sắp xếp ký tự LMS, điểm phức tạp hơn là cần xác định kiểu của $\texttt{suf[SA[i] - 1]}$, phải chia trường hợp để xét (chi tiết xem mã):
 
 $$
 \begin{aligned}
@@ -268,14 +268,14 @@ $$
 \end{aligned}
 $$
 
-Còn việc cảm ứng hậu tố S từ hậu tố L hoàn toàn đối xứng với việc cảm ứng hậu tố L từ hậu tố LMS, nên không trình bày thêm ở đây.
+Còn việc cảm ứng hậu tố S từ hậu tố L hoàn toàn đối xứng với việc cảm ứng hậu tố L từ hậu tố LMS, nên không trình bày thêm.
 
 Đến đây, bước sắp xếp cảm ứng đã hoàn tất.
 
 <span id="cài-đặt"></span>
 #### Cài đặt
 
-Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian sử dụng giảm xuống dưới $\dfrac{1}{3}$ so với ban đầu (đổi lại lượng mã tăng khoảng gấp đôi). Như vậy khá xứng với tiêu đề Optimal In-Place Suffix Sorting[^in-place-sa-sort] của bài gốc.
+Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian sử dụng giảm xuống dưới $\dfrac{1}{3}$ so với ban đầu (đổi lại lượng mã tăng khoảng gấp đôi). Như vậy tương xứng với tiêu đề Optimal In-Place Suffix Sorting[^in-place-sa-sort] của bài gốc.
 
 ??? note "Mã tham khảo"
     ```rust
@@ -810,16 +810,16 @@ Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp:
 
 Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng BitMaps[^np12] trên $\texttt{SA}$ để thay thế các vị trí đầu/cuối bucket vốn được chỉ ra bởi T sau khi đổi tên.
 
-Ở đây, BitMaps là từ điển có thứ tự (multiset) được biểu diễn bằng vector bit (bit vector), một dạng cấu trúc dữ liệu gọn (compact data structure).
+Trong ngữ cảnh này, BitMaps là từ điển có thứ tự (multiset) được biểu diễn bằng vector bit (bit vector), một dạng cấu trúc dữ liệu gọn (compact data structure).
 
-Nếu muốn tìm hiểu sâu hơn, hiện tại bạn nên đọc bài gốc và các bài báo liên quan đến BitMaps được trích dẫn trong bài này.
+Nếu muốn tìm hiểu sâu hơn, hiện tại nên đọc bài gốc và các bài báo liên quan đến BitMaps được trích dẫn trong bài này.
 
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-tổng-quát-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái tổng quát chỉ đọc
 
 Kiến thức chuẩn bị là sắp xếp trộn và sắp xếp vun đống.
 
-Vì tác giả còn băn khoăn về độ phức tạp thời gian của phương pháp xác định kiểu ký tự trong phần này, nên không trình bày thêm ở đây; bạn nên đọc bài gốc để tự tìm hiểu.
+Vì tác giả còn băn khoăn về độ phức tạp thời gian của phương pháp xác định kiểu ký tự trong phần này, nên không trình bày thêm; nên đọc bài gốc để tìm hiểu kỹ hơn.
 
 <span id="ghi-chú"></span>
 ## Ghi chú
@@ -830,6 +830,6 @@ Vì tác giả còn băn khoăn về độ phức tạp thời gian của phươ
 
 [^sa-is-gioi-thieu]: Nên đọc [bài viết](https://riteme.site/blog/2016-6-19/sais.html) và [danh sách issue](https://github.com/riteme/riteme.github.io/issues/28) của bài viết đó.
 
-[^thu-tu-cam-ung]: Nếu là hậu tố LML, hãy cảm ứng hậu tố kiểu S trước. Khác biệt duy nhất là khi tính hậu tố LML cần tính cả ký tự lính canh.
+[^thu-tu-cam-ung]: Nếu là hậu tố LML, nên cảm ứng hậu tố kiểu S trước. Khác biệt duy nhất là khi tính hậu tố LML cần tính cả ký tự lính canh.
 
 [^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.
