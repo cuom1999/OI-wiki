@@ -14,7 +14,7 @@ Thuật toán đơn giản nhất là mô phỏng trực tiếp. Dùng một dan
 
 ### Tối ưu đơn giản
 
-Quá trình tìm người tiếp theo có thể được tối ưu bằng cây đoạn. Cụ thể, xây một cây đoạn trên các vị trí $0,1,\cdots, n-1$, rồi lưu số người còn lại trong mỗi đoạn. Khi cần tìm vị trí của người hiện tại và người thứ $k$ sau đó, có thể nhị phân trên cây đoạn.
+Có thể tối ưu quá trình tìm người tiếp theo bằng cây đoạn. Cụ thể, xây một cây đoạn trên các vị trí $0,1,\cdots, n-1$, rồi lưu số người còn lại trong mỗi đoạn. Khi cần tìm vị trí của người hiện tại và người thứ $k$ sau đó, có thể nhị phân trên cây đoạn.
 
 ### Thuật toán tuyến tính
 

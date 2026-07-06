@@ -43,7 +43,7 @@ rồi xử lý như trên cây phân đoạn theo giá trị thông thường
 
 Quay lại bài toán ban đầu: tìm giá trị nhỏ thứ $k$ trong khoảng $[l,r]$.
 Cách xử lý liên hệ đến một kiến thức khác: **tổng tiền tố**.
-Kỹ thuật này tận dụng tính chất trừ đoạn: sau khi tiền xử lý, mỗi truy vấn có thể được trả lời trong $O(1)$.
+Kỹ thuật này tận dụng tính chất trừ đoạn: sau khi tiền xử lý, có thể trả lời mỗi truy vấn trong $O(1)$.
 
 Thông tin thống kê trong cây chủ tịch cũng thỏa tính chất này.
 Vì vậy, nếu cần lấy thông tin thống kê của $[l,r]$, chỉ cần lấy thông tin của $[1,r]$ trừ đi thông tin của $[1,l - 1]$.

@@ -36,7 +36,7 @@ còn bậc của các nút khác đều bằng $2$.
 
 ## Thuật toán Huffman
 
-Thuật toán Huffman được dùng để xây dựng một cây Huffman. Các bước của thuật toán như sau:
+Thuật toán Huffman xây dựng một cây Huffman theo các bước sau:
 
 1.  **Khởi tạo**: Từ $n$ trọng số cho trước, xây dựng $n$ cây nhị phân,
     mỗi cây chỉ có một nút gốc, thu được một tập cây nhị phân $F$.
@@ -116,7 +116,7 @@ Nếu trong một tập mã, không có mã nào là tiền tố của bất k�
 thì tập mã đó được gọi là **mã tiền tố**;
 điều này bảo đảm tính duy nhất khi giải mã.
 
-Cây Huffman có thể được dùng để xây dựng **mã tiền tố ngắn nhất**,
+Có thể dùng cây Huffman để xây dựng **mã tiền tố ngắn nhất**,
 tức **mã Huffman** (Huffman Code).
 Các bước xây dựng như sau:
 

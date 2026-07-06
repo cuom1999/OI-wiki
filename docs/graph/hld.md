@@ -2,7 +2,7 @@ author: GoodCoder666, Ir1d, Marcythm, ouuan, hsfzLZH1, Xeonacid, greyqz, Chrogee
 
 ## Mở đầu
 
-Phân rã cây thành chuỗi được dùng để chia cây thành nhiều chuỗi, qua đó duy trì thông tin trên các đường đi của cây.
+Phân rã cây thành chuỗi chia cây thành nhiều chuỗi, qua đó duy trì thông tin trên các đường đi của cây.
 
 Cụ thể, phân rã toàn bộ cây thành một số chuỗi để biến nó thành một cấu trúc tuyến tính, rồi dùng các cấu trúc dữ liệu khác để duy trì thông tin.
 

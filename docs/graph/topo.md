@@ -39,11 +39,11 @@ Lặp lại hai bước trên cho đến khi tất cả các đỉnh đã đư�
 
 ## Đường găng và mạng AOE
 
-Tương ứng với mạng AOV là **mạng AOE (Activity On Edge Network)**, tức mạng trong đó cạnh biểu diễn hoạt động. Mạng AOE là một đồ thị có hướng không chu trình có trọng số, trong đó đỉnh biểu diễn sự kiện, còn cung biểu diễn thời gian kéo dài của hoạt động. Thông thường, mạng AOE có thể được dùng để ước lượng thời gian hoàn thành một công trình. Mạng AOE phải không có chu trình, đồng thời có đúng một đỉnh bắt đầu có bậc vào bằng không, gọi là nguồn, và đúng một đỉnh kết thúc có bậc ra bằng không, gọi là đích.
+Tương ứng với mạng AOV là **mạng AOE (Activity On Edge Network)**, tức mạng trong đó cạnh biểu diễn hoạt động. Mạng AOE là một đồ thị có hướng không chu trình có trọng số, trong đó đỉnh biểu diễn sự kiện, còn cung biểu diễn thời gian kéo dài của hoạt động. Thông thường, có thể dùng mạng AOE để ước lượng thời gian hoàn thành một công trình. Mạng AOE phải không có chu trình, đồng thời có đúng một đỉnh bắt đầu có bậc vào bằng không, gọi là nguồn, và đúng một đỉnh kết thúc có bậc ra bằng không, gọi là đích.
 
 ![Ví dụ mạng AOE](images/topo-example-2.svg)
 
-Trong mạng AOE, một số hoạt động có thể được thực hiện song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Trong ngữ cảnh này, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
+Trong mạng AOE, một số hoạt động có thể diễn ra song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Trong ngữ cảnh này, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
 
 ### Một số khái niệm cơ bản liên quan đến mạng AOE
 

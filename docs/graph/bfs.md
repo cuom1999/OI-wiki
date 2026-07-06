@@ -141,7 +141,7 @@ Tương tự, cũng có thể định nghĩa cây BFS: trong quá trình BFS, b�
 
 -   Tìm đường đi ngắn nhất từ đỉnh xuất phát đến tất cả các đỉnh khác trong một đồ thị không trọng số.
 -   Tìm tất cả các thành phần liên thông trong thời gian $O(n+m)$. Chỉ cần bắt đầu BFS từ mỗi đỉnh chưa được thăm; mỗi lần BFS sẽ duyệt hết một thành phần liên thông.
--   Nếu xem mỗi hành động trong một trò chơi là một cạnh, tức một phép chuyển, trên đồ thị trạng thái, thì BFS có thể được dùng để tìm số bước ít nhất cần thiết để đi từ một trạng thái đến một trạng thái khác trong trò chơi.
+-   Nếu xem mỗi hành động trong một trò chơi là một cạnh, tức một phép chuyển, trên đồ thị trạng thái, thì có thể dùng BFS để tìm số bước ít nhất cần thiết để đi từ một trạng thái đến một trạng thái khác trong trò chơi.
 -   Tìm chu trình nhỏ nhất trong một đồ thị có hướng không trọng số. Bắt đầu BFS từ từng đỉnh; khi sắp đi tới một đỉnh đã được thăm trước đó, tức là đã gặp một chu trình. Chu trình nhỏ nhất của đồ thị là chu trình nhỏ nhất thu được trong các lần BFS.
 -   Tìm các cạnh nằm trên ít nhất một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi cạnh $(u, v)$, nếu $d_a[u]+1+d_b[v]=d_a[b]$, thì cạnh đó nằm trên một đường đi ngắn nhất.
 -   Tìm các đỉnh nằm trên ít nhất một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi đỉnh `v`, nếu $d_a[v]+d_b[v]=d_a[b]$, thì đỉnh đó nằm trên một đường đi ngắn nhất nào đó.
@@ -156,9 +156,9 @@ BFS hai đầu hàng đợi còn được gọi là 0-1 BFS.
 
 ### Phạm vi áp dụng
 
-Các bài toán đường đi ngắn nhất trong đó trọng số cạnh có thể tồn tại hoặc không tồn tại, hoặc có thể được chuyển đổi thành dạng trọng số như vậy. Vì BFS áp dụng cho đồ thị có trọng số bằng 1, nên thông thường các trọng số này là 0 hoặc 1.
+Các bài toán đường đi ngắn nhất trong đó trọng số cạnh có thể tồn tại hoặc không tồn tại, hoặc có thể chuyển đổi thành dạng trọng số như vậy. Vì BFS áp dụng cho đồ thị có trọng số bằng 1, nên thông thường các trọng số này là 0 hoặc 1.
 
-Ví dụ trong bài toán đi mê cung, có thể tốn 1 đồng xu để đi 5 bước, hoặc không tốn đồng xu để đi 1 bước. Bài toán này có thể được giải bằng 0-1 BFS.
+Ví dụ trong bài toán đi mê cung, có thể tốn 1 đồng xu để đi 5 bước, hoặc không tốn đồng xu để đi 1 bước. Bài toán này có thể giải bằng 0-1 BFS.
 
 ### Cài đặt
 
@@ -200,7 +200,7 @@ Hàng đợi ưu tiên tương đương với một heap nhị phân. STL cung c
 
 Trong BFS dựa trên hàng đợi ưu tiên, mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm. Có thể chứng minh ý tưởng tham lam này là đúng, vì phần tìm kiếm mở rộng từ đỉnh này sẽ không cập nhật những đỉnh vốn có chi phí cao hơn. Nói cách khác, với những đỉnh còn lại có chi phí cao hơn, không cần quay lại xét để cập nhật chúng.
 
-Mỗi đỉnh có thể được đưa vào hàng đợi nhiều lần, với chi phí khác nhau ở từng lần. Khi đỉnh đó lần đầu tiên được lấy ra khỏi hàng đợi ưu tiên, về sau không cần tiếp tục tìm kiếm từ đỉnh đó nữa, chỉ cần bỏ qua trực tiếp. Vì vậy, trong BFS dùng hàng đợi ưu tiên, mỗi đỉnh chỉ được xử lý một lần.
+Có thể đưa mỗi đỉnh vào hàng đợi nhiều lần, với chi phí khác nhau ở từng lần. Khi lấy đỉnh đó ra khỏi hàng đợi ưu tiên lần đầu, về sau không cần tiếp tục tìm kiếm từ đỉnh đó nữa, chỉ cần bỏ qua trực tiếp. Vì vậy, trong BFS dùng hàng đợi ưu tiên, thuật toán chỉ xử lý mỗi đỉnh một lần.
 
 So với BFS dùng hàng đợi thông thường, độ phức tạp thời gian có thêm một thừa số $\log n$, bởi dù sao cũng phải duy trì hàng đợi ưu tiên này. Tuy nhiên, trong BFS thông thường, mỗi đỉnh cũng có thể vào hàng đợi và ra khỏi hàng đợi nhiều lần, khiến độ phức tạp thời gian đạt tới $O(n^2)$ chứ không phải $O(n)$. Vì vậy BFS hàng đợi ưu tiên thường vẫn nhanh hơn.
 

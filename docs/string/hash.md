@@ -286,7 +286,7 @@ Gọi $f_i(s)$ là $f(s[1..i])$, tức giá trị hash của tiền tố độ d
 
 Bây giờ cần tính nhanh $f(s[l..r])$ theo cách tương tự tổng tiền tố. Theo định nghĩa, giá trị hash của chuỗi $s[l..r]$ là $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$.
 
-So sánh hai công thức trên, có $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ (có thể thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, $b^{r-l+1}$ có thể được tiền xử lý trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
+So sánh hai công thức trên, có $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ (có thể thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, có thể tiền xử lý $b^{r-l+1}$ trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
 
 <span id="cài-đặt"></span>
 ## Cài đặt
@@ -414,7 +414,7 @@ Tổng độ phức tạp thời gian là $O(m+kn\log_2m)$.
 
 Tìm kiếm nhị phân đáp án; khi kiểm tra tính khả thi, liệt kê tâm đối xứng (trục đối xứng), rồi dùng hash để kiểm tra hai phía có bằng nhau hay không. Cần tiền xử lý riêng giá trị hash xuôi và ngược. Độ phức tạp thời gian $O(n\log n)$.
 
-Bài toán này có thể được giải bằng [thuật toán Manacher](./manacher.md) trong thời gian $O(n)$.
+Bài toán này có thể giải bằng [thuật toán Manacher](./manacher.md) trong thời gian $O(n)$.
 
 Phương pháp hash cũng có thể giải bài này trong $O(n)$. Cách làm cụ thể là đặt $R_i$ là độ dài chuỗi đối xứng dài nhất kết thúc tại $i$, khi đó đáp án là $\max_{i=1}^nR_i$. Vì $R_i\leq R_{i-1}+2$, chỉ cần vét cạn giảm dần từ $R_{i-1}+2$ cho đến khi tìm được chuỗi đối xứng đầu tiên. Đặt biến $z$ là $R_i$ đang liệt kê, ban đầu bằng $0$; mỗi khi $i$ tăng, $z$ sẽ tăng thêm $2$, sau đó mỗi lần lặp vét cạn sẽ giảm $1$, nên vòng lặp vét cạn xảy ra tối đa $2n$ lần. Tổng độ phức tạp thời gian là $O(n)$.
 

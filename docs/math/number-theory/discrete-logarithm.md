@@ -47,7 +47,7 @@ Logarit rời rạc cũng có nhiều tính chất tương tự logarit thông t
 
 Hiện nay bài toán logarit rời rạc vẫn chưa có thuật toán cổ điển chạy trong thời gian đa thức, trong đó kích thước đầu vào của bài toán được tính theo số bit của dữ liệu đầu vào. Trong mật mã học, nhiều thuật toán mã hóa bất đối xứng được thiết kế dựa trên tính chất này, chẳng hạn như [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519).
 
-Trong lập trình thi đấu, BSGS (baby-step giant-step, thuật toán bước nhỏ bước lớn) thường được dùng để giải bài toán logarit rời rạc. Nói một cách hình thức, với $a,b,m\in\mathbf{Z}^+$, thuật toán này có thể giải trong thời gian $O(\sqrt{m})$ phương trình
+Trong lập trình thi đấu, BSGS (baby-step giant-step, thuật toán bước nhỏ bước lớn) thường dùng để giải bài toán logarit rời rạc. Nói một cách hình thức, với $a,b,m\in\mathbf{Z}^+$, thuật toán này có thể giải trong thời gian $O(\sqrt{m})$ phương trình
 
 $$
 a^x \equiv b \pmod m

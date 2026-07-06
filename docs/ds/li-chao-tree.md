@@ -11,8 +11,7 @@
 
     Dữ liệu thỏa mãn: tổng số thao tác $1 \leq n \leq 10^5$, $1 \leq k, x_0, x_1 \leq 39989$, $1 \leq y_0, y_1 \leq 10^9$.
 
-Với loại thông tin này, cây phân đoạn truyền thống khó duy trì hiệu quả. **Cây phân đoạn Li Chao** được dùng để xử lý
-tình huống đó.
+Với loại thông tin này, cây phân đoạn truyền thống khó duy trì hiệu quả. **Cây phân đoạn Li Chao** xử lý tốt tình huống đó.
 
 ## Quá trình
 
@@ -33,7 +32,7 @@ Khi cần chèn một đoạn thẳng $f$, xét một đoạn trên cây phân �
 chưa có nhãn, gán ngay nhãn cập nhật bằng đoạn thẳng đó.
 
 Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, cần đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng và vẫn
-có thể phát sinh xung đột, nên quá trình đẩy nhãn xuống phải được thực hiện đệ quy.
+có thể phát sinh xung đột, nên phải đẩy nhãn xuống theo cách đệ quy.
 
 ![](images/li-chao-tree-1.png)
 

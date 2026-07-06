@@ -19,7 +19,7 @@ Ký hiệu $[l,r]$ là miền giá trị của đáp án, $[L,R]$ là miền xá
 -   Dựa trên quan hệ giữa kết quả truy vấn được và $mid$, tức nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, chia dãy thao tác hiện đang xử lý thành hai phần $q1$ và $q2$, rồi đệ quy xử lý từng phần.
 -   Khi $l=r$, đáp án đã được xác định, chỉ cần ghi lại đáp án rồi trả về.
 
-Cần lưu ý rằng trong quá trình chặt nhị phân tổng thể, nếu miền giá trị đang xử lý là $[l,r]$, thì các truy vấn có phạm vi đáp án cuối cùng không nằm trong $[l,r]$ sẽ được xử lý ở thời điểm khác.
+Cần lưu ý rằng trong quá trình chặt nhị phân tổng thể, nếu miền giá trị đang xử lý là $[l,r]$, thì thuật toán sẽ xử lý các truy vấn có phạm vi đáp án cuối cùng không nằm trong $[l,r]$ ở thời điểm khác.
 
 ## Quy trình
 
@@ -45,7 +45,7 @@ Bắt đầu từ chặt nhị phân thông thường:
     
     Trước hết xét bản chất của chặt nhị phân: giả sử cần đoán một số trong $[l,r]$, sau khi đoán sẽ biết giá trị vừa đoán lớn hơn, nhỏ hơn hay đúng. Có thể liệt kê từ $l$ đến $r$, nhưng cách tốt hơn là chặt nhị phân: đoán đáp án là $m = \lfloor\frac{l + r}{2}\rfloor$, sau đó kiểm tra tính đúng đắn của $m$ rồi điều chỉnh biên. Như vậy, độ phức tạp cho mỗi truy vấn là $O(\log n)$. Nếu có $q$ truy vấn, độ phức tạp thời gian là $O(q\log n)$.
     
-    Quay lại với tất cả truy vấn hiện tại, có thể đoán đáp án của mọi truy vấn đều là $mid$, rồi lần lượt kiểm tra đáp án của mỗi truy vấn phải nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, sau đó chia truy vấn thành hai phần, không lớn hơn và lớn hơn. Với mỗi phần, tiếp tục chặt nhị phân. Lưu ý: nếu đáp án của một truy vấn lớn hơn $mid$, trước khi chuyển nó sang bên phải cần cập nhật $k$ của nó. Cụ thể, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Nếu một phần đã có $l = r$, quá trình chặt nhị phân của phần đó kết thúc. Dựa trên kiến thức về cây đoạn, mỗi lần chia toàn bộ khoảng mà đáp án có thể nằm trong đó $[1,n]$, giả sử đã rời rạc hóa, thành một số phần. Việc chia như vậy được thực hiện tổng cộng $O(\log n)$ lần, và một lần chia sẽ xử lý toàn bộ dãy thao tác một lần. Nếu độ phức tạp để xử lý toàn bộ dãy và hỗ trợ các truy vấn tương ứng là $O(T)$, thì độ phức tạp thời gian của chặt nhị phân tổng thể là $O(T\log n)$.
+    Quay lại với tất cả truy vấn hiện tại, có thể đoán đáp án của mọi truy vấn đều là $mid$, rồi lần lượt kiểm tra đáp án của mỗi truy vấn phải nhỏ hơn hoặc bằng $mid$ hay lớn hơn $mid$, sau đó chia truy vấn thành hai phần, không lớn hơn và lớn hơn. Với mỗi phần, tiếp tục chặt nhị phân. Lưu ý: nếu đáp án của một truy vấn lớn hơn $mid$, trước khi chuyển nó sang bên phải cần cập nhật $k$ của nó. Cụ thể, nếu trong dãy hiện tại có $t$ số nhỏ hơn hoặc bằng $mid$, thì sau khi chia, truy vấn thực chất là hỏi số nhỏ thứ $k - t$ trong khoảng bên phải. Nếu một phần đã có $l = r$, quá trình chặt nhị phân của phần đó kết thúc. Dựa trên kiến thức về cây đoạn, mỗi lần chia toàn bộ khoảng mà đáp án có thể nằm trong đó $[1,n]$, giả sử đã rời rạc hóa, thành một số phần. Thuật toán thực hiện cách chia này tổng cộng $O(\log n)$ lần, và mỗi lần chia sẽ xử lý toàn bộ dãy thao tác một lần. Nếu độ phức tạp để xử lý toàn bộ dãy và hỗ trợ các truy vấn tương ứng là $O(T)$, thì độ phức tạp thời gian của chặt nhị phân tổng thể là $O(T\log n)$.
 
 ??? note "Mã tham khảo"
     ```cpp

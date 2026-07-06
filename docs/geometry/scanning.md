@@ -1,6 +1,6 @@
 ## Dẫn nhập
 
-Đường quét thường được dùng trong các bài toán hình học. Ý nghĩa của nó khá giống tên gọi: có một đường thẳng quét qua lại trên toàn bộ hình. Kỹ thuật này thường được dùng để giải các bài toán về diện tích hình, chu vi hình và đếm điểm hai chiều.
+Đường quét thường xuất hiện trong các bài toán hình học. Ý nghĩa của nó khá giống tên gọi: có một đường thẳng quét qua lại trên toàn bộ hình. Kỹ thuật này thường dùng để giải các bài toán về diện tích hình, chu vi hình và đếm điểm hai chiều.
 
 ## Bài toán diện tích hợp hình chữ nhật hai chiều
 

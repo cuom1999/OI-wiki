@@ -68,7 +68,7 @@ Thuật toán tuy đơn giản, nhưng cần cấu trúc dữ liệu phù hợp 
 
 Nói một cách trừu tượng hơn, cần duy trì một tập hợp các **tập hợp**, truy vấn hai phần tử có thuộc cùng một tập hợp hay không, và hợp nhất hai tập hợp.
 
-Trong đó, việc truy vấn hai đỉnh có liên thông hay không và việc nối hai đỉnh có thể được duy trì bằng DSU.
+Trong đó, DSU có thể duy trì thao tác truy vấn hai đỉnh có liên thông hay không và thao tác nối hai đỉnh.
 
 Nếu dùng thuật toán sắp xếp $O(m\log m)$ và DSU có độ phức tạp $O(m\alpha(m, n))$ hoặc $O(m\log n)$, thuật toán Kruskal có độ phức tạp thời gian $O(m\log m)$.
 

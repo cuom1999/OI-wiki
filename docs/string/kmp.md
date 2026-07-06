@@ -414,13 +414,13 @@ Ngoài ra, cũng có thể tính lại số xâu con khác nhau khi thêm một 
 <span id="nén-chuỗi"></span>
 ### Nén chuỗi
 
-Cho một chuỗi $s$ có độ dài $n$, cần tìm biểu diễn "nén" ngắn nhất của nó, tức là cần tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể được biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
+Cho một chuỗi $s$ có độ dài $n$, cần tìm biểu diễn "nén" ngắn nhất của nó, tức là cần tìm một chuỗi $t$ ngắn nhất sao cho $s$ có thể biểu diễn bằng cách ghép một hoặc nhiều bản sao của $t$.
 
 Chỉ cần tìm độ dài của $t$. Khi đã biết độ dài đó, đáp án của bài toán chính là tiền tố của $s$ có độ dài bằng giá trị này.
 
 Tính hàm tiền tố của $s$. Dùng giá trị cuối cùng của hàm này $\pi[n - 1]$, định nghĩa $k = n - \pi[n - 1]$. Cần chứng minh rằng nếu $k$ là ước của $n$, thì $k$ chính là đáp án; nếu không, không tồn tại một cách nén hợp lệ, nên đáp án là $n$.
 
-Giả sử $n$ chia hết cho $k$. Khi đó chuỗi có thể được chia thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó có thể nén chuỗi $s$ xuống độ dài $k$.
+Giả sử $n$ chia hết cho $k$. Khi đó có thể chia chuỗi thành các khối độ dài $k$. Theo định nghĩa của hàm tiền tố, tiền tố độ dài $n - k$ của chuỗi bằng hậu tố của nó. Nhưng điều này có nghĩa là khối cuối cùng bằng khối áp chót, khối áp chót bằng khối ngay trước nó, và cứ tiếp tục như vậy. Kết quả là mọi khối đều bằng nhau, do đó có thể nén chuỗi $s$ xuống độ dài $k$.
 
 ???+ note "Chứng minh"
     Vẫn cần chứng minh giá trị này là tối ưu. Nếu tồn tại một biểu diễn nén ngắn hơn $k$, thì giá trị cuối cùng của hàm tiền tố $\pi[n - 1]$ phải lớn hơn $n - k$. Vì vậy $k$ chính là đáp án.
@@ -520,7 +520,7 @@ Do độ dài lớn đến mức thiên văn, trong trường hợp này ngay c�
 
 Bên cạnh ô-tô-mát, còn cần tính giá trị $G[i][j]$: trạng thái của ô-tô-mát sau khi xử lý $g_i$ bắt đầu từ trạng thái $j$, và giá trị $K[i][j]$: số lần xuất hiện của $s$ trong $g_i$ khi xử lý $g_i$ bắt đầu từ trạng thái $j$. Thực chất, $K[i][j]$ là số lần trong quá trình thực hiện mà giá trị hàm tiền tố bằng $|s|$. Đáp án của bài toán là $K[k][0]$.
 
-Các giá trị này được tính như thế nào? Trước hết, theo định nghĩa, điều kiện ban đầu là $G[0][j] = j$ và $K[0][j] = 0$. Sau đó mọi giá trị có thể được tính từ các giá trị trước đó và bằng cách dùng ô-tô-mát. Để tính giá trị tương ứng cho một $i$ nào đó, nhớ rằng chuỗi $g_i$ được tạo bằng cách ghép $g_{i - 1}$, ký tự thứ $i$ trong bảng chữ cái, và $g_{i - 1}$. Vì vậy ô-tô-mát sẽ đi qua các trạng thái sau:
+Các giá trị này được tính như thế nào? Trước hết, theo định nghĩa, điều kiện ban đầu là $G[0][j] = j$ và $K[0][j] = 0$. Sau đó có thể tính mọi giá trị từ các giá trị trước đó bằng ô-tô-mát. Để tính giá trị tương ứng cho một $i$ nào đó, nhớ rằng chuỗi $g_i$ được tạo bằng cách ghép $g_{i - 1}$, ký tự thứ $i$ trong bảng chữ cái, và $g_{i - 1}$. Vì vậy ô-tô-mát sẽ đi qua các trạng thái sau:
 
 $$
 \begin{gathered}
@@ -529,7 +529,7 @@ G[i][j] = G[i - 1][\text{mid}]
 \end{gathered}
 $$
 
-Giá trị $K[i][j]$ cũng có thể được tính đơn giản.
+Cũng có thể tính giá trị $K[i][j]$ một cách đơn giản.
 
 $$
 K[i][j] = K[i - 1][j] + [\text{mid} == |s|] + K[i - 1][\text{mid}]
@@ -548,7 +548,7 @@ $$
 
 Việc thay thế đệ quy sẽ khiến độ dài chuỗi tăng bùng nổ; độ dài của chúng thậm chí có thể đạt cỡ $100^{100}$. Cần tìm số lần xuất hiện của chuỗi $s$ trong từng chuỗi.
 
-Bài toán này cũng có thể được giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
+Bài toán này cũng có thể giải bằng cách xây dựng ô-tô-mát của hàm tiền tố. Tương tự như trước, tận dụng các kết quả đã tính để tính chuyển tiếp cho mỗi mẫu rồi thống kê đáp án tương ứng.
 
 <span id="bài-tập"></span>
 ## Bài tập

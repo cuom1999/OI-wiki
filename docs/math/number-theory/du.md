@@ -1,6 +1,6 @@
 author: hsfzLZH1, sshwy, StudyingFather, Marcythm
 
-Sàng Dujiao được dùng để xử lí một lớp bài toán tính tổng tiền tố của hàm số học. Với hàm số học $f$, sàng Dujiao có thể tính $S(n)=\sum_{i=1}^{n}f(i)$ với độ phức tạp thấp hơn tuyến tính.
+Sàng Dujiao xử lý một lớp bài toán tính tổng tiền tố của hàm số học. Với hàm số học $f$, sàng Dujiao có thể tính $S(n)=\sum_{i=1}^{n}f(i)$ với độ phức tạp thấp hơn tuyến tính.
 
 <span id="ý-tưởng-thuật-toán"></span>
 ## Ý tưởng thuật toán

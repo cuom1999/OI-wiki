@@ -37,7 +37,7 @@ Quan hệ giữa số thuần ảo, số ảo, số thực và số phức đư�
 
 Những số có dạng tương tự $a+b\mathrm{i}$ đã được gọi là số phức, đồng thời đã có định nghĩa và phân loại; tiếp theo có thể khai thác các tính chất sâu hơn.
 
-Khi đặt mọi số thực lên trục số, các điểm trên trục số tương ứng một-một với các số thực. Số phức có thể được xử lý theo cách tương tự.
+Khi đặt mọi số thực lên trục số, các điểm trên trục số tương ứng một-một với các số thực. Có thể xử lý số phức theo cách tương tự.
 
 Trước hết, định nghĩa **hai số phức bằng nhau**: hai số phức $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$ bằng nhau khi và chỉ khi $a=c$ và $b=d$.
 
@@ -136,7 +136,7 @@ Với các số phức $z,w$, phép liên hợp phức có các tính chất sau
 
 Nếu lấy đơn vị thực $1$ làm hướng ngang dương và đơn vị ảo $\mathrm{i}$ làm hướng thẳng đứng dương, sẽ thu được mặt phẳng phức dưới góc nhìn tọa độ Descartes.
 
-Vị trí của số phức $z$ cũng có thể được xác định nhờ tọa độ cực $(r, \theta)$. Phần trên đã nêu $r$ là môđun của số phức $z$.
+Cũng có thể xác định vị trí của số phức $z$ nhờ tọa độ cực $(r, \theta)$. Phần trên đã nêu $r$ là môđun của số phức $z$.
 
 Góc $\theta$ từ chiều dương của trục thực đến vectơ tương ứng với số phức **khác không** $z=x+\mathrm{i}y$ thỏa mãn quan hệ:
 

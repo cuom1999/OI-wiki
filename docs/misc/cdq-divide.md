@@ -56,7 +56,7 @@ Trong ứng dụng thực tế, thường dùng một hàm `solve(l,r)` để x�
     
     Với mỗi $j$, đều cần chèn tất cả các điểm $i$ có $b_{i} \leq b_{j}$ vào cây Fenwick. Vì tất cả các $i$ và $j$ đều đã được sắp xếp trước theo giá trị $b$, chỉ cần dùng hai con trỏ để chèn điểm vào cây Fenwick, số thao tác chèn lên cây Fenwick có thể giảm từ $O(n^2)$ xuống $O(n)$.
     
-    Với quy trình trên, thông tin về các cặp điểm loại thứ hai được xử lý xong trong thời gian $O(n\log n)$. Khi đó độ phức tạp thời gian của thuật toán là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+O(n\log n)=O(n\log^2n)$.
+    Với quy trình trên, có thể xử lý xong thông tin về các cặp điểm loại thứ hai trong thời gian $O(n\log n)$. Khi đó độ phức tạp thời gian của thuật toán là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+O(n\log n)=O(n\log^2n)$.
 
 ??? note "Mã mẫu"
     ```cpp
@@ -122,7 +122,7 @@ Tiếp theo phân tích quy trình thực thi của thuật toán:
 4.  Tiếp theo `solve(1,2)` kết thúc, các giá trị $dp$ trong đoạn $(1,2)$ đều đã được tính xong;
 5.  Hàm tiếp theo thực hiện quy trình chuyển trạng thái là `solve(1,4)`. Sau khi lần chuyển trạng thái này kết thúc, giá trị $dp_{3}$ đã được chuyển trạng thái xong;
 6.  Hàm kết thúc tiếp theo là `solve(3,3)`. Giá trị $dp_{3}$ đã được tính xong;
-7.  Chuyển trạng thái tiếp theo được thực hiện là `solve(3,4)`. Lúc này $dp_{4}$ đã được đoạn $(1,2)$ chuyển trạng thái một lần trong `solve(1,4)`, lần này lại được đoạn $(3,3)$ chuyển trạng thái, do đó giá trị $dp_{4}$ cũng đã được chuyển trạng thái xong;
+7.  Bước chuyển trạng thái tiếp theo là `solve(3,4)`. Lúc này $dp_{4}$ đã được đoạn $(1,2)$ chuyển trạng thái một lần trong `solve(1,4)`, lần này lại được đoạn $(3,3)$ chuyển trạng thái, do đó giá trị $dp_{4}$ cũng đã được chuyển trạng thái xong;
 8.  `solve(4,4)` kết thúc, giá trị $dp_{4}$ đã được tính xong;
 9.  `solve(3,4)` kết thúc, các giá trị trong $(3,4)$ đã được tính xong;
 10. `solve(1,4)` kết thúc, các giá trị trong $(1,4)$ đã được tính xong.
@@ -175,7 +175,7 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     
     Dùng một đường quét xử lý tất cả quan hệ sửa đổi - truy vấn vượt qua $mid$ trong thời gian $O(n\log n)$, phần việc còn lại là chia để trị đệ quy các quan hệ sửa đổi - truy vấn ở hai phía trái và phải.
     
-    Trong cách hiện thực chia để trị CDQ như vậy, cùng một truy vấn được xử lý $O(\log n)$ lần. Điều này không ảnh hưởng đến kết quả, vì các sửa đổi đóng góp cho truy vấn đó ở mỗi lần là rời nhau. Độ phức tạp thời gian của toàn bộ quy trình là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+ O(n\log n)=O(n\log^2n)$.
+    Trong cách hiện thực chia để trị CDQ như vậy, thuật toán xử lý cùng một truy vấn $O(\log n)$ lần. Điều này không ảnh hưởng đến kết quả, vì các sửa đổi đóng góp cho truy vấn đó ở mỗi lần là rời nhau. Độ phức tạp thời gian của toàn bộ quy trình là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+ O(n\log n)=O(n\log^2n)$.
     
     Quan sát quy trình thuật toán trên, ban đầu chỉ giải được bài toán tĩnh cộng hình chữ nhật, tính tổng hình chữ nhật; nhưng sau khi dùng chia để trị CDQ, có thể giải ngoại tuyến một bài toán động cộng hình chữ nhật, tính tổng hình chữ nhật. Tinh túy của việc chuyển bài toán động thành bài toán tĩnh nằm ở chỗ chia để trị CDQ mỗi lần chỉ xử lý quan hệ sửa đổi và truy vấn vượt qua một điểm nào đó, nhờ vậy chỉ cần xét bài toán đơn giản "mọi truy vấn đều nằm sau các sửa đổi". Chính vì điểm này, chia để trị CDQ được gọi là "công cụ chuyển bài toán động thành bài toán tĩnh".
 
@@ -192,7 +192,7 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     
     Bằng cách xem một đoạn màu liên tiếp là một điểm, có thể chứng minh lượng thay đổi của $pre$ là $O(n+m)$, tức một thao tác đơn lẻ chỉ gây ra $O(1)$ thay đổi ở giá trị $pre$. Khi đó có thể dùng chia để trị CDQ để giải bài toán động cộng điểm đơn, tính tổng hình chữ nhật.
     
-    Các thay đổi cụ thể của mảng $pre$ có thể được xử lý bằng `std::set`. Kỹ thuật dùng set để duy trì các đoạn liên tiếp này còn được gọi là [old driver tree](./odt.md).
+    Có thể dùng `std::set` để xử lý các thay đổi cụ thể của mảng $pre$. Kỹ thuật dùng set để duy trì các đoạn liên tiếp này còn được gọi là [old driver tree](./odt.md).
 
 ??? note "Mã mẫu"
     ```cpp

@@ -98,7 +98,7 @@ mỗi lần kiểm tra cần $O(nm)$ thời gian. Vì vậy độ phức tạp t
 <span id="vét-cạn-2"></span>
 #### Vét cạn 2
 
-Xét tính chất đặc biệt của ma trận 0-1, mỗi hàng có thể được xem như một số nhị phân $m$ bit.
+Xét tính chất đặc biệt của ma trận 0-1, có thể xem mỗi hàng như một số nhị phân $m$ bit.
 
 Do đó, bài toán ban đầu được chuyển thành:
 
@@ -458,7 +458,7 @@ Thao tác chèn được chia thành hai trường hợp:
 
 -   Nếu hàng thứ $r$ chưa có phần tử nào, trực tiếp chèn một phần tử và cho `first[r]` trỏ tới phần tử đó.
 
-    Điều này có thể được thực hiện bằng `first[r] = L[idx] = R[idx] = idx;`.
+    Có thể thực hiện điều này bằng `first[r] = L[idx] = R[idx] = idx;`.
 
 -   Nếu hàng thứ $r$ đã có phần tử, nối phần tử mới này với $c$ và `first(r)` theo một cách đặc biệt.
 
@@ -592,9 +592,9 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
 ??? note "Ý tưởng giải"
     Trước hết xét quyết định là gì.
     
-    Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ ba có thứ tự dạng $(r, c, w)$.
+    Trong bài này, có thể biểu diễn mỗi quyết định bằng bộ ba có thứ tự dạng $(r, c, w)$.
     
-    Lưu ý rằng "khối" không phải là tham số của quyết định, vì nó **có thể được xác định bởi mỗi cặp $(r, c)$ cụ thể**.
+    Lưu ý rằng "khối" không phải là tham số của quyết định, vì **mỗi cặp $(r, c)$ cụ thể đều xác định được nó**.
     
     Vì vậy có $9 \times 9 \times 9 = 729$ hàng.
     
@@ -641,7 +641,7 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
     
     Vẫn như trước, xét quyết định là gì.
     
-    Trong bài này, mỗi quyết định có thể được biểu diễn bằng bộ năm có thứ tự dạng $(v, d, f, i)$.
+    Trong bài này, có thể biểu diễn mỗi quyết định bằng bộ năm có thứ tự dạng $(v, d, f, i)$.
     
     Nó biểu thị vị trí góc trên bên trái của *hình dạng chuẩn* của Smart Bead thứ $i$, có số thứ tự là $v$, sau khi đã xoay thuận chiều kim đồng hồ $90^{\circ}$ tổng cộng $d$ lần.
     

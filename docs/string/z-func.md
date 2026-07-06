@@ -156,7 +156,7 @@ Với cùng phương pháp, có thể tính lại trong $O(n)$ số xâu con kh�
 <span id="chu-kỳ-nguyên-của-xâu"></span>
 ### Chu kỳ nguyên của xâu
 
-Cho một xâu $s$ có độ dài $n$, cần tìm chu kỳ nguyên ngắn nhất của nó, tức tìm xâu ngắn nhất $t$ sao cho $s$ có thể được biểu diễn bằng cách nối một số bản sao của $t$.
+Cho một xâu $s$ có độ dài $n$, cần tìm chu kỳ nguyên ngắn nhất của nó, tức tìm xâu ngắn nhất $t$ sao cho $s$ có thể biểu diễn bằng cách nối một số bản sao của $t$.
 
 Tính hàm Z của $s$; độ dài chu kỳ nguyên của nó là ước nhỏ nhất $i$ của $n$ thỏa $i+z[i]=n$.
 

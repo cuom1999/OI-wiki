@@ -510,7 +510,7 @@ Dưới đây đồng thời đưa ra cài đặt đơn giản $O(n^2)$ và cài
 
 Giống Floyd, Johnson là thuật toán có thể tìm đường đi ngắn nhất giữa mọi cặp đỉnh trên đồ thị không có chu trình âm. Thuật toán này được Donald B. Johnson đề xuất năm 1977.
 
-Đường đi ngắn nhất giữa mọi cặp đỉnh có thể được giải bằng cách liệt kê đỉnh xuất phát và chạy Bellman-Ford $n$ lần, độ phức tạp thời gian là $O(n^2m)$; cũng có thể dùng trực tiếp Floyd, độ phức tạp thời gian là $O(n^3)$.
+Có thể giải bài toán đường đi ngắn nhất giữa mọi cặp đỉnh bằng cách liệt kê đỉnh xuất phát và chạy Bellman-Ford $n$ lần, độ phức tạp thời gian là $O(n^2m)$; cũng có thể dùng trực tiếp Floyd, độ phức tạp thời gian là $O(n^3)$.
 
 Nhận thấy Dijkstra tối ưu bằng heap có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford. Nếu liệt kê đỉnh xuất phát và chạy Dijkstra $n$ lần, có thể giải bài toán trong độ phức tạp $O(nm\log m)$ (phụ thuộc vào cách cài đặt Dijkstra), tốt hơn độ phức tạp chạy Bellman-Ford $n$ lần ở trên, và trên đồ thị thưa cũng tốt hơn Floyd.
 

@@ -3,7 +3,7 @@ Kiến thức nền: [Cơ sở quy hoạch tuyến tính](./linear-programming.m
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Trong thi thuật toán, phương pháp đơn hình thường được dùng để giải các bài toán quy hoạch tuyến tính. Tuy nhiên, phần lớn bài toán quy hoạch tuyến tính gặp trong thi đấu có cấu trúc đặc biệt hơn và thường có thể chuyển thành bài toán luồng mạng, nên phương pháp đơn hình không được dùng thường xuyên, và hiệu quả cũng không bằng các thuật toán chuyên biệt cho luồng mạng.
+Trong thi thuật toán, phương pháp đơn hình thường dùng để giải các bài toán quy hoạch tuyến tính. Tuy nhiên, phần lớn bài toán quy hoạch tuyến tính gặp trong thi đấu có cấu trúc đặc biệt hơn và thường có thể chuyển thành bài toán luồng mạng, nên phương pháp đơn hình không xuất hiện thường xuyên, và hiệu quả cũng không bằng các thuật toán chuyên biệt cho luồng mạng.
 
 <span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
@@ -575,7 +575,7 @@ Về bản chất, đây là bài toán quy hoạch tuyến tính khả thi, tro
     
     Trước khi bắt đầu pha một, thêm một hàng để ghi hàm mục tiêu của pha một. Khi xoay trục, xoay toàn bộ bảng, bao gồm cả hàm mục tiêu của pha hai. Như vậy khi pha một kết thúc, hàm mục tiêu của pha hai cũng đã được cập nhật tương ứng và có thể trực tiếp bắt đầu pha hai của phương pháp đơn hình.
 
-Phương pháp hai pha cũng có thể được thực hiện bằng một lần chạy đơn hình. Chỉ cần lấy một số dương đủ lớn $M$, rồi trực tiếp giải bài toán
+Cũng có thể thực hiện phương pháp hai pha bằng một lần chạy đơn hình. Chỉ cần lấy một số dương đủ lớn $M$, rồi trực tiếp giải bài toán
 
 $$
 \min\{c^Tx + M1^Tx_a : Ax + x_a = b,~ x\ge 0,~ s\ge 0\}
