@@ -3,7 +3,7 @@ author: Ir1d, cjsoft, Lans1ot
 **Cấu trúc** (`struct`) là một kiểu dùng để gom nhiều thành viên liên quan lại
 với nhau.
 
-Nói cách khác, `struct` cho phép tự định nghĩa một kiểu dữ liệu mới.
+`struct` cho phép tự định nghĩa một kiểu dữ liệu mới.
 
 ???+ note "Ghi chú"
     `struct` được mô tả trong trang này không hoàn toàn giống `struct` trong C.
@@ -23,14 +23,14 @@ Object b, B[array_length], tmp;
 Object *c;
 ```
 
-Ví dụ trên định nghĩa một cấu trúc tên là `Object` với hai thành viên `weight`
-và `value`, cả hai đều thuộc kiểu `int`.
+Ví dụ trên định nghĩa một cấu trúc tên `Object` với hai thành viên `weight` và
+`value`, cả hai đều thuộc kiểu `int`.
 
 Đoạn mã trên cũng khai báo mảng `e`, hằng `a`, các biến `b` và `tmp`, mảng `B`
-cùng con trỏ `c`; tất cả đều có kiểu dữ liệu là `Object`. Với bất kỳ kiểu đã có,
+cùng con trỏ `c`; tất cả đều có kiểu dữ liệu `Object`. Với bất kỳ kiểu đã có,
 cũng có thể dùng cách này để định nghĩa hằng, biến, con trỏ, mảng, v.v. Ở đây
-`a` là đối tượng `const`, nên ví dụ dùng `{}` để khởi tạo giá trị ban đầu cho
-các thành viên.
+`a` là đối tượng `const`, nên ví dụ dùng `{}` để khởi tạo giá trị ban đầu cho các
+thành viên.
 
 *Về con trỏ: chưa cần nắm vững ngay ở thời điểm này.*
 
@@ -68,26 +68,26 @@ Với con trỏ, có thể dùng `tên_con_trỏ->tên_thành_viên` hoặc
 Trước hết, có nhiều cách để đạt cùng một kết quả: không dùng cấu trúc vẫn có thể
 viết được chương trình tương tự. Tuy vậy, cấu trúc cho phép gom tường minh các
 thành viên liên quan (trong lập trình thi đấu thường là các biến) lại với nhau.
-Chẳng hạn, cấu trúc `Object` trong ví dụ đặt `weight` và `value` cùng một chỗ; ý
-nghĩa thực tế của cấu trúc này là biểu diễn trọng lượng và giá trị của một vật
-phẩm. Lợi ích là phạm vi sử dụng các thành viên được giới hạn rõ hơn. Nếu không
-dùng cấu trúc mà dùng hai mảng `value[]`, `Value[]`, người viết dễ nhầm lẫn.
-Khi dùng cấu trúc, khả năng dùng nhầm biến sẽ giảm đi.
+Chẳng hạn, cấu trúc `Object` trong ví dụ đặt `weight` và `value` cùng một chỗ, để
+biểu diễn trọng lượng và giá trị của một vật phẩm. Lợi ích là phạm vi sử dụng các
+thành viên được giới hạn rõ hơn. Nếu không dùng cấu trúc mà dùng hai mảng
+`value[]`, `Value[]`, người viết dễ nhầm lẫn. Khi dùng cấu trúc, khả năng dùng
+nhầm biến sẽ giảm đi.
 
 Ngoài ra, các kiểu cấu trúc khác nhau (như `Object`) hoặc các đối tượng cấu trúc
 khác nhau (như các phần tử trong mảng `e` ở trên) có thể có thành viên cùng tên,
 chẳng hạn `tmp.value` và `b.value`. Các thành viên cùng tên này độc lập với nhau
 và có vùng nhớ riêng; ví dụ sửa `tmp.value` sẽ không ảnh hưởng đến giá trị của
 `b.value`. Nhờ đó, có thể dùng những tên giống hoặc gần nhau để mô tả các đối
-tượng khác nhau. Ví dụ, `Object` có thành viên `value`; ta cũng có thể định
-nghĩa một cấu trúc `Car` và cho nó một thành viên `value`. Nếu không dùng cấu
-trúc, cần định nghĩa các mảng với tên khác nhau như `valueOfObject[]`,
-`valueOfCar[]` để phân biệt.
+tượng khác nhau. Ví dụ, `Object` có thành viên `value`; ta cũng có thể định nghĩa
+một cấu trúc `Car` và cho nó một thành viên `value`. Nếu không dùng cấu trúc, cần
+định nghĩa các mảng với tên khác nhau như `valueOfObject[]`, `valueOfCar[]` để
+phân biệt.
 
 *Nếu muốn mô tả một đối tượng chi tiết hơn, có thể định nghĩa thêm hàm thành
 viên. Xem [lớp](./class.md) để biết thêm chi tiết.*
 
-## Còn thao tác nào khác?
+## Các thao tác khác
 
 Xem [lớp](./class.md).
 
@@ -97,7 +97,7 @@ Xem [lớp](./class.md).
 viên trong cấu trúc, trình biên dịch có thể căn chỉnh thành viên theo những ranh
 giới byte nhất định. Điều này có nghĩa là bên trong cấu trúc có thể có phần đệm
 giữa các thành viên. Vì vậy, kích thước bộ nhớ mà cấu trúc chiếm có thể lớn hơn
-tổng kích thước của tất cả thành viên bên trong.
+tổng kích thước của tất cả thành viên.
 
 ## Tài liệu tham khảo
 
