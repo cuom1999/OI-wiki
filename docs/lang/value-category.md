@@ -22,7 +22,7 @@ int main() {
 }
 ```
 
-Có thể thấy trong quá trình đưa chuỗi vào `vec`, cả `str` và phần tử mới trong
+Trong quá trình đưa chuỗi vào `vec`, cả `str` và phần tử mới trong
 `vec` đều giữ một bản, làm lượng bộ nhớ sử dụng tăng lên.
 
 Nếu nhất định muốn tiết kiệm phần bộ nhớ này, có thể tự cài đặt một thao tác

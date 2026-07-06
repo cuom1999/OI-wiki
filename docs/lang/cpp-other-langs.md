@@ -106,7 +106,7 @@ hơn.
 
 Nói ngắn gọn, nếu chỉ cần một vùng nhớ thô, `malloc()` vẫn có thể dùng được.
 Nhưng nếu đối tượng cần cấp phát có hàm tạo, hàm hủy hoặc yêu cầu quản lý vòng
-đời kiểu C++, nên dùng `new` hoặc các công cụ thư viện chuẩn thích hợp. Cần chú ý
+đời kiểu C++, nên dùng `new` hoặc các công cụ thư viện chuẩn thích hợp. Lưu ý
 rằng dù `new` và `malloc()` đều trả về con trỏ, con trỏ sinh bởi `new` **chỉ** có
 thể thu hồi bằng `delete`, còn con trỏ sinh bởi `malloc()` cũng chỉ có thể thu
 hồi bằng `free()`; dùng lẫn hai cơ chế này sẽ gây hành vi không xác định hoặc rò

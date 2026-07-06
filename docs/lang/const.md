@@ -214,7 +214,7 @@ biến `constexpr` với tham số hằng, nên lời gọi này được tính 
 Vì lời gọi đó không cần thực thi lúc chạy, trình biên dịch cũng xác định rằng
 không cần sinh mã assembly cho `fib0` trong ví dụ này.
 
-Đồng thời, có thể thấy trong assembly rằng `v0` không có mã khởi tạo. Trong đoạn
+Đồng thời, assembly cho thấy `v0` không có mã khởi tạo. Trong đoạn
 mã gọi `cout` để xuất `v0`, `v0` đã được thay bằng kết quả tính cuối cùng, cho
 thấy giá trị biến đã được tính trong lúc biên dịch và phép tính lúc chạy đã bị
 tối ưu bỏ.

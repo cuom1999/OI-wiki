@@ -146,7 +146,7 @@ các hàm liên quan đến sắp xếp có thể xem thêm ở [trang tương �
         else
           cout << a[i - 1];
         ```
--   Dùng `sort` và `unique` tìm **giá trị nhỏ thứ $k$** trong mảng $a$ (chú ý:
+-   Dùng `sort` và `unique` tìm **giá trị nhỏ thứ $k$** trong mảng $a$ (lưu ý:
     giá trị lặp lại chỉ tính một lần, nên bài này không phải tìm phần tử nhỏ thứ
     $k$). Bài ví dụ: [Luogu P1138 Số nguyên nhỏ thứ k](https://www.luogu.com.cn/problem/P1138)
 

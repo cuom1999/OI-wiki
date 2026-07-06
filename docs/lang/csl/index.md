@@ -18,17 +18,17 @@ viện chuẩn C++. Thư viện chuẩn C++ chứa rất nhiều mã thường d
 luồng và nhiều thành phần khác. Nắm được thư viện chuẩn C++ là bước cần thiết
 để viết mã C++ hiện đại hơn.
 Tài liệu chi tiết của thư viện chuẩn C++ có trên [cppreference](https://en.cppreference.com/);
-tài liệu này giới thiệu cách dùng, hiệu suất và điểm cần chú ý của các kiểu và
+tài liệu này giới thiệu cách dùng, hiệu suất và điểm cần lưu ý của các kiểu và
 hàm trong thư viện chuẩn, nên rất đáng tham khảo.
 
-Cần chú ý rằng các nền tảng OJ khác nhau hỗ trợ phiên bản C++ khác nhau. Ví dụ,
+Lưu ý rằng các nền tảng OJ khác nhau hỗ trợ phiên bản C++ khác nhau. Ví dụ,
 [quy tắc môi trường lập trình ICPC](https://docs.icpc.global/worldfinals-programming-environment/)
 hỗ trợ chuẩn C++20. Theo nghị quyết của Ủy ban Khoa học NOI, từ ngày 1 tháng 9
 năm 2021, [NOI Linux 2.0](https://www.noi.cn/gynoi/jsgz/2021-07-16/732450.shtml)
 được dùng làm môi trường chuẩn cho hệ thống cuộc thi NOI và các hoạt động như
 CSP-J/S. g++ 9.3.0 được chỉ định trong NOI Linux 2.0 [mặc định hỗ trợ](https://gcc.gnu.org/projects/cxx-status.html#cxx14)
 chuẩn C++14, đồng thời hỗ trợ C++17, đủ đáp ứng nhu cầu của hầu hết thí
-sinh. Vì vậy khi học C++, cần chú ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
+sinh. Vì vậy khi học C++, cần lưu ý chuẩn mà cuộc thi hỗ trợ để tránh lỗi biên
 dịch trên sân thi.
 
 ## Thư viện template chuẩn (STL)
