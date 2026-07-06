@@ -3,7 +3,7 @@ author: morris821028
 ## Giới thiệu
 
 Cấu trúc dữ liệu bền vững có thể giữ lại mọi phiên bản lịch sử,
-đồng thời cho phép thao tác trên dữ liệu theo cách không phá hủy phiên bản cũ.
+đồng thời cho phép thao tác trên dữ liệu mà không phá hủy phiên bản cũ.
 
 ## Phân loại cấu trúc bền vững
 
@@ -28,17 +28,17 @@ chẳng hạn thuật toán đường quét có thể trả lời mọi truy v�
 Nhưng nếu bị buộc phải xử lý trực tuyến,
 mỗi lần lại phải quét một lượt, khiến độ phức tạp truy vấn từ mức logarit rơi xuống tuyến tính.
 Để giải quyết tình huống này, kỹ thuật bền vững hóa đưa ra một cách nhìn khác:
-xem trục thời gian của đường quét là căn cứ biến đổi và bền vững hóa cấu trúc liên quan.
-Chỉ cần truy vấn có thể di chuyển trên trục thời gian này trong thời gian logarit,
+xem trục thời gian của đường quét là cơ sở tạo phiên bản và bền vững hóa cấu trúc liên quan.
+Chỉ cần có thể chuyển truy vấn tới đúng phiên bản trên trục thời gian này trong thời gian logarit,
 có thể xử lý bài toán ban đầu trong bối cảnh động.
 
 ### Xử lý chuỗi
 
-Để hợp nhất hiệu quả và tránh suy giảm hiệu năng do tạo ra lượng lớn chuỗi lặp lại,
+Để hợp nhất hiệu quả và tránh suy giảm hiệu năng do tạo ra lượng lớn chuỗi trùng lặp,
 nhiều thao tác cần có độ phức tạp thấp hơn tuyến tính đáng kể.
 Ví dụ, `rope` trong C++ là một cấu trúc dữ liệu bền vững.
 Không chỉ trong thao tác chuỗi,
-khi kiểu dữ liệu cần xử lý có nhiều phần lặp lại,
+khi kiểu dữ liệu cần xử lý có nhiều phần trùng lặp,
 khái niệm cấu trúc bền vững cũng có thể phát huy tác dụng.
 
 ### Quay lui phiên bản
@@ -46,7 +46,7 @@ khái niệm cấu trúc bền vững cũng có thể phát huy tác dụng.
 Về bản chất, ứng dụng này tương ứng với redo/undo trong phần lớn phần mềm.
 Nếu dữ liệu hoặc thao tác biến đổi cần đi kèm cấu trúc phức tạp để đạt hiệu quả cao
 (không giống `hash` hay `set`, nơi thao tác đảo ngược thường chỉ cần thời gian hằng số hoặc logarit),
-thì để nhanh chóng quay lui kết quả biến đổi,
+thì để nhanh chóng quay lui kết quả sau biến đổi,
 cấu trúc bền vững có thể giảm chi phí redo/undo.
 
 Bản thân cơ sở dữ liệu có thể quay lui trong thời gian hằng số nếu chỉ ghi lại phần đã thay đổi.
@@ -58,7 +58,7 @@ nếu $n$ và $m$ chênh lệch rất lớn, trải nghiệm khi quay lui liên 
 ### Lập trình hàm
 
 Lập trình hàm cần các cấu trúc dữ liệu đặc biệt để phù hợp với đặc tính ngôn ngữ;
-trong đó tính bất biến càng quan trọng vì có lợi cho môi trường song song và gỡ lỗi.
+trong đó tính bất biến đặc biệt quan trọng vì có lợi cho môi trường song song và gỡ lỗi.
 Chẳng hạn, Java hướng đối tượng từ Java 8 đã đưa vào lớp `stream`,
 hỗ trợ viết cú pháp theo phong cách hàm và cung cấp các khả năng đặc biệt
 như đánh giá lười, miền giá trị vô hạn, v.v.

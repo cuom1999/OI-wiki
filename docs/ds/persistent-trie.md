@@ -4,7 +4,7 @@ Cách bền vững hóa Trie tương tự cách bền vững hóa cây phân đo
 mỗi lần chỉ sửa các nút được thêm vào hoặc có giá trị bị thay đổi,
 còn các nút không bị sửa thì được giữ lại.
 Các cạnh được nối dựa trên phiên bản trước,
-để khi duyệt từ gốc của từng phiên bản, Trie thu được đều hoàn chỉnh và chứa đầy đủ thông tin.
+để khi duyệt từ gốc của từng phiên bản, Trie thu được vẫn hoàn chỉnh và chứa đầy đủ thông tin.
 
 Trong phần lớn bài về Trie bền vững, Trie xuất hiện dưới dạng [01-Trie](../string/trie.md).
 
@@ -33,7 +33,7 @@ khi truy vấn, cố gắng đi sang nhánh có bit khác với bit hiện tại
 lấy hai Trie tiền tố (tức hai phiên bản lịch sử sau khi thêm số theo thứ tự) trừ nhau
 là thu được Trie của khoảng đó.
 Đồng thời dùng tư tưởng cấp phát nút động,
-không thêm những nút chưa được tính đến, để giảm không gian sử dụng.
+không tạo những nút chưa cần dùng, để giảm không gian sử dụng.
 
 ```cpp
 --8<-- "docs/ds/code/persistent-trie/persistent-trie_1.cpp"
