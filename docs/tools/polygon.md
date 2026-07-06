@@ -145,7 +145,7 @@ Nơi dùng để tạo issue (mục vấn đề).
 
 Gói chứa toàn bộ thông tin của một bài. Khi ra đề CF, gói là căn cứ để CF chấm (ví dụ, nếu cần sửa lỗi trong lúc thi, chỉ khi cập nhật gói thì mới ảnh hưởng đến CF); những lúc khác có thể dùng để xuất ra.
 
-"Verify" (xác minh) dùng để kiểm tra tất cả lời giải có phù hợp với thẻ (AC, WA, TLE) hay không, đồng thời trình kiểm tra đáp án và trình xác thực dữ liệu có qua bộ kiểm thử tương ứng hay không.
+"Verify" ("Xác minh") dùng để kiểm tra tất cả lời giải có phù hợp với thẻ (AC, WA, TLE) hay không, đồng thời trình kiểm tra đáp án và trình xác thực dữ liệu có qua bộ kiểm thử tương ứng hay không.
 
 ### Quản lý quyền truy cập
 
@@ -167,9 +167,9 @@ Khi ghi nhận thay đổi, nếu có chỗ không đúng quy chuẩn hoặc c�
 
 Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc thi mới"), từ đó quản lý bài thuận tiện hơn.
 
-"Add problems?" (thêm bài?) ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
+"Add problems?" ("Thêm bài?") ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
 
-"New problem" (bài mới) ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
+"New problem" ("Bài mới") ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
 
 "Manage problem access" ("Quản lý quyền truy cập bài") ở phía trên dùng để xem quyền của từng bài; "Manage developers list" ("Quản lý danh sách người phát triển") ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" ("Bài mới") và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" ("Thêm bài?") sẽ không cấp quyền cho người phát triển đã có.
 
