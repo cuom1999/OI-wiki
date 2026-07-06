@@ -30,7 +30,7 @@ Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự n
         
         ![Đường đi lần đầu chạm đường chéo trong bài toán Catalan](./images/catalan-2.svg)
         
-        Như hình vẽ, bước đầu tiên của các đường đi này chắc chắn là sang phải, từ $(0,0)$ đến $(1,0)$; bước cuối cùng chắc chắn là đi lên, từ $(k,k-1)$ đến $(k,k)$. Vì vậy các đường đi này chính là các đường đi từ $(1,0)$ đến $(k,k-1)$ không vượt qua đường thẳng $y=x-1$, và số đường đi như vậy là $T_{k-1}$. Đồng thời, số đường đi hợp lệ từ $(k,k)$ đến $(n,n)$ là $T_{n-k}$. Theo quy tắc nhân, số đường đi lần đầu chạm đường chéo tại $(k,k)$ là $T_{k-1} T_{n-k}$. Duyệt mọi khả năng của $k$, tổng số đường đi hợp lệ là
+        Như hình vẽ, bước đầu tiên của các đường đi này phải là sang phải, từ $(0,0)$ đến $(1,0)$; bước cuối cùng phải là đi lên, từ $(k,k-1)$ đến $(k,k)$. Vì vậy các đường đi này chính là các đường đi từ $(1,0)$ đến $(k,k-1)$ không vượt qua đường thẳng $y=x-1$, và số đường đi như vậy là $T_{k-1}$. Đồng thời, số đường đi hợp lệ từ $(k,k)$ đến $(n,n)$ là $T_{n-k}$. Theo quy tắc nhân, số đường đi lần đầu chạm đường chéo tại $(k,k)$ là $T_{k-1} T_{n-k}$. Duyệt mọi khả năng của $k$, tổng số đường đi hợp lệ là
         
         $$
         T_n = \sum_{k=1}^n T_{k-1}T_{n-k}.
@@ -43,14 +43,14 @@ Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự n
 -   **Bài toán đếm dây cung không cắt nhau trong đường tròn**: Có $2n$ điểm trên một đường tròn. Số cách ghép các điểm thành từng cặp và nối chúng bằng $n$ đoạn thẳng sao cho các đoạn thẳng đôi một không cắt nhau là $C_n$.
 
     ??? note "Chứng minh"
-        Ký hiệu số phương án với $2n$ điểm là $T_n$. Đánh số $2n$ điểm theo chiều kim đồng hồ là $1,2,\ldots,2n$. Vì các dây cung đôi một không cắt nhau, điểm số $1$ chỉ có thể nối với điểm có số chẵn; nếu không, số điểm lẻ nằm giữa hai điểm đó không thể được ghép cặp đôi một mà không cắt đoạn nối hai điểm. Nếu nối $1$ với $2k~(k\in[1,n])$, thì bên trái có $2k-2$ điểm, bên phải có $2n-2k$ điểm. Theo quy tắc nhân, số phương án là $T_{k-1}T_{n-k}$. Vì vậy, duyệt $k$ cho ta $T_n = \sum_{k=1}^n T_{k-1} T_{n-k}$. Đặt $k=i+1$, ta thu được hệ thức truy hồi của số Catalan. Từ $T_0=1$, suy ra $T_n=C_n$.
+        Ký hiệu số phương án với $2n$ điểm là $T_n$. Đánh số $2n$ điểm theo chiều kim đồng hồ là $1,2,\ldots,2n$. Vì các dây cung đôi một không cắt nhau, điểm số $1$ chỉ có thể nối với điểm có số chẵn; nếu không, số điểm lẻ nằm giữa hai điểm đó không thể được ghép cặp đôi một mà không cắt đoạn nối hai điểm. Nếu nối $1$ với $2k~(k\in[1,n])$, thì bên trái có $2k-2$ điểm, bên phải có $2n-2k$ điểm. Theo quy tắc nhân, số phương án là $T_{k-1}T_{n-k}$. Vì vậy, duyệt $k$ thu được $T_n = \sum_{k=1}^n T_{k-1} T_{n-k}$. Đặt $k=i+1$ sẽ cho hệ thức truy hồi của số Catalan. Từ $T_0=1$, suy ra $T_n=C_n$.
 
     <!-- To make bot happy. Do NOT delete this line. -->
 
 -   <a id="triangulation-counting"></a>**Bài toán đếm tam giác phân**: Số cách chia một đa giác lồi $(n+2)$ cạnh thành các miền tam giác bằng các đường chéo không cắt nhau là $C_n$.
 
     ??? note "Chứng minh"
-        Gọi số phương án tam giác phân đa giác $(n+2)$ cạnh là $T_n$. Chọn trước cạnh $(1,n+2)$ làm cạnh đáy; cạnh này chắc chắn thuộc một tam giác. Gọi đỉnh thứ ba của tam giác đó là $k~(k\in[2,n+1])$. Khi đó đa giác lồi ban đầu được chia thành ba phần:
+        Gọi số phương án tam giác phân đa giác $(n+2)$ cạnh là $T_n$. Chọn trước cạnh $(1,n+2)$ làm cạnh đáy; cạnh này thuộc một tam giác trong phép chia. Gọi đỉnh thứ ba của tam giác đó là $k~(k\in[2,n+1])$. Khi đó đa giác lồi ban đầu được chia thành ba phần:
         
         -   Tam giác $(1,k,n+2)$.
         -   Đa giác $k$ cạnh với các đỉnh $1\sim k$.
@@ -62,7 +62,7 @@ Hệ thức truy hồi của số Catalan $C_n$ có cấu trúc đệ quy tự n
         T_n = \sum_{k=2}^{n+1} T_{k-2}T_{n+1-k}.
         $$
         
-        Đặt $k=i+2$, ta thu được hệ thức truy hồi của số Catalan. Từ $T_0=T_1=1$, suy ra $T_n=C_n$.
+        Đặt $k=i+2$ sẽ cho hệ thức truy hồi của số Catalan. Từ $T_0=T_1=1$, suy ra $T_n=C_n$.
 
     <!-- To make bot happy. Do NOT delete this line. -->
 
@@ -150,7 +150,7 @@ Việc suy ra các biểu thức trên của số Catalan bằng phương pháp 
 Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của công thức truy hồi Catalan. Để làm điều đó, xét phương pháp hàm sinh để trực tiếp tìm nghiệm của truy hồi $(1)$.
 
 ??? note "Dùng hàm sinh để giải công thức truy hồi $(1)$"
-    Xét hàm sinh thường của số Catalan $C(x)=\sum_{n=0}^{\infty}C_nx^n$. Vì hệ thức truy hồi của số Catalan rất giống dạng tích chập, ta dùng tích chập để xây dựng phương trình cho $C(x)$:
+    Xét hàm sinh thường của số Catalan $C(x)=\sum_{n=0}^{\infty}C_nx^n$. Vì hệ thức truy hồi của số Catalan rất giống dạng tích chập, có thể dùng tích chập để xây dựng phương trình cho $C(x)$:
     
     $$
     \begin{aligned}
@@ -162,19 +162,19 @@ Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của c
     \end{aligned}
     $$
     
-    Ở đẳng thức áp chót, ta đổi thứ tự lấy tổng và đặt $j=n-1-i$. Từ đó giải được:
+    Ở đẳng thức áp chót, thứ tự lấy tổng được đổi và đặt $j=n-1-i$. Từ đó giải được:
     
     $$
     C(x)=\dfrac{1\pm \sqrt{1-4x}}{2x} = \frac{2}{1\mp \sqrt{1-4x}}.
     $$
     
-    Từ điều kiện đầu $C_0=1$, ta có $C(0)=1$. Thay vào kiểm tra sẽ thấy nghiệm khả thi duy nhất là
+    Từ điều kiện đầu $C_0=1$, suy ra $C(0)=1$. Thay vào kiểm tra, nghiệm khả thi duy nhất là
     
     $$
     C(x) = \dfrac{1- \sqrt{1-4x}}{2x}.
     $$
     
-    Tiếp theo, cần khai triển nó thành chuỗi lũy thừa. Dùng [khai triển chuỗi lũy thừa](../poly/intro.md#các-khai-triển-chuỗi-lũy-thừa-thường-gặp) của $(1+x)^a$, ta có:
+    Tiếp theo, cần khai triển nó thành chuỗi lũy thừa. Dùng [khai triển chuỗi lũy thừa](../poly/intro.md#các-khai-triển-chuỗi-lũy-thừa-thường-gặp) của $(1+x)^a$, thu được:
     
     $$
     \sqrt{1-4x} = \sum_{n=0}^{\infty} \dfrac{\left(\frac{1}{2}\right)_{-n}}{n!}(-4x)^n,
@@ -189,7 +189,7 @@ Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của c
     \end{aligned}
     $$
     
-    Thay vào biểu thức của $C(x)$, ta được
+    Thay vào biểu thức của $C(x)$, thu được
     
     $$
     \begin{aligned}
@@ -206,12 +206,12 @@ Tiếp theo, kiểm tra rằng các dạng này thật sự là nghiệm của c
 <span id="ý-nghĩa-tổ-hợp"></span>
 ### Ý nghĩa tổ hợp
 
-Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp đếm tổ hợp cũng có thể chứng minh các dạng trên. Phần này đưa ra một chứng minh tổ hợp cho từng biểu thức trong ba biểu thức.
+Vì số Catalan có ý nghĩa tổ hợp trực tiếp, chỉ dùng phương pháp đếm tổ hợp cũng có thể chứng minh các dạng trên. Phần này đưa ra một chứng minh tổ hợp cho từng biểu thức trong ba biểu thức.
 
 ??? note "Chứng minh biểu thức $(2)$"
-    Xét [bài toán đếm dãy số](#seq-counting). Với một dãy bất kỳ $\{a_i\}_{i=1}^{2n}$ gồm các phần tử $\pm 1$, định nghĩa tổng tiền tố của nó là $S_i = \sum_{j=1}^{i}a_i$, và định nghĩa **độ vượt** (exceedance) là số chỉ số thỏa mãn $S_i < 0$ và $a_i = -1$. Độ vượt bằng $0$ tương đương với dãy hợp lệ; giá trị của độ vượt nằm trong $[0,n]$, gồm $(n+1)$ khả năng. Cần chứng minh rằng số dãy ứng với các giá trị độ vượt khác nhau thật ra là bằng nhau.
+    Xét [bài toán đếm dãy số](#seq-counting). Với một dãy bất kỳ $\{a_i\}_{i=1}^{2n}$ gồm các phần tử $\pm 1$, định nghĩa tổng tiền tố của nó là $S_i = \sum_{j=1}^{i}a_i$, và định nghĩa **độ vượt** (exceedance) là số chỉ số thỏa mãn $S_i < 0$ và $a_i = -1$. Độ vượt bằng $0$ tương đương với dãy hợp lệ; giá trị của độ vượt nằm trong $[0,n]$, gồm $(n+1)$ khả năng. Cần chứng minh rằng số dãy ứng với các giá trị độ vượt khác nhau đều bằng nhau.
     
-    Để làm điều này, có thể xây dựng một ánh xạ $f$ từ dãy có độ vượt $e > 0$ sang dãy có độ vượt $(e-1)$. Với một dãy $\{a_i\}$ có độ vượt $e > 0$, lấy $k$ là chỉ số nhỏ nhất sao cho $S_i = 0$ và $a_i = +1$. Hoán đổi hai phần dãy ở hai bên $a_k$, ta thu được dãy $\{a'_i\}$:
+    Để làm điều này, có thể xây dựng một ánh xạ $f$ từ dãy có độ vượt $e > 0$ sang dãy có độ vượt $(e-1)$. Với một dãy $\{a_i\}$ có độ vượt $e > 0$, lấy $k$ là chỉ số nhỏ nhất sao cho $S_i = 0$ và $a_i = +1$. Hoán đổi hai phần dãy ở hai bên $a_k$, thu được dãy $\{a'_i\}$:
     
     $$
     a_{k+1},a_{k+2},\cdots,a_{2n},a_k,a_{1},a_{2},\cdots,a_{k-1}.
@@ -219,7 +219,7 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
     
     Vì phần bên phải $a_k$ trong dãy ban đầu có dãy tổng tiền tố tương ứng không đổi trước và sau khi hoán đổi, đóng góp của nó vào độ vượt cũng không đổi. Với phần bên trái $a_k$ trong dãy ban đầu, các tổng tiền tố tương ứng sau khi hoán đổi đều tăng thêm $1$, nên đóng góp của chúng vào độ vượt giảm đi; số lượng giảm đúng bằng số chỉ số ở phần bên trái $a_k$ thỏa mãn $S_i=-1$ và $a_i=-1$. Cách chọn $a_k$ bảo đảm chỉ số như vậy có đúng một. Vì vậy độ vượt của dãy $\{a'_i\}$ bằng $(e-1)$. Nói cách khác, ánh xạ $f$ làm độ vượt của dãy giảm đúng $1$.
     
-    Ánh xạ $f$ là khả nghịch. Chú ý rằng trong dãy $\{a'_i\}$, vị trí tương ứng với $a_k$ chính là chỉ số lớn nhất thỏa mãn $S'_k=+1$ và $a'_i = +1$. Điều này đúng vì sau khi hoán đổi, các tổng tiền tố này đều lớn hơn tổng tiền tố tương ứng trước khi hoán đổi đúng $1$, nên tổng tiền tố hiện tại bằng $+1$ tương ứng với tổng tiền tố trước khi hoán đổi bằng $0$. Nhưng theo cách chọn $k$, phần này trước khi hoán đổi, tức phần bên trái $a_k$ trong dãy ban đầu, không có chỉ số nào thỏa mãn $S_i = 0$ và $a_i = +1$.
+    Ánh xạ $f$ là khả nghịch. Trong dãy $\{a'_i\}$, vị trí tương ứng với $a_k$ chính là chỉ số lớn nhất thỏa mãn $S'_k=+1$ và $a'_i = +1$. Điều này đúng vì sau khi hoán đổi, các tổng tiền tố này đều lớn hơn tổng tiền tố tương ứng trước khi hoán đổi đúng $1$, nên tổng tiền tố hiện tại bằng $+1$ tương ứng với tổng tiền tố trước khi hoán đổi bằng $0$. Nhưng theo cách chọn $k$, phần này trước khi hoán đổi, tức phần bên trái $a_k$ trong dãy ban đầu, không có chỉ số nào thỏa mãn $S_i = 0$ và $a_i = +1$.
     
     Do đó ánh xạ $f$ tạo thành một song ánh giữa các dãy có độ vượt $e>0$ và các dãy có độ vượt $(e-1)$. Điều này cho thấy số dãy ứng với các giá trị độ vượt khác nhau là bằng nhau. Vì tổng số dãy là $\dbinom{2n}{n}$, số dãy hợp lệ, tức số dãy có độ vượt $0$, bằng
     
@@ -230,11 +230,11 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
     Vậy biểu thức $(2)$ của số Catalan được chứng minh.
 
 ??? note "Chứng minh biểu thức $(3)$"
-    Xét [bài toán đếm đường đi](#path-counting). Đây là một bài toán đếm đường đi trên lưới điển hình và có thể giải bằng nguyên lý phản xạ. Cụ thể trong bài toán này, ta lấy tổng số đường đi trừ đi số đường đi không hợp lệ. Mỗi đường đi có tổng cộng $2n$ bước, trong đó có $n$ bước sang phải, nên số phương án là $\dbinom{2n}{n}$. Một đường đi không hợp lệ khi và chỉ khi nó chạm đường thẳng $y = x+1$. Với một đường đi bất hợp lệ bất kỳ, ta có thể tìm vị trí đầu tiên chạm đường thẳng $y = x+1$, rồi lấy đối xứng phần đường đi sau vị trí đó qua đường thẳng $y=x+1$. Khi đó, một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$ biến thành một đường đi từ $(0,0)$ đến $(n-1,n+1)$.
+    Xét [bài toán đếm đường đi](#path-counting). Đây là một bài toán đếm đường đi trên lưới điển hình và có thể giải bằng nguyên lý phản xạ. Cụ thể trong bài toán này, lấy tổng số đường đi trừ đi số đường đi không hợp lệ. Mỗi đường đi có tổng cộng $2n$ bước, trong đó có $n$ bước sang phải, nên số phương án là $\dbinom{2n}{n}$. Một đường đi không hợp lệ khi và chỉ khi nó chạm đường thẳng $y = x+1$. Với một đường đi bất hợp lệ bất kỳ, có thể tìm vị trí đầu tiên chạm đường thẳng $y = x+1$, rồi lấy đối xứng phần đường đi sau vị trí đó qua đường thẳng $y=x+1$. Khi đó, một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$ biến thành một đường đi từ $(0,0)$ đến $(n-1,n+1)$.
     
     ![Phản xạ đường đi không hợp lệ qua đường thẳng y = x + 1](./images/catalan-1.svg)
     
-    Vì mọi đường đi từ $(0,0)$ đến $(n-1,n+1)$ chắc chắn phải đi qua đường thẳng $y = x+1$, mỗi đường đi như vậy đều tương ứng với một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$. Tương tự cách tính tổng số đường đi, tổng số đường đi bất hợp lệ là $\dbinom{2n}{n+1}$. Do đó tổng số đường đi hợp lệ là
+    Vì mọi đường đi từ $(0,0)$ đến $(n-1,n+1)$ phải đi qua đường thẳng $y = x+1$, mỗi đường đi như vậy đều tương ứng với một đường đi bất hợp lệ từ $(0,0)$ đến $(n,n)$. Tương tự cách tính tổng số đường đi, tổng số đường đi bất hợp lệ là $\dbinom{2n}{n+1}$. Do đó tổng số đường đi hợp lệ là
     
     $$
     C_n = \binom{2n}{n} - \binom{2n}{n+1}.
@@ -243,23 +243,23 @@ Vì số Catalan có ý nghĩa tổ hợp rõ ràng, chỉ dùng phương pháp 
     Đây chính là biểu thức $(3)$ của số Catalan.
 
 ??? note "Chứng minh biểu thức $(4)$"
-    Xét [bài toán đếm tam giác phân](#triangulation-counting). Gọi $P$ là một đa giác lồi $(n+2)$ cạnh, và cố định một cạnh của nó làm cạnh đáy. Với mỗi tam giác phân của đa giác $P$, ta có thể chọn một cạnh không phải cạnh đáy, bao gồm cả cạnh mới được thêm khi tam giác phân, để đánh dấu và định hướng. Tổng cộng có $(4n+2)C_n$ phương án tam giác phân kèm đánh dấu. Gọi $Q$ là một đa giác lồi $(n+3)$ cạnh, cũng cố định một cạnh làm cạnh đáy. Với đa giác $Q$, ta có thể chọn một cạnh không phải cạnh đáy để đánh dấu, rồi thực hiện tam giác phân. Tổng cộng có $(n+2)C_{n+1}$ phương án đánh dấu kèm tam giác phân.
+    Xét [bài toán đếm tam giác phân](#triangulation-counting). Gọi $P$ là một đa giác lồi $(n+2)$ cạnh, và cố định một cạnh của nó làm cạnh đáy. Với mỗi tam giác phân của đa giác $P$, có thể chọn một cạnh không phải cạnh đáy, bao gồm cả cạnh mới được thêm khi tam giác phân, để đánh dấu và định hướng. Tổng cộng có $(4n+2)C_n$ phương án tam giác phân kèm đánh dấu. Gọi $Q$ là một đa giác lồi $(n+3)$ cạnh, cũng cố định một cạnh làm cạnh đáy. Với đa giác $Q$, có thể chọn một cạnh không phải cạnh đáy để đánh dấu, rồi thực hiện tam giác phân. Tổng cộng có $(n+2)C_{n+1}$ phương án đánh dấu kèm tam giác phân.
     
     ![](./images/catalan-triangulation.svg)
     
-    Như hình vẽ, giữa hai nhóm thao tác này tồn tại một song ánh rõ ràng. Với một kết quả tam giác phân và đánh dấu của $P$, có thể mở rộng cạnh được đánh dấu thành một tam giác, mở rộng đầu mút được chỉ bởi hướng thành một cạnh mới, rồi đánh dấu cạnh mới này; ta thu được một kết quả đánh dấu và tam giác phân của $Q$. Ngược lại, với một kết quả đánh dấu và tam giác phân của $Q$, có thể co cạnh được đánh dấu thành một điểm, đánh dấu đường chéo thu được sau khi co và định hướng về phía đỉnh thu được; ta thu được một kết quả tam giác phân và đánh dấu của $P$. Vì vậy,
+    Như hình vẽ, giữa hai nhóm thao tác này tồn tại một song ánh tự nhiên. Với một kết quả tam giác phân và đánh dấu của $P$, có thể mở rộng cạnh được đánh dấu thành một tam giác, mở rộng đầu mút được chỉ bởi hướng thành một cạnh mới, rồi đánh dấu cạnh mới này; kết quả nhận được là một phương án đánh dấu và tam giác phân của $Q$. Ngược lại, với một kết quả đánh dấu và tam giác phân của $Q$, có thể co cạnh được đánh dấu thành một điểm, đánh dấu đường chéo thu được sau khi co và định hướng về phía đỉnh thu được; kết quả nhận được là một phương án tam giác phân và đánh dấu của $P$. Vì vậy,
     
     $$
     (4n+2)C_n = (n+2)C_{n+1}.
     $$
     
-    Sắp xếp lại, kết hợp với $C_0=1$, ta thu được biểu thức $(4)$ của số Catalan.
+    Sắp xếp lại, kết hợp với $C_0=1$, thu được biểu thức $(4)$ của số Catalan.
 
 <span id="ví-dụ"></span>
 ## Ví dụ
 
 ???+ example "[Luogu P1044 Stack](https://www.luogu.com.cn/problem/P1044)"
-    Với thứ tự đưa vào ngăn xếp là $1,2,\ldots ,n$, hãy tìm tổng số thứ tự lấy ra có thể có.
+    Với thứ tự đưa vào ngăn xếp là $1,2,\ldots ,n$, tính tổng số thứ tự lấy ra có thể có.
 
 ??? note "Mã tham khảo"
     === "C++"

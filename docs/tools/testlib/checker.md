@@ -1,15 +1,15 @@
-Trình kiểm tra đáp án (checker), tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp ta không phải tự kiểm tra nhiều chi tiết, nên việc viết checker đơn giản hơn đáng kể.
+Trình kiểm tra đáp án (checker), tức [trình chấm đặc biệt](../special-judge.md), dùng để kiểm tra đáp án có hợp lệ hay không. Dùng Testlib giúp giảm bớt nhiều chi tiết cần tự kiểm tra, nên việc viết checker đơn giản hơn đáng kể.
 
 Checker đọc tên tệp đầu vào, tên tệp đầu ra của thí sinh và tên tệp đầu ra chuẩn từ tham số dòng lệnh, sau đó xác định đầu ra của thí sinh có đúng hay không và trả về một kết quả chấm đã định nghĩa trước.
 
-Hãy đọc [Thông dụng](./general.md) trước khi đọc tiếp.
+Nên đọc [Thông dụng](./general.md) trước khi đọc tiếp.
 
 ## Ví dụ đơn giản
 
 ???+ note "Đề bài"
-    Cho hai số nguyên $a,b$ ($-1000 \le a,b \le 1000$), hãy in ra tổng của chúng.
+    Cho hai số nguyên $a,b$ ($-1000 \le a,b \le 1000$), cần in ra tổng của chúng.
 
-Bài này rõ ràng không cần checker, đúng không? Nhưng nếu thật sự cần thì cũng có thể viết một checker như sau:
+Bài này không cần checker. Nhưng nếu thật sự cần thì cũng có thể viết một checker như sau:
 
 ```cpp
 #include "testlib.h"
@@ -20,7 +20,7 @@ int main(int argc, char* argv[]) {
   int pans = ouf.readInt(-2000, 2000, "sum of numbers");
 
   // Giả định đầu ra chuẩn là đúng, không kiểm tra phạm vi của nó.
-  // Lát nữa ta sẽ thấy điều này không hợp lý.
+  // Phần sau sẽ chỉ ra vì sao điều này không hợp lý.
   int jans = ans.readInt();
 
   if (pans == jans)
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 
 ## Viết hàm readAns
 
-Giả sử bạn có một bài mà đầu vào và đầu ra đều chứa nhiều số, chẳng hạn: cho một DAG, hãy tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều đường, in ra một đường bất kỳ).
+Giả sử có một bài mà đầu vào và đầu ra đều chứa nhiều số, chẳng hạn: cho một DAG, cần tìm đường đi dài nhất từ $s$ đến $t$ và in ra đường đi đó (có thể có nhiều đường, in ra một đường bất kỳ).
 
 Dưới đây là một ví dụ checker **không tốt**.
 
@@ -111,7 +111,7 @@ Checker này chủ yếu có hai vấn đề:
 1.  Nó tin chắc đầu ra chuẩn là đúng. Nếu đầu ra của thí sinh tốt hơn đầu ra chuẩn, thí sinh sẽ bị chấm WA, điều này không ổn. Đồng thời, nếu đầu ra chuẩn không hợp lệ thì cũng sẽ sinh WA. Trong cả hai trường hợp, thao tác đúng là trả về trạng thái Fail.
 2.  Phần mã đọc đầu ra chuẩn và đầu ra của thí sinh bị lặp. Với bài này, viết hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu gặp bài có đầu ra phức tạp, checker sẽ trở nên rối. Mã lặp làm giảm mạnh khả năng bảo trì và khiến việc gỡ lỗi hoặc sửa định dạng khó hơn.
 
-Cách đọc đầu ra chuẩn và đầu ra của thí sinh thực ra hoàn toàn giống nhau. Đây là lý do ta thường viết một hàm đọc nhận luồng làm tham số.
+Cách đọc đầu ra chuẩn và đầu ra của thí sinh hoàn toàn giống nhau. Đây là lý do thường viết một hàm đọc nhận luồng làm tham số.
 
 ### Cài đặt tốt
 
@@ -187,7 +187,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp lệ hay không, giúp checker ngắn hơn, dễ hiểu hơn và dễ gỡ lỗi hơn. Cách viết này cũng áp dụng được cho các bài có đầu ra YES (kèm một phương án nào đó), hoặc NO.
+Cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp lệ hay không, giúp checker ngắn hơn, dễ hiểu hơn và dễ gỡ lỗi hơn. Cách viết này cũng áp dụng được cho các bài có đầu ra YES (kèm một phương án nào đó), hoặc NO.
 
 ???+ note "Ghi chú"
     Một số kiểm tra ràng buộc có thể được viết gọn hơn bằng hàm `InStream::ensure/ensuref()`. Ví dụ, dòng 23 đến 25 trong ví dụ trên cũng có thể được viết tương đương như sau:
@@ -197,13 +197,13 @@ Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chu�
     ```
 
 ???+ warning "Cảnh báo"
-    Hãy tránh gọi hàm **toàn cục** `::ensure/ensuref()` trong `readAns`, vì điều này có thể làm checker trả về `_fail` cho một số đầu ra của thí sinh đáng lẽ phải bị chấm WA, từ đó tạo ra kết quả sai.
+    Tránh gọi hàm **toàn cục** `::ensure/ensuref()` trong `readAns`, vì điều này có thể làm checker trả về `_fail` cho một số đầu ra của thí sinh đáng lẽ phải bị chấm WA, từ đó tạo ra kết quả sai.
 
 ## Khuyến nghị và lỗi thường gặp
 
--   Viết hàm `readAns`; nó thật sự có thể làm checker của bạn tốt hơn rất nhiều.
+-   Viết hàm `readAns`; nó có thể làm checker tốt hơn rất nhiều.
 
--   Khi đọc đầu ra của thí sinh, luôn giới hạn phạm vi rõ ràng. Nếu quên giới hạn một số biến rồi dùng chúng làm tham số, checker của bạn có thể chấm sai, RE, v.v.
+-   Khi đọc đầu ra của thí sinh, luôn giới hạn phạm vi cụ thể. Nếu quên giới hạn một số biến rồi dùng chúng làm đối số, checker có thể chấm sai, RE, v.v.
 
     -   Ví dụ phản diện
 
@@ -211,9 +211,9 @@ Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chu�
     // ....
     int k = ouf.readInt();
     vector<int> lst;
-    for (int i = 0; i < k; i++)  // k = 0 và k = -5 có tác dụng như nhau ở đây (không vào vòng lặp)
+    for (int i = 0; i < k; i++)  // k = 0 và k = -5 có tác dụng như nhau trong đoạn này (không vào vòng lặp)
       lst.push_back(ouf.readInt());
-    // Nhưng ta không muốn chấp nhận một danh sách có độ dài -5, đúng không?
+    // Nhưng checker không nên chấp nhận một danh sách có độ dài -5.
     // ....
     int pos = ouf.readInt();
     int x = A[pos];
@@ -235,11 +235,11 @@ Có thể thấy cách viết này đồng thời kiểm tra cả đầu ra chu�
 
 -   Dùng bí danh hạng mục.
 
--   Khác với validator, checker không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một checker so sánh các số nguyên theo thứ tự, ta chỉ cần xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; checker không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
+-   Khác với validator, checker không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một checker so sánh các số nguyên theo thứ tự, chỉ cần xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; checker không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
 
 ## Cách dùng
 
-Thông thường ta không cần chạy checker cục bộ, vì công cụ chấm/OJ sẽ làm mọi việc. Nhưng nếu cần, có thể chạy trên dòng lệnh theo định dạng sau:
+Thông thường không cần chạy checker cục bộ, vì công cụ chấm/OJ sẽ làm mọi việc. Nhưng nếu cần, có thể chạy trên dòng lệnh theo định dạng sau:
 
 ```bash
 ./checker <input-file> <output-file> <answer-file> [<report-file> [<-appes>]]
@@ -247,7 +247,7 @@ Thông thường ta không cần chạy checker cục bộ, vì công cụ chấ
 
 ## Một số checker có sẵn
 
-Trong nhiều trường hợp, công việc checker cần làm rất đơn giản, chẳng hạn kiểm tra đầu ra là số nguyên có đúng không, hoặc đầu ra là số thực có thỏa sai số yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) đã cung cấp sẵn các cài đặt checker này, và ta có thể dùng trực tiếp.
+Trong nhiều trường hợp, công việc checker cần làm rất đơn giản, chẳng hạn kiểm tra đầu ra là số nguyên có đúng không, hoặc đầu ra là số thực có thỏa sai số yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers) đã cung cấp sẵn các cài đặt checker này, và có thể dùng trực tiếp.
 
 Một số checker thường dùng:
 
