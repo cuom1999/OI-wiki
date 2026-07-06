@@ -1,11 +1,11 @@
-Bài viết này giới thiệu phần mở đầu của số học.
+Bài viết này giới thiệu các khái niệm mở đầu của số học.
 
 <span id="tính-chia-hết"></span>
 ## Tính chia hết
 
 ???+ note "Định nghĩa"
     Cho $a,b\in\mathbf{Z}$, $a\ne 0$. Nếu $\exists q\in\mathbf{Z}$ sao cho
-    $b=aq$, nói $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
+    $b=aq$, thì $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
     hết cho $a$ được kí hiệu $a\nmid b$.
 
 Tính chất của quan hệ chia hết:
@@ -14,9 +14,9 @@ Tính chất của quan hệ chia hết:
 -   $a\mid b\land b\mid c\implies a\mid c$
 -   $a\mid b\land a\mid c\iff\forall x,y\in\mathbf{Z}, a\mid(xb+yc)$
 -   $a\mid b\land b\mid a\implies b=\pm a$
--   Cho $m\ne0$, khi đó $a\mid b\iff ma\mid mb$.
--   Cho $b\ne0$, khi đó $a\mid b\implies|a|\le|b|$.
--   Cho $a\ne0,b=qa+c$, khi đó $a\mid b\iff a\mid c$.
+-   Với $m\ne0$, $a\mid b\iff ma\mid mb$.
+-   Với $b\ne0$, $a\mid b\implies|a|\le|b|$.
+-   Với $a\ne0,b=qa+c$, $a\mid b\iff a\mid c$.
 
 <span id="ước-số"></span>
 ### Ước số
@@ -70,11 +70,10 @@ số dư luôn được hiểu là số dư không âm nhỏ nhất.**
 
 Tính chất của số dư:
 
--   Một số nguyên bất kỳ khi chia cho số nguyên dương $a$ có số dư chắc chắn và
-    chỉ có thể là một trong $a$ số $0$ đến $a-1$.
+-   Một số nguyên bất kỳ khi chia cho số nguyên dương $a$ có đúng một số dư,
+    thuộc một trong $a$ số từ $0$ đến $a-1$.
 -   $a$ số nguyên liên tiếp khi chia cho số nguyên dương $a$ sẽ nhận đúng một
-    lần mỗi số dư nói trên. Đặc biệt, chắc chắn có đúng một số chia hết cho
-    $a$.
+    lần mỗi số dư nói trên. Đặc biệt, có đúng một số chia hết cho $a$.
 
 <span id="ước-chung-lớn-nhất-và-bội-chung-nhỏ-nhất"></span>
 ## Ước chung lớn nhất và bội chung nhỏ nhất
@@ -85,7 +84,7 @@ nhất, xem [Ước chung lớn nhất](./gcd.md).
 ???+ warning "Cảnh báo"
     Một số tác giả xem ước chung lớn nhất của $0$ và $0$ là không được định
     nghĩa; các tác giả khác thường xem nó bằng $0$. Cách cài đặt trong C++ STL
-    dùng quan điểm sau, tức là ước chung lớn nhất của $0$ và $0$ bằng
+    dùng quy ước thứ hai, tức là ước chung lớn nhất của $0$ và $0$ bằng
     $0$[^gcdcpp].
 
 Ước chung lớn nhất có các tính chất sau:
@@ -157,8 +156,8 @@ Bézout (Bézout's identity). Xem [Định lý Bézout](./bezouts.md).
 <span id="thuật-toán-euclid"></span>
 ### Thuật toán Euclid
 
-Thuật toán Euclid là một thuật toán, còn gọi là phép chia liên tiếp. Xem [Ước
-chung lớn nhất](./gcd.md).
+Thuật toán Euclid còn gọi là phép chia liên tiếp. Xem [Ước chung lớn
+nhất](./gcd.md).
 
 <span id="số-nguyên-tố-và-hợp-số"></span>
 ## Số nguyên tố và hợp số
@@ -184,8 +183,7 @@ Tính chất đơn giản của số nguyên tố và hợp số:
     thành tích của hai số nguyên $d$ và $e$ với $1<d,e<a$.
 -   Nếu số nguyên tố $p$ có ước số $d$ lớn hơn $1$, thì $d=p$.
 -   Mọi số nguyên lớn hơn $1$ đều có thể biểu diễn thành tích các số nguyên tố.
--   Với hợp số $a$, chắc chắn tồn tại số nguyên tố $p\le\sqrt{a}$ sao cho
-    $p\mid a$.
+-   Với hợp số $a$, tồn tại số nguyên tố $p\le\sqrt{a}$ sao cho $p\mid a$.
 -   Có vô hạn số nguyên tố.
 -   Mọi số nguyên tố lớn hơn $3$ đều có dạng $6n\pm 1$[^ref1].
 
@@ -336,7 +334,7 @@ $\mathbf{Z}/m\mathbf{Z}$ để biểu diễn $\mathbf{Z}_m$.
 
 Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
--   Lấy tùy ý $m+1$ số nguyên, chắc chắn có hai số đồng dư theo modulo $m$.
+-   Trong $m+1$ số nguyên bất kỳ, tồn tại hai số đồng dư theo modulo $m$.
 -   Tồn tại $m$ số nguyên đôi một không đồng dư theo modulo $m$.
 
 Từ đó đưa ra định nghĩa hệ thặng dư đầy đủ:
@@ -359,7 +357,7 @@ Còn có thể định nghĩa các hệ sau modulo $m$:
 Nếu không có ghi chú đặc biệt, thông thường chỉ dùng hệ thặng dư không âm nhỏ
 nhất.
 
-Lưu ý mệnh đề sau là đúng:
+Mệnh đề sau là đúng:
 
 -   Trong một lớp đồng dư bất kỳ modulo $m$, lấy tùy ý hai số nguyên $a_1,a_2$
     đều có $(a_1,m)=(a_2,m)$.
@@ -389,7 +387,7 @@ $$
 
 Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
--   Lấy tùy ý $\varphi(m)+1$ số nguyên nguyên tố cùng nhau với $m$, chắc chắn có
+-   Trong $\varphi(m)+1$ số nguyên bất kỳ nguyên tố cùng nhau với $m$, tồn tại
     hai số đồng dư theo modulo $m$.
 -   Tồn tại $\varphi(m)$ số nguyên nguyên tố cùng nhau với $m$ và đôi một không
     đồng dư theo modulo $m$.
@@ -440,7 +438,7 @@ Với số nguyên dương $m$, có định lý sau:
     ax+m_1y=ax'+m_1y'.
     $$
     
-    Thật vậy, từ $m_1\mid m_1m_2$, có
+    Từ $m_1\mid m_1m_2$, có
     $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$, suy ra
     $ax\equiv ax'\pmod{m_1}$. Do $(a,m_1)=1$, suy ra
     $x\equiv x'\pmod{m_1}$, nên $x=x'$.

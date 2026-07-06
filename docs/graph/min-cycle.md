@@ -37,7 +37,7 @@ Liên kết liên quan: [Đường đi ngắn nhất/Floyd](./shortest-path.md#t
 
 Ký hiệu trọng số cạnh giữa $u,v$ trong đồ thị ban đầu là $val\left(u,v\right)$.
 
-Cần chú ý đến một tính chất của thuật toán Floyd: khi vòng lặp ngoài cùng đến đỉnh $k$ (trước khi bắt đầu lần lặp thứ $k$), trong mảng đường đi ngắn nhất $dis$, $dis_{u,v}$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ chỉ đi qua các đỉnh có chỉ số nằm trong đoạn $\left[1, k\right)$.
+Một tính chất quan trọng của thuật toán Floyd là: khi vòng lặp ngoài cùng đến đỉnh $k$ (trước khi bắt đầu lần lặp thứ $k$), trong mảng đường đi ngắn nhất $dis$, $dis_{u,v}$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ chỉ đi qua các đỉnh có chỉ số nằm trong đoạn $\left[1, k\right)$.
 
 Theo định nghĩa của chu trình nhỏ nhất, nó có ít nhất ba đỉnh. Giả sử đỉnh có chỉ số lớn nhất trên chu trình là $w$, hai đỉnh kề với $w$ ở hai phía của chu trình là $u,v$. Khi vòng lặp ngoài cùng liệt kê đến $k=w$, độ dài chu trình này chính là $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$.
 
@@ -54,13 +54,13 @@ Do đó có thể tách đường đi thành hai đoạn $v\leadsto j$ và $j\le
 ???+ note "Chứng minh đệ quy không rơi vào vòng lặp vô hạn"
     Dùng phản chứng.
     
-    Giả sử chu trình lặp lại một đỉnh $u$. Khi đó trên chu trình chắc chắn có một đoạn xuất phát từ $u$, đi qua một số cạnh rồi quay lại $u$. Đoạn này tạo thành một chu trình mới.
+    Giả sử chu trình lặp lại một đỉnh $u$. Khi đó trên chu trình có một đoạn xuất phát từ $u$, đi qua một số cạnh rồi quay lại $u$. Đoạn này tạo thành một chu trình mới.
     
-    Vì trong đồ thị không có chu trình âm (nếu có chu trình âm thì sẽ không tồn tại chu trình nhỏ nhất), tổng trọng số của chu trình mới chắc chắn không lớn hơn chu trình ban đầu.
+    Vì trong đồ thị không có chu trình âm (nếu có chu trình âm thì sẽ không tồn tại chu trình nhỏ nhất), tổng trọng số của chu trình mới không lớn hơn chu trình ban đầu.
     
     Vì thế chỉ cần lấy riêng chu trình này thì sẽ không lặp lại đỉnh $u$. Giả thiết không đúng, nên chu trình không lặp lại một đỉnh.
     
-    Do đó khi đệ quy đến hai đỉnh $u,v$, $pos_{u,v}$ chắc chắn không bằng chỉ số của hai đỉnh này, tức là sẽ thêm một đỉnh mới.
+    Do đó khi đệ quy đến hai đỉnh $u,v$, $pos_{u,v}$ không bằng chỉ số của hai đỉnh này, tức là sẽ thêm một đỉnh mới.
     
     Đặc biệt, khi $u$ và $v$ kề nhau thì trả về trực tiếp.
     
@@ -560,13 +560,13 @@ Còn có một cách trực tuyến có độ phức tạp thời gian tốt hơ
 
 Với một truy vấn trên đỉnh $x$, chạy đường đi ngắn nhất một nguồn từ $x$, sau đó dựng cây đường đi ngắn nhất và đồng thời xử lý xem mỗi đỉnh nằm trong cây con nào của $x$.
 
-Khi đó chắc chắn có thể tìm một cạnh không thuộc cây sao cho hai đầu mút của cạnh này nằm trong hai cây con khác nhau của gốc. Cạnh không thuộc cây đó cộng với hai đường đi từ hai đầu mút về gốc sẽ tạo thành chu trình nhỏ nhất.
+Khi đó có thể tìm một cạnh không thuộc cây sao cho hai đầu mút của cạnh này nằm trong hai cây con khác nhau của gốc. Cạnh không thuộc cây đó cộng với hai đường đi từ hai đầu mút về gốc sẽ tạo thành chu trình nhỏ nhất.
 
 Chứng minh:
 
 Chu trình nhỏ nhất chứa ít nhất một cạnh không thuộc cây mà hai đầu mút của cạnh đó nằm trong hai cây con khác nhau của gốc.
 
-Giả sử cạnh đó là $(u,v)$. Khi đó đường đi từ $x$ đến $u$ trên cây đường đi ngắn nhất là đường ngắn nhất trong tất cả các đường đi từ $x$ đến $u$, và đường đi từ $x$ đến $v$ cũng là đường ngắn nhất. Vì vậy chu trình $x\to u\to v\to x$ chắc chắn không dài hơn chu trình nhỏ nhất.
+Giả sử cạnh đó là $(u,v)$. Khi đó đường đi từ $x$ đến $u$ trên cây đường đi ngắn nhất là đường ngắn nhất trong tất cả các đường đi từ $x$ đến $u$, và đường đi từ $x$ đến $v$ cũng là đường ngắn nhất. Vì vậy chu trình $x\to u\to v\to x$ không dài hơn chu trình nhỏ nhất.
 
 Từ đó có thể liệt kê mọi cạnh không thuộc cây để cập nhật đáp án.
 

@@ -1,11 +1,11 @@
-Trang này tóm lược một số khái niệm trong lý thuyết đồ thị. Không phải tất cả các khái niệm này đều thường gặp trong OI; với OIer, chỉ cần nắm phần cơ bản trong trang này là đủ. Nếu trong quá trình học gặp khái niệm chưa hiểu, có thể quay lại tra cứu.
+Trang này tóm lược một số khái niệm trong lý thuyết đồ thị. Không phải khái niệm nào cũng thường gặp trong OI; với OIer, nắm phần cơ bản trong trang này là đủ. Khi gặp khái niệm chưa rõ trong quá trình học, có thể quay lại tra cứu.
 
 ??? warning "Cảnh báo"
     Các định nghĩa liên quan đến lý thuyết đồ thị thường khác nhau giữa các giáo trình. Khi gặp chúng, cần phán đoán theo ngữ cảnh.
 
 ## Đồ thị
 
-**Đồ thị (graph)** là một cặp có thứ tự $G=(V(G), E(G))$. Trong đó $V(G)$ là một tập không rỗng, gọi là **tập đỉnh (vertex set)**. Mỗi phần tử của $V$ được gọi là **đỉnh (vertex)** hoặc **nút (node)**, gọi tắt là **điểm**; $E(G)$ là tập các cạnh giữa các nút của $V(G)$, gọi là **tập cạnh (edge set)**.
+**Đồ thị (graph)** là một cặp có thứ tự $G=(V(G), E(G))$, trong đó $V(G)$ là một tập không rỗng, gọi là **tập đỉnh (vertex set)**. Mỗi phần tử của $V$ được gọi là **đỉnh (vertex)** hoặc **nút (node)**, gọi tắt là **điểm**; $E(G)$ là tập các cạnh giữa các nút của $V(G)$, gọi là **tập cạnh (edge set)**.
 
 Thường dùng $G=(V,E)$ để biểu diễn đồ thị.
 
@@ -15,9 +15,9 @@ Khi $V$ hoặc $E$ là tập vô hạn, $G$ được gọi là **đồ thị vô
 
 Có nhiều loại đồ thị, bao gồm **đồ thị vô hướng (undirected graph)**, **đồ thị có hướng (directed graph)**, **đồ thị hỗn hợp (mixed graph)**, v.v.
 
-Nếu $G$ là đồ thị vô hướng, mỗi phần tử trong $E$ là một cặp không có thứ tự $(u, v)$, gọi là **cạnh vô hướng (undirected edge)**, gọi tắt là **cạnh (edge)**, trong đó $u, v \in V$. Đặt $e = (u, v)$, khi đó $u$ và $v$ được gọi là các **đầu mút (endpoint)** của $e$.
+Nếu $G$ là đồ thị vô hướng, mỗi phần tử trong $E$ là một cặp không thứ tự $(u, v)$, gọi là **cạnh vô hướng (undirected edge)**, gọi tắt là **cạnh (edge)**, trong đó $u, v \in V$. Đặt $e = (u, v)$, khi đó $u$ và $v$ được gọi là các **đầu mút (endpoint)** của $e$.
 
-Nếu $G$ là đồ thị có hướng, mỗi phần tử trong $E$ là một cặp có thứ tự $(u, v)$, đôi khi cũng viết là $u \to v$, gọi là **cạnh có hướng (directed edge)** hoặc **cung (arc)**; khi không gây nhầm lẫn cũng có thể gọi là **cạnh (edge)**. Đặt $e = u \to v$, khi đó $u$ được gọi là **điểm đầu (tail)** của $e$, $v$ được gọi là **điểm cuối (head)** của $e$; điểm đầu và điểm cuối cũng được gọi là các **đầu mút (endpoint)** của $e$. Đồng thời, $u$ là tiền nhiệm trực tiếp của $v$, và $v$ là kế nhiệm trực tiếp của $u$.
+Nếu $G$ là đồ thị có hướng, mỗi phần tử trong $E$ là một cặp có thứ tự $(u, v)$, đôi khi cũng viết là $u \to v$, gọi là **cạnh có hướng (directed edge)** hoặc **cung (arc)**; khi không gây nhầm lẫn cũng có thể gọi là **cạnh (edge)**. Đặt $e = u \to v$, khi đó $u$ được gọi là **điểm đầu (tail)** của $e$, $v$ được gọi là **điểm cuối (head)** của $e$; điểm đầu và điểm cuối cũng được gọi là các **đầu mút (endpoint)** của $e$. Đồng thời, $u$ là tiền nhiệm trực tiếp của $v$, còn $v$ là kế nhiệm trực tiếp của $u$.
 
 ???+ note "Vì sao điểm đầu là tail, điểm cuối là head?"
     Cạnh thường được biểu diễn bằng mũi tên, mà mũi tên đi từ "đuôi" đến "đầu".
@@ -48,7 +48,7 @@ $$
 
 **Cạnh song song (multiple edge)**: nếu trong $E$ tồn tại hai phần tử (cạnh) hoàn toàn giống nhau $e_1, e_2$, thì chúng được gọi là một cặp cạnh song song.
 
-**Đồ thị đơn (simple graph)**: nếu một đồ thị không có khuyên và cạnh song song, nó được gọi là đồ thị đơn. Trong đồ thị vô hướng đơn có ít nhất hai đỉnh, chắc chắn tồn tại hai nút có cùng bậc. ([Nguyên lý Dirichlet](../math/combinatorics/drawer-principle.md))
+**Đồ thị đơn (simple graph)**: nếu một đồ thị không có khuyên và cạnh song song, nó được gọi là đồ thị đơn. Trong đồ thị vô hướng đơn có ít nhất hai đỉnh, luôn tồn tại hai nút có cùng bậc. ([Nguyên lý Dirichlet](../math/combinatorics/drawer-principle.md))
 
 Nếu một đồ thị có khuyên hoặc cạnh song song, nó được gọi là **đa đồ thị (multigraph)**.
 
@@ -78,7 +78,7 @@ Nếu $2 \nmid d(v)$, thì $v$ được gọi là **đỉnh lẻ (odd vertex)**.
 
 Nếu $d(v) = \left| V \right| - 1$, thì $v$ được gọi là **đỉnh phổ quát (universal vertex)**.
 
-Với một đồ thị, giá trị nhỏ nhất trong các bậc của mọi nút được gọi là **bậc nhỏ nhất (minimum degree)** của $G$, ký hiệu là $\delta (G)$; giá trị lớn nhất được gọi là **bậc lớn nhất (maximum degree)**, ký hiệu là $\Delta (G)$. Tức là: $\delta (G) = \min_{v \in G} d(v)$, $\Delta (G) = \max_{v \in G} d(v)$.
+Với một đồ thị, giá trị nhỏ nhất trong các bậc của mọi nút được gọi là **bậc nhỏ nhất (minimum degree)** của $G$, ký hiệu là $\delta (G)$; giá trị lớn nhất được gọi là **bậc lớn nhất (maximum degree)**, ký hiệu là $\Delta (G)$. Tức là $\delta (G) = \min_{v \in G} d(v)$ và $\Delta (G) = \max_{v \in G} d(v)$.
 
 Trong đồ thị có hướng $G = (V, E)$, số cạnh có điểm đầu là một đỉnh $v$ được gọi là **bậc ra (out-degree)** của đỉnh đó, ký hiệu là $d^+(v)$. Số cạnh có điểm cuối là một đỉnh $v$ được gọi là **bậc vào (in-degree)** của nút đó, ký hiệu là $d^-(v)$. Khi đó $d^+(v)+d^-(v)=d(v)$.
 
@@ -90,13 +90,13 @@ $$
 
 Nếu với một đồ thị vô hướng $G = (V, E)$, bậc của mọi đỉnh đều là một hằng số cố định $k$, thì $G$ được gọi là **đồ thị $k$-chính quy ($k$-regular graph)**.
 
-Nếu cho một dãy a và có thể tìm được một đồ thị G nhận dãy đó làm dãy bậc, thì a được gọi là **có thể đồ thị hóa**.
+Nếu với một dãy $a$ tồn tại một đồ thị $G$ nhận dãy đó làm dãy bậc, thì $a$ được gọi là **có thể đồ thị hóa**.
 
-Nếu cho một dãy a và có thể tìm được một đồ thị đơn G nhận dãy đó làm dãy bậc, thì a được gọi là **có thể đơn đồ thị hóa**.
+Nếu với một dãy $a$ tồn tại một đồ thị đơn $G$ nhận dãy đó làm dãy bậc, thì $a$ được gọi là **có thể đơn đồ thị hóa**.
 
 ## Đường đi
 
-**Hành trình (walk)**: hành trình là một dãy các cạnh nối một chuỗi đỉnh, có thể có độ dài hữu hạn hoặc vô hạn. Nói một cách hình thức, một hành trình hữu hạn $w$ là một dãy cạnh $e_1, e_2, \ldots, e_k$ sao cho tồn tại một dãy đỉnh $v_0, v_1, \ldots, v_k$ thỏa mãn $e_i = (v_{i-1}, v_i)$, với $i \in [1, k]$. Hành trình như vậy có thể viết gọn là $v_0 \to v_1 \to v_2 \to \cdots \to v_k$. Thông thường, số cạnh $k$ được gọi là **độ dài** của hành trình này (nếu cạnh có trọng số, độ dài thường chỉ tổng trọng số các cạnh trên hành trình; trong đề bài cũng có thể có định nghĩa khác).
+**Hành trình (walk)**: hành trình là một dãy các cạnh nối một chuỗi đỉnh, có thể có độ dài hữu hạn hoặc vô hạn. Nói một cách hình thức, một hành trình hữu hạn $w$ là một dãy cạnh $e_1, e_2, \ldots, e_k$ sao cho tồn tại một dãy đỉnh $v_0, v_1, \ldots, v_k$ thỏa mãn $e_i = (v_{i-1}, v_i)$, với $i \in [1, k]$. Hành trình như vậy có thể viết gọn là $v_0 \to v_1 \to v_2 \to \cdots \to v_k$. Thông thường, số cạnh $k$ được gọi là **độ dài** của hành trình này (nếu cạnh có trọng số, độ dài thường là tổng trọng số các cạnh trên hành trình; trong đề bài cũng có thể có định nghĩa khác).
 
 **Vết (trail)**: với một hành trình $w$, nếu $e_1, e_2, \ldots, e_k$ đôi một khác nhau, thì $w$ được gọi là một vết.
 
@@ -113,9 +113,9 @@ Nếu cho một dãy a và có thể tìm được một đồ thị đơn G nh�
 
 Với một đồ thị $G = (V, E)$, nếu tồn tại một đồ thị khác $H = (V', E')$ thỏa mãn $V' \subseteq V$ và $E' \subseteq E$, thì $H$ được gọi là **đồ thị con (subgraph)** của $G$, ký hiệu là $H \subseteq G$.
 
-Nếu với $H \subseteq G$, có $\forall u, v \in V'$, chỉ cần $(u, v) \in E$ thì đều có $(u, v) \in E'$, thì $H$ được gọi là **đồ thị con cảm sinh/đồ thị con sinh bởi đỉnh (induced subgraph)** của $G$.
+Nếu với $H \subseteq G$, với mọi $u, v \in V'$, từ $(u, v) \in E$ luôn suy ra $(u, v) \in E'$, thì $H$ được gọi là **đồ thị con cảm sinh/đồ thị con sinh bởi đỉnh (induced subgraph)** của $G$.
 
-Một đồ thị con cảm sinh chỉ được xác định bởi tập đỉnh của đồ thị con. Vì vậy, đồ thị con cảm sinh có tập đỉnh là $V'$($V' \subseteq V$) được gọi là đồ thị con do $V'$ cảm sinh, ký hiệu là $G \left[ V' \right]$.
+Một đồ thị con cảm sinh chỉ được xác định bởi tập đỉnh của đồ thị con. Vì vậy, đồ thị con cảm sinh có tập đỉnh là $V'$ ($V' \subseteq V$) được gọi là đồ thị con do $V'$ cảm sinh, ký hiệu là $G \left[ V' \right]$.
 
 Nếu $H \subseteq G$ thỏa mãn $V' = V$, thì $H$ được gọi là **đồ thị con bao trùm (spanning subgraph)** của $G$.
 
@@ -155,15 +155,15 @@ Trong phần này, "liên thông" của đồ thị có hướng thường chỉ
 
 Với đồ thị liên thông $G = (V, E)$, nếu $V'\subseteq V$ và $G\left[V\setminus V'\right]$ (tức là xóa các điểm trong $V'$ khỏi $G$) không phải là đồ thị liên thông, thì $V'$ là một **tập cắt đỉnh (vertex cut/separating set)** của đồ thị $G$. Tập cắt đỉnh có kích thước một còn được gọi là **đỉnh cắt (cut vertex)**.
 
-Với đồ thị liên thông $G = (V, E)$ và số nguyên $k$, nếu $|V|\ge k+1$ và $G$ không tồn tại tập cắt đỉnh có kích thước $k-1$, thì đồ thị $G$ được gọi là **$k$-liên thông đỉnh ($k$-vertex-connected)**; giá trị lớn nhất của $k$ làm mệnh đề trên đúng được gọi là **độ liên thông đỉnh (vertex connectivity)** của đồ thị $G$, ký hiệu là $\kappa(G)$. (Với đồ thị không đầy đủ, độ liên thông đỉnh chính là kích thước của tập cắt đỉnh nhỏ nhất; còn độ liên thông đỉnh của đồ thị đầy đủ $K_n$ là $n-1$.)
+Với đồ thị liên thông $G = (V, E)$ và số nguyên $k$, nếu $|V|\ge k+1$ và $G$ không tồn tại tập cắt đỉnh có kích thước $k-1$, thì đồ thị $G$ được gọi là **$k$-liên thông đỉnh ($k$-vertex-connected)**; giá trị lớn nhất của $k$ để mệnh đề trên đúng được gọi là **độ liên thông đỉnh (vertex connectivity)** của đồ thị $G$, ký hiệu là $\kappa(G)$. (Với đồ thị không đầy đủ, độ liên thông đỉnh chính là kích thước của tập cắt đỉnh nhỏ nhất; còn độ liên thông đỉnh của đồ thị đầy đủ $K_n$ là $n-1$.)
 
 Với đồ thị $G = (V, E)$ và $u, v\in V$ thỏa mãn $u\ne v$, $u$ và $v$ không kề nhau, $u$ đến được $v$, nếu $V'\subseteq V$, $u, v\notin V'$, và trong $G\left[V\setminus V'\right]$ thì $u$ và $v$ không liên thông, thì $V'$ được gọi là tập cắt đỉnh từ $u$ đến $v$. Kích thước của tập cắt đỉnh nhỏ nhất từ $u$ đến $v$ được gọi là **độ liên thông đỉnh cục bộ (local connectivity)** từ $u$ đến $v$, ký hiệu là $\kappa(u, v)$.
 
-Cũng có thể định nghĩa tương tự trên cạnh:
+Có định nghĩa tương tự cho cạnh:
 
 Với đồ thị liên thông $G = (V, E)$, nếu $E'\subseteq E$ và $G' = (V, E\setminus E')$ (tức là xóa các cạnh trong $E'$ khỏi $G$) không phải là đồ thị liên thông, thì $E'$ là một **tập cắt cạnh (edge cut)** của đồ thị $G$. Tập cắt cạnh có kích thước một còn được gọi là **cầu (bridge)**.
 
-Với đồ thị liên thông $G = (V, E)$ và số nguyên $k$, nếu $G$ không tồn tại tập cắt cạnh có kích thước $k-1$, thì đồ thị $G$ được gọi là **$k$-liên thông cạnh ($k$-edge-connected)**; giá trị lớn nhất của $k$ làm mệnh đề trên đúng được gọi là **độ liên thông cạnh (edge connectivity)** của đồ thị $G$, ký hiệu là $\lambda(G)$. (Với mọi đồ thị, độ liên thông cạnh chính là kích thước của tập cắt cạnh nhỏ nhất.)
+Với đồ thị liên thông $G = (V, E)$ và số nguyên $k$, nếu $G$ không tồn tại tập cắt cạnh có kích thước $k-1$, thì đồ thị $G$ được gọi là **$k$-liên thông cạnh ($k$-edge-connected)**; giá trị lớn nhất của $k$ để mệnh đề trên đúng được gọi là **độ liên thông cạnh (edge connectivity)** của đồ thị $G$, ký hiệu là $\lambda(G)$. (Với mọi đồ thị, độ liên thông cạnh chính là kích thước của tập cắt cạnh nhỏ nhất.)
 
 Với đồ thị $G = (V, E)$ và $u, v\in V$ thỏa mãn $u\ne v$, $u$ đến được $v$, nếu $E'\subseteq E$, và trong $G'=(V, E\setminus E')$ thì $u$ và $v$ không liên thông, thì $E'$ được gọi là tập cắt cạnh từ $u$ đến $v$. Kích thước của tập cắt cạnh nhỏ nhất từ $u$ đến $v$ được gọi là **độ liên thông cạnh cục bộ (local edge-connectivity)** từ $u$ đến $v$, ký hiệu là $\lambda(u, v)$.
 
@@ -202,13 +202,13 @@ Nếu đồ thị vô hướng đơn $G$ thỏa mãn giữa mọi cặp điểm 
 
 Nếu đồ thị có hướng đơn $G$ thỏa mãn giữa mọi cặp điểm khác nhau có đúng một cạnh (một chiều), thì $G$ được gọi là **đồ thị đấu loại (tournament graph)**.
 
-Nếu mọi cạnh của đồ thị vô hướng đơn $G = \left( V, E \right)$ vừa đúng tạo thành một chu trình, thì $G$ được gọi là **đồ thị chu trình/vòng (cycle graph)**; đồ thị chu trình cấp $n$($n \geq 3$) được ký hiệu là $C_n$. Dễ biết rằng điều kiện cần và đủ để một đồ thị là đồ thị chu trình là nó là đồ thị liên thông $2$-chính quy.
+Nếu các cạnh của đồ thị vô hướng đơn $G = \left( V, E \right)$ vừa đúng tạo thành một chu trình, thì $G$ được gọi là **đồ thị chu trình/vòng (cycle graph)**; đồ thị chu trình cấp $n$ ($n \geq 3$) được ký hiệu là $C_n$. Điều kiện cần và đủ để một đồ thị là đồ thị chu trình là nó là đồ thị liên thông $2$-chính quy.
 
-Nếu đồ thị vô hướng đơn $G = \left( V, E \right)$ thỏa mãn tồn tại một điểm $v$ là đỉnh phổ quát và giữa các điểm còn lại không có cạnh nối, thì $G$ được gọi là **đồ thị sao/đồ thị hoa cúc (star graph)**; đồ thị sao cấp $n + 1$($n \geq 1$) được ký hiệu là $S_n$.
+Nếu đồ thị vô hướng đơn $G = \left( V, E \right)$ thỏa mãn tồn tại một điểm $v$ là đỉnh phổ quát và giữa các điểm còn lại không có cạnh nối, thì $G$ được gọi là **đồ thị sao/đồ thị hoa cúc (star graph)**; đồ thị sao cấp $n + 1$ ($n \geq 1$) được ký hiệu là $S_n$.
 
-Nếu đồ thị vô hướng đơn $G = \left( V, E \right)$ thỏa mãn tồn tại một điểm $v$ là đỉnh phổ quát và các điểm còn lại tạo thành một chu trình, thì $G$ được gọi là **đồ thị bánh xe (wheel graph)**; đồ thị bánh xe cấp $n + 1$($n \geq 3$) được ký hiệu là $W_n$.
+Nếu đồ thị vô hướng đơn $G = \left( V, E \right)$ thỏa mãn tồn tại một điểm $v$ là đỉnh phổ quát và các điểm còn lại tạo thành một chu trình, thì $G$ được gọi là **đồ thị bánh xe (wheel graph)**; đồ thị bánh xe cấp $n + 1$ ($n \geq 3$) được ký hiệu là $W_n$.
 
-Nếu mọi cạnh của đồ thị vô hướng đơn $G = \left( V, E \right)$ vừa đúng tạo thành một đường đi đơn, thì $G$ được gọi là **chuỗi (chain/path graph)**; chuỗi cấp $n$ được ký hiệu là $P_n$. Dễ biết rằng một chuỗi có thể thu được bằng cách xóa một cạnh khỏi một đồ thị chu trình.
+Nếu các cạnh của đồ thị vô hướng đơn $G = \left( V, E \right)$ vừa đúng tạo thành một đường đi đơn, thì $G$ được gọi là **chuỗi (chain/path graph)**; chuỗi cấp $n$ được ký hiệu là $P_n$. Một chuỗi có thể thu được bằng cách xóa một cạnh khỏi một đồ thị chu trình.
 
 Nếu một đồ thị vô hướng liên thông không chứa chu trình, thì nó được gọi là một **cây (tree)**. Xem nội dung liên quan tại [cơ sở về cây](./tree-basic.md).
 
@@ -232,7 +232,7 @@ Nếu một đồ thị có thể vẽ trên một mặt phẳng sao cho không 
 
 Hai đồ thị $G$ và $H$ được gọi là **đẳng cấu (isomorphic)**, ký hiệu là $G \cong H$, nếu tồn tại một song ánh $f : V(G) \to V(H)$ thỏa mãn $(u,v)\in E(G)$ khi và chỉ khi $(f(u),f(v))\in E(H)$. Khi đó, $f$ được gọi là một **đẳng cấu (isomorphism)** từ $G$ đến $H$.
 
-Từ định nghĩa có thể thấy, nếu $G \cong H$ thì phải thỏa mãn:
+Từ định nghĩa suy ra, nếu $G \cong H$ thì phải thỏa mãn:
 
 -   $|V(G)|=|V(H)|,|E(G)|=|E(H)|$
 -   Dãy bậc của các nút trong $G$ và $H$, sắp theo thứ tự không tăng, là như nhau
@@ -244,7 +244,7 @@ Với đồ thị vô hướng đơn, có thể định nghĩa các phép toán 
 
 **Giao (intersection)**: giao của hai đồ thị $G = \left( V_1, E_1 \right), H = \left( V_2, E_2 \right)$ được định nghĩa là đồ thị $G \cap H = \left( V_1 \cap V_2, E_1 \cap E_2 \right)$.
 
-Dễ chứng minh rằng giao của hai đồ thị vô hướng đơn vẫn là đồ thị vô hướng đơn.
+Giao của hai đồ thị vô hướng đơn vẫn là đồ thị vô hướng đơn.
 
 **Hợp (union)**: hợp của hai đồ thị $G = \left( V_1, E_1 \right), H = \left( V_2, E_2 \right)$ được định nghĩa là đồ thị $G \cup H = \left( V_1 \cup V_2, E_1 \cup E_2 \right)$.
 
@@ -255,7 +255,7 @@ Nếu tập đỉnh của $G$ và $H$ vốn đã rời nhau, thì $G \cup H = G 
 Ví dụ, rừng có thể được định nghĩa là tổng của một số cây.
 
 ???+ note "Khác nhau giữa hợp và tổng"
-    Có thể hiểu rằng "hợp" sẽ gộp các điểm và cạnh "cùng tên" trong hai đồ thị, còn "tổng" thì không.
+    "Hợp" gộp các điểm và cạnh "cùng tên" trong hai đồ thị, còn "tổng" thì không.
 
 ## Tập đỉnh/tập cạnh đặc biệt
 
@@ -289,7 +289,7 @@ Ghép cặp có số cạnh nhiều nhất được gọi là **ghép cặp lớ
 
 Nếu cạnh có trọng số, thì ghép cặp có tổng trọng số lớn nhất được gọi là **ghép cặp trọng số lớn nhất (maximum-weight matching)** của một đồ thị.
 
-Nếu sau khi thêm bất kỳ cạnh nào vào một ghép cặp thì nó không còn là ghép cặp nữa, thì ghép cặp này là một **ghép cặp tối đại (maximal matching)**. Ghép cặp tối đại lớn nhất chính là ghép cặp lớn nhất; mọi ghép cặp lớn nhất đều là ghép cặp tối đại. Ghép cặp tối đại chắc chắn là tập thống trị cạnh, nhưng tập thống trị cạnh không nhất thiết là ghép cặp. Kích thước của ghép cặp tối đại nhỏ nhất bằng kích thước của tập thống trị cạnh nhỏ nhất, nhưng tập thống trị cạnh nhỏ nhất không nhất thiết là ghép cặp. Tìm ghép cặp tối đại nhỏ nhất là bài toán NP-khó.
+Nếu sau khi thêm bất kỳ cạnh nào vào một ghép cặp thì nó không còn là ghép cặp nữa, thì ghép cặp này là một **ghép cặp tối đại (maximal matching)**. Ghép cặp tối đại lớn nhất chính là ghép cặp lớn nhất; mọi ghép cặp lớn nhất đều là ghép cặp tối đại. Ghép cặp tối đại luôn là tập thống trị cạnh, nhưng tập thống trị cạnh không nhất thiết là ghép cặp. Kích thước của ghép cặp tối đại nhỏ nhất bằng kích thước của tập thống trị cạnh nhỏ nhất, nhưng tập thống trị cạnh nhỏ nhất không nhất thiết là ghép cặp. Tìm ghép cặp tối đại nhỏ nhất là bài toán NP-khó.
 
 Nếu trong một ghép cặp, mọi điểm đều được ghép, thì ghép cặp đó là một **ghép cặp hoàn hảo (perfect matching)**. Nếu trong một ghép cặp chỉ có một điểm không được ghép, thì ghép cặp đó là một **ghép cặp gần hoàn hảo (near-perfect matching)**.
 
@@ -305,7 +305,7 @@ Với một ghép cặp $M$, nếu một đường đi bắt đầu từ một �
 
 Với đồ thị $G=(V, E)$, nếu $V'\subseteq V$ và với mọi $e\in E$, ít nhất một đầu mút của $e$ nằm trong $V'$, thì $V'$ được gọi là một **phủ đỉnh (vertex cover)** của đồ thị $G$.
 
-Tập phủ đỉnh chắc chắn là tập thống trị, nhưng tập phủ đỉnh cực tiểu không nhất thiết là tập thống trị cực tiểu.
+Tập phủ đỉnh luôn là tập thống trị, nhưng tập phủ đỉnh cực tiểu không nhất thiết là tập thống trị cực tiểu.
 
 Điều kiện cần và đủ để một tập đỉnh là phủ đỉnh là phần bù của nó là tập độc lập. Do đó, phần bù của phủ đỉnh nhỏ nhất là tập độc lập lớn nhất. Tìm phủ đỉnh nhỏ nhất của một đồ thị là bài toán [NP-khó](../misc/cc-basic.md#np-hard).
 
@@ -321,7 +321,7 @@ Ghép cặp lớn nhất cũng có thể thu được từ phủ cạnh nhỏ nh
 
 Kích thước của phủ cạnh nhỏ nhất của một đồ thị cộng với kích thước của ghép cặp lớn nhất bằng số đỉnh của đồ thị, tức là $\rho(G)+\nu(G)=|V(G)|$.
 
-Kích thước của ghép cặp lớn nhất của một đồ thị không vượt quá kích thước của phủ cạnh nhỏ nhất, tức là $\nu(G)\le\rho(G)$. Đặc biệt, ghép cặp hoàn hảo chắc chắn là một phủ cạnh nhỏ nhất, và đây cũng là trường hợp duy nhất để đẳng thức trên đạt được.
+Kích thước của ghép cặp lớn nhất của một đồ thị không vượt quá kích thước của phủ cạnh nhỏ nhất, tức là $\nu(G)\le\rho(G)$. Đặc biệt, ghép cặp hoàn hảo luôn là một phủ cạnh nhỏ nhất, và đây cũng là trường hợp duy nhất để đẳng thức trên đạt được.
 
 Kích thước của bất kỳ tập độc lập nào trong một đồ thị đều không vượt quá kích thước của bất kỳ phủ cạnh nào của nó. Tập độc lập lớn nhất và phủ cạnh nhỏ nhất của đồ thị hai phía đầy đủ $K_{n, m}$ đều có kích thước $\max(n, m)$.
 
