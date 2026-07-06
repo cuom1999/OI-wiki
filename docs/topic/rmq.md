@@ -2,9 +2,9 @@
 
 RMQ là viết tắt của Range Maximum/Minimum Query, nghĩa là truy vấn giá trị lớn nhất (nhỏ nhất) trên một đoạn.
 
-Trong các phần mô tả dưới đây, ta mặc định kích thước ban đầu của mảng là $n$ và số lượng truy vấn là $m$.
+Trong các phần mô tả dưới đây, mặc định kích thước ban đầu của mảng là $n$ và số lượng truy vấn là $m$.
 
-Trong các phần mô tả dưới đây, ta mặc định ký hiệu độ phức tạp thời gian có dạng $O(A) \sim O(B)$, trong đó $O(A)$ là độ phức tạp tiền xử lý, còn $O(B)$ là độ phức tạp cho một truy vấn.
+Trong các phần mô tả dưới đây, mặc định ký hiệu độ phức tạp thời gian có dạng $O(A) \sim O(B)$, trong đó $O(A)$ là độ phức tạp tiền xử lý, còn $O(B)$ là độ phức tạp cho một truy vấn.
 
 ## Ngăn xếp đơn điệu
 
@@ -30,37 +30,37 @@ Four Russians là một thuật toán dựa trên bảng ST, do bốn nhà khoa 
 
 Cải tiến mà thuật toán Four Russians thực hiện trên nền bảng ST là chia dãy thành các khối.
 
-Cụ thể, ta chia mảng gốc, gọi là mảng A, thành các khối có kích thước $S$, tổng cộng $n/S$ khối.
+Cụ thể, chia mảng gốc, gọi là mảng A, thành các khối có kích thước $S$, tổng cộng $n/S$ khối.
 
-Với mỗi khối, ta tiền xử lý giá trị nhỏ nhất trong khối để xây dựng một mảng B có độ dài $n/S$, rồi tiền xử lý mảng B theo cách của bảng ST.
+Với mỗi khối, tiền xử lý giá trị nhỏ nhất trong khối để xây dựng một mảng B có độ dài $n/S$, rồi tiền xử lý mảng B theo cách của bảng ST.
 
-Đồng thời, với mỗi khối rời rạc của mảng A, ta cũng xây dựng một bảng ST.
+Đồng thời, với mỗi khối rời rạc của mảng A, cũng xây dựng một bảng ST.
 
-Khi truy vấn, ta có thể chia đoạn truy vấn thành không quá 1 đoạn khối liên tiếp trên mảng B và không quá 2 đoạn liên tiếp nằm trọn trong một khối trên mảng A. Rõ ràng các bài toán này đều có thể được giải bằng truy vấn đoạn trên bảng ST.
+Khi truy vấn, có thể chia đoạn truy vấn thành không quá 1 đoạn khối liên tiếp trên mảng B và không quá 2 đoạn liên tiếp nằm trọn trong một khối trên mảng A. Các bài toán này đều có thể được giải bằng truy vấn đoạn trên bảng ST.
 
 Khi $S=\log n$, độ phức tạp tiền xử lý đạt tối ưu, bằng $O((n / \log n)\log n+(n / \log n)\times\log n\times\log \log n)=O(n\log \log n)$.
 
 Độ phức tạp thời gian $O(n\log \log n) \sim O(1)$, độ phức tạp không gian $O(n\log \log n)$.
 
-Dĩ nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đặt này có hằng số khá lớn.
+Tuy nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đặt này có hằng số khá lớn.
 
 ??? note "Một vài cải tiến thuật toán nhỏ"
-    Ta nhận thấy rằng, khi hai đầu mút của truy vấn thuộc hai khối khác nhau trong mảng A, các truy vấn nội bộ khối trong mảng A đều là truy vấn trên tiền tố hoặc hậu tố của mỗi khối.
+    Khi hai đầu mút của truy vấn thuộc hai khối khác nhau trong mảng A, các truy vấn nội bộ khối trong mảng A đều là truy vấn trên tiền tố hoặc hậu tố của mỗi khối.
     
-    Rõ ràng các truy vấn này có thể được giải trong $O(n)$ bằng cách tiền xử lý đáp án.
+    Các truy vấn này có thể được giải trong $O(n)$ bằng cách tiền xử lý đáp án.
     
-    Như vậy, khi truy vấn ta chỉ cần thực hiện nhiều nhất một phép truy vấn trên bảng ST.
+    Như vậy, khi truy vấn chỉ cần thực hiện nhiều nhất một phép truy vấn trên bảng ST.
 
 ??? note "Một vài cải tiến thuật toán mang tính kinh nghiệm"
-    Vì thuật toán Four Russians dựa trên bảng ST, mà trong lập trình thi đấu thường không có yêu cầu độ phức tạp thời gian quá khắt khe, nên thuật toán Four Russians nhìn chung có thể được thay bằng bảng ST và không thực dụng lắm trong lập trình thi đấu. Ở đây đưa ra một biến thể cải tiến của Four Russians thực dụng hơn trong lập trình thi đấu.
+    Vì thuật toán Four Russians dựa trên bảng ST, mà trong lập trình thi đấu thường không có yêu cầu độ phức tạp thời gian quá khắt khe, nên thuật toán Four Russians nhìn chung có thể được thay bằng bảng ST và không thực dụng lắm trong lập trình thi đấu. Phần này đưa ra một biến thể cải tiến của Four Russians thực dụng hơn trong lập trình thi đấu.
     
-    Ta đặt kích thước khối là $\sqrt n$, sau đó tiền xử lý RMQ trên tiền tố và hậu tố trong mỗi khối, rồi tiền xử lý vét cạn RMQ giữa hai khối nguyên liên tiếp bất kỳ; độ phức tạp thời gian là $O(n)$.
+    Đặt kích thước khối là $\sqrt n$, sau đó tiền xử lý RMQ trên tiền tố và hậu tố trong mỗi khối, rồi tiền xử lý vét cạn RMQ giữa hai khối nguyên liên tiếp bất kỳ; độ phức tạp thời gian là $O(n)$.
     
-    Khi truy vấn, với truy vấn có hai đầu mút không nằm trong cùng một khối, ta có thể lấy trực tiếp trong $O(1)$ ba giá trị: RMQ hậu tố của khối chứa đầu mút trái, RMQ của các khối nguyên liên tiếp nằm giữa đầu mút trái và đầu mút phải, và RMQ tiền tố của khối chứa đầu mút phải. Đáp án chính là giá trị cực trị trong ba giá trị đó.
+    Khi truy vấn, với truy vấn có hai đầu mút không nằm trong cùng một khối, có thể lấy trực tiếp trong $O(1)$ ba giá trị: RMQ hậu tố của khối chứa đầu mút trái, RMQ của các khối nguyên liên tiếp nằm giữa đầu mút trái và đầu mút phải, và RMQ tiền tố của khối chứa đầu mút phải. Đáp án chính là giá trị cực trị trong ba giá trị đó.
     
-    Còn với truy vấn có hai đầu mút nằm trong cùng một khối, ta có thể vét cạn để tìm RMQ giữa hai điểm, với độ phức tạp thời gian $O(\sqrt n)$. Tuy nhiên, xác suất kỳ vọng để hai đầu mút của một truy vấn nằm trong cùng một khối là $O(\frac{\sqrt n}{n})$, nên độ phức tạp thời gian của phương pháp này là kỳ vọng $O(n)$.
+    Còn với truy vấn có hai đầu mút nằm trong cùng một khối, có thể vét cạn để tìm RMQ giữa hai điểm, với độ phức tạp thời gian $O(\sqrt n)$. Tuy nhiên, xác suất kỳ vọng để hai đầu mút của một truy vấn nằm trong cùng một khối là $O(\frac{\sqrt n}{n})$, nên độ phức tạp thời gian của phương pháp này là kỳ vọng $O(n)$.
     
-    Trong lập trình thi đấu, ta không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể vượt qua được.
+    Trong lập trình thi đấu, không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể vượt qua được.
     
     Đây là một thuật toán đạt cận dưới về độ phức tạp thời gian kỳ vọng, đồng thời có độ khó cài đặt và hằng số thuật toán đều nhỏ, nên khá thực dụng trong lập trình thi đấu.
     
@@ -68,29 +68,29 @@ Dĩ nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đ
 
 ## RMQ cộng trừ 1
 
-Nếu dãy thỏa mãn hai phần tử kề nhau chênh lệch đúng 1, thì RMQ trên dãy đó có thể được gọi là RMQ cộng trừ 1. Dựa vào tính chất này, ta có thể cải tiến thuật toán Four Russians để đạt độ phức tạp thời gian $O(n) \sim O(1)$ và độ phức tạp không gian $O(n)$.
+Nếu dãy thỏa mãn hai phần tử kề nhau chênh lệch đúng 1, thì RMQ trên dãy đó có thể được gọi là RMQ cộng trừ 1. Dựa vào tính chất này, có thể cải tiến thuật toán Four Russians để đạt độ phức tạp thời gian $O(n) \sim O(1)$ và độ phức tạp không gian $O(n)$.
 
-Vì điểm nghẽn của thuật toán Four Russians nằm ở bài toán RMQ trong khối, ta sẽ tập trung thảo luận cách tối ưu bài toán RMQ trong khối.
+Vì điểm nghẽn của thuật toán Four Russians nằm ở bài toán RMQ trong khối, phần này tập trung thảo luận cách tối ưu bài toán RMQ trong khối.
 
-Do hiệu của hai số kề nhau là $\pm 1$, nên khi cố định số ở đầu mút trái, số loại dãy bên phải có độ dài không vượt quá $\log n$ là $\sum_{i=1}^{\log n} 2^{i-1}$, và biểu thức này rõ ràng không vượt quá $n$.
+Do hiệu của hai số kề nhau là $\pm 1$, nên khi cố định số ở đầu mút trái, số loại dãy bên phải có độ dài không vượt quá $\log n$ là $\sum_{i=1}^{\log n} 2^{i-1}$, và biểu thức này không vượt quá $n$.
 
-Điều này gợi ý rằng ta có thể tiền xử lý giá trị "giá trị nhỏ nhất - phần tử đầu tiên" cho tất cả không quá $n$ trường hợp.
+Điều này gợi ý rằng có thể tiền xử lý giá trị "giá trị nhỏ nhất - phần tử đầu tiên" cho tất cả không quá $n$ trường hợp.
 
-Khi tiền xử lý, ta cần tiền xử lý hiệu giữa hai số kề nhau trong cùng một khối và biểu diễn hiệu đó bằng nhị phân.
+Khi tiền xử lý, cần tiền xử lý hiệu giữa hai số kề nhau trong cùng một khối và biểu diễn hiệu đó bằng nhị phân.
 
-Khi truy vấn, ta tìm biểu diễn nhị phân tương ứng với đoạn truy vấn, rồi tra bảng để lấy đáp án.
+Khi truy vấn, tìm biểu diễn nhị phân tương ứng với đoạn truy vấn, rồi tra bảng để lấy đáp án.
 
 Như vậy, độ phức tạp tiền xử lý của Four Russians được tối ưu xuống $O(n)$.
 
 ## Ứng dụng cây Cartesian trong RMQ
 
-Nếu chưa quen với cây Cartesian, hãy xem [cây Cartesian](../ds/cartesian-tree.md).
+Nếu chưa quen với cây Cartesian, xem [cây Cartesian](../ds/cartesian-tree.md).
 
-Dễ thấy rằng min/max giữa hai điểm trên dãy ban đầu bằng trọng số của LCA của hai điểm đó trên cây Cartesian. Dựa vào điều này, ta có thể mượn lời giải LCA giữa hai điểm trên cây với độ phức tạp $O(n) \sim O(1)$ để giải RMQ. LCA trên cây với $O(n) \sim O(1)$ đã được mô tả trong [LCA - RMQ chuẩn](../graph/lca.md#rmq-chuẩn), nên phần này không trình bày thêm.
+Min/max giữa hai điểm trên dãy ban đầu bằng trọng số của LCA của hai điểm đó trên cây Cartesian. Dựa vào điều này, có thể mượn lời giải LCA giữa hai điểm trên cây với độ phức tạp $O(n) \sim O(1)$ để giải RMQ. LCA trên cây với $O(n) \sim O(1)$ đã được mô tả trong [LCA - RMQ chuẩn](../graph/lca.md#rmq-chuẩn), nên phần này không trình bày thêm.
 
-Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ thông thường thành bài toán LCA, rồi tiếp tục chuyển thành bài toán RMQ cộng trừ 1 để giải, với độ phức tạp thời gian $O(n) \sim O(1)$. Dĩ nhiên, vì có nhiều bước chuyển đổi, RMQ $O(n) \sim O(1)$ có hằng số khá lớn.
+Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ thông thường thành bài toán LCA, rồi tiếp tục chuyển thành bài toán RMQ cộng trừ 1 để giải, với độ phức tạp thời gian $O(n) \sim O(1)$. Do có nhiều bước chuyển đổi, RMQ $O(n) \sim O(1)$ có hằng số khá lớn.
 
-Nếu dữ liệu ngẫu nhiên, ta cũng có thể tìm kiếm vét cạn trên cây Cartesian. Khi đó độ phức tạp thời gian là kỳ vọng $O(n) \sim O(\log n)$, và trong thực tế hằng số của thuật toán này thường rất nhỏ.
+Nếu dữ liệu ngẫu nhiên, cũng có thể tìm kiếm vét cạn trên cây Cartesian. Khi đó độ phức tạp thời gian là kỳ vọng $O(n) \sim O(\log n)$, và trong thực tế hằng số của thuật toán này thường rất nhỏ.
 
 ### Bài ví dụ [Luogu P3865 [Mẫu] bảng ST](https://www.luogu.com.cn/problem/P3865)
 
@@ -126,7 +126,7 @@ Lần lượt chèn $A[1\cdots r]$ vào ngăn xếp đơn điệu, ghi lại ch�
 
 Vì $A[p]$ là giá trị lớn nhất trong $A[l,r]$, nên khi chèn $A[p]$, các phần tử $A[l\cdots p-1]$ đều bị bật ra, và khi chèn $A[p+1\cdots r]$ thì không thể bật $A[p]$ ra.
 
-Nếu dùng $0/1$ để biểu diễn mỗi số có đang ở trong ngăn xếp hay không, ta có thể dùng một số nguyên để nén trạng thái. Khi đó $p$ là vị trí đầu tiên có bit $1$ sau vị trí thứ $l$.
+Nếu dùng $0/1$ để biểu diễn mỗi số có đang ở trong ngăn xếp hay không, có thể dùng một số nguyên để nén trạng thái. Khi đó $p$ là vị trí đầu tiên có bit $1$ sau vị trí thứ $l$.
 
 Vì kích thước khối là $O(\log_2{n})$, nên nhiều nhất không vượt quá $64$ bit và có thể lưu bằng một số nguyên (đây cũng là nguyên nhân của điều kiện ngầm).
 
