@@ -22,13 +22,13 @@ Các trang khác trong phần này sẽ trình bày cách xây dựng mô hình 
 
 Cách nghĩ thô sơ nhất là thử tất cả các đường đi. Vì số đường đi có bậc $O(2^r)$, cách làm này không thể chấp nhận được.
 
-Hãy chú ý một sự thật: với một đường đi tối ưu, mỗi quyết định trên đường đi đó cũng phải tối ưu theo phần tương ứng.
+Cần lưu ý một sự thật: với một đường đi tối ưu, mỗi quyết định trên đường đi đó cũng phải tối ưu theo phần tương ứng.
 
 Lấy đường đi tối ưu trong ví dụ làm minh họa. Nếu chỉ xét bốn bước đầu $7 \to 3 \to 8 \to 7$, thì không tồn tại đường đi nào từ đỉnh tới số thứ $2$ ở hàng $4$ có tổng trọng số lớn hơn.
 
 Với mỗi điểm, quyết định ở bước tiếp theo chỉ có hai khả năng: đi xuống trái hoặc đi xuống phải (nếu tồn tại). Vì vậy, chỉ cần ghi lại trọng số lớn nhất tại điểm hiện tại, rồi dùng trọng số lớn nhất đó để thực hiện quyết định tiếp theo và cập nhật trọng số lớn nhất của các điểm phía sau.
 
-Cách làm này còn có một lợi ích khác: ta đã thu nhỏ quy mô bài toán, chia một bài toán thành nhiều bài toán nhỏ hơn. Muốn biết phương án tối ưu từ đỉnh tới hàng thứ $r$, chỉ cần biết thông tin về các phương án tối ưu từ đỉnh tới hàng thứ $r-1$.
+Cách làm này còn có một lợi ích khác: quy mô bài toán đã được thu nhỏ, chia một bài toán thành nhiều bài toán nhỏ hơn. Muốn biết phương án tối ưu từ đỉnh tới hàng thứ $r$, chỉ cần biết thông tin về các phương án tối ưu từ đỉnh tới hàng thứ $r-1$.
 
 Lúc này vẫn còn một vấn đề: giữa các bài toán con có rất nhiều phần chồng lặp, cùng một bài toán con có thể bị truy cập nhiều lần, nên hiệu quả vẫn chưa cao. Cách giải quyết là lưu lại lời giải của từng bài toán con và dùng kỹ thuật ghi nhớ để giới hạn thứ tự truy cập, bảo đảm mỗi bài toán con chỉ được truy cập một lần.
 
@@ -44,10 +44,10 @@ Một bài toán có thể giải bằng quy hoạch động cần thỏa mãn b
 
 Bài toán có cấu trúc con tối ưu cũng có thể phù hợp để giải bằng phương pháp tham lam.
 
-Cần chú ý bảo đảm rằng ta đã xét tất cả các bài toán con được dùng trong lời giải tối ưu.
+Cần lưu ý bảo đảm rằng tất cả các bài toán con được dùng trong lời giải tối ưu đều đã được xét.
 
 1.  Chứng minh thành phần đầu tiên của lời giải tối ưu cho bài toán là việc đưa ra một lựa chọn;
-2.  Với một bài toán đã cho, trong các lựa chọn có thể ở bước đầu tiên, giả sử bạn đã biết lựa chọn nào sẽ dẫn tới lời giải tối ưu. Lúc này bạn không quan tâm lựa chọn đó được tìm ra cụ thể như thế nào, mà chỉ giả định rằng nó đã được biết;
+2.  Với một bài toán đã cho, trong các lựa chọn có thể ở bước đầu tiên, giả sử đã biết lựa chọn nào sẽ dẫn tới lời giải tối ưu. Lúc này không cần quan tâm lựa chọn đó được tìm ra cụ thể như thế nào, mà chỉ giả định rằng nó đã được biết;
 3.  Sau khi đã biết lựa chọn của lời giải tối ưu có thể đạt được, xác định lựa chọn này sinh ra những bài toán con nào và cách mô tả không gian bài toán con tốt nhất;
 4.  Chứng minh rằng, với vai trò là các thành phần cấu tạo nên lời giải tối ưu của bài toán gốc, lời giải của từng bài toán con chính là lời giải tối ưu của bản thân bài toán con đó. Cách chứng minh là phản chứng: giả sử lời giải của một bài toán con nào đó không phải lời giải tối ưu của chính nó, khi đó có thể thay lời giải không tối ưu hiện tại trong lời giải của bài toán gốc bằng lời giải tối ưu của bài toán con này, từ đó thu được một lời giải tốt hơn cho bài toán gốc, mâu thuẫn với giả thiết rằng lời giải ban đầu của bài toán gốc là tối ưu.
 
@@ -68,36 +68,36 @@ Các bài toán con đã được giải sẽ không còn bị ảnh hưởng b�
 <span id="bài-toán-con-chồng-lặp"></span>
 ### Bài toán con chồng lặp
 
-Nếu có nhiều bài toán con chồng lặp, ta có thể dùng bộ nhớ để lưu lời giải của chúng, tránh giải lại cùng một bài toán con và nhờ đó nâng cao hiệu quả.
+Nếu có nhiều bài toán con chồng lặp, có thể dùng bộ nhớ để lưu lời giải của chúng, tránh giải lại cùng một bài toán con và nhờ đó nâng cao hiệu quả.
 
 <span id="ý-tưởng-cơ-bản"></span>
 ### Ý tưởng cơ bản
 
-Với một bài toán có thể giải bằng quy hoạch động, thông thường ta xử lý theo các bước sau:
+Với một bài toán có thể giải bằng quy hoạch động, thông thường xử lý theo các bước sau:
 
 1.  Chia bài toán gốc thành một số **giai đoạn**; mỗi giai đoạn tương ứng với một số bài toán con, rồi trích xuất đặc trưng của các bài toán con đó (gọi là **trạng thái**);
 2.  Tìm các **quyết định** có thể của mỗi trạng thái, hay nói cách khác là cách chuyển đổi qua lại giữa các trạng thái (mô tả bằng ngôn ngữ toán học chính là **phương trình chuyển trạng thái**).
 3.  Giải lần lượt các bài toán ở từng giai đoạn theo đúng thứ tự.
 
-Nếu hiểu theo góc nhìn đồ thị, ta xây dựng một [đồ thị có hướng không chu trình](../graph/dag.md), trong đó mỗi trạng thái tương ứng với một nút trên đồ thị, còn quyết định tương ứng với cạnh nối giữa các nút. Khi đó bài toán được chuyển thành bài toán tìm đường đi dài nhất (ngắn nhất) trên DAG (xem: [DP trên DAG](./dag.md)).
+Nếu hiểu theo góc nhìn đồ thị, có thể xây dựng một [đồ thị có hướng không chu trình](../graph/dag.md), trong đó mỗi trạng thái tương ứng với một nút trên đồ thị, còn quyết định tương ứng với cạnh nối giữa các nút. Khi đó bài toán được chuyển thành bài toán tìm đường đi dài nhất (ngắn nhất) trên DAG (xem: [DP trên DAG](./dag.md)).
 
 <span id="dãy-con-chung-dài-nhất"></span>
 ## Dãy con chung dài nhất
 
 ???+ note "Bài toán dãy con chung dài nhất"
-    Cho một dãy $A$ độ dài $n$ và một dãy $B$ độ dài $m$ ($n,m \leq 5000$). Hãy tìm một dãy dài nhất sao cho dãy đó vừa là dãy con của $A$, vừa là dãy con của $B$.
+    Cho một dãy $A$ độ dài $n$ và một dãy $B$ độ dài $m$ ($n,m \leq 5000$). Cần tìm một dãy dài nhất sao cho dãy đó vừa là dãy con của $A$, vừa là dãy con của $B$.
 
 Định nghĩa dãy con có thể xem tại [dãy con](../string/basic.md). Một ví dụ ngắn: chuỗi `abcde` và chuỗi `acde` có các dãy con chung `a`, `c`, `d`, `e`, `ac`, `ad`, `ae`, `cd`, `ce`, `de`, `acd`, `ade`, `ace`, `cde`, `acde`; độ dài dãy con chung dài nhất là 4.
 
-Gọi $f(i,j)$ là độ dài dãy con chung dài nhất khi chỉ xét $i$ phần tử đầu của $A$ và $j$ phần tử đầu của $B$. Việc tìm độ dài dãy con chung dài nhất trong tình huống này chính là **bài toán con**. $f(i,j)$ là **trạng thái** mà ta nói tới; khi đó $f(n,m)$ là trạng thái cuối cùng cần đạt được, tức kết quả cần tìm.
+Gọi $f(i,j)$ là độ dài dãy con chung dài nhất khi chỉ xét $i$ phần tử đầu của $A$ và $j$ phần tử đầu của $B$. Việc tìm độ dài dãy con chung dài nhất trong tình huống này chính là **bài toán con**. $f(i,j)$ là **trạng thái** đang xét; khi đó $f(n,m)$ là trạng thái cuối cùng cần đạt được, tức kết quả cần tìm.
 
-Với mỗi $f(i,j)$, có ba quyết định: nếu $A_i=B_j$, ta có thể nối phần tử này vào cuối dãy con chung; hai quyết định còn lại lần lượt là bỏ qua $A_i$ hoặc bỏ qua $B_j$. Phương trình chuyển trạng thái như sau:
+Với mỗi $f(i,j)$, có ba quyết định: nếu $A_i=B_j$, có thể nối phần tử này vào cuối dãy con chung; hai quyết định còn lại lần lượt là bỏ qua $A_i$ hoặc bỏ qua $B_j$. Phương trình chuyển trạng thái như sau:
 
 $$
 f(i,j)=\begin{cases}f(i-1,j-1)+1&A_i=B_j\\\max(f(i-1,j),f(i,j-1))&A_i\ne B_j\end{cases}
 $$
 
-Bạn có thể tham khảo [trang tương tác LCS trên SourceForge](http://lcs-demo.sourceforge.net/) để hiểu rõ hơn quá trình cài đặt LCS.
+Có thể tham khảo [trang tương tác LCS trên SourceForge](http://lcs-demo.sourceforge.net/) để hiểu rõ hơn quá trình cài đặt LCS.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -112,20 +112,20 @@ Bạn có thể tham khảo [trang tương tác LCS trên SourceForge](http://lc
 
 Độ phức tạp thời gian của cách làm này là $O(nm)$.
 
-Ngoài ra, bài này còn có thuật toán $O\left(\dfrac{nm}{w}\right)$[^ref1]. Bạn đọc quan tâm có thể tự tìm hiểu thêm.
+Ngoài ra, bài này còn có thuật toán $O\left(\dfrac{nm}{w}\right)$[^ref1]. Nội dung này có thể được tìm hiểu thêm nếu cần.
 
 <span id="dãy-con-không-giảm-dài-nhất"></span>
 ## Dãy con không giảm dài nhất
 
 ???+ note "Bài toán dãy con không giảm dài nhất"
-    Cho một dãy $a$ độ dài $n$ ($n \leq 5000$). Hãy tìm một dãy con dài nhất của $a$ sao cho mỗi phần tử phía sau trong dãy con không nhỏ hơn phần tử ngay trước nó.
+    Cho một dãy $a$ độ dài $n$ ($n \leq 5000$). Cần tìm một dãy con dài nhất của $a$ sao cho mỗi phần tử phía sau trong dãy con không nhỏ hơn phần tử ngay trước nó.
 
 <span id="thuật-toán-1"></span>
 ### Thuật toán 1
 
 Gọi $f(i)$ là độ dài dãy con không giảm dài nhất kết thúc tại $a_i$, khi đó đáp án cần tìm là $\max_{1 \leq i \leq n} f(i)$.
 
-Khi tính $f(i)$, ta thử nối $a_i$ vào sau các dãy con không giảm dài nhất khác để cập nhật đáp án. Vì vậy có thể viết phương trình chuyển trạng thái: $f(i)=\max_{1 \leq j < i,~a_j \leq a_i} (f(j)+1)$.
+Khi tính $f(i)$, thử nối $a_i$ vào sau các dãy con không giảm dài nhất khác để cập nhật đáp án. Vì vậy có thể viết phương trình chuyển trạng thái: $f(i)=\max_{1 \leq j < i,~a_j \leq a_i} (f(j)+1)$.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -138,16 +138,16 @@ Khi tính $f(i)$, ta thử nối $a_i$ vào sau các dãy con không giảm dài
         --8<-- "docs/dp/code/basic/lis-1.py:core"
         ```
 
-Dễ thấy độ phức tạp thời gian của thuật toán này là $O(n^2)$.
+Độ phức tạp thời gian của thuật toán này là $O(n^2)$.
 
 <span id="thuật-toán-2"></span>
 ### Thuật toán 2
 
 Khi phạm vi của $n$ tăng lên $n \leq 10^5$, cách làm thứ nhất không còn đủ nhanh. Dưới đây là một cách làm $O(n \log n)$.
 
-Xét trạng thái đã định nghĩa trước đó $(i, l)$, biểu thị rằng dãy con không giảm kết thúc tại phần tử thứ $i$ có độ dài lớn nhất là $l$. Khác với cách xử lý trạng thái theo $i$ cố định như thường lệ, ở đây ta trực tiếp xét xem $(i, l)$ có hợp lệ hay không:
+Xét trạng thái đã định nghĩa trước đó $(i, l)$, biểu thị rằng dãy con không giảm kết thúc tại phần tử thứ $i$ có độ dài lớn nhất là $l$. Khác với cách xử lý trạng thái theo $i$ cố định như thường lệ, phần này trực tiếp xét xem $(i, l)$ có hợp lệ hay không:
 
--   Trạng thái ban đầu $(1,1)$ chắc chắn hợp lệ.
+-   Trạng thái ban đầu $(1,1)$ là hợp lệ.
 -   Với mọi $(i, l)$, nếu tồn tại $j < i$ sao cho $(j, l-1)$ hợp lệ và $a_j \le a_i$, thì $(i, l)$ hợp lệ.
 
 Cuối cùng, chỉ cần tìm $(i,l)$ có $l$ lớn nhất trong các trạng thái hợp lệ là thu được độ dài dãy con không giảm dài nhất.
@@ -160,7 +160,7 @@ Gọi dãy ban đầu là $a_1, \cdots, a_n$. Định nghĩa mảng $d$, trong �
     -   Giải thích: nếu chèn trực tiếp vào cuối, tính đơn điệu của $d$ sẽ bị phá vỡ; thao tác thay thế bảo đảm phần tử cuối của mỗi độ dài là nhỏ nhất có thể, từ đó giữ lại nhiều khả năng hơn cho các phần tử phía sau.
     -   Tối ưu: vì $d$ đơn điệu không giảm, có thể dùng tìm kiếm nhị phân để tìm trực tiếp vị trí chèn của phần tử, giảm độ phức tạp tổng thể xuống $O(n\log n)$ thay vì $O(n^2)$ khi tìm tuyến tính.
 
-Nếu còn cần xuất ra một dãy con không giảm dài nhất cụ thể, có thể duy trì thêm mảng $d'_x$, biểu thị vị trí của phần tử cuối nhỏ nhất trong các dãy con không giảm độ dài $x$ (nếu có nhiều vị trí thì chọn tùy ý). Khi duy trì, mỗi khi chèn phần tử $a_i$ vào $d_x$, đồng thời cập nhật $d'_x$ thành $i$. Đồng thời cần ghi lại tiền nhiệm tối ưu $p_i$ của $i$ là $d'_{x-1}$. Cuối cùng, xuất phát từ một trạng thái có độ dài lớn nhất bất kỳ và lần theo các tiền nhiệm $p_i$ để truy vết, ta thu được dãy con đầy đủ.
+Nếu còn cần xuất ra một dãy con không giảm dài nhất cụ thể, có thể duy trì thêm mảng $d'_x$, biểu thị vị trí của phần tử cuối nhỏ nhất trong các dãy con không giảm độ dài $x$ (nếu có nhiều vị trí thì chọn tùy ý). Khi duy trì, mỗi khi chèn phần tử $a_i$ vào $d_x$, đồng thời cập nhật $d'_x$ thành $i$. Đồng thời cần ghi lại tiền nhiệm tối ưu $p_i$ của $i$ là $d'_{x-1}$. Cuối cùng, xuất phát từ một trạng thái có độ dài lớn nhất bất kỳ và lần theo các tiền nhiệm $p_i$ để truy vết, thu được dãy con đầy đủ.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -175,10 +175,10 @@ Nếu còn cần xuất ra một dãy con không giảm dài nhất cụ thể, 
 
 Độ phức tạp thời gian của thuật toán này là $O(n\log n)$. Độ phức tạp thời gian để xuất đáp án là $O(\textit{ans})$.
 
-???+ tip "Chú ý"
+???+ tip "Lưu ý"
     Với bài toán dãy con **tăng** dài nhất, tương tự, có thể cho $d_i$ biểu thị giá trị nhỏ nhất của phần tử cuối trong mọi dãy con tăng dài nhất có độ dài $i$.
     
-    Cần chú ý rằng ở bước 2, nếu $a_i \leq d_{len}$, do các phần tử kề nhau trong dãy con tăng dài nhất không được bằng nhau, cần tìm phần tử **đầu tiên** **không nhỏ hơn** $a_i$ trong dãy $d$ và dùng $a_i$ thay thế nó.
+    Cần lưu ý rằng ở bước 2, nếu $a_i \leq d_{len}$, do các phần tử kề nhau trong dãy con tăng dài nhất không được bằng nhau, cần tìm phần tử **đầu tiên** **không nhỏ hơn** $a_i$ trong dãy $d$ và dùng $a_i$ thay thế nó.
     
     Khi cài đặt (lấy C++ làm ví dụ), cần đổi hàm `upper_bound` thành `lower_bound`.
 
