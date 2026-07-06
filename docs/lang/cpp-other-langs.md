@@ -1,11 +1,11 @@
 Bài viết này giới thiệu khác biệt giữa C++ và các ngôn ngữ thường dùng khác,
-tập trung vào những điểm quan trọng hoặc dễ bị bỏ qua giữa C và C++. Dù C++
-thường được xem là gần với C, không phải mọi mã C đều giữ nguyên ý nghĩa khi
-biên dịch bằng C++. Nắm được các khác biệt quan trọng giữa C/C++ giúp tránh một
-số lỗi khó hiểu. Với OIer đang dùng C làm ngôn ngữ chính, bài viết này cũng giúp
-việc chuyển sang C++ thuận lợi hơn. Các tính năng riêng mà C++ bổ sung so với C
-có thể đọc trong phần hướng dẫn [C++ nâng cao](./class.md). Ngoài ra, bài viết
-cũng giới thiệu ngắn gọn khác biệt giữa Python, Java và C++.
+tập trung vào những điểm quan trọng hoặc dễ bị bỏ qua giữa C và C++. Dù C++ gần
+với C, không phải mọi mã C đều giữ nguyên ý nghĩa khi biên dịch bằng C++.
+Nắm được các khác biệt quan trọng giữa C/C++ giúp tránh một số lỗi khó hiểu. Với
+OIer đang dùng C làm ngôn ngữ chính, bài viết này cũng giúp việc chuyển sang C++
+thuận lợi hơn. Các tính năng riêng mà C++ bổ sung so với C có thể đọc trong phần
+hướng dẫn [C++ nâng cao](./class.md). Ngoài ra, bài viết cũng giới thiệu ngắn gọn
+khác biệt giữa Python, Java và C++.
 
 ## Khác biệt giữa C và C++
 
@@ -15,8 +15,8 @@ cũng giới thiệu ngắn gọn khác biệt giữa Python, Java và C++.
 
 Một trong các mục đích ban đầu khi thiết kế template của C++ là thay thế một phần
 cách dùng macro. Học lập trình template là một bước quan trọng khi chuyển từ C
-sang C++. Khác với việc thay thế văn bản của macro, template được trình biên dịch
-kiểm tra kiểu toàn diện hơn trong lúc biên dịch, giúp viết mã chắc chắn hơn. Sau
+sang C++. Khác với cơ chế thay thế văn bản của macro, template được trình biên
+dịch kiểm tra kiểu đầy đủ hơn trong lúc biên dịch, giúp mã chặt chẽ hơn. Từ
 C++11, template hỗ trợ danh sách tham số có độ dài biến đổi, có thể dùng để thay
 thế nhiều trường hợp hàm tham số biến thiên trong C và bảo đảm an toàn kiểu.
 
@@ -25,10 +25,10 @@ thế nhiều trường hợp hàm tham số biến thiên trong C và bảo đ�
 Trong C++, vẫn có thể dùng con trỏ kiểu C; tuy nhiên khi truyền biến, thường nên
 dùng [tham chiếu](./reference.md) của C++ để thực hiện chức năng tương tự. Vì
 tham chiếu phải ràng buộc với một đối tượng hợp lệ, nó có thể tránh một số vấn
-đề do truy cập con trỏ rỗng. Tuy vậy, con trỏ vẫn có chỗ dùng nhờ tính linh hoạt
-của nó. Từ C++11, con trỏ rỗng `NULL` trong C có phương án thay thế an toàn kiểu
-là `nullptr`. Có thể lấy địa chỉ bằng toán tử `&`, rồi giải tham chiếu con trỏ
-bằng toán tử `*`.
+đề do truy cập con trỏ rỗng. Tuy vậy, con trỏ vẫn hữu ích nhờ tính linh hoạt của
+nó. Từ C++11, con trỏ rỗng `NULL` trong C có phương án thay thế an toàn kiểu là
+`nullptr`. Có thể lấy địa chỉ bằng toán tử `&`, rồi giải tham chiếu con trỏ bằng
+toán tử `*`.
 
 ### Kiểu `bool`
 
@@ -91,9 +91,9 @@ struct Node {
 
 Trong C, `const` chủ yếu dùng để giới hạn việc sửa đổi một đối tượng thông qua
 tên hoặc lối truy cập đó. Còn trong C++, do có thêm nhiều tính năng ngôn ngữ,
-`const` cũng có nhiều cách dùng hơn. Nếu cần hằng số có thể dùng ở thời điểm
-biên dịch, C++ thường dùng `constexpr`; còn cách dùng `const` trong C++ được
-giải thích ở trang [hằng](./const.md).
+`const` cũng có nhiều cách dùng hơn. Nếu cần hằng số dùng được ở thời điểm biên
+dịch, C++ thường dùng `constexpr`; còn cách dùng `const` trong C++ được giải
+thích ở trang [hằng](./const.md).
 
 ### Cấp phát bộ nhớ
 
@@ -139,19 +139,18 @@ Chú thích một dòng kiểu C++ `//` không được C hỗ trợ trước C9
 ## Khác biệt giữa Python và C++
 
 Python được dùng rộng rãi trong học máy. So với C++, ưu điểm của Python là dễ
-học và dễ thực hành. Python có cú pháp đơn giản hơn; chẳng hạn khi định nghĩa
-biến, thường không cần khai báo trước kiểu của biến. Tuy nhiên sự đơn giản này
-cũng đi kèm đánh đổi: Python thường có hiệu năng thấp hơn C++. C++ có thể áp
-dụng trên hầu hết nền tảng, bao gồm cả hệ thống nhúng, và có tốc độ thực thi
-nhanh hơn. C++ cũng gần với phần cứng và hệ thống hơn, nên có thể dùng để viết
-hệ điều hành.
+học và dễ thực hành. Python có cú pháp gọn hơn; chẳng hạn khi định nghĩa biến,
+thường không cần khai báo trước kiểu của biến. Tuy nhiên sự thuận tiện này đi
+kèm đánh đổi: Python thường có hiệu năng thấp hơn C++. C++ có thể chạy trên hầu
+hết nền tảng, bao gồm cả hệ thống nhúng, và có tốc độ thực thi nhanh hơn. C++
+cũng gần với phần cứng và hệ thống hơn, nên có thể dùng để viết hệ điều hành.
 
 ## Khác biệt giữa Java và C++
 
 Java và C++ đều là ngôn ngữ hướng đối tượng và đều dùng các tư tưởng hướng đối
 tượng như đóng gói, kế thừa, đa hình. Vì hướng đối tượng có nhiều tính chất hữu
 ích, như kế thừa và kết hợp, cả hai đều hỗ trợ tái sử dụng mã tốt. Vì vậy, so
-với Python, Java và C++ giống nhau hơn.
+với Python, Java và C++ có nhiều điểm giống nhau hơn.
 
 Khác biệt lớn nhất giữa hai ngôn ngữ nằm ở cơ chế JVM của Java. JVM là viết tắt
 của Java Virtual Machine, tức máy ảo Java. Một tính chất quan trọng của Java là
