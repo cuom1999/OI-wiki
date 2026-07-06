@@ -1,14 +1,13 @@
-Theo mặc định, các câu lệnh trong chương trình được thực thi theo thứ tự xuất
-hiện.
-Trong nhiều trường hợp, một số câu lệnh chỉ được thực thi khi điều kiện
-nhất định được thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh
-rẽ nhánh phù hợp giúp logic chương trình mạch lạc hơn.
+Mặc định, các câu lệnh trong chương trình được thực thi theo thứ tự xuất hiện.
+Trong nhiều trường hợp, một số câu lệnh chỉ được thực thi khi một điều kiện nhất
+định thỏa mãn; khi đó cần dùng cấu trúc rẽ nhánh. Việc chọn câu lệnh rẽ nhánh
+phù hợp giúp logic chương trình mạch lạc hơn.
 
 ## Câu lệnh if
 
 ### Câu lệnh if cơ bản
 
-Sau đây là cấu trúc của câu lệnh if cơ bản.
+Sau đây là cấu trúc của câu lệnh `if` cơ bản.
 
 ```cpp
 if (dieu_kien) {
@@ -34,9 +33,9 @@ if (dieu_kien) {
 ```
 
 Câu lệnh `if...else` tương tự câu lệnh `if`; phần `else` không cần viết thêm
-điều kiện. Khi điều kiện của `if` được thỏa mãn, phần thân của `if` sẽ được thực
-thi; khi điều kiện không được thỏa mãn, phần thân của `else` sẽ được thực thi.
-Tương tự, khi phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
+điều kiện. Khi điều kiện của `if` thỏa mãn, phần thân của `if` sẽ được thực thi;
+khi điều kiện không thỏa mãn, phần thân của `else` sẽ được thực thi. Tương tự,
+khi phần thân chỉ có một câu lệnh, có thể lược bỏ cặp dấu ngoặc nhọn.
 
 ### Câu lệnh else if
 
@@ -53,19 +52,20 @@ if (dieu_kien1) {
 ```
 
 Câu lệnh `else if` là sự kết hợp giữa `if` và `else`, dùng để xét nhiều điều
-kiện và chọn một trong nhiều nhánh câu lệnh khác nhau. Câu lệnh `else` cuối cùng
-không cần viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1;
-nếu điều kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3;
-chỉ khi tất cả điều kiện đều sai mới thực thi thân 4.
+kiện và chọn một trong nhiều nhánh câu lệnh. Câu lệnh `else` cuối cùng không cần
+viết thêm điều kiện. Ví dụ, nếu điều kiện 1 đúng thì thực thi thân 1; nếu điều
+kiện 3 đúng còn điều kiện 1 và điều kiện 2 đều sai thì thực thi thân 3; chỉ khi
+tất cả điều kiện đều sai mới thực thi thân 4.
 
-Về bản chất, câu lệnh này tương đương với việc trong nhánh `else` của `if` đầu
-tiên chỉ có một câu lệnh `if`, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền
-nhau. Nếu các điều kiện có quan hệ ngang hàng với nhau, cách viết này giúp logic
-của mã mạch lạc hơn.
+Về bản chất, câu lệnh này tương đương với việc đặt một câu lệnh `if` trong nhánh
+`else` của `if` đầu tiên, rồi lược bỏ cặp dấu ngoặc nhọn và viết chúng liền
+nhau. Nếu các điều kiện có quan hệ ngang hàng, cách viết này giúp logic của mã
+mạch lạc hơn.
 
 Về mặt logic, nó tương tự đoạn mô tả sau:
 
-> Khi giải phương trình bậc hai một ẩn, quan hệ giữa nghiệm của phương trình và biệt thức là:
+> Khi giải phương trình bậc hai một ẩn, quan hệ giữa nghiệm của phương trình và
+> biệt thức là:
 >
 > -   Nếu $\Delta<0$,
 >     phương trình vô nghiệm;
@@ -91,8 +91,8 @@ Khi câu lệnh `switch` được thực thi, trước tiên chương trình tí
 biểu thức chọn, sau đó dựa vào giá trị đó để chọn nhãn tương ứng và bắt đầu thực
 thi từ vị trí nhãn ấy. Trong C++, biểu thức chọn thường là biểu thức kiểu số
 nguyên hoặc kiểu liệt kê; các kiểu lớp chuyển đổi được sang những kiểu này cũng
-hợp lệ. Các nhãn `case` phải là biểu thức hằng có thể chuyển đổi sang
-kiểu của biểu thức chọn. Ví dụ:
+hợp lệ. Các nhãn `case` phải là biểu thức hằng có thể chuyển đổi sang kiểu của
+biểu thức chọn. Ví dụ:
 
 ```cpp
 int i = 1;  // i có kiểu int, thỏa mãn yêu cầu của biểu thức chọn
@@ -114,7 +114,7 @@ switch (i) {
 }
 ```
 
-Trong câu lệnh `switch`, có thể cần thêm câu lệnh `break` để ngắt nhánh hiện
+Trong câu lệnh `switch`, có thể cần thêm câu lệnh `break` để kết thúc nhánh hiện
 tại. Nếu không có `break`, sau khi `case` tương ứng được chọn, chương trình sẽ
 tiếp tục chạy xuống các câu lệnh trong những `case` phía sau và cả `default`.
 Đây gọi là hiện tượng rơi tiếp (`fallthrough`). Ví dụ:
@@ -136,7 +136,7 @@ switch (i) {
 ```
 
 Sau khi chạy đoạn mã trên, kết quả được in ra là `WIKI` và `Hello World`. Khi
-các câu lệnh ở những nhánh sau không cần chạy tiếp, cần dùng `break`. Ví dụ:
+không muốn chạy tiếp các nhánh phía sau, cần dùng `break`. Ví dụ:
 
 ```cpp
 char i = 'B';
