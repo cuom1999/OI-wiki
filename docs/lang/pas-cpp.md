@@ -22,11 +22,15 @@ C++. Thông thường, VS Code sẽ tiện hơn khi dùng kèm các tiện ích 
 
 Chương trình C++ luôn bắt đầu chạy từ phần `main`.
 
-Dấu ngoặc nhọn biểu thị điểm bắt đầu và kết thúc của một khối lệnh: `{` tương đương với `begin` trong Pascal, còn `}` tương đương với `end`.
+Dấu ngoặc nhọn biểu thị điểm bắt đầu và kết thúc của một khối lệnh: `{` tương
+đương với `begin` trong Pascal, còn `}` tương đương với `end`.
 
-Lưu ý rằng, giống Pascal, mỗi câu lệnh C++ phải kết thúc bằng dấu chấm phẩy `;`. Tuy nhiên, sau dấu ngoặc nhọn đóng không cần dấu chấm phẩy, và cuối chương trình cũng không cần dấu chấm `.`.
+Tương tự Pascal, mỗi câu lệnh C++ phải kết thúc bằng dấu chấm phẩy `;`. Tuy
+nhiên, sau dấu ngoặc nhọn đóng không cần dấu chấm phẩy, và cuối chương trình
+cũng không cần dấu chấm `.`.
 
-Về chú thích, `//` biểu thị chú thích trên một dòng, còn `/* */` biểu thị chú thích dạng khối.
+Về chú thích, `//` biểu thị chú thích trên một dòng, còn `/* */` biểu thị chú
+thích dạng khối.
 
 Theo thông lệ, trước hết xét chương trình Hello World.
 
@@ -64,20 +68,31 @@ std::cout << "Hello World!" << std::endl;
 `cout`.
 
 ??? note "Về tiền tố std::"
-    Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới [phần này](basic.md#cin-và-cout).
+    Về vấn đề tiền tố `std::`, xem ghi chú "std là gì?" dưới
+    [phần này](basic.md#cin-và-cout).
 
-Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; về bản chất, nó biểu thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệnh này có nghĩa là `"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy vào luồng xuất.
+Toán tử `<<` ở giữa gợi hình ảnh luồng dữ liệu đang chảy; về bản chất, nó biểu
+thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệnh này có nghĩa là
+`"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy
+vào luồng xuất.
 
-`std::endl` là lệnh **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong Pascal, nhưng trong C++ không có `coutln`. Điểm khác nhau giữa Pascal và C++ là `write('Hello World!')` tương đương với `std::cout << "Hello World!"`, còn `writeln('Hello World!')` tương đương với `std::cout << "Hello World!" << std::endl`.
+`std::endl` là lệnh **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong
+Pascal, nhưng trong C++ không có `coutln`. Điểm khác nhau giữa Pascal và C++ là
+`write('Hello World!')` tương đương với `std::cout << "Hello World!"`, còn
+`writeln('Hello World!')` tương đương với
+`std::cout << "Hello World!" << std::endl`.
 
-Trong câu này, `"Hello World!"` là chuỗi. Trong Pascal, chuỗi dùng dấu nháy đơn `'` chứ không dùng dấu nháy kép; còn trong C++, chuỗi phải dùng dấu nháy kép. Ký tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ nhắc lại.
+Trong câu này, `"Hello World!"` là chuỗi. Trong Pascal, chuỗi dùng dấu nháy đơn
+`'` chứ không dùng dấu nháy kép; còn trong C++, chuỗi phải dùng dấu nháy kép. Ký
+tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ nhắc lại.
 
 Đến đây, phần Hello World gần như đã được giải thích xong.
 
-Có thể sẽ có thắc mắc `return 0` phía sau nghĩa là gì, hoặc `int main()` nghĩa là
-gì. **Tạm thời chưa cần bận tâm**; khi mới bắt đầu viết chương trình, có thể xem
-nó như một khuôn mẫu để viết theo (ví dụ này cũng dùng đúng khuôn mẫu đó). Vì khi
-nhập môn chưa dùng đến tham số trong `main`, không cần viết thành
+Có thể sẽ có thắc mắc `return 0` ở cuối chương trình nghĩa là gì, hoặc
+`int main()` nghĩa là gì. **Tạm thời chưa cần bận tâm**; khi mới bắt đầu viết
+chương trình, có thể xem nó như một khuôn mẫu để viết theo (ví dụ này cũng dùng
+đúng khuôn mẫu đó). Vì khi nhập môn chưa dùng đến tham số trong `main`, không cần
+viết thành
 `int main(int argc, char const *argv[])`.
 
 #### Bài tập đơn giản
@@ -109,9 +124,11 @@ Ghi chú: mã trên có nhiều dòng trống; nếu chưa quen có thể bỏ b
 
 #### Giải thích ngắn gọn
 
-`std::cin` dùng để đọc dữ liệu vào (`cin` tức là C-in), và cú pháp `>>` cũng tương tự cú pháp xuất dữ liệu.
+`std::cin` dùng để đọc dữ liệu vào (`cin` tức là C-in), và cú pháp `>>` cũng
+tương tự cú pháp xuất dữ liệu.
 
-Trong các câu lệnh mới của ví dụ này, quan trọng nhất có hai câu. Câu đầu tiên là câu lệnh khai báo biến.
+Trong các câu lệnh mới của ví dụ này, quan trọng nhất có hai câu. Câu đầu tiên
+là câu lệnh khai báo biến.
 
 ```cpp
 int a, b, c;
@@ -124,7 +141,8 @@ var
 a, b, c: integer;
 ```
 
-Khai báo trong C++ bắt đầu trực tiếp bằng tên kiểu dữ liệu. Trong ví dụ này, `int` (kiểu số nguyên) đứng đầu để cho biết các biến tiếp theo sẽ được khai báo.
+Khai báo trong C++ bắt đầu bằng tên kiểu dữ liệu. Trong ví dụ này, `int` (kiểu
+số nguyên) đứng đầu để cho biết các biến tiếp theo sẽ được khai báo.
 
 Câu lệnh quan trọng tiếp theo là câu lệnh gán.
 
@@ -132,7 +150,8 @@ Câu lệnh quan trọng tiếp theo là câu lệnh gán.
 c = a + b;
 ```
 
-Đây là một khác biệt lớn giữa cú pháp Pascal và C++: phép gán trong Pascal là `:=`, còn trong C++ là `=`; phép so sánh bằng trong C++ là `==`.
+Đây là một khác biệt lớn giữa cú pháp Pascal và C++: phép gán trong Pascal là
+`:=`, còn trong C++ là `=`; phép so sánh bằng trong C++ là `==`.
 
 C++ cũng có thể khởi tạo giá trị cho biến ngay khi khai báo.
 
@@ -143,7 +162,8 @@ int a = 0, b = 0, c = 0;
 #### Bài tập đơn giản
 
 1.  Viết lại đoạn mã, nộp lên OJ và đạt AC.
-2.  Tham khảo thêm cú pháp nhập xuất trong [phần này](basic.md#scanf-và-printf), đồng thời thử tìm hiểu cách xuất dữ liệu có định dạng trong C++.
+2.  Tham khảo thêm cú pháp nhập xuất trong [phần này](basic.md#scanf-và-printf),
+    đồng thời thử tìm hiểu cách xuất dữ liệu có định dạng trong C++.
 
 ### Lời kết và bước tiếp theo
 
@@ -151,7 +171,8 @@ int a = 0, b = 0, c = 0;
 pháp tương ứng giữa Pascal và C++, cũng như các đặc điểm khác nhau của hai ngôn
 ngữ.
 
-Tuy vậy, trước khi tiếp tục, nên đọc trước phần [Phạm vi biến: biến toàn cục và biến cục bộ](#phạm-vi-biến-biến-toàn-cục-và-biến-cục-bộ).
+Tuy vậy, trước khi tiếp tục, nên đọc trước phần
+[Phạm vi biến: biến toàn cục và biến cục bộ](#phạm-vi-biến-biến-toàn-cục-và-biến-cục-bộ).
 
 Có thể tận dụng <kbd>Alt</kbd>+<kbd>←</kbd> và <kbd>Alt</kbd>+<kbd>→</kbd> để quay
 lại hoặc đi tới sau khi nhảy giữa các trang.
@@ -171,9 +192,11 @@ C++ nhìn chung giống Pascal ở phần này. Các kiểu thường gặp gồ
 -   `char`: kiểu ký tự
 -   `void`: kiểu rỗng
 
-Trong C++, dấu nháy đơn được dùng riêng để biểu diễn một ký tự đơn (kiểu ký tự), chẳng hạn `'a'`; còn chuỗi (mảng ký tự) phải dùng dấu nháy kép.
+Trong C++, dấu nháy đơn được dùng riêng để biểu diễn một ký tự đơn (kiểu ký tự),
+chẳng hạn `'a'`; còn chuỗi (mảng ký tự) phải dùng dấu nháy kép.
 
-C++ còn có nhiều kiểu dữ liệu bổ sung. Xem [Fundamental types - cppreference.com](https://en.cppreference.com/w/cpp/language/types).
+C++ còn có nhiều kiểu dữ liệu bổ sung. Xem
+[Fundamental types - cppreference.com](https://en.cppreference.com/w/cpp/language/types).
 
 #### Khai báo hằng
 
@@ -181,7 +204,8 @@ C++ còn có nhiều kiểu dữ liệu bổ sung. Xem [Fundamental types - cppr
 const double PI = 3.1415926;
 ```
 
-Nếu chưa rõ vấn đề liên quan đến mở rộng macro, nên dùng hằng thay vì định nghĩa macro.
+Nếu chưa rõ vấn đề liên quan đến mở rộng macro, nên dùng hằng thay vì định nghĩa
+macro.
 
 ### Toán tử
 
@@ -221,22 +245,30 @@ Phép toán Boolean và phép so sánh:
 
 Ghi chú:
 
-1.  `and` trong Pascal và `&&` trong C++ có độ ưu tiên khác nhau; trong C++ không cần đặt thêm ngoặc quanh từng điều kiện.
-2.  Trong Pascal, so sánh bằng là `=`, phép gán là `:=`; trong C++, so sánh bằng là `==`, phép gán là `=`.
-3.  Nếu viết `a = b` thay vì `a == b` trong ngoặc của câu lệnh `if`, chương trình sẽ không báo lỗi. Nó sẽ gán `b` cho `a`, rồi toàn bộ biểu thức gán `a = b` sẽ có giá trị bằng giá trị của `a` sau khi gán xong.
+1.  `and` trong Pascal và `&&` trong C++ có độ ưu tiên khác nhau; trong C++ không
+    cần đặt thêm ngoặc quanh từng điều kiện.
+2.  Trong Pascal, so sánh bằng là `=`, phép gán là `:=`; trong C++, so sánh bằng
+    là `==`, phép gán là `=`.
+3.  Nếu viết `a = b` thay vì `a == b` trong ngoặc của câu lệnh `if`, chương trình
+    sẽ không báo lỗi. Nó sẽ gán `b` cho `a`, rồi toàn bộ biểu thức gán `a = b` sẽ
+    có giá trị bằng giá trị của `a` sau khi gán xong.
 4.  Trong C++, không cần cân nhắc có nên thêm dấu chấm phẩy sau `end` hay không.
-5.  Trong phép toán Boolean của C++, giá trị không phải Boolean có thể tự động chuyển thành Boolean.
+5.  Trong phép toán Boolean của C++, giá trị không phải Boolean có thể tự động
+    chuyển thành Boolean.
 
 ???+ warning "Nhắc lỗi dễ mắc"
     Đặc biệt lưu ý: **đừng viết `==` thành `=`!**
 
-    Vì cú pháp C/C++ linh hoạt hơn Pascal, nếu viết `if (a=b)` trong câu lệnh điều kiện, chương trình vẫn chạy tiếp bình thường, vì trong C++ biểu thức `a=b` có giá trị trả về.
+    Vì cú pháp C/C++ linh hoạt hơn Pascal, nếu viết `if (a=b)` trong câu lệnh
+    điều kiện, chương trình vẫn chạy tiếp bình thường, vì trong C++ biểu thức
+    `a=b` có giá trị trả về.
 
 #### `case` và `switch`
 
 Không dùng quá nhiều, nên phần này không triển khai chi tiết.
 
-Cần lưu ý: C++ không có `1..n`, và cũng không có bất đẳng thức liên tiếp (ví dụ `1 < x < 2`).
+Cần lưu ý: C++ không có `1..n`, và cũng không có bất đẳng thức liên tiếp (ví dụ
+`1 < x < 2`).
 
 ### Vòng lặp
 
@@ -244,7 +276,9 @@ Ba loại vòng lặp sau, với sáu đoạn mã, đều thực hiện cùng m�
 
 #### Vòng lặp `while`
 
-`while` trong hai ngôn ngữ tương đồng. (Đoạn C++ trong mục này không phải chương trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương tự.)
+`while` trong hai ngôn ngữ tương đồng. Đoạn C++ trong mục này không phải chương
+trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương
+tự.
 
 ```pas
 var i: integer;
