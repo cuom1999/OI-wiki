@@ -5,8 +5,8 @@ Kiến thức tiên quyết: [cây phân đoạn](./seg.md)
 ## Dẫn nhập bài toán
 
 Cho dãy hàm tuyến tính một biến $F=\{f_1,\dots,f_n\}$:
-$f_i: \mathbf{R} \rightarrow \mathbf{R}$,
-trong đó $f_i(x)=k_ix+b_i$ và $k_i,b_i \in \mathbf{R}$.
+$f_i: \mathbb{R} \rightarrow \mathbb{R}$,
+trong đó $f_i(x)=k_ix+b_i$ và $k_i,b_i \in \mathbb{R}$.
 Cần duy trì các thao tác sau:
 
 -   $\operatorname{QueryMax}(l,r)$: cho $l$ và $r$, trả về $\max_{i=l}^r{f_i(0)}$.
@@ -17,15 +17,14 @@ Cần duy trì các thao tác sau:
 Để tiện trình bày, giả sử mọi hàm đều khác nhau đôi một.
 
 Bản chất của phép tịnh tiến sang trái trên một đoạn các hàm bậc nhất là $b_i \leftarrow b_i+k_i\cdot \delta$: với hằng
-số tự do $b_i$, cộng thêm hệ số góc $k_i$ nhân với lượng tịnh tiến theo hoành độ $\delta$.
+số tự do $b_i$, cộng thêm hệ số góc $k_i$ nhân với lượng tịnh tiến theo trục hoành $\delta$.
 
 Thao tác này tương đương với kiểu "cộng đoạn có trọng số theo hệ số vị trí" thường gặp trong nhiều bài toán cấu trúc dữ
 liệu: với mỗi chỉ số $i$ trong đoạn $[l, r]$, cộng vào giá trị của nó một số cố định $\delta$ nhân với hệ số riêng $k_i$
 của vị trí đó. Vì vậy, về bản chất, tịnh tiến đoạn các hàm bậc nhất chính là phép cộng đoạn có trọng số theo hệ số vị
 trí.
 
-Để thể hiện cấu trúc chia để trị nhị phân đặc trưng của KTT,
-phần này bắt đầu ngay từ phép tịnh tiến đoạn.
+Để thể hiện cấu trúc chia để trị nhị phân đặc trưng của KTT, phần này bắt đầu ngay từ phép tịnh tiến đoạn.
 
 <span id="cấu-trúc-dữ-liệu-động-học"></span>
 ## Cấu trúc dữ liệu động học
@@ -65,9 +64,8 @@ Ví dụ: $[f_i(0) > f_j(0)]$.
 ### Giới thiệu
 
 Cây đấu loại động học (Kinetic Tournament Tree, viết tắt là KTT) thuộc nhóm cấu trúc dữ liệu động học. Cấu trúc này xuất
-hiện lần đầu trong bài báo [Data Structures for Mobile
-Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889) năm 1999, dùng để duy trì dữ liệu biến đổi
-liên tục.
+hiện lần đầu trong bài báo [Data Structures for Mobile Data](https://www.sciencedirect.com/science/article/pii/S0196677498909889)
+năm 1999, dùng để duy trì dữ liệu biến đổi liên tục.
 Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động học hóa sau đây đều có thể được gọi là cây đấu loại động học:
 
 -   Sinh chứng chỉ kiểm chứng tính đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh),
@@ -75,9 +73,8 @@ Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động học h�
     ghi lại thời điểm chứng chỉ đó có thể mất hiệu lực.
 -   Khi một chứng chỉ mất hiệu lực, cập nhật đầu ra của thuật toán và duy trì tập chứng chỉ một cách hiệu quả.
 
-Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc
-năm 2020,
-"[Bàn về việc duy trì động giá trị cực trị của hàm số][ktt-training-2020]".
+Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc năm
+2020, "[Bàn về việc duy trì động giá trị cực trị của hàm số][ktt-training-2020]".
 KTT trong giới học thuật và KTT trong giới lập trình thi đấu khác nhau ở lĩnh vực ứng dụng và cách cài đặt,
 nên phần này giới thiệu KTT đã được tối ưu phần nào cho lập trình thi đấu.
 
@@ -97,28 +94,25 @@ Khi chứng chỉ mất hiệu lực,
 cần đi theo đường đi trên cây đến nút có chứng chỉ vừa mất hiệu lực để cập nhật thông tin của nó.
 Để duy trì thời điểm mất hiệu lực của mỗi chứng chỉ,
 nhận thấy thời điểm chứng chỉ mất hiệu lực chính là thời điểm hai hàm có cùng giá trị.
-Khi đó bài toán trở thành tìm hoành độ giao điểm của hai hàm tuyến tính, có thể giải trong $O(1)$.
+Khi đó bài toán trở thành tìm tọa độ $x$ của giao điểm giữa hai hàm tuyến tính, có thể giải trong $O(1)$.
 
 Với mỗi nút trên cây, duy trì hàm đạt giá trị lớn nhất tại $0$,
 thời điểm chứng chỉ hiện tại mất hiệu lực,
 và thời điểm mất hiệu lực sớm nhất của một chứng chỉ trong toàn bộ cây con.
 Nhờ vậy, với thời điểm mất hiệu lực của mỗi chứng chỉ, có thể tìm thấy nó ở đúng thời điểm đó và cập nhật thông tin
 tương ứng.
-Những thông tin này dùng để ghi lại chính các hàm.
-Tiếp theo xét việc duy trì thao tác tịnh tiến đoạn;
-vì thao tác này có thể cộng dồn đơn giản, có thể dùng đánh dấu lười để xử lý.
+Những thông tin này dùng để ghi lại chính các hàm. Tiếp theo xét việc duy trì thao tác tịnh tiến đoạn; vì thao tác này
+có thể cộng dồn đơn giản, có thể dùng đánh dấu lười để xử lý.
 
-Định nghĩa đánh dấu lười $\Delta_v$ biểu thị rằng mọi hàm trên các nút khác trong cây con của nút $v$
-đều cần được tịnh tiến sang trái $\Delta_v$ đơn vị.
-Lúc này, với nút $v$ trên cây,
-một thao tác mới muốn tịnh tiến sang trái mọi hàm trong cây con của nó thêm $\delta$,
-tức $f(x)\leftarrow f(x+\delta)$.
+Định nghĩa đánh dấu lười $\Delta_v$ biểu thị rằng mọi hàm trên các nút khác trong cây con của nút $v$ đều cần được tịnh
+tiến sang trái $\Delta_v$ đơn vị. Lúc này, với nút $v$ trên cây, một thao tác mới muốn tịnh tiến sang trái mọi hàm trong
+cây con của nó thêm $\delta$, tức $f(x)\leftarrow f(x+\delta)$.
 Cần cập nhật đánh dấu lười:
 $\Delta_v\leftarrow \Delta_v + \delta$,
 tức cộng dồn độ lệch của mọi nút khác trong cây con.
 Đồng thời, tịnh tiến sang trái cũng đồng nghĩa với việc giá trị của hàm tại điểm $0$ thay đổi.
-Nếu hoành độ mất hiệu lực của một chứng chỉ là $t$,
-thì sau khi tịnh tiến, hoành độ mất hiệu lực sẽ là $t-\delta$.
+Nếu tọa độ $x$ mất hiệu lực của một chứng chỉ là $t$,
+thì sau khi tịnh tiến, tọa độ $x$ mất hiệu lực sẽ là $t-\delta$.
 Nếu lúc này $t-\delta$ vượt qua điểm $0$, chứng chỉ đã mất hiệu lực;
 khi đó cần đệ quy xuống dưới để tìm nút chứa chứng chỉ hiện tại,
 cập nhật nút đó, rồi cập nhật thông tin mới ngược lên gốc.
@@ -210,7 +204,7 @@ Phần này thuộc nội dung hình học tính toán, nên bài viết không 
 Nếu cần duy trì hàm đa thức hoặc các hàm phức tạp hơn thay vì hàm tuyến tính,
 hai hàm có thể có nhiều giao điểm.
 Cho dãy hàm một biến liên tục và được định nghĩa đầy đủ $F=\{f_1,\dots,f_n\}$:
-$f_i: \mathbf{R} \rightarrow \mathbf{R}$.
+$f_i: \mathbb{R} \rightarrow \mathbb{R}$.
 Trong đó đồ thị của mỗi cặp hàm giao nhau tại nhiều nhất $s$ điểm.
 Một ví dụ tiêu biểu là tập các hàm đa thức bậc $s$, vốn thỏa mãn yêu cầu này.
 
@@ -302,4 +296,4 @@ không phụ thuộc vào bậc đa thức,
 -   G. Alexandron, H. Kaplan, and M. Sharir. Kinetic and dynamic data structures for convex hulls and upper envelopes.
     Computational Geometry, 36(2):144-158, 2007.
 
-[ktt-training-2020]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/IOI2020%E4%B8%AD%E5%9B%BD%E5%9B%BD%E5%AE%B6%E5%80%99%E9%80%89%E9%98%9F%E8%AE%BA%E6%96%87%E9%9B%86%20%E9%9D%9E%E6%AD%A3%E5%BC%8F%E7%89%88.pdf
+[ktt-training-2020]: https://github.com/OI-wiki/libs
