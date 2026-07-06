@@ -37,17 +37,17 @@ Liên kết liên quan: [Đường đi ngắn nhất/Floyd](./shortest-path.md#t
 
 Ký hiệu trọng số cạnh giữa $u,v$ trong đồ thị ban đầu là $val\left(u,v\right)$.
 
-Ta chú ý đến một tính chất của thuật toán Floyd: khi vòng lặp ngoài cùng đến đỉnh $k$ (trước khi bắt đầu lần lặp thứ $k$), trong mảng đường đi ngắn nhất $dis$, $dis_{u,v}$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ chỉ đi qua các đỉnh có chỉ số nằm trong đoạn $\left[1, k\right)$.
+Cần chú ý đến một tính chất của thuật toán Floyd: khi vòng lặp ngoài cùng đến đỉnh $k$ (trước khi bắt đầu lần lặp thứ $k$), trong mảng đường đi ngắn nhất $dis$, $dis_{u,v}$ biểu thị đường đi ngắn nhất từ $u$ đến $v$ chỉ đi qua các đỉnh có chỉ số nằm trong đoạn $\left[1, k\right)$.
 
 Theo định nghĩa của chu trình nhỏ nhất, nó có ít nhất ba đỉnh. Giả sử đỉnh có chỉ số lớn nhất trên chu trình là $w$, hai đỉnh kề với $w$ ở hai phía của chu trình là $u,v$. Khi vòng lặp ngoài cùng liệt kê đến $k=w$, độ dài chu trình này chính là $dis_{u,v}+val\left(v,w\right)+val\left(w,u\right)$.
 
-Vì vậy, trong khi lặp, với mỗi $k$ ta liệt kê các cặp $(i,j)$ thỏa mãn $i<k,j<k$ và cập nhật đáp án.
+Vì vậy, trong khi lặp, với mỗi $k$ liệt kê các cặp $(i,j)$ thỏa mãn $i<k,j<k$ và cập nhật đáp án.
 
 #### Ghi lại đường đi
 
-Lúc này ta đã biết dạng của chu trình là $u\to k\to v$, sau đó đi từ $v$ về $u$ (các đỉnh đi qua đều có chỉ số $<k$).
+Lúc này đã biết dạng của chu trình là $u\to k\to v$, sau đó đi từ $v$ về $u$ (các đỉnh đi qua đều có chỉ số $<k$).
 
-Bài toán chuyển thành tìm đường đi $v\leadsto u$. Theo bất đẳng thức tam giác $dis_{u,v}\le dis_{u,i}+dis_{i,v}$, xét việc ghi lại $pos_{u,v}=j$, biểu thị đỉnh làm cho $dis_{u,v}=dis_{u,j}+dis_{j,v}$. Rõ ràng $j$ nằm trên đường đi $v\leadsto u$.
+Bài toán chuyển thành tìm đường đi $v\leadsto u$. Theo bất đẳng thức tam giác $dis_{u,v}\le dis_{u,i}+dis_{i,v}$, xét việc ghi lại $pos_{u,v}=j$, biểu thị đỉnh làm cho $dis_{u,v}=dis_{u,j}+dis_{j,v}$. Khi đó $j$ nằm trên đường đi $v\leadsto u$.
 
 Do đó có thể tách đường đi thành hai đoạn $v\leadsto j$ và $j\leadsto u$, rồi đệ quy xử lý từng đoạn.
 
@@ -99,7 +99,7 @@ Dưới đây là các cài đặt tham khảo bằng C++ và Python (có ghi l�
           for (int j = 1; j < i; ++j)
             if (ans >
                 (long long)val[i][k] + val[k][j] + dis[i][j]) {  // Tìm thấy chu trình ngắn hơn
-              // Ở đây đảm bảo j<i<k, nên ba đỉnh khác nhau và không có chu trình rỗng.
+              // Điều kiện j<i<k khiến ba đỉnh khác nhau và không có chu trình rỗng.
               ans = val[i][k] + val[k][j] + dis[i][j], cnt = 0;
               path[++cnt] = i, path[++cnt] = k,
               path[++cnt] = j;  // Lần lượt thêm ba đỉnh i,k,j
@@ -202,12 +202,12 @@ Dưới đây là các cài đặt tham khảo bằng C++ và Python (có ghi l�
         for k in range(N):
             # Trước khi cập nhật dis[i][j], kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
             # Chu trình có dạng i -> k -> j -> ... -> i
-            # Ở đây dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
-            # Mã C++ dùng thứ tự lặp i < k và j < i, ở đây cũng theo logic này (0-based)
+            # dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
+            # Mã C++ dùng thứ tự lặp i < k và j < i; phần này cũng theo logic đó (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
                     # Kiểm tra i, k, j có tạo thành chu trình và được nối bằng dis[i][j] hay không
-                    # Đảm bảo các cạnh ban đầu g[i][k] và g[k][j] tồn tại (khác INF)
+                    # Yêu cầu các cạnh ban đầu g[i][k] và g[k][j] tồn tại (khác INF)
                     # Đồng thời đường đi ngắn nhất từ i đến j là dis[i][j] tồn tại (khác INF)
                     if g[i][k] != INF and g[k][j] != INF and dis[i][j] != INF:
                         current_cycle_len = g[i][k] + g[k][j] + dis[i][j]
@@ -247,11 +247,11 @@ Dưới đây là các cài đặt tham khảo bằng C++ và Python (có ghi l�
 ## Bài mẫu
 
 ??? note "[AcWing 344 Chuyến du lịch tham quan](https://www.acwing.com/problem/content/346)"
-    Cho một đồ thị vô hướng có $n$ đỉnh. Hãy tìm một chu trình gồm ít nhất $3$ đỉnh trong đồ thị, các đỉnh trên chu trình không lặp lại, và tổng độ dài các cạnh trên chu trình là nhỏ nhất.
+    Cho một đồ thị vô hướng có $n$ đỉnh. Tìm một chu trình gồm ít nhất $3$ đỉnh trong đồ thị, các đỉnh trên chu trình không lặp lại, và tổng độ dài các cạnh trên chu trình là nhỏ nhất.
     
     Bài toán này được gọi là bài toán chu trình nhỏ nhất trong đồ thị vô hướng.
     
-    Bạn cần in ra một phương án chu trình nhỏ nhất. Nếu chu trình nhỏ nhất không duy nhất, có thể in ra bất kỳ một chu trình nào.
+    Cần in ra một phương án chu trình nhỏ nhất. Nếu chu trình nhỏ nhất không duy nhất, có thể in ra bất kỳ một chu trình nào.
     
     $n \le 100$
 
@@ -298,7 +298,7 @@ Cách làm $O(n^3)$ được chấp nhận cho giới hạn thời gian, chỉ c
       // Vòng lặp ngoài: k là đỉnh trung gian (1 đến n)
       for (int k = 1; k <= n; ++k) {
         // Vòng lặp trong: i và j, dùng để kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
-        // Thứ tự lặp ở đây là i từ 1 đến k-1, j từ 1 đến i-1
+        // Thứ tự lặp là i từ 1 đến k-1, j từ 1 đến i-1
         // Như vậy có thể kiểm tra chu trình i -> k -> j -> ... -> i
         for (int i = 1; i < k; ++i)
           for (int j = 1; j < i; ++j)
@@ -452,8 +452,8 @@ Cách làm $O(n^3)$ được chấp nhận cho giới hạn thời gian, chỉ c
         for k in range(N):
             # Trước khi cập nhật dis[i][j], kiểm tra xem đi qua đỉnh k có tạo được chu trình nhỏ hơn hay không
             # Chu trình có dạng i -> k -> j -> ... -> i
-            # Ở đây dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
-            # Mã C++ dùng thứ tự lặp i < k và j < i, ở đây cũng theo logic này (0-based)
+            # dis[i][j] là đường đi ngắn nhất khi chỉ xét các đỉnh 0 đến k-1 làm đỉnh trung gian
+            # Mã C++ dùng thứ tự lặp i < k và j < i; phần này cũng theo logic đó (0-based)
             for i in range(k):  # 0 <= i < k
                 for j in range(i):  # 0 <= j < i
                     # Kiểm tra i, k, j có tạo thành chu trình và được nối bằng dis[i][j] hay không
@@ -558,13 +558,13 @@ Sau khi hoàn tất, duyệt toàn bộ cây phân đoạn một lần. Khi đi 
 
 Còn có một cách trực tuyến có độ phức tạp thời gian tốt hơn.
 
-Với một truy vấn trên đỉnh $x$, ta chạy đường đi ngắn nhất một nguồn từ $x$, sau đó dựng cây đường đi ngắn nhất và đồng thời xử lý xem mỗi đỉnh nằm trong cây con nào của $x$.
+Với một truy vấn trên đỉnh $x$, chạy đường đi ngắn nhất một nguồn từ $x$, sau đó dựng cây đường đi ngắn nhất và đồng thời xử lý xem mỗi đỉnh nằm trong cây con nào của $x$.
 
 Khi đó chắc chắn có thể tìm một cạnh không thuộc cây sao cho hai đầu mút của cạnh này nằm trong hai cây con khác nhau của gốc. Cạnh không thuộc cây đó cộng với hai đường đi từ hai đầu mút về gốc sẽ tạo thành chu trình nhỏ nhất.
 
 Chứng minh:
 
-Rõ ràng chu trình nhỏ nhất chứa ít nhất một cạnh không thuộc cây mà hai đầu mút của cạnh đó nằm trong hai cây con khác nhau của gốc.
+Chu trình nhỏ nhất chứa ít nhất một cạnh không thuộc cây mà hai đầu mút của cạnh đó nằm trong hai cây con khác nhau của gốc.
 
 Giả sử cạnh đó là $(u,v)$. Khi đó đường đi từ $x$ đến $u$ trên cây đường đi ngắn nhất là đường ngắn nhất trong tất cả các đường đi từ $x$ đến $u$, và đường đi từ $x$ đến $v$ cũng là đường ngắn nhất. Vì vậy chu trình $x\to u\to v\to x$ chắc chắn không dài hơn chu trình nhỏ nhất.
 
