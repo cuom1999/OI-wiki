@@ -28,9 +28,9 @@ int main() {
 
     Thông thường, nên quyết định cần `#include` những tệp tiêu đề nào dựa
     trên nhu cầu của chương trình C++ đang viết. Nếu `#include` thừa tệp tiêu
-    đề, thời gian biên dịch có thể tăng, nhưng thời gian chạy gần như không bị
+    đề, thời gian biên dịch có thể tăng, nhưng thời gian chạy thường không bị
     ảnh hưởng. Ở phần hiện tại chỉ dùng đến hai tệp tiêu đề `iostream` và
-    `cstdio`; nếu chỉ cần `scanf` và `printf`, thì không cần
+    `cstdio`; nếu chỉ dùng `scanf` và `printf`, thì không cần
     `#include <iostream>`.
 
     Có thể `#include` tệp tiêu đề tự viết không? Câu trả lời là có.
@@ -79,10 +79,10 @@ thích ý nghĩa của chương trình, hoặc để khiến một đoạn mã k
 nhưng vẫn được giữ lại trong tệp nguồn.
 
 Trong phát triển phần mềm, chú thích giúp việc bảo trì về sau và việc đọc mã của
-người khác thuận tiện hơn.
+người khác dễ dàng hơn.
 
-Trong OI, rất ít người viết nhiều chú thích, nhưng chú thích giúp làm rõ suy nghĩ
-khi viết mã và thuận tiện cho việc ôn lại sau này. Hơn nữa, nếu cần viết lời
+Trong OI, người viết thường không thêm nhiều chú thích, nhưng chú thích giúp làm rõ
+suy nghĩ khi viết mã và hỗ trợ ôn lại sau này. Hơn nữa, nếu cần viết lời
 giải hoặc giáo trình, lượng chú thích vừa phải sẽ giúp người đọc hiểu ý đồ của
 mã hơn. Nên hình thành thói quen viết chú thích vừa đủ và đúng chỗ.
 
@@ -115,7 +115,7 @@ int main() {
 
 `scanf` và `printf` là các hàm do ngôn ngữ C cung cấp. Trong đa số trường hợp,
 chúng nhanh hơn `cin` và `cout`, đồng thời hỗ trợ điều khiển định dạng nhập xuất
-thuận tiện.
+trực tiếp hơn.
 
 ???+ note "Tối ưu nhập xuất"
     Về khác biệt cụ thể giữa `cin`/`cout` và `scanf`/`printf`, cũng như tối ưu
@@ -166,7 +166,7 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
 ??? note "Vì sao trong `scanf` có toán tử `&`?"
     Trong biểu thức này, `&` là toán tử lấy địa chỉ, trả về địa chỉ của biến
     trong bộ nhớ. Tham số mà `scanf` nhận chính là địa chỉ của biến. Phần
-    [Con trỏ](./pointer.md) sẽ giải thích chi tiết hơn; ở giai đoạn này chỉ cần
+    [Con trỏ](./pointer.md) sẽ giải thích chi tiết hơn; ở giai đoạn này nên
     ghi nhớ điểm trên.
 
 ??? note "`\n` là gì?"
@@ -194,7 +194,7 @@ ví dụ `%.3lf` biểu thị giữ lại ba chữ số sau dấu thập phân.
         dòng là `\r\n`, thì `\r` sẽ còn lại ở cuối chuỗi.
 
     6.  Đặc biệt, `%%` biểu thị `%`, chỉ dùng trong `printf` hoặc `scanf`; trong
-        các chuỗi ký tự khác, chỉ cần dùng `%` trực tiếp là được.
+        các chuỗi ký tự khác, dùng `%` trực tiếp là được.
 
     ??? note "Giá trị trực tiếp (literal) là gì?"
         Literal là một giá trị xuất hiện trực tiếp trong mã, ví dụ `3` là một
@@ -316,7 +316,7 @@ nên dùng thường xuyên, vì sẽ làm giảm tính chuẩn mực của mã:
     mã.
 
 Tuy nhiên, `#define` cũng có ưu điểm, chẳng hạn khi kết hợp với các chỉ thị tiền
-xử lý như `#ifdef` thì rất hiệu quả. Ví dụ:
+xử lý như `#ifdef` thì hiệu quả. Ví dụ:
 
 ```cpp
 #ifdef LINUX
@@ -331,5 +331,4 @@ không cần sửa tệp nguồn. Điều này còn có một ưu điểm: trong
 biên dịch bằng `-DLINUX` không có mã của các hệ điều hành khác; những đoạn mã đó
 đã bị xóa ngay ở giai đoạn tiền xử lý.
 
-`#define` còn có thể sử dụng các toán tử `#`, `##`, giúp việc gỡ lỗi thuận tiện
-hơn rất nhiều.
+`#define` còn có thể sử dụng các toán tử `#`, `##`, giúp việc gỡ lỗi dễ hơn.
