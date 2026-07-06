@@ -281,13 +281,15 @@ False
 
 #### Kiểm tra kiểu dữ liệu
 
-Với một biến, có thể dùng `type(object)` để trả về kiểu của biến. Ví dụ, giá trị của `type(8)` và `type('a')` lần lượt là `<class 'int'>` và `<class 'str'>`.
+Với một biến, có thể dùng `type(object)` để trả về kiểu của biến. Ví dụ, giá trị
+của `type(8)` và `type('a')` lần lượt là `<class 'int'>` và `<class 'str'>`.
 
 <a id="nhập-xuất-cơ-bản"></a>
 
 #### [Nhập xuất cơ bản](https://docs.python.org/3/tutorial/inputoutput.html)
 
-Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và `print()`. Cách dùng `print()` dễ theo dõi:
+Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và
+`print()`. Cách dùng `print()` dễ theo dõi:
 
 ```pycon
 >>> a = [1,2,3]; print(a[-1])  # Mặc định xuống dòng ở cuối khi in
@@ -301,7 +303,8 @@ Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `
 >>> print(str(a[0]) + ', ' + str(a[1]))  # Kết quả như trên, nhưng ghép bằng tay thành một chuỗi
 ```
 
-Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối.
+Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành
+chuỗi và không gồm ký tự xuống dòng ở cuối.
 
 ```pycon
 >>> s = input('Nhập dãy số: '); s  # Khi tự gỡ lỗi, có thể truyền chuỗi vào input() làm lời nhắc
@@ -313,12 +316,16 @@ Nhập dãy số: 1 2 3 4 5 6
 
 #### Chuỗi
 
-Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/3/howto/unicode.html#unicode-howto) với nhiều tính năng, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
+Python 3 cung cấp kiểu chuỗi dựa trên
+[Unicode](https://docs.python.org/3/howto/unicode.html#unicode-howto) với nhiều
+tính năng, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát
+cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn
+hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
 
 ```pycon
 >>> s1 = "O"  # Dấu nháy đơn và dấu nháy kép đều bao được chuỗi; đôi khi giúp tiết kiệm ký tự thoát
 >>> s1 += 'I-Wiki'  # Để đồng bộ với C++, nên dùng dấu nháy kép
->>> 'OI' in s1  # Kiểm tra chuỗi con trực tiếp
+>>> 'OI' in s1  # Kiểm tra chuỗi con
 True
 >>> len(s1)  # Gần như s.length() trong C++, nhưng tổng quát hơn
 7
@@ -337,9 +344,8 @@ Traceback (most recent call last):
 TypeError: 'str' object does not support item assignment
 ```
 
-Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
-
-Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *phép cắt lát* linh hoạt. Dạng chung là `s[chi_so_trai_dong:chi_so_phai_mo:buoc]`:
+Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *phép cắt lát* linh hoạt. Dạng
+chung là `s[chi_so_trai_dong:chi_so_phai_mo:buoc]`:
 
 ```pycon
 >>> s = 'OI-Wiki cam on ban\nchao mung dong gop!'
@@ -357,11 +363,22 @@ Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *phép cắt lát* 
 'OI-Wiki cam on ban\nchao mung dong gop!'
 ```
 
-Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode, nghĩa là chuỗi Python hỗ trợ đa ngôn ngữ.[^ref2] Trong Python, có thể dùng hàm dựng sẵn `ord()` để chuyển một ký tự Unicode sang mã Unicode tương ứng; chiều ngược lại dùng `chr()`. Trong C/C++, kiểu `char` cũng có thể chuyển qua lại với mã ASCII tương ứng.
+Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode, nghĩa là chuỗi
+Python hỗ trợ đa ngôn ngữ.[^ref2] Trong Python, có thể dùng hàm dựng sẵn `ord()`
+để chuyển một ký tự Unicode sang mã Unicode tương ứng; chiều ngược lại dùng
+`chr()`. Trong C/C++, kiểu `char` cũng có thể chuyển qua lại với mã ASCII tương
+ứng.
 
-Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++, nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
+Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều
+ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++,
+nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
 
-Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Phần này không liệt kê từng cái; nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến các phương thức sẵn có trước khi tự viết lại.
+Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số
+lần xuất hiện của một ký tự, đổi hoa thường, v.v. Phần này không liệt kê từng
+cái; nên đọc
+[tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str)
+để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến
+các phương thức sẵn có trước khi tự viết lại.
 
 <a id="tạo-mảng"></a>
 
@@ -414,12 +431,18 @@ C++ STL; vì vậy bài này sẽ gọi là "danh sách" thay vì `list` để t
 >>> nums.clear(); nums  # Giống clear() của vector
 ```
 
-Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn; còn các hàm trong nhóm thuật toán STL như `find()`, `count()`, `max_element()`, `sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi dùng cần phân biệt. Xem thêm [mô tả chi tiết về `list`](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists) trong tài liệu chính thức. Sau đây là một số tính năng mạnh của danh sách với vai trò kiểu tuần tự cơ bản của Python:
-
-Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
+Ví dụ trên cho thấy danh sách có nhiều điểm giống `vector`: các thao tác thường
+dùng trong `vector` thường cũng có phương thức tương ứng trong danh sách. Tuy
+nhiên, một số thao tác như `len()`, `sorted()` xuất hiện dưới dạng hàm dựng sẵn;
+còn các hàm trong nhóm thuật toán STL như `find()`, `count()`, `max_element()`,
+`sort()`, `reverse()` lại trở thành phương thức của đối tượng trong Python. Khi
+dùng cần phân biệt. Xem thêm
+[mô tả chi tiết về `list`](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists)
+trong tài liệu chính thức. Sau đây là một số tính năng mạnh của danh sách với
+vai trò kiểu tuần tự cơ bản của Python:
 
 ```pycon
->>> lst = [1, '1'] + ["2", 3.0]  # Cộng trực tiếp hai danh sách tạo ra danh sách mới
+>>> lst = [1, '1'] + ["2", 3.0]  # Cộng hai danh sách để tạo danh sách mới
 >>> lst  # Chứa nhiều kiểu khác nhau chỉ để minh họa rằng có thể làm vậy; đây không phải thực hành tốt
 [1, '1', '2', 3.0]
 >>> 3 in lst  # Kiểm tra thành viên hữu ích; chuỗi cũng có thao tác này và còn hỗ trợ kiểm tra chuỗi con
@@ -436,7 +459,13 @@ False
 [1, 2, 3, 3.0]
 ```
 
-Ví dụ trên cho thấy một số thao tác thường dùng của danh sách như một kiểu tuần tự. Nhiều thao tác, như cắt lát, dùng chung ý tưởng với chuỗi. Nhưng chuỗi là "kiểu tuần tự bất biến", còn danh sách là "kiểu tuần tự khả biến", nên có thể linh hoạt sửa danh sách bằng phép cắt lát. Trong C/C++, thường xử lý mảng ký tự bằng vòng lặp; sau đây minh họa cách dùng [biểu thức sinh danh sách](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) để chuyển đổi giữa chuỗi và danh sách:
+Ví dụ trên cho thấy một số thao tác thường dùng của danh sách như một kiểu tuần
+tự. Nhiều thao tác, như cắt lát, dùng chung ý tưởng với chuỗi. Nhưng chuỗi là
+"kiểu tuần tự bất biến", còn danh sách là "kiểu tuần tự khả biến", nên có thể
+linh hoạt sửa danh sách bằng phép cắt lát. Trong C/C++, thường xử lý mảng ký tự
+bằng vòng lặp; sau đây minh họa cách dùng
+[biểu thức sinh danh sách](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions)
+để chuyển đổi giữa chuỗi và danh sách:
 
 ```pycon
 >>> # Tạo mảng số nguyên trên đoạn [65, 70); range cũng là một kiểu, có thể xem như khoảng trái đóng phải mở, tham số thứ ba là bước và có thể bỏ qua
@@ -502,15 +531,15 @@ sách hai chiều cho biến khác, ngay cả dùng phép cắt lát để sao c
 "sao chép nông"; các phần tử bên trong vẫn trỏ đến cùng đối tượng. Để giải
 quyết, cần dùng [`deepcopy`](https://docs.python.org/3/library/copy.html) trong
 thư viện chuẩn, hoặc cố gắng tránh gán cả danh sách hai chiều. May là việc tạo
-danh sách hai chiều mà không lặp lại cùng một danh sách tương đối đơn giản: chỉ
-cần dùng biểu thức sinh danh sách.
+danh sách hai chiều mà không lặp lại cùng một danh sách, có thể dùng biểu thức
+sinh danh sách.
 
 ```pycon
->>> vis1 = [[0] * 3 for _ in range(3)]  # Đặt biến đếm không dùng đến thành dấu gạch dưới _ là một quy ước
->>> # Nhưng trong REPL, _ mặc định chỉ kết quả của biểu thức trước, nên cũng có thể dùng hai dấu gạch dưới
+>>> vis1 = [[0] * 3 for _ in range(3)]  # _ thường dùng cho biến đếm bỏ qua
+>>> # Trong REPL, _ mặc định chỉ kết quả trước đó; cũng có thể dùng __
 >>> vis1
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> [id(x) for x in vis1]  # Con số cụ thể sẽ khác, nhưng ba giá trị khác nhau, cho thấy là ba đối tượng khác nhau
+>>> [id(x) for x in vis1]  # Ba giá trị khác nhau, tức là ba đối tượng khác nhau
 [139685508981248, 139685508981568, 139685508981184]
 >>> vis1[0][0] = 1
 [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
@@ -519,10 +548,10 @@ cần dùng biểu thức sinh danh sách.
 
 Biểu thức sinh danh sách được giới thiệu trước vòng lặp vì Python là ngôn ngữ
 thông dịch có tính động cao, nên việc chạy chương trình có nhiều chi phí phụ.
-Đặc biệt, **vòng lặp `for` trong Python chạy tương đối chậm**. Vì vậy khi dùng
-Python mà muốn đạt hiệu năng cao, nên cố gắng dùng biểu thức sinh danh sách,
-hoặc các hàm dựng sẵn như `filter`, `map` để thao tác trực tiếp trên cả kiểu
-tuần tự, qua đó tránh vòng lặp. Dù vậy, vẫn phải tùy bài toán cụ thể.
+Đặc biệt, **vòng lặp `for` thuần Python thường chậm**. Vì vậy khi dùng Python mà
+muốn đạt hiệu năng cao, nên cân nhắc biểu thức sinh danh sách hoặc các hàm dựng
+sẵn như `filter`, `map` để thao tác trên cả kiểu tuần tự, qua đó giảm số vòng lặp
+viết tay. Dù vậy, vẫn phải tùy bài toán cụ thể.
 
 <a id="dùng-numpy"></a>
 
