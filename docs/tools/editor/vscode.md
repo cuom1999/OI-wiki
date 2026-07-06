@@ -2,7 +2,11 @@ author: NachtgeistW, Ir1d, ouuan, Enter-tainer, Xeonacid, ChungZH, keepthethink,
 
 ## Giới thiệu
 
-Visual Studio Code (dưới đây gọi tắt là VS Code) là một trình soạn thảo mã nguồn mở do Microsoft phát triển, hỗ trợ các hệ điều hành như Windows, Linux và macOS. Nó được viết bằng TypeScript và dùng kiến trúc Electron. VS Code có sẵn hỗ trợ cho JavaScript, TypeScript và Node.js, đồng thời cung cấp hệ sinh thái tiện ích mở rộng phong phú cho các ngôn ngữ khác như C, C++, Java, Python, PHP, Go.
+Visual Studio Code (dưới đây gọi tắt là VS Code) là một trình soạn thảo mã nguồn
+mở do Microsoft phát triển, hỗ trợ các hệ điều hành như Windows, Linux và macOS.
+Nó được viết bằng TypeScript và dùng kiến trúc Electron. VS Code có sẵn hỗ trợ
+cho JavaScript, TypeScript và Node.js, đồng thời cung cấp hệ sinh thái tiện ích
+mở rộng phong phú cho các ngôn ngữ khác như C, C++, Java, Python, PHP, Go.
 
 Trang chủ: [Visual Studio Code - trình soạn thảo mã nguồn mở có AI](https://code.visualstudio.com/)
 
@@ -10,13 +14,18 @@ Trước khi đọc các nội dung bên dưới, nên tìm hiểu sơ qua cách
 
 ## Chạy mã bằng tiện ích mở rộng C/C++ Compile Run
 
-C/C++ Compile Run là một tiện ích mở rộng tập trung vào biên dịch và chạy tệp đơn C/C++. Nó tránh được các bước cấu hình rườm rà của tiện ích mở rộng C/C++ truyền thống, rất phù hợp với nhu cầu lập trình thi đấu, dễ bắt đầu và thao tác đơn giản.
+C/C++ Compile Run là một tiện ích mở rộng tập trung vào biên dịch và chạy tệp đơn
+C/C++. Nó tránh được các bước cấu hình phức tạp của tiện ích mở rộng C/C++ truyền
+thống, phù hợp với nhu cầu lập trình thi đấu và thao tác tương đối đơn giản.
 
-Mở VS Code, nhấp biểu tượng `Extensions` (`Tiện ích mở rộng`) ở thanh bên trái (hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm kiếm, tìm C/C++ Compile Run, rồi nhấp `Install` (`Cài đặt`).
+Mở VS Code, nhấp biểu tượng `Extensions` (`Tiện ích mở rộng`) ở thanh bên trái
+(hoặc nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd>), nhập `C++` vào ô tìm
+kiếm, tìm C/C++ Compile Run, rồi nhấp `Install` (`Cài đặt`).
 
 ![](./images/vscode-14.png)
 
-Sau khi cài đặt xong, không cần cấu hình thêm; tiện ích sẽ tự động thích nghi với trình biên dịch MinGW đã cấu hình sẵn theo biến môi trường.
+Sau khi cài đặt xong, không cần cấu hình thêm; tiện ích sẽ tự động thích nghi với
+trình biên dịch MinGW đã cấu hình sẵn theo biến môi trường.
 
 Mở tệp cần chạy, nhấp biểu tượng tam giác ở góc trên bên phải để chạy mã.
 
@@ -28,18 +37,29 @@ Phím tắt:
 
 ## Chạy mã bằng tiện ích mở rộng Code Runner
 
-Sau khi cài đặt và cấu hình tiện ích mở rộng, VS Code có thể hỗ trợ C/C++, nhưng quá trình cấu hình tương đối phức tạp. Một phương án đơn giản để biên dịch và chạy chương trình C++ là cài Code Runner.
+Sau khi cài đặt và cấu hình tiện ích mở rộng, VS Code có thể hỗ trợ C/C++, nhưng
+quá trình cấu hình tương đối phức tạp. Một phương án đơn giản để biên dịch và
+chạy chương trình C++ là cài Code Runner.
 
-Code Runner là một tiện ích mở rộng có thể chạy mã bằng một lần nhấp. Trong công việc phát triển, nó thường được dùng để kiểm tra đoạn mã, và hỗ trợ hơn 40 ngôn ngữ như Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go.
+Code Runner là một tiện ích mở rộng có thể chạy mã bằng một lần nhấp. Trong công
+việc phát triển, nó thường được dùng để kiểm tra đoạn mã, và hỗ trợ hơn 40 ngôn
+ngữ như Node.js, Python, C, C++, Java, PHP, Perl, Ruby, Go.
 
-Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp `Install` (`Cài đặt`); hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) và nhấp `Install` (`Cài đặt`), trình duyệt sẽ tự mở VS Code để cài đặt.
+Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi nhấp `Install`
+(`Cài đặt`); hoặc vào [Marketplace](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)
+và nhấp `Install` (`Cài đặt`), trình duyệt sẽ tự mở VS Code để cài đặt.
 
 ![](./images/vscode-1.jpg)
 
-Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam giác nhỏ ở góc trên bên phải để chạy mã; nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd> (trên macOS là <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) cũng có hiệu quả tương tự.
+Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam giác nhỏ ở góc trên
+bên phải để chạy mã; nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd>
+(trên macOS là <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) cũng có hiệu
+quả tương tự.
 
 ???+ warning "Cảnh báo"
-    Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; nên tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
+    Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, nhiều khả
+    năng hệ thống chưa cài môi trường chạy C/C++; nên tham khảo [trang Hello,
+    World!](../../lang/helloworld.md) để cài đặt.
 
     Nhớ chọn tùy chọn `Run In Terminal` (`chạy trong trình dòng lệnh`) trong phần cài đặt, như hình: ![](./images/vscode-7.png)
 
@@ -58,17 +78,25 @@ Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:
 
 #### GDB
 
-Trong VS Code, tạo một tệp mã C++ mới, viết một số nội dung theo cú pháp C++ (ví dụ `int main(){}`), lưu lại rồi nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi.
-Nếu xuất hiện lời nhắc `Select debugger` (`Chọn trình gỡ lỗi`), chọn `C++ (GDB/LLDB)`. Trong `Select configuration` (`Chọn cấu hình`), người dùng G++ chọn `g++.exe - Build and debug active file`; người dùng Clang chọn `clang++ - Build and debug active file`.
+Trong VS Code, tạo một tệp mã C++ mới, viết một số nội dung theo cú pháp C++ (ví
+dụ `int main(){}`), lưu lại rồi nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi. Nếu xuất
+hiện lời nhắc `Select debugger` (`Chọn trình gỡ lỗi`), chọn `C++ (GDB/LLDB)`.
+Trong `Select configuration` (`Chọn cấu hình`), người dùng G++ chọn
+`g++.exe - Build and debug active file`; người dùng Clang chọn
+`clang++ - Build and debug active file`.
 
 ???+ warning "Cảnh báo"
     Tên cấu hình không cố định mà có thể tùy chỉnh. Các hệ điều hành khác nhau có thể có tên cấu hình khác nhau.
 
-Sau khi hoàn tất, VS Code sẽ tự động hoàn thành thao tác khởi tạo và khởi động gỡ lỗi trong trình dòng lệnh tích hợp phía dưới. Đến đây, toàn bộ quy trình cấu hình GDB đã xong.
+Sau khi hoàn tất, VS Code sẽ tự động hoàn thành thao tác khởi tạo và khởi động gỡ
+lỗi trong trình dòng lệnh tích hợp phía dưới. Đến đây, toàn bộ quy trình cấu hình
+GDB đã xong.
 
 #### LLDB
 
-Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang phát hành của dự án này[^ref2], cài đặt từ trang tiện ích mở rộng của VS Code.
+Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/).
+Sau khi tải tệp `.vsix` từ trang phát hành của dự án này[^ref2], cài đặt từ trang
+tiện ích mở rộng của VS Code.
 
 ![](images/vscode-9.png)
 
@@ -76,7 +104,10 @@ Trước hết làm theo quy trình cấu hình GDB ở trên một lần, rồi
 
 Đến đây, cấu hình LLDB đã hoàn tất. Nhấn <kbd>F5</kbd> lần nữa, thông tin gỡ lỗi sẽ xuất hiện ở phía dưới phần mềm.
 
-Nếu sau này muốn dùng VS Code để biên dịch và gỡ lỗi mã, toàn bộ mã nguồn cần được lưu trong thư mục này. Nếu muốn biên dịch và gỡ lỗi mã nằm trong thư mục khác, cần thực hiện lại các bước trên (hoặc sao chép thư mục con `.vscode` trong thư mục cũ sang thư mục mới).
+Nếu sau này muốn dùng VS Code để biên dịch và gỡ lỗi mã, toàn bộ mã nguồn cần
+được lưu trong thư mục này. Nếu muốn biên dịch và gỡ lỗi mã nằm trong thư mục
+khác, cần thực hiện lại các bước trên (hoặc sao chép thư mục con `.vscode` trong
+thư mục cũ sang thư mục mới).
 
 ### Bắt đầu gỡ lỗi mã
 
@@ -142,7 +173,10 @@ Trong trình soạn thảo mới mở, nhấp `Select Language` (`Chọn ngôn n
 
 ### Phím tắt
 
-Các tệp PDF phím tắt chính thức như dưới đây; cũng có thể nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> trong VS Code để mở bảng lệnh, rồi nhập lệnh `> Help: Keyboard Shortcuts Reference` (`> Trợ giúp: Tham khảo phím tắt`) để mở.[^ref3]
+Các tệp PDF phím tắt chính thức như dưới đây; cũng có thể nhấn
+<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> trong VS Code để mở bảng lệnh, rồi
+nhập lệnh `> Help: Keyboard Shortcuts Reference` (`> Trợ giúp: Tham khảo phím
+tắt`) để mở.[^ref3]
 
 -   [Phím tắt hệ Windows](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)
 -   [Phím tắt hệ Linux](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-linux.pdf)
@@ -181,6 +215,8 @@ Lưu ý rằng lúc này ở góc trên bên phải sẽ có một thanh công c
 
 [^ref1]: Nếu tiện ích mở rộng C/C++ của VS Code chọn lldb làm trình gỡ lỗi, mặc định nó sẽ dùng chương trình lldb-mi; chương trình này đã được nhóm phát triển LLVM tách khỏi dự án và cần tự biên dịch. Bản thân nó cũng có một số lỗi, nên trải nghiệm và mức độ tiện lợi đều không bằng CodeLLDB.
 
-[^ref2]: Sau khi cài CodeLLDB từ kho tiện ích mở rộng, nó sẽ tải phần lõi từ GitHub, tốc độ tải rất chậm và đôi khi lỗi tải, nên tốt nhất là tải trực tiếp phần lõi rồi cài đặt. Khi cập nhật cũng có thể tải và cài theo các bước trên.
+[^ref2]: Sau khi cài CodeLLDB từ kho tiện ích mở rộng, nó sẽ tải phần lõi từ
+    GitHub, tốc độ tải chậm và đôi khi lỗi tải, nên ưu tiên tải trực tiếp phần
+    lõi rồi cài đặt. Khi cập nhật cũng có thể tải và cài theo các bước trên.
 
 [^ref3]: [Tài liệu chính thức của VS Code](https://code.visualstudio.com/docs/).

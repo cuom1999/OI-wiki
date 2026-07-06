@@ -2,9 +2,14 @@ author: topdevst, ksyx, ouuan, Doveqise, hsfzLZH1, wangqingshiyu, sshwy, NanoApe
 
 ## Giới thiệu
 
-Dev-C++ là một môi trường phát triển tích hợp (IDE) tự do dùng để phát triển chương trình C/C++, được phân phối theo giấy phép GPL, dùng MinGW và GDB làm hệ thống biên dịch và gỡ lỗi. Dev-C++ chạy trên Microsoft Windows.
+Dev-C++ là một môi trường phát triển tích hợp (IDE) tự do dùng để phát triển
+chương trình C/C++, được phân phối theo giấy phép GPL, dùng MinGW và GDB làm hệ
+thống biên dịch và gỡ lỗi. Dev-C++ chạy trên Microsoft Windows.
 
-Ưu điểm của Dev-C++ là giao diện đơn giản, thân thiện, cài đặt thuận tiện và hỗ trợ biên dịch tệp đơn, nên nó trở thành lựa chọn đầu tiên của nhiều thí sinh OI mới bắt đầu và người mới học C++. Trong NOIP, các tỉnh dùng Windows làm hệ thống thi đấu thường cài sẵn Dev-C++.
+Ưu điểm của Dev-C++ là giao diện đơn giản, dễ dùng, dễ cài đặt và hỗ trợ
+biên dịch tệp đơn, nên nó trở thành một lựa chọn phổ biến với nhiều thí sinh OI
+mới bắt đầu và người mới học C++. Trong NOIP, các tỉnh dùng Windows làm hệ thống
+thi đấu thường cài sẵn Dev-C++.
 
 Dev-C++ bắt nguồn từ Bloodshed Dev-C++ do Colin Laplace viết. Phiên bản này ngừng cập nhật từ ngày 22 tháng 2 năm 2005. Năm 2006, nhà phát triển chính Colin Laplace từng giải thích về việc này: "Do bận rộn với công việc ngoài đời, tôi không có thời gian tiếp tục phát triển Dev-C++."
 
@@ -12,9 +17,22 @@ Orwell Dev-C++ là một phiên bản phái sinh của Dev-C++, do lập trình 
 
 Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và Orwell Dev-C++. Năm 2020, Embarcadero tài trợ và tiếp quản dự án Dev-C++ cũ để tiếp tục phát triển. Embarcadero Dev-C++ bổ sung hỗ trợ DPI cao, cập nhật trình biên dịch để hỗ trợ các chuẩn C++ mới hơn, đồng thời thêm chế độ tối.
 
-Các bản phân phối Dev-C++ nêu trên đều được coi là "chính thức". Ngoài ra, sau khi Orwell Dev-C++ ngừng cập nhật vào năm 2015, vì nhu cầu giảng dạy, một nhà phát triển cá nhân từ Trung Quốc là [royqh1979](https://github.com/royqh1979) quyết định tiếp tục phát triển nhánh Dev-C++ cá nhân của mình, đặt tên là Red Panda Dev-C++[^ref2]. Nhánh này tích hợp gợi ý thông minh và MinGW64 phiên bản cao, rất thuận tiện cho việc tự học và sử dụng cá nhân.
+Các bản phân phối Dev-C++ nêu trên đều được coi là "chính thức". Ngoài ra, sau
+khi Orwell Dev-C++ ngừng cập nhật vào năm 2015, vì nhu cầu giảng dạy, một nhà
+phát triển cá nhân từ Trung Quốc là [royqh1979](https://github.com/royqh1979)
+quyết định tiếp tục phát triển nhánh Dev-C++ cá nhân của mình, đặt tên là Red
+Panda Dev-C++[^ref2]. Nhánh này tích hợp gợi ý thông minh và MinGW64 phiên bản
+cao, phù hợp cho việc tự học và sử dụng cá nhân.
 
-Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng Qt 5 phát triển Red Panda C++[^ref3] hoàn toàn mới, có thể chạy nguyên sinh trên Windows, Linux, macOS và các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**, **chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ đề tương tự CP Editor: có thể tự viết hoặc **tải mẫu bài từ các trang web OJ/cuộc thi thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
+Sau khi phát hành Red Panda Dev-C++ 6.7.5, tác giả dùng Qt 5 phát triển Red Panda
+C++[^ref3] hoàn toàn mới, có thể chạy nguyên sinh trên Windows, Linux, macOS và
+các hệ thống khác. Giao diện của Red Panda C++ tương tự Dev-C++; ngoài các chức
+năng giống Dev-C++ nhưng hoàn thiện hơn như biên dịch tệp đơn, gỡ lỗi, tô sáng cú
+pháp, tìm kiếm/thay thế, nó còn cung cấp các chức năng cơ bản thường thấy ở IDE
+hiện đại như **giao diện tối**, **gợi ý mã thông minh**, **đổi tên biến/hàm**,
+**chuyển/tự nhận diện mã hóa tệp**. Ngoài ra, Red Panda C++ còn có chức năng bộ
+đề tương tự CP Editor: có thể tự viết hoặc **tải mẫu bài từ các trang web OJ/cuộc
+thi thường gặp**, rồi **tự động chạy và kiểm thử chương trình**.
 
 ## Hướng dẫn sử dụng
 
@@ -136,7 +154,8 @@ Lệnh này đặt kích thước ngăn xếp khoảng 128 MB; nếu cần, có 
 
 #### Định nghĩa macro
 
-Thuận tiện để chấm cục bộ bằng tệp đầu vào/đầu ra hoặc dùng cho mục đích khác.
+Tùy chọn này hữu ích khi chấm cục bộ bằng tệp đầu vào/đầu ra hoặc dùng cho mục
+đích khác.
 
 Thêm lệnh `-D[String]` vào mục `Add the following commands when calling the linker` (`thêm các lệnh sau khi gọi trình liên kết`).
 

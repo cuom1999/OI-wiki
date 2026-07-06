@@ -1,6 +1,9 @@
 ## Giới thiệu
 
-Code::Blocks là một môi trường phát triển tích hợp (IDE) mã nguồn mở được phát triển bằng C++, dùng wxWidgets làm thư viện giao diện đồ họa. Dự án bắt đầu từ năm 2001, hiện do cộng đồng chính thức duy trì, và chủ yếu dùng cho phát triển bằng các ngôn ngữ như C, C++ và Fortran.[^ref1]
+Code::Blocks là một môi trường phát triển tích hợp (IDE) mã nguồn mở được phát
+triển bằng C++, dùng wxWidgets làm thư viện giao diện đồ họa. Dự án bắt đầu từ
+năm 2001, hiện do cộng đồng chính thức duy trì, và chủ yếu dùng cho phát triển
+bằng các ngôn ngữ như C, C++ và Fortran.[^ref1]
 
 Ưu điểm:
 
@@ -12,16 +15,24 @@ Code::Blocks là một môi trường phát triển tích hợp (IDE) mã nguồ
 
 Nhược điểm:
 
--   **Phạm vi chức năng hạn chế**: so với các IDE như CLion hoặc Eclipse, chức năng và công cụ tích hợp còn khá cơ bản, có thể chưa đủ cho nhu cầu của các dự án phức tạp.
+-   **Phạm vi chức năng hạn chế**: so với các IDE như CLion hoặc Eclipse, chức
+    năng và công cụ tích hợp còn cơ bản, có thể chưa đủ cho nhu cầu của các dự án
+    phức tạp.
 
 -   **Hệ sinh thái phần bổ trợ yếu**: dù hỗ trợ phần bổ trợ để mở rộng chức năng, số lượng và chất lượng phần bổ trợ bên thứ ba còn hạn chế, nên hệ sinh thái phần bổ trợ tương đối yếu.
 
 ## Cài đặt
 
-Xem [trang web chính thức của Code::Blocks](https://www.codeblocks.org/downloads/), chọn tải trình cài đặt nhị phân (Binary Release), hoặc tải mã nguồn để biên dịch cài đặt (Source Code). Sau đó chọn trình cài đặt phù hợp với nhu cầu và hệ điều hành, rồi hoàn thành cài đặt theo hướng dẫn.
+Xem [trang web chính thức của Code::Blocks](https://www.codeblocks.org/downloads/),
+chọn tải trình cài đặt nhị phân (Binary Release), hoặc tải mã nguồn để biên dịch
+cài đặt (Source Code). Sau đó chọn trình cài đặt phù hợp với nhu cầu và hệ điều
+hành, rồi hoàn thành cài đặt theo hướng dẫn.
 
 ???+ note "Tải gói cài đặt có kèm MinGW"
-    Với người dùng Windows, nếu không muốn cấu hình trình biên dịch thủ công, nên tải trình cài đặt có kèm MinGW, chẳng hạn `codeblocks-xxxxmingw-setup.exe`. Phiên bản này đã bao gồm trình biên dịch GCC, nên có thể bắt đầu phát triển dự án C và C++ mà không cần cài đặt và cấu hình thêm.
+    Với người dùng Windows, nếu không muốn cấu hình trình biên dịch thủ công, nên
+    tải trình cài đặt có kèm MinGW, chẳng hạn `codeblocks-xxxxmingw-setup.exe`.
+    Phiên bản này đã bao gồm trình biên dịch GCC, nên có thể bắt đầu phát triển
+    dự án C và C++ mà không cần cài đặt và cấu hình thêm.
 
 ![Tải Code::Blocks](./images/codeblocks-1.png)
 
@@ -45,7 +56,11 @@ Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động qu�
 
 ## Sử dụng
 
-Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người dùng tự định nghĩa cách biên dịch dự án. Có thể đặt tùy chọn biên dịch trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`), chọn trình biên dịch, tùy chọn biên dịch, tùy chọn liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties` (`Dự án -> Thuộc tính`), chẳng hạn tên dự án, đường dẫn và danh sách tệp.
+Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ tự định nghĩa cách biên
+dịch dự án. Có thể đặt tùy chọn biên dịch trong `Project -> Build options` (`Dự
+án -> Tùy chọn biên dịch`), chọn trình biên dịch, tùy chọn biên dịch, tùy chọn
+liên kết, v.v.; cũng có thể đặt thuộc tính dự án trong `Project -> Properties`
+(`Dự án -> Thuộc tính`), chẳng hạn tên dự án, đường dẫn và danh sách tệp.
 
 ??? note "Cấu hình Makefile"
     Mặc định Code::Blocks không yêu cầu viết Makefile. Nếu cần dùng Makefile tùy chỉnh, có thể chọn tùy chọn `This is a custom Makefile` (`Đây là Makefile tùy chỉnh`) trong `Project -> Properties` (`Dự án -> Thuộc tính`), rồi đặt đường dẫn Makefile trong `Project -> Build options` (`Dự án -> Tùy chọn biên dịch`).
@@ -54,7 +69,10 @@ Code::Blocks có trình quản lý dự án tích hợp và hỗ trợ người 
 
 Các ngôn ngữ lập trình mà Code::Blocks hỗ trợ bao gồm C, C++ và Fortran. Sau khi khởi động Code::Blocks, có thể tạo dự án mới qua `File -> New -> Project` (`Tệp -> Mới -> Dự án`), chọn loại dự án và mẫu, rồi làm theo hướng dẫn để đặt tên dự án, đường dẫn, trình biên dịch, v.v.; cuối cùng nhấp `Finish` (`Hoàn tất`) để hoàn tất tạo dự án.
 
-Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua `File -> New -> File` (`Tệp -> Mới -> Tệp`); sau khi viết mã và lưu, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`, để tự động biên dịch và chạy tệp hiện tại.
+Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua
+`File -> New -> File` (`Tệp -> Mới -> Tệp`); sau khi viết mã và lưu, nhấp nút
+`Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`, để
+tự động biên dịch và chạy tệp hiện tại.
 
 <span id="build-và-chạy"></span>
 
