@@ -30,7 +30,7 @@ một đầu ra trong mọi môi trường**. Khi viết trình sinh dữ liệu
 tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ thường dùng như `rand()`
 hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau
 khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau,
-v.v. (chẳng hạn cách dùng rất phổ biến `srand(time(nullptr))` phụ thuộc vào thời
+v.v. (chẳng hạn cách dùng phổ biến `srand(time(nullptr))` phụ thuộc vào thời
 điểm chạy), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
 
 Cần lưu ý rằng một khi đã dùng Testlib, không được dùng các hàm sinh số ngẫu nhiên của thư viện chuẩn như `srand()` và `rand()` nữa, nếu không sẽ gặp lỗi khi biên dịch. Vì vậy, **mọi hàm liên quan đến ngẫu nhiên đều cần dùng Testlib thay vì thư viện chuẩn**.
@@ -112,7 +112,7 @@ for (int i = 0; i + 1 < n; i++)
 
 ## Sinh nhiều bộ dữ liệu một lần
 
-Tương tự cách viết không dùng Testlib, chỉ cần chuyển hướng luồng đầu ra trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp một hàm hỗ trợ `startTest(test_index)`, giúp chuyển hướng luồng đầu ra tới tệp `test_index`.
+Tương tự cách viết không dùng Testlib, hãy chuyển hướng luồng đầu ra trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp hàm `startTest(test_index)`, giúp chuyển hướng luồng đầu ra tới tệp `test_index`.
 
 ## Một số lưu ý
 

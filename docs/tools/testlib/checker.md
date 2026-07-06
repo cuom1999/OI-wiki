@@ -120,7 +120,7 @@ Trình kiểm tra này có hai vấn đề chính:
     không hợp lệ thì cũng sẽ dẫn đến WA. Trong cả hai trường hợp, thao tác đúng
     là trả về trạng thái Fail.
 2.  Phần mã đọc đầu ra chuẩn và đầu ra của thí sinh bị lặp. Với bài này, viết
-    hai lần phần đọc không phải vấn đề lớn, vì chỉ cần một vòng `for`; nhưng nếu
+    hai lần phần đọc không phải vấn đề lớn, vì phần đọc chỉ gồm một vòng `for`; nhưng nếu
     gặp bài có đầu ra phức tạp, trình kiểm tra sẽ trở nên rối. Mã lặp làm giảm
     mạnh khả năng bảo trì và khiến việc gỡ lỗi hoặc sửa định dạng khó hơn.
 
@@ -249,7 +249,7 @@ Cách viết này đồng thời kiểm tra cả đầu ra chuẩn có hợp l�
 
 -   Dùng bí danh cho hạng mục.
 
--   Khác với trình xác thực dữ liệu, trình kiểm tra không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một trình kiểm tra so sánh các số nguyên theo thứ tự, chỉ cần xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; trình kiểm tra không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
+-   Khác với trình xác thực dữ liệu, trình kiểm tra không cần cố ý kiểm tra các ký tự không trắng. Ví dụ, với một trình kiểm tra so sánh các số nguyên theo thứ tự, hãy xác định các số nguyên trong đầu ra của thí sinh có lần lượt bằng các số nguyên trong đáp án hay không; trình kiểm tra không cần quan tâm thí sinh in mỗi số trên một dòng hay in tất cả số trên cùng một dòng.
 
 ## Cách dùng
 
@@ -262,7 +262,7 @@ các bước cần thiết. Nhưng nếu cần, có thể chạy trên dòng l�
 
 ## Một số trình kiểm tra có sẵn
 
-Trong nhiều trường hợp, công việc của trình kiểm tra khá đơn giản, chẳng hạn
+Trong nhiều trường hợp, công việc của trình kiểm tra tương đối đơn giản, chẳng hạn
 kiểm tra đầu ra có đúng là số nguyên không, hoặc đầu ra là số thực có thỏa sai số
 yêu cầu không. [Testlib](https://github.com/MikeMirzayanov/testlib/tree/master/checkers)
 đã cung cấp sẵn các cài đặt trình kiểm tra này, và có thể dùng trực tiếp.
