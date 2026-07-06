@@ -6,9 +6,9 @@ Trang này giới thiệu ngắn gọn về sắp xếp cơ số.
 ## Định nghĩa
 
 Sắp xếp cơ số (radix sort) là một thuật toán sắp xếp không dựa trên so sánh,
-ban đầu được dùng để giải bài toán sắp xếp thẻ. Sắp xếp cơ số tách các phần tử
-cần sắp xếp thành $k$ khóa, rồi lần lượt sắp xếp theo từng khóa để hoàn tất việc
-sắp xếp tất cả phần tử.
+ban đầu được dùng để giải bài toán sắp xếp thẻ. Sắp xếp cơ số tách mỗi phần tử
+cần sắp xếp thành $k$ khóa, rồi lần lượt sắp xếp theo từng khóa để thu được thứ
+tự của toàn bộ dãy.
 
 Nếu so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, dạng sắp xếp cơ số đó
 được gọi là sắp xếp cơ số MSD (Most Significant Digit first, xử lý chữ số quan
@@ -64,7 +64,7 @@ khóa thứ $1$, rồi với mỗi nhóm **phần tử có cùng khóa**, tiếp
 
 Sắp xếp cơ số thường được mặc định là ổn định, nên trong sắp xếp cơ số MSD,
 phần này cũng chỉ xét việc dùng **thuật toán ổn định** (thường là sắp xếp đếm)
-để sắp xếp các khóa ở tầng bên trong.
+để sắp xếp theo từng khóa.
 
 Tính đúng đắn có thể tham khảo phần so sánh phần tử có $k$ khóa ở trên.
 
@@ -92,18 +92,17 @@ theo thứ tự từ điển:
     --8<-- "docs/basic/code/radix-sort/radix-sort_2.cpp:core"
     ```
 
-Do việc so sánh hai xâu rất dễ đạt đến độ phức tạp tuyến tính $O(n)$, nên trong
-bài toán sắp xếp xâu, sắp xếp cơ số MSD thường tốt hơn phần lớn các thuật toán
-sắp xếp dựa trên so sánh cả về độ phức tạp thời gian lẫn thời gian chạy thực
-tế.
+Vì một phép so sánh hai xâu có thể tốn thời gian tuyến tính theo độ dài xâu,
+trong bài toán sắp xếp xâu, sắp xếp cơ số MSD thường tốt hơn nhiều thuật toán
+sắp xếp dựa trên so sánh cả về độ phức tạp thời gian lẫn thời gian chạy thực tế.
 
 ### Quan hệ với sắp xếp theo xô
 
 Kiến thức cần biết trước: [Sắp xếp theo xô](./bucket-sort.md)
 
-Sắp xếp theo xô cần các thuật toán sắp xếp khác để hoàn tất việc sắp xếp các
-phần tử bên trong từng xô. Tuy nhiên, hoàn toàn có thể tiếp tục thực hiện
-sắp xếp theo xô trên mỗi xô cho đến khi số phần tử trong xô $\le 1$.
+Sắp xếp theo xô cần các thuật toán sắp xếp khác để sắp xếp các phần tử bên
+trong từng xô. Tuy nhiên, hoàn toàn có thể tiếp tục thực hiện sắp xếp theo xô
+trên mỗi xô cho đến khi số phần tử trong xô $\le 1$.
 
 Vì vậy, một cách hiểu khác về sắp xếp cơ số MSD là: sắp xếp theo xô được cài
 đặt bằng chính sắp xếp theo xô.
@@ -115,8 +114,8 @@ tự chọn), thì trực tiếp chạy sắp xếp chèn rồi trả về, nh�
 ## Sắp xếp cơ số LSD
 
 Sắp xếp cơ số MSD so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, nên cần
-dùng đệ quy hoặc lặp để cài đặt; hằng số thời gian vẫn khá lớn, và khi so sánh
-số tự nhiên thì cũng hơi bất tiện.
+dùng đệ quy hoặc lặp để cài đặt; hằng số thời gian lớn hơn, và khi so sánh số
+tự nhiên thì cách cài đặt cũng phức tạp hơn.
 
 Nếu đảo ngược thao tác đệ quy, tức so sánh lần lượt từ khóa thứ $k$ đến khóa
 thứ $1$, sẽ thu được sắp xếp cơ số LSD, một thuật toán sắp xếp có thể hoàn
@@ -127,13 +126,13 @@ thành mà không cần đệ quy.
 Tách các phần tử cần sắp xếp thành $k$ khóa; trước hết sắp xếp ổn định theo
 khóa thứ $k$ của **tất cả phần tử**, rồi sắp xếp ổn định theo khóa thứ $k-1$
 của **tất cả phần tử**, tiếp tục với khóa thứ $k-2$, v.v. Cuối cùng, sắp xếp
-ổn định theo khóa thứ $1$ của **tất cả phần tử**. Như vậy sẽ hoàn tất việc sắp
-xếp ổn định toàn bộ dãy cần sắp xếp.
+ổn định theo khóa thứ $1$ của **tất cả phần tử**. Như vậy sẽ sắp xếp ổn định
+toàn bộ dãy cần xử lý.
 
 ![Ví dụ toàn bộ quy trình của một lượt sắp xếp cơ số LSD](images/radix-sort-1.png "Ví dụ toàn bộ quy trình của một lượt sắp xếp cơ số LSD")
 
-Sắp xếp cơ số LSD cũng cần dùng một **thuật toán ổn định** để sắp xếp các khóa
-ở tầng bên trong. Tương tự, thường dùng sắp xếp đếm để hoàn thành việc này.
+Sắp xếp cơ số LSD cũng cần dùng một **thuật toán ổn định** để sắp xếp theo từng
+khóa. Tương tự, thường dùng sắp xếp đếm để hoàn thành việc này.
 
 Tính đúng đắn của sắp xếp cơ số LSD có thể tham khảo
 [lời giải bài 8.3-3 trong *Introduction to Algorithms* (bản thứ ba)](https://walkccc.github.io/CLRS/Chap08/8.3/#83-3),
@@ -190,8 +189,8 @@ Sau đây là cách dùng sắp xếp cơ số LSD để sắp xếp phần tử
     --8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
     ```
 
-Để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra
-trước; chỉ cần thực hiện trên mảng `cnt` một thao tác tương đương với
+Để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra trước; có
+thể thực hiện trên mảng `cnt` một thao tác tương đương với
 `std::exclusive_scan`.
 
 ???+ note "Bài mẫu [Luogu P1177 [Mẫu] Sắp xếp](https://www.luogu.com.cn/problem/P1177)"
@@ -239,8 +238,8 @@ trước; chỉ cần thực hiện trên mảng `cnt` một thao tác tương �
 
 ### Tính ổn định
 
-Nếu phép sắp xếp theo khóa ở tầng bên trong là ổn định, thì cả sắp xếp cơ số
-MSD và sắp xếp cơ số LSD đều là thuật toán sắp xếp ổn định.
+Nếu phép sắp xếp theo từng khóa là ổn định, thì cả sắp xếp cơ số MSD và sắp xếp
+cơ số LSD đều là thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
@@ -252,7 +251,7 @@ là lựa chọn tốt hơn.[^ref1]
 Nếu miền giá trị của mỗi khóa đều không lớn, có thể dùng
 [sắp xếp đếm](./counting-sort.md) làm thuật toán sắp xếp bên trong; khi đó độ
 phức tạp là $O(kn+\sum\limits_{i=1}^k w_i)$, trong đó $w_i$ là kích thước miền
-giá trị của khóa thứ $i$. Nếu miền giá trị của khóa rất lớn, có thể trực tiếp
+giá trị của khóa thứ $i$. Nếu miền giá trị của khóa quá lớn, có thể trực tiếp
 dùng sắp xếp dựa trên so sánh với độ phức tạp $O(nk\log n)$ mà không cần dùng
 sắp xếp cơ số.
 

@@ -8,10 +8,9 @@ khí, vì vậy thuật toán này được gọi là sắp xếp nổi bọt.
 
 ## Quy trình
 
-Nguyên lý hoạt động của thuật toán là mỗi lần kiểm tra hai phần tử kề nhau; nếu
-phần tử đứng trước và phần tử đứng sau thỏa điều kiện cần đổi theo thứ tự sắp
-xếp đã cho, thì hoán đổi hai phần tử kề nhau đó. Khi không còn cặp phần tử kề
-nhau nào cần hoán đổi, quá trình sắp xếp hoàn tất.
+Nguyên lý hoạt động của thuật toán là liên tục kiểm tra hai phần tử kề nhau; nếu
+thứ tự của chúng trái với thứ tự sắp xếp cần có, thì hoán đổi hai phần tử đó.
+Khi không còn cặp phần tử kề nhau nào cần hoán đổi, quá trình sắp xếp hoàn tất.
 
 Sau $i$ lượt quét, $i$ phần tử ở cuối dãy là $i$ phần tử lớn nhất. Vì vậy, sắp xếp nổi bọt quét mảng nhiều nhất $n-1$ lần để hoàn tất.
 

@@ -7,8 +7,8 @@ Nguyên lý của nó là chia các phần tử cần sắp xếp thành hai ph�
 "chưa sắp xếp"; mỗi lần chọn một phần tử từ phần "chưa sắp xếp" rồi chèn vào
 đúng vị trí trong phần "đã sắp xếp".
 
-Một thao tác tương tự sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn
-nó vào tay bài theo thứ tự giá trị, rồi mới lấy lá tiếp theo.
+Một thao tác gần với sắp xếp chèn là khi chơi bài: lấy một lá bài từ bàn, chèn
+nó vào tay bài theo đúng thứ tự giá trị, rồi mới lấy lá tiếp theo.
 
 ![Minh họa động sắp xếp chèn](images/insertion-sort-animate.svg)
 
@@ -61,11 +61,14 @@ $$
 
 ## Sắp xếp chèn nhị phân
 
-Sắp xếp chèn còn có thể dùng tìm kiếm nhị phân để tối ưu hiệu năng; khi số phần tử cần sắp xếp lớn, hiệu quả tối ưu sẽ rõ rệt hơn.
+Sắp xếp chèn còn có thể dùng tìm kiếm nhị phân để tìm vị trí chèn, qua đó giảm
+số phép so sánh.
 
 ### Độ phức tạp thời gian
 
-Tư tưởng cơ bản của sắp xếp chèn nhị phân giống với sắp xếp chèn trực tiếp. Sắp xếp chèn nhị phân chỉ tối ưu hằng số trong độ phức tạp thời gian của sắp xếp chèn, nên độ phức tạp sau tối ưu vẫn không đổi.
+Tư tưởng cơ bản của sắp xếp chèn nhị phân giống với sắp xếp chèn trực tiếp. Dù
+tìm kiếm nhị phân giúp giảm số phép so sánh, thuật toán vẫn phải dời phần tử để
+chèn vào đúng vị trí, nên bậc độ phức tạp thời gian không đổi.
 
 ### Cài đặt
 

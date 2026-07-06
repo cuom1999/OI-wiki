@@ -24,8 +24,8 @@ Quy trình của thuật toán gồm ba bước:
 
 ### Vì sao cần tính tổng tiền tố
 
-Nếu chỉ lần lượt đưa các phần tử ứng với giá trị dương trong $C$ vào $A$, thuật
-toán không xử lý tốt trường hợp có nhiều phần tử trùng khóa.
+Nếu chỉ lần lượt đưa các phần tử có số lần xuất hiện dương trong $C$ vào $A$,
+thuật toán không xử lý tốt trường hợp có nhiều phần tử trùng khóa.
 
 Bằng cách tính tổng tiền tố trên mảng phụ $C$, rồi kết hợp với số lần xuất hiện
 của từng khóa, có thể xác định một thứ hạng duy nhất cho mỗi phần tử trùng khóa:
