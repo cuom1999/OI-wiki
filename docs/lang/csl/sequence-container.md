@@ -246,17 +246,17 @@ hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng [`bitset
 ## `array` (C++11)
 
 `std::array` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài cố định** do STL
-cung cấp. Bản chất của nó là lớp bọc trực tiếp quanh mảng nguyên thủy.
+cung cấp. Về bản chất, nó là một lớp bọc mỏng quanh mảng nguyên thủy.
 
 <span id="vì-sao-nên-dùng-array"></span>
 
 ### Vì sao nên dùng `array`
 
-`array` thực chất là lớp bọc mảng của STL. So với `vector`, nó hy sinh khả năng
-mở rộng động, đổi lại hiệu năng gần như tương đương mảng nguyên thủy (với điều
-kiện bật tối ưu hóa đầy đủ). Vì vậy nếu có thể dùng tính năng C++11, gần như mọi
-nơi dùng được mảng nguyên thủy đều có thể thay mảng độ dài cố định bằng `array`,
-còn mảng cấp phát động có thể thay bằng `vector`.
+`array` thực chất là lớp bọc mảng của STL. So với `vector`, nó không hỗ trợ mở
+rộng động, nhưng đổi lại hiệu năng gần như tương đương mảng nguyên thủy (khi bật
+tối ưu hóa đầy đủ). Vì vậy, nếu có thể dùng C++11, gần như mọi nơi dùng mảng
+nguyên thủy có độ dài cố định đều có thể thay bằng `array`, còn mảng cấp phát
+động có thể thay bằng `vector`.
 
 <span id="hàm-thành-viên-array"></span>
 
@@ -266,21 +266,21 @@ còn mảng cấp phát động có thể thay bằng `vector`.
 
 #### Hàm thành viên được định nghĩa ngầm định
 
-| Hàm          | Tác dụng                                                        |
-| ------------ | --------------------------------------------------------------- |
-| `operator=` | Gán từng phần tử từ một `array` khác vào phần tử cùng vị trí của `array` |
+| Hàm          | Tác dụng                                               |
+| ------------ | ------------------------------------------------------ |
+| `operator=` | Gán từng phần tử từ một `array` khác vào vị trí tương ứng |
 
 <span id="truy-cập-phần-tử-array"></span>
 
 #### Truy cập phần tử
 
-| Hàm          | Tác dụng                                             |
-| ------------ | ---------------------------------------------------- |
+| Hàm          | Tác dụng                                                |
+| ------------ | ------------------------------------------------------- |
 | `at`         | Truy cập phần tử chỉ định, đồng thời kiểm tra vượt biên |
 | `operator[]` | Truy cập phần tử chỉ định, **không** kiểm tra vượt biên |
-| `front`      | Truy cập phần tử đầu tiên                            |
-| `back`       | Truy cập phần tử cuối cùng                           |
-| `data`       | Trả về con trỏ đến phần tử đầu tiên của mảng trong bộ nhớ |
+| `front`      | Truy cập phần tử đầu tiên                               |
+| `back`       | Truy cập phần tử cuối cùng                              |
+| `data`       | Trả về con trỏ đến phần tử đầu tiên trong vùng nhớ      |
 
 `at` sẽ ném `std::out_of_range` nếu gặp trường hợp `pos >= size()`.
 
@@ -288,36 +288,36 @@ còn mảng cấp phát động có thể thay bằng `vector`.
 
 #### Dung lượng
 
-| Hàm        | Tác dụng                         |
-| ---------- | -------------------------------- |
-| `empty`    | Kiểm tra bộ chứa có rỗng không |
-| `size`     | Trả về số phần tử đang chứa      |
+| Hàm        | Tác dụng                          |
+| ---------- | --------------------------------- |
+| `empty`    | Kiểm tra bộ chứa có rỗng hay không |
+| `size`     | Trả về số phần tử đang chứa       |
 | `max_size` | Trả về số phần tử tối đa có thể chứa |
 
-Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị `size()` trả về bằng
-giá trị `max_size()` trả về.
+Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị trả về của `size()` và
+`max_size()` luôn bằng nhau.
 
 <span id="thao-tác-array"></span>
 
 ### Thao tác
 
-| Hàm    | Tác dụng                         |
-| ------ | -------------------------------- |
-| `fill` | Điền bộ chứa bằng giá trị chỉ định |
-| `swap` | Trao đổi nội dung                |
+| Hàm    | Tác dụng                           |
+| ------ | ---------------------------------- |
+| `fill` | Gán cùng một giá trị cho toàn bộ bộ chứa |
+| `swap` | Trao đổi nội dung                  |
 
-**Lưu ý, trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải
+**Lưu ý: trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải
 $O(1)$ như các bộ chứa STL thông thường.**
 
 <span id="hàm-không-phải-thành-viên-array"></span>
 
 ### Hàm không phải thành viên
 
-| Hàm             | Tác dụng                              |
-| --------------- | ------------------------------------- |
+| Hàm                     | Tác dụng                                      |
+| ----------------------- | --------------------------------------------- |
 | `operator==` và tương tự | So sánh các giá trị trong `array` theo thứ tự từ điển |
-| `std::get`     | Truy cập một phần tử của `array`       |
-| `std::swap`    | Thuật toán `std::swap` đã được chuyên biệt hóa |
+| `std::get`              | Truy cập một phần tử của `array`              |
+| `std::swap`             | Phiên bản chuyên biệt hóa của `std::swap`     |
 
 Sau đây là một ví dụ sử dụng `array`:
 
