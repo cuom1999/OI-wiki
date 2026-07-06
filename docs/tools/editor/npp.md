@@ -104,7 +104,7 @@ Trước hết là ghi macro: nhất định phải nhấn phím `HOME` hoặc `
 
 Ví dụ với trường hợp vừa rồi, có thể nhấn `END`, rồi lần lượt nhấn `←`, `Backspace`, `←`, `Backspace`, `F`, cuối cùng nhấn `↓` hai lần, rồi dừng ghi.
 
-Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times" ("Macro -> Chạy macro nhiều lần"). Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp OK ("Đồng ý").
+Sau đó là phát lại: trước hết đặt con trỏ ở dòng đầu tiên cần xử lý (dòng 3), rồi nhấp "Macro" -> "Run a Macro Multiple Times" ("Macro -> Chạy macro nhiều lần"). Trong cửa sổ bật lên, chọn macro cần chạy (macro vừa ghi thường là cái đầu tiên), đặt số lần chạy (hoặc chạy thẳng đến cuối tệp), rồi nhấp "OK" ("Đồng ý").
 
 #### Lưu macro
 
@@ -124,14 +124,14 @@ Sau đó chọn "Plugins Admin" ("Quản lý phần bổ trợ") để quản l�
 
 #### Cài phần bổ trợ (kho phần bổ trợ)
 
-1.  Mở thẻ "Available" (Khả dụng), đánh dấu phần bổ trợ cần cài trong danh sách.
-2.  Nhấp nút "Install" (Cài đặt) ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
+1.  Mở thẻ "Available" ("Khả dụng"), đánh dấu phần bổ trợ cần cài trong danh sách.
+2.  Nhấp nút "Install" ("Cài đặt") ở góc trên bên phải, rồi khởi động lại phần mềm theo hướng dẫn.
 
 #### Cài phần bổ trợ (thủ công)
 
 1.  Tải phần bổ trợ (địa chỉ chính thức do bên thứ ba lưu trữ: <https://sourceforge.net/projects/npp-plugins/>). Cần chọn phần bổ trợ **cùng kiến trúc bộ xử lý với lúc cài Notepad++**.
 2.  Tìm tệp tên "XXX.dll" (thường được đặt theo tên phần bổ trợ).
-3.  Trong Notepad++, nhấp Plugins ("Phần bổ trợ") trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
+3.  Trong Notepad++, nhấp "Plugins" ("Phần bổ trợ") trên thanh chức năng, rồi nhấp "Open Plugins Folder" ("Mở thư mục phần bổ trợ") trong danh sách.
 4.  Đặt tệp DLL vừa tìm được vào thư mục đó, rồi khởi động lại Notepad++.
 5.  [Tùy chọn] Xóa tệp vừa sao chép, **nhưng đừng xóa thư mục đã được sinh ra!**
 
@@ -139,11 +139,11 @@ Mẹo: Nếu thử nhiều lần vẫn không thành công, có thể tạo mộ
 
 #### Cập nhật phần bổ trợ
 
-Trong trình quản lý phần bổ trợ, chọn thẻ "Updates" (Bản cập nhật), đánh dấu phần bổ trợ cần cập nhật, rồi nhấp nút "Update" (Cập nhật) ở góc trên bên phải.
+Trong trình quản lý phần bổ trợ, chọn thẻ "Updates" ("Bản cập nhật"), đánh dấu phần bổ trợ cần cập nhật, rồi nhấp nút "Update" ("Cập nhật") ở góc trên bên phải.
 
 #### Gỡ phần bổ trợ
 
-Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed" (Đã cài đặt), đánh dấu phần bổ trợ cần gỡ, rồi nhấp nút "Remove" (Gỡ bỏ) ở góc trên bên phải.
+Cũng trong trình quản lý phần bổ trợ, chọn thẻ "Installed" ("Đã cài đặt"), đánh dấu phần bổ trợ cần gỡ, rồi nhấp nút "Remove" ("Gỡ bỏ") ở góc trên bên phải.
 
 ### Dựng môi trường phát triển
 
