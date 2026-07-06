@@ -6,13 +6,13 @@ Trie, hay cây từ điển, đúng như tên gọi: đây là một cấu trúc
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-Trước hết hãy xem hình sau:
+Trước hết xem hình sau:
 
 ![Ví dụ cây trie biểu diễn các xâu](./images/trie1.png)
 
 Có thể thấy cây trie này dùng cạnh để biểu diễn chữ cái, và đường đi từ gốc đến một đỉnh nào đó trên cây biểu diễn một xâu. Ví dụ, $1\to4\to 8\to 12$ biểu diễn xâu `caa`.
 
-Cấu trúc trie rất dễ hiểu. Ta dùng $\delta(u,c)$ để chỉ đỉnh tiếp theo mà ký tự $c$ của đỉnh $u$ trỏ đến; nói cách khác, đó là đỉnh của xâu thu được khi thêm một ký tự $c$ vào sau xâu mà đỉnh $u$ biểu diễn. (Phạm vi giá trị của $c$ phụ thuộc vào kích thước bảng chữ cái, không nhất thiết là $0\sim 26$.)
+Cấu trúc trie rất dễ hiểu. Dùng $\delta(u,c)$ để chỉ đỉnh tiếp theo mà ký tự $c$ của đỉnh $u$ trỏ đến; nói cách khác, đó là đỉnh của xâu thu được khi thêm một ký tự $c$ vào sau xâu mà đỉnh $u$ biểu diễn. (Phạm vi giá trị của $c$ phụ thuộc vào kích thước bảng chữ cái, không nhất thiết là $0\sim 26$.)
 
 Đôi khi cần đánh dấu những xâu nào đã được chèn vào trie. Khi chèn xong, chỉ cần đánh dấu tại đỉnh biểu diễn xâu đó.
 
@@ -141,17 +141,17 @@ Trie là một phần của [máy tự động AC](./ac-automaton.md).
 <span id="duy-trì-cực-trị-xor"></span>
 ### Duy trì cực trị xor
 
-Nếu xem biểu diễn nhị phân của một số như một xâu, ta có thể xây dựng một trie với bảng chữ cái $\{0,1\}$.
+Nếu xem biểu diễn nhị phân của một số như một xâu, có thể xây dựng một trie với bảng chữ cái $\{0,1\}$.
 
 ???+ note "[BZOJ1954 Đường đi xor dài nhất](https://hydro.ac/p/bzoj-P1954)"
-    Cho một cây có trọng số trên cạnh. Hãy tìm $(u, v)$ sao cho tổng xor các trọng số cạnh trên đường đi từ $u$ đến $v$ là lớn nhất, và in ra giá trị lớn nhất đó. Ở đây tổng xor là phép xor của tất cả trọng số cạnh trên đường đi.
+    Cho một cây có trọng số trên cạnh. Tìm $(u, v)$ sao cho tổng xor các trọng số cạnh trên đường đi từ $u$ đến $v$ là lớn nhất, và in ra giá trị lớn nhất đó. Trong bài này, tổng xor là phép xor của tất cả trọng số cạnh trên đường đi.
     
     Số đỉnh không quá $10^5$, trọng số cạnh nằm trong $[0,2^{31})$.
     
     ??? note "Lời giải"
         Chọn tùy ý một gốc $root$. Gọi $T(u, v)$ là tổng xor các trọng số cạnh trên đường đi giữa $u$ và $v$. Khi đó $T(u,v)=T(root, u)\oplus T(root,v)$, vì phần nằm phía trên [LCA](../graph/lca.md) bị xor hai lần và triệt tiêu nhau.
         
-        Nếu chèn tất cả $T(root, u)$ vào một trie, thì với mỗi $T(root, u)$ ta có thể nhanh chóng tìm $T(root, v)$ sao cho giá trị xor với nó là lớn nhất:
+        Nếu chèn tất cả $T(root, u)$ vào một trie, thì với mỗi $T(root, u)$ có thể nhanh chóng tìm $T(root, v)$ sao cho giá trị xor với nó là lớn nhất:
         
         Bắt đầu từ gốc của trie. Nếu có thể đi sang cây con có bit khác với bit hiện tại của $T(root, u)$ thì đi theo hướng đó; nếu không thì không có lựa chọn nào khác.
         
@@ -174,7 +174,7 @@ Nếu cần duy trì tổng xor, cần xây trie theo giá trị từ bit thấp
 <span id="chèn--xóa"></span>
 #### Chèn & xóa
 
-Để duy trì tổng xor, ta **chỉ cần** biết **tính chẵn lẻ** của số lượng `0` và `1` trên từng bit. Nói cách khác, đối với bit `1`, bit kết quả chỉ bằng `1` khi và chỉ khi số lượng bit `1` tại vị trí đó là lẻ. Hãy luôn ghi nhớ điều này: nếu chỉ duy trì tổng xor, ta chỉ cần biết số lượng `1` trên từng bit, không cần biết trie đang duy trì chính xác những số nào.
+Để duy trì tổng xor, **chỉ cần** biết **tính chẵn lẻ** của số lượng `0` và `1` trên từng bit. Nói cách khác, đối với bit `1`, bit kết quả chỉ bằng `1` khi và chỉ khi số lượng bit `1` tại vị trí đó là lẻ. Vì vậy, nếu chỉ duy trì tổng xor, chỉ cần biết số lượng `1` trên từng bit, không cần biết trie đang duy trì chính xác những số nào.
 
 Với mỗi đỉnh, cần ghi lại ba giá trị sau:
 
@@ -204,7 +204,7 @@ Mã chèn và xóa rất giống nhau.
 
 Những điểm cần chú ý:
 
--   Ở đây `MAXH` là độ sâu của trie, tức là bắt buộc khoảng cách từ mọi lá đến gốc đều bằng `MAXH`. Với một số giá trị nhỏ, đôi khi không cần xây sâu đến vậy (ví dụ: nếu chèn số `4`, tách thành nhị phân là `100`, thì từ gốc chỉ cần chèn ba bit `001`), nhưng ở đây ta vẫn bắt buộc chèn `MAXH` bit. Mục đích là để xử lý nhớ bit khi cộng `+1` toàn cục. Ví dụ: số ban đầu là `3` (`11`), sau khi tăng thành `4` (`100`); nếu lúc chèn `3` chỉ chèn `2` bit thì phần nhớ này sẽ bị mất.
+-   `MAXH` là độ sâu của trie, tức là bắt buộc khoảng cách từ mọi lá đến gốc đều bằng `MAXH`. Với một số giá trị nhỏ, đôi khi không cần xây sâu đến vậy (ví dụ: nếu chèn số `4`, tách thành nhị phân là `100`, thì từ gốc chỉ cần chèn ba bit `001`), nhưng vẫn bắt buộc chèn `MAXH` bit. Mục đích là để xử lý nhớ bit khi cộng `+1` toàn cục. Ví dụ: số ban đầu là `3` (`11`), sau khi tăng thành `4` (`100`); nếu lúc chèn `3` chỉ chèn `2` bit thì phần nhớ này sẽ bị mất.
 
 -   Khi chèn và xóa, chỉ cần sửa `w[]` tại đỉnh lá, rồi duy trì lại trên đường quay lui.
 
@@ -267,9 +267,9 @@ void addall(int o) {
 <span id="quá-trình"></span>
 ##### Quá trình
 
-Hãy xem trong hệ nhị phân thao tác `+1` diễn ra như thế nào.
+Xem trong hệ nhị phân thao tác `+1` diễn ra như thế nào.
 
-Ta chỉ cần tìm bit `0` đầu tiên từ bit thấp lên bit cao, đổi nó thành `1`, rồi đổi tất cả các bit `1` phía sau vị trí đó thành `0`.
+Chỉ cần tìm bit `0` đầu tiên từ bit thấp lên bit cao, đổi nó thành `1`, rồi đổi tất cả các bit `1` phía sau vị trí đó thành `0`.
 
 Dưới đây là vài ví dụ để hình dung: (số trong ngoặc là giá trị thập phân tương ứng)
 
@@ -283,7 +283,7 @@ Tương ứng với thao tác trên trie, thực chất chỉ là hoán đổi h
 
 Nhắc lại định nghĩa của `w[o]`: `w[o]` chỉ số lượng giá trị (trọng số) trên cạnh từ đỉnh `o` đến cha của nó.
 
-Có thể thấy định nghĩa này hơi lạ. Nếu lưu trọng số của hai cạnh đến các con tại đỉnh cha thì có vẻ quen thuộc hơn. Tuy nhiên ở đây, khi hoán đổi hai con, việc lưu khoảng cách đến cha tại đỉnh con rõ ràng tiện hơn.
+Định nghĩa này hơi lạ. Nếu lưu trọng số của hai cạnh đến các con tại đỉnh cha thì có vẻ quen thuộc hơn. Tuy nhiên trong trường hợp này, khi hoán đổi hai con, việc lưu khoảng cách đến cha tại đỉnh con tiện hơn.
 
 <span id="hợp-nhất-01-trie"></span>
 ### Hợp nhất 01-trie
@@ -292,7 +292,7 @@ Có thể thấy định nghĩa này hơi lạ. Nếu lưu trọng số của ha
 
 Có lẽ không có nhiều bài viết về hợp nhất trie. Thực ra ý tưởng hợp nhất trie rất giống hợp nhất cây phân đoạn; có thể tìm "hợp nhất cây phân đoạn" để học cách hợp nhất trie.
 
-Hợp nhất trie thực ra rất đơn giản. Hãy xét một hàm `int merge(int a, int b)`: hàm này nhận vào chỉ số hai đỉnh nằm cùng một vị trí tương đối trong hai trie, và trả về chỉ số đỉnh sau khi hợp nhất xong.
+Hợp nhất trie thực ra rất đơn giản. Xét một hàm `int merge(int a, int b)`: hàm này nhận vào chỉ số hai đỉnh nằm cùng một vị trí tương đối trong hai trie, và trả về chỉ số đỉnh sau khi hợp nhất xong.
 
 <span id="quá-trình_1"></span>
 #### Quá trình
@@ -305,7 +305,7 @@ Có ba trường hợp:
 -   Nếu `b` không có đỉnh ở vị trí này, đỉnh mới sau khi hợp nhất chính là `a`.
 -   Nếu cả `a` và `b` đều tồn tại, hợp nhất thông tin của `b` vào `a`; đỉnh mới sau khi hợp nhất là `a`, sau đó đệ quy xử lý hai con của `a`.
 
-    **Gợi ý**: nếu cần hợp nhất `a` và `b` vào một cây mới, có thể tạo đỉnh mới rồi hợp nhất vào đỉnh mới đó. Phần mã ở đây chỉ hợp nhất thông tin của `b` vào `a`.
+    **Gợi ý**: nếu cần hợp nhất `a` và `b` vào một cây mới, có thể tạo đỉnh mới rồi hợp nhất vào đỉnh mới đó. Phần mã này chỉ hợp nhất thông tin của `b` vào `a`.
 
 <span id="cài-đặt_1"></span>
 #### Cài đặt
@@ -322,7 +322,7 @@ int merge(int a, int b) {
   xorv[a] ^= xorv[b];
   /* Không dùng maintain(),
     vì maintain() hợp nhất thông tin của hai con của a,
-    còn ở đây cần hợp nhất thông tin của hai đỉnh a và b.
+    còn trong hàm này cần hợp nhất thông tin của hai đỉnh a và b.
    */
   ch[a][0] = merge(ch[a][0], ch[b][0]);
   ch[a][1] = merge(ch[a][1], ch[b][1]);
@@ -336,7 +336,7 @@ Thực ra trie nào cũng có thể hợp nhất. Nói cách khác, thao tác h�
     Cho một cây $n$ đỉnh, mỗi đỉnh có trọng số. Có $m$ thao tác.
     Cần hỗ trợ các thao tác sau.
     
-    -   Tăng trọng số của các đỉnh có khoảng cách bằng $1$ đến một đỉnh $x$ trên cây lên $+1$. Ở đây khoảng cách giữa hai đỉnh trên cây được định nghĩa là số cạnh trên đường đi ngắn nhất từ một đỉnh đến đỉnh kia.
+    -   Tăng trọng số của các đỉnh có khoảng cách bằng $1$ đến một đỉnh $x$ trên cây lên $+1$. Khoảng cách giữa hai đỉnh trên cây được định nghĩa là số cạnh trên đường đi ngắn nhất từ một đỉnh đến đỉnh kia.
     
     -   Giảm trọng số trên một đỉnh $x$ đi $v$.
     
@@ -358,7 +358,7 @@ Thực ra trie nào cũng có thể hợp nhất. Nói cách khác, thao tác h�
     Gọi các đỉnh trong cây con của đỉnh $x$ (bao gồm chính $x$) là $c_1,c_2,\dots,c_k$, định nghĩa giá trị của $x$ là:
     $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ trong đó $d(x,y)$
     biểu diễn số cạnh trên đường đi đơn giản duy nhất giữa đỉnh $x$ và đỉnh $y$ trên cây, $d(x,x) = 0$. $\oplus$ biểu diễn phép xor.
-    Hãy tính giá trị của $\sum\limits_{i=1}^n val(i)$.
+    Tính giá trị của $\sum\limits_{i=1}^n val(i)$.
     
     ??? note "Lời giải"
         Xét đóng góp của mỗi đỉnh lên tất cả các tổ tiên của nó.
