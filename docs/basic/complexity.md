@@ -20,12 +20,12 @@ Khi đánh giá một thuật toán nhanh hay chậm, cần xét kích thước 
 
 Các lý do chính khiến cần xét xu hướng thời gian chạy thay đổi theo kích thước dữ liệu là:
 
-1.  Máy tính hiện đại có thể xử lý hàng trăm triệu phép toán cơ bản, thậm chí nhiều hơn, trong mỗi giây, nên kích thước dữ liệu cần xử lý thường rất lớn. Nếu thuật toán A cần $100n$ phép toán trên dữ liệu kích thước $n$, còn thuật toán B cần $n^2$ phép toán, thì khi kích thước dữ liệu nhỏ hơn $100$, thuật toán B chạy nhanh hơn. Tuy nhiên, trong một giây, thuật toán A có thể xử lý dữ liệu cỡ hàng triệu, còn thuật toán B chỉ xử lý được dữ liệu cỡ hàng chục nghìn. Khi cho phép thuật toán chạy lâu hơn, ảnh hưởng của độ phức tạp thời gian lên kích thước dữ liệu có thể xử lý sẽ càng rõ rệt, lớn hơn rất nhiều so với ảnh hưởng của thời gian chạy ở cùng một kích thước dữ liệu.
-2.  Số phép toán cơ bản được dùng để biểu diễn thời gian chạy của thuật toán, nhưng thời gian thực tế của các phép toán cơ bản khác nhau là khác nhau; chẳng hạn phép cộng, trừ nhanh hơn phép chia rất nhiều. Khi tính độ phức tạp thời gian, việc bỏ qua khác biệt giữa các phép toán cơ bản, cũng như khác biệt giữa một phép toán cơ bản và mười phép toán cơ bản, giúp loại bỏ ảnh hưởng của sự khác nhau về thời gian thực hiện giữa các phép toán cơ bản.
+1.  Máy tính hiện đại có thể xử lý hàng trăm triệu phép toán cơ bản, thậm chí nhiều hơn, trong mỗi giây, nên kích thước dữ liệu cần xử lý thường lớn. Nếu thuật toán A cần $100n$ phép toán trên dữ liệu kích thước $n$, còn thuật toán B cần $n^2$ phép toán, thì khi kích thước dữ liệu nhỏ hơn $100$, thuật toán B chạy nhanh hơn. Tuy nhiên, trong một giây, thuật toán A có thể xử lý dữ liệu cỡ hàng triệu, còn thuật toán B chỉ xử lý được dữ liệu cỡ hàng chục nghìn. Khi cho phép thuật toán chạy lâu hơn, ảnh hưởng của độ phức tạp thời gian lên kích thước dữ liệu có thể xử lý sẽ càng rõ rệt, lớn hơn đáng kể so với ảnh hưởng của thời gian chạy ở cùng một kích thước dữ liệu.
+2.  Số phép toán cơ bản được dùng để biểu diễn thời gian chạy của thuật toán, nhưng thời gian thực tế của các phép toán cơ bản khác nhau là khác nhau; chẳng hạn phép cộng, trừ nhanh hơn phép chia đáng kể. Khi tính độ phức tạp thời gian, việc bỏ qua khác biệt giữa các phép toán cơ bản, cũng như khác biệt giữa một phép toán cơ bản và mười phép toán cơ bản, giúp loại bỏ ảnh hưởng của sự khác nhau về thời gian thực hiện giữa các phép toán cơ bản.
 
 Thời gian chạy của thuật toán không hoàn toàn do kích thước đầu vào quyết định, mà còn liên quan đến nội dung đầu vào. Vì vậy, độ phức tạp thời gian còn được chia thành một số loại, chẳng hạn:
 
-1.  Độ phức tạp thời gian trong trường hợp xấu nhất, tức độ phức tạp ứng với đầu vào tốn thời gian nhất trong mỗi kích thước đầu vào. Trong lập trình thi đấu, vì đầu vào có thể là bất kỳ dữ liệu nào trong phạm vi đã cho, để bảo đảm thuật toán chạy được với mọi dữ liệu trong phạm vi đó, thường xét độ phức tạp thời gian trong trường hợp xấu nhất.
+1.  Độ phức tạp thời gian trong trường hợp bất lợi nhất, tức độ phức tạp ứng với đầu vào tốn thời gian nhất trong mỗi kích thước đầu vào. Trong lập trình thi đấu, vì đầu vào có thể là bất kỳ dữ liệu nào trong phạm vi đã cho, để bảo đảm thuật toán chạy được với mọi dữ liệu trong phạm vi đó, thường xét độ phức tạp thời gian trong trường hợp bất lợi nhất.
 2.  Độ phức tạp thời gian trung bình (kỳ vọng), tức độ phức tạp của giá trị trung bình thời gian chạy trên tất cả đầu vào có thể có trong mỗi kích thước đầu vào (độ phức tạp thời gian chạy kỳ vọng với đầu vào ngẫu nhiên).
 
 Cụm “xu hướng thời gian chạy tăng theo kích thước dữ liệu” là một khái niệm còn mơ hồ; cần dùng **ký hiệu tiệm cận** được giới thiệu bên dưới để biểu diễn độ phức tạp thời gian một cách hình thức.
@@ -52,7 +52,7 @@ Ký hiệu $\Theta$ đồng thời cho cận trên và cận dưới của một
 
 Khi nghiên cứu độ phức tạp thời gian, ký hiệu $O$ thường được dùng vì điều cần quan tâm thường là cận trên của thời gian chạy chương trình, chứ không phải cận dưới của nó.
 
-Cần phân biệt rằng “cận trên” và “cận dưới” trong ngữ cảnh này nói về xu hướng biến thiên của hàm, chứ không nói trực tiếp về thuật toán. Cận trên của thời gian chạy thuật toán tương ứng với “độ phức tạp thời gian trong trường hợp xấu nhất”, chứ không phải ký hiệu $O$ lớn. Vì vậy, dùng ký hiệu $\Theta$ để biểu diễn độ phức tạp thời gian trong trường hợp xấu nhất là hoàn toàn hợp lệ; thậm chí $\Theta$ chính xác hơn $O$ trong một số ngữ cảnh. Những lý do chính khiến ký hiệu $O$ thường được dùng là: thứ nhất, đôi khi chỉ chứng minh được cận trên của độ phức tạp thời gian mà không chứng minh được cận dưới (thường gặp trong các thuật toán và phân tích độ phức tạp phức tạp hơn); thứ hai, $O$ dễ gõ trên máy tính hơn.
+Cần phân biệt rằng “cận trên” và “cận dưới” trong ngữ cảnh này nói về xu hướng biến thiên của hàm, chứ không nói trực tiếp về thuật toán. Cận trên của thời gian chạy thuật toán tương ứng với “độ phức tạp thời gian trong trường hợp bất lợi nhất”, chứ không phải ký hiệu $O$ lớn. Vì vậy, dùng ký hiệu $\Theta$ để biểu diễn độ phức tạp thời gian trong trường hợp bất lợi nhất là hoàn toàn hợp lệ; thậm chí $\Theta$ chính xác hơn $O$ trong một số ngữ cảnh. Những lý do chính khiến ký hiệu $O$ thường được dùng là: thứ nhất, đôi khi chỉ chứng minh được cận trên của độ phức tạp thời gian mà không chứng minh được cận dưới (thường gặp trong các thuật toán và phân tích độ phức tạp phức tạp hơn); thứ hai, $O$ dễ gõ trên máy tính hơn.
 
 ### Ký hiệu Ω lớn
 
@@ -157,13 +157,13 @@ Khi cần thực hiện một số phép toán nào đó, cần xác định li�
 
 Nếu độ lớn của $N$ không được xem là kích thước đầu vào, độ phức tạp thời gian của đoạn mã này là $O(1)$.
 
-Khi tính độ phức tạp thời gian, việc xác định biến nào được xem là kích thước đầu vào là rất quan trọng. Mọi đại lượng không liên quan đến kích thước đầu vào đều được xem là hằng số và có thể coi là $1$ khi tính độ phức tạp.
+Khi tính độ phức tạp thời gian, việc xác định biến nào được xem là kích thước đầu vào là điều quan trọng. Mọi đại lượng không liên quan đến kích thước đầu vào đều được xem là hằng số và có thể coi là $1$ khi tính độ phức tạp.
 
 Trong các thảo luận lý thuyết về độ phức tạp thời gian, “thuật toán có thể giải bài toán ở mọi kích thước” là một giả định cơ bản (mặc dù trong thực tế, do giới hạn thời gian và bộ nhớ, không thể giải các bài toán có kích thước quá lớn). Vì vậy, việc có thể giải trong thời gian hằng số một bài toán có kích thước dữ liệu hữu hạn (ví dụ, tính trước đáp án cho mọi đầu vào có thể trong phạm vi dữ liệu) không làm cho độ phức tạp thời gian của thuật toán trở thành $O(1)$.
 
 ## Định lý Master
 
-Có thể dùng định lý Master để nhanh chóng tìm độ phức tạp của các thuật toán đệ quy.
+Có thể dùng định lý Master để tìm nhanh độ phức tạp của các thuật toán đệ quy.
 Hệ thức truy hồi của định lý Master như sau:
 
 $$
