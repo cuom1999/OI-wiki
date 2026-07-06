@@ -6,7 +6,7 @@ Trang này chủ yếu giới thiệu các bước cài đặt một số trình
 
 #### Tải xuống và cài đặt bằng tay
 
-Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downloads), nơi có nhiều bản dựng. Để thuận tiện, hướng dẫn này dùng bản dựng do WinLibs cung cấp.
+Truy cập trang tải xuống của [MinGW-w64](https://www.mingw-w64.org/downloads), nơi có nhiều bản dựng. Hướng dẫn này dùng bản dựng do WinLibs cung cấp.
 
 Trước hết, vào [WinLibs](https://winlibs.com) để tải gói cài đặt mới nhất và chọn phiên bản phù hợp. Bài viết này dùng GCC 12.3.0 + LLVM/Clang/LLD/LLDB 16.0.4 + MinGW-w64 11.0.0 (UCRT) làm ví dụ:
 
@@ -22,7 +22,7 @@ tiếng Anh hoặc dấu cách, nếu không về sau có thể phát sinh một
 
 Tiếp theo, cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi
 trường hệ thống. Sau khi cấu hình xong, khi biên dịch sẽ không cần chỉ định
-đường dẫn trình biên dịch, nên việc sử dụng thuận tiện hơn. Ở trên, MinGW được
+đường dẫn trình biên dịch, nên thao tác sử dụng sẽ gọn hơn. Ở trên, MinGW được
 giải nén vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là
 `C:\mingw64\bin`.
 
