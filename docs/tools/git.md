@@ -21,8 +21,8 @@ Hai cấp thường dùng hơn là[^note1]:
 
 Khi nhiều tệp cấu hình cùng thiết lập một tùy chọn, thiết lập cục bộ sẽ tự động
 ghi đè thiết lập toàn cục. Vì vậy, nếu cần áp dụng một thiết lập riêng cho một
-kho nào đó, chỉ cần sửa thiết lập riêng trong kho đó, không ảnh hưởng đến thiết
-lập toàn cục.
+kho nào đó, hãy sửa thiết lập riêng trong kho đó; thiết lập toàn cục sẽ không bị
+ảnh hưởng.
 
 Muốn sửa tệp cấu hình cần dùng lệnh `git config`.
 
@@ -44,7 +44,7 @@ Tùy chọn `--global` nghĩa là sửa cấu hình toàn cục, tức thiết l
 với mọi kho của người dùng hiện tại. Nếu không thêm tùy chọn `--global`, Git sẽ
 mặc định sửa tệp cấu hình của kho hiện tại.
 
-Nếu muốn sửa thiết lập riêng của một kho, chỉ cần chạy lệnh không có `--global` trong kho đó.
+Nếu muốn sửa thiết lập riêng của một kho, chạy lệnh không có `--global` trong kho đó.
 
 ### Cấu hình trình soạn thảo
 
@@ -76,7 +76,7 @@ $ git init
 Git sẽ tạo một thư mục `.git` mới trong thư mục hiện tại; vậy là kho đã được tạo xong.
 
 Nếu muốn clone một kho về máy tính của mình (ví dụ sao chép mã nguồn **OI Wiki**
-về cục bộ để chỉnh sửa), chỉ cần dùng lệnh `git clone`.
+về cục bộ để chỉnh sửa), dùng lệnh `git clone`.
 
 ```console
 $ git clone https://github.com/OI-wiki/OI-wiki
@@ -87,7 +87,7 @@ $ git clone https://github.com/OI-wiki/OI-wiki
     HTTP(S) để kết nối đến kho từ xa.
 
     Thực tế còn nhiều cách khác để kết nối đến kho từ xa. Trong đó, dùng ssh để
-    kết nối kho từ xa thuận tiện và an toàn hơn; phần "Quản lý kho từ xa" sẽ
+    kết nối kho từ xa gọn và an toàn hơn; phần "Quản lý kho từ xa" sẽ
     giới thiệu ngắn gọn cách dùng ssh để kết nối kho từ xa.
 
 Như vậy, nội dung của kho được clone sẽ được lưu vào một thư mục mới cùng tên với
@@ -142,7 +142,7 @@ Changes to be committed:
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Lúc này `README.md` đã được Git theo dõi và đặt vào vùng staging. Tiếp theo chỉ cần chạy lệnh `git commit` là có thể commit thay đổi này.
+Lúc này `README.md` đã được Git theo dõi và đặt vào vùng staging. Tiếp theo, chạy lệnh `git commit` để commit thay đổi này.
 
 Nhưng trước khi làm việc đó, sửa nhẹ `README.md`.
 
@@ -176,8 +176,8 @@ vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git comm
 thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không
 được commit.
 
-Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa
-stage vào vùng staging.
+Git đã đưa ra gợi ý: chạy `git add README.md` để đưa các thay đổi chưa stage vào
+vùng staging.
 
 ???+ note "Đưa tất cả thay đổi vào vùng staging cùng lúc"
     Lệnh `git add` sẽ đưa các thay đổi của tệp chỉ định vào vùng staging.
@@ -186,7 +186,7 @@ stage vào vùng staging.
     Khi đó có thể dùng lệnh `git add -A`. Lệnh này sẽ đưa mọi thay đổi (bao gồm
     tệp chưa được theo dõi, không bao gồm tệp bị bỏ qua) vào vùng staging.
 
-    Nếu chỉ cần cập nhật các tệp đã được theo dõi, không đưa tệp chưa được theo
+    Nếu chỉ cập nhật các tệp đã được theo dõi, không đưa tệp chưa được theo
     dõi vào vùng staging, có thể dùng `git add -u`.
 
 ???+ note "Bỏ qua tệp"
@@ -219,7 +219,7 @@ chụp đó.
 
 Hai dòng tiếp theo mô tả chi tiết các thay đổi tệp liên quan đến lần cập nhật này.
 
-Ngoài ra, trong quá trình commit có thể dùng một vài tham số để đơn giản hóa:
+Ngoài ra, trong quá trình commit có thể dùng một vài tham số để rút gọn thao tác:
 
 -   `-a`: trước khi commit, đưa mọi thay đổi của các tệp đã được theo dõi vào
     vùng staging. Lưu ý rằng các tệp chưa được theo dõi (tệp mới tạo) sẽ không tự
@@ -254,7 +254,7 @@ Date:   Sun Sep 13 00:06:07 2020 +0800
 Vì sao quản lý phiên bản cần quản lý nhánh? Câu trả lời chủ yếu có hai điểm:
 
 1.  Sửa trực tiếp nhánh chính không chỉ làm lịch sử rối hơn mà cũng có thể gây ra một số hậu quả nguy hiểm.
-2.  Thông qua nhánh, có thể tập trung vào công việc hiện tại. Nếu cần hoàn thành hai công việc khác nhau, chỉ cần mở hai nhánh; công việc giữa hai nhánh không ảnh hưởng lẫn nhau.
+2.  Thông qua nhánh, có thể tập trung vào công việc hiện tại. Nếu cần hoàn thành hai công việc khác nhau, hãy mở hai nhánh; công việc giữa hai nhánh không ảnh hưởng lẫn nhau.
 
 Trong Git, nói đơn giản, nhánh là con trỏ trỏ đến một ảnh chụp nào đó. Mỗi lần commit, Git đều tạo một ảnh chụp cho lần commit này và di chuyển con trỏ của nhánh hiện tại đến ảnh chụp đó.
 
@@ -337,7 +337,7 @@ Bản thân quá trình gộp cũng là một commit. Tuy nhiên, khác với co
 Sau khi gộp xong, nhánh `dev` đã hoàn thành nhiệm vụ. Lúc này có thể dùng lệnh sau để xóa nhánh `dev`:
 
 ```console
-$ git branch -d dev # Với nhánh chưa gộp, có thể dùng tham số -D để xóa bắt buộc
+$ git branch -d dev # Với nhánh chưa gộp, có thể dùng tham số -D để ép xóa
 ```
 
 Tuy nhiên, quá trình gộp không phải lúc nào cũng thuận lợi. Trong một số trường hợp, quá trình gộp có thể xuất hiện xung đột; vấn đề này sẽ được nói tiếp theo.
@@ -406,7 +406,7 @@ Giải quyết xung đột thế nào? Với mỗi tệp xảy ra xung đột kh
 
 `=======` là đường phân cách chia nội dung của hai nhánh; phần giữa dấu `<<<<<<< HEAD` và `=======` là nội dung của con trỏ HEAD (nhánh `master`), còn phần giữa `=======` và dấu `>>>>>>> readme-refactor` là nội dung của nhánh `readme-refactor`.
 
-Xử lý xung đột bằng cách chỉnh sửa văn bản, xóa các dấu xung đột này, lưu tệp, đưa các tệp đó vào vùng staging rồi commit là có thể giải quyết xung đột khi gộp.
+Xử lý xung đột bằng cách chỉnh sửa văn bản, xóa các dấu xung đột này, lưu tệp, đưa các tệp đó vào vùng staging rồi commit.
 
 ```console
 $ git add README.md # Đưa tệp đã giải quyết xung đột vào vùng staging
@@ -424,7 +424,7 @@ Ngoài ra, Git còn cung cấp hai cách gộp nhánh khác: Squash và Rebase.
 
 Khi dùng cách gộp nén (Squash) để gộp nhánh B vào nhánh A, tất cả thay đổi trên nhánh B sẽ được gộp thành một commit rồi commit vào nhánh A.
 
-Thêm tham số `--squash` vào `git merge` là có thể dùng cách Squash để gộp nhánh.
+Thêm tham số `--squash` vào `git merge` để dùng cách Squash khi gộp nhánh.
 
 ```console
 $ git merge <branch> --squash
@@ -432,7 +432,7 @@ $ git merge <branch> --squash
 
 Lưu ý rằng sau khi chạy lệnh trên, Git chỉ đưa toàn bộ thay đổi của nhánh B vào vùng staging của nhánh A; tiếp theo vẫn cần chạy một lần `git commit` để hoàn thành việc gộp.
 
-Dùng cách gộp nén (Squash) có thể đơn giản hóa lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu dùng "Squash and Merge" trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
+Dùng cách gộp nén (Squash) có thể rút gọn lịch sử commit, nhưng sẽ mất thông tin chi tiết của từng commit (người commit từng lần, thay đổi của từng commit, v.v.), chỉ giữ lại thông tin sau khi gộp thành một tổng thể (người commit của từng commit sẽ được liệt kê trong thông điệp commit dưới dạng "Co-authored-by"). Tuy nhiên, nếu dùng "Squash and Merge" trên GitHub, thông tin ban đầu vẫn có thể xem trong Pull Request.
 
 #### Rebase
 
@@ -445,7 +445,7 @@ $ git checkout B
 $ git rebase A
 ```
 
-Bây giờ chuyển về nhánh A, rồi chạy thêm một lần lệnh `git merge`, là có thể hoàn thành việc gộp nội dung nhánh B vào nhánh A.
+Bây giờ chuyển về nhánh A, rồi chạy thêm một lần lệnh `git merge` để hoàn thành việc gộp nội dung nhánh B vào nhánh A.
 
 ```console
 $ git checkout A
@@ -536,7 +536,7 @@ khiến `--force-with-lease` nguy hiểm chẳng khác gì `-f`.
 ### Theo dõi nhánh từ xa
 
 Bằng cách thiết lập một nhánh cục bộ theo dõi nhánh từ xa, có thể xem khác biệt
-giữa nhánh cục bộ và nhánh từ xa thuận tiện hơn, đồng thời đơn giản hóa thao tác
+giữa nhánh cục bộ và nhánh từ xa dễ hơn, đồng thời rút gọn thao tác
 khi tương tác với nhánh từ xa.
 
 Trước khi bắt đầu theo dõi, cần chạy `git fetch <remote-name>` để lấy thông tin kho từ xa về cục bộ.
@@ -553,7 +553,7 @@ tương ứng.
 Lúc này chạy lệnh `git status`, Git sẽ thông báo khác biệt giữa nhánh hiện tại và nhánh từ xa.
 
 Vì đã thiết lập nhánh từ xa mà nhánh cục bộ theo dõi, lệnh đẩy lên nhánh từ xa
-cũng được đơn giản hóa. Chỉ cần chạy lệnh `git push`, các thay đổi thực hiện trên
+cũng được rút gọn. Chạy lệnh `git push`, các thay đổi thực hiện trên
 nhánh cục bộ sẽ được đẩy lên nhánh từ xa mà nó theo dõi.
 
 Đối với nhánh cục bộ đã tồn tại, có thể thiết lập nhánh theo dõi từ xa tương ứng
@@ -563,7 +563,7 @@ Lệnh này sẽ thiết lập nhánh cục bộ hiện tại theo dõi nhánh t
 
 ### Kết nối bằng ssh
 
-So với HTTP(S), dùng ssh để kết nối kho từ xa thuận tiện và an toàn hơn.
+So với HTTP(S), dùng ssh để kết nối kho từ xa gọn và an toàn hơn.
 
 Trước khi dùng ssh để kết nối kho từ xa, cần thêm khóa ssh ở cục bộ. Sau đó cần
 tải **khóa công khai** của khóa ssh đã thêm ở cục bộ lên tài khoản kho từ xa.
