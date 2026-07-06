@@ -3,7 +3,7 @@ author: Xarfa
 ## Giới thiệu
 
 Cây phân hoạch là cấu trúc dữ liệu dùng để xử lý truy vấn phần tử nhỏ thứ $k$ trong đoạn (tùy quy ước cũng có thể
-viết dưới dạng phần tử lớn thứ $K$). Hằng số và độ khó khi tiếp cận đều thấp hơn cây phân đoạn bền vững khá nhiều.
+viết dưới dạng phần tử lớn thứ $k$). Hằng số và độ khó khi tiếp cận đều thấp hơn cây phân đoạn bền vững khá nhiều.
 Đồng thời, cây phân hoạch gắn chặt với bài toán "phần tử nhỏ thứ $k$", nên đây là một cấu trúc dữ liệu dựa trên sắp xếp.
 
 Kiến thức cần có: [cây phân đoạn bền vững](persistent-seg.md#cây-chủ-tịch)
@@ -28,8 +28,9 @@ xếp.
 
 Hai mảng then chốt:
 
-tree\[log(N),N]: chính là cây, dùng để lưu toàn bộ giá trị; độ phức tạp không gian là $O(n\log n)$.
-toleft\[log(N),n]: số lượng phần tử trong đoạn 1\~i của mỗi tầng được đưa vào con trái. Đây là một mảng tổng tiền tố.
+- `tree[log(N), N]`: chính là cây, dùng để lưu toàn bộ giá trị; độ phức tạp không gian là $O(n\log n)$.
+- `toleft[log(N), n]`: số lượng phần tử trong đoạn $1\sim i$ của mỗi tầng được đưa vào con trái. Đây là một mảng tổng
+  tiền tố.
 
 ???+ note "Cài đặt"
     ```pascal
@@ -68,13 +69,13 @@ toleft\[log(N),n]: số lượng phần tử trong đoạn 1\~i của mỗi tầ
 
 ### Truy vấn
 
-Trước hết, xét lại ý tưởng của cây phân đoạn bền vững. Khi dùng cây phân đoạn bền vững để tìm phần tử nhỏ thứ $K$ trong
-đoạn, lấy $K$ làm mốc: nếu đi sang trái thì giữ nguyên $K$, còn nếu đi sang phải thì phải trừ đi số lượng phần tử đã đi
+Trước hết, xét lại ý tưởng của cây phân đoạn bền vững. Khi dùng cây phân đoạn bền vững để tìm phần tử nhỏ thứ $k$ trong
+đoạn, lấy $k$ làm mốc: nếu đi sang trái thì giữ nguyên $k$, còn nếu đi sang phải thì phải trừ đi số lượng phần tử đã đi
 sang trái. Cây phân hoạch cũng xử lý tương tự.
 
-Điểm dễ gây nhầm lẫn của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$, nên ở
-tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Trong đó, $[\text{trái},\text{phải}]$ là đoạn sau khi thu hẹp (đoạn mục
-tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Việc đánh dấu đoạn mục tiêu là **cơ sở để phán đoán đáp án nằm ở
+Điểm dễ gây nhầm lẫn của truy vấn nằm ở thao tác **thu hẹp đoạn**. Trong hình dưới, đoạn cần truy vấn là từ $3$ đến $7$,
+nên ở tầng tiếp theo chỉ cần truy vấn từ $2$ đến $3$. Trong đó, $[\text{trái},\text{phải}]$ là đoạn sau khi thu hẹp (đoạn
+mục tiêu), còn $[l,r]$ vẫn là đoạn của nút hiện tại. Việc đánh dấu đoạn mục tiêu là **cơ sở để phán đoán đáp án nằm ở
 bên trái hay bên phải**.
 
 ![](./images/dividing-2.svg)
@@ -107,15 +108,15 @@ bên trái hay bên phải**.
 
 Độ phức tạp không gian: chỉ cần lưu $O(n\log n)$ số.
 
-Kết quả đo thử: cây phân đoạn bền vững: $1482 \text{ms}$, cây phân hoạch: $889 \text{ms}$. (Bản không đệ quy, hằng số khá nhỏ.)
+Kết quả đo thử: cây phân đoạn bền vững: $1482 \text{ms}$, cây phân hoạch: $889 \text{ms}$. (Bản không đệ quy, hằng số
+khá nhỏ.)
 
 ## Ứng dụng của cây phân hoạch
 
 Bài ví dụ: [Luogu P3157\[CQOI2011\] Cặp nghịch thế động](https://www.luogu.com.cn/problem/P3157)
 
 > Tóm tắt đề bài: cho một hoán vị gồm $n$ phần tử ($n\leq 10^5$), có $m$ truy vấn ($m\leq 5\times 10^4$). Mỗi lần xóa
-> một số trong hoán vị, tính số cặp nghịch thế của hoán vị sau khi xóa
-> số đó.
+> một số trong hoán vị, tính số cặp nghịch thế của hoán vị sau khi xóa số đó.
 
 Có thể giải bài này bằng CDQ trong thời gian $\Theta(n\log^2n)$ và không gian $\Theta(n)$; hằng số của CDQ cũng rất tốt.
 
@@ -124,7 +125,7 @@ cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ p
 nhưng vẫn đủ để giải bài này.
 
 Còn nếu dùng cây phân hoạch, có thể giải trực tuyến bài này trong thời gian $\Theta(n\log^2n)$ và không gian
-$\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây. (Xấp xỉ với CDQ.)
+$\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây, xấp xỉ với CDQ.
 
 ???+ warning "Lưu ý"
     Để thuận tiện khi cài đặt, bài viết này chia mảng lớn thành hai mảng nhỏ theo vị trí giữa. Nói cách khác, cây phân
