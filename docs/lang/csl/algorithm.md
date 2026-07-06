@@ -1,6 +1,6 @@
 STL cung cấp khoảng 100 hàm template cho các thuật toán; phần lớn nằm trong
-`<algorithm>`, một số khác nằm trong `<numeric>` và `<functional>`. Danh sách
-hàm đầy đủ có trong
+`<algorithm>`, một số khác nằm trong `<numeric>` và `<functional>`. Danh sách hàm
+đầy đủ có trong
 [tài liệu tham khảo](https://en.cppreference.com/w/cpp/algorithm); các hàm liên
 quan đến sắp xếp được trình bày thêm ở
 [trang tương ứng về sắp xếp](../../basic/stl-sort.md).
@@ -12,10 +12,10 @@ quan đến sắp xếp được trình bày thêm ở
     `reverse(a + begin, a + end)`.
 
 -   `unique`: loại bỏ các phần tử trùng nhau liền kề trong bộ chứa.
-    `unique(ForwardIterator first, ForwardIterator last)` trả về bộ lặp trỏ
-    đến vị trí ngay sau phần tử cuối của dãy **sau khi loại trùng**, còn kích
-    thước bộ chứa gốc không đổi. Khi kết hợp với `sort`, có thể loại trùng trên
-    toàn bộ bộ chứa.
+    `unique(ForwardIterator first, ForwardIterator last)` trả về bộ lặp trỏ đến
+    vị trí ngay sau phần tử cuối của dãy **sau khi loại trùng**, còn kích thước bộ
+    chứa gốc không đổi. Khi kết hợp với `sort`, có thể loại trùng trên toàn bộ bộ
+    chứa.
 
 -   `random_shuffle`: xáo trộn ngẫu nhiên một dãy. `random_shuffle(v.begin(),
     v.end())` hoặc `random_shuffle(v + begin, v + end)`.
@@ -25,8 +25,8 @@ quan đến sắp xếp được trình bày thêm ở
 
         Trong C++11 và các chuẩn mới hơn, nên dùng hàm `shuffle` thay cho
         `random_shuffle` cũ. Cách dùng là `shuffle(v.begin(), v.end(), rng)`;
-        tham số cuối truyền vào bộ sinh số ngẫu nhiên, thường dùng Mersenne
-        Twister [`mt19937`](https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
+        tham số cuối truyền vào bộ sinh số ngẫu nhiên, thường dùng Mersenne Twister
+        [`mt19937`](https://en.cppreference.com/w/cpp/numeric/random/mersenne_twister_engine)
         được gieo hạt bằng bộ sinh số ngẫu nhiên thật [`random_device`][random-device].
 
         ```cpp
@@ -36,22 +36,22 @@ quan đến sắp xếp được trình bày thêm ở
         ```
 
 -   `sort`: sắp xếp. `sort(v.begin(), v.end(), cmp)` hoặc
-    `sort(a + begin, a + end, cmp)`, trong đó `end` là vị trí sau phần tử cuối
-    của mảng cần sắp xếp, còn `cmp` là hàm so sánh tự định nghĩa.
+    `sort(a + begin, a + end, cmp)`, trong đó `end` là vị trí sau phần tử cuối của
+    mảng cần sắp xếp, còn `cmp` là hàm so sánh tự định nghĩa.
 
 -   `stable_sort`: sắp xếp ổn định, cách dùng giống `sort()`.
 
--   `nth_element`: phân hoạch theo phạm vi chỉ định, tức đưa phần tử đáng lẽ
-    đứng ở vị trí thứ $n$ sau khi sắp xếp về đúng vị trí đó, sao cho các phần tử
-    bên trái không lớn hơn nó và các phần tử bên phải không nhỏ hơn nó.
+-   `nth_element`: phân hoạch theo phạm vi chỉ định, tức đưa phần tử đáng lẽ đứng
+    ở vị trí thứ $n$ sau khi sắp xếp về đúng vị trí đó, sao cho các phần tử bên
+    trái không lớn hơn nó và các phần tử bên phải không nhỏ hơn nó.
     `nth_element(v.begin(), v.begin() + n, v.end(), cmp)` hoặc
     `nth_element(a + begin, a + begin + n, a + end, cmp)`.
 
 -   `binary_search`: tìm kiếm nhị phân. `binary_search(v.begin(), v.end(),
     value)`, trong đó `value` là giá trị cần tìm.
 
--   `merge`: **gộp có thứ tự** hai dãy đã sắp xếp vào **bộ lặp chèn** của dãy
-    thứ ba. `merge(v1.begin(), v1.end(), v2.begin(), v2.end(),
+-   `merge`: **gộp có thứ tự** hai dãy đã sắp xếp vào **bộ lặp chèn** của dãy thứ
+    ba. `merge(v1.begin(), v1.end(), v2.begin(), v2.end(),
     back_inserter(v3))`.
 
 -   `inplace_merge`: **gộp tại chỗ thành một dãy có thứ tự** hai phạm vi đã được
@@ -59,9 +59,8 @@ quan đến sắp xếp được trình bày thêm ở
     `inplace_merge(v.begin(), v.begin() + middle, v.end())`.
 
 -   `lower_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về bộ lặp trỏ
-    đến phần tử đầu tiên **lớn hơn hoặc bằng** $x$. Nếu không tồn tại phần tử
-    như vậy thì trả về bộ lặp cuối. `lower_bound(v.begin(),
-    v.end(), x)`.
+    đến phần tử đầu tiên **lớn hơn hoặc bằng** $x$. Nếu không tồn tại phần tử như
+    vậy thì trả về bộ lặp cuối. `lower_bound(v.begin(), v.end(), x)`.
 
 -   `upper_bound`: tìm kiếm nhị phân trong một dãy có thứ tự, trả về bộ lặp trỏ
     đến phần tử đầu tiên **lớn hơn** $x$. Nếu không tồn tại phần tử như vậy thì
@@ -76,15 +75,15 @@ quan đến sắp xếp được trình bày thêm ở
         (ví dụ `s.lower_bound(val)`); gọi theo cách này có độ phức tạp
         $O(\log n)$.
 
--   `next_permutation`: đổi hoán vị hiện tại thành **hoán vị kế tiếp trong toàn
-    bộ các hoán vị**. Nếu hoán vị hiện tại đã là **hoán vị cuối cùng** (các phần
-    tử xếp hoàn toàn giảm dần), hàm trả về `false` và đổi hoán vị thành **hoán
-    vị đầu tiên** (các phần tử xếp hoàn toàn tăng dần); ngược lại, hàm trả về
-    `true`. `next_permutation(v.begin(), v.end())` hoặc
+-   `next_permutation`: đổi hoán vị hiện tại thành **hoán vị kế tiếp trong toàn bộ
+    các hoán vị**. Nếu hoán vị hiện tại đã là **hoán vị cuối cùng** (các phần tử
+    xếp hoàn toàn giảm dần), hàm trả về `false` và đổi hoán vị thành **hoán vị đầu
+    tiên** (các phần tử xếp hoàn toàn tăng dần); ngược lại, hàm trả về `true`.
+    `next_permutation(v.begin(), v.end())` hoặc
     `next_permutation(v + begin, v + end)`.
 
--   `prev_permutation`: đổi hoán vị hiện tại thành **hoán vị trước đó trong toàn
-    bộ các hoán vị**. Cách dùng giống `next_permutation`.
+-   `prev_permutation`: đổi hoán vị hiện tại thành **hoán vị trước đó trong toàn bộ
+    các hoán vị**. Cách dùng giống `next_permutation`.
 
 -   `partial_sum`: tính tổng tiền tố. Giả sử bộ chứa nguồn là $x$, bộ chứa đích
     là $y$, khi đó đặt $y[i]=x[0]+x[1]+\dots+x[i]$.
@@ -148,9 +147,9 @@ quan đến sắp xếp được trình bày thêm ở
         else
           cout << a[i - 1];
         ```
--   Dùng `sort` và `unique` tìm **giá trị nhỏ thứ $k$** trong mảng $a$ (lưu ý:
-    giá trị lặp lại chỉ tính một lần, nên bài này không phải tìm phần tử nhỏ thứ
-    $k$). Bài ví dụ: [Luogu P1138 Số nguyên nhỏ thứ k](https://www.luogu.com.cn/problem/P1138)
+-   Dùng `sort` và `unique` tìm **giá trị nhỏ thứ $k$** trong mảng $a$ (lưu ý: giá
+    trị lặp lại chỉ tính một lần, nên bài này không phải tìm phần tử nhỏ thứ $k$).
+    Bài ví dụ: [Luogu P1138 Số nguyên nhỏ thứ k](https://www.luogu.com.cn/problem/P1138)
 
     ???+ note "Mã mẫu"
         ```cpp
