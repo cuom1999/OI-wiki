@@ -6,7 +6,7 @@ Máy tự động hậu tố tổng quát dựa trên các kiến thức sau:
 -   [Cây từ điển (Trie)](./trie.md)
 -   [Máy tự động hậu tố](./sam.md)
 
-Hãy chắc chắn rằng bạn đã rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết nhất định về **liên kết hậu tố** trong **máy tự động hậu tố**.
+Người đọc nên rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết nhất định về **liên kết hậu tố** trong **máy tự động hậu tố**.
 
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
@@ -47,12 +47,12 @@ Tuy nhiên, cả cách 1 lẫn cách 2 đều có độ phức tạp thời gian
 <span id="xây-dựng-máy-tự-động-hậu-tố-tổng-quát"></span>
 ## Xây dựng máy tự động hậu tố tổng quát
 
-Theo mô tả trong bài luận gốc, ta nên xây dựng cây từ điển trên nhiều chuỗi trước, rồi xây dựng máy tự động hậu tố tổng quát trên cơ sở cây từ điển đó.
+Theo mô tả trong bài luận gốc, nên xây dựng cây từ điển trên nhiều chuỗi trước, rồi xây dựng máy tự động hậu tố tổng quát trên cơ sở cây từ điển đó.
 
 <span id="sử-dụng-cây-từ-điển"></span>
 ### Sử dụng cây từ điển
 
-Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây không phải việc khó; nếu bạn đã nắm chắc kiến thức nền thì có thể xây dựng nhanh chóng. Để thống nhất mã trong phần giải thích, dưới đây là một cài đặt cây từ điển khả dĩ.
+Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây không phải việc khó khi đã nắm chắc kiến thức nền. Để thống nhất mã trong phần giải thích, dưới đây là một cài đặt cây từ điển khả dĩ.
 
 ??? note "Cài đặt"
     ```cpp
@@ -77,21 +77,21 @@ Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây kh
     };
     ```
 
-Đến đây ta đã thu được một cây từ điển được xây dựng dựa trên mảng `next`.
+Đến đây đã thu được một cây từ điển được xây dựng dựa trên mảng `next`.
 
 <span id="xây-dựng-máy-tự-động-hậu-tố"></span>
 ### Xây dựng máy tự động hậu tố
 
-Nếu xem trực tiếp cây này như một máy tự động hậu tố, ta có các kết luận sau:
+Nếu xem trực tiếp cây này như một máy tự động hậu tố, có các kết luận sau:
 
 -   Với nút `i`, `len[i]` bằng đúng độ sâu của nó trong cây từ điển.
--   Nếu sắp xếp tô pô cây từ điển, ta nhận được một dãy có `len` không giảm. Kết quả BFS cũng như vậy.
+-   Nếu sắp xếp topo cây từ điển, thu được một dãy có `len` không giảm. Kết quả BFS cũng như vậy.
 
-Trong quá trình xây dựng máy tự động hậu tố, có thể xem như ta liên tục chèn các giá trị `len` tăng nghiêm ngặt, với hiệu là $1$. Vì thế có thể lấy kết quả sắp xếp tô pô của cây từ điển làm một hàng đợi, rồi lần lượt chèn vào máy tự động hậu tố theo thứ tự trong hàng đợi này.
+Trong quá trình xây dựng máy tự động hậu tố, có thể xem như liên tục chèn các giá trị `len` tăng nghiêm ngặt, với hiệu là $1$. Vì thế có thể lấy kết quả sắp xếp topo của cây từ điển làm một hàng đợi, rồi lần lượt chèn vào máy tự động hậu tố theo thứ tự trong hàng đợi này.
 
 Trong SAM thông thường, giá trị `len` của nút trước đó là cố định, chính là `len` của nút `last`. Nhưng trong máy tự động hậu tố tổng quát, hàng đợi được chèn là một dãy không giảm nhưng không nghiêm ngặt. Vì vậy, với mỗi giá trị, `last` của nó phải đã biết và cố định; trên cây từ điển, đó chính là nút cha của nó.
 
-Vì trong cây từ điển đã có một cấu trúc gần giống máy tự động hậu tố, ta chỉ cần xử lý cấu trúc của toàn bộ cây từ điển để chuyển nó thành máy tự động hậu tố tổng quát. Có thể cập nhật từng nút trên cây từ điển theo thứ tự hàng đợi nêu trên. Cuối cùng ta thu được máy tự động hậu tố tổng quát.
+Vì trong cây từ điển đã có một cấu trúc gần giống máy tự động hậu tố, chỉ cần xử lý cấu trúc của toàn bộ cây từ điển để chuyển nó thành máy tự động hậu tố tổng quát. Có thể cập nhật từng nút trên cây từ điển theo thứ tự hàng đợi nêu trên. Cuối cùng thu được máy tự động hậu tố tổng quát.
 
 Thao tác cập nhật cho mỗi điểm có thể thu được bằng cách sửa nhẹ thao tác chèn trong SAM.
 
@@ -109,7 +109,7 @@ Theo logic trên, toàn bộ quá trình xây dựng có thể mô tả như sau
 <span id="chứng-minh-số-thao-tác-là-tuyến-tính"></span>
 ### Chứng minh số thao tác là tuyến tính
 
-Vì chỉ xử lý dãy thu được từ BFS, ta bảo đảm mỗi nút trên cây từ điển chỉ được đi qua một lần.
+Vì chỉ xử lý dãy thu được từ BFS, mỗi nút trên cây từ điển chỉ được đi qua một lần.
 
 Trong trường hợp xấu nhất, xét khi bản thân cây từ điển có số nút lớn nhất, tức là không có hai chuỗi bất kỳ nào có tiền tố chung. Khi đó số nút là $\sum_{i=1}^{k}|S_i|$, chính là tổng độ dài mọi chuỗi.
 
@@ -181,7 +181,7 @@ Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có th
     }
     ```
 
--   Vì thứ tự thu được từ toàn bộ quá trình BFS có nút cha luôn thay đổi, ta không cần lưu con trỏ `last`.
+-   Vì thứ tự thu được từ toàn bộ quá trình BFS có nút cha luôn thay đổi, không cần lưu con trỏ `last`.
 -   Trong thao tác chèn, `int cur = next[last][c];` khác với `int cur = tot++;` của máy tự động hậu tố thông thường, vì nút cần chèn đã được tạo xong trong cấu trúc cây, nên chỉ cần lấy trực tiếp.
 -   Khi sao chép dữ liệu sau `clone`, có kiểm tra `next[clone][i] = len[next[q][i]] != 0 ? next[q][i] : 0;`. Điều này khác với phép gán trực tiếp `next[clone][i] = next[q][i];` trong máy tự động hậu tố thông thường, nhằm tránh cập nhật các giá trị có `len` lớn hơn nút hiện tại. Trong mảng, `len` chỉ được gán khi và chỉ khi giá trị đó đã được BFS duyệt tới và chèn vào máy tự động hậu tố.
 
@@ -211,7 +211,7 @@ Bài ví dụ: [[Mẫu] Máy tự động hậu tố tổng quát (SAM tổng qu
 <span id="chuỗi-con-chung-dài-nhất-giữa-nhiều-chuỗi"></span>
 ### Chuỗi con chung dài nhất giữa nhiều chuỗi
 
-Ta cần xây dựng cho mỗi nút một mảng `flag` có độ dài $k$ (với bài này, có thể chỉ là mảng đánh dấu; nếu cần tính số lần xuất hiện của chuỗi con này, cần đổi thành mảng đếm).
+Cần xây dựng cho mỗi nút một mảng `flag` có độ dài $k$ (với bài này, có thể chỉ là mảng đánh dấu; nếu cần tính số lần xuất hiện của chuỗi con này, cần đổi thành mảng đếm).
 
 Khi chèn chuỗi vào cây từ điển, đếm trên tất cả nút và lưu vào mảng tương ứng với chuỗi hiện tại.
 
