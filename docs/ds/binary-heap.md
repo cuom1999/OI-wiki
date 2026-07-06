@@ -4,13 +4,13 @@ author: HeRaNO, Xeonacid, AzurIce
 
 ## Cấu trúc
 
-Bắt đầu từ cấu trúc của heap nhị phân (đống nhị phân): đó là một cây nhị phân
-hoàn chỉnh. Mỗi đỉnh lưu một phần tử, hay nói cách khác là một trọng số.
+Heap nhị phân (đống nhị phân) có cấu trúc là một cây nhị phân hoàn chỉnh. Mỗi
+đỉnh lưu một phần tử, hay nói cách khác là một trọng số.
 
 Tính chất heap: trọng số của cha không nhỏ hơn trọng số của con (heap lớn).
 Tương tự, cũng có thể định nghĩa heap nhỏ. Trang này lấy heap lớn làm ví dụ.
 
-Theo tính chất heap, gốc cây lưu giá trị lớn nhất, vì vậy thao tác `getmax` có
+Theo tính chất heap, gốc cây lưu giá trị lớn nhất, vì vậy thao tác `getMax` có
 thể được xử lý trực tiếp.
 
 <span id="quy-trình"></span>
@@ -47,7 +47,7 @@ vi phạm tính chất heap.
 
 Thao tác xóa trong phần này là xóa phần tử lớn nhất trong heap, tức xóa đỉnh gốc.
 
-Nhưng nếu xóa trực tiếp, cây sẽ tách thành hai heap và khó xử lý.
+Nhưng nếu xóa trực tiếp, cây sẽ tách thành hai heap và trở nên khó xử lý.
 
 Vì vậy, có thể nghĩ tới quá trình ngược với thao tác chèn: tìm cách chuyển đỉnh
 gốc tới đỉnh cuối cùng rồi xóa trực tiếp.
@@ -55,7 +55,7 @@ gốc tới đỉnh cuối cùng rồi xóa trực tiếp.
 Tuy nhiên cách đó khó thực hiện trong thực tế.
 Phương pháp thường dùng là hoán đổi trực tiếp đỉnh gốc với đỉnh cuối cùng.
 
-Sau đó xóa trực tiếp đỉnh gốc đang nằm ở vị trí đỉnh cuối cùng, nhưng đỉnh gốc
+Sau đó xóa đỉnh gốc cũ đang nằm ở vị trí đỉnh cuối cùng, nhưng đỉnh gốc
 mới có thể không thỏa mãn tính chất heap.
 
 **Điều chỉnh xuống**: trong các con của đỉnh hiện tại, tìm con có trọng số lớn
@@ -116,9 +116,9 @@ quan tâm thứ tự chèn.
 
 Nếu chèn trực tiếp từng phần tử một thì cần $O(n \log n)$ thời gian. Có cách nào tốt hơn không?
 
-<span id="cách-1-dùng-decreasekey-tức-điều-chỉnh-lên"></span>
+<span id="cách-1-dùng-điều-chỉnh-lên"></span>
 
-#### Cách 1: dùng decreasekey (tức điều chỉnh lên)
+#### Cách 1: dùng điều chỉnh lên
 
 Bắt đầu từ gốc và thực hiện theo thứ tự BFS.
 
@@ -139,7 +139,7 @@ Tổng độ phức tạp: $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)
 
 #### Cách 2: dùng điều chỉnh xuống
 
-Lúc này đổi góc nhìn: bắt đầu từ các lá và lần lượt điều chỉnh xuống.
+Lúc này đổi góc nhìn: bắt đầu từ các nút gần lá và lần lượt điều chỉnh xuống.
 
 ```cpp
 void build_heap_2() {
@@ -169,7 +169,8 @@ tiệm cận.
 Sở dĩ có thể xây heap trong $O(n)$ là vì tính chất heap khá yếu, heap nhị phân
 không phải là duy nhất.
 
-Nếu điều kiện mạnh như trong sắp xếp thì không nhất thiết làm được như vậy.
+Nếu yêu cầu mạnh như trong bài toán sắp xếp, chưa chắc có thể đạt được cách xây
+dựng tuyến tính như vậy.
 
 <span id="ứng-dụng"></span>
 
@@ -189,8 +190,7 @@ Bài toán này có thể được trừu tượng hóa thêm thành: duy trì �
 $k$ trên một dãy, trong đó giá trị $k$ có thể thay đổi.
 
 Với loại bài toán này, có thể dùng kỹ thuật **heap đối đỉnh** để giải quyết,
-tránh sự rườm rà khi phải viết cây đoạn theo trọng số hoặc cây tìm kiếm nhị
-phân.
+tránh sự rườm rà khi phải viết cây đoạn theo trọng số hoặc cây tìm kiếm nhị phân.
 
 Heap đối đỉnh gồm một heap lớn và một heap nhỏ. Heap nhỏ duy trì các giá trị
 lớn, tức $k$ giá trị lớn nhất (bao gồm phần tử lớn thứ $k$). Heap lớn duy trì
