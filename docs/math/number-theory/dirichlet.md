@@ -59,19 +59,19 @@ Tích chập Dirichlet có một loạt tính chất đại số.
         $$
 
 ??? note "Chứng minh"
-    Để kiểm tra tính giao hoán, tính trực tiếp ta có
+    Để kiểm tra tính giao hoán, tính trực tiếp thu được
     
     $$
     (f\ast g)(n) = \sum_{k\ell=n}f(k)g(\ell) = (g\ast f)(n).
     $$
     
-    Để kiểm tra tính kết hợp, tính trực tiếp ta có
+    Để kiểm tra tính kết hợp, tính trực tiếp thu được
     
     $$
     ((f\ast g)\ast h)(n) = \sum_{k\ell m = n}f(k)g(\ell)h(m) = (f\ast (g\ast h))(n).
     $$
     
-    Để kiểm tra tính phân phối, tính trực tiếp ta có
+    Để kiểm tra tính phân phối, tính trực tiếp thu được
     
     $$
     \begin{aligned}
@@ -80,7 +80,7 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     \end{aligned}
     $$
     
-    Để kiểm tra $\varepsilon(n)$ là phần tử đơn vị, tính trực tiếp ta có
+    Để kiểm tra $\varepsilon(n)$ là phần tử đơn vị, tính trực tiếp thu được
     
     $$
     (f\ast\varepsilon)(n) = \sum_{k\ell = n}f(k)\varepsilon(\ell) = f(n).
@@ -94,7 +94,7 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     (f\ast g)(n) = \sum_{k\ell = n}f(k)g(\ell) = \varepsilon(n).
     $$
     
-    Thực chất, đây là một hệ các phương trình về giá trị của $g(n)$, từ đó có thể giải trực tiếp $g(n)$. Đặc biệt, khi $n=1$, đẳng thức trở thành $f(1)g(1)=1$, nên để $g$ tồn tại thì tối thiểu phải có $f(1)\neq 0$. Ngược lại, chỉ cần $f(1)\neq 0$, ta có thể giải trực tiếp
+    Thực chất, đây là một hệ các phương trình về giá trị của $g(n)$, từ đó có thể giải trực tiếp $g(n)$. Đặc biệt, khi $n=1$, đẳng thức trở thành $f(1)g(1)=1$, nên để $g$ tồn tại thì tối thiểu phải có $f(1)\neq 0$. Ngược lại, chỉ cần $f(1)\neq 0$, có thể giải trực tiếp
     
     $$
     g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
@@ -107,10 +107,10 @@ Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này
 Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đóng với tích chập Dirichlet và nghịch đảo Dirichlet.
 
 ???+ note "Định lý"
-    Giả sử $f,g$ là các hàm nhân tính. Khi đó $f\ast g$ cũng là hàm nhân tính. Hơn nữa, nghịch đảo $f^{-1}$ chắc chắn tồn tại và cũng là hàm nhân tính.
+    Giả sử $f,g$ là các hàm nhân tính. Khi đó $f\ast g$ cũng là hàm nhân tính. Hơn nữa, nghịch đảo $f^{-1}$ luôn tồn tại và cũng là hàm nhân tính.
 
 ??? note "Chứng minh"
-    Với ý thứ nhất, đặt $h=f\ast g$. Kiểm tra trực tiếp cho thấy, với $n_1\perp n_2$, ta luôn có
+    Với ý thứ nhất, đặt $h=f\ast g$. Kiểm tra trực tiếp cho thấy, với $n_1\perp n_2$, luôn có
     
     $$
     \begin{aligned}
@@ -121,7 +121,7 @@ Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đón
     \end{aligned}
     $$
     
-    Trong đó, logic đổi thứ tự lấy tổng ở dấu bằng thứ ba là: khi $k$ chạy qua các ước của $n_1n_2$, các thừa số nguyên tố của $k$ có thể được chia thành hai loại tùy theo chúng là thừa số nguyên tố của $n_1$ hay của $n_2$; nhân riêng các thừa số nguyên tố trong hai loại đó, kể cả bội số lặp lại, ta thu được $k_1$ và $k_2$, lần lượt chạy qua các ước của $n_1$ và $n_2$. Ngược lại, từ các ước $k_1$ của $n_1$ và $k_2$ của $n_2$, luôn thu được một ước $k=k_1k_2$ của $n_1n_2$.
+    Trong đó, logic đổi thứ tự lấy tổng ở dấu bằng thứ ba là: khi $k$ chạy qua các ước của $n_1n_2$, các thừa số nguyên tố của $k$ có thể được chia thành hai loại tùy theo chúng là thừa số nguyên tố của $n_1$ hay của $n_2$; nhân riêng các thừa số nguyên tố trong hai loại đó, kể cả bội số lặp lại, thu được $k_1$ và $k_2$, lần lượt chạy qua các ước của $n_1$ và $n_2$. Ngược lại, từ các ước $k_1$ của $n_1$ và $k_2$ của $n_2$, luôn thu được một ước $k=k_1k_2$ của $n_1n_2$.
     
     Với ý thứ hai, đặt $g=f^{-1}$ và dùng quy nạp toán học. Trước hết, $g(1)=1/f(1)=1$. Lúc này, công thức truy hồi của nghịch đảo có thể viết là
     
@@ -129,7 +129,7 @@ Hàm nhân tính là một lớp hàm số học đặc biệt. Lớp này đón
     g(n) = \varepsilon(n) - \sum_{k\ell = n,~k\neq 1} f(k)g(\ell).
     $$
     
-    Vì vậy, với $n_1\perp n_2$ và $n_1n_2 > 1$, ta có
+    Vì vậy, với $n_1\perp n_2$ và $n_1n_2 > 1$, có
     
     $$
     \begin{aligned}
@@ -156,7 +156,7 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Mobius](./mobius.md#hàm-möbius).
 
 ??? note "Chứng minh"
-    Với ý thứ nhất, kiểm tra trực tiếp ta có
+    Với ý thứ nhất, kiểm tra trực tiếp thu được
     
     $$
     \begin{aligned}
@@ -169,7 +169,7 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     
     Trong đó, dấu bằng thứ ba dùng tính chất của hàm hoàn toàn nhân tính: $\alpha(n)=\alpha(k)\alpha(\ell)$ đúng với mọi $n=k\ell$.
     
-    Với ý thứ hai, dùng ý thứ nhất ta có
+    Với ý thứ hai, dùng ý thứ nhất có
     
     $$
     (\alpha f)\ast(\alpha f^{-1}) = \alpha(f\ast f^{-1}) = \alpha\varepsilon = \varepsilon.
@@ -177,13 +177,13 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     
     Trong đó, dấu bằng cuối chỉ dùng $\alpha(1)=1$. Theo định nghĩa nghịch đảo, $(\alpha f)^{-1}=\alpha f^{-1}$.
     
-    Với ý thứ ba, dùng ý thứ hai và $1^{-1}=\mu$, ta thấy nếu $f$ là hàm hoàn toàn nhân tính thì
+    Với ý thứ ba, dùng ý thứ hai và $1^{-1}=\mu$, nếu $f$ là hàm hoàn toàn nhân tính thì
     
     $$
     f^{-1} = (1f)^{-1} = 1^{-1}\cdot f = \mu f.
     $$
     
-    Trong đó, $1$ là hàm hằng. Ngược lại, nếu $f$ là hàm nhân tính và $f^{-1}=\mu f$, thì chỉ cần chứng minh với mọi số nguyên tố $p$ và $e\in\mathbf N_+$, ta đều có $f(p^e)=f(p)^e$; khi đó suy ra $f$ là hàm hoàn toàn nhân tính. Để làm điều này, áp dụng quy nạp toán học theo $e\in\mathbf N_+$. Cơ sở quy nạp tại $e=1$ là hiển nhiên. Với $e > 1$ bất kỳ, áp dụng công thức truy hồi của nghịch đảo, ta có
+    Trong đó, $1$ là hàm hằng. Ngược lại, nếu $f$ là hàm nhân tính và $f^{-1}=\mu f$, thì chỉ cần chứng minh với mọi số nguyên tố $p$ và $e\in\mathbf N_+$, đều có $f(p^e)=f(p)^e$; khi đó suy ra $f$ là hàm hoàn toàn nhân tính. Để làm điều này, áp dụng quy nạp toán học theo $e\in\mathbf N_+$. Cơ sở quy nạp tại $e=1$ là trực tiếp. Với $e > 1$ bất kỳ, áp dụng công thức truy hồi của nghịch đảo, có
     
     $$
     \begin{aligned}
@@ -194,13 +194,13 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     \end{aligned}
     $$
     
-    Trong đó, dấu bằng cuối dùng giả thiết quy nạp $f(p^{e-1})=f(p)^{e-1}$. Áp dụng $f^{-1}=\mu f$, ta thu được
+    Trong đó, dấu bằng cuối dùng giả thiết quy nạp $f(p^{e-1})=f(p)^{e-1}$. Áp dụng $f^{-1}=\mu f$, thu được
     
     $$
     f^{-1}(p^e) = \mu(p^e)f(p^e) = 0.
     $$
     
-    Thay vào công thức trước, ta được
+    Thay vào công thức trước, thu được
     
     $$
     f(p^e) = f(p)^e.
@@ -238,7 +238,7 @@ Tích của các hàm sinh Dirichlet tương ứng với tích chập Dirichlet 
     \end{aligned}
     $$
 
-Dựa vào sự tương ứng giữa tích chập Dirichlet và phép nhân hàm sinh Dirichlet, ta có thể hiểu các tính chất của tích chập Dirichlet từ góc nhìn hàm sinh Dirichlet. Vì phép nhân các chuỗi Dirichlet hình thức thỏa luật giao hoán, luật kết hợp và luật phân phối đối với phép cộng, tích chập Dirichlet của các hàm số học cũng thỏa các tính chất đại số tương tự.
+Dựa vào sự tương ứng giữa tích chập Dirichlet và phép nhân hàm sinh Dirichlet, có thể hiểu các tính chất của tích chập Dirichlet từ góc nhìn hàm sinh Dirichlet. Vì phép nhân các chuỗi Dirichlet hình thức thỏa luật giao hoán, luật kết hợp và luật phân phối đối với phép cộng, tích chập Dirichlet của các hàm số học cũng thỏa các tính chất đại số tương tự.
 
 <span id="tích-euler"></span>
 ### Tích Euler
@@ -252,7 +252,7 @@ F(s) &= \sum_{n=1}^{\infty}\dfrac{f(n)}{n^s} = \sum_{n=1}^{\infty}\prod_{p\in\ma
 \end{aligned}
 $$
 
-Điều này nghĩa là $F(s)$ có thể phân tích thành tích của nhiều $F_p(s)$, trong đó mỗi $F_p(s)$ tương ứng với một hàm số học chỉ có thể khác không tại các lũy thừa của $p$. Tích vô hạn này cũng được gọi là **tích Euler** (tiếng Anh: Euler product). Nếu $F(s)$ và $G(s)$ đều có thể phân tích thành dạng tương tự, thì tích của chúng cũng có dạng đó; chuyển quan sát này về phía hàm số học, ta thu được kết luận rằng tích chập Dirichlet của các hàm nhân tính vẫn là hàm nhân tính.
+Điều này nghĩa là $F(s)$ có thể phân tích thành tích của nhiều $F_p(s)$, trong đó mỗi $F_p(s)$ tương ứng với một hàm số học chỉ có thể khác không tại các lũy thừa của $p$. Tích vô hạn này cũng được gọi là **tích Euler** (tiếng Anh: Euler product). Nếu $F(s)$ và $G(s)$ đều có thể phân tích thành dạng tương tự, thì tích của chúng cũng có dạng đó; chuyển quan sát này về phía hàm số học, thu được kết luận rằng tích chập Dirichlet của các hàm nhân tính vẫn là hàm nhân tính.
 
 Hơn nữa, nếu $f(n)$ còn là hàm hoàn toàn nhân tính, thì $f(p^e)=f(p)^e$, nên công thức trên có thể tiếp tục rút gọn:
 
@@ -260,7 +260,7 @@ $$
 F(s) = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p)^e}{p^{es}} = \prod_{p\in\mathbf P}\left(1-\dfrac{f(p)}{p^s}\right)^{-1}.
 $$
 
-Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn nhân tính không đóng dưới phép nhân. Vì vậy, tích chập Dirichlet và nghịch đảo Dirichlet của các hàm hoàn toàn nhân tính chưa chắc là hàm hoàn toàn nhân tính, nhưng chắc chắn là hàm nhân tính.
+Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn nhân tính không đóng dưới phép nhân. Vì vậy, tích chập Dirichlet và nghịch đảo Dirichlet của các hàm hoàn toàn nhân tính không nhất thiết là hàm hoàn toàn nhân tính, nhưng luôn là hàm nhân tính.
 
 ???+ example "Ví dụ"
     1.  Hàm đơn vị $\varepsilon(n)$ là hàm hoàn toàn nhân tính. Hàm sinh Dirichlet của nó là hàm hằng theo biến bất định $s$:
@@ -296,7 +296,7 @@ Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn 
         \end{aligned}
         $$
     
-        Kết hợp với biểu thức hàm sinh Dirichlet của hàm lũy thừa, ta thu được $\mathrm{id} = \varphi\ast 1$.
+        Kết hợp với biểu thức hàm sinh Dirichlet của hàm lũy thừa, thu được $\mathrm{id} = \varphi\ast 1$.
     
     6.  Hàm tổng ước $\sigma_k(n)=\sum_{d\mid n}d^k$ là hàm nhân tính. Hàm sinh Dirichlet của nó là
     
@@ -309,7 +309,7 @@ Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn 
         \end{aligned}
         $$
     
-        Kết hợp với biểu thức Dirichlet của hàm lũy thừa, ta thu được $\sigma_k = \mathrm{id}_k\ast 1$. Đây chính là công thức định nghĩa của $\sigma_k$.
+        Kết hợp với biểu thức Dirichlet của hàm lũy thừa, thu được $\sigma_k = \mathrm{id}_k\ast 1$. Đây chính là công thức định nghĩa của $\sigma_k$.
     
     7.  Hàm chỉ thị của các số không có thừa số chính phương $u(n)=|\mu(n)|$ là hàm nhân tính. Hàm sinh Dirichlet của nó là
     
@@ -324,13 +324,13 @@ Hàm sinh Dirichlet có thể dùng để biểu diễn hàm nhân tính dưới
 
 Ví dụ, trong quá trình dùng sàng Du, để tính tổng tiền tố của một hàm nhân tính $f$, cần tìm một hàm nhân tính khác $g$ sao cho cả $f\ast g$ và $g$ đều có thể tính tổng tiền tố nhanh. Có thể dùng hàm sinh Dirichlet để suy ra quá trình này.
 
-Lấy bài ví dụ [Luogu P3768 Bài toán đơn giản](../number-theory/du.md#bài-toán-2) trong mục sàng Du làm ví dụ. Ta cần xây dựng hàm số học $g(n)$ thỏa điều kiện trên cho $f(n)=n^2\varphi(n)$. Vì $f$ là hàm nhân tính, hàm sinh Dirichlet của nó là
+Lấy bài ví dụ [Luogu P3768 Bài toán đơn giản](../number-theory/du.md#bài-toán-2) trong mục sàng Du làm ví dụ. Cần xây dựng hàm số học $g(n)$ thỏa điều kiện trên cho $f(n)=n^2\varphi(n)$. Vì $f$ là hàm nhân tính, hàm sinh Dirichlet của nó là
 
 $$
 F(s) = \prod_{p\in\mathbf P}\left(1 + \sum_{k=1}^{\infty}\dfrac{p^{3k-1}(p-1)}{p^{ks}}\right) = \prod_{p\in\mathbf P}\dfrac{1-p^{2-s}}{1-p^{3-s}} = \dfrac{\zeta(s-3)}{\zeta(s-2)}.
 $$
 
-So sánh với hàm sinh Dirichlet của hàm lũy thừa, chỉ cần lấy $g = \mathrm{id}_2$ thì ta có $f \ast g = \mathrm{id}_3$. Cả hai đều có thể tính tổng tiền tố nhanh.
+So sánh với hàm sinh Dirichlet của hàm lũy thừa, chỉ cần lấy $g = \mathrm{id}_2$ thì có $f \ast g = \mathrm{id}_3$. Cả hai đều có thể tính tổng tiền tố nhanh.
 
 <span id="tính-tích-chập-dirichlet"></span>
 ## Tính tích chập Dirichlet
@@ -362,7 +362,7 @@ Cài đặt tham khảo như sau:
 <span id="trường-hợp-chập-với-hàm-nhân-tính"></span>
 ### Trường hợp chập với hàm nhân tính
 
-Nếu $g$ là hàm nhân tính, ta có thể dùng tích Euler để tăng tốc việc tính tích chập Dirichlet. Tính $h$ tương đương với tính các hệ số trong hàm sinh Dirichlet $H$ của nó. Vì
+Nếu $g$ là hàm nhân tính, có thể dùng tích Euler để tăng tốc việc tính tích chập Dirichlet. Tính $h$ tương đương với tính các hệ số trong hàm sinh Dirichlet $H$ của nó. Vì
 
 $$
 H(s) = F(s)G(s) = F(s)\prod_{p\in\mathbf P}G_p(s).
@@ -374,7 +374,7 @@ $$
 G_p(s) = \sum_{p^k\le n}\dfrac{f(p^k)}{p^{ks}} = 1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \cdots.
 $$
 
-Vậy, bắt đầu từ $F(s)$, duyệt tất cả số nguyên tố $p$ không vượt quá $n$ và lần lượt nhân thêm $G_p(s)$, ta cũng thu được kết quả cuối cùng $H(s)$. Khi nhân thêm $G_p(s)$, chỉ cần áp dụng trực tiếp thuật toán liệt kê vét cạn trong trường hợp tổng quát. Tổng số lần liệt kê là
+Vậy, bắt đầu từ $F(s)$, duyệt tất cả số nguyên tố $p$ không vượt quá $n$ và lần lượt nhân thêm $G_p(s)$, cũng thu được kết quả cuối cùng $H(s)$. Khi nhân thêm $G_p(s)$, chỉ cần áp dụng trực tiếp thuật toán liệt kê vét cạn trong trường hợp tổng quát. Tổng số lần liệt kê là
 
 $$
 \sum_{p\in\mathbf P,~p\le n}\sum_{k=1}^{\infty}\left\lfloor\dfrac{n}{p^k}\right\rfloor \le \sum_{p\in\mathbf P,~p\le n}\dfrac{n}{p-1} \le \sum_{p\in\mathbf P,~p\le n}\dfrac{2n}{p} \in O(n\log\log n).
@@ -394,7 +394,7 @@ Cài đặt tham khảo như sau:
 <span id="trường-hợp-kết-quả-là-hàm-nhân-tính"></span>
 ### Trường hợp kết quả là hàm nhân tính
 
-Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#sàng-tuyến-tính) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, ta cứ tính vét cạn trực tiếp:
+Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#sàng-tuyến-tính) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, cứ tính vét cạn trực tiếp:
 
 $$
 h(p^e) = \sum_{i=0}^e f(p^i)g(p^{e-i}).
