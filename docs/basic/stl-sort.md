@@ -180,13 +180,13 @@ tự heap và thứ tự tăng dần là khác nhau.
 
 Xem thêm: [Nạp chồng toán tử](https://en.cppreference.com/w/cpp/language/operators)
 
-Các kiểu dựng sẵn (như `int`) và cấu trúc do người dùng định nghĩa đều cho phép
-tùy biến hàm so sánh được dùng khi gọi các hàm sắp xếp STL. Khi gọi hàm, có thể
-truyền vào tham số cuối cùng một hàm cài đặt phép so sánh nhị phân.
+Các kiểu dựng sẵn (như `int`) và cấu trúc tự định nghĩa đều cho phép tùy biến
+hàm so sánh được dùng khi gọi các hàm sắp xếp STL. Khi gọi hàm, có thể truyền
+vào tham số cuối cùng một hàm cài đặt phép so sánh nhị phân.
 
-Với cấu trúc do người dùng định nghĩa, trước khi dùng các hàm sắp xếp STL trên
-cấu trúc đó, phải định nghĩa ít nhất một toán tử quan hệ, hoặc cung cấp một hàm
-so sánh nhị phân khi gọi hàm. Thông thường nên định nghĩa `operator<`.[^note1]
+Với cấu trúc tự định nghĩa, trước khi dùng các hàm sắp xếp STL trên cấu trúc đó,
+phải định nghĩa ít nhất một toán tử quan hệ, hoặc cung cấp một hàm so sánh nhị
+phân khi gọi hàm. Thông thường nên định nghĩa `operator<`.[^note1]
 
 Ví dụ:
 

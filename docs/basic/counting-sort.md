@@ -7,8 +7,7 @@ Trang này giới thiệu ngắn gọn về sắp xếp đếm.
 
 ## Định nghĩa
 
-Sắp xếp đếm (tiếng Anh: Counting sort) là một thuật toán sắp xếp có thời gian
-tuyến tính.
+Sắp xếp đếm (counting sort) là một thuật toán sắp xếp có thời gian tuyến tính.
 
 ## Quy trình
 

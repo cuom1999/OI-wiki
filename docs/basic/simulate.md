@@ -8,7 +8,7 @@ Các bài mô phỏng thường có đặc điểm là lượng mã lớn, nhi�
 
 ## Kỹ thuật
 
-Khi làm bài mô phỏng, làm theo các gợi ý sau có thể giúp tăng tốc độ giải bài:
+Khi làm bài mô phỏng, các gợi ý sau giúp tăng tốc độ giải bài:
 
 -   Trước khi bắt tay viết mã, nên ghi càng rõ càng tốt luồng xử lý cần cài đặt ra giấy nháp.
 -   Trong mã, cố gắng mô-đun hóa từng phần thành hàm, struct hoặc class.

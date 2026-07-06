@@ -4,9 +4,12 @@ Trang này giới thiệu ngắn gọn về thuật toán liệt kê.
 
 ## Giới thiệu
 
-Liệt kê (tiếng Anh: Enumerate) là một chiến lược giải bài toán bằng cách dựa trên kiến thức đã có để đoán đáp án.
+Liệt kê (enumeration) là một chiến lược giải bài toán bằng cách dựa trên kiến
+thức đã có để đoán đáp án.
 
-Ý tưởng của liệt kê là liên tục thử các khả năng: lần lượt xét từng phần tử trong tập ứng viên, rồi kiểm tra điều kiện của bài toán có được thỏa mãn hay không.
+Ý tưởng của liệt kê là liên tục thử các khả năng: lần lượt xét từng phần tử
+trong tập ứng viên, rồi kiểm tra điều kiện của bài toán có được thỏa mãn hay
+không.
 
 ## Điểm chính
 

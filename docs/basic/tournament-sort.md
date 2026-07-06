@@ -2,11 +2,11 @@ Trang này giới thiệu ngắn gọn về sắp xếp giải đấu.
 
 ## Định nghĩa
 
-Sắp xếp giải đấu (tiếng Anh: Tournament sort), còn gọi là sắp xếp chọn dạng
-cây, là một phiên bản tối ưu của [sắp xếp chọn](./selection-sort.md) và là một
-biến thể của [sắp xếp vun đống](./heap-sort.md) (đều dùng cây nhị phân hoàn
-chỉnh). Trên cơ sở sắp xếp chọn, thuật toán dùng hàng đợi ưu tiên để tìm phần
-tử tiếp theo cần chọn.
+Sắp xếp giải đấu (tournament sort), còn gọi là sắp xếp chọn dạng cây, là một
+phiên bản tối ưu của [sắp xếp chọn](./selection-sort.md) và là một biến thể của
+[sắp xếp vun đống](./heap-sort.md) (đều dùng cây nhị phân hoàn chỉnh). Trên cơ
+sở sắp xếp chọn, thuật toán dùng hàng đợi ưu tiên để tìm phần tử tiếp theo cần
+chọn.
 
 ## Giới thiệu
 

@@ -189,7 +189,9 @@ $$
 
 Trong đó, $\operatorname{desc}(x)$ biểu thị tập mọi đỉnh con cháu của $x$ (bao gồm chính nó).
 
-Khác với tổng tiền tố trên cây, tổng cây con không thể dùng để tính tổng trọng số đường đi trong $O(1)$, nhưng nó có thể giúp hiểu phần sai phân trên cây bên dưới.
+Khác với tổng tiền tố trên cây, tổng cây con không thể dùng để tính tổng trọng
+số đường đi trong $O(1)$, nhưng nó hỗ trợ việc hiểu phần sai phân trên cây bên
+dưới.
 
 ## Sai phân
 

@@ -199,7 +199,9 @@ Với một hàm $f(x)$, nếu tồn tại $x^*$ sao cho $f(x)$ tăng đơn đi�
     Thứ hai, trong một số bài, hàm đơn đỉnh cần tìm điểm cực trị không phải là một hàm riêng lẻ, mà là hàm thu được từ nhiều hàm qua một phép toán đặc biệt (chẳng hạn tìm giá trị lớn nhất của giá trị nhỏ nhất của nhiều hàm bậc nhất có tính đơn điệu không hoàn toàn giống nhau). Khi đó đạo hàm của hàm có thể là hàm từng đoạn, và tại một số điểm có thể không khả vi.
 
 ???+ warning "Lưu ý"
-    Tìm kiếm tam phân vừa có thể tìm giá trị lớn nhất của hàm đơn đỉnh, vừa có thể tìm giá trị nhỏ nhất của "hàm đơn đáy". Để tiện trình bày, trừ khi nói rõ khác đi, phần dưới đều lấy bài toán tìm giá trị lớn nhất của hàm đơn đỉnh làm ví dụ.
+    Tìm kiếm tam phân có thể tìm cả giá trị lớn nhất của hàm đơn đỉnh lẫn giá trị
+    nhỏ nhất của "hàm đơn đáy". Để tiện trình bày, trừ khi nói rõ khác đi, phần
+    dưới đều lấy bài toán tìm giá trị lớn nhất của hàm đơn đỉnh làm ví dụ.
 
 ### Quy trình
 
