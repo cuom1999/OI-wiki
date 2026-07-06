@@ -81,7 +81,7 @@ Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Pa
 
 ## Cú pháp cơ bản
 
-Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Ở đây chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/3/) và [Python Wiki](https://wiki.python.org/moin/).
+Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả chính thức lẫn bên thứ ba. Phần này chỉ giới thiệu một số đặc điểm ngôn ngữ hữu ích với OIer. Có thể đọc thêm các bài học Python trên [tài liệu Python](https://docs.python.org/3/) và [Python Wiki](https://wiki.python.org/moin/).
 
 <a id="chú-thích"></a>
 
@@ -115,7 +115,7 @@ Trong Python, không cần khai báo trước tên biến và kiểu của nó; 
 >>> x = -3  # Cuối câu lệnh không cần dấu chấm phẩy
 >>> x
 -3
->>> f = 3.1415926535897932384626; f  # Nếu thật sự muốn thêm chấm phẩy thì vẫn được; ở đây tiết kiệm một dòng
+>>> f = 3.1415926535897932384626; f  # Nếu thật sự muốn thêm chấm phẩy thì vẫn được; dòng này tiết kiệm một dòng
 3.141592653589793
 >>> s1 = "O"
 >>> s1  # Trong Python, dấu nháy kép và dấu nháy đơn có tác dụng như nhau
@@ -143,9 +143,9 @@ True
 ???+ note "[**Hàm dựng sẵn**](https://docs.python.org/3/library/functions.html) là gì?"
     Trong C/C++, nhiều hàm thường dùng nằm rải rác trong các tệp tiêu đề khác nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng quát; có thể dùng trực tiếp mà không cần quan tâm chúng nằm ở đâu. Điều này cũng tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
 
-Như đã thấy, Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và luận lý, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt rõ ràng: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` thực ra tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng mô-đun [decimal](https://docs.python.org/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tất nhiên tốt nhất là không đặt biến tên `complex`).
+Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và luận lý, có thể đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác biệt đáng lưu ý: Python không có kiểu ký tự `char`, cũng không có kiểu `double` (nhưng `float` tương ứng với số chính xác kép trong C). Nếu cần phép tính dấu phẩy động chính xác hơn, có thể dùng mô-đun [decimal](https://docs.python.org/3/library/decimal.html) trong thư viện chuẩn. Nếu cần số phức, Python có sẵn kiểu `complex` (tốt nhất là không đặt biến tên `complex`).
 
-Có thể thấy các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
+Các kiểu này đều bắt đầu bằng `class`, và đây là điểm cốt lõi khiến Python khác C++: mọi dữ liệu trong chương trình Python được biểu diễn bằng đối tượng hoặc quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân kiểu cũng là đối tượng:
 
 ```pycon
 >>> type(int)
@@ -163,7 +163,7 @@ Các khái niệm này có thể tạm thời khó hiểu và chưa hữu ích, 
 #### Phép toán số học
 
 Có người nói rằng có thể xem Python cài trên máy như một chiếc máy tính đa năng; điều đó đúng.
-Trong chế độ tương tác, có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng các toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ khác (ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Người đọc có thể tự thử; ở đây chỉ trình bày các điểm khác C++ rõ hơn:
+Trong chế độ tương tác, có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng các toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ khác (ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Người đọc có thể tự thử; phần này chỉ trình bày các điểm khác C++ rõ hơn:
 
 ```pycon
 >>> 5.0 * 6  # Kết quả phép tính với số thực là số thực
@@ -186,7 +186,7 @@ Trong chế độ tương tác, có thể nhập một biểu thức sau dấu n
 10001.0
 ```
 
-Từ các thử nghiệm trên có thể thấy phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư, và dạng ký pháp khoa học cũng giống nhau.
+Từ các thử nghiệm trên, phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư, và dạng ký pháp khoa học cũng giống nhau.
 
 Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của [lũy thừa nhanh](../math/binary-exponentiation.md) qua hàm dựng sẵn `pow(a, b, mod)`.
 
@@ -251,12 +251,12 @@ True
 ... chao mung dong gop!"""   # Chuỗi dùng ba dấu nháy có thể trải qua nhiều dòng
 >>> s1 + s2
 'OI-Wiki cam on ban\nchao mung dong gop!'
->>> print(s1 + s2)  # Ở đây dùng hàm print() để in chuỗi
+>>> print(s1 + s2)  # Dùng hàm print() để in chuỗi
 OI-Wiki cam on ban
 chao mung dong gop!
 >>> s2[1:4] + s2[-1]  # Chỉ số âm đếm từ bên phải; cộng lên len(s) tương đương đưa về modulo n
 'cam!'
->>> s1[0] = 'o'  # str là kiểu bất biến, không thể sửa tại chỗ; thực ra += cũng tạo đối tượng mới
+>>> s1[0] = 'o'  # str là kiểu bất biến, không thể sửa tại chỗ; += cũng tạo đối tượng mới
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
@@ -286,7 +286,7 @@ Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode
 
 Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++, nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
 
-Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Ở đây không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến các phương thức sẵn có trước khi tự viết lại.
+Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Phần này không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến các phương thức sẵn có trước khi tự viết lại.
 
 <a id="tạo-mảng"></a>
 
@@ -309,7 +309,7 @@ Danh sách (`list`) có lẽ là kiểu tuần tự thường dùng và mạnh n
 [1, 1, 2, 3, 5, 8, 13]
 >>> nums.append(nums[-2]+nums[-1]); nums  # append() giống push_back() của vector, đều không có giá trị trả về
 [1, 1, 2, 3, 5, 8, 13, 21]
->>> nums.pop()  # Lấy ra và trả về phần tử cuối, có thể dùng như stack; thực ra có thể chỉ định vị trí, mặc định là cuối
+>>> nums.pop()  # Lấy ra và trả về phần tử cuối, có thể dùng như stack; cũng có thể chỉ định vị trí, mặc định là cuối
 21
 >>> nums.insert(0, 1); nums  # Giống insert(position, val) của vector
 [1, 1, 1, 2, 3, 5, 8, 13]
@@ -401,7 +401,7 @@ True
 >>> [id(vis[i]) == id(vis2[i]) for i in range(3)]
 [True, True, True]
 >>> # Nhìn lại bản thân danh sách hai chiều
->>> [id(x) for x in vis]  # Con số cụ thể sẽ khác, nhưng ba giá trị chắc chắn giống nhau, cho thấy đó là ba lần lặp của cùng đối tượng
+>>> [id(x) for x in vis]  # Con số cụ thể sẽ khác, nhưng ba giá trị giống nhau, cho thấy đó là ba lần lặp của cùng đối tượng
 [139760373248192, 139760373248192, 139760373248192]
 ```
 
@@ -412,26 +412,26 @@ Có một sự thật quan trọng: phép gán trong Python chỉ truyền tham 
 >>> # Nhưng trong REPL, _ mặc định chỉ kết quả của biểu thức trước, nên cũng có thể dùng hai dấu gạch dưới
 >>> vis1
 [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
->>> [id(x) for x in vis1]  # Con số cụ thể sẽ khác, nhưng ba giá trị chắc chắn khác nhau, cho thấy là ba đối tượng khác nhau
+>>> [id(x) for x in vis1]  # Con số cụ thể sẽ khác, nhưng ba giá trị khác nhau, cho thấy là ba đối tượng khác nhau
 [139685508981248, 139685508981568, 139685508981184]
 >>> vis1[0][0] = 1
 [[1, 0, 0], [0, 0, 0], [0, 0, 0]]
 >>> a2[0][0] = 10  # Truy cập và gán mảng hai chiều
 ```
 
-Biểu thức sinh danh sách được giới thiệu trước vòng lặp vì Python là ngôn ngữ thông dịch có tính động cao, nên việc chạy chương trình có nhiều chi phí phụ. Đặc biệt, **vòng lặp `for` trong Python chạy khá chậm**. Vì vậy khi dùng Python mà muốn đạt hiệu năng cao, nên cố gắng dùng biểu thức sinh danh sách, hoặc các hàm dựng sẵn như `filter`, `map` để thao tác trực tiếp trên cả kiểu tuần tự nhằm tránh vòng lặp. Tất nhiên, vẫn phải tùy bài toán cụ thể.
+Biểu thức sinh danh sách được giới thiệu trước vòng lặp vì Python là ngôn ngữ thông dịch có tính động cao, nên việc chạy chương trình có nhiều chi phí phụ. Đặc biệt, **vòng lặp `for` trong Python chạy khá chậm**. Vì vậy khi dùng Python mà muốn đạt hiệu năng cao, nên cố gắng dùng biểu thức sinh danh sách, hoặc các hàm dựng sẵn như `filter`, `map` để thao tác trực tiếp trên cả kiểu tuần tự nhằm tránh vòng lặp. Dù vậy, vẫn phải tùy bài toán cụ thể.
 
 <a id="dùng-numpy"></a>
 
 #### Dùng NumPy
 
 ??? note "NumPy là gì"
-    [NumPy](https://numpy.org/) là thư viện tính toán khoa học nổi tiếng của Python, cung cấp phép tính số học và ma trận hiệu năng cao. Khi thử nghiệm mẫu thuật toán, có thể dùng NumPy để tránh tự viết các thuật toán sắp xếp, tìm min/max, v.v. Cấu trúc dữ liệu cốt lõi của NumPy là `ndarray`, tức mảng n chiều; nó được lưu liên tục trong bộ nhớ và có độ dài cố định. Ngoài ra, phần lõi của NumPy được viết bằng C nên hiệu suất cao. Cần lưu ý NumPy không phải một phần của thư viện chuẩn; có thể cài bằng `pip install numpy`, nhưng không đảm bảo môi trường thi OI có sẵn (xem [phiên bản Python](#mot-so-phien-ban-python-tren-cac-nen-tang) ở đầu bài).
+    [NumPy](https://numpy.org/) là thư viện tính toán khoa học nổi tiếng của Python, cung cấp phép tính số học và ma trận hiệu năng cao. Khi thử nghiệm mẫu thuật toán, có thể dùng NumPy để tránh tự viết các thuật toán sắp xếp, tìm min/max, v.v. Cấu trúc dữ liệu cốt lõi của NumPy là `ndarray`, tức mảng n chiều; nó được lưu liên tục trong bộ nhớ và có độ dài cố định. Ngoài ra, phần lõi của NumPy được viết bằng C nên hiệu suất cao. Cần lưu ý NumPy không phải một phần của thư viện chuẩn; có thể cài bằng `pip install numpy`, nhưng không bảo đảm môi trường thi OI có sẵn (xem [phiên bản Python](#mot-so-phien-ban-python-tren-cac-nen-tang) ở đầu bài).
 
 Đoạn mã sau giới thiệu cách dùng NumPy để tạo mảng nhiều chiều và truy cập chúng.
 
 ```pycon
->>> import numpy as np  # Hãy tự tìm hiểu ý nghĩa và cách dùng import
+>>> import numpy as np  # Tự tìm hiểu ý nghĩa và cách dùng import
 >>> np.empty(3)  # Tạo mảng rỗng dung lượng 3; lưu ý không khởi tạo bằng 0
 array([0.00000000e+000, 0.00000000e+000, 2.01191014e+180])
 >>> np.zeros((3, 3))  # Tạo mảng 3*3 và khởi tạo bằng 0
@@ -468,7 +468,7 @@ array([[0, 0, 1],
 
 #### Dùng `array`
 
-[`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; ở đây chỉ nhắc qua.
+[`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; phần này chỉ nhắc qua.
 
 Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sách".
 
@@ -482,12 +482,12 @@ Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng s�
 
 #### Xuất định dạng
 
-Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` gần như đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không đảm bảo phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ minh họa cách cũ tương tự `printf()`:
+Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` gần như đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không bảo đảm phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ minh họa cách cũ tương tự `printf()`:
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
 3.1416
->>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # Nếu bên phải có nhiều tham số, dùng () bao lại; sau này sẽ thấy đây thực ra là tuple
+>>> '%.4f - %8f = %d' % (pi, 0.1416, 3)  # Nếu bên phải có nhiều tham số, dùng () bao lại; sau này sẽ thấy đây là tuple
 '3.1416 - 0.141600 = 3'
 ```
 
@@ -532,18 +532,18 @@ Trong đề bài thường gặp trường hợp nhập N dòng. Phần này ch�
 >>> u, v, w = map(list, zip(*mat))
 # * mở gói mat để lấy các danh sách bên trong
 # zip() gom các phần tử cùng vị trí của nhiều danh sách thành tuple, tạo một bộ lặp
-# map(list, iterable) chuyển các phần tử trong kiểu tuần tự (ở đây là tuple) thành list
+# map(list, iterable) chuyển các phần tử trong kiểu tuần tự (trong ví dụ này là tuple) thành list
 >>> print(u, v, w)  # Mở gói trực tiếp bộ lặp do map() tạo ra, gán lần lượt cho u, v, w
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
-Chương trình trên thực chất tương đương đọc trước một ma trận N dòng 3 cột, sau đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/3/library/functions.html#zip) có thể ghép các phần tử tương ứng trong nhiều kiểu tuần tự cùng độ dài vào `tuple` để tạo kiểu tuần tự mới. Còn `map()` là một thao tác lập trình hàm: áp dụng một hàm cho từng phần tử của kiểu tuần tự do `zip()` sinh ra; ở đây là dùng `list()` để biến `tuple` thành `list`. Có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/3/library/functions.html#zip) và [`map()`](https://docs.python.org/3/library/functions.html#map) để hiểu ý nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về `list` mà trả về bộ lặp. Ở đây tạm thời không giải thích khác biệt giữa chúng; có thể hiểu bộ lặp là thứ có thể sinh ra từng phần tử của `list`, và dùng `list()` bọc bộ lặp sẽ tạo ra `list`.
+Chương trình trên thực chất tương đương đọc trước một ma trận N dòng 3 cột, sau đó chuyển vị thành ma trận 3 dòng N cột, tức danh sách ngoài lồng 3 danh sách, cuối cùng gán riêng 3 danh sách đại diện điểm đầu, điểm cuối và trọng số cho `u`, `v`, `w`. Hàm dựng sẵn [`zip()`](https://docs.python.org/3/library/functions.html#zip) có thể ghép các phần tử tương ứng trong nhiều kiểu tuần tự cùng độ dài vào `tuple` để tạo kiểu tuần tự mới. Còn `map()` là một thao tác lập trình hàm: áp dụng một hàm cho từng phần tử của kiểu tuần tự do `zip()` sinh ra; trong ví dụ này dùng `list()` để biến `tuple` thành `list`. Có thể tự luyện tập với `*`, [`zip()`](https://docs.python.org/3/library/functions.html#zip) và [`map()`](https://docs.python.org/3/library/functions.html#map) để hiểu ý nghĩa. Cần lưu ý trong Python 3, `zip()` và `map()` không còn trả về `list` mà trả về bộ lặp. Phần này tạm thời không giải thích khác biệt giữa chúng; có thể hiểu bộ lặp là thứ có thể sinh ra từng phần tử của `list`, và dùng `list()` bọc bộ lặp sẽ tạo ra `list`.
 
 <a id="đọc-ghi-tệp"></a>
 
 #### [Đọc ghi tệp](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
-Hàm dựng sẵn [`open()`](https://docs.python.org/3/library/functions.html#open) của Python dùng để đọc ghi tệp. Để tránh lỗi trong quá trình đọc ghi khiến tệp không được đóng đúng cách, ở đây chỉ giới thiệu cách đọc ghi an toàn bằng câu lệnh [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement):
+Hàm dựng sẵn [`open()`](https://docs.python.org/3/library/functions.html#open) của Python dùng để đọc ghi tệp. Để tránh lỗi trong quá trình đọc ghi khiến tệp không được đóng đúng cách, phần này chỉ giới thiệu cách đọc ghi an toàn bằng câu lệnh [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement):
 
 ```python
 a = []
@@ -555,7 +555,7 @@ with open("out.txt", "w") as f:
     f.write("1\n")
 ```
 
-Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì các kỳ thi OI hiện chưa hỗ trợ dùng Python, ở đây không đi sâu.
+Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì các kỳ thi OI hiện chưa hỗ trợ dùng Python, phần này không đi sâu.
 
 <a id="luồng-điều-khiển"></a>
 
@@ -572,11 +572,11 @@ Biểu thức sinh danh sách có thể thực hiện thao tác hàng loạt hi�
 ```python
 # Lưu ý từ đây trở đi không dùng REPL nữa; cần tự sao chép dữ liệu nhiều dòng
 u, v, w = ([] for i in range(3))  # Gán nhiều biến
-for i in range(4):  # Ở đây giả sử nhập 4 dòng dữ liệu
+for i in range(4):  # Giả sử nhập 4 dòng dữ liệu
     _u, _v, _w = [int(x) for x in input().split()]
     u.append(_u), v.append(_v), w.append(_w)
-    # Không thể làm kiểu cin >> u[i] >> v[i] >> w[i], vì chắc chắn vượt quá độ dài hiện tại của danh sách
-    # Tất nhiên có thể khởi tạo danh sách toàn 0 độ dài MAXN, nhưng cần nhớ độ dài thật và xóa phần dư
+    # Không thể làm kiểu cin >> u[i] >> v[i] >> w[i], vì sẽ vượt quá độ dài hiện tại của danh sách
+    # Có thể khởi tạo danh sách toàn 0 độ dài MAXN, nhưng cần nhớ độ dài thật và xóa phần dư
 print(u, v, w)
 ```
 
@@ -585,7 +585,7 @@ Cần lưu ý vòng lặp `for` trong Python khác C/C++ khá nhiều. Vai trò 
 Sau đây dùng vòng lặp `while` để minh họa cách nhập khi số dòng không cố định:
 
 ```python
-u, v, w = [], [], []  # Gán nhiều biến, thực ra giống trên
+u, v, w = [], [], []  # Gán nhiều biến, tương tự như trên
 s = input()  # Lưu ý câu lệnh gán trong Python không thể đặt trong biểu thức điều kiện
 while s:  # Không thể viết như C: while(!scanf())
     # Dùng cắt lát để nối, tránh append(); lưu ý trong biểu thức sinh danh sách lại lồng danh sách
@@ -615,14 +615,14 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
     elif x & 1:
         print("Dùng elif thay vì else if\n" "Toán tử bit gần với C; số chẵn&1 bằng 0, nên câu này không chạy")
     else:
-        print("Cũng có toán tử ba ngôi") if x else print("Chú ý cấu trúc")
+        print("Cũng có toán tử ba ngôi") if x else print("Lưu ý cấu trúc")
 ```
 
 <a id="xử-lý-ngoại-lệ"></a>
 
 #### Xử lý ngoại lệ
 
-Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; ở đây minh họa trước:
+Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
 
 ```python
 s = "OI-wiki"
@@ -646,14 +646,14 @@ except ValueError:
 
 Python có sẵn nhiều kiểu chứa mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
 
-Có thể hiểu đơn giản `tuple` như một danh sách bất biến, nhưng cần chú ý nội hàm của "bất biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple` không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm sau rất hữu ích khi tạo `dict` và `set`.
+Có thể hiểu đơn giản `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple` không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm sau rất hữu ích khi tạo `dict` và `set`.
 
 ```python
 tup = tuple([[1, 2], 4])  # Tạo tuple từ list
 # Tương đương tup = ([1,2], 4)
 tup[0].append(3)
 print(tup)
-a, b = 0, "I-Wiki"  # Gán nhiều biến thực ra là mở gói tuple
+a, b = 0, "I-Wiki"  # Gán nhiều biến là mở gói tuple
 print(id(a), id(b))
 b, a = a, b
 print(id(a), id(b))  # Có thể thấy id của a, b đã hoán đổi
@@ -664,7 +664,7 @@ print(id(a), id(b))  # Có thể thấy id của a, b đã hoán đổi
 
 ```python
 dic = {"key": "value"}  # Dạng cơ bản
-dic = {chr(i): i for i in range(65, 91)}  # Ánh xạ chữ cái in hoa sang mã ASCII tương ứng; chú ý ngắt dòng
+dic = {chr(i): i for i in range(65, 91)}  # Ánh xạ chữ cái in hoa sang mã ASCII tương ứng; lưu ý ngắt dòng
 dic = dict(zip([chr(i) for i in range(65, 91)], range(65, 91)))  # Hiệu quả như trên
 dic = {dic[k]: k for k in dic}  # Đảo ngược cặp khóa-giá trị; for k in dic lặp qua các khóa
 dic = {v: k for k, v in dic.items()}  # Tác dụng giống dòng trên; dic.items() lưu từng cặp khóa-giá trị bằng tuple
@@ -672,7 +672,7 @@ dic = {
     k: v for k, v in sorted(dic.items(), key=lambda x: -x[1])
 }  # Sắp xếp dict giảm dần theo giá trị, dùng biểu thức lambda
 
-print(dic["A"])  # Trả về mục trong dic có khóa 'A', ở đây giá trị là 65
+print(dic["A"])  # Trả về mục trong dic có khóa 'A', giá trị là 65
 dic["a"] = 97  # Gán giá trị cho khóa; nếu dict chưa có khóa thì chèn trực tiếp
 if "b" in dic:  # Phong cách LBYL (Look Before You Leap)
     print(dic["b"])  # Nếu dict không có khóa này sẽ lỗi, nên kiểm tra trước
@@ -687,7 +687,7 @@ except KeyError:
     cnter[key] = 1
 ```
 
-`set` giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu phần tử lặp, có thể xem như `dict` chỉ lưu khóa. Cần lưu ý `set` và `dict` đều dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo `dict` rỗng chứ không phải `set` rỗng. Ở đây không đưa thêm ví dụ.
+`set` giống [`set`](./csl/associative-container.md#set) trong C++ STL: không lưu phần tử lặp, có thể xem như `dict` chỉ lưu khóa. Cần lưu ý `set` và `dict` đều dùng `{}` bao lại, nhưng riêng `{}` sẽ tạo `dict` rỗng chứ không phải `set` rỗng. Phần này không đưa thêm ví dụ.
 
 <a id="viết-hàm"></a>
 
@@ -705,7 +705,7 @@ def add_no_swap(a, b):
     a += b
     b, a = a, b
     print("in func #2:", id(a), id(b))  # a, b đã hoán đổi
-    return a, b  # Trả về nhiều giá trị, thực ra là trả về tuple, có thể mở gói khi nhận
+    return a, b  # Trả về nhiều giá trị, tức trả về tuple, có thể mở gói khi nhận
 
 
 lst1 = [1, 2]
@@ -722,7 +722,7 @@ print(lst1, lst2)
 
 #### Tham số mặc định
 
-Tham số hàm trong Python rất linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Ở đây chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định rất dễ gây lỗi. Ví dụ đoạn mã sau:
+Tham số hàm trong Python rất linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Phần này chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định rất dễ gây lỗi. Ví dụ đoạn mã sau:
 
 ```python
 def append_to(element, to=[]):
@@ -738,7 +738,7 @@ print(lst1, lst2)
 # Nhưng kết quả thực tế là [12, 42] [12, 42]
 ```
 
-Kết quả trên xảy ra vì giá trị tham số mặc định chỉ được gán một lần tại thời điểm định nghĩa hàm. Với đối tượng khả biến (như `list`, `dict`, `set`), mỗi lần gọi hàm sẽ dùng chung cùng một đối tượng. `lst1` và `lst2` thực ra đều trỏ đến cùng một `list` mặc định trong bộ nhớ. Vì vậy sau lần gọi thứ hai, nội dung `list` dùng chung thành `[12, 42]`. Do đó, giá trị tham số mặc định của hàm nên là đối tượng bất biến; dùng `None` làm giá trị giữ chỗ là thực hành tốt:
+Kết quả trên xảy ra vì giá trị tham số mặc định chỉ được gán một lần tại thời điểm định nghĩa hàm. Với đối tượng khả biến (như `list`, `dict`, `set`), mỗi lần gọi hàm sẽ dùng chung cùng một đối tượng. `lst1` và `lst2` đều trỏ đến cùng một `list` mặc định trong bộ nhớ. Vì vậy sau lần gọi thứ hai, nội dung `list` dùng chung thành `[12, 42]`. Do đó, giá trị tham số mặc định của hàm nên là đối tượng bất biến; dùng `None` làm giá trị giữ chỗ là thực hành tốt:
 
 ```python
 def append_to(element, to=None):
@@ -826,7 +826,7 @@ def fib(n):
 
 ## Thư viện chuẩn thường dùng
 
-Ở đây giới thiệu một số thư viện chuẩn có thể dùng khi viết thuật toán. Cách dùng cụ thể có thể tự tìm hoặc đọc [tài liệu chính thức](https://docs.python.org/3/library/index.html).
+Phần này giới thiệu một số thư viện chuẩn có thể dùng khi viết thuật toán. Cách dùng cụ thể có thể tự tìm hoặc đọc [tài liệu chính thức](https://docs.python.org/3/library/index.html).
 
 | Tên thư viện                                                        | Công dụng                                      |
 | ------------------------------------------------------------------- | ---------------------------------------------- |
@@ -850,7 +850,7 @@ def fib(n):
 ## Đối chiếu C++ và Python qua bài mẫu
 
 ??? note "[Bài mẫu Luogu P4779: Mẫu đường đi ngắn nhất đơn nguồn (bản chuẩn)](https://www.luogu.com.cn/problem/P4779)"
-    Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Hãy tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu đảm bảo có thể đi từ $s$ đến mọi đỉnh.
+    Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu bảo đảm có thể đi từ $s$ đến mọi đỉnh.
 
 <a id="khai-báo-hằng-số"></a>
 
