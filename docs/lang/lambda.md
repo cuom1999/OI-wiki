@@ -357,11 +357,11 @@ auto dfs = [&](int i) -> void {
 };
 ```
 
-Đoạn mã này thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề:
-kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy
-luận xong thì mới suy luận được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ
-$dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu tương
-ứng. Kết quả là xuất hiện một vòng phụ thuộc lẫn nhau.
+Đoạn mã này thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề: kiểu
+của $dfs$ là `auto`, nên phải chờ suy luận xong kiểu của vế phải dấu bằng mới xác
+định được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ $dfs$, trình biên dịch
+lại cần biết kiểu của $dfs$ trước để tạo biến tham chiếu tương ứng. Kết quả là
+hai bước này phụ thuộc lẫn nhau.
 
 Có một số cách giải quyết vấn đề này:
 
@@ -382,9 +382,13 @@ Có một số cách giải quyết vấn đề này:
         ```
 
     ??? warning "Không khuyến nghị dùng [`std::function`](./new.md#stdfunction) để cài đặt đệ quy"
-        Kỹ thuật xóa kiểu của `std::function` thường cần cấp phát thêm bộ nhớ; đồng thời, lời gọi gián tiếp làm tăng thao tác định địa chỉ và tiếp tục làm giảm hiệu năng.
+        Kỹ thuật xóa kiểu của `std::function` thường cần cấp phát thêm bộ nhớ.
+        Đồng thời, lời gọi gián tiếp làm tăng chi phí định địa chỉ, khiến hiệu
+        năng tiếp tục giảm.
         
-        Trong bài [đo kiểm](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c), với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt bằng `std::function` chậm hơn đệ quy bằng lambda khoảng 2.5 lần.
+        Trong bài [đo kiểm](https://quick-bench.com/q/U5qf_dHHKsSyVU83jmt0p_U541c),
+        với trình biên dịch Clang 17 và libc++ làm thư viện chuẩn, cách cài đặt
+        bằng `std::function` chậm hơn đệ quy bằng lambda khoảng 2.5 lần.
         
         ??? note "Mã kiểm thử"
             ```cpp
@@ -466,8 +470,14 @@ Có một số cách giải quyết vấn đề này:
         ```
 
     ???+ note "Khác biệt giữa `auto self`, `auto& self` và `auto&& self`:"
-        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Chi tiết còn phụ thuộc vào cách trình biên dịch cài đặt lambda và các tối ưu tương ứng.
-        Còn với `auto self`, sẽ phát sinh bản sao của đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp lambda này.
+        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ truyền một tham chiếu,
+        thường có kích thước bằng con trỏ, nên không tạo thêm bản sao của đối
+        tượng lambda. Chi tiết vẫn phụ thuộc vào cách trình biên dịch cài đặt
+        lambda và các tối ưu tương ứng.
+
+        Với `auto self`, lời gọi sẽ tạo bản sao của đối tượng lambda. Kích thước
+        bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là
+        biến thành viên riêng của lớp lambda này.
 3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; nhờ đó
     có thể khai báo kiểu của $dfs$.
 
@@ -495,10 +505,9 @@ Có một số cách giải quyết vấn đề này:
 4.  Nếu lambda không bắt giữ bất kỳ biến nào, cũng có thể tận dụng con trỏ hàm.
 
     Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định
-    thành con trỏ hàm. Đồng thời, lúc này lambda cũng có thể được khai báo là
-    `static`, và kiểu con trỏ hàm cũng có thể được khai báo là `static`. Dựa vào
-    đó, lambda có thể truy cập con trỏ hàm mà không cần bắt giữ, từ đó thực hiện
-    đệ quy.
+    thành con trỏ hàm. Khi đó, có thể khai báo lambda là `static`, đồng thời khai
+    báo kiểu con trỏ hàm là `static`. Nhờ vậy, lambda truy cập được con trỏ hàm mà
+    không cần bắt giữ biến nào, từ đó thực hiện được đệ quy.
 
     ???+ example "Ví dụ"
         ```cpp
@@ -533,7 +542,8 @@ std::vector<int> v = {1, 2, 3, 4, 5};
 std::sort(v.begin(), v.end(), [](int a, int b) { return a > b; });
 ```
 
-Dùng [std::find\_if](https://en.cppreference.com/w/cpp/algorithm/find) để tìm phần tử đầu tiên lớn hơn 3:
+Dùng [std::find\_if](https://en.cppreference.com/w/cpp/algorithm/find) để tìm
+phần tử đầu tiên lớn hơn 3:
 
 ```cpp
 std::vector<int> v = {1, 2, 3, 4, 5};
@@ -569,9 +579,9 @@ void solution(const vector<int>& input) {
 }
 ```
 
-So với việc dùng phạm vi khối lệnh, lambda cho phép dùng giá trị trả về, giúp mã
-ngắn gọn hơn; so với hàm, không cần đặt thêm tên và khai báo riêng các tham số
-được bắt giữ, giúp mã chặt chẽ hơn.
+So với phạm vi khối lệnh, lambda có giá trị trả về nên mã ngắn gọn hơn. So với
+hàm riêng, lambda không cần thêm tên hàm và không phải khai báo lại các tham số đã
+được bắt giữ, nên mã tập trung hơn vào logic đang viết.
 
 <a id="tài-liệu-tham-khảo"></a>
 
