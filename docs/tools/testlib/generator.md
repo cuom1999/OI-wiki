@@ -22,17 +22,17 @@ int main(int argc, char* argv[]) {
 
 ## Vì sao nên dùng Testlib?
 
-Có người cho rằng viết trình sinh dữ liệu không cần dùng Testlib, vì Testlib không có nhiều tác dụng ở đây. Thực ra đây là một suy nghĩ không đúng. Một trình sinh dữ liệu tốt nên thỏa tính chất sau: **với cùng một đầu vào, nó cho cùng một đầu ra trong mọi môi trường**. Khi viết trình sinh dữ liệu, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ ta thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (với cách dùng rất phổ biến `srand(time(nullptr))`, điều này là hiển nhiên), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
+Có ý kiến cho rằng viết trình sinh dữ liệu không cần dùng Testlib, vì Testlib không có nhiều tác dụng trong trường hợp này. Nhận định này không chính xác. Một trình sinh dữ liệu tốt nên thỏa tính chất sau: **với cùng một đầu vào, nó cho cùng một đầu ra trong mọi môi trường**. Khi viết trình sinh dữ liệu, gần như không thể tránh khỏi việc sinh giá trị ngẫu nhiên. Các công cụ thường dùng như `rand()` hoặc `mt19937/uniform_int_distribution` của C++11 có thể cho đầu ra khác nhau khi hệ điều hành khác nhau, trình biên dịch khác nhau, thời điểm chạy khác nhau, v.v. (chẳng hạn cách dùng rất phổ biến `srand(time(nullptr))` phụ thuộc vào thời điểm chạy), và điều đó tạo ra tính bất định cho dữ liệu sinh ra.
 
-Cần lưu ý rằng một khi đã dùng Testlib, bạn không được dùng các hàm sinh số ngẫu nhiên của thư viện chuẩn như `srand()` và `rand()` nữa, nếu không sẽ gặp lỗi khi biên dịch. Vì vậy, **hãy bảo đảm mọi hàm liên quan đến ngẫu nhiên đều dùng Testlib thay vì thư viện chuẩn**.
+Cần lưu ý rằng một khi đã dùng Testlib, không được dùng các hàm sinh số ngẫu nhiên của thư viện chuẩn như `srand()` và `rand()` nữa, nếu không sẽ gặp lỗi khi biên dịch. Vì vậy, **mọi hàm liên quan đến ngẫu nhiên đều cần dùng Testlib thay vì thư viện chuẩn**.
 
 Các hàm sinh giá trị ngẫu nhiên trong Testlib bảo đảm rằng cùng một lời gọi sẽ cho cùng một giá trị, độc lập với bản thân trình sinh dữ liệu và nền tảng chạy. Ngoài ra, Testlib giúp sinh giá trị ngẫu nhiên theo nhiều yêu cầu khác nhau rất thuận tiện. Ví dụ, `rnd.next("[a-z]{1,10}")` sẽ sinh một chuỗi có độ dài trong khoảng $[1,10]$, mỗi ký tự nằm từ `a` đến `z`.
 
 ## Testlib có thể làm gì?
 
-Trước hết, hãy gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản trình sinh dữ liệu được dùng, thông thường giữ nguyên). Sau đó, ta có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Hạt giống ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một trình sinh dữ liệu `g.cpp`, `g 100` (trên hệ Unix-like) và `g.exe "100"` (trên Windows) sẽ cho cùng đầu ra, còn `g 100 0` sẽ cho đầu ra khác.
+Trước hết, gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (trong đó `1` là phiên bản trình sinh dữ liệu được dùng, thông thường giữ nguyên). Sau đó, có thể dùng đối tượng `rnd` để sinh giá trị ngẫu nhiên. Hạt giống ngẫu nhiên được lấy từ giá trị băm của tham số dòng lệnh. Với một trình sinh dữ liệu `g.cpp`, `g 100` (trên hệ Unix-like) và `g.exe "100"` (trên Windows) sẽ cho cùng đầu ra, còn `g 100 0` sẽ cho đầu ra khác.
 
-Đối tượng `rnd` có kiểu `random_t`. Bạn có thể tạo một đối tượng sinh giá trị ngẫu nhiên mới, nhưng thông thường không cần làm vậy.
+Đối tượng `rnd` có kiểu `random_t`. Có thể tạo một đối tượng sinh giá trị ngẫu nhiên mới, nhưng thông thường không cần làm vậy.
 
 Đối tượng này có nhiều hàm thành viên hữu ích. Dưới đây là một số ví dụ:
 
@@ -56,7 +56,7 @@ $$
 \end{cases}
 $$
 
-Ngoài ra, đừng dùng `std::random_shuffle()`; hãy dùng `shuffle()` trong Testlib. Hàm này cũng nhận một cặp bộ lặp (iterator). Nó dùng `rnd` để xáo trộn dãy, tức thỏa yêu cầu về "trình sinh dữ liệu tốt" ở trên.
+Ngoài ra, không dùng `std::random_shuffle()`; thay vào đó nên dùng `shuffle()` trong Testlib. Hàm này cũng nhận một cặp bộ lặp (iterator). Nó dùng `rnd` để xáo trộn dãy, tức thỏa yêu cầu về "trình sinh dữ liệu tốt" nêu trên.
 
 ## Ví dụ: sinh một cây
 
@@ -99,7 +99,7 @@ for (int i = 0; i + 1 < n; i++)
 
 ## Sinh nhiều bộ dữ liệu một lần
 
-Tương tự khi viết mà không dùng Testlib, bạn chỉ cần chuyển hướng luồng đầu ra trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp một hàm hỗ trợ `startTest(test_index)`, giúp bạn chuyển hướng luồng đầu ra tới tệp `test_index`.
+Tương tự cách viết không dùng Testlib, chỉ cần chuyển hướng luồng đầu ra trước mỗi lần xuất. Tuy nhiên, Testlib cung cấp một hàm hỗ trợ `startTest(test_index)`, giúp chuyển hướng luồng đầu ra tới tệp `test_index`.
 
 ## Một số lưu ý
 
@@ -109,16 +109,16 @@ Tương tự khi viết mà không dùng Testlib, bạn chỉ cần chuyển hư
 
 ## Tính năng mới: phân tích tham số dòng lệnh
 
-Trước đây, ta thường dùng mã kiểu `int n = atoi(argv[3]);`, nhưng cách này không tốt vì các lý do sau:
+Trước đây, thường gặp kiểu mã `int n = atoi(argv[3]);`, nhưng cách này không tốt vì các lý do sau:
 
 -   Không an toàn khi tham số dòng lệnh thứ ba không tồn tại.
 -   Tham số dòng lệnh thứ ba có thể không phải một số nguyên 32 bit hợp lệ.
 
-Hiện nay, bạn có thể viết như sau: `int n = opt<int>(3)`. Đồng thời, bạn cũng có thể dùng `int64_t m = opt<int64_t>(1);`, `bool t = opt<bool>(2);`, `string s = opt(4);`, v.v.
+Hiện nay, có thể viết như sau: `int n = opt<int>(3)`. Đồng thời, cũng có thể dùng `int64_t m = opt<int64_t>(1);`, `bool t = opt<bool>(2);`, `string s = opt(4);`, v.v.
 
 Ngoài ra, Testlib cũng hỗ trợ tham số có tên. Nếu có nhiều tham số, cách viết `g 10 20000 a true` sẽ khó đọc hơn `g -n10 -m200000 -t=a -increment`.
 
-Trong trường hợp này, hiện bạn có thể dùng đoạn mã sau trong trình sinh dữ liệu:
+Trong trường hợp này, hiện có thể dùng đoạn mã sau trong trình sinh dữ liệu:
 
 ```cpp
 int n = opt<int>("n");
@@ -127,7 +127,7 @@ string t = opt("t");
 bool increment = opt<bool>("increment");
 ```
 
-Bạn có thể tự do kết hợp cách đọc tham số theo chỉ số và theo tên.
+Có thể tự do kết hợp cách đọc tham số theo chỉ số và theo tên.
 
 Các dạng viết tham số có tên được hỗ trợ gồm:
 
@@ -147,8 +147,8 @@ g4 --length 5 --total 21 -ord
 
 ## Thêm ví dụ
 
-Bạn có thể tìm thấy trên [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators).
+Có thể xem thêm trên [GitHub](https://github.com/MikeMirzayanov/testlib/tree/master/generators).
 
 **Bài viết này chủ yếu được dịch từ [Генераторы на testlib.h - Codeforces](https://codeforces.com/blog/entry/18291). Phần tính năng mới được dịch từ [Testlib: Opts—parsing command line options](https://codeforces.com/blog/entry/72702). Kho GitHub của `testlib.h` là [MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib).**
 
-[^note1]: Thực ra, khi `i` là số thực dấu phẩy động, `rnd.wnext(i, t)` tuân theo [phân phối Beta](https://en.wikipedia.org/wiki/Beta_distribution) trên $[0,i)$: khi $t>0$, nó tuân theo $i\cdot \mathrm{Beta}(t+1,1)$; khi $t<0$, nó tuân theo $i\cdot \mathrm{Beta}(1,t+1)$.
+[^note1]: Khi `i` là số thực dấu phẩy động, `rnd.wnext(i, t)` tuân theo [phân phối Beta](https://en.wikipedia.org/wiki/Beta_distribution) trên $[0,i)$: khi $t>0$, nó tuân theo $i\cdot \mathrm{Beta}(t+1,1)$; khi $t<0$, nó tuân theo $i\cdot \mathrm{Beta}(1,t+1)$.

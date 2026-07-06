@@ -1,4 +1,4 @@
-Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong trình kiểm tra đáp án (checker), trình tương tác (interactor) và trình xác thực dữ liệu (validator) của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Hãy đọc hết trang này trước khi đọc các trang khác.
+Trang này giới thiệu một số trạng thái, đối tượng và hàm dùng chung trong trình kiểm tra đáp án (checker), trình tương tác (interactor) và trình xác thực dữ liệu (validator) của Testlib, cùng với vài cách dùng và lưu ý quan trọng. Nên đọc hết trang này trước khi đọc các trang khác.
 
 ## Trạng thái chung
 
@@ -70,11 +70,11 @@ Một số hàm nhập ở trên cho phép sử dụng tính năng "biểu thứ
 -   Ký hiệu "hoặc". Ví dụ, `mike|john` biểu thị một trong hai chuỗi `mike` hoặc `john`.
 -   Ký hiệu "tùy chọn". Ví dụ, `-?[1-9][0-9]{0,3}` biểu thị số nguyên khác 0 trong khoảng $[-9999,9999]$ (lưu ý dấu trừ tùy chọn).
 -   Ký hiệu "lặp". Ví dụ, `[0-9]*` biểu thị không hoặc nhiều chữ số, còn `[0-9]+` biểu thị một hoặc nhiều chữ số.
--   Lưu ý rằng biểu thức chính quy ở đây là "tham lam" ("lặp" sẽ khớp nhiều nhất có thể). Ví dụ, `[0-9]?1` sẽ không khớp với `1` (vì `[0-9]?` đã khớp với `1`, khiến ký tự `1` còn lại trong mẫu không thể khớp).
+-   Lưu ý rằng biểu thức chính quy trong Testlib là "tham lam" ("lặp" sẽ khớp nhiều nhất có thể). Ví dụ, `[0-9]?1` sẽ không khớp với `1` (vì `[0-9]?` đã khớp với `1`, khiến ký tự `1` còn lại trong mẫu không thể khớp).
 
 ## Đặt testlib.h trước tiên
 
-Hãy bảo đảm `testlib.h` là tệp header **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang generator](./generator.md) sẽ giải thích chi tiết hơn.
+Cần bảo đảm `testlib.h` là tệp header **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang generator](./generator.md) sẽ giải thích chi tiết hơn.
 
 ## Dùng bí danh cho hạng mục
 
@@ -82,13 +82,13 @@ Với các lời gọi có ràng buộc như `readInt/readInteger/readLong/readD
 
 ## Dùng `ensuref/ensure()`
 
-Hai hàm này dùng để kiểm tra điều kiện có đúng hay không (tương tự `assert()`). Ví dụ, để kiểm tra $x_i \neq y_i$, ta có thể dùng:
+Hai hàm này dùng để kiểm tra điều kiện có đúng hay không (tương tự `assert()`). Ví dụ, để kiểm tra $x_i \neq y_i$, có thể dùng:
 
 ```cpp
 ensuref(x[i] != y[i], "Graph can't contain loops");
 ```
 
-Bạn cũng có thể dùng phần giữ chỗ (placeholder) kiểu C, chẳng hạn:
+Cũng có thể dùng phần giữ chỗ (placeholder) kiểu C, chẳng hạn:
 
 ```cpp
 ensuref(s.length() % 2 == 0,
@@ -96,10 +96,10 @@ ensuref(s.length() % 2 == 0,
         int(s.length()));
 ```
 
-Hàm này có phiên bản rút gọn `ensure()`: ta có thể dùng trực tiếp `ensure(x > y)` mà không thêm nội dung giải thích (hàm này cũng không hỗ trợ thêm nội dung giải thích). Nếu điều kiện không thỏa, lỗi sẽ là `FAIL Condition failed: "x > y"`. Trong nhiều trường hợp, thông báo lỗi không có giải thích bổ sung như vậy không thân thiện, nên thông thường ta dùng `ensuref()` kèm nội dung giải thích thay vì dùng `ensure()`.
+Hàm này có phiên bản rút gọn `ensure()`: có thể dùng trực tiếp `ensure(x > y)` mà không thêm nội dung giải thích (hàm này cũng không hỗ trợ thêm nội dung giải thích). Nếu điều kiện không thỏa, lỗi sẽ là `FAIL Condition failed: "x > y"`. Trong nhiều trường hợp, thông báo lỗi không có giải thích bổ sung như vậy không thân thiện, nên ưu tiên dùng `ensuref()` kèm nội dung giải thích thay vì dùng `ensure()`.
 
 ???+ warning "Cảnh báo"
-    Chú ý sự khác nhau giữa `ensuref/ensure()` toàn cục và hàm thành viên.
+    Lưu ý sự khác nhau giữa `ensuref/ensure()` toàn cục và hàm thành viên.
     
     Hàm toàn cục `::ensuref/ensure()` thường dùng trong trình sinh dữ liệu và trình xác thực dữ liệu; nếu kiểm tra thất bại, chúng sẽ luôn trả về `_fail`.
     
