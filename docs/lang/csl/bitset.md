@@ -316,7 +316,8 @@ Cho $n$ đa tập hợp, hỗ trợ bốn loại thao tác:
 
 1.  Gán một đa tập hợp nào đó thành một số.
 2.  Gán một đa tập hợp nào đó thành tổng của hai đa tập hợp khác.
-3.  Gán một đa tập hợp nào đó thành tập các $\gcd$ khi chọn mỗi đa tập hợp khác một số. Cụ thể: $A=\{\gcd(x,y)|x\in B,y\in C\}$.
+3.  Gán một đa tập hợp nào đó thành tập các $\gcd$ khi chọn mỗi đa tập hợp khác
+    một số. Cụ thể: $A=\{\gcd(x,y)|x\in B,y\in C\}$.
 4.  Hỏi số lần xuất hiện của một số trong một đa tập hợp, **theo mô-đun 2**.
 
 Số đa tập hợp là $10^5$, số thao tác là $10^6$, miền giá trị là $7000$.
@@ -326,25 +327,40 @@ Số đa tập hợp là $10^5$, số thao tác là $10^6$, miền giá trị l�
 
 Cụm "theo mô-đun $2$" gợi ý dùng `bitset` để duy trì mỗi đa tập hợp.
 
-Khi đó, thao tác $1$ gán trực tiếp, thao tác $2$ là XOR (vì tính theo mô-đun $2$), thao tác $4$ là truy vấn trực tiếp. Vấn đề còn lại là thao tác $3$.
+Khi đó, thao tác $1$ là phép gán, thao tác $2$ là XOR (vì tính theo mô-đun $2$),
+còn thao tác $4$ là truy vấn. Vấn đề còn lại là thao tác $3$.
 
-Có thể thử duy trì đa tập hợp gồm tất cả ước của các phần tử trong mỗi đa tập hợp. Khi đó thao tác $3$ chính là AND theo bit trực tiếp.
+Thay vì duy trì các phần tử gốc của mỗi đa tập hợp, ta duy trì đa tập hợp gồm
+tất cả ước của các phần tử đó. Khi đó thao tác $3$ chính là AND theo bit.
 
-Có thể tiền xử lý `bitset` gồm các ước của mỗi số trong miền giá trị, như vậy thao tác $1$ được giải quyết. Thao tác $2$ vẫn là XOR.
+Có thể tiền xử lý `bitset` gồm các ước của mỗi số trong miền giá trị để xử lý
+thao tác $1$. Thao tác $2$ vẫn là XOR.
 
-Vấn đề lúc này là: làm sao từ đa tập hợp các ước của một đa tập hợp để lấy được số lần xuất hiện của một số trong đa tập hợp gốc.
+Vấn đề lúc này là: từ đa tập hợp các ước, làm sao lấy được số lần xuất hiện của
+một số trong đa tập hợp gốc.
 
-Gọi đa tập hợp gốc là $A$, đa tập hợp các ước của nó là $A'$. Cần tính số lần xuất hiện của $x$ trong $A$; dùng [nghịch đảo Möbius](../../math/number-theory/mobius.md) để suy ra:
+Gọi đa tập hợp gốc là $A$, đa tập hợp các ước của nó là $A'$. Cần tính số lần
+xuất hiện của $x$ trong $A$; dùng
+[nghịch đảo Möbius](../../math/number-theory/mobius.md) để suy ra:
 
 $$
-\begin{aligned}&\sum\limits_{i\in A}[\frac i x=1]\\=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\=&\sum\limits_{d\in A',x|d}\mu(\frac d x)\end{aligned}
+\begin{aligned}
+&\sum\limits_{i\in A}\left[\frac i x=1\right]\\
+=&\sum\limits_{i\in A}\sum\limits_{d|\frac i x}\mu(d)\\
+=&\sum\limits_{d\in A',x|d}\mu\left(\frac d x\right)
+\end{aligned}
 $$
 
-Vì tính theo mô-đun $2$, $-1$ và $1$ là như nhau, nên chỉ cần xem $\frac d x$ có chứa thừa số bình phương hay không. Do đó, với mỗi số trong miền giá trị, có thể tiền xử lý `bitset` gồm các bội của nó mà sau khi chia cho nó thì không chứa thừa số bình phương. Khi tính đáp án, chỉ cần AND rồi `count()`.
+Vì tính theo mô-đun $2$, $-1$ và $1$ là như nhau, nên chỉ xét $\frac d x$ có
+chứa thừa số bình phương hay không. Do đó, với mỗi số trong miền giá trị, tiền
+xử lý một `bitset` gồm các bội của nó mà sau khi chia cho nó thì không chứa thừa
+số bình phương. Khi tính đáp án, thực hiện AND rồi gọi `count()`.
 
 Như vậy, độ phức tạp cho mỗi truy vấn là $O(\frac v w)$ ($v=7000,\,w=32$).
 
-Phần tiền xử lý có thể làm đơn giản với $O(v\sqrt v)$ hoặc $O(v^2)$. Cách tiền xử lý theo $\log$ như trong mã dưới đây có độ phức tạp là tổng điều hòa, nên là $O(v\log v)$.
+Một cách tiền xử lý sơ cấp đạt $O(v\sqrt v)$ hoặc $O(v^2)$. Cách tiền xử lý theo
+$\log$ như trong mã dưới đây có độ phức tạp là tổng điều hòa, nên là
+$O(v\log v)$.
 
 ??? note "Mã tham khảo"
     ```cpp
