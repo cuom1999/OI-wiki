@@ -9,7 +9,7 @@ author: inkydragon, TravorLZH, YOYO-UIAT, wood3, shuzhouliu, Mr-Python-in-China,
 Nếu muốn biết có bao nhiêu số nguyên tố nhỏ hơn hoặc bằng $n$ thì làm thế nào?
 
 Một ý tưởng tự nhiên là kiểm tra tính nguyên tố cho từng số không vượt quá
-$n$. Cách vét cạn này rõ ràng không đạt độ phức tạp tối ưu.
+$n$. Cách vét cạn này không đạt độ phức tạp tối ưu.
 
 <span id="sàng-eratosthenes"></span>
 ### Sàng Eratosthenes
@@ -18,7 +18,7 @@ $n$. Cách vét cạn này rõ ràng không đạt độ phức tạp tối ưu.
 #### Quá trình
 
 Xét một nhận xét: với bất kỳ số nguyên dương $n$ lớn hơn $1$, bội $x$ của nó
-là hợp số nếu $x > 1$. Dựa vào kết luận này, ta có thể tránh nhiều lần kiểm tra
+là hợp số nếu $x > 1$. Dựa vào kết luận này, có thể tránh nhiều lần kiểm tra
 không cần thiết.
 
 Nếu xét từng số từ nhỏ đến lớn, đồng thời đánh dấu tất cả các bội số của số
@@ -41,7 +41,7 @@ hiện tại (lớn hơn chính nó) là hợp số, thì sau khi kết thúc, n
           prime.push_back(i);
           if ((long long)i * i > n) continue;
           for (int j = i * i; j <= n; j += i)
-            // Các bội từ 2 đến i - 1 đã được sàng trước đó, nên ở đây bắt đầu
+            // Các bội từ 2 đến i - 1 đã được sàng trước đó, nên bắt đầu
             // trực tiếp từ bội của i để tăng tốc
             is_prime[j] = false;  // các bội của i đều không phải số nguyên tố
         }
@@ -92,7 +92,7 @@ tạp thời gian $O(n\log\log n)$.
     $$
     
     Do đó độ phức tạp thời gian của **sàng Eratosthenes** là
-    $O(n\log\log n)$. Tiếp theo ta chứng minh phiên bản yếu hơn của định lý thứ
+    $O(n\log\log n)$. Tiếp theo chứng minh phiên bản yếu hơn của định lý thứ
     hai Mertens: $\sum_{k\le\pi(n)}1/p_k=O(\log\log n)$.
     
     Từ $\pi(n)=\Theta(n/\log n)$, suy ra số nguyên tố thứ $n$ có kích thước
@@ -107,13 +107,13 @@ tạp thời gian $O(n\log\log n)$.
     \end{aligned}
     $$
     
-    Tất nhiên, cách trên vẫn chưa đủ nhanh trong thực tế; các phương pháp dưới
+    Tuy nhiên, cách trên vẫn chưa đủ nhanh trong thực tế; các phương pháp dưới
     đây có thể cải thiện hiệu năng một chút.
 
 <span id="sàng-đến-căn-bậc-hai"></span>
 #### Sàng đến căn bậc hai
 
-Rõ ràng, để tìm tất cả số nguyên tố đến $n$, chỉ cần sàng bằng các số nguyên tố
+Để tìm tất cả số nguyên tố đến $n$, chỉ cần sàng bằng các số nguyên tố
 không vượt quá $\sqrt n$.
 
 === "C++"
@@ -161,7 +161,7 @@ logarit, chúng tương đương về tiệm cận, nhưng số thao tác giảm
 <span id="chỉ-sàng-số-lẻ"></span>
 #### Chỉ sàng số lẻ
 
-Vì mọi số chẵn ngoài $2$ đều là hợp số, ta có thể bỏ qua trực tiếp và chỉ quan
+Vì mọi số chẵn ngoài $2$ đều là hợp số, có thể bỏ qua trực tiếp và chỉ quan
 tâm đến số lẻ.
 
 Trước hết, cách này làm giảm một nửa nhu cầu bộ nhớ; tiếp theo, số thao tác cần
@@ -170,7 +170,7 @@ thiết cũng xấp xỉ giảm một nửa.
 <span id="giảm-dung-lượng-bộ-nhớ"></span>
 #### Giảm dung lượng bộ nhớ
 
-Ta nhận thấy khi sàng chỉ cần mảng kiểu `bool`. Một phần tử của mảng `bool`
+Nhận thấy khi sàng chỉ cần mảng kiểu `bool`. Một phần tử của mảng `bool`
 thường chiếm $1$ byte (tức $8$ bit), nhưng để lưu một giá trị boolean chỉ cần
 $1$ bit.
 
@@ -178,7 +178,7 @@ Có thể dùng kiến thức về [thao tác bit](../bit.md) để nén mỗi g
 vào một bit. Khi đó chỉ cần $n$ bit (tức $\dfrac n 8$ byte) thay vì $n$ byte,
 giúp giảm đáng kể bộ nhớ. Cách này gọi là "nén ở mức bit".
 
-Đáng chú ý là có những cấu trúc dữ liệu tự động thực hiện nén mức bit, như
+Đáng lưu ý là có những cấu trúc dữ liệu tự động thực hiện nén mức bit, như
 `vector<bool>` và `bitset<>` trong C++.
 
 Ngoài ra, `vector<bool>` và `bitset<>` có tối ưu hằng số cho chương trình; sàng
@@ -191,7 +191,7 @@ Xem [bitset: kết hợp với sàng Eratosthenes](../../lang/csl/bitset.md#kế
 <span id="sàng-theo-khối"></span>
 #### Sàng theo khối
 
-Từ tối ưu "sàng đến căn bậc hai", ta biết không cần giữ toàn bộ mảng
+Từ tối ưu "sàng đến căn bậc hai", không cần giữ toàn bộ mảng
 `is_prime[1...n]`. Để sàng, chỉ cần giữ các số nguyên tố đến $\sqrt n$, tức
 `prime[1...sqrt(n)]`, rồi chia toàn bộ miền thành các khối và sàng riêng từng
 khối. Như vậy không cần giữ nhiều khối trong bộ nhớ cùng lúc, và CPU cũng xử lý
@@ -200,7 +200,7 @@ cache tốt hơn.
 Gọi $s$ là một hằng số quyết định kích thước khối, khi đó có
 $\lceil {\frac n s} \rceil$ khối, và khối $k$
 ($k = 0 \dots \lfloor {\frac n s} \rfloor$) chứa các số trong đoạn
-$[ks, ks + s - 1]$. Ta xử lý từng khối lần lượt: với mỗi khối $k$, duyệt tất cả
+$[ks, ks + s - 1]$. Xử lý từng khối lần lượt: với mỗi khối $k$, duyệt tất cả
 các số nguyên tố (từ $1$ đến $\sqrt n$) và dùng chúng để sàng.
 
 Cần lưu ý khi xử lý các số đầu tiên phải sửa chiến lược một chút: thứ nhất, cần
@@ -246,7 +246,7 @@ quá $n$.
 Độ phức tạp tiệm cận của sàng theo khối giống sàng Eratosthenes (trừ khi khối
 quá nhỏ), nhưng bộ nhớ cần dùng giảm xuống $O(\sqrt{n} + S)$ và có hiệu quả
 cache tốt hơn. Mặt khác, với mỗi cặp gồm một khối và một số nguyên tố trong
-đoạn $[1, \sqrt{n}]$, ta đều phải thực hiện phép chia; với khối nhỏ, điều này
+đoạn $[1, \sqrt{n}]$, đều phải thực hiện phép chia; với khối nhỏ, điều này
 tệ hơn nhiều. Vì vậy cần cân bằng khi chọn hằng số $S$.
 
 Kích thước khối $S$ trong khoảng $10^4$ đến $10^5$ thường cho tốc độ tốt nhất.
@@ -278,8 +278,8 @@ $O(n)$.
                 // i % pri_j == 0
                 // Nói cách khác, i đã bị sàng bởi pri_j trước đó
                 // Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
-                // với các số nguyên tố khác chắc chắn sẽ bị sàng bởi bội của pri_j;
-                // không cần sàng trước ở đây, nên break trực tiếp
+                // với các số nguyên tố khác sẽ bị sàng bởi bội của pri_j;
+                // không cần sàng trước tại đây, nên break trực tiếp
                 break;
               }
             }
@@ -306,8 +306,8 @@ $O(n)$.
                         i % pri_j == 0
                         Nói cách khác, i đã bị sàng bởi pri_j trước đó
                         Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
-                        với các số nguyên tố khác chắc chắn sẽ bị sàng bởi bội của pri_j;
-                        không cần sàng trước ở đây, nên break trực tiếp
+                        với các số nguyên tố khác sẽ bị sàng bởi bội của pri_j;
+                        không cần sàng trước tại đây, nên break trực tiếp
                         """
                         break
         ```
@@ -315,7 +315,7 @@ $O(n)$.
 Kiểu sàng trên được gọi là **sàng tuyến tính**, hay **sàng Euler**.
 
 ???+ note "Ghi chú"
-    Khi dùng sàng để tìm số nguyên tố, ta đồng thời thu được thừa số nguyên tố
+    Khi dùng sàng để tìm số nguyên tố, đồng thời thu được thừa số nguyên tố
     nhỏ nhất của mỗi số.
 
 <span id="tính-hàm-euler-bằng-sàng"></span>
@@ -326,7 +326,7 @@ Ví dụ, gọi $p_1$ là thừa số nguyên tố nhỏ nhất của $n$,
 $n' = \frac{n}{p_1}$; trong quá trình sàng tuyến tính, $n$ bị sàng qua
 $n' \times p_1$.
 
-Quan sát quá trình sàng tuyến tính, ta còn cần xử lý hai phần; sau đây chia
+Quan sát quá trình sàng tuyến tính, còn cần xử lý hai phần; sau đây chia
 trường hợp theo $n' \bmod p_1$.
 
 Nếu $n' \bmod p_1 = 0$, thì $n'$ chứa tất cả thừa số nguyên tố của $n$.
@@ -340,7 +340,7 @@ $$
 $$
 
 Còn nếu $n' \bmod p_1 \neq 0$ thì sao? Khi đó $n'$ và $p_1$ nguyên tố cùng
-nhau; theo tính chất của hàm Euler, ta có:
+nhau; theo tính chất của hàm Euler, có:
 
 $$
 \begin{aligned}
@@ -408,7 +408,7 @@ $$
 ### Định nghĩa
 
 Theo định nghĩa hàm Möbius, giả sử $n$ là hợp số, $p_1$ là thừa số nguyên tố
-nhỏ nhất của $n$, $n'=\frac{n}{p_1}$, ta có:
+nhỏ nhất của $n$, $n'=\frac{n}{p_1}$, có:
 
 $$
 \mu(n)=
@@ -484,7 +484,7 @@ xuất hiện của thừa số nguyên tố nhỏ nhất của $i$.
 Định lý: nếu $n=\prod_{i=1}^m p_i^{c_i}$ thì
 $d_i=\prod_{i=1}^m (c_i+1)$.
 
-Chứng minh: ta biết các ước của $p_i^{c_i}$ là
+Chứng minh: các ước của $p_i^{c_i}$ là
 $p_i^0,p_i^1,\dots ,p_i^{c_i}$, tổng cộng $c_i+1$ ước. Theo quy tắc nhân, số
 lượng ước của $n$ chính là $\prod_{i=1}^m (c_i+1)$.
 
@@ -634,7 +634,7 @@ $f(1),f(2),\dots,f(n)$ trong thời gian $O(n)$.
 
 Giả sử hợp số $n$ có phân tích thừa số nguyên tố là
 $\prod_{i=1}^k p_i^{\alpha_i}$, trong đó $p_1<p_2<\dots<p_k$ là các số nguyên
-tố. Trong sàng tuyến tính, ta lưu $g_n=p_1^{\alpha_1}$. Nếu $n$ bị sàng bởi
+tố. Trong sàng tuyến tính, lưu $g_n=p_1^{\alpha_1}$. Nếu $n$ bị sàng bởi
 $x\cdot p$ (với $p$ là số nguyên tố), thì $g$ thỏa mãn truy hồi sau:
 
 $$
