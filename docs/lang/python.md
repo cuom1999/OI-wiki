@@ -43,7 +43,7 @@ Python là một ngôn ngữ thông dịch được sử dụng rộng rãi trê
 
 Xem [Python 3](../tools/compiler.md#python-3). Hoặc:
 
--   Windows: cũng có thể cài Python miễn phí và nhanh chóng qua Microsoft Store.
+-   Windows: cũng có thể cài Python miễn phí qua Microsoft Store.
 
 -   macOS/Linux: thông thường, phần lớn bản phân phối Linux đã cài sẵn Python.
     Nếu chỉ muốn học cú pháp Python và không có nhu cầu phát triển khác, không
@@ -90,7 +90,7 @@ một máy chủ phản chiếu đáng tin cậy gần khu vực sử dụng.
 ## Cài thư viện bên thứ ba bằng `pip`
 
 Sức sống của Python phần lớn đến từ hệ sinh thái thư viện bên thứ ba phong phú.
-Khi viết các tiện ích thực dụng, việc "gọi thư viện" là thao tác rất thường gặp,
+Khi viết các tiện ích thực dụng, việc "gọi thư viện" là thao tác thường gặp,
 và `pip` là chương trình cài thư viện bên thứ ba được ưu tiên. Từ Python 3.4,
 `pip` được kèm sẵn trong bộ cài nhị phân Python.
 
@@ -137,7 +137,7 @@ Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên th
 
 #### Mọi thứ đều là đối tượng
 
-Trong Python, không cần khai báo trước tên biến và kiểu của nó; chỉ cần gán giá trị là có thể tạo biến thuộc nhiều kiểu khác nhau:
+Trong Python, không cần khai báo trước tên biến và kiểu của nó; gán giá trị sẽ tạo biến thuộc nhiều kiểu khác nhau:
 
 ```pycon
 >>> x = -3  # Cuối câu lệnh không cần dấu chấm phẩy
@@ -246,7 +246,7 @@ Với một biến, có thể dùng `type(object)` để trả về kiểu của
 
 #### [Nhập xuất cơ bản](https://docs.python.org/3/tutorial/inputoutput.html)
 
-Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và `print()`. Cách dùng `print()` rất trực quan:
+Nhập xuất trong Python chủ yếu thực hiện qua hai hàm dựng sẵn `input()` và `print()`. Cách dùng `print()` dễ theo dõi:
 
 ```pycon
 >>> a = [1,2,3]; print(a[-1])  # Mặc định xuống dòng ở cuối khi in
@@ -272,7 +272,7 @@ Nhập dãy số: 1 2 3 4 5 6
 
 #### Chuỗi
 
-Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/3/howto/unicode.html#unicode-howto) rất mạnh, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
+Python 3 cung cấp kiểu chuỗi dựa trên [Unicode](https://docs.python.org/3/howto/unicode.html#unicode-howto) với nhiều tính năng, cách dùng gần với `string` trong C++. Nhiều khái niệm như ký tự thoát cũng tương tự. Ngoài phép cộng để nối chuỗi và truy cập bằng chỉ số, Python còn hỗ trợ nhân với số `*` để lặp chuỗi và toán tử `in`.
 
 ```pycon
 >>> s1 = "O"  # Dấu nháy đơn và dấu nháy kép đều bao được chuỗi; đôi khi giúp tiết kiệm ký tự thoát
@@ -298,7 +298,7 @@ TypeError: 'str' object does not support item assignment
 
 Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá trị khác nhau lại với nhau. Kiểu thường dùng nhất là `list`, được viết bằng một nhóm giá trị phân cách bằng dấu phẩy và đặt trong ngoặc vuông. Ví dụ, `[1, 2, 3]` và `['a','b','c']` đều là danh sách.
 
-Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *phép cắt lát*, với thiết kế rất tinh tế. Dạng chung là `s[chi_so_trai_dong:chi_so_phai_mo:buoc]`:
+Ngoài truy cập bằng chỉ số, chuỗi còn hỗ trợ *phép cắt lát* linh hoạt. Dạng chung là `s[chi_so_trai_dong:chi_so_phai_mo:buoc]`:
 
 ```pycon
 >>> s = 'OI-Wiki cam on ban\nchao mung dong gop!'
@@ -320,7 +320,7 @@ Trong các phiên bản Python 3 mới, chuỗi được mã hóa bằng Unicode
 
 Nếu muốn chuyển số thành chuỗi tương ứng, có thể dùng hàm dựng sẵn `str()`; chiều ngược lại có thể dùng `int()` và `float()`. Có thể xem như ép kiểu trong C/C++, nhưng ngoặc không đặt sau kiểu mà là một phần của lời gọi hàm.
 
-Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Phần này không liệt kê từng cái; rất nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến các phương thức sẵn có trước khi tự viết lại.
+Kiểu chuỗi của Python cung cấp nhiều phương thức mạnh, bao gồm tìm chỉ số và số lần xuất hiện của một ký tự, đổi hoa thường, v.v. Phần này không liệt kê từng cái; nên đọc [tài liệu chính thức](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str) để làm quen các phương thức thường dùng. Khi gặp thao tác chuỗi, nên nghĩ đến các phương thức sẵn có trước khi tự viết lại.
 
 <a id="tạo-mảng"></a>
 
@@ -381,7 +381,7 @@ Python hỗ trợ nhiều kiểu dữ liệu hợp, có thể gom các giá tr�
 >>> lst = [1, '1'] + ["2", 3.0]  # Cộng trực tiếp hai danh sách tạo ra danh sách mới
 >>> lst  # Chứa nhiều kiểu khác nhau chỉ để minh họa rằng có thể làm vậy; đây không phải thực hành tốt
 [1, '1', '2', 3.0]
->>> 3 in lst  # Kiểm tra thành viên rất hữu ích; chuỗi cũng có thao tác này và còn hỗ trợ kiểm tra chuỗi con
+>>> 3 in lst  # Kiểm tra thành viên hữu ích; chuỗi cũng có thao tác này và còn hỗ trợ kiểm tra chuỗi con
 True
 >>> [1, '1'] in lst  # Chỉ hỗ trợ kiểm tra một phần tử, không phát hiện "dãy con"
 False
@@ -502,7 +502,7 @@ array([[0., 0., 0.],
        [0., 0., 0.]])
 >>> a1 = np.zeros((3, 3), dtype=int)  # Tạo mảng số nguyên 3x3
 >>> a1[0][0] = 1  # Truy cập và gán
->>> a1[0, 0] = 1  # Cú pháp thân thiện hơn
+>>> a1[0, 0] = 1  # Cú pháp gọn hơn
 >>> a1.shape  # Hình dạng của mảng
 (3, 3)
 
@@ -544,7 +544,7 @@ Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng s�
 
 #### Xuất định dạng
 
-Trong lập trình thi đấu, thông thường chỉ cần xuất số và chuỗi cơ bản, `print()` gần như đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn nhất nhưng không bảo đảm phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ minh họa cách cũ tương tự `printf()`:
+Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi cơ bản, `print()` thường đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn hơn nhưng không bảo đảm phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ minh họa cách cũ tương tự `printf()`:
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
@@ -637,7 +637,7 @@ Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình
 
 ### [Luồng điều khiển](https://docs.python.org/3/tutorial/controlflow.html)
 
-Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng đôi khi vẫn khiến người quen C nhớ cảm giác tự do hơn, vì khi sao chép và dán làm mất thụt lề rồi phải căn lại bằng tay thì rất phiền.
+Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng đôi khi vẫn khiến người quen C nhớ cảm giác tự do hơn, vì khi sao chép và dán làm mất thụt lề rồi phải căn lại bằng tay thì mất công.
 
 <a id="cấu-trúc-vòng-lặp"></a>
 
@@ -702,7 +702,7 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
 
 #### Xử lý ngoại lệ
 
-Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường gần như không dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) rất phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
+Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường ít dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
 
 ```python
 s = "OI-wiki"
@@ -726,7 +726,7 @@ except ValueError:
 
 Python có sẵn nhiều kiểu chứa mạnh. Chỉ khi dùng thành thạo và hiểu đặc điểm của chúng, Python mới thật sự hữu ích trong lập trình thi đấu. Ngoài `list` (danh sách) đã giới thiệu kỹ, còn có `tuple` (bộ), [`dict`](https://docs.python.org/3/library/stdtypes.html#mapping-types-dict) (từ điển) và `set` (tập hợp).
 
-Có thể hiểu đơn giản `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple` không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm sau rất hữu ích khi tạo `dict` và `set`.
+Có thể hiểu đơn giản `tuple` như một danh sách bất biến, nhưng cần lưu ý nội hàm của "bất biến": nếu một phần tử trong `tuple` là kiểu khả biến như `list`, giá trị của `list` đó vẫn có thể sửa. `tuple` lưu tham chiếu đến `list`, nên bản thân `tuple` không thay đổi. Ưu điểm của `tuple` là chi phí phụ nhỏ và có thể băm được, điểm sau hữu ích khi tạo `dict` và `set`.
 
 ```python
 tup = tuple([[1, 2], 4])  # Tạo tuple từ list
@@ -743,7 +743,7 @@ print(id(a), id(b))  # id của a, b đã hoán đổi
 `dict` giống [`map`](./csl/associative-container.md#map) trong C++ STL (lưu ý
 phân biệt với hàm dựng sẵn [`map()`](https://docs.python.org/3/library/functions.html#map)
 của Python), dùng để lưu cặp khóa-giá trị. Hình thức gần với [JSON](https://docs.python.org/3/library/json.html),
-nhưng khóa trong JSON bắt buộc là chuỗi đặt trong dấu nháy kép, còn `dict` linh
+nhưng khóa trong JSON phải là chuỗi đặt trong dấu nháy kép, còn `dict` linh
 hoạt và mạnh hơn: mọi đối tượng có thể băm được đều có thể làm khóa. Cần lưu ý
 sau nhiều lần cập nhật phiên bản Python, tính chất của `dict` đã thay đổi đáng
 kể, bao gồm thứ tự các phần tử; có thể tự tìm hiểu thêm.
@@ -808,7 +808,7 @@ print(lst1, lst2)
 
 #### Tham số mặc định
 
-Tham số hàm trong Python rất linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Phần này chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định rất dễ gây lỗi. Ví dụ đoạn mã sau:
+Tham số hàm trong Python linh hoạt, có tham số từ khóa, tham số biến đổi, v.v. Nhưng trong lập trình thi đấu, các tính năng này không quá hữu dụng. Phần này chỉ giới thiệu tham số mặc định, vì C++ cũng có tham số mặc định, và trong Python tham số mặc định dễ gây lỗi. Ví dụ đoạn mã sau:
 
 ```python
 def append_to(element, to=[]):
@@ -845,7 +845,7 @@ print(lst1, lst2)
 
 #### Gợi ý kiểu (type hint)
 
-Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi kiểu biến trong lúc chạy. Nói vui là "kiểu động lúc đầu rất sướng, đến lúc tái cấu trúc thì rất đau": một số lỗi trong chương trình có thể chỉ lộ ra lúc chạy:
+Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách linh hoạt nhưng ngầm định. Trình thông dịch Python chỉ kiểm tra kiểu khi chạy, và cho phép thay đổi kiểu biến trong lúc chạy. Vì vậy, một số lỗi trong chương trình có thể chỉ lộ ra lúc chạy:
 
 ```pycon
 >>> if False:
@@ -859,7 +859,7 @@ Python là ngôn ngữ kiểm tra kiểu động: xử lý kiểu một cách li
 TypeError: unsupported operand type(s) for +: 'int' and 'str'
 ```
 
-Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, chỉ cần biết là đủ. Có thể gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
+Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu cho tham số hàm và giá trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế; cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này (ví dụ [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/)). Vì vậy tính năng này không thật thiết yếu với OIer, biết khái niệm là đủ. Có thể gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
 
 ```python
 def headline(
@@ -890,7 +890,7 @@ NameError: name 'nothing' is not defined
 
 Hàm trang trí là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được trang trí và có thêm một số chức năng. Nói ngắn gọn, hàm trang trí cho phép tăng cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo [tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
 
-Một số hàm trang trí rất hữu dụng trong thi đấu, chẳng hạn [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache). Nó có thể tự động thêm khả năng ghi nhớ kết quả cho hàm, rất thực dụng trong thuật toán đệ quy:
+Một số hàm trang trí hữu dụng trong thi đấu, chẳng hạn [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache). Nó có thể tự động thêm khả năng ghi nhớ kết quả cho hàm, thiết thực trong thuật toán đệ quy:
 
 `@lru_cache(maxsize=128,typed=False)`
 
