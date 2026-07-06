@@ -62,14 +62,14 @@ N\left(x_1+y_1\sqrt{D}\right)N\left(x_2+y_2\sqrt{D}\right) &= N\left((x_1+y_1\sq
 \end{aligned}
 $$
 
-Dùng đồng nhất thức này, ta có thể ghép nghiệm nguyên của phương trình
+Dùng đồng nhất thức này, có thể ghép nghiệm nguyên của phương trình
 $x^2-Dy^2=N_1$ và nghiệm nguyên của phương trình $x^2-Dy^2=N_2$ để thu nghiệm
-nguyên của phương trình $x^2-Dy^2=N_1N_2$. Dĩ nhiên, nhìn từ góc độ số nguyên
+nguyên của phương trình $x^2-Dy^2=N_1N_2$. Từ góc độ số nguyên
 bậc hai, phép ghép nghiệm chính là phép nhân số nguyên bậc hai; đây là tiện ích
 của cách ghi nghiệm phương trình Pell dưới dạng số nguyên bậc hai. Đặc biệt,
 lấy $N_1=N$ và $N_2=1$ cho thấy: nếu đã biết một nghiệm của $x^2-Dy^2=N$ và tất
-cả nghiệm của phương trình Pell tương ứng $x^2-Dy^2=1$, ta có thể thu thêm
-nhiều nghiệm của $x^2-Dy^2=N$. Tất nhiên, phương pháp này không nhất thiết sinh
+cả nghiệm của phương trình Pell tương ứng $x^2-Dy^2=1$, có thể thu thêm
+nhiều nghiệm của $x^2-Dy^2=N$. Tuy vậy, phương pháp này không nhất thiết sinh
 ra tất cả nghiệm. Nhưng ít nhất nó cho thấy việc hiểu cấu trúc nghiệm của
 phương trình Pell có vai trò quan trọng đối với cấu trúc nghiệm của phương trình
 Pell tổng quát.
@@ -96,8 +96,8 @@ nghiệm cơ bản (fundamental solution) của phương trình Pell[^fundamenta
 Theo thảo luận ở trên, mọi cặp số nguyên $(x_k,y_k)$ thỏa mãn
 $x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ đều là nghiệm của phương trình Pell và đều
 nằm trong góc phần tư thứ nhất. Ngược lại, đây thực sự là tất cả nghiệm của
-phương trình Pell trong góc phần tư thứ nhất. Kết hợp với đối xứng, ta có kết
-luận sau:
+phương trình Pell trong góc phần tư thứ nhất. Kết hợp với đối xứng, thu được
+kết luận sau:
 
 ???+ note "Định lý"
     Giả sử nghiệm cơ bản của phương trình Pell $x^2-Dy^2=1$ là $(x_1,y_1)$.
@@ -118,7 +118,7 @@ luận sau:
 
     Về hình học, điều này có nghĩa điểm nguyên $(x,y)$ nằm trên hyperbol giữa
     $(x_k,y_k)$ và $(x_{k+1},y_{k+1})$ (không kể hai đầu mút). Nhân đồng thời
-    bất đẳng thức với $x_k-y_k\sqrt{D}=(x_k+y_k\sqrt{D})^{-1}$, ta được
+    bất đẳng thức với $x_k-y_k\sqrt{D}=(x_k+y_k\sqrt{D})^{-1}$, thu được
 
     $$
     1< (x+y\sqrt{D})(x_k-y_k\sqrt{D})=(xx_k-Dyy_k)+(x_ky-xy_k)\sqrt{D} < x_1+y_1\sqrt{D}.
@@ -130,7 +130,7 @@ luận sau:
 
     Khi mở rộng nghiệm từ góc phần tư thứ nhất ra toàn bộ mặt phẳng, đổi dấu số
     mũ $k$ (tức lấy nghịch đảo toàn bộ) chính là đối xứng qua trục $x$, còn đổi
-    dấu toàn bộ là đối xứng qua gốc tọa độ. Thêm nghiệm tầm thường khi $k=0$, ta
+    dấu toàn bộ là đối xứng qua gốc tọa độ. Thêm nghiệm tầm thường khi $k=0$,
     thu được tất cả nghiệm của phương trình Pell.
 
 Thảo luận trên chỉ giả sử tồn tại nghiệm cơ bản. Bây giờ cần chỉ ra phương trình
@@ -155,7 +155,7 @@ Pell luôn có nghiệm không tầm thường.
 
     Do đó, nhất định tồn tại số nguyên $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho
     có vô hạn cặp $(x,y)$ thỏa mãn $x^2-Dy^2 = m$. Phân loại các cặp $(x,y)$
-    này theo phần dư modulo $m$, ta biết với một cặp số nguyên $(x_0,y_0)$ nào
+    này theo phần dư modulo $m$, suy ra với một cặp số nguyên $(x_0,y_0)$ nào
     đó, nhất định tồn tại vô hạn cặp $(x,y)$ sao cho $x\equiv x_0\pmod m$ và
     $y\equiv y_0\pmod m$. Chọn hai cặp phân biệt bất kỳ $(x_1,y_1)$ và
     $(x_2,y_2)$ thỏa mãn các điều kiện này, khi đó
@@ -177,11 +177,11 @@ Pell luôn có nghiệm không tầm thường.
     $(x_1,y_1)\neq(x_2,y_2)$, nghiệm này không tầm thường. Điều này chứng minh
     phương trình Pell thực sự có nghiệm không tầm thường.
 
-Tất nhiên, phần này đưa ra chứng minh không xây dựng. Ở phần dưới khi thảo luận
-cách giải phương trình Pell, ta sẽ trực tiếp dùng các phân số gần đúng của phân
-số liên tục để xây dựng nghiệm, qua đó đưa ra một chứng minh khác cho sự tồn
+Phần này đưa ra chứng minh không xây dựng. Ở phần dưới khi thảo luận
+cách giải phương trình Pell, các phân số gần đúng của phân
+số liên tục sẽ được dùng trực tiếp để xây dựng nghiệm, qua đó đưa ra một chứng minh khác cho sự tồn
 tại nghiệm không tầm thường của phương trình Pell. Ngoài ra, mặc dù cấu trúc
-nghiệm của phương trình Pell thu được ở đây phù hợp với cấu trúc đơn vị của
+nghiệm của phương trình Pell thu được nêu trên phù hợp với cấu trúc đơn vị của
 vành số nguyên bậc hai thực, nhưng với trường hợp $D\equiv 1\pmod 4$, phần này
 vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số nguyên bậc hai tương
 ứng; phần dưới sẽ thảo luận tiếp.
@@ -192,7 +192,7 @@ vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số n
 Đồ thị của phương trình Pell tổng quát $x^2-Dy^2=N$ cũng là hyperbol trên mặt
 phẳng, cũng nhận trục $x$ và trục $y$ làm trục đối xứng. Như đã chỉ ra, một số
 nghiệm của phương trình $x^2-Dy^2=N$ có thể chỉ khác nhau bởi một thừa số là
-nghiệm của phương trình Pell, điều này có nghĩa ta có thể chia nghiệm của
+nghiệm của phương trình Pell, điều này có nghĩa có thể chia nghiệm của
 phương trình $x^2-Dy^2=N$ thành các lớp tương đương. Với hai nghiệm $(x_1,y_1)$
 và $(x_2,y_2)$ của phương trình $x^2-Dy^2=N$, nếu tồn tại nghiệm $(u,v)$ của
 phương trình Pell sao cho
@@ -204,8 +204,8 @@ N\mid (x_1x_2-Dy_1y_2),\ N\mid (x_2y_1-x_1y_2).
 $$
 
 Vì nghiệm của phương trình Pell tương đối dễ tìm, một ý tưởng tự nhiên là tìm
-một nghiệm trong mỗi lớp tương đương nói trên. Một khi biết các nghiệm này, ta
-có thể dùng nghiệm của phương trình Pell tương ứng để thu tất cả nghiệm của
+một nghiệm trong mỗi lớp tương đương nói trên. Một khi biết các nghiệm này, có
+thể dùng nghiệm của phương trình Pell tương ứng để thu tất cả nghiệm của
 phương trình Pell tổng quát cần tìm. Trong các lớp tương đương của nghiệm
 phương trình Pell tổng quát, do tính đối xứng, mỗi lớp đều tồn tại nghiệm có
 tung độ $y$ không âm nhưng nhỏ nhất có thể. Nếu nghiệm như vậy duy nhất, nó được
@@ -223,12 +223,12 @@ $$
 Số nghiệm cơ bản của phương trình Pell tổng quát nhất định hữu hạn. Vì từ biểu
 thức nghiệm tổng quát ở trên, giá trị tuyệt đối $|u+v\sqrt{D}|$ nhất định nằm
 giữa $r-s\sqrt{D}$ và $r+s\sqrt{D}$. Tài liệu tham khảo ở cuối bài cung cấp các
-ước lượng chặt hơn về miền tọa độ của nghiệm cơ bản. Dĩ nhiên, khác với trường
+ước lượng chặt hơn về miền tọa độ của nghiệm cơ bản. Tuy nhiên, khác với trường
 hợp phương trình Pell, phương trình Pell tổng quát có thể vô nghiệm.
 
 Ngoài việc dùng phép ghép nghiệm, để thu tất cả nghiệm trong cùng một lớp tương
 đương từ một nghiệm $(u,v)$ của phương trình Pell tổng quát và nghiệm cơ bản
-$(r,s)$ của phương trình Pell, ta cũng có thể dùng hệ thức truy hồi
+$(r,s)$ của phương trình Pell, cũng có thể dùng hệ thức truy hồi
 
 $$
 x_{k} = 2rx_{k-1} - x_{k-2},\ y_{k} = 2ry_{k-1} - y_{k-2},
@@ -310,7 +310,7 @@ $$
     $$
 
     Thay $\omega=(P_0+\sqrt{D})/Q_0$ và $\omega_k=(P_k+\sqrt{D})/Q_k$ vào công
-    thức trên, ta được
+    thức trên, thu được
 
     $$
     \dfrac{P_0+\sqrt{D}}{Q_0} = \dfrac{(P_k+\sqrt{D})A_{k-1}+Q_kA_{k-2}}{(P_k+\sqrt{D})B_{k-1}+Q_kB_{k-2}}.
@@ -327,7 +327,7 @@ $$
     $$
 
     Do đó, nhân đẳng thức thứ nhất với $G_{k-1}$ rồi trừ đẳng thức thứ hai nhân
-    với $B_{k-1}$, ta có
+    với $B_{k-1}$, có
 
     $$
     \begin{aligned}
@@ -365,7 +365,7 @@ $Q_k=\pm 1$, nghiệm thu được theo cách này nhất định là nghiệm n
 $G_{k-1}$ và $B_{k-1}$ nhất định nguyên tố cùng nhau.
 
 Ý tưởng này là cốt lõi để giải phương trình Pell và phương trình Pell tổng quát.
-Sau khi hiểu ý tưởng này, ta xử lý một số chi tiết của thuật toán và chứng minh
+Sau khi hiểu ý tưởng này, phần tiếp theo xử lý một số chi tiết của thuật toán và chứng minh
 mọi nghiệm đều có thể thu được theo cách này.
 
 <span id="phương-trình-pell_1"></span>
@@ -374,7 +374,7 @@ mọi nghiệm đều có thể thu được theo cách này.
 Để giải phương trình Pell $x^2-Dy^2=1$, chỉ cần chạy thuật toán PQa với
 $(P_0,Q_0,D)=(0,1,D)$ cho đến khi xuất hiện $(-1)^kQ_k=1$; khi đó
 $(A_{k-1},B_{k-1})$ là một nghiệm của phương trình Pell (vì lúc này
-$G_{k-1}$ chính là $A_{k-1}$). Dĩ nhiên, với phương trình Pell, có thể mô tả
+$G_{k-1}$ chính là $A_{k-1}$). Với phương trình Pell, có thể mô tả
 quá trình này chính xác hơn.
 
 Trước hết, nghiệm nhất định xuất hiện ở cuối chu kỳ. Quá trình trên tương đương
@@ -385,7 +385,7 @@ $$
 \sqrt{D} = [\lfloor\sqrt{D}\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\sqrt{D}\rfloor}].
 $$
 
-Ở đây độ dài chu kỳ là $\ell$, và vị trí bắt đầu là hạng thứ $1$ (chỉ số bắt
+Trong khai triển này, độ dài chu kỳ là $\ell$, và vị trí bắt đầu là hạng thứ $1$ (chỉ số bắt
 đầu từ $0$). Hơn nữa, thương hoàn toàn thứ $\ell$ của nó bằng
 $\lfloor\sqrt{D}\rfloor+\sqrt{D}$, cho thấy $Q_{\ell}=1$. Do đó, nếu $\ell$
 chẵn thì $(A_{\ell-1},B_{\ell-1})$ là một nghiệm không tầm thường của phương
@@ -395,9 +395,9 @@ tầm thường của phương trình Pell.
 Tiếp theo cần chỉ ra nghiệm vừa thu được nhất định là nghiệm cơ bản. Kết quả này
 dựa trên hai lý do: thứ nhất, mọi nghiệm nguyên dương $(x,y)$ của phương trình
 Pell đều có phân số $x/y$ xuất hiện trong các phân số gần đúng của $\sqrt{D}$,
-đảm bảo $(x,y)$ nhất định là một $(A_k,B_k)$ nào đó trong quá trình PQa; thứ
+cho thấy $(x,y)$ nhất định là một $(A_k,B_k)$ nào đó trong quá trình PQa; thứ
 hai, ngoài cuối chu kỳ sẽ không có vị trí nào khác có $Q_k=1$, vì hệ thức truy
-hồi của $A_k$ và $B_k$ đảm bảo kích thước của chúng tăng theo chỉ số, nên nghiệm
+hồi của $A_k$ và $B_k$ cho thấy kích thước của chúng tăng theo chỉ số, nên nghiệm
 nguyên dương nhỏ nhất (tức nghiệm cơ bản) nhất định xuất hiện tại vị trí vừa chỉ
 ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
 
@@ -516,13 +516,13 @@ có thể chứng minh kết quả sau:
     này, trước hết chứng minh $(x_2,y_2)$ nói trên là nghiệm cơ bản của
     $x^2-Dy^2=1$.
 
-    Hiển nhiên, $(x_2,y_2)$ là nghiệm của $x^2-Dy^2=1$. Nếu đặt $(z,w)$ là
+    Theo cách xây dựng, $(x_2,y_2)$ là nghiệm của $x^2-Dy^2=1$. Nếu đặt $(z,w)$ là
     nghiệm cơ bản của $x^2-Dy^2=1$, thì nhất định
     $1<z+w\sqrt{D}\le x_2+y_2\sqrt{D}$. Nếu bất đẳng thức bên phải là nghiêm
     ngặt, chia bất đẳng thức cho $x_1+y_1\sqrt{D}$ sẽ được
     $-x_1+y_1\sqrt{D}<(z+w\sqrt{D})(-x_1+y_1\sqrt{D})<x_1+y_1\sqrt{D}$. Khai
-    triển hạng giữa ta thu được dạng $x'+y'\sqrt{D}$, có chuẩn $-1$ và
-    $(x',y')$ cũng là nghiệm nguyên. Lấy nghịch đảo bất đẳng thức này, ta thấy
+    triển hạng giữa thu được dạng $x'+y'\sqrt{D}$, có chuẩn $-1$ và
+    $(x',y')$ cũng là nghiệm nguyên. Lấy nghịch đảo bất đẳng thức này, suy ra
     $-x'+y'\sqrt{D}$ cũng nằm giữa $-x_1+y_1\sqrt{D}$ và
     $x_1+y_1\sqrt{D}$. Hai số nguyên bậc hai $\pm x'+y'\sqrt{D}$ là nghịch đảo
     của nhau, nên nhất định có một số lớn hơn $1$. Nhưng giữa $1$ và
@@ -535,7 +535,7 @@ có thể chứng minh kết quả sau:
     $x^2-Dy^2=\pm 1$ không tương ứng với một lũy thừa
     $(x_1+y_1\sqrt{D})^k$, thì nhất định tồn tại $k$ sao cho
     $(x_1+y_1\sqrt{D})^{2k}<x+y\sqrt{D}<(x_1+y_1\sqrt{D})^{2k+2}$.
-    Khử thừa số $(x_1+y_1\sqrt{D})^{2k+1}$, ta suy ra tồn tại số nguyên bậc hai
+    Khử thừa số $(x_1+y_1\sqrt{D})^{2k+1}$, suy ra tồn tại số nguyên bậc hai
     $x'+y'\sqrt{D}\neq 1$ có chuẩn $\pm 1$ nằm giữa $-x_1+y_1\sqrt{D}$ và
     $x_1+y_1\sqrt{D}$. Lặp lại lập luận bằng nghịch đảo của đoạn trước cho thấy
     điều này mâu thuẫn với tính nhỏ nhất của $x_1+y_1\sqrt{D}$. Mệnh đề được
@@ -561,9 +561,9 @@ trình Pell âm, khi $k$ chẵn thì là nghiệm của phương trình Pell; ha
 hiện xen kẽ.
 
 Để phán định phương trình Pell âm có nghiệm hay không cần tính độ dài chu kỳ của
-khai triển phân số liên tục của $\sqrt{D}$; điều này không dễ tính, nên ta muốn
+khai triển phân số liên tục của $\sqrt{D}$; điều này không dễ tính, nên cần
 có tiêu chuẩn đơn giản hơn. Tuy nhiên, hiện chưa có điều kiện nào vừa ngắn gọn
-vừa dễ tính[^solubility-neg-pell]. Ở đây chỉ đưa ra một kết quả đơn giản.
+vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết quả đơn giản.
 
 ???+ note "Định lý"
     Nếu phương trình $x^2-Dy^2=-1$ có nghiệm, thì $4\nmid D$ và $D$ không chứa
@@ -588,14 +588,14 @@ vừa dễ tính[^solubility-neg-pell]. Ở đây chỉ đưa ra một kết qu�
     $Dv^2$ vào $u+1$ và $u-1$, nhất định một trong hai là $2\alpha^2$, số còn
     lại là $2D\beta^2$, trong đó $\alpha$ và $\beta$ là các số nguyên dương
     nguyên tố cùng nhau và $v=2\alpha\beta$. Thay $u=\alpha^2+D\beta^2$ và
-    $v=2\alpha\beta$ vào $u^2-Dv^2=1$, ta được
+    $v=2\alpha\beta$ vào $u^2-Dv^2=1$, thu được
     $\alpha^2-D\beta^2=\pm 1$. Vì $(u,v)$ là nghiệm cơ bản của phương trình Pell
     và $(\alpha,\beta)$ là cặp số nguyên dương nhỏ hơn $(u,v)$, vế phải của đẳng
     thức này không thể là $+1$, nên chỉ có thể là $-1$. Điều này chứng minh
     $x^2-Dy^2=-1$ có nghiệm $(\alpha,\beta)$.
 
 Nếu $D$ là hợp số, điều kiện không chứa thừa số nguyên tố dạng $4k+3$ và không
-chứa nhân tử chính phương cũng không đảm bảo phương trình $x^2-Dy^2=-1$ có
+chứa nhân tử chính phương cũng không đủ để suy ra phương trình $x^2-Dy^2=-1$ có
 nghiệm; chẳng hạn $x^2-34y^2=-1$ vô nghiệm.
 
 ??? example "Ví dụ"
@@ -620,7 +620,7 @@ $D\equiv 1\pmod 4$, nghiệm của phương trình $x^2-Dy^2=\pm 4$ đều có t
 
 Bây giờ xét trường hợp $D\equiv 1\pmod 4$; nó không thể chuyển đơn giản về các
 trường hợp đã giải. Để tìm nghiệm cơ bản, có thể áp dụng thuật toán PQa cho
-$(P_0,Q_0,D)=(1,2,D)$. Khi lần đầu thu được $Q_\ell=2$, ta đến cuối chu kỳ đầu
+$(P_0,Q_0,D)=(1,2,D)$. Khi lần đầu thu được $Q_\ell=2$, đó là cuối chu kỳ đầu
 tiên. Nếu độ dài chu kỳ $\ell$ chẵn, $(G_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản
 của phương trình $x^2-Dy^2=4$; nếu không, $(G_{\ell-1},B_{\ell-1})$ là nghiệm
 cơ bản của phương trình $x^2-Dy^2=-4$. Từ $(G_{\ell-1},B_{\ell-1})$, có thể thu
@@ -662,7 +662,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     $y$. Còn lại chỉ cần kiểm tra trường hợp $(D,y)=(5,1)$; khi đó nghiệm của
     phương trình $x^2-5y^2=-4$ là $(x,y)=(1,1)$, và cần kiểm tra $\dfrac{1}{1}$
     là phân số gần đúng của $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, điều này
-    hiển nhiên đúng.
+    đúng trực tiếp từ khai triển này.
 
 ???+ note "Định lý"
     Giả sử $D$ là số nguyên dương không phải số chính phương. Khai triển phân số
@@ -729,7 +729,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     $$
 
 ??? note "Chứng minh"
-    Do tính đối xứng, chỉ cần xét nghiệm nguyên dương $(x,y)$. Ở đây chỉ cần
+    Do tính đối xứng, chỉ cần xét nghiệm nguyên dương $(x,y)$. Phần này chỉ cần
     chứng minh các cặp số thực $(x,y)$ trong tập trên thực sự là nghiệm nguyên
     của phương trình $x^2-Dy^2=\pm 4$. Phần còn lại chỉ cần lặp lại chứng minh
     cấu trúc nghiệm của phương trình $x^2-Dy^2=\pm 1$.
@@ -758,7 +758,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     $$
 
     Điều này cho thấy $x_3$ và $y_3$ đều là số nguyên. Lại dùng tính chất chuẩn
-    bảo toàn phép nhân, ta biết $(x_3,y_3)$ là nghiệm của $x^2-Dy^2=\pm 4$.
+    bảo toàn phép nhân, suy ra $(x_3,y_3)$ là nghiệm của $x^2-Dy^2=\pm 4$.
 
 Tổng hợp các sự kiện này và lặp lại lập luận của các phần trước, có thể chứng
 minh tính đúng đắn của thuật toán giải phương trình $x^2-Dy^2=\pm 4$ nêu trên.
@@ -768,7 +768,7 @@ bằng nghiệm nguyên dương nhỏ nhất của nó, không cần giải các
 
 Thực ra, mọi nghiệm của phương trình $x^2-Dy^2=\pm 1$ đều có thể tìm thấy trong
 nghiệm của phương trình $x^2-Dy^2=\pm 4$; từ góc nhìn này, phương trình
-$x^2-Dy^2=\pm 4$ có tính cơ bản hơn. Hiển nhiên, $(x,y)$ là nghiệm của
+$x^2-Dy^2=\pm 4$ có tính cơ bản hơn. Một cặp $(x,y)$ là nghiệm của
 $x^2-Dy^2=\pm 1$ khi và chỉ khi $(2x,2y)$ là nghiệm của $x^2-Dy^2=\pm 4$. Phân
 tích trên chỉ ra rằng khi $D\equiv 2,3\pmod 4$, mọi nghiệm của phương trình
 $x^2-Dy^2=\pm 4$ đều đồng thời chẵn, nên tương ứng với nghiệm của
@@ -789,7 +789,7 @@ Khi $D\equiv 1\pmod 4$, nghiệm $(x,y)$ của phương trình $x^2-Dy^2=\pm 4$ 
 đồng thời lẻ, cũng có thể đồng thời chẵn. Nếu nghiệm nguyên dương nhỏ nhất
 $(x_1,y_1)$ đã đồng thời chẵn, thì mọi nghiệm nguyên của nó cũng nhất định đồng
 thời chẵn, nên luôn tương ứng với nghiệm nguyên của phương trình
-$x^2-Dy^2=\pm 1$. Nếu nghiệm nguyên dương nhỏ nhất $(x_1,y_1)$ đồng thời lẻ, ta
+$x^2-Dy^2=\pm 1$. Nếu nghiệm nguyên dương nhỏ nhất $(x_1,y_1)$ đồng thời lẻ,
 có kết quả sau:
 
 ???+ note "Định lý"
@@ -802,7 +802,7 @@ có kết quả sau:
     $$
 
 ??? note "Chứng minh"
-    Lấy modulo $8$ hai vế của đẳng thức $x_1^2-Dy_1^2=\pm 4$, ta được
+    Lấy modulo $8$ hai vế của đẳng thức $x_1^2-Dy_1^2=\pm 4$, thu được
     $D\equiv 5\pmod 8$. Để chứng minh kết quả thứ hai, trước hết chứng minh
     $(x_3,y_3)$ đều chẵn, vì
 
@@ -811,7 +811,7 @@ có kết quả sau:
     $$
 
     nên chỉ cần chứng minh vế phải là số nguyên. Vì bình phương của số lẻ đồng
-    dư $1$ modulo $8$, ta có
+    dư $1$ modulo $8$, có
 
     $$
     \begin{aligned}
@@ -893,7 +893,7 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
         \dfrac{4098+640\sqrt{41}}{2} = \left(\dfrac{64+10\sqrt{41}}{2}\right)^2.
         $$
 
-        Tất nhiên, vì $D\equiv 1\pmod 8$, theo kết quả ở trên, nghiệm nguyên
+        Vì $D\equiv 1\pmod 8$, theo kết quả ở trên, nghiệm nguyên
         dương nhỏ nhất của phương trình $x^2-41y^2=\pm 4$ khi đó nhất định đều
         chẵn, và luôn bằng hai lần nghiệm nguyên dương nhỏ nhất của
         $x^2-41y^2=\pm 1$; do đó cũng có thể suy trực tiếp từ ví dụ trước.
@@ -933,7 +933,7 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
 <span id="trường-hợp-tổng-quát"></span>
 ### Trường hợp tổng quát
 
-Cuối cùng, ta thảo luận cách giải phương trình Pell tổng quát.
+Cuối cùng, phần này thảo luận cách giải phương trình Pell tổng quát.
 
 Với trường hợp $|N|<\sqrt{D}$ có một cách giải đơn giản. Kết quả ở trên cho
 biết nghiệm $(x,y)$ của phương trình $x^2-Dy^2=N$ nhất định thỏa
@@ -969,13 +969,13 @@ $(-1)^kQ_k=N/|N|$ hay không. Nếu dấu phù hợp, $(fG_{k-1},fB_{k-1})$ là 
 nghiệm của phương trình $x^2-Dy^2=N$. Nếu không, nó là nghiệm của phương trình
 $x^2-Dy^2=-N$, và chỉ khi phương trình Pell âm tương ứng có nghiệm, mới có thể
 ghép nó với nghiệm cơ bản của phương trình Pell âm tương ứng để thu nghiệm của
-$x^2-Dy^2=N$. Sau khi duyệt hết mọi cặp $(f,z)$, ta thu được đúng một nghiệm
+$x^2-Dy^2=N$. Sau khi duyệt hết mọi cặp $(f,z)$, thu được đúng một nghiệm
 trong mỗi lớp tương đương của nghiệm phương trình $x^2-Dy^2=N$, và nghiệm này
 là nghiệm cơ bản hoặc nghiệm nguyên dương nhỏ nhất của lớp đó. Dùng chúng và
 nghiệm cơ bản của phương trình Pell tương ứng, có thể sinh tất cả nghiệm nguyên
 của phương trình. Thuật toán này được gọi là **thuật toán Lagrange–Matthews–Mollin**.
 
-Tính đúng đắn của thuật toán được bảo đảm bởi định lý sau:
+Tính đúng đắn của thuật toán được chứng minh bằng định lý sau:
 
 ???+ note "Định lý"
     Giả sử phương trình $x^2-Dy^2=N$ có nghiệm nguyên $(x,y)$ với
@@ -987,8 +987,8 @@ Tính đúng đắn của thuật toán được bảo đảm bởi định lý 
     $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, và $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
 ??? note "Chứng minh"
-    Dùng $x\equiv -P_0y\pmod{Q_0}$ và $x^2-Dy^2=N\equiv 0\pmod{Q_0}$, hiển
-    nhiên có $P_0^2\equiv D\pmod{Q_0}$. Do đó
+    Dùng $x\equiv -P_0y\pmod{Q_0}$ và $x^2-Dy^2=N\equiv 0\pmod{Q_0}$, suy ra
+    $P_0^2\equiv D\pmod{Q_0}$. Do đó
 
     $$
     P_0x+Dy\equiv -P_0^2y+Dy = (D-P_0^2)y\equiv 0\pmod{Q_0}.
@@ -1008,7 +1008,7 @@ Tính đúng đắn của thuật toán được bảo đảm bởi định lý 
     PS-QR = \dfrac{x(x+P_0y)-y(P_0x+Dy)}{Q_0} = \dfrac{x^2-Dy^2}{Q_0} = \pm 1.
     $$
 
-    Hơn nữa, đặt $\zeta =\sqrt{D} > 1$, ta có
+    Hơn nữa, đặt $\zeta =\sqrt{D} > 1$, có
 
     $$
     \dfrac{P\zeta+R}{Q\zeta+S} = \dfrac{(x+P_0y)\sqrt{D}+(P_0x+Dy)}{(x+y\sqrt{D})Q_0} = \dfrac{P_0+\sqrt{D}}{Q_0} = \omega.
@@ -1031,7 +1031,7 @@ Tính đúng đắn của thuật toán được bảo đảm bởi định lý 
 
     Xét từng trường hợp:
 
-    -   Nếu $S=0$, dễ thấy $Q=R=1$, nên $\omega=P+\zeta^{-1}=[P,\zeta]$, do đó $\dfrac{P}{Q}=P$ là phân số gần đúng thứ $0$ của $\omega$;
+    -   Nếu $S=0$, suy ra $Q=R=1$, nên $\omega=P+\zeta^{-1}=[P,\zeta]$, do đó $\dfrac{P}{Q}=P$ là phân số gần đúng thứ $0$ của $\omega$;
     -   Nếu $Q=S>0$, thì $Q=S=1$ và $P-R=\pm 1$. Khi đó:
         -   Nếu $P=R+1$, thì $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$, do đó $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ là phân số gần đúng thứ $1$ của $\omega$;
         -   Nếu $P=R-1$, thì $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$, do đó $\dfrac{P}{Q}=R-1$ là phân số gần đúng thứ $0$ của $\omega$;
@@ -1044,15 +1044,15 @@ Tính đúng đắn của thuật toán được bảo đảm bởi định lý 
     $G_{k-1}^2-DB_{k-1}^2=(-1)^kQ_0Q_k$, suy ra
     $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
-Định lý này bảo đảm mọi nghiệm dương của phương trình đều nằm trong các phân số
+Định lý này cho thấy mọi nghiệm dương của phương trình đều nằm trong các phân số
 gần đúng của số vô tỉ bậc hai tương ứng. Vì khi tính phân số gần đúng bằng thuật
-toán PQa, một khi đi vào chu kỳ thì có thể bảo đảm các phân số gần đúng luôn
-dương. Do đó, chỉ cần liệt kê mọi số vô tỉ bậc hai được điều kiện của định lý
-cho phép, tính các phân số gần đúng của nó đến hết một chu kỳ, ta có thể tìm
+toán PQa, một khi đi vào chu kỳ thì các phân số gần đúng về sau đều dương. Do đó,
+chỉ cần liệt kê mọi số vô tỉ bậc hai được điều kiện của định lý
+cho phép, tính các phân số gần đúng của nó đến hết một chu kỳ, có thể tìm
 được một nghiệm. Vì hai nghiệm xuất hiện trong các phân số gần đúng của cùng một
 số vô tỉ bậc hai nhất định tương đương, nên khi thu được nghiệm đầu tiên thỏa
 $(-1)^kQ_k=N/|N|$, thì không cần tính tiếp nữa. Khác với tất cả thuật toán
-trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện trước khi vào chu kỳ.
+trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có thể xuất hiện trước khi vào chu kỳ.
 
 ??? example "Ví dụ"
     1.  Giải phương trình $x^2-157y^2=12$.
@@ -1178,4 +1178,4 @@ trước, ở đây chỉ số $k$ thỏa điều kiện có thể xuất hiện
 
 [^fundamental-solution]: Chú ý định nghĩa nghiệm cơ bản trong phương trình Pell không trùng với định nghĩa đơn vị cơ bản trong vành số nguyên bậc hai thực. Trước hết, trong một số vành số nguyên bậc hai thực, đơn vị cơ bản $x+y\sqrt{D}$ có $x,y$ là bán nguyên, nên không phải nghiệm của phương trình Pell. Tiếp theo, cùng một vành số nguyên bậc hai thực có bốn đơn vị cơ bản, nhưng nghiệm cơ bản chỉ có một, vì nghiệm cơ bản yêu cầu $x,y$ đều dương.
 
-[^solubility-neg-pell]: Một phương pháp và công cụ phán định khá thực dụng nằm ở [đây](http://www.numbertheory.org/php/hardy_williams.html) và trong tài liệu tham khảo của nó. Danh sách các số nguyên dương $D$ sao cho phương trình $x^2-Dy^2=-1$ có nghiệm là [OEIS A031396](https://oeis.org/A031396).
+[^solubility-neg-pell]: Một phương pháp và công cụ phán định khá thực dụng có tại [liên kết này](http://www.numbertheory.org/php/hardy_williams.html) và trong tài liệu tham khảo của nó. Danh sách các số nguyên dương $D$ sao cho phương trình $x^2-Dy^2=-1$ có nghiệm là [OEIS A031396](https://oeis.org/A031396).
