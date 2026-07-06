@@ -10,7 +10,7 @@ Tìm kiếm nhị phân (binary search), còn gọi là tìm kiếm chia đôi (
 
 Lấy ví dụ tìm một số trong mảng tăng dần.
 
-Mỗi lần thuật toán xét phần tử ở giữa phần hiện tại của mảng. Nếu phần tử giữa đúng là giá trị cần tìm thì kết thúc quá trình tìm kiếm; nếu phần tử giữa nhỏ hơn giá trị cần tìm, các phần tử bên trái chỉ có thể nhỏ hơn nữa nên chắc chắn không chứa giá trị cần tìm, chỉ cần tìm ở bên phải; nếu phần tử giữa lớn hơn giá trị cần tìm thì tương tự, chỉ cần tìm ở bên trái.
+Mỗi lần thuật toán xét phần tử ở giữa đoạn hiện tại của mảng. Nếu phần tử giữa đúng là giá trị cần tìm thì quá trình tìm kiếm kết thúc. Nếu phần tử giữa nhỏ hơn giá trị cần tìm, các phần tử bên trái đều không lớn hơn phần tử giữa nên không thể chứa giá trị cần tìm; khi đó chỉ cần tìm ở bên phải. Nếu phần tử giữa lớn hơn giá trị cần tìm thì xử lý tương tự, chỉ cần tìm ở bên trái.
 
 ### Tính chất
 
@@ -52,15 +52,15 @@ int binary_search(int start, int end, int key) {
 
 ### Tối thiểu hóa giá trị lớn nhất
 
-Cần chú ý rằng "có thứ tự" ở đây là có thứ tự theo nghĩa rộng. Nếu một phía của mảng đều thỏa một điều kiện nào đó, còn phía còn lại đều không thỏa điều kiện đó, cũng có thể xem đó là một dạng có thứ tự (nếu xem thỏa điều kiện là $1$, không thỏa là $0$, thì ít nhất theo chiều của điều kiện này nó là có thứ tự). Nói cách khác, tìm kiếm nhị phân có thể dùng để tìm giá trị lớn nhất (nhỏ nhất) thỏa một điều kiện nào đó.
+"Có thứ tự" trong ngữ cảnh này được hiểu theo nghĩa rộng. Nếu một phía của mảng đều thỏa một điều kiện nào đó, còn phía còn lại đều không thỏa điều kiện đó, cũng có thể xem đó là một dạng có thứ tự. Nếu xem phần tử thỏa điều kiện là $1$, không thỏa là $0$, thì ít nhất theo chiều của điều kiện này, dãy tương ứng có tính thứ tự. Nói cách khác, tìm kiếm nhị phân có thể dùng để tìm giá trị lớn nhất hoặc nhỏ nhất thỏa một điều kiện nào đó.
 
-Với bài toán yêu cầu giá trị nhỏ nhất có thể của một giá trị lớn nhất thỏa điều kiện (tối thiểu hóa giá trị lớn nhất), ý tưởng đầu tiên là liệt kê "giá trị lớn nhất" được xem là đáp án từ nhỏ đến lớn, rồi kiểm tra nó có hợp lệ không. Nếu đáp án có tính đơn điệu, có thể dùng tìm kiếm nhị phân để tìm đáp án nhanh hơn. Vì vậy, để dùng tìm kiếm nhị phân giải dạng bài "tối thiểu hóa giá trị lớn nhất", cần thỏa ba điều kiện sau:
+Với bài toán yêu cầu tìm giá trị nhỏ nhất có thể của một giá trị lớn nhất thỏa điều kiện, tức tối thiểu hóa giá trị lớn nhất, cách trực tiếp là liệt kê các giá trị lớn nhất có thể làm đáp án theo thứ tự tăng dần, rồi kiểm tra từng giá trị có hợp lệ hay không. Nếu đáp án có tính đơn điệu, có thể dùng tìm kiếm nhị phân để tìm đáp án nhanh hơn. Vì vậy, để dùng tìm kiếm nhị phân giải dạng bài "tối thiểu hóa giá trị lớn nhất", cần thỏa ba điều kiện sau:
 
 1.  Đáp án nằm trong một đoạn cố định;
-2.  Có thể việc tìm trực tiếp một giá trị thỏa điều kiện không dễ, nhưng cần có thể kiểm tra tương đối dễ xem một giá trị có thỏa điều kiện hay không;
-3.  Các nghiệm khả thi có tính đơn điệu trên đoạn. Nói cách khác, nếu $x$ thỏa điều kiện thì $x + 1$ hoặc $x - 1$ cũng thỏa điều kiện. (Như vậy sẽ có tính đơn điệu đã nói ở trên.)
+2.  Việc tìm trực tiếp một giá trị thỏa điều kiện có thể khó, nhưng cần có cách kiểm tra tương đối thuận tiện xem một giá trị có thỏa điều kiện hay không;
+3.  Các nghiệm khả thi có tính đơn điệu trên đoạn. Nói cách khác, nếu $x$ thỏa điều kiện thì $x + 1$ hoặc $x - 1$ cũng thỏa điều kiện. Khi đó đoạn đang xét có tính đơn điệu như đã nêu.
 
-Tất nhiên, tối đa hóa giá trị nhỏ nhất cũng tương tự.
+Dạng tối đa hóa giá trị nhỏ nhất cũng xử lý tương tự.
 
 ### Tìm kiếm nhị phân trong STL
 
@@ -70,22 +70,22 @@ Cả hai đều được cài đặt bằng nhị phân, nên trước khi gọi
 
 ### bsearch
 
-Hàm bsearch là tìm kiếm nhị phân do thư viện chuẩn C cung cấp, được định nghĩa trong `<stdlib.h>`. Trong thư viện chuẩn C++, hàm này được định nghĩa trong `<cstdlib>`. qsort và bsearch là hai hàm kiểu thuật toán duy nhất trong ngôn ngữ C.
+Hàm bsearch là hàm tìm kiếm nhị phân do thư viện chuẩn C cung cấp, được định nghĩa trong `<stdlib.h>`. Trong thư viện chuẩn C++, hàm này được định nghĩa trong `<cstdlib>`. qsort và bsearch là hai hàm mang tính thuật toán duy nhất trong ngôn ngữ C.
 
-So với bốn tham số của qsort ([STL liên quan đến sắp xếp](./stl-sort.md)), hàm bsearch thêm tham số "địa chỉ của phần tử cần tìm" ở ngoài cùng bên trái. Lý do truyền theo dạng địa chỉ là để tiện dùng trực tiếp cùng một hàm so sánh với qsort, từ đó có thể tìm ngay sau khi sắp xếp. Vì vậy tham số này không thể truyền trực tiếp một giá trị cụ thể, mà cần lưu giá trị cần tìm vào một biến rồi truyền địa chỉ của biến đó.
+So với bốn tham số của qsort ([STL liên quan đến sắp xếp](./stl-sort.md)), hàm bsearch thêm tham số "địa chỉ của phần tử cần tìm" ở ngoài cùng bên trái. Việc truyền địa chỉ giúp tái sử dụng trực tiếp cùng một hàm so sánh với qsort, nhờ đó có thể tìm kiếm ngay sau khi sắp xếp. Vì vậy, tham số này không thể là một giá trị cụ thể truyền trực tiếp; cần lưu giá trị cần tìm vào một biến rồi truyền địa chỉ của biến đó.
 
 Như vậy, bsearch có tổng cộng năm tham số: địa chỉ của phần tử cần tìm, tên mảng, số lượng phần tử, kích thước phần tử, và quy tắc so sánh. Quy tắc so sánh vẫn được thực hiện bằng cách chỉ định hàm so sánh; xem chi tiết ở [STL liên quan đến sắp xếp](./stl-sort.md).
 
 Giá trị trả về của bsearch là địa chỉ của phần tử tìm được; địa chỉ này có kiểu void.
 
-Chú ý: bsearch khác lower\_bound và upper\_bound ở hai điểm:
+Lưu ý: bsearch khác lower\_bound và upper\_bound ở hai điểm:
 
 -   Khi có nhiều phần tử trùng nhau cùng thỏa điều kiện, nó trả về phần tử thỏa điều kiện đầu tiên gặp trong quá trình tìm kiếm nhị phân, nên phần tử đó có thể nằm ở giữa nhóm các phần tử trùng nhau.
 -   Khi không tìm thấy phần tử tương ứng, nó trả về NULL.
 
-Có thể dùng lower\_bound để thực hiện đúng chức năng của bsearch, nên những bài có thể AC bằng bsearch đều có thể viết lại trực tiếp bằng lower\_bound. Tuy nhiên, do điểm khác biệt thứ hai ở trên, chẳng hạn khi tìm 3 trong dãy 1, 2, 4, 5, 6, việc dùng bsearch để thực hiện chức năng của lower\_bound trở nên khó khăn.
+Có thể dùng lower\_bound để thực hiện đúng chức năng của bsearch, nên những bài có thể AC bằng bsearch đều có thể viết lại trực tiếp bằng lower\_bound. Tuy nhiên, do điểm khác biệt thứ hai ở trên, chẳng hạn khi tìm 3 trong dãy 1, 2, 4, 5, 6, việc dùng bsearch để mô phỏng chức năng của lower\_bound trở nên khó khăn.
 
-Dùng bsearch để thực hiện chức năng của lower\_bound có khó, vậy có nhất thiết là không làm được không? Câu trả lời là không; tồn tại một kỹ thuật khá khéo. Dựa vào tính chất trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ sau. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục, để có thể truyền trực tiếp địa chỉ đầu.
+Dù khó, vẫn có kỹ thuật để dùng bsearch mô phỏng lower\_bound. Cách làm dựa trên tính chất khi trình biên dịch xử lý hàm so sánh: tham số thứ nhất luôn trỏ tới phần tử cần tìm, còn tham số thứ hai trỏ tới phần tử trong mảng cần tìm. Nhờ đó cũng có thể dùng bsearch để thực hiện lower\_bound và upper\_bound như ví dụ sau. Tuy nhiên, cách này yêu cầu mảng cần tìm phải là mảng toàn cục để có thể truyền trực tiếp địa chỉ đầu.
 
 ```cpp
 int A[100005];  // Mảng toàn cục ví dụ
@@ -115,23 +115,23 @@ int upper(const void *p1, const void *p2) {
 }
 ```
 
-Vì hiện nay thí sinh OI hiếm khi viết C thuần và phương pháp này có phạm vi ứng dụng hạn chế, đây không phải trọng điểm. Với người mới học, nên dùng đúng các hàm lower\_bound và upper\_bound trong C++.
+Vì hiện nay thí sinh OI hiếm khi viết C thuần và phương pháp này có phạm vi ứng dụng hạn chế, nội dung này không phải trọng điểm. Người mới học nên dùng đúng các hàm lower\_bound và upper\_bound trong C++.
 
 ### Nhị phân đáp án
 
-Khi giải bài, thường sẽ nghĩ tới việc liệt kê đáp án rồi kiểm tra giá trị được liệt kê có đúng hay không. Nếu thỏa tính đơn điệu, điều kiện để dùng phương pháp nhị phân được đáp ứng. Thay việc liệt kê ở đây bằng nhị phân sẽ có "nhị phân đáp án".
+Khi giải bài, một hướng tự nhiên là liệt kê đáp án rồi kiểm tra giá trị được liệt kê có đúng hay không. Nếu thỏa tính đơn điệu, điều kiện để dùng phương pháp nhị phân được đáp ứng. Thay việc liệt kê tuyến tính bằng nhị phân sẽ thu được phương pháp "nhị phân đáp án".
 
 ???+ note "[Luogu P1873 Chặt cây](https://www.luogu.com.cn/problem/P1873)"
-    Người thợ đốn gỗ Mirko cần chặt được $M$ mét gỗ. Đây là công việc rất dễ với Mirko, vì anh có một chiếc máy cưa mới rất tốt, có thể đốn rừng nhanh như lửa lan. Tuy nhiên, Mirko chỉ được phép chặt một hàng cây.
+    Người thợ đốn gỗ Mirko cần chặt được $M$ mét gỗ. Công việc này rất đơn giản với Mirko, vì anh có một chiếc máy cưa mới rất tốt, có thể đốn rừng nhanh như lửa lan. Tuy nhiên, Mirko chỉ được phép chặt một hàng cây.
     
-    Cách máy cưa của Mirko hoạt động như sau: Mirko đặt một tham số độ cao $H$ (mét), máy cưa nâng một lưỡi cưa khổng lồ lên độ cao $H$, rồi cưa bỏ tất cả phần cây cao hơn $H$ (dĩ nhiên, phần cây không cao hơn $H$ mét được giữ nguyên). Mirko nhận được phần cây bị cưa xuống.
+    Cách máy cưa của Mirko hoạt động như sau: Mirko đặt một tham số độ cao $H$ (mét), máy cưa nâng một lưỡi cưa khổng lồ lên độ cao $H$, rồi cưa bỏ tất cả phần cây cao hơn $H$; phần cây không cao hơn $H$ mét được giữ nguyên. Mirko nhận được phần cây bị cưa xuống.
     
     Ví dụ, nếu chiều cao một hàng cây lần lượt là $20,~15,~10,~17$, Mirko nâng lưỡi cưa lên độ cao $15$ mét. Sau khi cắt, chiều cao còn lại của cây sẽ là $15,~15,~10,~15$, và Mirko nhận được $5$ mét gỗ từ cây thứ $1$, $2$ mét gỗ từ cây thứ $4$, tổng cộng $7$ mét gỗ.
     
     Mirko rất quan tâm tới bảo vệ môi trường, nên anh sẽ không chặt quá nhiều gỗ. Đó là lý do anh đặt lưỡi cưa cao nhất có thể. Nhiệm vụ là giúp Mirko tìm độ cao nguyên lớn nhất $H$ của lưỡi cưa sao cho anh nhận được ít nhất $M$ mét gỗ. Tức là nếu nâng lưỡi cưa thêm $1$ mét, anh sẽ không nhận đủ $M$ mét gỗ.
 
 ??? note "Ý tưởng giải"
-    Có thể liệt kê đáp án từ $1$ đến $10^9$, nhưng cách ngây thơ này chắc chắn không đạt điểm tối đa, vì liệt kê từ $1$ tới $10^9$ quá tốn thời gian. Có thể nhị phân trên đoạn $[1,~10^9]$ để chọn đáp án, rồi kiểm tra tính khả thi của từng đáp án (thường dùng tham lam). **Đó chính là nhị phân đáp án.**
+    Có thể liệt kê đáp án từ $1$ đến $10^9$, nhưng cách ngây thơ này không đạt điểm tối đa vì liệt kê từ $1$ tới $10^9$ quá tốn thời gian. Có thể nhị phân trên đoạn $[1,~10^9]$ để chọn đáp án, rồi kiểm tra tính khả thi của từng đáp án, thường bằng tham lam. **Đó chính là nhị phân đáp án.**
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -166,11 +166,11 @@ Khi giải bài, thường sẽ nghĩ tới việc liệt kê đáp án rồi ki
     }
     ```
     
-    Sau khi đọc đoạn mã trên, thường sẽ có hai câu hỏi:
+    Đoạn mã trên thường gợi ra hai câu hỏi:
     
     1.  Vì sao đoạn tìm kiếm là đóng trái mở phải?
     
-        Vì khi tìm đến cuối, nó sẽ như sau (lấy giá trị hợp lệ lớn nhất làm ví dụ):
+        Vì khi tìm đến cuối, trạng thái sẽ như sau (lấy giá trị hợp lệ lớn nhất làm ví dụ):
     
         ![](./images/binary-final-1.svg)
     
@@ -189,7 +189,7 @@ Khi giải bài, thường sẽ nghĩ tới việc liệt kê đáp án rồi ki
 
 Phương pháp nhị phân có thể dùng để xấp xỉ nghiệm của hàm số. Nếu cần tìm điểm cực trị của một hàm đơn đỉnh, thường cần dùng tìm kiếm tam phân (ternary search).
 
-Với một hàm $f(x)$, nếu tồn tại $x^*$ sao cho $f(x)$ tăng đơn điệu khi $x<x^*$ và giảm đơn điệu khi $x>x^*$, thì gọi $f(x)$ là hàm đơn đỉnh (unimodal function). Hiển nhiên, $x^*$ là điểm đạt giá trị lớn nhất, còn $f(x^*)$ là giá trị lớn nhất của hàm.
+Với một hàm $f(x)$, nếu tồn tại $x^*$ sao cho $f(x)$ tăng đơn điệu khi $x<x^*$ và giảm đơn điệu khi $x>x^*$, thì gọi $f(x)$ là hàm đơn đỉnh (unimodal function). Khi đó, $x^*$ là điểm đạt giá trị lớn nhất, còn $f(x^*)$ là giá trị lớn nhất của hàm.
 
 ??? note "Vì sao không tìm điểm cực trị bằng cách tìm nghiệm của đạo hàm?"
     Về mặt khách quan, sau khi lấy đạo hàm, dùng nhị phân để tìm nghiệm của đạo hàm (do hàm là đơn đỉnh, nghiệm của đạo hàm trong cùng một phạm vi là duy nhất) để thu được điểm cực trị của hàm đơn đỉnh là khả thi.
@@ -198,12 +198,12 @@ Với một hàm $f(x)$, nếu tồn tại $x^*$ sao cho $f(x)$ tăng đơn đi�
     
     Thứ hai, trong một số bài, hàm đơn đỉnh cần tìm điểm cực trị không phải là một hàm riêng lẻ, mà là hàm thu được từ nhiều hàm qua một phép toán đặc biệt (chẳng hạn tìm giá trị lớn nhất của giá trị nhỏ nhất của nhiều hàm bậc nhất có tính đơn điệu không hoàn toàn giống nhau). Khi đó đạo hàm của hàm có thể là hàm từng đoạn, và tại một số điểm có thể không khả vi.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Tìm kiếm tam phân vừa có thể tìm giá trị lớn nhất của hàm đơn đỉnh, vừa có thể tìm giá trị nhỏ nhất của "hàm đơn đáy". Để tiện trình bày, trừ khi nói rõ khác đi, phần dưới đều lấy bài toán tìm giá trị lớn nhất của hàm đơn đỉnh làm ví dụ.
 
 ### Quy trình
 
-Tư tưởng cơ bản của tìm kiếm tam phân tương tự phương pháp nhị phân, nhưng mỗi thao tác cần chọn hai điểm bất kỳ $lmid < rmid$ trong đoạn hiện tại $[l,r]$ (giữa hai điểm màu cam trong hình dưới; hai điểm màu xanh là hai điểm được chọn). Như hình dưới, nếu $f(lmid)<f(rmid)$, thì trên đoạn $[l,lmid)$ (phần màu đỏ trong hình) hàm chắc chắn tăng đơn điệu, điểm đạt giá trị lớn nhất (điểm màu xanh lá trong hình) chắc chắn không nằm trong đoạn này, nên có thể loại bỏ đoạn này. Tuy nhiên, không thể loại trừ khả năng điểm cực đại nằm bên phải $rmid$, nên không thể loại bỏ nhiều hơn. Trường hợp ngược lại cũng tương tự.
+Tư tưởng cơ bản của tìm kiếm tam phân tương tự phương pháp nhị phân, nhưng mỗi thao tác cần chọn hai điểm bất kỳ $lmid < rmid$ trong đoạn hiện tại $[l,r]$ (giữa hai điểm màu cam trong hình dưới; hai điểm màu xanh là hai điểm được chọn). Như hình dưới, nếu $f(lmid)<f(rmid)$, thì trên đoạn $[l,lmid)$ (phần màu đỏ trong hình) hàm tăng đơn điệu, điểm đạt giá trị lớn nhất (điểm màu xanh lá trong hình) không nằm trong đoạn này, nên có thể loại bỏ đoạn này. Tuy nhiên, không thể loại trừ khả năng điểm cực đại nằm bên phải $rmid$, nên không thể loại bỏ nhiều hơn. Trường hợp ngược lại cũng tương tự.
 
 ![](images/ternary.svg)
 
@@ -314,7 +314,7 @@ $$
     Cho một hàm bậc $N$ và khoảng $[l, r]$, tìm giá trị duy nhất của $x$ sao cho hàm tăng đơn điệu trên $[l, x]$ và giảm đơn điệu trên $[x, r]$.
 
 ??? note "Ý tưởng giải"
-    Bài này yêu cầu tìm giá trị của biến độc lập khi hàm bậc $N$ đạt giá trị lớn nhất trên $[l, r]$; rõ ràng có thể dùng tìm kiếm tam phân.
+    Bài này yêu cầu tìm giá trị của biến độc lập khi hàm bậc $N$ đạt giá trị lớn nhất trên $[l, r]$; có thể dùng tìm kiếm tam phân.
 
 ??? note "Mã tham khảo"
     === "C++"

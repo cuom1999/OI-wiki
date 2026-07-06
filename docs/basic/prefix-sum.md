@@ -101,13 +101,13 @@ Trong trường hợp hai chiều, độ phức tạp thời gian của thuật 
 
 #### Tổng tiền tố theo từng chiều
 
-Với trường hợp tổng quát, cho mảng $k$ chiều $A$ kích thước $N$, cũng cần tính tổng tiền tố $S$ của nó. Ở đây,
+Với trường hợp tổng quát, cho mảng $k$ chiều $A$ kích thước $N$, cũng cần tính tổng tiền tố $S$ của nó. Khi đó,
 
 $$
 S_{i_1,\cdots,i_k} = \sum_{i'_1\le i_1}\cdots\sum_{i'_k\le i_k} A_{i'_1,\cdots,i'_k}.
 $$
 
-Từ công thức trên có thể thấy, tổng tiền tố $k$ chiều chính là thực hiện phép lấy tổng $k$ lần. Vì vậy, một thuật toán hiển nhiên là mỗi lần chỉ xét một chiều, cố định tất cả các chiều còn lại, rồi tính một số tổng tiền tố một chiều. Sau khi lần lượt tính tổng theo cả $k$ chiều, sẽ thu được tổng tiền tố $k$ chiều.
+Từ công thức trên, tổng tiền tố $k$ chiều chính là thực hiện phép lấy tổng $k$ lần. Vì vậy, một thuật toán trực tiếp là mỗi lần chỉ xét một chiều, cố định tất cả các chiều còn lại, rồi tính một số tổng tiền tố một chiều. Sau khi lần lượt tính tổng theo cả $k$ chiều, sẽ thu được tổng tiền tố $k$ chiều.
 
 ??? example "Cài đặt tham khảo cho tổng tiền tố ba chiều"
     ```cpp
@@ -128,7 +128,7 @@ $$
 
 Tức là $g(S)$ bằng tổng giá trị hàm $f(T)$ trên mọi tập con $T\subseteq S$ của nó.
 
-Trước hết, bài toán tổng trên tập con có thể viết dưới dạng tổng tiền tố nhiều chiều. Chú ý rằng tập con của $S$ có thể được biểu diễn bằng tư tưởng nén trạng thái thành chuỗi 0-1 độ dài $n$. Xem mỗi bit của chuỗi là một chiều trong chỉ số mảng, khi đó $f$ thực chất là một mảng $n$ chiều, và chỉ số ở mỗi chiều chắc chắn nằm trong $\{0,1\}$. Đồng thời, quan hệ bao hàm giữa các tập con tương đương với quan hệ lớn nhỏ của chỉ số, tức là
+Trước hết, bài toán tổng trên tập con có thể viết dưới dạng tổng tiền tố nhiều chiều. Lưu ý rằng tập con của $S$ có thể được biểu diễn bằng tư tưởng nén trạng thái thành chuỗi 0-1 độ dài $n$. Xem mỗi bit của chuỗi là một chiều trong chỉ số mảng, khi đó $f$ thực chất là một mảng $n$ chiều, và chỉ số ở mỗi chiều luôn nằm trong $\{0,1\}$. Đồng thời, quan hệ bao hàm giữa các tập con tương đương với quan hệ lớn nhỏ của chỉ số, tức là
 
 $$
 T\subseteq S \iff \forall i(t_i \le s_i). 
@@ -175,7 +175,7 @@ $$
 S_x + S_y - 2S_{\operatorname{lca}(x, y)}
 $$
 
-Chú ý khác với trường hợp trọng số đỉnh, tổng trọng số được truy vấn không bao gồm trọng số tại $\operatorname{lca}(x, y)$, vì trọng số cạnh được lưu ở đó không nằm trên đường đi cần tính.
+Lưu ý rằng khác với trường hợp trọng số đỉnh, tổng trọng số được truy vấn không bao gồm trọng số tại $\operatorname{lca}(x, y)$, vì trọng số cạnh được lưu ở đó không nằm trên đường đi cần tính.
 
 #### Tổng cây con
 
@@ -193,7 +193,7 @@ Khác với tổng tiền tố trên cây, tổng cây con không thể dùng đ
 
 ## Sai phân
 
-Sai phân là một chiến lược đối ngẫu với tổng tiền tố, là phép toán ngược của tổng tiền tố. So với việc cho một dãy rồi tính sai phân của nó, tình huống thường gặp hơn trong thi đấu là duy trì thông tin của dãy sai phân để thực hiện nhiều lần sửa đổi đoạn. Sau khi kết thúc các phép sửa đổi đoạn, có thể dùng tổng tiền tố để khôi phục thông tin của dãy ban đầu, rồi truy vấn dãy ban đầu. Chú ý rằng mọi thao tác sửa đổi phải diễn ra trước thao tác truy vấn.
+Sai phân là một chiến lược đối ngẫu với tổng tiền tố, là phép toán ngược của tổng tiền tố. So với việc cho một dãy rồi tính sai phân của nó, tình huống thường gặp hơn trong thi đấu là duy trì thông tin của dãy sai phân để thực hiện nhiều lần sửa đổi đoạn. Sau khi kết thúc các phép sửa đổi đoạn, có thể dùng tổng tiền tố để khôi phục thông tin của dãy ban đầu, rồi truy vấn dãy ban đầu. Lưu ý rằng mọi thao tác sửa đổi phải diễn ra trước thao tác truy vấn.
 
 Nếu cần hỗ trợ nhiều thao tác sửa đổi và truy vấn xen kẽ, cần dùng [cây Fenwick](../ds/fenwick.md), nhưng tư tưởng của chúng là tương thông.
 
@@ -266,7 +266,7 @@ Sau khi mọi thao tác sửa đổi kết thúc, chỉ cần thực hiện mộ
     --8<-- "docs/basic/code/prefix-sum/prefix-sum_7.cpp:core"
     ```
 
-Dĩ nhiên, tư tưởng tương tự cũng đúng với số chiều $k>2$, nhưng độ phức tạp thời gian của một thao tác sửa đổi là $O(2^k)$, nên không còn thực dụng khi $k$ tăng.
+Tư tưởng tương tự cũng đúng với số chiều $k>2$, nhưng độ phức tạp thời gian của một thao tác sửa đổi là $O(2^k)$, nên không còn thực dụng khi $k$ tăng.
 
 ### Sai phân trên cây
 
@@ -323,7 +323,7 @@ Sau khi mọi thao tác sửa đổi hoàn tất, tính một lần tổng cây 
     FJ có $K(1 \le K \le 100,000)$ tuyến vận chuyển sữa. Tuyến thứ $i$ vận chuyển từ ngăn $s_i$ tới ngăn $t_i$. Một tuyến vận chuyển sẽ tạo một đơn vị áp lực vận chuyển lên hai ngăn ở hai đầu mút của nó cũng như mọi ngăn đi qua ở giữa. Cần tính áp lực lớn nhất trên một ngăn là bao nhiêu.
 
 ??? note "Ý tưởng giải"
-    Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể nhanh chóng thu được số lần đi qua mỗi đỉnh. Ở đây dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
+    Cần thống kê mỗi đỉnh được đi qua bao nhiêu lần, vì vậy dùng sai phân trên cây để cộng một cho đường đi của mỗi lần, từ đó có thể nhanh chóng thu được số lần đi qua mỗi đỉnh. Lời giải này dùng phương pháp nhân đôi để tính LCA; cuối cùng DFS duyệt cả cây, khi quay lui thì tính tổng trên mảng sai phân để thu được đáp án.
 
 ??? note "Mã tham khảo"
     ```cpp

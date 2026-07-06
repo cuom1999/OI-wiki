@@ -4,9 +4,9 @@ author: linehk, persdre
 
 ## Số phép toán cơ bản
 
-Cùng một thuật toán có thể chạy với tốc độ khác nhau trên các máy tính khác nhau. Tốc độ chạy thực tế lại khó tính bằng lý thuyết, còn việc đo trực tiếp cũng khá phiền phức, vì vậy thường không xét thời gian chạy thực tế của thuật toán, mà xét số phép toán cơ bản mà thuật toán cần thực hiện.
+Cùng một thuật toán có thể chạy với tốc độ khác nhau trên các máy tính khác nhau. Thời gian chạy thực tế khó xác định bằng phân tích lý thuyết, còn việc đo trực tiếp cũng bất tiện, vì vậy thường không xét thời gian chạy thực tế của thuật toán, mà xét số phép toán cơ bản mà thuật toán cần thực hiện.
 
-Trên một máy tính thông thường, các phép cộng, trừ, nhân, chia, truy cập biến (biến kiểu dữ liệu cơ bản, tương tự ở bên dưới), gán giá trị cho biến, v.v. đều có thể xem là phép toán cơ bản.
+Trên một máy tính thông thường, các phép cộng, trừ, nhân, chia, truy cập biến (biến thuộc kiểu dữ liệu cơ bản; tương tự trong các phần sau), gán giá trị cho biến, v.v. đều có thể xem là phép toán cơ bản.
 
 Việc đếm hoặc ước lượng số phép toán cơ bản có thể dùng làm chỉ số đánh giá thời gian chạy của thuật toán.
 
@@ -14,16 +14,16 @@ Việc đếm hoặc ước lượng số phép toán cơ bản có thể dùng 
 
 ### Định nghĩa
 
-Khi đánh giá một thuật toán nhanh hay chậm, nhất định phải xét kích thước dữ liệu. Kích thước dữ liệu thường là số lượng số trong đầu vào, số đỉnh và số cạnh của đồ thị được cho trong đầu vào, v.v. Nói chung, kích thước dữ liệu càng lớn thì thuật toán chạy càng lâu. Trong lập trình thi đấu, khi đánh giá hiệu quả của một thuật toán, điều quan trọng nhất không phải là thời gian chạy tại một kích thước dữ liệu cụ thể, mà là xu hướng thời gian chạy tăng lên khi kích thước dữ liệu tăng, tức **độ phức tạp thời gian**.
+Khi đánh giá một thuật toán nhanh hay chậm, cần xét kích thước dữ liệu. Kích thước dữ liệu thường là số lượng giá trị trong đầu vào, số đỉnh và số cạnh của đồ thị trong đầu vào, v.v. Nói chung, kích thước dữ liệu càng lớn thì thuật toán chạy càng lâu. Trong lập trình thi đấu, khi đánh giá hiệu quả của một thuật toán, điều quan trọng nhất không phải là thời gian chạy tại một kích thước dữ liệu cụ thể, mà là xu hướng thời gian chạy tăng lên khi kích thước dữ liệu tăng, tức **độ phức tạp thời gian**.
 
 ### Dẫn nhập
 
 Các lý do chính khiến cần xét xu hướng thời gian chạy thay đổi theo kích thước dữ liệu là:
 
-1.  Máy tính hiện đại có thể xử lý hàng trăm triệu phép toán cơ bản, thậm chí nhiều hơn, trong mỗi giây, nên kích thước dữ liệu cần xử lý thường rất lớn. Nếu thuật toán A chạy trong $100n$ trên dữ liệu kích thước $n$, còn thuật toán B chạy trong $n^2$, thì khi kích thước dữ liệu nhỏ hơn $100$, thuật toán B chạy nhanh hơn. Nhưng trong một giây, thuật toán A có thể xử lý dữ liệu cỡ hàng triệu, còn thuật toán B chỉ xử lý được dữ liệu cỡ hàng chục nghìn. Khi cho phép thuật toán chạy lâu hơn, ảnh hưởng của độ phức tạp thời gian lên kích thước dữ liệu có thể xử lý sẽ càng rõ rệt, lớn hơn rất nhiều so với ảnh hưởng của thời gian chạy ở cùng một kích thước dữ liệu.
-2.  Số phép toán cơ bản được dùng để biểu diễn thời gian chạy của thuật toán, nhưng thời gian thực tế của các phép toán cơ bản khác nhau là khác nhau; chẳng hạn phép cộng trừ nhanh hơn phép chia rất nhiều. Khi tính độ phức tạp thời gian, việc bỏ qua khác biệt giữa các phép toán cơ bản, cũng như khác biệt giữa một phép toán cơ bản và mười phép toán cơ bản, giúp loại bỏ ảnh hưởng của sự khác nhau về thời gian thực hiện giữa các phép toán cơ bản.
+1.  Máy tính hiện đại có thể xử lý hàng trăm triệu phép toán cơ bản, thậm chí nhiều hơn, trong mỗi giây, nên kích thước dữ liệu cần xử lý thường rất lớn. Nếu thuật toán A cần $100n$ phép toán trên dữ liệu kích thước $n$, còn thuật toán B cần $n^2$ phép toán, thì khi kích thước dữ liệu nhỏ hơn $100$, thuật toán B chạy nhanh hơn. Tuy nhiên, trong một giây, thuật toán A có thể xử lý dữ liệu cỡ hàng triệu, còn thuật toán B chỉ xử lý được dữ liệu cỡ hàng chục nghìn. Khi cho phép thuật toán chạy lâu hơn, ảnh hưởng của độ phức tạp thời gian lên kích thước dữ liệu có thể xử lý sẽ càng rõ rệt, lớn hơn rất nhiều so với ảnh hưởng của thời gian chạy ở cùng một kích thước dữ liệu.
+2.  Số phép toán cơ bản được dùng để biểu diễn thời gian chạy của thuật toán, nhưng thời gian thực tế của các phép toán cơ bản khác nhau là khác nhau; chẳng hạn phép cộng, trừ nhanh hơn phép chia rất nhiều. Khi tính độ phức tạp thời gian, việc bỏ qua khác biệt giữa các phép toán cơ bản, cũng như khác biệt giữa một phép toán cơ bản và mười phép toán cơ bản, giúp loại bỏ ảnh hưởng của sự khác nhau về thời gian thực hiện giữa các phép toán cơ bản.
 
-Dĩ nhiên, thời gian chạy của thuật toán không hoàn toàn do kích thước đầu vào quyết định, mà còn liên quan đến nội dung đầu vào. Vì vậy, độ phức tạp thời gian còn được chia thành một số loại, chẳng hạn:
+Thời gian chạy của thuật toán không hoàn toàn do kích thước đầu vào quyết định, mà còn liên quan đến nội dung đầu vào. Vì vậy, độ phức tạp thời gian còn được chia thành một số loại, chẳng hạn:
 
 1.  Độ phức tạp thời gian trong trường hợp xấu nhất, tức độ phức tạp ứng với đầu vào tốn thời gian nhất trong mỗi kích thước đầu vào. Trong lập trình thi đấu, vì đầu vào có thể là bất kỳ dữ liệu nào trong phạm vi đã cho, để bảo đảm thuật toán chạy được với mọi dữ liệu trong phạm vi đó, thường xét độ phức tạp thời gian trong trường hợp xấu nhất.
 2.  Độ phức tạp thời gian trung bình (kỳ vọng), tức độ phức tạp của giá trị trung bình thời gian chạy trên tất cả đầu vào có thể có trong mỗi kích thước đầu vào (độ phức tạp thời gian chạy kỳ vọng với đầu vào ngẫu nhiên).
@@ -32,7 +32,7 @@ Cụm “xu hướng thời gian chạy tăng theo kích thước dữ liệu”
 
 ## Định nghĩa ký hiệu tiệm cận
 
-Ký hiệu tiệm cận là cách mô tả chuẩn cho bậc của hàm. Nói đơn giản, ký hiệu tiệm cận bỏ qua những phần tăng chậm hơn trong một hàm và các hệ số của từng hạng tử (trong phân tích độ phức tạp thời gian, hệ số thường được gọi là “hằng số”), đồng thời giữ lại những phần quan trọng thể hiện xu hướng tăng trưởng của hàm đó.
+Ký hiệu tiệm cận là cách mô tả chuẩn cho bậc của hàm. Về cơ bản, ký hiệu tiệm cận bỏ qua các hạng tử tăng chậm hơn trong một hàm và hệ số của từng hạng tử (trong phân tích độ phức tạp thời gian, hệ số thường được gọi là “hằng số”), đồng thời giữ lại những phần quan trọng thể hiện xu hướng tăng trưởng của hàm đó.
 
 Cách nhớ đơn giản là: có dấu bằng (không nghiêm ngặt) thì dùng chữ hoa, không có dấu bằng (nghiêm ngặt) thì dùng chữ thường; bằng nhau là $\Theta$, nhỏ hơn là $O$, lớn hơn là $\Omega$. Chữ $O$ lớn và $o$ nhỏ vốn là chữ cái Hy Lạp Omicron; do hình dạng giống nhau, cũng có thể hiểu như chữ cái Latin $O$ lớn và $o$ nhỏ.
 
@@ -42,7 +42,7 @@ Trong tiếng Anh, các gốc từ “-micro-” và “-mega-” thường dùn
 
 Với hai hàm $f(n)$ và $g(n)$, $f(n)=\Theta(g(n))$ khi và chỉ khi $\exists c_1,c_2,n_0>0$ sao cho $\forall n \ge n_0, 0\le c_1\cdot g(n)\le f(n) \le c_2\cdot g(n)$.
 
-Nói cách khác, nếu $f(n)=\Theta(g(n))$, có thể tìm được hai số dương $c_1, c_2$ sao cho $f(n)$ bị kẹp giữa $c_1\cdot g(n)$ và $c_2\cdot g(n)$.
+Nói cách khác, nếu $f(n)=\Theta(g(n))$, có thể tìm được hai số dương $c_1, c_2$ sao cho $f(n)$ nằm giữa $c_1\cdot g(n)$ và $c_2\cdot g(n)$.
 
 Ví dụ, $3n^2+5n-3=\Theta(n^2)$, trong đó $c_1, c_2, n_0$ có thể lần lượt là $2, 4, 100$. Với $n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$, $c_1, c_2, n_0$ có thể lần lượt là $1, 2, 100$.
 
@@ -52,7 +52,7 @@ Ký hiệu $\Theta$ đồng thời cho cận trên và cận dưới của một
 
 Khi nghiên cứu độ phức tạp thời gian, ký hiệu $O$ thường được dùng vì điều cần quan tâm thường là cận trên của thời gian chạy chương trình, chứ không phải cận dưới của nó.
 
-Cần chú ý rằng “cận trên” và “cận dưới” ở đây nói về xu hướng biến thiên của hàm, chứ không nói trực tiếp về thuật toán. Cận trên của thời gian chạy thuật toán tương ứng với “độ phức tạp thời gian trong trường hợp xấu nhất”, chứ không phải ký hiệu $O$ lớn. Vì vậy, dùng ký hiệu $\Theta$ để biểu diễn độ phức tạp thời gian trong trường hợp xấu nhất là hoàn toàn được; thậm chí có thể nói $\Theta$ chính xác hơn $O$. Những lý do chính khiến ký hiệu $O$ thường được dùng là: thứ nhất, đôi khi chỉ chứng minh được cận trên của độ phức tạp thời gian mà không chứng minh được cận dưới (thường gặp trong các thuật toán và phân tích độ phức tạp phức tạp hơn); thứ hai, $O$ dễ gõ trên máy tính hơn.
+Cần phân biệt rằng “cận trên” và “cận dưới” trong ngữ cảnh này nói về xu hướng biến thiên của hàm, chứ không nói trực tiếp về thuật toán. Cận trên của thời gian chạy thuật toán tương ứng với “độ phức tạp thời gian trong trường hợp xấu nhất”, chứ không phải ký hiệu $O$ lớn. Vì vậy, dùng ký hiệu $\Theta$ để biểu diễn độ phức tạp thời gian trong trường hợp xấu nhất là hoàn toàn hợp lệ; thậm chí $\Theta$ chính xác hơn $O$ trong một số ngữ cảnh. Những lý do chính khiến ký hiệu $O$ thường được dùng là: thứ nhất, đôi khi chỉ chứng minh được cận trên của độ phức tạp thời gian mà không chứng minh được cận dưới (thường gặp trong các thuật toán và phân tích độ phức tạp phức tạp hơn); thứ hai, $O$ dễ gõ trên máy tính hơn.
 
 ### Ký hiệu Ω lớn
 
@@ -79,7 +79,7 @@ $f(n)=\omega(g(n))$ khi và chỉ khi với mọi số dương $c$ cho trước,
 -   $f(n) = \Theta(g(n))\iff f(n)=O(g(n))\land f(n)=\Omega(g(n))$
 -   $f_1(n) + f_2(n) = O(\max(f_1(n), f_2(n)))$
 -   $f_1(n) \times f_2(n) = O(f_1(n) \times f_2(n))$
--   $\forall a \neq 1, \log_a{n} = O(\log_2 n)$. Từ công thức đổi cơ số, có thể thấy mọi hàm logarit, bất kể cơ số là gì, đều có cùng tốc độ tăng trưởng; vì vậy trong độ phức tạp thời gian tiệm cận, cơ số của logarit thường được lược bỏ.
+-   $\forall a \neq 1, \log_a{n} = O(\log_2 n)$. Từ công thức đổi cơ số, mọi hàm logarit, bất kể cơ số là gì, đều có cùng tốc độ tăng trưởng; vì vậy trong độ phức tạp thời gian tiệm cận, cơ số của logarit thường được lược bỏ.
 
 ## Ví dụ đơn giản về tính độ phức tạp thời gian
 
@@ -130,7 +130,7 @@ Khi thực hiện [DFS](../graph/dfs.md) trên một đồ thị có $n$ đỉnh
 
 ## Những đại lượng nào là hằng số?
 
-Khi cần thực hiện một số phép toán nào đó, làm sao để biết các phép toán này có ảnh hưởng đến độ phức tạp thời gian hay không? Ví dụ:
+Khi cần thực hiện một số phép toán nào đó, cần xác định liệu các phép toán này có ảnh hưởng đến độ phức tạp thời gian hay không. Ví dụ:
 
 === "C++"
     ```cpp
@@ -159,7 +159,7 @@ Nếu độ lớn của $N$ không được xem là kích thước đầu vào, 
 
 Khi tính độ phức tạp thời gian, việc xác định biến nào được xem là kích thước đầu vào là rất quan trọng. Mọi đại lượng không liên quan đến kích thước đầu vào đều được xem là hằng số và có thể coi là $1$ khi tính độ phức tạp.
 
-Cần chú ý rằng trong các thảo luận lý thuyết về độ phức tạp thời gian, “thuật toán có thể giải bài toán ở mọi kích thước” là một giả định cơ bản (dĩ nhiên trong thực tế, do giới hạn thời gian và bộ nhớ, không thể giải các bài toán có kích thước quá lớn). Vì vậy, việc có thể giải trong thời gian hằng số một bài toán có kích thước dữ liệu hữu hạn (ví dụ, tính trước đáp án cho mọi đầu vào có thể trong phạm vi dữ liệu) không làm cho độ phức tạp thời gian của thuật toán trở thành $O(1)$.
+Trong các thảo luận lý thuyết về độ phức tạp thời gian, “thuật toán có thể giải bài toán ở mọi kích thước” là một giả định cơ bản (mặc dù trong thực tế, do giới hạn thời gian và bộ nhớ, không thể giải các bài toán có kích thước quá lớn). Vì vậy, việc có thể giải trong thời gian hằng số một bài toán có kích thước dữ liệu hữu hạn (ví dụ, tính trước đáp án cho mọi đầu vào có thể trong phạm vi dữ liệu) không làm cho độ phức tạp thời gian của thuật toán trở thành $O(1)$.
 
 ## Định lý Master
 
@@ -176,12 +176,12 @@ $$
 T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b (a)-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b (a)+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
 $$
 
-Cần chú ý rằng trường hợp thứ hai ở đây còn phải thỏa điều kiện chính quy (regularity condition), tức $a f(n/b) \leq c f(n)$ với một hằng số $c < 1$ nào đó và $n$ đủ lớn.
+Trường hợp thứ hai còn phải thỏa điều kiện chính quy (regularity condition), tức $a f(n/b) \leq c f(n)$ với một hằng số $c < 1$ nào đó và $n$ đủ lớn.
 
-Ý tưởng chứng minh là chia bài toán kích thước $n$ thành $a$ bài toán con kích thước $(\frac{n}{b})$, sau đó lần lượt gộp lại cho đến khi gộp tới tầng cao nhất. Mỗi lần gộp các bài toán con cần tốn thời gian $f(n)$.
+Ý tưởng chứng minh là chia bài toán kích thước $n$ thành $a$ bài toán con kích thước $(\frac{n}{b})$, sau đó lần lượt gộp lại cho đến khi gộp đến tầng cao nhất. Mỗi lần gộp các bài toán con cần tốn thời gian $f(n)$.
 
 ??? note "Chứng minh"
-    Dựa trên ý tưởng chứng minh đã nêu ở trên, quá trình chứng minh cụ thể như sau
+    Dựa trên ý tưởng chứng minh đã nêu, quá trình chứng minh cụ thể như sau
     
     Ở tầng $0$ (tầng cao nhất), việc gộp các bài toán con cần tốn thời gian $f(n)$
     
@@ -195,7 +195,7 @@ Cần chú ý rằng trường hợp thứ hai ở đây còn phải thỏa đi�
     
     Với trường hợp thứ hai: trước hết $g(n) = \Omega(f(n))$; hơn nữa, vì $a f(\dfrac{n}{b}) \leq c f(n)$, miễn là $c$ là một số dương đủ nhỏ và $n$ đủ lớn, suy ra được $g(n) = O(f(n))$. Kẹp hai phía cho kết quả $g(n) = \Theta(f(n))$.
     
-    Với trường hợp thứ ba: $f(n) = \Theta(n^{\log_b a})$, nên $g(n) = O(n^{\log_b a} {\log n})$. Sau khi có $g(n)$, kết quả của $T(n)$ được suy ra một cách hiển nhiên.
+    Với trường hợp thứ ba: $f(n) = \Theta(n^{\log_b a})$, nên $g(n) = O(n^{\log_b a} {\log n})$. Sau khi có $g(n)$, kết quả của $T(n)$ được suy ra trực tiếp.
 
 Sau đây là một vài ví dụ minh họa cách dùng định lý Master.
 

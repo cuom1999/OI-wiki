@@ -64,7 +64,7 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     $1\leq k\leq n$, $0\le a_i\le 10^9$.
 
 ??? note "Ý tưởng giải"
-    Rõ ràng không thể mô phỏng vét cạn $m$ lần nhảy. Vì $m$ có thể lớn đến
+    Không thể mô phỏng vét cạn $m$ lần nhảy. Vì $m$ có thể lớn đến
     $10^{18}$, mô phỏng trực tiếp sẽ không chịu nổi về thời gian.
 
     Do đó cần tiền xử lý một số thông tin, gộp sẵn dữ liệu để trả lời nhanh
@@ -94,7 +94,7 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     `sum[i][x] = sum[i-1][x]+sum[i-1][go[i-1][x]]` và
     `go[i][x] = go[i-1][go[i-1][x]]`.
 
-    Tất nhiên vẫn có vài chi tiết cài đặt cần chú ý. Để tránh đếm thiếu hoặc
+    Vẫn có vài chi tiết cài đặt cần lưu ý. Để tránh đếm thiếu hoặc
     đếm trùng, thường tiền xử lý tổng trọng số theo đoạn "đóng trái, mở
     phải". Nghĩa là khi nhảy 1 bước, chỉ ghi trọng số của điểm hiện tại; khi
     nhảy 2 bước, chỉ ghi trọng số của điểm hiện tại và điểm kế tiếp. Nói cách
@@ -103,7 +103,7 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     đầu và điểm đầu của đoạn sau bị tính lặp.
 
     Trong bài này $m\leq 10^{18}$ trông có vẻ rất lớn, nhưng thực tế chỉ cần
-    tiền xử lý $i$ đến khoảng $65$ là giải được dễ dàng, nhanh hơn rất nhiều so
+    tiền xử lý $i$ đến khoảng $65$ là đủ để giải, nhanh hơn rất nhiều so
     với liệt kê vét cạn. Theo thuật ngữ độ phức tạp, cách làm này có
     [độ phức tạp thời gian](./complexity.md) tiền xử lý $\Theta(n\log m)$ và
     mỗi truy vấn $\Theta(\log m)$.
