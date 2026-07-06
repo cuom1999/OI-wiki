@@ -56,7 +56,7 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
         else
           printf("No");
 
-        // Dù n nhận giá trị ngẫu nhiên nào, kết quả chắc chắn là Yes.
+        // Dù n nhận giá trị ngẫu nhiên nào, kết quả luôn là Yes.
         // Cảnh báo: toán tử không đúng, gán hằng trong ngữ cảnh Boolean.
         // Nên cân nhắc dùng "==".
         ```
@@ -97,9 +97,9 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
     ???+ note "Biến chưa khởi tạo sẽ xảy ra chuyện gì?"
         Nguồn gốc: <https://loj.ac/d/3679> bởi @hly1204
 
-        Ví dụ, trong C++ ta khai báo `int a;` nhưng không khởi tạo. Đôi khi có
-        thể nghĩ rằng `a` là một giá trị "ngẫu nhiên" (thực ra chưa chắc là
-        ngẫu nhiên thật), hoặc xem nó như một giá trị cố định, nhưng thực tế
+        Ví dụ, xét khai báo `int a;` trong C++ nhưng không khởi tạo. Đôi khi có
+        thể nghĩ rằng `a` là một giá trị "ngẫu nhiên" (không nhất thiết thật sự
+        ngẫu nhiên), hoặc xem nó như một giá trị cố định, nhưng thực tế
         không phải vậy.
 
         Với đoạn mã kiểm thử đơn giản:
@@ -121,7 +121,7 @@ quả chạy sai. Trình biên dịch có thể chỉ ra những lỗi này khi 
         Trên một số trình biên dịch và môi trường, sau khi bật tối ưu, chương trình
         in ra `false`.
 
-        Nếu quan tâm, bạn có thể đọc
+        Có thể đọc thêm tại
         <https://www.ralfj.de/blog/2019/07/14/uninit.html>. Dù bài viết dùng
         Rust để thử nghiệm, bản chất vấn đề là như nhau.
 
@@ -276,9 +276,10 @@ Các hệ điều hành khác nhau dùng ký hiệu khác nhau để đánh dấ
 
 -   CR (biểu diễn bằng `\r`): `Mac OS` phiên bản 9 trở về trước
 
-C/C++ dùng chuỗi thoát `\n` để xuống dòng. Điều này có thể khiến ta tưởng
-rằng ký tự xuống dòng trong dữ liệu vào cũng nhất định được biểu diễn bằng `\n`, rồi
-chỉ đọc một ký tự làm xuống dòng, dẫn đến chưa đọc hết tệp dữ liệu vào.
+C/C++ dùng chuỗi thoát `\n` để xuống dòng. Điều này có thể khiến người viết
+chương trình tưởng rằng ký tự xuống dòng trong dữ liệu vào cũng nhất định được
+biểu diễn bằng `\n`, rồi chỉ đọc một ký tự làm xuống dòng, dẫn đến chưa đọc hết
+tệp dữ liệu vào.
 
 Một số cách xử lý:
 
@@ -293,8 +294,9 @@ Một số cách xử lý:
 ### Lỗi dẫn đến kết quả không xác định
 
 Hành vi không xác định (UB) có thể dẫn đến kết quả không xác định, có thể là WA, RE,...
-Trình biên dịch thường giả định chương trình của bạn không có hành vi không xác định, vì
-vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hành vi khác nhau.
+Trình biên dịch thường giả định chương trình đang xét không có hành vi không
+xác định, vì vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hành vi
+khác nhau.
 
 -   Chia cho 0, hoặc tính nghịch đảo của 0.
 
@@ -351,7 +353,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
     -   Vùng nhớ mà con trỏ trỏ tới đã được giải phóng.
 
-        Khi dùng `erase`, `delete` hoặc `free`, cần chú ý không dùng nhiều lần
+        Khi dùng `erase`, `delete` hoặc `free`, cần tránh dùng nhiều lần
         trên cùng một địa chỉ/đối tượng.
 
 -   Thử giải phóng một phần của khối nhớ được cấp phát bằng `new []`.
@@ -379,7 +381,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 
 -   Tràn số có dấu.
 
-    Ví dụ, ta có biểu thức `x+1 > x`.
+    Xét biểu thức `x+1 > x`.
 
     Bình thường kết quả phải là `true`, nhưng khi `x` bằng `INT_MAX`, kết quả
     có thể là `false`; đây gọi là `signed integer overflow`.
@@ -424,7 +426,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 -   Hàm so sánh khi sắp xếp sai. `std::sort` yêu cầu hàm so sánh là thứ tự yếu
     nghiêm ngặt: `a<a` là `false`; nếu `a<b` là `true` thì `b<a` là `false`;
     nếu `a<b` là `true` và `b<c` là `true` thì `a<c` là `true`. Cần đặc biệt
-    chú ý điều kiện thứ hai.
+    lưu tâm đến điều kiện thứ hai.
 
     Nếu không thỏa các yêu cầu trên, khi sắp xếp rất dễ RE.
 
@@ -499,7 +501,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     Cách viết này không sai về tính đúng đắn nếu tham số là biểu thức đơn giản.
     Nhưng nếu lấy max trực tiếp từ giá trị trả về của hàm, chẳng hạn
     `a = Max(func1(), func2())`, và hàm chạy lâu, hiệu năng sẽ bị ảnh hưởng lớn
-    vì sau khi macro mở rộng ta có dạng
+    vì sau khi macro mở rộng sẽ có dạng
     `a = func1() > func2() ? func1() : func2()`, tức gọi hàm ba lần, nhiều hơn
     hàm `max` bình thường một lần. Lưu ý, nếu `func1()` trả về kết quả khác
     nhau ở mỗi lần gọi, cách viết `max` này còn cho kết quả sai. Ví dụ
@@ -541,7 +543,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
     sau đó sao chép giá trị của `a` vào biến tạm, thêm `b` vào cuối, rồi gán
     lại vào `a`.
 
-    Từ [kết quả assembly](https://godbolt.org/z/Eo9vn7or5), có thể thấy
+    [Kết quả assembly](https://godbolt.org/z/Eo9vn7or5) cho thấy
     `a = a + b` gọi ba chức năng trong `std::__cxx11::basic_string`: lần lượt
     là `operator+`, `operator=` và tạo biến.
 
@@ -570,8 +572,8 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
 -   Mảng quá lớn.
 
     ??? note "Giải thích chỉ số bộ nhớ trên Linux"
-        > Bản ngắn gọn: nếu trong kỳ thi thuộc hệ CCF bạn khai báo một mảng
-        > tĩnh toàn cục đặc biệt lớn, cần hết sức thận trọng. Vì mảng do
+        > Bản ngắn gọn: trong kỳ thi thuộc hệ CCF, việc khai báo một mảng tĩnh
+        > toàn cục đặc biệt lớn cần được cân nhắc thận trọng. Vì mảng do
         > chương trình khai báo sẽ được tính toàn bộ vào mức sử dụng bộ nhớ
         > (khác với đa số nền tảng chấm trực tuyến, vốn chỉ tính phần thật sự
         > được dùng), trong một số trường hợp có thể khiến cả bài bị MLE.
@@ -587,7 +589,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
                 Bộ nhớ ảo là một khái niệm logic, thường lớn hơn bộ nhớ thật
                 đang dùng rất nhiều.
 
-                Trên Linux, bạn có thể dùng lệnh `top` để xem thành phần sử
+                Trên Linux, có thể dùng lệnh `top` để xem thành phần sử
                 dụng bộ nhớ của một tiến trình; cột `VIRT` chính là bộ nhớ ảo
                 mà tiến trình chiếm.
 
@@ -595,9 +597,9 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
                 cấp phát nhưng chưa thật sự dùng. Nói ngắn gọn, xin cấp phát
                 bao nhiêu thì bộ nhớ ảo xấp xỉ tăng bấy nhiêu.
 
-                Cần đặc biệt chú ý rằng các nền tảng chấm trực tuyến thường
+                Cần đặc biệt lưu ý rằng các nền tảng chấm trực tuyến thường
                 chỉ thống kê bộ nhớ vật lý. Nhưng **môi trường chấm của CCF
-                thống kê bộ nhớ ảo**, nghĩa là nếu bạn khai báo một mảng tĩnh
+                thống kê bộ nhớ ảo**, nghĩa là nếu khai báo một mảng tĩnh
                 toàn cục lớn, dù chỉ dùng một phần nhỏ, nó vẫn chiếm rất nhiều
                 bộ nhớ.
             2.  RSS (Resident Set Size, kích thước tập thường trú)[^ref4]
@@ -606,7 +608,7 @@ vậy có thể xuất hiện tình huống bật O2 và không bật O2 cho hà
                 chiếm, tức kích thước các page frame đang thường trú trong RAM,
                 thường hiển thị theo KB.
 
-                Tương tự, bạn có thể dùng `top` và xem cột `RES` để biết bộ
+                Tương tự, có thể dùng `top` và xem cột `RES` để biết bộ
                 nhớ vật lý của một tiến trình.
 
                 RSS thường chỉ bao gồm phần thật sự được nạp vào bộ nhớ vật

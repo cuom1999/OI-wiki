@@ -10,21 +10,21 @@ dài, bị MLE, hoặc thời gian tạo bảng quá lớn.
 
 ???+ note "Ví dụ"
     Gọi $f(x)$ là số bit $1$ trong biểu diễn nhị phân của số nguyên $x$. Cho
-    một số nguyên dương $n$ ($n\leq 10^9$), hãy in
+    một số nguyên dương $n$ ($n\leq 10^9$), in
     $\sum_{i=1}^n f^2(i)$.
 
-Nếu với mỗi $n$ ta đều in trực tiếp $f(n)$, ngoài khả năng bị MLE, mã nguồn còn
+Nếu với mỗi $n$ đều in trực tiếp $f(n)$, ngoài khả năng bị MLE, mã nguồn còn
 có thể vượt giới hạn độ dài và không biên dịch được.
 
-Ta xét cách tối ưu bảng đáp án. Dựa trên tư tưởng
+Xét cách tối ưu bảng đáp án. Dựa trên tư tưởng
 [phân khối](../ds/decompose.md), đặt một bước nhảy hợp lý $m$ (thường phụ
-thuộc vào giới hạn độ dài mã nguồn). Với khối thứ $i$, ta tính trước giá trị:
+thuộc vào giới hạn độ dài mã nguồn). Với khối thứ $i$, tính trước giá trị:
 
 $$
 \sum_{k=\frac{n}{m}(i-1)+1}^{\frac{ni}{m}} f^2(k)
 $$
 
-Sau đó khi in đáp án, ta cũng xử lý theo tư tưởng phân khối: phần thuộc khối
+Sau đó khi in đáp án, cũng xử lý theo tư tưởng phân khối: phần thuộc khối
 đầy đủ dùng giá trị đã tiền xử lý, còn phần không trọn khối thì tính vét cạn.
 
 Nói chung, dạng bài phù hợp là những bài mà việc tính một giá trị hàm đơn lẻ
