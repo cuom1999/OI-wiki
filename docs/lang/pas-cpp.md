@@ -20,7 +20,7 @@ C++. Thông thường, VS Code sẽ tiện hơn khi dùng kèm các tiện ích 
 
 ## Tóm tắt nhanh cú pháp C++
 
-Chương trình C++ luôn bắt đầu chạy từ phần `main`.
+Chương trình C++ luôn bắt đầu chạy từ hàm `main`.
 
 Dấu ngoặc nhọn biểu thị điểm bắt đầu và kết thúc của một khối lệnh: `{` tương
 đương với `begin` trong Pascal, còn `}` tương đương với `end`.
@@ -32,7 +32,7 @@ cũng không cần dấu chấm `.`.
 Về chú thích, `//` biểu thị chú thích trên một dòng, còn `/* */` biểu thị chú
 thích dạng khối.
 
-Theo thông lệ, trước hết xét chương trình Hello World.
+Theo thông lệ, hãy bắt đầu bằng chương trình Hello World.
 
 ### Hello World: chương trình C++ đầu tiên
 
@@ -64,7 +64,7 @@ Câu lệnh quan trọng nhất tiếp theo là
 std::cout << "Hello World!" << std::endl;
 ```
 
-`std::cout` là lệnh xuất dữ liệu. Một số chương trình C++ cũng viết trực tiếp là
+`std::cout` dùng để xuất dữ liệu. Một số chương trình C++ cũng viết trực tiếp là
 `cout`.
 
 ??? note "Về tiền tố std::"
@@ -76,7 +76,7 @@ thị dữ liệu được "đẩy" ra luồng xuất như thế nào. Câu lệ
 `"Hello World!"` được đẩy vào luồng xuất trước, sau đó `std::endl` cũng được đẩy
 vào luồng xuất.
 
-`std::endl` là lệnh **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong
+`std::endl` dùng để **xuất** ký tự xuống dòng. Nó tương tự `writeln` trong
 Pascal, nhưng trong C++ không có `coutln`. Điểm khác nhau giữa Pascal và C++ là
 `write('Hello World!')` tương đương với `std::cout << "Hello World!"`, còn
 `writeln('Hello World!')` tương đương với
@@ -90,9 +90,8 @@ tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ
 
 Có thể sẽ có thắc mắc `return 0` ở cuối chương trình nghĩa là gì, hoặc
 `int main()` nghĩa là gì. **Tạm thời chưa cần bận tâm**; khi mới bắt đầu viết
-chương trình, có thể xem nó như một khuôn mẫu để viết theo (ví dụ này cũng dùng
-đúng khuôn mẫu đó). Vì khi nhập môn chưa dùng đến tham số trong `main`, không cần
-viết thành
+chương trình, có thể xem nó như một khuôn mẫu để làm theo. Vì ở giai đoạn nhập
+môn chưa dùng đến tham số trong `main`, không cần viết thành
 `int main(int argc, char const *argv[])`.
 
 #### Bài tập đơn giản
@@ -324,12 +323,15 @@ for (int i = 1; i <= 10; i++) {
 
 Ghi chú:
 
-1.  Dòng `for (int i = 1; i <= 10; i++){` chứa nhiều nội dung; trong `for` có ba câu lệnh.
-2.  Câu lệnh đầu tiên `int i = 1;` khai báo một biến cục bộ `i` và khởi tạo nó. (Thiết kế này linh hoạt hơn Pascal.)
-3.  Câu lệnh thứ hai `i <= 10;` là điều kiện để xác định vòng lặp có tiếp tục hay không.
+1.  Dòng `for (int i = 1; i <= 10; i++){` chứa nhiều nội dung; trong `for` có ba
+    câu lệnh.
+2.  Câu lệnh đầu tiên `int i = 1;` khai báo một biến cục bộ `i` và khởi tạo nó.
+    Thiết kế này linh hoạt hơn Pascal.
+3.  Câu lệnh thứ hai `i <= 10;` là điều kiện để xác định vòng lặp có tiếp tục hay
+    không.
 4.  Câu lệnh thứ ba `i++` được thực hiện ở cuối mỗi vòng lặp, ý nghĩa gần giống
-    `inc(i)` trong Pascal. Viết `++i` trong vòng lặp này cũng cho kết quả như nhau. Sự khác nhau giữa
-    `i++` và `++i` có thể tham khảo trong tài liệu khác.
+    `inc(i)` trong Pascal. Viết `++i` trong vòng lặp này cũng cho kết quả như
+    nhau. Sự khác nhau giữa `i++` và `++i` có thể tham khảo trong tài liệu khác.
 
 #### Vòng lặp `repeat until` và `do while`
 
@@ -359,7 +361,8 @@ do {
 
 Trong C++, `break` có tác dụng giống Pascal: thoát khỏi vòng lặp.
 
-`continue` cũng tương tự: bỏ qua phần còn lại của vòng lặp hiện tại và chuyển sang lần lặp tiếp theo (quay về đầu vòng lặp).
+`continue` cũng tương tự: bỏ qua phần còn lại của vòng lặp hiện tại và chuyển
+sang lần lặp tiếp theo (quay về đầu vòng lặp).
 
 ### Mảng và chuỗi
 
@@ -367,14 +370,15 @@ Trong C++, `break` có tác dụng giống Pascal: thoát khỏi vòng lặp.
 
 Tham khảo nội dung trong trang [Container tuần tự](csl/sequence-container.md).
 
-Thư viện chuẩn C++ cung cấp `vector`, tương đương với mảng có độ dài thay đổi. Trước khi dùng cần nạp tệp thư viện.
+Thư viện chuẩn C++ cung cấp `vector`, tương đương với mảng có độ dài thay đổi.
+Trước khi dùng cần nạp tệp thư viện.
 
 ```cpp
 #include <iostream>
 #include <vector>  // nạp thư viện vector
 
 int main() {
-  std::vector<int> a;  // khai báo vector a và định nghĩa a là đối tượng vector rỗng
+  std::vector<int> a;  // khai báo vector a, ban đầu là vector rỗng
   int n;
 
   std::cin >> n;
@@ -382,7 +386,7 @@ int main() {
   for (int i = 0; i < n; i++) {
     int t;
     std::cin >> t;
-    a.push_back(t);  // đưa số t vừa đọc vào cuối vector a; thao tác này có độ phức tạp O(1)
+    a.push_back(t);  // đưa số t vừa đọc vào cuối vector a; độ phức tạp O(1)
     /* Không thể dùng truy cập chỉ số để gán giá trị trong trường hợp này, vì khi khai báo,
     kích thước của a vẫn rỗng.
     Dùng `a[i] = t;` tại đây là cách làm sai.
@@ -392,7 +396,7 @@ int main() {
   // in ra tất cả các số đã đọc vào a
   for (int i = 0; i < n; i++) {
     std::cout << a[i] << ", ";  // !lưu ý, số đầu tiên trong a là a[0];
-    // Nếu chỉ số vượt biên, nó sẽ trả về một giá trị không xác định (tràn), chứ không báo lỗi
+    // Nếu chỉ số vượt biên, kết quả là không xác định, chứ không báo lỗi
   }
   std::cout << std::endl;
 
@@ -408,7 +412,8 @@ chỉ số bắt đầu.
 
 Tham khảo nội dung trong trang [string](csl/string.md).
 
-Thư viện chuẩn C++ cung cấp `string`. Một số thao tác trên `string` giống với `vector`; kiểu này cũng cần nạp tệp thư viện trước khi dùng.
+Thư viện chuẩn C++ cung cấp `string`. Một số thao tác trên `string` giống với
+`vector`; kiểu này cũng cần nạp tệp thư viện trước khi dùng.
 
 ```cpp
 #include <iostream>
@@ -440,7 +445,7 @@ Mảng kiểu C có quan hệ chặt chẽ với con trỏ, nên bài này khôn
 
 ### Phạm vi biến: biến toàn cục và biến cục bộ
 
-C++ gần như có thể khai báo biến ở **bất kỳ đâu**. Tham khảo thêm [Phạm vi
+C++ gần như cho phép khai báo biến ở **bất kỳ đâu**. Tham khảo thêm [Phạm vi
 biến](var.md#phạm-vi-của-biến).
 
 Khi viết thủ tục/hàm Pascal, người viết dễ quên khai báo biến cục bộ `i` hoặc `j`.
@@ -451,8 +456,8 @@ dịch không báo lỗi và chương trình vẫn chạy. (Rất nhiều lỗi 
 đây.)
 
 Vì vậy, khi dùng C++, nên khai báo biến, chẳng hạn `i` dùng trong vòng lặp, theo
-nguyên tắc: **đừng dùng biến toàn cục nếu có thể dùng biến cục bộ**. Cách này sẽ
-tránh được việc tên biến trong hàm (ví dụ `i`) bị xung đột.
+nguyên tắc: **đừng dùng biến toàn cục nếu có thể dùng biến cục bộ**. Cách này
+giúp tránh việc tên biến trong hàm (ví dụ `i`) bị xung đột.
 
 ??? note "Ghi chú bổ sung"
     Pascal có thể tránh vấn đề này ở một mức độ nhất định bằng cách mô phỏng cách
@@ -746,9 +751,9 @@ Primer* bản thứ năm hoặc tài liệu trên mạng.
 
 C++ còn có các cách truyền tham số khác. Một trong số đó là **truyền tham số bằng
 cách dùng biến toàn cục**; nếu chưa biết dùng con trỏ, có thể tạm dùng cách này.
-Khuyết điểm của cách này là không có ngăn xếp để lưu dữ liệu, nên **không thể
-truyền tham số trong hàm đệ quy**. Trừ khi tự viết ngăn xếp; lưu ý, tự viết ngăn
-xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.
+Khuyết điểm của cách này là không có khung ngăn xếp riêng để lưu dữ liệu, nên
+**không thể truyền tham số trong hàm đệ quy**. Trừ khi tự viết ngăn xếp; lưu ý,
+tự viết ngăn xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.
 
 ## Thư viện chuẩn C++ và tài liệu tham khảo
 
@@ -757,8 +762,8 @@ nên xem trước đã có hàm hoặc cấu trúc dữ liệu tương ứng hay
 
 ### Thư viện chuẩn C++
 
-Trong thư viện chuẩn C++, `<algorithm>` có nhiều hàm hữu ích như sắp xếp
-nhanh, tìm kiếm nhị phân, v.v.; có thể gọi ngay. Tham khảo trang
+Trong thư viện chuẩn C++, `<algorithm>` có nhiều hàm hữu ích như sắp xếp nhanh,
+tìm kiếm nhị phân, v.v.; có thể gọi ngay. Tham khảo trang
 [Thuật toán STL](csl/algorithm.md).
 
 Ngoài ra còn có container STL, chẳng hạn mảng, vector (mảng có kích thước thay
@@ -782,7 +787,8 @@ tay tham khảo để đọc cẩn thận.
 ### Tài liệu về ngôn ngữ C++
 
 -   [Tài nguyên học tập](../contest/resources.md)
--   [cppreference.com](https://en.cppreference.com/): tài liệu tham khảo C/C++ quan trọng nhất
+-   [cppreference.com](https://en.cppreference.com/): tài liệu tham khảo C/C++
+    quan trọng nhất
 -   [C++ Tutorial - Runoob](https://www.runoob.com/cplusplus/cpp-tutorial.html)
 -   [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
 -   [Reference - C++ Reference](https://www.cplusplus.com/reference/)
@@ -792,25 +798,25 @@ tay tham khảo để đọc cẩn thận.
 
 ## Lời bạt
 
-Đến đây, bài viết có thể không còn giống một bài "cấp cứu" ngắn gọn, vì còn rất
-nhiều thứ chưa được nhắc tới. Điều đó cũng khó tránh.
+Đến đây, bài viết có thể không còn giống một bài "cấp cứu" ngắn gọn, vì vẫn còn
+rất nhiều thứ chưa được nhắc tới. Điều đó cũng khó tránh.
 
 Dù mục tiêu là "cấp cứu", nhiều nội dung như cách chuyển chuỗi thành số, cách tìm
 ký tự trong chuỗi, v.v. không phù hợp với một bài viết ngắn gọn. Nếu viết hết
 những thứ đó ra thì đây sẽ trở thành giáo trình nhập môn C++, nên cần tận dụng
 đầy đủ Wiki này, sổ tay tham khảo và công cụ tìm kiếm.
 
-Cần chỉ ra một điểm: nhiều cú pháp C++ nói ở trên đến từ ngôn ngữ C. Tiêu đề
+Cần chỉ ra một điểm: nhiều cú pháp C++ nói ở trên đến từ ngôn ngữ C. Tiêu đề nếu
 viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
 
-Pascal là một ngôn ngữ phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn
-C, nhưng cùng với sự phổ biến của hệ thống UNIX và việc Microsoft sử dụng C,
-Pascal nay đã trở thành lịch sử. Pascal về sau vẫn có phát triển, chẳng hạn dự
-án trình biên dịch mã nguồn mở Free Pascal đã bổ sung đặc điểm hướng đối tượng
-(ngôn ngữ Delphi). Hiện nay, ngoài việc dùng trong thi lập trình, Pascal có một
-đặc điểm mà các ngôn ngữ khác không có: hỗ trợ biên dịch cho nhiều máy cũ,
-chẳng hạn Gameboy, máy chơi game Nintendo từ thế kỷ trước. Một công dụng khác là
-xuất hiện dưới dạng mã giả (mã giả phong cách Pascal) trong nhiều sách giáo khoa.
+Pascal là một ngôn ngữ phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn C,
+nhưng cùng với sự phổ biến của hệ thống UNIX và việc Microsoft sử dụng C, Pascal
+nay đã trở thành lịch sử. Pascal về sau vẫn có phát triển, chẳng hạn dự án trình
+biên dịch mã nguồn mở Free Pascal đã bổ sung đặc điểm hướng đối tượng (ngôn ngữ
+Delphi). Hiện nay, ngoài việc dùng trong thi lập trình, Pascal có một đặc điểm mà
+các ngôn ngữ khác không có: hỗ trợ biên dịch cho nhiều máy cũ, chẳng hạn Gameboy
+và máy chơi game Nintendo từ thế kỷ trước. Một công dụng khác là xuất hiện dưới
+dạng mã giả (mã giả phong cách Pascal) trong nhiều sách giáo khoa.
 
 Cuối cùng, cộng đồng Pascal hiện nhỏ hơn cộng đồng C/C++; tài liệu trợ giúp và
 giáo trình cho C/C++ cũng phong phú hơn. Tiếng Anh là kỹ năng quan trọng khi đọc
