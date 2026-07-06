@@ -348,7 +348,7 @@ bool remove(NodePtr& node, K key, NodeConsumer action) {
 }
 ```
 
-Cần chú ý rằng trong Case 5 của đoạn mã trên,
+Trong Case 5 của đoạn mã trên,
 sau khi dùng nút kế nhiệm $S$ (cũng có thể chọn nút tiền nhiệm) để thay thế nút cần xóa $N$
 và xóa $N$ sau khi thay thế,
 cần cập nhật trường `size` của mọi nút trên đường từ nút cha $P$ của $S$ trước khi thay thế

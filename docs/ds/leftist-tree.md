@@ -234,7 +234,7 @@ Theo phân tích khấu hao, với heap nghiêng từ trên xuống (top-down sk
 
 [Trò chơi La Mã](https://www.luogu.com.cn/problem/P2713)
 
-Cần chú ý:
+Lưu ý:
 
 1.  Trước khi hợp nhất, cần kiểm tra xem hai nút đã ở trong cùng một heap hay chưa.
 

@@ -41,7 +41,7 @@ nhiều nhất chỉ phủ $O(\log n)$ nút, nên mỗi lần cũng chỉ có b�
 $O(\log^2 n)$.
 
 Do hằng số của cây phân đoạn khá lớn, trong cài đặt thường dùng **cây Fenwick**, có hằng số nhỏ hơn và xử lý tổng tiền
-tố thuận tiện hơn. Ngoài ra, độ phức tạp bộ nhớ là $O(n\log^2 n)$, vì vậy khi sử dụng cần **chú ý giới hạn bộ nhớ**.
+tố thuận tiện hơn. Ngoài ra, độ phức tạp bộ nhớ là $O(n\log^2 n)$, vì vậy khi sử dụng cần **lưu ý giới hạn bộ nhớ**.
 
 Dưới đây là một cách cài đặt:
 

@@ -186,7 +186,7 @@ có thể lặp $A_k$ ít nhất $i(x)+1$ lần mà vẫn không vượt quá $r
 Theo định nghĩa của gốc, $rnk(root_y)\geq rnk(fa(y))$, và $rnk(x)$ không đổi khi nén đường đi.
 Vì vậy, có thể suy ra $rnk(root_x)\geq A_k^{i(x)+1}(rnk(x))$,
 nghĩa là giá trị $iter(x)$ tăng ít nhất 1;
-nếu $iter(x)$ không tăng thì chắc chắn $level(x)$ đã tăng.
+nếu $iter(x)$ không tăng thì $level(x)$ phải đã tăng.
 
 Do đó, $\Phi(x)$ giảm ít nhất 1.
 Vì có ít nhất $s-\alpha(n)-2$ nút $x$ như vậy,

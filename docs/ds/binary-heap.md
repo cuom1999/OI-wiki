@@ -162,7 +162,7 @@ Cách này giảm được một phần hằng số nhưng không ảnh hưởng
 
 Sở dĩ có thể xây heap trong $O(n)$ là vì tính chất heap khá yếu, heap nhị phân không phải là duy nhất.
 
-Nếu điều kiện mạnh như trong sắp xếp thì chưa chắc làm được như vậy.
+Nếu điều kiện mạnh như trong sắp xếp thì không nhất thiết làm được như vậy.
 
 <span id="ứng-dụng"></span>
 

@@ -127,7 +127,7 @@ Mã như sau:
     }
     ```
 
-Từ mã có thể thấy độ phức tạp thời gian để xây cây là $O(n\log n)$.
+Từ mã trên, độ phức tạp thời gian để xây cây là $O(n\log n)$.
 Tiếp theo có thể chứng minh chiều cao cây là $O(\log n)$:
 xét việc nhảy theo đỉnh cha từ một đỉnh bất kỳ lên gốc.
 Nhảy qua cạnh nhẹ tương đương với việc nhảy sang một chuỗi nặng khác trong cây gốc.

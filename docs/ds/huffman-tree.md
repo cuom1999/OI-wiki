@@ -105,7 +105,7 @@ Khi mã hóa nhị phân, nếu mọi mã đều có độ dài bằng nhau,
 Cách này được gọi là **mã hóa độ dài cố định**.
 
 Nếu **tần suất sử dụng** của mỗi ký tự bằng nhau,
-mã hóa độ dài cố định chắc chắn là phương pháp mã hóa có hiệu quả không gian cao nhất.
+mã hóa độ dài cố định là phương pháp mã hóa có hiệu quả không gian cao nhất.
 Nhưng nếu tần suất xuất hiện của các ký tự khác nhau,
 có thể cho ký tự có tần suất cao dùng mã ngắn nhất có thể,
 ký tự có tần suất thấp dùng mã dài nhất có thể,

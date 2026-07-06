@@ -29,7 +29,7 @@ nên một hướng tự nhiên là dùng cây lồng cây, chẳng hạn cây F
 Cách này thật sự giải được bài toán,
 nhưng mã khá dài và không quá dễ cài đặt.
 
-Chú ý rằng bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
+Bài toán còn bảo đảm thêm $x_i \ne x_j(1 \le i, j \le n, i \ne j)$.
 Khi đó có thể dùng phân khối lồng cây Fenwick để giải.
 
 ### Khởi tạo
@@ -79,7 +79,7 @@ một lần trừ và một lần cộng.
 Thay đổi nhẹ các bước trên sẽ cho các thao tác khác.
 Ví dụ, đổi từ một lần trừ và một lần cộng thành chỉ trừ thì đó là xóa điểm;
 đổi thành chỉ cộng thì đó là thêm điểm.
-Tuy nhiên, cần chú ý rằng mỗi $x$ chỉ được tương ứng với một $y$.
+Tuy nhiên, mỗi $x$ chỉ được tương ứng với một $y$.
 
 ### Độ phức tạp không gian
 

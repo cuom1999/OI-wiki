@@ -120,7 +120,7 @@ nút hiện tại là `h`, thì phải bảo đảm `h` là màu đỏ, hoặc `
 
 Xét tính đúng đắn của cách làm này. Nếu duy trì thành công tính chất trên bằng các phép xoay và thao tác đảo màu, thì khi
 đi đến nút nhỏ nhất `h_min`, hoặc `h_min` là màu đỏ, hoặc cây con trái của `h_min` là màu đỏ. Nhưng `h_min` hoàn toàn
-không có cây con trái. Vì vậy điều này bảo đảm nút nhỏ nhất chắc chắn là màu đỏ. Vì nó là màu đỏ, có thể xóa trực tiếp
+không có cây con trái. Vì vậy điều này bảo đảm nút nhỏ nhất là màu đỏ. Vì nó là màu đỏ, có thể xóa trực tiếp
 nút này, rồi dùng cùng ý tưởng điều chỉnh như thao tác chèn để chỉnh lại cây.
 
 Bây giờ xét cách thỏa mãn tính chất này. Lưu ý rằng trong lúc đệ quy đi xuống, một số tính chất của cây đỏ-đen nghiêng
