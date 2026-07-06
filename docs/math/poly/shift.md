@@ -32,7 +32,7 @@ trong đó $O(n\log n)$ là thời gian nhân đa thức.
 
 ### Phương pháp công thức Taylor
 
-Áp dụng công thức Taylor cho $f(x)$ tại $c$, ta có
+Áp dụng công thức Taylor cho $f(x)$ tại $c$, có
 
 $$
 f(x)=f(c)+\frac{f'(c)}{1!}(x-c)+\frac{f''(c)}{2!}(x-c)^2+\cdots +\frac{f^{(n)}(c)}{n!}(x-c)^n.
@@ -111,7 +111,7 @@ f(x)&=\sum _ {0\leq i\leq n}f(i)\prod _ {0\leq j\leq n\,\land \,j\neq i}\frac{x-
 \end{aligned}
 $$
 
-Biểu thức trên tuy có dạng tích chập nhưng không đảm bảo mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lí bằng phân loại, chẳng hạn khi hệ số được lấy theo modulo số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
+Biểu thức trên tuy có dạng tích chập nhưng không bảo đảm mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lí bằng phân loại, chẳng hạn khi hệ số được lấy theo modulo số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
 
 $$
 \begin{aligned}
@@ -132,7 +132,7 @@ $$
 
 Trong cài đặt, lấy phần cắt cần thiết của $B_0(x)$ là có thể tính thêm nhiều giá trị tại điểm; đồng thời có thể tận dụng tích chập vòng.
 
-Nếu sửa bài toán một chút, giả sử với một $d$ nào đó, các giá trị được cho là $f(d),f(d+k),\dots ,f(d+nk)$. Ta có thể tính $f(c+d),f(c+d+k),\dots ,f(c+d+nk)$ bằng cách xem đây là tịnh tiến các giá trị của $g(x)=f(d+kx)$ từ $g(0),g(1),\dots ,g(n)$ sang $g(c/k),g(c/k+1),\dots ,g(c/k+n)$.
+Nếu sửa bài toán một chút, giả sử với một $d$ nào đó, các giá trị được cho là $f(d),f(d+k),\dots ,f(d+nk)$. Có thể tính $f(c+d),f(c+d+k),\dots ,f(c+d+nk)$ bằng cách xem đây là tịnh tiến các giá trị của $g(x)=f(d+kx)$ từ $g(0),g(1),\dots ,g(n)$ sang $g(c/k),g(c/k+1),\dots ,g(c/k+n)$.
 
 Công thức nội suy Lagrange cũng cho một phương pháp tính một giá trị tại điểm trong thời gian tuyến tính bằng cách duy trì một số tích tiền tố và hậu tố.
 
@@ -145,7 +145,7 @@ Công thức nội suy Lagrange cũng cho một phương pháp tính một giá 
 ### Các số Stirling không dấu loại một trên cùng một hàng
 
 ???+ note "Bài tập [P5408. Hàng của số Stirling loại một](https://www.luogu.com.cn/problem/P5408)"
-    Theo modulo số nguyên tố $167772161$, hãy tính $\displaystyle {n\brack 0},{n\brack 1},\dots ,{n\brack n}$, trong đó $1\leq n< 262144$.
+    Theo modulo số nguyên tố $167772161$, tính $\displaystyle {n\brack 0},{n\brack 1},\dots ,{n\brack n}$, trong đó $1\leq n< 262144$.
 
 Xét
 
@@ -178,7 +178,7 @@ $$
 n!\equiv \left(\prod _ {i=0}^{v-1}g(iv)\right)\cdot \prod _ {i=v^2+1}^n i\pmod{p}.
 $$
 
-Trong đó $\prod _ {i=v^2+1}^n i$ có thể tính trong $O(\sqrt{n})$. Ta muốn tính nhanh nửa trước của biểu thức trên.
+Trong đó $\prod _ {i=v^2+1}^n i$ có thể tính trong $O(\sqrt{n})$. Cần tính nhanh nửa trước của biểu thức trên.
 
 <span id="tính-giá-trị-đa-thức-tại-nhiều-điểm"></span>
 
@@ -190,7 +190,7 @@ Các hệ số của $g(x)$ có thể được tính bằng thuật toán tịnh
 
 #### Tịnh tiến các giá trị tại điểm liên tiếp
 
-Đặt $g_d(x)=\prod _ {i=1}^d(x+i)$. Ta có thể dùng $d+1$ giá trị $g_d(0),g_d(v),\dots ,g_d(dv)$ để xác định duy nhất đa thức bậc $d$ này. Lại có
+Đặt $g_d(x)=\prod _ {i=1}^d(x+i)$. Có thể dùng $d+1$ giá trị $g_d(0),g_d(v),\dots ,g_d(dv)$ để xác định duy nhất đa thức bậc $d$ này. Lại có
 
 $$
 g _ {2d}(x)=g_d(x)g_d(x+d).
@@ -210,7 +210,7 @@ $$
 T(n)=T(n/2)+O(n\log n)=O(n\log n).
 $$
 
-Mà ta chỉ cần khoảng $\sqrt{n}$ giá trị tại điểm, nên độ phức tạp thời gian là $O(\sqrt{n}\log n)$.
+Mà chỉ cần khoảng $\sqrt{n}$ giá trị tại điểm, nên độ phức tạp thời gian là $O(\sqrt{n}\log n)$.
 
 <span id="tổng-tiền-tố-hệ-số-nhị-thức-theo-modulo-số-nguyên-tố"></span>
 
@@ -219,7 +219,7 @@ Mà ta chỉ cần khoảng $\sqrt{n}$ giá trị tại điểm, nên độ ph�
 ???+ note "Bài tập [LOJ 6386. Tổng tiền tố tổ hợp](https://loj.ac/p/6386)"
     Tính $\displaystyle \sum _ {i=0}^m\binom{n}{i}\bmod 998244353$, trong đó $0\leq m\leq n\leq 9\times 10^8$.
 
-Xét dùng ma trận để mô tả bước truy hồi $n!=n\cdot (n-1)!$. Ta có
+Xét cách dùng ma trận để mô tả bước truy hồi $n!=n\cdot (n-1)!$. Có
 
 $$
 \begin{bmatrix}
@@ -251,7 +251,7 @@ $$
 \end{bmatrix}.
 $$
 
-Chú ý thứ tự của phép nhân ma trận. Khi đó
+Lưu ý thứ tự của phép nhân ma trận. Khi đó
 
 $$
 \begin{aligned}
@@ -342,7 +342,7 @@ g_d(x+d)f_d(x)+h_d(x+d)g_d(x)&h_d(x+d)h_d(x)
 \end{aligned}
 $$
 
-Phần tử góc dưới bên phải của ma trận chính là đại lượng ta đã duy trì trong thuật toán giai thừa. Vì vậy
+Phần tử góc dưới bên phải của ma trận chính là đại lượng đã được duy trì trong thuật toán giai thừa. Vì vậy
 
 $$
 \begin{aligned}
@@ -412,26 +412,26 @@ i+1&0\\1&i+1
 \end{bmatrix}.
 $$
 
-Ở đây $\displaystyle {n+1\brack 1}$ và $\displaystyle {n+1\brack 2}$ là các số Stirling không dấu loại một. Phương pháp duy trì ma trận giá trị tại điểm giống như trên.
+Trong đó $\displaystyle {n+1\brack 1}$ và $\displaystyle {n+1\brack 2}$ là các số Stirling không dấu loại một. Phương pháp duy trì ma trận giá trị tại điểm giống như trên.
 
 <span id="truy-hồi-đa-thức"></span>
 
 ## Truy hồi đa thức
 
-Với trường hợp tổng quát hơn, tương tự ví dụ thuật toán giai thừa nhanh ở trên, ta mong muốn có một thuật toán như thế nào?
+Với trường hợp tổng quát hơn, tương tự ví dụ thuật toán giai thừa nhanh ở trên, cần một thuật toán như thế nào?
 
 ???+ note "Bài tập [P6115. Mẫu truy hồi đa thức](https://www.luogu.com.cn/problem/P6115)"
     Hiện có dãy $a$ thỏa mãn $\forall n\ge m,\sum_{k=0}^ma_{n-k}P_k(n)=0$, trong đó $P_k$ là đa thức bậc không vượt quá $d$.<br>
-    Cho các hệ số của mọi $P_k$ và $a_0,a_1,\dots,a_{m-1}$, hãy tính $a_n$.
+    Cho các hệ số của mọi $P_k$ và $a_0,a_1,\dots,a_{m-1}$, tính $a_n$.
     Lấy kết quả modulo $998244353$. $n\le6\times10^8$, $1\le m,d\le7$, giới hạn thời gian $7s$.
 
-Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, ta đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#ma-trận-lambda).
+Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#ma-trận-lambda).
 
-Để thực hiện truy hồi đa thức, cần chú ý rằng trong thuật toán giai thừa nhanh, các giá trị tại điểm mà ta duy trì thực ra không phải là $n!$, mà là $\prod_{i=0}^{T-1}(aT+i)$, tức là **quan hệ bội số giữa một cặp giá trị**.
+Để thực hiện truy hồi đa thức, cần lưu ý rằng trong thuật toán giai thừa nhanh, các giá trị tại điểm được duy trì thực ra không phải là $n!$, mà là $\prod_{i=0}^{T-1}(aT+i)$, tức là **quan hệ bội số giữa một cặp giá trị**.
 
-Vì bậc truy hồi đa thức $m$ không còn chỉ là $1$, ta **không thể trực tiếp duy trì quan hệ bội số giữa một cặp số**; thay vào đó, ta duy trì **biến đổi tuyến tính giữa một cặp vector $m$ chiều**, tức một ma trận $m\times m$, trong đó **mỗi phần tử của ma trận tương ứng với một giá trị tại điểm của một đa thức**.
+Vì bậc truy hồi đa thức $m$ không còn chỉ là $1$, **không thể trực tiếp duy trì quan hệ bội số giữa một cặp số**; thay vào đó, cần duy trì **biến đổi tuyến tính giữa một cặp vector $m$ chiều**, tức một ma trận $m\times m$, trong đó **mỗi phần tử của ma trận tương ứng với một giá trị tại điểm của một đa thức**.
 
-Dễ thấy, với bài toán tính hệ số xa trong truy hồi đa thức tổng quát, ta có thể xây dựng
+Với bài toán tính hệ số xa trong truy hồi đa thức tổng quát, có thể xây dựng
 
 $$
 -{\frac{1}{P_0(n)}}\begin{bmatrix}P_1(n)&P_2(n)&P_3(n)&\cdots&P_{m-1}(n)&P_m(n)\\-P_0(n)\\&-P_0(n)\\&&-P_0(n)\\&&&\ddots\\&&&&-P_0(n)\\\end{bmatrix}
@@ -452,20 +452,20 @@ B(\lambda)=\begin{bmatrix}
 \end{bmatrix}
 $$
 
-Trước hết tạm bỏ qua nhân tử $-\frac1{P_0(n)}$ ở phía trước. Khi đó ta cần duy trì đại lượng dạng $\prod_{i=0}^{T-1}B(aT+m+i)$, trong đó phép nhân được thực hiện từ phải sang trái.
+Trước hết tạm bỏ qua nhân tử $-\frac1{P_0(n)}$ ở phía trước. Khi đó cần duy trì đại lượng dạng $\prod_{i=0}^{T-1}B(aT+m+i)$, trong đó phép nhân được thực hiện từ phải sang trái.
 
-Dễ thấy $B_T(\lambda)=\prod_{i=0}^{T-1}B(\lambda+i)$ là một ma trận $\lambda$ mà bậc của mỗi phần tử không vượt quá $dT$, nên chỉ cần $dT+1$ giá trị là đủ để duy trì.
+$B_T(\lambda)=\prod_{i=0}^{T-1}B(\lambda+i)$ là một ma trận $\lambda$ mà bậc của mỗi phần tử không vượt quá $dT$, nên chỉ cần $dT+1$ giá trị là đủ để duy trì.
 
-Vì vậy ta duy trì các **giá trị tại điểm** là những ma trận $\lambda$ sau: $B_T(m)$, $B_T(m+T)$, $B_T(m+2T)$, $\dots$, $B_T(m+(dT-1)T)$, $B_T(m+dT^2)$. Sau đó dùng cách tương tự thuật toán giai thừa nhanh để tịnh tiến và nhân đôi các giá trị đa thức tại điểm một cách trực tiếp.
+Vì vậy duy trì các **giá trị tại điểm** là những ma trận $\lambda$ sau: $B_T(m)$, $B_T(m+T)$, $B_T(m+2T)$, $\dots$, $B_T(m+(dT-1)T)$, $B_T(m+dT^2)$. Sau đó dùng cách tương tự thuật toán giai thừa nhanh để tịnh tiến và nhân đôi các giá trị đa thức tại điểm một cách trực tiếp.
 
-Cụ thể, để tăng $t=\log_2T$ lên $1$, ta làm như sau:
+Cụ thể, để tăng $t=\log_2T$ lên $1$, thực hiện như sau:
 
 1.  Trong thời gian $O(m^2dT\log(dT))$, lấy $B_T(p+dT^2)$, $B_T(p+(dT+1)T)$, $B_T(p+(dT+2)T)$, $\cdots$, $B_T(p+(2dT-1)T)$, $B_T(p+(2dT)dT)$.
 2.  Trong thời gian $O(m^2dT\log(dT))$, lấy $B_T(p+2dT^2)$, $B_T(p+(2dT+1)T)$, $B_T(p+(2dT+2)T)$, $\cdots$, $B_T(p+(3dT-1)T)$, $B_T(p+(3dT)dT)$.
 3.  Trong thời gian $O(m^2dT\log(dT))$, lấy $B_T(p+3dT^2)$, $B_T(p+(3dT+1)T)$, $B_T(p+(3dT+2)T)$, $\cdots$, $B_T(p+(4dT-1)T)$, $B_T(p+(4dT)dT)$.
 4.  Tính $B_{2T}(v)=B_{T}(v+T)B_{T}(v)$.
 
-Mỗi vòng ta tốn độ phức tạp $O(m^2dT\log(dT))$ cho phần tịnh tiến; đồng thời, mỗi vòng chỉ cần thực hiện $\Theta(dT)$ phép nhân ma trận, với độ phức tạp có thể xem là $O(m^3dT)$.
+Mỗi vòng tốn độ phức tạp $O(m^2dT\log(dT))$ cho phần tịnh tiến; đồng thời, mỗi vòng chỉ cần thực hiện $\Theta(dT)$ phép nhân ma trận, với độ phức tạp có thể xem là $O(m^3dT)$.
 
 Cuối cùng, chỉ cần làm đến khi $T\ge\sqrt{n/d}$.
 
@@ -473,15 +473,15 @@ Nhân tử $-\frac1{P_0(n)}$ trước đó cũng có thể xử lí bằng phư�
 
 Như vậy độ phức tạp tiền xử lí là $\Theta(\sqrt{nd}(m^3+m^2\log(nd)))$.
 
-Xét truy vấn, ta chỉ cần $\Theta(n/T)$ phép nhân vector với ma trận, cùng $O(T)$ lần chuyển trạng thái trực tiếp.
+Xét truy vấn, chỉ cần $\Theta(n/T)$ phép nhân vector với ma trận, cùng $O(T)$ lần chuyển trạng thái trực tiếp.
 
-Dễ thấy phần tính toán này không phải nút thắt cổ chai về độ phức tạp.
+Phần tính toán này không phải nút thắt cổ chai về độ phức tạp.
 
 Do đó tổng độ phức tạp của thuật toán là $\Theta(\sqrt{nd}(m^3+m^2\log(nd)))$.
 
 Khi viết mã, có thể dùng kĩ thuật tích chập vòng để giảm hằng số của NTT.
 
-Trong ứng dụng thực tế, ta thường trích hệ số xa của một GF vi phân hữu hạn đã biết, do đó $m,d$ đều là hằng số, tức đạt được việc tính hệ số xa trong $\Theta(\sqrt n\log n)$.
+Trong ứng dụng thực tế, thường cần trích hệ số xa của một GF vi phân hữu hạn đã biết, do đó $m,d$ đều là hằng số, tức đạt được việc tính hệ số xa trong $\Theta(\sqrt n\log n)$.
 
 <span id="tài-liệu-tham-khảo"></span>
 
