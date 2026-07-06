@@ -1,12 +1,12 @@
 Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng không
-có tên riêng, mà được truy cập thông qua vị trí của chúng. Sau khi đã khai báo,
-kích thước của mảng là cố định và không thể tùy ý thay đổi.
+có tên riêng mà được truy cập thông qua vị trí của chúng. Sau khi khai báo, kích
+thước của mảng là cố định và không thể tùy ý thay đổi.
 
 ## Định nghĩa mảng
 
 Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử
 trong mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên
-dịch; nói cách khác, `d` phải là một biểu thức hằng kiểu nguyên.
+dịch; tức `d` phải là một biểu thức hằng kiểu nguyên.
 
 ```cpp
 unsigned int d1 = 42;
@@ -15,7 +15,7 @@ int arr1[d1];  // sai: d1 không phải biểu thức hằng
 int arr2[d2];  // đúng: arr2 là một mảng có độ dài 42
 ```
 
-Không thể gán trực tiếp một mảng cho một mảng khác:
+Không thể gán một mảng cho một mảng khác bằng toán tử gán:
 
 ```cpp
 int arr1[3];
@@ -31,10 +31,10 @@ mảng sẽ nằm trong vùng nhớ tĩnh.
 ## Truy cập phần tử mảng
 
 Có thể dùng toán tử chỉ số `[]` để truy cập phần tử trong mảng. Chỉ số của mảng
-(tức giá trị trong cặp ngoặc vuông) bắt đầu từ 0. Lấy một mảng có 10 phần tử làm
-ví dụ, các chỉ số hợp lệ của nó là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên
-trong OI, để tiện sử dụng, thường khai báo mảng lớn hơn một chút, bỏ qua phần tử
-đầu tiên của mảng và bắt đầu truy cập từ chỉ số 1.
+(tức giá trị trong cặp ngoặc vuông) bắt đầu từ 0. Với một mảng có 10 phần tử, các
+chỉ số hợp lệ là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên trong OI, để tiện
+sử dụng, người viết thường khai báo mảng lớn hơn một chút, bỏ qua phần tử đầu
+tiên và bắt đầu truy cập từ chỉ số 1.
 
 Ví dụ 1: đọc một số nguyên $n$ từ chuẩn nhập, rồi đọc tiếp $n$ số và lưu vào
 mảng, trong đó $n\leq 1000$.
