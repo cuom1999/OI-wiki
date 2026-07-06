@@ -401,7 +401,7 @@ tạo ra kết quả:
 
 ![Kết quả xử lý chú thích và khoảng trắng trong LaTeX](images/latex-for-beginners-10.png)
 
-Nhiều khoảng trắng liên tiếp trong LaTeX được xem như một khoảng trắng. Nhiều dòng trống liên tiếp được xem như một dòng trống. Chức năng chính của dòng trống là bắt đầu một đoạn mới. Nói chung, LaTeX bỏ qua dòng trống và các ký tự khoảng trắng khác; hai dấu gạch chéo ngược (`\\`) có thể được dùng để xuống dòng.
+Nhiều khoảng trắng liên tiếp trong LaTeX được xem như một khoảng trắng. Nhiều dòng trống liên tiếp được xem như một dòng trống. Chức năng chính của dòng trống là bắt đầu một đoạn mới. Ngoài vai trò đó, LaTeX thường bỏ qua các ký tự khoảng trắng khác; hai dấu gạch chéo ngược (`\\`) có thể được dùng để xuống dòng.
 
 $\rightarrow$ Thử thêm chú thích và dòng trống vào tài liệu.
 

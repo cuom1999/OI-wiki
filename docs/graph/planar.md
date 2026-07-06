@@ -206,7 +206,7 @@ Việc đồ thị phẳng không chứa các loại đồ thị con này là t�
 
 ### Thuật toán kiểm tra tính phẳng
 
-Dù trông có vẻ không đơn giản, bài toán kiểm tra tính phẳng trên thực tế có nhiều thuật toán tuyến tính. Tuy nhiên, do các thuật toán này thường khá phức tạp khi cài đặt, chúng gần như không xuất hiện trong lập trình thi đấu.
+Dù trông có vẻ không đơn giản, hiện đã có nhiều thuật toán tuyến tính cho bài toán kiểm tra tính phẳng. Tuy nhiên, do các thuật toán này thường khá phức tạp khi cài đặt, chúng gần như không xuất hiện trong lập trình thi đấu.
 
 Thuật toán tuyến tính sớm nhất là thuật toán Hopcroft-Tarjan[^ht74], nhưng cách cài đặt của nó khá phức tạp. Thuật toán de Fraysseix-Ossona de Mendez-Rosenstiehl, còn gọi là thuật toán kiểm tra tính phẳng LR[^dor06][^df08][^bra09], cải tiến thêm quy trình của thuật toán Hopcroft-Tarjan và là một trong các thuật toán kiểm tra tính phẳng tốt nhất hiện nay. Thư viện NetworkX của Python có [cài đặt](https://github.com/networkx/networkx/blob/main/networkx/algorithms/planarity.py) thuật toán này.
 

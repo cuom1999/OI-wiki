@@ -62,7 +62,7 @@ khóa thứ $1$, rồi với mỗi nhóm **phần tử có cùng khóa**, tiếp
 định theo khóa thứ $2$ (thực hiện đệ quy). Cứ như vậy cho đến khi, với mỗi nhóm
 **phần tử có cùng khóa**, thuật toán sắp xếp ổn định theo khóa thứ $k$.
 
-Nói chung, sắp xếp cơ số được mặc định là ổn định, nên trong sắp xếp cơ số MSD,
+Sắp xếp cơ số thường được mặc định là ổn định, nên trong sắp xếp cơ số MSD,
 phần này cũng chỉ xét việc dùng **thuật toán ổn định** (thường là sắp xếp đếm)
 để sắp xếp các khóa ở tầng bên trong.
 
@@ -249,7 +249,7 @@ Thông thường, sắp xếp cơ số nhanh hơn các thuật toán sắp xếp
 khan hiếm, các thuật toán hoán vị tại chỗ (chẳng hạn như sắp xếp nhanh) có thể
 là lựa chọn tốt hơn.[^ref1]
 
-Nói chung, nếu miền giá trị của mỗi khóa đều không lớn, có thể dùng
+Nếu miền giá trị của mỗi khóa đều không lớn, có thể dùng
 [sắp xếp đếm](./counting-sort.md) làm thuật toán sắp xếp bên trong; khi đó độ
 phức tạp là $O(kn+\sum\limits_{i=1}^k w_i)$, trong đó $w_i$ là kích thước miền
 giá trị của khóa thứ $i$. Nếu miền giá trị của khóa rất lớn, có thể trực tiếp

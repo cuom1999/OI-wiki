@@ -139,7 +139,7 @@ Thông qua cách xử lý này, mỗi trạng thái chỉ bị truy cập một 
 <span id="liên-hệ-và-khác-biệt-với-cài-đặt-lặp"></span>
 ## Liên hệ và khác biệt với cài đặt lặp
 
-Khi giải các bài toán quy hoạch động, mã của tìm kiếm có ghi nhớ và cài đặt lặp thường rất giống nhau về hình thức. Điều này là do chúng dùng cùng một cách biểu diễn trạng thái và các chuyển trạng thái tương tự nhau. Cũng vì vậy, nói chung độ phức tạp thời gian của hai cách cài đặt là như nhau.
+Khi giải các bài toán quy hoạch động, mã của tìm kiếm có ghi nhớ và cài đặt lặp thường rất giống nhau về hình thức. Điều này là do chúng dùng cùng một cách biểu diễn trạng thái và các chuyển trạng thái tương tự nhau. Vì vậy, độ phức tạp thời gian của hai cách cài đặt thường như nhau.
 
 Dưới đây là mã cài đặt bằng vòng lặp (để tiện so sánh, không thêm tối ưu mảng cuộn). Khi đối chiếu, hai cách cài đặt có hình thức tương tự nhau.
 

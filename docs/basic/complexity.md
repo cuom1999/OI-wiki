@@ -14,7 +14,7 @@ Việc đếm hoặc ước lượng số phép toán cơ bản có thể dùng 
 
 ### Định nghĩa
 
-Khi đánh giá một thuật toán nhanh hay chậm, cần xét kích thước dữ liệu. Kích thước dữ liệu thường là số lượng giá trị trong đầu vào, số đỉnh và số cạnh của đồ thị trong đầu vào, v.v. Nói chung, kích thước dữ liệu càng lớn thì thuật toán chạy càng lâu. Trong lập trình thi đấu, khi đánh giá hiệu quả của một thuật toán, điều quan trọng nhất không phải là thời gian chạy tại một kích thước dữ liệu cụ thể, mà là xu hướng thời gian chạy tăng lên khi kích thước dữ liệu tăng, tức **độ phức tạp thời gian**.
+Khi đánh giá một thuật toán nhanh hay chậm, cần xét kích thước dữ liệu. Kích thước dữ liệu thường là số lượng giá trị trong đầu vào, số đỉnh và số cạnh của đồ thị trong đầu vào, v.v. Kích thước dữ liệu càng lớn thì thuật toán thường chạy càng lâu. Trong lập trình thi đấu, khi đánh giá hiệu quả của một thuật toán, điều quan trọng nhất không phải là thời gian chạy tại một kích thước dữ liệu cụ thể, mà là xu hướng thời gian chạy tăng lên khi kích thước dữ liệu tăng, tức **độ phức tạp thời gian**.
 
 ### Dẫn nhập
 

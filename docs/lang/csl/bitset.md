@@ -28,7 +28,7 @@ lưu các giá trị `0/1`. Nói chặt chẽ, nó không thuộc STL.
     Trích từ *The C++ Standard Library 2nd Edition*
     
     Như vậy, `bitset` không thuộc STL mà là một bộ chứa đặc biệt trong thư viện
-    chuẩn. Trên thực tế, dù nó là một bộ chứa, nó cũng không thỏa mãn các yêu cầu
+    chuẩn. Tuy là một bộ chứa, nó không thỏa mãn các yêu cầu
     của bộ chứa STL. Gọi nó là bộ chuyển đổi cũng không chính xác, vì nó không
     dựa vào bộ chứa STL nào khác làm lớp cài đặt bên dưới.
 

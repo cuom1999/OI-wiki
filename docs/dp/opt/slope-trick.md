@@ -95,7 +95,7 @@ Có thể kết hợp các phép biến đổi bảo toàn tính lồi được 
 ### Hàm lồi trên tập điểm rời rạc
 
 Trong lập trình thi đấu, nhiều hàm chỉ được định nghĩa tại một phần các giá trị
-nguyên. Nói chung, chúng không phải là hàm lồi theo định nghĩa ở trên, vì miền
+nguyên. Các hàm này thường không phải là hàm lồi theo định nghĩa ở trên, vì miền
 xác định không còn là tập lồi. Để xử lý tình huống này, cần định nghĩa riêng
 tính lồi của hàm trên tập điểm rời rạc. Nói ngắn gọn, trước hết cần nội suy
 tuyến tính hàm để mở rộng miền xác định thành một khoảng, rồi mới xét tính lồi

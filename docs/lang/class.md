@@ -242,7 +242,7 @@ hàm tạo.
 
 ??? note "Về định nghĩa hoặc nạp chồng hàm tạo"
     Thông thường, hàm tạo mặc định là hàm tạo có thể được gọi khi không truyền đối
-    số. Đây là điểm khác với hàm tạo nói chung. Cách định nghĩa hàm tạo và hàm
+    số. Đây là điểm khác với hàm tạo thông thường. Cách định nghĩa hàm tạo và hàm
     tạo mặc định gần giống nhau, chỉ khác ở danh sách tham số.
 
     Hàm tạo có thể được nạp chồng; lần đầu viết cũng có thể gọi là

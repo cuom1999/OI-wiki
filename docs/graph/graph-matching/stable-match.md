@@ -69,7 +69,7 @@ Ghép cặp ổn định có những tính chất lý thuyết tốt. Trước h
 ???+ note "Hệ quả"
     Nếu $|M|=|W|$ và mọi người khác giới đều chấp nhận được, thì tồn tại một ghép cặp hoàn hảo ổn định.
 
-Trong thuật toán Gale–Shapley, có thể để nam cầu hôn hoặc nữ cầu hôn. Nói chung, hai phiên bản này của thuật toán Gale–Shapley không cho cùng một ghép cặp ổn định. Thực tế, ghép cặp ổn định do thuật toán Gale–Shapley nam cầu hôn thu được là ghép cặp có lợi nhất cho nam trong tất cả các ghép cặp ổn định; chiều ngược lại cũng đúng.
+Trong thuật toán Gale–Shapley, có thể để nam cầu hôn hoặc nữ cầu hôn. Hai phiên bản này của thuật toán Gale–Shapley thường không cho cùng một ghép cặp ổn định. Thực tế, ghép cặp ổn định do thuật toán Gale–Shapley nam cầu hôn thu được là ghép cặp có lợi nhất cho nam trong tất cả các ghép cặp ổn định; chiều ngược lại cũng đúng.
 
 ???+ note "Định lý 2 (Gale và Shapley, 1962)"
     Gọi $\mu_M$ và $\mu_W$ lần lượt là các ghép cặp ổn định thu được từ thuật toán Gale–Shapley nam cầu hôn và nữ cầu hôn. Với mọi ghép cặp ổn định $\mu$, có $\mu(m)\preceq_m\mu_M(m)$ với mọi $m\in M$, và $\mu(w)\preceq_w\mu_W(w)$ với mọi $w\in W$.
@@ -84,7 +84,7 @@ Một thị trường ghép cặp có thể có số lượng ghép cặp ổn �
 -   $\mu_1\preceq_M\mu_2$ khi và chỉ khi $\mu_1(m)\preceq_m\mu_2(m)$ đúng với mọi $m\in M$;
 -   $\mu_1\preceq_W\mu_2$ khi và chỉ khi $\mu_1(w)\preceq_w\mu_2(w)$ đúng với mọi $w\in W$.
 
-Hai thứ tự bộ phận này lần lượt biểu thị rằng kết quả ghép cặp tốt hơn cho tất cả nam và cho tất cả nữ. Nói chung, hai ghép cặp ổn định không nhất thiết so sánh được với nhau. Tuy nhiên, bất kỳ hai ghép cặp ổn định nào cũng cảm sinh một phép phân rã như hình dưới, sao cho trong ba phần thu được từ phân rã, lần lượt có $\mu_1\preceq_M\mu_2$, $\mu_1=\mu_2$ và $\mu_2\preceq_M\mu_1$. Dù không được vẽ trực tiếp, phần $\mu_1=\mu_2$ vẫn bao gồm cả trường hợp ghép với chính mình (tức là chưa được ghép cặp).
+Hai thứ tự bộ phận này lần lượt biểu thị rằng kết quả ghép cặp tốt hơn cho tất cả nam và cho tất cả nữ. Hai ghép cặp ổn định không nhất thiết so sánh được với nhau. Tuy nhiên, bất kỳ hai ghép cặp ổn định nào cũng cảm sinh một phép phân rã như hình dưới, sao cho trong ba phần thu được từ phân rã, lần lượt có $\mu_1\preceq_M\mu_2$, $\mu_1=\mu_2$ và $\mu_2\preceq_M\mu_1$. Dù không được vẽ trực tiếp, phần $\mu_1=\mu_2$ vẫn bao gồm cả trường hợp ghép với chính mình (tức là chưa được ghép cặp).
 
 ![](./images/stable-match-decompose.svg)
 

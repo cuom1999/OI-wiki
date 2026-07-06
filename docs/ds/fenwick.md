@@ -33,7 +33,7 @@ Lưu ý:
     -   Có thể dùng hai cây Fenwick để xử lý cực trị trên đoạn, xem [Efficient Range Minimum Queries using Binary Indexed Trees](http://history.ioinformatics.org/oi/files/volume9.pdf#page=41).
     -   Trang này cũng sẽ giới thiệu một mở rộng của cây Fenwick hỗ trợ truy vấn thông tin không thể lấy sai phân với độ phức tạp thời gian $\Theta(\log^2n)$.
 
-Trên thực tế, tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn đều xử lý được, nhưng những gì cây phân đoạn làm được thì cây Fenwick không phải lúc nào cũng xử lý được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
+Tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn đều xử lý được, nhưng những gì cây phân đoạn làm được thì cây Fenwick không phải lúc nào cũng xử lý được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
 
 Đôi khi, với sự hỗ trợ của mảng sai phân và mảng phụ, cây Fenwick còn có thể giải các bài toán mạnh hơn như **cộng đoạn, hỏi giá trị một điểm** và **cộng đoạn, hỏi tổng đoạn**.
 

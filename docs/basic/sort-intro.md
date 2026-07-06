@@ -36,7 +36,7 @@ Sau đây là phần so sánh một số thuật toán sắp xếp.
 
 ### Độ phức tạp bộ nhớ
 
-Tương tự độ phức tạp thời gian, độ phức tạp bộ nhớ dùng để mô tả mức tiêu thụ không gian nhớ của thuật toán. Nói chung, độ phức tạp bộ nhớ càng nhỏ thì thuật toán càng tốt.
+Tương tự độ phức tạp thời gian, độ phức tạp bộ nhớ dùng để mô tả mức tiêu thụ không gian nhớ của thuật toán. Độ phức tạp bộ nhớ càng nhỏ thì thuật toán thường càng tốt.
 
 ## Liên kết ngoài
 

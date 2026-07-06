@@ -238,7 +238,7 @@ Bài viết dùng các ví dụ để minh họa cách áp dụng phân rã chu�
     
     Trong quá trình nhảy lên, nếu đỉnh hiện tại nằm trên chuỗi nặng thì nhảy lên đầu chuỗi nặng; nếu đỉnh hiện tại không nằm trên chuỗi nặng thì nhảy lên một đỉnh. Lặp như vậy cho tới khi hai đỉnh trùng nhau. Trên đường đi, cập nhật hoặc truy vấn thông tin đoạn tương ứng.
     
-    Với mỗi truy vấn, đi qua nhiều nhất $O(\log n)$ chuỗi nặng; trên mỗi chuỗi, độ phức tạp của cây đoạn là $O(\log n)$. Do đó tổng độ phức tạp thời gian là $O(n\log n+q\log^2 n)$. Trên thực tế, số chuỗi nặng rất khó đạt tới $O(\log n)$, dù có thể dùng cây nhị phân hoàn chỉnh để ép đạt, nên HLD thường có hằng số nhỏ.
+    Với mỗi truy vấn, đi qua nhiều nhất $O(\log n)$ chuỗi nặng; trên mỗi chuỗi, độ phức tạp của cây đoạn là $O(\log n)$. Do đó tổng độ phức tạp thời gian là $O(n\log n+q\log^2 n)$. Trong đa số trường hợp, số chuỗi nặng khó đạt tới $O(\log n)$; dù có thể dùng cây nhị phân hoàn chỉnh để ép đạt, HLD thường vẫn có hằng số nhỏ.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -329,7 +329,7 @@ Cuối cùng là một bài tương tác, cũng là một ứng dụng không tr
     \end{cases}
     $$
     
-    $2999+\sum_{i=1}^{2999}T(i)\le 29940$. Trên thực tế, cận trên này có thể đạt được bằng cách dựng dữ liệu, nhưng chỉ cần thêm một chút nhiễu ngẫu nhiên, chẳng hạn dùng thuật toán sắp xếp không ổn định khi sắp theo độ sâu, số lần hỏi rất khó vượt quá $21000$.
+    $2999+\sum_{i=1}^{2999}T(i)\le 29940$. Có thể dựng dữ liệu để đạt cận trên này, nhưng chỉ cần thêm một chút nhiễu ngẫu nhiên, chẳng hạn dùng thuật toán sắp xếp không ổn định khi sắp theo độ sâu, số lần hỏi rất khó vượt quá $21000$.
 
 ??? note "Mã tham khảo"
     ```cpp

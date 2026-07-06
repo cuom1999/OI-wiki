@@ -110,7 +110,7 @@ $$
 [h(\lambda-1)-h(\lambda),h(\lambda)-h(\lambda+1)].
 $$
 
-Trên thực tế, điều này cũng cung cấp thêm một cách xử lý vấn đề thẳng hàng cho những bài vẫn buộc phải dùng quy trình nhị phân đã nêu ở trước.
+Điều này cũng cung cấp thêm một cách xử lý vấn đề thẳng hàng cho những bài vẫn buộc phải dùng quy trình nhị phân đã nêu ở trước.
 
 Tiếp theo, mục này sẽ dùng lý thuyết giải tích lồi để chứng minh các kết luận trên. Về ứng dụng cụ thể của những phương pháp này, có thể tham khảo mục [Ví dụ](#ví-dụ).
 
@@ -279,7 +279,7 @@ Vì vậy, bài toán được chuyển thành: loại hàm $v(y)$ nào có song
     
     Mâu thuẫn này cho thấy trường hợp $t>0$ không thể xảy ra.
     
-    Cuối cùng xét trường hợp $t=0$. Trên thực tế, có thể dùng nhiễu nhỏ để chuyển nó về trường hợp $t>0$. Lấy tùy ý $\lambda_0\in\operatorname{dom}f^*$, theo định nghĩa liên hợp lồi, với mọi $x\in\operatorname{dom}f$ và $y\ge f(x)$ đều có
+    Cuối cùng xét trường hợp $t=0$. Có thể dùng nhiễu nhỏ để chuyển trường hợp này về trường hợp $t>0$. Lấy tùy ý $\lambda_0\in\operatorname{dom}f^*$, theo định nghĩa liên hợp lồi, với mọi $x\in\operatorname{dom}f$ và $y\ge f(x)$ đều có
     
     $$
     \lambda_0\cdot x-y\le f^*(\lambda_0).

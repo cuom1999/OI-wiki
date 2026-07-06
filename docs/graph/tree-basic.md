@@ -322,7 +322,7 @@ Thứ tự thăm toàn bộ cây là `1242513637`. Các nút có cây con trái 
 
 #### Quy trình
 
-Duyệt cây nói chung là duyệt theo chiều sâu. Trong quá trình này, điều quan trọng nhất là tránh thăm lặp lại các nút.
+Thông thường, duyệt cây được thực hiện bằng duyệt theo chiều sâu. Trong quá trình này, điều quan trọng nhất là tránh thăm lặp lại các nút.
 
 Vì cây là đồ thị không có chu trình, chỉ cần ghi lại nút hiện tại được thăm từ nút nào, rồi sau đó đi vào tất cả các nút kề ngoại trừ nút đó, là có thể tránh thăm lặp lại.
 

@@ -93,7 +93,7 @@ Ví dụ, lệnh `./prog < 1.in > 1.out` sẽ làm cho chương trình `prog` đ
 
 Lưu ý rằng PowerShell chỉ hỗ trợ chuyển hướng xuất, không hỗ trợ chuyển hướng nhập.
 
-Trên thực tế, đa số OJ đều dùng cơ chế chuyển hướng như vậy. Chương trình thí sinh nộp sử dụng đầu vào/đầu ra chuẩn; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
+Đa số OJ đều dùng cơ chế chuyển hướng như vậy. Chương trình thí sinh nộp sử dụng đầu vào/đầu ra chuẩn; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
 
 ### Thực thi chương trình
 
@@ -178,7 +178,7 @@ Dưới đây là khả năng tự động hoàn thành của một số shell t
 
 ### Tài liệu trợ giúp
 
-Nói chung, chương trình chạy dưới dòng lệnh đều kèm theo "trợ giúp". Trên Windows, thường dùng `command /?` hoặc `command -?` để lấy trợ giúp; trên hệ thống Unix-like (ví dụ Linux), thường dùng `command --help` hoặc `command -h` (nhưng "trợ giúp" trên BSD thường quá ngắn gọn nên khó dùng).
+Các chương trình chạy dưới dòng lệnh thường kèm theo "trợ giúp". Trên Windows, thường dùng `command /?` hoặc `command -?` để lấy trợ giúp; trên hệ thống Unix-like (ví dụ Linux), thường dùng `command --help` hoặc `command -h` (nhưng "trợ giúp" trên BSD thường quá ngắn gọn nên khó dùng).
 
 Ngoài ra, trên hệ thống kiểu Unix còn có sổ tay (`manual`) có thể xem bằng `man command`, thường chi tiết hơn trợ giúp ngắn của chương trình.
 

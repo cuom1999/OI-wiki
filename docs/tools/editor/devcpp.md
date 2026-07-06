@@ -8,7 +8,7 @@ Dev-C++ là một môi trường phát triển tích hợp (IDE) tự do dùng �
 
 Dev-C++ bắt nguồn từ Bloodshed Dev-C++ do Colin Laplace viết. Phiên bản này ngừng cập nhật từ ngày 22 tháng 2 năm 2005. Năm 2006, nhà phát triển chính Colin Laplace từng giải thích về việc này: "Do bận rộn với công việc ngoài đời, tôi không có thời gian tiếp tục phát triển Dev-C++."
 
-Orwell Dev-C++ là một phiên bản phái sinh của Dev-C++, do lập trình viên độc lập Orwell (Johan Mes) phát triển và duy trì. Phiên bản này sửa lỗi cho Dev-C++ gốc và cập nhật phiên bản trình biên dịch. Nói chung, Dev-C++ 5.x đều là Orwell Dev-C++. Lần cập nhật cuối cùng của nó là vào năm 2015, với phiên bản 5.11.
+Orwell Dev-C++ là một phiên bản phái sinh của Dev-C++, do lập trình viên độc lập Orwell (Johan Mes) phát triển và duy trì. Phiên bản này sửa lỗi cho Dev-C++ gốc và cập nhật phiên bản trình biên dịch. Các bản Dev-C++ 5.x về cơ bản đều là Orwell Dev-C++. Lần cập nhật cuối cùng của nó là vào năm 2015, với phiên bản 5.11.
 
 Embarcadero Dev-C++[^ref1] là phiên bản kế nhiệm Bloodshed Dev-C++ và Orwell Dev-C++. Năm 2020, Embarcadero tài trợ và tiếp quản dự án Dev-C++ cũ để tiếp tục phát triển. Embarcadero Dev-C++ bổ sung hỗ trợ DPI cao, cập nhật trình biên dịch để hỗ trợ các chuẩn C++ mới hơn, đồng thời thêm chế độ tối.
 

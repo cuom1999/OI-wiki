@@ -396,7 +396,7 @@ cây thu được theo cách này luôn cân bằng, và độ phức tạp củ
     \tau(x,y) \le 1+C\log^+\dfrac{\alpha x}{(1-\alpha)^2y},
     $$
     
-    trong đó $\log^+ x = \max\{0,\log x\}$; hơn nữa, với mọi $x/y\le(1-\alpha)/\alpha$, đều có $\tau(x,y)=1$. Trên thực tế, hằng số trong công thức có thể lấy là
+    trong đó $\log^+ x = \max\{0,\log x\}$; hơn nữa, với mọi $x/y\le(1-\alpha)/\alpha$, đều có $\tau(x,y)=1$. Cụ thể, có thể lấy hằng số trong công thức là
     
     $$
     C = -\dfrac{2}{\log(1-\alpha)}.

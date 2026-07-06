@@ -16,7 +16,7 @@ Kỹ thuật này chủ yếu được dùng cho một lớp bài toán **đếm
 -   Với mỗi dãy cụ thể $s\in\Sigma^n$, có thể dùng quy hoạch động để phán đoán nó có hợp lệ hay không (tức $s\in A$), tính trọng số của nó hoặc tính một giá trị liên quan.
 -   Cuối cùng, cần thống kê số lượng, tổng trọng số, giá trị kỳ vọng, v.v. của tất cả các dãy trong tập $A$.
 
-Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, xét việc trừu tượng hóa quá trình "phán đoán một dãy có hợp lệ hay không" (tức DP bên trong) thành một [ô-tô-mát hữu hạn xác định](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) (DFA). Nói chung, với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
+Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, xét việc trừu tượng hóa quá trình "phán đoán một dãy có hợp lệ hay không" (tức DP bên trong) thành một [ô-tô-mát hữu hạn xác định](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) (DFA). Với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
 
 $$
 g(i,\cdot;s) = G(g(i-1,\cdot;s),s_i).
@@ -37,7 +37,7 @@ $$
 f(i,q) = \sum_{c\in\Sigma}\sum_{q'\in Q:\delta(q',c)=q} f(i-1,q').
 $$
 
-Trạng thái bắt đầu dĩ nhiên là $f(0,q_0)$, còn đáp án cuối cùng thường có thể được tính đơn giản từ $\{f(n,q):q\in F\}$. DP bên ngoài thực chất là một trường hợp đặc biệt của [DP trên DAG](./dag.md).
+Trạng thái bắt đầu là $f(0,q_0)$, còn đáp án cuối cùng thường có thể được tính đơn giản từ $\{f(n,q):q\in F\}$. DP bên ngoài thực chất là một trường hợp đặc biệt của [DP trên DAG](./dag.md).
 
 <span id="ví-dụ"></span>
 ## Ví dụ
@@ -121,7 +121,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
     
     Giá trị của mỗi phần tử trong mảng $g_i$ có thể thuộc $\{-\infty\}\cup\mathbf N$. Tuy nhiên, vì số bộ lớn hơn hoặc bằng $4$ đều là ù, nên có thể giới hạn giá trị của mỗi phần tử không vượt quá $4$. Do một dãy đã ù thì thêm bất kỳ quân nào vẫn là dãy ù, có thể dùng tư tưởng tối thiểu hóa DFA để nén toàn bộ trạng thái ù thành một trạng thái. Vì vậy, với các trạng thái chưa ù, thực tế giá trị ở mỗi vị trí chỉ cần xét $\{-\infty\}\cup\{0,1,2,3\}$. Khi cài đặt, dùng $-1$ để biểu diễn $-\infty$.
     
-    Dù vậy, số trạng thái có thể có vẫn rất nhiều, tổng cộng $1+7\times 5^{18}$ trạng thái. Liệt kê chúng là không thực tế. Trên thực tế, tuyệt đại đa số các khả năng này sẽ không thật sự xuất hiện trong một ô-tô-mát ù bài. Để tránh xét các trạng thái không tồn tại trong thực tế, có thể dùng tư tưởng BFS, bắt đầu từ trạng thái ban đầu và mở rộng trạng thái từng bước cho tới khi dừng ở trạng thái ù. Ô-tô-mát thu được theo cách này có $N = 2092$ trạng thái.
+    Dù vậy, số trạng thái có thể có vẫn rất nhiều, tổng cộng $1+7\times 5^{18}$ trạng thái. Liệt kê chúng là không thực tế. Phần lớn các khả năng này sẽ không thật sự xuất hiện trong một ô-tô-mát ù bài. Để tránh xét các trạng thái không tồn tại trong thực tế, có thể dùng tư tưởng BFS, bắt đầu từ trạng thái ban đầu và mở rộng trạng thái từng bước cho tới khi dừng ở trạng thái ù. Ô-tô-mát thu được theo cách này có $N = 2092$ trạng thái.
     
     Cuối cùng, xét cách DP trên ô-tô-mát ù bài (tức DP bên ngoài). Đặt $f_{i,j,k}$ là số dãy khi đã xử lý tới quân thứ $i$, đã rút tổng cộng $j$ quân, và đi tới trạng thái số $k$ trên ô-tô-mát ù bài. Khi chuyển, liệt kê số quân rút $0\leq t\leq 4-a_i$, trong đó $a_i$ là số quân loại $i$ đã dùng trong $13$ quân ban đầu; nhân số dãy trước đó với số cách chọn $t$ quân trong $4−a_i$ quân, tức $\dbinom{4-a_i}{t}$, rồi cộng dồn. Viết hình thức là:
     

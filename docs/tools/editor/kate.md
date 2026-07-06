@@ -16,7 +16,7 @@ Tương tự Vim, Kate sẽ ghi các thay đổi chưa lưu vào một tệp ho�
 
 ### Tô sáng mã
 
-Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ. Nói chung, Kate có thể tự động chọn ngôn ngữ tương ứng để tô sáng cú pháp, nhưng đôi khi cũng có thể nhận sai; khi đó có thể nhấp nút ở góc dưới cùng bên phải và chọn đúng ngôn ngữ.
+Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ. Thông thường, Kate có thể tự động chọn ngôn ngữ tương ứng để tô sáng cú pháp, nhưng đôi khi cũng có thể nhận sai; khi đó có thể nhấp nút ở góc dưới cùng bên phải và chọn đúng ngôn ngữ.
 
 #### Tự viết tệp tô sáng cú pháp
 

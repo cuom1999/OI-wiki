@@ -83,7 +83,7 @@ So với thuật toán Kuhn ở phần trước, thay đổi then chốt của t
     
     Đặt $p=\lfloor|M|^{1/2}\rfloor$. Sau khi kết thúc $p$ lượt đầu tiên, độ dài của các đường tăng còn lại ít nhất là $|M|^{1/2}$. Gọi ghép cặp hiện tại là $M_p$. Tương tự tình huống ở trên, có thể chứng minh rằng trong đồ thị $(V,M\oplus M_p)$ có $|M|-|M_p|$ đường tăng đôi một không có đỉnh chung đối với $M_p$. Mỗi đường tăng dùng ít nhất $|M|^{1/2}/2$ cạnh ghép cặp trong $M$, nên tổng số đường tăng này không vượt quá $2|M|^{1/2}$, tức là $|M|-|M_p|\le 2|M|^{1/2}$. Điều này cho thấy bắt đầu từ $M_p$, nhiều nhất chỉ có thể tăng thêm $2|M|^{1/2}$ lần, đồng nghĩa thuật toán nhiều nhất cũng chỉ chạy thêm $2|M|^{1/2}$ lượt tăng. Do đó, tổng cộng độ dài đường tăng tăng nhiều nhất $3|M|^{1/2}$ lần.
 
-Đây chỉ là ước lượng độ phức tạp xấu nhất của thuật toán Hopcroft-Karp. Trên thực tế, trong đồ thị ngẫu nhiên, thuật toán Hopcroft-Karp có xác suất lớn chạy trong thời gian $O(|E|\log |V|)$[^hk-comp-ref].
+Đây chỉ là ước lượng độ phức tạp xấu nhất của thuật toán Hopcroft-Karp. Tuy nhiên, với đồ thị ngẫu nhiên, thuật toán Hopcroft-Karp có xác suất lớn chạy trong thời gian $O(|E|\log |V|)$[^hk-comp-ref].
 
 ### Tối ưu
 
