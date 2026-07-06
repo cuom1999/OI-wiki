@@ -443,12 +443,15 @@ $O(v\log v)$.
 <span id="kết-hợp-với-sàng-eratosthenes"></span>
 ### Kết hợp với sàng Eratosthenes
 
-Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes) khi tạo bảng số nguyên tố.
+Do hiệu năng đọc ghi liên tiếp của `bitset` rất nhanh, nó rất phù hợp để kết hợp
+với [sàng Eratosthenes](../../math/number-theory/sieve.md#sàng-eratosthenes)
+khi tạo bảng số nguyên tố.
 
-Cách dùng cũng rất đơn giản: chỉ cần thay mảng `bool` trong sàng Eratosthenes bằng `bitset`.
+Cách dùng là thay mảng `bool` trong sàng Eratosthenes bằng `bitset`.
 
 ??? note "Kiểm thử tốc độ"
-    Sử dụng [Quick C++ Benchmarks](https://quick-bench.com) để kiểm thử, trình biên dịch là `GCC 13.2`, tham số biên dịch là `-std=c++20 -O2`.
+    Sử dụng [Quick C++ Benchmarks](https://quick-bench.com) để kiểm thử; trình
+    biên dịch là `GCC 13.2`, tham số biên dịch là `-std=c++20 -O2`.
     
     | Thuật toán                                                       | Tên hàm                    |
     | --------------------------------------------------------------- | -------------------------- |
@@ -481,8 +484,11 @@ Cách dùng cũng rất đơn giản: chỉ cần thay mảng `bool` trong sàng
     
     Kết quả kiểm thử cho thấy:
     
-    1.  Sàng Eratosthenes có độ phức tạp thời gian $O(n \log \log n)$, sau khi được tối ưu bằng `bitset` hoặc `vector<bool>`, hiệu năng thực tế thậm chí vượt cả sàng Euler có độ phức tạp $O(n)$;
-    2.  Hiệu quả tối ưu của `bitset` hoặc `vector<bool>` với sàng Euler nhìn chung không rõ rệt trong đa số trường hợp;
+    1.  Sàng Eratosthenes có độ phức tạp thời gian $O(n \log \log n)$; sau khi
+        được tối ưu bằng `bitset` hoặc `vector<bool>`, hiệu năng thực tế thậm
+        chí vượt cả sàng Euler có độ phức tạp $O(n)$;
+    2.  Hiệu quả tối ưu của `bitset` hoặc `vector<bool>` với sàng Euler nhìn
+        chung không rõ rệt trong đa số trường hợp;
     3.  Hiệu quả tối ưu của `bitset` mạnh hơn một chút so với `vector<bool>`.
 
 ??? note "Mã tham khảo"
