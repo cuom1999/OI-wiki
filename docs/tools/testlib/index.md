@@ -3,11 +3,11 @@ author: Xeonacid, sshwy
 Nếu đang dùng C++ để chuẩn bị một bài thi lập trình, Testlib là công cụ hữu ích
 để viết các chương trình liên quan như trình sinh dữ liệu (generator), trình xác
 thực dữ liệu (validator), trình kiểm tra đáp án (checker) và trình tương tác
-(interactor). Đây là công cụ gần như bắt buộc với nhiều người ra đề ở Nga và một
-số quốc gia khác; nhiều kỳ thi cũng sử dụng Testlib, chẳng hạn ROI, các vòng
+(interactor). Đây là công cụ được nhiều người ra đề ở Nga và một số quốc gia
+khác sử dụng; nhiều kỳ thi cũng sử dụng Testlib, chẳng hạn ROI, các vòng
 ICPC khu vực và toàn bộ các vòng Codeforces.
 
-Thư viện Testlib chỉ gồm một tệp `testlib.h`. Khi sử dụng, chỉ cần thêm `#include "testlib.h"` ở đầu chương trình đang viết.
+Thư viện Testlib chỉ gồm một tệp `testlib.h`. Khi sử dụng, thêm `#include "testlib.h"` ở đầu chương trình đang viết.
 
 Các mục đích sử dụng cụ thể của Testlib:
 
