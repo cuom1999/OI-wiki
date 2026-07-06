@@ -10,31 +10,31 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 ### Quy trình
 
-Nếu thử lần lượt xóa từng đỉnh rồi kiểm tra tính liên thông của đồ thị, độ phức tạp sẽ rất cao. Vì vậy, ta giới thiệu một thuật toán thường dùng: Tarjan.
+Nếu thử lần lượt xóa từng đỉnh rồi kiểm tra tính liên thông của đồ thị, độ phức tạp sẽ rất cao. Vì vậy, phần này giới thiệu một thuật toán thường dùng: Tarjan.
 
 Trước hết, xét đồ thị sau:
 
 ![](./images/cut1.svg)
 
-Ta dễ thấy đỉnh khớp là 2, và đồ thị này chỉ có đúng một đỉnh khớp đó.
+Có thể thấy đỉnh khớp là 2, và đồ thị này chỉ có đúng một đỉnh khớp đó.
 
-Đầu tiên, ta gán nhãn thời gian theo thứ tự DFS, tức thứ tự các đỉnh được thăm.
+Đầu tiên, gán nhãn thời gian theo thứ tự DFS, tức thứ tự các đỉnh được thăm.
 
 ![](./images/cut2.svg)
 
 Các thông tin này được lưu trong mảng `dfn`.
 
-Ta còn cần một mảng khác là `low`, dùng để lưu nhãn thời gian nhỏ nhất có thể đi tới mà không đi qua cha của đỉnh hiện tại.
+Cần thêm một mảng khác là `low`, dùng để lưu nhãn thời gian nhỏ nhất có thể đi tới mà không đi qua cha của đỉnh hiện tại.
 
 Ví dụ, `low[2]` bằng 1, còn `low[5]` và `low[6]` bằng 3.
 
-Sau đó ta bắt đầu DFS. Cơ sở để phán đoán một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
+Sau đó bắt đầu DFS. Cơ sở để phán đoán một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
 
-Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, nó chắc chắn là đỉnh khớp (hãy hình dung trong hình trên nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
+Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, nó chắc chắn là đỉnh khớp (trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
 
 ![](./images/cut3.svg)
 
-Khi thăm các con của 1, giả sử DFS đi tới 2 trước và đánh dấu đã thăm, rồi tiếp tục đệ quy xuống 4, sau đó từ 4 đi tới 3. Khi đệ quy quay lui, ta sẽ phát hiện 3 đã được thăm, vì vậy 1 không phải là đỉnh khớp.
+Khi thăm các con của 1, giả sử DFS đi tới 2 trước và đánh dấu đã thăm, rồi tiếp tục đệ quy xuống 4, sau đó từ 4 đi tới 3. Khi đệ quy quay lui, sẽ phát hiện 3 đã được thăm, vì vậy 1 không phải là đỉnh khớp.
 
 Mã giả cập nhật `low` như sau:
 
@@ -72,7 +72,7 @@ Các cạnh màu đỏ chính là cầu.
 
 Cách làm gần giống đỉnh khớp, chỉ cần đổi một chỗ thành điều kiện $low_v>dfn_u$ là được, và không cần xét riêng đỉnh gốc.
 
-Việc một cạnh có phải cầu hay không không phụ thuộc vào đỉnh gốc. Khi tìm đỉnh khớp, ta xét việc đỉnh $v$ không thể quay về một tổ tiên, kể cả cha, nếu không đi qua cha $u$, nên đỉnh $u$ là đỉnh khớp. Nếu $low_v=dfn_u$ thì vẫn có thể quay về cha. Chỉ khi đỉnh $v$ không thể quay về tổ tiên và cũng không có đường nào khác quay về cha, cạnh $u-v$ mới là cầu.
+Việc một cạnh có phải cầu hay không không phụ thuộc vào đỉnh gốc. Khi tìm đỉnh khớp, cần xét việc đỉnh $v$ không thể quay về một tổ tiên, kể cả cha, nếu không đi qua cha $u$, nên đỉnh $u$ là đỉnh khớp. Nếu $low_v=dfn_u$ thì vẫn có thể quay về cha. Chỉ khi đỉnh $v$ không thể quay về tổ tiên và cũng không có đường nào khác quay về cha, cạnh $u-v$ mới là cầu.
 
 ### Cài đặt
 
