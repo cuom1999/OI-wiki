@@ -37,7 +37,7 @@ Giả sử đồ thị không có cạnh trọng số âm. Nếu ước lượng
 quá khoảng cách thực $h^*(x)$, tức $0\le h\le h^*$, thì thuật toán A\* tìm được
 lời giải tối ưu. Hàm ước lượng $h(x)$ thỏa điều kiện này được gọi là
 **chấp nhận được** (admissible). Theo thảo luận phía trên, $h$ càng gần $h^*$
-thì thuật toán A\* tương ứng càng hiệu quả. Nói chung, trong trường hợp xấu
+thì thuật toán A\* tương ứng càng hiệu quả. Trong trường hợp xấu
 nhất, thuật toán sẽ đi qua mọi nút thỏa mãn
 
 $$

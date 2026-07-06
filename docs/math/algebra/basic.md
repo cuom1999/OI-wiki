@@ -145,8 +145,8 @@ Một số ví dụ đơn giản nhất về vành như sau.
         Khi đó có thể kiểm tra $\mathbf H$ tạo thành một vành, hơn nữa nó là một vành chia không giao hoán.
     -   Tập con $2\mathbf Z$ của tập số nguyên tạo thành vành dưới phép cộng và phép nhân theo nghĩa thông thường. Nó là vành giao hoán, không có ước của không, nhưng không có phần tử đơn vị nhân.
     -   Các lớp đồng dư modulo $n$ của số nguyên, $\mathbf Z/n\mathbf Z$, tạo thành vành dưới phép cộng và phép nhân các lớp đồng dư. Nó là vành giao hoán, có đơn vị (tức $\bar 1$). Vành như vậy có ước của không khi và chỉ khi $n$ là hợp số. Vì thế, khi $n$ là số nguyên tố, vành $(\mathbf Z/n\mathbf Z, +,\times)$ là miền nguyên; hơn nữa, khi đó nó cũng là vành chia, nên thực chất nó tạo thành một trường. Nhóm nhân của nó $((\mathbf Z/n\mathbf Z)^\times,\times)$ chính là nhóm nhân các số nguyên modulo $n$.
-    -   Vành ma trận: tất cả các ma trận vuông cấp $n$ trên vành $R$ tạo thành một vành $M_n(R)$ dưới phép cộng và phép nhân ma trận. Nói chung, vành này có ước của không và không phải vành giao hoán.
-    -   Với toàn bộ các tập con $\mathcal P(A)$ của một tập hợp $A$, nếu định nghĩa hiệu đối xứng $\triangle$ của tập hợp và phép giao $\cap$ lần lượt làm phép cộng và phép nhân, thì $(\mathcal P(A),\triangle,\cap)$ tạo thành một vành. Nói chung, vành này có đơn vị, có ước của không và là vành giao hoán.
+    -   Vành ma trận: tất cả các ma trận vuông cấp $n$ trên vành $R$ tạo thành một vành $M_n(R)$ dưới phép cộng và phép nhân ma trận. Vành này thường có ước của không và không phải vành giao hoán.
+    -   Với toàn bộ các tập con $\mathcal P(A)$ của một tập hợp $A$, nếu định nghĩa hiệu đối xứng $\triangle$ của tập hợp và phép giao $\cap$ lần lượt làm phép cộng và phép nhân, thì $(\mathcal P(A),\triangle,\cap)$ tạo thành một vành. Vành này có đơn vị, thường có ước của không và là vành giao hoán.
 
 Việc thảo luận về cấu trúc của vành còn vượt xa những nội dung này. Để tìm hiểu thêm, có thể tham khảo [lý thuyết vành](./ring-theory.md) hoặc các sách liên quan.
 

@@ -86,7 +86,7 @@ Giải thích chi tiết hơn như sau. Định nghĩa con trỏ $i$ trỏ tới
 
 Tiếp theo chứng minh độ phức tạp của thuật toán.
 
-Số lần lặp của vòng ngoài không vượt quá $n$, vì mỗi lần $i$ đều tăng. Vòng trong thứ hai cũng là $O(n)$, vì nó chỉ ghi lại phương án phân tích Lyndon. Xét vòng trong còn lại. Mỗi xâu Lyndon tìm được trong vòng ngoài dài hơn phần xâu còn lại đã được so sánh, nên tổng độ dài của các phần còn lại nhỏ hơn $n$; vì vậy vòng trong này chạy nhiều nhất $O(n)$ lần. Trên thực tế, tổng số vòng lặp không vượt quá $4n-3$, nên độ phức tạp thời gian là $O(n)$.
+Số lần lặp của vòng ngoài không vượt quá $n$, vì mỗi lần $i$ đều tăng. Vòng trong thứ hai cũng là $O(n)$, vì nó chỉ ghi lại phương án phân tích Lyndon. Xét vòng trong còn lại. Mỗi xâu Lyndon tìm được trong vòng ngoài dài hơn phần xâu còn lại đã được so sánh, nên tổng độ dài của các phần còn lại nhỏ hơn $n$; vì vậy vòng trong này chạy nhiều nhất $O(n)$ lần. Cụ thể hơn, tổng số vòng lặp không vượt quá $4n-3$, nên độ phức tạp thời gian là $O(n)$.
 
 <span id="biểu-diễn-vòng-nhỏ-nhất"></span>
 ## Biểu diễn vòng nhỏ nhất

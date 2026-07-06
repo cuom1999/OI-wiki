@@ -337,7 +337,7 @@ Phân tích xác suất của trường hợp sau:
 
 Lưu ý rằng cần bảo đảm tính đúng cho mọi $L$, nên nếu muốn lập luận chặt chẽ thì cần dùng thêm Union Bound (xem bên dưới).
 
-Trong thực hành không nhất thiết phải chọn modulo ngẫu nhiên, vì chẳng hạn dùng ngày sinh làm modulo thì trên thực tế cũng đã tương đương một số ngẫu nhiên.
+Trong thực hành không nhất thiết phải chọn modulo ngẫu nhiên, vì chẳng hạn dùng ngày sinh làm modulo thì cũng đã tương đương một số ngẫu nhiên.
 
 ### Ví dụ: (*) số lượng phần tử khác nhau trong ma trận con
 

@@ -34,7 +34,7 @@ Một ví dụ khác là xâu $\tt abaaba$, chỉ có hai xâu lặp kép:
 <span id="số-lượng-xâu-lặp-kép"></span>
 ### Số lượng xâu lặp kép
 
-Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ điển hình là xâu gồm $n$ ký tự giống nhau, khi đó mọi xâu con có độ dài chẵn đều là xâu lặp kép. Nói chung, một xâu tuần hoàn với chu kỳ nhỏ thường có rất nhiều xâu lặp kép.
+Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ điển hình là xâu gồm $n$ ký tự giống nhau, khi đó mọi xâu con có độ dài chẵn đều là xâu lặp kép. Thông thường, một xâu tuần hoàn với chu kỳ nhỏ có rất nhiều xâu lặp kép.
 
 Điều này không ngăn việc tính số lượng xâu lặp kép trong thời gian $O(n \log n)$, vì thuật toán biểu diễn một xâu lặp kép dưới dạng nén nào đó, cho phép nén nhiều xâu lặp kép thành một biểu diễn.
 

@@ -2,7 +2,7 @@ Phần về đặc trưng này chỉ xét ma trận vuông, tức là biến đ�
 
 Trong các bài toán thực tế, thường phải xét việc thực hiện liên tiếp các biến đổi lặp lại. Nếu chỉ dùng mô tả "biến đổi tuyến tính tương ứng với ma trận $A$ biến ma trận đơn vị $I$ thành $A$", thì sẽ rất trừu tượng. Lúc này cách tốt nhất là tìm "điểm bất động", tức phần không thay đổi trong biến đổi.
 
-Tuy nhiên trên thực tế, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên cần lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
+Tuy nhiên, biến đổi tuyến tính tương ứng với ma trận $A$ rất có thể không có điểm bất động, nên cần lùi một bước và tìm các phần cộng tuyến hoặc gần giống một biến dạng đơn giản.
 
 <span id="giá-trị-riêng-và-vectơ-riêng"></span>
 ## Giá trị riêng và vectơ riêng

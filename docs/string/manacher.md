@@ -224,7 +224,7 @@ Mã tính $d_2[]$ rất giống, chỉ khác một chút trong các biểu thứ
 <span id="xử-lý-thống-nhất"></span>
 ### Xử lý thống nhất
 
-Mặc dù phần giải thích và cài đặt ở trên tách riêng việc tính $d_1[]$ và $d_2[]$, trên thực tế có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
+Mặc dù phần giải thích và cài đặt ở trên tách riêng việc tính $d_1[]$ và $d_2[]$, có thể dùng một mẹo để quy cả hai về việc tính $d_1[]$.
 
 Cho một xâu $s$ có độ dài $n$, chèn ký tự phân tách $\#$ vào $n+1$ khoảng trống của nó để xây một xâu $s'$ có độ dài $2n+1$. Ví dụ, với xâu $s = \mathtt{abababc}$, xâu tương ứng là $s' = \mathtt{\#a\#b\#a\#b\#a\#b\#c\#}$.
 

@@ -64,7 +64,7 @@ Xét chứng minh bằng quy nạp toán học.
 
 Theo quy nạp toán học, định lý được chứng minh.
 
-Vì thế số trạng thái của cây hồi văn là $O(|s|)$. Với mỗi trạng thái, trên thực tế nó chỉ biểu diễn một xâu con đối xứng phân biệt bản chất; trạng thái chuyển tới nút đó là duy nhất, nên tổng số cạnh chuyển cũng là $O(|s|)$.
+Vì thế số trạng thái của cây hồi văn là $O(|s|)$. Mỗi trạng thái chỉ biểu diễn một xâu con đối xứng phân biệt bản chất; trạng thái chuyển tới nút đó là duy nhất, nên tổng số cạnh chuyển cũng là $O(|s|)$.
 
 <span id="chứng-minh-tính-đúng-đắn"></span>
 ## Chứng minh tính đúng đắn
@@ -199,7 +199,7 @@ Theo kết luận đã chứng minh ở trên, nếu dùng con trỏ $slink$ đ�
 
 $g[v]$ biểu thị tổng các giá trị $dp$ của cấp số cộng chứa $v$, và $v$ là nút có độ dài lớn nhất trong cấp số cộng này. Khi đó $g[v]=\sum_{slink[x]=slink[v]} dp[i-len[x]]$, trong đó $i$ là chỉ số đang được duyệt hiện tại.
 
-Tiếp theo xét cách cập nhật mảng $g$ và mảng $dp$. Lấy hình dưới làm ví dụ, giả sử hiện đang duyệt ký tự thứ $i$ và nút tương ứng trên cây hồi văn là $x$. $g[x]$ là tổng các giá trị $dp$ tại ba vị trí màu cam (xâu đối xứng ngắn nhất $slink[x]$ được tính vào cấp số cộng kế tiếp). Vị trí xuất hiện lần trước của $fail[x]$ là $i-diff[x]$ (kết thúc tại $i-diff[x]$), và các giá trị $dp$ mà $g[fail[x]]$ chứa là các vị trí màu xanh. Vì vậy, trên thực tế $g[x]$ bằng tổng của $g[fail[x]]$ và giá trị $dp$ tại một vị trí mới phát sinh; vị trí mới đó là $i-(len[slink[x]]+diff[x])$. Cuối cùng dùng $g[x]$ để cập nhật $dp[i]$, khi đó phần đóng góp của cấp số cộng này đã được tính xong. Tiếp tục nhảy theo $slink[x]$ và lặp lại quá trình này. Cách cài đặt cụ thể có thể tham khảo mã của bài ví dụ.
+Tiếp theo xét cách cập nhật mảng $g$ và mảng $dp$. Lấy hình dưới làm ví dụ, giả sử hiện đang duyệt ký tự thứ $i$ và nút tương ứng trên cây hồi văn là $x$. $g[x]$ là tổng các giá trị $dp$ tại ba vị trí màu cam (xâu đối xứng ngắn nhất $slink[x]$ được tính vào cấp số cộng kế tiếp). Vị trí xuất hiện lần trước của $fail[x]$ là $i-diff[x]$ (kết thúc tại $i-diff[x]$), và các giá trị $dp$ mà $g[fail[x]]$ chứa là các vị trí màu xanh. Vì vậy, $g[x]$ bằng tổng của $g[fail[x]]$ và giá trị $dp$ tại một vị trí mới phát sinh; vị trí mới đó là $i-(len[slink[x]]+diff[x])$. Cuối cùng dùng $g[x]$ để cập nhật $dp[i]$, khi đó phần đóng góp của cấp số cộng này đã được tính xong. Tiếp tục nhảy theo $slink[x]$ và lặp lại quá trình này. Cách cài đặt cụ thể có thể tham khảo mã của bài ví dụ.
 
 ![](./images/pam6.png)
 

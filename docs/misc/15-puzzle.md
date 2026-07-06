@@ -31,7 +31,7 @@ N-Puzzle hỗ trợ các thuật toán tìm kiếm trên đồ thị thường g
 
 ### Lý thuyết nhóm
 
-Vì các cấu hình của trò chơi trượt số 15 ô có thể được sinh bởi các "3-cycle" (tiếng Anh: 3-cycles), có thể chứng minh rằng trò chơi trượt số 15 ô có thể được biểu diễn bằng nhóm luân phiên $A_{15}$. Trên thực tế, mọi trò chơi trượt số dùng $2\times k-1$ ô vuông cùng diện tích đều có thể được biểu diễn bằng nhóm luân phiên $A_{2k-1}$.
+Vì các cấu hình của trò chơi trượt số 15 ô có thể được sinh bởi các "3-cycle" (tiếng Anh: 3-cycles), có thể chứng minh rằng trò chơi trượt số 15 ô có thể được biểu diễn bằng nhóm luân phiên $A_{15}$. Tổng quát hơn, mọi trò chơi trượt số dùng $2\times k-1$ ô vuông cùng diện tích đều có thể được biểu diễn bằng nhóm luân phiên $A_{2k-1}$.
 
 ## Bài tập
 
