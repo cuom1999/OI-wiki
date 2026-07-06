@@ -7,8 +7,8 @@ của chúng.
 ## Dẫn nhập
 
 Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước
-sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được
-gọi là danh sách vào trước ra trước (first in first out), viết tắt là FIFO.
+sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được gọi là cấu
+trúc vào trước ra trước (first in first out), viết tắt là FIFO.
 
 <span id="cài-đặt"></span>
 ## Cài đặt
@@ -23,7 +23,7 @@ Thông thường, có thể dùng một mảng để mô phỏng hàng đợi, c
 int q[SIZE], ql = 1, qr;
 ```
 
-Các thao tác hàng đợi tương ứng với đoạn mã sau:
+Các thao tác trên hàng đợi tương ứng với đoạn mã sau:
 
 -   Chèn phần tử: `q[++qr] = x;`
 -   Xóa phần tử: `ql++;`
@@ -43,8 +43,9 @@ Còn một cách ít phổ biến hơn là dùng hai [ngăn xếp](./stack.md) �
 hàng đợi.
 
 Cách này dùng hai ngăn xếp $F$ và $S$ để mô phỏng một hàng đợi, trong đó $F$ là
-ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Nó hỗ trợ
-các thao tác push (chèn vào cuối hàng đợi) và pop (lấy ra ở đầu hàng đợi):
+ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Cách cài đặt
+này hỗ trợ các thao tác push (chèn vào cuối hàng đợi) và pop (xóa ở đầu hàng
+đợi):
 
 -   push: chèn vào ngăn xếp $F$.
 -   pop: nếu $S$ không rỗng thì pop khỏi $S$; nếu không, chuyển ngược các phần
@@ -74,7 +75,7 @@ C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp
     > class queue;
     ```
     
-    `T` là kiểu dữ liệu của các phần tử được lưu trong queue.
+    `T` là kiểu dữ liệu của các phần tử được lưu trong `queue`.
     
     `Container` là kiểu container nền dùng để lưu phần tử. Container này phải
     cung cấp các hàm sau với ngữ nghĩa thông thường:
@@ -87,15 +88,15 @@ C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp
     Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
     không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
 
-Container `queue` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm
-thường dùng gồm:
+Container `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường dùng
+gồm:
 
 -   Truy cập phần tử
     -   `q.front()` trả về phần tử đầu hàng đợi
     -   `q.back()` trả về phần tử cuối hàng đợi
 -   Sửa đổi
     -   `q.push()` chèn phần tử vào cuối hàng đợi
-    -   `q.pop()` lấy phần tử đầu hàng đợi ra
+    -   `q.pop()` xóa phần tử đầu hàng đợi
 -   Dung lượng
     -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
     -   `q.size()` trả về số phần tử trong hàng đợi
@@ -106,13 +107,13 @@ gán `=` để gán giá trị cho `queue`, ví dụ:
 ```cpp
 std::queue<int> q1, q2;
 
-// Chèn 1 vào cuối hàng đợi q1
+// Chèn 1 vào cuối hàng đợi q1.
 q1.push(1);
 
-// Gán q1 cho q2
+// Gán q1 cho q2.
 q2 = q1;
 
-// In phần tử đầu hàng đợi của q2
+// In phần tử đầu hàng đợi của q2.
 std::cout << q2.front() << std::endl;
 // Kết quả: 1
 ```
@@ -125,7 +126,7 @@ std::cout << q2.front() << std::endl;
 
 Hàng đợi hai đầu là hàng đợi cho phép chèn hoặc xóa phần tử ở cả đầu và cuối
 hàng đợi. Có thể xem nó như sự kết hợp giữa chức năng của ngăn xếp và hàng đợi.
-Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
+Cụ thể, hàng đợi hai đầu hỗ trợ bốn thao tác:
 
 -   Chèn một phần tử ở đầu hàng đợi
 -   Chèn một phần tử ở cuối hàng đợi
@@ -135,12 +136,11 @@ Cụ thể, hàng đợi hai đầu hỗ trợ 4 thao tác:
 Cách dùng mảng để mô phỏng hàng đợi hai đầu giống với hàng đợi thông thường.
 
 Tương tự, cũng có thể dùng ý tưởng mô phỏng hàng đợi bằng hai ngăn xếp để duy
-trì hàng đợi hai đầu. Tuy nhiên, khi một ngăn xếp rỗng, việc
-truy vấn luân phiên đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu
-lực. Khi cần chuyển phần tử, chỉ chuyển một nửa số phần tử của ngăn xếp không
-rỗng sang ngăn xếp rỗng, đồng thời giữ đúng tính chất của ngăn xếp phía đầu và
-phía cuối hàng đợi. Sau cách xử lý này, các thao tác chèn và xóa vẫn có thời
-gian hằng số khấu hao.
+trì hàng đợi hai đầu. Tuy nhiên, khi một ngăn xếp rỗng, việc truy vấn luân phiên
+đầu và cuối hàng đợi sẽ làm phân tích khấu hao mất hiệu lực. Khi cần chuyển phần
+tử, chỉ chuyển một nửa số phần tử của ngăn xếp không rỗng sang ngăn xếp rỗng,
+đồng thời giữ đúng tính chất của ngăn xếp phía đầu và phía cuối hàng đợi. Sau
+cách xử lý này, các thao tác chèn và xóa vẫn có thời gian hằng số khấu hao.
 
 ??? note "Chứng minh ngắn gọn"
     Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, tiếp theo xét thao tác
@@ -179,13 +179,13 @@ tiêu đề `<deque>`.
     > class deque;
     ```
     
-    `T` là kiểu dữ liệu của các phần tử được lưu trong deque.
+    `T` là kiểu dữ liệu của các phần tử được lưu trong `deque`.
     
     `Allocator` là bộ cấp phát; phần này không giải thích sâu, thông thường cứ
     giữ giá trị mặc định.
 
-Container `deque` trong STL cung cấp nhiều hàm thành viên để sử dụng. Những hàm
-thường dùng gồm:
+Container `deque` trong STL cung cấp nhiều hàm thành viên; những hàm thường dùng
+gồm:
 
 -   Truy cập phần tử
     -   `q.front()` trả về phần tử đầu hàng đợi
@@ -194,8 +194,9 @@ thường dùng gồm:
     -   `q.push_back()` chèn phần tử vào cuối hàng đợi
     -   `q.pop_back()` lấy phần tử cuối hàng đợi ra
     -   `q.push_front()` chèn phần tử vào đầu hàng đợi
-    -   `q.pop_front()` lấy phần tử đầu hàng đợi ra
-    -   `q.insert()` chèn phần tử trước vị trí chỉ định (truyền vào iterator và phần tử)
+    -   `q.pop_front()` xóa phần tử đầu hàng đợi
+    -   `q.insert()` chèn phần tử trước vị trí chỉ định (truyền vào iterator và
+        phần tử)
     -   `q.erase()` xóa phần tử ở vị trí chỉ định (truyền vào iterator)
 -   Dung lượng
     -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
@@ -220,13 +221,13 @@ Ví dụ như sau:
     ```python
     from collections import deque
     
-    # Tạo một deque mới, khởi tạo nội dung là [1, 2, 3]
+    # Tạo một deque mới, khởi tạo nội dung là [1, 2, 3].
     queue = deque([1, 2, 3])
     
-    # Chèn phần tử 4 vào cuối hàng đợi
+    # Chèn phần tử 4 vào cuối hàng đợi.
     queue.append(4)
     
-    # Chèn phần tử 0 vào đầu hàng đợi
+    # Chèn phần tử 0 vào đầu hàng đợi.
     queue.appendleft(0)
     
     # Truy cập hàng đợi
