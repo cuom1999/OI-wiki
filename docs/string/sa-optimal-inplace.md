@@ -11,7 +11,7 @@ Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ 
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên
 
-Thực ra phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
+Phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS.
 
 Đây là thuật toán có phần mô tả chi tiết tương đối đầy đủ trong bài gốc, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
 
@@ -436,7 +436,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                 num = 0;
                 
                 let mut l = 0;
-                while pat[sa[i - l]] == pat[sa[i]] {  // Quét bucket để đếm ký tự kiểu S; theo định nghĩa, vòng lặp chắc chắn dừng khi l = i
+                while pat[sa[i - l]] == pat[sa[i]] {  // Quét bucket để đếm ký tự kiểu S; theo định nghĩa, vòng lặp sẽ dừng khi l = i
                     let pat_i = sa[i - l];             // l < i, tức i - l > 0, 0 <= pat_i < patlen - 1
                     if pat[pat_i] < pat[pat_i + 1] {
                         let mut k = pat_i;

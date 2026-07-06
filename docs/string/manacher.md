@@ -24,7 +24,7 @@ $$
 
 Vì vậy ý tưởng then chốt là: nếu có một xâu đối xứng độ dài $l$ với tâm tại vị trí $i$, thì cũng có các xâu đối xứng cùng tâm có độ dài $l-2$, $l-4$, v.v. Do đó hai mảng $d_1[i]$ và $d_2[i]$ đã đủ để biểu diễn thông tin về mọi xâu con đối xứng trong xâu.
 
-Một sự thật đáng chú ý là tồn tại một thuật toán tuyến tính và khá đơn giản để tính hai "mảng tính chất đối xứng" $d_1[]$ và $d_2[]$ nói trên. Bài viết này mô tả chi tiết thuật toán đó.
+Có một thuật toán tuyến tính và khá đơn giản để tính hai "mảng tính chất đối xứng" $d_1[]$ và $d_2[]$ nói trên. Bài viết này mô tả chi tiết thuật toán đó.
 
 <span id="cách-giải"></span>
 ## Cách giải
@@ -230,7 +230,7 @@ Cho một xâu $s$ có độ dài $n$, chèn ký tự phân tách $\#$ vào $n+1
 
 Ký tự $\#$ giữa các chữ cái có ý nghĩa là "khoảng trống" tương ứng trong $s$. Hai ký tự $\#$ ở hai đầu dùng để thuận tiện khi cài đặt.
 
-Chú ý rằng sau khi tính $d_1[]$ cho $s'$, với một vị trí $i$, xâu con đối xứng dài nhất mà $d_1[i]$ mô tả nhất định kết thúc bằng $\#$ (nếu kết thúc bằng chữ cái, vì hai bên chữ cái đều có một $\#$, nó có thể mở rộng thêm một bước để dài hơn). Do đó, với một xâu con đối xứng cực đại trong $s$ có tâm là chữ cái và độ dài $m+1$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là chữ cái tương ứng và độ dài $2m+3$; còn với một xâu con đối xứng cực đại trong $s$ có tâm là khoảng trống và độ dài $m$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là ký tự $\#$ biểu diễn khoảng trống đó và độ dài $2m+1$ (trong cả hai trường hợp, $m$ đều là số chẵn, nhưng tính chất này không ảnh hưởng đến kết luận). Kết hợp các quan sát trên với một chút tính toán, suy ra rằng trong $s'$, $d_1[i]$ biểu thị **tổng độ dài cộng một** của xâu con đối xứng cực đại trong $s$ có tâm tại vị trí tương ứng.
+Sau khi tính $d_1[]$ cho $s'$, với một vị trí $i$, xâu con đối xứng dài nhất mà $d_1[i]$ mô tả nhất định kết thúc bằng $\#$ (nếu kết thúc bằng chữ cái, vì hai bên chữ cái đều có một $\#$, nó có thể mở rộng thêm một bước để dài hơn). Do đó, với một xâu con đối xứng cực đại trong $s$ có tâm là chữ cái và độ dài $m+1$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là chữ cái tương ứng và độ dài $2m+3$; còn với một xâu con đối xứng cực đại trong $s$ có tâm là khoảng trống và độ dài $m$, nó tương ứng trong $s'$ với một xâu con đối xứng cực đại có tâm là ký tự $\#$ biểu diễn khoảng trống đó và độ dài $2m+1$ (trong cả hai trường hợp, $m$ đều là số chẵn, nhưng tính chất này không ảnh hưởng đến kết luận). Kết hợp các quan sát trên với một chút tính toán, suy ra rằng trong $s'$, $d_1[i]$ biểu thị **tổng độ dài cộng một** của xâu con đối xứng cực đại trong $s$ có tâm tại vị trí tương ứng.
 
 Kết luận trên thiết lập quan hệ giữa $d_1[]$ của $s'$ với $d_1[]$ và $d_2[]$ của $s$.
 

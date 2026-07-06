@@ -44,7 +44,7 @@ Vì dùng cây cân bằng có chiều cao kỳ vọng $O(\log n)$, độ chính
 <span id="cách-4"></span>
 ### Cách 4
 
-Thực ra có thể xây dựng mảng hậu tố trước, rồi dựa trên mảng hậu tố để xây dựng cây cân bằng hậu tố. Khi đó nút thắt độ phức tạp nằm ở độ phức tạp xây dựng mảng hậu tố, hoặc độ phức tạp chèn một lần $n$ phần tử vào cây cân bằng được dùng.
+Có thể xây dựng mảng hậu tố trước, rồi dựa trên mảng hậu tố để xây dựng cây cân bằng hậu tố. Khi đó nút thắt độ phức tạp nằm ở độ phức tạp xây dựng mảng hậu tố, hoặc độ phức tạp chèn một lần $n$ phần tử vào cây cân bằng được dùng.
 
 <span id="thao-tác-xóa"></span>
 ## Thao tác xóa

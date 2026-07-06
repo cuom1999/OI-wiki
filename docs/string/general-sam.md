@@ -95,7 +95,7 @@ Vì trong cây từ điển đã có một cấu trúc gần giống máy tự �
 
 Thao tác cập nhật cho mỗi điểm có thể thu được bằng cách sửa nhẹ thao tác chèn trong SAM.
 
-Trong toàn bộ quá trình chèn, cần chú ý rằng do các nút được chèn theo thứ tự `len` không giảm, khi sao chép dữ liệu sau khi `clone`, không được sao chép dữ liệu có `len` nhỏ hơn `len` hiện tại.
+Trong toàn bộ quá trình chèn, do các nút được chèn theo thứ tự `len` không giảm, khi sao chép dữ liệu sau khi `clone`, không được sao chép dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
 <span id="quy-trình"></span>
 ### Quy trình
@@ -104,7 +104,7 @@ Theo logic trên, toàn bộ quá trình xây dựng có thể mô tả như sau
 
 1.  Chèn tất cả chuỗi vào cây từ điển.
 2.  Bắt đầu BFS từ gốc cây từ điển, ghi lại thứ tự và nút cha của từng nút.
-3.  Duyệt dãy BFS theo thứ tự nhận được, xây dựng cho từng nút trên cây từ điển ban đầu, chú ý không thao tác trên dữ liệu có `len` nhỏ hơn `len` hiện tại.
+3.  Duyệt dãy BFS theo thứ tự nhận được, xây dựng cho từng nút trên cây từ điển ban đầu, đồng thời không thao tác trên dữ liệu có `len` nhỏ hơn `len` hiện tại.
 
 <span id="chứng-minh-số-thao-tác-là-tuyến-tính"></span>
 ### Chứng minh số thao tác là tuyến tính
@@ -189,7 +189,7 @@ Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có th
 ## Tính chất
 
 1.  Máy tự động hậu tố tổng quát có cấu trúc nhất quán với máy tự động hậu tố; phần lớn các tính chất trên máy tự động hậu tố đều có hiệu lực trên máy tự động hậu tố tổng quát ([tính chất của máy tự động hậu tố](./sam.md)).
-2.  Sau khi xây dựng máy tự động hậu tố tổng quát, cấu trúc cây từ điển thường sẽ bị phá vỡ, tức là thông thường không thể dùng máy tự động hậu tố tổng quát để giải bài toán cây từ điển. Dĩ nhiên cũng có thể chuẩn bị gấp đôi bộ nhớ và xây dựng máy tự động hậu tố trong một vùng khác.
+2.  Sau khi xây dựng máy tự động hậu tố tổng quát, cấu trúc cây từ điển thường sẽ bị phá vỡ, tức là thông thường không thể dùng máy tự động hậu tố tổng quát để giải bài toán cây từ điển. Cũng có thể chuẩn bị gấp đôi bộ nhớ và xây dựng máy tự động hậu tố trong một vùng khác.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng

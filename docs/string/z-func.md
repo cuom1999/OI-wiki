@@ -130,7 +130,7 @@ Các ứng dụng này phần lớn tương tự các ứng dụng của [hàm t
 
 Để tránh nhầm lẫn, gọi $t$ là **văn bản** và $p$ là **mẫu**. Bài toán đặt ra là tìm mọi lần xuất hiện (occurrence) của mẫu $p$ trong văn bản $t$.
 
-Để giải bài toán này, xây dựng một xâu mới $s = p + \diamond + t$, tức nối $p$ và $t$ lại với nhau nhưng đặt một ký tự phân tách $\diamond$ ở giữa (chọn $\diamond$ sao cho chắc chắn nó không xuất hiện trong $p$ hoặc $t$).
+Để giải bài toán này, xây dựng một xâu mới $s = p + \diamond + t$, tức nối $p$ và $t$ lại với nhau nhưng đặt một ký tự phân tách $\diamond$ ở giữa (chọn $\diamond$ sao cho nó không xuất hiện trong $p$ hoặc $t$).
 
 Trước hết tính hàm Z của $s$. Sau đó, với mỗi $i$ trong đoạn $[0,|t| - 1]$, xét giá trị hàm Z trong $s$ của hậu tố bắt đầu tại $t[i]$, tức $k = z[i + |p| + 1]$. Nếu $k = |p|$, có một lần xuất hiện của $p$ tại vị trí thứ $i$ của $t$; ngược lại, không có lần xuất hiện của $p$ tại vị trí đó.
 
@@ -151,7 +151,7 @@ Vì vậy, sau khi thêm ký tự $c$ vào $s$, số xâu con mới xuất hiệ
 
 Thuật toán có độ phức tạp thời gian $O(n^2)$.
 
-Đáng chú ý là với cùng phương pháp, có thể tính lại trong $O(n)$ số xâu con khác nhau về bản chất sau khi thêm một ký tự ở một đầu hoặc xóa một ký tự ở một đầu (từ cuối hoặc từ đầu).
+Với cùng phương pháp, có thể tính lại trong $O(n)$ số xâu con khác nhau về bản chất sau khi thêm một ký tự ở một đầu hoặc xóa một ký tự ở một đầu (từ cuối hoặc từ đầu).
 
 <span id="chu-kỳ-nguyên-của-xâu"></span>
 ### Chu kỳ nguyên của xâu
