@@ -2,7 +2,7 @@ author: 2323122, aofall, AtomAlpaca, Bocity, CoelacanthusHex, countercurrent-tim
 
 ## Định nghĩa
 
-Cây tìm kiếm nhị phân (tiếng Anh: binary search tree, viết tắt là BST) là một cấu trúc cây nhị phân được định nghĩa như sau:
+Cây tìm kiếm nhị phân (binary search tree, viết tắt là BST) là một cấu trúc cây nhị phân được định nghĩa như sau:
 
 1.  Cây rỗng là một cây tìm kiếm nhị phân.
 
@@ -57,8 +57,8 @@ dãy khóa thu được khi duyệt trung thứ tự (inorder traversal) là m�
 
 ### Tìm giá trị nhỏ nhất/lớn nhất
 
-Theo tính chất của cây tìm kiếm nhị phân, giá trị nhỏ nhất nằm ở nút cuối của chuỗi đi liên tục sang trái,
-còn giá trị lớn nhất nằm ở nút cuối của chuỗi đi liên tục sang phải.
+Theo tính chất của cây tìm kiếm nhị phân, giá trị nhỏ nhất nằm ở nút cuối của đường đi liên tục sang trái,
+còn giá trị lớn nhất nằm ở nút cuối của đường đi liên tục sang phải.
 Độ phức tạp thời gian là $O(h)$.
 
 ???+ note "Cài đặt"
@@ -113,7 +113,7 @@ Xét các trường hợp sau:
     }
     ```
 
-Các thao tác chèn, xóa và sửa đều cần tìm kiếm trong cây tìm kiếm nhị phân trước.
+Các thao tác chèn, xóa và cập nhật thường đều cần tìm kiếm trong cây tìm kiếm nhị phân trước.
 
 ### Chèn một phần tử
 
@@ -174,7 +174,7 @@ Trước tiên tìm nút có khóa `value` trong cây tìm kiếm nhị phân, r
     Gọi `root = remove(root, 1)` nghĩa là xóa nút có giá trị 1 trong cây gốc `root`, rồi trả về gốc mới.
     
     ```cpp
-    // Trả về root mới sau khi xóa value
+    // Trả về gốc mới sau khi xóa value
     TreeNode* remove(TreeNode* root, int value) {
       if (root == nullptr) {
         return root;
@@ -249,8 +249,8 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 
 -   Nếu kích thước cây con trái lớn hơn hoặc bằng $k$, phần tử nằm trong cây con trái.
 
--   Nếu kích thước cây con trái nằm trong đoạn $[k-\textit{count},k-1]$
-    (`count` là số lần xuất hiện của giá trị ở nút hiện tại), phần tử chính là nút gốc của cây con.
+-   Nếu thứ hạng $k$ rơi vào phần các khóa bằng nút gốc
+    (`count` là số lần xuất hiện của giá trị ở nút hiện tại), phần tử cần tìm chính là nút gốc của cây con.
 
 -   Nếu kích thước cây con trái nhỏ hơn $k-\textit{count}$, phần tử nằm trong cây con phải.
 
@@ -273,12 +273,12 @@ Trong một cây con, thứ hạng của nút gốc phụ thuộc vào kích th�
 
 ## Giới thiệu về cây cân bằng
 
-Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gian chèn, xóa, sửa và tìm kiếm nút.
-Trong đó, các thao tác chèn, xóa, sửa đều bao gồm bước tìm kiếm.
+Một mục đích của việc dùng cây tìm kiếm là rút ngắn thời gian chèn, xóa, cập nhật và tìm kiếm nút.
+Trong đó, các thao tác chèn, xóa, cập nhật đều bao gồm bước tìm kiếm.
 
 Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa.
 Độ phức tạp tìm kiếm, cũng là độ dài tìm kiếm trung bình ASL (Average Search Length), không vượt quá $O(h)$.
-Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể giảm xuống $O(\log n)$, trong đó $n$ là tổng số nút.
+Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể đạt $O(\log n)$, trong đó $n$ là tổng số nút.
 
 Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng.
 Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết.
@@ -298,15 +298,15 @@ hoặc số nút trong cây con trái lớn hơn rất nhiều so với cây con
 Với cây tìm kiếm nhị phân, một định nghĩa cân bằng thường gặp là:
 trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa cây con trái và cây con phải không vượt quá 1.
 
--   Trong [cây splay](splay.md), mỗi thao tác truy cập đến một nút bất kỳ (tìm kiếm, chèn hoặc xóa) đều đưa nút được truy
-    cập lên vị trí gốc của cây.
+-   Trong [cây splay](splay.md), mỗi thao tác truy cập đến một nút bất kỳ (tìm kiếm, chèn hoặc xóa) đều đưa nút được
+    truy cập lên vị trí gốc của cây.
 
 -   [Cây AVL](avl.md) lưu thông tin chiều cao của cây gốc $N$ tại mỗi nút $N$.
     Định nghĩa cân bằng của cây AVL: $T$ là một cây AVL khi và chỉ khi hai cây con trái/phải cũng là cây AVL
     và $|height(T->left) - height(T->right)| \leq 1$.
 
 -   [Size Balanced Tree](sbt.md) duy trì `size`, tức số nút trong cây gốc $N$, tại mỗi nút $N$.
-    Định nghĩa cân bằng: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút cháu gọi qua nút anh em của nó
+    Định nghĩa cân bằng: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút cháu đi qua nút anh em của nó
     (nephew qua sibling).
 
 Ngoài ra, với các cây tìm kiếm chứa cùng một tập giá trị, trạng thái cân bằng có thể không duy nhất.
@@ -323,7 +323,7 @@ Khi điều chỉnh cây nhị phân cân bằng, cần giữ nguyên thứ tự
 cả hai phép xoay này đều không làm thay đổi dãy trung thứ tự.
 
 Trước hết xét phép xoay phải, còn gọi là "xoay đơn phải" hoặc "xoay cân bằng LL".
-Xoay phải tại nút $A$ nghĩa là đưa con trái $B$ của $A$ lên trên về bên phải để thay $A$ làm gốc,
+Xoay phải tại nút $A$ nghĩa là đưa con trái $B$ của $A$ lên trên để thay $A$ làm gốc,
 đưa $A$ xuống thành gốc của cây con phải của $B$,
 và cây con phải ban đầu của $B$ trở thành cây con trái của $A$.
 
@@ -336,7 +336,7 @@ Thứ tự cập nhật thường dùng cho xoay phải là:
 tạm lưu nút $B$ (gốc mới), cho con trái của $A$ trỏ đến cây con phải $T2$ của $B$,
 cho con phải của $B$ trỏ đến $A$, rồi cuối cùng cho cha của $A$ trỏ đến $B$ đã tạm lưu.
 
-Tương tự hoàn toàn là phép xoay trái, còn gọi là "xoay đơn trái" hoặc "xoay cân bằng RR".
+Phép xoay trái hoàn toàn tương tự, còn được gọi là "xoay đơn trái" hoặc "xoay cân bằng RR".
 Xoay trái là ảnh gương của xoay phải.
 
 Mã cho xoay trái và xoay phải như sau.
