@@ -4,7 +4,7 @@ Trang này giới thiệu ngắn gọn cách dùng Splay để duy trì cây tì
 
 **Cây Splay**, hay **Splay Tree**, là một cây tìm kiếm nhị phân cân bằng.
 Nó liên tục đưa một nút nào đó lên nút gốc bằng **thao tác splay**,
-sao cho toàn bộ cây vẫn thỏa tính chất của cây tìm kiếm nhị phân.
+sao cho toàn bộ cây vẫn thỏa mãn tính chất của cây tìm kiếm nhị phân.
 Nhờ đó, các thao tác chèn, tìm kiếm và xóa có thời gian khấu hao $O(\log N)$,
 đồng thời cây được giữ cân bằng để không suy biến thành một dây xích.
 
@@ -12,9 +12,10 @@ Cây Splay do Daniel Sleator và Robert Tarjan phát minh vào năm 1985.
 
 ## Cấu trúc và thao tác cơ bản
 
-Phần này thảo luận cấu trúc cơ bản của cây Splay và các thao tác cốt lõi của nó, trong đó quan trọng nhất là thao tác splay.
+Phần này thảo luận cấu trúc cơ bản của cây Splay và các thao tác cốt lõi của nó, trong đó quan trọng nhất là thao tác
+splay.
 
-Cây Splay là một cây tìm kiếm nhị phân. Khi tìm một giá trị, nó thỏa tính chất:
+Cây Splay là một cây tìm kiếm nhị phân. Khi tìm một giá trị, nó thỏa mãn tính chất:
 giá trị của mọi nút trong cây con trái $<$ giá trị của nút gốc $<$ giá trị của mọi nút trong cây con phải.
 
 ### Thông tin cần duy trì
@@ -45,7 +46,7 @@ Trước hết là một vài thao tác phụ trợ đơn giản:
 
 Phép xoay cần bảo đảm:
 
--   Thứ tự duyệt trung tự của toàn bộ Splay không đổi, tức không phá vỡ tính chất của cây tìm kiếm nhị phân;
+-   Thứ tự duyệt trung thứ tự của toàn bộ Splay không đổi, tức không phá vỡ tính chất của cây tìm kiếm nhị phân;
 -   Thông tin được duy trì trên các nút bị ảnh hưởng vẫn đúng và hợp lệ;
 -   `rt` phải trỏ tới nút gốc sau khi xoay.
 
@@ -60,7 +61,8 @@ Vì vậy, khi cài đặt thao tác xoay, chỉ cần truyền vào nút $x$ c�
 
 Phân tích cụ thể các bước xoay: (giả sử nút cần đưa lên là $x$, lấy xoay phải làm ví dụ)
 
-1.  Trước hết, ghi lại nút cha $y$ của nút $x$, nút cha $z$ của $y$ (có thể rỗng), và ghi lại $x$ là con trái hay con phải của $y$;
+1.  Trước hết, ghi lại nút cha $y$ của nút $x$, nút cha $z$ của $y$ (có thể rỗng), và ghi lại $x$ là con trái hay con
+    phải của $y$;
 2.  Theo thứ tự từ dưới lên trong cây sau khi xoay, lần lượt cập nhật con trái của $y$ thành con phải của $x$,
     con phải của $x$ thành $y$, và nếu $z$ không rỗng thì cập nhật con của $z$ thành $x$;
 3.  Theo cùng thứ tự đó, lần lượt cập nhật nút cha của con trái hiện tại của $y$ (nếu tồn tại) thành $y$,
@@ -76,7 +78,8 @@ Khi cài đặt mọi hàm, không sửa thông tin của nút $0$.
 
 ### Thao tác splay
 
-Cây Splay yêu cầu sau mỗi lần truy cập một nút $x$, bắt buộc phải xoay nút đó lên nút gốc. Thao tác này cũng được gọi là thao tác splay.
+Cây Splay yêu cầu sau mỗi lần truy cập một nút $x$, bắt buộc phải xoay nút đó lên nút gốc. Thao tác này cũng được gọi là
+thao tác splay.
 
 Giả sử nút vừa được truy cập là $x$.
 Để thực hiện thao tác splay, thực hiện một chuỗi **bước splay** trên $x$.
@@ -108,7 +111,7 @@ Gọi $p$ là nút cha của $x$. Có ba loại bước splay:
 3.  **zig-zag**: thực hiện khi $p$ không phải nút gốc và trong hai nút $x$, $p$,
     một nút là con phải còn nút kia là con trái.
     Cây Splay trước tiên xoay theo cạnh giữa $p$ và $x$,
-    sau đó xoay theo cạnh kết quả mới sinh ra giữa $x$ và $g$.
+    sau đó xoay theo cạnh mới sinh ra giữa $x$ và $g$.
 
     ![Bước zig-zag trong cây Splay](./images/splay-zig-zag.svg)
 
@@ -126,7 +129,8 @@ và $x$ cùng nút cha của nó có nằm cùng phía so với nút cha tương
 Cài đặt dưới đây cho phép chỉ định một nút gốc bất kỳ $z$,
 rồi đưa một nút $x$ bất kỳ trong cây con của nó lên vị trí $z$:
 
-1.  Trước hết ghi lại nút cha $w$ của nút gốc $z$, từ đó có thể dùng `fa[x] == w` để xác định $x$ đã nằm tại vị trí nút gốc hay chưa;
+1.  Trước hết ghi lại nút cha $w$ của nút gốc $z$, từ đó có thể dùng `fa[x] == w` để xác định $x$ đã nằm tại vị trí nút
+    gốc hay chưa;
 2.  Ghi lại nút cha hiện tại $y$ của $x$. Nếu $y$ giống $w$, tức là $x$ đã tới nút gốc;
 3.  Ngược lại, dùng `fa[y] == w` để xác định $y$ có phải nút gốc hay không.
     Nếu đúng, trực tiếp thực hiện thao tác zig để xoay $x$;
@@ -138,12 +142,12 @@ rồi đưa một nút $x$ bất kỳ trong cây con của nó lên vị trí $z
     --8<-- "docs/ds/code/splay/splay-1.cpp:splay"
     ```
 
-Thao tác splay là thao tác cốt lõi của cây Splay,
-đồng thời là bước then chốt giúp độ phức tạp thời gian của nó được bảo đảm.
+Thao tác splay là thao tác cốt lõi của cây Splay, đồng thời là bước then chốt giúp bảo đảm độ phức tạp thời gian của
+cây.
 Sau mỗi lần truy cập nút theo hướng đi xuống, cần thực hiện một lần thao tác splay.
 
-Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút trên đường đi từ nút hiện tại $x$
-đến nút gốc $z$ theo thứ tự từ dưới lên.
+Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút trên đường đi từ nút hiện tại $x$ đến nút gốc $z$
+theo thứ tự từ dưới lên.
 Nhờ điểm này, có thể sửa một nút không phải gốc,
 rồi thông qua thao tác splay đưa nó lên gốc để hoàn tất việc cập nhật thông tin của cả cây.
 
@@ -311,7 +315,7 @@ Thường có trường hợp trong cây không tồn tại nút tương ứng.
 Với trường hợp này, cần ghi lại nút được truy cập cuối cùng (tức $y$ trong cài đặt) và đưa $y$ lên gốc.
 Lúc này, giá trị được lưu trong nút $y$ hoặc là phần tử lớn nhất trong tất cả các phần tử nhỏ hơn $v$
 (tức tiền nhiệm của $v$),
-hoặc là phần tử nhỏ nhất trong tất cả các phần tử lớn hơn $v$ (tức hậu nhiệm của $v$).
+hoặc là phần tử nhỏ nhất trong tất cả các phần tử lớn hơn $v$ (tức kế nhiệm của $v$).
 Điều này là vì quá trình tìm kiếm bảo đảm cây con trái luôn lưu các giá trị nhỏ hơn $v$,
 còn cây con phải luôn lưu các giá trị lớn hơn $v$.
 
@@ -369,14 +373,15 @@ Thao tác hợp nhất như sau:
     ```
 
 Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng tư tưởng của
-[treap không xoay](./treap.md#treap-không-xoay) để thực hiện nhiều thao tác, bao gồm thao tác đoạn.
+[Treap không xoay](./treap.md#treap-không-xoay) để thực hiện nhiều thao tác, bao gồm thao tác đoạn.
 [Phần sau](#thao-tac-tren-day) sẽ giới thiệu phương pháp xử lý thao tác đoạn mang phong cách cây Splay hơn.
 
 ### Thao tác chèn
 
 Thao tác chèn là một quá trình khá phức tạp. Các bước cụ thể như sau: (giả sử giá trị được chèn là $v$)
 
--   Tương tự quá trình tìm theo giá trị, dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng, đồng thời ghi lại nút cha $y$ trong quá trình đó;
+-   Tương tự quá trình tìm theo giá trị, dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng, đồng thời ghi lại nút cha
+    $y$ trong quá trình đó;
 -   Nếu tồn tại nút $x$ lưu $v$, trực tiếp cập nhật thông tin; ngược lại, tạo nút mới $x$;
 -   Thực hiện thao tác splay, đưa nút cuối cùng $x$ lên gốc.
 
@@ -385,7 +390,8 @@ Thao tác chèn là một quá trình khá phức tạp. Các bước cụ thể
     --8<-- "docs/ds/code/splay/splay-1.cpp:insert"
     ```
 
-Cài đặt này cho phép chèn giá trị trực tiếp vào cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước các nút giả vào cây.
+Cài đặt này cho phép chèn giá trị trực tiếp vào cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước các nút giả
+vào cây.
 
 ### Thao tác xóa
 
@@ -406,7 +412,8 @@ Thao tác xóa cũng là một thao tác khá phức tạp. Các bước cụ th
 
 Trực tiếp truy cập nút theo giá trị $v$ (và đưa nó lên gốc), sau đó trả về giá trị tương ứng.
 
-Khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo luận riêng.
+Khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo
+luận riêng.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -421,7 +428,8 @@ Tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $v$. Cá
 -   Nếu giá trị ở gốc nhỏ hơn $v$, thì nó là giá trị lớn nhất như vậy, trực tiếp trả về;
 -   Ngược lại, tìm giá trị lớn nhất trong cây con trái và đưa nó lên gốc.
 
-Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là đã lược bỏ các bước kiểm tra không cần thiết.
+Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là đã lược bỏ các bước kiểm tra
+không cần thiết.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -430,11 +438,10 @@ Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[r
 
 Cài đặt này cho phép tiền nhiệm không tồn tại; khi đó trả về $-1$.
 
-### Truy vấn hậu nhiệm
+### Truy vấn kế nhiệm
 
-Hậu nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$.
-Cách truy vấn tương tự tiền nhiệm, chỉ thay giá trị lớn nhất trong cây con trái bằng giá trị nhỏ nhất trong cây con phải,
-tức gọi `loc(ch[rt][1], 1)`.
+Kế nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$. Cách truy vấn tương tự tiền nhiệm, chỉ thay giá trị lớn nhất trong
+cây con trái bằng giá trị nhỏ nhất trong cây con phải, tức gọi `loc(ch[rt][1], 1)`.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -456,13 +463,13 @@ Cây Splay cũng có thể được dùng trên dãy để duy trì thông tin �
 So với cây đoạn, hằng số của cây Splay lớn hơn,
 nhưng nó hỗ trợ các thao tác trên dãy phức tạp hơn, chẳng hạn đảo ngược đoạn.
 Như đã đề cập ở trên, cây Splay cũng hỗ trợ thao tác tách và hợp nhất,
-vì vậy có thể mô phỏng [treap không xoay](./treap.md#treap-không-xoay) để thực hiện thao tác đoạn;
+vì vậy có thể mô phỏng [Treap không xoay](./treap.md#treap-không-xoay) để thực hiện thao tác đoạn;
 phần này không thảo luận thêm hướng đó.
 Thay vào đó, phần này chủ yếu thảo luận phương pháp cài đặt thao tác đoạn dựa trên thao tác splay.
 
 Cây Splay được xây từ dãy có các tính chất sau:
 
--   Thứ tự duyệt trung tự của cây Splay tương đương với việc duyệt dãy ban đầu từ trái sang phải;
+-   Thứ tự duyệt trung thứ tự của cây Splay tương đương với việc duyệt dãy ban đầu từ trái sang phải;
 -   Một nút trên cây Splay đại diện cho một phần tử của dãy ban đầu;
 -   Một cây con trên cây Splay đại diện cho một đoạn của dãy ban đầu.
 
