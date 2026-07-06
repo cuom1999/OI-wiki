@@ -1,7 +1,7 @@
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Cho một dãy độ dài $n$ là ${\left\langle a_i\right\rangle}_{i=1}^n$, cùng một phép toán kết hợp $\circ$ (ví dụ
+Cho dãy độ dài $n$ là ${\left\langle a_i\right\rangle}_{i=1}^n$, cùng một phép toán kết hợp $\circ$ (ví dụ
 $\gcd,\min,\max,+,\text{và},\text{hoặc},\operatorname{xor}$ đều có tính kết hợp). Với mỗi truy vấn đoạn $[l,r]$, cần
 tính $a_l\circ a_{l+1}\circ\dotsb\circ a_{r}$.
 
@@ -15,15 +15,15 @@ Sqrt Tree có thể tiền xử lý trong thời gian $O(n\log\log n)$ và trả
 
 Trước hết, chia cả dãy thành $O(\sqrt{n})$ khối, mỗi khối có kích thước $O(\sqrt{n})$. Với mỗi khối, tính:
 
-1.  $P_i$: truy vấn tiền tố trong khối.
-2.  $S_i$: truy vấn hậu tố trong khối.
-3.  Duy trì thêm một mảng $\left\langle B_{i,j}\right\rangle$ biểu diễn đáp án đoạn từ khối thứ $i$ đến khối thứ $j$.
+1.  $P_i$: giá trị các tiền tố trong khối.
+2.  $S_i$: giá trị các hậu tố trong khối.
+3.  Một mảng $\left\langle B_{i,j}\right\rangle$ biểu diễn đáp án đoạn từ khối thứ $i$ đến khối thứ $j$.
 
 Lấy ví dụ, giả sử $\circ$ là phép cộng $+$ và dãy là $\{1,2,3,4,5,6,7,8,9\}$.
 
 Đầu tiên, chia dãy thành ba khối: $\{1,2,3\},\{4,5,6\},\{7,8,9\}$.
 
-Khi đó đáp án truy vấn tiền tố trong khối và truy vấn hậu tố trong khối của từng khối lần lượt là
+Khi đó giá trị tiền tố và hậu tố trong từng khối lần lượt là
 
 $$
 \begin{aligned}
@@ -86,15 +86,15 @@ $O(\log\log n)$. Tuy nhiên, quá trình này vẫn có thể tối ưu thêm.
 <span id="tối-ưu-độ-phức-tạp-truy-vấn"></span>
 ### Tối ưu độ phức tạp truy vấn
 
-Có thể nghĩ đến việc chặt nhị phân theo chiều cao, rồi kiểm tra tính hợp lệ trong $O(1)$. Khi đó độ phức tạp trở thành
+Có thể nghĩ đến việc tìm kiếm nhị phân theo chiều cao, rồi kiểm tra tính hợp lệ trong $O(1)$. Khi đó độ phức tạp trở thành
 $O(\log\log\log n)$. Nhưng vẫn có thể tăng tốc thêm.
 
 Giả sử:
 
-1.  Kích thước của mỗi khối đều là một lũy thừa nguyên của $2$.
+1.  Kích thước của mỗi khối đều là một lũy thừa của $2$.
 2.  Trên cùng một tầng, các khối có cùng kích thước.
 
-Để làm được điều này, cần thêm một số phần tử $0$ vào cuối dãy sao cho độ dài dãy trở thành một lũy thừa nguyên của $2$.
+Để làm được điều này, cần thêm một số phần tử $0$ vào cuối dãy sao cho độ dài dãy trở thành một lũy thừa của $2$.
 Dù một số khối có thể lớn gấp đôi so với ban đầu, kích thước đó vẫn là $O(\sqrt{k})$, nên độ phức tạp tiền xử lý phân khối
 vẫn là $O(n)$.
 
@@ -107,7 +107,7 @@ r = 46_{10} = 101110_2
 $$
 
 Độ dài đoạn trên mỗi tầng là như nhau, và kích thước khối cũng như nhau (trong ví dụ trên, $2^k=2^4=16$). Các khối phủ
-kín toàn bộ dãy, nên khối thứ nhất biểu diễn các phần tử $[0,15]$ (dạng nhị phân là $[000000_2,001111_2]$), khối thứ hai
+kín toàn bộ dãy, nên khối đầu tiên biểu diễn các phần tử $[0,15]$ (dạng nhị phân là $[000000_2,001111_2]$), khối thứ hai
 biểu diễn đoạn phần tử $[16,31]$ (dạng nhị phân là $[010000_2,011111_2]$), và cứ tiếp tục như vậy. Vị trí của các phần tử
 trong cùng một khối chỉ khác nhau ở $k$ bit cuối trong biểu diễn nhị phân (trong ví dụ trên $k=4$). Hai đầu mút $l,r$ của
 ví dụ cũng chỉ khác nhau ở $k$ bit cuối, nên chúng nằm trong cùng một khối.
@@ -128,7 +128,7 @@ Có thể cập nhật phần tử trên Sqrt Tree; cả cập nhật điểm v�
 <span id="cập-nhật-điểm"></span>
 ### Cập nhật điểm
 
-Xét một thao tác gán tại một điểm $a_x=val$. Mục tiêu là cập nhật các thông tin liên quan một cách hiệu quả.
+Xét một thao tác gán tại một điểm $a_x=\mathit{val}$. Mục tiêu là cập nhật các thông tin liên quan một cách hiệu quả.
 
 <span id="cài-đặt-đơn-giản"></span>
 #### Cài đặt đơn giản
@@ -144,21 +144,21 @@ Vì vậy độ phức tạp cập nhật điểm trên Sqrt Tree là $O(n+\sqrt
 <span id="dùng-sqrt-tree-thay-cho-mảng-b"></span>
 #### Dùng cây Sqrt Tree thay cho mảng B
 
-Lưu ý rằng nút thắt của cập nhật điểm nằm ở việc cập nhật $\left\langle B_{i,j}\right\rangle$ của nút gốc. Vì vậy, thử
-dùng một Sqrt Tree khác để thay cho $\left\langle B_{i,j}\right\rangle$ ở nút gốc, gọi là $index$. Vai trò của nó giống
+Lưu ý rằng điểm nghẽn của cập nhật điểm nằm ở việc cập nhật $\left\langle B_{i,j}\right\rangle$ của nút gốc. Vì vậy, thử
+dùng một Sqrt Tree khác để thay cho $\left\langle B_{i,j}\right\rangle$ ở nút gốc, gọi là `index`. Vai trò của nó giống
 mảng hai chiều ban đầu: duy trì đáp án cho các truy vấn trên cả đoạn. Các nút không phải gốc vẫn dùng
-$\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Lưu ý: nếu nút gốc của một Sqrt Tree có cấu trúc $index$,
+$\left\langle B_{i,j}\right\rangle$ để duy trì thông tin. Lưu ý: nếu nút gốc của một Sqrt Tree có cấu trúc `index`,
 gọi Sqrt Tree đó là **có chỉ mục**; nếu nút gốc của một Sqrt Tree có cấu trúc $\left\langle B_{i,j}\right\rangle$, gọi nó
-là **không có chỉ mục**. Bản thân cây $index$ là không có chỉ mục.
+gọi Sqrt Tree đó là **không có chỉ mục**. Bản thân cây `index` là không có chỉ mục.
 
-Do đó có thể cập nhật cây $index$ như sau:
+Do đó có thể cập nhật cây `index` như sau:
 
 1.  Cập nhật $\left\langle P_i\right\rangle$ và $\left\langle S_i\right\rangle$ trong thời gian $O(\sqrt{n})$.
-2.  Cập nhật $index$. Độ dài của nó là $O(n)$, nhưng chỉ cần cập nhật một phần tử trong đó (phần tử này đại diện cho khối
+2.  Cập nhật `index`. Độ dài của nó là $O(n)$, nhưng chỉ cần cập nhật một phần tử trong đó (phần tử này đại diện cho khối
     bị thay đổi). Bước này tốn $O(\sqrt{n})$ thời gian nếu dùng thuật toán cài đặt đơn giản.
 3.  Đi vào nút con phát sinh thay đổi và dùng thuật toán cài đặt đơn giản để cập nhật thông tin trong thời gian $O(\sqrt{n})$.
 
-Lưu ý rằng độ phức tạp truy vấn vẫn là $O(1)$, vì cây $index$ được dùng nhiều nhất một lần. Như vậy độ phức tạp cập nhật
+Lưu ý rằng độ phức tạp truy vấn vẫn là $O(1)$, vì cây `index` được dùng nhiều nhất một lần. Như vậy độ phức tạp cập nhật
 điểm là $O(\sqrt{n})$.
 
 <span id="cập-nhật-một-đoạn"></span>
@@ -186,14 +186,14 @@ Trong cách cài đặt thứ nhất, chỉ gắn đánh dấu lười cho các 
 
 3.  Cập nhật $\left\langle P_i\right\rangle$ và $\left\langle S_i\right\rangle$ của nút gốc, độ phức tạp $O(\sqrt{n})$.
 
-4.  Xây dựng lại cây $index$, độ phức tạp $O(\sqrt{n}\log\log n)$.
+4.  Xây dựng lại cây `index`, độ phức tạp $O(\sqrt{n}\log\log n)$.
 
 Đến đây đã có thể cập nhật đoạn một cách hiệu quả. Cách dùng đánh dấu lười để trả lời truy vấn như sau:
 
 1.  Nếu truy vấn nằm trong một khối có đánh dấu lười, có thể dùng đánh dấu lười để tính đáp án.
 
 2.  Nếu truy vấn chứa nhiều khối, chỉ cần quan tâm đến đáp án của hai khối không trọn vẹn ở ngoài cùng bên trái và bên
-    phải. Đáp án của các khối ở giữa có thể truy vấn trên cây $index$ (vì cây $index$ được xây dựng lại sau mỗi lần sửa),
+    phải. Đáp án của các khối ở giữa có thể truy vấn trên cây `index` (vì cây `index` được xây dựng lại sau mỗi lần sửa),
     với độ phức tạp $O(1)$.
 
 Do đó độ phức tạp truy vấn vẫn là $O(1)$.
@@ -208,7 +208,7 @@ hơn. Các bước như sau:
 1.  Với các khối được đoạn cần sửa bao phủ hoàn toàn, thêm đánh dấu lười vào các khối đó, độ phức tạp $O(\sqrt{n})$.
 2.  Với các khối bị đoạn cần sửa bao phủ một phần, cập nhật $\left\langle P_i\right\rangle$ và
     $\left\langle S_i\right\rangle$, độ phức tạp $O(\sqrt{n})$ (vì chỉ có hai khối bị sửa).
-3.  Cập nhật cây $index$, độ phức tạp $O(\sqrt{n})$ (dùng cùng thuật toán cập nhật).
+3.  Cập nhật cây `index`, độ phức tạp $O(\sqrt{n})$ (dùng cùng thuật toán cập nhật).
 4.  Với các cây con không có chỉ mục, cập nhật $\left\langle B_{i,j}\right\rangle$ của chúng.
 5.  Đệ quy cập nhật hai đoạn chưa được bao phủ hoàn toàn.
 
