@@ -10,9 +10,9 @@ $$
 a_n=\sum_{j=1}^{d}c_ja_{n-j},\qquad (n\geq d)
 $$
 
-trong đó các $c_j$ không đồng thời bằng không, mục tiêu là tính $a_k$ khi đã biết các giá trị đầu $a_0,\dots ,a_{d-1}$ và các hệ số $c_1,\dots ,c_d$ trong công thức truy hồi. Nếu $k\gg d$, ta muốn có thuật toán nhanh hơn.
+trong đó các $c_j$ không đồng thời bằng không, mục tiêu là tính $a_k$ khi đã biết các giá trị đầu $a_0,\dots ,a_{d-1}$ và các hệ số $c_1,\dots ,c_d$ trong công thức truy hồi. Nếu $k\gg d$, cần một thuật toán nhanh hơn.
 
-Ở đây $\left(a_j\right)_{j\geq 0}$ được gọi là dãy truy hồi tuyến tính thuần nhất hệ số hằng bậc $d$.
+Trong ngữ cảnh này, $\left(a_j\right)_{j\geq 0}$ được gọi là dãy truy hồi tuyến tính thuần nhất hệ số hằng bậc $d$.
 
 <span id="thuật-toán-fiduccia"></span>
 
@@ -28,7 +28,7 @@ $$
 
 trong đó định nghĩa $\left\langle \left(\sum_{j=0}^{n-1}f_jx^j\right),\left(\sum_{j=0}^{n-1}g_jx^j\right) \right\rangle :=\sum_{j=0}^{n-1}f_jg_j$ là tích vô hướng.
 
-**Chứng minh**: ta định nghĩa ma trận đồng hành của $\Gamma(x)$ là
+**Chứng minh**: định nghĩa ma trận đồng hành của $\Gamma(x)$ là
 
 $$
 C_\Gamma:=
@@ -40,7 +40,7 @@ C_\Gamma:=
 \end{bmatrix}
 $$
 
-Ta định nghĩa đa thức $b(x):=\sum_{j=0}^{d-1}b_jx^j$ và
+Định nghĩa đa thức $b(x):=\sum_{j=0}^{d-1}b_jx^j$ và
 
 $$
 B_b:=\begin{bmatrix}b_0&b_1&\cdots &b_{d-1}\end{bmatrix}^{\intercal}
@@ -80,7 +80,7 @@ C_\Gamma&=\begin{bmatrix}B_{x\bmod{\Gamma}}&B_{x^2\bmod{\Gamma}}&\cdots &B_{x^d\
 \end{aligned}
 $$
 
-Viết truy hồi này dưới dạng ma trận, ta có
+Viết truy hồi này dưới dạng ma trận, có
 
 $$
 \begin{bmatrix}
@@ -114,7 +114,7 @@ $$
 \frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j
 $$
 
-với $Q(x)=x^d\Gamma\left(x^{-1}\right)$ và $\deg{P}<d$. Ta gọi nó là "**hàm hữu tỉ**" vì $P(x),Q(x)$ là "**đa thức**".
+với $Q(x)=x^d\Gamma\left(x^{-1}\right)$ và $\deg{P}<d$. Biểu thức này được gọi là "**hàm hữu tỉ**" vì $P(x),Q(x)$ là "**đa thức**".
 
 **Chứng minh**: với $P(x)=\sum_{j=0}^{d-1}p_jx^j$ và $Q(x):=\sum_{j=0}^{d}q_jx^j$, xét định nghĩa hệ số của $\dfrac{P(x)}{Q(x)}=\sum_{j\geq 0}\tilde{q}_jx^j$. Điều này gần như chính là định nghĩa phép "**chia**" chuỗi lũy thừa hình thức:
 
@@ -127,7 +127,7 @@ p_0q_0^{-1},&\text{ nếu }N=0, \\
 \end{cases}
 $$
 
-Ta chỉ cần đặt
+Chỉ cần đặt
 
 $$
 P(x)=\left(\left(\sum_{j\geq 0}a_jx^j\right)\cdot x^d\Gamma\left(x^{-1}\right)\right)\bmod{x^d}.
@@ -145,7 +145,7 @@ Khi đó theo định nghĩa của $\tilde{q}_N$, tất yếu có $\dfrac{P(x)}{
 
 Mục tiêu vẫn là: cho các đa thức $P(x),Q(x)$ như trên, tính $\left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}$.
 
-Thuật toán Bostan-Mori dựa trên lặp Graeffe. Với các đa thức $P(x),Q(x)$ ở trên, ta có
+Thuật toán Bostan-Mori dựa trên lặp Graeffe. Với các đa thức $P(x),Q(x)$ ở trên, có
 
 $$
 \frac{P(x)}{Q(x)}=\frac{P(x)Q(-x)}{Q(x)Q(-x)}=\frac{U_0(x^2)+xU_1(x^2)}{V(x^2)}.
@@ -157,15 +157,15 @@ $$
 \left\lbrack x^k\right\rbrack\dfrac{P(x)}{Q(x)}=\left\lbrack x^{\left\lfloor k/2\right\rfloor}\right\rbrack \frac{U_{k\bmod{2}}(x)}{V(x)}.
 $$
 
-Ta trả giá bằng hai phép nhân đa thức để giảm kích thước bài toán xuống ít nhất một nửa. Khi $k=0$ thì hiển nhiên $\left\lbrack x^0\right\rbrack \dfrac{P(x)}{Q(x)}=\dfrac{P(0)}{Q(0)}$, nên độ phức tạp thời gian giống như trên.
+Cần dùng hai phép nhân đa thức để giảm kích thước bài toán xuống ít nhất một nửa. Khi $k=0$ thì $\left\lbrack x^0\right\rbrack \dfrac{P(x)}{Q(x)}=\dfrac{P(0)}{Q(0)}$, nên độ phức tạp thời gian giống như trên.
 
 <span id="tính-một-đoạn-nhiều-hạng-liên-tiếp"></span>
 
 #### Tính một đoạn nhiều hạng liên tiếp
 
-Mục tiêu là: cho các đa thức $P(x),Q(x)$ như trên, tính $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$. Trong các phép tính dưới đây, ta chỉ cần xét những hệ số "**có ảnh hưởng**" tới đáp án; đây là điểm then chốt của thuật toán Bostan-Mori.
+Mục tiêu là: cho các đa thức $P(x),Q(x)$ như trên, tính $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$. Trong các phép tính dưới đây, chỉ cần xét những hệ số "**có ảnh hưởng**" tới đáp án; đây là điểm then chốt của thuật toán Bostan-Mori.
 
-Ta có thể giả sử $\deg{P}<\deg{Q}$. Nếu không, chỉ cần chia đa thức có dư một lần để đưa bài toán về trường hợp này.
+Có thể giả sử $\deg{P}<\deg{Q}$. Nếu không, chỉ cần chia đa thức có dư một lần để đưa bài toán về trường hợp này.
 
 Trước hết xét bài toán đơn giản hơn:
 
@@ -173,27 +173,27 @@ $$
 \left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\frac{1}{Q(x)Q(-x)}\cdot Q(-x).
 $$
 
-Ta cần tính $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$, sau đó nhân một lần và lấy các hệ số của $x^L,\dots ,x^{R-1}$. Đặt $V(x^2)=Q(x)Q(-x)$, khi đó ta chỉ cần tính
+Cần tính $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$, sau đó nhân một lần và lấy các hệ số của $x^L,\dots ,x^{R-1}$. Đặt $V(x^2)=Q(x)Q(-x)$, khi đó chỉ cần tính
 
 $$
 \left\lbrack x^{\left\lbrack \left\lceil\frac{L-\deg{Q}}{2}\right\rceil,\left\lceil\frac{R}{2}\right\rceil\right)}\right\rbrack\frac{1}{V(x)}.
 $$
 
-Từ đó có thể khôi phục $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$. Tiếp theo, ta chỉ cần tính $\left\lbrack x^{\left\lbrack L-\deg{P},R\right)}\right\rbrack\dfrac{1}{Q(x)}$ rồi nhân với $P(x)$ một lần là thu được $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$.
+Từ đó có thể khôi phục $\left\lbrack x^{\left\lbrack L-\deg{Q},R\right)}\right\rbrack\dfrac{1}{Q(x)Q(-x)}$. Tiếp theo, chỉ cần tính $\left\lbrack x^{\left\lbrack L-\deg{P},R\right)}\right\rbrack\dfrac{1}{Q(x)}$ rồi nhân với $P(x)$ một lần là thu được $\left\lbrack x^{\left\lbrack L,R\right)}\right\rbrack\dfrac{P(x)}{Q(x)}$.
 
-Thuật toán trên đã chạy được, nhưng độ phức tạp của mỗi lần đệ quy còn phụ thuộc vào $R-L$. Ta muốn, ít nhất trong phần đệ quy, thoát khỏi sự phụ thuộc vào $R-L$. Cụ thể hơn, trước hết xét việc tính $\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)}$. Xét
+Thuật toán trên đã chạy được, nhưng độ phức tạp của mỗi lần đệ quy còn phụ thuộc vào $R-L$. Mục tiêu là loại bỏ sự phụ thuộc vào $R-L$, ít nhất trong phần đệ quy. Cụ thể hơn, trước hết xét việc tính $\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)}$. Xét
 
 $$
 \left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \frac{1}{Q(x)}=\left\lbrack x^{\left\lbrack L,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}\cdot Q(-x).
 $$
 
-Ta cần tính
+Cần tính
 
 $$
 \left\lbrack x^{\left\lbrack L-\deg Q,L+\deg Q+1\right)}\right\rbrack \dfrac{1}{Q(x)Q(-x)}.
 $$
 
-Với $V(x^2)=Q(x)Q(-x)$, ta chỉ cần tính
+Với $V(x^2)=Q(x)Q(-x)$, chỉ cần tính
 
 $$
 \left\lbrack x^{\left\lbrack \lceil (L-\deg Q)/2 \rceil,\lceil (L+\deg Q+1)/2 \rceil\right)}\right\rbrack \frac{1}{V(x)}
@@ -209,7 +209,7 @@ $$
 \end{cases}
 $$
 
-Ta biết $L+\deg Q$ và $L-\deg Q$ có cùng tính chẵn lẻ, nên
+Vì $L+\deg Q$ và $L-\deg Q$ có cùng tính chẵn lẻ, nên
 
 $$
 \left\lceil \frac{L+\deg Q+1}{2}\right\rceil -\left\lceil \frac{L-\deg Q}{2}\right\rceil =
@@ -236,13 +236,13 @@ $$
 \end{array}
 $$
 
-Tuy nhiên chỉ thuật toán này vẫn chưa đủ; ta cần tìm lại một biểu diễn hàm hữu tỉ và tính thêm nhiều hệ số hơn.
+Tuy nhiên, riêng thuật toán này vẫn chưa đủ; cần tìm lại một biểu diễn hàm hữu tỉ và tính thêm nhiều hệ số hơn.
 
 <span id="tìm-biểu-diễn-hàm-hữu-tỉ-mới"></span>
 
 #### Tìm biểu diễn hàm hữu tỉ mới
 
-Ta biết chính $Q(x)$ và một đoạn hệ số liên tiếp của $Q(x)^{-1}$, chẳng hạn $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ với $L\geq 0$. Ta muốn tính $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$. Điều này tương đương với việc tìm một $P(x)$ nào đó, $\deg P< \deg Q$, sao cho $\dfrac{P(x)}{Q(x)}$ có $\deg Q$ hạng đầu bằng $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$. Nói ngắn gọn: quan hệ truy hồi, tức mẫu số của hàm hữu tỉ, không đổi; việc ta làm chỉ là thay các giá trị đầu, tức tử số của hàm hữu tỉ.
+Đã biết chính $Q(x)$ và một đoạn hệ số liên tiếp của $Q(x)^{-1}$, chẳng hạn $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$ với $L\geq 0$. Mục tiêu là tính $\left\lbrack x^{\left\lbrack L+\deg Q,L+2\deg Q\right)}\right\rbrack Q(x)^{-1}$. Điều này tương đương với việc tìm một $P(x)$ nào đó, $\deg P< \deg Q$, sao cho $\dfrac{P(x)}{Q(x)}$ có $\deg Q$ hạng đầu bằng $\left\lbrack x^{\left\lbrack L,L+\deg Q\right)}\right\rbrack Q(x)^{-1}$. Nói ngắn gọn: quan hệ truy hồi, tức mẫu số của hàm hữu tỉ, không đổi; thao tác cần làm chỉ là thay các giá trị đầu, tức tử số của hàm hữu tỉ.
 
 Cụ thể, xét
 
@@ -250,7 +250,7 @@ $$
 \frac{P(x)}{Q(x)}=\sum_{j\geq 0}a_jx^j.
 $$
 
-Nay ta muốn đẩy truy hồi tiến thêm $n$ hạng, tức là
+Nay cần đẩy truy hồi tiến thêm $n$ hạng, tức là
 
 $$
 \sum_{j\geq n}a_jx^{j-n}=\frac{P(x)}{Q(x)x^n}-\frac{Q(x)\sum_{j=0}^{n-1}a_jx^j}{Q(x)x^n}.
