@@ -1,6 +1,7 @@
 ## Định nghĩa
 
-Sắp xếp trộn ([merge sort](https://en.wikipedia.org/wiki/Merge_sort)) là một thuật toán sắp xếp ổn định, hiệu quả, dựa trên so sánh.
+Sắp xếp trộn ([merge sort](https://en.wikipedia.org/wiki/Merge_sort)) là một
+thuật toán sắp xếp ổn định, hiệu quả, dựa trên so sánh.
 
 ## Tính chất
 
@@ -9,17 +10,24 @@ từng đoạn rồi trộn lại. Độ phức tạp thời gian trong trườn
 bình và bất lợi nhất đều là $\Theta (n \log n)$; độ phức tạp không gian là
 $\Theta (n)$.
 
-Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt, thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
+Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt,
+thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
 
 ## Quy trình
 
 ### Trộn
 
-Phần cốt lõi nhất của sắp xếp trộn là thao tác trộn (merge): trộn hai mảng đã sắp xếp `a[i]` và `b[j]` thành một mảng đã sắp xếp `c[k]`.
+Phần cốt lõi nhất của sắp xếp trộn là thao tác trộn (merge): trộn hai mảng đã
+sắp xếp `a[i]` và `b[j]` thành một mảng đã sắp xếp `c[k]`.
 
-Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất rồi đưa vào mảng `c[k]`; lặp lại quá trình trên cho đến khi một trong hai mảng `a[i]` và `b[j]` rỗng, sau đó đưa các phần tử còn lại của mảng kia vào `c[k]`.
+Duyệt `a[i]` và `b[j]` từ trái sang phải, mỗi lần lấy giá trị nhỏ hơn đưa vào
+mảng `c[k]`. Lặp lại quá trình này cho đến khi một trong hai mảng rỗng, sau đó
+đưa các phần tử còn lại của mảng kia vào `c[k]`.
 
-Để bảo đảm tính ổn định của phép sắp xếp, khi phần tử đầu của đoạn trước nhỏ hơn hoặc bằng phần tử đầu của đoạn sau (`a[i] <= b[j]`), thay vì chỉ khi nhỏ hơn (`a[i] < b[j]`), cần đưa nó vào `c[k]` như giá trị nhỏ nhất.
+Để bảo đảm tính ổn định của phép sắp xếp, khi phần tử đầu của đoạn trước nhỏ hơn
+hoặc bằng phần tử đầu của đoạn sau (`a[i] <= b[j]`), cần đưa phần tử của đoạn
+trước vào `c[k]`. Nếu chỉ làm vậy khi nó nhỏ hơn hẳn (`a[i] < b[j]`), thứ tự
+tương đối của các phần tử bằng nhau có thể bị đảo.
 
 #### Cài đặt
 
@@ -29,7 +37,7 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
         void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
           size_t i = 0, j = 0, k = 0;
           while (i < aLen && j < bLen) {
-            if (b[j] < a[i]) {  // <!> Kiểm tra b[j] < a[i] trước để bảo đảm tính ổn định
+            if (b[j] < a[i]) {  // <!> Kiểm tra b[j] < a[i] để bảo đảm tính ổn định
               c[k] = b[j];
               ++j;
             } else {
@@ -38,7 +46,8 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
             }
             ++k;
           }
-          // Lúc này một mảng đã rỗng, mảng kia còn phần tử; gộp mảng chưa rỗng vào c
+          // Lúc này một mảng đã rỗng, mảng kia còn phần tử.
+          // Gộp mảng chưa rỗng vào c.
           for (; i < aLen; ++i, ++k) c[k] = a[i];
           for (; j < bLen; ++j, ++k) c[k] = b[j];
         }
@@ -63,7 +72,8 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
         }
         ```
     
-    Cũng có thể dùng hàm `merge` trong thư viện `<algorithm>`; cách dùng giống với cách viết bằng con trỏ ở trên.
+    Cũng có thể dùng hàm `merge` trong thư viện `<algorithm>`; cách dùng giống
+    với cách viết bằng con trỏ ở trên.
 
 === "Python"
     ```python
@@ -78,7 +88,8 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
             else:
                 c.append(a[i])
                 i += 1
-        # Lúc này một mảng đã rỗng, mảng kia còn phần tử; gộp mảng chưa rỗng vào c
+        # Lúc này một mảng đã rỗng, mảng kia còn phần tử.
+        # Gộp mảng chưa rỗng vào c.
         c.extend(a[i:])
         c.extend(b[j:])
         return c
@@ -92,13 +103,17 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
     từng đoạn theo cùng quy trình. Sau khi hai đoạn con đã được sắp xếp, trộn
     chúng lại thành một mảng đã sắp xếp.
 
-Có thể chứng minh bằng quy nạp toán học rằng quy trình này biến một mảng thành mảng đã sắp xếp.
+Có thể chứng minh bằng quy nạp toán học rằng quy trình này biến một mảng thành
+mảng đã sắp xếp.
 
-Để bảo đảm độ phức tạp của phép sắp xếp, thông thường mảng được chia thành hai đoạn có độ dài gần bằng nhau nhất có thể ($mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$).
+Để bảo đảm độ phức tạp của phép sắp xếp, thông thường mảng được chia thành hai
+đoạn có độ dài gần bằng nhau nhất có thể
+($mid = \left\lfloor \dfrac{l + r}{2} \right\rfloor$).
 
 #### Cài đặt
 
-Lưu ý rằng các đoạn được biểu diễn trong đoạn mã sau lần lượt là $[l, r)$, $[l, mid)$, $[mid, r)$.
+Lưu ý rằng các đoạn được biểu diễn trong đoạn mã sau lần lượt là $[l, r)$,
+$[l, mid)$, $[mid, r)$.
 
 === "C/C++"
     ```cpp
@@ -111,7 +126,7 @@ Lưu ý rằng các đoạn được biểu diễn trong đoạn mã sau lần l
       int tmp[1024] = {};  // Cần đặt độ dài mảng tmp theo tình huống thực tế
                            // (bằng a), hoặc dùng vector; trước hết đặt kết quả
                            // trộn vào tmp, rồi chép ngược về mảng a
-      merge(a + l, a + mid, a + mid, a + r, tmp + l);  // pointer-style merge
+      merge(a + l, a + mid, a + mid, a + r, tmp + l);  // trộn bằng con trỏ
       for (int i = l; i < r; ++i) a[i] = tmp[i];
     }
     ```
@@ -135,15 +150,19 @@ Khi độ dài mảng là $1$, mảng đó đã được sắp xếp.
 
 Cắt toàn bộ mảng thành các đoạn có độ dài $1$.
 
-Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $1$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 2$;
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $1$, thu được
+một loạt đoạn đã sắp xếp có độ dài $\le 2$;
 
-Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 2$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 4$;
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 2$, thu được
+một loạt đoạn đã sắp xếp có độ dài $\le 4$;
 
-Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 4$, thu được một loạt đoạn đã sắp xếp có độ dài $\le 8$;
+Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có độ dài $\le 4$, thu được
+một loạt đoạn đã sắp xếp có độ dài $\le 8$;
 
 ……
 
-Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đoạn đã sắp xếp; đoạn này chính là mảng ban đầu sau khi đã sắp xếp.
+Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đoạn đã sắp xếp. Đoạn
+này chính là mảng ban đầu sau khi đã sắp xếp.
 
 ???+ note "Vì sao là $\le n$ mà không phải $= n$"
     Độ dài của mảng không nhất thiết là $2^x$, nên ở cuối có thể xuất hiện các
@@ -159,12 +178,13 @@ Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đo�
                            // trộn vào tmp, rồi chép ngược về mảng a
       for (size_t seg = 1; seg < n; seg <<= 1) {
         for (size_t left1 = 0; left1 < n - seg;
-             left1 += seg + seg) {  // n - seg: nếu cuối cùng chỉ còn một đoạn thì không cần trộn
+             left1 += seg + seg) {
+          // n - seg: nếu cuối cùng chỉ còn một đoạn thì không cần trộn.
           size_t right1 = left1 + seg;
           size_t left2 = right1;
-          size_t right2 = std::min(left2 + seg, n);  // <!> Lưu ý biên của đoạn cuối cùng
+          size_t right2 = std::min(left2 + seg, n);  // <!> Lưu ý biên của đoạn cuối
           merge(a + left1, a + right1, a + left2, a + right2,
-                tmp + left1);  // pointer-style merge
+                tmp + left1);  // trộn bằng con trỏ
           for (size_t i = left1; i < right2; ++i) a[i] = tmp[i];
         }
       }
@@ -186,7 +206,8 @@ Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đo�
 
 ## Nghịch thế
 
-Bài đọc liên quan và cài đặt tham khảo: [nghịch thế](../math/permutation.md#số-nghịch-thế)
+Bài đọc liên quan và cài đặt tham khảo:
+[nghịch thế](../math/permutation.md#số-nghịch-thế)
 
 Nghịch thế là cặp có thứ tự $(i, j)$ thỏa mãn $i < j$ và $a_i > a_j$.
 
@@ -198,7 +219,8 @@ phức tạp thời gian $\Theta (n \log n)$.
 
 Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc
 cây phân đoạn (segment tree), với độ phức tạp thời gian $O(n \log n)$. Phần
-giải thích chi tiết nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục).
+giải thích chi tiết nằm trong mô tả tương ứng ở trang
+[cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục).
 Cài đặt tham khảo của cả hai thuật toán đều có trong mục
 [nghịch thế](../math/permutation.md#số-nghịch-thế).
 
