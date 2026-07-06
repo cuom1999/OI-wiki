@@ -111,7 +111,7 @@ Python cũng có nhiều bản triển khai[^pythonimpl]. Lấy CPython 3 làm v
 
 ### Windows
 
-??? note "Một điểm cần chú ý về LLVM trên Windows"
+??? note "Một điểm cần lưu ý về LLVM trên Windows"
     Do LLVM trên Windows thiếu thư viện chuẩn, vẫn cần cài MSVC hoặc GCC.
 
 #### Cài đặt trực tiếp

@@ -147,7 +147,7 @@ Changes not staged for commit:
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Lúc này `README.md` đồng thời có thay đổi đã nằm trong vùng staging và thay đổi chưa nằm trong vùng staging. Thực ra, việc "đã stage hay chưa" áp dụng cho từng thay đổi, không phải cho cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không được commit.
+Lúc này `README.md` đồng thời có thay đổi đã nằm trong vùng staging và thay đổi chưa nằm trong vùng staging. Việc "đã stage hay chưa" áp dụng cho từng thay đổi, không phải cho cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không được commit.
 
 Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa stage vào vùng staging.
 
@@ -190,7 +190,7 @@ Ngoài ra, trong quá trình commit có thể dùng một vài tham số để �
 
 Dùng lệnh `git log` để xem lịch sử commit của kho.
 
-Có thể thấy lịch sử commit ghi lại mã băm SHA-1, tác giả commit, thời gian commit và thông điệp commit của mỗi lần commit.
+Lịch sử commit ghi lại mã băm SHA-1, tác giả commit, thời gian commit và thông điệp commit của mỗi lần commit.
 
 ```console
 $ git log
@@ -536,7 +536,7 @@ Nhiều công cụ GUI có hỗ trợ nhiều ngôn ngữ giao diện, ví dụ 
 
 ## Tài liệu tham khảo và chú thích
 
-[^note1]: Thực ra Git còn có một tệp cấu hình chung dành cho mọi người dùng trên hệ thống và mọi kho trên hệ thống. Tệp cấu hình này có phạm vi bao phủ rộng nhất, cấp cao hơn tệp cấu hình người dùng. Vì cấu hình này ít dùng trong thực tế, phần này không trình bày thêm.
+[^note1]: Git còn có một tệp cấu hình chung dành cho mọi người dùng trên hệ thống và mọi kho trên hệ thống. Tệp cấu hình này có phạm vi bao phủ rộng nhất, cấp cao hơn tệp cấu hình người dùng. Vì cấu hình này ít dùng trong thực tế, phần này không trình bày thêm.
 
 [^note2]: [Pro Git Book](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) cung cấp hình minh họa quá trình Rebase; nhờ hình ảnh, người đọc có thể hiểu cơ chế Rebase tốt hơn.
 

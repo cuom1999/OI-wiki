@@ -232,7 +232,7 @@ $\rightarrow$ Sau `\maketitle`, nhập nội dung sau:
 \pagenumbering{arabic}
 ```
 
-Lệnh `\newpage` sẽ bắt đầu một trang mới, nhờ đó có thể thấy ảnh hưởng của lệnh `\pagenumbering`. 14 dòng đầu của tài liệu sẽ trông như sau:
+Lệnh `\newpage` sẽ bắt đầu một trang mới, nhờ đó thể hiện ảnh hưởng của lệnh `\pagenumbering`. 14 dòng đầu của tài liệu sẽ trông như sau:
 
 ```tex
 \documentclass[a4paper, 12pt]{article}
@@ -579,7 +579,7 @@ tạo ra kết quả:
 Để viết công thức không đánh số, thêm ký tự `*` ngay sau tên môi trường, chẳng hạn `{equation*}`, `{eqnarray*}`.
 
 ??? warning "Cảnh báo"
-    Có thể thấy rằng khi dùng `eqnarray`, sẽ xuất hiện các vấn đề như khoảng trống quanh dấu bằng quá lớn.
+    Khi dùng `eqnarray`, sẽ xuất hiện các vấn đề như khoảng trống quanh dấu bằng quá lớn.
     
     Có thể dùng môi trường `align` trong gói `amsmath`:
     

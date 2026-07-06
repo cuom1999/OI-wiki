@@ -74,7 +74,7 @@ Theo mặc định, phông chữ mã nguồn của GUIDE không phải phông ch
 
 Trong Edit -> Options -> Syntax Highlighting Settings ("Chỉnh sửa -> Tùy chọn -> Thiết lập tô sáng cú pháp"), nhấp nút "All Fonts" ("Tất cả phông chữ") để đổi phông chữ của trình soạn thảo.
 
-Cần chú ý rằng với tệp mới chưa lưu, phông chữ vẫn là phông chữ mặc định. Vì vậy, nên lưu tệp trước khi bắt đầu chỉnh sửa (nhấp nút "Save" ("Lưu") trên thanh công cụ, hoặc nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>S</kbd>), rồi mới chỉnh sửa.
+Với tệp mới chưa lưu, phông chữ vẫn là phông chữ mặc định. Vì vậy, nên lưu tệp trước khi bắt đầu chỉnh sửa (nhấp nút "Save" ("Lưu") trên thanh công cụ, hoặc nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>S</kbd>), rồi mới chỉnh sửa.
 
 ## Biên dịch và chạy
 
