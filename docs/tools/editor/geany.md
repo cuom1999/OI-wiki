@@ -1,6 +1,7 @@
 author: xingjiapeng, MingqiHuang
 
-Geany là một trình soạn thảo nhẹ và tiện lợi, khá thân thiện với người mới trong môi trường Linux.
+Geany là một trình soạn thảo nhẹ, tiện lợi và thân thiện với người mới trong môi
+trường Linux.
 
 Giống Dev-C++, nó có thể biên dịch và chạy một tệp đơn lẻ.
 

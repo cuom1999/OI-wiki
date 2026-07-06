@@ -67,14 +67,17 @@ Phần bổ trợ khuyến nghị:
 -   SublimeAstyleFormatter: Astyle, dùng để định dạng mã.
 -   Diffy: nhấn <kbd>Ctrl</kbd>+<kbd>K</kbd>&<kbd>Ctrl</kbd>+<kbd>D</kbd> để nhanh chóng so sánh khác biệt giữa tệp đang mở ở khung nhìn thứ nhất và thứ hai; cách so sánh là theo từng dòng.
 -   ConvertToUTF8: tự động nhận diện mã hóa tệp và hỗ trợ chuyển đổi mã hóa.
--   SideBarEnhancements: tăng cường thanh bên, khá đáng dùng.
+-   SideBarEnhancements: tăng cường thanh bên, hữu ích khi thao tác với nhiều
+    tệp và thư mục.
 -   Transparency: làm cửa sổ trong suốt.
 
 Nếu có nhu cầu khác, có thể thử tìm kiếm thêm.
 
 Một số giao diện:[^ref3]
 
-1337 (chỉ bảng màu), 3024 (chỉ bảng màu), Grandson-of-Obsidian (chỉ bảng màu), Seti\_UI (chỉ giao diện, có thêm tô sáng cho Git và một số định dạng khác, khá đáng dùng), Material Theme, Predawn, Agila, Materialize.
+1337 (chỉ bảng màu), 3024 (chỉ bảng màu), Grandson-of-Obsidian (chỉ bảng màu),
+Seti\_UI (chỉ giao diện, có thêm tô sáng cho Git và một số định dạng khác),
+Material Theme, Predawn, Agila, Materialize.
 
 Nếu muốn chỉnh bảng màu riêng, có thể truy cập [tmTheme Editor](http://tmtheme-editor.herokuapp.com/).
 
@@ -125,7 +128,8 @@ Vintage của ST có một số điểm khác với Vi, một phần được li
 
 #### Thiết lập ST
 
-Thiết lập trong `Preferences->Settings` (`Tùy chọn -> Thiết lập`). Dưới đây liệt kê một số tùy chọn khá hữu ích:
+Thiết lập trong `Preferences->Settings` (`Tùy chọn -> Thiết lập`). Dưới đây liệt
+kê một số tùy chọn hữu ích:
 
 ```JSON
 {

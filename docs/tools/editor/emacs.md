@@ -6,17 +6,22 @@ Trang này là hướng dẫn nhập môn Emacs.
 
 ## Giới thiệu
 
-Emacs là một trình soạn thảo rất dễ bắt đầu; chỉ cần vài dòng cấu hình ngắn là có thể dùng. Tuy nhiên, để dùng Emacs thật thành thạo cho nhiều công việc khác nhau thì vẫn cần một khoảng thời gian nhất định.
+Emacs là một trình soạn thảo dễ bắt đầu; chỉ cần vài dòng cấu hình ngắn là có
+thể dùng. Tuy nhiên, để dùng Emacs thành thạo cho nhiều công việc khác nhau thì
+vẫn cần một khoảng thời gian nhất định.
 
-Là một hướng dẫn nhập môn, trang này chỉ giới thiệu các chức năng cơ bản của Emacs, cũng như cách dùng Emacs để viết và gỡ lỗi mã tương đối thuận tiện.
+Là một hướng dẫn nhập môn, trang này chỉ giới thiệu các chức năng cơ bản của
+Emacs, cũng như cách dùng Emacs để viết và gỡ lỗi mã thuận tiện hơn.
 
 ## Nhập môn
 
 ### Lệnh
 
-Lệnh có vai trò rất lớn trong Emacs.
+Lệnh có vai trò quan trọng trong Emacs.
 
-Dùng phím Application[^note1] (trên Windows, Emacs chưa gán phím này, cần tự thiết lập) hoặc phím tắt M-x (<kbd>Alt</kbd>+<kbd>x</kbd>) để mở ô nhập lệnh; sau khi nhập xong, nhấn Enter để thực thi lệnh.
+Dùng phím Application[^note1] (trên Windows, Emacs chưa gán phím này, cần tự
+thiết lập) hoặc phím tắt M-x (<kbd>Alt</kbd>+<kbd>x</kbd>) để mở ô nhập lệnh;
+sau khi nhập xong, nhấn Enter để thực thi lệnh.
 
 Thường dùng lệnh `es` hoặc `eshell` để mở Eshell (tương tự một trình dòng lệnh).
 
@@ -34,11 +39,15 @@ Lối vào chức năng biên dịch và gỡ lỗi nằm trong menu thả xuố
 
 Có thể dùng trình dòng lệnh hoặc Eshell để chạy chương trình.
 
-Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools (`Công cụ`), nhập tên chương trình (thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể sai**) là có thể bắt đầu gỡ lỗi.
+Sau khi nhấn gỡ lỗi (gud-gdb) trong Tools (`Công cụ`), nhập tên chương trình
+(thường sẽ được tự động điền sẵn, nhưng nếu giữa chừng lưu chương trình thành
+tên khác hoặc mở hai chương trình cần gỡ lỗi, **tên tệp tự động điền có thể
+sai**) là có thể bắt đầu gỡ lỗi.
 
 ### Chia cửa sổ
 
-Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều bộ đệm mà không cần chuyển qua lại giữa các bộ đệm, thuận tiện cho kiểm thử và gỡ lỗi mã.
+Chức năng này cho phép người dùng đồng thời xem nội dung của nhiều bộ đệm mà
+không cần chuyển qua lại giữa các bộ đệm, thuận tiện cho kiểm thử và gỡ lỗi mã.
 
 Chức năng chia cửa sổ có thể hiển thị nhiều cửa sổ cùng lúc; kéo mép cửa sổ bằng chuột để thay đổi kích thước cửa sổ.
 
@@ -54,7 +63,9 @@ Bố cục cửa sổ được khuyến nghị là chia cửa sổ thành bốn 
 
 ### Phím tắt
 
-Emacs có hệ thống phím tắt cực kỳ phong phú, có thể nâng cao đáng kể hiệu suất làm việc. Người dùng có thể tự định nghĩa phím tắt hoặc thiết lập ánh xạ phím tắt trong cấu hình.
+Emacs có hệ thống phím tắt phong phú, có thể nâng cao đáng kể hiệu suất làm việc.
+Người dùng có thể tự định nghĩa phím tắt hoặc thiết lập ánh xạ phím tắt trong
+cấu hình.
 
 Do số lượng phím tắt quá nhiều, cách dùng phím tắt của Emacs khác với hệ điều hành.
 

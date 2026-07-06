@@ -70,7 +70,8 @@ sudo checkinstall --pkgname "GUIDE" --pkgversion "1.0.2" -y -rpmi
 
 Nhấp nút "New File" ("Tệp mới") trên thanh công cụ phía trên trang (hoặc dùng phím tắt <kbd>Ctrl</kbd>+<kbd>N</kbd>) để tạo tệp mới.
 
-Theo mặc định, phông chữ mã nguồn của GUIDE không phải phông chữ monospace nên nhìn khá xấu; vì vậy cần đổi phông chữ trong phần thiết lập.
+Theo mặc định, phông chữ mã nguồn của GUIDE không phải phông chữ monospace nên
+khó đọc; vì vậy cần đổi phông chữ trong phần thiết lập.
 
 Trong Edit -> Options -> Syntax Highlighting Settings ("Chỉnh sửa -> Tùy chọn -> Thiết lập tô sáng cú pháp"), nhấp nút "All Fonts" ("Tất cả phông chữ") để đổi phông chữ của trình soạn thảo.
 
