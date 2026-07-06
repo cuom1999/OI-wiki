@@ -119,7 +119,7 @@ mục không rỗng (cùng toàn bộ tệp bên trong), trên Unix có thể ch
 ### Cơ chế chuyển hướng
 
 > Tôi đã biên dịch một chương trình đọc từ chuẩn nhập và ghi ra chuẩn xuất. Nhưng
-> tệp nhập và tệp xuất đều rất lớn; khi đó có cách nào chuyển hướng nhập sang tệp
+> tệp nhập và tệp xuất đều lớn; khi đó có cách nào chuyển hướng nhập sang tệp
 > nhập chỉ định, và chuyển hướng xuất sang tệp xuất chỉ định không?
 
 Có thể làm bằng lệnh sau.
@@ -145,8 +145,8 @@ chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trướ
 
 ### Thực thi chương trình
 
-Với một chương trình thực thi hoặc một tập lệnh batch, chỉ cần nhập trực tiếp tên
-tệp của nó trong dòng lệnh là có thể chạy.
+Với một chương trình thực thi hoặc một tập lệnh batch, nhập trực tiếp tên tệp
+của nó trong dòng lệnh để chạy.
 
 Khi thực thi một tệp, dòng lệnh sẽ không tìm qua tất cả thư mục. Biến môi trường
 `PATH` mô tả phạm vi đường dẫn tìm kiếm của dòng lệnh; dòng lệnh sẽ tìm tệp mục
@@ -262,7 +262,7 @@ với độ chính xác ba chữ số, hoặc `%3lU` để xuất thời gian ch
 người dùng với độ chính xác ba chữ số.[^bash-time-format]
 
 Nếu muốn gọi phiên bản GNU của time, cần dùng `\time` hoặc `/usr/bin/time`; tuy
-nhiên định dạng xuất của nó không dễ đọc, nên có thể thêm tham số `-p` (tức
+nhiên định dạng xuất của nó khó đọc, nên có thể thêm tham số `-p` (tức
 `\time -p`) để nhận đầu ra dễ đọc.
 
 ## Ống dẫn
@@ -285,7 +285,7 @@ $ A | B
 
 Lệnh này tạo một ống dẫn trong bộ nhớ, rồi khởi động hai chương trình cùng lúc.
 Mỗi lần chương trình A muốn xuất dữ liệu, dữ liệu đó được chuyển hướng vào ống
-dẫn; bản thân ống dẫn không lưu dữ liệu (chỉ có một bộ đệm rất nhỏ). Trước khi B
+dẫn; bản thân ống dẫn không lưu dữ liệu (chỉ có một bộ đệm nhỏ). Trước khi B
 đọc, thao tác xuất của A sẽ bị chặn; sau khi B đọc dữ liệu vào, thao tác xuất của
 A mới tiếp tục. Nhờ vậy, các vấn đề trên được giải quyết gọn gàng: không có thao
 tác IO đĩa, hai đoạn mã chạy đồng thời, và cũng không tốn thêm nhiều bộ nhớ để
