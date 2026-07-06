@@ -39,7 +39,7 @@ xét trường hợp không chia hết, tức $a = b \times q + r$, trong đó $
 Có thể chứng minh $\gcd(a,b)=\gcd(b,a \bmod b)$ như sau:
 
 ???+ note "Chứng minh"
-    Đặt $a=bk+c$, rõ ràng $c=a \bmod b$. Nếu $d \mid a,~d \mid b$ thì
+    Đặt $a=bk+c$, khi đó $c=a \bmod b$. Nếu $d \mid a,~d \mid b$ thì
     $c=a-bk, \frac{c}{d}=\frac{a}{d}-\frac{b}{d}k$.
     
     Từ vế phải suy ra $\frac{c}{d}$ là số nguyên, tức $d \mid c$. Vì vậy mọi
@@ -47,10 +47,10 @@ Có thể chứng minh $\gcd(a,b)=\gcd(b,a \bmod b)$ như sau:
     
     Chiều ngược lại cũng cần chứng minh:
     
-    Nếu $d \mid b,~d\mid (a \bmod b)$, tương tự ta có
+    Nếu $d \mid b,~d\mid (a \bmod b)$, tương tự có
     $\frac{a\bmod b}{d}=\frac{a}{d}-\frac{b}{d}k,~\frac{a\bmod b}{d}+\frac{b}{d}k=\frac{a}{d}$.
     
-    Vì vế trái rõ ràng là số nguyên, $\frac{a}{d}$ cũng là số nguyên, tức
+    Vì vế trái là số nguyên, $\frac{a}{d}$ cũng là số nguyên, tức
     $d \mid a$. Vì vậy mọi ước chung của $b,a\bmod b$ cũng là ước chung của
     $a,b$.
     
@@ -58,8 +58,8 @@ Có thể chứng minh $\gcd(a,b)=\gcd(b,a \bmod b)$ như sau:
     
     Do đó $\gcd(a,b)=\gcd(b,a\bmod b)$.
 
-Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước hai số không tăng lên, nên ta
-thu được một cách đệ quy để tính ước chung lớn nhất của hai số.
+Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước hai số không tăng lên, nên thu
+được một cách đệ quy để tính ước chung lớn nhất của hai số.
 
 <span id="cài-đặt-thuật-toán-euclid"></span>
 #### Cài đặt
@@ -100,7 +100,7 @@ thu được một cách đệ quy để tính ước chung lớn nhất của h
 
 Đệ quy đến khi `b == 0` (tức `a % b == 0` ở bước trước) thì trả về giá trị.
 
-Theo cách đệ quy trên, ta cũng có thể viết bản lặp:
+Từ cách đệ quy trên, cũng có thể viết bản lặp:
 
 === "C++"
     ```cpp
@@ -136,7 +136,7 @@ Theo cách đệ quy trên, ta cũng có thể viết bản lặp:
 
 Các thuật toán trên đều có thể gọi là thuật toán Euclid (tiếng Anh: Euclidean algorithm).
 
-Ngoài ra, với C++17, ta có thể dùng
+Ngoài ra, với C++17, có thể dùng
 [`std::gcd`](https://en.cppreference.com/w/cpp/numeric/gcd) và
 [`std::lcm`](https://en.cppreference.com/w/cpp/numeric/lcm) trong tệp tiêu đề
 [`<numeric>`](https://en.cppreference.com/w/cpp/header/numeric) để tính ước
@@ -148,19 +148,19 @@ chung lớn nhất và bội chung nhỏ nhất.
     `std::rotate`.[^1] Dùng hàm này có thể gây các vấn đề ngoài dự kiến, nên
     nhìn chung không khuyến nghị.
 
-Nếu hai số $a$ và $b$ thỏa mãn $\gcd(a, b) = 1$, ta nói $a$ và $b$ nguyên tố
+Nếu hai số $a$ và $b$ thỏa mãn $\gcd(a, b) = 1$, gọi $a$ và $b$ là nguyên tố
 cùng nhau.
 
 <span id="tính-chất-thuật-toán-euclid"></span>
 #### Tính chất
 
-Hiệu quả thời gian của thuật toán Euclid ra sao? Sau đây ta chứng minh: khi đầu
+Hiệu quả thời gian của thuật toán Euclid ra sao? Sau đây chứng minh: khi đầu
 vào là hai số nguyên nhị phân có độ dài $n$, độ phức tạp thời gian của thuật
 toán Euclid là $O(n)$. Nói cách khác, nếu mặc định $a, b$ cùng bậc, độ phức tạp
 thời gian là $O(\log\max(a, b))$.
 
 ???+ note "Chứng minh"
-    Khi tính $\gcd(a,b)$, ta gặp hai trường hợp:
+    Khi tính $\gcd(a,b)$, có hai trường hợp:
     
     -   $a < b$, khi đó $\gcd(a,b)=\gcd(b,a)$;
     -   $a \geq b$, khi đó $\gcd(a,b)=\gcd(b,a \bmod b)$, và phép lấy modulo
@@ -168,8 +168,7 @@ thời gian là $O(\log\max(a, b))$.
         tối đa $O(\log a) = O(n)$ lần.
     
     Sau trường hợp thứ nhất nhất định sẽ đến trường hợp thứ hai, nên số lần xảy
-    ra trường hợp thứ nhất chắc chắn **không nhiều hơn** số lần xảy ra trường
-    hợp thứ hai.
+    ra trường hợp thứ nhất **không nhiều hơn** số lần xảy ra trường hợp thứ hai.
     
     Vì vậy chỉ cần đệ quy tối đa $O(n)$ lần là có kết quả.
 
@@ -316,15 +315,15 @@ compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-w
 <span id="ước-chung-lớn-nhất-của-nhiều-số"></span>
 ### Ước chung lớn nhất của nhiều số
 
-Vậy tính ước chung lớn nhất của nhiều số như thế nào? Rõ ràng đáp án phải là
-ước của từng số, nên cũng phải là ước của mỗi cặp hai số liên tiếp. Dùng quy
-nạp có thể chứng minh: mỗi lần lấy hai số ra tính đáp án rồi đưa lại vào sẽ
-không ảnh hưởng đến đáp án cần tìm.
+Vậy tính ước chung lớn nhất của nhiều số như thế nào? Đáp án phải là ước của
+từng số, nên cũng phải là ước của mỗi cặp hai số liên tiếp. Dùng quy nạp có thể
+chứng minh: mỗi lần lấy hai số ra tính đáp án rồi đưa lại vào sẽ không ảnh
+hưởng đến đáp án cần tìm.
 
 <span id="bội-chung-nhỏ-nhất"></span>
 ## Bội chung nhỏ nhất
 
-Tiếp theo ta giới thiệu cách tính bội chung nhỏ nhất (Least Common Multiple,
+Phần tiếp theo giới thiệu cách tính bội chung nhỏ nhất (Least Common Multiple,
 LCM).
 
 <span id="định-nghĩa-bội-chung-nhỏ-nhất"></span>
@@ -367,10 +366,10 @@ Muốn tính bội chung nhỏ nhất của hai số, chỉ cần tính ước c
 ### Nhiều số
 
 Khi đã tính được $\gcd$ của hai số, việc tính bội chung nhỏ nhất là $O(1)$. Vì
-vậy với nhiều số, thực ra không cần tính một ước chung lớn nhất chung rồi xử lý
-tiếp. Cách trực tiếp là: sau khi tính $\gcd$ của hai số, thay vì đưa ước chung
-lớn nhất đó vào dãy để tiếp tục tính với các số sau, ta chuyển sang đưa bội
-chung nhỏ nhất vào dãy.
+vậy với nhiều số, không cần tính một ước chung lớn nhất chung rồi xử lý tiếp.
+Cách trực tiếp là: sau khi tính $\gcd$ của hai số, thay vì đưa ước chung lớn
+nhất đó vào dãy để tiếp tục tính với các số sau, chuyển sang đưa bội chung nhỏ
+nhất vào dãy.
 
 <span id="thuật-toán-euclid-mở-rộng"></span>
 ## Thuật toán Euclid mở rộng
@@ -430,19 +429,19 @@ $x=1,y=0$ để tính nghiệm.
         return d, y, x - (a // b) * y
     ```
 
-Hàm trả về giá trị $\gcd$; trong quá trình đó ta tính được $x,y$.
+Hàm trả về giá trị $\gcd$; trong quá trình đó tính được $x,y$.
 
 <span id="phân-tích-miền-giá-trị"></span>
 ### Phân tích miền giá trị
 
-Phương trình $ax+by=\gcd(a,b)$ có vô số nghiệm, và rõ ràng một số nghiệm có thể
+Phương trình $ax+by=\gcd(a,b)$ có vô số nghiệm, và một số nghiệm có thể
 làm tràn `long long`. May mắn là nếu $b\not= 0$, nghiệm khả thi do thuật toán
 Euclid mở rộng tìm được luôn có $|x|\le b,|y|\le a$. Sau đây là chứng minh của
 tính chất này.
 
 ??? note "Chứng minh"
-    -   Khi $\gcd(a,b)=b$, ta có $a\bmod b=0$, nên đệ quy sẽ dừng ở tầng tiếp
-        theo. Thu được $x_1=0,y_1=1$, rõ ràng
+    -   Khi $\gcd(a,b)=b$, có $a\bmod b=0$, nên đệ quy sẽ dừng ở tầng tiếp
+        theo. Thu được $x_1=0,y_1=1$, và
         $a,b\ge 1\ge |x_1|,|y_1|$.
     -   Khi $\gcd(a,b)\not= b$, giả sử $|x_2|\le (a\bmod b),|y_2|\le b$.
         Vì $x_1=y_2,y_1=x_2-{\left\lfloor\dfrac{a}{b}\right\rfloor}y_2$, nên
@@ -454,7 +453,7 @@ tính chất này.
 <span id="viết-thuật-toán-euclid-mở-rộng-bằng-phương-pháp-lặp"></span>
 ### Viết thuật toán Euclid mở rộng bằng phương pháp lặp
 
-Ban đầu, khi $x = 1$, $y = 0$, $x_1 = 0$, $y_1 = 1$, rõ ràng có:
+Ban đầu, khi $x = 1$, $y = 0$, $x_1 = 0$, $y_1 = 1$, có:
 
 $$
 \begin{cases}
@@ -474,7 +473,7 @@ $$
 $$
 
 Thay $a$ trong quá trình lặp bằng $ax + by = a$, thay $b$ bằng
-$ax_1 + by_1 = b$, ta được:
+$ax_1 + by_1 = b$, thu được:
 
 $$
 \begin{aligned}
@@ -507,11 +506,11 @@ int gcd(int a, int b, int& x, int& y) {
 }
 ```
 
-Nếu quan sát kỹ $a_1$ và $b_1$, ta sẽ thấy chúng có giá trị hoàn toàn giống
-trong bản lặp của thuật toán Euclid, và các công thức sau luôn đúng tại mọi
-thời điểm (trước vòng `while` và sau mỗi lần lặp):
+Quan sát kỹ $a_1$ và $b_1$ sẽ nhận thấy chúng có giá trị hoàn toàn giống trong
+bản lặp của thuật toán Euclid, và các công thức sau luôn đúng tại mọi thời điểm
+(trước vòng `while` và sau mỗi lần lặp):
 $x \cdot a +y \cdot b =a_1$ và $x_1 \cdot a +y_1 \cdot b= b_1$. Vì vậy, thuật
-toán chắc chắn tính đúng $\gcd$.
+toán tính đúng $\gcd$.
 
 Cuối cùng $a_1$ chính là $\gcd$ cần tìm, và có
 $x \cdot a +y \cdot b = g$.
@@ -536,10 +535,10 @@ a\\b
 $$
 
 Trong đó ký hiệu làm tròn xuống $\lfloor c\rfloor$ là số nguyên lớn nhất không
-vượt quá $c$. Ta định nghĩa biến đổi
+vượt quá $c$. Định nghĩa biến đổi
 $\begin{bmatrix}a\\b\end{bmatrix}\mapsto \begin{bmatrix}0&1\\1&-\lfloor a/b\rfloor\end{bmatrix}\begin{bmatrix}a\\b\end{bmatrix}$.
 
-Dễ thấy thuật toán Euclid chính là việc liên tục áp dụng biến đổi này, nên có
+Thuật toán Euclid chính là việc liên tục áp dụng biến đổi này, nên có
 
 $$
 \begin{bmatrix}
@@ -593,7 +592,7 @@ $$
 
 Thỏa mãn $a\cdot x_1+b\cdot x_2=\gcd(a,b)$, tức thuật toán Euclid mở rộng. Lưu
 ý việc nhân thêm một ma trận đơn vị ở cuối không ảnh hưởng đến kết quả; điều
-này gợi ý ta có thể bắt đầu bằng cách duy trì một ma trận đơn vị $2\times 2$ để
+này gợi ý có thể bắt đầu bằng cách duy trì một ma trận đơn vị $2\times 2$ để
 viết phương pháp lặp gọn hơn:
 
 ```cpp
