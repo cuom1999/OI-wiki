@@ -56,13 +56,13 @@ chạy bình thường.
 
 Ghi chú: Chương trình C++ thường không cần `-lm` vẫn có thể biên dịch và chạy
 bình thường. Các đề NOI/NOIP qua các năm đều có `-lm` trong tùy chọn biên dịch
-C++, nên ở đây cũng thêm tùy chọn này.
+C++, nên phần này cũng thêm tùy chọn này.
 
 ## Đoạn mã đầu tiên
 
 Bắt đầu hành trình nhập môn C++ bằng chương trình ví dụ sau.
 
-Ghi chú: Trước khi gõ mã, cần chú ý chuyển bộ gõ sang tiếng Anh.
+Ghi chú: Trước khi gõ mã, cần chuyển bộ gõ sang tiếng Anh.
 
 Chương trình C++:
 
@@ -86,7 +86,7 @@ int main() {                // định nghĩa hàm main
 }
 ```
 
-Lưu ý: Chương trình C ở đây chỉ dùng để tham khảo. C++ về cơ bản tương thích với
+Lưu ý: Chương trình C trong phần này chỉ dùng để tham khảo. C++ về cơ bản tương thích với
 C, đồng thời có nhiều tính năng mới giúp thí sinh làm việc hiệu quả hơn trong
 phòng thi. Xem thêm
 [khác biệt giữa C++ và các ngôn ngữ thường dùng khác](./cpp-other-langs.md).

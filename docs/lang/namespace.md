@@ -35,12 +35,12 @@ void f() {
 }  // namespace B
 
 void f() {
-  B::f();  // thực ra truy cập A::B::f(); vì hiện đang ở trong không gian tên A,
+  B::f();  // truy cập A::B::f(); vì hiện đang ở trong không gian tên A,
            // nên có thể lược bỏ A:: phía trước
 }
 }  // namespace A
 
-void f()  // ở đây định nghĩa hàm f trong không gian tên toàn cục, không xung đột
+void f()  // định nghĩa hàm f trong không gian tên toàn cục, không xung đột
           // với A::f hay A::B::f
 {
   A::f();

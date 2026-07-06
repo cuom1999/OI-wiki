@@ -316,7 +316,7 @@ auto dfs = [&](int i) -> void {
 };
 ```
 
-Ở đây đoạn mã thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề:
+Đoạn mã này thử bắt giữ $dfs$ trong danh sách bắt giữ, nhưng có một vấn đề:
 kiểu của $dfs$ là `auto`, nên phải chờ đến khi kiểu của vế phải dấu bằng được suy
 luận xong thì mới suy luận được kiểu của $dfs$. Trong khi đó, để lambda bắt giữ
 $dfs$, nó lại phải biết kiểu của $dfs$ trước mới tạo được biến tham chiếu tương

@@ -97,7 +97,7 @@ toán tử tự tăng `++` và tự giảm `--` sẽ được dùng.
 
 Toán tử tự tăng/tự giảm có thể đặt trước hoặc sau biến. Đặt trước biến gọi là
 dạng tiền tố, đặt sau biến gọi là dạng hậu tố. Khi dùng riêng lẻ, hai dạng này
-không khác nhau đáng kể; nếu cần dùng giá trị của cả biểu thức thì phải chú ý
+không khác nhau đáng kể; nếu cần dùng giá trị của cả biểu thức thì cần lưu ý
 như trong ví dụ sau. Chi tiết có thể tham khảo phần ví dụ trong
 [tham chiếu](./reference.md).
 
@@ -145,7 +145,7 @@ Toán tử điều kiện có thể xem là dạng viết tắt của câu lện
 | `==`    | bằng |
 | `!=`    | khác |
 
-Trong đó cần đặc biệt chú ý phân biệt toán tử bằng `==` với toán tử gán `=`,
+Trong đó cần đặc biệt phân biệt toán tử bằng `==` với toán tử gán `=`,
 điều này đặc biệt quan trọng trong câu lệnh kiểm tra điều kiện.
 
 `if (op = 1)` và `if (op == 1)` trông có vẻ giống nhau, nhưng chức năng thực tế
@@ -206,8 +206,8 @@ Result = (1 + 2, 3 + 4, 5 + 6);
 Các toán tử này dùng để truy cập thành viên của đối tượng hoặc truy cập bộ nhớ.
 Trong các toán tử ở bảng trên, `.` không thể được nạp chồng, còn `[]`, `&`, `*`
 và `->` có thể được nạp chồng. Với nội dung liên quan đến `&`, `*` và `->`, nên
-đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Ở đây
-cũng lược bỏ hai toán tử rất ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
+đọc hướng dẫn về [con trỏ](./pointer.md) và [tham chiếu](./reference.md). Phần
+này cũng lược bỏ hai toán tử rất ít dùng là `.*` và `->*`; cách dùng cụ thể có thể
 xem tại
 [sổ tay ngôn ngữ C++](https://en.cppreference.com/w/cpp/language/operator_member_access).
 
@@ -304,7 +304,7 @@ có chỉnh sửa.
 | **Cấp 17** | | | |
 | `,` | dấu phân tách bằng dấu phẩy | `for (i = 0, j = 0; i < 10; i++, j++) ...` | có thể |
 
-Cần chú ý rằng bảng trên không liệt kê các toán tử như `const_cast`,
+Cần lưu ý rằng bảng trên không liệt kê các toán tử như `const_cast`,
 `static_cast`, `dynamic_cast`, `reinterpret_cast`, `typeid`, `sizeof...`,
 `noexcept` và `alignof`, vì hình thức sử dụng của chúng giống lời gọi hàm và
 không gây nhập nhằng.

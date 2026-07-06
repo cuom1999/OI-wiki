@@ -61,7 +61,7 @@ char& char_number(std::string& s, std::size_t n) {
 int main() {
   std::string str = "Test";
   char_number(str, 1) = 'a';  // Giá trị hàm trả về là trái trị, nên có thể được gán
-  std::cout << str << '\n';   // Ở đây xuất ra "TastTest"
+  std::cout << str << '\n';   // xuất ra "TastTest"
 }
 ```
 
@@ -154,7 +154,7 @@ Sau đây là các ví dụ thường gặp về tham chiếu treo:
     Tương tự, thao tác chèn vào các bộ chứa như `std::vector`,
     `std::unordered_map` cũng đều có thể dẫn tới cấp phát lại bộ nhớ.
 
-Khi sử dụng tham chiếu, cần luôn chú ý tới thời gian sống của đối tượng mà tham
+Khi sử dụng tham chiếu, cần luôn lưu ý tới thời gian sống của đối tượng mà tham
 chiếu gắn với để tránh tạo ra tham chiếu treo.
 
 Thông thường, công cụ kiểm tra tĩnh và thói quen viết mã tốt có thể giúp tránh

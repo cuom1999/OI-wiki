@@ -105,7 +105,7 @@ Mảng hai chiều thường được xử lý bằng các vòng lặp `for` l�
 Ví dụ: đọc hai số $n$ và $m$ từ chuẩn nhập, lần lượt biểu thị chiều cao và chiều
 rộng của một ảnh đen trắng, thỏa mãn $n,m\leq 1000$. Trong $n$ dòng dữ liệu tiếp
 theo, mỗi dòng có $m$ số cách nhau bằng khoảng trắng, biểu thị giá trị độ sáng
-tại vị trí đó. Ta sẽ đọc ảnh này và lưu vào mảng hai chiều.
+tại vị trí đó. Cần đọc ảnh này và lưu vào mảng hai chiều.
 
 ```cpp
 #include <iostream>
