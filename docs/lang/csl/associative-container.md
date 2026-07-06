@@ -1,21 +1,22 @@
 ## `set`
 
-`set` là bộ chứa kết hợp, chứa một tập đã sắp xếp các đối tượng có kiểu khóa.
+`set` là bộ chứa kết hợp dùng để lưu một tập các đối tượng khóa theo thứ tự.
 Các thao tác tìm kiếm, xóa và chèn có độ phức tạp logarit. Bên trong, `set`
 thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md). Tính chất của
 [cây nhị phân cân bằng](../../ds/bst.md) khiến `set` rất phù hợp với những bài
 toán cần đồng thời hỗ trợ tìm kiếm, chèn và xóa.
 
-Tương tự tập hợp trong toán học, `set` không có hai phần tử có giá trị bằng
-nhau. Nếu cần một tập cho phép các phần tử trùng nhau, dùng `multiset`. Cách sử
-dụng `multiset` gần giống với `set`.
+Tương tự tập hợp trong toán học, `set` không chứa hai phần tử có giá trị bằng
+nhau. Nếu cần một tập cho phép phần tử trùng nhau, dùng `multiset`. Cách sử dụng
+`multiset` gần giống với `set`.
 
 <span id="thao-tác-chèn-và-xóa-set"></span>
 ### Thao tác chèn và xóa
 
 -   `insert(x)` chèn phần tử `x` vào `set` nếu trong bộ chứa chưa có phần tử
     tương đương.
--   `erase(x)` xóa **tất cả** phần tử có giá trị bằng `x`, trả về số phần tử đã xóa.
+-   `erase(x)` xóa **tất cả** phần tử có giá trị bằng `x`, trả về số phần tử đã
+    xóa.
 -   `erase(pos)` xóa phần tử tại bộ lặp `pos`; bộ lặp này phải hợp lệ.
 -   `erase(first, last)` xóa tất cả phần tử có bộ lặp nằm trong khoảng
     $[first,last)$.
@@ -23,12 +24,11 @@ dụng `multiset` gần giống với `set`.
 
 ???+ note "Giá trị trả về của hàm `insert`"
     Kiểu trả về của hàm `insert` là `pair<iterator, bool>`, trong đó bộ lặp trỏ
-    đến phần tử vừa được chèn (hoặc trỏ đến phần tử đã tồn tại sẵn trong bộ chứa
-    và bằng với giá trị cần chèn), còn giá trị `bool` cho biết việc chèn có
-    thành công hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong
-    `set` đã có phần tử bằng giá trị đó thì chèn thất bại và trả về `false`;
-    ngược lại chèn thành công và trả về `true`. `insert` trong `map` cũng tương
-    tự.
+    đến phần tử vừa được chèn (hoặc phần tử đã tồn tại sẵn trong bộ chứa và bằng
+    với giá trị cần chèn), còn giá trị `bool` cho biết việc chèn có thành công
+    hay không. Do các phần tử trong `set` có tính duy nhất, nếu trong `set` đã có
+    phần tử bằng giá trị đó thì chèn thất bại và trả về `false`; ngược lại chèn
+    thành công và trả về `true`. `insert` trong `map` cũng tương tự.
 
 <span id="iterator-set"></span>
 ### Bộ lặp
@@ -88,8 +88,8 @@ tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
 #### Dùng `set` trong tham lam
 
 Trong thuật toán tham lam, thường cần thao tác kiểu **tìm và xóa phần tử nhỏ
-nhất lớn hơn hoặc bằng một giá trị nào đó**. Thao tác này có thể được thực hiện
-trực tiếp bằng `set`.
+nhất lớn hơn hoặc bằng một giá trị nào đó**. Có thể thực hiện thao tác này bằng
+`set`.
 
 ```cpp
 // Các phần tử hiện đang khả dụng
@@ -114,13 +114,14 @@ if (it == available.end()) {
 duy nhất. Các thao tác tìm kiếm, xóa và chèn có độ phức tạp logarit. `map`
 thường được cài đặt bằng [cây đỏ-đen](../../ds/rbtree.md).
 
-Xét tình huống sau: cần lưu một số cặp khóa-giá trị, chẳng hạn điểm tương
-ứng với tên học sinh: `Tom 0`, `Bob 100`, `Alan 100`. Tuy nhiên, chỉ số mảng chỉ
-có thể là số nguyên không âm, nên không thể dùng tên làm chỉ số để lưu trữ. Lúc
-này, cách đơn giản nhất là dùng `map` trong STL.
+Xét tình huống sau: cần lưu một số cặp khóa-giá trị, chẳng hạn điểm tương ứng
+với tên học sinh: `Tom 0`, `Bob 100`, `Alan 100`. Tuy nhiên, chỉ số mảng chỉ có
+thể là số nguyên không âm, nên không thể dùng tên làm chỉ số để lưu trữ. Lúc
+này, cách thuận tiện nhất là dùng `map` trong STL.
 
 `map` nạp chồng `operator[]`, cho phép dùng bất kỳ kiểu nào đã định nghĩa
-`operator <` làm chỉ số (trong `map` gọi là `key`, tức là khóa hay chỉ mục):
+`operator <` làm chỉ số. Trong `map`, chỉ số này gọi là `key`, tức khóa hoặc chỉ
+mục:
 
 ```cpp
 map<Key, T> yourMap;
@@ -143,7 +144,7 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` gần giống v�
 <span id="thao-tác-chèn-và-xóa-map"></span>
 ### Thao tác chèn và xóa
 
--   Có thể truy cập trực tiếp bằng chỉ số để lấy giá trị hoặc chèn. Ví dụ:
+-   Có thể truy cập bằng chỉ số để lấy giá trị hoặc chèn. Ví dụ:
     `mp["Alan"] = 100`.
 -   Có thể chèn phần tử bằng cách chèn vào `map` một giá trị có kiểu
     `pair<Key, T>`, ví dụ `mp.insert(pair<string, int>("Alan", 100));`.
@@ -186,11 +187,11 @@ phần tử có cùng một khóa. Cách sử dụng `multimap` gần giống v�
 <span id="dùng-map-để-lưu-trạng-thái-phức-tạp"></span>
 #### Dùng `map` để lưu trạng thái phức tạp
 
-Trong tìm kiếm, đôi khi cần lưu một số trạng thái khá phức tạp (như tọa độ,
-giá trị không thể rời rạc hóa, chuỗi, v.v.) và đáp án liên quan đến chúng (như
-số bước tối thiểu để đến trạng thái đó). `map` có thể được dùng để cài đặt chức
-năng này. Khóa trong `map` là trạng thái, còn giá trị là đáp án liên quan. Ví dụ
-dưới đây minh họa cách dùng `map` để lưu trạng thái biểu diễn bằng `string`.
+Trong tìm kiếm, đôi khi cần lưu một số trạng thái phức tạp (như tọa độ, giá trị
+không thể rời rạc hóa, chuỗi, v.v.) và đáp án liên quan đến chúng (như số bước
+tối thiểu để đến trạng thái đó). Có thể dùng `map` để cài đặt chức năng này.
+Khóa trong `map` là trạng thái, còn giá trị là đáp án liên quan. Ví dụ dưới đây
+minh họa cách dùng `map` để lưu trạng thái biểu diễn bằng `string`.
 
 ```cpp
 // Lưu trạng thái và đáp án của trạng thái đó
@@ -240,7 +241,7 @@ Theo mặc định, hàm so sánh của `set` là `<` (nếu là kiểu không d
 [nạp chồng toán tử `<`](../op-overload.md#toán-tử-so-sánh)). Tuy nhiên, trong
 một số tình huống đặc biệt, cần tùy biến cách so sánh bên trong `set`.
 
-Lúc này có thể giải quyết bằng cách truyền vào một bộ so sánh tùy biến.
+Khi đó, có thể truyền vào một bộ so sánh tùy biến.
 
 Cụ thể, cần định nghĩa một lớp và
 [nạp chồng toán tử `()`](../op-overload.md#toán-tử-gọi-hàm) trong lớp đó.
@@ -256,5 +257,5 @@ struct cmp {
 set<int, cmp> s;
 ```
 
-Với các bộ chứa kết hợp khác, có thể tùy biến cách so sánh theo cách tương tự, ở
-đây không trình bày thêm.
+Các bộ chứa kết hợp khác cũng tùy biến cách so sánh theo cách tương tự; phần
+này không trình bày thêm.
