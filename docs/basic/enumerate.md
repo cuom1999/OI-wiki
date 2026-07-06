@@ -17,13 +17,15 @@ không.
 
 Xây dựng một mô hình toán học gọn gàng.
 
-Khi liệt kê, cần nghĩ rõ: các trường hợp có thể là gì? Cần liệt kê những yếu tố nào?
+Khi liệt kê, cần xác định rõ các trường hợp có thể xảy ra và những yếu tố cần
+duyệt.
 
 ### Thu hẹp không gian liệt kê
 
-Phạm vi liệt kê là gì? Có cần liệt kê toàn bộ mọi thứ hay không?
+Phạm vi liệt kê là gì? Có cần duyệt toàn bộ không gian ứng viên hay không?
 
-Khi giải bài toán bằng phương pháp liệt kê, nhất định phải suy nghĩ kỹ hai câu hỏi này; nếu không sẽ phát sinh chi phí thời gian không cần thiết.
+Khi giải bài toán bằng phương pháp liệt kê, cần cân nhắc kỹ hai câu hỏi này; nếu
+không sẽ phát sinh chi phí thời gian không cần thiết.
 
 ### Chọn thứ tự liệt kê phù hợp
 
@@ -31,13 +33,14 @@ Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài
 
 ## Ví dụ
 
-Sau đây là một ví dụ về cách dùng liệt kê để giải bài và tối ưu phạm vi liệt kê.
+Sau đây là một ví dụ về cách dùng liệt kê để giải bài và thu hẹp phạm vi liệt
+kê.
 
 ??? note "Đề bài"
     Cho một mảng có tất cả phần tử đôi một khác nhau và đều khác $0$. Tìm số cặp số trong mảng có tổng bằng $0$.
 
 ??? note "Ý tưởng giải"
-    Rất dễ viết đoạn mã liệt kê hai số.
+    Có thể viết ngay đoạn mã liệt kê hai số.
     
     === "C++"
         ```cpp
@@ -61,7 +64,10 @@ Sau đây là một ví dụ về cách dùng liệt kê để giải bài và t
             if (a[i] + a[j] == 0) ++ans;
         ```
     
-    Tiếp theo xét cách tối ưu phạm vi liệt kê. Vì đề bài không yêu cầu cặp số có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự (vì nếu `(a, b)` là đáp án, thì `(b, a)` cũng là đáp án). Với tình huống này, chỉ cần đếm đáp án sau khi tự đặt thêm một thứ tự, rồi cuối cùng nhân với $2$.
+    Tiếp theo xét cách thu hẹp phạm vi liệt kê. Vì đề bài không yêu cầu cặp số
+    có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự: nếu `(a, b)` là một
+    đáp án, thì `(b, a)` cũng là một đáp án. Với tình huống này, có thể tự đặt
+    thêm một thứ tự khi đếm, rồi cuối cùng nhân kết quả với $2$.
     
     Chẳng hạn, yêu cầu số thứ nhất phải xuất hiện ở vị trí phía sau. Đoạn mã như sau:
     
@@ -92,9 +98,13 @@ Sau đây là một ví dụ về cách dùng liệt kê để giải bài và t
     
     Phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
     
-    Vẫn có thể tối ưu thêm.
+    Vẫn có thể cải thiện thêm.
     
-    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều kiện của bài toán đã xác định điều kiện cho yếu tố còn lại (số kia). Nếu tìm được cách trực tiếp kiểm tra số mà đề bài cần có tồn tại hay không, có thể bỏ qua thời gian liệt kê số thứ hai. Tiến thêm một bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các số đã duyệt.
+    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều
+    kiện của bài toán đã xác định số còn lại cần có. Nếu có cách kiểm tra số đó
+    có tồn tại hay không, có thể bỏ qua vòng liệt kê thứ hai. Tiến thêm một
+    bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các số
+    đã duyệt.
     
     === "C++"
         ```cpp
@@ -123,7 +133,8 @@ Sau đây là một ví dụ về cách dùng liệt kê để giải bài và t
 
 ### Phân tích độ phức tạp
 
--   Phân tích độ phức tạp thời gian: chỉ cần duyệt mảng $a$ một lần để hoàn thành yêu cầu của bài toán; khi $n$ đủ lớn, độ phức tạp thời gian là $O(n)$.
+-   Phân tích độ phức tạp thời gian: duyệt mảng $a$ một lần là đủ để hoàn thành
+    yêu cầu của bài toán; khi $n$ đủ lớn, độ phức tạp thời gian là $O(n)$.
 -   Phân tích độ phức tạp bộ nhớ: $O(n+\max\{|x|:x\in a\})$.
 
 ## Bài tập
