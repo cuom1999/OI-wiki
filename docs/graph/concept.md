@@ -1,4 +1,4 @@
-Trang này tóm lược một số khái niệm trong lý thuyết đồ thị. Không phải tất cả các khái niệm này đều thường gặp trong OI; với OIer, chỉ cần nắm phần cơ bản trong trang này là đủ. Nếu trong quá trình học gặp khái niệm chưa hiểu, bạn có thể quay lại tra cứu.
+Trang này tóm lược một số khái niệm trong lý thuyết đồ thị. Không phải tất cả các khái niệm này đều thường gặp trong OI; với OIer, chỉ cần nắm phần cơ bản trong trang này là đủ. Nếu trong quá trình học gặp khái niệm chưa hiểu, có thể quay lại tra cứu.
 
 ??? warning "Cảnh báo"
     Các định nghĩa liên quan đến lý thuyết đồ thị thường khác nhau giữa các giáo trình. Khi gặp chúng, cần phán đoán theo ngữ cảnh.
@@ -62,9 +62,9 @@ Nếu một đồ thị có khuyên hoặc cạnh song song, nó được gọi 
 
 Số cạnh liên thuộc với một đỉnh $v$ được gọi là **bậc (degree)** của đỉnh đó, ký hiệu là $d(v)$. Đặc biệt, với cạnh $(v, v)$, mỗi cạnh như vậy đóng góp $2$ vào $d(v)$.
 
-Với đồ thị vô hướng đơn, ta có $d(v) = \left| N(v) \right|$.
+Với đồ thị vô hướng đơn, có $d(v) = \left| N(v) \right|$.
 
-Định lý bắt tay, còn gọi là định lý cơ bản của lý thuyết đồ thị: với mọi đồ thị vô hướng $G = (V, E)$, ta có $\sum_{v \in V} d(v) = 2 \left| E \right|$.
+Định lý bắt tay, còn gọi là định lý cơ bản của lý thuyết đồ thị: với mọi đồ thị vô hướng $G = (V, E)$, có $\sum_{v \in V} d(v) = 2 \left| E \right|$.
 
 Hệ quả: trong mọi đồ thị, số đỉnh có bậc lẻ luôn là số chẵn.
 
@@ -80,9 +80,9 @@ Nếu $d(v) = \left| V \right| - 1$, thì $v$ được gọi là **đỉnh phổ
 
 Với một đồ thị, giá trị nhỏ nhất trong các bậc của mọi nút được gọi là **bậc nhỏ nhất (minimum degree)** của $G$, ký hiệu là $\delta (G)$; giá trị lớn nhất được gọi là **bậc lớn nhất (maximum degree)**, ký hiệu là $\Delta (G)$. Tức là: $\delta (G) = \min_{v \in G} d(v)$, $\Delta (G) = \max_{v \in G} d(v)$.
 
-Trong đồ thị có hướng $G = (V, E)$, số cạnh có điểm đầu là một đỉnh $v$ được gọi là **bậc ra (out-degree)** của đỉnh đó, ký hiệu là $d^+(v)$. Số cạnh có điểm cuối là một đỉnh $v$ được gọi là **bậc vào (in-degree)** của nút đó, ký hiệu là $d^-(v)$. Rõ ràng $d^+(v)+d^-(v)=d(v)$.
+Trong đồ thị có hướng $G = (V, E)$, số cạnh có điểm đầu là một đỉnh $v$ được gọi là **bậc ra (out-degree)** của đỉnh đó, ký hiệu là $d^+(v)$. Số cạnh có điểm cuối là một đỉnh $v$ được gọi là **bậc vào (in-degree)** của nút đó, ký hiệu là $d^-(v)$. Khi đó $d^+(v)+d^-(v)=d(v)$.
 
-Với mọi đồ thị có hướng $G = (V, E)$, ta có:
+Với mọi đồ thị có hướng $G = (V, E)$, có:
 
 $$
 \sum_{v \in V} d^+(v) = \sum_{v \in V} d^-(v) = \left| E \right|
@@ -113,13 +113,13 @@ Nếu cho một dãy a và có thể tìm được một đồ thị đơn G nh�
 
 Với một đồ thị $G = (V, E)$, nếu tồn tại một đồ thị khác $H = (V', E')$ thỏa mãn $V' \subseteq V$ và $E' \subseteq E$, thì $H$ được gọi là **đồ thị con (subgraph)** của $G$, ký hiệu là $H \subseteq G$.
 
-Nếu với $H \subseteq G$, ta có $\forall u, v \in V'$, chỉ cần $(u, v) \in E$ thì đều có $(u, v) \in E'$, thì $H$ được gọi là **đồ thị con cảm sinh/đồ thị con sinh bởi đỉnh (induced subgraph)** của $G$.
+Nếu với $H \subseteq G$, có $\forall u, v \in V'$, chỉ cần $(u, v) \in E$ thì đều có $(u, v) \in E'$, thì $H$ được gọi là **đồ thị con cảm sinh/đồ thị con sinh bởi đỉnh (induced subgraph)** của $G$.
 
-Dễ thấy rằng một đồ thị con cảm sinh chỉ được xác định bởi tập đỉnh của đồ thị con. Vì vậy, đồ thị con cảm sinh có tập đỉnh là $V'$($V' \subseteq V$) được gọi là đồ thị con do $V'$ cảm sinh, ký hiệu là $G \left[ V' \right]$.
+Một đồ thị con cảm sinh chỉ được xác định bởi tập đỉnh của đồ thị con. Vì vậy, đồ thị con cảm sinh có tập đỉnh là $V'$($V' \subseteq V$) được gọi là đồ thị con do $V'$ cảm sinh, ký hiệu là $G \left[ V' \right]$.
 
 Nếu $H \subseteq G$ thỏa mãn $V' = V$, thì $H$ được gọi là **đồ thị con bao trùm (spanning subgraph)** của $G$.
 
-Rõ ràng, $G$ là đồ thị con, đồ thị con bao trùm và đồ thị con cảm sinh của chính nó; [đồ thị không cạnh](#do-thi-dac-biet) là một đồ thị con bao trùm của $G$. Đồ thị gốc $G$ và đồ thị không cạnh đều là các đồ thị con tầm thường của $G$.
+$G$ là đồ thị con, đồ thị con bao trùm và đồ thị con cảm sinh của chính nó; [đồ thị không cạnh](#do-thi-dac-biet) là một đồ thị con bao trùm của $G$. Đồ thị gốc $G$ và đồ thị không cạnh đều là các đồ thị con tầm thường của $G$.
 
 Nếu một đồ thị vô hướng $G$ có một đồ thị con bao trùm $F$ là đồ thị $k$-chính quy, thì $F$ được gọi là một **$k$-nhân tử ($k$-factor)** của $G$.
 
@@ -141,7 +141,7 @@ Với một đồ thị có hướng $G = (V, E)$, với $u, v \in V$, nếu t�
 
 Nếu các nút của một đồ thị có hướng đôi một đến được nhau theo cả hai chiều, thì đồ thị đó được gọi là **liên thông mạnh (strongly connected)**.
 
-Nếu sau khi thay các cạnh của một đồ thị có hướng bằng cạnh vô hướng ta thu được một đồ thị liên thông, thì đồ thị có hướng ban đầu được gọi là **liên thông yếu (weakly connected)**.
+Nếu sau khi thay các cạnh của một đồ thị có hướng bằng cạnh vô hướng mà thu được một đồ thị liên thông, thì đồ thị có hướng ban đầu được gọi là **liên thông yếu (weakly connected)**.
 
 Tương tự thành phần liên thông, cũng có **thành phần liên thông yếu (weakly connected component)** (đồ thị con liên thông yếu cực đại) và **thành phần liên thông mạnh (strongly connected component)** (đồ thị con liên thông mạnh cực đại).
 
@@ -159,7 +159,7 @@ Với đồ thị liên thông $G = (V, E)$ và số nguyên $k$, nếu $|V|\ge 
 
 Với đồ thị $G = (V, E)$ và $u, v\in V$ thỏa mãn $u\ne v$, $u$ và $v$ không kề nhau, $u$ đến được $v$, nếu $V'\subseteq V$, $u, v\notin V'$, và trong $G\left[V\setminus V'\right]$ thì $u$ và $v$ không liên thông, thì $V'$ được gọi là tập cắt đỉnh từ $u$ đến $v$. Kích thước của tập cắt đỉnh nhỏ nhất từ $u$ đến $v$ được gọi là **độ liên thông đỉnh cục bộ (local connectivity)** từ $u$ đến $v$, ký hiệu là $\kappa(u, v)$.
 
-Ta cũng có thể định nghĩa tương tự trên cạnh:
+Cũng có thể định nghĩa tương tự trên cạnh:
 
 Với đồ thị liên thông $G = (V, E)$, nếu $E'\subseteq E$ và $G' = (V, E\setminus E')$ (tức là xóa các cạnh trong $E'$ khỏi $G$) không phải là đồ thị liên thông, thì $E'$ là một **tập cắt cạnh (edge cut)** của đồ thị $G$. Tập cắt cạnh có kích thước một còn được gọi là **cầu (bridge)**.
 
@@ -173,7 +173,7 @@ Với đồ thị $G = (V, E)$ và $u, v\in V$ thỏa mãn $u\ne v$, $u$ đến 
 
 Tương tự thành phần liên thông, cũng có **thành phần song liên thông đỉnh (biconnected component)** (đồ thị con song liên thông đỉnh cực đại) và **thành phần song liên thông cạnh ($2$-edge-connected component)** (đồ thị con song liên thông cạnh cực đại).
 
-**Định lý Whitney**: với mọi đồ thị $G$, ta có $\kappa(G)\le \lambda(G)\le \delta(G)$. (Ba hạng trong bất đẳng thức lần lượt là độ liên thông đỉnh, độ liên thông cạnh và bậc nhỏ nhất.)
+**Định lý Whitney**: với mọi đồ thị $G$, có $\kappa(G)\le \lambda(G)\le \delta(G)$. (Ba hạng trong bất đẳng thức lần lượt là độ liên thông đỉnh, độ liên thông cạnh và bậc nhỏ nhất.)
 
 ## Đồ thị thưa/đồ thị dày
 
@@ -224,9 +224,9 @@ Nếu trong một đồ thị vô hướng liên thông, mỗi cạnh xuất hi�
 
 Nếu tập đỉnh của một đồ thị có thể được chia thành hai phần sao cho bên trong mỗi phần đều không có cạnh nối, thì đồ thị đó là một **đồ thị hai phía (bipartite graph)**. Nếu trong đồ thị hai phía, giữa mọi cặp điểm không cùng một phần đều có cạnh nối, thì đồ thị đó là một **đồ thị hai phía đầy đủ (complete bipartite graph/biclique)**; đồ thị hai phía đầy đủ có hai phần lần lượt gồm $n$ điểm và $m$ điểm được ký hiệu là $K_{n, m}$. Xem nội dung liên quan tại [đồ thị hai phía](./bi-graph.md).
 
-Nếu một đồ thị có thể vẽ trên một mặt phẳng sao cho không có hai cạnh nào cắt nhau tại điểm không phải đầu mút, thì đồ thị đó là một **đồ thị phẳng (planar graph)**. Với đồ thị phẳng liên thông đơn $G=(V, E)$ và $V\ge 3$, ta có $|E|\le 3|V|-6$.
+Nếu một đồ thị có thể vẽ trên một mặt phẳng sao cho không có hai cạnh nào cắt nhau tại điểm không phải đầu mút, thì đồ thị đó là một **đồ thị phẳng (planar graph)**. Với đồ thị phẳng liên thông đơn $G=(V, E)$ và $V\ge 3$, có $|E|\le 3|V|-6$.
 
-**Định lý Kuratowski**: một đồ thị là đồ thị phẳng khi và chỉ khi nó không tồn tại đồ thị con **đồng phôi (homeomorphism)** với $K_5$ hoặc $K_{3, 3}$. Ở đây, đồ thị $G$ và đồ thị $G'$ đồng phôi nghĩa là cả hai đều có thể trở thành cùng một đồ thị bằng cách thêm một số đỉnh bậc $2$ trên các cạnh[^ref1].
+**Định lý Kuratowski**: một đồ thị là đồ thị phẳng khi và chỉ khi nó không tồn tại đồ thị con **đồng phôi (homeomorphism)** với $K_5$ hoặc $K_{3, 3}$. Trong ngữ cảnh này, đồ thị $G$ và đồ thị $G'$ đồng phôi nghĩa là cả hai đều có thể trở thành cùng một đồ thị bằng cách thêm một số đỉnh bậc $2$ trên các cạnh[^ref1].
 
 ## Đẳng cấu
 
@@ -240,7 +240,7 @@ Từ định nghĩa có thể thấy, nếu $G \cong H$ thì phải thỏa mãn:
 
 ## Phép toán hai ngôi trên đồ thị vô hướng đơn
 
-Với đồ thị vô hướng đơn, ta có thể định nghĩa các phép toán hai ngôi sau:
+Với đồ thị vô hướng đơn, có thể định nghĩa các phép toán hai ngôi sau:
 
 **Giao (intersection)**: giao của hai đồ thị $G = \left( V_1, E_1 \right), H = \left( V_2, E_2 \right)$ được định nghĩa là đồ thị $G \cap H = \left( V_1 \cap V_2, E_1 \cap E_2 \right)$.
 
@@ -315,7 +315,7 @@ Kích thước của bất kỳ ghép cặp nào trong một đồ thị đều 
 
 Với đồ thị $G=(V, E)$, nếu $E'\subseteq E$ và với mọi $v\in V$, $v$ kề với ít nhất một cạnh trong $E'$, thì $E'$ được gọi là một **phủ cạnh (edge cover)** của đồ thị $G$.
 
-Kích thước của phủ cạnh nhỏ nhất được ký hiệu là $\rho(G)$, có thể thu được bằng cách mở rộng tham lam từ ghép cặp lớn nhất: với mọi điểm chưa được ghép, thêm một cạnh kề với nó vào ghép cặp lớn nhất, khi đó ta thu được một phủ cạnh nhỏ nhất.
+Kích thước của phủ cạnh nhỏ nhất được ký hiệu là $\rho(G)$, có thể thu được bằng cách mở rộng tham lam từ ghép cặp lớn nhất: với mọi điểm chưa được ghép, thêm một cạnh kề với nó vào ghép cặp lớn nhất, khi đó thu được một phủ cạnh nhỏ nhất.
 
 Ghép cặp lớn nhất cũng có thể thu được từ phủ cạnh nhỏ nhất: với mỗi cặp cạnh có chung đầu mút trong phủ cạnh nhỏ nhất, xóa một trong hai cạnh.
 
