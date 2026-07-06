@@ -10,16 +10,16 @@ Nhiệm vụ cụ thể là: với hàm $f(x)$ liên tục và đơn điệu tr�
 <span id="giải-thích"></span>
 ## Giải thích
 
-Ban đầu, ta xuất phát từ hàm $f(x)$ đã cho và một nghiệm xấp xỉ $x_0$; vấn đề chọn giá trị ban đầu liên quan đến fractal Newton, có thể tham khảo video [Newton fractal](https://www.bilibili.com/video/BV1HQ4y1q78v) của 3Blue1Brown.
+Ban đầu, xuất phát từ hàm $f(x)$ đã cho và một nghiệm xấp xỉ $x_0$; vấn đề chọn giá trị ban đầu liên quan đến fractal Newton, có thể tham khảo video [Newton fractal](https://www.bilibili.com/video/BV1HQ4y1q78v) của 3Blue1Brown.
 
-Giả sử nghiệm xấp xỉ hiện tại là $x_i$. Ta vẽ đường thẳng $l$ tiếp xúc với $f(x)$ tại điểm $(x_i,f(x_i))$, rồi ký hiệu hoành độ giao điểm của $l$ với trục $x$ là $x_{i+1}$. Đây sẽ là một nghiệm xấp xỉ tốt hơn. Ta lặp lại quá trình này.
-Theo ý nghĩa hình học của đạo hàm, ta có quan hệ sau:
+Giả sử nghiệm xấp xỉ hiện tại là $x_i$. Vẽ đường thẳng $l$ tiếp xúc với $f(x)$ tại điểm $(x_i,f(x_i))$, rồi ký hiệu hoành độ giao điểm của $l$ với trục $x$ là $x_{i+1}$. Đây sẽ là một nghiệm xấp xỉ tốt hơn. Quá trình này được lặp lại.
+Theo ý nghĩa hình học của đạo hàm, có quan hệ sau:
 
 $$
  f'(x_i) = \frac{f(x_i)}{x_{i} - x_{i+1}}
 $$
 
-Biến đổi lại, ta được công thức truy hồi
+Biến đổi lại, thu được công thức truy hồi
 
 $$
  x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
@@ -30,12 +30,12 @@ Trực quan mà nói, nếu $f(x)$ tương đối trơn, thì khi số lần l�
 Phương pháp Newton có tốc độ hội tụ bậc hai, nghĩa là sau mỗi lần lặp, số chữ số chính xác của nghiệm xấp xỉ sẽ tăng gấp đôi.
 Chứng minh tính hội tụ của phương pháp Newton có thể tham khảo [citizendium - Newton method Convergence analysis](http://en.citizendium.org/wiki/Newton%27s_method#Convergence_analysis).
 
-Tất nhiên phương pháp Newton cũng có nhược điểm; xem phân tích ở trang 18-20 trong [Xiaolin Wu - Roots of Equations](https://www.ece.mcmaster.ca/~xwu/part2.pdf).
+Phương pháp Newton cũng có nhược điểm; xem phân tích ở trang 18-20 trong [Xiaolin Wu - Roots of Equations](https://www.ece.mcmaster.ca/~xwu/part2.pdf).
 
 <span id="tìm-căn-bậc-hai"></span>
 ## Tìm căn bậc hai
 
-Ta thử dùng phương pháp Newton để tính căn bậc hai. Đặt $f(x)=x^2-n$, nghiệm xấp xỉ của phương trình này chính là giá trị xấp xỉ của $\sqrt{n}$. Từ đó ta có
+Thử dùng phương pháp Newton để tính căn bậc hai. Đặt $f(x)=x^2-n$, nghiệm xấp xỉ của phương trình này chính là giá trị xấp xỉ của $\sqrt{n}$. Từ đó có
 
 $$
 x_{i+1}=x_i-\frac{x_i^2-n}{2x_i}=\frac{x_i+\frac{n}{x_i}}{2}
@@ -76,7 +76,7 @@ Khi cài đặt, cần đặt độ chính xác phù hợp. Mã như sau:
 <span id="tìm-căn-bậc-hai-nguyên"></span>
 ## Tìm căn bậc hai nguyên
 
-Dù ta có thể gọi hàm `sqrt()` để lấy giá trị căn bậc hai, ở đây vẫn trình bày một biến thể của phương pháp Newton dùng để tìm nghiệm nguyên lớn nhất của bất đẳng thức $x^2\le n$. Ta vẫn xét một quá trình tương tự lặp Newton, nhưng cần điều chỉnh nhẹ ở điều kiện biên. Nếu trong quá trình lặp, lần lặp trước làm nghiệm xấp xỉ giảm, còn lần lặp này lại làm nghiệm xấp xỉ tăng, thì ta không thực hiện lần lặp này nữa và thoát vòng lặp.
+Dù có thể gọi hàm `sqrt()` để lấy giá trị căn bậc hai, phần này vẫn trình bày một biến thể của phương pháp Newton dùng để tìm nghiệm nguyên lớn nhất của bất đẳng thức $x^2\le n$. Vẫn xét một quá trình tương tự lặp Newton, nhưng cần điều chỉnh nhẹ ở điều kiện biên. Nếu trong quá trình lặp, lần lặp trước làm nghiệm xấp xỉ giảm, còn lần lặp này lại làm nghiệm xấp xỉ tăng, thì không thực hiện lần lặp này nữa và thoát vòng lặp.
 
 <span id="cài-đặt_1"></span>
 ### Cài đặt
@@ -113,7 +113,7 @@ Dù ta có thể gọi hàm `sqrt()` để lấy giá trị căn bậc hai, ở 
 <span id="căn-bậc-hai-độ-chính-xác-cao"></span>
 ## Căn bậc hai độ chính xác cao
 
-Cuối cùng, xét phương pháp Newton độ chính xác cao. Cách lặp không đổi, nhưng lần này ta cần quan tâm đến cách đặt nghiệm xấp xỉ ban đầu, tức giá trị $x_0$. Vì các số cần tính với độ chính xác cao thường rất lớn, giá trị ban đầu khác nhau có ảnh hưởng lớn đến hiệu quả thuật toán. Một ý tưởng tự nhiên là xét $x_0=2^{\left\lfloor\frac{1}{2}\log_2n\right\rfloor}$; giá trị này vừa tính được nhanh, vừa khá gần nghiệm xấp xỉ của căn bậc hai.
+Cuối cùng, xét phương pháp Newton độ chính xác cao. Cách lặp không đổi, nhưng lần này cần quan tâm đến cách đặt nghiệm xấp xỉ ban đầu, tức giá trị $x_0$. Vì các số cần tính với độ chính xác cao thường rất lớn, giá trị ban đầu khác nhau có ảnh hưởng lớn đến hiệu quả thuật toán. Một ý tưởng tự nhiên là xét $x_0=2^{\left\lfloor\frac{1}{2}\log_2n\right\rfloor}$; giá trị này vừa tính được nhanh, vừa khá gần nghiệm xấp xỉ của căn bậc hai.
 
 <span id="cài-đặt_2"></span>
 ### Cài đặt

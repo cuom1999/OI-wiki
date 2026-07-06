@@ -5,7 +5,7 @@ author: H-J-Granger, Chrogeek, countercurrent-time, Enter-tainer, Great-designer
 
 Nói đơn giản, tích phân xác định $\int_{l}^{r}f(x)\mathrm{d}x$ của hàm $f(x)$ trên đoạn $[l,r]$ là diện tích miền được bao bởi $f(x)$ và trục $x$ trên đoạn $[l,r]$; phần nằm phía trên trục $x$ được tính dương, còn phần nằm phía dưới trục $x$ được tính âm.
 
-Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một cách hiệu quả và chính xác. **Phương pháp Simpson** được giới thiệu dưới đây là một phương pháp tích phân số như vậy.
+Trong nhiều tình huống, cần tính xấp xỉ một tích phân một cách hiệu quả và chính xác. **Phương pháp Simpson** được giới thiệu dưới đây là một phương pháp tích phân số như vậy.
 
 <span id="phương-pháp-simpson"></span>
 ## Phương pháp Simpson
@@ -13,7 +13,7 @@ Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một c
 Ý tưởng của phương pháp này là chia khoảng lấy tích phân thành nhiều đoạn nhỏ, rồi trên mỗi đoạn áp dụng công thức tích phân của hàm bậc hai.
 
 ??? note "Công thức tích phân hàm bậc hai (công thức Simpson)"
-    Với một hàm bậc hai $f(x)=ax^2+bx+c$, ta có:
+    Với một hàm bậc hai $f(x)=ax^2+bx+c$, công thức sau đúng:
     
     $$
     \int_l^r f(x) {\mathrm d}x = \frac{(r-l)(f(l)+f(r)+4 f(\frac{l+r}{2}))}{6}
@@ -33,7 +33,7 @@ Trong nhiều tình huống, ta cần tính xấp xỉ một tích phân một c
     \end{aligned}
     $$
 
-Dựa trên công thức Simpson này, trước hết ta giới thiệu phương pháp Simpson thông thường.
+Dựa trên công thức Simpson này, trước hết xét phương pháp Simpson thông thường.
 
 <span id="phương-pháp-simpson-thông-thường"></span>
 ### Phương pháp Simpson thông thường
@@ -47,9 +47,9 @@ Cho một số tự nhiên $n$, chia đoạn $[l, r]$ thành $2n$ đoạn con b�
 
 $x_i = l + i h, ~~ i = 0 \ldots 2n,$ $h = \frac {r-l} {2n}.$
 
-Ta có thể tính giá trị tích phân trên từng đoạn nhỏ $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, rồi cộng các giá trị đó lại để thu được tích phân tổng.
+Giá trị tích phân trên từng đoạn nhỏ $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, có thể được tính riêng rồi cộng lại để thu được tích phân tổng.
 
-Với một đoạn $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, chọn ba điểm $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ sẽ xác định duy nhất một parabol, tức một hàm $P(x)$. Khi đó việc tính tích phân của hàm ban đầu trên đoạn này được chuyển thành tính tích phân của hàm bậc hai mới $P(x)$ trên cùng đoạn. Nhờ vậy, ta có thể dùng công thức Simpson để tính xấp xỉ:
+Với một đoạn $[x_ {2i-2}, x_ {2i}]$, $i = 1\ldots n$, chọn ba điểm $(x_ {2i-2}, x_ {2i-1}, x_ {2i})$ sẽ xác định duy nhất một parabol, tức một hàm $P(x)$. Khi đó việc tính tích phân của hàm ban đầu trên đoạn này được chuyển thành tính tích phân của hàm bậc hai mới $P(x)$ trên cùng đoạn. Nhờ vậy, công thức Simpson cho xấp xỉ:
 
 $\int_{x_ {2i-2}} ^ {x_ {2i}} f (x) ~dx \approx \int_{x_ {2i-2}} ^ {x_ {2i}} P (x) ~dx = \left(f(x_{2i-2}) + 4f(x_{2i-1})+(f(x_{2i})\right)\frac {h} {3}$
 
@@ -60,7 +60,7 @@ $\int_l ^ r f (x) dx \approx \left(f (x_0) + 4 f (x_1) + 2 f (x_2) + 4f(x_3) + 2
 <span id="sai-số"></span>
 #### Sai số
 
-Ta nêu trực tiếp kết luận: sai số của phương pháp Simpson thông thường là
+Kết luận về sai số của phương pháp Simpson thông thường là
 
 $$
 -\tfrac{1}{90} \left(\tfrac{r-l}{2}\right)^5 f^{(4)}(\xi)
@@ -108,17 +108,17 @@ trong đó $\xi$ là một giá trị nào đó thuộc đoạn $[l,r]$.
 <span id="phương-pháp-simpson-thích-nghi"></span>
 ### Phương pháp Simpson thích nghi
 
-Để bảo đảm độ chính xác, phương pháp thông thường chắc chắn bị ràng buộc bởi $n$ về mặt thời gian. Ta nên tìm một phương pháp phù hợp hơn.
+Để bảo đảm độ chính xác, thời gian chạy của phương pháp thông thường phụ thuộc vào $n$. Vì vậy, cần một phương pháp phù hợp hơn.
 
-Vấn đề duy nhất hiện nay là chia đoạn như thế nào. Nếu số đoạn quá ít thì sai số tính toán lớn; nếu số đoạn quá nhiều thì hiệu quả thời gian thấp. Ta cần tìm điểm cân bằng giữa độ chính xác và hiệu quả.
+Vấn đề còn lại là cách chia đoạn. Nếu số đoạn quá ít thì sai số tính toán lớn; nếu số đoạn quá nhiều thì hiệu quả thời gian thấp. Cần tìm điểm cân bằng giữa độ chính xác và hiệu quả.
 
-Ta xét như sau: nếu một đoạn đồ thị đã rất gần với một hàm bậc hai, thì thay trực tiếp vào công thức để lấy tích phân sẽ cho giá trị rất chính xác, và không cần tiếp tục chia nhỏ đoạn đó.
+Quan sát then chốt là: nếu một đoạn đồ thị đã rất gần với một hàm bậc hai, thì việc thay trực tiếp vào công thức để lấy tích phân sẽ cho giá trị rất chính xác, và không cần tiếp tục chia nhỏ đoạn đó.
 
-Từ đó ta có một cách chia đoạn: mỗi lần kiểm tra mức độ giống nhau giữa đoạn hiện tại và một hàm bậc hai; nếu đủ giống thì thay trực tiếp vào công thức để tính, ngược lại chia đoạn hiện tại thành hai nửa trái và phải rồi giải đệ quy.
+Từ đó thu được một cách chia đoạn: mỗi lần kiểm tra mức độ giống nhau giữa đoạn hiện tại và một hàm bậc hai; nếu đủ giống thì thay trực tiếp vào công thức để tính, ngược lại chia đoạn hiện tại thành hai nửa trái và phải rồi giải đệ quy.
 
-Bây giờ chỉ còn một câu hỏi: làm sao phán đoán mỗi đoạn có giống hàm bậc hai hay không?
+Câu hỏi còn lại là cách đánh giá mỗi đoạn có đủ giống hàm bậc hai hay không.
 
-Ta thay trực tiếp đoạn hiện tại vào công thức để tính tích phân, rồi chia đoạn hiện tại tại trung điểm thành hai đoạn và lại thay trực tiếp hai đoạn đó vào công thức. Nếu tích phân của đoạn hiện tại và tổng tích phân của hai đoạn sau khi chia chênh lệch rất nhỏ, thì có thể xem đoạn hiện tại rất giống một hàm bậc hai và không cần chia đệ quy nữa.
+Thay trực tiếp đoạn hiện tại vào công thức để tính tích phân, rồi chia đoạn hiện tại tại trung điểm thành hai đoạn và lại thay trực tiếp hai đoạn đó vào công thức. Nếu tích phân của đoạn hiện tại và tổng tích phân của hai đoạn sau khi chia chênh lệch rất nhỏ, thì có thể xem đoạn hiện tại rất giống một hàm bậc hai và không cần chia đệ quy nữa.
 
 Trên đây là ý tưởng của phương pháp Simpson thích nghi. Khi kiểm tra chia để trị, ngoài việc kiểm tra độ chính xác, thông thường còn ép thực hiện một số lần lặp tối thiểu.
 

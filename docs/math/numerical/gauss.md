@@ -13,7 +13,7 @@ Ngoài việc giải hệ phương trình tuyến tính, phương pháp khử Ga
 <span id="định-nghĩa"></span>
 ### Định nghĩa
 
-Phương pháp khử là cách biểu diễn một ẩn trong một phương trình của hệ bằng biểu thức đại số chứa một ẩn khác, rồi thay biểu thức đó vào phương trình còn lại; nhờ vậy ta khử được một ẩn và thu được nghiệm. Ta cũng có thể nhân một phương trình với một hằng số rồi cộng vào phương trình khác để khử một ẩn. Phương pháp khử chủ yếu được dùng để giải hệ hai phương trình bậc nhất hai ẩn.
+Phương pháp khử là cách biểu diễn một ẩn trong một phương trình của hệ bằng biểu thức đại số chứa một ẩn khác, rồi thay biểu thức đó vào phương trình còn lại; nhờ vậy có thể khử được một ẩn và thu được nghiệm. Ngoài ra, có thể nhân một phương trình với một hằng số rồi cộng vào phương trình khác để khử một ẩn. Phương pháp khử chủ yếu được dùng để giải hệ hai phương trình bậc nhất hai ẩn.
 
 <span id="diễn-giải"></span>
 ### Diễn giải
@@ -27,7 +27,7 @@ x-y&=100
 \end{cases}
 $$
 
-Lời giải: cộng hai phương trình trong hệ để khử $y$, ta được:
+Lời giải: cộng hai phương trình trong hệ để khử $y$, thu được:
 
 $$
 5x = 200
@@ -39,7 +39,7 @@ $$
 x = 40
 $$
 
-Thay $x = 40$ vào phương trình thứ hai của hệ, ta được:
+Thay $x = 40$ vào phương trình thứ hai của hệ, thu được:
 
 $$
 y = -60
@@ -207,7 +207,7 @@ x_4 = x_4
 $$
 
 ???+ note "Diễn giải"
-    Ở bước 3, ta đã giải được các biến $x_1$ và $x_3$. Điều này cho thấy các biến còn lại $x_2$ và $x_4$ không bị hệ phương trình ràng buộc, tức là các ẩn tự do và có thể nhận giá trị tùy ý. Vì vậy, trên cơ sở nghiệm thu được ở bước 3, cần bổ sung nghiệm bằng cách viết $x_2 = x_2, x_4 = x_4$. Cách bổ sung này phù hợp với định nghĩa ẩn tự do và dễ hiểu: vì là ẩn tự do, không chịu ràng buộc, nên chúng chỉ có thể bằng chính chúng.
+    Ở bước 3, các biến $x_1$ và $x_3$ đã được giải. Điều này cho thấy các biến còn lại $x_2$ và $x_4$ không bị hệ phương trình ràng buộc, tức là các ẩn tự do và có thể nhận giá trị tùy ý. Vì vậy, trên cơ sở nghiệm thu được ở bước 3, cần bổ sung nghiệm bằng cách viết $x_2 = x_2, x_4 = x_4$. Cách bổ sung này phù hợp với định nghĩa ẩn tự do: các ẩn không chịu ràng buộc được giữ làm tham số tự do.
 
 <span id="viết-nghiệm-tổng-quát-của-hệ-phương-trình-dưới-dạng-cột"></span>
 ### Viết nghiệm tổng quát của hệ phương trình dưới dạng cột
@@ -227,7 +227,7 @@ $$
 Trong đó $C_1$ và $C_2$ là các hằng số tùy ý.
 
 ???+ note "Diễn giải"
-    Dựa trên bước 4, ta biểu diễn nghiệm dưới dạng tổ hợp các vector cột. Đồng thời, vì $x_2$ và $x_4$ là ẩn tự do, có thể nhận giá trị tùy ý, nên ở vế phải của nghiệm ta lần lượt đặt chúng bằng các hằng số tùy ý $C_1$ và $C_2$. Như vậy, hệ phương trình đã được giải xong.
+    Dựa trên bước 4, nghiệm được biểu diễn dưới dạng tổ hợp các vector cột. Đồng thời, vì $x_2$ và $x_4$ là ẩn tự do, có thể nhận giá trị tùy ý, nên ở vế phải của nghiệm có thể lần lượt đặt chúng bằng các hằng số tùy ý $C_1$ và $C_2$. Như vậy, hệ phương trình đã được giải xong.
 
 <span id="tính-định-thức"></span>
 ## Tính định thức
@@ -269,9 +269,9 @@ Hiểu tính bất biến của định thức thông qua khái niệm thể tí
 
 -   Nhân đồng thời mọi phần tử của một hàng (hoặc cột) của ma trận với số $k$ thì định thức thay đổi theo cùng tỉ lệ.
 
-Từ đó, sau khi áp dụng khử Gauss lên ma trận, ta có thể thu được một ma trận đường chéo; định thức của ma trận này được quyết định bởi tích các phần tử trên đường chéo. Dấu của nó có thể xác định theo số lần đổi hàng (nếu số lần là lẻ thì dấu của định thức phải đảo ngược). Vì vậy, ta có thể dùng thuật toán Gauss để tính định thức của ma trận với độ phức tạp $O(n^3)$.
+Từ đó, sau khi áp dụng khử Gauss lên ma trận, có thể thu được một ma trận đường chéo; định thức của ma trận này được quyết định bởi tích các phần tử trên đường chéo. Dấu của nó có thể xác định theo số lần đổi hàng (nếu số lần là lẻ thì dấu của định thức phải đảo ngược). Vì vậy, thuật toán Gauss có thể được dùng để tính định thức của ma trận với độ phức tạp $O(n^3)$.
 
-Lưu ý rằng nếu tại một thời điểm nào đó ta không tìm được phần tử khác không trong cột hiện tại, thuật toán nên dừng và trả về 0.
+Nếu tại một thời điểm nào đó không tìm được phần tử khác không trong cột hiện tại, thuật toán nên dừng và trả về 0.
 
 <span id="cài-đặt"></span>
 ### Cài đặt
@@ -310,9 +310,9 @@ Với ma trận vuông $A$, nếu tồn tại ma trận vuông $A^{-1}$ sao cho 
 Cho ma trận vuông cấp $n$ là $A$, cách tìm ma trận nghịch đảo của nó như sau:
 
 1.  Xây dựng ma trận kích thước $n \times 2n$ là $(A, I_n)$;
-2.  Dùng phương pháp khử Gauss để rút gọn nó thành dạng $(I_n, A^{-1})$, khi đó ta thu được ma trận nghịch đảo $A^{-1}$ của $A$. Nếu phần bên trái của dạng rút gọn cuối cùng không phải ma trận đơn vị $I_n$, thì ma trận $A$ không khả nghịch.
+2.  Dùng phương pháp khử Gauss để rút gọn nó thành dạng $(I_n, A^{-1})$, khi đó thu được ma trận nghịch đảo $A^{-1}$ của $A$. Nếu phần bên trái của dạng rút gọn cuối cùng không phải ma trận đơn vị $I_n$, thì ma trận $A$ không khả nghịch.
 
-Chứng minh tính đúng đắn của phương pháp này cần khá nhiều kiến thức đại số tuyến tính, nên do giới hạn dung lượng, phần này không trình bày ở đây. Bạn đọc quan tâm có thể tự tra cứu các tài liệu liên quan.
+Chứng minh tính đúng đắn của phương pháp này cần khá nhiều kiến thức đại số tuyến tính, nên do giới hạn dung lượng, phần này không trình bày trong phạm vi bài viết này. Độc giả quan tâm có thể tự tra cứu các tài liệu liên quan.
 
 <span id="giải-hệ-phương-trình-xor-bằng-khử-gauss"></span>
 ## Giải hệ phương trình XOR bằng khử Gauss
@@ -329,9 +329,9 @@ $$
 
 Trong đó $\oplus$ biểu thị "XOR theo bit" (tức `xor` hoặc `^` trong C++), và mọi hệ số/hằng số trong biểu thức (tức $a_{i,j}$ và $b_i$) đều là $0$ hoặc $1$.
 
-Vì phép XOR thỏa mãn tính giao hoán và tính kết hợp, ta có thể khử dần để giải theo phương pháp khử Gauss. Cần chú ý rằng khi khử, ta nên dùng "khử bằng XOR" thay vì "khử bằng cộng trừ", và không cần nhân chia để thay đổi hệ số (vì mọi hệ số đều là $0$ hoặc $1$).
+Vì phép XOR thỏa mãn tính giao hoán và tính kết hợp, có thể khử dần để giải theo phương pháp khử Gauss. Cần lưu ý rằng khi khử, nên dùng "khử bằng XOR" thay vì "khử bằng cộng trừ", và không cần nhân chia để thay đổi hệ số (vì mọi hệ số đều là $0$ hoặc $1$).
 
-Do ma trận mở rộng của hệ phương trình XOR là ma trận $01$ (trong ma trận chỉ chứa $0$ và $1$), ta có thể dùng `std::bitset` trong C++ để tối ưu, giảm độ phức tạp thời gian xuống $O(\dfrac{n^2m}{\omega})$, trong đó $n$ là số ẩn, $m$ là số phương trình, còn $\omega$ thường là $32$ (phụ thuộc vào máy).
+Do ma trận mở rộng của hệ phương trình XOR là ma trận $01$ (trong ma trận chỉ chứa $0$ và $1$), có thể dùng `std::bitset` trong C++ để tối ưu, giảm độ phức tạp thời gian xuống $O(\dfrac{n^2m}{\omega})$, trong đó $n$ là số ẩn, $m$ là số phương trình, còn $\omega$ thường là $32$ (phụ thuộc vào máy).
 
 Cài đặt tham khảo:
 
