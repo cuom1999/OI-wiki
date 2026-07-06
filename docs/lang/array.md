@@ -1,12 +1,12 @@
-Mảng là một bộ chứa lưu các đối tượng cùng kiểu. Các đối tượng trong mảng không
+Mảng là một bộ chứa lưu nhiều đối tượng cùng kiểu. Các đối tượng trong mảng không
 có tên riêng mà được truy cập thông qua vị trí của chúng. Sau khi khai báo, kích
 thước của mảng là cố định và không thể thay đổi tùy ý.
 
 ## Định nghĩa mảng
 
-Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử
-trong mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên dịch,
-tức `d` phải là một biểu thức hằng kiểu nguyên.
+Khai báo mảng có dạng `a[d]`, trong đó `a` là tên mảng, còn `d` là số phần tử của
+mảng. Trong C++ chuẩn, `d` phải là giá trị đã biết tại thời điểm biên dịch, tức
+`d` phải là một biểu thức hằng kiểu nguyên.
 
 ```cpp
 unsigned int d1 = 42;
@@ -24,20 +24,20 @@ arr2 = arr1;      // sai
 ```
 
 Nên cố gắng định nghĩa các mảng lớn ở phạm vi toàn cục. Vì biến cục bộ thường
-được tạo trên ngăn xếp, mảng quá lớn (lớn hơn giới hạn ngăn xếp) có thể làm tràn
+được tạo trên ngăn xếp, mảng quá lớn so với giới hạn ngăn xếp có thể làm tràn
 ngăn xếp và dẫn đến lỗi thực thi (RE). Nếu khai báo mảng ở phạm vi toàn cục,
 mảng sẽ nằm trong vùng nhớ tĩnh.
 
 ## Truy cập phần tử mảng
 
-Có thể dùng toán tử chỉ số `[]` để truy cập phần tử trong mảng. Chỉ số của mảng
-(tức giá trị trong cặp ngoặc vuông) bắt đầu từ 0. Với một mảng có 10 phần tử, các
+Có thể dùng toán tử chỉ số `[]` để truy cập phần tử trong mảng. Chỉ số của mảng,
+tức giá trị trong cặp ngoặc vuông, bắt đầu từ 0. Với một mảng có 10 phần tử, các
 chỉ số hợp lệ là từ 0 đến 9, không phải từ 1 đến 10. Tuy nhiên trong OI, để tiện
 sử dụng, người viết thường khai báo mảng lớn hơn một chút, bỏ qua phần tử đầu
 tiên và bắt đầu truy cập từ chỉ số 1.
 
-Ví dụ 1: đọc một số nguyên $n$ từ chuẩn nhập, rồi đọc tiếp $n$ số và lưu vào
-mảng, trong đó $n\leq 1000$.
+Ví dụ 1: đọc một số nguyên $n$ từ chuẩn nhập, rồi đọc tiếp $n$ số và lưu chúng
+vào mảng, trong đó $n\leq 1000$.
 
 ```cpp
 #include <iostream>
@@ -84,15 +84,15 @@ int main() {
 
 Chỉ số mảng $\mathit{idx}$ phải thỏa mãn
 $0\leq \mathit{idx}< \mathit{size}$. Nếu chỉ số không nằm trong phạm vi này,
-chương trình có hành vi không xác định: có thể sinh ra hậu quả khó dự đoán, chẳng
-hạn lỗi segmentation fault, đọc dữ liệu rác hoặc sửa nhầm biến ngoài dự kiến.
+chương trình có hành vi không xác định: hậu quả có thể rất khó dự đoán, chẳng hạn
+lỗi segmentation fault, đọc dữ liệu rác hoặc sửa nhầm biến ngoài dự kiến.
 
 ## Mảng nhiều chiều
 
-Bản chất của mảng nhiều chiều là "mảng của mảng", tức phần tử của mảng ngoài
-cũng là mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: số phần tử của
-mảng ngoài và số phần tử của mỗi mảng bên trong. Khi truy cập mảng hai chiều, cần
-viết hai chỉ số:
+Bản chất của mảng nhiều chiều là "mảng của mảng", tức mỗi phần tử của mảng ngoài
+cũng là một mảng. Một mảng hai chiều cần hai kích thước để định nghĩa: số phần tử
+của mảng ngoài và số phần tử của mỗi mảng bên trong. Khi truy cập mảng hai chiều,
+cần viết hai chỉ số:
 
 ```cpp
 int arr[3][4];  // một mảng có 3 phần tử, mỗi phần tử là một mảng có 4 phần tử
@@ -104,8 +104,8 @@ Mảng hai chiều thường được xử lý bằng các vòng lặp `for` l�
 
 Ví dụ: đọc hai số $n$ và $m$ từ chuẩn nhập, lần lượt biểu thị chiều cao và chiều
 rộng của một ảnh đen trắng, thỏa mãn $n,m\leq 1000$. Trong $n$ dòng dữ liệu tiếp
-theo, mỗi dòng có $m$ số cách nhau bằng khoảng trắng, biểu thị giá trị độ sáng
-tại vị trí đó. Cần đọc ảnh này và lưu vào mảng hai chiều.
+theo, mỗi dòng có $m$ số cách nhau bằng khoảng trắng, biểu thị giá trị độ sáng tại
+vị trí tương ứng. Cần đọc ảnh này và lưu vào mảng hai chiều.
 
 ```cpp
 #include <iostream>
@@ -123,5 +123,5 @@ int main() {
 }
 ```
 
-Tương tự, có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số chiều
-cao hơn.
+Tương tự, có thể định nghĩa mảng ba chiều, bốn chiều và các mảng có số chiều cao
+hơn.
