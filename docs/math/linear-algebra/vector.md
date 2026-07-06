@@ -17,15 +17,15 @@ Trên **OI Wiki**, nội dung chủ yếu hướng tới các ngành kỹ thuậ
 
 **Vectơ đơn vị**: Vectơ có độ dài bằng $1$ được gọi là vectơ đơn vị theo hướng đó. Thường ký hiệu là $\vec e$ hoặc $\boldsymbol{e}$.
 
-**Vectơ song song**: Hai vectơ **khác không** có cùng hướng hoặc ngược hướng. Ký hiệu: $\boldsymbol a\parallel \boldsymbol b$. Với nhiều vectơ song song nhau, ta có thể chọn một đường thẳng bất kỳ song song với chúng; khi đó mọi nhóm vectơ song song đều có thể tịnh tiến lên cùng một đường thẳng, nên vectơ song song còn được gọi là **vectơ cùng phương**.
+**Vectơ song song**: Hai vectơ **khác không** có cùng hướng hoặc ngược hướng. Ký hiệu: $\boldsymbol a\parallel \boldsymbol b$. Với nhiều vectơ song song nhau, có thể chọn một đường thẳng bất kỳ song song với chúng; khi đó mọi nhóm vectơ song song đều có thể tịnh tiến lên cùng một đường thẳng, nên vectơ song song còn được gọi là **vectơ cùng phương**.
 
 **Vectơ bằng nhau**: Các vectơ có độ dài bằng nhau và cùng hướng.
 
 **Vectơ đối**: Các vectơ có độ dài bằng nhau và ngược hướng.
 
-**Góc giữa hai vectơ**: Với hai vectơ khác không $\boldsymbol a,\boldsymbol b$, dựng $\overrightarrow{OA}=\boldsymbol a,\overrightarrow{OB}=\boldsymbol b$. Khi đó $\theta=\angle AOB$ là góc giữa vectơ $\boldsymbol a$ và vectơ $\boldsymbol b$. Ký hiệu: $\langle \boldsymbol a,\boldsymbol b\rangle$. Rõ ràng khi $\theta=0$ thì hai vectơ cùng hướng, khi $\theta=\pi$ thì hai vectơ ngược hướng, khi $\theta=\frac{\pi}{2}$ thì hai vectơ vuông góc, ký hiệu $\boldsymbol a\perp \boldsymbol b$, và quy ước $\theta \in [0,\pi]$.
+**Góc giữa hai vectơ**: Với hai vectơ khác không $\boldsymbol a,\boldsymbol b$, dựng $\overrightarrow{OA}=\boldsymbol a,\overrightarrow{OB}=\boldsymbol b$. Khi đó $\theta=\angle AOB$ là góc giữa vectơ $\boldsymbol a$ và vectơ $\boldsymbol b$. Ký hiệu: $\langle \boldsymbol a,\boldsymbol b\rangle$. Khi $\theta=0$ thì hai vectơ cùng hướng, khi $\theta=\pi$ thì hai vectơ ngược hướng, khi $\theta=\frac{\pi}{2}$ thì hai vectơ vuông góc, ký hiệu $\boldsymbol a\perp \boldsymbol b$, và quy ước $\theta \in [0,\pi]$.
 
-Cần chú ý rằng vectơ phẳng có hướng, nên không thể so sánh lớn nhỏ giữa hai vectơ (nhưng có thể so sánh độ dài của chúng). Tuy vậy, hai vectơ có thể bằng nhau.
+Cần lưu ý rằng vectơ phẳng có hướng, nên không thể so sánh lớn nhỏ giữa hai vectơ (nhưng có thể so sánh độ dài của chúng). Tuy vậy, hai vectơ có thể bằng nhau.
 
 <span id="phép-toán-tuyến-tính-trên-vectơ"></span>
 ## Phép toán tuyến tính trên vectơ
@@ -33,9 +33,9 @@ Cần chú ý rằng vectơ phẳng có hướng, nên không thể so sánh l�
 <span id="cộng-và-trừ-vectơ"></span>
 ### Cộng và trừ vectơ
 
-Sau khi định nghĩa một đại lượng, ta thường muốn đại lượng đó có phép toán. Phép toán trên vectơ có thể được xét bằng cách tương tự phép toán trên số, cũng có thể được nghiên cứu từ góc nhìn vật lý.
+Sau khi định nghĩa một đại lượng, thường cần xét các phép toán trên đại lượng đó. Phép toán trên vectơ có thể được xét bằng cách tương tự phép toán trên số, cũng có thể được nghiên cứu từ góc nhìn vật lý.
 
-Tương tự khái niệm độ dời trong vật lý, giả sử một người đi từ $A$ qua $B$ đến $C$, thì độ dời người đó đi qua là $\overrightarrow{AB}+\overrightarrow{BC}$. Điều này thực ra tương đương với việc người đó đi thẳng từ $A$ đến $C$, tức $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$.
+Tương tự khái niệm độ dời trong vật lý, giả sử một người đi từ $A$ qua $B$ đến $C$, thì độ dời người đó đi qua là $\overrightarrow{AB}+\overrightarrow{BC}$. Điều này tương đương với việc người đó đi thẳng từ $A$ đến $C$, tức $\overrightarrow{AB}+\overrightarrow{BC}=\overrightarrow{AC}$.
 
 Quy tắc tổng hợp lực, tức quy tắc hình bình hành, cũng có thể được xem là một phép cộng vectơ.
 
@@ -46,11 +46,11 @@ Tóm tắt quy tắc cộng vectơ:
 
 Như vậy, phép cộng vectơ có ý nghĩa hình học. Có thể kiểm chứng rằng phép cộng vectơ thỏa **tính giao hoán và tính kết hợp**.
 
-Vì phép trừ số thực có thể viết thành cộng với số đối, khi trừ vectơ ta cũng xét cách viết này. Tức là: $\boldsymbol a-\boldsymbol b=\boldsymbol a+(-\boldsymbol b)$.
+Vì phép trừ số thực có thể viết thành cộng với số đối, phép trừ vectơ cũng được xét theo cách viết này. Tức là: $\boldsymbol a-\boldsymbol b=\boldsymbol a+(-\boldsymbol b)$.
 
-Với các vectơ có chung điểm đầu, nếu dựng hiệu của chúng theo quy tắc hình bình hành rồi tịnh tiến, ta thấy **"hiệu của hai vectơ chung điểm đầu" là đoạn thẳng có hướng đi từ "vectơ bị trừ" đến "vectơ trừ"**. Đây cũng là ý nghĩa hình học của phép trừ vectơ.
+Với các vectơ có chung điểm đầu, nếu dựng hiệu của chúng theo quy tắc hình bình hành rồi tịnh tiến, sẽ thấy **"hiệu của hai vectơ chung điểm đầu" là đoạn thẳng có hướng đi từ "vectơ bị trừ" đến "vectơ trừ"**. Đây cũng là ý nghĩa hình học của phép trừ vectơ.
 
-Đôi khi có hai điểm $A,B$ và muốn biết $\overrightarrow{AB}$, ta có thể dùng phép trừ $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$.
+Đôi khi có hai điểm $A,B$ và muốn biết $\overrightarrow{AB}$, có thể dùng phép trừ $\overrightarrow{AB}=\overrightarrow{OB}-\overrightarrow{OA}$.
 
 <span id="nhân-vectơ-với-số"></span>
 ### Nhân vectơ với số
@@ -100,9 +100,9 @@ Nội dung định lý: Nếu hai vectơ $\boldsymbol{e_1},\boldsymbol{e_2}$ kh�
 
 Có rất nhiều vectơ phẳng; làm thế nào để biểu diễn tất cả vectơ phẳng bằng lượng thông tin ít nhất?
 
-Chỉ dùng một vectơ để biểu diễn tất cả vectơ hiển nhiên là không thể, nhiều nhất chỉ biểu diễn được các vectơ trên một đường thẳng nào đó.
+Chỉ dùng một vectơ thì không thể biểu diễn tất cả vectơ, nhiều nhất chỉ biểu diễn được các vectơ trên một đường thẳng nào đó.
 
-Thêm một vectơ nữa, dùng hai vectơ **không cùng phương** để biểu diễn (hai vectơ cùng phương ở đây có thể xem như cùng một vectơ), khi đó có thể phân tích bất kỳ vectơ phẳng nào theo hai hướng của hai vectơ này.
+Thêm một vectơ nữa, dùng hai vectơ **không cùng phương** để biểu diễn (hai vectơ cùng phương trong trường hợp này có thể xem như cùng một vectơ), khi đó có thể phân tích bất kỳ vectơ phẳng nào theo hai hướng của hai vectơ này.
 
 Hai vectơ không cùng phương trong cùng một mặt phẳng được gọi là **cơ sở**. Nếu các vectơ cơ sở vuông góc với nhau, thì quá trình phân tích vectơ là **phân tích trực giao**.
 
@@ -139,7 +139,7 @@ Biết hai điểm $A(a,b),B(c,d)$, dễ chứng minh $\overrightarrow{AB}=(c-a,
 <span id="tịnh-tiến-một-điểm"></span>
 ### Tịnh tiến một điểm
 
-Đôi khi cần tịnh tiến một điểm $P$ theo một hướng nhất định một độ dài đơn vị nào đó. Khi đó ta ghép hướng và khoảng cách cần tịnh tiến thành một vectơ, rồi dùng quy tắc tam giác của phép cộng vectơ để cộng vectơ này vào $\overrightarrow{OP}$; điểm cuối của vectơ thu được chính là điểm sau khi tịnh tiến.
+Đôi khi cần tịnh tiến một điểm $P$ theo một hướng nhất định một độ dài đơn vị nào đó. Khi đó ghép hướng và khoảng cách cần tịnh tiến thành một vectơ, rồi dùng quy tắc tam giác của phép cộng vectơ để cộng vectơ này vào $\overrightarrow{OP}$; điểm cuối của vectơ thu được chính là điểm sau khi tịnh tiến.
 
 <span id="kiểm-tra-ba-điểm-thẳng-hàng"></span>
 ### Kiểm tra ba điểm thẳng hàng
@@ -160,7 +160,7 @@ Trong không gian, mọi nội dung ở trên đều vẫn đúng. Ngoài ra cò
 ### Định lý cơ bản của vectơ không gian
 
 Nội dung định lý: Nếu ba vectơ $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ không đồng phẳng, thì tồn tại duy nhất bộ số thực $(x,y,z)$ sao cho mọi vectơ $\boldsymbol p$ trong không gian thỏa $\mathbf p=x\boldsymbol{e_1}+y\boldsymbol{e_2}+z\boldsymbol{e_3}$.
-Theo định lý cơ bản của vectơ không gian, ta cũng có thể dùng ba vectơ cơ sở đôi một vuông góc $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ làm cơ sở trực giao, thiết lập **hệ tọa độ Descartes trong không gian** và dùng bộ ba $(x,y,z)$ làm tọa độ để biểu diễn vectơ không gian.
+Theo định lý cơ bản của vectơ không gian, cũng có thể dùng ba vectơ cơ sở đôi một vuông góc $\boldsymbol{e_1},\boldsymbol{e_2},\boldsymbol{e_3}$ làm cơ sở trực giao, thiết lập **hệ tọa độ Descartes trong không gian** và dùng bộ ba $(x,y,z)$ làm tọa độ để biểu diễn vectơ không gian.
 
 <span id="định-lý-cơ-bản-về-vectơ-đồng-phẳng"></span>
 ### Định lý cơ bản về vectơ đồng phẳng
@@ -172,7 +172,7 @@ Nếu tồn tại hai vectơ không cùng phương $\boldsymbol{x},\boldsymbol{y
 
 Hướng của một đường thẳng trong không gian được biểu diễn bằng một vectơ khác không song song với đường thẳng đó; vectơ này được gọi là một vectơ chỉ phương của đường thẳng. Vị trí của đường thẳng trong không gian được **xác định hoàn toàn** bởi một điểm trong không gian mà nó đi qua và một vectơ chỉ phương của nó.
 
-Chú ý rằng đường thẳng trong mặt phẳng cũng có vectơ chỉ phương.
+Cần lưu ý rằng đường thẳng trong mặt phẳng cũng có vectơ chỉ phương.
 
 Với đường thẳng trong **không gian**, có các cách tìm vectơ chỉ phương sau:
 
@@ -198,24 +198,24 @@ $$
 
 Ma trận $A$ được gọi là ma trận biến đổi của biến đổi tuyến tính $T$. Trong các bài toán thuật toán, thông thường biến đổi tuyến tính được thực hiện trong cùng số chiều, nên $A$ là ma trận vuông. Như vậy, bài toán biến đổi tuyến tính trên vectơ có thể chuyển thành bài toán nhân ma trận.
 
-Tiếp theo, ta xét ba loại biến đổi thường gặp trong thi đấu và ma trận biến đổi tương ứng của chúng: biến đổi co giãn (ma trận biến đổi ký hiệu $S$), biến đổi quay (ma trận biến đổi ký hiệu $R$) và biến đổi tịnh tiến (ma trận biến đổi ký hiệu $T$).
+Tiếp theo, xét ba loại biến đổi thường gặp trong thi đấu và ma trận biến đổi tương ứng của chúng: biến đổi co giãn (ma trận biến đổi ký hiệu $S$), biến đổi quay (ma trận biến đổi ký hiệu $R$) và biến đổi tịnh tiến (ma trận biến đổi ký hiệu $T$).
 
 <span id="biến-đổi-co-giãn"></span>
 ### Biến đổi co giãn
 
-Với vectơ cột $n$ chiều $\boldsymbol a$, co giãn từng chiều của nó lần lượt $v_1,v_2,\ldots,v_n$ lần. Dễ thấy ma trận biến đổi của thao tác co giãn là ma trận đường chéo $n\times n$, tức $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$.
+Với vectơ cột $n$ chiều $\boldsymbol a$, co giãn từng chiều của nó lần lượt $v_1,v_2,\ldots,v_n$ lần. Ma trận biến đổi của thao tác co giãn là ma trận đường chéo $n\times n$, tức $S=\operatorname{diag}\{v_1,v_2,\ldots,v_n\}$.
 
 <span id="biến-đổi-quay"></span>
 ### Biến đổi quay
 
-Quay vectơ là thao tác tương đối phức tạp; ở đây chỉ thảo luận trường hợp hai chiều và ba chiều.
+Quay vectơ là thao tác tương đối phức tạp; phần này chỉ thảo luận trường hợp hai chiều và ba chiều.
 
 <span id="quay-vectơ-quanh-một-điểm"></span>
 #### Quay vectơ quanh một điểm
 
-Quay vectơ quanh một điểm thường là quay vectơ quanh gốc tọa độ. Với việc quay một điểm quanh điểm khác $P$, có thể dùng biến đổi tịnh tiến để đưa điểm $P$ về gốc tọa độ, thực hiện quay vectơ rồi tịnh tiến hệ tọa độ về vị trí ban đầu. Gọi ma trận biến đổi tịnh tiến là $T$, ma trận biến đổi quay quanh gốc tọa độ là $R$, thì ma trận biến đổi của toàn bộ quá trình là $TRT^{-1}$. Theo ý nghĩa hình học, $T^{-1}$ chắc chắn tồn tại.
+Quay vectơ quanh một điểm thường là quay vectơ quanh gốc tọa độ. Với việc quay một điểm quanh điểm khác $P$, có thể dùng biến đổi tịnh tiến để đưa điểm $P$ về gốc tọa độ, thực hiện quay vectơ rồi tịnh tiến hệ tọa độ về vị trí ban đầu. Gọi ma trận biến đổi tịnh tiến là $T$, ma trận biến đổi quay quanh gốc tọa độ là $R$, thì ma trận biến đổi của toàn bộ quá trình là $TRT^{-1}$. Theo ý nghĩa hình học, $T^{-1}$ luôn tồn tại.
 
-Trong không gian hai chiều, giả sử $\boldsymbol a=(x,y)$, góc nghiêng là $\theta$, độ dài là $l=\sqrt{x^2+y^2}$. Khi đó $x=l\cos \theta,y=l\sin\theta$. Cho vectơ quay ngược chiều kim đồng hồ quanh gốc tọa độ một góc $\alpha$, ta được vectơ $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$.
+Trong không gian hai chiều, giả sử $\boldsymbol a=(x,y)$, góc nghiêng là $\theta$, độ dài là $l=\sqrt{x^2+y^2}$. Khi đó $x=l\cos \theta,y=l\sin\theta$. Cho vectơ quay ngược chiều kim đồng hồ quanh gốc tọa độ một góc $\alpha$, thu được vectơ $\boldsymbol b=(l\cos(\theta+\alpha),l\sin(\theta+\alpha))$.
 
 ![](./images/vector-rotation.svg)
 
@@ -231,7 +231,7 @@ $$
 \boldsymbol b=(l\cos\theta\cos\alpha-l\sin\theta\sin\alpha,l\sin\theta\cos\alpha+l\cos\theta\sin\alpha)
 $$
 
-Thay $x,y$ ở trên vào, ta được
+Thay $x,y$ ở trên vào, thu được
 
 $$
 \boldsymbol b=(x\cos\alpha-y\sin\alpha,y\cos\alpha+x\sin\alpha)
@@ -252,7 +252,7 @@ Trong không gian ba chiều, quay vectơ cần dùng hai tham số góc, tức 
 <span id="quay-vectơ-quanh-một-đường-thẳng"></span>
 #### Quay vectơ quanh một đường thẳng
 
-Với vectơ ba chiều, trường hợp thường gặp hơn là quay quanh một đường thẳng. Tương tự, để thuận tiện, giả sử đường thẳng này đi qua gốc tọa độ. Nếu đường thẳng không đi qua gốc tọa độ, ta vẫn có thể tịnh tiến hệ tọa độ để chuyển về trường hợp này.
+Với vectơ ba chiều, trường hợp thường gặp hơn là quay quanh một đường thẳng. Tương tự, để thuận tiện, giả sử đường thẳng này đi qua gốc tọa độ. Nếu đường thẳng không đi qua gốc tọa độ, vẫn có thể tịnh tiến hệ tọa độ để chuyển về trường hợp này.
 
 Lấy vectơ chỉ phương của đường thẳng là $\boldsymbol u=(u_x,u_y,u_z)$, giả sử vectơ ba chiều quay quanh nó ngược chiều kim đồng hồ một góc $\theta$. Khi đó ma trận biến đổi tương ứng $R$ là[^note1]
 
@@ -270,7 +270,7 @@ $$
 
 Biến đổi tịnh tiến không phải là biến đổi tuyến tính, mà là biến đổi affine. Tuy nhiên, biến đổi affine trong $\mathbf R^n$ vẫn có thể được biểu diễn bằng biến đổi tuyến tính trong $\mathbf R^{n+1}$.
 
-Xét vectơ $n$ chiều $\boldsymbol a=(a_1,a_2, \ldots , a_n)$, cần tịnh tiến nó theo vectơ $\boldsymbol t=(t_1, t_2, \ldots , t_n)$. Ta thêm một chiều vào vectơ cột $\boldsymbol a$ và đặt bằng $1$, thu được vectơ cột mới $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$. Khi đó ma trận biến đổi $T$ có thể viết là
+Xét vectơ $n$ chiều $\boldsymbol a=(a_1,a_2, \ldots , a_n)$, cần tịnh tiến nó theo vectơ $\boldsymbol t=(t_1, t_2, \ldots , t_n)$. Thêm một chiều vào vectơ cột $\boldsymbol a$ và đặt bằng $1$, thu được vectơ cột mới $\boldsymbol a'=(a_1, a_2, \ldots , a_n, 1)$. Khi đó ma trận biến đổi $T$ có thể viết là
 
 $$
 T=

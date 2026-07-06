@@ -19,7 +19,7 @@ Các số phân hoạch bắt đầu từ $0$:
 
 Phân hoạch chia $n$ thành đúng $k$ phần được gọi là phân hoạch $k$ phần, kí hiệu là $p(n,k)$.
 
-Rõ ràng số phân hoạch $k$ phần $p(n,k)$ cũng là số nghiệm của phương trình sau:
+Số phân hoạch $k$ phần $p(n,k)$ cũng chính là số nghiệm của phương trình sau:
 
 $$
 n-k=y_1+y_2+\ldots+y_k\quad y_1\ge y_2\ge\ldots\ge y_k\ge 0
@@ -31,7 +31,7 @@ $$
 p(n,k)=\sum_{j=0}^k p(n-k,j)
 $$
 
-Lấy hiệu hai công thức tổng kề nhau, ta được:
+Hiệu của hai công thức tổng kề nhau cho:
 
 $$
 p(n,k)=p(n-1,k-1)+p(n-k,k)
@@ -89,7 +89,7 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
 <span id="hàm-sinh"></span>
 ### Hàm sinh
 
-Từ công thức tổng cấp số nhân, ta có:
+Công thức tổng cấp số nhân cho:
 
 $$
 \frac{1}{1-x^k}=1+x^k+x^{2k}+x^{3k}+\ldots
@@ -116,13 +116,13 @@ Ví dụ: biểu đồ Ferrers của phân hoạch $12=5+4+2+1$.
 
 ![](./images/ferrers.jpg)
 
-Lật một biểu đồ Ferrers qua đường chéo sẽ thu được một biểu đồ Ferrers mới, gọi là liên hợp của biểu đồ ban đầu; phân hoạch mới gọi là liên hợp của phân hoạch ban đầu. Rõ ràng quan hệ liên hợp là đối xứng.
+Lật một biểu đồ Ferrers qua đường chéo sẽ thu được một biểu đồ Ferrers mới, gọi là liên hợp của biểu đồ ban đầu; phân hoạch mới gọi là liên hợp của phân hoạch ban đầu. Quan hệ liên hợp này có tính đối xứng.
 
 Ví dụ, liên hợp của phân hoạch $12=5+4+2+1$ ở trên là phân hoạch $12=4+3+2+2+1$.
 
 Số phân hoạch có phần lớn nhất bằng $k$: số phân hoạch của số tự nhiên $n$ mà phần lớn nhất là $k$.
 
-Từ định nghĩa liên hợp, ta có kết luận hiển nhiên:
+Từ định nghĩa liên hợp, suy ra:
 
 Số phân hoạch có phần lớn nhất bằng $k$ bằng số phân hoạch $k$ phần, đều là $p(n,k)$.
 
@@ -147,7 +147,7 @@ $$
 n-k=y_1+y_2+\ldots+y_k\quad y_1>y_2>\ldots>y_k\ge 0
 $$
 
-Điểm khác với phần trên là do các phần phân biệt, trong phương trình mới có nhiều nhất một phần bằng không. Kết luận không đổi: nếu có đúng $j$ phần khác $0$ thì có đúng $pd(n-k,j)$ nghiệm; ở đây $j$ chỉ có thể là $k$ hoặc $k-1$. Vì vậy trực tiếp có truy hồi:
+Điểm khác với phần trên là do các phần phân biệt, trong phương trình mới có nhiều nhất một phần bằng không. Kết luận không đổi: nếu có đúng $j$ phần khác $0$ thì có đúng $pd(n-k,j)$ nghiệm; khi đó $j$ chỉ có thể là $k$ hoặc $k-1$. Vì vậy có truy hồi:
 
 $$
 pd(n,k)=pd(n-k,k-1)+pd(n-k,k)
@@ -212,7 +212,7 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
 
 Số phân hoạch lẻ: $po_n$, là số cách phân hoạch số tự nhiên $n$ sao cho mọi phần đều là số lẻ (Odd).
 
-Có một đẳng thức hiển nhiên:
+Có đẳng thức:
 
 $$
 \prod_{i=1}^\infty (1+x^i ) =\frac{\prod_{i=1}^\infty (1-x^{2i} ) }{\prod_{i=1}^\infty (1-x^i ) }=\prod_{i=1}^\infty \frac{1}{1-x^{2i-1} }
@@ -224,7 +224,7 @@ $$
 po_n=pd_n
 $$
 
-Nhưng rõ ràng số phân hoạch lẻ $k$ phần và số phân hoạch phân biệt $k$ phần không phải cùng một khái niệm, nên không liệt kê ở đây.
+Tuy nhiên, số phân hoạch lẻ $k$ phần và số phân hoạch phân biệt $k$ phần không phải cùng một khái niệm, nên không liệt kê trong phần này.
 
 Giới thiệu thêm hai khái niệm:
 
@@ -238,7 +238,7 @@ $$
 pd_n=pde_n+pdo_n
 $$
 
-Cũng có các khái niệm $k$ phần tương ứng. Vì chúng quá phức tạp nên không liệt kê ở đây.
+Các khái niệm $k$ phần tương ứng cũng tồn tại. Vì khá phức tạp nên không liệt kê trong phần này.
 
 <span id="định-lý-số-ngũ-giác"></span>
 ## Định lý số ngũ giác
@@ -249,7 +249,7 @@ $$
 \prod_{i=1}^\infty (1-x^i ) 
 $$
 
-Khi khai triển phần này, ta có thể liên hệ với phân hoạch phân biệt và tính chẵn lẻ của số phần được tách ra trong phân hoạch phân biệt.
+Khi khai triển tích này, có thể liên hệ với phân hoạch phân biệt và tính chẵn lẻ của số phần được tách ra trong phân hoạch phân biệt.
 
 Cụ thể, phân hoạch phân biệt có số phần chẵn được đếm với dấu dương trong khai triển, còn phân hoạch phân biệt có số phần lẻ được đếm với dấu âm. Vì vậy hệ số của mỗi hạng trong khai triển là hiệu của hai số cách đó:
 
@@ -257,15 +257,15 @@ $$
 \sum_{i=0}^\infty ({pde}_n-{pdo}_n ) x^n =\prod_{i=1}^\infty (1-x^i ) 
 $$
 
-Tiếp theo, ta chỉ ra rằng trong đa số trường hợp hai số cách trên bằng nhau, nên hệ số trong khai triển là $0$; chỉ tại một số ít vị trí, hai số cách chênh nhau $1$ hoặc $-1$.
+Tiếp theo, chứng minh rằng trong đa số trường hợp hai số cách trên bằng nhau, nên hệ số trong khai triển là $0$; chỉ tại một số ít vị trí, hai số cách chênh nhau $1$ hoặc $-1$.
 
-Ở đây có thể dùng cách xây dựng một song ánh.
+Một cách tiếp cận là xây dựng một song ánh.
 
 Vẽ biểu đồ Ferrers của mỗi phân hoạch phân biệt. Hàng cuối cùng gọi là đáy của biểu đồ, số điểm trên đáy kí hiệu là $b$ (Bottom); đoạn chéo dài nhất góc $45$ độ nối điểm cuối cùng của hàng trên cùng với một điểm trong biểu đồ gọi là sườn, số điểm trên sườn kí hiệu là $s$ (Slide).
 
 ![](./images/bottom_slide.jpg)
 
-Để xây dựng song ánh giữa các phân hoạch phân biệt có số phần chẵn và có số phần lẻ, ta cần định nghĩa phép biến đổi sao cho vẫn giữ điều kiện các phần phân biệt, đồng thời số hàng thay đổi đúng $1$:
+Để xây dựng song ánh giữa các phân hoạch phân biệt có số phần chẵn và có số phần lẻ, cần định nghĩa phép biến đổi sao cho vẫn giữ điều kiện các phần phân biệt, đồng thời số hàng thay đổi đúng $1$:
 
 Biến đổi A: khi $b \le s$, chuyển đáy sang bên phải để trở thành một sườn mới.
 
@@ -291,21 +291,21 @@ $$
 
 Hạng thứ $n$ trong khai triển là $(-1)^s x^n$.
 
-Thay $s$ trong công thức trên bằng $-s$, ta được $n=\frac{s(3s-1)}{2}$, trong đó $s$ là số nguyên âm, và hạng thứ $n$ trong khai triển vẫn là $(-1)^s x^n$.
+Thay $s$ trong công thức trên bằng $-s$ thu được $n=\frac{s(3s-1)}{2}$, trong đó $s$ là số nguyên âm, và hạng thứ $n$ trong khai triển vẫn là $(-1)^s x^n$.
 
-Vì hai trường hợp không xảy ra đồng thời với cùng một $n$, ta có thể gộp hai điều kiện lại: $n$ cần thỏa mãn
+Vì hai trường hợp không xảy ra đồng thời với cùng một $n$, hai điều kiện được gộp lại thành: $n$ cần thỏa mãn
 
 $$
 \exists k\in\mathbb{Z},n=\frac{k(3k-1)}{2}
 $$
 
-Đến đây, ta đã chứng minh:
+Đến đây, đã chứng minh:
 
 $$
 (1-x)(1-x^2 )(1-x^3 )\ldots=\sum_{k=-\infty}^{+\infty} (-1)^k x^{\frac{k(3k-1)}{2}} =\ldots+x^{26}-x^{15}+x^7-x^2+1-x+x^5-x^{12}+x^{22}-\ldots
 $$
 
-Nhắc lại: công thức này là nghịch đảo của hàm sinh số phân hoạch, vì vậy tích của nó với hàm sinh số phân hoạch bằng $1$. Sắp xếp lại và so sánh hệ số hai vế, ta thu được công thức truy hồi cho dãy số phân hoạch.
+Nhắc lại: công thức này là nghịch đảo của hàm sinh số phân hoạch, vì vậy tích của nó với hàm sinh số phân hoạch bằng $1$. Sắp xếp lại và so sánh hệ số hai vế sẽ thu được công thức truy hồi cho dãy số phân hoạch.
 
 $$
 (1+p_1 x+p_2 x^2+p_3 x^3+\ldots)(1-x-x^2+x^5+x^7-x^{12}-x^{15}+x^{22}+x^{26}-\ldots)=1
