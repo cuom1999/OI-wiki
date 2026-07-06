@@ -1,5 +1,5 @@
-Đôi khi cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết lặp
-lại cùng một đoạn mã, có thể dùng vòng lặp.
+Đôi khi cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết lại
+cùng một đoạn mã, có thể dùng vòng lặp.
 
 Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy, nên
 không thể sao chép mã nguồn nhiều lần bằng tay mà cần dùng vòng lặp.
@@ -26,8 +26,8 @@ for (int i = 1; i <= n; ++i) {
 }
 ```
 
-Trong ba phần của câu lệnh `for`, bất kỳ phần nào cũng có thể được bỏ qua. Nếu
-bỏ qua điều kiện kiểm tra thì tương đương với việc điều kiện luôn đúng.
+Trong ba phần của câu lệnh `for`, phần nào cũng có thể được bỏ qua. Nếu bỏ qua
+điều kiện kiểm tra thì tương đương với việc điều kiện luôn đúng.
 
 ## Câu lệnh while
 
@@ -100,8 +100,8 @@ while (statement2) {
 ```
 
 Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách
-viết này là tương đương, nhưng cách viết bằng `while` sau đây ít khi được
-dùng để thay thế trực tiếp cho `for`.
+viết này là tương đương. Tuy nhiên, dạng `while` này ít khi được dùng để thay
+hẳn cho `for`.
 
 ```cpp
 // Câu lệnh while
@@ -132,7 +132,7 @@ for (;;) {
 ```
 
 Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem phần sau) để
-thoát.
+thoát khỏi vòng lặp.
 
 Ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình huống, nhưng nói
 chung nên chọn theo các nguyên tắc sau:
@@ -152,8 +152,8 @@ Tác dụng của câu lệnh `break` là thoát khỏi vòng lặp gần nhất
 Tác dụng của câu lệnh `continue` là bỏ qua phần còn lại của thân vòng lặp và
 chuyển sang bước tiếp theo của vòng lặp. Trong `for`, chương trình sẽ thực hiện
 biểu thức cập nhật rồi kiểm tra điều kiện; trong `while` và `do...while`, chương
-trình sẽ chuyển tới bước kiểm tra điều kiện. Sau đây là ví dụ minh họa vị trí
-mà `continue` trong câu lệnh `do...while` sẽ nhảy tới:
+trình sẽ chuyển tới bước kiểm tra điều kiện. Sau đây là ví dụ minh họa vị trí mà
+`continue` trong câu lệnh `do...while` sẽ nhảy tới:
 
 ```cpp
 do {
@@ -164,11 +164,11 @@ END:;
 } while (statement);
 ```
 
-Cả hai câu lệnh `break` và `continue` đều có thể được dùng trong thân vòng lặp
-của ba loại câu lệnh lặp.
+Cả hai câu lệnh `break` và `continue` đều có thể dùng trong thân vòng lặp của ba
+loại câu lệnh lặp.
 
-Thông thường, câu lệnh `break` và `continue` có thể làm logic của mã nguồn dễ theo
-dõi hơn, ví dụ:
+Thông thường, câu lệnh `break` và `continue` có thể làm logic của mã nguồn dễ
+theo dõi hơn, ví dụ:
 
 ```cpp
 // Logic khó theo dõi, các tầng dấu ngoặc nhọn phức tạp
