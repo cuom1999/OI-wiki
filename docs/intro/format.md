@@ -1,8 +1,8 @@
-Trước khi bắt đầu bài viết, toàn thể thành viên dự án **OI Wiki** rất hoan nghênh bạn đóng góp trang cho dự án này. Chính nhờ hàng trăm người như bạn mà **OI Wiki** có được ngày hôm nay!
+Trước khi bắt đầu bài viết, toàn thể thành viên dự án **OI Wiki** rất hoan nghênh mọi đóng góp cho dự án này. Chính nhờ hàng trăm người đóng góp mà **OI Wiki** có được ngày hôm nay!
 
 Trang này liệt kê các quy chuẩn định dạng và phương châm biên tập được khuyên dùng khi viết **OI Wiki**. Trước khi soạn thảo hoặc sửa trang Wiki, vui lòng đọc kỹ các nội dung dưới đây để tạo ra nội dung chất lượng hơn.
 
-Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm tắt nhanh](#tom-tat-nhanh) và [Hình minh họa](#hinh-minh-hoa).
+Nếu muốn bắt đầu thật nhanh, nên đọc trước các mục [Tóm tắt nhanh](#tom-tat-nhanh) và [Hình minh họa](#hinh-minh-hoa).
 
 ??? abstract "Nhật ký thay đổi"
     **Chú ý**: chỉ ghi các thay đổi liên quan đến viết bài, duyệt bài, v.v.; không ghi các thay đổi chỉ sửa định dạng.
@@ -113,7 +113,7 @@ Nếu bạn muốn bắt đầu thật nhanh, nên đọc trước các mục [T
 
 ## Yêu cầu khi đóng góp tài liệu
 
-Khi bạn dự định đóng góp nội dung cho một phần nào đó, bạn nên cố gắng nắm rõ ba phần sau:
+Khi dự định đóng góp nội dung cho một phần nào đó, người đóng góp nên nắm rõ ba phần sau:
 
 -   Định dạng lưu trữ tài liệu.
 -   Tính hợp lý của tài liệu.
@@ -123,17 +123,17 @@ Khi bạn dự định đóng góp nội dung cho một phần nào đó, bạn 
 
 -   <a id="SAVE-1"></a>SAVE-1: **tên tệp bắt buộc viết thường và tách bằng `-`.** Ví dụ: `file-name.md`.
 
--   <a id="SAVE-2"></a>SAVE-2: hãy đảm bảo tất cả hình ảnh **liên kết ngoài** được dẫn trong tài liệu đã được chuyển vào thư mục `images` tương ứng **bên trong kho này** (để tránh kích hoạt cơ chế chống hotlink của một số website). Nên đặt tên theo dạng `tên tài liệu MD + số thứ tự` (có thể tham khảo cách xử lý hình ảnh trong các tài liệu hiện có). Ví dụ: tên tệp của tài liệu này là format, thì hình ảnh đầu tiên được dẫn trong tài liệu có tên là `format1.png`.
+-   <a id="SAVE-2"></a>SAVE-2: cần bảo đảm tất cả hình ảnh **liên kết ngoài** được dẫn trong tài liệu đã được chuyển vào thư mục `images` tương ứng **bên trong kho này** (để tránh kích hoạt cơ chế chống hotlink của một số website). Nên đặt tên theo dạng `tên tài liệu MD + số thứ tự` (có thể tham khảo cách xử lý hình ảnh trong các tài liệu hiện có). Ví dụ: tên tệp của tài liệu này là format, thì hình ảnh đầu tiên được dẫn trong tài liệu có tên là `format1.png`.
 
--   <a id="SAVE-3"></a>SAVE-3: nên dùng hình ảnh định dạng SVG[^ref4] để có độ nét và hiệu quả phóng to, thu nhỏ tốt hơn. Do các thành phần của **OI Wiki** có khả năng tương thích khác nhau với chuẩn SVG, hình ảnh của bạn nên dựa trên chuẩn [SVG 1.1](http://www.w3.org/TR/SVG11/).
+-   <a id="SAVE-3"></a>SAVE-3: nên dùng hình ảnh định dạng SVG[^ref4] để có độ nét và hiệu quả phóng to, thu nhỏ tốt hơn. Do các thành phần của **OI Wiki** có khả năng tương thích khác nhau với chuẩn SVG, hình ảnh nên dựa trên chuẩn [SVG 1.1](http://www.w3.org/TR/SVG11/).
 
 -   <a id="SAVE-4"></a>SAVE-4: với ảnh động, nếu không thể hoặc không biết cách tạo định dạng SVG, nên dùng tệp định dạng APNG[^apng]. Người dùng Windows có thể dùng [ScreenToGif](https://www.screentogif.com) để ghi hình, người dùng Linux có thể dùng [Peek](https://github.com/phw/peek) để ghi hình; chú ý cần chỉnh trong cài đặt sang ghi APNG. Trường hợp khác, nên tạo trước thành tệp video như MP4 rồi chuyển sang APNG. Nếu dùng ffmpeg, có thể chuyển bằng `ffmpeg -i filename.mp4 -f apng filename.apng -plays 0`.[^intro-apng]
 
 -   <a id="SAVE-5"></a>SAVE-5: với hình ảnh có đồng thời tệp nguồn và ảnh xuất ra (ví dụ tệp JPG và tệp PSD, hoặc ảnh SVG và mã nguồn TikZ TeX), nên lưu tệp nguồn cùng tên với hình ảnh trong cùng thư mục.
 
--   <a id="SAVE-6"></a>SAVE-6: hãy đảm bảo tính ổn định của các liên kết tham chiếu trong tài liệu. **Không khuyến nghị** dẫn tài nguyên từ dịch vụ **tự xây dựng** (ví dụ bài tập trong OJ tự xây dựng). Khi thêm liên kết ngoài, nên đồng thời lưu liên kết đó vào Internet Archive[^webarchive] để phòng trường hợp liên kết không thể thay thế bị hỏng.
+-   <a id="SAVE-6"></a>SAVE-6: cần bảo đảm tính ổn định của các liên kết tham chiếu trong tài liệu. **Không khuyến nghị** dẫn tài nguyên từ dịch vụ **tự xây dựng** (ví dụ bài tập trong OJ tự xây dựng). Khi thêm liên kết ngoài, nên đồng thời lưu liên kết đó vào Internet Archive[^webarchive] để phòng trường hợp liên kết không thể thay thế bị hỏng.
 
--   <a id="SAVE-7"></a>SAVE-7: với liên kết trong site, hãy bỏ tên miền website và dùng đường dẫn tương đối để liên kết đến tệp `.md` tương ứng. Ví dụ, trong trang này (`intro/format`), khi liên kết đến giới thiệu về tạp mục (`misc`), nên dùng `[Giới thiệu tạp mục](../misc/index.md)`. Có thể thêm hash vào liên kết để trỏ đến một mục cụ thể, ví dụ [`[Quy chuẩn định dạng thông tin Pull Request](./htc.md#pull-request-format)`](./htc.md#pull-request-format). Giá trị hash có thể lấy từ nút ở bên phải mỗi tiêu đề hoặc từ liên kết trong mục lục bên phải trang web.
+-   <a id="SAVE-7"></a>SAVE-7: với liên kết trong site, cần bỏ tên miền website và dùng đường dẫn tương đối để liên kết đến tệp `.md` tương ứng. Ví dụ, trong trang này (`intro/format`), khi liên kết đến giới thiệu về tạp mục (`misc`), nên dùng `[Giới thiệu tạp mục](../misc/index.md)`. Có thể thêm hash vào liên kết để trỏ đến một mục cụ thể, ví dụ [`[Quy chuẩn định dạng thông tin Pull Request](./htc.md#pull-request-format)`](./htc.md#pull-request-format). Giá trị hash có thể lấy từ nút ở bên phải mỗi tiêu đề hoặc từ liên kết trong mục lục bên phải trang web.
 
 ### Tính hợp lý của tài liệu
 
@@ -165,7 +165,7 @@ Trừ khi chất lượng nội dung hiện có khá thấp, nên đóng góp th
 
 [remark-lint](https://github.com/remarkjs/remark-lint) có thể tự động thống nhất phong cách cho các tệp trong dự án. Tệp cấu hình hiện **OI Wiki** đang dùng được lưu tại [.remarkrc](https://github.com/OI-wiki/OI-wiki/blob/master/.remarkrc).
 
-Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số vấn đề remark-lint xử lý chưa tốt, vì vậy hãy biên tập tài liệu nghiêm ngặt theo các yêu cầu sau:
+Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số vấn đề remark-lint xử lý chưa tốt, vì vậy cần biên tập tài liệu nghiêm ngặt theo các yêu cầu sau:
 
 -   <a id="LINT-1"></a>LINT-1: không dùng tiêu đề cấp một như `<h1>` hoặc `# Tiêu đề`.
 
@@ -188,7 +188,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         
         ```text
         ???+ warning
-        ␣␣␣␣Hãy nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
+        ␣␣␣␣Cần nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
         ␣␣␣␣
         ␣␣␣␣Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
         ␣␣␣␣
@@ -196,7 +196,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         ```
         
         ???+ warning "Cảnh báo"
-            Hãy nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
+            Cần nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
             
             Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
             
@@ -206,11 +206,11 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 #### Cách dùng dấu câu
 
--   <a id="PUNC-1"></a>PUNC-1: hãy thêm **dấu chấm câu** ở cuối mỗi câu.
+-   <a id="PUNC-1"></a>PUNC-1: cần thêm **dấu chấm câu** ở cuối mỗi câu.
 
 <!-- scripts.linter.postprocess.fix_full_stop off -->
 
--   <a id="PUNC-2"></a>PUNC-2: hãy dùng dấu câu và khoảng trắng theo quy chuẩn tiếng Việt. Dấu câu thông dụng như `.`, `,`, `:`, `;`, `?`, `!`, dấu ngoặc và dấu nháy nên dùng dạng nửa chiều rộng; không dùng dấu câu toàn chiều rộng kiểu CJK trong văn bản tiếng Việt, trừ khi trích nguyên văn hoặc ghi chú về một ký hiệu cụ thể. Không đặt khoảng trắng trước dấu câu đóng như dấu phẩy, dấu chấm, dấu hai chấm, dấu chấm phẩy, dấu hỏi, dấu than; đặt một khoảng trắng sau các dấu đó nếu câu còn tiếp tục.
+-   <a id="PUNC-2"></a>PUNC-2: cần dùng dấu câu và khoảng trắng theo quy chuẩn tiếng Việt. Dấu câu thông dụng như `.`, `,`, `:`, `;`, `?`, `!`, dấu ngoặc và dấu nháy nên dùng dạng nửa chiều rộng; không dùng dấu câu toàn chiều rộng kiểu CJK trong văn bản tiếng Việt, trừ khi trích nguyên văn hoặc ghi chú về một ký hiệu cụ thể. Không đặt khoảng trắng trước dấu câu đóng như dấu phẩy, dấu chấm, dấu hai chấm, dấu chấm phẩy, dấu hỏi, dấu than; đặt một khoảng trắng sau các dấu đó nếu câu còn tiếp tục.
 
 <!-- scripts.linter.postprocess.fix_full_stop on -->
 
@@ -228,8 +228,8 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
     ???+ success "Ví dụ"
         -   Các kỳ thi môn học cấp trung học chủ yếu bao gồm Olympic Tin học, Olympic Tin học, Olympic Tin học, Olympic Tin học và Olympic Tin học (ai viết ví dụ này thì nên mời ra ngoài sửa lại).
-        -   "Bạn ăn cơm chưa?" Lý Tứ hỏi Trương Tam.
-        -   Tôi muốn nói với bạn: "Tôi thật sự rất thích bạn."
+        -   "Anh ăn cơm chưa?" Lý Tứ hỏi Trương Tam.
+        -   Tôi muốn nói với anh: "Tôi thật sự rất thích câu này."
         -   "Nếu lợi cho đất nước thì sống chết cũng không quản ngại, đâu vì họa phúc mà tránh né!"
         -   Trương Hoa đỗ đại học; Lý Bình vào trường nghề; tôi trở thành công nhân: chúng tôi đều có tương lai tốt đẹp.[^note1]
         -   Quy trình cơ bản của thuật toán này như sau:
@@ -247,7 +247,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 -   <a id="MDFM-2"></a>MDFM-2: khi cần dẫn liên kết bài tập, nên ưu tiên dùng liên kết trong kho bài của OJ gốc thay vì liên kết bản sao.
 
--   <a id="MDFM-3"></a>MDFM-3: hãy dùng đúng chức năng block của Markdown. Khi chèn mã trong dòng, dùng một cặp dấu backtick bao quanh khối mã; khi chèn mã riêng dòng, dùng một cặp ` ``` ` bao quanh khối mã. Dấu backtick là ký tự nằm dưới dấu ngã ở góc trên bên trái bàn phím. Với mã riêng dòng, hãy thêm tên ngôn ngữ sau ` ``` ` đầu tiên (ví dụ: ` ```cpp`).
+-   <a id="MDFM-3"></a>MDFM-3: cần dùng đúng chức năng block của Markdown. Khi chèn mã trong dòng, dùng một cặp dấu backtick bao quanh khối mã; khi chèn mã riêng dòng, dùng một cặp ` ``` ` bao quanh khối mã. Dấu backtick là ký tự nằm dưới dấu ngã ở góc trên bên trái bàn phím. Với mã riêng dòng, cần thêm tên ngôn ngữ sau ` ``` ` đầu tiên (ví dụ: ` ```cpp`).
 
     ???+ success "Ví dụ"
         ````text
@@ -301,7 +301,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
     ␣␣␣␣Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
     ???+note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-    ␣␣␣␣Tiêu đề cũng có thể dùng siêu liên kết Markdown. Siêu liên kết ở đây là "A + B Problem" của HDOJ.
+    ␣␣␣␣Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "A + B Problem" của HDOJ.
     ␣␣␣␣
     ␣␣␣␣Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
     ␣␣␣␣
@@ -316,7 +316,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
     ???+ note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-        Tiêu đề cũng có thể dùng siêu liên kết Markdown. Siêu liên kết ở đây là "A + B Problem" của HDOJ.
+        Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "A + B Problem" của HDOJ.
         
         Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
         
@@ -373,7 +373,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
             }
             ```
 
-Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùng), bạn cũng có thể đọc [hướng dẫn sử dụng MkDocs](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E), trong đó giới thiệu cách dùng các plugin của chủ đề mkdocs-material.
+Nếu còn câu hỏi về mkdocs-material (chủ đề đang dùng), cũng có thể đọc [hướng dẫn sử dụng MkDocs](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E), trong đó giới thiệu cách dùng các plugin của chủ đề mkdocs-material.
 
 #### Yêu cầu định dạng của nội dung văn bản
 
@@ -384,7 +384,7 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
     ???+ success "Ví dụ"
         Trang này liệt kê các quy chuẩn định dạng và phương châm biên tập được khuyên dùng khi viết **OI Wiki**.
 
--   <a id="CONT-3"></a>CONT-3: với trang liên quan đến "kiến thức tiên quyết", hãy thêm một dòng **Kiến thức tiên quyết: ...** ở đầu trang, đặt trước phần tóm tắt trang. Định dạng như sau:
+-   <a id="CONT-3"></a>CONT-3: với trang liên quan đến "kiến thức tiên quyết", cần thêm một dòng **Kiến thức tiên quyết: ...** ở đầu trang, đặt trước phần tóm tắt trang. Định dạng như sau:
 
     `Kiến thức tiên quyết: [trang nội bộ 1](url1), [trang nội bộ 2](url2) và [trang nội bộ 3](url3)`
 
@@ -393,11 +393,11 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
         
         Trang này sẽ giới thiệu kiến thức cơ bản về lý thuyết tính toán.
 
--   <a id="CONT-4"></a>CONT-4: hãy chú ý cấu trúc tài liệu. Cấu trúc tài liệu cần thật có trật tự và phân cấp rõ ràng. Xin đừng để những việc như "tiêu đề cấp năm" xảy ra nữa; một bài viết bình thường không cần cấu trúc phân cấp phức tạp như vậy.
+-   <a id="CONT-4"></a>CONT-4: cần chú ý cấu trúc tài liệu. Cấu trúc tài liệu cần thật có trật tự và phân cấp mạch lạc. Không nên để những việc như "tiêu đề cấp năm" xảy ra nữa; một bài viết bình thường không cần cấu trúc phân cấp phức tạp như vậy.
 
--   <a id="CONT-5"></a>CONT-5: hãy chú ý cách diễn đạt nội dung. Là một website bách khoa, ngôn ngữ **OI Wiki** sử dụng nên mang tính viết, khách quan. Những nội dung mang tính "đùa vui" và ít giúp người đọc hiểu bài không nên xuất hiện trong **OI Wiki**.
+-   <a id="CONT-5"></a>CONT-5: cần chú ý cách diễn đạt nội dung. Là một website bách khoa, ngôn ngữ **OI Wiki** sử dụng nên mang tính viết, khách quan. Những nội dung mang tính "đùa vui" và ít giúp người đọc hiểu bài không nên xuất hiện trong **OI Wiki**.
 
--   <a id="CONT-6"></a>CONT-6: hãy cố gắng cung cấp tiêu đề đầy đủ hoặc gợi ý dễ nhận biết cho liên kết, tránh dùng URL trần hoặc các mô tả mơ hồ như "này", "đó". Mỗi siêu liên kết nên được mô tả rõ ràng hết mức để người đọc biết nó sẽ trỏ đến đâu.
+-   <a id="CONT-6"></a>CONT-6: nên cố gắng cung cấp tiêu đề đầy đủ hoặc gợi ý dễ nhận biết cho liên kết, tránh dùng URL trần hoặc các mô tả mơ hồ như "này", "đó". Mỗi siêu liên kết nên được mô tả cụ thể hết mức để người đọc biết nó sẽ trỏ đến đâu.
 
     Nên dùng tiêu đề của bài nguồn hoặc của tab.
 
@@ -425,11 +425,11 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
     -   Hạng thứ nhất của dãy số.
     -   Dòng thứ nhất của tệp nhập.
 
--   <a id="CONT-9"></a>CONT-9: hãy cố gắng tránh dùng công thức MathJax trong tiêu đề, bất kể là tiêu đề cấp mấy. Dùng công thức trong tiêu đề có thể làm mục lục hiển thị sai.[^ref3]
+-   <a id="CONT-9"></a>CONT-9: nên cố gắng tránh dùng công thức MathJax trong tiêu đề, bất kể là tiêu đề cấp mấy. Dùng công thức trong tiêu đề có thể làm mục lục hiển thị sai.[^ref3]
 
--   <a id="CONT-10"></a>CONT-10: hãy chú ý khả năng đọc của mã.
+-   <a id="CONT-10"></a>CONT-10: cần chú ý khả năng đọc của mã.
 
-    -   <a id="CONT-10.1.1"></a>CONT-10.1.1: mã cần có logic rõ ràng, ngắn gọn và dễ hiểu hết mức có thể. Không nên nén dòng quá mức, không đưa vào quá nhiều mã không liên quan. Cố gắng tránh nội dung không liên quan đến tư tưởng thuật toán.
+    -   <a id="CONT-10.1.1"></a>CONT-10.1.1: mã cần có logic mạch lạc, ngắn gọn và dễ hiểu hết mức có thể. Không nên nén dòng quá mức, không đưa vào quá nhiều mã không liên quan. Cố gắng tránh nội dung không liên quan đến tư tưởng thuật toán.
     -   <a id="CONT-10.1.2"></a>CONT-10.1.2: nên thêm chú thích phù hợp trong mã tham khảo để người đọc dễ hiểu.
 
     Đối với các ngôn ngữ kiểu C/C++:
@@ -458,22 +458,22 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề mà chúng ta đang dùn
             -   `gcd` thứ ba nhận hơn hai số nguyên và trả về ước chung lớn nhất của các số đó.
             -   `gcd` thứ tư nhận một container và trả về ước chung lớn nhất của tất cả số trong container.
             
-            Với **OI Wiki**, chúng ta chỉ quan tâm đến tư tưởng của thuật toán ước chung lớn nhất; đoạn mã này bao gồm quá nhiều chi tiết kỹ thuật phức tạp và không liên quan, nên cần tránh.
+            Với **OI Wiki**, trọng tâm chỉ là tư tưởng của thuật toán ước chung lớn nhất; đoạn mã này bao gồm quá nhiều chi tiết kỹ thuật phức tạp và không liên quan, nên cần tránh.
 
         ???+ success "Cách viết khuyến nghị"
             ```cpp
             --8<-- "docs/intro/code/format/format_1.cpp:recommended"
             ```
             
-            Những việc như "thêm kiểm tra kiểu", "xử lý đầu vào âm", "cho hàm hỗ trợ nhiều tham số" thiên về quan tâm kỹ thuật phần mềm hơn; trọng tâm của chúng ta luôn nên là tư tưởng thuật toán.
+            Những việc như "thêm kiểm tra kiểu", "xử lý đầu vào âm", "cho hàm hỗ trợ nhiều tham số" thiên về quan tâm kỹ thuật phần mềm hơn; trọng tâm của tài liệu luôn nên là tư tưởng thuật toán.
 
 #### Yêu cầu định dạng của công thức LaTeX
 
-LaTeX là lựa chọn ưu tiên để dàn công thức, và chúng ta nên sử dụng nó đúng cách. Vì vậy, chúng ta có yêu cầu nghiêm ngặt đối với việc dùng LaTeX. Nếu bạn muốn bắt đầu nhanh, có thể đọc bảng ở cuối mục này.
+LaTeX là lựa chọn ưu tiên để dàn công thức, và cần sử dụng nó đúng cách. Vì vậy, **OI Wiki** có yêu cầu nghiêm ngặt đối với việc dùng LaTeX. Nếu muốn bắt đầu nhanh, có thể đọc bảng ở cuối mục này.
 
--   <a id="MATH-1.1"></a>MATH-1.1: ký hiệu bạn sử dụng không được mâu thuẫn với ký hiệu được quy định trong [bảng ký hiệu toán học](./symbol.md).
+-   <a id="MATH-1.1"></a>MATH-1.1: ký hiệu được sử dụng không được mâu thuẫn với ký hiệu được quy định trong [bảng ký hiệu toán học](./symbol.md).
 
--   <a id="MATH-1.2"></a>MATH-1.2: dùng Roman để biểu thị số, hằng, toán tử và hàm. Dùng Italic để biểu thị biến và chỉ số dưới. LaTeX đã định nghĩa sẵn một số hằng, hàm, toán tử thường gặp; chúng ta có thể gọi trực tiếp, bao gồm nhưng không giới hạn:
+-   <a id="MATH-1.2"></a>MATH-1.2: dùng Roman để biểu thị số, hằng, toán tử và hàm. Dùng Italic để biểu thị biến và chỉ số dưới. LaTeX đã định nghĩa sẵn một số hằng, hàm, toán tử thường gặp; có thể gọi trực tiếp, bao gồm nhưng không giới hạn:
 
     ```latex
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
@@ -483,7 +483,7 @@ LaTeX là lựa chọn ưu tiên để dàn công thức, và chúng ta nên s�
 
     Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman khá khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
 
-    Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, chúng ta có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Việt hoặc văn bản tự nhiên dài, hãy cân nhắc đưa nội dung ra ngoài công thức LaTeX nếu có thể.
+    Nếu gặp **tên hàm** cần dùng Roman nhưng chưa được định nghĩa sẵn, có thể dùng `$\operatorname{something}$` để tạo ra. Ví dụ có thể dùng `$\operatorname{lcm}$` để tạo ký hiệu bội chung nhỏ nhất (hàm) ở dạng roman. Tương tự, để tạo **hằng** dạng Roman, dùng `$\mathrm{}$`; để tạo ký hiệu Roman đậm, dùng `$\mathbf{}$`; để tạo ký hiệu Italic đậm, dùng `$\boldsymbol{}$` (như vector $\boldsymbol{a}$). Với biến gồm nhiều chữ cái, nên dùng `$\textit{}$`. Các nội dung phi toán học khác, bao gồm tiếng Anh, ký hiệu đặc biệt, v.v., đều dùng `$\text{}$`. Với tiếng Việt hoặc văn bản tự nhiên dài, nên cân nhắc đưa nội dung ra ngoài công thức LaTeX nếu có thể.
 
 -   <a id="MATH-1.3"></a>MATH-1.3: nếu biểu thức cần xuống dòng (thường gặp trong công thức hiển thị riêng dòng dài), nên tuân theo các quy tắc xuống dòng sau:
 
@@ -501,39 +501,39 @@ LaTeX là lựa chọn ưu tiên để dàn công thức, và chúng ta nên s�
 
     -   <a id="MATH-1.3.3"></a>MATH-1.3.3: cố gắng không đặt ký tự xuống dòng bên trong biểu thức nằm trong dấu ngoặc.
 
--   <a id="MATH-1.4"></a>MATH-1.4: khi dùng phân số trong dòng, hãy dùng `$\dfrac{}{}$`. Ví dụ `$\dfrac{1}{2}$` cho hiệu quả $\dfrac{1}{2}$, thay vì `$\frac{1}{2}$` cho hiệu quả $\frac{1}{2}$.
+-   <a id="MATH-1.4"></a>MATH-1.4: khi dùng phân số trong dòng, cần dùng `$\dfrac{}{}$`. Ví dụ `$\dfrac{1}{2}$` cho hiệu quả $\dfrac{1}{2}$, thay vì `$\frac{1}{2}$` cho hiệu quả $\frac{1}{2}$.
 
--   <a id="MATH-1.5"></a>MATH-1.5: với tổ hợp, hãy dùng `\dbinom{n}{m}`, cho hiệu quả $\dbinom{n}{m}$, thay vì `{n \choose m}` (cách viết này trong LaTeX đã không được khuyến nghị); tương tự quy ước về phân số ở mục trước, vui lòng không dùng `\binom{n}{m}`, cho hiệu quả $\binom{n}{m}$.
+-   <a id="MATH-1.5"></a>MATH-1.5: với tổ hợp, cần dùng `\dbinom{n}{m}`, cho hiệu quả $\dbinom{n}{m}$, thay vì `{n \choose m}` (cách viết này trong LaTeX đã không được khuyến nghị); tương tự quy ước về phân số ở mục trước, vui lòng không dùng `\binom{n}{m}`, cho hiệu quả $\binom{n}{m}$.
 
 -   <a id="MATH-1.6"></a>MATH-1.6: cố gắng tránh dùng toán tử lớn trong dòng (như $\sum$, $\prod$, $\int$, v.v.).
 
--   <a id="MATH-1.7"></a>MATH-1.7: khi không gây nhầm lẫn, hãy dùng `$\times$` thay cho dấu sao; phép nhân chéo dùng `$\times$`, phép nhân vô hướng dùng `$\cdot$`. Ví dụ $a\times b$, $a\cdot b$, thay vì $a\ast b$.
+-   <a id="MATH-1.7"></a>MATH-1.7: khi không gây nhầm lẫn, dùng `$\times$` thay cho dấu sao; phép nhân chéo dùng `$\times$`, phép nhân vô hướng dùng `$\cdot$`. Ví dụ $a\times b$, $a\cdot b$, thay vì $a\ast b$.
 
--   <a id="MATH-1.8"></a>MATH-1.8: hãy dùng `$\cdots$` (nằm giữa baseline và topline), `$\ldots$` (nằm tại baseline), `$\vdots$` (dấu ba chấm dọc) thay cho `$...$`. Ví dụ $a_1,a_2,\cdots a_n$, thay vì $a_1,a_2,... a_n$.
+-   <a id="MATH-1.8"></a>MATH-1.8: dùng `$\cdots$` (nằm giữa baseline và topline), `$\ldots$` (nằm tại baseline), `$\vdots$` (dấu ba chấm dọc) thay cho `$...$`. Ví dụ $a_1,a_2,\cdots a_n$, thay vì $a_1,a_2,... a_n$.
 
--   <a id="MATH-1.9"></a>MATH-1.9: chú ý không dùng bất kỳ cách biểu diễn nào của ngôn ngữ lập trình ở khu vực không phải mã; thay vào đó hãy dùng công thức LaTeX. Ví dụ, dùng `$=$` thay vì `$==$` (như $a=b$, thay vì $a==b$), dùng `` `a<<1` `` hoặc `$a\times 2$` thay vì `$a<<1$`, dùng `$a\bmod b$` thay cho `$a\%b$` (như $a\bmod b$, thay vì $a\%b$), v.v.
+-   <a id="MATH-1.9"></a>MATH-1.9: chú ý không dùng bất kỳ cách biểu diễn nào của ngôn ngữ lập trình ở khu vực không phải mã; thay vào đó cần dùng công thức LaTeX. Ví dụ, dùng `$=$` thay vì `$==$` (như $a=b$, thay vì $a==b$), dùng `` `a<<1` `` hoặc `$a\times 2$` thay vì `$a<<1$`, dùng `$a\bmod b$` thay cho `$a\%b$` (như $a\bmod b$, thay vì $a\%b$), v.v.
 
 -   <a id="MATH-1.10"></a>MATH-1.10: trong công thức, không dùng nhiều cặp ngoặc vuông nối tiếp (tức cách biểu diễn mảng nhiều chiều của C++); nên dùng chỉ số dưới nhiều hơn. Tức là dùng $a_{i,j,k}$ thay vì $a[i][j][k]$. Khi chỉ số dưới trong công thức phức tạp, nên chuyển sang hàm nhiều biến ($f(i,j,k)$) hoặc định dạng mã trong dòng. Với hàm một biến đơn giản, có thể dùng `$f_i$`, `$f(i)$` hoặc `$f[i]$`.
 
--   <a id="MATH-1.11"></a>MATH-1.11: để thống nhất và tiện viết, khi phân tích độ phức tạp, hãy dùng trực tiếp ký hiệu $O$ lớn `$O()$` thay vì `$\mathcal O()$`.
+-   <a id="MATH-1.11"></a>MATH-1.11: để thống nhất và tiện viết, khi phân tích độ phức tạp, dùng trực tiếp ký hiệu $O$ lớn `$O()$` thay vì `$\mathcal O()$`.
 
--   <a id="MATH-1.12"></a>MATH-1.12: khi biểu thị quan hệ tương đương, hãy dùng `$\iff$`, hiệu quả $\iff$, thay vì `$\Leftrightarrow$`, hiệu quả $\Leftrightarrow$.
+-   <a id="MATH-1.12"></a>MATH-1.12: khi biểu thị quan hệ tương đương, dùng `$\iff$`, hiệu quả $\iff$, thay vì `$\Leftrightarrow$`, hiệu quả $\Leftrightarrow$.
 
 -   <a id="MATH-1.13"></a>MATH-1.13: môi trường hàm từng phần `cases` **chỉ được có hai cột** (tức một dấu phân tách `&`).
 
--   <a id="MATH-1.14"></a>MATH-1.14: vui lòng không lạm dụng công thức LaTeX. Điều này không chỉ làm trang tải chậm (vì MathJax nổi tiếng là hiệu suất thấp), mà còn làm bố cục trang rối loạn. Chúng ta thường dùng font công thức LaTeX để biểu thị tên biến. Khuyến nghị của chúng tôi là nếu không cần thiết, hãy cố gắng giảm **lượng lớn** việc trộn công thức với font văn bản thông thường; nếu không cần thiết, cố gắng không dùng công thức, ví dụ:
+-   <a id="MATH-1.14"></a>MATH-1.14: vui lòng không lạm dụng công thức LaTeX. Điều này không chỉ làm trang tải chậm (vì MathJax nổi tiếng là hiệu suất thấp), mà còn làm bố cục trang rối loạn. Font công thức LaTeX thường chỉ dùng để biểu thị tên biến. Khuyến nghị của **OI Wiki** là nếu không cần thiết, nên cố gắng giảm **lượng lớn** việc trộn công thức với font văn bản thông thường; nếu không cần thiết, cố gắng không dùng công thức, ví dụ:
 
     ```LaTeX
-    Chúng ta sắp học luồng chi phí nhỏ nhất $SPFA$ trong $Network-flow$, cần dùng thuật toán $Edmonds–Karp$ để tăng luồng.
+    Sắp học luồng chi phí nhỏ nhất $SPFA$ trong $Network-flow$, cần dùng thuật toán $Edmonds–Karp$ để tăng luồng.
     ```
 
-    Đây là một ví dụ điển hình về **lạm dụng font công thức**. (Nếu cần dùng chữ nghiêng trong trang, hãy viết bằng `*văn bản*`.)
+    Đây là một ví dụ điển hình về **lạm dụng font công thức**. (Nếu cần dùng chữ nghiêng trong trang, viết bằng `*văn bản*`.)
 
--   <a id="MATH-1.15"></a>MATH-1.15: hãy dùng đúng ký hiệu LaTeX tương ứng, đặc biệt là các ký hiệu đặc biệt như chữ cái Hy Lạp trong công thức. Ví dụ hàm Euler nên dùng `$\varphi$`, đường kính hình tròn nên dùng `$\Phi$`, tỉ lệ vàng nên dùng `$\phi$`. Các ký hiệu này tuy đều biểu thị chữ cái Hy Lạp Phi, nhưng có ý nghĩa khác nhau trong các ngữ cảnh khác nhau. Hãy nhớ **không dùng chức năng chèn ký hiệu đặc biệt của bộ gõ** để chèn các ký hiệu này.
+-   <a id="MATH-1.15"></a>MATH-1.15: cần dùng đúng ký hiệu LaTeX tương ứng, đặc biệt là các ký hiệu đặc biệt như chữ cái Hy Lạp trong công thức. Ví dụ hàm Euler nên dùng `$\varphi$`, đường kính hình tròn nên dùng `$\Phi$`, tỉ lệ vàng nên dùng `$\phi$`. Các ký hiệu này tuy đều biểu thị chữ cái Hy Lạp Phi, nhưng có ý nghĩa khác nhau trong các ngữ cảnh khác nhau. Cần nhớ **không dùng chức năng chèn ký hiệu đặc biệt của bộ gõ** để chèn các ký hiệu này.
 
     Ngoài ra, do nguyên nhân lịch sử của LaTeX, ký hiệu tập rỗng nên là `$\varnothing$` thay vì `$\emptyset$`; các ký hiệu khác nên viết theo [bảng ký hiệu toán học](./symbol.md).
 
-Chúng ta có thể dùng một bảng để tóm tắt các nội dung trên. Chú ý bảng này không liệt kê cách dùng của tất cả ký hiệu, mà chỉ đưa ra các lỗi thường gặp. Các trường hợp tương tự có thể suy ra theo đó.
+Có thể dùng một bảng để tóm tắt các nội dung trên. Chú ý bảng này không liệt kê cách dùng của tất cả ký hiệu, mà chỉ đưa ra các lỗi thường gặp. Các trường hợp tương tự có thể suy ra theo đó.
 
 | Cách dùng không đúng quy định       | Hiệu quả render       | Cách dùng đúng quy định                         | Hiệu quả render                       |
 | ----------------------------------- | --------------------- | ----------------------------------------------- | ------------------------------------- |
@@ -560,21 +560,21 @@ Vì **OI Wiki** đã phát triển công cụ xuất PDF dựa trên bộ máy d
 
 Các quy tắc này đã nhân nhượng MathJax hết mức có thể. Công cụ xuất đã tương thích với một phần cách viết vốn chỉ xuất đúng trong MathJax.
 
--   <a id="MATH-2.1"></a>MATH-2.1: hãy dùng `\begin{aligned} ... \end{aligned}` để biểu thị công thức cần nhiều dòng căn chỉnh;
+-   <a id="MATH-2.1"></a>MATH-2.1: dùng `\begin{aligned} ... \end{aligned}` để biểu thị công thức cần nhiều dòng căn chỉnh;
 
--   <a id="MATH-2.2"></a>MATH-2.2: nếu các công thức cần nhiều dòng căn chỉnh này cần **đánh số**, hãy dùng môi trường `align` hoặc `equation`;
+-   <a id="MATH-2.2"></a>MATH-2.2: nếu các công thức cần nhiều dòng căn chỉnh này cần **đánh số**, dùng môi trường `align` hoặc `equation`;
 
 -   <a id="MATH-2.3"></a>MATH-2.3: không dùng môi trường `split`, `eqnarray`;
 
--   <a id="MATH-2.4"></a>MATH-2.4: không dùng `\lt`, `\gt` để biểu thị dấu lớn hơn và nhỏ hơn; hãy dùng trực tiếp `<`, `>`;
+-   <a id="MATH-2.4"></a>MATH-2.4: không dùng `\lt`, `\gt` để biểu thị dấu lớn hơn và nhỏ hơn; dùng trực tiếp `<`, `>`;
 
 -   <a id="MATH-2.5"></a>MATH-2.5: không trực tiếp dùng `\\` để xuống dòng (công thức cần xuống dòng phải đặt trong `aligned` hoặc môi trường nhiều dòng khác);
 
--   <a id="MATH-2.6"></a>MATH-2.6: nếu muốn xuất ký hiệu LaTeX $\rm{\LaTeX}$, hãy dùng `$\rm{\LaTeX}$`, thay vì `mathrm`; (`\LaTeX` trong hệ thống dàn trang TeX là lệnh không thể dùng trong math mode, còn `\mathrm` lại không thể dùng trong normal mode; ngoài ra, tuy lệnh `\text` xuất đúng trên TeX, trong MathJax tham số của lệnh `\text` sẽ được xuất nguyên dạng, không được escape theo lệnh);
+-   <a id="MATH-2.6"></a>MATH-2.6: nếu muốn xuất ký hiệu LaTeX $\rm{\LaTeX}$, dùng `$\rm{\LaTeX}$`, thay vì `mathrm`; (`\LaTeX` trong hệ thống dàn trang TeX là lệnh không thể dùng trong math mode, còn `\mathrm` lại không thể dùng trong normal mode; ngoài ra, tuy lệnh `\text` xuất đúng trên TeX, trong MathJax tham số của lệnh `\text` sẽ được xuất nguyên dạng, không được escape theo lệnh);
 
 -   <a id="MATH-2.7"></a>MATH-2.7: chữ tiếng Việt hoặc văn bản tự nhiên trong công thức toán **bắt buộc đặt trong lệnh `\text{}`**, còn biến, số, toán tử và tên hàm bắt buộc đặt ngoài lệnh `\text{}`. **Vui lòng không lồng công thức toán trong lệnh `\text{}`**;
 
--   <a id="MATH-2.8"></a>MATH-2.8: khi dùng môi trường `array`, hãy chú ý **số cột thực tế phải khớp với số ký hiệu căn chỉnh**. Ví dụ trong công thức dưới đây, dữ liệu thực tế có 3 cột (`&` là ký hiệu tách cột), vì vậy cần 3 ký hiệu căn chỉnh (`l`/`r`/`c` lần lượt biểu thị căn trái, căn phải, căn giữa).
+-   <a id="MATH-2.8"></a>MATH-2.8: khi dùng môi trường `array`, cần chú ý **số cột thực tế phải khớp với số ký hiệu căn chỉnh**. Ví dụ trong công thức dưới đây, dữ liệu thực tế có 3 cột (`&` là ký hiệu tách cột), vì vậy cần 3 ký hiệu căn chỉnh (`l`/`r`/`c` lần lượt biểu thị căn trái, căn phải, căn giữa).
 
     ```latex
     $$
@@ -646,69 +646,69 @@ Về đoạn mã:
 
     **Chú ý**: không dùng cú pháp [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
 
-    Để tăng tỷ lệ tái sử dụng mã, bạn cũng có thể tách mã thành tệp tiêu đề và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
+    Để tăng tỷ lệ tái sử dụng mã, cũng có thể tách mã thành tệp tiêu đề và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
 
 Về mã bài mẫu:
 
 -   <a id="CODE-2.1"></a>CODE-2.1: hình thức biểu diễn của mã bài mẫu là `--8<-- "path"`, và mã đều được lưu trong `path`. Đường dẫn thường là `docs/chu-de/code/noi-dung/noi-dung_so-thu-tu.cpp`.
 
--   <a id="CODE-2.2"></a>CODE-2.2: khi sửa mã bài mẫu, hãy bảo đảm mã của bạn đúng. Mã bài mẫu đều có một bộ dữ liệu kiểm thử, được lưu trong `/docs/chu-de/examples/noi-dung/noi-dung_so-thu-tu.in/ans`.
+-   <a id="CODE-2.2"></a>CODE-2.2: khi sửa mã bài mẫu, cần bảo đảm mã đúng. Mã bài mẫu đều có một bộ dữ liệu kiểm thử, được lưu trong `/docs/chu-de/examples/noi-dung/noi-dung_so-thu-tu.in/ans`.
 
-Nếu bạn cần thêm bài mẫu:
+Nếu cần thêm bài mẫu:
 
--   Hãy thêm mã bài mẫu của bạn vào `docs/chu-de/code/noi-dung` và đánh số. Thông thường, thư mục `noi-dung` này đã có một hoặc nhiều đoạn mã. Ví dụ: nếu cần sửa mã của `dag.md`, đường dẫn là `docs/dp/code/dag`, trong đó `dp` là chủ đề, còn `dag` là nội dung.
+-   Thêm mã bài mẫu vào `docs/chu-de/code/noi-dung` và đánh số. Thông thường, thư mục `noi-dung` này đã có một hoặc nhiều đoạn mã. Ví dụ: nếu cần sửa mã của `dag.md`, đường dẫn là `docs/dp/code/dag`, trong đó `dp` là chủ đề, còn `dag` là nội dung.
 
--   Nếu cần thêm một mã bài mẫu vào cuối tất cả bài mẫu, hãy tăng tiếp số thứ tự hiện tại. Ví dụ đã tồn tại `code/prefix-sum/prefix-sum_3.cpp`; nếu cần thêm một bài mẫu sau bài mẫu cuối cùng, hãy đặt tên mã của bạn là `prefix-sum_4.cpp` và thêm vào `docs/basic/code/prefix-sum`.
+-   Nếu cần thêm một mã bài mẫu vào cuối tất cả bài mẫu, tăng tiếp số thứ tự hiện tại. Ví dụ đã tồn tại `code/prefix-sum/prefix-sum_3.cpp`; nếu cần thêm một bài mẫu sau bài mẫu cuối cùng, đặt tên mã mới là `prefix-sum_4.cpp` và thêm vào `docs/basic/code/prefix-sum`.
 
--   Nếu cần thêm một mã bài mẫu vào giữa bài viết, hãy chèn và thay đổi số thứ tự cũ. Ví dụ đã tồn tại `prefix-sum_2.cpp` và `prefix-sum_3.cpp`; nếu bạn cần chèn một bài mẫu giữa bài mẫu thứ hai và bài mẫu thứ ba, hãy đặt tên mã của bạn là `prefix-sum_3.cpp`, đổi tên `prefix-sum_3.cpp` cũ thành `prefix-sum_4.cpp`, đồng thời **sửa đồng bộ số thứ tự trong tài liệu Markdown và thư mục lưu dữ liệu kiểm thử**.
+-   Nếu cần thêm một mã bài mẫu vào giữa bài viết, cần chèn và thay đổi số thứ tự cũ. Ví dụ đã tồn tại `prefix-sum_2.cpp` và `prefix-sum_3.cpp`; nếu cần chèn một bài mẫu giữa bài mẫu thứ hai và bài mẫu thứ ba, đặt tên mã mới là `prefix-sum_3.cpp`, đổi tên `prefix-sum_3.cpp` cũ thành `prefix-sum_4.cpp`, đồng thời **sửa đồng bộ số thứ tự trong tài liệu Markdown và thư mục lưu dữ liệu kiểm thử**.
 
--   **Đừng quên rằng bạn còn phải thêm một bộ dữ liệu kiểm thử cho mã của mình để bảo đảm mã có thể chạy thành công.** Bạn cần thêm một bộ dữ liệu kiểm thử vào thư mục `docs/chu-de/examples/noi-dung`, lưu dữ liệu vào thành `noi-dung_so-thu-tu.in` và lưu đáp án chuẩn thành `noi-dung_so-thu-tu.ans`.
+-   **Đừng quên thêm một bộ dữ liệu kiểm thử cho mã để bảo đảm mã có thể chạy thành công.** Cần thêm một bộ dữ liệu kiểm thử vào thư mục `docs/chu-de/examples/noi-dung`, lưu dữ liệu vào thành `noi-dung_so-thu-tu.in` và lưu đáp án chuẩn thành `noi-dung_so-thu-tu.ans`.
 
--   Cuối cùng, có thể thêm mã vào tài liệu. Hãy dùng trực tiếp định dạng thêm khối mã trong tài liệu, và viết trực tiếp bên trong khối mã theo định dạng `--8<-- "duong dan ma cua ban"`.
+-   Cuối cùng, có thể thêm mã vào tài liệu. Dùng trực tiếp định dạng thêm khối mã trong tài liệu, và viết trực tiếp bên trong khối mã theo định dạng `--8<-- "duong dan ma cua ban"`.
 
-**OI Wiki** sẽ kiểm thử mã bài mẫu trên tất cả nền tảng. Để bảo đảm mã của bạn có thể vượt qua kiểm thử thuận lợi, vui lòng tuân thủ các quy tắc sau:
+**OI Wiki** sẽ kiểm thử mã bài mẫu trên tất cả nền tảng. Để bảo đảm mã có thể vượt qua kiểm thử thuận lợi, vui lòng tuân thủ các quy tắc sau:
 
--   <a id="CODE-3.1"></a>CODE-3.1: mã của bạn cần hỗ trợ biên dịch và chạy đồng thời theo các chuẩn C++14, C++17, C++20.
+-   <a id="CODE-3.1"></a>CODE-3.1: mã cần hỗ trợ biên dịch và chạy đồng thời theo các chuẩn C++14, C++17, C++20.
 -   <a id="CODE-3.2"></a>CODE-3.2: không dùng các tệp tiêu đề không chuẩn như `<bits/stdc++.h>`, `<bits/extc++.h>`.
 -   <a id="CODE-3.3"></a>CODE-3.3: tệp đáp án chuẩn không được có khoảng trắng thừa.
 -   <a id="CODE-3.4"></a>CODE-3.4: không dùng [alternative tokens](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens).
 -   <a id="CODE-3.5"></a>CODE-3.5: khi dùng [aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization), không được viết `object{args}` thành `(object){args}`.
 -   <a id="CODE-3.6"></a>CODE-3.6: khi dùng [operator overloading](https://en.cppreference.com/w/cpp/language/operators), cần chú ý định dạng; ví dụ khi overload toán tử so sánh, nếu dùng cách viết hàm thành viên thì không được bỏ từ định danh `const`.
 -   <a id="CODE-3.7"></a>CODE-3.7: không dùng macro giống `#define int long long`.
--   <a id="CODE-3.8"></a>CODE-3.8: nếu bạn cần dùng [nhập/xuất có định dạng](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput) kiểu C, hãy đặc biệt lưu ý cách viết format specifier: ví dụ `size_t` tương ứng `%zu`, `ptrdiff_t` tương ứng `%td`. Ví dụ khi xuất kích thước của một STL container, mã nên tương tự `printf("%zu", container.size());`.
+-   <a id="CODE-3.8"></a>CODE-3.8: nếu cần dùng [nhập/xuất có định dạng](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput) kiểu C, cần đặc biệt lưu ý cách viết format specifier: ví dụ `size_t` tương ứng `%zu`, `ptrdiff_t` tương ứng `%td`. Ví dụ khi xuất kích thước của một STL container, mã nên tương tự `printf("%zu", container.size());`.
 -   <a id="CODE-3.9"></a>CODE-3.9: do thư viện `<chrono>` của libstdc++ trong môi trường kiểm thử hiện tại có [BUG](https://github.com/actions/runner-images/issues/8659), vui lòng tránh dùng thư viện `<chrono>`.
 -   <a id="CODE-3.10"></a>CODE-3.10: do `long` và `unsigned long` là 32 bit trong một số môi trường kiểm thử, nhưng là 64 bit trong một số môi trường khác, để bảo đảm hành vi mã nhất quán trên mọi nền tảng, không khuyến nghị dùng hai kiểu này. Nên dùng [kiểu số nguyên có độ rộng cố định](../lang/var.md#kiểu-số-nguyên-có-độ-rộng-cố-định).
--   <a id="CODE-3.11"></a>CODE-3.11: không khuyến nghị dùng các nội dung không chuẩn như `__gcd`, `__int128`, các hàm dòng `__builtin_`. Nếu bạn cần dùng, cần đảm bảo mã của bạn vượt qua kiểm thử trên tất cả nền tảng; ví dụ [đoạn mã này](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) cung cấp hiện thực đa nền tảng cho hàm thành viên `_Find_first()` đặc thù của [std::bitset](../lang/csl/bitset.md) trong libstdc++.
+-   <a id="CODE-3.11"></a>CODE-3.11: không khuyến nghị dùng các nội dung không chuẩn như `__gcd`, `__int128`, các hàm dòng `__builtin_`. Nếu cần dùng, cần bảo đảm mã vượt qua kiểm thử trên tất cả nền tảng; ví dụ [đoạn mã này](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) cung cấp hiện thực đa nền tảng cho hàm thành viên `_Find_first()` đặc thù của [std::bitset](../lang/csl/bitset.md) trong libstdc++.
 
 Ngoài ra, để nâng cao khả năng đọc của mã, nên tuân thủ [CONT-10](#CONT-10).
 
 ## <a id="hinh-minh-hoa"></a>Hình minh họa
 
-Có thể các yêu cầu trên hơi khó nắm bắt, nên tiếp theo chúng ta đưa ra một số hình ảnh để phân tích cụ thể nên dùng định dạng nào và không nên dùng định dạng nào:
+Có thể các yêu cầu trên hơi khó nắm bắt, nên phần tiếp theo đưa ra một số hình ảnh để phân tích cụ thể nên dùng định dạng nào và không nên dùng định dạng nào:
 
 ### Ví dụ 1
 
 ![](./images/format-1.png)
 
-Dùng định dạng hiển thị riêng dòng cho công thức LaTeX phức tạp có thể làm trang rõ ràng và cân đối hơn. Với bản tiếng Việt, phần lớn thông tin có tính dàn ý (như tiêu đề) nên ưu tiên dùng tiếng Việt rõ nghĩa, trừ các thuật ngữ riêng hoặc tên chuẩn tiếng Anh thật sự cần giữ nguyên.
+Dùng định dạng hiển thị riêng dòng cho công thức LaTeX phức tạp có thể làm trang sáng sủa và cân đối hơn. Với bản tiếng Việt, phần lớn thông tin có tính dàn ý (như tiêu đề) nên ưu tiên dùng tiếng Việt rõ nghĩa, trừ các thuật ngữ riêng hoặc tên chuẩn tiếng Anh thật sự cần giữ nguyên.
 
 ### Ví dụ 2
 
 ![](./images/format-2.png)
 
-Với công thức LaTeX phức tạp hơn, hãy chú ý căn chỉnh dấu bằng; đồng thời có thể dẫn liên kết **Wiki** phù hợp để bổ sung nội dung.
+Với công thức LaTeX phức tạp hơn, cần chú ý căn chỉnh dấu bằng; đồng thời có thể dẫn liên kết **Wiki** phù hợp để bổ sung nội dung.
 
 ### Ví dụ 3
 
 ![](./images/format-3.png)
 
-Thông thường, chúng ta nên liệt kê tài liệu được dẫn ở mục `## Tài liệu tham khảo và chú thích` cuối bài, và thêm footnote sau câu gốc thay vì đưa trực tiếp liên kết. Đồng thời nhất định phải tránh dùng công thức LaTeX để biểu diễn mã; hai cặp ngoặc vuông trong hình là cách viết không đúng quy chuẩn. Chúng ta nên dùng `dp(i,j)` hoặc `dp_{i,j}`.
+Thông thường, nên liệt kê tài liệu được dẫn ở mục `## Tài liệu tham khảo và chú thích` cuối bài, và thêm footnote sau câu gốc thay vì đưa trực tiếp liên kết. Đồng thời nhất định phải tránh dùng công thức LaTeX để biểu diễn mã; hai cặp ngoặc vuông trong hình là cách viết không đúng quy chuẩn. Nên dùng `dp(i,j)` hoặc `dp_{i,j}`.
 
 ### Ví dụ 4
 
 ![](./images/format-4.png)
 
-Chú ý khi mô tả **phép nhân**, chúng ta thường dùng `\times` hoặc `\cdot`; trong trường hợp đặc biệt (như convolution) sẽ dùng `*` (cũng có thể viết là `\ast`). Tiêu đề là cụm từ ngắn gọn, nhưng chúng ta không mong phần thân bài được ghép lại từ các cụm từ rời rạc. Trong hình, cụm "hai yếu tố" nên đổi thành "nguyên lý của quy hoạch động có hai yếu tố sau" để giữ mạch văn bản liên tục. Điểm đáng học tập là: dùng **danh sách có thứ tự** một cách phù hợp có thể giúp trình bày nội dung mạch lạc hơn. Nhắc lại lần nữa, khi dùng danh sách, nếu mỗi mục là một câu thì cần thêm **dấu câu** ở cuối mục. Danh sách có thứ tự thường thêm dấu chấm phẩy, và thêm dấu chấm câu ở cuối mục cuối cùng; danh sách không thứ tự thống nhất thêm dấu chấm câu.
+Chú ý khi mô tả **phép nhân**, thường dùng `\times` hoặc `\cdot`; trong trường hợp đặc biệt (như convolution) sẽ dùng `*` (cũng có thể viết là `\ast`). Tiêu đề là cụm từ ngắn gọn, nhưng phần thân bài không nên được ghép lại từ các cụm từ rời rạc. Trong hình, cụm "hai yếu tố" nên đổi thành "nguyên lý của quy hoạch động có hai yếu tố sau" để giữ mạch văn bản liên tục. Điểm đáng học tập là: dùng **danh sách có thứ tự** một cách phù hợp có thể giúp trình bày nội dung mạch lạc hơn. Nhắc lại lần nữa, khi dùng danh sách, nếu mỗi mục là một câu thì cần thêm **dấu câu** ở cuối mục. Danh sách có thứ tự thường thêm dấu chấm phẩy, và thêm dấu chấm câu ở cuối mục cuối cùng; danh sách không thứ tự thống nhất thêm dấu chấm câu.
 
 ### Ví dụ 5
 
@@ -720,7 +720,7 @@ Dẫn **hình ảnh** phù hợp có thể tăng khả năng đọc của bài v
 
 ![](./images/format-6.png)
 
-Vẫn là vấn đề cũ: tiêu đề dùng tiếng Anh, và sau khi dùng ngoặc lại không có dấu chấm câu. Ngoài ra, công thức hiển thị riêng dòng trong hình tuy không dùng ngoặc, nhưng do lồng chỉ số dưới quá nhiều tầng, font của chỉ số dưới tầng thấp nhất rất nhỏ và toàn bộ công thức cũng không đẹp. Nên thay `son_{now,i}` bằng `son(now,i)`, hoặc thay `f_{now}` bằng `f(now)`. Chúng ta mong cố gắng không lồng chỉ số trên/dưới quá hai tầng (khi cần lồng chỉ số trên nhiều lần, nên dùng mũi tên Knuth, ví dụ dùng $2 \uparrow (2 \uparrow (2 \uparrow (2 \uparrow \cdots)))$ thay cho $2^{2^{2^{2^{\cdots}}}}$, bài "Bảy phút Chúa tạo đề").
+Vẫn là vấn đề cũ: tiêu đề dùng tiếng Anh, và sau khi dùng ngoặc lại không có dấu chấm câu. Ngoài ra, công thức hiển thị riêng dòng trong hình tuy không dùng ngoặc, nhưng do lồng chỉ số dưới quá nhiều tầng, font của chỉ số dưới tầng thấp nhất rất nhỏ và toàn bộ công thức cũng không đẹp. Nên thay `son_{now,i}` bằng `son(now,i)`, hoặc thay `f_{now}` bằng `f(now)`. Nên cố gắng không lồng chỉ số trên/dưới quá hai tầng (khi cần lồng chỉ số trên nhiều lần, nên dùng mũi tên Knuth, ví dụ dùng $2 \uparrow (2 \uparrow (2 \uparrow (2 \uparrow \cdots)))$ thay cho $2^{2^{2^{2^{\cdots}}}}$, bài "Bảy phút Chúa tạo đề").
 
 ### Ví dụ 7
 
@@ -746,9 +746,9 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 
 [^note1]: Dấu hai chấm biểu thị việc tổng kết nội dung phía trước.
 
-[^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Việt có chèn câu hoặc cụm câu tiếng Anh để chú thích, bổ sung hoặc giải thích, hãy đặt phần đó trong ngoặc tròn nửa chiều rộng.
+[^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Việt có chèn câu hoặc cụm câu tiếng Anh để chú thích, bổ sung hoặc giải thích, đặt phần đó trong ngoặc tròn nửa chiều rộng.
 
-[^note3]: Hộp gấp: xem [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi chúng ta cũng dùng "cú pháp Details" để chỉ cú pháp này, vì về chức năng nó giống với [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
+[^note3]: Hộp gấp: xem [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi "cú pháp Details" cũng được dùng để chỉ cú pháp này, vì về chức năng nó giống với [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
 
 [^note4]: Đã chuyển đến [Cách đóng góp](./htc.md).
 
