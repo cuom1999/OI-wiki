@@ -35,7 +35,7 @@ Bước đầu tiên của cách chia để trị xây dựng DT là sắp xếp
 
 ![Tập điểm kích thước 10 đã được sắp xếp](./images/triangulation-2.svg)
 
-Khi tập điểm đã có thứ tự, liên tục chia thành hai phần, tức chia để trị, cho đến khi kích thước mỗi tập con không vượt quá $3$. Khi đó các tập con này có thể được tam giác phân ngay thành một tam giác hoặc một đoạn thẳng.
+Khi tập điểm đã có thứ tự, liên tục chia thành hai phần, tức chia để trị, cho đến khi kích thước mỗi tập con không vượt quá $3$. Khi đó có thể tam giác phân ngay mỗi tập con thành một tam giác hoặc một đoạn thẳng.
 
 ![Chia để trị thành các tập điểm gồm 2 hoặc 3 điểm](./images/triangulation-3.svg)
 

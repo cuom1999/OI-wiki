@@ -2,7 +2,7 @@ author: Ir1d, cjsoft, Lans1ot
 
 **Cấu trúc** (`struct`) có thể xem là một kiểu gom nhiều thành viên liên quan lại với nhau.
 
-Nó cũng có thể được xem như một kiểu dữ liệu do người dùng tự định nghĩa.
+`struct` cũng có thể xem là một kiểu dữ liệu do người dùng tự định nghĩa.
 
 ???+ note "Ghi chú"
     `struct` được mô tả trong trang này không hoàn toàn giống `struct` trong C.

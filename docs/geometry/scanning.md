@@ -8,7 +8,7 @@ Trên hệ tọa độ hai chiều, cho tọa độ góc trái dưới và góc 
 
 ### Quá trình
 
-Từ hình vẽ, với dữ liệu nhỏ, tổng diện tích có thể được tính trực tiếp bằng vét cạn. Khi dữ liệu lớn, cần dùng thuật toán **đường quét**.
+Từ hình vẽ, với dữ liệu nhỏ, có thể tính trực tiếp tổng diện tích bằng vét cạn. Khi dữ liệu lớn, cần dùng thuật toán **đường quét**.
 
 Xét một đường thẳng bắt đầu quét từ dưới lên:
 
@@ -83,7 +83,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 ### Ví dụ
 
 ???+ note "[Luogu P2163 SHOI 2007 Gardener's Trouble](https://www.luogu.com.cn/problem/P2163)"
-    Trước hết rời rạc hóa. Gọi $ans_{x, y}$ là số điểm nằm trong hình chữ nhật có góc trái dưới $(0, 0)$ và góc phải trên $(x, y)$. Khi đó đáp án của truy vấn có thể được tách bằng hiệu thành $ans_{c, d} - ans_{a - 1, d} - ans_{c, b - 1} + ans_{a - 1, b - 1}$.
+    Trước hết rời rạc hóa. Gọi $ans_{x, y}$ là số điểm nằm trong hình chữ nhật có góc trái dưới $(0, 0)$ và góc phải trên $(x, y)$. Khi đó có thể tách đáp án của truy vấn bằng hiệu thành $ans_{c, d} - ans_{a - 1, d} - ans_{c, b - 1} + ans_{a - 1, b - 1}$.
     
     ??? note "Mã nguồn"
         ```cpp

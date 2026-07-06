@@ -165,11 +165,10 @@ Quy trình khái quát gồm ba bước: chia -> giải -> gộp.
 
 Những bài toán giải được bằng chia để trị thường có các đặc điểm sau:
 
--   Khi kích thước bài toán giảm đến một mức nhất định, bài toán có thể được
-    giải trực tiếp.
--   Bài toán có thể được chia thành một số bài toán nhỏ cùng dạng; tức là bài
+-   Khi kích thước bài toán giảm đến một mức nhất định, có thể giải trực tiếp.
+-   Có thể chia bài toán thành một số bài toán nhỏ cùng dạng; tức là bài
     toán có tính chất cấu trúc con tối ưu, và nghiệm của các bài toán con có
-    thể được gộp thành nghiệm của bài toán ban đầu.
+    thể gộp thành nghiệm của bài toán ban đầu.
 -   Các bài toán con được tách ra độc lập với nhau; giữa chúng không có bài
     toán con chung.
 

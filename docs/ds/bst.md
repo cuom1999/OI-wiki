@@ -278,7 +278,7 @@ Trong đó, các thao tác chèn, xóa, sửa đều bao gồm bước tìm ki�
 
 Về hiệu quả tìm kiếm, nếu chiều cao của cây là $h$, trong trường hợp xấu nhất cần so sánh $h$ lần để tìm một khóa.
 Độ phức tạp tìm kiếm, cũng là độ dài tìm kiếm trung bình ASL (Average Search Length), không vượt quá $O(h)$.
-Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể được rút xuống $O(\log n)$, trong đó $n$ là tổng số nút.
+Với một cây tìm kiếm nhị phân lý tưởng, mọi thao tác có thể giảm xuống $O(\log n)$, trong đó $n$ là tổng số nút.
 
 Tuy nhiên, độ phức tạp $O(\log n)$ chỉ là tình huống lý tưởng.
 Trong trường hợp xấu nhất, cây tìm kiếm có thể suy biến thành danh sách liên kết.

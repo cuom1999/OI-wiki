@@ -6,7 +6,7 @@ Sắp xếp theo thùng (tiếng Anh: Bucket sort) là một thuật toán sắp
 
 ## Quy trình
 
-Sắp xếp theo thùng được thực hiện theo các bước sau:
+Sắp xếp theo thùng gồm các bước sau:
 
 1.  Tạo một số lượng mảng nhất định để làm các thùng rỗng;
 2.  Duyệt dãy và lần lượt đưa từng phần tử vào thùng tương ứng;

@@ -8,7 +8,7 @@ Khi đóng góp của mỗi lần chuyển trạng thái vào đáp án có th�
 
 Ký hiệu $f(x, l, r)$ biểu diễn đóng góp do $x$ tạo ra đối với đoạn $[l, r]$.
 
-Ví dụ, khi mở rộng đoạn hiện tại $[l, r]$ thành $[l, r + 1]$, cần tính $f(a_{r + 1}, l, r)$. Nếu có thể sai phân, biểu thức này có thể viết thành $f(a_{r + 1}, 1, r) - f(a_{r + 1}, 1, l - 1)$. Trong đó, hạng đầu có thể được tiền xử lý cho mỗi $r$; hạng sau có thể được xử lý ngoại tuyến bằng cách lưu từng hạng như vậy vào vị trí $l - 1$ tương ứng, rồi duyệt tăng dần và xử lý bằng đường quét. Các hướng chuyển trạng thái khác cũng có thể xử lý tương tự.
+Ví dụ, khi mở rộng đoạn hiện tại $[l, r]$ thành $[l, r + 1]$, cần tính $f(a_{r + 1}, l, r)$. Nếu có thể sai phân, biểu thức này có thể viết thành $f(a_{r + 1}, 1, r) - f(a_{r + 1}, 1, l - 1)$. Trong đó, có thể tiền xử lý hạng đầu cho mỗi $r$; còn hạng sau có thể xử lý ngoại tuyến bằng cách lưu từng hạng như vậy vào vị trí $l - 1$ tương ứng, rồi duyệt tăng dần và xử lý bằng đường quét. Các hướng chuyển trạng thái khác cũng có thể xử lý tương tự.
 
 Kỹ thuật tiếp tục ngoại tuyến hóa các chuyển trạng thái trên nền thuật toán Mo ngoại tuyến được gọi là Mo ngoại tuyến lần hai.
 

@@ -358,7 +358,7 @@ Xét dùng một hàm băm nào đó, ánh xạ mỗi phần tử trong ma trậ
 
 Do đó có thuật toán:
 
-1.  Gán giá trị băm trong $[0,1]$ cho các phần tử của ma trận. Để bảo đảm tính ngẫu nhiên, hàm băm có thể được hiện thực trực tiếp bằng `map` và bộ sinh số ngẫu nhiên: mỗi khi gặp một giá trị mới chưa từng xuất hiện thì gán cho nó một giá trị băm ngẫu nhiên.
+1.  Gán giá trị băm trong $[0,1]$ cho các phần tử của ma trận. Để bảo đảm tính ngẫu nhiên, có thể hiện thực trực tiếp hàm băm bằng `map` và bộ sinh số ngẫu nhiên: mỗi khi gặp một giá trị mới chưa từng xuất hiện thì gán cho nó một giá trị băm ngẫu nhiên.
 2.  Khi trả lời truy vấn, tìm cách lấy giá trị băm nhỏ nhất $M$ trong ma trận con, và in $\dfrac 1M-1$.
 
 Tuy nhiên, thuật toán này chưa đáp ứng mong muốn. Kỳ vọng của giá trị xuất ra là $\mathrm{E}\Big[\dfrac 1{\min\limits_i X_i}-1\Big]$, nhưng giá trị này không bằng $\dfrac 1{\mathrm{E}\big[\min\limits_i X_i\big]}-1=k$, mà có thể chứng minh là bằng $\infty$.

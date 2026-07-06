@@ -137,7 +137,7 @@ Khi dùng phương pháp này để tính lũy thừa nhanh, cần $\Theta(\log 
 ???+ example "[Luogu P1226 - Mẫu lũy thừa nhanh](https://www.luogu.com.cn/problem/P1226)"
     Cho ba số nguyên $a,b,p$, cần tính $a^b\bmod p$, trong đó $p\ge 2$.
 
-Đây là một ứng dụng rất thường gặp; chẳng hạn, nó có thể được dùng để tính nghịch đảo nhân theo mô đun. Vì phép lấy mô đun không làm ảnh hưởng đến phép nhân, chỉ cần lấy mô đun trong quá trình tính.
+Đây là một ứng dụng rất thường gặp; chẳng hạn, có thể dùng nó để tính nghịch đảo nhân theo mô đun. Vì phép lấy mô đun không làm ảnh hưởng đến phép nhân, chỉ cần lấy mô đun trong quá trình tính.
 
 Trước hết, có thể cài đặt trực tiếp theo phương pháp đệ quy ở trên:
 
@@ -197,7 +197,7 @@ Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng 
     
     Ngoài ra còn có một thao tác đặc biệt: lặp lại một dãy thao tác $k$ lần (Repeat). Các thao tác Repeat có thể lồng nhau. Cần xuất tọa độ của từng điểm sau khi thực hiện xong mọi thao tác.
 
-Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
+Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), có thể biểu diễn mỗi thao tác bằng một ma trận biến đổi, và biểu diễn một chuỗi biến đổi liên tiếp bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
 
 <span id="đếm-đường-đi-có-độ-dài-cố-định"></span>
 ### Đếm đường đi có độ dài cố định

@@ -34,7 +34,7 @@ Khi tiền xử lý, thuật toán đơn giản cần DFS toàn bộ cây, nên 
 
 #### Quy trình
 
-Thuật toán nhân đôi là cách tìm LCA kinh điển nhất, là cải tiến của thuật toán đơn giản. Bằng cách tiền xử lý mảng $\text{fa}_{x,i}$, có thể nhảy nhanh qua các tổ tiên, qua đó giảm đáng kể số lần nhảy. $\text{fa}_{x,i}$ biểu thị tổ tiên thứ $2^i$ của đỉnh $x$. Mảng $\text{fa}_{x,i}$ có thể được tiền xử lý bằng DFS.
+Thuật toán nhân đôi là cách tìm LCA kinh điển nhất, là cải tiến của thuật toán đơn giản. Bằng cách tiền xử lý mảng $\text{fa}_{x,i}$, có thể nhảy nhanh qua các tổ tiên, qua đó giảm đáng kể số lần nhảy. $\text{fa}_{x,i}$ biểu thị tổ tiên thứ $2^i$ của đỉnh $x$. Có thể tiền xử lý mảng $\text{fa}_{x,i}$ bằng DFS.
 
 Xét cách tối ưu các bước nhảy này:
 Ở giai đoạn đầu khi điều chỉnh con trỏ, cần đưa hai đỉnh $u,v$ về cùng một độ sâu. Có thể tính hiệu độ sâu của $u,v$, giả sử là $y$. Bằng cách phân tách $y$ theo nhị phân, có thể tối ưu $y$ lần nhảy con trỏ thành số lần nhảy bằng "số bit `1` trong biểu diễn nhị phân của $y$".

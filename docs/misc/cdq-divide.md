@@ -32,7 +32,7 @@ Quy trình thuật toán dùng chia để trị CDQ để giải loại bài to�
 
 Tư tưởng của chia để trị CDQ là liên tục phân phối các cặp điểm vào hai đoạn trái và phải bằng đệ quy.
 
-Trong ứng dụng thực tế, thường dùng một hàm `solve(l,r)` để xử lý các cặp điểm thỏa $l \leq i \leq r,l \leq j \leq r$. Phần đệ quy trong quy trình thuật toán trên được hiện thực bằng `solve(l,mid)` và `solve(mid+1,r)`. Các cặp điểm loại thứ hai còn lại cần được thiết kế thuật toán riêng để xử lý.
+Trong ứng dụng thực tế, thường dùng một hàm `solve(l,r)` để xử lý các cặp điểm thỏa $l \leq i \leq r,l \leq j \leq r$. Phần đệ quy trong quy trình thuật toán trên được hiện thực bằng `solve(l,mid)` và `solve(mid+1,r)`. Với các cặp điểm loại thứ hai còn lại, cần thiết kế thuật toán riêng để xử lý.
 
 ### Bài tập ví dụ
 

@@ -145,7 +145,7 @@ Lúc này các tính chất biểu thức cần quan tâm tăng thêm một đi�
 
 -   Có danh tính hay không: có xác định một thực thể cụ thể hay không, tức có thể
     phân biệt bằng địa chỉ hay không.
--   Có thể được di chuyển từ hay không: biểu thức có thể được xem như nguồn để di
+-   Có thể di chuyển từ hay không: biểu thức có thể xem như nguồn để di
     chuyển tài nguyên hay không.
 
 Vì vậy có ba loại giá trị:

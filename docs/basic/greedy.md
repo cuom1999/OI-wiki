@@ -16,9 +16,9 @@ nó.
 ### Phạm vi áp dụng
 
 Thuật toán tham lam đặc biệt hiệu quả với những bài toán có cấu trúc con tối
-ưu. Cấu trúc con tối ưu nghĩa là bài toán có thể được tách thành các bài toán
-con, và nghiệm tối ưu của các bài toán con có thể suy ra nghiệm tối ưu của bài
-toán ban đầu.[^ref1]
+ưu. Cấu trúc con tối ưu nghĩa là có thể tách bài toán thành các bài toán con,
+rồi từ nghiệm tối ưu của các bài toán con suy ra nghiệm tối ưu của bài toán ban
+đầu.[^ref1]
 
 ### Chứng minh
 

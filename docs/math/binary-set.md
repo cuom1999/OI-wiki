@@ -1,6 +1,6 @@
 Kiến thức cần có: [phép toán bit](./bit.md#phép-toán-bit), [số nguyên và chuỗi bit](./bit.md#số-nguyên-và-chuỗi-bit).
 
-Biểu diễn nhị phân của một số có thể được xem như một tập hợp (`0` biểu thị không thuộc tập, `1` biểu thị thuộc tập). Ví dụ tập $\{1,3,4,8\}$ có thể được biểu diễn thành $(100011010)_2$. Các phép toán bit tương ứng cũng có thể được xem như phép toán trên tập hợp.
+Có thể xem biểu diễn nhị phân của một số như một tập hợp (`0` biểu thị không thuộc tập, `1` biểu thị thuộc tập). Ví dụ tập $\{1,3,4,8\}$ có thể biểu diễn thành $(100011010)_2$. Các phép toán bit tương ứng cũng có thể xem như phép toán trên tập hợp.
 
 | Thao tác | Biểu diễn tập hợp | Biểu diễn bằng phép toán bit |
 | ------ | :-------------: | :-------------------------: |

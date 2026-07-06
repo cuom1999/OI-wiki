@@ -352,7 +352,7 @@ Tuy nhiên hướng này không có độ phức tạp tuyến tính (vì phải
 
 Nhìn lại tính chất đặc biệt của bài toán, mọi từ đều có độ dài chỉ $20$, vì vậy có thể tối ưu bằng nén trạng thái.
 
-Nút thắt thời gian hiện tại chủ yếu nằm ở bước nhảy theo `fail`. Nếu tối ưu bước này xuống $O(1)$, toàn bộ bài toán có thể được giải trong thời gian tuyến tính chặt.
+Nút thắt thời gian hiện tại chủ yếu nằm ở bước nhảy theo `fail`. Nếu tối ưu bước này xuống $O(1)$, có thể giải toàn bộ bài toán trong thời gian tuyến tính chặt.
 
 Có thể lưu lại các độ dài xâu con có thể có trong $20$ ký tự gần nhất, nén chúng vào trạng thái và lưu trong từng đỉnh con.
 

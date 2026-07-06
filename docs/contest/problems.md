@@ -27,7 +27,7 @@ Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạn
 -   Quá giới hạn bộ nhớ (Memory Limit Exceeded, MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
 -   Quá giới hạn đầu ra (Output Limit Exceeded, OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
-Trong các kỳ thi ICPC, chương trình của thí sinh cần đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
+Trong các kỳ thi ICPC, chương trình của thí sinh phải đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được tính là đã giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
 
 ## Bài nộp đáp án
 
@@ -109,7 +109,7 @@ Phương pháp kiểm thử cục bộ rất đa dạng tùy theo thiết lập 
 -   Viết một chương trình phụ trợ để chuyển đổi đầu ra của chương trình thứ nhất thành đầu vào của chương trình thứ hai
 -   Dùng ống dẫn (pipe) hai chiều để nối đầu vào/đầu ra chuẩn của hai chương trình với nhau
 
-Do các nền tảng chấm còn hỗ trợ hạn chế cho bài truyền tin, đến nay dạng bài này chỉ thường gặp trong các kỳ thi hệ IOI và các cuộc thi do một số ít nền tảng trực tuyến như UOJ tổ chức. Đây vẫn là một lĩnh vực còn cần được khám phá.
+Do các nền tảng chấm còn hỗ trợ hạn chế cho bài truyền tin, đến nay dạng bài này chỉ thường gặp trong các kỳ thi hệ IOI và các cuộc thi do một số ít nền tảng trực tuyến như UOJ tổ chức. Đây vẫn là một lĩnh vực còn cần khám phá thêm.
 
 ## Bài hoàn thiện hàm
 

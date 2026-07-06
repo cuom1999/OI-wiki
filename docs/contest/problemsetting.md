@@ -36,7 +36,7 @@ Bài viết này giới thiệu toàn bộ quy trình ra đề từ hai góc đ�
 Bài gốc có thể được chia đại khái thành ba loại: hoàn toàn giống nhau, gần như giống nhau và lời giải giống nhau.
 
 -   Hoàn toàn giống nhau: mã AC của một bài có thể AC bài còn lại.
--   Gần như giống nhau: việc sửa mã AC của một bài thành mã AC của bài còn lại có thể được thực hiện bởi một người chưa biết bài đó.
+-   Gần như giống nhau: một người chưa biết bài đó vẫn có thể sửa mã AC của một bài thành mã AC của bài còn lại.
 -   Lời giải giống nhau: ý tưởng cốt lõi và cách làm giống nhau, nhưng khác nhau ở phần cài đặt hoặc một vài chi tiết không quá then chốt.
 
 Ba loại bài gốc này có quan hệ bao hàm từ dưới lên trên.
@@ -122,7 +122,7 @@ Khi cần thiết, có thể cung cấp hai phiên bản mô tả: một phiên 
 
 Nói ngắn gọn, mô tả bài toán cần **mạch lạc, dễ hiểu**.
 
-Mọi định nghĩa trong đề có khả năng không được hiểu đều cần được giải thích; không nên đột ngột xuất hiện khái niệm chưa được định nghĩa. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), đề phải giải thích "portal" là gì.
+Cần giải thích mọi định nghĩa trong đề có khả năng gây khó hiểu; không nên đột ngột đưa vào khái niệm chưa được định nghĩa. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), đề phải giải thích "portal" là gì.
 
 Mỗi khái niệm xuất hiện trong đề nên được mô tả bằng một từ duy nhất. Ví dụ: không nên lúc thì nói "chi phí", lúc lại nói "giá".
 

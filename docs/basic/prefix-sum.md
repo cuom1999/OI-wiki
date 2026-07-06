@@ -17,7 +17,7 @@ $$
 S_{i} = \sum_{j=1}^i a_j.
 $$
 
-Nó có thể được tính lần lượt bằng công thức truy hồi
+Có thể tính nó lần lượt bằng công thức truy hồi
 
 $$
 S_0 = 0,~ S_i = S_{i-1} + a_i
@@ -56,7 +56,7 @@ $$
 S_{i,j} = \sum_{i'\le i}\sum_{j'\le j}A_{i',j'}.
 $$
 
-Tương tự trường hợp một chiều, $S_{i,j}$ lẽ ra có thể được tính dựa trên $S_{i-1,j}$ hoặc $S_{i,j-1}$ để tránh tính lặp tổng của một số phần tử phía trước. Tuy nhiên, nếu cộng trực tiếp $S_{i-1,j}$ và $S_{i,j-1}$ rồi cộng thêm $A_{i,j}$, phần giao nhau $S_{i-1,j-1}$ sẽ bị tính lặp, nên cần trừ phần này đi. Đây chính là [nguyên lý bao hàm - loại trừ](../math/combinatorics/inclusion-exclusion-principle.md). Từ đó thu được công thức truy hồi:
+Tương tự trường hợp một chiều, lẽ ra có thể tính $S_{i,j}$ dựa trên $S_{i-1,j}$ hoặc $S_{i,j-1}$ để tránh tính lặp tổng của một số phần tử phía trước. Tuy nhiên, nếu cộng trực tiếp $S_{i-1,j}$ và $S_{i,j-1}$ rồi cộng thêm $A_{i,j}$, phần giao nhau $S_{i-1,j-1}$ sẽ bị tính lặp, nên cần trừ phần này đi. Đây chính là [nguyên lý bao hàm - loại trừ](../math/combinatorics/inclusion-exclusion-principle.md). Từ đó thu được công thức truy hồi:
 
 $$
 S_{i,j} = A_{i,j} + S_{i-1,j} + S_{i,j-1} - S_{i-1,j-1}. 
