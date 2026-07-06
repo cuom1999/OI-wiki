@@ -252,7 +252,7 @@ Vì vậy, về nguyên tắc, giới hạn thời gian nên được chọn l�
 Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
 1.  Ít nhất bằng hai lần thời gian chạy của lời giải chuẩn (std) trong trường hợp xấu nhất.
-2.  Nếu cuộc thi cho phép dùng Java, phải để Java có thể qua.
+2.  Nếu cuộc thi cho phép dùng Java, phải để Java đủ thời gian chạy.
 3.  Không nên để lời giải sai vượt qua (trừ khi thật sự không chặn được, hoặc muốn cho một loại lời giải sai nào đó qua).
 
 Để vừa cho qua các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.

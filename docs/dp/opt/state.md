@@ -25,7 +25,7 @@ f_{i-1,j-1}+1 & ,A_i = B_j
 \end{cases}
 $$
 
-Cách làm trên có độ phức tạp thời gian $O(nm)$, không thể vượt qua bài này.
+Cách làm trên có độ phức tạp thời gian $O(nm)$, không đáp ứng yêu cầu của bài này.
 
 ### Cách giải tốt hơn
 
@@ -37,7 +37,7 @@ Tiếp tục xét kỹ, LCS có một tính chất tham lam nhất định.
 
 Có thể tiền xử lý, với mỗi vị trí của $A$, vị trí xuất hiện tiếp theo của từng ký tự $a,b,\cdots,z$, rồi chuyển xuôi trong $O(1)$.
 
-Độ phức tạp là $O(m^2+26n)$, đủ để vượt qua bài này.
+Độ phức tạp là $O(m^2+26n)$, đủ để giải bài này.
 
 ## Ví dụ 2
 
@@ -54,7 +54,7 @@ $$
 f_{s, i} = \bigvee_{j\in s, j\neq i}f_{s \setminus \{i\}, j}\wedge g_{j, i} \left(i\in s\right)
 $$
 
-Độ phức tạp thời gian là $O(n^2\times 2^n)$; nếu cài đặt tốt có thể qua, nhưng chưa đẹp.
+Độ phức tạp thời gian là $O(n^2\times 2^n)$; nếu cài đặt tốt vẫn đủ để được chấp nhận, nhưng chưa đẹp.
 
 ### Cách giải tốt hơn
 
@@ -62,7 +62,7 @@ Trong thiết kế trạng thái trên, mỗi giá trị `dp` chỉ biểu diễ
 
 Có thể với mỗi trạng thái $s$, nén $f_{s,1},f_{s,2},\dots,f_{s,n}$ vào một `int`. Khi đó ma trận kề cũng có thể được nén tương tự, và chuyển trạng thái trong $O(1)$.
 
-Độ phức tạp thời gian là $O(n^2/w\times 2^n)$, đủ để qua bài này, trong đó $w$ là số bit của `int`.
+Độ phức tạp thời gian là $O(n^2/w\times 2^n)$, đủ để giải bài này, trong đó $w$ là số bit của `int`.
 
 ## Ví dụ 3
 

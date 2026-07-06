@@ -46,7 +46,7 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 -   Muốn dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> để sao chép, nhưng lại thoát chương trình.
 -   Chương trình thường ngày AC, nhưng khi đưa lên Linux lại WA.
 
-Để tránh những tình huống như vậy trong phòng thi, cần làm quen trước với cách thao tác trên hệ thống Linux.
+Để tránh các tình huống tương tự trong phòng thi, cần làm quen trước với cách thao tác trên hệ thống Linux.
 
 Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo khá phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
 

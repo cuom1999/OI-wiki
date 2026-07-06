@@ -30,7 +30,7 @@ c_n &= g_n - \sum_{i=1}^{n-1} \binom{n-1}{i-1} c_i g_{n-i}
 \end{align}
 $$
 
-Chuyển vế thu được công thức truy hồi $O(n^2)$ cho dãy $c_n$, đủ để qua bài này.
+Chuyển vế thu được công thức truy hồi $O(n^2)$ cho dãy $c_n$, đủ để giải bài này.
 
 <span id="ví-dụ-bài-tập-đội-tuyển-tập-huấn-2013-quy-hoạch-thành-phố"></span>
 ### Ví dụ "Bài tập đội tuyển tập huấn 2013" Quy hoạch thành phố
@@ -166,7 +166,7 @@ c_{n, i} &= \sum_{i=0}{n-1} \binom{n-1}{i-1} c_{n, 1}c_{n-i,k-1}
 \end{align}
 $$
 
-Từ đó suy ra truy hồi cho $b_n$, với độ phức tạp $O(n^3)$. Nếu tiếp tục dùng nguyên lý bao hàm - loại trừ, có thể tối ưu xuống $O(n^2)$ và qua bài này.
+Từ đó suy ra truy hồi cho $b_n$, với độ phức tạp $O(n^3)$. Nếu tiếp tục dùng nguyên lý bao hàm - loại trừ, có thể tối ưu xuống $O(n^2)$ và giải được bài này.
 
 <span id="cách-2-truy-hồi-liên-thông-hóa"></span>
 #### Cách 2: truy hồi liên thông hóa
@@ -205,7 +205,7 @@ B(x) &= \exp(B1(x))  \\
 \end{align}
 $$
 
-Có thể đạo hàm hai vế của đẳng thức rồi so sánh hệ số hai vế để thu được công thức truy hồi dễ cài đặt, đủ để qua bài này. Lưu ý rằng cách 2 và cách 3 về bản chất là như nhau, và trong trường hợp tổng quát cách 3 có thể đạt độ phức tạp tốt hơn.
+Có thể đạo hàm hai vế của đẳng thức rồi so sánh hệ số hai vế để thu được công thức truy hồi dễ cài đặt, đủ để giải bài này. Lưu ý rằng cách 2 và cách 3 về bản chất là như nhau, và trong trường hợp tổng quát cách 3 có thể đạt độ phức tạp tốt hơn.
 
 $$
 \begin{align}

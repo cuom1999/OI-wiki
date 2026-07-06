@@ -31,7 +31,7 @@ Dưới các ràng buộc đó, với một cặp đỉnh kề nhau $(u,v)$, yê
 
 Do đó có thể gán cho mỗi $v$ một biến Boolean $B_v$, giá trị của nó biểu thị $v$ được tô bằng màu nào trong hai màu còn lại. Khi đó có thể dùng mô hình 2-SAT để giải bài toán trong $O(n+m)$.
 
-Làm như vậy, xác suất đúng của một lần chạy là $\big(\frac 23\big)^n$. Lặp lại thuật toán $-\big(\frac 32\big)^n\log \epsilon$ lần; chỉ cần một lần tìm được nghiệm thì in ra. Như vậy có thể bảo đảm xác suất đúng $1-\epsilon$. Xem thêm phần "Phân tích cận trên xác suất" bên dưới.
+Với cách làm này, xác suất đúng của một lần chạy là $\big(\frac 23\big)^n$. Lặp lại thuật toán $-\big(\frac 32\big)^n\log \epsilon$ lần; chỉ cần một lần tìm được nghiệm thì in ra. Khi đó có thể bảo đảm xác suất đúng $1-\epsilon$. Xem thêm phần "Phân tích cận trên xác suất" bên dưới.
 
 ***
 
@@ -84,7 +84,7 @@ Cần xác định bất kỳ một phần tử nào trong một tập; vì vậ
 ???+ note "Tóm tắt đề bài"
     Có một đồ thị có dạng: hai chuỗi song song, cộng thêm hai cạnh song song nối giữa hai chuỗi. Cho một số đường đi đơn trên đồ thị này, mỗi đường đi biểu thị một cuộc gọi. Cần chọn ít cạnh nhất để đặt thiết bị nghe lén, sao cho trên mỗi đường đi đã cho đều có ít nhất một thiết bị nghe lén.
 
-Toàn bộ đồ thị có thể tách thành một chu trình cộng với bốn chuỗi mọc từ chu trình đó. Với bất kỳ một trong bốn chuỗi này, ký hiệu là $C$, xét cách đặt thiết bị nghe lén trên chuỗi này. Dễ dàng dùng tham lam để thu được phương án thỏa các điều kiện sau:
+Toàn bộ đồ thị có thể tách thành một chu trình cộng với bốn chuỗi mọc từ chu trình đó. Với bất kỳ một trong bốn chuỗi này, ký hiệu là $C$, xét cách đặt thiết bị nghe lén trên chuỗi này. Dùng tham lam có thể thu được phương án thỏa các điều kiện sau:
 
 -   Với điều kiện chặn được mọi cuộc gọi nằm hoàn toàn trong $C$, số thiết bị nghe lén được dùng là ít nhất.
 -   Dưới điều kiện trên, khoảng cách ngắn nhất từ thiết bị nghe lén trên $C$ đến chu trình là nhỏ nhất có thể.
@@ -209,7 +209,7 @@ Cách giải này sẽ quá thời gian. Thử tối ưu:
     -   Vì chỉ cần xét các clique có kích thước $\geq \dfrac n3$, số lượng clique bên trái $L$ và clique bên phải $C_R$ cần xét cũng giảm mạnh, xuống khoảng $1.8\cdot 10^6$.
 -   Nút thắt hiện tại trở thành việc tính tổng trọng số của một tập con ở một phía, vì việc này cần tiền xử lý $O\big(2^{|V_L|}+2^{|V_R|}\big)$.
     -   Cách giải: tiếp tục chia đôi bên trong $V_L,V_R$; khi truy vấn tổng trọng số của một tập con, tách tập con đó thành hai nửa để truy vấn, rồi cộng đáp án.
--   Như vậy là có thể qua bài này.
+-   Các tối ưu trên đủ để giải bài này.
 
 ***
 
@@ -569,7 +569,7 @@ Nhận xét: tại một thời điểm, nên chọn mua khi và chỉ khi chi p
 
 -   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút nhất định không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
 
-Cuối cùng, liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng quy hoạch động kiểu ba lô, như vậy là qua được bài này.
+Cuối cùng, liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng quy hoạch động kiểu ba lô, đủ để giải bài này.
 
 ***
 

@@ -44,7 +44,7 @@ p_1 f(i-1, j) + p_2 f(i, j-1) + p_3 f(i+1, j) + p_4 f(i, j+1) + 1 & i^2 + j^2 \l
 \end{cases}
 $$
 
-Do các chuyển trạng thái không có thứ tự topo, cần dùng khử Gauss để giải. Độ phức tạp thời gian là $O\left(R^6\right)$, không đủ để qua bài này.
+Do các chuyển trạng thái không có thứ tự topo, cần dùng khử Gauss để giải. Độ phức tạp thời gian là $O\left(R^6\right)$, không đáp ứng yêu cầu của bài này.
 
 ### Phương pháp khử trực tiếp
 
@@ -56,11 +56,11 @@ Xét quá trình khử. Khử các phương trình theo thứ tự từ trên xu
 
 Tiếp theo cần khử phương trình tương ứng với ô xanh lá kế tiếp. Trong phương trình này, chỉ các hệ số của biến tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó mới có thể khác 0; ngược lại, chỉ trong các phương trình tương ứng với các ô xanh lá và ô đen đầu tiên bên dưới nó thì hệ số của biến ứng với ô hiện tại mới có thể khác 0.
 
-Vì chỉ có $O(R)$ ô xanh lá, độ phức tạp khử cho một phương trình là $O\left(R^2\right)$. Tổng cộng chỉ có $O\left(R^2\right)$ phương trình, nên độ phức tạp thời gian giảm xuống $O\left(R^4\right)$ và có thể qua bài này.
+Vì chỉ có $O(R)$ ô xanh lá, độ phức tạp khử cho một phương trình là $O\left(R^2\right)$. Tổng cộng chỉ có $O\left(R^2\right)$ phương trình, nên độ phức tạp thời gian giảm xuống $O\left(R^4\right)$ và đủ để giải bài này.
 
 ### Phương pháp phần tử trụ
 
-Cả số phương trình lẫn số biến đều là $O\left(R^2\right)$. Nếu có thể thu nhỏ quy mô xuống $O(R)$, khử Gauss đơn giản sẽ đủ để qua bài.
+Cả số phương trình lẫn số biến đều là $O\left(R^2\right)$. Nếu có thể thu nhỏ quy mô xuống $O(R)$, khử Gauss đơn giản sẽ đủ để giải bài.
 
 Đặt biến tương ứng với ô đầu tiên từ trái sang phải trên mỗi hàng làm phần tử trụ, tổng cộng có $2 R+1$ phần tử trụ, rồi tìm cách biểu diễn các biến tương ứng với những ô khác dưới dạng hàm tuyến tính theo các phần tử trụ này. Xét từng cột từ trái sang phải; với mỗi ô $(i, j)$ trong cột hiện tại, nhận thấy $f(i, j)$, $f(i-1, j)$, $f(i, j-1)$, $f(i, j+1)$ đều đã là các hàm tuyến tính đã biết theo các phần tử trụ. Chuyển vế phương trình chuyển, có:
 
@@ -70,7 +70,7 @@ $$
 
 Như vậy có thể nhận được biểu diễn tuyến tính của $f(i+1, j)$ theo các phần tử trụ. Nếu $(i+1, j)$ đã có khoảng cách Euclid tới gốc tọa độ vượt quá $R$, sẽ nhận được một phương trình: $f(i+1, j)=0$. Cuối cùng sẽ thu được $2 R+1$ phương trình, chỉ cần khử Gauss trên các phương trình này.
 
-Ở giai đoạn truy hồi các hàm tuyến tính theo phần tử trụ, có tổng cộng $O\left(R^2\right)$ biến, và việc truy hồi một biến tốn $O(R)$ thời gian. Sau đó, quy mô bài toán đã được giảm xuống $O(R)$. Độ phức tạp thời gian của cả hai phần đều là $O\left(R^3\right)$, nên tổng độ phức tạp cũng là $O\left(R^3\right)$ và có thể qua bài này.
+Ở giai đoạn truy hồi các hàm tuyến tính theo phần tử trụ, có tổng cộng $O\left(R^2\right)$ biến, và việc truy hồi một biến tốn $O(R)$ thời gian. Sau đó, quy mô bài toán đã được giảm xuống $O(R)$. Độ phức tạp thời gian của cả hai phần đều là $O\left(R^3\right)$, nên tổng độ phức tạp cũng là $O\left(R^3\right)$ và đủ để giải bài này.
 
 ### So sánh hai cách làm
 

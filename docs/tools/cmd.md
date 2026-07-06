@@ -93,7 +93,7 @@ Ví dụ, lệnh `./prog < 1.in > 1.out` sẽ làm cho chương trình `prog` đ
 
 Lưu ý rằng PowerShell chỉ hỗ trợ chuyển hướng xuất, không hỗ trợ chuyển hướng nhập.
 
-Đa số OJ đều dùng cơ chế chuyển hướng như vậy. Chương trình thí sinh nộp sử dụng đầu vào/đầu ra chuẩn; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
+Đa số OJ đều dùng cơ chế chuyển hướng theo cách này. Chương trình thí sinh nộp sử dụng đầu vào/đầu ra chuẩn; thông qua cơ chế chuyển hướng, hệ thống có thể cho chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trước, xuất ra tệp xuất chỉ định, rồi chấm bằng cách so sánh tệp.
 
 ### Thực thi chương trình
 
@@ -218,7 +218,7 @@ Trong hệ thống Unix, có thể dùng lệnh sau để tạo ống dẫn có 
 $ mkfifo my_pipe
 ```
 
-Lúc này dùng lệnh `ls` để liệt kê tệp trong thư mục hiện tại sẽ thấy xuất hiện thêm một tệp `my_pipe|`. Như vậy là đã tạo một ống dẫn có tên; dấu `|` sau tên tệp cho biết đây là tệp ống dẫn. Sau đó, có thể đọc ghi vào ống dẫn này giống như chuyển hướng tệp.
+Lúc này dùng lệnh `ls` để liệt kê tệp trong thư mục hiện tại sẽ thấy xuất hiện thêm một tệp `my_pipe|`. Tệp này chính là ống dẫn có tên vừa tạo; dấu `|` sau tên tệp cho biết đây là tệp ống dẫn. Sau đó, có thể đọc ghi vào ống dẫn này giống như chuyển hướng tệp.
 
 Với ống dẫn có tên, có thể cho hai chương trình tương tác theo cách sau:
 

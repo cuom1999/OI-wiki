@@ -14,7 +14,7 @@ Trước hết xây dựng một đống lớn (max-heap), sau đó lấy phần
 
 Tiếp theo lấy phần tử ở đỉnh đống làm giá trị lớn thứ hai, hoán đổi nó với phần tử áp chót của mảng, rồi duy trì tính chất của phần đống còn lại;
 
-Cứ tiếp tục như vậy, sau thao tác thứ $n-1$, toàn bộ mảng sẽ được sắp xếp.
+Tiếp tục quá trình này, sau thao tác thứ $n-1$, toàn bộ mảng sẽ được sắp xếp.
 
 ### Xây dựng đống nhị phân trên mảng
 

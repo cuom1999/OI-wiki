@@ -112,7 +112,7 @@ Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số
 
 `#ifdef` sẽ kiểm tra trong chương trình có định nghĩa định danh tương ứng bằng `#define` hay không; nếu có định nghĩa thì thực thi các câu lệnh phía sau. Còn `#ifndef` sẽ thực thi các câu lệnh phía sau khi không có định nghĩa định danh tương ứng.
 
-Như vậy, chỉ cần viết mã gỡ lỗi trong `#ifdef DEBUG` và viết mã thật để nộp trong `#ifndef DEBUG`, việc kiểm thử cục bộ sẽ thuận tiện hơn. Khi nộp chương trình, chỉ cần chú thích dòng `#define DEBUG` là được. Cũng có thể không định nghĩa định danh trong chương trình, mà dùng tùy chọn biên dịch `-DDEBUG` để định nghĩa định danh `DEBUG` lúc biên dịch. Cách này giúp không cần sửa chương trình khi nộp.
+Chỉ cần viết mã gỡ lỗi trong `#ifdef DEBUG` và viết mã thật để nộp trong `#ifndef DEBUG`, việc kiểm thử cục bộ sẽ thuận tiện hơn. Khi nộp chương trình, chỉ cần chú thích dòng `#define DEBUG` là được. Cũng có thể không định nghĩa định danh trong chương trình, mà dùng tùy chọn biên dịch `-DDEBUG` để định nghĩa định danh `DEBUG` lúc biên dịch. Cách này giúp không cần sửa chương trình khi nộp.
 
 Nhiều OJ đều bật tùy chọn biên dịch `-DONLINE_JUDGE`; tận dụng tốt đặc tính này có thể tiết kiệm khá nhiều thời gian.
 

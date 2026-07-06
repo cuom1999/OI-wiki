@@ -18,7 +18,7 @@ Sau khi tải xong, giải nén vào một vị trí nào đó trên máy tính.
 
 ![](./images/compiler2.png)
 
-Tiếp theo, cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi trường hệ thống. Như vậy khi biên dịch sẽ không cần chỉ định đường dẫn trình biên dịch, thuận tiện hơn khi sử dụng. Ở trên, MinGW được giải nén vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là `C:\mingw64\bin`.
+Tiếp theo, cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi trường hệ thống. Sau khi cấu hình xong, khi biên dịch sẽ không cần chỉ định đường dẫn trình biên dịch, nên việc sử dụng thuận tiện hơn. Ở trên, MinGW được giải nén vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là `C:\mingw64\bin`.
 
 Nhấn tổ hợp phím logo Windows + R, nhập `rundll32.exe sysdm.cpl,EditEnvironmentVariables`, mở cửa sổ thiết lập biến môi trường hệ thống, chọn biến tên `Path` trong mục "Biến hệ thống", rồi nhấn nút "Chỉnh sửa":
 

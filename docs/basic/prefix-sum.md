@@ -29,7 +29,7 @@ $$
 S([l,r]) = S_r - S_{l-1}.
 $$
 
-Như vậy, sau khi tiền xử lý trong thời gian $O(n)$, độ phức tạp của mỗi truy vấn tổng đoạn giảm xuống $O(1)$.
+Sau khi tiền xử lý trong thời gian $O(n)$, độ phức tạp của mỗi truy vấn tổng đoạn giảm xuống $O(1)$.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"

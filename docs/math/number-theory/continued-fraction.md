@@ -1655,7 +1655,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     Cho các số nguyên dương $A,B,N \le 2\times 10^9$, tìm $x,y\ge 0$ sao cho $Ax+By\le N$ và $Ax+By$ lớn nhất có thể.
 
 ??? note "Lời giải"
-    Bài toán này có lời giải độ phức tạp $O(\sqrt N)$: giả sử $A\ge B$, vì $A(B+x)+By=Ax+B(A+y)$, nên chỉ cần tìm đáp án trong miền $x\le\min\{N/A, B\}$. Điều này đủ để qua bài. Tuy nhiên, nếu áp dụng phương pháp liên phân số, độ phức tạp có thể giảm xuống $O(\log N)$.
+    Bài toán này có lời giải độ phức tạp $O(\sqrt N)$: giả sử $A\ge B$, vì $A(B+x)+By=Ax+B(A+y)$, nên chỉ cần tìm đáp án trong miền $x\le\min\{N/A, B\}$. Cách này đủ để giải bài. Tuy nhiên, nếu áp dụng phương pháp liên phân số, độ phức tạp có thể giảm xuống $O(\log N)$.
     
     Để tiện thảo luận, trước hết đổi dấu của $x$ bằng phép thế $x\mapsto\left\lfloor N/A\right\rfloor-x$. Đặt $C=N\bmod A$ và $M=\left\lfloor N/A\right\rfloor$, bài toán ban đầu chuyển thành: trong điều kiện $0\le x\le M$ và $By-Ax\le C$, tìm $(x,y)$ tối ưu sao cho $By-Ax$ lớn nhất. Với mỗi $x$ cố định, giá trị tối ưu của $y$ là $\left\lfloor\dfrac{Ax+C}{B}\right\rfloor$.
     

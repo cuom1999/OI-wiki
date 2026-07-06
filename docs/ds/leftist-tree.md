@@ -240,7 +240,7 @@ Lưu ý:
 
 2.  Độ sâu của cây lệch trái có thể đạt $O(n)$, vì vậy muốn tìm đỉnh heap chứa một điểm thì phải dùng DSU để duy trì,
     không thể nhảy cha trực tiếp bằng vét cạn.
-    Dù dữ liệu của nhiều bài khá yếu và nhảy cha vét cạn vẫn có thể qua,
+    Dù dữ liệu của nhiều bài khá yếu và nhảy cha vét cạn vẫn đủ để được chấp nhận,
     khi dùng DSU để duy trì gốc cần giữ cho gốc cũ trỏ tới gốc mới, còn gốc mới trỏ tới chính nó.
 
 ??? note "Mã tham khảo cho Trò chơi La Mã"

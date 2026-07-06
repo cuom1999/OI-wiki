@@ -72,7 +72,7 @@ Dùng hàm để mô-đun hóa chương trình và giảm chi phí cài đặt.
 
 ### 2.1 Liệt kê và mô phỏng
 
-Đến giai đoạn này, người học đã có thể dùng C++ để hoàn thành một số nhiệm vụ đơn giản, nhưng như vậy còn xa mới đủ.
+Đến giai đoạn này, người học đã có thể dùng C++ để hoàn thành một số nhiệm vụ đơn giản, nhưng mức đó còn xa mới đủ.
 
 Để làm đúng một số bài đơn giản, cần học cách cài đặt mã bằng cách liệt kê hoặc mô phỏng logic trong đầu. Cách này trông không hiệu quả lắm, nhưng đôi khi rất hữu dụng.
 
@@ -140,7 +140,7 @@ Thiết kế mỗi trạng thái thành một đỉnh trong đồ thị, từ đ
 
 #### 2.6.3 Tối ưu tìm kiếm
 
-Nhiều bài có thể giải bằng DFS, nhưng độ phức tạp của thuật toán này thường vượt quá giới hạn. Vì vậy cần một số tối ưu để nó chạy nhanh hơn. Những tối ưu như vậy có thể giảm các thử nghiệm không có khả năng thành công, gọi là “cắt tỉa”. Tối ưu liên quan đến BFS linh hoạt hơn, nhưng tư tưởng cơ bản cũng tương tự.
+Nhiều bài có thể giải bằng DFS, nhưng độ phức tạp của thuật toán này thường vượt quá giới hạn. Vì vậy cần một số tối ưu để nó chạy nhanh hơn. Các tối ưu này có thể giảm các thử nghiệm không có khả năng thành công, gọi là “cắt tỉa”. Tối ưu liên quan đến BFS linh hoạt hơn, nhưng tư tưởng cơ bản cũng tương tự.
 
 -   [Tối ưu cắt tỉa DFS](../search/opt.md)
 

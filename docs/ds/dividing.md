@@ -121,7 +121,7 @@ Có thể giải bài này bằng CDQ trong thời gian $\Theta(n\log^2n)$ và k
 
 Nếu bài này được đổi thành bắt buộc xử lý trực tuyến, cách thường dùng là cây Fenwick + cây phân đoạn bền vững theo dạng
 cây lồng cây. Độ phức tạp thời gian là $\Theta(n\log^2n)$, độ phức tạp không gian là $\Theta(n\log^2n)$, hằng số hơi lớn
-nhưng vẫn có thể qua bài này.
+nhưng vẫn đủ để giải bài này.
 
 Còn nếu dùng cây phân hoạch, có thể giải trực tuyến bài này trong thời gian $\Theta(n\log^2n)$ và không gian
 $\Theta(n\log n)$; đồng thời hằng số cũng nhỏ hơn rất nhiều so với cách cây lồng cây. (Xấp xỉ với CDQ.)

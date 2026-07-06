@@ -220,9 +220,9 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     Với một cạnh:
     
     -   Nếu tất cả các cạnh có trọng số bị sửa trong cây khung nhỏ nhất đều được gán thành $+\infty$, mà cạnh này không xuất hiện trong cây, thì chứng minh được nó không thể xuất hiện trong cây khung nhỏ nhất của các truy vấn thuộc $(l,r)$. Vì vậy chỉ thêm các cạnh cây của cây khung nhỏ nhất vào tập cạnh của $(l,r)$.
-    -   Nếu tất cả các cạnh có trọng số bị sửa trong cây khung nhỏ nhất đều được gán thành $-\infty$, mà cạnh này xuất hiện trong cây, thì chứng minh được nó luôn xuất hiện trong cây khung nhỏ nhất của đoạn $(l,r)$. Như vậy có thể dùng DSU để co các đỉnh tương ứng với những cạnh này, đồng thời cộng trọng số của các cạnh đó vào đáp án.
+    -   Nếu tất cả các cạnh có trọng số bị sửa trong cây khung nhỏ nhất đều được gán thành $-\infty$, mà cạnh này xuất hiện trong cây, thì chứng minh được nó luôn xuất hiện trong cây khung nhỏ nhất của đoạn $(l,r)$. Khi đó có thể dùng DSU để co các đỉnh tương ứng với những cạnh này, đồng thời cộng trọng số của các cạnh đó vào đáp án.
     
-    Như vậy đã xây dựng được tập cạnh cho đoạn $(l,r)$. Cây khung nhỏ nhất tính ra từ các cạnh này tương đương với việc tính trực tiếp cây khung nhỏ nhất của đồ thị gốc.
+    Đến đây đã xây dựng được tập cạnh cho đoạn $(l,r)$. Cây khung nhỏ nhất tính ra từ các cạnh này tương đương với việc tính trực tiếp cây khung nhỏ nhất của đồ thị gốc.
     
     Vì sao độ phức tạp trên là đúng?
     

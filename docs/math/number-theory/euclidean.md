@@ -595,7 +595,7 @@ Dùng thuật toán Euclid vạn năng, có cài đặt cho bài mẫu như sau:
     
     Đáp án cuối cùng là ba thành phần cuối của vector thu được khi nhân phải trạng thái ban đầu với tích của các ma trận thao tác này.
     
-    Cách làm này có hằng số rất lớn và không thể qua bài này; phần này chỉ đưa chi tiết để hỗ trợ hiểu bài.
+    Cách làm này có hằng số rất lớn và không đáp ứng yêu cầu của bài này; phần này chỉ đưa chi tiết để hỗ trợ hiểu bài.
     
     **Hợp nhất đóng góp**: định nghĩa đóng góp của một đoạn dãy thao tác là $(x,y,\sum y,\sum xy,\sum y^2)$. Hai thao tác lần lượt là
     

@@ -34,7 +34,7 @@ Có một mẹo tối ưu bộ nhớ: khi xử lý mỗi truy vấn, các $x$ đ
 
 Bài toán thu được sau ngoại tuyến lần hai là: thêm số vào một tập hợp và truy vấn thứ hạng của một số trong tập hợp. Tổng số lần Mo di chuyển các đầu mút là $O(n\sqrt{m})$, còn độ dài mảng chỉ là $O(n)$, nên có thể dùng chia khối theo miền giá trị với thao tác thêm $O(\sqrt{n})$ và truy vấn $O(1)$ để giải bài toán này.
 
-Như vậy, bài toán được giải với độ phức tạp thời gian $O(n \sqrt{m} + n \sqrt{n})$ và độ phức tạp bộ nhớ $O(n + m)$.
+Bài toán được giải với độ phức tạp thời gian $O(n \sqrt{m} + n \sqrt{n})$ và độ phức tạp bộ nhớ $O(n + m)$.
 
 Cuối cùng, giá trị tính được ở mỗi lần là lượng thay đổi của đáp án, chứ không phải bản thân đáp án, nên cần lấy tổng tiền tố để thu được đáp án cuối cùng.
 

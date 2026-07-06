@@ -69,7 +69,7 @@ Một cách tìm kiếm đơn giản có thể được cài đặt như sau: tr
         print(ans)
         ```
 
-Độ phức tạp thời gian của cách làm này là cấp số mũ, nên không thể vượt qua bài này.
+Độ phức tạp thời gian của cách làm này là cấp số mũ, nên không đáp ứng yêu cầu của bài này.
 
 <span id="tối-ưu"></span>
 ### Tối ưu

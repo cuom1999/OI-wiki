@@ -253,7 +253,7 @@ bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
     }
     ```
 
-Ngoài ra, cách vét cạn có thêm vài nhánh cắt tỉa cũng có thể qua:
+Ngoài ra, cách vét cạn có thêm vài nhánh cắt tỉa cũng đủ để giải:
 
 ??? note "Bản nộp: [vét cạn có vài nhánh cắt tỉa](https://loj.ac/submission/395673)"
     ```cpp

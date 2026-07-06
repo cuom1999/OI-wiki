@@ -156,7 +156,7 @@ Ba bài trên đều là ứng dụng thuận chiều của nguyên lý bao hàm
 
 ### Dạng toán học
 
-Nhìn qua bài này, hướng thuật toán chưa rõ; với bài khó, trước hết nên trừu tượng hóa thành dạng toán học. Chênh lệch điểm là hiệu đối xứng chẵn lẻ, có thể dùng lũy thừa của $-1$ làm hệ số. Cần tính
+Thoạt nhìn, hướng thuật toán của bài này chưa rõ; với bài khó, trước hết nên trừu tượng hóa thành dạng toán học. Chênh lệch điểm là hiệu đối xứng chẵn lẻ, có thể dùng lũy thừa của $-1$ làm hệ số. Cần tính
 
 $$
 Ans=\sum_{S\subseteq E}(-1)^{|S|-1}F(S)
