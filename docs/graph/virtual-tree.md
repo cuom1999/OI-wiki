@@ -3,9 +3,9 @@ author: HeRaNO, Ir1d, konnyakuxzy, ksyx, Xeonacid, konnyakuxzy, greyqz, sshwy, y
 ## Dẫn nhập
 
 ???+ note "[SDOI2011 - Cuộc chiến tiêu hao](https://www.luogu.com.cn/problem/P2495)"
-    Trong một cuộc chiến, chiến trường gồm $n$ hòn đảo và $n-1$ cây cầu. Bảo đảm giữa mỗi cặp đảo có đúng một đường đi duy nhất. Hiện nay, quân đội đã trinh sát được tổng hành dinh của địch nằm trên hòn đảo số $1$, và chúng không còn đủ năng lượng để duy trì chiến đấu, chiến thắng đã trong tầm tay. Biết rằng trên $k$ hòn đảo khác có nguồn năng lượng dồi dào. Để ngăn địch lấy được năng lượng, nhiệm vụ là phá hủy một số cây cầu sao cho địch không thể đi đến bất kỳ hòn đảo nào có năng lượng dồi dào. Do vật liệu và kết cấu của các cây cầu khác nhau, chi phí phá hủy mỗi cây cầu cũng khác nhau. Cần đạt mục tiêu với tổng chi phí nhỏ nhất.
+    Trong một cuộc chiến, chiến trường gồm $n$ hòn đảo và $n-1$ cây cầu. Giữa mỗi cặp đảo có đúng một đường đi duy nhất. Quân đội đã trinh sát được tổng hành dinh của địch nằm trên hòn đảo số $1$, và lực lượng địch không còn đủ năng lượng để duy trì chiến đấu; chiến thắng đã trong tầm tay. Biết rằng trên $k$ hòn đảo khác có nguồn năng lượng dồi dào. Để ngăn địch lấy được năng lượng, nhiệm vụ là phá hủy một số cây cầu sao cho địch không thể đi đến bất kỳ hòn đảo nào có năng lượng dồi dào. Do vật liệu và kết cấu của các cây cầu khác nhau, chi phí phá hủy mỗi cây cầu cũng khác nhau. Cần đạt mục tiêu với tổng chi phí nhỏ nhất.
     
-    Bộ phận trinh sát còn phát hiện quân địch có một cỗ máy bí ẩn. Ngay cả sau khi tất cả nguồn năng lượng bị cắt đứt, chúng vẫn có thể dùng cỗ máy đó. Hiệu ứng của cỗ máy không chỉ sửa lại tất cả cây cầu đã bị phá hủy, mà còn phân bố lại tài nguyên một cách ngẫu nhiên (nhưng bảo đảm tài nguyên không được phân bố lên đảo số $1$). Tuy nhiên bộ phận trinh sát cũng phát hiện cỗ máy này chỉ có thể dùng $m$ lần, vì vậy chỉ cần hoàn thành từng nhiệm vụ mỗi lần.
+    Bộ phận trinh sát còn phát hiện quân địch có một cỗ máy bí ẩn. Ngay cả sau khi tất cả nguồn năng lượng bị cắt đứt, lực lượng địch vẫn có thể dùng cỗ máy đó. Hiệu ứng của cỗ máy không chỉ sửa lại tất cả cây cầu đã bị phá hủy, mà còn phân bố lại tài nguyên một cách ngẫu nhiên (nhưng bảo đảm tài nguyên không được phân bố lên đảo số $1$). Tuy nhiên, bộ phận trinh sát cũng phát hiện cỗ máy này chỉ có thể dùng $m$ lần, vì vậy chỉ cần hoàn thành nhiệm vụ tương ứng với từng lần sử dụng.
     
     Với mọi bộ dữ liệu, $2\le n\le 2.5\times 10^5,1\le m\le 5\times 10^5,\sum k_i\le 5\times 10^5,1\le k_i\le n-1$.
 
@@ -24,13 +24,13 @@ Khi duyệt các con $v$ của $i$:
 -   Nếu $v$ không phải đỉnh then chốt: $Dp(i)=Dp(i) + \min \{Dp(v),w(i,v)\}$;
 -   Nếu $v$ là đỉnh then chốt: $Dp(i)=Dp(i) + w(i,v)$.
 
-Như vậy có một lời giải $O(nq)$.
+Từ đó thu được một lời giải $O(nq)$.
 
-Nghe khá thú vị.
+Đây là một hướng tiếp cận trực tiếp.
 
 ### Cách tối ưu
 
-Thực ra có rất nhiều đỉnh không hữu ích. Xét hình dưới đây:
+Trên cây có rất nhiều đỉnh không hữu ích. Xét hình dưới:
 
 ![Cây gốc trước khi nén thành cây ảo](images/vtree-tree.svg)
 
@@ -42,9 +42,9 @@ Trong hình chỉ có hai đỉnh màu đỏ là **đỉnh then chốt**, các �
 
 Với bài này, chỉ cần bảo đảm các đỉnh màu đỏ không thể đi đến đỉnh số $1$.
 
-Quan sát trực quan có thể rút ra kết luận: cây con bên phải của đỉnh số $1$ (trên thực tế có thể có nhiều cây con, nhưng trong ví dụ này chỉ có hai cây con nên tạm gọi như vậy) không có đỉnh màu đỏ nào, **vì thế không cần DP trên nó**.
+Từ hình vẽ, cây con bên phải của đỉnh số $1$ (trên thực tế có thể có nhiều cây con, nhưng trong ví dụ này chỉ có hai cây con nên tạm gọi như vậy) không có đỉnh màu đỏ nào, **vì thế không cần DP trên nó**.
 
-Xét ràng buộc của đề bài, tổng số đỉnh màu đỏ (đỉnh then chốt) cùng bậc với $n$, tức là trong một truy vấn, các đỉnh màu đỏ trên toàn bộ cây thực ra rất thưa. Vì vậy sẽ tốt hơn nếu độ phức tạp được quyết định bởi tổng số đỉnh màu đỏ.
+Xét ràng buộc của đề bài, tổng số đỉnh màu đỏ (đỉnh then chốt) cùng bậc với $n$, tức là trong một truy vấn, các đỉnh màu đỏ trên toàn bộ cây thường rất thưa. Vì vậy sẽ tốt hơn nếu độ phức tạp được quyết định bởi tổng số đỉnh màu đỏ.
 
 Do đó cần **nén thông tin, biến một cây lớn thành một cây nhỏ**.
 
@@ -52,7 +52,7 @@ Do đó cần **nén thông tin, biến một cây lớn thành một cây nhỏ
 
 Từ đó xuất hiện khái niệm **cây ảo**.
 
-Trước hết xem trực quan cây ảo trông như thế nào.
+Trước tiên, xét hình dạng trực quan của cây ảo.
 
 Trong hình dưới, các đỉnh màu đỏ là đỉnh then chốt đã chọn. Các đỉnh màu đỏ và màu đen đều là đỉnh trong cây ảo. Các cạnh màu đen là cạnh trong cây ảo.
 
@@ -66,13 +66,13 @@ Trong hình dưới, các đỉnh màu đỏ là đỉnh then chốt đã chọn
 
 Vì LCA của hai đỉnh then chốt bất kỳ cũng cần lưu thông tin quan trọng, cần giữ lại LCA của chúng. Vì vậy cây ảo không nhất thiết chỉ gồm các đỉnh then chốt.
 
-Quan hệ tổ tiên - hậu duệ trong cây ảo sẽ không thay đổi. Nghĩa là không xảy ra chuyện ban đầu $a$ là tổ tiên của $b$, nhưng về sau $a$ lại trở thành hậu duệ của $b$.
+Quan hệ tổ tiên - hậu duệ trong cây ảo sẽ không thay đổi. Nghĩa là nếu ban đầu $a$ là tổ tiên của $b$, thì về sau $a$ không thể trở thành hậu duệ của $b$.
 
-Tuy nhiên không thể duyệt bạo lực $O(k^2)$ mọi cặp để tính LCA. Vì vậy một cách tự nhiên là trước hết sắp xếp các đỉnh then chốt theo thứ tự DFS, sau đó tính LCA cho từng cặp đỉnh then chốt kề nhau (kề nhau nghĩa là trong dãy đã sắp xếp, trị tuyệt đối của chênh lệch chỉ số bằng 1) và thêm LCA đó vào cây ảo.
+Tuy nhiên không thể duyệt bạo lực $O(k^2)$ mọi cặp để tính LCA. Một cách tự nhiên là sắp xếp các đỉnh then chốt theo thứ tự DFS, sau đó tính LCA cho từng cặp đỉnh then chốt kề nhau (kề nhau nghĩa là trong dãy đã sắp xếp, trị tuyệt đối của chênh lệch chỉ số bằng 1) và thêm LCA đó vào cây ảo.
 
-Việc cần làm ngay bây giờ là xây dựng cây ảo.
+Bước tiếp theo là xây dựng cây ảo.
 
-Trước khi đưa ra cách làm, cần xác nhận một sự thật: trong cây ảo, chỉ cần bảo đảm quan hệ tổ tiên - hậu duệ không thay đổi thì có thể tùy ý thêm đỉnh.
+Trước khi đưa ra cách làm, cần xác nhận một tính chất: trong cây ảo, chỉ cần bảo đảm quan hệ tổ tiên - hậu duệ không thay đổi thì có thể tùy ý thêm đỉnh.
 
 Nghĩa là nếu muốn, có thể thêm tất cả đỉnh của cây gốc vào cây ảo mà không làm sai đáp án (dù sẽ bị TLE).
 
@@ -82,7 +82,7 @@ Do đó, để tiện xử lý, có thể thêm trước đỉnh số $1$ vào c
 
 Vì LCA của nhiều đỉnh có thể trùng nhau, không được thêm nó vào cây ảo nhiều lần.
 
-Một cách rất trực quan là:
+Một cách dựng trực quan gồm các bước:
 
 -   Sắp xếp các đỉnh then chốt theo thứ tự DFS;
 -   Duyệt một lần, tính LCA của mỗi cặp đỉnh then chốt kề nhau và loại trùng;
@@ -94,7 +94,7 @@ Nhờ tính chất của thứ tự DFS, lúc này dãy $A$ đã chứa **tất 
 
 Vì vậy sắp xếp dãy $A$ theo thứ tự DFS **tăng dần và loại trùng**.
 
-Cuối cùng, trên dãy $A$, duyệt hai **số hiệu đỉnh** $x,y$ **kề nhau**, tính LCA của chúng và nối cạnh $\operatorname{LCA}(x,y),y$; đến đây cây ảo được xây xong.
+Cuối cùng, trên dãy $A$, duyệt hai **số hiệu đỉnh** $x,y$ **kề nhau**, tính LCA của chúng và nối cạnh $\operatorname{LCA}(x,y),y$; sau bước này cây ảo đã được xây xong.
 
 Tại sao nối $\operatorname{LCA}(x,y)$ với $y$ lại không bị thừa hay thiếu?
 
@@ -107,7 +107,7 @@ Tại sao nối $\operatorname{LCA}(x,y)$ với $y$ lại không bị thừa hay
     
     Ngoài ra, việc đỉnh đầu tiên không được một đỉnh nào nối tới có ảnh hưởng không? Không, vì đỉnh đầu tiên nhất định là gốc của cây này, nên tổng số cạnh là $m-1$.
 
-Vì cần ít nhất hai đỉnh thực mới sinh ra một đỉnh ảo, cộng thêm một đỉnh gốc, số đỉnh của cây ảo bằng hai lần số đỉnh thực.
+Vì cần ít nhất hai đỉnh thực mới phát sinh một đỉnh ảo, cộng thêm một đỉnh gốc, số đỉnh của cây ảo bằng hai lần số đỉnh thực.
 
 Độ phức tạp thời gian là $O(m\log n)$, trong đó $m$ là số đỉnh then chốt, $n$ là tổng số đỉnh.
 
@@ -137,17 +137,17 @@ void build_virtual_tree() {
 }
 ```
 
-Thực ra như vậy đã đủ để xây dựng một cây ảo.
+Các bước trên đã đủ để xây dựng một cây ảo.
 
 ### Cách xây dựng thứ hai: dùng ngăn xếp đơn điệu
 
-Làm thế nào để dùng ngăn xếp đơn điệu xây dựng cây ảo?
+Cách dùng ngăn xếp đơn điệu để xây dựng cây ảo như sau.
 
-Trước hết cần làm rõ mục tiêu: dùng ngăn xếp đơn điệu để duy trì một chuỗi trên cây ảo.
+Trước tiên cần làm rõ mục tiêu: dùng ngăn xếp đơn điệu để duy trì một chuỗi trên cây ảo.
 
-Nghĩa là hai đỉnh kề nhau trong ngăn xếp cũng kề nhau trên cây ảo, và ngăn xếp tăng đơn điệu từ đáy đến đỉnh ngăn xếp (tức là thứ tự DFS của các đỉnh trong ngăn xếp tăng đơn điệu). Nói đơn giản, cha của một đỉnh chính là đỉnh nằm ngay bên dưới nó trong ngăn xếp.
+Nghĩa là hai đỉnh kề nhau trong ngăn xếp cũng kề nhau trên cây ảo, và ngăn xếp tăng đơn điệu từ đáy đến đỉnh ngăn xếp (tức là thứ tự DFS của các đỉnh trong ngăn xếp tăng đơn điệu). Nói cách khác, cha của một đỉnh chính là đỉnh nằm ngay bên dưới nó trong ngăn xếp.
 
-Trước hết thêm đỉnh $1$ vào ngăn xếp.
+Ban đầu, thêm đỉnh $1$ vào ngăn xếp.
 
 Sau đó lần lượt thêm các đỉnh then chốt theo thứ tự DFS tăng dần.
 
@@ -159,7 +159,7 @@ Nếu LCA của đỉnh hiện tại và đỉnh trên đỉnh ngăn xếp khôn
 
 ![Trường hợp LCA của đỉnh hiện tại và đỉnh trên ngăn xếp khác đỉnh trên ngăn xếp](./images/vtree-add2.svg)
 
-Lúc này, chuỗi mà ngăn xếp đơn điệu đang duy trì là:
+Khi đó, chuỗi mà ngăn xếp đơn điệu đang duy trì là:
 
 ![Chuỗi hiện tại được duy trì bởi ngăn xếp đơn điệu](./images/vtree-add3.svg)
 
@@ -189,13 +189,13 @@ Các bước như sau:
 Dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn xếp, và đỉnh màu xanh lam nhạt để biểu thị các đỉnh đã bị pop khỏi ngăn xếp.
 
 -   Lấy phần tử đầu tiên trong dãy làm đỉnh hiện tại, tức là $4$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $1$. Tính LCA của $1$ và $4$: $LCA(1,4)=1$.
--   Thấy $LCA(1,4)=$ phần tử trên đỉnh ngăn xếp, điều này cho thấy chúng nằm trên một chuỗi của cây ảo, nên đưa trực tiếp đỉnh hiện tại $4$ vào ngăn xếp. Ngăn xếp hiện tại là $4,1$.
+-   Vì $LCA(1,4)=$ phần tử trên đỉnh ngăn xếp, hai đỉnh này nằm trên một chuỗi của cây ảo; do đó đưa trực tiếp đỉnh hiện tại $4$ vào ngăn xếp. Ngăn xếp hiện tại là $4,1$.
 
 ![Đưa đỉnh 4 vào ngăn xếp](./images/vtree-construction3.svg)
 
 -   Lấy phần tử thứ hai trong dãy làm đỉnh hiện tại, là $6$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $4$. Tính LCA của $6$ và $4$: $LCA(6,4)=1$.
--   Thấy $LCA(6,4)\neq$ phần tử trên đỉnh ngăn xếp, nên bước vào giai đoạn xét.
--   Giai đoạn xét: thấy thứ tự DFS của đỉnh trên đỉnh ngăn xếp $4$ lớn hơn thứ tự DFS của $LCA(6,4)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ bằng LCA (thực ra thứ tự DFS bằng nhau nghĩa là hai đỉnh cũng bằng nhau). Điều này cho thấy LCA đã nằm trong ngăn xếp, nên nối trực tiếp cạnh $1\to4$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp, rồi pop $4$ khỏi ngăn xếp.
+-   Vì $LCA(6,4)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang giai đoạn xét.
+-   Trong giai đoạn xét, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $4$ lớn hơn thứ tự DFS của $LCA(6,4)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ bằng LCA (thứ tự DFS bằng nhau nghĩa là hai đỉnh cũng bằng nhau). Điều này nghĩa là LCA đã nằm trong ngăn xếp, nên nối trực tiếp cạnh $1\to4$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp, rồi pop $4$ khỏi ngăn xếp.
 
 ![Nối cạnh 1 đến 4 rồi pop đỉnh 4](./images/vtree-construction4.svg)
 
@@ -204,14 +204,14 @@ Dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn
 ![Đưa đỉnh 6 vào ngăn xếp](./images/vtree-construction5.svg)
 
 -   Lấy phần tử thứ ba trong dãy làm đỉnh hiện tại, là $7$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $6$. Tính LCA của $7$ và $6$: $LCA(7,6)=3$.
--   Thấy $LCA(7,6)\neq$ phần tử trên đỉnh ngăn xếp, nên bước vào giai đoạn xét.
--   Giai đoạn xét: thấy thứ tự DFS của đỉnh trên đỉnh ngăn xếp $6$ lớn hơn thứ tự DFS của $LCA(7,6)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ nhỏ hơn LCA. Điều này cho thấy LCA chưa từng vào ngăn xếp, nên nối trực tiếp cạnh $3\to6$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp. Pop $6$ khỏi ngăn xếp, đồng thời đưa $LCA(6,7)$ vào ngăn xếp.
+-   Vì $LCA(7,6)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang giai đoạn xét.
+-   Trong giai đoạn xét, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $6$ lớn hơn thứ tự DFS của $LCA(7,6)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ nhỏ hơn LCA. Điều này nghĩa là LCA chưa từng vào ngăn xếp, nên nối trực tiếp cạnh $3\to6$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp. Pop $6$ khỏi ngăn xếp, đồng thời đưa $LCA(6,7)$ vào ngăn xếp.
 -   Kết thúc giai đoạn xét, đưa $7$ vào ngăn xếp. Ngăn xếp hiện tại là $1,3,7$.
 
 ![Thêm LCA 3 và đưa đỉnh 7 vào ngăn xếp](./images/vtree-construction6.svg)
 
--   Thấy 3 đỉnh trong dãy đều đã được đưa vào ngăn xếp, thoát vòng lặp.
--   Lúc này trong ngăn xếp còn 3 đỉnh: $1,3,7$. Chúng nằm trên một chuỗi, nên nối trực tiếp các cạnh $1\to3$ và $3\to7$.
+-   Khi 3 đỉnh trong dãy đều đã được đưa vào ngăn xếp, thoát vòng lặp.
+-   Khi đó trong ngăn xếp còn 3 đỉnh: $1,3,7$. Chúng nằm trên một chuỗi, nên nối trực tiếp các cạnh $1\to3$ và $3\to7$.
 -   Cây ảo đã được xây xong!
 
 ![Nối các cạnh còn lại trên chuỗi trong ngăn xếp](./images/vtree-construction7.svg)
@@ -220,13 +220,13 @@ Tiếp theo xóa các đỉnh chưa từng vào ngăn xếp (các đỉnh không
 
 ![Cây ảo cuối cùng của ví dụ](./images/vtree-construction8.svg)
 
-Trong đó có nhiều chi tiết, chẳng hạn nếu dùng danh sách kề để lưu cây ảo thì cần xóa danh sách kề. Nhưng xóa toàn bộ danh sách kề trực tiếp sẽ rất chậm, vì vậy chỉ cần **khi một phần tử chưa từng vào ngăn xếp được đưa vào ngăn xếp, xóa danh sách kề ứng với phần tử đó**.
+Quá trình cài đặt có một số chi tiết cần xử lý, chẳng hạn nếu dùng danh sách kề để lưu cây ảo thì cần xóa danh sách kề. Việc xóa toàn bộ danh sách kề trực tiếp sẽ rất chậm, vì vậy chỉ cần **khi một phần tử chưa từng vào ngăn xếp được đưa vào ngăn xếp, xóa danh sách kề ứng với phần tử đó**.
 
 Độ phức tạp thời gian cũng là $O(m\log n)$ (vì có sắp xếp), trong đó $m$ là số đỉnh then chốt, $n$ là tổng số đỉnh.
 
 #### Cài đặt
 
-Mã C++ xây dựng cây ảo đại khái như sau:
+Mã C++ xây dựng cây ảo có thể viết như sau:
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -251,7 +251,7 @@ Mã C++ xây dựng cây ảo đại khái như sau:
             // Nối và pop phần chuỗi không trùng với chuỗi chứa đỉnh hiện tại
             if (id[l] > id[sta[top - 1]])
               // Nếu LCA không bằng đỉnh thứ hai từ trên xuống (dấu lớn hơn về bản
-              // chất không khác gì dấu không bằng)
+              // chất tương đương với dấu không bằng)
               g.head[l] = -1, g.push(l, sta[top]), sta[top] = l;
             // LCA vào ngăn xếp lần đầu: xóa danh sách kề của nó, nối cạnh,
             // pop phần tử trên đỉnh ngăn xếp, rồi đưa LCA vào ngăn xếp
@@ -261,23 +261,23 @@ Mã C++ xây dựng cây ảo đại khái như sau:
             // ngăn xếp
           }
           g.head[h[i]] = -1, sta[++top] = h[i];
-          // Đỉnh hiện tại chắc chắn vào ngăn xếp lần đầu, xóa danh sách kề rồi
+          // Đỉnh hiện tại luôn vào ngăn xếp lần đầu, xóa danh sách kề rồi
           // đưa vào ngăn xếp
         }
       for (int i = 1; i < top; ++i)
-        g.push(sta[i], sta[i + 1]);  // Nối nốt chuỗi cuối còn lại
+        g.push(sta[i], sta[i + 1]);  // Nối chuỗi cuối còn lại
       return;
     }
     ```
 
-Đến đây đã có cách xây dựng cây ảo.
+Sau các bước trên đã có cách xây dựng cây ảo.
 
 Với bài Cuộc chiến tiêu hao, chỉ cần chạy DP đã nói lúc đầu trên cây ảo. Cây ảo đã loại bỏ các đỉnh không then chốt vô dụng. Vẫn xét mọi con $v$ của $i$:
 
 -   Nếu $v$ không phải đỉnh then chốt: $Dp(i)=Dp(i) + \min \{Dp(v),w(i,v)\}$
 -   Nếu $v$ là đỉnh then chốt: $Dp(i)=Dp(i) + w(i,v)$
 
-Như vậy bài này được giải gọn.
+Từ đó bài này được giải quyết ngắn gọn.
 
 ## Bài tập đề xuất
 

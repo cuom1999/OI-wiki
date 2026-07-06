@@ -2,7 +2,7 @@ Khi gặp các bài toán dạng "cho $n$ số nguyên, hỏi $n$ số nguyên n
 
 Đường đi ngắn nhất theo đồng dư dùng các lớp đồng dư để xây dựng trạng thái, nhờ đó có thể tối ưu độ phức tạp bộ nhớ.
 
-Tương tự phương pháp [ràng buộc hiệu](./diff-constraints.md), các trạng thái được xây dựng bằng đồng dư có thể xem là các đỉnh trong bài toán đường đi ngắn nhất một nguồn. Chuyển trạng thái của đường đi ngắn nhất theo đồng dư thường có dạng $f(i+y) = f(i) + y$, tương tự $f(v) = f(u) +edge(u,v)$ trong đường đi ngắn nhất một nguồn.
+Tương tự phương pháp [ràng buộc hiệu](./diff-constraints.md), các trạng thái được xây dựng bằng đồng dư có thể xem là các đỉnh trong bài toán đường đi ngắn nhất một nguồn. Chuyển trạng thái của đường đi ngắn nhất theo đồng dư thường có dạng $f(i+y) = f(i) + y$, tương tự $f(v) = f(u) + edge(u,v)$ trong đường đi ngắn nhất một nguồn.
 
 ## Ví dụ
 
@@ -21,7 +21,7 @@ Có hai phép chuyển trạng thái:
 
 -   $i \xrightarrow{z} (i+z) \bmod x$
 
-Chú ý thường chọn số nhỏ nhất trong tập $a_i$ để lấy modulo, tức là $x$ trong ví dụ này, nhằm giảm tối đa độ phức tạp bộ nhớ (hệ thặng dư nhỏ nhất).
+Thường chọn số nhỏ nhất trong tập $a_i$ để lấy modulo, tức là $x$ trong ví dụ này, nhằm giảm tối đa độ phức tạp bộ nhớ (hệ thặng dư nhỏ nhất).
 
 Khi đó, về bản chất đang thực hiện thao tác xây cạnh trong bài toán đường đi ngắn nhất:
 
@@ -36,11 +36,11 @@ Tiếp theo chỉ cần tìm $d_0, d_1, d_2, \dots, d_{x-1}$; chạy một lần
     --8<-- "docs/graph/code/mod-shortest-path/mod-shortest-path_1.cpp"
     ```
 
-Tuy nhiên, thực ra cũng không cần giải đường đi ngắn nhất theo cách thông thường. Chú ý hai tính chất đặc biệt:
+Tuy nhiên, không nhất thiết phải giải đường đi ngắn nhất theo cách thông thường. Hai tính chất đặc biệt sau cho phép tối ưu:
 
 Thứ nhất, chỉ có hai loại trọng số cạnh; với mỗi đường đi, do tính giao hoán của phép cộng, thứ tự đi qua hai loại trọng số không ảnh hưởng đến kết quả. Vì vậy có thể xét chạy đường đi ngắn nhất hai lần, mỗi lần chỉ xây các cạnh thuộc một loại trọng số.
 
-Thứ hai, với đồ thị chỉ có một loại trọng số cạnh, mỗi đỉnh $u$ đều có một cạnh vào (từ $(u-y) \bmod x$) và một cạnh ra (đến $(u+y) \bmod x$), nên toàn bộ đồ thị chắc chắn gồm một số chu trình. Hơn nữa, có thể chứng minh có đúng $\gcd(x,y)$ chu trình cùng độ dài.
+Thứ hai, với đồ thị chỉ có một loại trọng số cạnh, mỗi đỉnh $u$ đều có một cạnh vào (từ $(u-y) \bmod x$) và một cạnh ra (đến $(u+y) \bmod x$), nên toàn bộ đồ thị gồm một số chu trình. Hơn nữa, có thể chứng minh có đúng $\gcd(x,y)$ chu trình cùng độ dài.
 
 ???+ note "Chứng minh"
     Đặt $d=\gcd(x,y)$, $x=da,y=db$, khi đó $\gcd(a,b)=1$.
@@ -49,7 +49,7 @@ Thứ hai, với đồ thị chỉ có một loại trọng số cạnh, mỗi �
     
     Do $\gcd(a,b)=1$, giá trị nhỏ nhất của $k$ là $a$, tức độ dài chu trình là $a = \dfrac{x}{d}$. Vì có thể bắt đầu từ một đỉnh bất kỳ, mọi chu trình khả dĩ đều có cùng độ dài, và số lượng chu trình là $d$.
 
-Ngoài ra, vì trọng số cạnh là dương, sau khi đi vòng quanh chu trình hai lần thì chắc chắn không thể tiếp tục nới lỏng. Chỉ cần cập nhật một vòng trực tiếp là đủ. Cách xử lý này không bị giới hạn bởi độ phức tạp của thuật toán đường đi ngắn nhất và có thể đạt $O(x)$.
+Ngoài ra, vì trọng số cạnh là dương, sau khi đi vòng quanh chu trình hai lần thì không còn phép nới lỏng mới. Chỉ cần cập nhật một vòng trực tiếp là đủ. Cách xử lý này không bị giới hạn bởi độ phức tạp của thuật toán đường đi ngắn nhất và có thể đạt $O(x)$.
 
 Tương tự bài toán ràng buộc hiệu, khi tồn tại một nghiệm $\{a_1,a_2,\cdots,a_n\}$, thì $\{a_1+d,a_2+d,\cdots,a_n+d\}$ cũng là một nghiệm. Vì vậy, trong bài này chọn $i=1$ làm nguồn; khi đó $dis_{1}=1$ tại nguồn là nhỏ nhất trong phạm vi đã biết, nên nghiệm thu được cũng là một nghiệm nhỏ nhất.
 
@@ -61,7 +61,7 @@ $$
 
 Cộng thêm 1 vì tầng chứa $d_i$ cũng được tính một lần.
 
-Khi cài đặt, chú ý phạm vi của $h$ là $h \leq 2^{63}-1$, nên trước khi giải đường đi ngắn nhất, giá trị khởi tạo của $d_i$ nên ít nhất là $2^{63}$, vượt quá giá trị lớn nhất của `long long` trong C++. Vì vậy có thể dùng `unsigned long long`, hoặc trước hết đặt $h \gets h - 1$, rồi coi tầng thấp nhất là tầng $0$; các phần mã khác không đổi.
+Khi cài đặt, phạm vi của $h$ là $h \leq 2^{63}-1$, nên trước khi giải đường đi ngắn nhất, giá trị khởi tạo của $d_i$ nên ít nhất là $2^{63}$, vượt quá giá trị lớn nhất của `long long` trong C++. Vì vậy có thể dùng `unsigned long long`, hoặc trước hết đặt $h \gets h - 1$, rồi coi tầng thấp nhất là tầng $0$; các phần mã khác không đổi.
 
 ??? example "Cài đặt dựa trên tối ưu chu trình"
     ```cpp
@@ -79,7 +79,7 @@ Quan sát rằng mọi số nguyên dương đều có thể được tạo ra t
 
 Với mọi $0\le k\le n-1$, nối một cạnh trọng số $0$ từ $k$ đến $10k$, và một cạnh trọng số $1$ từ $k$ đến $k+1$. (Mọi chỉ số đỉnh đều xét theo modulo $n$.)
 
-Mỗi bội số của $n$ đều tương ứng với một đường đi từ đỉnh $1$ đến đỉnh $0$ trong đồ thị này, nên chỉ cần tìm đường đi ngắn nhất từ $1$ đến $0$. Một số đường đi không hợp lệ (chẳng hạn đi liên tiếp $10$ cạnh trọng số $1$), nhưng đáp án do các đường đi này tạo ra chắc chắn không tối ưu, nên không ảnh hưởng đến đáp án.
+Mỗi bội số của $n$ đều tương ứng với một đường đi từ đỉnh $1$ đến đỉnh $0$ trong đồ thị này, nên chỉ cần tìm đường đi ngắn nhất từ $1$ đến $0$. Một số đường đi không hợp lệ (chẳng hạn đi liên tiếp $10$ cạnh trọng số $1$), nhưng đáp án do các đường đi này tạo ra không thể tối ưu, nên không ảnh hưởng đến đáp án.
 
 Độ phức tạp thời gian là $O(n)$.
 

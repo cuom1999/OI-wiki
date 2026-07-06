@@ -8,7 +8,7 @@ Tính toán độ chính xác tùy ý (Arbitrary-Precision Arithmetic), còn đ�
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-Các bài toán độ chính xác cao có rất nhiều chi tiết nhỏ, và cách cài đặt cũng có nhiều điểm cần chú ý.
+Các bài toán độ chính xác cao có rất nhiều chi tiết nhỏ, và cách cài đặt cũng có nhiều điểm cần lưu ý.
 
 Vì vậy, phần dưới sẽ cài đặt một máy tính đơn giản.
 
@@ -118,7 +118,7 @@ Các chức năng cần có sẽ được cài đặt lần lượt theo thứ t
 <span id="phép-cộng"></span>
 ### Phép cộng
 
-Cộng độ chính xác cao thực ra chính là phép cộng đặt dọc.
+Cộng độ chính xác cao chính là phép cộng đặt dọc.
 
 ![](./images/plus.svg)
 
@@ -282,7 +282,7 @@ Thay `add()` trong chương trình trước bằng `sub()` sẽ thu được m�
 
 Thử nhập `1 2`: chương trình in ra `/9999999`. Đoạn mã trên sai ở đâu?
 
-Thực ra, đoạn mã trên chỉ xử lý được trường hợp số bị trừ $a$ lớn hơn hoặc bằng số trừ $b$. Việc xử lý khi số bị trừ nhỏ hơn số trừ, tức $a<b$, rất đơn giản.
+Đoạn mã trên chỉ xử lý được trường hợp số bị trừ $a$ lớn hơn hoặc bằng số trừ $b$. Việc xử lý khi số bị trừ nhỏ hơn số trừ, tức $a<b$, rất đơn giản.
 
 $a-b=-(b-a)$
 
@@ -304,7 +304,7 @@ Cách chuẩn hóa cũng là bắt đầu từ hàng đơn vị và xử lý nh�
 
 ![](./images/multiplication-short.png)
 
-Tất nhiên, cũng vì lý do này, phương pháp này cần đặc biệt chú ý đến phạm vi của thừa số $b$. Nếu nó cùng cấp độ với $10^9$ (hoặc giới hạn trên của kiểu số nguyên tương ứng), cần thận trọng khi dùng phép nhân độ chính xác cao - độ chính xác đơn.
+Cũng vì lý do này, phương pháp này cần đặc biệt lưu ý phạm vi của thừa số $b$. Nếu nó cùng cấp độ với $10^9$ (hoặc giới hạn trên của kiểu số nguyên tương ứng), cần thận trọng khi dùng phép nhân độ chính xác cao - độ chính xác đơn.
 
 ```cpp
 void mul_short(int a[], int b, int c[]) {
@@ -332,7 +332,7 @@ Nếu cả hai thừa số đều có độ chính xác cao, phép nhân đặt 
 
 Nhớ lại từng bước của phép nhân đặt dọc: thực chất cần tính tổng của nhiều hạng $a \times b_i \times 10^i$. Ví dụ, phép tính $1337 \times 42$ tương ứng với $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$.
 
-Vì vậy, có thể tách $b$ thành tất cả các chữ số của nó; mỗi chữ số là một số độ chính xác đơn. Lần lượt nhân chúng với $a$, dịch sang trái đến đúng vị trí tương ứng rồi cộng lại sẽ được đáp án. Tất nhiên, cuối cùng vẫn cần xử lý nhớ theo cách giống ví dụ trên.
+Vì vậy, có thể tách $b$ thành tất cả các chữ số của nó; mỗi chữ số là một số độ chính xác đơn. Lần lượt nhân chúng với $a$, dịch sang trái đến đúng vị trí tương ứng rồi cộng lại sẽ được đáp án. Cuối cùng vẫn cần xử lý nhớ theo cách giống ví dụ trên.
 
 ![](./images/multiplication-long.png)
 
@@ -625,7 +625,7 @@ Ngoài ra, vì thương ước lượng luôn nhỏ hơn hoặc bằng thương 
 2.  Tiếp tục thử thương với phần dư 98801, được $9880/988=10$, nên $98801-(9876 \times 10 \times 10^0) = 41$. Đây chính là số dư cuối cùng.
 3.  Cộng các kết quả trong quá trình thử thương rồi xử lý nhớ, tức $3 \times 10^1 + 10 \times 10^0 = 40$, thu được thương chính xác.
 
-Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể rất dễ mắc lỗi. Vì vậy dưới đây cung cấp một cài đặt đã được kiểm chứng nhiều lần để tham khảo; các chi tiết cần chú ý cũng được viết trong chú thích.
+Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể rất dễ mắc lỗi. Vì vậy dưới đây cung cấp một cài đặt đã được kiểm chứng nhiều lần để tham khảo; các chi tiết cần lưu ý cũng được viết trong chú thích.
 
 ??? note "Cài đặt tham khảo phép chia đặt dọc hiệu quả cho độ chính xác cao gộp chữ số"
     ```cpp

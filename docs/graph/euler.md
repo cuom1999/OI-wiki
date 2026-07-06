@@ -25,11 +25,11 @@ Tiếp theo là chứng minh tính tương đương.
 Nếu một đồ thị $G$ là đồ thị Euler, thì mọi đỉnh của $G$ đều có bậc chẵn: xét việc bắt đầu từ một đỉnh bất kỳ rồi đi hết một vòng theo chu trình Euler, khi đó bậc của mỗi đỉnh $v$ bằng số lần rời khỏi $v$ cộng với số lần đi đến $v$. Do quỹ đạo di chuyển là một chu trình, với mỗi đỉnh $v$, số lần rời khỏi đỉnh đó bằng số lần đi đến đỉnh đó. Nói cách khác, bậc của mỗi đỉnh đều có dạng $2k$, tức là số chẵn.
 Đặc biệt, với đồ thị có hướng, theo cùng lập luận trên, mỗi đỉnh có bậc vào bằng bậc ra.
 
-Nếu mọi đỉnh của một đồ thị $G$ đều có bậc chẵn (hoặc bậc vào bằng bậc ra), thì nó có thể được phân rã thành hợp rời cạnh của một số chu trình: bắt đầu từ một đỉnh bất kỳ $u$, chọn một cạnh ra bất kỳ $(u, v)$, đi đến đỉnh kề tương ứng $v$ rồi xóa $(u, v)$, cho đến khi quay lại đỉnh xuất phát ban đầu $u$. Có thể chứng minh quá trình này cuối cùng chắc chắn quay lại $u$: mỗi khi đi đến một đỉnh mới $v \neq u$, theo tính chất ở trên, bậc còn lại của đỉnh đó là số lẻ, tức là chắc chắn còn một cạnh ra, nên quá trình không thể kết thúc tại $v$. (Nói cách khác, quá trình sẽ dừng khi và chỉ khi quay lại $u$.) Vì số cạnh của đồ thị $G$ là hữu hạn, quá trình chắc chắn dừng sau hữu hạn bước, nên cuối cùng phải quay lại $u$ và thu được một chu trình. Lưu ý rằng chứng minh trên chỉ dùng tính chất mọi bậc đỉnh đều chẵn, và sau khi tìm rồi xóa một chu trình, phần đồ thị còn lại vẫn thỏa tính chất này; do đó có thể lặp lại quá trình cho đến khi đồ thị còn lại rỗng, qua đó tách $G$ thành một số chu trình đôi một không chung cạnh.
+Nếu mọi đỉnh của một đồ thị $G$ đều có bậc chẵn (hoặc bậc vào bằng bậc ra), thì nó có thể được phân rã thành hợp rời cạnh của một số chu trình: bắt đầu từ một đỉnh bất kỳ $u$, chọn một cạnh ra bất kỳ $(u, v)$, đi đến đỉnh kề tương ứng $v$ rồi xóa $(u, v)$, cho đến khi quay lại đỉnh xuất phát ban đầu $u$. Quá trình này cuối cùng sẽ quay lại $u$: mỗi khi đi đến một đỉnh mới $v \neq u$, theo tính chất ở trên, bậc còn lại của đỉnh đó là số lẻ, tức là vẫn còn một cạnh ra, nên quá trình không thể kết thúc tại $v$. (Nói cách khác, quá trình sẽ dừng khi và chỉ khi quay lại $u$.) Vì số cạnh của đồ thị $G$ là hữu hạn, quá trình sẽ dừng sau hữu hạn bước, nên cuối cùng phải quay lại $u$ và thu được một chu trình. Lập luận trên chỉ dùng tính chất mọi bậc đỉnh đều chẵn, và sau khi tìm rồi xóa một chu trình, phần đồ thị còn lại vẫn thỏa tính chất này; do đó có thể lặp lại quá trình cho đến khi đồ thị còn lại rỗng, qua đó tách $G$ thành một số chu trình đôi một không chung cạnh.
 Hơn nữa, mỗi chu trình cũng có thể được tách tại các đỉnh mà nó đi qua nhiều lần để trở thành hợp rời cạnh của một số chu trình đơn, nên trong tính chất trên cũng có thể thay "chu trình" bằng "chu trình đơn".
 
 Nếu một đồ thị liên thông $G$ có thể được phân rã thành hợp rời cạnh của một số chu trình, thì $G$ là đồ thị Euler: với một tập các chu trình không chung cạnh, mỗi lần chọn hai chu trình có đỉnh chung rồi ghép chúng thành một chu trình, lặp lại cho đến khi không còn hai chu trình nào có đỉnh chung.
-Có thể chứng minh rằng khi quá trình này kết thúc, chu trình còn lại là duy nhất. Với hai chu trình không chung cạnh bất kỳ $P_1, P_2$, nếu $P_1$ và $P_2$ có đỉnh chung thì có thể ghép trực tiếp tại đỉnh chung đó; nếu không, chọn tùy ý một đỉnh $v_1$ trên $P_1$ và một đỉnh $v_2$ trên $P_2$. Do $G$ liên thông, tồn tại một đường đi nối $v_1$ với $v_2$ gồm các cạnh $e_1, e_2, \ldots, e_k$, trong đó mỗi cạnh $e_i$ nằm trong một chu trình $C_i$, đồng thời $P_1$ và $C_1$, $C_i$ và $C_{i+1}$, $C_k$ và $P_2$ đều có đỉnh chung (hoặc $C_i = C_{i+1}$, trường hợp này không ảnh hưởng đến chứng minh). Khi đó, $P_1$ và $P_2$ có thể được ghép thông qua $C_1, \ldots, C_k$. Nói cách khác, hai chu trình bất kỳ đều có thể được ghép, nên chu trình cuối cùng còn lại chắc chắn là duy nhất; tập cạnh tạo nên chu trình đó chính là hợp của tất cả chu trình không chung cạnh, tức là $E(G)$. Chu trình này là chu trình Euler trên $G$, do đó $G$ là đồ thị Euler.
+Khi quá trình này kết thúc, chu trình còn lại là duy nhất. Với hai chu trình không chung cạnh bất kỳ $P_1, P_2$, nếu $P_1$ và $P_2$ có đỉnh chung thì có thể ghép trực tiếp tại đỉnh chung đó; nếu không, chọn tùy ý một đỉnh $v_1$ trên $P_1$ và một đỉnh $v_2$ trên $P_2$. Do $G$ liên thông, tồn tại một đường đi nối $v_1$ với $v_2$ gồm các cạnh $e_1, e_2, \ldots, e_k$, trong đó mỗi cạnh $e_i$ nằm trong một chu trình $C_i$, đồng thời $P_1$ và $C_1$, $C_i$ và $C_{i+1}$, $C_k$ và $P_2$ đều có đỉnh chung (hoặc $C_i = C_{i+1}$, trường hợp này không ảnh hưởng đến chứng minh). Khi đó, $P_1$ và $P_2$ có thể được ghép thông qua $C_1, \ldots, C_k$. Nói cách khác, hai chu trình bất kỳ đều có thể được ghép, nên chu trình cuối cùng còn lại là duy nhất; tập cạnh tạo nên chu trình đó chính là hợp của tất cả chu trình không chung cạnh, tức là $E(G)$. Chu trình này là chu trình Euler trên $G$, do đó $G$ là đồ thị Euler.
 
 Các tính chất trên cũng tạo thành tiêu chuẩn nhận biết đồ thị Euler. Cụ thể, một đồ thị là đồ thị Euler khi và chỉ khi các đỉnh có bậc khác không liên thông (liên thông mạnh với đồ thị có hướng) với nhau, và mọi đỉnh đều có bậc chẵn (hoặc bậc vào bằng bậc ra).
 
@@ -39,7 +39,7 @@ Từ đó suy ra tiêu chuẩn nhận biết đồ thị nửa Euler: một đ�
 ## Xây dựng chu trình Euler/đường đi Euler
 
 Phần này giới thiệu thuật toán Hierholzer thường dùng nhất. Ý tưởng cốt lõi của thuật toán là tận dụng tính chất thứ ba của đồ thị Euler ở trên: đồ thị Euler có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
-Có thể thấy trong phần chứng minh trên, thực chất đã có một thao tác hoàn chỉnh và khả thi để ghép các chu trình không chung cạnh thành chu trình Euler; khi dùng cấu trúc dữ liệu phù hợp để lưu trữ (chẳng hạn dùng cấu trúc dạng danh sách liên kết để lưu chu trình), thao tác này khá trực tiếp.
+Phần chứng minh trên đã đưa ra một thao tác hoàn chỉnh và khả thi để ghép các chu trình không chung cạnh thành chu trình Euler; khi dùng cấu trúc dữ liệu phù hợp để lưu trữ (chẳng hạn dùng cấu trúc dạng danh sách liên kết để lưu chu trình), thao tác này khá trực tiếp.
 
 Quy trình cụ thể của thuật toán là trước hết tìm trong đồ thị một chu trình làm chu trình hiện tại. Mỗi lần chọn một đỉnh trên chu trình hiện tại vẫn còn bậc dư khác không, xuất phát từ đỉnh đó để tìm một chu trình đơn mới, rồi ghép chu trình đơn này với chu trình hiện tại. Lặp lại quá trình cho đến khi mọi đỉnh trên chu trình hiện tại đều không còn bậc dư; khi đó chu trình hiện tại chính là chu trình Euler.
 
@@ -71,11 +71,11 @@ $$
 
 Độ phức tạp thời gian của thuật toán Hierholzer là $O(|E| + |V|)$.
 
-Lưu ý rằng trong phân tích tính đúng đắn ở trên, quá trình tìm chu trình đơn trong đồ thị Euler hoặc nửa Euler (hoặc đường đi ban đầu của đồ thị nửa Euler) là **không cần quay lui**: chỉ cần đi theo các cạnh còn lại thì chắc chắn tìm được chu trình hoặc đường đi cần thiết, và **mỗi cạnh chỉ được thăm một lần**.
+Trong phân tích tính đúng đắn ở trên, quá trình tìm chu trình đơn trong đồ thị Euler hoặc nửa Euler (hoặc đường đi ban đầu của đồ thị nửa Euler) là **không cần quay lui**: chỉ cần đi theo các cạnh còn lại thì sẽ tìm được chu trình hoặc đường đi cần thiết, và **mỗi cạnh chỉ được thăm một lần**.
 Để tận dụng tính chất này, khi cài đặt nên lưu các cạnh trong đồ thị bằng cấu trúc dạng danh sách liên kết, chẳng hạn danh sách kề hoặc sao tiến, để mỗi cạnh được xóa ngay sau khi được thăm. Nếu dùng ma trận kề đơn giản để lưu trữ, mỗi lần tìm cạnh sẽ tốn $O(|V|)$, tổng độ phức tạp là $O(|V||E|)$.
 
 ???+ note "Ghi chú"
-    Thật ra, độ phức tạp chính xác của thuật toán nên là $O(|E|)$ chứ không phải $O(|V| + |E|)$, vì cách cài đặt thuật toán có thể phụ thuộc vào cạnh thay vì phụ thuộc vào đỉnh, bằng cách duy trì danh sách liên kết tổng thể của các cạnh còn lại để tìm chu trình ở bước tiếp theo.
+    Chính xác hơn, độ phức tạp của thuật toán nên là $O(|E|)$ chứ không phải $O(|V| + |E|)$, vì cách cài đặt thuật toán có thể phụ thuộc vào cạnh thay vì phụ thuộc vào đỉnh, bằng cách duy trì danh sách liên kết tổng thể của các cạnh còn lại để tìm chu trình ở bước tiếp theo.
 
 Nếu cần xuất đường đi Euler hoặc chu trình Euler có thứ tự từ điển nhỏ nhất, cần sắp xếp các cạnh; độ phức tạp thời gian là $\Theta(|E|\log |E|)$ hoặc $\Theta(|E|)$ (nếu dùng sắp xếp đếm hoặc sắp xếp cơ số).
 
@@ -121,7 +121,7 @@ Tìm tùy ý một chu trình Euler $C$ trong $D$, lấy chữ cái cuối cùng
     
     Có thể dùng `std::stack<int>` để lưu đáp án, vì nếu phần tìm được không phải chu trình thì phải đặt phần đó ở cuối.
     
-    Chú ý rằng không thể dùng ma trận kề để lưu đồ thị, nếu không độ phức tạp thời gian sẽ suy biến thành $\Theta(nm)$. Vì cần sắp xếp cạnh, nên dùng sao tiến hoặc `std::vector` để lưu đồ thị. Mã mẫu dùng `std::vector`.
+    Không nên dùng ma trận kề để lưu đồ thị, vì độ phức tạp thời gian sẽ suy biến thành $\Theta(nm)$. Do cần sắp xếp cạnh, nên dùng sao tiến hoặc `std::vector` để lưu đồ thị. Mã mẫu dùng `std::vector`.
 
 ??? note "Mã mẫu"
     ```cpp
