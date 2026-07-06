@@ -2,13 +2,13 @@ Trang này giới thiệu ngắn gọn khái niệm, cách cài đặt và ứng
 
 ## Định nghĩa
 
-Trong bài viết này, ta chỉ xét đồ thị hữu hạn.
+Trong bài viết này chỉ xét đồ thị hữu hạn.
 
 Trong lý thuyết đồ thị, **đường đi Euler (Eulerian path)** là một đường đi đi qua mỗi cạnh của đồ thị đúng một lần, còn **chu trình Euler (Eulerian circuit)** là một chu trình đi qua mỗi cạnh của đồ thị đúng một lần.
 Nếu một đồ thị có chu trình Euler, đồ thị đó được gọi là **đồ thị Euler (Eulerian graph)**; nếu một đồ thị không có chu trình Euler nhưng có đường đi Euler, đồ thị đó được gọi là **đồ thị nửa Euler (semi-Eulerian graph)**.
 
 ??? warning "Cảnh báo"
-    Dù định nghĩa ở đây dùng từ "đường đi", nói chặt chẽ hơn thì khái niệm được dùng phải là "vết (trail)". Đường đi Euler và chu trình Euler chỉ yêu cầu mỗi cạnh được dùng đúng một lần, chứ không hạn chế số lần đi qua một đỉnh.
+    Dù định nghĩa trong bài dùng từ "đường đi", nói chặt chẽ hơn thì khái niệm được dùng phải là "vết (trail)". Đường đi Euler và chu trình Euler chỉ yêu cầu mỗi cạnh được dùng đúng một lần, chứ không hạn chế số lần đi qua một đỉnh.
 
 ## Tính chất
 
@@ -20,12 +20,12 @@ Với đồ thị liên thông $G$, ba tính chất sau tương đương với n
 2.  Mọi đỉnh của $G$ đều có bậc chẵn (với đồ thị có hướng, mỗi đỉnh có bậc vào bằng bậc ra);
 3.  $G$ có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
 
-Sau đây ta chứng minh tính tương đương.
+Tiếp theo là chứng minh tính tương đương.
 
 Nếu một đồ thị $G$ là đồ thị Euler, thì mọi đỉnh của $G$ đều có bậc chẵn: xét việc bắt đầu từ một đỉnh bất kỳ rồi đi hết một vòng theo chu trình Euler, khi đó bậc của mỗi đỉnh $v$ bằng số lần rời khỏi $v$ cộng với số lần đi đến $v$. Do quỹ đạo di chuyển là một chu trình, với mỗi đỉnh $v$, số lần rời khỏi đỉnh đó bằng số lần đi đến đỉnh đó. Nói cách khác, bậc của mỗi đỉnh đều có dạng $2k$, tức là số chẵn.
 Đặc biệt, với đồ thị có hướng, theo cùng lập luận trên, mỗi đỉnh có bậc vào bằng bậc ra.
 
-Nếu mọi đỉnh của một đồ thị $G$ đều có bậc chẵn (hoặc bậc vào bằng bậc ra), thì nó có thể được phân rã thành hợp rời cạnh của một số chu trình: bắt đầu từ một đỉnh bất kỳ $u$, chọn một cạnh ra bất kỳ $(u, v)$, đi đến đỉnh kề tương ứng $v$ rồi xóa $(u, v)$, cho đến khi quay lại đỉnh xuất phát ban đầu $u$. Có thể chứng minh quá trình này cuối cùng chắc chắn quay lại $u$: mỗi khi đi đến một đỉnh mới $v \neq u$, theo tính chất ở trên, bậc còn lại của đỉnh đó là số lẻ, tức là chắc chắn còn một cạnh ra, nên quá trình không thể kết thúc tại $v$. (Nói cách khác, quá trình sẽ dừng khi và chỉ khi quay lại $u$.) Vì số cạnh của đồ thị $G$ là hữu hạn, quá trình chắc chắn dừng sau hữu hạn bước, nên cuối cùng phải quay lại $u$ và thu được một chu trình. Lưu ý rằng trong chứng minh trên ta chỉ dùng tính chất mọi bậc đỉnh đều chẵn, và sau khi tìm rồi xóa một chu trình, phần đồ thị còn lại vẫn thỏa tính chất này; do đó ta có thể lặp lại quá trình cho đến khi đồ thị còn lại rỗng, qua đó tách $G$ thành một số chu trình đôi một không chung cạnh.
+Nếu mọi đỉnh của một đồ thị $G$ đều có bậc chẵn (hoặc bậc vào bằng bậc ra), thì nó có thể được phân rã thành hợp rời cạnh của một số chu trình: bắt đầu từ một đỉnh bất kỳ $u$, chọn một cạnh ra bất kỳ $(u, v)$, đi đến đỉnh kề tương ứng $v$ rồi xóa $(u, v)$, cho đến khi quay lại đỉnh xuất phát ban đầu $u$. Có thể chứng minh quá trình này cuối cùng chắc chắn quay lại $u$: mỗi khi đi đến một đỉnh mới $v \neq u$, theo tính chất ở trên, bậc còn lại của đỉnh đó là số lẻ, tức là chắc chắn còn một cạnh ra, nên quá trình không thể kết thúc tại $v$. (Nói cách khác, quá trình sẽ dừng khi và chỉ khi quay lại $u$.) Vì số cạnh của đồ thị $G$ là hữu hạn, quá trình chắc chắn dừng sau hữu hạn bước, nên cuối cùng phải quay lại $u$ và thu được một chu trình. Lưu ý rằng chứng minh trên chỉ dùng tính chất mọi bậc đỉnh đều chẵn, và sau khi tìm rồi xóa một chu trình, phần đồ thị còn lại vẫn thỏa tính chất này; do đó có thể lặp lại quá trình cho đến khi đồ thị còn lại rỗng, qua đó tách $G$ thành một số chu trình đôi một không chung cạnh.
 Hơn nữa, mỗi chu trình cũng có thể được tách tại các đỉnh mà nó đi qua nhiều lần để trở thành hợp rời cạnh của một số chu trình đơn, nên trong tính chất trên cũng có thể thay "chu trình" bằng "chu trình đơn".
 
 Nếu một đồ thị liên thông $G$ có thể được phân rã thành hợp rời cạnh của một số chu trình, thì $G$ là đồ thị Euler: với một tập các chu trình không chung cạnh, mỗi lần chọn hai chu trình có đỉnh chung rồi ghép chúng thành một chu trình, lặp lại cho đến khi không còn hai chu trình nào có đỉnh chung.
@@ -38,8 +38,8 @@ Từ đó suy ra tiêu chuẩn nhận biết đồ thị nửa Euler: một đ�
 
 ## Xây dựng chu trình Euler/đường đi Euler
 
-Ở đây ta giới thiệu thuật toán Hierholzer thường dùng nhất. Ý tưởng cốt lõi của thuật toán là tận dụng tính chất thứ ba của đồ thị Euler ở trên: đồ thị Euler có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
-Có thể thấy trong phần chứng minh trên, ta thật ra đã nêu một thao tác hoàn chỉnh và khả thi để ghép các chu trình không chung cạnh thành chu trình Euler; khi dùng cấu trúc dữ liệu phù hợp để lưu trữ (chẳng hạn dùng cấu trúc dạng danh sách liên kết để lưu chu trình), thao tác này không khó cài đặt.
+Phần này giới thiệu thuật toán Hierholzer thường dùng nhất. Ý tưởng cốt lõi của thuật toán là tận dụng tính chất thứ ba của đồ thị Euler ở trên: đồ thị Euler có thể được phân rã thành hợp của một số chu trình đôi một không chung cạnh.
+Có thể thấy trong phần chứng minh trên, thực chất đã có một thao tác hoàn chỉnh và khả thi để ghép các chu trình không chung cạnh thành chu trình Euler; khi dùng cấu trúc dữ liệu phù hợp để lưu trữ (chẳng hạn dùng cấu trúc dạng danh sách liên kết để lưu chu trình), thao tác này khá trực tiếp.
 
 Quy trình cụ thể của thuật toán là trước hết tìm trong đồ thị một chu trình làm chu trình hiện tại. Mỗi lần chọn một đỉnh trên chu trình hiện tại vẫn còn bậc dư khác không, xuất phát từ đỉnh đó để tìm một chu trình đơn mới, rồi ghép chu trình đơn này với chu trình hiện tại. Lặp lại quá trình cho đến khi mọi đỉnh trên chu trình hiện tại đều không còn bậc dư; khi đó chu trình hiện tại chính là chu trình Euler.
 
@@ -83,7 +83,7 @@ Nếu cần xuất đường đi Euler hoặc chu trình Euler có thứ tự t�
 
 Đồ thị Euler có hướng có thể được dùng trong giải mã bằng máy tính.
 
-Giả sử có $m$ chữ cái, ta muốn xây dựng một đĩa tròn có $m^n$ ô hình quạt, trên mỗi ô đặt một chữ cái, sao cho mỗi $n$ vị trí liên tiếp trên đĩa tương ứng với một xâu ký hiệu độ dài $n$. Sau khi quay hết một vòng ($m^n$ lần), ta thu được $m^n$ xâu ký hiệu độ dài $n$ đôi một khác nhau được tạo từ $m$ chữ cái.
+Giả sử có $m$ chữ cái và cần xây dựng một đĩa tròn có $m^n$ ô hình quạt, trên mỗi ô đặt một chữ cái, sao cho mỗi $n$ vị trí liên tiếp trên đĩa tương ứng với một xâu ký hiệu độ dài $n$. Sau khi quay hết một vòng ($m^n$ lần), thu được $m^n$ xâu ký hiệu độ dài $n$ đôi một khác nhau được tạo từ $m$ chữ cái.
 
 ![](images/euler1.svg)
 
@@ -110,7 +110,7 @@ Tìm tùy ý một chu trình Euler $C$ trong $D$, lấy chữ cái cuối cùng
 ## Bài tập mẫu
 
 ???+ note "[Luogu P2731: Riding the Fences](https://www.luogu.com.cn/problem/P2731)"
-    Cho một đồ thị vô hướng có 500 đỉnh. Hãy tìm một đường đi Euler hoặc chu trình Euler của đồ thị đó. Nếu có nhiều lời giải, hãy xuất lời giải nhỏ nhất.
+    Cho một đồ thị vô hướng có 500 đỉnh. Cần tìm một đường đi Euler hoặc chu trình Euler của đồ thị đó. Nếu có nhiều lời giải, cần xuất lời giải nhỏ nhất.
     
     Trong bài này, đường đi Euler hoặc chu trình Euler không cần đi qua mọi đỉnh.
     
