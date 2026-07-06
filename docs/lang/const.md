@@ -1,10 +1,10 @@
-C++ cung cấp một hệ thống đầy đủ để khai báo các giá trị chỉ đọc. Mọi biến được
-đánh dấu bằng `const` đều là giá trị chỉ đọc; trình biên dịch sẽ kiểm tra các lỗi
-vi phạm trong giai đoạn biên dịch để tránh việc sửa đổi các giá trị chỉ đọc, đồng
-thời có thể thực hiện một số tối ưu hóa.
+C++ cung cấp một hệ thống đầy đủ để khai báo giá trị chỉ đọc. Mọi biến được đánh
+dấu bằng `const` đều là giá trị chỉ đọc; trình biên dịch sẽ kiểm tra các lỗi vi
+phạm trong giai đoạn biên dịch để tránh việc sửa đổi các giá trị này, đồng thời
+có thể thực hiện một số tối ưu hóa.
 
 Trong điều kiện thông thường, nên dùng `const` cho biến và tham số ở những nơi
-hợp lý để mã chắc chắn hơn.
+hợp lý để mã chặt chẽ hơn.
 
 ## Bộ định tính kiểu `const`
 
@@ -42,8 +42,8 @@ const int &r2 = a;
 const int &r4 = b;
 ```
 
-Ngoài ra cần phân biệt con trỏ tới hằng (`const T*`) với hằng con trỏ
-(`T* const`), chẳng hạn các khai báo sau:
+Ngoài ra, cần phân biệt con trỏ tới hằng (`const T*`) với hằng con trỏ
+(`T* const`). Xét các khai báo sau:
 
 ```cpp
 int a = 0, other = 1;
@@ -72,8 +72,8 @@ using ptr_to_const_int = const_int*;
 using const_ptr_to_const_int = const ptr_to_const_int;
 ```
 
-Dùng `const` trong khai báo tham số hàm có thể tránh việc biến bị sửa đổi nhầm,
-đồng thời tăng tính dễ đọc của mã.
+Dùng `const` trong khai báo tham số hàm có thể tránh sửa nhầm dữ liệu, đồng thời
+tăng tính dễ đọc của mã.
 
 ```cpp
 void sum(const std::vector<int>& data, int& total) {
@@ -85,7 +85,7 @@ void sum(const std::vector<int>& data, int& total) {
 ## Hàm thành viên `const`
 
 Trong một kiểu, hàm thành viên được đánh dấu `const` có thể dùng để hạn chế việc
-sửa đổi các thành viên.
+sửa đổi thành viên dữ liệu.
 
 ```cpp
 #include <iostream>
@@ -118,10 +118,10 @@ int main() {
 ## Biểu thức hằng `constexpr` (C++11)
 
 Biểu thức hằng là biểu thức có thể tính ra kết quả trong lúc biên dịch.
-`constexpr` cho biết một biến hoặc hàm có thể tham gia vào ngữ cảnh cần biểu
-thức hằng. Với biến `constexpr`, giá trị khởi tạo phải là biểu thức hằng. Với
-hàm `constexpr`, lời gọi hàm có thể được tính trong lúc biên dịch nếu đối số và
-ngữ cảnh cho phép.
+`constexpr` cho biết một biến hoặc hàm có thể tham gia vào ngữ cảnh cần biểu thức
+hằng. Với biến `constexpr`, giá trị khởi tạo phải là biểu thức hằng. Với hàm
+`constexpr`, lời gọi hàm có thể được tính trong lúc biên dịch nếu đối số và ngữ
+cảnh cho phép.
 
 Việc tính toán trong lúc biên dịch cho phép tối ưu hóa tốt hơn, chẳng hạn đưa kết
 quả vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác với tối ưu hóa mà
@@ -140,8 +140,8 @@ quả vào mã assembly để loại bỏ chi phí tính toán khi chạy. Khác
     }
     ```
 
-Ví dụ sau minh họa rõ khác biệt giữa `const` và `constexpr`. Mã dùng đệ quy để
-tính dãy Fibonacci rồi xuất kết quả bằng luồng xuất chuẩn.
+Ví dụ sau minh họa khác biệt giữa `const` và `constexpr`. Mã dùng đệ quy để tính
+dãy Fibonacci rồi xuất kết quả bằng luồng xuất chuẩn.
 
 ???+ note "Cài đặt"
     ```cpp
