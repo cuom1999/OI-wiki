@@ -2,7 +2,7 @@ author: johnvp22, Ir1d
 
 ## `string` là gì
 
-`std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (chú ý
+`std::string` là một lớp được cung cấp trong thư viện chuẩn `<string>` (lưu ý
 không phải thư viện `<string.h>` của ngôn ngữ C); về bản chất nó là bí danh của
 `std::basic_string<char>`.
 
@@ -47,7 +47,7 @@ cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
 ```cpp
 printf("%s", s);          // lỗi biên dịch
 printf("%s", s.data());   // biên dịch được từ C++11 trở đi
-printf("%s", s.c_str());  // chắc chắn xuất đúng
+printf("%s", s.c_str());  // xuất đúng
 ```
 
 ### Lấy độ dài
@@ -61,7 +61,7 @@ printf("độ dài của s là %zu", strlen(s.c_str()));
 ```
 
 ???+ note "Độ phức tạp của các hàm này"
-    Độ phức tạp của `strlen()` chắc chắn tuyến tính theo độ dài chuỗi.
+    Độ phức tạp của `strlen()` tuyến tính theo độ dài chuỗi.
     
     Độ phức tạp của `size()` và `length()` không được chỉ định trong C++98, và
     được chỉ định là hằng số trong C++11. Nhưng trên các trình biên dịch phổ

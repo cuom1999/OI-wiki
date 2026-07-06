@@ -354,7 +354,7 @@ False
 [1, 2, 3, 3.0]
 ```
 
-Ví dụ trên cho thấy một số thao tác thường dùng của danh sách như một kiểu tuần tự. Có thể thấy nhiều thao tác, như cắt lát, dùng chung ý tưởng với chuỗi. Nhưng chuỗi là "kiểu tuần tự bất biến", còn danh sách là "kiểu tuần tự khả biến", nên có thể linh hoạt sửa danh sách bằng phép cắt lát. Trong C/C++, thường xử lý mảng ký tự bằng vòng lặp; sau đây minh họa cách dùng [biểu thức sinh danh sách](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) để chuyển đổi giữa chuỗi và danh sách:
+Ví dụ trên cho thấy một số thao tác thường dùng của danh sách như một kiểu tuần tự. Nhiều thao tác, như cắt lát, dùng chung ý tưởng với chuỗi. Nhưng chuỗi là "kiểu tuần tự bất biến", còn danh sách là "kiểu tuần tự khả biến", nên có thể linh hoạt sửa danh sách bằng phép cắt lát. Trong C/C++, thường xử lý mảng ký tự bằng vòng lặp; sau đây minh họa cách dùng [biểu thức sinh danh sách](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) để chuyển đổi giữa chuỗi và danh sách:
 
 ```pycon
 >>> # Tạo mảng số nguyên trên đoạn [65, 70); range cũng là một kiểu, có thể xem như khoảng trái đóng phải mở, tham số thứ ba là bước và có thể bỏ qua
@@ -656,7 +656,7 @@ print(tup)
 a, b = 0, "I-Wiki"  # Gán nhiều biến là mở gói tuple
 print(id(a), id(b))
 b, a = a, b
-print(id(a), id(b))  # Có thể thấy id của a, b đã hoán đổi
+print(id(a), id(b))  # id của a, b đã hoán đổi
 # Điều này càng cho thấy trong Python, biến giống như tên gọi; phép gán chỉ làm tên đó trỏ đến đối tượng
 ```
 

@@ -234,7 +234,7 @@ int main() {
 ???+ note "Khởi tạo bằng danh sách"
     Toán tử `{}` có thể dùng để khởi tạo những cấu trúc không có hàm tạo do người dùng định nghĩa. Ngoài ra, dùng toán tử `{}` có thể làm cho hình thức khởi tạo biến trở nên thống nhất hơn. Xem thêm "[list initialization (since C++11)](https://en.cppreference.com/w/cpp/language/list_initialization)".
 
-Cần chú ý rằng khi vùng nhớ được cấp phát bằng `new` không còn được sử dụng, cần
+Khi vùng nhớ được cấp phát bằng `new` không còn được sử dụng, cần
 dùng `delete` để giải phóng vùng nhớ này. Không được giải phóng cùng một vùng nhớ
 hai lần trở lên. Thao tác `delete` trên con trỏ null `nullptr` là hợp lệ.
 
@@ -336,7 +336,7 @@ for (int i = 0; i < 5; i++) {
 delete[] a;
 ```
 
-Cần chú ý rằng mảng hai chiều thu được theo cách này không bảo đảm vùng nhớ của nó là liên tiếp.
+Mảng hai chiều thu được theo cách này không bảo đảm vùng nhớ của nó là liên tiếp.
 
 Còn một cách khác, cần dùng đến "con trỏ trỏ tới mảng".
 

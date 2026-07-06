@@ -154,7 +154,7 @@ Sau đây là một ví dụ cài đặt cùng chức năng với phần trướ
     priority_queue<student> pq;
     ```
 
-Đoạn mã trên nạp chồng dấu nhỏ hơn thành hàm thành viên; tất nhiên nạp chồng thành hàm không phải thành viên cũng được.
+Đoạn mã trên nạp chồng dấu nhỏ hơn thành hàm thành viên; cũng có thể nạp chồng thành hàm không phải thành viên.
 
 ??? note "Nạp chồng thành hàm không phải thành viên"
     ```cpp
@@ -170,7 +170,7 @@ Sau đây là một ví dụ cài đặt cùng chức năng với phần trướ
     priority_queue<student> pq;
     ```
 
-Thực ra, chỉ cần có toán tử `<`, năm toán tử so sánh còn lại cũng có thể được cài đặt khá trực tiếp.
+Chỉ cần có toán tử `<`, năm toán tử so sánh còn lại cũng có thể được cài đặt khá trực tiếp.
 
 ```cpp
 /* clang-format off */
