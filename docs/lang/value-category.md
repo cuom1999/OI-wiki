@@ -1,9 +1,10 @@
-Loại giá trị là một khái niệm quan trọng trong C++. Dù trong lập trình thi đấu
-không phải lúc nào cũng cần nhắc đến, hiểu nó giúp phát hiện và tránh những phép
-sao chép không cần thiết, từ đó cải thiện hiệu năng của mã.
+Loại giá trị là một khái niệm quan trọng trong C++. Trong lập trình thi đấu, ta
+không phải lúc nào cũng cần gọi tên khái niệm này, nhưng hiểu nó sẽ giúp phát
+hiện và tránh những phép sao chép không cần thiết, từ đó cải thiện hiệu năng của
+mã.
 
-Khái niệm loại giá trị đã nhiều lần thay đổi qua ngôn ngữ C, C++98, C++11 rồi
-đến C++17, và dần trở thành một khái niệm phức tạp.
+Khái niệm loại giá trị đã nhiều lần thay đổi từ ngôn ngữ C, qua C++98, C++11 rồi
+đến C++17, nên ngày nay nó là một chủ đề tương đối phức tạp.
 
 ## Sao chép không cần thiết
 
@@ -23,7 +24,7 @@ int main() {
 ```
 
 Trong quá trình thêm chuỗi vào `vec`, cả `str` và phần tử mới trong `vec` đều giữ
-một bản dữ liệu, làm lượng bộ nhớ sử dụng tăng lên.
+một bản dữ liệu riêng, làm lượng bộ nhớ sử dụng tăng lên.
 
 Nếu muốn tiết kiệm phần bộ nhớ này, có thể tự mô phỏng một thao tác di chuyển:
 định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới vùng dữ liệu
@@ -43,9 +44,9 @@ void move_to(MyString& src, MyString& dst) {
 }
 ```
 
-Nhu cầu chuyển tài nguyên của đối tượng theo kiểu này thường gặp, nhưng lại khó
-phối hợp thủ công với các thao tác như khởi tạo và hủy của C++. Vì thế C++11 đã
-đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
+Nhu cầu chuyển tài nguyên của đối tượng theo kiểu này rất thường gặp, nhưng lại
+khó phối hợp thủ công với các thao tác như khởi tạo và hủy của C++. Vì thế C++11
+đã đưa ngữ nghĩa di chuyển vào phần lõi của ngôn ngữ.
 
 ## Loại giá trị trong ngôn ngữ C
 
@@ -62,7 +63,7 @@ yếu được chia thành ba loại:
 -   Trái trị (lvalue): biểu thức xác định một đối tượng; thường có thể lấy địa
     chỉ của biểu thức đó.
 -   Phải trị (rvalue): biểu thức không xác định một đối tượng có thể lấy địa chỉ;
-    nó chỉ biểu diễn một giá trị tạm.
+    nó chỉ biểu diễn một giá trị dùng tạm thời.
 -   Biểu thức chỉ định hàm: biểu thức có kiểu hàm.
 
 Vì vậy, chỉ các trái trị có thể sửa đổi (trái trị không được định tính `const`
@@ -76,7 +77,8 @@ trị.
 Các hiểu lầm thường gặp:
 
 -   Tiếp tục tính toán từ một biểu thức phải trị vẫn có thể cho ra trái trị. Ví
-    dụ với `int *a`, biểu thức `a + 1` là phải trị, nhưng `*(a + 1)` là trái trị.
+    dụ với `int *a`, biểu thức `a + 1` là phải trị, nhưng `*(a + 1)` lại là trái
+    trị.
 -   Chỉ biểu thức mới có loại giá trị, biến thì không. Ví dụ với `int *a`, không
     nên nói biến `a` là trái trị; cách nói chính xác hơn là biểu thức `a` là một
     trái trị.
@@ -97,10 +99,9 @@ C++98 gần với ngôn ngữ C về loại giá trị, nhưng bổ sung một s
 C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy elision), nhờ
 đó giảm việc tạo và hủy đối tượng tạm.
 
-Ví dụ, đoạn mã sau đây kích hoạt tối ưu hóa giá trị trả về (return value
-optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần
-khởi tạo và một lần khởi tạo sao chép, kể cả khi thao tác khởi tạo và hủy có tác
-dụng phụ.
+Ví dụ, đoạn mã sau kích hoạt tối ưu hóa giá trị trả về (return value optimization,
+RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần khởi tạo và
+một lần khởi tạo sao chép, kể cả khi thao tác khởi tạo và hủy có tác dụng phụ.
 
 ```cpp
 struct X {
@@ -154,7 +155,8 @@ Từ đó có các trường hợp sau:
 -   Có danh tính, không thể di chuyển: trái trị (lvalue).
 -   Có danh tính, có thể di chuyển: giá trị sắp hết hạn (xvalue).
 -   Không có danh tính, có thể di chuyển: giá trị thuần phải (prvalue).
--   Không có danh tính, không thể di chuyển: loại biểu thức này không thể sử dụng.
+-   Không có danh tính, không thể di chuyển: trường hợp này không xuất hiện như
+    một loại giá trị hữu dụng.
 
 Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 
@@ -166,8 +168,8 @@ Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 ### std::move
 
 Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`.
-Hàm này ép biểu thức thành xvalue, nhờ đó có thể kích hoạt ngữ nghĩa di chuyển nếu
-kiểu dữ liệu hỗ trợ.
+Hàm này ép biểu thức thành xvalue, nhờ đó có thể kích hoạt ngữ nghĩa di chuyển
+nếu kiểu dữ liệu hỗ trợ.
 
 ```cpp
 int main() {
@@ -214,11 +216,11 @@ C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trước C++
 đây có thể không tạo thao tác di chuyển nếu trình biên dịch áp dụng RVO.
 
 C++17 yêu cầu giá trị thuần phải không nhất thiết phải được vật chất hóa thành
-đối tượng tạm riêng, mà được khởi tạo vào vùng lưu trữ của đích cuối cùng; trước
-khi khởi tạo, đối tượng tạm riêng đó còn chưa tồn tại. Vì vậy trong C++17, không
-còn bước tạo rồi trả về một đối tượng tạm riêng, và trường hợp này cũng không cần
-phụ thuộc vào RVO. Cụ thể, URVO (RVO không tên, unnamed RVO) là bắt buộc, còn
-NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
+một đối tượng tạm riêng, mà có thể được khởi tạo thẳng vào vùng lưu trữ của đích
+cuối cùng. Trước khi khởi tạo, đối tượng tạm riêng đó còn chưa tồn tại. Vì vậy
+trong C++17, không còn bước tạo rồi trả về một đối tượng tạm riêng, và trường hợp
+này cũng không cần phụ thuộc vào RVO. Cụ thể, URVO (RVO không tên, unnamed RVO)
+là bắt buộc, còn NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
 
 ```cpp
 std::string urvo() { return std::string("123"); }
@@ -237,10 +239,10 @@ int main() {
 }
 ```
 
-Đồng thời, C++17 đưa vào cơ chế vật chất hóa đối tượng tạm: khi cần truy cập
-thành viên dữ liệu, gọi hàm thành viên, hoặc gặp các tình huống khác cần một giá
-trị trái tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định
-thành giá trị sắp hết hạn đã được vật chất hóa.
+Đồng thời, C++17 đưa vào cơ chế vật chất hóa đối tượng tạm: khi cần truy cập thành
+viên dữ liệu, gọi hàm thành viên, hoặc gặp tình huống khác cần một giá trị trái
+tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định thành giá
+trị sắp hết hạn đã được vật chất hóa.
 
 <span id="các-hiểu-lầm-thường-gặp"></span>
 
@@ -248,8 +250,8 @@ thành giá trị sắp hết hạn đã được vật chất hóa.
 
 Trong ví dụ sau đây:
 
--   Trả về `std::move(s)` trong `f1` là thừa; nó không đem lại cải thiện hiệu
-    năng, ngược lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
+-   Trả về `std::move(s)` trong `f1` là thừa; nó không cải thiện hiệu năng, ngược
+    lại còn cản trở trình biên dịch thực hiện tối ưu NRVO.
 -   Trả về `std::move(s)` trong `f2` là nguy hiểm; hàm trả về một tham chiếu phải
     trị gắn với biến cục bộ `s` đã bị hủy, gây ra vấn đề tham chiếu treo.
 
