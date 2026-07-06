@@ -1,13 +1,13 @@
 <span id="một-số-quy-ước"></span>
 ## Một số quy ước
 
-Với các định nghĩa liên quan đến xâu, hãy xem [Cơ sở về xâu](./basic.md).
+Các định nghĩa liên quan đến xâu có thể xem ở [Cơ sở về xâu](./basic.md).
 
 Chỉ số của xâu bắt đầu từ $1$.
 
 Độ dài của xâu $s$ là $n$.
 
-"Hậu tố $i$" chỉ hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, ta dùng $i$ để đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
+"Hậu tố $i$" chỉ hậu tố bắt đầu từ ký tự thứ $i$; khi lưu trữ, dùng $i$ để đại diện cho hậu tố $s[i\dots n]$ của xâu $s$.
 
 <span id="mảng-hậu-tố-là-gì"></span>
 ## Mảng hậu tố là gì?
@@ -59,7 +59,7 @@ Sơ đồ minh họa sắp xếp bằng nhân đôi:
 
 [![](./images/sa2.png)][2]
 
-Rõ ràng quá trình nhân đôi có $O(\log n)$ vòng. Trong mỗi vòng, dùng `sort` để sắp xếp các xâu con tốn $O(n\log n)$, còn mỗi lần so sánh xâu con chỉ cần $2$ phép so sánh ký tự.
+Quá trình nhân đôi có $O(\log n)$ vòng. Trong mỗi vòng, dùng `sort` để sắp xếp các xâu con tốn $O(n\log n)$, còn mỗi lần so sánh xâu con chỉ cần $2$ phép so sánh ký tự.
 
 Ngoài ra, sau khi `sort` ở mỗi vòng còn có thao tác cập nhật $rk$ tốn thêm $O(n)$, nhưng so với $O(n\log n)$ thì có thể bỏ qua.
 
@@ -92,7 +92,7 @@ Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
       for (w = 1; w < n; w <<= 1) {
         sort(sa + 1, sa + n + 1, [](int x, int y) {
           return rk[x] == rk[y] ? rk[x + w] < rk[y + w] : rk[x] < rk[y];
-        });  // Ở đây dùng lambda
+        });  // Dùng lambda để so sánh hai khóa.
         memcpy(oldrk, rk, sizeof(rk));
         // Vì rk cũ sẽ bị ghi đè khi tính rk mới, cần sao chép trước
         // Nếu hai xâu con bằng nhau, rk tương ứng của chúng cũng phải bằng nhau, nên cần loại trùng
@@ -115,7 +115,7 @@ Vì vậy độ phức tạp thời gian của thuật toán là $O(n\log^2 n)$.
 <span id="cách-onlog-n"></span>
 ### Cách $O(n\log n)$
 
-Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu có thể sắp xếp trong $O(n)$, ta sẽ tính được mảng hậu tố trong $O(n\log n)$.
+Trong cách $O(n\log^2 n)$ ở trên, mỗi lần sắp xếp tốn $O(n\log n)$. Nếu có thể sắp xếp trong $O(n)$, mảng hậu tố sẽ được tính trong $O(n\log n)$.
 
 Kiến thức chuẩn bị: [sắp xếp đếm](../basic/counting-sort.md), [sắp xếp cơ số](../basic/radix-sort.md).
 
@@ -198,7 +198,7 @@ Nguyên nhân là hằng số của đoạn mã trên thực sự khá lớn.
 <span id="khóa-thứ-hai-không-cần-sắp-xếp-đếm"></span>
 #### Khóa thứ hai không cần sắp xếp đếm
 
-Xét bản chất của việc sắp xếp theo khóa thứ hai: thực ra ta chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
+Xét bản chất của việc sắp xếp theo khóa thứ hai: thực ra chỉ cần đưa các $sa[i]$ vượt khỏi phạm vi xâu (tức $sa[i] + w > n$) lên đầu mảng $sa$, rồi đưa phần còn lại vào theo thứ tự cũ:
 
 ```cpp
 int cur = 0;
@@ -210,7 +210,7 @@ for (int i = 1; i <= n; i++)
 <span id="tối-ưu-miền-giá-trị-của-sắp-xếp-đếm"></span>
 #### Tối ưu miền giá trị của sắp xếp đếm
 
-Sau mỗi lần cập nhật $rk$, ta đều tính được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
+Sau mỗi lần cập nhật $rk$, luôn tính được một giá trị $p$; đây chính là miền giá trị của $rk$, nên chỉ cần đặt miền giá trị thành $p$.
 
 <span id="nếu-mọi-thứ-hạng-đều-khác-nhau-thì-có-thể-tạo-ngay-mảng-hậu-tố"></span>
 #### Nếu mọi thứ hạng đều khác nhau thì có thể tạo ngay mảng hậu tố
@@ -299,7 +299,7 @@ Ví dụ: [JSOI2007 - Character Encryption](https://www.luogu.com.cn/problem/P40
 <span id="tìm-xâu-con-trong-xâu"></span>
 ### Tìm xâu con trong xâu
 
-Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là ta đã biết trước xâu chính $T$, nhưng chỉ biết xâu mẫu $S$ khi có truy vấn. Ta có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó chắc chắn là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, ta có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Chú ý rằng nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng rất đơn giản.
+Nhiệm vụ là tìm xâu mẫu $S$ trong xâu chính $T$ theo kiểu trực tuyến. "Trực tuyến" nghĩa là xâu chính $T$ đã biết trước, nhưng xâu mẫu $S$ chỉ được biết khi có truy vấn. Có thể xây dựng trước mảng hậu tố của $T$, rồi tìm xâu con $S$. Nếu $S$ xuất hiện trong $T$, nó chắc chắn là tiền tố của một số hậu tố của $T$. Vì tất cả hậu tố đã được sắp xếp, có thể nhị phân $S$ trên mảng $p$. Mỗi lần so sánh $S$ với hậu tố hiện tại tốn $O(|S|)$, nên độ phức tạp tìm xâu con là $O(|S|\log |T|)$. Chú ý rằng nếu xâu con xuất hiện nhiều lần trong $T$, các lần xuất hiện đó sẽ nằm liên tiếp trong mảng $p$. Vì vậy có thể nhị phân thêm để tìm số lần xuất hiện, và việc in ra mọi vị trí xuất hiện cũng rất đơn giản.
 
 <span id="lấy-ký-tự-từ-hai-đầu-để-tối-thiểu-hóa-thứ-tự-từ-điển"></span>
 ### Lấy ký tự từ hai đầu để tối thiểu hóa thứ tự từ điển
@@ -311,7 +311,7 @@ Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
 ??? note "Lời giải"
     Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Chỉ cần tối ưu bước phán đoán này.
     
-    Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, ta có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
+    Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -341,15 +341,15 @@ Có thể xem $height[1]$ là $0$.
 $height[rk[i]]\ge height[rk[i-1]]-1$
 
 ???+ note "Chứng minh"
-    Khi $height[rk[i-1]]\le1$, bất đẳng thức hiển nhiên đúng vì vế phải không lớn hơn $0$.
+    Khi $height[rk[i-1]]\le1$, bất đẳng thức đúng vì vế phải không lớn hơn $0$.
     
     Khi $height[rk[i-1]]>1$:
     
-    Theo định nghĩa của $height$, ta có $lcp(sa[rk[i-1]], sa[rk[i-1]-1]) = height[rk[i-1]] > 1$.
+    Theo định nghĩa của $height$, có $lcp(sa[rk[i-1]], sa[rk[i-1]-1]) = height[rk[i-1]] > 1$.
     
     Vì hậu tố $i-1$ và hậu tố $sa[rk[i-1]-1]$ có tiền tố chung dài nhất độ dài $height[rk[i-1]]$,
     
-    ta ký hiệu tiền tố chung dài nhất này là $aA$, trong đó $a$ là một ký tự, còn $A$ là một xâu không rỗng có độ dài $height[rk[i-1]]-1$.
+    ký hiệu tiền tố chung dài nhất này là $aA$, trong đó $a$ là một ký tự, còn $A$ là một xâu không rỗng có độ dài $height[rk[i-1]]-1$.
     
     Khi đó hậu tố $i-1$ có thể viết thành $aAD$, còn hậu tố $sa[rk[i-1]-1]$ có thể viết thành $aAB$, với $B < D$, $B$ có thể rỗng và $D$ không rỗng.
     
@@ -357,7 +357,7 @@ $height[rk[i]]\ge height[rk[i-1]]-1$
     
     Vì hậu tố $sa[rk[i]-1]$ đứng ngay trước hậu tố $sa[rk[i]]$, tức hậu tố $i$, trong thứ tự sắp xếp, và $AB < AD$,
     
-    nên $AB \leqslant$ hậu tố $sa[rk[i]-1] < AD$. Rõ ràng hậu tố $i$ và hậu tố $sa[rk[i]-1]$ có tiền tố chung $A$.
+    nên $AB \leqslant$ hậu tố $sa[rk[i]-1] < AD$. Vì vậy, hậu tố $i$ và hậu tố $sa[rk[i]-1]$ có tiền tố chung $A$.
     
     Do đó $lcp(i,sa[rk[i]-1])$ ít nhất là $height[rk[i-1]]-1$, tức $height[rk[i]]\ge height[rk[i-1]]-1$.
 
@@ -421,7 +421,7 @@ Ví dụ: [USACO06DEC - Milk Patterns](https://www.luogu.com.cn/problem/P2852).
 ??? note "Lời giải"
     Xuất hiện ít nhất $k$ lần nghĩa là sau khi sắp xếp hậu tố, tồn tại ít nhất $k$ hậu tố liên tiếp cùng nhận xâu con này làm tiền tố chung.
     
-    Do đó, lấy giá trị nhỏ nhất trong mỗi nhóm $k-1$ phần tử $height$ liên tiếp, rồi lấy giá trị lớn nhất trong các giá trị nhỏ nhất đó, ta được đáp án.
+    Do đó, lấy giá trị nhỏ nhất trong mỗi nhóm $k-1$ phần tử $height$ liên tiếp, rồi lấy giá trị lớn nhất trong các giá trị nhỏ nhất đó sẽ được đáp án.
     
     Có thể dùng hàng đợi đơn điệu để giải trong $O(n)$, nhưng các cách khác cũng đủ để AC.
 
@@ -438,14 +438,14 @@ Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ t
 <span id="một-số-xâu-con-giống-nhau-liên-tiếp"></span>
 ### Một số xâu con giống nhau liên tiếp
 
-Ta có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Suffix Array: A Powerful Tool for String Processing][2].
+Có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Suffix Array: A Powerful Tool for String Processing][2].
 
 Ví dụ: [NOI2016 - Excellent Splitting](https://loj.ac/p/2083).
 
 <span id="kết-hợp-với-dsu"></span>
 ### Kết hợp với DSU
 
-Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, ta có thể xử lý ngoại tuyến. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
+Một số bài yêu cầu chia mảng hậu tố thành các đoạn liên tiếp có độ dài LCP lớn hơn hoặc bằng một giá trị nào đó; tương đương với việc chia mảng $h$ thành các đoạn liên tiếp có giá trị nhỏ nhất lớn hơn hoặc bằng giá trị đó, rồi thống kê đáp án cho từng đoạn. Nếu có nhiều truy vấn, có thể xử lý ngoại tuyến. Quan sát rằng khi giá trị cho trước giảm đơn điệu, số đoạn thỏa điều kiện chỉ càng ít đi; đoạn mới đều được tạo bằng cách nối hai hoặc nhiều đoạn cũ, và các phần không thuộc đoạn cũ trong đoạn mới có giá trị $h$ đúng bằng giá trị vừa giảm tới. Vì vậy chỉ cần duy trì một DSU, mỗi lần hợp nhất hai đoạn kề nhau và cập nhật thông tin thống kê.
 
 Bài kinh điển: [NOI2015 - Wine Tasting Conference](https://uoj.ac/problem/131).
 
@@ -462,7 +462,7 @@ Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
 ??? note "Lời giải"
     Hai hạng đầu của biểu thức cần cộng rất dễ xử lý, bằng $n(n-1)(n+1)/2$ (mỗi hậu tố xuất hiện $n-1$ lần, tổng độ dài hậu tố là $n(n+1)/2$). Điểm chính là hạng cuối, tức LCP của từng cặp hậu tố.
     
-    Ta biết $lcp(i,j)=k$ tương đương với $\min\{height[i+1..j]\}=k$. Vì vậy có thể quy phần đóng góp của $lcp(i,j)$ vào $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$.
+    Có $lcp(i,j)=k$ tương đương với $\min\{height[i+1..j]\}=k$. Vì vậy có thể quy phần đóng góp của $lcp(i,j)$ vào $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$.
     
     Xét một vị trí đóng góp cho LCP của những cặp hậu tố nào: thực chất là chọn một hậu tố trong đoạn liên tiếp bên trái có $height$ lớn hơn nó, và chọn một hậu tố trong đoạn liên tiếp bên phải có $height$ không nhỏ hơn nó. Phần này có thể tính bằng [ngăn xếp đơn điệu](../ds/monotonic-stack.md).
     
