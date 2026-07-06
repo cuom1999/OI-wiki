@@ -17,17 +17,16 @@ int some_function(int, int);
 ```
 
 Như trên, ta đã khai báo một hàm tên là `some_function`. Hàm này nhận hai tham
-số kiểu `int`, và kiểu giá trị trả về cũng là `int`. Nói cách khác, hàm này sẽ
-thực hiện một số thao tác trên hai số nguyên được truyền vào rồi trả về một kết
-quả cùng kiểu.
+số kiểu `int`, kiểu giá trị trả về cũng là `int`; nghĩa là nó xử lý hai số nguyên
+được truyền vào rồi trả về một kết quả cùng kiểu.
 
 ## Định nghĩa hàm
 
 Chỉ khai báo hàm là chưa đủ. Khai báo chỉ cho biết **giao diện** khi gọi hàm
 (tức nhận dữ liệu gì, trả về dữ liệu gì), nhưng chưa có phần thân cụ thể, tức
-**định nghĩa** của hàm. Có thể viết phần định nghĩa này ở **một nơi khác sau
-phần khai báo**. Cũng có thể định nghĩa hàm trong tệp khác, nhưng khi liên kết
-cần cung cấp cả các tệp đã được biên dịch riêng.
+**định nghĩa** của hàm. Có thể viết phần định nghĩa này **ở vị trí khác sau phần
+khai báo**. Cũng có thể định nghĩa hàm trong tệp khác, nhưng khi liên kết cần
+cung cấp cả các tệp đã được biên dịch riêng.
 
 Nếu hàm có giá trị trả về, cần dùng câu lệnh `return` để trả giá trị cho nơi
 gọi. Khi hàm thực thi đến câu lệnh `return`, hàm hiện tại sẽ kết thúc ngay và
@@ -48,8 +47,8 @@ int some_function(int x, int y) {  // định nghĩa
 Khi định nghĩa, cần đặt tên cho các biến trong danh sách tham số của hàm. Nhờ
 vậy, có thể dùng các biến này trong định nghĩa hàm.
 
-Nếu ở cùng một tệp, cũng có thể **gộp khai báo và định nghĩa với nhau**; nói
-cách khác, hoàn thành định nghĩa ngay tại nơi khai báo.
+Nếu ở cùng một tệp, cũng có thể **gộp khai báo và định nghĩa với nhau**, tức hoàn
+thành định nghĩa ngay tại nơi khai báo.
 
 ```cpp
 int some_function(int x, int y) { return 2 * x + y; }
@@ -75,7 +74,7 @@ void say_hello() {
 ## Gọi hàm
 
 Giống như biến, hàm cần được khai báo trước rồi mới có thể sử dụng. Thao tác sử
-dụng hàm được gọi là "gọi hàm". Bên trong một hàm có thể gọi hàm khác, kể cả
+dụng hàm được gọi là "gọi hàm". Bên trong một hàm có thể gọi hàm khác, kể cả gọi
 chính nó. Hành vi một hàm gọi chính nó được gọi là **đệ quy**.
 
 Trong hầu hết ngôn ngữ lập trình, cách gọi hàm là **tên hàm kèm một cặp ngoặc**
@@ -110,8 +109,7 @@ Trong ví dụ trên, `foo(a, b)` là một lần gọi `foo`. Khi gọi, các b
 Vì vậy, việc sửa biến `x` và `y` trong `foo` **không ảnh hưởng đến giá trị của
 biến tại nơi gọi**.
 
-Nếu cần sửa giá trị của biến tại nơi gọi, có thể dùng cách "truyền tham
-chiếu".
+Nếu cần sửa giá trị của biến tại nơi gọi, có thể dùng cách "truyền tham chiếu".
 
 ```cpp
 void foo(int& x, int& y) {
@@ -138,11 +136,11 @@ và `b` tại nơi gọi.
 ## Hàm `main`
 
 Đặc biệt, trong môi trường thi lập trình thông thường, mỗi chương trình C/C++
-đều cần có một hàm tên là `main`. Chương trình bắt đầu chạy từ hàm `main`.
+đều cần có một hàm tên là `main`. Chương trình bắt đầu chạy từ hàm này.
 
 > Hàm `main` cũng có thể có tham số. Thông qua tham số của hàm `main`, chương
 > trình có thể nhận các chỉ thị được truyền từ bên ngoài (tức "tham số dòng
-> lệnh") để đưa ra phản ứng khác nhau.
+> lệnh") để xử lý theo từng trường hợp.
 
 Sau đây là một đoạn mã có gọi hàm:
 
