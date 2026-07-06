@@ -1,8 +1,9 @@
-Đôi khi cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết lại
-cùng một đoạn mã, có thể dùng vòng lặp.
+Đôi khi cần thực thi cùng một nhóm câu lệnh nhiều lần. Để không phải viết lại
+cùng một đoạn mã, ta có thể dùng vòng lặp.
 
 Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy. Vì
-vậy, không thể sao chép mã nguồn nhiều lần bằng tay mà cần dùng vòng lặp.
+vậy, không thể sao chép mã nguồn nhiều lần bằng tay; cần dùng vòng lặp để mô tả
+quá trình lặp đó.
 
 ## Câu lệnh for
 
@@ -27,7 +28,7 @@ for (int i = 1; i <= n; ++i) {
 ```
 
 Trong ba phần của câu lệnh `for`, phần nào cũng có thể được bỏ qua. Nếu bỏ qua
-điều kiện kiểm tra thì tương đương với việc điều kiện luôn đúng.
+điều kiện kiểm tra, chương trình xem như điều kiện luôn đúng.
 
 ## Câu lệnh while
 
@@ -69,9 +70,9 @@ Thứ tự thực thi:
 
 ![](images/do-while-loop.svg)
 
-Khác với câu lệnh `while`, câu lệnh `do...while` thực thi thân vòng lặp trước
-rồi mới kiểm tra điều kiện. Vì vậy, thân vòng lặp của `do...while` luôn được
-thực thi ít nhất một lần.
+Khác với câu lệnh `while`, câu lệnh `do...while` thực thi thân vòng lặp trước rồi
+mới kiểm tra điều kiện. Vì vậy, thân vòng lặp của `do...while` luôn được chạy ít
+nhất một lần.
 
 Ví dụ, liệt kê các hoán vị:
 
@@ -99,9 +100,9 @@ while (statement2) {
 }
 ```
 
-Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách
-viết này là tương đương. Tuy nhiên, dạng `while` này ít khi được dùng để thay thế
-hoàn toàn cho `for`.
+Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách viết
+này là tương đương. Tuy nhiên, dạng `while` này ít khi được dùng để thay thế hoàn
+toàn cho `for`.
 
 ```cpp
 // Câu lệnh while
@@ -139,8 +140,8 @@ chung nên chọn theo các nguyên tắc sau:
 
 1.  Khi quá trình lặp có biến đếm hoặc bước cập nhật xác định, ví dụ liệt kê một
     dãy chỉ số, dùng câu lệnh `for`.
-2.  Khi chủ yếu chỉ biết điều kiện tiếp tục hoặc điều kiện kết thúc vòng lặp,
-    dùng câu lệnh `while`.
+2.  Khi chủ yếu chỉ biết điều kiện tiếp tục hoặc điều kiện kết thúc vòng lặp, dùng
+    câu lệnh `while`.
 3.  Khi cần thực thi thân vòng lặp trước rồi mới kiểm tra điều kiện, dùng câu
     lệnh `do...while`. Loại này thường ít dùng hơn; một tình huống phổ biến là
     xử lý dữ liệu nhập vào rồi mới quyết định có tiếp tục hay không.
@@ -150,10 +151,10 @@ chung nên chọn theo các nguyên tắc sau:
 Tác dụng của câu lệnh `break` là thoát khỏi vòng lặp gần nhất đang chứa nó.
 
 Tác dụng của câu lệnh `continue` là bỏ qua phần còn lại của thân vòng lặp và
-chuyển sang bước tiếp theo của vòng lặp. Trong `for`, chương trình sẽ thực hiện
-biểu thức cập nhật rồi kiểm tra điều kiện; trong `while` và `do...while`, chương
-trình sẽ chuyển tới bước kiểm tra điều kiện. Sau đây là ví dụ minh họa vị trí mà
-`continue` trong câu lệnh `do...while` sẽ nhảy tới:
+chuyển sang bước tiếp theo. Trong `for`, chương trình sẽ thực hiện biểu thức cập
+nhật rồi kiểm tra điều kiện; trong `while` và `do...while`, chương trình chuyển
+tới bước kiểm tra điều kiện. Sau đây là ví dụ minh họa vị trí mà `continue` trong
+câu lệnh `do...while` sẽ nhảy tới:
 
 ```cpp
 do {
