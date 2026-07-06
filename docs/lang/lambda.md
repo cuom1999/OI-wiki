@@ -1,16 +1,19 @@
-**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không trình bày đầy đủ toàn bộ cú pháp lambda, mà chỉ trình bày những phần thường dùng trong lập trình thi đấu.
+**Lưu ý**: Xét đến nhu cầu thực tế của lập trình thi đấu, bài viết này không
+trình bày đầy đủ toàn bộ cú pháp lambda, mà chỉ trình bày những phần thường dùng
+trong lập trình thi đấu.
 
-Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
+Cú pháp trong bài viết này tham chiếu chuẩn **C++11**. Cú pháp của các chuẩn mới
+hơn sẽ được nhắc đến tùy trường hợp và được đánh dấu riêng.
 
 <a id="biểu-thức-lambda"></a>
 
 ## Biểu thức lambda
 
 Biểu thức lambda được đặt tên theo phép tính $\lambda$ trong toán học, tương ứng
-trực tiếp với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp,
-trình biên dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn
-danh: các biến được bắt giữ trở thành thành viên, còn danh sách tham số và thân
-hàm được dùng để cài đặt toán tử gọi hàm `operator()`.
+với phép trừu tượng lambda trong đó. Khi biên dịch, dựa trên cú pháp, trình biên
+dịch sẽ sinh ra một [**đối tượng hàm**](./new.md#đối-tượng-hàm) ẩn danh: các
+biến được bắt giữ trở thành thành viên, còn danh sách tham số và thân hàm được
+dùng để cài đặt toán tử gọi hàm `operator()`.
 
 ??? note "Đối tượng hàm"
     Đối tượng hàm là một đối tượng lớp, thường được cài đặt bằng cách nạp chồng
@@ -24,7 +27,8 @@ Một dạng cú pháp của lambda là:
 [capture] (parameters) mutable -> return-type {statement}
 ```
 
-Kiểu của biểu thức lambda là một kiểu lớp ẩn danh; nếu khai triển gần đúng thì có dạng như sau:
+Kiểu của biểu thức lambda là một kiểu lớp ẩn danh; nếu khai triển gần đúng thì có
+dạng như sau:
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -43,7 +47,8 @@ class Lambda_1 {
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Biểu thức lambda có danh sách bắt giữ rỗng có thể được chuyển đổi ngầm định thành con trỏ hàm, ví dụ:
+Biểu thức lambda có danh sách bắt giữ rỗng có thể được chuyển đổi ngầm định thành
+con trỏ hàm, ví dụ:
 
 ```cpp
 void (*f)(int, int) = [](int, int) -> void {};
@@ -55,19 +60,29 @@ Sau đây là từng phần trong cú pháp.
 
 ### Thân hàm
 
-Thân hàm của biểu thức lambda tương tự thân hàm thông thường. Ngoài tham số, biến toàn cục và các tên có thể nhìn thấy trong phạm vi, nó còn có thể truy cập các biến được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
+Thân hàm của biểu thức lambda tương tự thân hàm thông thường. Ngoài tham số, biến
+toàn cục và các tên nhìn thấy được trong phạm vi, nó còn có thể truy cập các biến
+được [bắt giữ](#capture-mệnh-đề-bắt-giữ).
 
 <a id="capture-mệnh-đề-bắt-giữ"></a>
 
 ### Mệnh đề bắt giữ
 
-Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào từ phạm vi bên ngoài được đưa vào lambda. Danh sách bắt giữ có thể rỗng, hoặc chỉ định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua [tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo giá trị.
+Biểu thức lambda bắt đầu bằng mệnh đề bắt giữ, dùng để chỉ định những biến nào từ
+phạm vi bên ngoài được đưa vào lambda. Danh sách bắt giữ có thể rỗng, hoặc chỉ
+định cách bắt giữ: biến có tiền tố `&` được truy cập thông qua
+[tham chiếu](./reference.md), còn biến không có tiền tố này được truy cập theo
+giá trị.
 
-Có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến trong lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
+Có thể dùng chế độ bắt giữ mặc định để bắt giữ tất cả các biến được nhắc đến
+trong lambda: `&` nghĩa là mọi biến được bắt giữ sẽ được truy cập thông qua tham
+chiếu, còn `=` nghĩa là mọi biến được bắt giữ sẽ được truy cập theo giá trị.
 
-Sau chế độ bắt giữ mặc định, vẫn có thể chỉ định **tường minh** chế độ bắt giữ cho một biến cụ thể.
+Sau chế độ bắt giữ mặc định, vẫn có thể chỉ định **tường minh** chế độ bắt giữ
+cho một biến cụ thể.
 
-Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập biến ngoài `b` theo giá trị, các mệnh đề bắt giữ sau đây đều làm được:
+Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập biến ngoài `b` theo
+giá trị, các mệnh đề bắt giữ sau đây đều làm được:
 
 -   `[&a, b]`
 -   `[b, &a]`
@@ -75,7 +90,8 @@ Nếu cần truy cập biến ngoài `a` bằng tham chiếu và truy cập bi�
 -   `[b, &]`
 -   `[=, &a]`
 
-Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến mới; kiểu của biến được suy luận từ bộ khởi tạo, tương tự khai báo biến bằng `auto`.
+Đồng thời, danh sách bắt giữ cũng có thể được dùng để khai báo biến mới; kiểu của
+biến được suy luận từ bộ khởi tạo, tương tự khai báo biến bằng `auto`.
 
 Sau đây là một số ví dụ thường gặp:
 
@@ -96,7 +112,8 @@ auto b = f2();  // f2 lấy giá trị của a từ danh sách bắt giữ, khô
 
 #### Bắt giữ tổng quát, bắt giữ có khởi tạo (C++14)
 
-Từ C++14 trở đi, mệnh đề bắt giữ không chỉ có thể bắt giữ biến bên ngoài, mà còn có thể khai báo biến mới và khởi tạo biến đó, ví dụ:
+Từ C++14 trở đi, mệnh đề bắt giữ không chỉ có thể bắt giữ biến bên ngoài, mà còn
+có thể khai báo biến mới và khởi tạo biến đó, ví dụ:
 
 ```cpp
 auto f1 = [val = 520]() {
@@ -136,7 +153,8 @@ auto f8 = [val = 520]() -> long long {
 };  // Hợp lệ, định nghĩa val có kiểu int, giá trị ban đầu là 520, kiểu trả về là long long
 ```
 
-Khi định nghĩa biến mới, không được bỏ qua giá trị khởi tạo. Kiểu của biến do giá trị khởi tạo quyết định, tương đương với:
+Khi định nghĩa biến mới, không được bỏ qua giá trị khởi tạo. Kiểu của biến do
+giá trị khởi tạo quyết định, tương đương với:
 
 ```text
 auto val = init-value;
@@ -157,7 +175,8 @@ auto f = [val = value]() { return val; };
 std::cout << f();  // Kết quả: 520
 ```
 
-`val` cũng có thể là một tham chiếu đến biến bên ngoài. Bằng cách này, có thể đặt bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
+`val` cũng có thể là một tham chiếu đến biến bên ngoài. Bằng cách này, có thể đặt
+bí danh cho biến ngoài được bắt giữ bằng tham chiếu, ví dụ:
 
 ```cpp
 int value = 520;
@@ -175,7 +194,9 @@ std::cout << f() << '\n';  // Kết quả: 1314
 
 Có thể vừa bắt giữ biến bên ngoài vừa định nghĩa biến mới.
 
-Nếu muốn sửa đổi biến mới được định nghĩa trong mệnh đề bắt giữ ở bên trong biểu thức lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần, ví dụ:
+Nếu muốn sửa đổi biến mới được định nghĩa trong mệnh đề bắt giữ ở bên trong biểu
+thức lambda, cần dùng từ khóa `mutable`; nếu biến đó là tham chiếu thì không cần,
+ví dụ:
 
 ```cpp
 int value = 520;
@@ -197,7 +218,10 @@ int value = 520;
 
 Xem thêm [đặc tả mutable](#mutable-đặc-tả-có-thể-thay-đổi).
 
-Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda; trong các ví dụ trên là biến $f$. Lý do là lambda được biểu diễn bằng một kiểu lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của lớp này, ví dụ:
+Vòng đời của biến được định nghĩa trong mệnh đề bắt giữ đi theo đối tượng lambda;
+trong các ví dụ trên là biến $f$. Lý do là lambda được biểu diễn bằng một kiểu
+lớp, và mọi nội dung trong mệnh đề bắt giữ đều là biến thành viên `private` của
+lớp này, ví dụ:
 
 ```cpp
 int main() {
@@ -213,7 +237,8 @@ int main() {
 
 ### Danh sách tham số
 
-Trong phần lớn trường hợp, danh sách tham số của lambda tương tự danh sách tham số của hàm, ví dụ:
+Trong phần lớn trường hợp, danh sách tham số của lambda tương tự danh sách tham
+số của hàm, ví dụ:
 
 ```cpp
 int x[] = {5, 1, 7, 6, 1, 4, 2};
@@ -223,16 +248,20 @@ for (auto i : x) std::cout << i << " ";
 
 Đoạn này sẽ in ra kết quả sau khi mảng `x` được sắp xếp theo thứ tự giảm dần.
 
-Vì **danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
+Vì **danh sách tham số** là tùy chọn, nếu không truyền tham số cho lambda, khai
+báo của nó không chứa [mutable](#mutable-đặc-tả-có-thể-thay-đổi), và không có
+kiểu trả về hậu tố, thì có thể bỏ qua cặp ngoặc rỗng.
 
 ??? note "Tham số được khai báo bằng `auto`"
-    Từ **C++14** trở đi, nếu tham số dùng `auto` để khai báo kiểu, một [biểu thức lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
+    Từ **C++14** trở đi, nếu tham số dùng `auto` để khai báo kiểu, một
+    [biểu thức lambda tổng quát](#lambda-tổng-quát-c14) sẽ được tạo.
 
 <a id="tham-số-đối-tượng-tường-minh-c23"></a>
 
 #### Tham số đối tượng tường minh (C++23)
 
-Từ **C++23** trở đi, [tham số đối tượng tường minh](https://en.cppreference.com/w/cpp/language/lambda) có thể được dùng trong danh sách tham số của lambda.
+Từ **C++23** trở đi, [tham số đối tượng tường minh](https://en.cppreference.com/w/cpp/language/lambda)
+có thể được dùng trong danh sách tham số của lambda.
 
 ```cpp
 auto nth_fibonacci = [](this auto self, unsigned n) -> unsigned {
@@ -257,16 +286,19 @@ by_value();
 by_ref();
 ```
 
-Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị 1, nhưng biến `a` bên ngoài vẫn là 0.
+Sau khi thực thi `by_value()`, thành viên bắt giữ `a` của `by_value` có giá trị
+1, nhưng biến `a` bên ngoài vẫn là 0.
 Còn sau khi thực thi `by_ref()`, giá trị của `a` bên ngoài trở thành 1.
 
 <a id="kiểu-trả-về"></a>
 
 ### Kiểu trả về
 
-Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ được tự động suy luận, tương tự hàm có kiểu trả về được khai báo bằng `auto`.
+Dùng để chỉ định kiểu trả về của biểu thức lambda. Nếu bỏ qua, kiểu trả về sẽ
+được suy luận tự động, tương tự hàm có kiểu trả về được khai báo bằng `auto`.
 
-Nếu có nhiều câu lệnh `return` và các kiểu suy luận không nhất quán, sẽ phát sinh lỗi biên dịch.
+Nếu có nhiều câu lệnh `return` và các kiểu suy luận không nhất quán, sẽ phát sinh
+lỗi biên dịch.
 
 ```cpp
 auto lam = [](int a, int b) -> int { return 0; };
@@ -289,7 +321,8 @@ Dùng `auto` làm kiểu tham số có thể tạo lambda tổng quát.
 auto add = [](auto a, auto b) { return a + b; };
 ```
 
-Trong [cpp insights](https://cppinsights.io), có thể quan sát định nghĩa lớp lambda do trình biên dịch sinh ra:
+Trong [cpp insights](https://cppinsights.io), có thể quan sát định nghĩa lớp
+lambda do trình biên dịch sinh ra:
 
 ```cpp
 class add_lambda {
@@ -303,7 +336,8 @@ class add_lambda {
 add_lambda add{};
 ```
 
-Cả hai tham số của `add` đều được khai báo bằng `auto`, tương ứng với hai tham số mẫu `T` và `U` của mẫu hàm `operator()` trong lớp `add_lambda`.
+Cả hai tham số của `add` đều được khai báo bằng `auto`, tương ứng với hai tham số
+mẫu `T` và `U` của mẫu hàm `operator()` trong lớp `add_lambda`.
 
 <a id="đệ-quy-trong-lambda"></a>
 
@@ -432,10 +466,10 @@ Có một số cách giải quyết vấn đề này:
         ```
 
     ???+ note "Khác biệt giữa `auto self`, `auto& self` và `auto&& self`:"
-        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Cụ thể còn phụ thuộc vào cách trình biên dịch cài đặt lambda và các tối ưu tương ứng.
+        Về lý thuyết, `auto& self` và `auto&& self` đều chỉ dùng $8$ byte (kích thước của con trỏ) để truyền tham số, và sẽ không phát sinh bản sao nào khác. Chi tiết còn phụ thuộc vào cách trình biên dịch cài đặt lambda và các tối ưu tương ứng.
         Còn với `auto self`, sẽ phát sinh bản sao của đối tượng. Kích thước bản sao phụ thuộc vào các phần tử trong danh sách bắt giữ, vì chúng đều là biến thành viên riêng của lớp lambda này.
 3.  Có thể khai triển thủ công lớp lambda, hoặc dùng cách viết tương tự; nhờ đó
-    có thể khai báo trực tiếp kiểu của $dfs$.
+    có thể khai báo kiểu của $dfs$.
 
     ???+ example "Sửa đoạn mã trên thành:"
         ```cpp
@@ -460,7 +494,11 @@ Có một số cách giải quyết vấn đề này:
         ```
 4.  Nếu lambda không bắt giữ bất kỳ biến nào, cũng có thể tận dụng con trỏ hàm.
 
-    Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định thành con trỏ hàm. Đồng thời, lúc này lambda cũng có thể được khai báo là `static`, và kiểu con trỏ hàm cũng có thể được khai báo là `static`. Dựa vào đó, lambda có thể truy cập con trỏ hàm mà không cần bắt giữ, từ đó thực hiện đệ quy.
+    Nếu lambda không bắt giữ bất kỳ biến nào, nó có thể được chuyển đổi ngầm định
+    thành con trỏ hàm. Đồng thời, lúc này lambda cũng có thể được khai báo là
+    `static`, và kiểu con trỏ hàm cũng có thể được khai báo là `static`. Dựa vào
+    đó, lambda có thể truy cập con trỏ hàm mà không cần bắt giữ, từ đó thực hiện
+    đệ quy.
 
     ???+ example "Ví dụ"
         ```cpp
