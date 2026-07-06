@@ -12,7 +12,7 @@ Polygon là một nền tảng ra đề hỗ trợ nhiều người cộng tác,
 hoàn chỉnh. Mô tả trên trang chính thức là: "Sứ mệnh của Polygon là cung cấp một
 nền tảng để tạo bài toán cho các cuộc thi lập trình."
 
-Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đề ở nơi khác, đặc biệt là khi nhiều người cùng cộng tác, Polygon cũng là một lựa chọn tốt.
+Khi ra đề trên Codeforces (CF), cần dùng Polygon. Khi ra đề ở nơi khác, đặc biệt là khi nhiều người cùng cộng tác, Polygon cũng là một lựa chọn tốt.
 
 ### Ưu điểm
 
@@ -22,10 +22,10 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 -   Hệ thống ra đề hoàn chỉnh; trình xác thực dữ liệu, trình sinh dữ liệu, trình kiểm tra đáp án và lời giải liên kết chặt chẽ với nhau, đầu ra được tự động sinh.
 
 -   Có thể đặt nhãn cho lời giải; nếu lời giải sai AC hoặc lời giải đúng không AC
-    thì hệ thống đều cảnh báo, thuận tiện cho việc chặn lần lượt các lời giải
+    thì hệ thống đều cảnh báo, giúp chặn lần lượt các lời giải
     sai.
 
--   Hỗ trợ kiểm thử stress thuận tiện; dữ liệu tìm được khi kiểm thử stress có
+-   Hỗ trợ kiểm thử stress hiệu quả; dữ liệu tìm được khi kiểm thử stress có
     thể thêm trực tiếp vào dữ liệu của bài.
 
 -   Khi phát hiện vấn đề có thể tạo issue (mục vấn đề), tránh việc vấn đề bị trôi trong tin nhắn mà vẫn chưa được sửa.
@@ -116,8 +116,8 @@ Trang này dùng để quản lý dữ liệu.
 
 Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md)
 **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu
-hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần
-sinh đầu vào; đầu ra sẽ được sinh tự động.
+hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ sinh
+đầu vào là đủ; đầu ra sẽ được sinh tự động.
 
 "Testset" ("Tập kiểm thử") dùng để nhóm các bộ kiểm thử. Nếu ra đề cho CF, cần tự thêm tập kiểm thử tên `pretests`, và `pretests` cần là tập con của `tests`.
 
@@ -152,7 +152,7 @@ Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống s�
 ### Tệp lời giải
 
 Trang này dùng để đặt mã nguồn lời giải của bài, có thể là lời giải đúng hoặc lời
-giải sai. Tải lời giải sai lên giúp chặn chúng thuận tiện hơn, và cũng có thể
+giải sai. Tải lời giải sai lên giúp chặn chúng dễ hơn, và cũng có thể
 nhắc chính mình rằng cần chặn các lời giải đó.
 
 ### Lượt chạy kiểm thử
@@ -196,7 +196,7 @@ Khi ghi nhận thay đổi, nếu có chỗ không đúng quy chuẩn hoặc c�
 ## Quản lý cuộc thi
 
 Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc thi mới"), từ đó
-quản lý bài thuận tiện hơn.
+quản lý bài dễ hơn.
 
 "Add problems?" ("Thêm bài?") ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
 
