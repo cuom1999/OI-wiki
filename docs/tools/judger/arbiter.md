@@ -77,17 +77,28 @@ Sau đó bắt đầu cấu hình thư mục chấm.
 
 ![Trang chủ Arbiter](./images/arbiter_home.png)
 
-Nhấn "OPEN" ("Mở") để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg` trong thư mục kỳ thi tương ứng. Nhấn "NEW" ("Mới") để tạo một kỳ thi mới và đặt tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên desktop thì sẽ không chấm được. Nên tránh dùng ký tự ngoài ASCII trong đường dẫn thư mục kỳ thi, bao gồm cả dấu tiếng Việt, để hạn chế lỗi tương thích.
+Nhấn "OPEN" ("Mở") để mở một kỳ thi đã tạo; sau đó cần chọn tệp `setup.cfg`
+trong thư mục kỳ thi tương ứng. Nhấn "NEW" ("Mới") để tạo một kỳ thi mới và đặt
+tên cùng thư mục kỳ thi. Lưu ý, cần tạo một thư mục trong **thư mục home** của
+người dùng rồi chọn thư mục đó làm thư mục kỳ thi; nếu tạo thư mục kỳ thi trên
+desktop thì sẽ không chấm được. Nên tránh dùng ký tự ngoài ASCII trong đường dẫn
+thư mục kỳ thi, bao gồm cả dấu tiếng Việt, để hạn chế lỗi tương thích.
 
 ![Thêm bài trong Arbiter](./images/arbiter_addproblem.png)
 
 Trong phần tổng quan bài ở bên trái, "nhấp chuột phải" - "Thêm kỳ thi", rồi trên nhãn kỳ thi "nhấp chuột phải" - "Thêm bài", là có thể tạo bài mới.
 
-Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ nhớ và cách so sánh. Không nên dùng cách so sánh "so sánh trực tiếp toàn văn", vì cách này không thân thiện với dữ liệu được tạo trên Windows. Có thể tự chọn trình kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
+Nhấn mũi tên xuống bên trái kỳ thi để hiển thị toàn bộ. Nhấn nhãn bài để sửa tên
+bài thành tên tiếng Anh của bài, đồng thời sửa giới hạn thời gian, giới hạn bộ
+nhớ và cách so sánh. Không nên dùng cách so sánh "so sánh trực tiếp toàn văn", vì
+cách này dễ gặp vấn đề với dữ liệu được tạo trên Windows. Có thể tự chọn trình
+kiểm tra đáp án theo bài, nhưng cần lưu ý bắt buộc phải chọn một trình kiểm tra
+đáp án, nếu không kết quả chấm sẽ là `No Score.` (`Không có điểm`).
 
 ![Danh sách bài trong Arbiter](./images/arbiter_problem.png)
 
-Nhấn "Tệp" - "Lưu". Không được bỏ qua thao tác này, nếu không chương trình sẽ không sinh tệp cấu hình bài. Lưu ý mỗi lần sửa cấu hình bài đều phải lưu lại.
+Nhấn "Tệp" - "Lưu". Không được bỏ qua thao tác này, nếu không chương trình sẽ
+không sinh tệp cấu hình bài. Lưu ý mỗi lần sửa cấu hình bài đều phải lưu lại.
 
 Lúc này, mở thư mục kỳ thi sẽ thấy các nội dung sau.
 
@@ -108,9 +119,16 @@ Lúc này, mở thư mục kỳ thi sẽ thấy các nội dung sau.
 `-- team.info
 ```
 
-Thư mục `filter` chứa một số trình kiểm tra đáp án; thư mục `result` lưu kết quả chấm của thí sinh; thư mục `tmp` là thư mục bộ nhớ đệm khi chấm. Trong đó, `day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp `task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số thứ tự bài.
+Thư mục `filter` chứa một số trình kiểm tra đáp án; thư mục `result` lưu kết quả
+chấm của thí sinh; thư mục `tmp` là thư mục bộ nhớ đệm khi chấm. Trong đó,
+`day<x>.info` là tệp cấu hình buổi thi, `<x>` là số hiệu buổi thi; tệp
+`task<x>_<y>.info` là tệp cấu hình bài, `<x>` là số hiệu buổi thi, `<y>` là số
+thứ tự bài.
 
-Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu kiểm thử (không đặt trong thư mục con) vào `evaldata`. Nếu dùng trình kiểm tra đáp án tùy chỉnh, cần đặt trình kiểm tra đáp án tùy chỉnh vào `filter`.
+Đặt thư mục chương trình thí sinh đã tạo vào thư mục `players/`. Lưu ý lớp ngoài
+cùng nên tạo thư mục `day<x>` tương ứng theo ngày thi. Đặt toàn bộ dữ liệu kiểm
+thử (không đặt trong thư mục con) vào `evaldata`. Nếu dùng trình kiểm tra đáp án
+tùy chỉnh, cần đặt trình kiểm tra đáp án tùy chỉnh vào `filter`.
 
 #### Chấm chính thức
 
@@ -126,17 +144,29 @@ Sau khi nhập, giao diện như hình sau.
 
 Trong ví dụ, mã là `HL-001`; chương trình sẽ tự nhận ra cột "Thuộc". Nếu mã không theo chuẩn NOIP thì sẽ không nhận ra được.
 
-Đổi buổi chấm thứ 0 thành buổi chấm thứ 1 (hoặc buổi khác). Sau đó chọn tất cả ở bên phải (hoặc chọn các thí sinh chỉ định), rồi chọn chấm các thí sinh đã chọn ở phía dưới, chọn bài cần chấm (hoặc toàn bộ bài), cuối cùng chờ quá trình chấm kết thúc.
+Đổi buổi chấm thứ 0 thành buổi chấm thứ 1 (hoặc buổi khác). Sau đó chọn tất cả ở
+bên phải (hoặc chọn các thí sinh chỉ định), rồi chọn chấm các thí sinh đã chọn ở
+phía dưới, chọn bài cần chấm (hoặc toàn bộ bài), cuối cùng chờ quá trình chấm kết
+thúc.
 
-Chi tiết từng bộ kiểm thử cần xem trong thư mục `result`. Trong thư mục này sẽ có thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh tệp `/tmp/_eval.score` hay không.
+Chi tiết từng bộ kiểm thử cần xem trong thư mục `result`. Trong thư mục này sẽ có
+thư mục kết quả của thí sinh; tệp kết quả có hậu tố `.result`, có thể mở bằng văn
+bản thuần. Nếu xuất hiện lỗi `No score file.`, có thể kiểm tra khi chấm có sinh
+tệp `/tmp/_eval.score` hay không.
 
 ### Viết trình kiểm tra đáp án tùy chỉnh
 
-Khi dịch ngược các trình kiểm tra đáp án khác, có thể biết lệnh chạy trình kiểm tra đáp án tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ hai là điểm, với 10 điểm là điểm tối đa.
+Khi dịch ngược các trình kiểm tra đáp án khác, có thể biết lệnh chạy trình kiểm
+tra đáp án tùy chỉnh là `<problem>_e <in> <out> <ans>`. Ba tham số sau lần lượt
+biểu thị đầu vào, đầu ra của thí sinh và tệp đáp án. Kết quả chấm cuối cùng cần
+được ghi vào tệp `/tmp/_eval.score`: dòng đầu tiên là thông tin chấm, dòng thứ
+hai là điểm, với 10 điểm là điểm tối đa.
 
 Tên trình kiểm tra đáp án tùy chỉnh sau khi biên dịch bắt buộc phải là `<problem>_e`, trong đó `<problem>` là tên bài. Khi cấu hình bài, chọn trình kiểm tra đáp án tùy chỉnh rồi chọn trình kiểm tra đáp án cần dùng.
 
-Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp đáp án, rồi chọn trình kiểm tra đáp án tùy chỉnh; cách này có thể kiểm thử bài nộp đáp án.
+Trong phần cấu hình bài của quản lý bài, đổi phương thức nộp từ mã nguồn sang tệp
+đáp án, rồi chọn trình kiểm tra đáp án tùy chỉnh; cách này có thể kiểm thử bài
+nộp đáp án.
 
 ### Lưu ý
 
@@ -146,12 +176,17 @@ Các điểm đã xác nhận cần lưu ý:
 -   Nếu chưa từng chấm, đừng nhấn thống kê điểm ở phía trên, nếu không Arbiter sẽ thoát ngay.
 -   Do giới hạn ngăn xếp (stack) khi chạy trên Linux, nếu muốn mở ngăn xếp không giới hạn, nên nhập `ulimit -s unlimited` trong trình dòng lệnh trước rồi chạy `arbiter_local` để mở trình chấm; nếu không có thể gặp vấn đề `Exceeding memory limit` (`Vượt giới hạn bộ nhớ`).
 -   Khi chấm chính thức, lúc chuẩn bị đề cần để mọi bài có cùng giới hạn bộ nhớ. Khi chấm, thay `unlimited` trong lệnh bằng số KiB tương ứng với giới hạn bộ nhớ của bài; ví dụ giới hạn bộ nhớ là 512 MiB thì lệnh là `ulimit -s $((512 * 1024))`. Nguyên nhân chính của vấn đề này là khi khởi động Arbiter từ GNOME, tiến trình con kế thừa giới hạn ngăn xếp của tiến trình cha.
--   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời tệp kết quả sinh ra sẽ có thông báo `Compile Failed.` (`Biên dịch thất bại.`).
+-   Không khuyến nghị để thư mục làm việc của phần mềm chứa dấu cách. Nếu có dấu
+    cách, rất có thể khi tạo kỳ thi, toàn bộ trình kiểm tra đáp án mặc định không
+    được sao chép vào thư mục `filter` (tức thư mục `filter` rỗng). Khi đó nếu
+    chấm sẽ xuất hiện tình trạng tất cả đều bị 0 điểm, đồng thời tệp kết quả sinh
+    ra sẽ có thông báo `Compile Failed.` (`Biên dịch thất bại.`).
 -   Khi xem mã mà hiện thông báo "không tìm thấy tệp đáp án", điều đó nghĩa là không tìm thấy mã nguồn của thí sinh.
 
 Các điểm còn nghi ngờ:
 
--   Rất dễ treo máy; chẳng hạn khi chấm số lượng lớn, di chuyển chuột có thể gây treo máy.
+-   Dễ treo máy; chẳng hạn khi chấm số lượng lớn, di chuyển chuột có thể gây treo
+    máy.
 -   Thỉnh thoảng thoát đột ngột (một phần nguyên nhân là không lưu kỳ thi kịp thời).
 -   Sau khi sửa cách so sánh, có xác suất sửa thất bại, tức cách so sánh sau khi sửa không được áp dụng.
 -   Khi cấu hình cần lưu ý vấn đề quyền, nhưng nếu bảo đảm dùng cùng một người dùng để tạo kỳ thi, sao chép dữ liệu và chấm thì sẽ không xuất hiện vấn đề quyền.
@@ -162,7 +197,13 @@ Do thiếu bảo trì lâu dài, hệ thống tồn tại một số lỗ hổng
 
 ### Đánh giá
 
-Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật đáng kể nào, khiến trải nghiệm chấm rất tệ và giao diện không còn phù hợp với thẩm mỹ hiện đại. Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị thí sinh và huấn luyện viên phàn nàn rất nhiều. Trong NOI Linux 2.0, ngoài việc trình kiểm tra đáp án bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải quyết.
+Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật đáng kể nào,
+khiến trải nghiệm chấm kém và giao diện không còn phù hợp với thẩm mỹ hiện đại.
+Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị
+thí sinh và huấn luyện viên phàn nàn nhiều. Trong NOI Linux 2.0, ngoài việc trình
+kiểm tra đáp án bị loại bỏ mã nguồn và toàn bộ phần mềm được biên dịch lại bằng
+Qt 5, không có nhiều thay đổi lớn; một số vấn đề ổn định vẫn chưa được giải
+quyết.
 
 ??? note "Phụ lục: cách dùng lệnh ren và rename"
     Trong hệ điều hành Windows có sẵn một lệnh đổi tên tệp: `ren`.
@@ -173,13 +214,16 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     ren [<drive>:][<path>]<filename1> <filename2>
     ```
     
-    Nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn đổi tất cả tệp `out` thành tệp `ans`, có thể chạy lệnh sau:
+    Nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn đổi tất cả
+    tệp `out` thành tệp `ans`, có thể chạy lệnh sau:
     
     ```shell
     ren *.out *.ans
     ```
     
-    Nếu thực hiện thao tác này trong môi trường NOI Linux 2.0, hiện có vẻ lệnh `rename` là lựa chọn khá dễ dùng, nhưng nó không được cài sẵn trong NOI Linux 2.0, nên cần cài đặt trước:
+    Nếu thực hiện thao tác này trong môi trường NOI Linux 2.0, lệnh `rename` là
+    một lựa chọn dễ dùng, nhưng nó không được cài sẵn trong NOI Linux 2.0, nên
+    cần cài đặt trước:
     
     ```shell
     sudo apt install rename
@@ -193,11 +237,15 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     rename 's/<text-before>/<text-after>/' <filename>
     ```
     
-    Trong đó, `<filename>` có thể dùng ký tự đại diện `*`, hoặc chỉ định một loại tệp nhất định (ví dụ `*.out`).
+    Trong đó, `<filename>` có thể dùng ký tự đại diện `*`, hoặc chỉ định một loại
+    tệp nhất định (ví dụ `*.out`).
     
-    Lưu ý trong dấu nháy còn có một dấu `/` ở cuối. Nếu thiếu dấu `/`, lệnh `rename` sẽ báo lỗi: `Substitution replacement not terminated at (user-supplied code)`.
+    Lưu ý trong dấu nháy còn có một dấu `/` ở cuối. Nếu thiếu dấu `/`, lệnh
+    `rename` sẽ báo lỗi:
+    `Substitution replacement not terminated at (user-supplied code)`.
     
-    Lúc này, nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn đổi tất cả tệp `out` thành tệp `ans`, có thể viết như sau:
+    Lúc này, nếu cần đổi toàn bộ tệp trong thư mục làm việc hiện tại, chẳng hạn
+    đổi tất cả tệp `out` thành tệp `ans`, có thể viết như sau:
     
     ```shell
     rename 's/\.out/\.ans/' *
@@ -205,9 +253,11 @@ Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nh�
     
     Trong đó, `\.` biểu thị escape ký tự `.`.
     
-    Gợi ý: nếu thiếu `\.`, giả sử trong thư mục có một tệp tên `outtest.out`, sau khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
+    Gợi ý: nếu thiếu `\.`, giả sử trong thư mục có một tệp tên `outtest.out`, sau
+    khi chạy lệnh này, tệp đó sẽ bị đổi thành `anstest.out`.
     
-    Tương tự, nếu cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó `<x>` biểu thị số hiệu bộ kiểm thử) thành `test<x>.ans`, có thể viết như sau:
+    Tương tự, nếu cần đổi đồng loạt tất cả tệp tên `atmost<x>.ans` (trong đó
+    `<x>` biểu thị số hiệu bộ kiểm thử) thành `test<x>.ans`, có thể viết như sau:
     
     ```shell
     rename 's/atmost/test/' *.ans
