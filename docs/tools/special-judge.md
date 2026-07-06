@@ -11,12 +11,12 @@ bài có nhiều lời giải hoặc nhiều đáp án đúng.
 ???+ warning "Cảnh báo"
     SPJ cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu
     ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách,
-    nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay Testlib là công cụ
-    thuận tiện để kiểm tra cuối tệp, còn kiểm tra định dạng kiểu này thì ít khi
-    được viết riêng.
+    nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay Testlib có sẵn cơ
+    chế kiểm tra cuối tệp, còn kiểm tra định dạng kiểu này thì ít khi được viết
+    riêng.
 
-    Khi kiểm tra số thực, cần lưu ý NaN. Cách kiểm tra không hợp lý có thể dẫn
-    đến tình huống chỉ cần xuất NaN là AC.
+    Khi kiểm tra số thực, cần lưu ý NaN. Cách kiểm tra không hợp lý có thể khiến
+    lời giải chỉ xuất NaN cũng được AC.
 
     Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay
     chưa, để tránh làm SPJ bị lỗi chạy. Một số OJ xử lý lỗi chạy của SPJ như lỗi
@@ -33,7 +33,7 @@ Xem thêm: [Testlib/Giới thiệu](./testlib/index.md), [Testlib/Checker](./tes
 
 Testlib là một thư viện C++ hỗ trợ người ra đề viết bài thi thuật toán bằng C++.
 
-Các công cụ chấm/OJ bắt buộc dùng Testlib làm SPJ: Codeforces, Luogu, UOJ, v.v.
+Các công cụ chấm/OJ yêu cầu dùng Testlib làm SPJ: Codeforces, Luogu, UOJ, v.v.
 
 Các công cụ chấm/OJ có thể dùng Testlib làm SPJ: LibreOJ ([Lyrio](https://github.com/lyrio-dev)), Lemon, Nowcoder, v.v.
 
@@ -243,7 +243,7 @@ int main(int argc, char* argv[]) {
 
 ## QDUOJ
 
-So với các hệ thống trên, QDUOJ hơi phiền hơn. Bài có SPJ trên QDUOJ không có đầu ra chuẩn, nên chỉ có thể viết lời giải chuẩn vào trong SPJ; sau khi chạy ra đầu ra chuẩn thì mới so sánh.
+So với các hệ thống trên, QDUOJ cần xử lý thêm một bước. Bài có SPJ trên QDUOJ không có đầu ra chuẩn, nên chỉ có thể viết lời giải chuẩn vào trong SPJ; sau khi chạy ra đầu ra chuẩn thì mới so sánh.
 
 ```cpp
 #include <cmath>
@@ -282,8 +282,8 @@ int main(int argc, char* argv[]) {
 Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn
 trong SPJ rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ
 so sánh đáp án với nội dung mà SPJ xuất ra làm đầu ra chuẩn rồi đưa ra kết quả
-cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của SPJ trong trường
-hợp đúng.
+cuối cùng. Vì vậy, khi tải đầu ra lên, hãy tải đầu ra của SPJ trong trường hợp
+đúng.
 
 HDOJ yêu cầu tải lên tệp nhị phân đã biên dịch trên Windows, không phải mã nguồn.
 
@@ -411,7 +411,7 @@ int main(int argc, char* argv[]) {
 
 Tài liệu về Testlib dùng cho DOMJudge và cách nhập gói bài Polygon: <https://github.com/cn-xcpc-tools/testlib-for-domjudge>
 
-[Bộ so sánh mặc định](https://github.com/Kattis/problemtools/blob/master/support/default_validator/) của DOMJudge đã có sẵn so sánh số thực kèm độ chính xác; chỉ cần thêm `float_tolerance 1e-3` vào `validator_flags` trong cấu hình bài.
+[Bộ so sánh mặc định](https://github.com/Kattis/problemtools/blob/master/support/default_validator/) của DOMJudge đã có sẵn so sánh số thực kèm độ chính xác; thêm `float_tolerance 1e-3` vào `validator_flags` trong cấu hình bài.
 
 ```cpp
 #include <cmath>
