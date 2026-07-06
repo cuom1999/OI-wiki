@@ -3,46 +3,46 @@ author: MingqiHuang, Xeonacid, greyqz, i-Yirannn, ChenZ01
 ## `vector`
 
 `std::vector` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài thay đổi được**
-do STL cung cấp. Có thể xem nó như một dãy động: hỗ trợ chèn và xóa với độ phức
-tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
+do STL cung cấp. Có thể xem nó như một mảng động: hỗ trợ chèn và xóa với độ phức
+tạp tuyến tính, đồng thời hỗ trợ truy cập ngẫu nhiên trong thời gian hằng số.
 
 <span id="vì-sao-nên-dùng-vector"></span>
 
 ### Vì sao nên dùng `vector`
 
-Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn nhiều so với độ ổn
+Trong OI, yêu cầu về hiệu năng chương trình thường cao hơn nhiều so với độ ổn
 định ở mức dự án phần mềm. Do `vector` quản lý bộ nhớ động, trong một số trường
-hợp thời gian chạy của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ không
-bật tối ưu hóa đầy đủ. Vì vậy, khi chỉ cần lưu trữ dữ liệu thông thường,
-`vector` thường không phải lựa chọn ưu tiên. Sau đây là một số điểm mạnh nổi bật
-của `vector`; khi cần đến những điểm này, `vector` rất hữu ích.
+hợp thời gian chạy của nó kém hơn mảng tĩnh; khác biệt này còn rõ hơn nếu máy
+chấm không bật tối ưu hóa đầy đủ. Vì vậy, khi chỉ cần lưu trữ dữ liệu thông
+thường, `vector` không phải lúc nào cũng là lựa chọn ưu tiên. Dù vậy, `vector`
+có một số điểm mạnh nổi bật; khi bài toán cần đến những điểm này, nó rất hữu ích.
 
 <span id="vector-có-thể-cấp-phát-bộ-nhớ-động"></span>
 
 #### `vector` có thể cấp phát bộ nhớ động
 
-Nhiều khi không thể mở sẵn một vùng nhớ lớn (ví dụ: tiền xử lý tất cả ước của
-các số từ 1 đến n). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ nhớ,
-từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó cần dùng `vector` để kiểm
-soát mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở rộng dung
-lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng.
+Nhiều khi không thể cấp phát sẵn một vùng nhớ lớn (ví dụ: tiền xử lý tất cả ước
+của các số từ 1 đến $n$). Dù biết tổng lượng dữ liệu vẫn nằm trong giới hạn bộ
+nhớ, từng phần dữ liệu riêng lẻ vẫn có thể rất lớn; khi đó có thể dùng `vector`
+để kiểm soát mức sử dụng bộ nhớ trong phạm vi phù hợp. `vector` cũng hỗ trợ mở
+rộng dung lượng động, rất hữu ích khi bộ nhớ thật sự căng thẳng.
 
 <span id="vector-nạp-chồng-toán-tử-so-sánh-và-toán-tử-gán"></span>
 
 #### `vector` nạp chồng toán tử so sánh và toán tử gán
 
 `vector` nạp chồng sáu toán tử so sánh, được cài đặt theo thứ tự từ điển. Điều
-này cho phép kiểm tra hai bộ chứa có bằng nhau hay không, với độ phức tạp tuyến
-tính theo kích thước bộ chứa. Chẳng hạn, có thể dùng `vector<char>` để so sánh
-chuỗi, dù `std::string` vẫn nhanh và tiện hơn. Ngoài ra, `vector` cũng nạp
-chồng toán tử gán, giúp việc sao chép mảng thuận tiện hơn.
+này cho phép so sánh hai bộ chứa với độ phức tạp tuyến tính theo kích thước bộ
+chứa. Chẳng hạn, có thể dùng `vector<char>` để so sánh chuỗi, dù `std::string`
+vẫn nhanh và tiện hơn. Ngoài ra, `vector` cũng nạp chồng toán tử gán, giúp việc
+sao chép mảng thuận tiện hơn.
 
 <span id="khởi-tạo-vector-thuận-tiện"></span>
 
 #### Khởi tạo `vector` thuận tiện
 
-Vì `vector` nạp chồng toán tử `=`, có thể thực hiện phép gán toàn bộ
-`vector` một cách thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ
+Vì `vector` nạp chồng toán tử `=`, có thể gán toàn bộ một `vector` một cách
+thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ
 [khởi tạo bằng danh sách](https://en.cppreference.com/w/cpp/language/list_initialization),
 ví dụ `vector<int> data {1, 2, 3};`.
 
@@ -63,8 +63,8 @@ không gian tên `std`):
 ```cpp
 // 1. Tạo vector rỗng; độ phức tạp hằng số
 vector<int> v0;
-// 1+. Câu lệnh này bảo đảm khi chèn 3 phần tử đầu tiên vào vector,
-//     độ phức tạp thời gian vẫn là hằng số
+// 1+. Câu lệnh này bảo đảm khi chèn 3 phần tử đầu tiên vào vector
+//     sẽ không cần cấp phát lại bộ nhớ
 v0.reserve(3);
 // 2. Tạo vector có kích thước ban đầu là 3, giá trị mặc định của mỗi phần tử là 0;
 //    độ phức tạp tuyến tính
@@ -73,7 +73,7 @@ vector<int> v1(3);
 //    độ phức tạp tuyến tính
 vector<int> v2(3, 2);
 // 4. Tạo vector có kích thước ban đầu là 3, giá trị mặc định của mỗi phần tử là 1,
-// và dùng bộ cấp phát bộ nhớ của v2; độ phức tạp tuyến tính
+//    và dùng bộ cấp phát bộ nhớ của v2; độ phức tạp tuyến tính
 vector<int> v3(3, 1, v2.get_allocator());
 // 5. Tạo vector v4 là bản sao của v2, các phần tử giống v2;
 //    độ phức tạp tuyến tính
@@ -120,7 +120,7 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 1.  `at()`
 
     `v.at(pos)` trả về tham chiếu đến phần tử có chỉ số `pos` trong bộ chứa. Nếu
-    vượt biên mảng, nó ném ngoại lệ kiểu `std::out_of_range`.
+    chỉ số vượt biên, nó ném ngoại lệ kiểu `std::out_of_range`.
 
 2.  `operator[]`
 
@@ -137,8 +137,8 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
 
 5.  `data()`
 
-    `v.data()` trả về con trỏ đến phần tử đầu tiên trong vùng bộ nhớ liên tục mà
-    `v` dùng để lưu dữ liệu nội bộ.
+    `v.data()` trả về con trỏ đến phần tử đầu tiên trong vùng nhớ liên tục mà `v`
+    dùng để lưu dữ liệu nội bộ.
 
 <span id="iterator-vector"></span>
 
@@ -165,10 +165,10 @@ Dùng các cách trên là đủ để tạo một `vector` cho nhu cầu thông
     Trả về bộ lặp trỏ đến vị trí sau phần tử cuối của dãy duyệt ngược, tương ứng
     với vị trí trước phần tử đầu của bộ chứa; vị trí này không có phần tử.
 
-Trong các bộ lặp liệt kê trên, những hàm có ký tự `c` trả về bộ lặp chỉ đọc; bộ
-lặp chỉ đọc không thể dùng để sửa giá trị phần tử trong `vector`. Nếu bản
-thân một `vector` là chỉ đọc, bộ lặp thông thường và bộ lặp chỉ đọc của nó hoàn
-toàn tương đương. Bộ lặp chỉ đọc được hỗ trợ từ C++11.
+Trong các bộ lặp liệt kê trên, những hàm có ký tự `c` trả về bộ lặp const; bộ
+lặp const không thể dùng để sửa giá trị phần tử trong `vector`. Nếu bản thân một
+`vector` là const, bộ lặp thông thường và bộ lặp const của nó hoàn toàn tương
+đương. Bộ lặp const được hỗ trợ từ C++11.
 
 <span id="độ-dài-và-dung-lượng-vector"></span>
 
@@ -208,13 +208,13 @@ dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng
 
 ### Thêm, xóa và sửa phần tử
 
--   `clear()` xóa tất cả phần tử.
+-   `clear()` xóa tất cả phần tử trong bộ chứa.
 -   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí bộ lặp. **Độ
     phức tạp tuyến tính theo khoảng cách từ `pos` đến cuối, không phải hằng số**.
 -   `erase()` xóa một phần tử tại bộ lặp hoặc một đoạn phần tử, trả về bộ lặp sau
     phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
 -   `push_back()` chèn một phần tử vào cuối; độ phức tạp khấu hao là **hằng số**,
-    trường hợp xấu nhất là tuyến tính.
+    nhưng trường hợp xấu nhất là tuyến tính.
 -   `pop_back()` xóa phần tử cuối, độ phức tạp hằng số.
 -   `swap()` trao đổi với một bộ chứa khác; thao tác này có **độ phức tạp hằng
     số**, không phải tuyến tính.
@@ -223,30 +223,32 @@ dài (`size`) của `vector` là số phần tử hợp lệ, còn dung lượng
 
 ### Chi tiết cài đặt của `vector`
 
-Về bản chất cài đặt, `vector` vẫn là mảng có độ dài cố định. Nó mở rộng động
-được nhờ thao tác cấp phát lại khi sắp vượt quá dung lượng. Trước hết cần nói
-rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng nhớ đã
-cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau; `vector` lưu
-riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu dung lượng hiện tại
-không đủ, bộ chứa sẽ cấp phát một mảng lớn hơn, sao chép dữ liệu cũ từ vị trí
-ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp tiệm cận của
-thao tác này là $O(n)$, có thể chứng minh độ phức tạp khấu hao của nó là $O(1)$.
-Xóa phần tử ở cuối và truy cập phần tử vẫn tốn chi phí $O(1)$. Vì vậy, nếu ước
-lượng kích thước `vector` hợp lý và tận dụng `resize()` cùng `reserve()`, hiệu
-năng của `vector` sẽ không thua mảng có độ dài cố định quá nhiều.
+Về bản chất cài đặt, `vector` vẫn dựa trên một mảng có độ dài cố định. Nó mở
+rộng động được nhờ thao tác cấp phát lại khi sắp vượt quá dung lượng. Trước hết
+cần nói rõ: số phần tử (độ dài) $n$ trong `vector` và số phần tử tối đa mà vùng
+nhớ đã cấp phát có thể chứa (dung lượng) $N$ không nhất thiết giống nhau;
+`vector` lưu riêng hai đại lượng này. Khi thêm phần tử vào `vector`, nếu dung
+lượng hiện tại không đủ, bộ chứa sẽ cấp phát một mảng lớn hơn, sao chép dữ liệu
+cũ từ vị trí ban đầu sang mảng mới, rồi giải phóng vùng nhớ cũ. Dù độ phức tạp
+tiệm cận của lần cấp phát lại là $O(n)$, có thể chứng minh độ phức tạp khấu hao
+của thao tác thêm cuối là $O(1)$. Xóa phần tử ở cuối và truy cập phần tử vẫn tốn
+chi phí $O(1)$. Vì vậy, nếu ước lượng kích thước `vector` hợp lý và tận dụng
+`resize()` cùng `reserve()`, hiệu năng của `vector` sẽ không thua mảng có độ dài
+cố định quá nhiều.
 
 ## `vector<bool>`
 
-Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bool`: mỗi
-"`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên, kiểu trả
-về của `operator[]` không phải `bool&` mà là `vector<bool>::reference`. Vì vậy
-cần thận trọng khi dùng `vector<bool>`; có thể cân nhắc thay bằng `deque<bool>`
-hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng [`bitset`](./bitset.md).
+Thư viện chuẩn cung cấp riêng một chuyên biệt hóa `vector` cho `bool`: mỗi giá
+trị "`bool`" chỉ chiếm 1 bit và vẫn hỗ trợ tăng kích thước động. Tuy nhiên, kiểu
+trả về của `operator[]` không phải `bool&` mà là `vector<bool>::reference`. Vì
+vậy cần thận trọng khi dùng `vector<bool>`; có thể cân nhắc thay bằng
+`deque<bool>` hoặc `vector<char>`. Nếu cần tiết kiệm bộ nhớ, nên dùng
+[`bitset`](./bitset.md).
 
 ## `array` (C++11)
 
 `std::array` là cấu trúc mảng **có bộ nhớ liên tục**, **độ dài cố định** do STL
-cung cấp. Về bản chất, nó là một lớp bọc mỏng quanh mảng nguyên thủy.
+cung cấp. Về bản chất, nó là một lớp bọc mỏng quanh mảng nguyên thủy của C++.
 
 <span id="vì-sao-nên-dùng-array"></span>
 
@@ -255,7 +257,7 @@ cung cấp. Về bản chất, nó là một lớp bọc mỏng quanh mảng ngu
 `array` thực chất là lớp bọc mảng của STL. So với `vector`, nó không hỗ trợ mở
 rộng động, nhưng đổi lại hiệu năng gần như tương đương mảng nguyên thủy (khi bật
 tối ưu hóa đầy đủ). Vì vậy, nếu có thể dùng C++11, gần như mọi nơi dùng mảng
-nguyên thủy có độ dài cố định đều có thể thay bằng `array`, còn mảng cấp phát
+nguyên thủy có độ dài cố định đều có thể thay bằng `array`; còn mảng cấp phát
 động có thể thay bằng `vector`.
 
 <span id="hàm-thành-viên-array"></span>
@@ -304,7 +306,7 @@ Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị
 | Hàm    | Tác dụng                           |
 | ------ | ---------------------------------- |
 | `fill` | Gán cùng một giá trị cho toàn bộ bộ chứa |
-| `swap` | Trao đổi nội dung                  |
+| `swap` | Trao đổi nội dung                         |
 
 **Lưu ý: trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải
 $O(1)$ như các bộ chứa STL thông thường.**
@@ -316,8 +318,8 @@ $O(1)$ như các bộ chứa STL thông thường.**
 | Hàm                     | Tác dụng                                      |
 | ----------------------- | --------------------------------------------- |
 | `operator==` và tương tự | So sánh các giá trị trong `array` theo thứ tự từ điển |
-| `std::get`              | Truy cập một phần tử của `array`              |
-| `std::swap`             | Phiên bản chuyên biệt hóa của `std::swap`     |
+| `std::get`               | Truy cập một phần tử của `array`                     |
+| `std::swap`              | Phiên bản chuyên biệt hóa của `std::swap`            |
 
 Sau đây là một ví dụ sử dụng `array`:
 
@@ -337,7 +339,7 @@ for (int i = 0; i != v0.size(); ++i) cout << v0[i] << " ";
 
 `std::deque` là cấu trúc [hàng đợi hai đầu](../../ds/queue.md#hàng-đợi-hai-đầu)
 do STL cung cấp. Nó hỗ trợ chèn và xóa với độ phức tạp tuyến tính, đồng thời hỗ
-trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
+trợ truy cập ngẫu nhiên trong thời gian hằng số.
 
 <span id="cách-dùng-deque"></span>
 
@@ -378,8 +380,8 @@ deque<int> v5(std::move(v2));
 #### Truy cập phần tử
 
 Các cách truy cập phần tử của `deque` gần giống `vector`, nhưng `deque` không
-cung cấp con trỏ đến vùng bộ nhớ nội bộ như `vector::data()`. Tốc độ truy cập
-phần tử thực tế được giải thích trong phần chi tiết cài đặt.
+cung cấp con trỏ đến vùng nhớ nội bộ như `vector::data()`. Tốc độ truy cập phần
+tử thực tế được giải thích trong phần chi tiết cài đặt.
 
 -   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong bộ chứa, có
     kiểm tra vượt biên, **độ phức tạp hằng số**.
@@ -408,7 +410,7 @@ Các hàm liên quan đến độ dài của `deque` giống `vector`, nhưng `d
 Các thao tác thêm, xóa và sửa phần tử của `deque` gần giống `vector`, đồng thời
 có thêm các hàm thao tác ở đầu hàng đợi.
 
--   `clear()` xóa tất cả phần tử.
+-   `clear()` xóa tất cả phần tử trong bộ chứa.
 -   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí bộ lặp. **Độ
     phức tạp tuyến tính theo khoảng cách nhỏ hơn từ `pos` đến hai đầu**.
 -   `erase()` xóa một phần tử tại bộ lặp hoặc một đoạn phần tử, trả về bộ lặp sau
@@ -428,14 +430,14 @@ Bên dưới, `deque` thường được cài đặt bằng nhiều vùng đệm
 bộ nhớ bên trong mỗi vùng đệm là liên tục. Mỗi vùng đệm còn ghi lại con trỏ đầu
 và con trỏ cuối để đánh dấu đoạn dữ liệu hợp lệ. Khi một vùng đệm đầy, `deque`
 sẽ cấp phát vùng đệm mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Xem
-giải thích chi tiết hơn tại bài
+giải thích chi tiết hơn trong bài
 [nguyên lý cài đặt `deque` trong "STL source code analysis"](https://www.cnblogs.com/q1076452761/p/16903229.html).
 
 ## `list`
 
 `std::list` là cấu trúc [danh sách liên kết đôi](../../ds/linked-list.md) do STL
 cung cấp. Việc truy cập phần tử cần duyệt tuyến tính, còn thao tác chèn và xóa
-có độ phức tạp hằng số khi đã có vị trí tương ứng.
+có độ phức tạp hằng số khi đã có bộ lặp trỏ tới vị trí tương ứng.
 
 <span id="cách-dùng-list"></span>
 
@@ -452,7 +454,7 @@ không trình bày chi tiết.
 #### Truy cập phần tử
 
 Vì `list` được cài đặt bằng danh sách liên kết, nó không cung cấp giao diện truy
-cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, cần dùng bộ lặp.
+cập ngẫu nhiên. Nếu cần truy cập phần tử ở giữa, phải duyệt bằng bộ lặp.
 
 -   `front()` trả về tham chiếu đến phần tử đầu tiên.
 -   `back()` trả về tham chiếu đến phần tử cuối cùng.
@@ -477,5 +479,5 @@ do STL cung cấp; so với `std::list`, nó dùng ít bộ nhớ hơn.
 ### Cách dùng `forward_list`
 
 Cách dùng `forward_list` gần như giống `list`, nhưng bộ lặp chỉ đi theo một
-chiều, nên phần này không trình bày chi tiết. Nội dung chi tiết xem trong
+chiều, nên phần này không trình bày chi tiết. Nội dung đầy đủ xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/forward_list).
