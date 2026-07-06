@@ -9,7 +9,7 @@ Trang này đi từ ghép cặp hoàn hảo trọng số lớn nhất trên đ�
 
 Điểm khác nhau giữa ghép cặp trên đồ thị tổng quát và ghép cặp trên đồ thị hai phía là đồ thị có thể có chu trình lẻ. Chu trình chẵn có thể được xem như đồ thị hai phía.
 
-Cách xử lý của thuật toán blossom là khi gặp một chu trình lẻ thì co nó lại thành một **hoa**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, ta có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
+Cách xử lý của thuật toán blossom là khi gặp một chu trình lẻ thì co nó lại thành một **hoa**, đồng thời đặt tất cả các đỉnh trong hoa thành đỉnh chẵn. Vì mọi đỉnh trên hoa đều có thể trở thành đỉnh chẵn, có thể co cả hoa trực tiếp thành một đỉnh chẵn. Lưu ý rằng một hoa có thể chứa các hoa khác.
 
 Vấn đề này cũng có thể được chuyển thành quy hoạch tuyến tính và bài toán đối ngẫu, nhưng cần xử lý thêm đối với hoa.
 
@@ -60,11 +60,11 @@ Sau đó, dùng phương pháp nguyên thủy - đối ngẫu để chuyển bà
     \end{aligned}
     $$
 
-Các cạnh có $x_e=1$ là cạnh ghép cặp, còn các cạnh có $x_e=0$ là cạnh không thuộc ghép cặp. Giống như đồ thị hai phía, ta phải thỏa mãn $x_e\in\{0,1\}:\forall e\in E$. Vì vậy, khi tìm ghép cặp hoàn hảo trọng số lớn nhất, mọi cạnh ghép cặp đều phải là **cạnh đẳng thức**.
+Các cạnh có $x_e=1$ là cạnh ghép cặp, còn các cạnh có $x_e=0$ là cạnh không thuộc ghép cặp. Giống như đồ thị hai phía, cần thỏa mãn $x_e\in\{0,1\}:\forall e\in E$. Vì vậy, khi tìm ghép cặp hoàn hảo trọng số lớn nhất, mọi cạnh ghép cặp đều phải là **cạnh đẳng thức**.
 
 Khác với đồ thị hai phía, đồ thị tổng quát có thêm $z_B$ cần xử lý. Sau đây xét khi nào $z_B$ lớn hơn $0$.
 
-Có thể thấy cách tốt nhất là cố gắng để $z_B=0$, nhưng khi bắt buộc thì vẫn cần cho $z_B>0$. Khi $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{ và } x(\delta(B)) = 1$, ta có thể đặt $z_B>0$. Ngoài trường hợp này, $z_B>0$ không có ý nghĩa.
+Có thể thấy cách tốt nhất là cố gắng để $z_B=0$, nhưng khi bắt buộc thì vẫn cần cho $z_B>0$. Khi $x(\gamma(B)) = \left\lfloor \dfrac{|B|}2 \right\rfloor \text{ và } x(\delta(B)) = 1$, có thể đặt $z_B>0$. Ngoài trường hợp này, $z_B>0$ không có ý nghĩa.
 
 Theo điều kiện bổ đề chặt bổ sung, có các quan hệ tương ứng sau:
 
@@ -74,7 +74,7 @@ Theo điều kiện bổ đề chặt bổ sung, có các quan hệ tương ứn
     x_e>0 \longrightarrow z_e=0,\quad \forall e\in E
     $$
 
--   Với tập *B* được chọn, $z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$, tức là mọi tập $B$ có $z_B>0$ đều đã chọn số cạnh bằng một nửa kích thước của tập, cũng có nghĩa tập $B$ là một hoa và ta chọn một cạnh trong hoa để tăng cường. Đồng thời, ta thêm một điều kiện: $x(\delta(B))=1$, tức là chỉ khi hoa $B$ nối ra ngoài bằng đúng một cạnh thì $z_B>0$ mới có ý nghĩa.
+-   Với tập *B* được chọn, $z_B>0 \longrightarrow x(\gamma(B))= \left\lfloor \dfrac{|B|}2 \right\rfloor$, tức là mọi tập $B$ có $z_B>0$ đều đã chọn số cạnh bằng một nửa kích thước của tập, cũng có nghĩa tập $B$ là một hoa và chọn một cạnh trong hoa để tăng cường. Đồng thời, thêm một điều kiện: $x(\delta(B))=1$, tức là chỉ khi hoa $B$ nối ra ngoài bằng đúng một cạnh thì $z_B>0$ mới có ý nghĩa.
 
     $$
     z_B>0 \longrightarrow x(\gamma(B))=\left\lfloor\frac{|B|}2\right\rfloor, x(\delta(B))=1\quad \forall B\in O
@@ -86,11 +86,11 @@ Kết hợp khái niệm "**cạnh đẳng thức**" với thuật toán blossom
 
 Khi gặp một hoa, cần co nó thành một đỉnh chẵn. Đặt tất cả các đỉnh trong hoa thành đỉnh chẵn và đặt $z_B=0$ của nó.
 
-Do sau khi co hoa ta sẽ lưu hoa lại cho đến khi thỏa mãn một số điều kiện mới bung ra, không thể dùng cách cũ để ghi nhận hoa.
+Do sau khi co, hoa được lưu lại cho đến khi thỏa mãn một số điều kiện mới bung ra, không thể dùng cách cũ để ghi nhận hoa.
 
 Nếu không nói rõ thêm, những đỉnh được nhắc đến trước đây đều bao gồm cả các đỉnh chẵn hình thành từ việc co hoa.
 
-Vì hoa cũng có thể được co thành một đỉnh rồi đưa vào hàng đợi, và số lượng hoa không cố định, ta không thể liệt kê từng đỉnh như trước để kiểm tra có đường tăng cường hay không. Vì vậy, khi thực hiện tìm kiếm theo chiều rộng (BFS), phải đưa mọi đỉnh chưa ghép cặp vào hàng đợi.
+Vì hoa cũng có thể được co thành một đỉnh rồi đưa vào hàng đợi, và số lượng hoa không cố định, không thể liệt kê từng đỉnh như trước để kiểm tra có đường tăng cường hay không. Vì vậy, khi thực hiện tìm kiếm theo chiều rộng (BFS), phải đưa mọi đỉnh chưa ghép cặp vào hàng đợi.
 
 Như vậy sẽ đồng thời sinh ra nhiều cây luân phiên.
 
@@ -133,7 +133,7 @@ d3 &= \min(\{z_{B^-} : B^- \in O\}) / 2
 \end{aligned}
 $$
 
-Lưu ý ở đây *B* là đỉnh sau khi co hoa, nên có thể có tính chẵn lẻ.
+Lưu ý rằng trong công thức này, *B* là đỉnh sau khi co hoa, nên có thể có tính chẵn lẻ.
 
 Đặt $d=min(d1,d2,d3)$, cho
 
@@ -149,7 +149,7 @@ $$
 Nếu xuất hiện $z_B=0(d=d3)$, để tránh trường hợp $z_B<0$, cần bung hoa này ra.
 Sau khi bung hoa, chỉ giữ lại đường luân phiên bên trong hoa, và đặt các đỉnh trong hoa không nằm trên đường luân phiên thành chưa thăm ($\varnothing$).
 
-Như vậy ta tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguyên các cạnh đẳng thức đã có, vẫn duy trì tính chất $z_e\geq0:\forall e\in E$, đồng thời chỉ tăng $z_B$ ở mức tối thiểu, rồi có thể tiếp tục tìm đường tăng cường.
+Như vậy sẽ tạo ra một hoặc nhiều cạnh đẳng thức, giữ nguyên các cạnh đẳng thức đã có, vẫn duy trì tính chất $z_e\geq0:\forall e\in E$, đồng thời chỉ tăng $z_B$ ở mức tối thiểu, rồi có thể tiếp tục tìm đường tăng cường.
 
 ## Ghép cặp trọng số lớn nhất trên đồ thị tổng quát
 
@@ -162,7 +162,7 @@ Các đỉnh có nhãn đỉnh bằng $0$ cuối cùng sẽ trở thành đỉnh
 <span id="code-tham-khảo"></span>
 ### Mã tham khảo
 
-Ở đây, để tiện cài đặt, ta nhân trọng số cạnh với $2$ khi tính giá trị $z_e$, nhờ vậy sẽ không có sai số số thực.
+Trong cài đặt này, để tiện xử lý, nhân trọng số cạnh với $2$ khi tính giá trị $z_e$, nhờ vậy sẽ không có sai số số thực.
 
 ???+ note "Lưu trữ"
     ```cpp
@@ -212,7 +212,7 @@ int lab[MAXN * 2 + 1];
 // lab[u] dùng để ghi z_u, lab[b] dùng để ghi z_B
 int match[MAXN * 2 + 1], slack[MAXN * 2 + 1], st[MAXN * 2 + 1],
     pa[MAXN * 2 + 1];
-// match[x]=y biểu thị (x,y) là cặp ghép, ở đây x và y có thể là hoa
+// match[x]=y biểu thị (x,y) là cặp ghép, trong đó x và y có thể là hoa
 // slack[x]=u biểu thị z(x,u) là nhỏ nhất trong các cạnh kề với x
 // st[x]=b biểu thị hoa chứa nút x là b. Nếu x=b và b<=n thì x
 // là một nút thông thường không thuộc bất kỳ hoa nào.
@@ -266,7 +266,7 @@ void set_slack(int x) {
 
 ```cpp
 void q_push(int x) {
-  // Đưa x vào queue, ta quy định queue không thể push trực tiếp một hoa
+  // Đưa x vào queue, quy ước queue không thể push trực tiếp một hoa
   if (x <= n)
     q.push(x);
   else {
@@ -292,7 +292,7 @@ void set_st(int x, int b) {
 ```cpp
 int get_pr(int b, int xr) {
   // xr là một đỉnh trong flower[b], giá trị trả về pr là vị trí của nó
-  // Để chương trình chạy thuận tiện, ta để flower[b][0]~flower[b][pr] là đường luân phiên trong hoa
+  // Để chương trình chạy thuận tiện, đặt flower[b][0]~flower[b][pr] là đường luân phiên trong hoa
   int pr = find(flower[b].begin(), flower[b].end(), xr) - flower[b].begin();
   if (pr % 2 == 1) {
     // Kiểm tra vị trí của nó trong hoa. Nếu flower[b][0]~flower[b][pr] không phải đường luân phiên
@@ -456,7 +456,7 @@ int get_lca(int u, int v) {
     bool on_found_edge(const edge &e) {
       // Tìm thấy một cạnh đẳng thức e trong BFS
       // Cần xử lý nó theo các bước sau
-      // Ở đây u nhất định là đỉnh chẵn
+      // Tại đây u nhất định là đỉnh chẵn
       int u = st[e.u], v = st[e.v];
       if (S[v] == -1) {
         // v là nút chưa thăm
