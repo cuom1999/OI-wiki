@@ -54,7 +54,7 @@ $$
 =\sum_{i=0}^n\sum_{j=0}^{m-1}\left[j<\left\lfloor \frac{ai+b}{c} \right\rfloor\right].
 $$
 
-Đổi thứ tự lấy tổng; việc này cần tính miền giá trị của $i$ thỏa mãn điều kiện với mỗi $j$. Ta biến đổi điều kiện:
+Đổi thứ tự lấy tổng; việc này cần tính miền giá trị của $i$ thỏa mãn điều kiện với mỗi $j$. Biến đổi điều kiện:
 
 $$
 \begin{aligned}
@@ -66,7 +66,7 @@ $$
 \end{aligned}
 $$
 
-Trong quá trình biến đổi ta nhiều lần dùng tính chất của [hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên). Thay điều kiện đã biến đổi vào, biểu thức ban đầu trở thành:
+Quá trình biến đổi nhiều lần dùng tính chất của [hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên). Thay điều kiện đã biến đổi vào, biểu thức ban đầu trở thành:
 
 $$
 \begin{aligned}
@@ -77,14 +77,14 @@ f(a,b,c,n)&=\sum_{j=0}^{m-1}
 \end{aligned}
 $$
 
-Đặt $(a',b',c',n')=(c,c-b-1,a,m-1)$, ta lại quay về trường hợp $a'>c'$ đã thảo luận ở trên.
+Đặt $(a',b',c',n')=(c,c-b-1,a,m-1)$, bài toán trở lại trường hợp $a'>c'$ đã thảo luận ở trên.
 
 Kết hợp hai bước biến đổi này, có thể thấy trong quá trình đó $(a,c)$ liên tục được lấy modulo rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
 
 Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó lời gọi đệ quy bên trong sẽ có $n=-1$. Điều này không ảnh hưởng kết quả cuối cùng. Tuy nhiên, nếu yêu cầu thuật toán dừng ngay khi $m=0$, độ phức tạp thời gian có thể cải thiện thành $O(\log\min\{a,c,n\})$.
 
 ??? note "Giải thích về độ phức tạp"
-    Từ sự tương đồng giữa thuật toán này và thuật toán Euclid, rất dễ chứng minh độ phức tạp thời gian là $O(\log\min\{a,c\})$. Vì vậy, chỉ cần chứng minh rằng nếu dừng thuật toán khi $m=0$ thì độ phức tạp cũng là $O(\log n)$.
+    Từ sự tương đồng giữa thuật toán này và thuật toán Euclid, có thể chứng minh trực tiếp độ phức tạp thời gian là $O(\log\min\{a,c\})$. Vì vậy, chỉ cần chứng minh rằng nếu dừng thuật toán khi $m=0$ thì độ phức tạp cũng là $O(\log n)$.
     
     Đặt $m=\lfloor(an+b)/c\rfloor$, đồng thời ký hiệu $S=mn$, $k=m/n$; trong trực giác hình học (xem phần tiếp theo), chúng lần lượt tương ứng với diện tích của lưới điểm và hệ số góc của đường thẳng. Với $n$ đủ lớn, xấp xỉ có $k\doteq a/c$.
     
@@ -96,7 +96,7 @@ Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó
     (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\le \dfrac{1}{2}.
     $$
     
-    Do đó sau nhiều nhất $O(\log S)$ vòng, thuật toán chắc chắn dừng. Từ vòng thứ hai trở đi, $S$ ở đầu mỗi vòng luôn không vượt quá $S$ sau khi kết thúc bước lấy modulo của vòng trước; giá trị sau này xấp xỉ $kn^2$ và $k<1$, nên $O(\log S)\subseteq O(\log n)$. Điều này cho ta kết luận trên.
+    Do đó sau nhiều nhất $O(\log S)$ vòng, thuật toán sẽ dừng. Từ vòng thứ hai trở đi, $S$ ở đầu mỗi vòng luôn không vượt quá $S$ sau khi kết thúc bước lấy modulo của vòng trước; giá trị sau này xấp xỉ $kn^2$ và $k<1$, nên $O(\log S)\subseteq O(\log n)$. Từ đó suy ra kết luận trên.
 
 Cài đặt tham khảo cho bài mẫu như sau:
 
@@ -120,7 +120,7 @@ nằm phía trên trục $x$ (không tính trục $x$), và có hoành độ tro
 
 ![](./images/euclidean-1.svg)
 
-Trước hết, loại bỏ phần nguyên trong hệ số góc và tung độ gốc. Bước này tương đương với việc tính riêng số lượng điểm màu xanh ở phần giữa của hình trên. Khi hệ số góc và tung độ gốc đều là số nguyên, các điểm màu xanh chắc chắn tạo thành một mảng hình thang, tức số điểm lưới trong các cột khác nhau tạo thành cấp số cộng, nên số lượng các điểm này rất dễ tính. Sau khi loại bỏ chúng, số điểm lưới còn lại trùng với số điểm đỏ ở phần ngoài cùng bên phải của hình trên. Bài toán được chuyển thành trường hợp hệ số góc và tung độ gốc đều nhỏ hơn một. Vì chiều cao của hình thang là $n+1$ và độ dài hai đáy lần lượt là $\lfloor b/c\rfloor$ và $(\lfloor a/c\rfloor n+\lfloor b/c\rfloor)$, dùng công thức diện tích hình thang, bước này có thể quy về công thức
+Trước hết, loại bỏ phần nguyên trong hệ số góc và tung độ gốc. Bước này tương đương với việc tính riêng số lượng điểm màu xanh ở phần giữa của hình trên. Khi hệ số góc và tung độ gốc đều là số nguyên, các điểm màu xanh tạo thành một mảng hình thang, tức số điểm lưới trong các cột khác nhau tạo thành cấp số cộng, nên số lượng các điểm này có thể tính trực tiếp. Sau khi loại bỏ chúng, số điểm lưới còn lại trùng với số điểm đỏ ở phần ngoài cùng bên phải của hình trên. Bài toán được chuyển thành trường hợp hệ số góc và tung độ gốc đều nhỏ hơn một. Vì chiều cao của hình thang là $n+1$ và độ dài hai đáy lần lượt là $\lfloor b/c\rfloor$ và $(\lfloor a/c\rfloor n+\lfloor b/c\rfloor)$, dùng công thức diện tích hình thang, bước này có thể quy về công thức
 
 $$
 f(a,b,c,n) = f(a\bmod c,b\bmod c,c,n) + \dfrac{1}{2}(n+1)\left(\left\lfloor\dfrac{b}{c}\right\rfloor+\left(\left\lfloor\dfrac{a}{c}\right\rfloor n+\left\lfloor\dfrac{b}{c}\right\rfloor\right)\right).
@@ -130,9 +130,9 @@ Sau đó, lật trục hoành và trục tung. Như phần ngoài cùng bên tr�
 
 ![](./images/euclidean-2.svg)
 
-Điểm mấu chốt là tính phương trình đường thẳng nằm phía trên lưới điểm đỏ mới. Lật trục hoành và trục tung của phần ngoài cùng bên trái trong hình trên, ta được phần giữa. Đường thẳng nằm phía trên lưới điểm đỏ sau khi lật (đường liền ở phần giữa) không tương ứng với đường thẳng trước khi lật (đường liền ở phần ngoài cùng bên trái), mà tương ứng với kết quả tịnh tiến đường thẳng trước khi lật một chút về phía trên bên trái (đường nét đứt ở phần ngoài cùng bên trái). Lý do là nếu lật trực tiếp đường thẳng (đường liền ở phần ngoài cùng bên trái), ta sẽ nhận được đường nét đứt ở phần giữa, nhưng theo định nghĩa, các điểm lưới dưới nó bao gồm cả những điểm nằm đúng trên đường thẳng, dẫn tới đếm lặp các điểm trên đường thẳng. Để tránh điều này, cần tịnh tiến đường thẳng thu được sau khi lật $y=(ax+b)/c$, tức $y=(cx-b)/a$, xuống dưới một chút, nhận được đường thẳng $y=(cx-b-1)/a$; khi đó lưới điểm dưới nó mới đúng là lưới điểm xanh trước khi lật.
+Điểm mấu chốt là tính phương trình đường thẳng nằm phía trên lưới điểm đỏ mới. Lật trục hoành và trục tung của phần ngoài cùng bên trái trong hình trên, thu được phần giữa. Đường thẳng nằm phía trên lưới điểm đỏ sau khi lật (đường liền ở phần giữa) không tương ứng với đường thẳng trước khi lật (đường liền ở phần ngoài cùng bên trái), mà tương ứng với kết quả tịnh tiến đường thẳng trước khi lật một chút về phía trên bên trái (đường nét đứt ở phần ngoài cùng bên trái). Lý do là nếu lật trực tiếp đường thẳng (đường liền ở phần ngoài cùng bên trái), sẽ thu được đường nét đứt ở phần giữa, nhưng theo định nghĩa, các điểm lưới dưới nó bao gồm cả những điểm nằm đúng trên đường thẳng, dẫn tới đếm lặp các điểm trên đường thẳng. Để tránh điều này, cần tịnh tiến đường thẳng thu được sau khi lật $y=(ax+b)/c$, tức $y=(cx-b)/a$, xuống dưới một chút, nhận được đường thẳng $y=(cx-b-1)/a$; khi đó lưới điểm dưới nó mới đúng là lưới điểm xanh trước khi lật.
 
-Còn một chi tiết khác cần xử lý. Tung độ gốc của đường thẳng ở phần giữa của hình trên là số âm, nghĩa là ta vẫn chưa quay lại dạng ban đầu. Để đưa tung độ gốc về không âm, chỉ cần tịnh tiến đường thẳng (đường liền ở phần giữa) sang trái một đơn vị. Thao tác này không bỏ sót điểm lưới nào, vì trong lưới điểm xanh trước khi lật không có điểm nào có tung độ bằng không, nên sau khi lật cũng không có điểm nào có hoành độ bằng không. Cuối cùng, phương trình đường thẳng trở thành $y=(cx+c-b-1)/a$; đồng thời, cận trên của hoành độ trong lưới điểm cũng chuyển từ $m$ thành $m-1$. Bước này có thể quy về công thức
+Còn một chi tiết khác cần xử lý. Tung độ gốc của đường thẳng ở phần giữa của hình trên là số âm, nghĩa là vẫn chưa quay lại dạng ban đầu. Để đưa tung độ gốc về không âm, chỉ cần tịnh tiến đường thẳng (đường liền ở phần giữa) sang trái một đơn vị. Thao tác này không bỏ sót điểm lưới nào, vì trong lưới điểm xanh trước khi lật không có điểm nào có tung độ bằng không, nên sau khi lật cũng không có điểm nào có hoành độ bằng không. Cuối cùng, phương trình đường thẳng trở thành $y=(cx+c-b-1)/a$; đồng thời, cận trên của hoành độ trong lưới điểm cũng chuyển từ $m$ thành $m-1$. Bước này có thể quy về công thức
 
 $$
 f(a,b,c,n) = mn - f(c,c-b-1,a,m-1).
@@ -140,8 +140,8 @@ $$
 
 Thuật toán đệ quy này hoạt động được chủ yếu vì hai lý do:
 
--   Thứ nhất, hệ số góc của đường thẳng liên tục được lấy phần thập phân rồi lấy nghịch đảo, điều này tương đương với việc tính [khai triển liên phân số](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) của hệ số góc $k=a/c$. Vì độ dài khai triển liên phân số của một phân số hữu tỉ là $O(\log\min\{a,c\})$, quá trình này chắc chắn kết thúc sau $O(\log\min\{a,c\})$ bước;
--   Thứ hai, mỗi lần lật trục tọa độ thì hệ số góc của đường thẳng đều nhỏ hơn một, nên trực giác cho thấy phải có $m<n$, tức sau một vòng lặp như vậy, phạm vi hoành độ luôn thu nhỏ. Phần phân tích độ phức tạp ở trên đã chứng minh chặt chẽ rằng sau mỗi hai vòng lặp, $n$ nhiều nhất giảm còn một nửa, nên quá trình này chắc chắn kết thúc sau $O(\log n)$ bước.
+-   Thứ nhất, hệ số góc của đường thẳng liên tục được lấy phần thập phân rồi lấy nghịch đảo, điều này tương đương với việc tính [khai triển liên phân số](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) của hệ số góc $k=a/c$. Vì độ dài khai triển liên phân số của một phân số hữu tỉ là $O(\log\min\{a,c\})$, quá trình này kết thúc sau $O(\log\min\{a,c\})$ bước;
+-   Thứ hai, mỗi lần lật trục tọa độ thì hệ số góc của đường thẳng đều nhỏ hơn một, nên trực giác cho thấy phải có $m<n$, tức sau một vòng lặp như vậy, phạm vi hoành độ luôn thu nhỏ. Phần phân tích độ phức tạp ở trên đã chứng minh chặt chẽ rằng sau mỗi hai vòng lặp, $n$ nhiều nhất giảm còn một nửa, nên quá trình này kết thúc sau $O(\log n)$ bước.
 
 Đây cũng là lý do độ phức tạp của thuật toán Euclid tương tự khi hệ số góc là số hữu tỉ là $O(\log\min\{a,c,n\})$.
 
@@ -151,7 +151,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
 ### Ví dụ
 
 ???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
-    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, hãy tính
+    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, cần tính
     
     $$
     \begin{aligned}
@@ -162,7 +162,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     $$
 
 ??? note "Lời giải 1"
-    Tương tự cách suy ra công thức cho $f$, ta có thể nhận được các biểu thức đệ quy cho $g,h$.
+    Tương tự cách suy ra công thức cho $f$, có thể thu được các biểu thức đệ quy cho $g,h$.
     
     Trước hết, dùng phép lấy modulo để chuyển bài toán về trường hợp $0\le a,b<c$:
     
@@ -184,7 +184,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     m = \left\lfloor \frac{an+b}{c} \right\rfloor.
     $$
     
-    Khi đó, với tổng $g$, ta có
+    Khi đó, với tổng $g$, có
     
     $$
     \begin{aligned}
@@ -198,7 +198,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Với tổng $h$, ta có
+    Với tổng $h$, có
     
     $$
     \begin{aligned}
@@ -211,7 +211,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Từ góc nhìn trực giác hình học, những tổng phi tuyến này tương đương với việc gán cho mỗi điểm $(i,j)$ trong miền một trọng số tương ứng $w(i,j)$. Ngoài các trọng số này, phần còn lại của quá trình tính là hoàn toàn giống nhau. Với cách chọn trọng số, nói chung ta có
+    Từ góc nhìn trực giác hình học, những tổng phi tuyến này tương đương với việc gán cho mỗi điểm $(i,j)$ trong miền một trọng số tương ứng $w(i,j)$. Ngoài các trọng số này, phần còn lại của quá trình tính là hoàn toàn giống nhau. Với cách chọn trọng số, nói chung có
     
     $$
     \sum_{i=0}^ni^r\left\lfloor \frac{ai+b}{c} \right\rfloor^s = \sum_{i=0}^n\sum_{j=0}^{m-1} i^r\left((j+1)^s-j^s\right)\left[j<\left\lfloor\frac{ai+b}{c}\right\rfloor\right].
@@ -224,7 +224,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     ```
 
 ???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
-    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, hãy tính
+    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, cần tính
     
     $$
     \sum_{d=1}^n(-1)^{\lfloor d\sqrt{r}\rfloor}.
@@ -244,19 +244,19 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Hàm $f$ ở đây có dạng
+    Hàm $f$ trong trường hợp này có dạng
     
     $$
     f(a,b,c,n) = \sum_{i=1}^n\left\lfloor\dfrac{a\sqrt{r}+b}{c}i\right\rfloor.
     $$
     
-    Khác với thuật toán trong phần chính, hệ số góc ở đây không còn là số hữu tỉ. Đặt hệ số góc
+    Khác với thuật toán trong phần chính, hệ số góc trong trường hợp này không còn là số hữu tỉ. Đặt hệ số góc
     
     $$
     k = \dfrac{a\sqrt{r}+b}{c}.
     $$
     
-    Tương tự, ta chia thành hai trường hợp. Nếu $k\ge 1$, thì
+    Tương tự, chia thành hai trường hợp. Nếu $k\ge 1$, thì
     
     $$
     \begin{aligned}
@@ -265,7 +265,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Bài toán được chuyển về trường hợp hệ số góc nhỏ hơn một. Nếu $k<1$, đặt $m=\lfloor nk\rfloor$, ta có
+    Bài toán được chuyển về trường hợp hệ số góc nhỏ hơn một. Nếu $k<1$, đặt $m=\lfloor nk\rfloor$, có
     
     $$
     \begin{aligned}
@@ -280,7 +280,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     k^{-1} = \dfrac{a'\sqrt{r}+b'}{c'}.
     $$
     
-    Điều này không khó; chỉ cần hữu tỉ hóa mẫu số, ta được
+    Hữu tỉ hóa mẫu số cho kết quả
     
     $$
     k^{-1} = \dfrac{c}{a\sqrt{r}+b} = \dfrac{ca\sqrt{r}-cb}{a^2r-b^2}.
@@ -298,21 +298,21 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     f(a,b,c,n) = nm - f(ca,-cb,a^2r-b^2,m).
     $$
     
-    Để tránh tràn số nguyên, mỗi lần cần chia đồng thời $a,b,c$ cho ước chung lớn nhất của chúng. Vì quá trình tính này hoàn toàn giống quá trình tính liên phân số của $k$, theo [lý thuyết liên phân số](./continued-fraction.md#số-vô-tỉ-bậc-hai), chỉ cần bảo đảm $\gcd(a,b,c)=1$ thì trong quá trình tính chúng chắc chắn nằm trong phạm vi kiểu số nguyên. Ngoài ra, dù $(a,b,c,n)$ không bị tràn, trong phạm vi dữ liệu của bài này, $f(a,b,c,n)$ có thể vượt quá phạm vi số nguyên $64$ bit; cứ để tràn tự nhiên, không cần xử lý thêm, vì kết quả cuối cùng chắc chắn nằm trong $[-n,n]$.
+    Để tránh tràn số nguyên, mỗi lần cần chia đồng thời $a,b,c$ cho ước chung lớn nhất của chúng. Vì quá trình tính này hoàn toàn giống quá trình tính liên phân số của $k$, theo [lý thuyết liên phân số](./continued-fraction.md#số-vô-tỉ-bậc-hai), chỉ cần duy trì $\gcd(a,b,c)=1$ thì trong quá trình tính chúng sẽ nằm trong phạm vi kiểu số nguyên. Ngoài ra, dù $(a,b,c,n)$ không bị tràn, trong phạm vi dữ liệu của bài này, $f(a,b,c,n)$ có thể vượt quá phạm vi số nguyên $64$ bit; cứ để tràn tự nhiên, không cần xử lý thêm, vì kết quả cuối cùng sẽ nằm trong $[-n,n]$.
     
-    Dù hệ số góc không bao giờ trở thành không, độ phức tạp của thuật toán vẫn là $O(\log n)$; điều này dễ thấy từ lập luận về độ phức tạp thuật toán ở trên.
+    Dù hệ số góc không bao giờ trở thành không, độ phức tạp của thuật toán vẫn là $O(\log n)$; điều này suy ra từ lập luận về độ phức tạp thuật toán ở trên.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-2.cpp"
     ```
 
 ???+ example "[Fraction](https://www.luogu.com.cn/problem/P5179)"
-    Cho các số nguyên dương $a,b,c,d$, hãy tìm trong tất cả các phân số tối giản $p/q$ thỏa mãn $a/b<p/q<c/d$ phân số có thứ tự từ điển của $(q,p)$ nhỏ nhất.
+    Cho các số nguyên dương $a,b,c,d$, cần tìm trong tất cả các phân số tối giản $p/q$ thỏa mãn $a/b<p/q<c/d$ phân số có thứ tự từ điển của $(q,p)$ nhỏ nhất.
 
 ??? note "Lời giải"
     Bài này cũng là một ứng dụng kinh điển của [cây Stern-Brocot](./stern-brocot.md); lời giải liên quan có thể tìm ở [đây](./continued-fraction.md#cây-của-liên-phân-số). Vì nó chỉ phụ thuộc vào cấu trúc đệ quy của phân số, nó cũng có thể được giải bằng phương pháp tương tự thuật toán Euclid, nên cũng có thể xem là một ứng dụng của thuật toán Euclid tương tự.
     
-    Nếu giữa $a/b$ và $c/d$ (không tính hai đầu mút) tồn tại ít nhất một số tự nhiên, có thể lấy trực tiếp $(q,p)=(1,\lfloor a/b\rfloor+1)$. Nếu không, chắc chắn có
+    Nếu giữa $a/b$ và $c/d$ (không tính hai đầu mút) tồn tại ít nhất một số tự nhiên, có thể lấy trực tiếp $(q,p)=(1,\lfloor a/b\rfloor+1)$. Nếu không, suy ra
     
     $$
     \left\lfloor\dfrac{a}{b}\right\rfloor \le \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\le\left\lfloor\dfrac{a}{b}\right\rfloor+1.
@@ -320,7 +320,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     
     Từ bất đẳng thức này có thể thấy phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
     
-    Ở đây có một chi tiết cần xử lý: sau khi lấy nghịch đảo, phân số nhỏ nhất theo thứ tự từ điển có còn là phân số nhỏ nhất theo thứ tự từ điển trước khi lấy nghịch đảo hay không. Nói cách khác, trong các phân số $p/q$ thỏa mãn $a/b<p/q<c/d$, phân số có thứ tự từ điển $(q,p)$ nhỏ nhất có đồng thời là phân số có thứ tự từ điển $(p,q)$ nhỏ nhất hay không. Giả sử ngược lại, đặt $p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(q,p)$, nhưng $r/s\neq p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(r,s)$. Khi đó chắc chắn có $r<p$ và $q<s$. Nhưng điều này cho thấy
+    Có một chi tiết cần xử lý: sau khi lấy nghịch đảo, phân số nhỏ nhất theo thứ tự từ điển có còn là phân số nhỏ nhất theo thứ tự từ điển trước khi lấy nghịch đảo hay không. Nói cách khác, trong các phân số $p/q$ thỏa mãn $a/b<p/q<c/d$, phân số có thứ tự từ điển $(q,p)$ nhỏ nhất có đồng thời là phân số có thứ tự từ điển $(p,q)$ nhỏ nhất hay không. Giả sử ngược lại, đặt $p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(q,p)$, nhưng $r/s\neq p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(r,s)$. Khi đó phải có $r<p$ và $q<s$. Nhưng điều này cho thấy
     
     $$
     \dfrac{a}{b} < \dfrac{r}{s} < \dfrac{r}{q} < \dfrac{p}{q} < \dfrac{c}{d}.
@@ -363,7 +363,7 @@ Từ trực giác hình học, điều này gần tương đương với việc 
 
 ![](./images/euclidean-universal.svg)
 
-Dĩ nhiên, định nghĩa như vậy còn cần xét một loạt trường hợp đặc biệt:
+Định nghĩa này còn cần xét một loạt trường hợp đặc biệt:
 
 -   Khi đi qua điểm nguyên (tức đồng thời đi lên và đi sang phải), cần ghi $U$ trước rồi mới ghi $R$;
 -   Ở đầu chuỗi, ngoài số lần đi lên qua đường lưới trong khoảng $(0,1]$, còn cần bổ sung thêm $\lfloor b/c\rfloor$ ký tự $U$;
@@ -387,9 +387,9 @@ $$
 
 Do đó trạng thái cuối cùng là tích $(1,0,0)S$, trong đó $S$ được hiểu là tích của các ma trận nói trên. Đáp án cần tìm chính là thành phần thứ ba của trạng thái cuối cùng.
 
-Ngoài việc định nghĩa các phần tử trong vị nhóm là ma trận, ta cũng có thể định nghĩa chúng là đóng góp của một đoạn dãy thao tác vào kết quả cuối cùng, rồi định nghĩa tích của hai thao tác là phép hợp nhất đóng góp của hai đoạn dãy thao tác.
+Ngoài việc định nghĩa các phần tử trong vị nhóm là ma trận, cũng có thể định nghĩa chúng là đóng góp của một đoạn dãy thao tác vào kết quả cuối cùng, rồi định nghĩa tích của hai thao tác là phép hợp nhất đóng góp của hai đoạn dãy thao tác.
 
-Trong bài này, có thể định nghĩa đóng góp của mỗi đoạn dãy thao tác là $(x,y,\sum y)$. Để giải thích chặt chẽ các ký hiệu này, có thể xem các thành phần đều là hàm của dãy thao tác, tức với dãy thao tác $S$, đóng góp của nó có thể viết là $(x(S),y(S),(\sum y)(S))$. Trong đó, $x(S)$ và $y(S)$ lần lượt tương ứng với số ký tự $R$ và $U$ trong dãy thao tác $S$, tức số lần đoạn thẳng đi sang phải và đi lên qua đường lưới. Với ký hiệu tổng ở thành phần cuối, nói chung ta định nghĩa như sau: với một hàm $f(S)$ trên dãy thao tác, có thể định nghĩa $(\sum f)(S)$, hoặc ký hiệu $\sum_S f$, là biểu thức
+Trong bài này, có thể định nghĩa đóng góp của mỗi đoạn dãy thao tác là $(x,y,\sum y)$. Để giải thích chặt chẽ các ký hiệu này, có thể xem các thành phần đều là hàm của dãy thao tác, tức với dãy thao tác $S$, đóng góp của nó có thể viết là $(x(S),y(S),(\sum y)(S))$. Trong đó, $x(S)$ và $y(S)$ lần lượt tương ứng với số ký tự $R$ và $U$ trong dãy thao tác $S$, tức số lần đoạn thẳng đi sang phải và đi lên qua đường lưới. Với ký hiệu tổng ở thành phần cuối, nói chung định nghĩa như sau: với một hàm $f(S)$ trên dãy thao tác, có thể định nghĩa $(\sum f)(S)$, hoặc ký hiệu $\sum_S f$, là biểu thức
 
 $$
 \sum_S f := \sum\{f(S_{[1,r]}):S_r=R\}.
@@ -436,7 +436,7 @@ Quá trình rút gọn cụ thể như sau:
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{b}{c}\right\rfloor = \left\lfloor\dfrac{ai+(b\bmod c)}{c}\right\rfloor.
     $$
 
-    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a,b\bmod c,c,n)$. Trong trường hợp này, ta có
+    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a,b\bmod c,c,n)$. Trong trường hợp này, có
 
     $$
     F(a,b,c,n,U,R) = U^{\lfloor b/c\rfloor}F(a,b\bmod c,c,n,U,R).
@@ -448,13 +448,13 @@ Quá trình rút gọn cụ thể như sau:
     \left\lfloor\dfrac{ai+b}{c}\right\rfloor - \left\lfloor\dfrac{a}{c}\right\rfloor i = \left\lfloor\dfrac{(a\bmod c)i+b}{c}\right\rfloor.
     $$
 
-    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a\bmod c,b,c,n)$. Trong trường hợp này, ta có
+    Vì vậy, điều này tương đương với việc biến đổi tham số đoạn thẳng từ $(a,b,c,n)$ thành $(a\bmod c,b,c,n)$. Trong trường hợp này, có
 
     $$
     F(a,b,c,n,U,R) = F(a\bmod c,b,c,n,U,U^{\lfloor a/c\rfloor}R).
     $$
 
--   Với trường hợp còn lại, cần lật trục hoành và trục tung; về cơ bản đây là hoán đổi $U$ và $R$, chỉ có điều tham số của đoạn thẳng sau khi lật cần được tính cẩn thận. Kết hợp với định nghĩa dãy thao tác, ta cần xác định các hệ số $(a',b',c',n')$ sao cho trong dãy thao tác trước khi biến đổi, số ký tự $R$ đứng trước ký tự $U$ thứ $j$ đúng bằng $\lfloor(a'j+b')/c'\rfloor$ và tổng cộng có $n'$ ký tự $U$. Theo định nghĩa,
+-   Với trường hợp còn lại, cần lật trục hoành và trục tung; về cơ bản đây là hoán đổi $U$ và $R$, chỉ có điều tham số của đoạn thẳng sau khi lật cần được tính cẩn thận. Kết hợp với định nghĩa dãy thao tác, cần xác định các hệ số $(a',b',c',n')$ sao cho trong dãy thao tác trước khi biến đổi, số ký tự $R$ đứng trước ký tự $U$ thứ $j$ đúng bằng $\lfloor(a'j+b')/c'\rfloor$ và tổng cộng có $n'$ ký tự $U$. Theo định nghĩa,
 
     $$
     n'=\left\lfloor\dfrac{an+b}{c}\right\rfloor = m,
@@ -483,7 +483,7 @@ Quá trình rút gọn cụ thể như sau:
     \left\lfloor\dfrac{c(j+1)-b-1}{a}\right\rfloor - \left\lfloor\dfrac{c-b-1}{a}\right\rfloor = \left\lfloor\dfrac{cj+(c-b-1)\bmod a}{a}\right\rfloor.
     $$
 
-    Nhắc lại, số lượng ký tự $U$ trong chuỗi trước khi hoán đổi là $m = \lfloor(an+b)/c\rfloor$. Thao tác tịnh tiến sang trái một đơn vị nói trên yêu cầu phải có ít nhất một ký tự $U$ trước khi hoán đổi, tức $m>0$. Dựa vào điều kiện này, ta chia thành hai trường hợp:
+    Nhắc lại, số lượng ký tự $U$ trong chuỗi trước khi hoán đổi là $m = \lfloor(an+b)/c\rfloor$. Thao tác tịnh tiến sang trái một đơn vị nói trên yêu cầu phải có ít nhất một ký tự $U$ trước khi hoán đổi, tức $m>0$. Dựa vào điều kiện này, chia thành hai trường hợp:
 
     -   Với trường hợp $m>0$, sau khi xử lý hai điểm trên, dãy thao tác sau khi hoán đổi $U$ và $R$ là dãy hợp lệ ứng với đoạn thẳng có tham số $(c,(c-b-1)\bmod a,a,m-1)$. Vì vậy,
 
@@ -499,7 +499,7 @@ Quá trình rút gọn cụ thể như sau:
 
         Khác với thuật toán Euclid tương tự, trường hợp đặc biệt này của thuật toán Euclid vạn năng phải được xử lý riêng, nếu không sẽ liên quan đến lũy thừa âm và không thể tính đúng.
 
-Dựa trên các thảo luận này, ta có thể giải bài toán bằng đệ quy.
+Dựa trên các thảo luận này, có thể giải bài toán bằng đệ quy.
 
 Giả sử thời gian cho một phép nhân giữa các phần tử trong vị nhóm là $O(1)$. Khi các phép lũy thừa của những phần tử này trong quá trình tính đều dùng [lũy thừa nhị phân](../binary-exponentiation.md), độ phức tạp cuối cùng của thuật toán là $O(\log\max\{a,c\}+\log(b/c))$[^complexity].
 
@@ -533,7 +533,7 @@ Giả sử thời gian cho một phép nhân giữa các phần tử trong vị 
     
     Xét toàn bộ các vòng đệ quy, những hạng này có thể triệt tiêu dạng telescoping, nên tổng độ phức tạp cuối cùng là $O(\log a+\log c)=O(\log\max\{a,c\})$.
     
-    Cuối cùng, cộng thêm độ phức tạp $O(\log(b/c))$ của lũy thừa nhanh $U^{\lfloor b/c\rfloor}$ trong vòng lặp đầu tiên, ta nhận được tổng độ phức tạp $O(\log\max\{a,c\}+\log(b/c))$.
+    Cuối cùng, cộng thêm độ phức tạp $O(\log(b/c))$ của lũy thừa nhanh $U^{\lfloor b/c\rfloor}$ trong vòng lặp đầu tiên, thu được tổng độ phức tạp $O(\log\max\{a,c\}+\log(b/c))$.
 
 Quy trình của thuật toán Euclid vạn năng có thể viết thành một mẫu thống nhất; khi xử lý bài toán cụ thể, chỉ cần thay đổi phần cài đặt của kiểu mẫu `T`.
 
@@ -542,7 +542,7 @@ Quy trình của thuật toán Euclid vạn năng có thể viết thành một 
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:euclidean"
     ```
 
-Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như sau:
+Dùng thuật toán Euclid vạn năng, có cài đặt cho bài mẫu như sau:
 
 ??? example "Cài đặt bài mẫu ([Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
     ```cpp
@@ -553,7 +553,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
 ### Ví dụ
 
 ???+ example "[Bài mẫu - Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)"
-    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, hãy tính
+    Có nhiều truy vấn. Cho các số nguyên dương $a,b,c,n$, cần tính
     
     $$
     \begin{aligned}
@@ -595,7 +595,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     
     Đáp án cuối cùng là ba thành phần cuối của vector thu được khi nhân phải trạng thái ban đầu với tích của các ma trận thao tác này.
     
-    Cách làm này có hằng số rất lớn và không thể qua bài này; ở đây chỉ đưa chi tiết để hỗ trợ hiểu bài.
+    Cách làm này có hằng số rất lớn và không thể qua bài này; phần này chỉ đưa chi tiết để hỗ trợ hiểu bài.
     
     **Hợp nhất đóng góp**: định nghĩa đóng góp của một đoạn dãy thao tác là $(x,y,\sum y,\sum xy,\sum y^2)$. Hai thao tác lần lượt là
     
@@ -603,7 +603,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     U = (0,1,0,0,0),~ R = (1,0,0,0,0).
     $$
     
-    Khi hợp nhất đóng góp, ta có
+    Khi hợp nhất đóng góp, có
     
     $$
     \begin{aligned}
@@ -633,7 +633,7 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     
     Dù kiểm tra trực tiếp khá rườm rà, vector đóng góp được định nghĩa ở trên đúng là tạo thành một vị nhóm dưới phép nhân này, với đơn vị là $(0,0,0,0,0)$.
     
-    Với trường hợp tổng quát, ta có
+    Với trường hợp tổng quát, có
     
     $$
     \begin{aligned}
@@ -642,21 +642,21 @@ Dùng thuật toán Euclid vạn năng, ta có cài đặt cho bài mẫu như s
     \end{aligned}
     $$
     
-    Chỉ cần duy trì tốt mọi đóng góp có bậc thấp hơn, ta có thể tính tổng trong trường hợp tổng quát.
+    Chỉ cần duy trì tốt mọi đóng góp có bậc thấp hơn, có thể tính tổng trong trường hợp tổng quát.
     
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-5.cpp"
     ```
 
 ???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
-    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, hãy tính
+    Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, cần tính
     
     $$
     \sum_{d=1}^n(-1)^{\lfloor d\sqrt{r}\rfloor}.
     $$
 
 ??? note "Lời giải 2"
-    Trước hết, xử lý riêng trường hợp $r$ là số chính phương, hoàn toàn giống phần trước nên bỏ qua. Ở đây chỉ xét trường hợp $r$ không phải số chính phương.
+    Trước hết, xử lý riêng trường hợp $r$ là số chính phương, hoàn toàn giống phần trước nên bỏ qua. Phần này chỉ xét trường hợp $r$ không phải số chính phương.
     
     Có nhiều cách áp dụng thuật toán Euclid vạn năng cho bài này. Chẳng hạn, có thể định nghĩa một biến đổi tuyến tính cho mỗi thao tác:
     
@@ -730,4 +730,4 @@ Bài ứng dụng:
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
-[^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng ta thực hiện một vòng lấy modulo của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng đơn giản hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.
+[^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng thực hiện một vòng lấy modulo của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng đơn giản hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.
