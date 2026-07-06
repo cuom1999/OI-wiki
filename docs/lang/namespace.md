@@ -1,12 +1,12 @@
 ## Tổng quan
 
-Cơ chế **không gian tên** (`namespace`) của C++ có thể dùng để giải quyết vấn đề
-xung đột tên trong các dự án phức tạp.
+Cơ chế **không gian tên** (`namespace`) của C++ dùng để giải quyết vấn đề xung
+đột tên trong các dự án phức tạp.
 
-Lấy một ví dụ: toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong
-không gian tên `std`. Nếu định nghĩa một biến tên là `cin`, có thể truy cập biến
-`cin` do mình định nghĩa bằng `cin`, đồng thời truy cập đối tượng `cin` của thư
-viện chuẩn bằng `std::cin`, nhờ đó tránh xung đột tên.
+Ví dụ, toàn bộ nội dung của thư viện chuẩn C++ đều được định nghĩa trong không
+gian tên `std`. Nếu tự định nghĩa một biến tên là `cin`, có thể truy cập biến
+`cin` đó bằng `cin`, đồng thời truy cập đối tượng `cin` của thư viện chuẩn bằng
+`std::cin`, nhờ đó tránh xung đột tên.
 
 ## Định nghĩa
 
@@ -50,21 +50,20 @@ void f()  // định nghĩa hàm f trong không gian tên toàn cục, không xu
 
 ## Khai báo và chỉ thị `using`
 
-Sau khi định nghĩa không gian tên, nếu ở bên ngoài không gian tên mà muốn truy
-cập thành viên bên trong không gian tên, cần thêm `tên_không_gian_tên::` trước
-tên thành viên.
+Sau khi định nghĩa không gian tên, nếu muốn truy cập thành viên từ bên ngoài
+không gian tên, cần thêm `tên_không_gian_tên::` trước tên thành viên.
 
-Để truy cập trực tiếp thành viên trong không gian tên chỉ bằng tên thành viên,
-có thể dùng `using`.
+Để truy cập thành viên trong không gian tên chỉ bằng tên thành viên, có thể dùng
+`using`.
 
 `using` có hai dạng thường gặp sau:
 
 1.  `using tên_không_gian_tên::tên_thành_viên;`: khai báo này cho phép lược bỏ
-    tên không gian tên trước một thành viên cụ thể và truy cập trực tiếp bằng tên
-    thành viên. Có thể hiểu là đưa riêng thành viên đó vào phạm vi hiện tại.
-2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép truy cập trực
-    tiếp **mọi** thành viên trong không gian tên bằng tên thành viên. Có thể hiểu
-    là đưa toàn bộ thành viên của không gian tên này vào phạm vi hiện tại.
+    tên không gian tên trước một thành viên cụ thể và truy cập bằng chính tên
+    thành viên đó. Nó đưa riêng thành viên đó vào phạm vi hiện tại.
+2.  `using namespace tên_không_gian_tên;`: chỉ thị này cho phép truy cập **mọi**
+    thành viên trong không gian tên bằng tên thành viên. Nó đưa toàn bộ thành
+    viên của không gian tên này vào phạm vi hiện tại.
 
 Vì vậy, nếu viết `using namespace std;`, mọi tên trong `std` sẽ được đưa vào
 phạm vi hiện tại. Khi đó có thể dùng `cin` thay cho `std::cin`, dùng `cout` thay
@@ -75,7 +74,7 @@ cho `std::cout`.
     hiện tại, nếu khai báo biến hoặc hàm trùng với tên trong `std`, có thể xảy
     ra lỗi biên dịch do xung đột tên.
 
-    Vì vậy trong phát triển phần mềm, không nên dùng chỉ thị
+    Vì vậy, trong phát triển phần mềm, không nên dùng chỉ thị
     `using namespace tên_không_gian_tên;`.
 
 Với `using`, đoạn mã trong [cú pháp C++ cơ bản](./basic.md#cin-và-cout)
@@ -112,7 +111,7 @@ int main() {
 ## Không gian tên vô danh
 
 Khi trong một phạm vi chỉ cần định nghĩa một không gian tên (`namespace`) để
-tránh xung đột tên nội bộ, có thể viết gọn cách định nghĩa và sử dụng bằng không
+tránh xung đột tên nội bộ, có thể viết gọn phần định nghĩa và sử dụng bằng không
 gian tên vô danh.
 
 Không gian tên được định nghĩa dưới dạng `namespace { /* something ... */ }`,
@@ -129,9 +128,9 @@ ngoài, giống như sau phần định nghĩa đã có thêm một chỉ thị 
 
 Trong một số bài toán có nhiều bài con, có thể định nghĩa một không gian tên
 riêng cho từng bài con, rồi đặt các biến và hàm cần thiết để giải bài con đó bên
-trong. Như vậy, ngay cả khi hai phần cài đặt bài con khai báo cùng một tên,
-chúng cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Cách làm
-này giúp gỡ lỗi thuận tiện hơn và cũng cải thiện khả năng đọc của chương trình.
+trong. Khi đó, ngay cả khi hai phần cài đặt bài con khai báo cùng một tên, chúng
+cũng không xung đột, giúp các bài con không ảnh hưởng lẫn nhau. Cách làm này
+giúp gỡ lỗi thuận tiện hơn và cũng cải thiện khả năng đọc của chương trình.
 
 ### Tránh xung đột với thư viện chuẩn và tên do môi trường đưa vào
 
