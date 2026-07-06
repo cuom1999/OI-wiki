@@ -16,7 +16,7 @@ Với OIer, yêu cầu về hiệu năng chương trình thường cao hơn rấ
 hợp hiệu năng thời gian của nó kém hơn mảng tĩnh, và còn tệ hơn nếu máy chủ OJ
 không bật tối ưu hóa đầy đủ. Vì vậy khi chỉ cần lưu trữ dữ liệu thông thường,
 `vector` thường không phải lựa chọn ưu tiên. Sau đây là một số điểm mạnh nổi bật
-của `vector`; khi cần đến những điểm này, `vector` có thể giúp ích rất nhiều.
+của `vector`; khi cần đến những điểm này, `vector` rất hữu ích.
 
 <span id="vector-có-thể-cấp-phát-bộ-nhớ-động"></span>
 

@@ -45,9 +45,9 @@ Bộ chuyển đổi bộ chứa không hẳn là bộ chứa. Chúng không có
 > "Bộ chuyển đổi là cơ chế làm hành vi của một sự vật giống hành vi của một sự
 > vật khác"; bộ chuyển đổi bọc bộ chứa để nó thể hiện một hành vi khác.
 
--   **Stack** (`stack`): ngăn xếp vào sau ra trước (LIFO), mặc định bọc
+-   **Ngăn xếp** (`stack`): cấu trúc vào sau ra trước (LIFO), mặc định bọc
     `deque`.
--   **Queue** (`queue`): hàng đợi vào trước ra trước (FIFO), mặc định bọc
+-   **Hàng đợi** (`queue`): cấu trúc vào trước ra trước (FIFO), mặc định bọc
     `deque`.
 -   **Hàng đợi ưu tiên** (`priority_queue`): hàng đợi mà thứ tự phần tử được quyết
     định bởi một vị từ tác động lên các giá trị được lưu, mặc định bọc

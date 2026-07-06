@@ -7,8 +7,8 @@ author: Xeonacid, ksyx, Early0v0
 STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa
 theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ hỗ trợ truy
 vấn hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ
-trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không hỗ trợ
-bộ lặp.
+trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không cung
+cấp bộ lặp.
 
 <span id="tệp-tiêu-đề-ngăn-xếp"></span>
 
@@ -64,8 +64,8 @@ std::cout << s1.empty() << " " << s2.empty() << std::endl;  // 1 0
 STL [hàng đợi](../../ds/queue.md) (`std::queue`) là một bộ chuyển đổi bộ chứa
 theo nguyên tắc vào trước ra trước (FIFO, First In, First Out). Nó chỉ hỗ trợ
 truy vấn hoặc xóa phần tử được thêm vào đầu tiên (phần tử đầu hàng đợi), không
-hỗ trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự FIFO, `std::queue` cũng không hỗ
-trợ bộ lặp.
+hỗ trợ truy cập ngẫu nhiên. Để giữ đúng thứ tự FIFO, `std::queue` cũng không
+cung cấp bộ lặp.
 
 <span id="tệp-tiêu-đề-hàng-đợi"></span>
 
