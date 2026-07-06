@@ -471,18 +471,25 @@ thủy: `Byte`, `Double`, `Float`, `Integer`, `Long`, `Short`, `Character` và
 
 Phần này lấy `int` và `Integer` làm ví dụ:
 
-1.  `Integer` là lớp bao của `int`, còn `int` là một kiểu dữ liệu nguyên thủy của Java.
-2.  Kiểu `Integer` chỉ dùng được sau khi tạo thực thể, còn kiểu `int` thì không cần.
-3.  `Integer` thực chất tương ứng với tham chiếu. Khi `new` một `Integer`, thực tế là tạo một đối tượng; còn `int` lưu trực tiếp dữ liệu.
-4.  Giá trị mặc định của `Integer` là `null`, có thể nhận dữ liệu kiểu `null` và `int`; giá trị mặc định của `int` là 0 và không thể nhận `null`.
-5.  Với `Integer`, dùng `==` để kiểm tra hai biến có giống nhau không có thể cho kết quả sai, chỉ nên dùng `equals()`; còn `int` có thể dùng trực tiếp `==`.
+1.  `Integer` là lớp bao của `int`, còn `int` là kiểu dữ liệu nguyên thủy của Java.
+2.  Giá trị kiểu `Integer` là một đối tượng; giá trị kiểu `int` thì không cần tạo
+    đối tượng.
+3.  Biến kiểu `Integer` lưu tham chiếu đến đối tượng. Khi gọi `new Integer(...)`,
+    thực tế là tạo một đối tượng; còn `int` lưu trực tiếp dữ liệu.
+4.  Giá trị mặc định của `Integer` là `null`, có thể nhận `null` hoặc một giá trị
+    `int`; giá trị mặc định của `int` là 0 và không thể nhận `null`.
+5.  Với `Integer`, dùng `==` để so sánh hai biến có thể cho kết quả sai; nên dùng
+    `equals()`. Với `int`, có thể dùng trực tiếp `==`.
 
 <span id="boxing-và-unboxing"></span>
 ### Đóng hộp và mở hộp
 
 Phần này lấy `int` và `Integer` làm ví dụ:
 
-Bản chất của `Integer` là đối tượng, còn `int` là kiểu nguyên thủy, nên không thể gán trực tiếp giữa hai kiểu này. Khi cần chuyển đổi, đưa kiểu nguyên thủy thành kiểu bao được gọi là đóng hộp (boxing); chiều ngược lại gọi là mở hộp (unboxing).
+Bản chất của `Integer` là đối tượng, còn `int` là kiểu nguyên thủy, nên không thể
+gán trực tiếp giữa hai kiểu nếu không có bước chuyển đổi. Chuyển từ kiểu nguyên
+thủy sang kiểu bao gọi là đóng hộp (boxing); chiều ngược lại gọi là mở hộp
+(unboxing).
 
 ```java
 // Kiểu nguyên thủy
@@ -501,7 +508,10 @@ int value = integer;
 ```
 
 ???+ warning "Lưu ý"
-    Dù JDK đã thêm cơ chế tự động đóng hộp và tự động mở hộp, cần chọn kiểu phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu nguyên thủy `int` thì không. Vì vậy, khi mở hộp một kiểu bao đang có giá trị `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
+    Dù JDK đã thêm cơ chế tự động đóng hộp và tự động mở hộp, vẫn cần chọn kiểu
+    phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu
+    nguyên thủy `int` thì không. Vì vậy, khi mở hộp một kiểu bao đang có giá trị
+    `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
     
     ```java
     Integer integer = Integer.valueOf(null);
@@ -514,15 +524,27 @@ int value = integer;
 <span id="kế-thừa"></span>
 ## Kế thừa
 
-Tạo thiết kế mới dựa trên thiết kế đã có chính là kế thừa trong lập trình hướng đối tượng. Trong kế thừa, lớp mới không xuất hiện từ hư không mà được định nghĩa dựa trên một lớp đã tồn tại. Thông qua kế thừa, lớp mới tự động nhận được mọi thành viên của lớp cơ sở, gồm biến thành viên và phương thức, cũng như các thành viên thuộc nhiều mức truy cập khác nhau, dù là `public` hay `private`. Định nghĩa lớp mới bằng kế thừa đơn giản, nhanh và tiện hơn nhiều so với viết một lớp mới từ đầu. Kế thừa là một trong những cơ chế quan trọng hỗ trợ tái sử dụng mã.
+Trong lập trình hướng đối tượng, kế thừa cho phép tạo một lớp mới dựa trên một
+lớp đã có. Lớp mới tự động nhận các thành viên của lớp cơ sở, gồm biến thành viên
+và phương thức, với các mức truy cập khác nhau như `public`, `protected` hay
+`private`. Nhờ đó, định nghĩa lớp mới bằng kế thừa thường nhanh và gọn hơn viết
+lại từ đầu. Đây là một trong những cơ chế quan trọng để tái sử dụng mã.
 
-Trong Java, từ khóa kế thừa là `extends`. Java chỉ hỗ trợ đơn kế thừa lớp, nhưng có thể hiện thực nhiều giao diện.
+Trong Java, từ khóa dùng cho kế thừa lớp là `extends`. Java chỉ hỗ trợ đơn kế
+thừa lớp, nhưng một lớp có thể triển khai nhiều giao diện.
 
 Trong Java, mọi lớp đều là lớp con của lớp `Object`.
 
-Lớp con kế thừa lớp cha; mọi thành viên của lớp cha, gồm biến và phương thức, đều trở thành thành viên của lớp con, ngoại trừ constructor. Constructor thuộc riêng lớp cha vì tên của chúng chính là tên lớp, nên constructor của lớp cha không tồn tại trong lớp con. Ngoài điều đó, lớp con nhận được tất cả thành viên của lớp cha.
+Lớp con kế thừa lớp cha; mọi thành viên của lớp cha, gồm biến và phương thức, đều
+trở thành thành viên của lớp con, ngoại trừ constructor. Constructor thuộc riêng
+lớp cha vì tên của chúng chính là tên lớp, nên constructor của lớp cha không tồn
+tại trong lớp con. Ngoài điểm này, lớp con nhận được tất cả thành viên của lớp
+cha.
 
-Mỗi thành viên có mức truy cập khác nhau. Lớp con kế thừa mọi thành viên của lớp cha, nhưng các mức truy cập khác nhau khiến cách lớp con sử dụng chúng cũng khác nhau: một số thành viên của lớp cha trực tiếp trở thành giao diện công khai của lớp con, một số khác bị ẩn sâu đến mức ngay cả lớp con cũng không thể truy cập trực tiếp.
+Mỗi thành viên có một mức truy cập riêng. Lớp con kế thừa mọi thành viên của lớp
+cha, nhưng mức truy cập quyết định lớp con có thể dùng chúng như thế nào: một số
+thành viên trở thành giao diện công khai của lớp con, còn một số thành viên bị ẩn
+đến mức ngay cả lớp con cũng không thể truy cập.
 
 Bảng dưới đây liệt kê mức truy cập của các thành viên lớp cha khi ở trong lớp con:
 
@@ -536,11 +558,17 @@ Bảng dưới đây liệt kê mức truy cập của các thành viên lớp c
 <span id="đa-hình"></span>
 ## Đa hình
 
-Trong Java, khi gán một đối tượng cho một biến, kiểu của đối tượng phải khớp với kiểu của biến. Nhưng vì Java có khái niệm kế thừa, quy tắc này có thể được mở rộng thành: **một biến có thể lưu đối tượng thuộc kiểu được khai báo của nó hoặc bất kỳ kiểu con nào của kiểu đó**.
+Trong Java, khi gán một đối tượng cho một biến, kiểu của đối tượng phải tương
+thích với kiểu của biến. Nhờ kế thừa, quy tắc này có thể mở rộng thành: **một
+biến có thể lưu đối tượng thuộc kiểu khai báo của nó hoặc bất kỳ kiểu con nào của
+kiểu đó**.
 
-Nếu một kiểu hiện thực một giao diện, nó cũng có thể được xem là kiểu con của giao diện đó.
+Nếu một kiểu triển khai một giao diện, nó cũng có thể được xem là kiểu con của
+giao diện đó.
 
-Biến lưu kiểu đối tượng trong Java là biến đa hình. Thuật ngữ "đa hình" chỉ việc một biến có thể lưu các đối tượng thuộc nhiều kiểu khác nhau, tức kiểu khai báo của nó hoặc bất kỳ kiểu con nào.
+Biến lưu đối tượng trong Java có tính đa hình. Nói cách khác, một biến có thể lưu
+đối tượng thuộc nhiều kiểu khác nhau: kiểu khai báo của biến hoặc bất kỳ kiểu con
+nào của kiểu đó.
 
 Biến đa hình:
 
@@ -551,9 +579,13 @@ Biến đa hình:
 <span id="generics"></span>
 ## Kiểu tổng quát (generic, kiểu tham số hóa)
 
-Kiểu tổng quát (generic) nghĩa là khi định nghĩa lớp, không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của kiểu tổng quát là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
+Kiểu tổng quát (generic) nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ
+thể của thuộc tính hoặc tham số phương thức, mà chỉ xác định kiểu khi sử dụng lớp
+hoặc tạo đối tượng. Bản chất của generic là kiểu tham số hóa: kiểu dữ liệu được
+thao tác được truyền vào như một tham số.
 
-Kiểu tổng quát cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
+Generic cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, nhờ đó
+phát hiện được kiểu không hợp lệ trước khi chạy chương trình.
 
 <span id="interface"></span>
 ## Giao diện (interface)
@@ -561,22 +593,32 @@ Kiểu tổng quát cung cấp cơ chế kiểm tra an toàn kiểu tại thời
 <span id="interface-giới-thiệu"></span>
 ### Giới thiệu
 
-Giao diện (interface) trong Java là một kiểu trừu tượng, là tập hợp các phương thức trừu tượng, thường được khai báo bằng `interface`. Một lớp hiện thực giao diện để kế thừa các phương thức trừu tượng của giao diện đó.
+Giao diện (interface) trong Java là một kiểu trừu tượng, thường được khai báo
+bằng từ khóa `interface`. Nó mô tả một tập phương thức mà lớp triển khai giao diện
+phải cung cấp.
 
-Giao diện không phải là lớp. Cách viết giao diện khá giống lớp, nhưng chúng thuộc hai khái niệm khác nhau. Lớp mô tả thuộc tính và phương thức của đối tượng; giao diện chứa các phương thức mà lớp phải hiện thực.
+Giao diện không phải là lớp. Cú pháp của giao diện khá giống lớp, nhưng hai khái
+niệm này khác nhau: lớp mô tả thuộc tính và phương thức của đối tượng, còn giao
+diện mô tả các phương thức mà lớp phải triển khai.
 
-Trừ khi lớp hiện thực giao diện là lớp trừu tượng, lớp đó phải định nghĩa tất cả phương thức trong giao diện.
+Trừ khi là lớp trừu tượng, một lớp triển khai giao diện phải định nghĩa tất cả
+phương thức trong giao diện đó.
 
-Giao diện không thể được khởi tạo, nhưng có thể được hiện thực. Một lớp hiện thực giao diện phải hiện thực mọi phương thức được mô tả trong giao diện, nếu không thì phải khai báo là lớp trừu tượng. Ngoài ra, trong Java, kiểu giao diện có thể dùng để khai báo biến; biến đó có thể là con trỏ null, hoặc được gắn với một đối tượng hiện thực giao diện này.
+Giao diện không thể được khởi tạo trực tiếp, nhưng có thể được triển khai bởi lớp
+khác. Một lớp triển khai giao diện phải định nghĩa mọi phương thức được mô tả
+trong giao diện, nếu không thì phải khai báo là lớp trừu tượng. Ngoài ra, trong
+Java, kiểu giao diện có thể dùng để khai báo biến; biến đó có thể là `null` hoặc
+tham chiếu tới một đối tượng triển khai giao diện này.
 
 <span id="khác-biệt-với-lớp"></span>
 ### Khác biệt với lớp
 
 1.  Giao diện không thể dùng để khởi tạo đối tượng.
 2.  Giao diện không có constructor.
-3.  Tất cả phương thức trong giao diện phải là phương thức trừu tượng; sau Java 8, giao diện có thể có phương thức không trừu tượng được sửa bằng từ khóa `default`.
+3.  Theo mặc định, phương thức trong giao diện là phương thức trừu tượng; từ Java
+    8, giao diện có thể có phương thức không trừu tượng với từ khóa `default`.
 4.  Giao diện không thể chứa biến thành viên, ngoại trừ biến `static` và `final`.
-5.  Giao diện không được lớp kế thừa, mà được lớp hiện thực.
+5.  Giao diện không được lớp kế thừa, mà được lớp triển khai.
 6.  Giao diện hỗ trợ đa kế thừa, còn lớp thì không.
 
 <span id="khai-báo-interface"></span>
@@ -590,7 +632,7 @@ Giao diện không thể được khởi tạo, nhưng có thể được hiện
 ```
 
 <span id="hiện-thực-interface"></span>
-### Hiện thực
+### Triển khai
 
 ```java
 ...implements TenInterface[, TenInterfaceKhac, TenInterfaceKhac..., ...] ...
@@ -602,19 +644,23 @@ Giao diện không thể được khởi tạo, nhưng có thể được hiện
 <span id="lambda-giới-thiệu"></span>
 ### Giới thiệu
 
-Biểu thức lambda cũng có thể gọi là closure; đây là một trong những tính năng mới quan trọng nhất của Java 8.
+Biểu thức lambda cũng có thể được xem như một dạng closure; đây là một trong những
+tính năng mới quan trọng nhất của Java 8.
 
-Biểu thức lambda cho phép truyền hàm làm tham số của một phương thức, tức truyền hàm vào phương thức như một đối số.
+Biểu thức lambda cho phép truyền hành vi vào phương thức như một đối số.
 
-Dùng biểu thức lambda có thể làm mã ngắn gọn và chặt chẽ hơn.
+Dùng biểu thức lambda có thể làm mã ngắn gọn và rõ ý hơn.
 
 <span id="cú-pháp-lambda"></span>
 ### Cú pháp
 
--   Khai báo kiểu tùy chọn: không cần khai báo kiểu tham số, trình biên dịch có thể suy luận thống nhất từ giá trị tham số.
+-   Khai báo kiểu tùy chọn: không cần khai báo kiểu tham số nếu trình biên dịch
+    có thể suy luận từ ngữ cảnh.
 -   Dấu ngoặc tròn tham số tùy chọn: một tham số không cần ngoặc tròn, nhưng nhiều tham số thì cần.
 -   Dấu ngoặc nhọn tùy chọn: nếu thân chỉ chứa một câu lệnh thì không cần dùng ngoặc nhọn.
--   Từ khóa trả về tùy chọn: nếu thân chỉ có một biểu thức trả về giá trị, trình biên dịch sẽ tự động trả về; nếu dùng ngoặc nhọn thì cần chỉ rõ biểu thức trả về giá trị.
+-   Từ khóa trả về tùy chọn: nếu thân chỉ có một biểu thức trả về giá trị, trình
+    biên dịch sẽ tự động trả về; nếu dùng ngoặc nhọn thì cần viết rõ câu lệnh
+    `return`.
 
 Cách khai báo biểu thức lambda như sau:
 
@@ -631,7 +677,7 @@ x -> 2 * x
 // 4. Nhận 2 số nguyên kiểu int và trả về tổng của chúng
 (int x, int y) -> x + y
 
-// 5. Nhận một đối tượng String và in ra console, không trả về giá trị nào (trông như trả về void)
+// 5. Nhận một đối tượng String và in ra console, không trả về giá trị nào
 (String s) -> System.out.print(s)
 ```
 
@@ -679,14 +725,16 @@ public class Main {
 }
 ```
 
-Trong đó, `->` là ký hiệu suy diễn: ngoặc phía trước nhận tham số, rồi suy diễn giá trị trả về ở phía sau; thực chất là truyền phương thức.
+Trong đó, `->` là ký hiệu của lambda: phần bên trái nhận tham số, phần bên phải
+mô tả biểu thức hoặc khối lệnh sẽ thực thi.
 
 <span id="functional-interface"></span>
 ### Giao diện hàm (functional interface)
 
 1.  Là một giao diện, phù hợp với định nghĩa giao diện của Java.
 2.  Chỉ chứa một phương thức trừu tượng.
-3.  Vì chỉ có một phương thức chưa hiện thực, biểu thức lambda có thể tự động điền vào.
+3.  Vì chỉ có một phương thức trừu tượng, biểu thức lambda có thể cung cấp phần
+    triển khai cho phương thức đó.
 
 Cách dùng giao diện hàm như sau:
 
@@ -751,18 +799,24 @@ Cách dùng giao diện hàm như sau:
 
 ## Tập hợp
 
-`Collection` là giao diện trong Java, được nhiều giao diện bộ chứa tổng quát hiện thực. Trong phần này, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
+`Collection` là giao diện trong Java, được nhiều giao diện bộ chứa tổng quát kế
+thừa. Trong phần này, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối
+tượng.
 
-Trong Java, kiểu phần tử của `Collection` khi định nghĩa phải là đối tượng, không thể là kiểu dữ liệu nguyên thủy.
+Trong Java, kiểu phần tử của `Collection` phải là kiểu đối tượng, không thể là
+kiểu dữ liệu nguyên thủy.
 
-Các nội dung dưới đây đều dựa trên tính đa hình của Java và xuất hiện dưới dạng hiện thực giao diện.
+Các nội dung dưới đây đều dựa trên tính đa hình của Java và được thể hiện thông
+qua các lớp triển khai giao diện.
 
 Các giao diện thường dùng gồm `List`, `Queue`, `Set` và `Map`.
 
 <span id="định-nghĩa-container"></span>
 ### Định nghĩa bộ chứa
 
-Khi định nghĩa lớp bộ chứa tổng quát, cần chỉ định kiểu dữ liệu lúc định nghĩa. Nếu không chỉ định kiểu dữ liệu mà coi là kiểu `Object` rồi thêm dữ liệu tùy ý, trong Java 8 tuy vẫn biên dịch được nhưng sẽ có nhiều cảnh báo và rủi ro.
+Khi định nghĩa bộ chứa generic, cần chỉ định kiểu dữ liệu ngay lúc khai báo. Nếu
+không chỉ định kiểu, Java sẽ xem đó là kiểu thô dựa trên `Object`; khi thêm dữ
+liệu tùy ý, Java 8 vẫn có thể biên dịch nhưng sẽ sinh nhiều cảnh báo và rủi ro.
 
 Ví dụ, cách định nghĩa dưới đây là an toàn; bộ chứa chỉ nhận kiểu `Integer`.
 
@@ -781,15 +835,23 @@ list.add(1L);
 list.add("I am String");
 ```
 
-Vì vậy, nếu không có nhu cầu đặc biệt thì không khuyến nghị cách thứ hai. Trình biên dịch không thể giúp kiểm tra tính hợp lệ của dữ liệu đưa vào. Khi lấy giá trị bằng `list.get(index)`, kiểu dữ liệu không xác định rõ vì dữ liệu lấy ra đều là `Object`; cần tự ép kiểu về kiểu ban đầu, và chỉ cần sơ suất là có thể gặp ngoại lệ ép kiểu sai.
+Vì vậy, nếu không có nhu cầu đặc biệt thì không nên dùng cách thứ hai. Trình biên
+dịch không thể giúp kiểm tra tính hợp lệ của dữ liệu đưa vào. Khi lấy giá trị bằng
+`list.get(index)`, kiểu dữ liệu không rõ vì mọi giá trị lấy ra đều là `Object`;
+cần tự ép kiểu về kiểu ban đầu, và chỉ cần sơ suất là có thể gặp ngoại lệ ép kiểu
+sai.
 
-Nếu đã xác định kiểu như `List<Integer>`, trình biên dịch sẽ kiểm tra kiểu dữ liệu đưa vào và chỉ cho phép đưa dữ liệu số nguyên. Khi khai báo biến tập hợp, chỉ có thể dùng kiểu bao như `List<Integer>` hoặc `Class` tự định nghĩa, không thể dùng kiểu nguyên thủy như `List<int>`.
+Nếu đã xác định kiểu như `List<Integer>`, trình biên dịch sẽ kiểm tra kiểu dữ liệu
+đưa vào và chỉ cho phép thêm số nguyên. Khi khai báo biến tập hợp, chỉ có thể dùng
+kiểu bao như `List<Integer>` hoặc lớp tự định nghĩa, không thể dùng kiểu nguyên
+thủy như `List<int>`.
 
 ### List
 
 #### ArrayList
 
-`ArrayList` là mảng có thể tăng kích thước động theo nhu cầu; độ dài ban đầu mặc định là 10. Nếu vượt quá độ dài hiện tại, nó sẽ mở rộng thêm $\dfrac{3}{2}$.
+`ArrayList` là mảng có thể tăng kích thước động theo nhu cầu; độ dài ban đầu mặc
+định là 10. Nếu vượt quá độ dài hiện tại, nó sẽ mở rộng thêm $\dfrac{3}{2}$.
 
 <span id="arraylist-khởi-tạo"></span>
 ##### Khởi tạo
