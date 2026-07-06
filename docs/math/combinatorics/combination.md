@@ -30,7 +30,7 @@ Trong toán sơ cấp ở trung học, các bài hoán vị tổ hợp thường
 
 ### Số hoán vị
 
-Từ $n$ phần tử khác nhau, chọn tùy ý $m$ phần tử ($m\leq n$, $m$ và $n$ đều là số tự nhiên; các phần sau cũng hiểu như vậy) và sắp thành một dãy theo một thứ tự nhất định, ta gọi đó là một hoán vị chập $m$ của $n$ phần tử khác nhau. Số tất cả các hoán vị chập $m$ ($m\leq n$) của $n$ phần tử khác nhau được gọi là số hoán vị chập $m$ của $n$ phần tử, ký hiệu $\mathrm A_n^m$ (hoặc $\mathrm P_n^m$).
+Từ $n$ phần tử khác nhau, chọn tùy ý $m$ phần tử ($m\leq n$, $m$ và $n$ đều là số tự nhiên; các phần sau cũng hiểu như vậy) và sắp thành một dãy theo một thứ tự nhất định, thu được một hoán vị chập $m$ của $n$ phần tử khác nhau. Số tất cả các hoán vị chập $m$ ($m\leq n$) của $n$ phần tử khác nhau được gọi là số hoán vị chập $m$ của $n$ phần tử, ký hiệu $\mathrm A_n^m$ (hoặc $\mathrm P_n^m$).
 
 Công thức tính số hoán vị:
 
@@ -58,7 +58,7 @@ Hoán vị toàn phần là một trường hợp đặc biệt của số hoán
 
 ### Số tổ hợp
 
-Từ $n$ phần tử khác nhau, chọn tùy ý $m \leq n$ phần tử để tạo thành một tập, ta gọi đó là một tổ hợp chập $m$ của $n$ phần tử khác nhau. Số tất cả các tổ hợp chập $m \leq n$ của $n$ phần tử khác nhau được gọi là số tổ hợp chập $m$ của $n$ phần tử, ký hiệu $\dbinom{n}{m}$, đọc là "$n$ chọn $m$".
+Từ $n$ phần tử khác nhau, chọn tùy ý $m \leq n$ phần tử để tạo thành một tập, thu được một tổ hợp chập $m$ của $n$ phần tử khác nhau. Số tất cả các tổ hợp chập $m \leq n$ của $n$ phần tử khác nhau được gọi là số tổ hợp chập $m$ của $n$ phần tử, ký hiệu $\dbinom{n}{m}$, đọc là "$n$ chọn $m$".
 
 Công thức tính số tổ hợp:
 
@@ -105,9 +105,9 @@ Bản chất là đếm số nghiệm nguyên dương của $x_1+x_2+\cdots+x_k=
 
 Bài toán 2: Nếu thay đổi để mỗi nhóm được phép rỗng thì sao?
 
-Lúc này rõ ràng không thể trực tiếp chèn thanh ngăn, vì có thể xảy ra trường hợp nhiều thanh ngăn cùng nằm trong một khoảng, rất khó tính.
+Lúc này không thể trực tiếp chèn thanh ngăn, vì có thể xảy ra trường hợp nhiều thanh ngăn cùng nằm trong một khoảng, rất khó tính.
 
-Ta tạo điều kiện để chuyển về bài toán 1 có ràng buộc: mượn trước $k$ phần tử, rồi chèn thanh ngăn vào $n + k - 1$ khoảng được tạo bởi $n + k$ phần tử. Đáp án là
+Có thể tạo điều kiện để chuyển về bài toán 1 có ràng buộc: mượn trước $k$ phần tử, rồi chèn thanh ngăn vào $n + k - 1$ khoảng được tạo bởi $n + k$ phần tử. Đáp án là
 
 $$
 \binom{n + k - 1}{k - 1} = \binom{n + k - 1}{n}
@@ -115,7 +115,7 @@ $$
 
 Dù không trực tiếp giải bài toán gốc, biểu thức này chính là đáp án của bài toán gốc. Có thể hiểu như sau:
 
-Ban đầu ta mượn $k$ phần tử để đảm bảo mỗi nhóm có ít nhất một phần tử; sau khi chèn thanh ngăn xong, lấy lại $k$ phần tử đã mượn khỏi $k$ nhóm. Vì các phần tử giống nhau, các trường hợp sau khi biến đổi và trước khi biến đổi tương ứng một-một, nên đáp án bằng nhau.
+Ban đầu mượn $k$ phần tử để bảo đảm mỗi nhóm có ít nhất một phần tử; sau khi chèn thanh ngăn xong, lấy lại $k$ phần tử đã mượn khỏi $k$ nhóm. Vì các phần tử giống nhau, các trường hợp sau khi biến đổi và trước khi biến đổi tương ứng một-một, nên đáp án bằng nhau.
 
 Từ đó suy ra công thức của phương pháp thanh ngăn: $\dbinom{n + k - 1}{n}$.
 
@@ -129,7 +129,7 @@ Bài toán 3: Mở rộng thêm một bước, nếu yêu cầu nhóm thứ $i$ 
 
 Bản chất là đếm số nghiệm của $x_1+x_2+\cdots+x_k=n$, trong đó $x_i \ge a_i$.
 
-Tương tự trường hợp không ràng buộc, ta mượn $\sum a_i$ phần tử để đảm bảo nhóm thứ $i$ có ít nhất $a_i$ phần tử. Đặt
+Tương tự trường hợp không ràng buộc, mượn $\sum a_i$ phần tử để bảo đảm nhóm thứ $i$ có ít nhất $a_i$ phần tử. Đặt
 
 $$
 x_i^{\prime}=x_i-a_i
@@ -167,7 +167,7 @@ Chọn $k$ số trong $n$ số tự nhiên $1 \sim n$ sao cho không có hai s�
 
 ## Định lý nhị thức
 
-Trước khi vào phần nâng cao về hoán vị và tổ hợp, ta giới thiệu một định lý có liên quan chặt chẽ với số tổ hợp: định lý nhị thức.
+Trước phần nâng cao về hoán vị và tổ hợp, cần giới thiệu một định lý có liên quan chặt chẽ với số tổ hợp: định lý nhị thức.
 
 Định lý nhị thức mô tả các hệ số trong khai triển:
 
@@ -177,7 +177,7 @@ $$
 
 Có thể chứng minh bằng quy nạp toán học, sử dụng $\dbinom{n}{k}+\dbinom{n}{k-1}=\dbinom{n+1}{k}$ trong bước quy nạp.
 
-Định lý nhị thức cũng dễ dàng mở rộng sang dạng đa thức:
+Định lý nhị thức cũng mở rộng được sang dạng đa thức:
 
 Cho $n$ là số nguyên dương, $x_i$ là số thực,
 
@@ -195,7 +195,7 @@ $$
 
 ## Hoán vị và tổ hợp nâng cao
 
-Tiếp theo ta giới thiệu một số biến thể của hoán vị và tổ hợp.
+Tiếp theo là một số biến thể của hoán vị và tổ hợp.
 
 <span id="số-hoán-vị-của-đa-tập--hệ-số-đa-thức"></span>
 
@@ -209,13 +209,13 @@ $$
 \frac{n!}{\prod_{i=1}^kn_i!}=\frac{n!}{n_1!n_2!\cdots n_k!}
 $$
 
-Tương đương với việc chia bỏ số hoán vị của các phần tử giống nhau. Cụ thể, có thể xem ta có $k$ loại bóng khác nhau, mỗi loại có lần lượt $n_1,n_2,\cdots,n_k$ quả, và $n=n_1+n_2+\ldots+n_k$. Số hoán vị toàn phần của $n$ quả bóng này chính là **số hoán vị của đa tập**. Số hoán vị của đa tập thường được gọi là **hệ số đa thức**. Ta có thể dùng ký hiệu hệ số đa thức để biểu diễn công thức trên:
+Tương đương với việc chia bỏ số hoán vị của các phần tử giống nhau. Cụ thể, có thể xem có $k$ loại bóng khác nhau, mỗi loại có lần lượt $n_1,n_2,\cdots,n_k$ quả, và $n=n_1+n_2+\ldots+n_k$. Số hoán vị toàn phần của $n$ quả bóng này chính là **số hoán vị của đa tập**. Số hoán vị của đa tập thường được gọi là **hệ số đa thức**. Có thể dùng ký hiệu hệ số đa thức để biểu diễn công thức trên:
 
 $$
 \binom{n}{n_1,n_2,\cdots,n_k}=\frac{n!}{\prod_{i=1}^kn_i!}
 $$
 
-Có thể thấy $\dbinom{n}{m}$ tương đương với $\dbinom{n}{m,n-m}$, nhưng cách viết sau dài dòng hơn nên thường không dùng.
+$\dbinom{n}{m}$ tương đương với $\dbinom{n}{m,n-m}$, nhưng cách viết sau dài dòng hơn nên thường không dùng.
 
 <span id="số-tổ-hợp-của-đa-tập-1"></span>
 
@@ -233,7 +233,7 @@ $$
 
 Xét bài toán: đặt $S=\{n_1\cdot a_1,n_2\cdot a_2,\cdots,n_k\cdot a_k,\}$ là đa tập gồm $n_1$ phần tử $a_1$, $n_2$ phần tử $a_2$, ..., $n_k$ phần tử $a_k$. Với số nguyên dương $r$, cần đếm số cách chọn $r$ phần tử từ $S$ để tạo thành một đa tập.
 
-Lúc này số lượng phần tử mỗi loại được chọn bị giới hạn. Tương tự, ta có thể chuyển bài toán này thành việc giải phương trình tuyến tính có ràng buộc:
+Lúc này số lượng phần tử mỗi loại được chọn bị giới hạn. Tương tự, có thể chuyển bài toán này thành việc giải phương trình tuyến tính có ràng buộc:
 
 $$
 \forall i\in [1,k],\ x_i\le n_i,\ \sum_{i=1}^kx_i=r
@@ -267,7 +267,7 @@ $$
 \end{aligned}
 $$
 
-Lấy tập vũ trụ $\displaystyle |U|=\binom{k+r-1}{k-1}$ trừ biểu thức trên, ta thu được số tổ hợp của đa tập:
+Lấy tập vũ trụ $\displaystyle |U|=\binom{k+r-1}{k-1}$ trừ biểu thức trên, thu được số tổ hợp của đa tập:
 
 $$
 Ans=\sum_{p=0}^k(-1)^p\sum_{A}\binom{k+r-1-\sum_{A} n_{A_i}-p}{k-1}
@@ -279,7 +279,7 @@ Trong đó $A$ đóng vai trò tập con đang được liệt kê, thỏa $|A|=
 
 ### Hoán vị vòng tròn
 
-Cho $n$ người đứng thành một vòng tròn, số cách sắp xếp được ký hiệu $\mathrm Q_n^n$. Xét một vòng tròn đã sắp xếp xong; nếu cắt vòng tròn tại các vị trí khác nhau, ta lại thu được các hàng dọc khác nhau.
+Cho $n$ người đứng thành một vòng tròn, số cách sắp xếp được ký hiệu $\mathrm Q_n^n$. Xét một vòng tròn đã sắp xếp xong; nếu cắt vòng tròn tại các vị trí khác nhau, sẽ thu được các hàng dọc khác nhau.
 Do đó
 
 $$
@@ -382,7 +382,7 @@ Có thể chứng minh bằng $(6)$. Công thức này được gọi là [đồ
 
 Ký hiệu $f_n$ là số phương án tạo một cấu trúc nhất định bằng đúng $n$ phần tử khác nhau, và $g_n$ là tổng số phương án tạo cấu trúc đó bằng cách chọn $i \geq 0$ phần tử từ $n$ phần tử khác nhau.
 
-Nếu biết $f_n$ và cần tính $g_n$, rõ ràng có:
+Nếu biết $f_n$ và cần tính $g_n$, có:
 
 $$
 g_n = \sum_{i = 0}^{n} \binom{n}{i} f_i
@@ -409,7 +409,7 @@ f_n &= \sum_{i = 0}^{n} \binom{n}{i} (-1)^{n-i} \left[\sum_{j = 0}^{i} \binom{i}
 \end{aligned}
 $$
 
-Liệt kê $j$ trước, rồi liệt kê $i$, ta được:
+Liệt kê $j$ trước, rồi liệt kê $i$, thu được:
 
 $$
 \begin{aligned}
@@ -418,7 +418,7 @@ f_n &= \sum_{j = 0}^{n}\sum_{i = j}^{n}\binom{n}{i}\binom{i}{j} (-1)^{n-i}f_j \\
 \end{aligned}
 $$
 
-Dùng công thức (11) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), ta được:
+Dùng công thức (11) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), thu được:
 
 $$
 \begin{aligned}
@@ -433,7 +433,7 @@ $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j\sum_{k = 0}^{n - j}\binom{n - j}{k} (-1)^{n-j-k}1^{k}
 $$
 
-Dùng công thức (5) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), ta được:
+Dùng công thức (5) trong phần [Tính chất của số tổ hợp | Hệ quả nhị thức](#tính-chất-của-số-tổ-hợp--hệ-quả-nhị-thức), thu được:
 
 $$
 f_n = \sum_{j = 0}^{n}\binom{n}{j}f_j[n = j] = f_n

@@ -1,6 +1,6 @@
 author: abc1763613206, HeRaNO, NachtgeistW, r-value, Tiphereth-A, wlbksy, YZircon, 0zu-cc, real01bit
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Đây là một phần quan trọng trong định hướng dự án. Mỗi cộng tác viên cần
     bảo đảm đóng góp của mình tuân thủ các điều kiện dưới đây.
 
@@ -11,12 +11,12 @@ Với tư cách là một wiki, **OI Wiki** không phải nơi công bố
 như **lý thuyết hoặc lời giải mới**, **quan điểm cá nhân**,
 **định nghĩa hoặc thuật ngữ tự đặt**. Ví dụ:
 
--   Nếu bạn tìm ra một cách làm không thông thường cho một bài cụ thể nhưng
-    không chứng minh được cách đó đã được dùng trong các bài khác, bạn
+-   Nếu một cách làm không thông thường cho một bài cụ thể chưa được chứng
+    minh là đã dùng trong các bài khác, cộng tác viên
     **không nên** mở một trang riêng về nó trong **OI Wiki**.
--   Nếu bạn đề xuất một thuật toán hoặc cấu trúc dữ liệu mới nhưng không chứng
-    minh được nó đã được dùng để giải một lớp bài toán trong lập trình thi đấu,
-    bạn **không nên** gửi nội dung đó lên **OI Wiki**.
+-   Nếu một thuật toán hoặc cấu trúc dữ liệu mới chưa được chứng minh là đã
+    dùng để giải một lớp bài toán trong lập trình thi đấu, nội dung đó
+    **không nên** được gửi lên **OI Wiki**.
 
 ## OI Wiki không phải nơi gom tin tức
 
@@ -24,36 +24,36 @@ Là một trang tổng hợp tri thức chủ yếu xoay quanh lập trình thi 
 ưu tiên những thông tin **đã lắng lại, ổn định và được thừa nhận rộng rãi**.
 
 Nói cách khác, trừ thông tin do tổ chức có thẩm quyền công bố, chẳng hạn thay
-đổi thể thức thi từ China Computer Federation, nội dung bạn đóng góp nên là
+đổi thể thức thi từ China Computer Federation, nội dung đóng góp nên là
 thông tin đã được kiểm chứng, được cộng đồng công nhận và không có vấn đề lớn
 về tính thời sự trong một thời gian ngắn. Ví dụ:
 
--   Nếu bạn thấy tiến sĩ X công bố một thuật toán mới ở đâu đó và muốn đưa vào
-    **OI Wiki**, trước hết bạn nên quan sát xem thuật toán đó có được công nhận
+-   Nếu tiến sĩ X công bố một thuật toán mới và nội dung đó được đề xuất đưa
+    vào **OI Wiki**, trước hết cần quan sát xem thuật toán đó có được công nhận
     rộng rãi hay không, chẳng hạn có thể dùng như một lời giải tốt và phổ dụng
     trong các kỳ thi chính thức, đồng thời có đủ khác biệt với các thuật toán
     đã có trong **OI Wiki**.
 -   Nếu phần mềm hoặc nhân vật được nhắc đến trong **OI Wiki** vướng một sự
-    kiện dư luận, hãy theo dõi thông báo liên quan trong khu bình luận hoặc các
-    kênh chính thức, đừng mở issue lặp lại chỉ để nêu sự việc. Mục tiêu của
-    **OI Wiki** là ghi lại **thông tin có giá trị lâu dài**, không phải
+    kiện dư luận, nên theo dõi thông báo liên quan trong khu bình luận hoặc
+    các kênh chính thức, thay vì mở issue lặp lại chỉ để nêu sự việc. Mục tiêu
+    của **OI Wiki** là ghi lại **thông tin có giá trị lâu dài**, không phải
     **thông tin tạm thời theo thời điểm**.
 
 ## OI Wiki không phải kho lưu trữ
 
 Trang chính của **OI Wiki** không thu nhận các loại **tài liệu**, **slide**,
-**bài giảng**, **sổ tay**,... Nếu bạn muốn gửi tài liệu liên quan đến lập trình
-thi đấu, hãy chuyển sang [OI-wiki/libs](https://github.com/OI-wiki/libs).
+**bài giảng**, **sổ tay**,... Tài liệu liên quan đến lập trình thi đấu nên
+được gửi sang [OI-wiki/libs](https://github.com/OI-wiki/libs).
 
 ## OI Wiki không phải công cụ quảng bá
 
 **OI Wiki** là một trang tổng hợp tri thức, **không phải** diễn đàn, bục phát
-biểu hay công cụ quảng cáo. Vì vậy khi thêm hoặc sửa mục từ, xin đừng:
+biểu hay công cụ quảng cáo. Vì vậy khi thêm hoặc sửa mục từ, không nên:
 
 -   Nêu quan điểm hoặc bình luận: nội dung của **OI Wiki** phải **khách quan và
-    trung lập**. Nếu muốn nêu quan điểm về **OI Wiki**, hãy dùng khu bình luận
-    hoặc trang issue. Nếu quan điểm không liên quan đến **OI Wiki**, hãy đăng ở
-    blog cá nhân hoặc diễn đàn.
+    trung lập**. Quan điểm về **OI Wiki** nên được nêu trong khu bình luận
+    hoặc trang issue. Quan điểm không liên quan đến **OI Wiki** nên được đăng
+    ở blog cá nhân hoặc diễn đàn.
 -   Thực hiện bất kỳ hình thức quảng bá nào: vì nhu cầu thu nhận tri thức,
     **OI Wiki** có thể chấp nhận giới thiệu các trang web hoặc phần mềm
     **đã được biết đến rộng rãi** trong lĩnh vực lập trình thi đấu. Ngoài ra,
@@ -66,7 +66,7 @@ Là một dự án cộng đồng chủ yếu dựa vào đóng góp của ngư�
 không có và cũng không nên được xem là có thẩm quyền như một cơ quan chính
 thức. **OI Wiki** có thể được dùng làm tài liệu tham khảo khi học lập trình thi
 đấu, nhưng không phải sách giáo khoa chuẩn. Với một trang tham khảo do cộng
-đồng duy trì, bạn không nên xem **OI Wiki** là chuẩn cuối cùng, chẳng hạn như
+đồng duy trì, không nên xem **OI Wiki** là chuẩn cuối cùng, chẳng hạn như
 "đề cương thi" của lập trình thi đấu, cũng không nên tin mù quáng mọi nội dung
 trên **OI Wiki**. **OI Wiki** không chịu trách nhiệm cho bất kỳ hệ quả nào phát
 sinh từ việc sử dụng nội dung của trang.
@@ -74,13 +74,13 @@ sinh từ việc sử dụng nội dung của trang.
 ## OI Wiki không phải blog cá nhân
 
 Bản chất của **OI Wiki**, đúng với chữ "wiki", là một cộng đồng **cùng biên
-tập nội dung**. Điều đó có nghĩa là nội dung bạn cung cấp nên **giảm tối đa màu
-sắc cá nhân**, phục vụ toàn bộ wiki và chú ý đến cấu trúc của mục từ liên quan.
-Đừng viết mục từ trong wiki với tư duy viết blog cá nhân. Ví dụ:
+tập nội dung**. Điều đó có nghĩa là nội dung đóng góp nên **giảm tối đa màu
+sắc cá nhân**, phục vụ toàn bộ wiki và lưu tâm đến cấu trúc của mục từ liên
+quan. Không nên viết mục từ trong wiki với tư duy viết blog cá nhân. Ví dụ:
 
--   Bạn **không nên** dùng **OI Wiki** làm trang điều hướng cho blog cá nhân.
--   Bạn **không nên** thêm lịch sử mục từ, lời phàn nàn cá nhân, chuyện đùa
-    không liên quan,... vào phần mô tả.
+-   **OI Wiki** **không nên** được dùng làm trang điều hướng cho blog cá nhân.
+-   Lịch sử mục từ, lời phàn nàn cá nhân, chuyện đùa không liên quan,... không
+    nên được thêm vào phần mô tả.
 
 Các ví dụ trên đều là lối viết thường gặp khi viết blog cá nhân, nhưng không
 phù hợp với tinh thần khách quan và trung lập của **OI Wiki**.
@@ -91,9 +91,9 @@ phù hợp với tinh thần khách quan và trung lập của **OI Wiki**.
 vậy khi dịch thuật ngữ nước ngoài, **OI Wiki** thiên về cách dịch **đã được
 cộng đồng sử dụng rộng rãi**, ngay cả khi cách dịch đó có thể chưa hoàn hảo.
 
-Khi một cách dịch đã quen thuộc và được thừa nhận rộng rãi, việc sửa bừa chỉ vì
-"đúng hơn" thường tạo thêm nhầm lẫn và hỗn loạn. Những tranh luận chữ nghĩa như
-vậy cũng làm giảm hiệu quả trao đổi.
+Khi một cách dịch đã quen thuộc và được thừa nhận rộng rãi, việc sửa tùy tiện
+chỉ vì "đúng hơn" thường tạo thêm nhầm lẫn và hỗn loạn. Những tranh luận chữ
+nghĩa như vậy cũng làm giảm hiệu quả trao đổi.
 
 ## OI Wiki không phải bách khoa toàn thư
 
@@ -119,8 +119,8 @@ Ví dụ, các lĩnh vực hoặc kiến thức sau **không phù hợp** để 
 
 Khi thu nhận thuật toán, **OI Wiki** quan tâm đến bản thân thuật toán hơn là
 cài đặt mã nguồn. Cài đặt cụ thể chỉ là cách hiểu chi tiết hơn hoặc gợi ý hiện
-thực hóa, không phải tiện ích riêng cho người học một ngôn ngữ cụ thể. Nếu muốn
-học một ngôn ngữ, bạn nên đọc tài liệu chính thức của ngôn ngữ đó.
+thực hóa, không phải tiện ích riêng cho người học một ngôn ngữ cụ thể. Khi muốn
+học một ngôn ngữ, nên đọc tài liệu chính thức của ngôn ngữ đó.
 
 Vì nhu cầu thu nhận tri thức, **OI Wiki** có thể có hướng dẫn ngắn cho các ngôn
 ngữ thường dùng trong lập trình thi đấu. Ngoài phạm vi đó, **OI Wiki** không
