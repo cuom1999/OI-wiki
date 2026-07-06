@@ -18,9 +18,9 @@ author: aofall, greyqz, Ir1d, Link-cute, Marcythm, ouuan, Shen-Linwood, sshwy, S
     có hai toán hạng là `1` và `2`. Ngoài ra, trong C++ còn có một toán tử ba
     ngôi duy nhất là `?:`.
 
-Trong các toán tử số học có hai toán tử một ngôi (dương, âm) và năm toán tử hai
-ngôi (nhân, chia, lấy modulo, cộng, trừ), trong đó toán tử một ngôi có độ ưu
-tiên cao nhất.
+Trong các toán tử số học, có hai toán tử một ngôi (dương, âm) và năm toán tử hai
+ngôi (nhân, chia, lấy phần dư, cộng, trừ). Các toán tử một ngôi có độ ưu tiên
+cao nhất.
 
 Toán tử modulo `%` có nghĩa là tính phần dư khi chia hai số nguyên.
 
@@ -40,7 +40,7 @@ tính theo tính kết hợp của toán tử; dấu ngoặc có thể thay đ�
 Với toán tử số học hai ngôi, nếu hai toán hạng có cùng kiểu, sẽ không xảy ra
 [chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu), và kết quả phép toán có kiểu đó.
 Nếu hai toán hạng không cùng kiểu, chuyển đổi kiểu sẽ xảy ra để đưa chúng về một
-kiểu thống nhất. Quy tắc chuyển đổi xem tại
+kiểu thống nhất. Quy tắc chuyển đổi được trình bày tại
 [chuyển đổi kiểu](./var.md#chuyển-đổi-kiểu).
 
 Ví dụ, với một biến số nguyên (`int`) $x$ và một biến số thực dấu phẩy động độ
@@ -67,9 +67,9 @@ Xem thêm: [phép toán bit](../math/bit.md#phép-toán-bit).
 | `<<`          | dịch trái theo bit |
 | `>>`          | dịch phải theo bit |
 
-Ý nghĩa của phép toán bit xem tại trang [phép toán bit](../math/bit.md). Cần chú
-ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép đảo bit);
-AND theo bit, OR theo bit và XOR còn thấp hơn toán tử so sánh (xem
+Ý nghĩa của phép toán bit được trình bày ở trang [phép toán bit](../math/bit.md).
+Cần chú ý rằng độ ưu tiên của phép toán bit thấp hơn toán tử số học (trừ phép
+đảo bit); AND theo bit, OR theo bit và XOR còn thấp hơn toán tử so sánh (xem
 [bảng tổng hợp độ ưu tiên toán tử C++](#bảng-tổng-hợp-độ-ưu-tiên-toán-tử-c)).
 Vì vậy, khi dùng các toán tử này, nên thêm ngoặc nếu thứ tự tính không thật rõ
 ràng.
@@ -97,9 +97,8 @@ toán tử tự tăng `++` và tự giảm `--` sẽ được dùng.
 
 Toán tử tự tăng/tự giảm có thể đặt trước hoặc sau biến. Đặt trước biến gọi là
 dạng tiền tố, đặt sau biến gọi là dạng hậu tố. Khi dùng riêng lẻ, hai dạng này
-không khác nhau đáng kể; nếu cần dùng giá trị của cả biểu thức thì cần lưu ý
-như trong ví dụ sau. Chi tiết có thể tham khảo phần ví dụ trong
-[tham chiếu](./reference.md).
+gần như tương đương; nếu cần dùng giá trị của cả biểu thức thì cần lưu ý như
+trong ví dụ sau. Có thể tham khảo thêm phần ví dụ trong [tham chiếu](./reference.md).
 
 ```cpp
 i = 100;
@@ -130,9 +129,9 @@ thành `op -= 2`, `op = op * 2` có thể viết thành `op *= 2`.
 
 ## Toán tử điều kiện
 
-Toán tử điều kiện có thể xem là dạng viết tắt của câu lệnh `if`. Trong
-`a ? b : c`, nếu biểu thức `a` đúng thì kết quả của biểu thức điều kiện này là
-`b`, ngược lại kết quả là `c`.
+Toán tử điều kiện là dạng viết tắt của câu lệnh `if`. Trong `a ? b : c`, nếu
+biểu thức `a` đúng thì kết quả của biểu thức điều kiện này là `b`, ngược lại kết
+quả là `c`.
 
 ## Toán tử so sánh
 
@@ -317,8 +316,8 @@ không gây nhập nhằng.
     tương ứng; nếu không thì hành vi không xác định. Với số không dấu, dịch trái
     sẽ loại bỏ các bit bị dịch ra khỏi kiểu kết quả. Từ C++20, `a << b` được quy
     định là giá trị của $a\cdot 2^b$ theo modulo $2^N$ ($N$ là độ rộng bit của
-    kiểu kết quả), tức dù là số có dấu hay không dấu, dịch trái đều trực tiếp
-    loại bỏ các bit bị dịch ra khỏi kiểu kết quả (tức
+    kiểu kết quả), tức dù là số có dấu hay không dấu, dịch trái đều loại bỏ các
+    bit bị dịch ra khỏi kiểu kết quả (tức
     [dịch trái số học/dịch trái logic](../math/bit.md#dịch-bit)).
 
 [^note2]: Trước C++20. Hành vi từ C++20 trở đi xem [^note1].
