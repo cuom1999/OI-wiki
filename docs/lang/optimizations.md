@@ -1,6 +1,9 @@
 author: inclyc
 
-Ngôn ngữ lập trình thường dùng trong giới OI là C++. Khi dùng ngôn ngữ này, khó tránh việc phải làm việc với trình biên dịch và tiêu chuẩn ngôn ngữ. C++ có nhiều chi tiết phức tạp; bài viết này tập trung đưa ra những kiến thức thực dụng về trình biên dịch, đủ dùng cho thi đấu.
+Ngôn ngữ lập trình thường dùng trong OI là C++. Khi dùng C++, ta khó tránh việc
+làm việc với trình biên dịch và tiêu chuẩn ngôn ngữ. C++ có nhiều chi tiết phức
+tạp; bài viết này chỉ tập trung vào những kiến thức thực dụng về trình biên dịch,
+đủ dùng cho thi đấu.
 
 <a id="giới-thiệu-về-tối-ưu-hóa-của-trình-biên-dịch"></a>
 ## Giới thiệu về tối ưu hóa của trình biên dịch
@@ -8,7 +11,9 @@ Ngôn ngữ lập trình thường dùng trong giới OI là C++. Khi dùng ngô
 <a id="tối-ưu-hóa-là-gì-optimization"></a>
 ### Tối ưu hóa là gì
 
-Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if), trình biên dịch có thể cải thiện tốc độ chạy của chương trình hoặc kích thước tệp thực thi, miễn là giữ nguyên ngữ nghĩa quan sát được của chương trình.
+Theo [quy tắc as-if](https://en.cppreference.com/w/cpp/language/as_if), trình
+biên dịch được phép cải thiện tốc độ chạy hoặc kích thước tệp thực thi, miễn là
+giữ nguyên ngữ nghĩa quan sát được của chương trình.
 
 ### Những cuộc thi nào bật tối ưu hóa?
 
@@ -18,7 +23,9 @@ tiêu chuẩn C++ và các cờ như `-O2`, `-std=gnu++17`, `-Wall`. Khi luyện
 OJ, cũng nên kiểm tra trang trợ giúp hoặc phần cấu hình ngôn ngữ của hệ thống để
 biết chương trình sẽ được biên dịch bằng lệnh nào.
 
-Nếu môi trường chính thức bật `-O2`, nên luyện tập và kiểm thử bằng cùng mức tối ưu hóa đó. Một số lỗi liên quan đến hành vi không xác định chỉ bộc lộ rõ khi bật tối ưu hóa, nên không nên chỉ dựa vào kết quả chạy ở chế độ không tối ưu.
+Nếu môi trường chính thức bật `-O2`, nên luyện tập và kiểm thử bằng đúng mức tối
+ưu hóa đó. Một số lỗi liên quan đến hành vi không xác định chỉ bộc lộ rõ khi bật
+tối ưu hóa, nên không thể chỉ dựa vào kết quả chạy ở chế độ không tối ưu.
 
 <a id="các-tối-ưu-hóa-trình-biên-dịch-thường-gặp"></a>
 ## Các tối ưu hóa trình biên dịch thường gặp
@@ -26,7 +33,9 @@ Nếu môi trường chính thức bật `-O2`, nên luyện tập và kiểm th
 <a id="gấp-hằng-số-constant-folding"></a>
 ### Gấp hằng số
 
-Gấp hằng số, cũng thường đi cùng lan truyền hằng số: nếu một biểu thức có thể được xác định là hằng số, giá trị hằng số đó có thể được lan truyền cho đến trước lần định nghĩa kế tiếp của nó.
+Gấp hằng số thường đi cùng lan truyền hằng số: nếu một biểu thức có thể xác định
+được ngay tại thời gian biên dịch, giá trị đó có thể được thay vào các vị trí dùng
+nó cho đến trước lần định nghĩa kế tiếp.
 
 ```cpp
 int x = 1;
@@ -68,12 +77,16 @@ sẽ được biến đổi thành
 int test() { return 234; }
 ```
 
-Lưu ý, đoạn mã này trước hết được gấp hằng số, nên giá trị trả về có thể xác định là 234; `a` và `b` là các biến không còn sống (không còn ảnh hưởng đến kết quả quan sát được), vì vậy bị xóa bỏ.
+Lưu ý rằng đoạn mã này được gấp hằng số trước, nên giá trị trả về có thể xác định
+là 234. Hai biến `a` và `b` không còn sống, tức là không ảnh hưởng đến kết quả
+quan sát được, nên bị xóa bỏ.
 
 <a id="xoay-vòng-lặp-loop-rotate"></a>
 ### Xoay vòng lặp
 
-Biến đổi vòng lặp từ dạng "for" sang dạng "do-while", đồng thời thêm một điều kiện kiểm tra ở phía trước. Phép biến đổi này chủ yếu để chuẩn bị cho các phép biến đổi khác.
+Phép tối ưu này biến vòng lặp dạng `for` thành dạng `do-while`, đồng thời thêm
+một điều kiện kiểm tra ở trước vòng lặp. Mục đích chính của nó là chuẩn bị cho các
+phép biến đổi tiếp theo.
 
 ```cpp
 for (int i = 0; i < n; ++i) {
@@ -97,7 +110,10 @@ if (0 < n) {
 <a id="đưa-bất-biến-vòng-lặp-ra-ngoài-loop-invariant-code-motion"></a>
 ### Đưa bất biến vòng lặp ra ngoài
 
-Dựa trên phân tích bí danh, trình biên dịch đưa những đoạn mã trong vòng lặp đã được chứng minh là bất biến ra ngoài thân vòng lặp. Các đoạn mã này có thể bao gồm thao tác đọc/ghi bộ nhớ, nên việc chứng minh phụ thuộc vào phân tích bí danh. Kết quả là thân vòng lặp có ít mã hơn.
+Dựa trên phân tích bí danh, trình biên dịch có thể đưa các đoạn mã đã chứng minh
+là bất biến ra khỏi thân vòng lặp. Những đoạn này đôi khi bao gồm thao tác đọc
+hoặc ghi bộ nhớ, nên việc chứng minh phụ thuộc vào phân tích bí danh. Kết quả là
+thân vòng lặp còn ít mã hơn.
 
 ```cpp
 for (int i = 0; i < n; ++i) {
@@ -134,7 +150,9 @@ if (0 < n) {  // điều kiện bảo vệ vòng lặp
 <a id="mở-vòng-lặp-loop-unroll"></a>
 ### Mở vòng lặp
 
-Vòng lặp gồm thân vòng lặp và các câu lệnh rẽ nhánh, nên CPU hiện đại cần thực hiện một mức độ dự đoán nhánh nhất định. Mở trực tiếp vòng lặp là cách đổi thêm kích thước mã lấy thời gian chạy ngắn hơn.
+Vòng lặp gồm thân vòng lặp và các câu lệnh rẽ nhánh, nên CPU hiện đại phải dự
+đoán nhánh ở một mức độ nhất định. Mở vòng lặp là cách chấp nhận mã dài hơn để
+đổi lấy thời gian chạy ngắn hơn.
 
 ```cpp
 for (int i = 0; i < 3; i++) {
@@ -153,7 +171,10 @@ a[2] = 2;
 <a id="đưa-điều-kiện-vòng-lặp-ra-ngoài-loop-unswitching"></a>
 ### Đưa điều kiện vòng lặp ra ngoài
 
-Kỹ thuật đưa điều kiện vòng lặp ra ngoài đưa biểu thức điều kiện trong vòng lặp ra ngoài vòng lặp, rồi đặt hai vòng lặp riêng trong hai nhánh điều kiện bên ngoài. Cách này có thể tăng khả năng vector hóa và song song hóa vòng lặp (thông thường vòng lặp đơn giản dễ được vector hóa hơn).
+Kỹ thuật này đưa biểu thức điều kiện trong thân vòng lặp ra ngoài, rồi đặt hai
+vòng lặp riêng trong hai nhánh điều kiện bên ngoài. Cách làm đó có thể tăng khả
+năng vector hóa và song song hóa vòng lặp, vì vòng lặp càng đơn giản thì càng dễ
+được vector hóa.
 
 ```cpp
 // clang-format off
@@ -171,7 +192,7 @@ void after(int x) {
   if (/* condition */ x % 2) {
     for(;/* i in some range */;) {
       /* A */;
-      /* B */; // Thực thi B trực tiếp, không kiểm tra trong vòng lặp
+      /* B */; // Thực thi B luôn, không kiểm tra trong vòng lặp
       /* C */;
     }
   } else {
@@ -189,15 +210,19 @@ void after(int x) {
 
 Khi chương trình thực thi, các đường đi có thể được chia thành đường lạnh và
 đường nóng. Trong hầu hết trường hợp, CPU nhảy đến một vị trí khác không nhanh
-bằng thực thi tuần tự trực tiếp; kiểu thực thi sau thường được tác giả trình biên
+bằng thực thi tuần tự liền mạch; kiểu thực thi sau thường được tác giả trình biên
 dịch gọi là "đi tiếp" (fall-through). Tương ứng với nó, mã thường được thực thi
 là mã nóng, còn phần đối lập là mã lạnh. Trong mã OI, nếu có một đoạn xử lý điều
 kiện biên đặc biệt trong vòng lặp, xử lý ngoại lệ, hoặc logic tương tự, đoạn đó
 là mã lạnh.
 
-Khối cơ bản là cấu trúc cơ bản của luồng điều khiển. Một thủ tục gồm nhiều khối cơ bản, tạo thành một đồ thị có hướng. Trong quá trình sinh tệp thực thi, trình biên dịch cần sắp xếp bố cục để đặt các khối cơ bản; cách sắp xếp bố cục chính là trọng tâm của tối ưu hóa này.
+Khối cơ bản là đơn vị nền tảng của luồng điều khiển. Một thủ tục gồm nhiều khối
+cơ bản, tạo thành một đồ thị có hướng. Khi sinh tệp thực thi, trình biên dịch cần
+sắp xếp vị trí của các khối cơ bản; cách sắp xếp này chính là trọng tâm của tối
+ưu hóa bố cục mã.
 
-Về nguyên tắc, nên ưu tiên đặt các đoạn mã nóng gần nhau và tách mã lạnh ra. Lý do là cách này tận dụng bộ nhớ đệm lệnh tốt hơn, vì mã nóng có tính cục bộ tốt hơn.
+Về nguyên tắc, nên ưu tiên đặt các đoạn mã nóng gần nhau và tách mã lạnh ra. Cách
+này tận dụng bộ nhớ đệm lệnh tốt hơn, vì mã nóng có tính cục bộ cao hơn.
 
 ```cpp
 // clang-format off
@@ -255,7 +280,9 @@ Một bố cục khác là:
 Trong bố cục thứ hai, hai khối mã nóng được đặt gần nhau, nên hiệu năng thực thi
 tốt hơn.
 
-Để báo cho trình biên dịch biết một nhánh có dễ được thực thi hay không, có thể dùng `[[likely]]` và `[[unlikely]]` của C++20: <https://en.cppreference.com/w/cpp/language/attributes/likely>
+Để báo cho trình biên dịch biết một nhánh có khả năng được thực thi cao hay thấp,
+có thể dùng `[[likely]]` và `[[unlikely]]` của C++20:
+<https://en.cppreference.com/w/cpp/language/attributes/likely>
 
 Nếu cuộc thi không dùng tiêu chuẩn C++20 trở lên, có thể dùng `__builtin_expect` (mở rộng GNU).
 
@@ -341,7 +368,11 @@ mã tốt hơn.
 <a id="nội-tuyến-hàm-function-inlining"></a>
 ### Nội tuyến hàm
 
-Lời gọi hàm thường cần thanh ghi và ngăn xếp để truyền tham số; cả bên gọi và bên được gọi đều cần lưu một số trạng thái thanh ghi. Quá trình này thường được gọi là quy ước gọi hàm. Vì vậy một lời gọi hàm gây ra một số tổn hao thời gian, còn nội tuyến hàm nghĩa là viết trực tiếp thân hàm vào thủ tục của bên gọi, không thực hiện lời gọi hàm thật sự.
+Lời gọi hàm thường cần thanh ghi và ngăn xếp để truyền tham số; cả bên gọi và bên
+được gọi đều phải lưu một số trạng thái thanh ghi. Quá trình này thường được gọi
+là quy ước gọi hàm. Vì vậy một lời gọi hàm luôn có một phần chi phí thời gian,
+còn nội tuyến hàm nghĩa là chép thân hàm vào thủ tục của bên gọi, không thực hiện
+lời gọi hàm thật sự.
 
 ```cpp
 int add(int x) { return x + 1; }
@@ -377,15 +408,15 @@ Khi một lời gọi hàm nằm ở vị trí cuối thân hàm, lời gọi đ
 đuôi. Với dạng lời gọi đặc biệt này, có thể thực hiện một số tối ưu hóa riêng.
 Hầu hết kiến trúc có con trỏ khung (còn gọi là FP) và con trỏ ngăn xếp (còn gọi
 là SP) để duy trì khung gọi hàm của hàm; nếu lời gọi nằm ở cuối hàm, có thể không
-giữ lại bản ghi gọi của hàm bên ngoài mà dùng trực tiếp hàm bên trong thay thế.
+giữ lại bản ghi gọi của hàm bên ngoài mà chuyển thẳng sang hàm bên trong.
 
 <a id="dùng-lệnh-nhảy-thay-cho-lời-gọi-hàm"></a>
 #### Dùng lệnh nhảy thay cho lời gọi hàm
 
 Trên hầu hết kiến trúc, lời gọi hàm cần lưu vị trí bộ đếm chương trình hiện tại
 `$pc`, đồng thời lưu một số thanh ghi do bên gọi lưu để có thể quay lại ngữ cảnh
-cũ. Lời gọi đuôi không cần quá trình này và sẽ được dịch trực tiếp thành lệnh
-nhảy, vì lời gọi đuôi không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
+cũ. Lời gọi đuôi không cần quá trình này và sẽ được dịch thành lệnh nhảy, vì nó
+không bao giờ quay lại vị trí đang chạy của hàm hiện tại.
 
 Một ví dụ đơn giản: <https://godbolt.org/z/e7b1safaW>
 
@@ -403,12 +434,19 @@ tailCall(int):                           ; @tailCall(int)
 <a id="tự-động-viết-lại-đệ-quy-đuôi"></a>
 #### Tự động viết lại đệ quy đuôi
 
-Nếu lời gọi đuôi của một hàm là chính nó, hàm đó là hàm đệ quy đuôi. Nói rộng hơn, đệ quy gián tiếp (đệ quy tạo bởi hai hàm trở lên) nếu tất cả đều là lời gọi đuôi thì cũng thuộc phạm vi đệ quy đuôi. Đệ quy đuôi có thể được trình biên dịch tối ưu thành dạng không đệ quy, giảm chi phí ngăn xếp bổ sung và chi phí gọi hàm. Nhiều thí sinh lập trình thi đấu thích viết mã không đệ quy; khi không bật tối ưu hóa, cách này có thể cải thiện hằng số đáng kể, nhưng nếu bật tối ưu hóa thì chất lượng nhị phân sinh ra từ mã đệ quy và mã viết tay không khác nhau bao nhiêu.
+Nếu lời gọi đuôi của một hàm gọi lại chính hàm đó, hàm này là hàm đệ quy đuôi.
+Nói rộng hơn, đệ quy gián tiếp, tức đệ quy tạo bởi hai hàm trở lên, cũng thuộc
+phạm vi này nếu mọi lời gọi đệ quy đều là lời gọi đuôi. Đệ quy đuôi có thể được
+trình biên dịch tối ưu thành dạng không đệ quy, nhờ đó giảm chi phí ngăn xếp và
+chi phí gọi hàm. Nhiều thí sinh OI thích viết mã không đệ quy; khi không bật tối
+ưu hóa, cách này có thể cải thiện hằng số đáng kể. Khi đã bật tối ưu hóa, chất
+lượng mã máy sinh ra từ phiên bản đệ quy và phiên bản viết tay thường không khác
+nhau nhiều.
 
 ```cpp
 int fac(int n) {
   if (n < 2) return 1;
-  return /* dùng */ n * fac(n - 1); /* dùng biến n, không thể trực tiếp tối ưu đệ quy đuôi! */
+  return /* dùng */ n * fac(n - 1); /* còn dùng n, nên chưa thể tối ưu thành đệ quy đuôi! */
 }
 ```
 
@@ -430,7 +468,7 @@ viết lại.
 <a id="loại-bỏ-đệ-quy-đuôi-rpass-tailcallelim"></a>
 #### Loại bỏ đệ quy đuôi -Rpass=tailcallelim
 
-Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đệ quy và, thông qua một
+Khi hàm đã là đệ quy đuôi, có thể xóa câu lệnh đệ quy và, thông qua một
 số phân tích tĩnh, biến hàm thành dạng không đệ quy. Phần này không đi sâu vào cách
 tác giả trình biên dịch làm được điều này. Từ trải nghiệm thực tế, phần lớn mã OI
 nếu có cả phiên bản đệ quy và không đệ quy thì thường có thể được tự động tối ưu
@@ -461,7 +499,7 @@ thành phiên bản không đệ quy. Sau đây là một số ví dụ cụ th�
     ```
 
 Hợp ngữ sau tối ưu hóa của các hàm này hoàn toàn giống phiên bản không đệ quy; đệ
-quy sẽ bị loại bỏ trực tiếp. Với thí sinh OI, khi bật `-O2` có thể yên tâm viết
+quy sẽ bị loại bỏ. Với thí sinh OI, khi bật `-O2` có thể yên tâm viết
 các thuật toán dạng đệ quy, vì sẽ không khác dạng không đệ quy. Nếu hàm về bản
 chất không thể được viết lại thành dạng không đệ quy, trình biên dịch cũng bó
 tay.
@@ -469,7 +507,11 @@ tay.
 <a id="giảm-độ-mạnh-phép-toán-strength-reduction"></a>
 ### Giảm độ mạnh phép toán
 
-Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản là biến `x * 2` thành `x << 1`; cách viết thứ hai thường gặp trong OI. Trình biên dịch sẽ tự động làm các tối ưu hóa tương tự; khi bật tùy chọn tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương đương. Giảm độ mạnh phép toán biến các lệnh chi phí cao thành các lệnh chi phí thấp.
+Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản là biến `x * 2` thành
+`x << 1`, một cách viết rất thường gặp trong OI. Trình biên dịch sẽ tự động làm
+các tối ưu hóa tương tự; khi bật tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương
+đương. Giảm độ mạnh phép toán nghĩa là thay các lệnh chi phí cao bằng các lệnh
+chi phí thấp hơn.
 
 <a id="biến-đổi-toán-tử-scalar"></a>
 #### Biến đổi toán tử vô hướng
@@ -483,7 +525,11 @@ a = x * 2;   // không tốt!
 a = x << 1;  // tốt!
 ```
 
-Cần lưu ý rằng số có dấu và số không dấu có khác biệt rõ rệt ở cấp độ dịch bit và nâng kiểu. Bit dấu được xử lý đặc biệt khi dịch, gồm hai loại là dịch số học và dịch logic. Điều này thể hiện rõ khi viết tìm kiếm nhị phân, cây đoạn, và các cấu trúc có nhiều phép chia đôi: phép chia số nguyên có dấu không thể luôn được tối ưu trực tiếp thành một lệnh dịch phải duy nhất.
+Cần lưu ý rằng số có dấu và số không dấu khác nhau rõ ở cấp độ dịch bit và nâng
+kiểu. Khi dịch bit, bit dấu được xử lý đặc biệt; hai dạng thường gặp là dịch số
+học và dịch logic. Điều này thể hiện rõ khi viết tìm kiếm nhị phân, cây đoạn, và
+các cấu trúc có nhiều phép chia đôi: phép chia số nguyên có dấu không phải lúc nào
+cũng tối ưu được thành một lệnh dịch phải duy nhất.
 
 ```cpp
 int l, r;
@@ -516,12 +562,15 @@ Các cách giải quyết khả thi:
 int x = a / 3;
 ```
 
-Quá trình này có thể được biến đổi thành `x = a * 0x55555556 >> 32`; chi tiết có thể xem [bài trả lời Zhihu này](https://zhuanlan.zhihu.com/p/151038723) hoặc [bài báo gốc](https://dl.acm.org/doi/10.1145/773473.178249).
+Phép chia này có thể được biến đổi thành `x = a * 0x55555556 >> 32`; chi tiết xem
+[bài trả lời Zhihu này](https://zhuanlan.zhihu.com/p/151038723) hoặc
+[bài báo gốc](https://dl.acm.org/doi/10.1145/773473.178249).
 
 <a id="giảm-độ-mạnh-cho-biến-chỉ-số-indvars"></a>
 #### Giảm độ mạnh cho biến chỉ số
 
-Trình biên dịch tự động nhận diện các biến chỉ số trong vòng lặp và biến các quá trình liên quan có chi phí cao thành quá trình chi phí thấp.
+Trình biên dịch tự động nhận diện các biến chỉ số trong vòng lặp và thay các phép
+tính liên quan có chi phí cao bằng phép tính chi phí thấp hơn.
 
 ```cpp
 int a = 0;
@@ -531,7 +580,10 @@ for (int i = 1; i < 10; i++) {
 }
 ```
 
-Việc viết trực tiếp `a = 3 * i` thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
+Việc viết `a = 3 * i` thường gặp trong OI, nhưng trình biên dịch có thể tự động
+phân tích phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho
+phép nhân. Phân tích tiến triển của biến vòng lặp được gọi là SCEV (Scalar
+Evolution, tiến triển vô hướng).
 
 SCEV còn có thể tối ưu một số vòng lặp:
 
@@ -545,7 +597,9 @@ int test(int n) {
 }
 ```
 
-Hàm này sẽ được tối ưu thành công thức tính tổng $O(1)$, tham khảo <https://godbolt.org/z/ET8d89vvK>. Hành vi này hiện chỉ xuất hiện ở các trình biên dịch dựa trên LLVM; GCC bảo thủ hơn.
+Hàm này sẽ được tối ưu thành công thức tính tổng $O(1)$; xem ví dụ tại
+<https://godbolt.org/z/ET8d89vvK>. Hiện tượng này hiện chỉ xuất hiện ở các trình
+biên dịch dựa trên LLVM; GCC bảo thủ hơn.
 
 ```nasm
 test(int):                               # @test(int)
@@ -571,7 +625,11 @@ test(int):                               # @test(int)
 <a id="tự-động-vector-hóa-auto-vectorization"></a>
 ### Tự động vector hóa
 
-Một luồng lệnh trên nhiều phần tử dữ liệu là cách tốt để khai thác song song hóa trong một lõi CPU. Dùng các lệnh này có thể tận dụng thanh ghi SIMD của CPU, vốn rộng hơn thanh ghi đa dụng; ví dụ, mỗi lần đặt 4 số nguyên vào rồi tính toán. Thí sinh OI không cần hiểu chi tiết về tự động vector hóa. Thông thường, trình biên dịch Clang sẽ tự động vector hóa mạnh tay hơn GCC:
+Một luồng lệnh trên nhiều phần tử dữ liệu là cách tốt để khai thác song song hóa
+trong một lõi CPU. Các lệnh này tận dụng thanh ghi SIMD của CPU, vốn rộng hơn
+thanh ghi đa dụng; chẳng hạn, có thể nạp 4 số nguyên rồi tính toán trong một lượt.
+Thí sinh OI không cần hiểu sâu chi tiết tự động vector hóa. Thông thường, Clang
+tự động vector hóa mạnh tay hơn GCC:
 
 ```cpp
 // https://godbolt.org/z/h1hx5sWoE
@@ -590,7 +648,8 @@ chồng lấp con trỏ:
 
 ![](./images/overlap.png)
 
-`__restrict` là một quy ước giúp trình biên dịch giả định rằng hai vùng nhớ mà hai con trỏ trỏ tới sẽ không bao giờ chồng lấp.
+`__restrict` là một quy ước giúp trình biên dịch giả định rằng hai vùng nhớ được
+hai con trỏ trỏ tới sẽ không bao giờ chồng lấp.
 
 ```cpp
 void test(int* __restrict a, int* __restrict b, int n) {
@@ -600,7 +659,9 @@ void test(int* __restrict a, int* __restrict b, int n) {
 }
 ```
 
-`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số khắt khe.
+`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều
+hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng mã sinh ra khi tự động vector hóa;
+có thể dùng trong các trường hợp cần tối ưu hằng số thật chặt.
 
 <a id="các-cách-dùng-ngôn-ngữ-sai-thường-gặp-liên-quan-đến-tối-ưu-hóa-biên-dịch"></a>
 ## Các cách dùng ngôn ngữ sai thường gặp liên quan đến tối ưu hóa biên dịch
@@ -608,24 +669,31 @@ void test(int* __restrict a, int* __restrict b, int n) {
 <a id="inline---nội-tuyến"></a>
 ### inline - nội tuyến
 
-Nội tuyến hàm khi bật `-O2` thường do trình biên dịch tự động hoàn thành. `inline` trong định nghĩa `struct` hoàn toàn thừa; nếu cuộc thi bật tối ưu hóa `-O2` thì không cần khai báo nội tuyến. Nếu không bật `-O2`, dùng `inline` cũng không làm trình biên dịch thật sự nội tuyến.
+Khi bật `-O2`, việc nội tuyến hàm thường do trình biên dịch tự quyết định.
+`inline` trong định nghĩa `struct` hầu như là thừa; nếu cuộc thi bật tối ưu hóa
+`-O2` thì không cần khai báo nội tuyến thủ công. Nếu không bật `-O2`, thêm
+`inline` cũng không bảo đảm trình biên dịch sẽ thật sự nội tuyến.
 
-Trong C++ hiện đại, từ khóa `inline` được xem là một hành vi ngữ nghĩa về liên kết và xuất ký hiệu, chứ không phải để thực hiện nội tuyến hàm.
+Trong C++ hiện đại, từ khóa `inline` chủ yếu mang ý nghĩa về liên kết và xuất ký
+hiệu, chứ không phải là mệnh lệnh buộc trình biên dịch nội tuyến hàm.
 
 <a id="register---gợi-ý-thanh-ghi-không-còn-thực-chất"></a>
 ### register - gợi ý thanh ghi không còn ý nghĩa thực tế
 
-Trình biên dịch hiện đại sẽ bỏ qua trực tiếp từ khóa `register`; cách phân bổ
-thanh ghi tự chọn thường không thông minh bằng việc để trình biên dịch chạy thuật
-toán phân bổ thanh ghi. Từ khóa này không còn được khuyến nghị từ C++11 và bị
-xóa từ C++17[^p0001r1].
+Trình biên dịch hiện đại sẽ bỏ qua từ khóa `register`; cách tự chọn thanh ghi
+thường không thông minh bằng việc để trình biên dịch chạy thuật toán phân bổ thanh
+ghi. Từ khóa này không còn được khuyến nghị từ C++11 và bị xóa từ C++17[^p0001r1].
 
 <https://en.cppreference.com/w/cpp/keyword/register>
 
 <a id="hành-vi-không-xác-định-undefined-behavior-và-tối-ưu-hóa-biên-dịch"></a>
 ## Hành vi không xác định (UB) và tối ưu hóa biên dịch
 
-Trình biên dịch có thể coi chương trình C++ là không tồn tại [hành vi không xác định](https://en.cppreference.com/w/cpp/language/ub) (UB). Vì vậy, khi biên dịch một chương trình có UB, trình biên dịch có thể tạo ra kết quả ngoài dự kiến. Đồng thời, trình biên dịch cũng có thể dựa trên giả định không có UB để thực hiện tối ưu hóa tự do và mạnh tay hơn.
+Trình biên dịch có thể giả định rằng chương trình C++ không có
+[hành vi không xác định](https://en.cppreference.com/w/cpp/language/ub) (UB).
+Vì vậy, khi biên dịch một chương trình có UB, trình biên dịch có thể tạo ra kết
+quả ngoài dự kiến. Đồng thời, nó cũng dựa trên giả định không có UB để tối ưu hóa
+tự do và mạnh tay hơn.
 
 Các UB thường gặp gồm:
 
@@ -635,7 +703,7 @@ Các UB thường gặp gồm:
 4.  Giải tham chiếu con trỏ null;
 5.  Vòng lặp vô hạn không có tác dụng phụ.
 
-Các UB khác và ví dụ có thể xem chi tiết trong phần đọc thêm.
+Xem thêm các UB khác và ví dụ ở phần đọc thêm.
 
 <a id="tràn-số-có-dấu"></a>
 ### Tràn số có dấu
@@ -644,7 +712,8 @@ Các UB khác và ví dụ có thể xem chi tiết trong phần đọc thêm.
 int f(int x) { return x * 2 / 2; }
 ```
 
-Trình biên dịch có thể giả định chương trình không có hành vi tràn số có dấu, nên hàm này có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không có hành vi tràn số có dấu, nên
+hàm này có thể được tối ưu thành
 
 ```cpp
 int f(int x) { return x; }
@@ -652,7 +721,10 @@ int f(int x) { return x; }
 
 Ví dụ: <https://godbolt.org/z/WKv3W5hvM>, <https://godbolt.org/z/qqE9nxP1j>.
 
-Có thể dùng tùy chọn [`-fwrapv`](https://gcc.gnu.org/onlinedocs/gcc-13.2.0/gcc/Code-Gen-Options.html#index-fwrapv) để tắt giả định này. Ví dụ: <https://godbolt.org/z/5x3K5KGnr>, <https://godbolt.org/z/4r4a4EzMW>.
+Có thể dùng tùy chọn
+[`-fwrapv`](https://gcc.gnu.org/onlinedocs/gcc-13.2.0/gcc/Code-Gen-Options.html#index-fwrapv)
+để tắt giả định này. Ví dụ: <https://godbolt.org/z/5x3K5KGnr>,
+<https://godbolt.org/z/4r4a4EzMW>.
 
 <a id="dùng-biến-chưa-khởi-tạo"></a>
 ### Dùng biến chưa khởi tạo
@@ -666,7 +738,8 @@ int f(int x) {
 }
 ```
 
-Trình biên dịch có thể giả định chương trình không có hành vi dùng biến chưa khởi tạo, nên `a` đã được khởi tạo, và hàm này có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không dùng biến chưa khởi tạo, nên
+`a` đã được khởi tạo, và hàm này có thể được tối ưu thành
 
 ```cpp
 int f(int) { return 42; }
@@ -689,7 +762,9 @@ bool exists_in_table(int v) {
 }
 ```
 
-Trình biên dịch có thể giả định chương trình không có truy cập vượt biên, nên hàm này sẽ trả về trước khi truy cập vượt biên xảy ra, và do đó có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không truy cập vượt biên, nên hàm
+này sẽ trả về trước khi truy cập vượt biên xảy ra. Do đó nó có thể được tối ưu
+thành
 
 ```cpp
 bool exists_in_table(int) { return true; }
@@ -710,7 +785,8 @@ int f(int* p) {
 }
 ```
 
-Trình biên dịch có thể giả định chương trình không có hành vi giải tham chiếu con trỏ null, nên `!p` luôn là `false`, và hàm này có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không giải tham chiếu con trỏ null,
+nên `!p` luôn là `false`, và hàm này có thể được tối ưu thành
 
 ```cpp
 int f(int*) { return 0; }
@@ -722,7 +798,11 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
 ### Vòng lặp vô hạn không có tác dụng phụ
 
 ???+ note "Kiểm chứng Định lý lớn Fermat"
-    Theo [Định lý lớn Fermat](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem), phương trình vô định $a^3=b^3+c^3$ không có nghiệm nguyên dương. Chương trình sau thử liệt kê các số nguyên trong $[1,1000]$ để kiểm chứng phương trình này có đúng hay không; nếu trả về `true` thì nghĩa là đã tìm thấy một bộ nghiệm nguyên trong phạm vi $[1,1000]$, từ đó Định lý lớn Fermat không đúng.
+    Theo [Định lý lớn Fermat](https://en.wikipedia.org/wiki/Fermat%27s_Last_Theorem),
+    phương trình vô định $a^3=b^3+c^3$ không có nghiệm nguyên dương. Chương trình
+    sau thử liệt kê các số nguyên trong $[1,1000]$ để kiểm chứng phương trình này.
+    Nếu trả về `true` thì nghĩa là đã tìm thấy một bộ nghiệm nguyên trong phạm vi
+    $[1,1000]$, kéo theo Định lý lớn Fermat không đúng.
 
     ```cpp
     #include <iostream>
@@ -756,7 +836,9 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
     }
     ```
 
-Trình biên dịch có thể giả định chương trình không có vòng lặp vô hạn không tác dụng phụ, nên nó cho rằng vòng `for` trong hàm `fermat()` sẽ kết thúc tại một thời điểm nào đó và trả về `true`. Cuối cùng chương trình có thể in ra:
+Trình biên dịch có thể giả định chương trình không có vòng lặp vô hạn không tác
+dụng phụ, nên nó cho rằng vòng `for` trong hàm `fermat()` sẽ kết thúc tại một thời
+điểm nào đó và trả về `true`. Cuối cùng chương trình có thể in ra:
 
 ```text
 Định lý lớn Fermat đã bị bác bỏ!
@@ -769,7 +851,10 @@ Ví dụ: <https://godbolt.org/z/d834MK7bz>, <https://godbolt.org/z/Eov9nsKqf>.
 Sanitizer là công cụ hỗ trợ bảo đảm tính đúng đắn: nó kiểm tra lúc chạy xem
 chương trình có hành vi không xác định, vượt biên mảng, con trỏ null, và các lỗi
 tương tự hay không.
-Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng trình biên dịch Clang để gỡ lỗi các vấn đề liên quan trên máy cá nhân.
+Ở chế độ gỡ lỗi cục bộ, nên bật một số sanitizer; chúng có thể rút ngắn đáng kể
+thời gian gỡ lỗi. Các sanitizer này do Google phát triển, phần lớn có thể dùng với
+GCC và Clang. Sanitizer trong LLVM trưởng thành hơn, vì vậy nên dùng Clang để gỡ
+lỗi các vấn đề liên quan trên máy cá nhân.
 
 <span id="address-sanitizer-fsanitizeaddress"></span>
 ### AddressSanitizer `-fsanitize=address`
@@ -800,7 +885,8 @@ trình có UB hay không. Các mục kiểm tra của UBSan gồm:
 -   Tràn số nguyên có dấu
 -   Tràn dữ liệu khi chuyển đổi số thực dấu chấm động sang số nguyên
 
-Các mục kiểm tra của UBSan có thể tùy chọn; ảnh hưởng đến chương trình có thể tham khảo trang tài liệu đã dẫn.
+Các mục kiểm tra của UBSan có thể tùy chọn; mức ảnh hưởng đến chương trình được
+mô tả trong trang tài liệu đã dẫn.
 
 <a id="linh-tinh"></a>
 ## Linh tinh
