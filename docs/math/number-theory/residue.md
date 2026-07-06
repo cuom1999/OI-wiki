@@ -25,16 +25,16 @@ thặng dư bậc $k$ modulo $m$.
 <span id="tính-chất-thặng-dư-bậc-cao"></span>
 ### Tính chất
 
-Tương tự thặng dư bậc hai, ta có thể thảo luận bài toán kiểm tra thặng dư bậc
-$k$, số lượng nghiệm và số lớp thặng dư bậc $k$. Giống các bài toán
+Tương tự thặng dư bậc hai, có thể xét bài toán kiểm tra thặng dư bậc $k$, số
+lượng nghiệm và số lớp thặng dư bậc $k$. Giống các bài toán
 [phương trình đồng dư](./congruence-equation.md) khác, có thể dùng
 [định lí thặng dư Trung Hoa](./crt.md) để đưa chúng về trường hợp modulo lũy
 thừa của số nguyên tố. Tùy theo việc căn nguyên thủy có tồn tại hay không,
 trường hợp này tiếp tục tách thành modulo lũy thừa của số nguyên tố lẻ và
 modulo lũy thừa của $2$.
 
-Trường hợp modulo lũy thừa của số lẻ tương đối đơn giản. Thực ra, trong mọi
-trường hợp có căn nguyên thủy, ta có kết quả sau:
+Trường hợp modulo lũy thừa của số lẻ tương đối đơn giản. Trong mọi trường hợp
+có căn nguyên thủy, thu được kết quả sau:
 
 ???+ note "Định lí"
     Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố cùng
@@ -87,7 +87,7 @@ trường hợp có căn nguyên thủy, ta có kết quả sau:
 
     Từ đây gần như suy ra toàn bộ nội dung định lí; điểm duy nhất cần giải thích
     thêm là tiêu chuẩn $a^{d'} \equiv 1 \pmod m$. Theo
-    [tính chất 3 của bậc](./primitive-root.md#ord-prop-3), ta có
+    [tính chất 3 của bậc](./primitive-root.md#ord-prop-3), suy ra
 
     $$
     \delta_m(a) = \delta_m(g^{\operatorname{ind}_g a}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_g a)}.
@@ -101,8 +101,8 @@ trường hợp có căn nguyên thủy, ta có kết quả sau:
 Trường hợp modulo lũy thừa của $2$ đặc biệt hơn. Để xử lý trường hợp này, cần
 dùng một [kết quả](./primitive-root.md#mod-pow-2) về cấu trúc hệ thặng dư thu
 gọn modulo $2^e$: mọi số lẻ $a$ đều đồng dư duy nhất với một số có dạng
-$(-1)^s5^r\bmod 2^e$, trong đó $s\in\{0,1\}$ và $0\le r < 2^{e-2}$. Nhờ kết quả
-này, ta có kết luận sau:
+$(-1)^s5^r\bmod 2^e$, trong đó $s\in\{0,1\}$ và $0\le r < 2^{e-2}$. Kết quả
+này dẫn đến kết luận sau:
 
 ???+ note "Định lí"
     Cho số nguyên $k\ge 2$, số lẻ $a$ và số nguyên dương $m=2^e$ với
@@ -114,7 +114,7 @@ này, ta có kết luận sau:
         bộ các lớp thặng dư thu gọn.
 
     Khi $k$ là số chẵn, đặt $d=\gcd(k,2^{e-2})$ và
-    $d'=\dfrac{2^{e-2}}{d}$, ta có:
+    $d'=\dfrac{2^{e-2}}{d}$. Khi đó:
 
     1.  $a$ là thặng dư bậc $k$ modulo $m$ khi và chỉ khi
         $a\equiv 1\pmod 4$ và $a^{d'}\equiv 1\pmod m$.
@@ -145,7 +145,7 @@ này, ta có kết luận sau:
     $$
 
     Kết hợp với phân tích về nghiệm của phương trình đồng dư tuyến tính ở trang
-    đó, ta thu được cấu trúc nghiệm của phương trình đồng dư
+    đó, thu được cấu trúc nghiệm của phương trình đồng dư
     $x^k\equiv a\pmod{2^e}$. Tùy theo tính chẵn lẻ của $k$, có hai trường hợp:
 
     -   Khi $k$ là số lẻ, vì $\gcd(k,2)=\gcd(k,2^{e-2})=1$, cả hai phương trình
@@ -187,7 +187,7 @@ phức $\mathbf C$ trên hệ thặng dư thu gọn $\mathbf Z_m^*$ modulo $m$. 
 $m$ phù hợp, có thể dùng căn đơn vị nguyên thủy bậc $k$ modulo $m$ thay cho căn
 phức $\omega_k$ để tăng tốc tính toán.
 
-Tương tự trường hợp trên trường số phức, ta có định nghĩa sau:
+Tương tự trường hợp trên trường số phức, định nghĩa được phát biểu như sau:
 
 ???+ abstract "Căn đơn vị bậc $k$ modulo $m$"
     Với modulo $m$, căn bậc $k$ của phần tử $1$ được gọi là **căn đơn vị bậc
@@ -197,7 +197,7 @@ Tương tự trường hợp trên trường số phức, ta có định nghĩa 
     $m$** ($k$-th primitive root of unity modulo $m$).
 
 So sánh với [định nghĩa căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy),
-ta thấy căn nguyên thủy $g$ chính là căn đơn vị nguyên thủy bậc $\varphi(m)$
+căn nguyên thủy $g$ chính là căn đơn vị nguyên thủy bậc $\varphi(m)$
 modulo $m$, trong đó $\varphi(m)$ là [hàm Euler](./euler-totient.md).
 
 Khi căn đơn vị nguyên thủy bậc $k$ modulo $m$ tồn tại, các tính chất đại số của
@@ -249,7 +249,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
 
     Kiểm tra trực tiếp từ định nghĩa thấy rằng chỉ cần $k\mid k'$, từ
     $a^k\equiv 1\pmod m$ suy ra $a^{k'}\equiv 1\pmod m$; đây là tính chất 2.
-    Theo [tính chất của bậc](./primitive-root.md#ord-prop-3), ta có
+    Theo [tính chất của bậc](./primitive-root.md#ord-prop-3), suy ra
 
     $$
     \delta_m(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
@@ -260,7 +260,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     bậc $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Nếu $a$ chỉ là căn đơn vị bậc $k$
     modulo $m$, giả sử nó là căn đơn vị nguyên thủy bậc $k'\mid k$, thì
     $a^\ell$ là căn đơn vị nguyên thủy bậc $\dfrac{k'}{\gcd(k',\ell)}$ modulo
-    $m$. Vì $k'\mid k$, ta có
+    $m$. Vì $k'\mid k$, suy ra
 
     $$
     \dfrac{k'}{\gcd(k',\ell)} \mid \dfrac{k}{\gcd(k,\ell)},
@@ -270,7 +270,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Đây là tính chất 3.
 
     Với $k'\mid k$, theo tính chất 2, căn đơn vị nguyên thủy bậc $k'$ modulo
-    $m$ tất nhiên là căn đơn vị bậc $k$ modulo $m$. Các tập này đôi một không
+    $m$ cũng là căn đơn vị bậc $k$ modulo $m$. Các tập này đôi một không
     giao nhau, nên tạo thành một phân hoạch. Với $\ell\perp k$, luôn có
     $\ell\perp k'$, do đó nếu $a$ là căn đơn vị nguyên thủy bậc $k'$ modulo $m$
     thì $a^\ell$ vẫn là căn đơn vị nguyên thủy bậc $k'$ modulo $m$. Lấy
@@ -295,7 +295,7 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     sẽ thu được tính chất 6. Tiêu chuẩn này thực chất đang kiểm tra
     $\delta_m(a)=k$.
 
-Từ các tính chất trên có thể thấy, so với trường hợp tồn tại căn nguyên thủy,
+Các tính chất trên cho thấy, so với trường hợp tồn tại căn nguyên thủy,
 $\lambda$-căn nguyên thủy modulo $m$ đóng vai trò nền tảng tương tự. Khác với
 căn nguyên thủy, các lũy thừa của $\lambda$-căn nguyên thủy không thể sinh ra
 toàn bộ các căn đơn vị modulo $m$. Dù vậy, vì mật độ của $\lambda$-căn nguyên
@@ -346,7 +346,7 @@ trúc của căn đơn vị đơn giản hơn:
     \delta_m(b) = \delta_m(g^{\operatorname{ind}_gb}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_gb)} = k' \mid k.
     $$
 
-    Vì vậy, ta có
+    Do đó,
 
     $$
     \gcd(\varphi(m),\operatorname{ind}_ga) \mid \gcd(\varphi(m),\operatorname{ind}_gb)\mid \operatorname{ind}_gb.
@@ -365,8 +365,8 @@ trúc của căn đơn vị đơn giản hơn:
 
 Định lí này cho thấy, khi căn nguyên thủy tồn tại, toàn bộ các căn đơn vị bậc
 $k$ có cấu trúc [nhóm cyclic](../algebra/group-theory.md#nhóm-vòng),
-và các căn đơn vị nguyên thủy bậc $k$ là phần tử sinh của nhóm cyclic đó. Ngay
-sau đây ta sẽ thấy thuật toán Tonelli-Shanks tận dụng điểm này để tăng tốc phần
+và các căn đơn vị nguyên thủy bậc $k$ là phần tử sinh của nhóm cyclic đó. Phần
+tiếp theo cho thấy thuật toán Tonelli-Shanks tận dụng điểm này để tăng tốc phần
 tính logarit rời rạc trong phép khai căn.
 
 <span id="khai-căn-theo-modulo"></span>
@@ -441,8 +441,8 @@ cùng nhau với modulo $m$. Quá trình thuật toán tóm tắt như sau:
     chính là căn cần tìm. Độ phức tạp để tìm một nghiệm của thuật toán này vẫn
     là $O(m^{1/2})$.
 
-Tất nhiên, với trường hợp vô nghiệm, thực ra có thể dùng tiêu chuẩn đã nêu ở
-trên để kiểm tra nhanh trong $O(\log m)$, không cần đợi đến quá trình giải mới
+Với trường hợp vô nghiệm, có thể dùng tiêu chuẩn đã nêu ở trên để kiểm tra nhanh
+trong $O(\log m)$, không cần đợi đến quá trình giải mới
 phát hiện.
 
 Mã tham khảo để tìm căn bậc $k$ modulo số nguyên tố như sau: mã chỉ mang tính
@@ -502,7 +502,7 @@ $$
 \ell = \left(\dfrac{k}{d}\right)^{-1}\bmod\dfrac{\varphi(m)}{d}.
 $$
 
-Lấy lũy thừa bậc $\ell$ hai vế của phương trình đồng dư ban đầu, ta được
+Lấy lũy thừa bậc $\ell$ hai vế của phương trình đồng dư ban đầu, thu được
 
 $$
 x^d\equiv x^{k\ell} \equiv a^{\ell} =: b \pmod{m}.
@@ -533,7 +533,7 @@ $$
 
 Không mất tính tổng quát, giả sử $\varphi(m)=p^sr$ và $p\perp r$. Gọi
 $q\in\mathbf N_+$ là nghiệm của phương trình $qr\equiv -1\pmod{p^e}$. Khi đó,
-vì $b$ là căn đơn vị bậc $rp^{s-e}$, $b^{qr}$ chắc chắn là căn đơn vị bậc
+vì $b$ là căn đơn vị bậc $rp^{s-e}$, $b^{qr}$ là căn đơn vị bậc
 $p^{s-e}$. Lại gọi $\zeta$ là căn đơn vị nguyên thủy bậc $p^s$ modulo $m$. Khi
 đó $\zeta^{p^e}$ là căn đơn vị nguyên thủy bậc $p^{s-e}$, nên tồn tại
 $h\in\mathbf N$ sao cho $b^{qr}\equiv \zeta^{hp^{e}}\pmod{m}$. Vì vậy, kiểm tra
@@ -553,19 +553,19 @@ $$
 \dfrac{\varphi(m)}{m}\left(1-\dfrac{1}{p}\right) \ge \dfrac{1}{4}.
 $$
 
-Do đó, kỳ vọng chỉ cần thử không quá $4$ số nguyên để tìm được nó. Chú ý rằng
+Do đó, kỳ vọng chỉ cần thử không quá $4$ số nguyên để tìm được nó. Lưu ý rằng
 $\eta^{rp^{s-1}}\not\equiv 1\pmod m$ và $\eta^{rp^s}\equiv 1\pmod m$, nên nếu
 đặt $\zeta=\eta^r\bmod m$ và $\xi=\eta^{rp^{s-1}}\bmod m$, thì chúng lần lượt
 là căn đơn vị nguyên thủy bậc $p^s$ và bậc $p$.
 
-Cuối cùng, cần tính $h\in\mathbf N$. Hiển nhiên có thể lấy $h < p^{s-e}$. Xét
+Cuối cùng, cần tính $h\in\mathbf N$. Có thể lấy $h < p^{s-e}$. Xét
 biểu diễn cơ số $p$ của $h$:
 
 $$
 h = \sum_{j=0}^{s-e-1}h_jp^j = h_0 + h_1p + h_2p^2 +\cdots.
 $$
 
-Ta tính lần lượt từng chữ số. Khi đã tính xong $j$ chữ số đầu, tất yếu có
+Tính lần lượt từng chữ số. Khi đã tính xong $j$ chữ số đầu, tất yếu có
 
 $$
 \left(b^{qr}\zeta^{-p^e(h_0+h_1p+\cdots + h_{j-1}p^{j-1})}\right)^{p^{s-e-j-1}} \equiv \zeta^{h_jp^{s-1}} \equiv \xi^{h_j} \pmod{m}.
@@ -612,14 +612,14 @@ O\left(\sum_{e < s}p^{1/2+\varepsilon}\right).
 $$
 
 Vì mỗi thừa số nguyên tố $p$ thỏa mãn $e < s$ xuất hiện ít nhất $2$ lần trong
-$\varphi(m)$, nên chắc chắn $p < m^{1/2}$. Do đó, tổng độ phức tạp thời gian là
+$\varphi(m)$, nên $p < m^{1/2}$. Do đó, tổng độ phức tạp thời gian là
 $O(m^{1/4+\varepsilon})$.
 
-Thật ra, trong bối cảnh này, không cần dùng thuật toán Pollard Rho để phân tích
-thừa số nguyên tố mà vẫn có thể đạt độ phức tạp $O(m^{1/4+\varepsilon})$. Chỉ
+Trong bối cảnh này, không cần dùng thuật toán Pollard Rho để phân tích thừa số
+nguyên tố mà vẫn có thể đạt độ phức tạp $O(m^{1/4+\varepsilon})$. Chỉ
 cần thử chia trực tiếp $d$ và chỉ liệt kê các thừa số nguyên tố không vượt quá
 $m^{1/4}$. Gọi số nguyên còn lại sau khi loại các thừa số nhỏ này là $z$. Khi
-đó, với thừa số nguyên tố $p > m^{1/4}$ của $z$, chắc chắn có
+đó, với thừa số nguyên tố $p > m^{1/4}$ của $z$, có
 $\nu_p(\varphi(m)) < 4$, trong đó $\nu_p(n)$ là số mũ của $p$ trong phân tích
 thừa số nguyên tố của $n$. Vì chỉ cần xét trường hợp
 
@@ -637,7 +637,7 @@ p^\star=\gcd\left(z,\dfrac{\varphi(m)}{z}\right) = \prod_{p : \nu_p(d) < \nu_p(\
 $$
 
 Liệt kê mọi khả năng của $\nu_p(d),\nu_p(\varphi(m))$ cho thấy số mũ của $p$
-trong tích chắc chắn bằng $1$, vì vậy giá trị tính được chính là thừa số nguyên
+trong tích bằng $1$, vì vậy giá trị tính được chính là thừa số nguyên
 tố lớn duy nhất $p^\star$ (nếu tồn tại). Phần còn lại $z/p^\star$ chỉ có thể
 gồm một số thừa số nguyên tố thỏa mãn $e=s$, nên không cần tiếp tục phân tích.
 
@@ -660,7 +660,7 @@ $$
 
 đều là nghiệm của phương trình ban đầu. Tiếp theo xét trường hợp
 $a\not\equiv 0\pmod{m}$. Đặt $a = p^sa'$ và $p\perp a'$. Khi đó, đặt $x=p^zx'$
-và $p\perp x'$, ta có
+và $p\perp x'$, suy ra
 
 $$
 x^k = p^{kz}(x')^k\equiv p^sa'\pmod{p^e}.
@@ -669,7 +669,7 @@ $$
 Vì $(x')^k\perp p$, công thức trên đúng khi và chỉ khi $kz = s$ và
 $(x')^k\equiv a'\pmod{p^{e-s}}$. Phương trình thứ nhất có nghiệm
 $z=\dfrac{s}{k}$ khi và chỉ khi $k\mid s$; còn phương trình thứ hai đã được
-giải ở trên. Cần chú ý rằng do modulo của nghiệm tổng quát trong phương trình
+giải ở trên. Cần lưu ý rằng do modulo của nghiệm tổng quát trong phương trình
 thứ hai khác với modulo của nghiệm tổng quát ban đầu, mỗi nghiệm $x'$ của
 phương trình thứ hai tương ứng với một số nghiệm của phương trình ban đầu:
 
@@ -697,9 +697,9 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như
 -   [Root of unity modulo n - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
 -   [No.981 General Power Root, editorial by 37zigen](https://yukicoder.me/problems/no/981/editorial)
 
-[^fnnt]: Thật ra, modulo $m$ không nhất thiết là số nguyên tố. Chỉ cần $a$ là căn đơn vị nguyên thủy bậc $k=2^e$ modulo $m$, nó có thể được dùng cho biến đổi số học nhanh modulo $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi thừa số nguyên tố của modulo $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số nguyên tố đã rất lớn, còn modulo $m$ thường lớn hơn nữa; vì vậy trường hợp modulo tổng quát không thông dụng bằng trường hợp modulo số nguyên tố.
+[^fnnt]: Modulo $m$ không nhất thiết là số nguyên tố. Chỉ cần $a$ là căn đơn vị nguyên thủy bậc $k=2^e$ modulo $m$, nó có thể được dùng cho biến đổi số học nhanh modulo $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi thừa số nguyên tố của modulo $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số nguyên tố đã rất lớn, còn modulo $m$ thường lớn hơn nữa; vì vậy trường hợp modulo tổng quát không thông dụng bằng trường hợp modulo số nguyên tố.
 
-[^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#số-lượng-căn-nguyên-thủy), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, ta có $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, ta có $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Ở đây, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
+[^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#số-lượng-căn-nguyên-thủy), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Trong công thức này, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
 
 [^amm]: Bài báo gốc: Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977. Một phần giới thiệu dễ đọc hơn có trong Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011.
 

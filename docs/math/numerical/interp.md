@@ -15,13 +15,13 @@ Ví dụ, với các điểm dữ liệu:
 
 Trong đó $f(x)$ chưa biết; phương pháp nội suy có thể ước lượng các điểm dữ liệu chưa biết bằng cách khớp $f(x)$ theo một dạng nhất định.
 
-Chẳng hạn, ta có thể dùng hàm tuyến tính từng đoạn để khớp $f(x)$:
+Chẳng hạn, có thể dùng hàm tuyến tính từng đoạn để khớp $f(x)$:
 
 ![](../images/interp-2.svg)
 
 Cách nội suy này được gọi là [nội suy tuyến tính](https://en.wikipedia.org/wiki/Linear_interpolation).
 
-Ta cũng có thể dùng đa thức để khớp $f(x)$:
+Cũng có thể dùng đa thức để khớp $f(x)$:
 
 ![](../images/interp-3.svg)
 
@@ -30,7 +30,7 @@ Cách nội suy này được gọi là [nội suy đa thức](https://en.wikipe
 Dạng tổng quát của nội suy đa thức như sau:
 
 ???+ note "Nội suy đa thức"
-    Với $n+1$ điểm đã biết $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$, hãy tìm đa thức $f(x)$ có dạng $f(x)=\sum_{i=0}^n a_ix^i$ và thỏa mãn
+    Với $n+1$ điểm đã biết $(x_0,y_0),(x_1,y_1),\dots,(x_n,y_n)$, cần tìm đa thức $f(x)$ có dạng $f(x)=\sum_{i=0}^n a_ix^i$ và thỏa mãn
     
     $$
     f(x_i)=y_i,\qquad\forall i=0,1,\dots,n
@@ -38,16 +38,16 @@ Dạng tổng quát của nội suy đa thức như sau:
     
     với mọi điểm đã cho.
 
-Dưới đây giới thiệu hai phương pháp trong nội suy đa thức: nội suy Lagrange và nội suy Newton. Không khó để chứng minh hai phương pháp này cho cùng một kết quả.
+Dưới đây giới thiệu hai phương pháp trong nội suy đa thức: nội suy Lagrange và nội suy Newton. Hai phương pháp này cho cùng một kết quả.
 
 <span id="phương-pháp-nội-suy-lagrange"></span>
 ## Phương pháp nội suy Lagrange
 
-Ta cần xây dựng một hàm $f(x)$ đi qua các điểm $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$. Trước hết, đặt hình chiếu của điểm thứ $i$ lên trục $x$ là $P_i^{\prime}(x_i,0)$.
+Cần xây dựng một hàm $f(x)$ đi qua các điểm $P_1(x_1, y_1), P_2(x_2,y_2),\cdots,P_n(x_n,y_n)$. Trước hết, đặt hình chiếu của điểm thứ $i$ lên trục $x$ là $P_i^{\prime}(x_i,0)$.
 
 Xét việc xây dựng $n$ hàm $f_1(x), f_2(x), \cdots, f_n(x)$ sao cho với hàm thứ $i$, tức $f_i(x)$, đồ thị của nó đi qua $\begin{cases}P_j^{\prime}(x_j,0),(j\neq i)\\P_i(x_i,y_i)\end{cases}$. Khi đó hàm cần tìm là $f(x)=\sum\limits_{i=1}^nf_i(x)$.
 
-Vì vậy có thể đặt $f_i(x)=a\cdot\prod_{j\neq i}(x-x_j)$. Thay điểm $P_i(x_i,y_i)$ vào, ta được $a=\dfrac{y_i}{\prod_{j\neq i} (x_i-x_j)}$, do đó
+Vì vậy có thể đặt $f_i(x)=a\cdot\prod_{j\neq i}(x-x_j)$. Thay điểm $P_i(x_i,y_i)$ vào, thu được $a=\dfrac{y_i}{\prod_{j\neq i} (x_i-x_j)}$, do đó
 
 $$
 f_i(x)=y_i\cdot\dfrac{\prod_{j\neq i} (x-x_j)}{\prod_{j\neq i} (x_i-x_j)}=y_i\cdot\prod_{j\neq i}\dfrac{x-x_j}{x_i-x_j}
@@ -62,10 +62,10 @@ $$
 Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể tối ưu xuống $O(n\log^2 n)$, xem [nội suy nhanh đa thức](../poly/multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức).
 
 ???+ note "[Luogu P4781 [Mẫu] Nội suy Lagrange](https://www.luogu.com.cn/problem/P4781)"
-    Cho $n$ cặp điểm $(x_i,y_i)$ và $k$, đồng thời với mọi $i,j$ có $i\neq j \iff x_i\neq x_j$, $f(x_i)\equiv y_i\pmod{998244353}$ và $\deg(f(x)) < n$ (định nghĩa $\deg(0)=-\infty$). Hãy tính $f(k)\bmod{998244353}$.
+    Cho $n$ cặp điểm $(x_i,y_i)$ và $k$, đồng thời với mọi $i,j$ có $i\neq j \iff x_i\neq x_j$, $f(x_i)\equiv y_i\pmod{998244353}$ và $\deg(f(x)) < n$ (định nghĩa $\deg(0)=-\infty$). Cần tính $f(k)\bmod{998244353}$.
     
     ??? note "Lời giải"
-        Trong bài này chỉ cần tìm giá trị $f(k)$, nên khi tính công thức trên có thể thay trực tiếp $k$ vào. Đôi khi ta cần tính giá trị nhiều lần hoặc thực hiện các thao tác phức tạp hơn; khi đó cần tìm các hệ số của $f$. Mã nguồn đưa ra một cách cài đặt để tìm các hệ số.
+        Trong bài này chỉ cần tìm giá trị $f(k)$, nên khi tính công thức trên có thể thay trực tiếp $k$ vào. Đôi khi cần tính giá trị nhiều lần hoặc thực hiện các thao tác phức tạp hơn; khi đó cần tìm các hệ số của $f$. Mã nguồn đưa ra một cách cài đặt để tìm các hệ số.
         
         $$
         f(k)=\sum_{i=1}^{n}y_i\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}
@@ -73,7 +73,7 @@ Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể
         
         Bài này còn cần tính nghịch đảo modulo. Nếu trước tiên lần lượt tính tử số và mẫu số, rồi nhân tử số với nghịch đảo của mẫu số và cộng vào đáp án cuối cùng, nút thắt độ phức tạp thời gian sẽ không nằm ở việc tính nghịch đảo; độ phức tạp là $O(n^2)$.
         
-        Vì các phép toán được thực hiện dưới modulo cố định $998244353$, ở đây ta tạm xem độ phức tạp thời gian của việc tính nghịch đảo nhân là hằng số.
+        Vì các phép toán được thực hiện dưới modulo cố định $998244353$, phần này tạm xem độ phức tạp thời gian của việc tính nghịch đảo nhân là hằng số.
     
     ??? note "Cài đặt mã nguồn"
         ```cpp
@@ -83,9 +83,9 @@ Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể
 <span id="nội-suy-lagrange-khi-hoành-độ-là-các-số-nguyên-liên-tiếp"></span>
 ### Nội suy Lagrange khi hoành độ là các số nguyên liên tiếp
 
-Nếu hoành độ của các điểm đã biết là các số nguyên liên tiếp, ta có thể nội suy trong $O(n)$.
+Nếu hoành độ của các điểm đã biết là các số nguyên liên tiếp, có thể nội suy trong $O(n)$.
 
-Đặt đa thức cần tìm là $f(x)$, ta đã biết $f(1),\cdots,f(n+1)$ ($1\le i\le n+1$). Xét thay vào công thức nội suy ở trên:
+Đặt đa thức cần tìm là $f(x)$, với các giá trị đã biết $f(1),\cdots,f(n+1)$ ($1\le i\le n+1$). Xét thay vào công thức nội suy ở trên:
 
 $$
 \begin{aligned}
@@ -94,7 +94,7 @@ f(x)&=\sum\limits_{i=1}^{n+1}y_i\prod\limits_{j\ne i}\frac{x-x_j}{x_i-x_j}\\
 \end{aligned}
 $$
 
-Với tích phía sau, có thể xét riêng tử số và mẫu số. Không khó để thấy tử số là:
+Với tích phía sau, có thể xét riêng tử số và mẫu số. Tử số là:
 
 $$
 \dfrac{\prod\limits_{j=1}^{n+1}(x-j)}{x-i}
@@ -115,10 +115,10 @@ $$
 Tiền xử lý tích tiền tố và hậu tố của $(x-i)$, giai thừa và nghịch đảo giai thừa, rồi thay vào công thức này; độ phức tạp là $O(n)$.
 
 ???+ note "Bài ví dụ [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
-    Cho $n,k$, hãy tính giá trị của $\sum\limits_{i=1}^ni^k$ modulo $10^9+7$.
+    Cho $n,k$, cần tính giá trị của $\sum\limits_{i=1}^ni^k$ modulo $10^9+7$.
     
     ??? note "Lời giải"
-        Trong bài này, đáp án là một đa thức bậc $k+1$, vì vậy ta có thể dùng sàng tuyến tính để tính các giá trị $1^i,\cdots,(k+2)^i$, rồi nội suy trong $O(n)$.
+        Trong bài này, đáp án là một đa thức bậc $k+1$, vì vậy có thể dùng sàng tuyến tính để tính các giá trị $1^i,\cdots,(k+2)^i$, rồi nội suy trong $O(n)$.
         
         Cũng có thể dùng kiến thức tổ hợp để suy ra công thức sau từ phương pháp sai phân:
         
@@ -144,7 +144,7 @@ $$
 
 Trong đó $n_j(x):=\prod_{i=0}^{j-1}(x-x_i)$ được gọi là **cơ sở Newton** (tiếng Anh: Newton basis).
 
-Nếu tìm được $a_j$, ta sẽ thu được đa thức nội suy của $f(x)$. Ta định nghĩa **sai phân chia tiến** (forward divided differences) như sau:
+Nếu tìm được $a_j$, sẽ thu được đa thức nội suy của $f(x)$. Định nghĩa **sai phân chia tiến** (forward divided differences) như sau:
 
 $$
 \begin{aligned}
@@ -164,7 +164,7 @@ $$
 
 Đây chính là dạng của nội suy Newton. Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$.
 
-Nếu các điểm mẫu cách đều nhau (tức $x_i=x_0+ih$, $i=1,\dots,n$), ta có thể suy ra
+Nếu các điểm mẫu cách đều nhau (tức $x_i=x_0+ih$, $i=1,\dots,n$), có thể suy ra
 
 $$
 [y_k,\dots,y_{k+j}]=\frac{1}{j!h^j}\Delta^{(j)}y_k,
@@ -204,7 +204,7 @@ $$
 \end{array}
 $$
 
-Hàng đầu tiên là $n$ giá trị liên tiếp đầu tiên của $f(x)$; mỗi hàng sau đó là hiệu của hai hạng kề nhau tương ứng trong hàng trước. Có thể quan sát rằng nếu thực hiện thao tác này đủ nhiều lần (với điều kiện $f(x)$ là đa thức), cuối cùng ta luôn thu được một hằng số.
+Hàng đầu tiên là $n$ giá trị liên tiếp đầu tiên của $f(x)$; mỗi hàng sau đó là hiệu của hai hạng kề nhau tương ứng trong hàng trước. Nếu thực hiện thao tác này đủ nhiều lần (với điều kiện $f(x)$ là đa thức), cuối cùng sẽ luôn thu được một hằng số.
 
 Tính được phần tử đầu tiên của sai phân bậc $i-1$ là $\sum_{j=1}^{i}(-1)^{i+j}\binom{i-1}{j-1}f(j)$; đóng góp của phần tử đầu tiên của sai phân bậc $i-1$ vào $f(k)$ là $\binom{k-1}{i-1}$ lần.
 
