@@ -16,10 +16,10 @@ Dựa trên định lý Lucas và các mở rộng của nó, bài viết này t
 <span id="định-lý-lucas"></span>
 ## Định lý Lucas
 
-Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó ta có định lý Lucas:
+Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó có định lý Lucas:
 
 ???+ note "Định lý Lucas"
-    Với số nguyên tố $p$, ta có
+    Với số nguyên tố $p$, có
     
     $$
     \binom{n}{k}\equiv \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\pmod p.
@@ -34,13 +34,13 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     \binom{p}{n} = \frac{p!}{n!(p-n)!},
     $$
     
-    nên khi $n\neq 0,p$, mẫu số không có thừa số $p$ nhưng tử số có thừa số $p$, do đó phân thức chắc chắn là bội của $p$ và có phần dư $0$ modulo $p$. Khi $n=0,p$, phân thức bằng $1$. Vì vậy
+    nên khi $n\neq 0,p$, mẫu số không có thừa số $p$ nhưng tử số có thừa số $p$, do đó phân thức là bội của $p$ và có phần dư $0$ modulo $p$. Khi $n=0,p$, phân thức bằng $1$. Vì vậy
     
     $$
     \binom{p}{n} \equiv [n=0\lor n=p] \pmod p.
     $$
     
-    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#định-lý-nhị-thức) và [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), ta có
+    Đặt $f(x) = ax^n + bx^m$. Tổng quát hơn, theo [khai triển nhị thức](../combinatorics/combination.md#định-lý-nhị-thức) và [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), có
     
     $$
     \begin{aligned}
@@ -76,16 +76,16 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     \binom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}\binom{n\bmod p}{k\bmod p}\bmod p.
     $$
     
-    Cho hai hệ số ở hai vế bằng nhau, ta thu được định lý Lucas.
+    Cho hai hệ số ở hai vế bằng nhau sẽ thu được định lý Lucas.
 
 ??? note "Chứng minh bằng kết quả về giai thừa theo modulo"
-    Ở đây đưa ra một chứng minh dựa trên các kết quả liên quan đến [giai thừa theo modulo](./factorial.md#trường-hợp-modulo-số-nguyên-tố), nhằm liên hệ thuận tiện với phương pháp ở phần exLucas phía sau. Ta biết hệ số nhị thức là
+    Phần này đưa ra một chứng minh dựa trên các kết quả liên quan đến [giai thừa theo modulo](./factorial.md#trường-hợp-modulo-số-nguyên-tố), nhằm liên hệ thuận tiện với phương pháp ở phần exLucas phía sau. Hệ số nhị thức là
     
     $$
     \binom{n}{k} = \dfrac{n!}{k!(n-k)!}.
     $$
     
-    Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, ta được phân tích:
+    Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, thu được phân tích:
     
     $$
     n! = p^{\nu_p(n!)}(n!)_p.
@@ -108,7 +108,7 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     
     Công thức thứ nhất là hệ quả của công thức Legendre, công thức thứ hai là hệ quả của định lý Wilson.
     
-    Thay các công thức truy hồi vào biểu thức của hệ số nhị thức rồi rút gọn, ta được:
+    Thay các công thức truy hồi vào biểu thức của hệ số nhị thức rồi rút gọn, thu được:
     
     $$
     \begin{aligned}
@@ -136,15 +136,15 @@ Trước hết xét trường hợp modulo là số nguyên tố $p$. Khi đó t
     Ở vế phải, tổng của hai hạng tử đầu nhỏ hơn $2p$, còn hạng tử thứ ba $n\bmod p$ chính là phần dư của tổng hai hạng tử đầu. Vì vậy vế phải không âm, nhỏ hơn $2p$, đồng thời phải là bội của $p$, nên chỉ có thể là $0$ hoặc $p$. Điều này cho thấy $\lfloor n/p\rfloor-\lfloor k/p\rfloor-\lfloor(n-k)/p\rfloor$ chỉ có thể bằng $0$ hoặc $1$:
     
     -   Nếu nó bằng $0$, khi đó cũng có $(n\bmod p) = (k\bmod p)+((n-k)\bmod p)$. Vì thế số mũ của nhân tử thứ nhất trong công thức trên bằng $0$, nhân tử đó bằng một; nhân tử thứ hai là $\dbinom{n\bmod p}{k\bmod p}$; nhân tử thứ ba, theo khai triển phía trên, bằng $\dbinom{\lfloor n/p\rfloor}{\lfloor k/p\rfloor}$. Khi đó công thức Lucas đúng;
-    -   Nếu nó bằng $1$, số mũ của nhân tử thứ nhất bằng $1$, nhân tử đó bằng không, nên phần dư của hệ số nhị thức bằng không. Đồng thời, $\dbinom{n\bmod p}{k\bmod p}$ ở vế phải của đẳng thức trong định lý Lucas cũng chắc chắn bằng không, vì lúc này nhất định có $(n\bmod p)<(k\bmod p)$. Nếu không, ta sẽ có
+    -   Nếu nó bằng $1$, số mũ của nhân tử thứ nhất bằng $1$, nhân tử đó bằng không, nên phần dư của hệ số nhị thức bằng không. Đồng thời, $\dbinom{n\bmod p}{k\bmod p}$ ở vế phải của đẳng thức trong định lý Lucas cũng bằng không, vì lúc này nhất định có $(n\bmod p)<(k\bmod p)$. Nếu không, sẽ có
     
         $$
         ((n-k)\bmod p) = p + (n\bmod p)  - (k\bmod p) \ge p.
         $$
     
-        Điều này mâu thuẫn rõ ràng với định nghĩa của phần dư.
+        Điều này mâu thuẫn với định nghĩa của phần dư.
     
-    Kết hợp hai trường hợp, ta thu được định lý Lucas cần chứng minh. Chứng minh này cũng cho thấy khi tính hệ số tổ hợp theo modulo số nguyên tố, dùng định lý Lucas và dùng thuật toán exLucas cho cùng một kết quả.
+    Kết hợp hai trường hợp, thu được định lý Lucas cần chứng minh. Chứng minh này cũng cho thấy khi tính hệ số tổ hợp theo modulo số nguyên tố, dùng định lý Lucas và dùng thuật toán exLucas cho cùng một kết quả.
 
 Định lý Lucas chỉ ra rằng khi modulo là số nguyên tố $p$, việc tính hệ số tổ hợp lớn có thể chuyển thành tính các hệ số tổ hợp có quy mô nhỏ hơn. Ở vế phải, hệ số tổ hợp thứ nhất có thể tiếp tục xử lý đệ quy cho đến khi $n,k<p$; hệ số tổ hợp thứ hai có thể tính trực tiếp hoặc tiền xử lý trước. Viết dưới dạng mã:
 
@@ -175,18 +175,18 @@ Cài đặt tham khảo dưới đây tiền xử lý giai thừa và nghịch �
 <span id="thuật-toán-exlucas"></span>
 ## Thuật toán exLucas
 
-Trong định lý Lucas, modulo $p$ bắt buộc phải là số nguyên tố. Khi $p$ không phải số nguyên tố, ta cần dùng thuật toán exLucas. Dù tên gọi là vậy, khi vận hành thuật toán này không thực sự dùng định lý Lucas. Bước mấu chốt của nó là [tính giai thừa theo modulo lũy thừa nguyên tố](./factorial.md). Chứng minh thứ hai ở trên đã chỉ ra mối liên hệ giữa nó và định lý Lucas.
+Trong định lý Lucas, modulo $p$ bắt buộc phải là số nguyên tố. Khi $p$ không phải số nguyên tố, cần dùng thuật toán exLucas. Dù tên gọi là vậy, khi vận hành thuật toán này không thực sự dùng định lý Lucas. Bước mấu chốt của nó là [tính giai thừa theo modulo lũy thừa nguyên tố](./factorial.md). Chứng minh thứ hai ở trên đã chỉ ra mối liên hệ giữa nó và định lý Lucas.
 
 <span id="trường-hợp-modulo-lũy-thừa-nguyên-tố"></span>
 ### Trường hợp modulo lũy thừa nguyên tố
 
-Trước hết xét trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, ta thu được phân tích:
+Trước hết xét trường hợp modulo là lũy thừa nguyên tố $p^\alpha$. Tách số mũ của $p$ trong giai thừa $n!$ và các thừa số còn lại, thu được phân tích:
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
 $$
 
-Trong đó, $\nu_p(n!)$ là số mũ của $p$ trong phân tích thừa số nguyên tố của $n!$, còn $(n!)_p$ hiển nhiên nguyên tố cùng nhau với $p$. Vì vậy hệ số tổ hợp có thể viết thành:
+Trong đó, $\nu_p(n!)$ là số mũ của $p$ trong phân tích thừa số nguyên tố của $n!$, còn $(n!)_p$ nguyên tố cùng nhau với $p$. Vì vậy hệ số tổ hợp có thể viết thành:
 
 $$
 \binom{n}{k} = p^{\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)}\dfrac{(n!)_p}{(k!)_p((n-k)!)_p}.
@@ -194,7 +194,7 @@ $$
 
 Các giá trị $\nu_p(n!)$ có thể tính bằng [công thức Legendre](./factorial.md#công-thức-legendre), còn các giá trị $(n!)_p$ có thể tính bằng [quan hệ truy hồi](./factorial.md#trường-hợp-modulo-lũy-thừa-nguyên-tố). Vì phần sau nguyên tố cùng nhau với $p^\alpha$, nghịch đảo của tích ở mẫu số có thể tính bằng [thuật toán Euclid mở rộng](./inverse.md#thuật-toán-euclid-mở-rộng). Như vậy bài toán được giải quyết.
 
-Chú ý rằng nếu số mũ $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$, phần dư chắc chắn bằng không và không cần tính tiếp.
+Lưu ý rằng nếu số mũ $\nu_p(n!)-\nu_p(k!)-\nu_p((n-k)!)\ge\alpha$, phần dư bằng không và không cần tính tiếp.
 
 <span id="trường-hợp-modulo-tổng-quát"></span>
 ### Trường hợp modulo tổng quát

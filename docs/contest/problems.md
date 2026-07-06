@@ -27,7 +27,7 @@ Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạn
 -   Quá giới hạn bộ nhớ (Memory Limit Exceeded, MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
 -   Quá giới hạn đầu ra (Output Limit Exceeded, OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
-Trong các kỳ thi ICPC, chương trình của bạn cần đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
+Trong các kỳ thi ICPC, chương trình của thí sinh cần đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được xem là giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
 
 ## Bài nộp đáp án
 
@@ -55,17 +55,17 @@ Các phương thức tương tác chủ yếu gồm hai loại sau. Dù khác nh
 Tương tác STDIO (tương tác I/O chuẩn) là phương thức tương tác trên các nền tảng trực tuyến như Codeforces, AtCoder, đồng thời cũng là chuẩn trong các kỳ thi thuộc hệ ICPC. Codeforces có một [hướng dẫn ngắn gọn hơn (tiếng Anh)](https://codeforces.com/blog/entry/45307).
 
 ???+ note "Ví dụ [LOJ #559. LibreOJ Round #9: Mê cung của ZQC](https://loj.ac/problem/559)"
-    Hãy chú ý phần được thêm ở cuối.
+    Lưu ý phần được thêm ở cuối.
 
     Đây là một bài tương tác.
 
-    Bạn đang ở trong một mê cung tối gồm $n \times m$ ô vuông và cần đi tới đích của mê cung để hoàn thành thử thách.
+    Người chơi đang ở trong một mê cung tối gồm $n \times m$ ô vuông và cần đi tới đích của mê cung để hoàn thành thử thách.
 
-    Ban đầu, bạn ở điểm xuất phát của mê cung, tức ô $(1,1)$, và quay mặt sang phải; điểm đích nằm ở ô $(n,m)$. Giữa hai ô bất kỳ trong mê cung đều liên thông, và chỉ có đúng một đường đi duy nhất; độ dài giữa hai ô kề nhau (tức kề theo bốn hướng trên, dưới, trái, phải) là một đơn vị. Giữa hai ô kề nhau có thể có tường; độ dày của tường rất nhỏ so với ô vuông nên có thể bỏ qua trong mô hình xấp xỉ. Biên của mê cung đều có tường, và mỗi bức tường đều nối với biên. Mê cung hoàn toàn tối, nghĩa là ngoài $(n,m)$ ra, bạn không thể nhận được bất kỳ thông tin nào.
+    Ban đầu, người chơi ở điểm xuất phát của mê cung, tức ô $(1,1)$, và quay mặt sang phải; điểm đích nằm ở ô $(n,m)$. Giữa hai ô bất kỳ trong mê cung đều liên thông, và chỉ có đúng một đường đi duy nhất; độ dài giữa hai ô kề nhau (tức kề theo bốn hướng trên, dưới, trái, phải) là một đơn vị. Giữa hai ô kề nhau có thể có tường; độ dày của tường rất nhỏ so với ô vuông nên có thể bỏ qua trong mô hình xấp xỉ. Biên của mê cung đều có tường, và mỗi bức tường đều nối với biên. Mê cung hoàn toàn tối, nghĩa là ngoài $(n,m)$ ra, người chơi không thể nhận được bất kỳ thông tin nào.
 
-    Để cố gắng không bị lạc trong bóng tối, mỗi lần đi tiếp bạn chỉ có thể xuất phát từ ô hiện tại, men theo bức tường bên trái hoặc bên phải, dùng tay trái hoặc tay phải chạm vào tường để đi, và làm cho khoảng cách tay chạm tường di chuyển đúng bằng một đơn vị. Cần chú ý rằng nếu phía bên trái hoặc bên phải không có tường, thì không thể đi theo hướng phía đó.
+    Để cố gắng không bị lạc trong bóng tối, mỗi lần đi tiếp người chơi chỉ có thể xuất phát từ ô hiện tại, men theo bức tường bên trái hoặc bên phải, dùng tay trái hoặc tay phải chạm vào tường để đi, và làm cho khoảng cách tay chạm tường di chuyển đúng bằng một đơn vị. Cần lưu ý rằng nếu phía bên trái hoặc bên phải không có tường, thì không thể đi theo hướng phía đó.
 
-    Ở trong bóng tối quá lâu sẽ khiến bạn sợ hãi, vì vậy bạn cần ra khỏi mê cung càng sớm càng tốt. Nếu bạn không ra khỏi mê cung trong số bước giới hạn, thử thách sẽ thất bại.
+    Ở trong bóng tối quá lâu sẽ khiến người chơi sợ hãi, vì vậy cần ra khỏi mê cung càng sớm càng tốt. Nếu người chơi không ra khỏi mê cung trong số bước giới hạn, thử thách sẽ thất bại.
 
 Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩn như bình thường, **xả bộ đệm đầu ra** rồi đọc kết quả từ đầu vào chuẩn. Sau khi chương trình của thí sinh xả bộ đệm đầu ra, chương trình chấm được nối với nó qua ống dẫn (pipe, gọi là trình tương tác) mới có thể nhận ngay các dữ liệu này. Trong C/C++, có thể dùng `fflush(stdout)` và `std::cout << std::flush` để thực hiện thao tác này (khi xuống dòng bằng `std::cout << std::endl` thì bộ đệm cũng được tự động xả, nhưng `std::cout << '\n'` thì không); trong Pascal là `flush(output)`.
 
@@ -74,11 +74,11 @@ Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩ
 Phương thức tương tác với trình chấm thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
 
 ???+ note "Ví dụ [UOJ #206. APIO2016 Gap](https://uoj.ac/problem/206)"
-    Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Bạn cần tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
+    Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Nhiệm vụ là tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
-    Chương trình của bạn không thể trực tiếp đọc dãy số nguyên này, nhưng bạn có thể truy vấn thông tin của dãy thông qua các hàm đã cho. Về chi tiết của hàm truy vấn, hãy tham khảo phần chi tiết cài đặt bên dưới theo ngôn ngữ bạn sử dụng.
+    Chương trình không thể trực tiếp đọc dãy số nguyên này, nhưng có thể truy vấn thông tin của dãy thông qua các hàm đã cho. Chi tiết của hàm truy vấn được mô tả trong phần chi tiết cài đặt bên dưới theo từng ngôn ngữ.
 
-    Bạn cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
+    Cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
 Với dạng bài này, thí sinh chỉ cần viết một hàm cụ thể để hoàn thành một nhiệm vụ; hàm này tương tác bằng cách gọi một số hàm phụ trợ được cho sẵn. Để thí sinh tiện kiểm thử cục bộ, đề bài sẽ phát một tệp tiêu đề và một chương trình chấm tham khảo `grader.cpp` (với Pascal là một thư viện `graderlib`); thí sinh cần biên dịch chương trình của mình cùng với `grader.cpp` để thu được tệp thực thi.
 
@@ -93,7 +93,7 @@ Khi chấm thật, chương trình của thí sinh sẽ được biên dịch v�
 
 ### Khác biệt
 
-Một ưu điểm rõ ràng của tương tác STDIO là nó hỗ trợ được mọi ngôn ngữ lập trình, nhưng chi phí thời gian của nhập xuất dễ trở thành nút thắt khi thiết kế bài, khiến đôi khi khó phân biệt chênh lệch hiệu quả thời gian giữa các chương trình. Tương tác với trình chấm thì ngược lại: vì chi phí gọi hàm không lớn, nó thường cho phép số lượt truy vấn ở cỡ $10^6$, nhưng điểm yếu là bị hạn chế về ngôn ngữ.
+Một ưu điểm nổi bật của tương tác STDIO là nó hỗ trợ được mọi ngôn ngữ lập trình, nhưng chi phí thời gian của nhập xuất dễ trở thành nút thắt khi thiết kế bài, khiến đôi khi khó phân biệt chênh lệch hiệu quả thời gian giữa các chương trình. Tương tác với trình chấm thì ngược lại: vì chi phí gọi hàm không lớn, nó thường cho phép số lượt truy vấn ở cỡ $10^6$, nhưng điểm yếu là bị hạn chế về ngôn ngữ.
 
 Nếu tự thiết kế bài hoặc tổ chức kỳ thi, cần cân nhắc và so sánh hai phương thức này một cách nghiêm túc.
 
@@ -132,7 +132,7 @@ Dạng bài này khá thường gặp trên [LeetCode](https://leetcode.com/) v�
 Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó triển khai.
 
 ??? note "Mã tham khảo"
-    **Chú ý**: mã nguồn không chứa dòng đầu tiên bên dưới (tức `// clang-format off`).
+    **Lưu ý**: mã nguồn không chứa dòng đầu tiên bên dưới (tức `// clang-format off`).
 
     ```cpp
     // clang-format off
@@ -149,11 +149,11 @@ Bài toán này rất kinh điển, nhưng trên phần lớn OJ thì rất khó
 
 [^note2]: Với các ngôn ngữ thông dịch như Python, chương trình sẽ được trình thông dịch trực tiếp thông dịch và chạy.
 
-[^note3]: Trên thực tế, cài đặt của hệ thống chấm phức tạp hơn điều này rất nhiều; ở đây chỉ giới thiệu sơ lược quá trình chấm của hệ thống.
+[^note3]: Trên thực tế, cài đặt của hệ thống chấm phức tạp hơn điều này rất nhiều; phần này chỉ giới thiệu sơ lược quá trình chấm của hệ thống.
 
 [^note4]: Nói chính xác hơn, thường là thời gian ở chế độ người dùng của chương trình.
 
-[^note5]: Phần lớn kết quả chấm ở đây cũng áp dụng cho các dạng bài khác.
+[^note5]: Phần lớn kết quả chấm trong danh sách này cũng áp dụng cho các dạng bài khác.
 
 [^note6]: Hầu hết hệ thống chấm sẽ quy trạng thái PE vào trạng thái WA.
 

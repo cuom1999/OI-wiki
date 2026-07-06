@@ -2,9 +2,9 @@ author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-des
 
 Trong lập trình thi đấu, một phần quan trọng của số học là **số học modulo**
 (modular arithmetic), tức là thực hiện các phép toán trên số nguyên dưới một
-modulo nào đó. Ngoài bốn phép toán cơ bản và phép lũy thừa, ta còn có thể
-thuận tiện tính logarit rời rạc, khai căn bậc bất kỳ, tính giai thừa, tổ hợp
-và nhiều phép toán khác.
+modulo nào đó. Ngoài bốn phép toán cơ bản và phép lũy thừa, số học modulo còn
+cho phép tính thuận tiện logarit rời rạc, khai căn bậc bất kỳ, tính giai thừa,
+tổ hợp và nhiều phép toán khác.
 
 Số học modulo xuất hiện trong nhiều loại bài toán, không chỉ trong phần số học.
 Đáp án thật sự của nhiều bài toán có thể rất lớn, vượt quá miền lưu trữ của các
@@ -59,11 +59,11 @@ Cách cài đặt này cố ý giảm số lần thực hiện modulo, vì phép
 thời gian hơn phép cộng, trừ, nhân hoặc so sánh thông thường. Trong chú thích
 mã nguồn có đưa ra cách cài đặt tương đương và trực tiếp hơn. Ý tưởng chính của
 các tối ưu đơn giản này là: khi cộng trừ hai số nguyên trong $[0,M)$, kết quả
-chắc chắn nằm trong khoảng $(-M,2M)$, nên có thể đưa về lại $[0,M)$ bằng một
+luôn nằm trong khoảng $(-M,2M)$, nên có thể đưa về lại $[0,M)$ bằng một
 lần cộng hoặc trừ. Phép lũy thừa trong cài đặt này dùng kỹ thuật [lũy thừa
 nhanh](../binary-exponentiation.md#lũy-thừa-theo-mô-đun).
 
-Ngoài các phép toán cơ bản này, ta còn có thể thực hiện các phép sau dưới nhiều
+Ngoài các phép toán cơ bản này, còn có thể thực hiện các phép sau dưới nhiều
 modulo:
 
 -   [Nghịch đảo](./inverse.md)
@@ -92,7 +92,7 @@ không cần thiết.
 <span id="nhân-nhanh"></span>
 ### Nhân nhanh
 
-Trong kiểm tra tính nguyên tố và phân tích thừa số, ta thường gặp phép nhân lấy
+Trong kiểm tra tính nguyên tố và phân tích thừa số, thường gặp phép nhân lấy
 modulo với modulo nằm trong phạm vi `long long`. Để tránh tràn số nguyên trong
 quá trình tính, mục này giới thiệu một cách "nhân nhanh" xử lý được modulo
 trong phạm vi `long long`, không cần dùng `__int128`, và có độ phức tạp
@@ -116,15 +116,15 @@ và trừ trong biểu thức bên phải đều có thể tính trực tiếp b
 `unsigned long long`.
 
 Bây giờ chỉ còn cần xét cách tính $\left\lfloor\dfrac {ab}m\right\rfloor$.
-Cách làm là dùng `long double` để tính $\dfrac am$ trước rồi nhân với $b$. Đã
-dùng `long double` thì chắc chắn có sai số do độ chính xác. Giả sử
+Cách làm là dùng `long double` để tính $\dfrac am$ trước rồi nhân với $b$. Khi
+dùng `long double`, sai số do độ chính xác là không tránh khỏi. Giả sử
 `long double` được biểu diễn bằng số dấu phẩy động mở rộng $80$ bit (gồm $1$
 bit dấu, $15$ bit mũ và $64$ bit trị), thì số chữ số có nghĩa tối đa mà
 `long double` có thể biểu diễn chính xác là $64$[^floating-format]. Vì vậy
 $\dfrac am$ trong trường hợp xấu nhất bắt đầu sai từ bit thứ $65$, với miền sai
 số[^ld-mul-err] là $\left(-2^{-64},2^{-64}\right)$. Nhân với $b$, một số nguyên
 có dấu $64$ bit, miền sai số thành $(-0.5,0.5)$. Để đơn giản hóa phần thảo luận
-sau, ta cộng thêm $0.5$ rồi lấy phần nguyên; miền sai số cuối cùng là
+sau, cộng thêm $0.5$ rồi lấy phần nguyên; miền sai số cuối cùng là
 $\{0,1\}$.
 
 Cuối cùng, khi thay vào công thức trên cần nhân với $-m$, nên miền sai số cuối
@@ -147,7 +147,7 @@ rồi lấy modulo trực tiếp:
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
     ```
 
-Tất nhiên, phép modulo trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
+Dù vậy, phép modulo trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
 hơn nữa, có thể xét các phương pháp trong hai mục tiếp theo.
 
 <span id="rút-gọn-barrett"></span>
@@ -166,7 +166,7 @@ z = a\bmod m = a - \left\lfloor\dfrac{a}{m}\right\rfloor m.
 $$
 
 Điểm then chốt nằm ở việc tính thương $\left\lfloor\dfrac{a}{m}\right\rfloor$.
-Đặt $R$ là một hằng số nào đó, ta có[^floor-barrett]
+Đặt $R$ là một hằng số nào đó, thu được[^floor-barrett]
 
 $$
 \left\lfloor\dfrac{a}{m}\right\rfloor = \left\lfloor a\dfrac{R}{m} / R\right\rfloor \approx \left\lfloor a\left\lfloor\dfrac{R}{m}\right\rfloor/R\right\rfloor.
@@ -175,7 +175,7 @@ $$
 Nếu chọn $R = 2^k$, thì $\left\lfloor\dfrac{R}{m}\right\rfloor$ trong vế phải
 có thể tiền xử lý, và phép chia cho $R$ có thể thực hiện bằng dịch bit. Do đó,
 tính thương bằng vế phải chỉ cần một phép nhân và một phép dịch. Thay vào biểu
-thức của $a\bmod m$, ta thu được ước lượng $z'$ của số dư cần tìm.
+thức của $a\bmod m$, thu được ước lượng $z'$ của số dư cần tìm.
 
 Phân tích sai số của cách làm này.
 [Hàm lấy phần nguyên](./basic.md#hàm-lấy-phần-nguyên) có tính
@@ -196,7 +196,7 @@ $z' \ge m$ thì trừ đi phần $m$ thừa là đủ để bảo đảm đáp �
 Trong quá trình tính phép rút gọn Barrett, chỉ cần hai phép nhân, một phép dịch bit
 và tối đa hai phép trừ để hoàn thành modulo số nguyên. Tuy nhiên, hiệu năng tăng
 không miễn phí: các biến trung gian trong phép rút gọn Barrett thường dài hơn biến
-đầu vào. Dễ thấy biến trung gian dài nhất trong phép rút gọn Barrett là
+đầu vào. Biến trung gian dài nhất trong phép rút gọn Barrett là
 $a\left\lfloor\dfrac{R}{m}\right\rfloor$. Đặt $\ell(x)$ là độ dài biểu diễn nhị
 phân của số nguyên $x$. Khi đó
 
@@ -304,7 +304,7 @@ $$
 RR^{-1} + mm' = 1.
 $$
 
-Do đó, đặt $q=\lfloor xm' / R\rfloor$, ta có
+Do đó, đặt $q=\lfloor xm' / R\rfloor$, thu được
 
 $$
 \begin{aligned}
@@ -409,13 +409,13 @@ trong đó $1 < e_1 < e_2 < \cdots < e_s < e$. Lý do là khi khai triển trự
 tích này, bit bằng $1$ thấp thứ hai trong biểu diễn nhị phân của $a$ chính là
 bit thứ $e_1$ (chỉ số bắt đầu từ $0$), từ đó có thể tìm biểu diễn này một cách
 đệ quy. Theo [tính chất](./discrete-logarithm.md#tính-chất) của
-logarit rời rạc, ta có
+logarit rời rạc, suy ra
 
 $$
 4L(a) \equiv 4L(2^{e_1}+1) + 4L(2^{e_2}+1) + \cdots + 4L(2^{e_s}+1) \pmod{m}.
 $$
 
-Vì modulo của logarit rời rạc bằng bậc $\delta_m(g)=2^{e-2}=m/4$, ở đây nhân cả
+Vì modulo của logarit rời rạc bằng bậc $\delta_m(g)=2^{e-2}=m/4$, cần nhân cả
 đồng dư thức với $4$ để bảo đảm quá trình tính có thể thực hiện trong các lớp
 thặng dư modulo $m$. Do đó, chỉ cần tiền xử lý tất cả giá trị $4L(2^d+1)$ với
 $1 < d < e$, là có thể tính nhanh $4L(a)$.
@@ -470,7 +470,7 @@ $$
 $$
 
 Do đó, quy nạp từ $d = \lceil e/2\rceil$ cho thấy $L(2^d+1)=2^d$ đúng với mọi
-$d \ge e/2$. Suy ra, chỉ cần $e/2 \le e_1 < e_2 < \cdots < e_s < e$, ta có
+$d \ge e/2$. Suy ra, với $e/2 \le e_1 < e_2 < \cdots < e_s < e$, có
 
 $$
 (2^{e_1}+1)(2^{e_2}+1)\cdots(2^{e_s}+1) \equiv 1 + 2^{e_1} + 2^{e_2} + \cdots + 2^{e_s} \pmod{m}
@@ -485,7 +485,7 @@ $$
 Vì vậy, sau khi xử lý tất cả các bit $d < e/2$, có thể trực tiếp thu được
 logarit rời rạc của phần còn lại mà không cần tính từng bit. Sau tối ưu thứ
 nhất, toàn bộ phép lũy thừa chỉ cần $O(e)$ phép cộng trừ, thao tác bit và $1$
-phép nhân; sau tối ưu thứ hai, có thể tiết kiệm gần một nửa số phép cộng trừ và
+phép nhân; sau tối ưu thứ hai, tiết kiệm được gần một nửa số phép cộng trừ và
 thao tác bit, đổi lại cần thêm $1$ phép nhân.
 
 Làm ví dụ, cài đặt tham khảo cho phép lũy thừa modulo $2^{32}$ như sau:
@@ -521,7 +521,7 @@ $$
 
 [^floating-format]: Xem [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format).
 
-[^ld-mul-err]: Ở đây dùng điều kiện $a < m$, tức là $a / m \in [0,1)$.
+[^ld-mul-err]: Điều kiện dùng trong ghi chú này là $a < m$, tức là $a / m \in [0,1)$.
 
 [^int128]: Trong các môi trường biên dịch phổ biến hiện nay, chỉ MSVC trên
     Windows không hỗ trợ kiểu `__int128`. Nếu cần viết mã tương thích nhiều nền
@@ -530,7 +530,7 @@ $$
     và dùng các hàm nội tại được cung cấp (như `_umul128`) để gián tiếp cài đặt
     số nguyên 128 bit (chỉ khả dụng trên nền tảng 64 bit).
 
-[^floor-barrett]: Ở đây $\left\lfloor\dfrac{r}{m}\right\rfloor$ cũng có thể
+[^floor-barrett]: Giá trị $\left\lfloor\dfrac{r}{m}\right\rfloor$ cũng có thể
     thay bằng các ước lượng nguyên khác của $\dfrac{r}{m}$, chẳng hạn hàm trần
     $\left\lceil\dfrac{r}{m}\right\rceil$ và hàm làm tròn gần nhất
     $\left\lfloor\dfrac{r}{m}\right\rceil$, miễn là điều chỉnh bước sửa sai số
@@ -544,6 +544,6 @@ $$
     $mx(2-mx) = (1+\lambda 2^e)(1-\lambda 2^e) = 1 - \lambda^2 2^{2e} \equiv 1\pmod{2^{2e}}$.
 
 [^mod-2-g]: Trang được dẫn trong bài chỉ chứng minh $g$ có thể lấy bằng $5$.
-    Thực ra, lặp lại hoàn toàn chứng minh đó cho thấy $g$ có thể là bất kỳ số
+    Lặp lại hoàn toàn chứng minh đó cho thấy $g$ có thể là bất kỳ số
     nguyên nào đồng dư $5$ theo modulo $8$. Phần sau sẽ thảo luận cách chọn
     $g$.
