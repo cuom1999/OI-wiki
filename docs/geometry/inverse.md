@@ -27,7 +27,7 @@ Hình dưới đây minh họa phép nghịch đảo của một điểm $P$ tr�
 
     ![Nghịch đảo 2](./images/inverse2.png)
 
-    -   Gọi bán kính của đường tròn $A$ là $r_1$, bán kính của đường tròn ảnh nghịch đảo $B$ là $r_2$, ta có:
+    -   Gọi bán kính của đường tròn $A$ là $r_1$, bán kính của đường tròn ảnh nghịch đảo $B$ là $r_2$, có:
 
         $$
         r_2 = \frac{1}{2}\left(\frac{1}{|OA| - r_1} - \frac{1}{|OA| + r_1}\right) R^2
@@ -47,7 +47,7 @@ Hình dưới đây minh họa phép nghịch đảo của một điểm $P$ tr�
         
         Khử $|OB|$ rồi giải phương trình là được.
 
-    -   Gọi tọa độ của điểm $O$ là $(x_0, y_0)$, tọa độ của điểm $A$ là $(x_1, y_1)$, tọa độ của điểm $B$ là $(x_2, y_2)$, ta có:
+    -   Gọi tọa độ của điểm $O$ là $(x_0, y_0)$, tọa độ của điểm $A$ là $(x_1, y_1)$, tọa độ của điểm $B$ là $(x_2, y_2)$, có:
 
         $$
         \begin{aligned}

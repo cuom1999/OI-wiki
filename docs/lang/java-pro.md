@@ -4,7 +4,7 @@
 <span id="nhập-xuất-nhanh-hơn"></span>
 ## Nhập xuất nhanh hơn
 
-`Scanner` và `System.out.print` hoạt động tốt lúc đầu, nhưng khi xử lý dữ liệu lớn chúng trở nên kém hiệu quả. Vì vậy ta cần dùng một số cách để tăng tốc IO.
+`Scanner` và `System.out.print` hoạt động tốt lúc đầu, nhưng khi xử lý dữ liệu lớn chúng trở nên kém hiệu quả. Vì vậy cần dùng một số cách để tăng tốc IO.
 
 <span id="dùng-kattio-stringtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng Kattio + StringTokenizer để nhập dữ liệu
@@ -64,7 +64,7 @@ class Test {
 <span id="dùng-streamtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng StreamTokenizer để nhập dữ liệu
 
-Trong một số trường hợp, dùng `StringTokenizer` có thể gây MLE (Memory Limit Exceeded, vượt giới hạn bộ nhớ). Khi đó ta cần dùng `StreamTokenizer` để nhập dữ liệu.
+Trong một số trường hợp, dùng `StringTokenizer` có thể gây MLE (Memory Limit Exceeded, vượt giới hạn bộ nhớ). Khi đó cần dùng `StreamTokenizer` để nhập dữ liệu.
 
 ```java
 import java.io.*;
@@ -93,7 +93,7 @@ public class Main {
 1.  `StreamTokenizer` dùng ít bộ nhớ hơn `StringTokenizer`. Khi chương trình chuẩn Java bị MLE, có thể thử `StreamTokenizer`, nhưng `StreamTokenizer` có thể làm mất độ chính xác và gặp lỗi khi đọc một số kiểu dữ liệu.
     -   Trong mã nguồn của `StreamTokenizer` có `Type`; `Type` này quyết định kiểu dựa trên nội dung đầu vào. Nếu nhập một chuỗi bắt đầu bằng chữ số như `123oi`, nó sẽ cưỡng ép coi kiểu là `double`, nên khi đọc dữ liệu kiểu `String` bằng kiểu `double` sẽ phát sinh ngoại lệ.
     -   `StreamTokenizer` sẽ mất độ chính xác khi đọc các số có độ lớn từ `1e14` trở lên.
-2.  Khi dùng `PrintWriter`, cần chú ý gọi `close()` để đóng luồng xuất ở cuối chương trình, hoặc gọi `flush()` khi cần xuất ngay bộ đệm; nếu không nội dung sẽ không được ghi ra console hoặc tệp.
+2.  Khi dùng `PrintWriter`, cần lưu ý gọi `close()` để đóng luồng xuất ở cuối chương trình, hoặc gọi `flush()` khi cần xuất ngay bộ đệm; nếu không nội dung sẽ không được ghi ra console hoặc tệp.
 3.  `Kattio` kế thừa từ `PrintWriter`, nên đối tượng của nó có sẵn chức năng của `PrintWriter` và có thể gọi trực tiếp các hàm xuất của `PrintWriter`; đồng thời nó dùng `StringTokenizer` làm biến thành viên. Cách thứ hai trong lớp `Main` lại dùng `StreamTokenizer` và `PrintWriter` làm biến thành viên riêng, nên cách sử dụng hơi khác.
 
 Tóm lại, trong đa số trường hợp `StringTokenizer` thuận tiện hơn `StreamTokenizer`. Chỉ nên thử `StreamTokenizer` trong các trường hợp MLE cực đoan; ngoài ra, `StreamTokenizer` không xử lý tốt dữ liệu vượt phạm vi `int`.
@@ -477,7 +477,7 @@ int value = integer;
 ```
 
 ???+ warning "Lưu ý"
-    Dù JDK đã thêm cơ chế tự động đóng hộp và tự động mở hộp, hãy chọn kiểu phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu nguyên thủy `int` thì không. Vì vậy, khi mở hộp một kiểu bao đang có giá trị `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
+    Dù JDK đã thêm cơ chế tự động đóng hộp và tự động mở hộp, cần chọn kiểu phù hợp khi khai báo biến. Kiểu bao `Integer` có thể nhận `null`, còn kiểu nguyên thủy `int` thì không. Vì vậy, khi mở hộp một kiểu bao đang có giá trị `null`, chương trình sẽ ném ngoại lệ. Đoạn mã sau minh họa hành vi này.
     
     ```java
     Integer integer = Integer.valueOf(null);
@@ -490,7 +490,7 @@ int value = integer;
 <span id="kế-thừa"></span>
 ## Kế thừa
 
-Tạo thiết kế mới dựa trên thiết kế đã có chính là kế thừa trong lập trình hướng đối tượng. Trong kế thừa, lớp mới không xuất hiện từ hư không mà được định nghĩa dựa trên một lớp đã tồn tại. Thông qua kế thừa, lớp mới tự động nhận được mọi thành viên của lớp cơ sở, gồm biến thành viên và phương thức, cũng như các thành viên thuộc nhiều mức truy cập khác nhau, dù là `public` hay `private`. Rõ ràng, định nghĩa lớp mới bằng kế thừa đơn giản, nhanh và tiện hơn nhiều so với viết một lớp mới từ đầu. Kế thừa là một trong những cơ chế quan trọng hỗ trợ tái sử dụng mã.
+Tạo thiết kế mới dựa trên thiết kế đã có chính là kế thừa trong lập trình hướng đối tượng. Trong kế thừa, lớp mới không xuất hiện từ hư không mà được định nghĩa dựa trên một lớp đã tồn tại. Thông qua kế thừa, lớp mới tự động nhận được mọi thành viên của lớp cơ sở, gồm biến thành viên và phương thức, cũng như các thành viên thuộc nhiều mức truy cập khác nhau, dù là `public` hay `private`. Định nghĩa lớp mới bằng kế thừa đơn giản, nhanh và tiện hơn nhiều so với viết một lớp mới từ đầu. Kế thừa là một trong những cơ chế quan trọng hỗ trợ tái sử dụng mã.
 
 Trong Java, từ khóa kế thừa là `extends`. Java chỉ hỗ trợ đơn kế thừa lớp, nhưng có thể hiện thực nhiều giao diện.
 
@@ -527,7 +527,7 @@ Biến đa hình:
 <span id="generics"></span>
 ## Kiểu tổng quát (generic, kiểu tham số hóa)
 
-Kiểu tổng quát (generic) nghĩa là khi định nghĩa lớp, ta không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của kiểu tổng quát là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
+Kiểu tổng quát (generic) nghĩa là khi định nghĩa lớp, không cố định kiểu cụ thể của thuộc tính hoặc tham số phương thức trong lớp, mà chỉ xác định kiểu khi sử dụng hoặc tạo đối tượng. Bản chất của kiểu tổng quát là kiểu tham số hóa, tức kiểu dữ liệu được thao tác được chỉ định như một tham số.
 
 Kiểu tổng quát cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm biên dịch, cho phép phát hiện kiểu không hợp lệ khi biên dịch.
 
@@ -727,7 +727,7 @@ Cách dùng giao diện hàm như sau:
 
 ## Tập hợp
 
-`Collection` là giao diện trong Java, được nhiều giao diện bộ chứa tổng quát hiện thực. Ở đây, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
+`Collection` là giao diện trong Java, được nhiều giao diện bộ chứa tổng quát hiện thực. Trong phần này, `Collection` chỉ các cấu trúc dữ liệu dùng để lưu kiểu đối tượng.
 
 Trong Java, kiểu phần tử của `Collection` khi định nghĩa phải là đối tượng, không thể là kiểu dữ liệu nguyên thủy.
 
@@ -757,7 +757,7 @@ list.add(1L);
 list.add("I am String");
 ```
 
-Vì vậy, nếu không có nhu cầu đặc biệt thì không khuyến nghị cách thứ hai. Trình biên dịch không thể giúp kiểm tra dữ liệu đưa vào có an toàn hay không. Khi lấy giá trị bằng `list.get(index)`, kiểu dữ liệu không rõ ràng vì dữ liệu lấy ra đều là `Object`; cần tự ép kiểu về kiểu ban đầu, và chỉ cần sơ suất là có thể gặp ngoại lệ ép kiểu sai.
+Vì vậy, nếu không có nhu cầu đặc biệt thì không khuyến nghị cách thứ hai. Trình biên dịch không thể giúp kiểm tra tính hợp lệ của dữ liệu đưa vào. Khi lấy giá trị bằng `list.get(index)`, kiểu dữ liệu không xác định rõ vì dữ liệu lấy ra đều là `Object`; cần tự ép kiểu về kiểu ban đầu, và chỉ cần sơ suất là có thể gặp ngoại lệ ép kiểu sai.
 
 Nếu đã xác định kiểu như `List<Integer>`, trình biên dịch sẽ kiểm tra kiểu dữ liệu đưa vào và chỉ cho phép đưa dữ liệu số nguyên. Khi khai báo biến tập hợp, chỉ có thể dùng kiểu bao như `List<Integer>` hoặc `Class` tự định nghĩa, không thể dùng kiểu nguyên thủy như `List<int>`.
 
@@ -1046,7 +1046,7 @@ public class Main {
 
 ### Deque
 
-`Deque` là hàng đợi hai đầu trong `Java`; ta thường dùng nó để thao tác hàng đợi và thao tác stack.
+`Deque` là hàng đợi hai đầu trong `Java`; thường dùng nó để thao tác hàng đợi và thao tác stack.
 
 <span id="deque-hàm-chính"></span>
 #### Hàm chính
@@ -1166,7 +1166,7 @@ Set<Integer> s4 = new TreeSet<>((x, y) -> {return y - x;});  // Giảm dần
 <span id="sử-dụng-treeset-nâng-cao"></span>
 ##### Sử dụng TreeSet nâng cao
 
-Các phương thức này được `TreeSet` tạo và hiện thực riêng; ta không thể gọi các phương thức dưới đây qua giao diện `Set`, nên cách tạo là:
+Các phương thức này được `TreeSet` tạo và hiện thực riêng; không thể gọi các phương thức dưới đây qua giao diện `Set`, nên cách tạo là:
 
 ```java
 TreeSet<Integer> s3 = new TreeSet<>();
@@ -1397,7 +1397,7 @@ public class Main {
 }
 ```
 
-Tất nhiên, kiểu của khóa và giá trị cũng có thể thay đổi. Ví dụ `Map` cũng có thể được định nghĩa là:
+Kiểu của khóa và giá trị cũng có thể thay đổi. Ví dụ `Map` cũng có thể được định nghĩa là:
 
 ```java
 Map<String, Set<Integer>> map = new HashMap<>();
@@ -1462,7 +1462,7 @@ public class Main {
 Có thể kiểm chứng bằng đoạn mã sau:
 
 ???+ example "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
-    Có $n$ số nguyên. Bạn cần chia chúng thành hai nhóm và kiểm tra có tồn tại một nhóm có độ dài nhỏ hơn nhóm kia nhưng tổng lại lớn hơn hay không.
+    Có $n$ số nguyên. Cần chia chúng thành hai nhóm và kiểm tra có tồn tại một nhóm có độ dài nhỏ hơn nhóm kia nhưng tổng lại lớn hơn hay không.
 
 ??? note "Mã bài ví dụ"
     ```java
@@ -1521,7 +1521,7 @@ Có thể kiểm chứng bằng đoạn mã sau:
         
         static void solve() {
             int n = in.nextInt();
-            // Nếu đổi kiểu mảng ở đây từ Integer thành int thì sẽ gây TLE
+            // Nếu đổi kiểu mảng này từ Integer thành int thì sẽ gây TLE
             Integer[] a = new Integer[n + 10];
             for (int i = 1; i <= n; i++) {
                 a[i] = in.nextInt();

@@ -8,7 +8,7 @@ Việt mới nhất.
 
 Dự án gốc có một trang trạng thái tại <https://status.oi-wiki.org> để theo dõi
 tình trạng hoạt động của các trang **OI Wiki**. Nếu gặp vấn đề truy cập bản gốc,
-bạn có thể mở trang trạng thái và chọn một bản sao kết nối được.
+có thể mở trang trạng thái và chọn một bản sao kết nối được.
 
 Dưới đây là danh sách bản sao của **OI Wiki** gốc:
 

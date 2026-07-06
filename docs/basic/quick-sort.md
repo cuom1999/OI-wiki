@@ -163,7 +163,7 @@ Trong trường hợp trung bình, giá trị mốc được chọn ở mỗi l�
     nhận giá trị $0$ hoặc $1$, biểu thị trong quá trình sắp xếp $a_i$ có được
     so sánh với $a_j$ hay không.
     
-    Rõ ràng các giá trị mốc được chọn ở mỗi lần là khác nhau, và phần tử chỉ
+    Các giá trị mốc được chọn ở mỗi lần là khác nhau, và phần tử chỉ
     được so sánh với mốc, nên tổng số phép so sánh là
     
     $$
@@ -188,10 +188,10 @@ Trong trường hợp trung bình, giá trị mốc được chọn ở mỗi l�
     sánh với $a_j$.
     
     Nếu cả $a_i$ và $a_j$ đều không phải giá trị mốc đầu tiên được chọn trong
-    tập $A_{i,j}$, thì chắc chắn tồn tại một $x$ thỏa mãn $i < x < j$ sao cho
+    tập $A_{i,j}$, thì tồn tại một $x$ thỏa mãn $i < x < j$ sao cho
     $a_x$ là giá trị mốc đầu tiên được chọn trong $A_{i,j}$. Trong lần phân
     hoạch lấy $a_x$ làm mốc, $a_i$ và $a_j$ bị chia vào hai dãy con khác nhau
-    của mảng, nên về sau $a_i$ và $a_j$ chắc chắn không được so sánh. Lại vì
+    của mảng, nên về sau $a_i$ và $a_j$ không được so sánh. Lại vì
     phần tử chỉ so sánh với mốc, nên $a_i$ và $a_j$ cũng không được so sánh
     trước và trong lần phân hoạch này. Do đó $a_i$ không được so sánh với
     $a_j$.
@@ -407,10 +407,10 @@ T find_kth_element(T arr[], int rk, const int len) {
       i++;
   }
   // Dựa vào hạng cần tìm và vị trí của hai đường phân cách để đệ quy tìm phần tử hạng k trong đoạn tương ứng
-  // Nếu số phần tử nhỏ hơn pivot nhiều hơn k, thì phần tử hạng k chắc chắn là một phần tử nhỏ hơn pivot
+  // Nếu số phần tử nhỏ hơn pivot nhiều hơn k, thì phần tử hạng k là một phần tử nhỏ hơn pivot
   if (rk < j) return find_kth_element(arr, rk, j);
   // Ngược lại, nếu tổng số phần tử nhỏ hơn pivot và bằng pivot vẫn không nhiều đến k,
-  // thì phần tử hạng k chắc chắn là một phần tử lớn hơn pivot
+  // thì phần tử hạng k là một phần tử lớn hơn pivot
   else if (rk >= k)
     return find_kth_element(arr + k, rk - k, len - k);
   // Nếu không, pivot chính là phần tử hạng k
@@ -446,11 +446,11 @@ $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm phần tử là $O(n)$.
 
 Tiếp theo phân tích bước thứ ba: quá trình đệ quy. Bước này thực hiện hai lời
 gọi đệ quy: lần thứ nhất tìm trung vị của các trung vị trong từng nhóm, với chi
-phí hiển nhiên là $T(\dfrac{n}{5})$; lần thứ hai đi vào phần bên trái hoặc bên
+phí tương ứng là $T(\dfrac{n}{5})$; lần thứ hai đi vào phần bên trái hoặc bên
 phải của giá trị mốc. Theo phần tử phân hoạch đã chọn, có
 $\dfrac{1}{2} \times \left \lfloor \dfrac{n}{5} \right \rfloor =
 \left \lfloor \dfrac{n}{10} \right \rfloor$ nhóm có trung vị nhỏ hơn giá trị
-mốc. Trong các nhóm này, những phần tử nhỏ hơn trung vị cũng chắc chắn nhỏ hơn
+mốc. Trong các nhóm này, những phần tử nhỏ hơn trung vị cũng nhỏ hơn
 giá trị mốc, nên trong toàn bộ dãy có ít nhất
 $3 \times \left \lfloor \dfrac{n}{10} \right \rfloor =
 \left \lfloor \dfrac{3n}{10} \right \rfloor$ phần tử nhỏ hơn giá trị mốc.

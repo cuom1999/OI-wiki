@@ -58,7 +58,7 @@ Emacs có hệ thống phím tắt cực kỳ phong phú, có thể nâng cao đ
 
 Do số lượng phím tắt quá nhiều, cách dùng phím tắt của Emacs khác với hệ điều hành.
 
-Để tiện mô tả, ta dùng quy ước sau:
+Để tiện mô tả, dùng quy ước sau:
 
 | Ký tự | Phím |
 | ----- | ---- |

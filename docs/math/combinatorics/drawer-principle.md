@@ -12,7 +12,7 @@ Nó thường được dùng trong các chứng minh tồn tại và trong việ
 
 Nếu đưa $n+1$ vật vào $n$ nhóm, thì tồn tại ít nhất một nhóm có hai vật trở lên.
 
-Định lý này khá hiển nhiên. Ta có thể chứng minh bằng phản chứng: nếu mỗi nhóm có nhiều nhất $1$ vật, tổng số vật tối đa chỉ là $1\times n$, trong khi thực tế có $n+1$ vật, mâu thuẫn.
+Định lý này có thể chứng minh bằng phản chứng: nếu mỗi nhóm có nhiều nhất $1$ vật, tổng số vật tối đa chỉ là $1\times n$, trong khi thực tế có $n+1$ vật, mâu thuẫn.
 
 <span id="mở-rộng"></span>
 
@@ -25,8 +25,8 @@ Dạng mở rộng cũng có thể chứng minh bằng phản chứng: nếu m�
 Ngoài ra, có thể thay phân hoạch bằng phủ mà kết luận vẫn không đổi.<br>
 Cho tập $S$, xét một họ các tập con khác rỗng của $S$: $\{A_1,A_2\ldots A_k\}$.
 
--   Nếu thỏa $\bigcup_{i=1}^k A_i=S$, ta gọi đó là một phủ (cover) của $S$.
--   Nếu một phủ còn thỏa $i\neq j\to A_i\cap A_j=\varnothing$, ta gọi đó là một phân hoạch của $S$.
+-   Nếu thỏa $\bigcup_{i=1}^k A_i=S$, họ tập đó là một phủ (cover) của $S$.
+-   Nếu một phủ còn thỏa $i\neq j\to A_i\cap A_j=\varnothing$, phủ đó là một phân hoạch của $S$.
 
 Nguyên lý chuồng bồ câu có thể được phát biểu như sau: với một phủ $\{A_1,A_2\ldots A_k\}$ của $S$, tồn tại ít nhất một tập $A_i$ thỏa $\left\vert A_i \right\vert \geq \left\lceil \dfrac{\left\vert S \right\vert}{k} \right\rceil$.
 

@@ -33,7 +33,7 @@ Các biến môi trường có thể dùng:
 
 -   Có thể đặt `WIKI_REPO` để dùng bản sao của kho Wiki (nếu không đặt thì tự động dùng GitHub)
 -   Có thể đặt `PYPI_MIRROR` để dùng bản sao của kho PyPI (nếu không đặt thì tự động dùng PyPI chính thức)
-    -   Chỉ nên đặt nguồn sao lưu nếu bạn tin cậy bản sao đó và cần tăng tốc tải gói trong môi trường mạng hiện tại.
+    -   Chỉ nên đặt nguồn sao lưu nếu tin cậy bản sao đó và cần tăng tốc tải gói trong môi trường mạng hiện tại.
 -   Có thể đặt `LISTEN_IP` để đổi IP lắng nghe (nếu không đặt thì là `0.0.0.0`, tức lắng nghe truy cập từ mọi IP)
 -   Có thể đặt `LISTEN_PORT` để đổi cổng lắng nghe (nếu không đặt thì là `8000`)
 
@@ -52,8 +52,8 @@ docker run -d -it [image]
 ```
 
 -   (Bắt buộc) đặt `[image]` để chỉ định image. Ví dụ, image kéo từ Docker Hub là `24oi/oi-wiki`; image kéo từ DaoCloud Hub là `daocloud.io/sirius/oi-wiki`.
--   (Bắt buộc) đặt `-p [port]:8000` để ánh xạ cổng container sang cổng trên máy chủ. Nếu không viết tùy chọn này thì mặc định không công khai cổng. Khi đặt, hãy thay `[port]` bằng cổng trên máy chủ. Sau khi đặt, có thể truy cập **OI Wiki** trên máy chủ qua `http://127.0.0.1:[port]`.
--   Đặt `--name [name]` để đặt tên container. Mặc định để trống. Khi đặt, hãy thay `[name]` bằng tên container tự chọn. Nếu muốn xem container id, hãy nhập `docker ps`.
+-   (Bắt buộc) đặt `-p [port]:8000` để ánh xạ cổng container sang cổng trên máy chủ. Nếu không viết tùy chọn này thì mặc định không công khai cổng. Khi đặt, thay `[port]` bằng cổng trên máy chủ. Sau khi đặt, có thể truy cập **OI Wiki** trên máy chủ qua `http://127.0.0.1:[port]`.
+-   Đặt `--name [name]` để đặt tên container. Mặc định để trống. Khi đặt, thay `[name]` bằng tên container tự chọn. Nếu muốn xem container id, nhập `docker ps`.
 
 ## Sử dụng container
 
@@ -67,7 +67,7 @@ Vào container:
 docker exec -it [name] /bin/bash
 ```
 
-Nếu bỏ `-d` trong lệnh chạy container ở trên, bạn có thể vào thẳng bash của container; sau khi thoát thì container sẽ dừng. Khi thêm `-d`, container chạy nền và cần dừng thủ công. Cách vào container ở trên dành cho container được chạy với `-d`.
+Nếu bỏ `-d` trong lệnh chạy container ở trên, có thể vào thẳng bash của container; sau khi thoát thì container sẽ dừng. Khi thêm `-d`, container chạy nền và cần dừng thủ công. Cách vào container ở trên dành cho container được chạy với `-d`.
 
 Cách dùng đặc biệt:
 
@@ -125,7 +125,7 @@ docker restart [name]
 
 ```bash
 # Chạy các lệnh sau trên máy chủ
-# Hãy dừng container trước khi xóa
+# Dừng container trước khi xóa
 docker rm [name]
 ```
 
@@ -137,10 +137,10 @@ Chỉ cần `pull` lại một lần nữa; thông thường image sẽ không �
 
 ```bash
 # Chạy các lệnh sau trên máy chủ
-# Trước khi xóa, hãy xóa các container được tạo từ image oi-wiki
+# Trước khi xóa, xóa các container được tạo từ image oi-wiki
 docker rmi [image]
 ```
 
 ## Câu hỏi
 
-Nếu có câu hỏi, bạn có thể mở [issue](https://github.com/cuom1999/OI-wiki/issues/new/choose)!
+Nếu có câu hỏi, có thể mở [issue](https://github.com/cuom1999/OI-wiki/issues/new/choose)!

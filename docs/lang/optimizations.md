@@ -322,7 +322,7 @@ gọi hàm rất nhiều.
     }
     ```
 
-Tách mã nóng/lạnh thực ra là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không chắc tốt hơn quyết định của trình biên dịch.
+Tách mã nóng/lạnh là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn. Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến, nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết định nội tuyến không hẳn tốt hơn quyết định của trình biên dịch.
 
 Thực tế, khi không có thông tin bổ sung, trình biên dịch thường giả định xác suất nhảy nhánh và không nhảy nhánh là như nhau, rồi dựa vào đó lan truyền mức nóng/lạnh của các đường luồng điều khiển. Một phần của PGO (tối ưu hóa dựa trên hồ sơ chạy) là chạy chương trình nhiều lần trong các phép đo và thử nghiệm hiệu năng để thu được xác suất nhánh trong môi trường thực; thông tin này có thể giúp bố cục mã tốt hơn.
 
@@ -400,7 +400,7 @@ int fac(int n) {
 }
 ```
 
-Chú ý rằng hàm này không phải đệ quy đuôi, nhưng có thể viết lại thành:
+Lưu ý rằng hàm này không phải đệ quy đuôi, nhưng có thể viết lại thành:
 
 ```cpp
 int fac(int acc, int n) {
@@ -419,7 +419,7 @@ viết lại.
 #### Loại bỏ đệ quy đuôi -Rpass=tailcallelim
 
 Khi hàm đã là đệ quy đuôi, có thể xóa trực tiếp câu lệnh đệ quy và, thông qua một
-số phân tích tĩnh, biến hàm thành dạng không đệ quy. Ở đây không đi sâu vào cách
+số phân tích tĩnh, biến hàm thành dạng không đệ quy. Phần này không đi sâu vào cách
 tác giả trình biên dịch làm được điều này. Từ trải nghiệm thực tế, phần lớn mã OI
 nếu có cả phiên bản đệ quy và không đệ quy thì thường có thể được tự động tối ưu
 thành phiên bản không đệ quy. Sau đây là một số ví dụ cụ thể:
@@ -519,7 +519,7 @@ for (int i = 1; i < 10; i++) {
 }
 ```
 
-Ở đây việc viết trực tiếp `a = 3 * i` rất thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
+Việc viết trực tiếp `a = 3 * i` rất thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
 
 SCEV còn có thể tối ưu một số vòng lặp:
 
@@ -654,7 +654,7 @@ int f(int x) {
 }
 ```
 
-Trình biên dịch có thể giả định chương trình không có hành vi dùng biến chưa khởi tạo, nên `a` chắc chắn được khởi tạo, và hàm này có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không có hành vi dùng biến chưa khởi tạo, nên `a` đã được khởi tạo, và hàm này có thể được tối ưu thành
 
 ```cpp
 int f(int) { return 42; }
@@ -677,7 +677,7 @@ bool exists_in_table(int v) {
 }
 ```
 
-Trình biên dịch có thể giả định chương trình không có truy cập vượt biên, nên hàm này chắc chắn sẽ trả về trước khi truy cập vượt biên xảy ra, và do đó có thể được tối ưu thành
+Trình biên dịch có thể giả định chương trình không có truy cập vượt biên, nên hàm này sẽ trả về trước khi truy cập vượt biên xảy ra, và do đó có thể được tối ưu thành
 
 ```cpp
 bool exists_in_table(int) { return true; }
@@ -744,7 +744,7 @@ Ví dụ: <https://godbolt.org/z/GY1jvsrb5>, <https://godbolt.org/z/4ronPsnxf>.
     }
     ```
 
-Trình biên dịch có thể giả định chương trình không có vòng lặp vô hạn không tác dụng phụ, nên nó cho rằng vòng `for` trong hàm `fermat()` chắc chắn sẽ kết thúc tại một thời điểm nào đó và trả về `true`. Cuối cùng chương trình có thể in ra:
+Trình biên dịch có thể giả định chương trình không có vòng lặp vô hạn không tác dụng phụ, nên nó cho rằng vòng `for` trong hàm `fermat()` sẽ kết thúc tại một thời điểm nào đó và trả về `true`. Cuối cùng chương trình có thể in ra:
 
 ```text
 Định lý lớn Fermat đã bị bác bỏ!

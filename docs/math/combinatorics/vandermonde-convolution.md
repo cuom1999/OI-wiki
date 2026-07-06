@@ -35,7 +35,7 @@ $$
 
 Nếu chứng minh theo ý nghĩa tổ hợp:
 
-Chọn $k$ phần tử từ một tập có kích thước $n+m$ có thể xem là tách tập này thành hai tập có kích thước lần lượt là $n$ và $m$, rồi chọn $i$ phần tử từ tập kích thước $n$ và $k-i$ phần tử từ tập kích thước $m$. Do ta đã cộng trên mọi giá trị $i$, chỉ cần xét một cách tách tập, vì các cách tách khác là tương đương.
+Chọn $k$ phần tử từ một tập có kích thước $n+m$ có thể xem là tách tập này thành hai tập có kích thước lần lượt là $n$ và $m$, rồi chọn $i$ phần tử từ tập kích thước $n$ và $k-i$ phần tử từ tập kích thước $m$. Do phép cộng đã xét mọi giá trị $i$, chỉ cần xét một cách tách tập, vì các cách tách khác là tương đương.
 
 <span id="hệ-quả"></span>
 
@@ -93,11 +93,11 @@ $$
 \sum_{i=0}^m\binom{n}{i}\binom{m}{i}=\sum_{i=0}^m\binom{n}{i}\binom{m}{m-i}=\binom{n+m}{m}
 $$
 
-Trong đó $\binom{n+m}{m}$ là số cách đếm đường đi trên lưới quen thuộc. Vì vậy ta có thể chứng minh bằng ý nghĩa tổ hợp.
+Trong đó $\binom{n+m}{m}$ là số cách đếm đường đi trên lưới quen thuộc. Vì vậy công thức có thể chứng minh bằng ý nghĩa tổ hợp.
 
 Trên một đồ thị lưới, để đi từ $(0,0)$ đến $(n,m)$ cần đi tổng cộng $n+m$ bước. Quy ước $(0,0)$ nằm ở góc trên bên trái của lưới; trong đó có $n$ bước đi xuống và $m$ bước đi sang phải, nên số cách là $\binom{n+m}{m}$.
 
-Nhìn theo cách khác, ta tách $n+m$ bước thành hai phần: đi $n$ bước trước, rồi đi $m$ bước sau. Nếu trong $n$ bước đầu có $i$ bước sang phải, thì trong $m$ bước sau sẽ có $m-i$ bước sang phải. Do đó công thức được chứng minh.
+Nhìn theo cách khác, tách $n+m$ bước thành hai phần: đi $n$ bước trước, rồi đi $m$ bước sau. Nếu trong $n$ bước đầu có $i$ bước sang phải, thì trong $m$ bước sau sẽ có $m-i$ bước sang phải. Do đó công thức được chứng minh.
 
 <span id="bài-tập"></span>
 

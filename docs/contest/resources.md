@@ -162,7 +162,7 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 -   [Algorithm Visualizer](http://algorithm-visualizer.org)
 -   [cppreference](https://en.cppreference.com/w/): tài liệu tham khảo trực tuyến toàn diện về ngôn ngữ C/C++ và thư viện chuẩn
 -   [Compiler Explorer](https://godbolt.org): xem trực tuyến mã hợp ngữ tương ứng với khối mã sau khi biên dịch, hỗ trợ chọn nhiều trình biên dịch khác nhau
--   [C++ Insights](https://cppinsights.io/): xem mã nguồn C++ của bạn từ góc nhìn của trình biên dịch
+-   [C++ Insights](https://cppinsights.io/): xem mã nguồn C++ từ góc nhìn của trình biên dịch
 -   [Inverse Symbolic Calculator](http://wayback.cecm.sfu.ca/projects/ISC/ISCmain.html): tra ngược biểu thức cho số thực, hữu ích khi suy đoán hằng số
 -   [Nhận dạng ký hiệu viết tay $\rm\LaTeX$](http://detexify.kirelabs.org/classify.html)
 -   [Tham khảo công thức toán $\rm\LaTeX$](http://www.mohu.org/info/symbols/symbols.htm)

@@ -4,7 +4,7 @@ author: Ir1d, TianyiQ
 
 Phương pháp tăng dần ngẫu nhiên là một thuật toán quan trọng trong hình học tính toán. Nó không đòi hỏi nhiều kiến thức lý thuyết, có độ phức tạp thời gian thấp và phạm vi ứng dụng rộng.
 
-Ý tưởng của phương pháp tăng dần tương tự nguyên lý quy nạp toán học thứ nhất: bản chất là biến một bài toán thành bài toán con có quy mô nhỏ hơn đúng một mức. Sau khi giải bài toán con, ta thêm đối tượng hiện tại vào. Viết dưới dạng truy hồi:
+Ý tưởng của phương pháp tăng dần tương tự nguyên lý quy nạp toán học thứ nhất: bản chất là biến một bài toán thành bài toán con có quy mô nhỏ hơn đúng một mức. Sau khi giải bài toán con, thêm đối tượng hiện tại vào. Viết dưới dạng truy hồi:
 
 $$
 T(n)=T(n-1)+g(n)
@@ -18,13 +18,13 @@ Phương pháp tăng dần thường được kết hợp với ngẫu nhiên h�
 
 ### Mô tả bài toán
 
-Trên một mặt phẳng có $n$ điểm, hãy tìm đường tròn có bán kính nhỏ nhất sao cho bao phủ được tất cả các điểm.
+Trên một mặt phẳng có $n$ điểm, cần tìm đường tròn có bán kính nhỏ nhất sao cho bao phủ được tất cả các điểm.
 
 ### Quy trình
 
-Giả sử đường tròn $O$ là đường tròn bao nhỏ nhất của $i-1$ điểm đầu. Khi thêm điểm thứ $i$, nếu điểm này nằm trong đường tròn hoặc trên biên thì không cần làm gì. Ngược lại, đường tròn bao nhỏ nhất mới chắc chắn đi qua điểm thứ $i$.
+Giả sử đường tròn $O$ là đường tròn bao nhỏ nhất của $i-1$ điểm đầu. Khi thêm điểm thứ $i$, nếu điểm này nằm trong đường tròn hoặc trên biên thì không cần làm gì. Ngược lại, đường tròn bao nhỏ nhất mới bắt buộc đi qua điểm thứ $i$.
 
-Sau đó lấy điểm thứ $i$ làm cơ sở, bán kính bằng $0$, rồi lặp lại quá trình trên để lần lượt thêm điểm thứ $j$. Nếu điểm thứ $j$ nằm ngoài đường tròn, thì đường tròn bao nhỏ nhất chắc chắn đi qua điểm thứ $j$.
+Sau đó lấy điểm thứ $i$ làm cơ sở, bán kính bằng $0$, rồi lặp lại quá trình trên để lần lượt thêm điểm thứ $j$. Nếu điểm thứ $j$ nằm ngoài đường tròn, thì đường tròn bao nhỏ nhất bắt buộc đi qua điểm thứ $j$.
 
 Lặp lại các bước trên. Vì nhiều nhất cần ba điểm để xác định đường tròn bao nhỏ nhất này, nên quá trình được lặp ba tầng.
 

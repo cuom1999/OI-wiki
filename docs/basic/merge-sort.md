@@ -26,7 +26,7 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
         void merge(const int *a, size_t aLen, const int *b, size_t bLen, int *c) {
           size_t i = 0, j = 0, k = 0;
           while (i < aLen && j < bLen) {
-            if (b[j] < a[i]) {  // <!> Kiểm tra b[j] < a[i] trước để đảm bảo tính ổn định
+            if (b[j] < a[i]) {  // <!> Kiểm tra b[j] < a[i] trước để bảo đảm tính ổn định
               c[k] = b[j];
               ++j;
             } else {
@@ -68,7 +68,7 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
         i, j = 0, 0
         c = []
         while i < len(a) and j < len(b):
-            # <!> Kiểm tra b[j] < a[i] trước để đảm bảo tính ổn định
+            # <!> Kiểm tra b[j] < a[i] trước để bảo đảm tính ổn định
             if b[j] < a[i]:
                 c.append(b[j])
                 j += 1

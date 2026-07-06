@@ -4,15 +4,15 @@ Muốn sử dụng các kĩ thuật ngẫu nhiên hóa, điều kiện tiên quy
 
 ### Số ngẫu nhiên và số giả ngẫu nhiên
 
-Nói rằng một số đơn lẻ là "số ngẫu nhiên" không có nhiều ý nghĩa, vì vậy bên dưới ta mặc định thảo luận về "dãy số ngẫu nhiên"; ngay cả khi nhắc tới "số ngẫu nhiên", ý nói cũng là "một phần tử trong dãy số ngẫu nhiên".
+Nói rằng một số đơn lẻ là "số ngẫu nhiên" không có nhiều ý nghĩa, vì vậy nội dung bên dưới mặc định thảo luận về "dãy số ngẫu nhiên"; ngay cả khi nhắc tới "số ngẫu nhiên", ý nói cũng là "một phần tử trong dãy số ngẫu nhiên".
 
 Quá trình tính toán của các máy tính hiện nay đều có tính xác định. Vì thế, chỉ dựa vào thuật toán thì không thể sinh được một dãy số ngẫu nhiên thật sự **không thể dự đoán** và **không thể lặp lại**.
 
-Tuy nhiên, trong phần lớn trường hợp, ta không cần tính ngẫu nhiên mạnh đến vậy, mà chỉ cần dãy được sinh ra có các đặc trưng thống kê của dãy số ngẫu nhiên, chẳng hạn phân bố đều, độc lập lẫn nhau, v.v. Những dãy như vậy được gọi là dãy **giả ngẫu nhiên**.
+Tuy nhiên, trong phần lớn trường hợp, không cần tính ngẫu nhiên mạnh đến vậy, mà chỉ cần dãy được sinh ra có các đặc trưng thống kê của dãy số ngẫu nhiên, chẳng hạn phân bố đều, độc lập lẫn nhau, v.v. Những dãy như vậy được gọi là dãy **giả ngẫu nhiên**.
 
 Ví dụ về ứng dụng của số ngẫu nhiên và số giả ngẫu nhiên trong đời sống thực tế và trong thuật toán:
 
--   Khi điều tra lấy mẫu, thường chỉ cần dùng số giả ngẫu nhiên, vì vốn dĩ ta chỉ quan tâm đến các đặc trưng thống kê.
+-   Khi điều tra lấy mẫu, thường chỉ cần dùng số giả ngẫu nhiên, vì mục tiêu vốn chỉ là các đặc trưng thống kê.
 -   Trong an ninh mạng, thường cần dùng số ngẫu nhiên mạnh hơn loại số giả ngẫu nhiên vừa nhắc tới, vì kẻ tấn công có thể khai thác tính dự đoán được.
 -   Các thuật toán ngẫu nhiên dùng trong OI/ICPC về cơ bản chỉ cần số giả ngẫu nhiên. Lý do là các thuật toán này thường đưa xác suất vào phân tích độ phức tạp bằng cách đưa số ngẫu nhiên vào, từ đó giảm độ phức tạp. Về bản chất, chúng vẫn chỉ sử dụng các đặc trưng thống kê của số ngẫu nhiên.
 -   Một số thuật toán ngẫu nhiên, ví dụ [thuật toán Moser](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma), sử dụng các tính chất liên quan đến entropy của số ngẫu nhiên, nên bắt buộc phải dùng số ngẫu nhiên thật sự.
@@ -25,7 +25,7 @@ Dùng để sinh số giả ngẫu nhiên. Nhược điểm là khá chậm; khi
 
 Gọi hàm `rand()` sẽ trả về một số nguyên không âm ngẫu nhiên trong `[0,RAND_MAX]`, trong đó `RAND_MAX` là một macro trong thư viện chuẩn. Trên hệ thống Linux, `RAND_MAX` bằng $2^{31}-1$. Có thể dùng phép lấy modulo để giới hạn kích thước của số được sinh ra.
 
-Khi dùng `rand()` cần có một hạt giống ngẫu nhiên. Có thể dùng hàm `srand(seed)` để đổi hạt giống ngẫu nhiên thành `seed`; tất nhiên cũng có thể không khởi tạo.
+Khi dùng `rand()` cần có một hạt giống ngẫu nhiên. Có thể dùng hàm `srand(seed)` để đổi hạt giống ngẫu nhiên thành `seed`; cũng có thể không khởi tạo.
 
 Nếu cùng một chương trình chạy hai lần với cùng `seed`, trên cùng máy và cùng trình biên dịch, kết quả ngẫu nhiên nhận được sẽ giống nhau.
 
@@ -96,7 +96,7 @@ Dùng để xáo trộn ngẫu nhiên một dãy được chỉ định. Khi s�
 
 Khi dùng, chỉ cần truyền con trỏ hoặc iterator đầu cuối của đoạn được chỉ định, theo dạng đóng trái mở phải: `std::random_shuffle(first, last)` hoặc `std::random_shuffle(first, last, myrand)`.
 
-Bộ sinh số ngẫu nhiên dùng bên trong mặc định là `rand()`. Tất nhiên cũng có thể truyền vào bộ sinh số ngẫu nhiên tự định nghĩa.
+Bộ sinh số ngẫu nhiên dùng bên trong mặc định là `rand()`. Cũng có thể truyền vào bộ sinh số ngẫu nhiên tự định nghĩa.
 
 Về tính ngẫu nhiên của `random_shuffle`:
 
@@ -258,7 +258,7 @@ int main() {
 
 ### Các cách hiện thực khác
 
-Đôi khi ta cần tự hiện thực bộ sinh số ngẫu nhiên của mình. Dưới đây là một số phương pháp sinh số ngẫu nhiên thường dùng.
+Đôi khi cần tự hiện thực bộ sinh số ngẫu nhiên riêng. Dưới đây là một số phương pháp sinh số ngẫu nhiên thường dùng.
 
 #### Bộ sinh số ngẫu nhiên đồng dư tuyến tính
 
@@ -307,7 +307,7 @@ $$
 R_i \equiv R_{i-j} \star R_{i-k} \bmod P
 $$
 
-Ở đây $P$ thường lấy là một lũy thừa của $2$, phổ biến là $2^{32}$ hoặc $2^{64}$; $\star$ biểu thị toán tử nhị phân, có thể dùng phép cộng, phép trừ, phép nhân hoặc XOR.
+Trong công thức này, $P$ thường lấy là một lũy thừa của $2$, phổ biến là $2^{32}$ hoặc $2^{64}$; $\star$ biểu thị toán tử nhị phân, có thể dùng phép cộng, phép trừ, phép nhân hoặc XOR.
 
 So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống, phương pháp này có chu kì dài hơn, nhưng tính ngẫu nhiên chịu ảnh hưởng khá lớn từ điều kiện ban đầu.
 
@@ -333,7 +333,7 @@ So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống
     
       unsigned next() {
         vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
-        // Dùng kiểu unsigned ở đây để tự động lấy modulo 2^32
+        // Dùng kiểu unsigned để tự động lấy modulo 2^32
         return vec[cur++];
       }
     };

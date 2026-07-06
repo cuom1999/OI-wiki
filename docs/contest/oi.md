@@ -45,7 +45,7 @@ APIO và IOI đều dùng thể thức IOI. Hiện nay các cuộc thi trong nư
 
 [Codeforces](https://codeforces.com) là một hệ thống chấm trực tuyến, định kỳ tổ chức các cuộc thi.
 
-Đặc điểm của cuộc thi trên Codeforces là trong lúc thi chỉ kiểm thử trên một phần dữ liệu (pretests, các bộ kiểm thử sơ bộ), còn sau khi cuộc thi kết thúc mới trả về kết quả kiểm thử trên toàn bộ điểm kiểm thử đầy đủ (System Tests, kiểm thử hệ thống). Trong lúc thi có thể nộp nhiều lần và được phép hack mã nguồn của người khác (ở đây hack có nghĩa là nộp một bộ dữ liệu kiểm thử khiến mã nguồn của người khác không thể đưa ra đáp án đúng). Nếu muốn hack, thí sinh phải khóa mã nguồn của mình (nói cách khác, trong lúc thi không thể nộp lại bài đó nữa). Khi hack, không được sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử; mã nguồn sẽ được chuyển thành hình ảnh.
+Đặc điểm của cuộc thi trên Codeforces là trong lúc thi chỉ kiểm thử trên một phần dữ liệu (pretests, các bộ kiểm thử sơ bộ), còn sau khi cuộc thi kết thúc mới trả về kết quả kiểm thử trên toàn bộ điểm kiểm thử đầy đủ (System Tests, kiểm thử hệ thống). Trong lúc thi có thể nộp nhiều lần và được phép hack mã nguồn của người khác (trong ngữ cảnh này, hack có nghĩa là nộp một bộ dữ liệu kiểm thử khiến mã nguồn của người khác không thể đưa ra đáp án đúng). Nếu muốn hack, thí sinh phải khóa mã nguồn của mình (nói cách khác, trong lúc thi không thể nộp lại bài đó nữa). Khi hack, không được sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử; mã nguồn sẽ được chuyển thành hình ảnh.
 
 Codeforces đồng thời cung cấp một thể thức khác, gọi là Extended ICPC (Extended ICPC hoặc ICPC+). Trong thể thức này, toàn bộ dữ liệu được kiểm thử trong lúc thi, nhưng sau khi cuộc thi kết thúc sẽ có 12 giờ hack toàn mạng. Khi hack được phép sao chép chương trình của thí sinh khác về máy cục bộ để kiểm thử.
 
@@ -206,7 +206,7 @@ Quy trình JOI:
 
 Vòng sơ tuyển có độ khó thấp; từ mùa 2019/2020, vòng sơ tuyển được chia thành nhiều vòng. Độ khó của JOI Final khoảng từ Nâng cao - đến Nâng cao +. Độ khó các bài của JOISC và JOI Open dao động từ Nâng cao đến NOI -.
 
-Đa số bài JOI có thể nộp trên [AtCoder](https://atcoder.jp/). Bạn có thể tìm thêm bài JOI (đề tiếng Nhật) trên trang web chính thức của JOI hoặc trên AtCoder.
+Đa số bài JOI có thể nộp trên [AtCoder](https://atcoder.jp/). Có thể tìm thêm bài JOI (đề tiếng Nhật) trên trang web chính thức của JOI hoặc trên AtCoder.
 
 Hiện nay LibreOJ và BZOJ có các bài JOI Final, JOISC và JOI Open trong những năm gần đây.
 

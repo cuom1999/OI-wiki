@@ -46,7 +46,7 @@ Dùng namespace có thể giúp chương trình dễ đọc hơn và thuận ti�
     long long n, m, a[100005], p[100005], aw[100005], atk[100005];
 
     namespace one_game {
-    // Thực ra trong namespace cũng có thể khai báo biến
+    // Trong namespace cũng có thể khai báo biến
     void solve() {
       for (int y = 0;; y++)
         if ((a[1] + p[1] * y) % atk[1] == 0) {
@@ -97,7 +97,7 @@ Dùng namespace có thể giúp chương trình dễ đọc hơn và thuận ti�
 
 ## Dùng macro để gỡ lỗi
 
-Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số câu lệnh gỡ lỗi. Nhưng khi cần nộp lên OJ, để đầu ra của các câu lệnh gỡ lỗi không ảnh hưởng đến việc hệ thống phán định kết quả chương trình, ta phải xóa hết chúng, khá tốn thời gian. Trong tình huống này, có thể tiết kiệm thời gian bằng cách định nghĩa macro. Khung chương trình đại khái như sau:
+Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số câu lệnh gỡ lỗi. Nhưng khi cần nộp lên OJ, để đầu ra của các câu lệnh gỡ lỗi không ảnh hưởng đến việc hệ thống phán định kết quả chương trình, cần xóa hết chúng, khá tốn thời gian. Trong tình huống này, có thể tiết kiệm thời gian bằng cách định nghĩa macro. Khung chương trình đại khái như sau:
 
 ```cpp
 #define DEBUG
@@ -112,7 +112,7 @@ Khi kiểm thử cục bộ, lập trình viên thường cần thêm một số
 
 `#ifdef` sẽ kiểm tra trong chương trình có định nghĩa định danh tương ứng bằng `#define` hay không; nếu có định nghĩa thì thực thi các câu lệnh phía sau. Còn `#ifndef` sẽ thực thi các câu lệnh phía sau khi không có định nghĩa định danh tương ứng.
 
-Như vậy, chỉ cần viết mã gỡ lỗi trong `#ifdef DEBUG` và viết mã thật để nộp trong `#ifndef DEBUG`, ta có thể kiểm thử cục bộ thuận tiện. Khi nộp chương trình, chỉ cần chú thích dòng `#define DEBUG` là được. Cũng có thể không định nghĩa định danh trong chương trình, mà dùng tùy chọn biên dịch `-DDEBUG` để định nghĩa định danh `DEBUG` lúc biên dịch. Cách này giúp không cần sửa chương trình khi nộp.
+Như vậy, chỉ cần viết mã gỡ lỗi trong `#ifdef DEBUG` và viết mã thật để nộp trong `#ifndef DEBUG`, việc kiểm thử cục bộ sẽ thuận tiện hơn. Khi nộp chương trình, chỉ cần chú thích dòng `#define DEBUG` là được. Cũng có thể không định nghĩa định danh trong chương trình, mà dùng tùy chọn biên dịch `-DDEBUG` để định nghĩa định danh `DEBUG` lúc biên dịch. Cách này giúp không cần sửa chương trình khi nộp.
 
 Nhiều OJ đều bật tùy chọn biên dịch `-DONLINE_JUDGE`; tận dụng tốt đặc tính này có thể tiết kiệm khá nhiều thời gian.
 
@@ -135,7 +135,7 @@ Khung đại khái của chương trình đối chiếu như sau:
 int main() {
   // Dành cho Windows
   // Khi đối chiếu không bật nhập xuất tệp
-  // Tất nhiên, đoạn chương trình này cũng có thể viết lại thành tập lệnh batch
+  // Đoạn chương trình này cũng có thể viết lại thành tập lệnh batch
   while (true) {
     system("gen > test.in");  // Bộ sinh dữ liệu ghi dữ liệu sinh ra vào tệp đầu vào
     system("test1.exe < test.in > a.out");  // Lấy đầu ra chương trình 1

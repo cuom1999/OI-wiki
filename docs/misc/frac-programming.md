@@ -14,7 +14,7 @@ Thông thường, bài toán quy hoạch phân thức còn có một số ràng 
 
 ### Tìm kiếm nhị phân
 
-Phương pháp phổ biến cho quy hoạch phân thức là nhị phân đáp án. Giả sử đáp án đang xét là $\textit{mid}$, khi đó một bộ $\{w_i\}$ hợp lệ sẽ làm cho giá trị không nhỏ hơn $\textit{mid}$. Từ điều kiện này, ta lập bất đẳng thức và biến đổi:
+Phương pháp phổ biến cho quy hoạch phân thức là nhị phân đáp án. Giả sử đáp án đang xét là $\textit{mid}$, khi đó một bộ $\{w_i\}$ hợp lệ sẽ làm cho giá trị không nhỏ hơn $\textit{mid}$. Từ điều kiện này, có thể lập bất đẳng thức và biến đổi:
 
 $$
 \displaystyle
@@ -47,7 +47,7 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
 ???+ example "[Luogu 4377 Talent Show G](https://www.luogu.com.cn/problem/P4377)"
     Có $n$ vật, mỗi vật có hai trọng số $a$ và $b$.
     
-    Bạn cần xác định một bộ $w_i\in\{0,1\}$ sao cho $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ lớn nhất.
+    Cần xác định một bộ $w_i\in\{0,1\}$ sao cho $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ lớn nhất.
     
     Yêu cầu $\displaystyle\sum w_i\times b_i \geq W$.
 
@@ -64,10 +64,10 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
     ```
 
 ???+ example "[POJ2728 Desert King](http://poj.org/problem?id=2728)"
-    Mỗi cạnh có hai trọng số $a_i$ và $b_i$. Hãy tìm một cây khung $T$ sao cho $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ nhỏ nhất.
+    Mỗi cạnh có hai trọng số $a_i$ và $b_i$. Cần tìm một cây khung $T$ sao cho $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ nhỏ nhất.
 
 ??? note "Lời giải"
-    Lấy $a_i-mid\times b_i$ làm trọng số của mỗi cạnh, khi đó cây khung nhỏ nhất cho ta giá trị nhỏ nhất. Bài này cần tìm cây khung nhỏ nhất trên một đồ thị đầy đủ, nên dùng thuật toán Prim để giải.
+    Lấy $a_i-mid\times b_i$ làm trọng số của mỗi cạnh, khi đó cây khung nhỏ nhất cho giá trị nhỏ nhất. Bài này cần tìm cây khung nhỏ nhất trên một đồ thị đầy đủ, nên dùng thuật toán Prim để giải.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -75,14 +75,14 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
     ```
 
 ???+ example "[\[HNOI2009\] Vòng nhỏ nhất](https://www.luogu.com.cn/problem/P3199)"
-    Mỗi cạnh có trọng số $w$. Hãy tìm một chu trình $C$ sao cho $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ nhỏ nhất.
+    Mỗi cạnh có trọng số $w$. Cần tìm một chu trình $C$ sao cho $\displaystyle\frac{\sum_{e\in C}w}{|C|}$ nhỏ nhất.
 
 ??? note "Lời giải"
     Lấy $a_i-mid$ làm trọng số cạnh, khi đó chu trình có tổng trọng số nhỏ nhất chính là giá trị nhỏ nhất.
     
-    Vì ta chỉ cần kiểm tra giá trị nhỏ nhất có nhỏ hơn $0$ hay không, nên chỉ cần kiểm tra trong đồ thị có tồn tại chu trình âm hay không.
+    Vì chỉ cần kiểm tra giá trị nhỏ nhất có nhỏ hơn $0$ hay không, nên chỉ cần kiểm tra trong đồ thị có tồn tại chu trình âm hay không.
     
-    Ngoài ra, bài này còn có một thuật toán độ phức tạp $O(nm)$; nếu quan tâm, bạn có thể đọc [bài viết này](https://www.cnblogs.com/y-clever/p/7043553.html).
+    Ngoài ra, bài này còn có một thuật toán độ phức tạp $O(nm)$; nếu quan tâm, có thể tham khảo [bài viết này](https://www.cnblogs.com/y-clever/p/7043553.html).
 
 ??? note "Mã tham khảo"
     ```cpp

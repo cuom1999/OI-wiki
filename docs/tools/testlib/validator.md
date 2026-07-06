@@ -22,7 +22,7 @@ Nếu dữ liệu không có vấn đề, chương trình sẽ không in gì và
 -   Không được đưa ra bất kỳ giả định nào về cách thí sinh đọc đầu vào. Vì vậy, dữ liệu được validator chấp nhận phải hoàn toàn tuân thủ định dạng đầu vào.
     -   Ví dụ, thí sinh có thể đọc số theo từng ký tự và chỉ đọc một dấu cách giữa hai số. Do đó, khi viết validator, mọi ký tự trắng trong dữ liệu đều phải được đọc tường minh trong validator (chẳng hạn dấu cách và xuống dòng).
 -   Đừng quên gọi `inf.readEof()` khi kết thúc.
--   Nếu bài cho phép hack (nói cách khác, thông báo lỗi của validator sẽ được người khác nhìn thấy), hãy làm thông báo lỗi thân thiện nhất có thể.
+-   Nếu bài cho phép hack (nói cách khác, thông báo lỗi của validator sẽ được người khác nhìn thấy), nên làm thông báo lỗi thân thiện nhất có thể.
     -   Dùng "bí danh hạng mục" khi đọc biến.
     -   Khi biểu thức dùng để kiểm tra không dễ hiểu, dùng `ensuref` thay vì `ensure`.
 

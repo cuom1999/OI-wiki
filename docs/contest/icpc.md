@@ -21,7 +21,7 @@ Trang chính thức: <https://ccpc.io>
 CCPC là China Collegiate Programming Contest, cuộc thi lập trình dành cho sinh
 viên đại học Trung Quốc.
 
-Một khác biệt đáng chú ý so với ICPC là nhiều trường không hỗ trợ chi phí tham
+Một khác biệt đáng kể so với ICPC là nhiều trường không hỗ trợ chi phí tham
 gia.
 
 ## Thể thức thi
@@ -65,7 +65,7 @@ Từ khóa để tìm trong OJ: `Multi-University Training Contest`.
 
 ### Vòng khu vực
 
-Bạn có thể tìm các bộ đề chọn lọc trên
+Có thể tìm các bộ đề chọn lọc trên
 [Virtual Judge](https://vjudge.net/).
 
 ### Trại huấn luyện

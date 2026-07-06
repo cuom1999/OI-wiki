@@ -23,7 +23,7 @@ S_4(n)&=\frac{1}{5}n^5-\frac{1}{2}n^4+\frac{1}{3}n^3-\frac{1}{30}n
 \end{aligned}
 $$
 
-Có thể thấy trong $S_m(n)$, hệ số của $n^{m+1}$ luôn là $\frac{1}{m+1}$, hệ số của $n^m$ luôn là $-\frac{1}{2}$, hệ số của $n^{m-1}$ luôn là $\frac{m}{12}$, hệ số của $n^{m-3}$ là $-\frac{m(m-1)(m-2)}{720}$, hệ số của $n^{m-4}$ luôn bằng không, v.v.
+Trong $S_m(n)$, hệ số của $n^{m+1}$ luôn là $\frac{1}{m+1}$, hệ số của $n^m$ luôn là $-\frac{1}{2}$, hệ số của $n^{m-1}$ luôn là $\frac{m}{12}$, hệ số của $n^{m-3}$ là $-\frac{m(m-1)(m-2)}{720}$, hệ số của $n^{m-4}$ luôn bằng không, v.v.
 
 Hơn nữa, hệ số của $n^{m-k}$ luôn là một hằng số nào đó nhân với $m^{\underline{k}}$, trong đó $m^{\underline{k}}$ là lũy thừa giai thừa giảm, tức $\frac{m!}{(m-k)!}$.
 
@@ -60,7 +60,7 @@ Ví dụ, $\binom{2}{0}B_0+\binom{2}{1}B_1=0$. Một vài giá trị đầu tiê
 
 Cách chứng minh này lấy từ mục 6.5 BERNOULLI NUMBER của Concrete Mathematics.
 
-Ta dùng đồng nhất thức biến đổi hệ số nhị thức và quy nạp:
+Chứng minh dùng đồng nhất thức biến đổi hệ số nhị thức và quy nạp:
 
 $$
 \begin{aligned}
@@ -70,9 +70,9 @@ S_{m+1}(n)+n^{m+1}&= \sum_{k=0}^{n-1}(k+1)^{m+1}\\
 \end{aligned}
 $$
 
-Đặt $\hat{S}_{m}(n)=\frac{1}{m+1} \sum_{k=0}^{m} \binom{m+1}{k}B_kn^{m+1-k}$. Ta muốn chứng minh $S_m(n)=\hat{S}_m(n)$; giả sử với mọi $j\in[0,m)$, ta đã có $S_j(n)=\hat{S}_j(n)$.
+Đặt $\hat{S}_{m}(n)=\frac{1}{m+1} \sum_{k=0}^{m} \binom{m+1}{k}B_kn^{m+1-k}$. Cần chứng minh $S_m(n)=\hat{S}_m(n)$; giả sử với mọi $j\in[0,m)$, đã có $S_j(n)=\hat{S}_j(n)$.
 
-Trừ $S_{m+1}(n)$ ở hai vế của công thức ban đầu, ta được:
+Trừ $S_{m+1}(n)$ ở hai vế của công thức ban đầu, thu được:
 
 $$
 \begin{aligned}
@@ -82,13 +82,13 @@ n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}S_j(n)\\
 \end{aligned}
 $$
 
-Thử cộng thêm $\binom{m+1}{m}\hat{S}_m(n)-\binom{m+1}{m}\hat{S}_m(n)$ vào vế phải rồi rút gọn, ta được:
+Thử cộng thêm $\binom{m+1}{m}\hat{S}_m(n)-\binom{m+1}{m}\hat{S}_m(n)$ vào vế phải rồi rút gọn, thu được:
 
 $$
 n^{m+1}=\sum_{j=0}^{m}\binom{m+1}{j}\hat{S}_j(n)+(m+1)(S_m(n)-\hat{S}_m(n))
 $$
 
-Đặt $\Delta = S_m(n)-\hat{S}_m(n)$ và khai triển $\hat{S}_j(n)$, ta có
+Đặt $\Delta = S_m(n)-\hat{S}_m(n)$ và khai triển $\hat{S}_j(n)$, có
 
 $$
 \begin{aligned}
@@ -97,7 +97,7 @@ n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}\hat{S}_j(n)+(m+1)\Delta\\
 \end{aligned}
 $$
 
-Đổi thứ tự trong tổng thứ hai theo chiều ngược lại, rồi biến đổi đồng nhất thức tổ hợp, ta được:
+Đổi thứ tự trong tổng thứ hai theo chiều ngược lại, rồi biến đổi đồng nhất thức tổ hợp, thu được:
 
 $$
 \begin{aligned}
@@ -108,7 +108,7 @@ n^{m+1}&=\sum_{j=0}^{m}\binom{m+1}{j}\frac{1}{j+1}\sum_{k=0}^{j}\binom{j+1}{j-k}
 \end{aligned}
 $$
 
-Hoán đổi hai dấu tổng, ta được:
+Hoán đổi hai dấu tổng, thu được:
 
 $$
 n^{m+1}=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\sum_{j=k}^{m}\binom{m+1}{j}\binom{j}{k}B_{j-k}+(m+1)\Delta
@@ -129,7 +129,7 @@ n^{m+1}&=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\sum_{j=k}^{m}\binom{m+1}{k}\binom{m-k
 \end{aligned}
 $$
 
-Thay mọi $j-k$ bằng $j$, ta được:
+Thay mọi $j-k$ bằng $j$, thu được:
 
 $$
 n^{m+1}=\sum_{k=0}^{m}\frac{n^{k+1}}{k+1}\binom{m+1}{k}\sum_{j=0}^{m-k}\binom{m-k+1}{j}B_{j}+(m+1)\Delta
@@ -145,7 +145,7 @@ B_0&=1\\
 \end{aligned}
 $$
 
-Thay vào, ta được:
+Thay vào, suy ra:
 
 $$
 \begin{aligned}
@@ -162,7 +162,7 @@ Vậy $\Delta=0$, tức $S_m(n)=\hat{S}_m(n)$.
 
 Với truy hồi $\sum_{j=0}^{m}\binom{m+1}{j}B_j=[m=0]$,
 
-cộng thêm $B_{m + 1}$ vào hai vế, ta được:
+Cộng thêm $B_{m + 1}$ vào hai vế, suy ra:
 
 $$
 \begin{aligned}
