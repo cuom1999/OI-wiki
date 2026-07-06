@@ -10,7 +10,7 @@ Tính toán độ chính xác tùy ý (Arbitrary-Precision Arithmetic), còn đ�
 
 Các bài toán độ chính xác cao có rất nhiều chi tiết nhỏ, và cách cài đặt cũng có nhiều điểm cần chú ý.
 
-Vì vậy, hãy cùng cài đặt một máy tính đơn giản.
+Vì vậy, phần dưới sẽ cài đặt một máy tính đơn giản.
 
 ???+ note "Bài toán"
     Đầu vào: một biểu thức có dạng `a <op> b`.
@@ -23,18 +23,18 @@ Vì vậy, hãy cùng cài đặt một máy tính đơn giản.
     
     -   Với các phép `+`, `-`, `*`, in một dòng là kết quả;
     -   Với phép `/`, in hai dòng lần lượt là thương và số dư.
-    -   Đảm bảo mọi kết quả đều là số nguyên không âm.
+    -   Mọi kết quả đều là số nguyên không âm.
 
 <span id="lưu-trữ"></span>
 ## Lưu trữ
 
 Trong các cách cài đặt thông thường, số độ chính xác cao được biểu diễn bằng chuỗi, mỗi ký tự biểu diễn một chữ số thập phân. Vì thế có thể nói tính toán số độ chính xác cao thực chất là một dạng xử lý chuỗi đặc biệt.
 
-Khi đọc chuỗi, chữ số cao nhất nằm ở đầu chuỗi (vị trí có chỉ số nhỏ). Tuy nhiên, theo thói quen, vị trí có chỉ số nhỏ nhất sẽ lưu **chữ số thấp nhất**, tức là lưu chuỗi đã đảo ngược. Lý do là độ dài của số có thể thay đổi, nhưng ta muốn các hàng có cùng trọng số luôn được căn thẳng (chẳng hạn, hàng đơn vị luôn ở chỉ số `[0]`, hàng chục luôn ở chỉ số `[1]`, ...); đồng thời, các phép cộng, trừ, nhân thường được thực hiện từ hàng đơn vị (như phép tính đặt dọc ở tiểu học). Những điều này là lý do đủ để chọn cách "lưu đảo ngược".
+Khi đọc chuỗi, chữ số cao nhất nằm ở đầu chuỗi (vị trí có chỉ số nhỏ). Tuy nhiên, theo thói quen, vị trí có chỉ số nhỏ nhất sẽ lưu **chữ số thấp nhất**, tức là lưu chuỗi đã đảo ngược. Lý do là độ dài của số có thể thay đổi, nhưng cần giữ các hàng có cùng trọng số luôn được căn thẳng (chẳng hạn, hàng đơn vị luôn ở chỉ số `[0]`, hàng chục luôn ở chỉ số `[1]`, ...); đồng thời, các phép cộng, trừ, nhân thường được thực hiện từ hàng đơn vị (như phép tính đặt dọc ở tiểu học). Những điều này là lý do đủ để chọn cách "lưu đảo ngược".
 
-Từ đây trở đi, ta sẽ luôn dùng quy ước này. Định nghĩa hằng `LEN = 1004` để biểu thị độ dài lớn nhất mà chương trình chứa được.
+Phần còn lại dùng quy ước này. Định nghĩa hằng `LEN = 1004` để biểu thị độ dài lớn nhất mà chương trình chứa được.
 
-Từ đó, không khó để viết đoạn mã đọc một số độ chính xác cao:
+Từ đó, có thể viết đoạn mã đọc một số độ chính xác cao:
 
 ```cpp
 void clear(int a[]) {
@@ -48,14 +48,14 @@ void read(int a[]) {
   clear(a);
 
   int len = strlen(s);
-  // Như đã nói ở trên, đảo ngược
+  // Theo quy ước trên, đảo ngược
   for (int i = 0; i < len; ++i) a[len - i - 1] = s[i] - '0';
   // s[i] - '0' chính là chữ số mà s[i] biểu diễn
-  // Một số bạn có thể quen hiểu theo cách ord(s[i]) - ord('0') hơn
+  // Có thể hiểu theo cách ord(s[i]) - ord('0')
 }
 ```
 
-Khi in, ta cũng in theo thứ tự ngược với cách lưu trữ. Vì không muốn in các số không đứng đầu, ở đây ta tìm chữ số khác không đầu tiên từ hàng cao nhất về xuống, rồi bắt đầu in từ đó; điều kiện dừng là `i >= 1` thay vì `i >= 0` vì khi toàn bộ số bằng $0$, ta vẫn muốn in ra một ký tự `0`.
+Khi in, cần in theo thứ tự ngược với cách lưu trữ. Vì không muốn in các số không đứng đầu, hàm sẽ tìm chữ số khác không đầu tiên từ hàng cao nhất về xuống, rồi bắt đầu in từ đó; điều kiện dừng là `i >= 1` thay vì `i >= 0` vì khi toàn bộ số bằng $0$, vẫn cần in ra một ký tự `0`.
 
 ```cpp
 void print(int a[]) {
@@ -67,7 +67,7 @@ void print(int a[]) {
 }
 ```
 
-Ghép các phần lại, ta được một chương trình đọc rồi in lại hoàn chỉnh.
+Ghép các phần lại sẽ thu được một chương trình đọc rồi in lại hoàn chỉnh.
 
 ??? note "`copycat.cpp`"
     ```cpp
@@ -113,7 +113,7 @@ Ghép các phần lại, ta được một chương trình đọc rồi in lại
 
 Độ khó của bốn phép toán cơ bản cũng khác nhau. Đơn giản nhất là cộng và trừ độ chính xác cao, tiếp theo là nhân độ chính xác cao với độ chính xác đơn (kiểu `int` thông thường) và nhân hai số độ chính xác cao, cuối cùng là chia hai số độ chính xác cao.
 
-Ta sẽ cài đặt lần lượt tất cả chức năng cần có theo thứ tự này.
+Các chức năng cần có sẽ được cài đặt lần lượt theo thứ tự này.
 
 <span id="phép-cộng"></span>
 ### Phép cộng
@@ -143,7 +143,7 @@ void add(int a[], int b[], int c[]) {
 }
 ```
 
-Thử kết hợp với phần trước, ta có được một máy tính phép cộng.
+Thử kết hợp với phần trước sẽ thu được một máy tính phép cộng.
 
 ??? note "`adder.cpp`"
     ```cpp
@@ -224,7 +224,7 @@ void sub(int a[], int b[], int c[]) {
 }
 ```
 
-Thay `add()` trong chương trình trước bằng `sub()`, ta có một máy tính phép trừ.
+Thay `add()` trong chương trình trước bằng `sub()` sẽ thu được một máy tính phép trừ.
 
 ??? note "`subtractor.cpp`"
     ```cpp
@@ -280,7 +280,7 @@ Thay `add()` trong chương trình trước bằng `sub()`, ta có một máy t�
     }
     ```
 
-Thử nhập `1 2`: chương trình in ra `/9999999`. Sao **OI Wiki** lại đưa cho mình đoạn mã sai vậy...
+Thử nhập `1 2`: chương trình in ra `/9999999`. Đoạn mã trên sai ở đâu?
 
 Thực ra, đoạn mã trên chỉ xử lý được trường hợp số bị trừ $a$ lớn hơn hoặc bằng số trừ $b$. Việc xử lý khi số bị trừ nhỏ hơn số trừ, tức $a<b$, rất đơn giản.
 
@@ -296,11 +296,11 @@ $a-b=-(b-a)$
 
 Nhân độ chính xác cao cũng là phép đặt... khoan đã!
 
-Trước hết hãy xét một trường hợp đơn giản: một trong hai thừa số có kiểu `int` thông thường. Có cách xử lý nào đơn giản không?
+Trước hết xét một trường hợp đơn giản: một trong hai thừa số có kiểu `int` thông thường. Có cách xử lý nào đơn giản không?
 
 Một ý tưởng trực quan là trực tiếp nhân từng chữ số của $a$ với $b$. Về mặt giá trị, cách này là đúng, nhưng nó không còn phù hợp với biểu diễn thập phân, nên cần chuẩn hóa lại thành dạng bình thường.
 
-Cách chuẩn hóa cũng là bắt đầu từ hàng đơn vị và xử lý nhớ lên từng hàng. Tuy nhiên, phần nhớ ở đây có thể rất lớn, thậm chí lớn hơn $9$ rất nhiều, vì sau khi nhân, mỗi hàng có thể đạt cấp độ $9b$. Do đó không thể xử lý nhớ bằng cách đơn giản là trừ $10$, mà phải tính bằng thương và số dư khi chia cho $10$. Xem chi tiết trong chú thích code; cũng có thể tham khảo hình dưới đây, minh họa quá trình tính số độ chính xác cao $1337$ nhân với số độ chính xác đơn $42$.
+Cách chuẩn hóa cũng là bắt đầu từ hàng đơn vị và xử lý nhớ lên từng hàng. Tuy nhiên, trong trường hợp này phần nhớ có thể rất lớn, thậm chí lớn hơn $9$ rất nhiều, vì sau khi nhân, mỗi hàng có thể đạt cấp độ $9b$. Do đó không thể xử lý nhớ bằng cách đơn giản là trừ $10$, mà phải tính bằng thương và số dư khi chia cho $10$. Xem chi tiết trong chú thích code; cũng có thể tham khảo hình dưới đây, minh họa quá trình tính số độ chính xác cao $1337$ nhân với số độ chính xác đơn $42$.
 
 ![](./images/multiplication-short.png)
 
@@ -330,20 +330,20 @@ void mul_short(int a[], int b, int c[]) {
 
 Nếu cả hai thừa số đều có độ chính xác cao, phép nhân đặt dọc lại phát huy tác dụng.
 
-Nhớ lại từng bước của phép nhân đặt dọc: thực chất ta tính tổng của nhiều hạng $a \times b_i \times 10^i$. Ví dụ, khi tính $1337 \times 42$, ta đang tính $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$.
+Nhớ lại từng bước của phép nhân đặt dọc: thực chất cần tính tổng của nhiều hạng $a \times b_i \times 10^i$. Ví dụ, phép tính $1337 \times 42$ tương ứng với $1337 \times 2 \times 10^0 + 1337 \times 4 \times 10^1$.
 
 Vì vậy, có thể tách $b$ thành tất cả các chữ số của nó; mỗi chữ số là một số độ chính xác đơn. Lần lượt nhân chúng với $a$, dịch sang trái đến đúng vị trí tương ứng rồi cộng lại sẽ được đáp án. Tất nhiên, cuối cùng vẫn cần xử lý nhớ theo cách giống ví dụ trên.
 
 ![](./images/multiplication-long.png)
 
-Lưu ý quá trình này không hoàn toàn giống phép nhân đặt dọc: thuật toán của ta không xử lý nhớ trong từng bước nhân, mà giữ tất cả kết quả tại vị trí tương ứng, rồi đến cuối mới xử lý nhớ một lần. Điều này không làm thay đổi kết quả.
+Lưu ý quá trình này không hoàn toàn giống phép nhân đặt dọc: thuật toán này không xử lý nhớ trong từng bước nhân, mà giữ tất cả kết quả tại vị trí tương ứng, rồi đến cuối mới xử lý nhớ một lần. Điều này không làm thay đổi kết quả.
 
 ```cpp
 void mul(int a[], int b[], int c[]) {
   clear(c);
 
   for (int i = 0; i < LEN - 1; ++i) {
-    // Ở đây tính trực tiếp hàng thứ i từ thấp lên cao của kết quả, đồng thời xử lý nhớ
+    // Tính trực tiếp hàng thứ i từ thấp lên cao của kết quả, đồng thời xử lý nhớ
     // Lần lặp thứ i cộng vào c[i] tổng các tích a[p] và b[q] với mọi p + q = i
     // Hiệu quả giống cách tính trong hình rồi cộng lại, chỉ là cách cài đặt ngắn gọn hơn
     for (int j = 0; j <= i; ++j) c[i] += a[j] * b[i - j];
@@ -365,9 +365,9 @@ Một cách cài đặt phép chia độ chính xác cao là phép chia dài đ�
 
 Phép chia dài đặt dọc thực chất có thể xem là một quá trình trừ lặp. Chẳng hạn, phép tính chữ số hàng chục của thương trong hình trên có thể hiểu như sau: lấy $45$ trừ $12$ ba lần thì kết quả trở nên nhỏ hơn $12$, không thể trừ tiếp, nên chữ số ở hàng này là $3$.
 
-Để giảm các phép tính dư thừa, ta lấy trước độ dài $l_a$ của số bị chia và độ dài $l_b$ của số chia, rồi bắt đầu từ chỉ số $l_a - l_b$ để tính thương từ hàng cao xuống hàng thấp. Điều này giống với cách khi tính tay, ta căn chữ số cao nhất của tích đầu tiên với chữ số cao nhất của số bị chia.
+Để giảm các phép tính dư thừa, lấy trước độ dài $l_a$ của số bị chia và độ dài $l_b$ của số chia, rồi bắt đầu từ chỉ số $l_a - l_b$ để tính thương từ hàng cao xuống hàng thấp. Điều này giống với cách khi tính tay, chữ số cao nhất của tích đầu tiên được căn với chữ số cao nhất của số bị chia.
 
-Chương trình tham khảo cài đặt hàm `greater_eq()` để xét xem phần số bị chia có chỉ số `last_dg` làm hàng thấp nhất còn có thể trừ thêm số chia mà vẫn không âm hay không. Sau đó, với mỗi chữ số của thương, ta liên tục gọi `greater_eq()`; khi điều kiện đúng thì dùng phép trừ độ chính xác cao để trừ số chia khỏi phần dư, qua đó mô phỏng quá trình chia đặt dọc.
+Chương trình tham khảo cài đặt hàm `greater_eq()` để xét xem phần số bị chia có chỉ số `last_dg` làm hàng thấp nhất còn có thể trừ thêm số chia mà vẫn không âm hay không. Sau đó, với mỗi chữ số của thương, liên tục gọi `greater_eq()`; khi điều kiện đúng thì dùng phép trừ độ chính xác cao để trừ số chia khỏi phần dư, qua đó mô phỏng quá trình chia đặt dọc.
 
 ```cpp
 // Phần số bị chia a với chỉ số last_dg làm hàng thấp nhất có thể trừ thêm số chia b mà vẫn không âm hay không
@@ -572,24 +572,24 @@ Kết hợp các cài đặt của bốn phép toán đã giới thiệu ở tr�
 <span id="giới-thiệu_1"></span>
 ### Giới thiệu
 
-Trong các phép cộng, trừ, nhân độ chính xác cao thông thường, ta đều tách các số tham gia phép toán thành từng chữ số riêng lẻ để tính.
+Trong các phép cộng, trừ, nhân độ chính xác cao thông thường, các số tham gia phép toán đều được tách thành từng chữ số riêng lẻ để tính.
 
-Ví dụ, khi tính $8192\times 42$, nếu làm theo cách nhân độ chính xác cao với độ chính xác cao, thực chất ta đang tính $(8000+100+90+2)\times(40+2)$.
+Ví dụ, khi tính $8192\times 42$, nếu làm theo cách nhân độ chính xác cao với độ chính xác cao, thực chất phép tính là $(8000+100+90+2)\times(40+2)$.
 
 Khi số có nhiều chữ số, số lượng phần được tách ra cũng nhiều, làm hiệu suất của phép toán độ chính xác cao giảm xuống.
 
 Có cách nào tối ưu hơn không?
 
-Nhận thấy cách tách số không ảnh hưởng đến kết quả cuối cùng, ta có thể gộp nhiều chữ số lại với nhau.
+Nhận thấy cách tách số không ảnh hưởng đến kết quả cuối cùng, có thể gộp nhiều chữ số lại với nhau.
 
 <span id="quá-trình"></span>
 ### Quá trình
 
-Vẫn lấy ví dụ trên: nếu cứ mỗi hai chữ số ta tách thành một phần, ta có thể tách thành $(8100+92)\times 42$.
+Vẫn lấy ví dụ trên: nếu cứ mỗi hai chữ số được tách thành một phần, có thể tách thành $(8100+92)\times 42$.
 
 Cách tách này không ảnh hưởng đến kết quả cuối cùng, nhưng vì số lượng phần tách ra ít hơn nên hiệu suất tính toán được cải thiện.
 
-Nhìn quá trình này từ góc độ [hệ cơ số](./numeral-sys/base.md), ta đang tính trong một hệ cơ số lớn hơn (trong ví dụ trên, mỗi hai chữ số được tách thành một phần, có thể xem là tính trong hệ cơ số $100$), nhờ đó giảm số chữ số tham gia phép toán và cải thiện hiệu suất.
+Nhìn quá trình này từ góc độ [hệ cơ số](./numeral-sys/base.md), phép tính đang diễn ra trong một hệ cơ số lớn hơn (trong ví dụ trên, mỗi hai chữ số được tách thành một phần, có thể xem là tính trong hệ cơ số $100$), nhờ đó giảm số chữ số tham gia phép toán và cải thiện hiệu suất.
 
 Đó chính là ý tưởng của **độ chính xác cao gộp chữ số**.
 
@@ -597,7 +597,7 @@ Dưới đây là mã cộng độ chính xác cao gộp chữ số, dùng để
 
 ??? note "Cài đặt tham khảo phép cộng độ chính xác cao gộp chữ số"
     ```cpp
-    // Các mảng a,b,c ở đây đều là số trong hệ cơ số p
+    // Các mảng a,b,c trong đoạn mã này đều là số trong hệ cơ số p
     // Khi in đáp án cuối cùng cần chuyển số về hệ thập phân
     void add(int a[], int b[], int c[]) {
       clear(c);
@@ -615,15 +615,15 @@ Dưới đây là mã cộng độ chính xác cao gộp chữ số, dùng để
 <span id="phép-chia-đặt-dọc-hiệu-quả-khi-gộp-chữ-số"></span>
 ### Phép chia đặt dọc hiệu quả khi gộp chữ số
 
-Khi dùng độ chính xác cao gộp chữ số, nếu vẫn thử thương bằng phương pháp đã giới thiệu ở trên, số lần thử thương sẽ rất nhiều và hằng số tính toán sẽ cực lớn. Chẳng hạn trong hệ cơ số mười nghìn, trung bình mỗi vị trí cần thử thương 5000 lần; hằng số lớn như vậy là không thể chấp nhận. Vì thế ta cần một cách thử thương hiệu quả hơn.
+Khi dùng độ chính xác cao gộp chữ số, nếu vẫn thử thương bằng phương pháp đã giới thiệu trước đó, số lần thử thương sẽ rất nhiều và hằng số tính toán sẽ cực lớn. Chẳng hạn trong hệ cơ số mười nghìn, trung bình mỗi vị trí cần thử thương 5000 lần; hằng số lớn như vậy là không thể chấp nhận. Vì thế cần một cách thử thương hiệu quả hơn.
 
-Ta có thể dùng `double` làm trung gian. Giả sử số bị chia có 4 chữ số là $a_4,a_3,a_2,a_1$, số chia có 3 chữ số là $b_3,b_2,b_1$. Khi đó ta chỉ cần thử một chữ số của thương: trong hệ cơ số $base$, dùng biểu thức $\dfrac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$ để ước lượng thương. Với trường hợp nhiều chữ số, chỉ cần lặp cách làm một chữ số này. Vì dùng 3 chữ số độ chính xác của số chia để tham gia ước lượng, có thể bảo đảm quan hệ giữa thương ước lượng q' và thương thực q thỏa $q-1 \le q' \le q$, nên trong trường hợp xấu nhất mỗi vị trí cũng chỉ cần thử thương hai lần. Đồng thời, phương pháp này yêu cầu $base^3$ nằm trong độ chính xác hiệu dụng của `double`, tức $base^3 < 2^{53}$. Vì vậy khi dùng cách này, không nên vượt quá hệ cơ số 32768; nếu không rất dễ sinh sai số do thiếu độ chính xác và dẫn đến kết quả sai.
+Có thể dùng `double` làm trung gian. Giả sử số bị chia có 4 chữ số là $a_4,a_3,a_2,a_1$, số chia có 3 chữ số là $b_3,b_2,b_1$. Khi đó chỉ cần thử một chữ số của thương: trong hệ cơ số $base$, dùng biểu thức $\dfrac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$ để ước lượng thương. Với trường hợp nhiều chữ số, chỉ cần lặp cách làm một chữ số này. Vì dùng 3 chữ số độ chính xác của số chia để tham gia ước lượng, có thể chứng minh quan hệ giữa thương ước lượng q' và thương thực q thỏa $q-1 \le q' \le q$, nên trong trường hợp xấu nhất mỗi vị trí cũng chỉ cần thử thương hai lần. Đồng thời, phương pháp này yêu cầu $base^3$ nằm trong độ chính xác hiệu dụng của `double`, tức $base^3 < 2^{53}$. Vì vậy khi dùng cách này, không nên vượt quá hệ cơ số 32768; nếu không rất dễ sinh sai số do thiếu độ chính xác và dẫn đến kết quả sai.
 
 Ngoài ra, vì thương ước lượng luôn nhỏ hơn hoặc bằng thương thực, vẫn còn không gian tối ưu thêm. Trong phần lớn trường hợp, mỗi vị trí chỉ cần ước lượng thương một lần. Khi ước lượng ở vị trí kế tiếp, dù kết quả có thể do sai số ở vị trí trước khiến chữ số thương thử lớn hơn hoặc bằng base, điều đó vẫn không sao; chỉ cần xử lý nhớ thống nhất ở cuối. Ví dụ, giả sử base là 10 và cần tính $395081/9876$, các bước thử thương như sau:
 
 1.  Trước hết, thử thương được $3950/988=3$, nên $395081-(9876 \times 3 \times 10^1) = 98801$. Bước này có sai số, nhưng không cần xử lý ngay, cứ tiếp tục bước sau.
 2.  Tiếp tục thử thương với phần dư 98801, được $9880/988=10$, nên $98801-(9876 \times 10 \times 10^0) = 41$. Đây chính là số dư cuối cùng.
-3.  Cộng các kết quả trong quá trình thử thương rồi xử lý nhớ, tức $3 \times 10^1 + 10 \times 10^0 = 40$, ta thu được thương chính xác.
+3.  Cộng các kết quả trong quá trình thử thương rồi xử lý nhớ, tức $3 \times 10^1 + 10 \times 10^0 = 40$, thu được thương chính xác.
 
 Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể rất dễ mắc lỗi. Vì vậy dưới đây cung cấp một cài đặt đã được kiểm chứng nhiều lần để tham khảo; các chi tiết cần chú ý cũng được viết trong chú thích.
 
@@ -658,7 +658,7 @@ Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể r�
       // Thì db là nghịch đảo của a3+a2/base+(a1+1)/base^2; cuối cùng dùng phép nhân để ước lượng từng chữ số thương
       // Cách này dùng được trong phạm vi int32 khi BIGINT_BASE<=32768
       // Nhưng ngay cả khi dùng int64, cũng chỉ dùng được khi BIGINT_BASE<=131072 (bị giới hạn bởi độ chính xác của double)
-      // Có thể bảo đảm quan hệ giữa kết quả ước lượng q' và kết quả thực q là q'<=q<=q'+1
+      // Có thể duy trì quan hệ giữa kết quả ước lượng q' và kết quả thực q là q'<=q<=q'+1
       // Vì vậy mỗi chữ số trung bình chỉ cần thử thương một lần; sau đó chỉ cần xử lý nhớ thống nhất
       // Nếu muốn dùng base lớn hơn, cần thay bằng phương án thử thương khác
       double t = (b.get((unsigned)b.v.size() - 2) +
@@ -717,7 +717,7 @@ x \cdot y &= z_2 \cdot 10^{2m} + z_1 \cdot 10^m + z_0,
 \end{aligned}
 $$
 
-Trong đó $x_0, y_0, z_0, z_1 < 10^m$. Ta có
+Trong đó $x_0, y_0, z_0, z_1 < 10^m$. Có
 
 $$
 \begin{aligned}
@@ -735,9 +735,9 @@ $$
 
 Vì vậy, để tính $z_1$, chỉ cần tính $(x_1 + x_0) \cdot (y_1 + y_0)$ rồi trừ đi $z_0$ và $z_2$.
 
-Công thức trên chính là lõi của thuật toán Karatsuba: nó chuyển bài toán nhân độ dài $n$ thành $3$ bài toán con có độ dài nhỏ hơn. Nếu lấy $m = \left\lceil \dfrac n 2 \right\rceil$, và gọi thời gian Karatsuba cần để nhân hai số nguyên $n$ chữ số là $T(n)$, ta có $T(n) = 3 \cdot T \left(\left\lceil \dfrac n 2 \right\rceil\right) + O(n)$. Theo định lý master, suy ra $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$.
+Công thức trên chính là lõi của thuật toán Karatsuba: nó chuyển bài toán nhân độ dài $n$ thành $3$ bài toán con có độ dài nhỏ hơn. Nếu lấy $m = \left\lceil \dfrac n 2 \right\rceil$, và gọi thời gian Karatsuba cần để nhân hai số nguyên $n$ chữ số là $T(n)$, suy ra $T(n) = 3 \cdot T \left(\left\lceil \dfrac n 2 \right\rceil\right) + O(n)$. Theo định lý master, suy ra $T(n) = \Theta(n^{\log_2 3}) \approx \Theta(n^{1.585})$.
 
-Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, đoạn mã dưới đây dùng thuật toán Karatsuba để cài đặt phép nhân đa thức, rồi cuối cùng mới xử lý toàn bộ phần nhớ.
+Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để dễ theo dõi, đoạn mã dưới đây dùng thuật toán Karatsuba để cài đặt phép nhân đa thức, rồi cuối cùng mới xử lý toàn bộ phần nhớ.
 
 ??? note "karatsuba_mulc.cpp"
     ```cpp
@@ -767,7 +767,7 @@ Toàn bộ quá trình có thể cài đặt bằng đệ quy. Để rõ ràng, 
       for (int i = 0; i <= (m - 1) * 2; ++i) z1[i] -= z0[i];
       for (int i = 0; i <= (n - m) * 2; ++i) z1[i] -= z2[i];
     
-      // Ket hop z0, z1, z2 de thu duoc ket qua
+      // Kết hợp z0, z1, z2 để thu được kết quả
       for (int i = 0; i <= (m - 1) * 2; ++i) r[i] += z0[i];
       for (int i = 0; i <= (m - 1) * 2; ++i) r[i + m] += z1[i];
       for (int i = 0; i <= (n - m) * 2; ++i) r[i + m * 2] += z2[i];
@@ -800,14 +800,14 @@ Tuy nhiên, cách cài đặt này có một vấn đề: trong hệ cơ số $b
 
 Nếu quy mô dữ liệu đạt $10^{10^5}$ hoặc lớn hơn, phép nhân độ chính xác cao thông thường có thể bị quá thời gian. Phần này giới thiệu cách dùng đa thức để tối ưu kiểu phép nhân này.
 
-Với một số nguyên thập phân $a$ có $n$ chữ số, có thể xem nó như một đa thức mà hệ số ở mỗi vị trí đều là số nguyên không vượt quá $10$: $A=a_{0} 10^0+a_{1} 10^1+\cdots+a_{n-1} 10^{n-1}$. Như vậy, ta chuyển phép nhân hai số nguyên thành phép nhân hai đa thức.
+Với một số nguyên thập phân $a$ có $n$ chữ số, có thể xem nó như một đa thức mà hệ số ở mỗi vị trí đều là số nguyên không vượt quá $10$: $A=a_{0} 10^0+a_{1} 10^1+\cdots+a_{n-1} 10^{n-1}$. Như vậy, phép nhân hai số nguyên được chuyển thành phép nhân hai đa thức.
 
 Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian $O(n^2)$, nhưng có thể tối ưu bằng các thuật toán trong phần đa thức như [biến đổi Fourier nhanh](poly/fft.md), [biến đổi số học nhanh](poly/ntt.md). Sau khi tối ưu, độ phức tạp thời gian là $O(n\log n)$.
 
 <span id="lớp-đóng-gói"></span>
 ## Lớp đóng gói
 
-[Tại đây](https://paste.ubuntu.com/p/7VKYzpC7dn/) có một lớp số nguyên độ chính xác cao đã được đóng gói sẵn, và [tại đây](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) là một lớp cài đặt siêu nhỏ hỗ trợ độ dài động cùng bốn phép toán cơ bản.
+[Liên kết thứ nhất](https://paste.ubuntu.com/p/7VKYzpC7dn/) có một lớp số nguyên độ chính xác cao đã được đóng gói sẵn; [liên kết thứ hai](https://github.com/Baobaobear/MiniBigInteger/blob/main/bigint_tiny.h) là một lớp cài đặt siêu nhỏ hỗ trợ độ dài động cùng bốn phép toán cơ bản.
 
 ??? note "Đây là một mẫu khác"
     ```cpp
@@ -836,14 +836,14 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
       Big operator-(const Big&) const;
       Big operator*(const Big&) const;
       Big operator/(const int&) const;
-      // TODO: Big / Big;
+      // Chưa cài đặt: Big / Big;
       Big operator^(const int&) const;
-      // TODO: Big ^ Big;
+      // Chưa cài đặt: Big ^ Big;
     
-      // TODO: Phép toán bit cho Big;
+      // Chưa cài đặt: phép toán bit cho Big;
     
       int operator%(const int&) const;
-      // TODO: Big ^ Big;
+      // Chưa cài đặt: Big ^ Big;
       bool operator<(const Big&) const;
       bool operator<(const int& t) const;
       void print() const;
@@ -881,7 +881,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
     Big::Big(const Big& T) : len(T.len) {
       CLR(a);
       f(i, 0, len) a[i] = T.a[i];
-      // TODO: Nạp chồng ở đây?
+      // Chưa cài đặt: nạp chồng toán tử?
     }
     
     Big& Big::operator=(const Big& T) {
