@@ -24,9 +24,9 @@ Mong muốn của hàm $f$ là giúp kiểm tra hai chuỗi có bằng nhau hay 
 
 Cụ thể, hai tính chất quan trọng nhất của hàm băm có thể tóm tắt như sau:
 
-1.  Khi giá trị của hàm băm khác nhau, hai chuỗi chắc chắn khác nhau;
+1.  Khi giá trị của hàm băm khác nhau, hai chuỗi là khác nhau;
 
-2.  Khi giá trị của hàm băm bằng nhau, hai chuỗi chưa chắc bằng nhau (nhưng xác suất cao là bằng nhau, và tất nhiên mong muốn là chúng luôn bằng nhau).
+2.  Khi giá trị của hàm băm bằng nhau, hai chuỗi không nhất thiết bằng nhau (nhưng xác suất cao là bằng nhau; trường hợp lý tưởng là chúng luôn bằng nhau).
 
     Hiện tượng giá trị hàm băm bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
 
@@ -41,7 +41,7 @@ Thông thường dùng phương pháp hash đa thức. Với một chuỗi $s$ c
 
 Cần đặc biệt lưu ý rằng cũng có nhiều người dùng một định nghĩa khác cho hàm hash, cụ thể là $f(s) = \sum_{i=1}^{l} s[i] \times b^{i-1} \pmod M$. Theo định nghĩa này, cùng chuỗi $xyz$ sẽ có giá trị hash là $x+yb+zb^2$.
 
-Cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công thức dùng để tính hash của chuỗi con (sẽ trình bày ở phần sau) sẽ khác nhau. Vì vậy cần đặc biệt chú ý **không nhầm lẫn hai cách hash khác nhau này**.
+Cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công thức dùng để tính hash của chuỗi con (sẽ trình bày ở phần sau) sẽ khác nhau. Vì vậy cần đặc biệt cẩn trọng để **không nhầm lẫn hai cách hash khác nhau này**.
 
 Do định nghĩa hash đầu tiên tính toán gọn hơn, được dùng phổ biến hơn, và có thể hiểu như một số trong hệ cơ số $b$, phần còn lại của bài viết sẽ thảo luận hàm hash được định nghĩa bằng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$.
 
@@ -222,7 +222,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
     \end{aligned}
     $$
     
-    Vì $base^{2^{i-2}}$ chắc chắn là số lẻ, nên $g_i$ chắc chắn là số chẵn.
+    Vì $base^{2^{i-2}}$ là số lẻ, nên $g_i$ là số chẵn.
     
     Do đó:
     
@@ -267,7 +267,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
 <span id="hash-nhiều-giá-trị"></span>
 ### Hàm băm nhiều giá trị
 
-Sau khi xem nhiều cách đánh bại hash ở trên, tất nhiên cũng có cách khắc phục.
+Sau khi xét nhiều cách đánh bại hash ở trên, vẫn có các phương pháp khắc phục.
 
 Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có modulo khác nhau; như vậy có thể giải quyết vấn đề va chạm hash.
 
@@ -286,7 +286,7 @@ Gọi $f_i(s)$ là $f(s[1..i])$, tức giá trị hash của tiền tố độ d
 
 Bây giờ cần tính nhanh $f(s[l..r])$ theo cách tương tự tổng tiền tố. Theo định nghĩa, giá trị hash của chuỗi $s[l..r]$ là $f(s[l..r])=s[l]\cdot b^{r-l}+s[l+1]\cdot b^{r-l-1}+\dots+s[r-1]\cdot b+s[r]$.
 
-So sánh hai công thức trên, có $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ (có thể thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, $b^{r-l+1}$ có thể được tiền xử lý trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (tất nhiên cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
+So sánh hai công thức trên, có $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l+1}$ (có thể thay giá trị vào để kiểm tra). Vì vậy có thể dùng công thức này để tính nhanh hash của chuỗi con. Trong đó, $b^{r-l+1}$ có thể được tiền xử lý trong $O(n)$ rồi trả lời mỗi truy vấn trong $O(1)$ (cũng có thể dùng lũy thừa nhanh để trả lời mỗi truy vấn trong $O(\log n)$).
 
 <span id="cài-đặt"></span>
 ## Cài đặt
@@ -423,7 +423,7 @@ Phương pháp hash cũng có thể giải bài này trong $O(n)$. Cách làm c�
 
 Bài toán: Cho $m$ chuỗi không rỗng có tổng độ dài không vượt quá $n$, tìm chuỗi con chung dài nhất của tất cả các chuỗi; nếu có nhiều đáp án, in ra một đáp án bất kỳ. Trong đó $1\leq m, n\leq 10^6$.
 
-Nếu tồn tại chuỗi con chung dài nhất có độ dài $k$, thì chuỗi con chung độ dài $k-1$ cũng chắc chắn tồn tại. Vì vậy có thể tìm kiếm nhị phân độ dài của chuỗi con chung dài nhất. Giả sử độ dài hiện tại là $k$, logic của `check(k)` là: tính hash tất cả chuỗi con độ dài $k$ của từng chuỗi, rồi lưu các giá trị hash vào $n$ bảng băm. Sau đó lấy giao các bảng băm là đủ.
+Nếu tồn tại chuỗi con chung dài nhất có độ dài $k$, thì chuỗi con chung độ dài $k-1$ cũng tồn tại. Vì vậy có thể tìm kiếm nhị phân độ dài của chuỗi con chung dài nhất. Giả sử độ dài hiện tại là $k$, logic của `check(k)` là: tính hash tất cả chuỗi con độ dài $k$ của từng chuỗi, rồi lưu các giá trị hash vào $n$ bảng băm. Sau đó lấy giao các bảng băm là đủ.
 
 Độ phức tạp thời gian là $O(m+n\log n)$.
 
@@ -476,7 +476,7 @@ Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường ti�
     ??? note "Lời giải"
         Mỗi lần cần tìm chuỗi dài nhất vừa là hậu tố của đáp án hiện tại, vừa là tiền tố của chuỗi thứ $i$. Liệt kê độ dài của chuỗi này và so sánh bằng hash là đủ.
         
-        Tất nhiên, bài này cũng có thể giải bằng [thuật toán KMP](./kmp.md).
+        Ngoài ra, bài này cũng có thể giải bằng [thuật toán KMP](./kmp.md).
     
     ??? note "Mã tham khảo"
         ```cpp

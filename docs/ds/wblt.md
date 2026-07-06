@@ -38,7 +38,7 @@ Ví dụ, một cách hợp nhất thường dùng là lưu tại nút hiện t�
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:push-up"
     ```
 
-Dĩ nhiên, nếu cần, cũng có thể cài đặt hàm `push_down(x)` tương ứng.
+Khi cần, cũng có thể cài đặt hàm `push_down(x)` tương ứng.
 
 ### Hàm phụ trợ
 
@@ -230,7 +230,7 @@ có thể dùng chiến lược kết hợp xoay đơn và xoay kép nói trên 
     
     Tổng hợp hai trường hợp, khi $\alpha\in(2/11,1-\sqrt{2}/2]$, chiến lược kết hợp xoay đơn và xoay kép ở trên có thể bảo đảm cân bằng của cây.
     
-    Từ quá trình phân tích này có thể thấy, tình huống khó giữ cân bằng nhất xảy ra khi xóa nút khỏi cây có kích thước nhỏ. Ngoài $\beta=1/(2-\alpha)$, với các lựa chọn tham số khác, cũng có thể lặp lại quá trình trên để chứng minh tính đúng đắn, chỉ là một số bất đẳng thức được sử dụng cần được điều chỉnh tương ứng.
+    Quá trình phân tích này cho thấy tình huống khó giữ cân bằng nhất xảy ra khi xóa nút khỏi cây có kích thước nhỏ. Ngoài $\beta=1/(2-\alpha)$, với các lựa chọn tham số khác, cũng có thể lặp lại quá trình trên để chứng minh tính đúng đắn, chỉ là một số bất đẳng thức được sử dụng cần được điều chỉnh tương ứng.
 
 Sau đó, Hirai và Yamamoto đã dùng chứng minh bằng máy để xác định đầy đủ phạm vi của tất cả $(\alpha,\beta)$ khả thi; kết quả là một hình hai chiều khá phức tạp:
 
@@ -404,7 +404,7 @@ cây thu được theo cách này luôn cân bằng, và độ phức tạp củ
     
     Điều này cho thấy độ phức tạp của thuật toán hợp nhất là $O(|\log(x/y)|)$.
     
-    Để chứng minh cây thu được từ thuật toán hợp nhất luôn cân bằng và biểu thức độ phức tạp ở trên đúng, cần dùng quy nạp. Với mọi điểm lưới trong góc phần tư thứ nhất $(x,y)\in\mathbf N^2_+$, gán thứ tự từ điển của $(x+y,|x-y|)$. Đây là một thứ tự tốt trên tập này, nên có thể quy nạp theo thứ tự đó. Cơ sở quy nạp là $(x,y)=(1,1)$; khi đó hai cây con đều chỉ có một nút lá, cây con thu được bằng cách nối trực tiếp tất nhiên cân bằng, và $\tau(x,y)=1$, phù hợp với công thức trên. Dưới đây giả sử quy nạp đã tiến tới $(x,y)$, và kết luận đúng với mọi điểm đứng trước $(x,y)$. Có ba trường hợp:
+    Để chứng minh cây thu được từ thuật toán hợp nhất luôn cân bằng và biểu thức độ phức tạp ở trên đúng, cần dùng quy nạp. Với mọi điểm lưới trong góc phần tư thứ nhất $(x,y)\in\mathbf N^2_+$, gán thứ tự từ điển của $(x+y,|x-y|)$. Đây là một thứ tự tốt trên tập này, nên có thể quy nạp theo thứ tự đó. Cơ sở quy nạp là $(x,y)=(1,1)$; khi đó hai cây con đều chỉ có một nút lá, cây con thu được bằng cách nối trực tiếp cũng cân bằng, và $\tau(x,y)=1$, phù hợp với công thức trên. Dưới đây giả sử quy nạp đã tiến tới $(x,y)$, và kết luận đúng với mọi điểm đứng trước $(x,y)$. Có ba trường hợp:
     
     ??? note "Trường hợp 1: cây $x$ và $y$ cân bằng, tức $y\ge\alpha(x+y)$"
         Lúc này, cây thu được bằng nối trực tiếp cũng cân bằng, và chỉ gọi thuật toán nối cây một lần, nên có $\tau(x,y)=1$.
@@ -416,7 +416,7 @@ cây thu được theo cách này luôn cân bằng, và độ phức tạp củ
         \tau(x,y) = \tau(w,y) + \tau(z,w+y).
         $$
         
-        Theo giả thiết quy nạp, cây con $w+y$ đã cân bằng. Với bước hợp nhất thứ hai, thật ra có thể chứng minh trực tiếp rằng $z$ và $w+y$ cân bằng:
+        Theo giả thiết quy nạp, cây con $w+y$ đã cân bằng. Với bước hợp nhất thứ hai, có thể chứng minh trực tiếp rằng $z$ và $w+y$ cân bằng:
         
         $$
         \alpha \le \dfrac{z}{z+(w+y)} = \dfrac{z}{x+y} < \dfrac{z}{z+w} \le 1-\alpha.
@@ -480,7 +480,7 @@ cây thu được theo cách này luôn cân bằng, và độ phức tạp củ
         Từ các bất đẳng thức này, có thể chỉ ra rằng cây cuối cùng thu được nhất định cân bằng. Theo giả thiết quy nạp, hợp nhất $z$ với $u$ và hợp nhất $v$ với $y$ đều cho cây cân bằng. Hơn nữa, bước đầu tiên hợp nhất $z$ và $u$ thực chất là nối trực tiếp hai cây. Với việc hợp nhất cây $z+u$ và cây $v+y$, lại có hai trường hợp con:
         
         -   Nếu $z+u\le v+y$, thì tỷ lệ trọng số của chúng lớn hơn nghiêm ngặt $\alpha/(1-\alpha)$, nên có thể nối trực tiếp, và kết quả cân bằng;
-        -   Nếu không, tỷ lệ trọng số của chúng tất nhiên nhỏ hơn nghiêm ngặt $x/y$, nhưng $(z+u)+(v+y)=x+y$, nên $|(z+u)-(v+y)|<|x-y|$; theo thứ tự từ điển đã nêu phía trước, trường hợp này cũng có thể áp dụng giả thiết quy nạp, và kết quả cũng cân bằng.
+        -   Nếu không, tỷ lệ trọng số của chúng nhỏ hơn nghiêm ngặt $x/y$, nhưng $(z+u)+(v+y)=x+y$, nên $|(z+u)-(v+y)|<|x-y|$; theo thứ tự từ điển đã nêu phía trước, trường hợp này cũng có thể áp dụng giả thiết quy nạp, và kết quả cũng cân bằng.
         
         Tiếp tục áp dụng giả thiết quy nạp, suy ra:
         
@@ -602,7 +602,7 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:insert-remove"
     ```
 
-Chú ý xử lý cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước phần tử $\infty$ vào cây.
+Cần xử lý cây rỗng. Nếu không muốn xử lý cây rỗng, có thể chèn trước phần tử $\infty$ vào cây.
 
 Độ phức tạp thời gian của cả hai thao tác đều là $O(\log n)$.
 
@@ -643,7 +643,7 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/ds/code/wblt/wblt-1.cpp:prev-next"
     ```
 
-Nếu muốn cài đặt trực tiếp, cần chú ý rằng các nút có cùng khóa có thể được lưu ở nhiều nút lá.
+Nếu muốn cài đặt trực tiếp, cần tính đến việc các nút có cùng khóa có thể được lưu ở nhiều nút lá.
 
 ### Thao tác tách
 
@@ -675,7 +675,7 @@ Cài đặt tham khảo cho cách tách theo kích thước cây con như sau:
     
     Vì các hằng số trong các ký hiệu $O$ lớn này đều thống nhất, có thể cộng trực tiếp và triệt tiêu dạng telescoping.
     
-    Tuy nhiên, cần chú ý rằng $w(T_i)\ge w(T'_{i-1})$ không phải lúc nào cũng đúng, vì $T'_{i-1}$ được tách ra từ cây con phải tương ứng của $T_i$ trong cây ban đầu, và cây con phải này có thể lớn hơn cây con trái $T_i$. Dù vậy, ngay cả khi $T'_{i-1}$ lớn hơn $T_i$, với tư cách là một phần của cây con phải, trọng số $w(T'_{i-1})$ cũng không vượt quá $(1-\alpha)/\alpha$ lần $w(T_i)$. Điều này nghĩa là lúc đó $T'_{i-1}$ và $T_i$ nhất định cân bằng, nên độ phức tạp hợp nhất là $O(1)$.
+    Tuy nhiên, $w(T_i)\ge w(T'_{i-1})$ không phải lúc nào cũng đúng, vì $T'_{i-1}$ được tách ra từ cây con phải tương ứng của $T_i$ trong cây ban đầu, và cây con phải này có thể lớn hơn cây con trái $T_i$. Dù vậy, ngay cả khi $T'_{i-1}$ lớn hơn $T_i$, với tư cách là một phần của cây con phải, trọng số $w(T'_{i-1})$ cũng không vượt quá $(1-\alpha)/\alpha$ lần $w(T_i)$. Điều này nghĩa là lúc đó $T'_{i-1}$ và $T_i$ đã cân bằng, nên độ phức tạp hợp nhất là $O(1)$.
     
     Tổng hợp hai trường hợp này, độ phức tạp của một lần hợp nhất có thể viết là
     
@@ -707,7 +707,7 @@ Dùng hợp nhất và tách, cũng có thể cài đặt cây cân bằng văn 
     --8<-- "docs/ds/code/wblt/wblt-2.cpp:full-text"
     ```
 
-Chú ý rằng WBLT cần gấp đôi không gian. Khi có liên quan tới tách và hợp nhất, cần thu gom rác và kịp thời thu hồi các nút không còn dùng tới; nếu không, mức sử dụng không gian sẽ không còn tuyến tính.
+WBLT cần gấp đôi không gian. Khi có liên quan tới tách và hợp nhất, cần thu gom rác và kịp thời thu hồi các nút không còn dùng tới; nếu không, mức sử dụng không gian sẽ không còn tuyến tính.
 
 ## Tài liệu tham khảo và chú thích
 
@@ -722,4 +722,4 @@ Chú ý rằng WBLT cần gấp đôi không gian. Khi có liên quan tới tác
 
 [^merge-complexity-cmp]: Vì một thao tác cân bằng đơn lẻ nhiều nhất tương đương với nối cây con hai lần, hơn nữa khi hai cây con cuối cùng đã cân bằng vẫn cần gọi thuật toán nối cây con một lần, nên nếu tính theo số lần gọi thuật toán nối cây con, hằng số của thao tác hợp nhất cài đặt dựa trên cân bằng và thuật toán cân bằng bằng hợp nhất trực tiếp ở phần sau là như nhau.
 
-[^more-join]: Từ chứng minh phía sau có thể thấy: trong trường hợp thứ ba, $z$ và $w+y$ luôn cân bằng; trong trường hợp thứ tư, $z$ và $u$ luôn cân bằng. Chúng đều có thể được nối trực tiếp, không cần hợp nhất.
+[^more-join]: Theo chứng minh phía sau: trong trường hợp thứ ba, $z$ và $w+y$ luôn cân bằng; trong trường hợp thứ tư, $z$ và $u$ luôn cân bằng. Chúng đều có thể được nối trực tiếp, không cần hợp nhất.

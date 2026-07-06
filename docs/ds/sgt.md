@@ -42,7 +42,7 @@ còn cần lưu các thông tin sau:
     --8<-- "docs/ds/code/sgt/sgt.cpp:push-up"
     ```
 
-Cần chú ý sự khác nhau giữa cách cập nhật `tot[x]` và `sz[x]`.
+Cần phân biệt cách cập nhật `tot[x]` và `sz[x]`.
 
 ### Thao tác xây lại
 
@@ -58,7 +58,7 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/ds/code/sgt/sgt.cpp:rebuild"
     ```
 
-Khi xây cây, cần chú ý duy trì thông tin nút, bao gồm cả thông tin của nút lá.
+Khi xây cây, cần duy trì đầy đủ thông tin nút, bao gồm cả thông tin của nút lá.
 
 Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$.
 Vì vậy, nếu lần nào chèn hoặc xóa cũng xây lại,
@@ -115,7 +115,7 @@ Cách xử lý thao tác xóa rất đơn giản.
 Chiến lược xóa của cây scapegoat là "xóa lười":
 khi một nút trở thành rỗng, không loại bỏ nút đó ngay mà để xử lý sau.
 
-Dĩ nhiên, nếu trong cây có quá nhiều nút rỗng,
+Nếu trong cây có quá nhiều nút rỗng,
 hiệu suất truy cập sẽ giảm mạnh.
 Vì vậy, cây scapegoat duy trì hai bộ đếm:
 số nút chưa bị xóa trong toàn bộ cây
@@ -173,7 +173,7 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
         Nếu nút mới chèn quá sâu,
         làm cho toàn bộ cây không còn cân bằng chiều cao $\alpha$,
         thì khi quay lui từ nút đó về gốc,
-        chắc chắn sẽ gặp ít nhất một nút, tức "scapegoat",
+        sẽ gặp ít nhất một nút, tức "scapegoat",
         có cây con không còn cân bằng trọng số $\alpha$.
         Sau khi xây lại cây con đó,
         chiều cao của cây con sẽ giảm ít nhất một,
@@ -187,7 +187,7 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
         hoặc ngay sau lần xây lại trước đó của chính nó hay của một nút tổ tiên,
         hai cây con trái và phải của nó chênh lệch nhiều nhất một nút.
         Còn trước lần xây lại hiện tại,
-        tại nút $x$ chắc chắn thỏa mãn
+        tại nút $x$ đã thỏa mãn
 
         $$
         \max\{|T_{\mathrm{left}(x)}|,|T_{\mathrm{right}(x)}|\} > \alpha\cdot |T_x|.
@@ -202,7 +202,7 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
         nếu mỗi lần chèn một nút đều cộng $\Theta(1)$ thế năng cho mỗi nút
         trên đường đi từ gốc tới nút đó (trước lần xây lại nếu có),
         thì trước khi cây con tại nút $x$ được xây lại,
-        ở nút $x$ chắc chắn đã tích lũy $\Omega(|T_x|)$ thế năng,
+        nút $x$ đã tích lũy $\Omega(|T_x|)$ thế năng,
         đủ để trả chi phí $\Theta(|T_x|)$ cho lần xây lại cây con tại $x$.
         Vì độ sâu của cây luôn là $O(\log n)$,
         thế năng tăng thêm trong một lần chèn là $O(\log n)$.
@@ -253,7 +253,7 @@ Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm v�
 
 Dùng thông tin số lượng giá trị được lưu trong cây con mà các nút ghi lại
 để đi xuống tìm kiếm là đủ.
-Cần chú ý rằng có thể tồn tại nút có số lần xuất hiện bằng không.
+Cần xét trường hợp tồn tại nút có số lần xuất hiện bằng không.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -262,14 +262,14 @@ Cần chú ý rằng có thể tồn tại nút có số lần xuất hiện b�
 
 ### Truy vấn tiền nhiệm và kế nhiệm
 
-Kết hợp hai chức năng trên là được.
+Có thể kết hợp hai chức năng trên.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/ds/code/sgt/sgt.cpp:pred-succ"
     ```
 
-Nếu muốn cài đặt trực tiếp, cần chú ý xử lý các nút có số lần xuất hiện bằng không.
+Nếu muốn cài đặt trực tiếp, cần xử lý các nút có số lần xuất hiện bằng không.
 
 ### Cài đặt tham khảo
 
@@ -317,4 +317,4 @@ Cuối phần này là cài đặt tham khảo cho bài mẫu [Cây cân bằng 
     nhưng chưa chặt chẽ.
     Lý do là một lần chèn có thể tương ứng với việc xây lại ở nhiều nút tổ tiên,
     nên khi nút $x$ xảy ra xây lại,
-    chưa chắc số nút trong cây con chưa gây ra xây lại là $\Omega(|T_x|)$.
+    số nút trong cây con chưa gây ra xây lại không nhất thiết là $\Omega(|T_x|)$.

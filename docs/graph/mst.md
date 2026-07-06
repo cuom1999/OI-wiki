@@ -84,7 +84,7 @@ Bước quy nạp: giả sử ở một thời điểm nào đó mệnh đề đ
 
 Nếu $e$ thuộc $T$, mệnh đề đúng.
 
-Ngược lại, $T+e$ chắc chắn có một chu trình. Xét một cạnh khác $f$ trên chu trình này mà không thuộc $F$; cạnh này tồn tại.
+Ngược lại, $T+e$ tạo ra một chu trình. Xét một cạnh khác $f$ trên chu trình này mà không thuộc $F$; cạnh này tồn tại.
 
 Trước hết, trọng số của $f$ không thể nhỏ hơn trọng số của $e$, vì nếu không $f$ đã được chọn trước $e$.
 
@@ -125,9 +125,9 @@ Minh họa:
 
 Cụ thể, mỗi lần chọn một đỉnh có khoảng cách nhỏ nhất, rồi dùng cạnh mới để cập nhật khoảng cách của các đỉnh khác.
 
-Thực ra điều này giống thuật toán Dijkstra: mỗi lần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng heap.
+Điều này giống thuật toán Dijkstra: mỗi lần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng heap.
 
-Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra. Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$, độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn Kruskal. Vì vậy, trong trường hợp thông thường thường chọn Kruskal; trên đồ thị dày đặc, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal, nhưng khi chạy thực tế **chưa chắc** nhanh hơn.
+Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra. Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$, độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn Kruskal. Vì vậy, trong trường hợp thông thường thường chọn Kruskal; trên đồ thị dày đặc, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal, nhưng khi chạy thực tế không nhất thiết nhanh hơn.
 
 Vét cạn: $O(n^2+m)$.
 
@@ -246,9 +246,9 @@ Nếu $e$ thuộc $T$, mệnh đề đúng.
 
 Ngược lại, xét trong $T+e$ một cạnh khác $f$ trên chu trình mà có thể thêm vào tập cạnh hiện tại.
 
-Trước hết, trọng số của $f$ chắc chắn không nhỏ hơn trọng số của $e$, nếu không $f$ đã được chọn thay vì $e$.
+Trước hết, trọng số của $f$ không nhỏ hơn trọng số của $e$, nếu không $f$ đã được chọn thay vì $e$.
 
-Tiếp theo, trọng số của $f$ chắc chắn không lớn hơn trọng số của $e$, nếu không $T+e-f$ sẽ là một cây khung nhỏ hơn.
+Tiếp theo, trọng số của $f$ không lớn hơn trọng số của $e$, nếu không $T+e-f$ sẽ là một cây khung nhỏ hơn.
 
 Vì vậy, $e$ và $f$ có trọng số bằng nhau, $T+e-f$ cũng là một cây khung nhỏ nhất và chứa $F$.
 
@@ -345,7 +345,7 @@ Trong đồ thị vô hướng, đây là cây khung có tổng trọng số nh�
 
 Xét lại quá trình tìm cây khung nhỏ thứ hai không nghiêm ngặt ở trên: tại sao đáp án thu được là không nghiêm ngặt?
 
-Vì cây khung nhỏ nhất bảo đảm rằng trong cây khung, giá trị lớn nhất của cạnh trên đường đi từ $u$ đến $v$ chắc chắn **không lớn hơn** giá trị lớn nhất của cạnh trên bất kỳ đường đi nào khác từ $u$ đến $v$. Nói cách khác, khi trọng số của cạnh dùng để thay thế bằng trọng số của cạnh bị thay thế trong cây khung ban đầu, cây khung nhỏ thứ hai thu được là không nghiêm ngặt.
+Vì cây khung nhỏ nhất bảo đảm rằng trong cây khung, giá trị lớn nhất của cạnh trên đường đi từ $u$ đến $v$ **không lớn hơn** giá trị lớn nhất của cạnh trên bất kỳ đường đi nào khác từ $u$ đến $v$. Nói cách khác, khi trọng số của cạnh dùng để thay thế bằng trọng số của cạnh bị thay thế trong cây khung ban đầu, cây khung nhỏ thứ hai thu được là không nghiêm ngặt.
 
 Cách xử lý rất tự nhiên: khi duy trì trọng số cạnh lớn nhất trên đường đi đến tổ tiên cấp $2^i$, đồng thời duy trì **trọng số cạnh lớn thứ hai nghiêm ngặt**. Khi trọng số của cạnh dùng để thay thế bằng trọng số lớn nhất trên đường đi trong cây khung ban đầu, thay bằng giá trị lớn thứ hai nghiêm ngặt.
 
@@ -517,9 +517,9 @@ Cây khung nút cổ chai của đồ thị vô hướng $G$ là một cây khun
 
 ### Tính chất
 
-**Cây khung nhỏ nhất là điều kiện đủ nhưng không cần của cây khung nút cổ chai.** Nghĩa là cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai, nhưng cây khung nút cổ chai chưa chắc là cây khung nhỏ nhất.
+**Cây khung nhỏ nhất là điều kiện đủ nhưng không cần của cây khung nút cổ chai.** Nghĩa là cây khung nhỏ nhất luôn là cây khung nút cổ chai, nhưng cây khung nút cổ chai không nhất thiết là cây khung nhỏ nhất.
 
-Có thể chứng minh bằng phản chứng mệnh đề "cây khung nhỏ nhất chắc chắn là cây khung nút cổ chai": giả sử trọng số cạnh lớn nhất trong cây khung nhỏ nhất là $w$. Nếu cây khung nhỏ nhất không phải cây khung nút cổ chai, thì mọi cạnh trong cây khung nút cổ chai đều có trọng số nhỏ hơn $w$. Chỉ cần xóa cạnh dài nhất trong cây khung nhỏ nhất ban đầu, rồi dùng một cạnh trong cây khung nút cổ chai để nối hai cây tạo thành sau khi xóa cạnh đó. Cây khung mới thu được sẽ có tổng trọng số nhỏ hơn cây khung nhỏ nhất ban đầu, tạo ra mâu thuẫn.
+Chứng minh mệnh đề "cây khung nhỏ nhất luôn là cây khung nút cổ chai" bằng phản chứng: giả sử trọng số cạnh lớn nhất trong cây khung nhỏ nhất là $w$. Nếu cây khung nhỏ nhất không phải cây khung nút cổ chai, thì mọi cạnh trong cây khung nút cổ chai đều có trọng số nhỏ hơn $w$. Chỉ cần xóa cạnh dài nhất trong cây khung nhỏ nhất ban đầu, rồi dùng một cạnh trong cây khung nút cổ chai để nối hai cây tạo thành sau khi xóa cạnh đó. Cây khung mới thu được sẽ có tổng trọng số nhỏ hơn cây khung nhỏ nhất ban đầu, tạo ra mâu thuẫn.
 
 ### Bài tập mẫu
 
