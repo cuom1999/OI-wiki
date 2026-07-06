@@ -7,17 +7,17 @@ Phân trị theo đỉnh thích hợp để xử lý các bài toán thông tin 
     
     $n\le 10000,m\le 100,k\le 10000000$
 
-Trước hết, chọn tùy ý một đỉnh làm gốc $\mathit{rt}$. Mọi đường đi nằm hoàn toàn trong cây con của nó có thể chia thành hai loại: đường đi đi qua gốc hiện tại và đường đi không đi qua gốc hiện tại. Với các đường đi đi qua gốc hiện tại, lại có thể chia thành hai loại: đường đi có gốc là một đầu mút và đường đi mà cả hai đầu mút đều không phải gốc. Loại thứ hai có thể được ghép từ hai chuỗi thuộc loại thứ nhất. Vì vậy, với gốc đang xét $rt$, ta trước tiên tính đóng góp vào đáp án của các đường đi nằm trong cây con của nó và đi qua đỉnh này, sau đó đệ quy xuống các cây con để giải các đường đi không đi qua đỉnh này.
+Trước hết, chọn tùy ý một đỉnh làm gốc $\mathit{rt}$. Mọi đường đi nằm hoàn toàn trong cây con của nó có thể chia thành hai loại: đường đi đi qua gốc hiện tại và đường đi không đi qua gốc hiện tại. Với các đường đi đi qua gốc hiện tại, lại có thể chia thành hai loại: đường đi có gốc là một đầu mút và đường đi mà cả hai đầu mút đều không phải gốc. Loại thứ hai có thể được ghép từ hai chuỗi thuộc loại thứ nhất. Vì vậy, với gốc đang xét $\mathit{rt}$, trước tiên tính đóng góp vào đáp án của các đường đi nằm trong cây con của nó và đi qua đỉnh này, sau đó đệ quy xuống các cây con để giải các đường đi không đi qua đỉnh này.
 
-Trong bài này, với các đường đi đi qua gốc $\mathit{rt}$, ta lần lượt duyệt mọi con $\mathit{ch}$ của nó, rồi lấy $\mathit{ch}$ làm gốc để tính khoảng cách từ mọi đỉnh trong cây con của $\mathit{ch}$ đến $\mathit{rt}$. Gọi khoảng cách từ đỉnh $i$ đến gốc hiện tại $rt$ là $\mathit{dist}_i$, và $\mathit{tf}_{d}$ biểu thị trong các cây con đã xử lý trước đó có tồn tại một đỉnh $v$ sao cho $\mathit{dist}_v=d$ hay không. Nếu một truy vấn $k$ thỏa mãn $tf_{k-\mathit{dist}_i}=true$, thì tồn tại một đường đi có độ dài $k$. Sau khi tính xong liệu các cạnh nối trong cây con của $\mathit{ch}$ có thể tạo thành đáp án hay không, ta thêm các khoảng cách mới này vào mảng $\mathit{tf}$.
+Trong bài này, với các đường đi đi qua gốc $\mathit{rt}$, lần lượt duyệt mọi con $\mathit{ch}$ của nó, rồi lấy $\mathit{ch}$ làm gốc để tính khoảng cách từ mọi đỉnh trong cây con của $\mathit{ch}$ đến $\mathit{rt}$. Gọi khoảng cách từ đỉnh $i$ đến gốc hiện tại $\mathit{rt}$ là $\mathit{dist}_i$, và $\mathit{tf}_{d}$ biểu thị trong các cây con đã xử lý trước đó có tồn tại một đỉnh $v$ sao cho $\mathit{dist}_v=d$ hay không. Nếu một truy vấn $k$ thỏa mãn $\mathit{tf}_{k-\mathit{dist}_i}=\text{true}$, thì tồn tại một đường đi có độ dài $k$. Sau khi tính xong liệu các cạnh nối trong cây con của $\mathit{ch}$ có thể tạo thành đáp án hay không, thêm các khoảng cách mới này vào mảng $\mathit{tf}$.
 
-Lưu ý rằng khi xóa mảng $\mathit{tf}$, không được dùng trực tiếp `memset`. Thay vào đó, hãy đưa các vị trí $\mathit{tf}$ đã từng được sử dụng vào một hàng đợi rồi xóa chúng, như vậy mới bảo đảm độ phức tạp thời gian.
+Lưu ý rằng khi xóa mảng $\mathit{tf}$, không được dùng trực tiếp `memset`. Thay vào đó, đưa các vị trí $\mathit{tf}$ đã từng được sử dụng vào một hàng đợi rồi xóa chúng, như vậy mới bảo đảm độ phức tạp thời gian.
 
 Trong quá trình phân trị theo đỉnh, ở mỗi tầng, tổng các lời gọi đệ quy xử lý mỗi đỉnh đúng một lần. Giả sử có tổng cộng $h$ tầng đệ quy, độ phức tạp thời gian là $O(hn)$.
 
-Nếu mỗi lần ta chọn [trọng tâm](./tree-centroid.md) của cây con làm gốc, số tầng đệ quy được bảo đảm là nhỏ nhất, và độ phức tạp thời gian là $O(n\log n)$. Do đó, trong cộng đồng thi lập trình quốc tế, phân trị theo đỉnh cũng thường được gọi là **phân rã trọng tâm** của cây, tức centroid decomposition.
+Nếu mỗi lần chọn [trọng tâm](./tree-centroid.md) của cây con làm gốc, số tầng đệ quy được bảo đảm là nhỏ nhất, và độ phức tạp thời gian là $O(n\log n)$. Do đó, trong cộng đồng thi lập trình quốc tế, phân trị theo đỉnh cũng thường được gọi là **phân rã trọng tâm** của cây, tức centroid decomposition.
 
-Hãy chú ý rằng sau khi chọn lại gốc, nhất định phải tính lại kích thước cây con. Nếu không, chỉ một thay đổi tưởng như rất nhỏ cũng có thể làm sai độ phức tạp thời gian hoặc khiến tính đúng đắn khó được bảo đảm.
+Cần chú ý rằng sau khi chọn lại gốc, nhất định phải tính lại kích thước cây con. Nếu không, chỉ một thay đổi tưởng như rất nhỏ cũng có thể làm sai độ phức tạp thời gian hoặc khiến tính đúng đắn khó được bảo đảm.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -29,7 +29,7 @@ Hãy chú ý rằng sau khi chọn lại gốc, nhất định phải tính lạ
     
     $n\le 40000,k\le 20000,w_i\le 1000$
 
-Vì ở đây cần truy vấn số cặp đỉnh có khoảng cách trên cây thuộc đoạn $[0,k]$, ta dùng cây đoạn để hỗ trợ duy trì và truy vấn.
+Vì cần truy vấn số cặp đỉnh có khoảng cách trên cây thuộc đoạn $[0,k]$, dùng cây đoạn để hỗ trợ duy trì và truy vấn.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -37,18 +37,18 @@ Vì ở đây cần truy vấn số cặp đỉnh có khoảng cách trên cây 
     ```
 
 ??? note "Ví dụ 3 [Luogu P2664 Trò chơi trên cây](https://www.luogu.com.cn/problem/P2664)"
-    Cho một cây mà mỗi đỉnh đều có một màu. Định nghĩa $s(i,j)$ là số màu trên đường đi từ $\mathit{i}$ đến $\mathit{j}$, và $\mathit{sum_{i}}=\sum_{j=1}^n s(i,j)$. Hãy tính $sum_i$ với mọi $1\leq i\leq n$. Với $1 \le n, c_i \le 10^5$.
+    Cho một cây mà mỗi đỉnh đều có một màu. Định nghĩa $s(i,j)$ là số màu trên đường đi từ $i$ đến $j$, và $\mathit{sum}_i=\sum_{j=1}^n s(i,j)$. Tính $\mathit{sum}_i$ với mọi $1\leq i\leq n$. Với $1 \le n, c_i \le 10^5$.
 
 Bài này kiểm tra khá sâu khả năng hiểu và vận dụng tư tưởng phân trị theo đỉnh, phù hợp làm ví dụ và bài luyện tập khó hơn về phân trị theo đỉnh.
 
-Trước hết, ta cần hiểu rõ một phép chuyển đổi. Đề bài định nghĩa $\mathit{sum_i}$ là tổng số màu trên các đường đi từ $i$ đến mọi đỉnh. Tuy nhiên, nếu dùng trực tiếp cách nhìn này trong phân trị theo đỉnh thì rất khó thống kê đáp án, vì khó hợp nhất thông tin của hai cây con cùng xuất phát từ gốc hiện tại. Do đó, ta chuyển đổi ý nghĩa của $\mathit{sum_i}$. Với mỗi màu $j$, gọi số đường đi có một đầu mút là $i$ và chứa màu $j$ là $\mathit{cnt_j}$. Khi đó $\mathit{sum_i}$ thực chất chính là $\sum \mathit{cnt_j}$. Bước chuyển đổi này chỉ là đổi đối tượng quan sát: ta xét đóng góp của từng màu vào $\mathit{sum_i}$. Giá trị $\mathit{cnt_j}$ lại rất dễ xử lý: mỗi khi gặp một màu mới, chỉ cần cộng $\mathit{cnt_{col_u}}+=\mathit{size_u}$, trong đó $\mathit{size_u}$ là kích thước cây con của $u$. Điều này có nghĩa là mọi đỉnh trong cây con đó đều tạo một đóng góp theo màu này cho đáp án của $u$.
+Trước hết, cần hiểu rõ một phép chuyển đổi. Đề bài định nghĩa $\mathit{sum}_i$ là tổng số màu trên các đường đi từ $i$ đến mọi đỉnh. Tuy nhiên, nếu dùng trực tiếp cách nhìn này trong phân trị theo đỉnh thì rất khó thống kê đáp án, vì khó hợp nhất thông tin của hai cây con cùng xuất phát từ gốc hiện tại. Do đó, chuyển đổi ý nghĩa của $\mathit{sum}_i$. Với mỗi màu $j$, gọi số đường đi có một đầu mút là $i$ và chứa màu $j$ là $\mathit{cnt}_j$. Khi đó $\mathit{sum}_i$ thực chất chính là $\sum \mathit{cnt}_j$. Bước chuyển đổi này chỉ là đổi đối tượng quan sát: xét đóng góp của từng màu vào $\mathit{sum}_i$. Giá trị $\mathit{cnt}_j$ lại rất dễ xử lý: mỗi khi gặp một màu mới, chỉ cần cộng $\mathit{cnt}_{\mathit{col}_u}+=\mathit{size}_u$, trong đó $\mathit{size}_u$ là kích thước cây con của $u$. Điều này có nghĩa là mọi đỉnh trong cây con đó đều tạo một đóng góp theo màu này cho đáp án của $u$.
 
-Trong quá trình phân trị theo đỉnh, ta chỉ cần lần lượt thống kê:
+Trong quá trình phân trị theo đỉnh, chỉ cần lần lượt thống kê:
 
 1.  Đóng góp cho gốc của các đường đi trong cây con có gốc hiện tại làm một đầu mút.
 2.  Đóng góp cho mỗi đỉnh trong cây con của các đường đi có lca là gốc hiện tại.
 
-Phần 1 tương đối dễ xử lý. Vì trong phân trị theo đỉnh, số tầng đệ quy không vượt quá $\log{n}$, ở mỗi tầng ta đều có thể duyệt toàn bộ cây con, nên có thể dùng trực tiếp công thức định nghĩa của $\mathit{sum_i}$ để thống kê trong quá trình duyệt cây con.
+Phần 1 tương đối dễ xử lý. Vì trong phân trị theo đỉnh, số tầng đệ quy không vượt quá $\log{n}$, ở mỗi tầng đều có thể duyệt toàn bộ cây con, nên có thể dùng trực tiếp công thức định nghĩa của $\mathit{sum}_i$ để thống kê trong quá trình duyệt cây con.
 
 Với phần 2, giả sử một đỉnh con của gốc hiện tại $u$ là $d$, và chọn tùy ý một đỉnh $v$ trong cây con của $d$. Khi đó đáp án của $v$ có thể chia thành hai phần:
 
@@ -64,17 +64,17 @@ Trên đây là toàn bộ ý tưởng thống kê. Chi tiết cài đặt xem m
 
 ## Phân trị theo cạnh
 
-Tương tự phân trị theo đỉnh ở trên, ta chọn một cạnh và chia cây thành hai phần cân bằng nhất có thể, tức làm cho $\mathit{size}$ của hai cây con được nối bởi cạnh đó càng gần nhau càng tốt. Sau đó đệ quy xử lý cây con bên trái và bên phải, đồng thời thống kê thông tin.
+Tương tự phân trị theo đỉnh ở trên, chọn một cạnh và chia cây thành hai phần cân bằng nhất có thể, tức làm cho $\mathit{size}$ của hai cây con được nối bởi cạnh đó càng gần nhau càng tốt. Sau đó đệ quy xử lý cây con bên trái và bên phải, đồng thời thống kê thông tin.
 
-Tuy nhiên, cách này không ổn. Hãy xét một đồ thị hình sao:
+Tuy nhiên, cách này không ổn. Xét một đồ thị hình sao:
 
 ![Đồ thị hình sao](./images/tree-divide1.svg)
 
-Ta thấy rằng khi dưới một đỉnh có nhiều con với $\mathit{size}$ gần nhau, độ phức tạp thời gian khi áp dụng phân trị theo cạnh là không thể chấp nhận.
+Khi dưới một đỉnh có nhiều con với $\mathit{size}$ gần nhau, độ phức tạp thời gian khi áp dụng phân trị theo cạnh là không thể chấp nhận.
 
-Nếu đồ thị này là cây nhị phân thì có thể tránh được nhược điểm của phân trị theo cạnh trong đồ thị hình sao ở trên. Vì vậy, ta xét cách chuyển một cây nhiều nhánh thành cây nhị phân.
+Nếu đồ thị này là cây nhị phân thì có thể tránh được nhược điểm của phân trị theo cạnh trong đồ thị hình sao ở trên. Vì vậy, xét cách chuyển một cây nhiều nhánh thành cây nhị phân.
 
-Rõ ràng, ta chỉ cần dựng cây giống như cây đoạn. Như hình sau:
+Chỉ cần dựng cây giống như cây đoạn, như hình sau:
 
 ![Dựng cây](./images/tree-divide2.svg)
 
@@ -82,7 +82,7 @@ Các đỉnh mới tạo ra được gán thông tin phù hợp theo yêu cầu 
 
 Phân tích độ phức tạp cho thấy số đỉnh tăng thêm nhiều nhất là $O(n)$, nên tổng độ phức tạp là $O(n\log n)$.
 
-Gần như mọi bài có thể làm bằng phân trị theo đỉnh đều có thể làm bằng phân trị theo cạnh, tuy hằng số khác nhau nhưng thường không bị chặn gắt. Vì vậy, ở đây không đưa thêm ví dụ.
+Gần như mọi bài có thể làm bằng phân trị theo đỉnh đều có thể làm bằng phân trị theo cạnh, tuy hằng số khác nhau nhưng thường không bị chặn gắt. Vì vậy, mục này không đưa thêm ví dụ.
 
 ## Cây phân rã trọng tâm
 
@@ -92,7 +92,7 @@ Nó thường được dùng để giải các bài toán có cập nhật mà k
 
 ### Phân tích thuật toán
 
-Ta tái cấu trúc cây ban đầu bằng cách mỗi lần tìm trọng tâm theo phương pháp phân trị theo đỉnh.
+Tái cấu trúc cây ban đầu bằng cách mỗi lần tìm trọng tâm theo phương pháp phân trị theo đỉnh.
 
 Mỗi trọng tâm tìm được được nối quan hệ cha con với trọng tâm ở tầng trước, từ đó hình thành một cây có $\log n$ tầng.
 
@@ -100,7 +100,7 @@ Vì cây này có $\log n$ tầng, nhiều cách vét cạn vốn có độ ph�
 
 ### Cài đặt
 
-Có một mẹo nhỏ: mỗi lần lấy tổng kích thước $\mathit{tot}$ của tầng đệ quy trước trừ đi kích thước con nặng của đỉnh ở tầng trước, ta sẽ nhận được tổng kích thước của tầng hiện tại. Như vậy, việc tìm trọng tâm chỉ cần một lần DFS.
+Có một mẹo nhỏ: mỗi lần lấy tổng kích thước $\mathit{tot}$ của tầng đệ quy trước trừ đi kích thước con nặng của đỉnh ở tầng trước, sẽ nhận được tổng kích thước của tầng hiện tại. Như vậy, việc tìm trọng tâm chỉ cần một lần DFS.
 
 ???+ note "Mã tham khảo"
     ```cpp
