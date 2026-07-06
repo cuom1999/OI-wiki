@@ -2,8 +2,8 @@ Loại giá trị là một khái niệm quan trọng trong C++. Dù trong lập
 không phải lúc nào cũng cần nhắc đến, hiểu nó giúp phát hiện và tránh những phép
 sao chép không cần thiết, từ đó cải thiện hiệu năng của mã.
 
-Khái niệm loại giá trị đã nhiều lần thay đổi từ ngôn ngữ C, C++98, C++11 đến
-C++17, rồi dần trở thành một khái niệm phức tạp.
+Khái niệm loại giá trị đã nhiều lần thay đổi qua ngôn ngữ C, C++98, C++11 rồi
+đến C++17, và dần trở thành một khái niệm phức tạp.
 
 ## Sao chép không cần thiết
 
@@ -27,8 +27,8 @@ một bản dữ liệu, làm lượng bộ nhớ sử dụng tăng lên.
 
 Nếu muốn tiết kiệm phần bộ nhớ này, có thể tự mô phỏng một thao tác di chuyển:
 định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới vùng dữ liệu
-chuỗi. Khi đó, chỉ cần sao chép con trỏ sang nơi mới, đồng thời đặt lại con trỏ
-của đối tượng gốc để tránh hủy nhầm cùng một vùng nhớ.
+chuỗi. Khi đó, ta chỉ chuyển con trỏ sang nơi mới, đồng thời đặt lại con trỏ của
+đối tượng gốc để tránh hủy nhầm cùng một vùng nhớ.
 
 ```cpp
 struct MyString {
@@ -59,14 +59,14 @@ giải.
 Trong ngôn ngữ C, mỗi biểu thức đều có kiểu và loại giá trị. Loại giá trị chủ
 yếu được chia thành ba loại:
 
--   Trái trị (lvalue): biểu thức xác định một đối tượng. Nói cách khác, có thể
-    lấy địa chỉ của biểu thức đó.
+-   Trái trị (lvalue): biểu thức xác định một đối tượng; thường có thể lấy địa
+    chỉ của biểu thức đó.
 -   Phải trị (rvalue): biểu thức không xác định một đối tượng có thể lấy địa chỉ;
-    nó chỉ biểu diễn một giá trị tạm thời.
+    nó chỉ biểu diễn một giá trị tạm.
 -   Biểu thức chỉ định hàm: biểu thức có kiểu hàm.
 
 Vì vậy, chỉ các trái trị có thể sửa đổi (trái trị không được định tính `const`
-và không phải mảng) mới có thể đứng ở vế trái của biểu thức gán.
+và không phải mảng) mới có thể xuất hiện ở vế trái của biểu thức gán.
 
 Với một toán tử yêu cầu toán hạng của nó là phải trị, mỗi khi một trái trị được
 dùng làm toán hạng, biểu thức đó sẽ trải qua phép chuyển đổi chuẩn từ trái trị
@@ -78,7 +78,8 @@ Các hiểu lầm thường gặp:
 -   Tiếp tục tính toán từ một biểu thức phải trị vẫn có thể cho ra trái trị. Ví
     dụ với `int *a`, biểu thức `a + 1` là phải trị, nhưng `*(a + 1)` là trái trị.
 -   Chỉ biểu thức mới có loại giá trị, biến thì không. Ví dụ với `int *a`, không
-    nên nói biến `a` là trái trị; nên nói rằng biểu thức `a` là một trái trị.
+    nên nói biến `a` là trái trị; cách nói chính xác hơn là biểu thức `a` là một
+    trái trị.
 
 ## Loại giá trị trong C++98
 
@@ -164,9 +165,9 @@ Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 
 ### std::move
 
-Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`;
-tác dụng của nó là ép biểu thức thành xvalue, nhờ đó có thể kích hoạt ngữ nghĩa
-di chuyển nếu kiểu dữ liệu hỗ trợ.
+Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`.
+Hàm này ép biểu thức thành xvalue, nhờ đó có thể kích hoạt ngữ nghĩa di chuyển nếu
+kiểu dữ liệu hỗ trợ.
 
 ```cpp
 int main() {
@@ -214,9 +215,9 @@ C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trước C++
 
 C++17 yêu cầu giá trị thuần phải không nhất thiết phải được vật chất hóa thành
 đối tượng tạm riêng, mà được khởi tạo vào vùng lưu trữ của đích cuối cùng; trước
-khi khởi tạo, đối tượng tạm đó còn chưa tồn tại. Vì vậy trong C++17, không còn
-bước tạo rồi trả về một đối tượng tạm riêng, và trường hợp này cũng không cần phụ
-thuộc vào RVO. Nói cách khác, URVO (RVO không tên, unnamed RVO) là bắt buộc, còn
+khi khởi tạo, đối tượng tạm riêng đó còn chưa tồn tại. Vì vậy trong C++17, không
+còn bước tạo rồi trả về một đối tượng tạm riêng, và trường hợp này cũng không cần
+phụ thuộc vào RVO. Cụ thể, URVO (RVO không tên, unnamed RVO) là bắt buộc, còn
 NRVO (RVO có tên, named RVO) thì vẫn không bắt buộc.
 
 ```cpp
