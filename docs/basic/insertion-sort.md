@@ -20,10 +20,10 @@ Sắp xếp chèn là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán rất hiệu
-quả khi dãy gần như đã có thứ tự.
+Độ phức tạp thời gian tốt nhất của sắp xếp chèn là $O(n)$; thuật toán hiệu quả
+khi dãy gần có thứ tự.
 
-Độ phức tạp thời gian xấu nhất và trung bình của sắp xếp chèn đều là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp bất lợi nhất và trung bình của sắp xếp chèn đều là $O(n^2)$.
 
 ## Cài đặt
 
