@@ -296,7 +296,7 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
 ## Thao tác trên cây cân bằng
 
 Phần này thảo luận cách cài đặt các thao tác thường gặp của cây cân bằng dựa trên cây Splay.
-Trong đó, tương đối quan trọng là tìm phần tử theo giá trị hoặc theo thứ hạng:
+Trong đó, quan trọng hơn cả là tìm phần tử theo giá trị hoặc theo thứ hạng:
 chúng có thể tìm ra một phần tử cụ thể và đưa nó lên nút gốc để tiện xử lý tiếp.
 
 Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây cân bằng thông thường](https://loj.ac/problem/104).
@@ -374,7 +374,7 @@ Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng 
 
 ### Thao tác chèn
 
-Thao tác chèn là một quá trình tương đối phức tạp. Các bước cụ thể như sau: (giả sử giá trị được chèn là $v$)
+Thao tác chèn là một quá trình khá phức tạp. Các bước cụ thể như sau: (giả sử giá trị được chèn là $v$)
 
 -   Tương tự quá trình tìm theo giá trị, dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng, đồng thời ghi lại nút cha $y$ trong quá trình đó;
 -   Nếu tồn tại nút $x$ lưu $v$, trực tiếp cập nhật thông tin; ngược lại, tạo nút mới $x$;
@@ -389,7 +389,7 @@ Cài đặt này cho phép chèn giá trị trực tiếp vào cây rỗng. Nế
 
 ### Thao tác xóa
 
-Thao tác xóa cũng là một thao tác tương đối phức tạp. Các bước cụ thể như sau: (giả sử giá trị cần xóa là $v$)
+Thao tác xóa cũng là một thao tác khá phức tạp. Các bước cụ thể như sau: (giả sử giá trị cần xóa là $v$)
 
 -   Trước hết tìm nút lưu giá trị $v$ theo giá trị và đưa nó lên gốc;
 -   Nếu không tồn tại nút lưu giá trị đó, trực tiếp trả về; (bước trước đã thực hiện thao tác splay)
@@ -421,7 +421,7 @@ Tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $v$. Cá
 -   Nếu giá trị ở gốc nhỏ hơn $v$, thì nó là giá trị lớn nhất như vậy, trực tiếp trả về;
 -   Ngược lại, tìm giá trị lớn nhất trong cây con trái và đưa nó lên gốc.
 
-Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là lược bỏ các phán đoán không cần thiết.
+Bước cuối cùng tương đương với việc gọi trực tiếp `loc(ch[rt][0], sz[ch[rt][0]])`, chỉ là đã lược bỏ các bước kiểm tra không cần thiết.
 
 ???+ example "Cài đặt"
     ```cpp

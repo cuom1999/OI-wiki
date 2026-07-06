@@ -28,7 +28,7 @@ Cần thêm một mảng khác là `low`, dùng để lưu nhãn thời gian nh�
 
 Ví dụ, `low[2]` bằng 1, còn `low[5]` và `low[6]` bằng 3.
 
-Sau đó bắt đầu DFS. Cơ sở để phán đoán một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
+Sau đó bắt đầu DFS. Tiêu chí xác định một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
 
 Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, đỉnh đó là đỉnh khớp (trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
 

@@ -178,7 +178,7 @@ Nếu $k = 3$, trực tiếp xét dfs theo cả ba hướng. Vì hai hướng tr
 
 Khi $k = 1$ hoặc $k = 3$, cần xét đường duyệt dài hơn. Có thể biết điểm có độ sâu nhỏ nhất trên đường đi (nhỏ hơn độ sâu của nút ban đầu). Nếu đánh dấu các nút đã thăm và không duyệt lại, từ nút đó trở đi chỉ còn một đường duyệt. Dù đường này vẫn có thể đi về phía lá, trên đường đó vẫn tồn tại nút có độ sâu nhỏ hơn điểm xuất phát, và có thể bắt đầu từ nút này để tiếp tục lặp lại các bước ở trên.
 
-Khi xét trường hợp xấu nhất với $h = 7$ (mỗi lần chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá), nếu chỉ dfs thì trường hợp xấu nhất cần $\frac{(1 + 7) \times 7}{2} = 28$ lần truy vấn. Nhưng do đã biết độ sâu của nút ban đầu, có thể tính được độ sâu của mọi nút đã duyệt, và dựa trên thảo luận về bfs ban đầu để phán đoán liệu có thể bfs trực tiếp từ nút có độ sâu nhỏ nhất hay không.
+Khi xét trường hợp xấu nhất với $h = 7$ (mỗi lần chỉ đi một bước về phía nút gốc rồi lập tức đi về phía lá), nếu chỉ dfs thì trường hợp xấu nhất cần $\frac{(1 + 7) \times 7}{2} = 28$ lần truy vấn. Nhưng do đã biết độ sâu của nút ban đầu, có thể tính được độ sâu của mọi nút đã duyệt, và dựa trên thảo luận về bfs ban đầu để xác định liệu có thể bfs trực tiếp từ nút có độ sâu nhỏ nhất hay không.
 
 Lúc này có thể tính được trường hợp xấu nhất cần 17 lần. Vì vậy xét loại bỏ một nút khỏi cây tìm kiếm (dựa trên tính chất dfs chỉ có thể duyệt mù, xét bfs): khi thực hiện bfs ở độ sâu $k$, cây tìm kiếm trong trường hợp xấu nhất có $2 ^ k - 1$ nút, có thể cần $2 ^ k - 1$ lần truy vấn mới xác định được nút nào có đúng 2 hàng xóm. Tuy nhiên nếu đã truy vấn $2 ^ k - 2$ nút trong số đó, có thể biết nút cuối cùng là nút gốc.
 
@@ -289,9 +289,9 @@ Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó
 
 Từ đó có thể suy ra phương pháp thử sai để xác định robot có ở một ô cụ thể hay không: đưa robot, trong điều kiện không đi vào ô chưa biết hoặc cổng dịch chuyển đã biết, đến đường sát tường, rồi đi một vòng quanh đường sát tường. Nếu trong quá trình này không va tường, có thể xác định robot đúng là đang ở ô cụ thể đó.
 
-Có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để phán đoán ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để phán đoán robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
+Có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô chưa biết trong hình, sau đó lần lượt xét từng ô chưa biết từ trên xuống dưới, từ trái sang phải để xác định ô đó có phải cổng dịch chuyển hay không. Có thể đi đến phía trên ô chưa biết trước, sau đó đi xuống và sang trái. Rồi dùng phương pháp trên để xác định robot có đang ở bên trái ô chưa biết hay không. Nếu không, nghĩa là robot không ở vị trí lẽ ra phải ở, tức ô chưa biết là cổng dịch chuyển.
 
-Sau khi tìm ra các ô chưa biết, cần phán đoán quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp phán đoán toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
+Sau khi tìm ra các ô chưa biết, cần xác định quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần ghép cặp brute force. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp xác định toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
 Hiện tại, mã dưới đây chỉ qua được bài bản sao trên UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không qua được đề gốc UVa. Sau khi sửa lời giải chuẩn của Liu Rujia trên UOJ vẫn không qua, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy mã dưới đây lấy UOJ làm chuẩn.
 

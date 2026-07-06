@@ -3,20 +3,20 @@ author: Hope666666
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Bài viết này giới thiệu tư tưởng DP lồng DP, đồng thời thông qua hai ví dụ để minh họa cách áp dụng kỹ thuật này vào các bài toán cụ thể.
+Bài viết này giới thiệu ý tưởng DP lồng DP, đồng thời thông qua hai ví dụ để minh họa cách áp dụng kỹ thuật này vào các bài toán cụ thể.
 
 <span id="tư-tưởng"></span>
-## Tư tưởng
+## Ý tưởng
 
 "DP lồng DP" là phương pháp trong quá trình quy hoạch động, trừu tượng hóa quá trình giải một bài toán con (thường cũng là một DP) thành một ô-tô-mát (automaton, DFA), rồi thiết kế thêm một lớp DP mới trên ô-tô-mát đó.
 
 Kỹ thuật này chủ yếu được dùng cho một lớp bài toán **đếm dãy**, **xác suất** hoặc **kỳ vọng**. Một bài toán điển hình có cấu trúc như sau:
 
 -   Cho bảng chữ cái $\Sigma$ và một tập $A\subseteq\Sigma^n$ gồm các "dãy hợp lệ" độ dài $n$ trên bảng chữ cái đó. Tùy bảng chữ cái, dãy có thể là xâu nhị phân, xâu chữ số, dãy trạng thái, v.v.
--   Với mỗi dãy cụ thể $s\in\Sigma^n$, có thể dùng quy hoạch động để phán đoán nó có hợp lệ hay không (tức $s\in A$), tính trọng số của nó hoặc tính một giá trị liên quan.
+-   Với mỗi dãy cụ thể $s\in\Sigma^n$, có thể dùng quy hoạch động để kiểm tra nó có hợp lệ hay không (tức $s\in A$), tính trọng số của nó hoặc tính một giá trị liên quan.
 -   Cuối cùng, cần thống kê số lượng, tổng trọng số, giá trị kỳ vọng, v.v. của tất cả các dãy trong tập $A$.
 
-Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, xét việc trừu tượng hóa quá trình "phán đoán một dãy có hợp lệ hay không" (tức DP bên trong) thành một [ô-tô-mát hữu hạn xác định](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) (DFA). Với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
+Lúc này, liệt kê mọi dãy là không khả thi. Vì vậy, xét việc trừu tượng hóa quá trình "kiểm tra một dãy có hợp lệ hay không" (tức DP bên trong) thành một [ô-tô-mát hữu hạn xác định](../misc/fsm.md#automaton-trạng-thái-hữu-hạn-xác-định) (DFA). Với một dãy cố định $s\in\Sigma^n$, hàm trạng thái của DP bên trong có thể được biểu diễn là $g(i,x;s)$, tức là giá trị của một đại lượng nào đó sau khi đã xử lý xong tiền tố độ dài $i$ của dãy $s$, đồng thời thành phần trạng thái khác là $x$. Tương ứng, phương trình chuyển trạng thái của DP bên trong là
 
 $$
 g(i,\cdot;s) = G(g(i-1,\cdot;s),s_i).
@@ -101,7 +101,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
     
     Tới đây, bài toán chuyển thành cách tính $h_i$. Dùng phương pháp DP lồng DP để giải quyết vấn đề này.
     
-    Trước hết, xét DP bên trong, tức là dùng quy hoạch động để phán đoán một dãy (sau khi chuyển đổi) có tương ứng với một bộ bài có thể ù hay không. Trường hợp bảy đôi tương đối dễ, nên tập trung thảo luận dạng ù thứ nhất. Đặt $g_{0/1,i,j,k}$ là số bộ nhiều nhất sau khi đã xử lý xong $i$ loại quân đầu, còn lại $j$ nhóm $(i-1,i)$ và $k$ quân $i$, đồng thời có/không có đôi (tức $0/1$). Nếu khi chạy DP cho một dãy, trong $g_{1,n}$ cuối cùng có một số lớn hơn hoặc bằng $4$, thì dãy này có thể ù.
+    Trước hết, xét DP bên trong, tức là dùng quy hoạch động để kiểm tra xem một dãy (sau khi chuyển đổi) có tương ứng với một bộ bài có thể ù hay không. Trường hợp bảy đôi khá dễ, nên tập trung thảo luận dạng ù thứ nhất. Đặt $g_{0/1,i,j,k}$ là số bộ nhiều nhất sau khi đã xử lý xong $i$ loại quân đầu, còn lại $j$ nhóm $(i-1,i)$ và $k$ quân $i$, đồng thời có/không có đôi (tức $0/1$). Nếu khi chạy DP cho một dãy, trong $g_{1,n}$ cuối cùng có một số lớn hơn hoặc bằng $4$, thì dãy này có thể ù.
     
     Chuyển trạng thái của DP này khá phức tạp. Thảo luận theo hai bước. Bước thứ nhất, xét chuyển của $g_{0/1,i}$. Điều này tương đương với việc: nếu muốn thêm $x_i$ quân kích thước $i$ vào dạng bài hiện tại nhưng không tạo đôi mới, thì số bộ chuyển như thế nào. Nếu sau khi thêm $x_i$ quân kích thước $i$ muốn thu được $\ell$ sảnh, $j$ nhóm $(i-1,i)$ và $k$ quân $i$ đơn lẻ, thì nên chuyển từ $(g_{0/1,i-1})_{\ell,j}$ (lựa chọn này tránh lãng phí ở mức tối đa), đồng thời dùng các quân còn lại $(x_i-\ell-j-k)$ để tạo càng nhiều bộ ba càng tốt. Liệt kê mọi khả năng, thu được phương trình chuyển sau:
     
@@ -119,9 +119,9 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
     
     Sau khi giải quyết chuyển trạng thái của DP bên trong, có thể xây dựng **ô-tô-mát ù bài**. Phép chuyển của ô-tô-mát chính là phép chuyển của DP bên trong nói trên; ngoài ra còn cần xét cách biểu diễn mỗi trạng thái của ô-tô-mát. Mỗi trạng thái đều tương ứng với một giá trị có thể có của $g_i$. Nó có ba chiều $(0/1,j,k)$. Vì các nhóm $(i-1,i)$ và quân $i$ được giữ lại trong các chiều tương ứng với $j$ và $k$ đều nhằm tạo sảnh trong tương lai, mà ba sảnh giống nhau luôn có thể được tổ chức lại thành ba bộ ba, nên chỉ cần xét nhu cầu tạo không quá $2$ sảnh giống nhau; mỗi dạng bài cũng chỉ cần giữ không quá $2$ nhóm, tức $j,k\in\{0,1,2\}$. Vì vậy, $g_i$ có thể được biểu diễn bằng một mảng $2\times 3\times 3$. Ngoài ra, để duy trì dạng ù bảy đôi, còn cần thêm một bộ đếm cho mỗi trạng thái, dùng để biểu thị số đôi nhiều nhất hiện tại có thể tạo được.
     
-    Giá trị của mỗi phần tử trong mảng $g_i$ có thể thuộc $\{-\infty\}\cup\mathbf N$. Tuy nhiên, vì số bộ lớn hơn hoặc bằng $4$ đều là ù, nên có thể giới hạn giá trị của mỗi phần tử không vượt quá $4$. Do một dãy đã ù thì thêm bất kỳ quân nào vẫn là dãy ù, có thể dùng tư tưởng tối thiểu hóa DFA để nén toàn bộ trạng thái ù thành một trạng thái. Vì vậy, với các trạng thái chưa ù, thực tế giá trị ở mỗi vị trí chỉ cần xét $\{-\infty\}\cup\{0,1,2,3\}$. Khi cài đặt, dùng $-1$ để biểu diễn $-\infty$.
+    Giá trị của mỗi phần tử trong mảng $g_i$ có thể thuộc $\{-\infty\}\cup\mathbf N$. Tuy nhiên, vì số bộ lớn hơn hoặc bằng $4$ đều là ù, nên có thể giới hạn giá trị của mỗi phần tử không vượt quá $4$. Do một dãy đã ù thì thêm bất kỳ quân nào vẫn là dãy ù, có thể dùng ý tưởng tối thiểu hóa DFA để nén toàn bộ trạng thái ù thành một trạng thái. Vì vậy, với các trạng thái chưa ù, thực tế giá trị ở mỗi vị trí chỉ cần xét $\{-\infty\}\cup\{0,1,2,3\}$. Khi cài đặt, dùng $-1$ để biểu diễn $-\infty$.
     
-    Dù vậy, số trạng thái có thể có vẫn rất nhiều, tổng cộng $1+7\times 5^{18}$ trạng thái. Liệt kê chúng là không thực tế. Phần lớn các khả năng này sẽ không thật sự xuất hiện trong một ô-tô-mát ù bài. Để tránh xét các trạng thái không tồn tại trong thực tế, có thể dùng tư tưởng BFS, bắt đầu từ trạng thái ban đầu và mở rộng trạng thái từng bước cho tới khi dừng ở trạng thái ù. Ô-tô-mát thu được theo cách này có $N = 2092$ trạng thái.
+    Dù vậy, số trạng thái có thể có vẫn rất nhiều, tổng cộng $1+7\times 5^{18}$ trạng thái. Liệt kê chúng là không thực tế. Phần lớn các khả năng này sẽ không thật sự xuất hiện trong một ô-tô-mát ù bài. Để tránh xét các trạng thái không tồn tại trong thực tế, có thể dùng cách làm kiểu BFS, bắt đầu từ trạng thái ban đầu và mở rộng trạng thái từng bước cho tới khi dừng ở trạng thái ù. Ô-tô-mát thu được theo cách này có $N = 2092$ trạng thái.
     
     Cuối cùng, xét cách DP trên ô-tô-mát ù bài (tức DP bên ngoài). Đặt $f_{i,j,k}$ là số dãy khi đã xử lý tới quân thứ $i$, đã rút tổng cộng $j$ quân, và đi tới trạng thái số $k$ trên ô-tô-mát ù bài. Khi chuyển, liệt kê số quân rút $0\leq t\leq 4-a_i$, trong đó $a_i$ là số quân loại $i$ đã dùng trong $13$ quân ban đầu; nhân số dãy trước đó với số cách chọn $t$ quân trong $4−a_i$ quân, tức $\dbinom{4-a_i}{t}$, rồi cộng dồn. Viết hình thức là:
     

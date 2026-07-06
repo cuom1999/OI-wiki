@@ -16,7 +16,7 @@ dài, bị MLE, hoặc thời gian tạo bảng quá lớn.
 Nếu với mỗi $n$ đều in trực tiếp $f(n)$, ngoài khả năng bị MLE, mã nguồn còn
 có thể vượt giới hạn độ dài và không biên dịch được.
 
-Xét cách tối ưu bảng đáp án. Dựa trên tư tưởng
+Xét cách tối ưu bảng đáp án. Dựa trên ý tưởng
 [phân khối](../ds/decompose.md), đặt một bước nhảy hợp lý $m$ (thường phụ
 thuộc vào giới hạn độ dài mã nguồn). Với khối thứ $i$, tính trước giá trị:
 
@@ -24,7 +24,7 @@ $$
 \sum_{k=\frac{n}{m}(i-1)+1}^{\frac{ni}{m}} f^2(k)
 $$
 
-Sau đó khi in đáp án, cũng xử lý theo tư tưởng phân khối: phần thuộc khối
+Sau đó khi in đáp án, cũng xử lý theo ý tưởng phân khối: phần thuộc khối
 đầy đủ dùng giá trị đã tiền xử lý, còn phần không trọn khối thì tính vét cạn.
 
 Thông thường, dạng bài phù hợp là những bài mà việc tính một giá trị hàm đơn lẻ

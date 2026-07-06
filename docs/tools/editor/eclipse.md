@@ -16,7 +16,7 @@ Nhược điểm:
 Ưu điểm:
 
 -   Trải nghiệm sử dụng khá tốt.
--   Có thể làm quen nhanh, nên tương đối khuyến nghị OIer dùng IDE này.
+-   Có thể làm quen nhanh, nên IDE này khá đáng dùng với OIer.
 
 ## Hướng dẫn cài đặt & cấu hình
 

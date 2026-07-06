@@ -198,7 +198,7 @@ Cách làm rất đơn giản: bắn ra theo một hướng không cần chi ph�
 
 Hàng đợi ưu tiên tương đương với một heap nhị phân. STL cung cấp [`std::priority_queue`](../lang/csl/container-adapter.md), hỗ trợ sử dụng hàng đợi ưu tiên một cách thuận tiện.
 
-Trong BFS dựa trên hàng đợi ưu tiên, mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm. Có thể chứng minh tư tưởng tham lam này là đúng, vì phần tìm kiếm mở rộng từ đỉnh này sẽ không cập nhật những đỉnh vốn có chi phí cao hơn. Nói cách khác, với những đỉnh còn lại có chi phí cao hơn, không cần quay lại xét để cập nhật chúng.
+Trong BFS dựa trên hàng đợi ưu tiên, mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm. Có thể chứng minh ý tưởng tham lam này là đúng, vì phần tìm kiếm mở rộng từ đỉnh này sẽ không cập nhật những đỉnh vốn có chi phí cao hơn. Nói cách khác, với những đỉnh còn lại có chi phí cao hơn, không cần quay lại xét để cập nhật chúng.
 
 Mỗi đỉnh có thể được đưa vào hàng đợi nhiều lần, với chi phí khác nhau ở từng lần. Khi đỉnh đó lần đầu tiên được lấy ra khỏi hàng đợi ưu tiên, về sau không cần tiếp tục tìm kiếm từ đỉnh đó nữa, chỉ cần bỏ qua trực tiếp. Vì vậy, trong BFS dùng hàng đợi ưu tiên, mỗi đỉnh chỉ được xử lý một lần.
 

@@ -43,7 +43,7 @@ Tương ứng với mạng AOV là **mạng AOE (Activity On Edge Network)**, t�
 
 ![Ví dụ mạng AOE](images/topo-example-2.svg)
 
-Trong mạng AOE, một số hoạt động có thể được tiến hành song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Trong ngữ cảnh này, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
+Trong mạng AOE, một số hoạt động có thể được thực hiện song song. Vì vậy thời gian ngắn nhất để hoàn thành toàn bộ công trình là độ dài của đường hoạt động dài nhất từ điểm bắt đầu đến điểm kết thúc. Trong ngữ cảnh này, độ dài đường đi là tổng thời gian kéo dài của các hoạt động trên đường đi, tức tổng trọng số của các cung, chứ không phải số lượng cung trên đường đi. Vì một công trình cần hoàn thành tất cả hoạt động bên trong nó, đường hoạt động dài nhất cũng là đường găng, và nó quyết định tổng thời gian hoàn thành công trình.
 
 ### Một số khái niệm cơ bản liên quan đến mạng AOE
 

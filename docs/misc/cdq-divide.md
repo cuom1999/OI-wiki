@@ -2,7 +2,7 @@ Trang này giới thiệu chia để trị CDQ.
 
 ## Giới thiệu
 
-Chia để trị CDQ là một tư tưởng chứ không phải một thuật toán cụ thể, tương tự như [quy hoạch động](../dp/index.md). Đến nay, tư tưởng này đã được phát triển rộng rãi; tùy theo nguyên lý và cách viết, có thể chia thành ba loại:
+Chia để trị CDQ là một cách tiếp cận chứ không phải một thuật toán cụ thể, tương tự như [quy hoạch động](../dp/index.md). Đến nay, cách tiếp cận này đã được phát triển rộng rãi; tùy theo nguyên lý và cách viết, có thể chia thành ba loại:
 
 -   Giải các bài toán liên quan đến cặp điểm.
 -   Tối ưu và chuyển trạng thái cho quy hoạch động 1D.
@@ -89,7 +89,7 @@ Chuyển trạng thái trực tiếp có độ phức tạp $O(n^2)$. Phần sau
 
 Quan hệ chuyển trạng thái từ $dp_{j}$ sang $dp_{i}$ cũng là một dạng quan hệ giữa các cặp điểm, vì vậy có thể xử lý theo cách tương tự như khi dùng chia để trị CDQ để xử lý quan hệ cặp điểm.
 
-Quá trình chuyển trạng thái này tương đối khuôn mẫu. Giả sử đoạn đang xử lý là $(l,r)$, quy trình thuật toán như sau:
+Quá trình chuyển trạng thái này có khuôn mẫu khá rõ. Giả sử đoạn đang xử lý là $(l,r)$, quy trình thuật toán như sau:
 
 1.  Nếu $l=r$, phần $\max$ trong giá trị $dp_{r}$ đã được tính xong; trực tiếp đặt $dp_{r} \gets dp_{r} + 1$ rồi trả về;
 2.  Gọi đệ quy `solve(l,mid)`;
@@ -106,7 +106,7 @@ Khác biệt lớn nhất giữa cách viết CDQ này và cách viết CDQ xử
 
 2.  Tất cả các giá trị $dp_{j}$ dùng để tính $dp_{i}$ đều phải có khả năng cập nhật vào $dp_{i}$, không được tồn tại giá trị $dp_{j}$ chưa cập nhật tới.
 
-Hai điều kiện trên tương đối dễ thỏa khi vét cạn $O(n^2)$, nhưng sau khi dùng chia để trị CDQ, thứ tự chuyển trạng thái đã bị xáo trộn, vì vậy cần khảo sát tính đúng đắn của các chuyển trạng thái.
+Hai điều kiện trên khá dễ bảo đảm khi vét cạn $O(n^2)$, nhưng sau khi dùng chia để trị CDQ, thứ tự chuyển trạng thái đã bị xáo trộn, vì vậy cần kiểm tra tính đúng đắn của các chuyển trạng thái.
 
 Cây đệ quy của chia để trị CDQ được minh họa dưới đây.
 

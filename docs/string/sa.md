@@ -309,7 +309,7 @@ Ví dụ: [USACO07DEC - Best Cow Line](https://www.luogu.com.cn/problem/P2870).
 Đề bài: Cho một xâu. Mỗi lần lấy một ký tự ở đầu hoặc cuối để tạo xâu mới. Cần tìm xâu có thứ tự từ điển nhỏ nhất trong tất cả các xâu có thể tạo được.
 
 ??? note "Lời giải"
-    Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Cần tối ưu bước phán đoán này.
+    Cách vét cạn là mỗi lần tốn tối đa $O(n)$ để quyết định nên lấy đầu hay lấy cuối, tức so sánh xâu nhận được khi lấy đầu với xâu đảo tương ứng khi lấy cuối. Cần tối ưu bước quyết định này.
     
     Vì cần so sánh trong tập gồm các hậu tố của xâu gốc và hậu tố của xâu đảo, có thể nối xâu đảo vào sau xâu gốc, thêm ở giữa một ký tự chưa từng xuất hiện (như `#`; trong code có thể dùng trực tiếp ký tự rỗng), rồi xây dựng mảng hậu tố. Khi đó mỗi lần quyết định chỉ tốn $O(1)$.
 

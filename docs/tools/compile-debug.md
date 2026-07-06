@@ -197,7 +197,7 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 | `source [filename]` | Nạp tệp điểm dừng |
 
 ???+ tip "Mẹo"
-    Phần lớn lệnh khi gỡ lỗi bằng GDB có thể được viết tắt thành một dạng rút gọn bằng chữ cái đủ để xác định duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
+    Phần lớn lệnh khi gỡ lỗi bằng GDB có thể được viết tắt thành một dạng rút gọn bằng số chữ cái vừa đủ để nhận diện duy nhất, ví dụ `breakpoint` viết tắt thành `b`, `step` viết tắt thành `s`, `info args` viết tắt thành `i ar`. Xem lệnh `help` để biết chi tiết.
 
 ## Tài liệu tham khảo và chú thích
 

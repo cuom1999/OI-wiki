@@ -1,4 +1,4 @@
-Chương này sẽ giới thiệu tư tưởng của thuật toán ngoại tuyến, các thuật toán thường gặp và những cách tối ưu liên quan.
+Chương này giới thiệu cách tiếp cận của thuật toán ngoại tuyến, các thuật toán thường gặp và những cách tối ưu liên quan.
 
 Thuật toán ngoại tuyến được thiết kế dựa trên giả thiết "**đã biết tất cả dữ liệu trước khi giải**", phù hợp với các bài toán có nhiều truy vấn. Đối lập với nó là [thuật toán trực tuyến](https://en.wikipedia.org/wiki/Online_algorithm).
 
@@ -8,4 +8,4 @@ Với cùng một bài toán, xét về độ khó khi thiết kế lời giải
 
 Những hướng tiếp cận thường gặp của thuật toán ngoại tuyến gồm giải các truy vấn một cách tập trung (ví dụ [chia để trị CDQ](./cdq-divide.md)), hoặc suy ra đáp án của một truy vấn từ đáp án của các truy vấn tương tự khác (ví dụ [nhị phân tổng thể](./parallel-binsearch.md) và [thuật toán Mo](./mo-algo-intro.md)).
 
-Vì thuật toán ngoại tuyến là một tư tưởng chứ không phải một thuật toán cụ thể, nó thường được kết hợp với nhiều cấu trúc dữ liệu hoặc thuật toán khác nhau; các dạng bài liên quan vì thế cũng phức tạp và đa dạng hơn.
+Vì thuật toán ngoại tuyến là một cách tiếp cận chứ không phải một thuật toán cụ thể, nó thường được kết hợp với nhiều cấu trúc dữ liệu hoặc thuật toán khác nhau; các dạng bài liên quan vì thế cũng phức tạp và đa dạng hơn.

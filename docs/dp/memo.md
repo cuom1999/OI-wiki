@@ -76,7 +76,7 @@ Một cách tìm kiếm đơn giản có thể được cài đặt như sau: tr
 
 Vì sao cách làm trên có hiệu quả thấp? Vì cùng một trạng thái sẽ bị truy cập nhiều lần.
 
-Nếu sau khi truy vấn xong một trạng thái, thông tin của trạng thái đó được lưu lại, thì khi cần truy cập trạng thái này lần nữa có thể dùng trực tiếp kết quả đã tính trước đó, nhờ vậy tránh tính toán lặp. Điều này tận dụng đầy đủ đặc điểm nhiều bài toán quy hoạch động có rất nhiều bài toán con chồng lặp, thuộc tư tưởng "ghi nhớ" dùng bộ nhớ đổi lấy thời gian.
+Nếu sau khi truy vấn xong một trạng thái, thông tin của trạng thái đó được lưu lại, thì khi cần truy cập trạng thái này lần nữa có thể dùng trực tiếp kết quả đã tính trước đó, nhờ vậy tránh tính toán lặp. Điều này tận dụng đầy đủ đặc điểm nhiều bài toán quy hoạch động có rất nhiều bài toán con chồng lặp, theo ý tưởng "ghi nhớ" dùng bộ nhớ đổi lấy thời gian.
 
 Cụ thể với bài này, trên cơ sở DFS đơn giản, thêm một mảng `mem` để ghi lại giá trị trả về của từng `dfs(pos,tleft)`. Ban đầu đặt mọi giá trị trong `mem` bằng `-1` (biểu thị chưa từng được giải). Mỗi khi cần truy cập một trạng thái, nếu giá trị của trạng thái tương ứng trong `mem` là `-1` thì đệ quy truy cập trạng thái đó. Ngược lại, dùng trực tiếp giá trị đã lưu trong `mem`.
 

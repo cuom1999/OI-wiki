@@ -118,7 +118,7 @@ Nhiều OJ đều bật tùy chọn biên dịch `-DONLINE_JUDGE`; tận dụng 
 
 ## Đối chiếu chương trình
 
-Đối chiếu chương trình là một phương pháp kiểm nghiệm hoặc gỡ lỗi bằng cách so sánh đầu ra của hai chương trình để kiểm tra tính đúng đắn của chương trình. Có thể so sánh đầu ra của chương trình của mình với đầu ra của chương trình khác, từ đó phán đoán chương trình của mình có đúng hay không.
+Đối chiếu chương trình là một phương pháp kiểm nghiệm hoặc gỡ lỗi bằng cách so sánh đầu ra của hai chương trình để kiểm tra tính đúng đắn của chương trình. Có thể so sánh đầu ra của chương trình của mình với đầu ra của chương trình khác, từ đó xác định chương trình của mình có đúng hay không.
 
 Quá trình đối chiếu cần thực hiện nhiều lần, vì vậy cần dùng phương pháp xử lý hàng loạt để tự động hóa.
 

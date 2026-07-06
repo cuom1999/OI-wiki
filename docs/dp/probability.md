@@ -3,7 +3,7 @@ author: Tiphereth-A, ShaoChenHeng, Enter-tainer, ksyx, c-forrest, StudyingFather
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-DP xác suất được dùng để giải các bài toán về xác suất và kỳ vọng. Người đọc nên có hiểu biết nhất định về nội dung [xác suất & kỳ vọng](../math/probability/exp-var.md) trước khi học phần này. Thông thường, khi giải bài toán xác suất cần duyệt theo thứ tự xuôi, còn khi giải bài toán kỳ vọng dùng thứ tự ngược. Nếu phương trình chuyển trạng thái có hậu hiệu, cần dùng thêm [khử Gauss](../math/numerical/gauss.md) để xử lý. DP xác suất cũng thường được kết hợp với các kiến thức khác, chẳng hạn [nén trạng thái](./state.md), chuyển DP trên cây, v.v.
+DP xác suất được dùng để giải các bài toán về xác suất và kỳ vọng. Người đọc nên có hiểu biết nhất định về nội dung [xác suất & kỳ vọng](../math/probability/exp-var.md) trước khi học phần này. Thông thường, khi giải bài toán xác suất cần duyệt theo thứ tự xuôi, còn khi giải bài toán kỳ vọng dùng thứ tự ngược. Nếu các phương trình chuyển trạng thái phụ thuộc ngược lẫn nhau, cần dùng thêm [khử Gauss](../math/numerical/gauss.md) để xử lý. DP xác suất cũng thường được kết hợp với các kiến thức khác, chẳng hạn [nén trạng thái](./state.md), chuyển DP trên cây, v.v.
 
 <span id="dp-xác-suất"></span>
 ## DP xác suất

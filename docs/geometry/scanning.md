@@ -109,7 +109,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
     
     Xem $pre_i$ là điểm trên mặt phẳng hai chiều: $i$ là hoành độ, $pre_i$ là tung độ. Khi đó bài toán chuyển thành đếm điểm hai chiều: mỗi truy vấn hỏi trong hình chữ nhật có góc trái dưới $(l,0)$ và góc phải trên $(r,l - 1)$ có bao nhiêu điểm.
     
-    Truy vấn này có thể tách bằng hiệu: số điểm trong hình chữ nhật có góc trái dưới $(0,0)$ và góc phải trên $(r,l - 1)$ trừ đi số điểm trong hình chữ nhật có góc trái dưới $(0,0)$ và góc phải trên $(l - 1,l - 1)$. Cách tách này thuận tiện cho việc dùng tư tưởng đường quét.
+    Truy vấn này có thể tách bằng hiệu: số điểm trong hình chữ nhật có góc trái dưới $(0,0)$ và góc phải trên $(r,l - 1)$ trừ đi số điểm trong hình chữ nhật có góc trái dưới $(0,0)$ và góc phải trên $(l - 1,l - 1)$. Cách tách này thuận tiện cho việc dùng đường quét.
     
     Độ phức tạp của một thao tác là $O(\log n)$. Có tổng cộng $n$ thao tác thêm điểm và $2m$ thao tác truy vấn, nên tổng độ phức tạp thời gian là $O((n + m) \log n)$.
     
@@ -125,7 +125,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 -   [Luogu P8773 Lanqiao Cup 2022 Provincial A Choose Numbers XOR](https://www.luogu.com.cn/problem/P8773), biến thể của HH's Necklace.
 -   [Luogu P8844 Chuanzhi Cup #4 Preliminary Round: Xiao Ka and Falling Leaves](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
 
-Tóm lại, tư tưởng chính của đếm điểm hai chiều là dùng cấu trúc dữ liệu duy trì một chiều, rồi liệt kê chiều còn lại.
+Tóm lại, ý tưởng chính của đếm điểm hai chiều là dùng cấu trúc dữ liệu duy trì một chiều, rồi liệt kê chiều còn lại.
 
 ## Tài liệu tham khảo
 

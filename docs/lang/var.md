@@ -34,7 +34,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
 
     ???+ note "Ghi chú"
         Từ C23, kiểu `bool` của C không còn được định nghĩa bằng giá trị nguyên
-        bằng không và khác không nữa, mà được định nghĩa là kiểu đủ để lưu hai
+        bằng không và khác không nữa, mà được định nghĩa là kiểu có thể lưu hai
         hằng `true` và `false`.
 
     Để tiện sử dụng, `stdbool.h` cung cấp ba macro `bool`, `true`, `false`, thường được định nghĩa như sau:

@@ -229,7 +229,7 @@ Ví dụ nên có độ mạnh nhất định, có thể phát hiện một số
 
 Với bài có nhiều loại thao tác, mỗi loại thao tác đều nên xuất hiện trong ví dụ.
 
-Với bài có nhiều loại đầu ra (như [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A)), mỗi loại đầu ra đều nên xuất hiện trong ví dụ. Ngoại lệ: bài thực tế không thể vô nghiệm, nhưng yêu cầu phán đoán có nghiệm hay không.
+Với bài có nhiều loại đầu ra (như [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A)), mỗi loại đầu ra đều nên xuất hiện trong ví dụ. Ngoại lệ: bài thực tế không thể vô nghiệm, nhưng yêu cầu xác định có nghiệm hay không.
 
 ### Giải thích ví dụ
 
@@ -303,9 +303,9 @@ Có thể dùng hàm `std::shuffle` trong STL, dạng như `std::shuffle(a, a + 
 
 Cách sai thường gặp: sinh ngẫu nhiên đầu trái $l$ trong $[1,n]$, rồi sinh ngẫu nhiên đầu phải $r$ trong $[l, n]$. Khi đó các đoạn được sinh sẽ thiên về bên phải.
 
-Cách tương đối đúng (khuyến nghị): sinh ngẫu nhiên hai số trong $[1, n]$, lấy số nhỏ hơn làm đầu trái và số lớn hơn làm đầu phải.
+Cách hợp lý hơn (khuyến nghị): sinh ngẫu nhiên hai số trong $[1, n]$, lấy số nhỏ hơn làm đầu trái và số lớn hơn làm đầu phải.
 
-Cách ngẫu nhiên đều thật sự: sinh một số ngẫu nhiên $x$ trong $[0, n]$; nếu $x = 0$, lại sinh một số ngẫu nhiên $y$ trong $[1, n]$, đoạn là $[y, y]$; nếu không thì sinh theo "cách tương đối đúng".
+Cách ngẫu nhiên đều thật sự: sinh một số ngẫu nhiên $x$ trong $[0, n]$; nếu $x = 0$, lại sinh một số ngẫu nhiên $y$ trong $[1, n]$, đoạn là $[y, y]$; nếu không thì sinh theo "cách hợp lý hơn".
 
 #### Sinh cây ngẫu nhiên
 
