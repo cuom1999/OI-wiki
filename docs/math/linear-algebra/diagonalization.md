@@ -7,7 +7,7 @@ $$
 (\lambda_0 I-A)X=0
 $$
 
-Với không gian con riêng $E(\lambda_i)=N(\lambda_i I-A)$, theo định lý hạng và độ khuyết ta có:
+Với không gian con riêng $E(\lambda_i)=N(\lambda_i I-A)$, theo định lý hạng và độ khuyết có:
 
 $$
 r(\lambda_i I-A)+\operatorname{dim} N(\lambda_i I-A)=n
@@ -24,7 +24,7 @@ Số này cũng được gọi là **bội hình học** của $\lambda_i$.
 <span id="không-gian-con-bất-biến"></span>
 ## Không gian con bất biến
 
-Khi nghiên cứu biến đổi tuyến tính $T$, ta thường muốn chọn một cơ sở của không gian $V$ sao cho ma trận của biến đổi tuyến tính $T$ theo cơ sở đó có dạng càng đơn giản càng tốt.
+Khi nghiên cứu biến đổi tuyến tính $T$, thường muốn chọn một cơ sở của không gian $V$ sao cho ma trận của biến đổi tuyến tính $T$ theo cơ sở đó có dạng càng đơn giản càng tốt.
 
 Giả sử $V$ là không gian tuyến tính trên trường số $F$, $W$ là một không gian con của $V$, và $T$ là một biến đổi tuyến tính trên $V$. Nếu với mọi vectơ $x$ trong $W$, $T(x)$ cũng thuộc $W$ (cũng nói là không gian bất biến hoặc ổn định dưới biến đổi), thì $W$ được gọi là một không gian con bất biến của $T$.
 
@@ -34,7 +34,7 @@ Không gian bất biến dưới biến đổi không có nghĩa là tọa độ
 -   Với mọi biến đổi tuyến tính $T$ trên $V$, không gian $V$ và không gian con không đều là các không gian con bất biến của $T$, gọi là các không gian con bất biến tầm thường.
 -   Giao và tổng của các không gian con bất biến cũng là không gian con bất biến.
 
-Giả sử $W$ là một không gian con bất biến của biến đổi tuyến tính $T$. Chỉ xét tác dụng của $T$ trên không gian con bất biến $W$, ta thu được một biến đổi tuyến tính của chính không gian con $W$, gọi là hạn chế của $T$ trên không gian con $W$, ký hiệu ${T|}_W$.
+Giả sử $W$ là một không gian con bất biến của biến đổi tuyến tính $T$. Chỉ xét tác dụng của $T$ trên không gian con bất biến $W$, thu được một biến đổi tuyến tính của chính không gian con $W$, gọi là hạn chế của $T$ trên không gian con $W$, ký hiệu ${T|}_W$.
 
 Với mọi biến đổi tuyến tính $T$ trên $V$, không gian ảnh $R(T)$ và không gian hạt nhân $N(T)$ là các không gian con bất biến của $T$. Ý nghĩa của hai trường hợp này là: trước và sau biến đổi, không gian $V$ đã hoàn thành việc nén chính nó (không gian ảnh), hoặc bị nén về $0$ (không gian hạt nhân).
 
@@ -59,7 +59,7 @@ $$
 
 Nhắc lại, bội đại số là bậc của từng nhân tử trong phân tích đa thức đặc trưng, còn bội hình học là số chiều của không gian con riêng $E(\lambda_i)=N(\lambda_i I-A)$. Không gian con bất biến $W_i$ và không gian con riêng $E(\lambda_i)$ đều là không gian hạt nhân của ma trận, và hai ma trận liên hệ với nhau bằng lũy thừa bậc $r_i$ trong đa thức tối tiểu. Nói cách khác, số chiều của không gian con riêng là bội hình học; sau khi "không gian con riêng" đi qua lũy thừa bậc $r_i$ trong đa thức tối tiểu thì đến một "không gian con bất biến", và số chiều của không gian con bất biến đạt đến bội đại số của đa thức đặc trưng.
 
-Định lý này thực ra là một hệ quả của định lý phân rã nguyên sơ dưới đây.
+Định lý này là một hệ quả của định lý phân rã nguyên sơ dưới đây.
 
 Ký hiệu biến đổi tuyến tính tương ứng với ma trận $A$ là $T$, và hạn chế của nó trên mỗi không gian con $W_i$ là $T_i={T|}_{W_i}$. Khi đó đa thức tối tiểu của $T_i$ là $(x-\lambda_i)^{r_i}$.
 
@@ -99,7 +99,7 @@ $$
 
 Phần trước đã chỉ ra rằng bậc xuất hiện của giá trị riêng trong phân tích đa thức đặc trưng được gọi là bội đại số, còn số chiều của không gian con riêng được gọi là bội hình học. Định lý này cũng cho thấy ma trận $A$ chéo hóa được khi và chỉ khi với mỗi giá trị riêng $\lambda$ của $A$, bội đại số của nó bằng bội hình học của nó.
 
-Hệ quả: Nếu ma trận vuông cấp $n$ $A$ có đúng $n$ giá trị riêng phân biệt, thì nó chắc chắn chéo hóa được. Chiều ngược lại không nhất thiết đúng.
+Hệ quả: Nếu ma trận vuông cấp $n$ $A$ có đúng $n$ giá trị riêng phân biệt, thì nó chéo hóa được. Chiều ngược lại không nhất thiết đúng.
 
 Định lý: Ma trận $A$ chéo hóa được khi và chỉ khi đa thức tối tiểu của $A$ không có nghiệm bội.
 
@@ -111,7 +111,7 @@ Với giá trị riêng bội, các vectơ riêng sinh ra một không gian. Đ�
 
 Khi chọn đại diện, thường chọn các đại diện độc lập tuyến tính; số lượng đại diện chính là số chiều của không gian.
 
-Khi chọn đại diện, người ta thường trực giao hóa và chuẩn hóa chúng. Kết quả cuối cùng là một hệ đại diện trực chuẩn.
+Khi chọn đại diện, thường trực giao hóa và chuẩn hóa chúng. Kết quả cuối cùng là một hệ đại diện trực chuẩn.
 
 Vectơ riêng không nhất thiết trực giao; các vectơ riêng ứng với giá trị riêng khác nhau có thể không trực giao. Vì vậy trực giao hóa chỉ có thể thực hiện đối với các vectơ riêng của giá trị riêng bội. Tuy nhiên chuẩn hóa có thể thực hiện với mọi vectơ riêng.
 
@@ -158,7 +158,7 @@ Giả sử $T$ là một biến đổi tuyến tính của không gian $V$, và 
 
 thì không gian con $W$ được gọi là một không gian con cyclic đối với $T$, gọi tắt là không gian con $T$-cyclic. Khi đó $\xi_0$ được gọi là một vectơ sinh của không gian con cyclic $W$, còn các vectơ $\xi_0,T(\xi_0),\cdots,T^{r-1}(\xi_0)$ được gọi là một cơ sở cyclic của $W$.
 
-Rõ ràng, một không gian con $T$-cyclic $W$ bất biến dưới tác dụng của $T$, và với mọi vectơ $\xi$ trong không gian con cyclic $W$, đều có $T^r(\xi)=0$, trong đó $r$ là số chiều của không gian con cyclic.
+Một không gian con $T$-cyclic $W$ bất biến dưới tác dụng của $T$, và với mọi vectơ $\xi$ trong không gian con cyclic $W$, đều có $T^r(\xi)=0$, trong đó $r$ là số chiều của không gian con cyclic.
 
 <span id="khối-jordan-lũy-linh"></span>
 ### Khối Jordan lũy linh

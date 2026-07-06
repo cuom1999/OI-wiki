@@ -45,7 +45,7 @@ Khi không gây nhầm lẫn, dấu chấm của tích trong có thể được 
 <span id="tính-chất"></span>
 ### Tính chất
 
-Có thể thấy kết quả của tích trong là một vô hướng. Điểm đặc biệt của nó là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích trong thỏa:
+Kết quả của tích trong là một vô hướng. Điểm đặc biệt của nó là phép toán song tuyến tính theo từng vectơ. Cụ thể, tích trong thỏa:
 
 $$
 \begin{aligned}
@@ -119,7 +119,7 @@ $$
 
 Một cách ghi nhớ đặc biệt là dùng "quy tắc đường chéo"; quy tắc này chỉ áp dụng cho định thức bậc hai và bậc ba.
 
-Cần đặc biệt chú ý: định thức bậc bốn khi khai triển có tổng cộng 24 hạng tử, và hạng tử theo đường chéo phụ có dấu dương. Nếu cố áp dụng "quy tắc đường chéo" của định thức bậc ba, không chỉ thiếu hạng tử mà dấu của hạng tử theo đường chéo phụ cũng sai. Vì vậy, "quy tắc đường chéo" của định thức bậc ba không áp dụng cho định thức bậc cao hơn, và định thức bậc cao hơn cũng không thích hợp để tính bằng cách khai triển trực tiếp.
+Cần đặc biệt lưu ý: định thức bậc bốn khi khai triển có tổng cộng 24 hạng tử, và hạng tử theo đường chéo phụ có dấu dương. Nếu cố áp dụng "quy tắc đường chéo" của định thức bậc ba, không chỉ thiếu hạng tử mà dấu của hạng tử theo đường chéo phụ cũng sai. Vì vậy, "quy tắc đường chéo" của định thức bậc ba không áp dụng cho định thức bậc cao hơn, và định thức bậc cao hơn cũng không thích hợp để tính bằng cách khai triển trực tiếp.
 
 <span id="tích-ngoài"></span>
 ## Tích ngoài
@@ -143,7 +143,7 @@ Trong không gian Euclid ba chiều $\mathbf{R}^3$, định nghĩa tích ngoài 
 1.  $|\boldsymbol{a} \times \boldsymbol{b}| = |\boldsymbol{a}| |\boldsymbol{b}| \sin \langle \boldsymbol{a}, \boldsymbol{b} \rangle$;
 2.  $\boldsymbol{a} \times \boldsymbol{b}$ vuông góc với cả $\boldsymbol{a}, \boldsymbol{b}$, và hướng của $\boldsymbol{a}, \boldsymbol{b}, \boldsymbol{a} \times \boldsymbol{b}$ tuân theo quy tắc bàn tay phải.
 
-Nhìn vào độ dài của tích ngoài và liên hệ với công thức diện tích tam giác $S=\frac{1}{2}ab\sin C$, ta thấy ý nghĩa hình học của tích ngoài là: **$|\boldsymbol{a} \times \boldsymbol{b}|$ là diện tích hình bình hành có $\boldsymbol{a}, \boldsymbol{b}$ làm hai cạnh kề**.
+Nhìn vào độ dài của tích ngoài và liên hệ với công thức diện tích tam giác $S=\frac{1}{2}ab\sin C$, ý nghĩa hình học của tích ngoài là: **$|\boldsymbol{a} \times \boldsymbol{b}|$ là diện tích hình bình hành có $\boldsymbol{a}, \boldsymbol{b}$ làm hai cạnh kề**.
 
 <span id="định-nghĩa-đại-số_1"></span>
 #### Định nghĩa đại số
@@ -332,7 +332,7 @@ $$
 (\boldsymbol a \times \boldsymbol b)\times \boldsymbol a = \lambda \boldsymbol a + \mu \boldsymbol b
 $$
 
-Theo các kết luận liên quan đến tích hỗn hợp, lấy tích trong của hai vế với $\boldsymbol a$ và $\boldsymbol b$ lần lượt, ta có:
+Theo các kết luận liên quan đến tích hỗn hợp, lấy tích trong của hai vế với $\boldsymbol a$ và $\boldsymbol b$ lần lượt, có:
 
 $$
 \begin{aligned}
@@ -365,9 +365,9 @@ $$
 (\boldsymbol a\times \boldsymbol b)\times \boldsymbol c=(\boldsymbol a \cdot \boldsymbol c)\boldsymbol b - (\boldsymbol b \cdot \boldsymbol c)\boldsymbol a
 $$
 
-Tính đồng phẳng nói trên giúp ghi nhớ kết luận về tích ngoài kép. Có thể thấy bổ đề ở trên là trường hợp đặc biệt của tích ngoài kép.
+Tính đồng phẳng nói trên giúp ghi nhớ kết luận về tích ngoài kép. Bổ đề ở trên là trường hợp đặc biệt của tích ngoài kép.
 
-Chứng minh: Ở đây chỉ cần xét trường hợp ba vectơ đều khác không và không cùng phương; các trường hợp đặc biệt khác là hiển nhiên.
+Chứng minh: Chỉ cần xét trường hợp ba vectơ đều khác không và không cùng phương; các trường hợp đặc biệt khác là trực tiếp.
 
 Ba vectơ ba chiều $\boldsymbol a$, $\boldsymbol b$ và $\boldsymbol a \times \boldsymbol b$ không đồng phẳng, nên có thể giả sử:
 
@@ -416,7 +416,7 @@ $$
 \end{aligned}
 $$
 
-Có thể thấy tích ngoài kép có yêu cầu rất nghiêm ngặt về thứ tự phép toán.
+Tích ngoài kép có yêu cầu rất nghiêm ngặt về thứ tự phép toán.
 
 Nhờ tích hỗn hợp và tích ngoài kép, còn có thể chứng minh đẳng thức Lagrange.
 
@@ -436,7 +436,7 @@ $$
 \end{aligned}
 $$
 
-Có thể thấy hằng đẳng thức ở trên
+Hằng đẳng thức ở trên
 
 $$
 (\boldsymbol a \times \boldsymbol b) \cdot (\boldsymbol a \times \boldsymbol b) = |\boldsymbol a|^2|\boldsymbol b|^2 - (\boldsymbol a \cdot \boldsymbol b)^2

@@ -9,7 +9,7 @@ Khi tối ưu DP, không chỉ có thể bắt đầu từ quá trình chuyển 
 ## Ví dụ 1
 
 ???+ note "Đề bài"
-    Cho hai chuỗi $A,B$ có độ dài lần lượt là $n,m$ và chỉ gồm chữ cái thường. Hãy tìm dãy con chung dài nhất của $A,B$. $(n\le 10^6,m\le 10^3)$
+    Cho hai chuỗi $A,B$ có độ dài lần lượt là $n,m$ và chỉ gồm chữ cái thường. Cần tìm dãy con chung dài nhất của $A,B$. $(n\le 10^6,m\le 10^3)$
 
 ### Cách giải đơn giản
 
@@ -29,7 +29,7 @@ Cách làm trên có độ phức tạp thời gian $O(nm)$, không thể vượ
 
 ### Cách giải tốt hơn
 
-Suy nghĩ kỹ hơn, ta thấy một tính chất: đáp án cuối cùng không vượt quá $m$.
+Suy nghĩ kỹ hơn, có một tính chất: đáp án cuối cùng không vượt quá $m$.
 
 Tiếp tục xét kỹ, LCS có một tính chất tham lam nhất định.
 
@@ -42,11 +42,11 @@ Có thể tiền xử lý, với mỗi vị trí của $A$, vị trí xuất hi�
 ## Ví dụ 2
 
 ???+ note "Đề bài"
-    Cho một đồ thị có hướng không trọng số gồm $n$ đỉnh. Hãy xác định đồ thị có tồn tại chu trình Hamilton hay không. $(2\le n\le 20)$
+    Cho một đồ thị có hướng không trọng số gồm $n$ đỉnh. Cần xác định đồ thị có tồn tại chu trình Hamilton hay không. $(2\le n\le 20)$
 
 ### Cách giải đơn giản
 
-Nhìn vào giới hạn dữ liệu, ta nghĩ tới nén trạng thái.
+Nhìn vào giới hạn dữ liệu, có thể nghĩ tới nén trạng thái.
 
 Đặt $f_{s,i}$ biểu thị liệu có thể xuất phát từ đỉnh $1$, chỉ đi qua các đỉnh trong tập $s$, và tới được đỉnh $i$ hay không. Gọi $g$ là ma trận kề của đồ thị ban đầu. Khi đó:
 
@@ -85,6 +85,6 @@ Hoán đổi đáp án với chiều thứ hai của trạng thái. Đặt $f_{i
 
 Tương tự, dễ có $f_{i,j}=\min(f_{i-1,j}, f_{i-1,j-w_i}+v_i)$.
 
-Chú ý rằng sau khi đổi chiều thứ hai của trạng thái, công thức chuyển cũng phải đổi theo.
+Lưu ý rằng sau khi đổi chiều thứ hai của trạng thái, công thức chuyển cũng phải đổi theo.
 
 Độ phức tạp thời gian là $O(n\sum w_i)$, đủ để vượt qua bài.

@@ -12,7 +12,7 @@ liệu khác nhau; các dạng bài liên quan cũng vì thế đa dạng hơn.
 Trong OI, các lời giải truy hồi cho bài toán không tối ưu hóa, chẳng hạn bài
 toán đếm, cũng thường được gọi không thật chặt chẽ là DP, nên chương này cũng
 liệt kê chúng. Thực tế, quy hoạch động và các dạng truy hồi khác có nhiều điểm
-tương đồng; khi học, bạn nên chú ý cả điểm giống và khác nhau giữa chúng.
+tương đồng; khi học nên lưu ý cả điểm giống và khác nhau giữa chúng.
 
 ## Tài liệu tham khảo
 

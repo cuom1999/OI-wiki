@@ -4,7 +4,7 @@
 <span id="mô-tả"></span>
 ### Mô tả
 
-Cho một đa thức $f\left(x\right)$ và $n$ điểm $x_{1},x_{2},\dots,x_{n}$, hãy tính
+Cho một đa thức $f\left(x\right)$ và $n$ điểm $x_{1},x_{2},\dots,x_{n}$, cần tính
 
 $$
 f\left(x_{1}\right),f\left(x_{2}\right),\dots,f\left(x_{n}\right)
@@ -38,7 +38,7 @@ $$
 f_{0}\left(x\right)\equiv f\left(x\right)\pmod{g_{0}\left(x\right)}
 $$
 
-Khi đó $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$; với $X_{1}$ ta làm tương tự.
+Khi đó $\forall x\in X_{0}:f\left(x\right)=g_{0}\left(x\right)Q\left(x\right)+f_{0}\left(x\right)=f_{0}\left(x\right)$; với $X_{1}$ xử lí tương tự.
 
 Đến đây, kích thước bài toán đã bị giảm một nửa, nên có thể giải bằng chia để trị + lấy dư đa thức.
 
@@ -60,7 +60,7 @@ $$
 X=\left\{\left(x_{0},y_{0}\right),\left(x_{1},y_{1}\right),\dots,\left(x_{n},y_{n}\right)\right\}
 $$
 
-Hãy tìm một đa thức bậc $n$ là $f\left(x\right)$ sao cho nó thỏa mãn $\forall\left(x,y\right)\in X:f\left(x\right)=y$.
+Cần tìm một đa thức bậc $n$ là $f\left(x\right)$ sao cho nó thỏa mãn $\forall\left(x,y\right)\in X:f\left(x\right)=y$.
 
 <span id="cách-giải_1"></span>
 ### Cách giải
@@ -83,9 +83,9 @@ $$
 f(x) = \sum_{i = 1}^n \frac{y_i}{M'(x_i)}\prod_{j \neq i}(x - x_j)
 $$
 
-Trước hết, ta dùng chia để trị để tính biểu diễn hệ số của $M(x)$; sau đó có thể tính tất cả $M'(x_i)$ bằng tính giá trị tại nhiều điểm trong thời gian $O(n\log^2 n)$.
+Trước hết, dùng chia để trị để tính biểu diễn hệ số của $M(x)$; sau đó có thể tính tất cả $M'(x_i)$ bằng tính giá trị tại nhiều điểm trong thời gian $O(n\log^2 n)$.
 
-Đặt $v_i = \frac{y_i}{M'(x_i)}$. Tiếp theo xét cách tính $f(x)$. Với trường hợp $n = 1$, ta có $f(x) = v_1, M(x) = x - x_1$. Nếu không, đặt
+Đặt $v_i = \frac{y_i}{M'(x_i)}$. Tiếp theo xét cách tính $f(x)$. Với trường hợp $n = 1$, thu được $f(x) = v_1, M(x) = x - x_1$. Nếu không, đặt
 
 $$
 \begin{aligned}

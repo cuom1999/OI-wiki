@@ -22,7 +22,7 @@ $$
 f(i,\cdot) = F(a_i,f(i-1,\cdot)).
 $$
 
-Ở đây, mỗi $f(i,\cdot)$ là một mảng hoặc một đối tượng phức tạp hơn. Vì vậy, dù $f(i,\cdot)$ chỉ phụ thuộc vào một trạng thái trước đó, một lần chuyển vẫn có độ phức tạp cao và cần tối ưu bằng cấu trúc dữ liệu hoặc kỹ thuật tương tự.
+Trong đó, mỗi $f(i,\cdot)$ là một mảng hoặc một đối tượng phức tạp hơn. Vì vậy, dù $f(i,\cdot)$ chỉ phụ thuộc vào một trạng thái trước đó, một lần chuyển vẫn có độ phức tạp cao và cần tối ưu bằng cấu trúc dữ liệu hoặc kỹ thuật tương tự.
 
 ### Tối ưu DP bằng tổng tiền tố
 

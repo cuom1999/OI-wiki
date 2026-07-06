@@ -25,17 +25,17 @@ Trước hết xét trường hợp không ở trên vòng tròn mà ở trên m
 
 Đặt $f(i,j)$ là điểm lớn nhất khi hợp nhất tất cả đống đá trong đoạn $[i,j]$ thành một đống.
 
-Ta có **phương trình chuyển trạng thái**: $f(i,j)=\max\{f(i,k)+f(k+1,j)+\sum_{t=i}^{j} a_t \}~(i\le k<j)$.
+**Phương trình chuyển trạng thái** là: $f(i,j)=\max\{f(i,k)+f(k+1,j)+\sum_{t=i}^{j} a_t \}~(i\le k<j)$.
 
 Gọi $sum_i$ là tổng tiền tố của mảng $a$, phương trình chuyển có thể viết thành $f(i,j)=\max\{f(i,k)+f(k+1,j)+sum_j-sum_{i-1} \}$.
 
 ### Cách chuyển trạng thái
 
-Vì khi tính $f(i,j)$ cần biết mọi giá trị $f(i,k)$ và $f(k+1,j)$, mà số phần tử trong hai đoạn này đều nhỏ hơn đoạn của $f(i,j)$, ta lấy $len=j-i+1$ làm giai đoạn DP. Trước hết duyệt $len$ tăng dần, sau đó duyệt $i$, tính $j$ từ $len$ và $i$, rồi duyệt $k$. Độ phức tạp thời gian là $O(n^3)$.
+Vì khi tính $f(i,j)$ cần biết mọi giá trị $f(i,k)$ và $f(k+1,j)$, mà số phần tử trong hai đoạn này đều nhỏ hơn đoạn của $f(i,j)$, lấy $len=j-i+1$ làm giai đoạn DP. Trước hết duyệt $len$ tăng dần, sau đó duyệt $i$, tính $j$ từ $len$ và $i$, rồi duyệt $k$. Độ phức tạp thời gian là $O(n^3)$.
 
 ### Cách xử lý vòng tròn
 
-Trong đề bài, các đống đá nằm trên một vòng tròn chứ không phải một chuỗi. Ta xử lý thế nào?
+Trong đề bài, các đống đá nằm trên một vòng tròn chứ không phải một chuỗi. Cần xử lý thế nào?
 
 **Cách 1**: Vì các đống đá tạo thành vòng tròn, có thể duyệt vị trí cắt để biến vòng tròn thành một chuỗi. Do phải duyệt $n$ lần, độ phức tạp cuối cùng là $O(n^4)$.
 

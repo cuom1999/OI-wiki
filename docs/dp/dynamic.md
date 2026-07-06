@@ -41,7 +41,7 @@ Trước hết phân rã cây theo chuỗi nặng nhẹ. Giả sử có một ch
 
 Đặt $g_{i,0}$ là đáp án lớn nhất khi không chọn $i$ và chỉ cho phép chọn trong các cây con của con nhẹ của $i$; đặt $g_{i,1}$ là đáp án lớn nhất khi chọn $i$ nhưng không xét $son_i$; trong đó $son_i$ là con nặng của $i$.
 
-Giả sử đã biết $g_{i,0/1}$, ta có phương trình DP:
+Giả sử đã biết $g_{i,0/1}$, phương trình DP là:
 
 $$
 \begin{cases}f_{i,0}=g_{i,0}+\max(f_{son_i,0},f_{son_i,1})\\f_{i,1}=g_{i,1}+f_{son_i,0}\end{cases}
@@ -64,15 +64,15 @@ f_{i,0}\\f_{i,1}
 \end{bmatrix}
 $$
 
-Lưu ý rằng ở đây ta dùng quy tắc nhân tổng quát.
+Lưu ý rằng phần này dùng quy tắc nhân tổng quát.
 
-Có thể thấy khi sửa, chỉ cần sửa $g_{i,1}$ và các chuỗi nặng đi lên phía trên.
+Khi sửa, chỉ cần sửa $g_{i,1}$ và các chuỗi nặng đi lên phía trên.
 
 ### Ý tưởng cụ thể
 
 1.  Dùng DFS tiền xử lý để tính $f_{i,0/1}$ và $g_{i,0/1}$.
 
-2.  Phân rã cây theo chuỗi nặng nhẹ. Lưu ý: vì khi truy vấn một đỉnh cần tính tích ma trận trên đoạn từ đỉnh đó tới cuối chuỗi nặng chứa nó, với mỗi đỉnh ta ghi $End_i$ là số hiệu đỉnh cuối của chuỗi nặng chứa $i$. Trên mỗi chuỗi nặng dựng một cây phân đoạn; cây phân đoạn duy trì ma trận $g$ và tích đoạn của các ma trận $g$.
+2.  Phân rã cây theo chuỗi nặng nhẹ. Lưu ý: vì khi truy vấn một đỉnh cần tính tích ma trận trên đoạn từ đỉnh đó tới cuối chuỗi nặng chứa nó, với mỗi đỉnh ghi $End_i$ là số hiệu đỉnh cuối của chuỗi nặng chứa $i$. Trên mỗi chuỗi nặng dựng một cây phân đoạn; cây phân đoạn duy trì ma trận $g$ và tích đoạn của các ma trận $g$.
 
 3.  Khi sửa, trước hết sửa $g_{i,1}$ và ma trận của đỉnh $i$ trong cây phân đoạn, tính lượng thay đổi của ma trận $top_i$, rồi cập nhật vào ma trận của $fa_{top_i}$.
 

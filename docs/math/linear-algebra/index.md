@@ -5,7 +5,7 @@ author: codewasp942
 
 Từ vài nghìn năm trước, con người đã biết dùng hệ phương trình tuyến tính để giải quyết vấn đề; ngày nay, đại số tuyến tính vẫn được ứng dụng rất rộng rãi.
 
-Đại số tuyến tính bắt nguồn từ quan sát. Người ta nhận thấy nhiều đối tượng có những tính chất tương tự nhau, chẳng hạn:
+Đại số tuyến tính bắt nguồn từ quan sát: nhiều đối tượng có những tính chất tương tự nhau, chẳng hạn:
 
 -   Lực có thể được phân tích và tổng hợp.
 

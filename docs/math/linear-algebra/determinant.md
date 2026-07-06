@@ -9,7 +9,7 @@ Kiến thức chuẩn bị: [hoán vị](../permutation.md), [số nghịch th�
 
 Khi tính tay định thức bậc thấp, có thể dùng cách này; độ phức tạp thời gian của nó ở cấp giai thừa.
 
-Dùng ký hiệu $\pi(j_1j_2\cdots j_n)$ để chỉ số nghịch thế của hoán vị $j_1j_2\cdots j_n$, và $S_n$ là tập tất cả hoán vị độ dài $n$. Ta có ký hiệu:
+Dùng ký hiệu $\pi(j_1j_2\cdots j_n)$ để chỉ số nghịch thế của hoán vị $j_1j_2\cdots j_n$, và $S_n$ là tập tất cả hoán vị độ dài $n$. Ký hiệu như sau:
 
 $$
 \begin{aligned}
@@ -35,7 +35,7 @@ $$
 a_{i_1j_1}a_{i_2j_2}\cdots a_{i_nj_n}
 $$
 
-Ở đây $i_1,i_2,\cdots,i_n$ và $j_1,j_2,\cdots,j_n$ đều là các hoán vị của $1,2,\cdots,n$. Khi đó dấu của hạng tử này trong định thức là ${(-1)}^{s+t}$, trong đó
+Trong đó $i_1,i_2,\cdots,i_n$ và $j_1,j_2,\cdots,j_n$ đều là các hoán vị của $1,2,\cdots,n$. Khi đó dấu của hạng tử này trong định thức là ${(-1)}^{s+t}$, trong đó
 
 $$
 s=\pi(i_1i_2\cdots i_n)
@@ -73,7 +73,7 @@ Trong định thức bậc $n$ $\det A$, chọn tùy ý $k$ hàng và $k$ cột 
 
 Với định thức bậc $n$ $\det A$, ma trận phụ $M_{ij}$ của phần tử $a_{ij}$ là ma trận con bậc $n-1$ còn lại sau khi xóa hàng và cột chứa $a_{ij}$ khỏi ma trận gốc $A$; định thức $\det M_{ij}$ của nó được gọi là phần bù.
 
-Với định thức bậc $n$ $\det A$, sau khi gắn dấu ${(-1)}^{i+j}$ cho phần bù $\det M_{ij}$ của phần tử $a_{ij}$, ta được phần bù đại số của phần tử $a_{ij}$, ký hiệu là $A_{ij}$.
+Với định thức bậc $n$ $\det A$, sau khi gắn dấu ${(-1)}^{i+j}$ cho phần bù $\det M_{ij}$ của phần tử $a_{ij}$, thu được phần bù đại số của phần tử $a_{ij}$, ký hiệu là $A_{ij}$.
 
 Từ định nghĩa bằng hoán vị ở phần trước có thể suy ra kết luận:
 
@@ -155,7 +155,7 @@ Với một phép toán $\det$ trên ma trận bậc $n$ $A$, nếu thỏa bốn
     \det I = 1
     $$
 
-Dùng các tính chất của định thức đối với biến đổi sơ cấp, ta có thể tính tay định thức bậc cao thuận tiện hơn. [Tính định thức bằng khử Gauss](../numerical/gauss.md#tính-định-thức) cũng dùng tính chất này, với độ phức tạp thời gian $O(n^3)$.
+Dùng các tính chất của định thức đối với biến đổi sơ cấp, có thể tính tay định thức bậc cao thuận tiện hơn. [Tính định thức bằng khử Gauss](../numerical/gauss.md#tính-định-thức) cũng dùng tính chất này, với độ phức tạp thời gian $O(n^3)$.
 
 Các tính chất trên cũng có một số hệ quả:
 

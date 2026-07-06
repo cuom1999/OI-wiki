@@ -2,7 +2,7 @@ author: Ir1d, HeRaNO, Chrogeek, abc1763613206, mxdyzmx
 
 ## Định nghĩa góc
 
-Ở tiểu học hoặc trung học cơ sở, ta đã học **định nghĩa tĩnh** của góc: hình gồm hai tia có chung điểm đầu được gọi là góc.
+Ở tiểu học hoặc trung học cơ sở, **định nghĩa tĩnh** của góc thường được học là: hình gồm hai tia có chung điểm đầu được gọi là góc.
 
 Tuy nhiên, định nghĩa này giới hạn số đo góc trong $[0, 360^\circ]$, gây khó khăn cho việc nghiên cứu sâu hơn. Nó cũng không giải thích rõ được những vấn đề khác, chẳng hạn: quay $720^\circ$ có nghĩa là gì?
 
@@ -21,7 +21,7 @@ Như vậy, khái niệm góc được mở rộng thành **góc tùy ý**.
 
 ## Hệ radian
 
-Trong ứng dụng thực tế, ta thường phải chuyển đổi giữa số đo góc và nhiều tham số khác; dùng hệ radian để mô tả góc có thể làm giảm số hệ số cần dùng. Vì vậy, tiếp theo ta giới thiệu **hệ radian**:
+Trong ứng dụng thực tế, thường phải chuyển đổi giữa số đo góc và nhiều tham số khác; dùng hệ radian để mô tả góc có thể làm giảm số hệ số cần dùng. Vì vậy, tiếp theo giới thiệu **hệ radian**:
 
 Góc ở tâm chắn bởi một cung có độ dài bằng bán kính được gọi là góc $1$ radian, ký hiệu là $\text{rad}$ và đọc là radian.
 
@@ -31,9 +31,9 @@ $$
 |\alpha|=\dfrac{l}{r}
 $$
 
-Từ công thức này cũng có thể viết công thức độ dài cung và diện tích hình quạt; ở đây bỏ qua.
+Từ công thức này cũng có thể viết công thức độ dài cung và diện tích hình quạt; phần này bỏ qua.
 
-Do đó, góc $360^\circ$ có số đo radian là $2\pi$. Khi đã có quan hệ tương ứng này, ta có thể chuyển đổi giữa đơn vị độ và radian:
+Do đó, góc $360^\circ$ có số đo radian là $2\pi$. Khi đã có quan hệ tương ứng này, có thể chuyển đổi giữa đơn vị độ và radian:
 
 $$
 k \operatorname{rad} = \frac{\pi}{180^\circ} n^\circ
@@ -57,7 +57,7 @@ Có thể hiểu là: liên tục quay thêm tròn một vòng cho cạnh của 
     
     Nếu dùng các giá trị khác, ví dụ `acos(-1.0/2.0)`, `acos(1.0/2.0)`, `asin(1.0/2.0)`, v.v., giá trị $\pi$ thu được là $3.14159265358979360000$, không phải số chấm động gần $\pi$ nhất.
     
-    Nếu bạn nhớ được, cũng có thể viết trực tiếp $3.1415926535897932$.
+    Nếu nhớ được, cũng có thể viết trực tiếp $3.1415926535897932$.
 
 ## Hệ tọa độ Descartes trong mặt phẳng
 
@@ -77,7 +77,7 @@ Với một điểm bất kỳ $C$ trong mặt phẳng, từ $C$ kẻ các đư�
 
 ## Hệ tọa độ cực trong mặt phẳng
 
-Xét tình huống thực tế, chẳng hạn trong hàng hải, người ta nói "điểm $B$ nằm theo hướng lệch đông $30^\circ$ so với hướng bắc từ điểm $A$, cách $100$ mét", chứ không nói "dựng hệ tọa độ Descartes phẳng với $A$ làm gốc tọa độ, khi đó $B(50,50\sqrt 3)$".
+Xét tình huống thực tế, chẳng hạn trong hàng hải, cách diễn đạt thường là "điểm $B$ nằm theo hướng lệch đông $30^\circ$ so với hướng bắc từ điểm $A$, cách $100$ mét", chứ không nói "dựng hệ tọa độ Descartes phẳng với $A$ làm gốc tọa độ, khi đó $B(50,50\sqrt 3)$".
 
 Như vậy:
 
@@ -85,7 +85,7 @@ Như vậy:
 2.  Từ cực vẽ một tia $Ox$, gọi là **trục cực**;
 3.  Chọn một đơn vị độ dài (trong các bài toán toán học thường là $1$), một đơn vị góc (thường là radian) và chiều dương của nó (thường là ngược chiều kim đồng hồ);
 
-ta lập được **hệ tọa độ cực**.
+lập được **hệ tọa độ cực**.
 
 ### Mô tả vị trí trong hệ tọa độ cực
 
@@ -96,7 +96,7 @@ Giả sử $A$ là một điểm trên mặt phẳng.
 
 Khi đó cặp có thứ tự $(\rho,\varphi)$ là **tọa độ cực** của $A$.
 
-Theo định nghĩa các góc có cùng vị trí cạnh cuối, $(\rho,\varphi)$ và $(\rho,\varphi + 2k\pi)\ (k\in \mathbf{Z})$ thực ra biểu diễn cùng một điểm. Đặc biệt, tọa độ cực của cực là $(0,\varphi)\ (\varphi \in \mathbf{R})$, vì vậy tọa độ cực của một điểm trong mặt phẳng có vô số cách biểu diễn.
+Theo định nghĩa các góc có cùng vị trí cạnh cuối, $(\rho,\varphi)$ và $(\rho,\varphi + 2k\pi)\ (k\in \mathbf{Z})$ biểu diễn cùng một điểm. Đặc biệt, tọa độ cực của cực là $(0,\varphi)\ (\varphi \in \mathbf{R})$, vì vậy tọa độ cực của một điểm trong mặt phẳng có vô số cách biểu diễn.
 
 Nếu quy ước $\rho \ge 0,0 \le \varphi < 2\pi$, thì ngoài cực ra, mọi điểm khác trong mặt phẳng có thể được biểu diễn bằng duy nhất một cặp có thứ tự $(\rho,\varphi)$; còn điểm được biểu diễn bởi tọa độ cực $(\rho,\varphi)$ thì được xác định duy nhất.
 
@@ -104,7 +104,7 @@ Nếu quy ước $\rho \ge 0,0 \le \varphi < 2\pi$, thì ngoài cực ra, mọi 
 
 ### Chuyển đổi giữa hệ tọa độ Descartes phẳng và hệ tọa độ cực
 
-Tất nhiên, đôi khi nghiên cứu hình trong hệ tọa độ cực không thuận tiện. Nếu muốn chuyển sang hệ tọa độ Descartes để nghiên cứu, ta có các công thức chuyển đổi. Tọa độ Descartes $(x,y)$ của điểm $A(\rho,\varphi)$ có thể biểu diễn như sau:
+Đôi khi nghiên cứu hình trong hệ tọa độ cực không thuận tiện. Nếu muốn chuyển sang hệ tọa độ Descartes để nghiên cứu, có các công thức chuyển đổi. Tọa độ Descartes $(x,y)$ của điểm $A(\rho,\varphi)$ có thể biểu diễn như sau:
 
 $$
 \begin{aligned}
@@ -149,13 +149,13 @@ Lập hệ tọa độ Descartes trong không gian bằng cách sau:
 2.  Qua điểm $O$ vẽ ba trục số đôi một vuông góc với nhau $\overrightarrow{Ox}, \overrightarrow{Oy}, \overrightarrow{Oz}$, lần lượt gọi là trục $x$ (trục hoành), trục $y$ (trục tung), trục $z$ (trục đứng), gọi chung là các trục tọa độ. Chiều dương của chúng tuân theo quy tắc bàn tay phải: nắm bàn tay phải quanh trục $z$; khi bốn ngón tay của bàn tay phải quay từ chiều dương của trục $x$ sang chiều dương của trục $y$, hướng của ngón cái chính là chiều dương của trục $z$;
 3.  Đặt đơn vị độ dài trên mỗi trục, thông thường đều lấy bằng $1$.
 
-Như vậy ta được một hệ tọa độ Descartes trong không gian, gọi là hệ tọa độ $O-xyz$. Điểm cố định $O$ được gọi là gốc tọa độ của hệ này.
+Như vậy thu được một hệ tọa độ Descartes trong không gian, gọi là hệ tọa độ $O-xyz$. Điểm cố định $O$ được gọi là gốc tọa độ của hệ này.
 
 Hai trục tọa độ bất kỳ xác định một mặt phẳng; như vậy có thể xác định ba mặt phẳng đôi một vuông góc, gọi chung là các mặt phẳng tọa độ. Trong đó, mặt phẳng xác định bởi trục $x$ và trục $y$ được gọi là mặt phẳng $xOy$; tương tự có mặt phẳng $yOz$ và mặt phẳng $zOx$. Ba mặt phẳng tọa độ chia không gian thành tám phần, mỗi phần gọi là một bát phần.
 
 ### Mô tả vị trí trong hệ tọa độ Descartes không gian
 
-Sau khi cố định hệ tọa độ Descartes không gian $O-xyz$, ta có thể lập được tương ứng một-một giữa các điểm trong không gian và các bộ ba số.
+Sau khi cố định hệ tọa độ Descartes không gian $O-xyz$, có thể lập được tương ứng một-một giữa các điểm trong không gian và các bộ ba số.
 
 Giả sử $M$ là một điểm trong không gian. Qua điểm $M$, vẽ các mặt phẳng lần lượt vuông góc với trục $x$, trục $y$ và trục $z$. Giả sử ba mặt phẳng này cắt trục $x$, trục $y$ và trục $z$ lần lượt tại $P, Q, R$; các điểm $P, Q, R$ lần lượt được gọi là hình chiếu của điểm $M$ trên trục $x$, trục $y$ và trục $z$. Lại giả sử tọa độ của $P, Q, R$ trên trục $x$, trục $y$ và trục $z$ lần lượt là $x, y, z$; khi đó điểm $M$ xác định một bộ ba $(x, y, z)$.
 
@@ -190,7 +190,7 @@ Tọa độ cầu có thể được xác định bằng cách sau:
 Như vậy sẽ đến điểm được mô tả bởi tọa độ cầu $(r,\vartheta,\varphi)$. Trong đó $\vartheta$ được gọi là **góc thiên đỉnh**, $\varphi$ được gọi là **góc phương vị**.
 
 ???+ warning "Cảnh báo"
-    Vì nhiều lý do, một số tài liệu dùng $\phi$ để biểu diễn góc thiên đỉnh và dùng $\theta$ để biểu diễn góc phương vị. Khi đọc bài viết gặp hệ tọa độ cầu, nhất định cần chú ý điểm này.
+    Vì nhiều lý do, một số tài liệu dùng $\phi$ để biểu diễn góc thiên đỉnh và dùng $\theta$ để biểu diễn góc phương vị. Khi đọc bài viết gặp hệ tọa độ cầu, nhất định cần lưu ý điểm này.
     
     Đồng thời, khi viết bài, nếu dùng hệ tọa độ cầu, nên tuyên bố rõ từ trước ký hiệu nào biểu diễn góc thiên đỉnh và góc phương vị.
 

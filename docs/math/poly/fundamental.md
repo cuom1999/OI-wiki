@@ -44,9 +44,9 @@ $$
 (x-a-b\mathrm{i})(x-a+b\mathrm{i})=x^2-2ax+a^2+b^2
 $$
 
-Có thể thấy khi nhân hai nhân tử này với nhau, mọi hệ số đều trở thành số thực. Tam thức bậc hai hệ số thực ở vế phải của đẳng thức này chia hết đa thức ban đầu.
+Khi nhân hai nhân tử này với nhau, mọi hệ số đều trở thành số thực. Tam thức bậc hai hệ số thực ở vế phải của đẳng thức này chia hết đa thức ban đầu.
 
-Vậy trong đẳng thức của định lý cơ bản của đại số, chia đồng thời hai vế cho tam thức bậc hai này, ta vẫn thu được một đẳng thức của đa thức hệ số thực. Lặp lại thao tác này với đẳng thức mới; khi bậc giảm dần, sau hữu hạn lần sẽ không còn nghiệm ảo.
+Vậy trong đẳng thức của định lý cơ bản của đại số, chia đồng thời hai vế cho tam thức bậc hai này, vẫn thu được một đẳng thức của đa thức hệ số thực. Lặp lại thao tác này với đẳng thức mới; khi bậc giảm dần, sau hữu hạn lần sẽ không còn nghiệm ảo.
 
 Do đó bội số của mỗi cặp nghiệm ảo liên hợp bằng nhau. Chứng minh hoàn tất.
 
@@ -83,7 +83,7 @@ trong đó mọi hệ số đều là số thực, và $k_1+k_2+\ldots+k_t+2(l_1
 
 Làm thế nào để thực hiện phân tích theo định lý cơ bản của đại số cho đa thức hệ số thực? Nếu mở rộng trường số sang số phức thì việc này sẽ phức tạp.
 
-Nếu chỉ phân tích trong phạm vi số thực, ta chỉ có thể bảo đảm rằng khi bậc lớn hơn $2$, nhất định tồn tại một nhân tử tam thức bậc hai hệ số thực.
+Nếu chỉ phân tích trong phạm vi số thực, chỉ có thể chắc chắn rằng khi bậc lớn hơn $2$, nhất định tồn tại một nhân tử tam thức bậc hai hệ số thực.
 
 Lý do là: nếu đa thức có nghiệm ảo, chỉ cần ghép trực tiếp một cặp nghiệm ảo liên hợp. Nếu đa thức chỉ có nghiệm thực, lấy tùy ý hai nhân tử bậc một tương ứng với hai nghiệm thực và nhân chúng lại, cũng thu được một tam thức bậc hai hệ số thực.
 
@@ -103,15 +103,15 @@ $$
 f(x)=(x^2+p_1x+q_1)g(x)
 $$
 
-Vì không thể tìm ngay nhân tử tam thức bậc hai, theo ý tưởng giải lặp, với giá trị ban đầu ta có:
+Vì không thể tìm ngay nhân tử tam thức bậc hai, theo ý tưởng giải lặp, với giá trị ban đầu có:
 
 $$
 f(x)=(x^2+px+q)g(x)+rx+s
 $$
 
-sẽ sinh ra một đa thức bậc một làm số dư. Chỉ cần số dư đủ nhỏ, ta có thể gần đúng tìm được nhân tử cần tìm.
+sẽ sinh ra một đa thức bậc một làm số dư. Chỉ cần số dư đủ nhỏ, có thể gần đúng tìm được nhân tử cần tìm.
 
-Ta mong nghiệm cuối cùng là giá trị ban đầu cộng thêm một hiệu chỉnh độ lệch:
+Nghiệm cuối cùng được kỳ vọng là giá trị ban đầu cộng thêm một hiệu chỉnh độ lệch:
 
 $$
 p_1=p+dp
@@ -141,7 +141,7 @@ $$
 0=g(x)+\frac{\partial g(x)}{\partial q}(x^2+px+q)+\frac{\partial r}{\partial q}x+\frac{\partial s}{\partial q}
 $$
 
-Chú ý rằng đạo hàm riêng chỉ là một giá trị số, không phụ thuộc vào biến $x$. Do đó có quan hệ chia hết
+Đạo hàm riêng chỉ là một giá trị số, không phụ thuộc vào biến $x$. Do đó có quan hệ chia hết
 
 $$
 xg(x)=-\frac{\partial g(x)}{\partial p}(x^2+px+q)-\frac{\partial r}{\partial p}x-\frac{\partial s}{\partial p}
@@ -151,9 +151,9 @@ $$
 g(x)=-\frac{\partial g(x)}{\partial q}(x^2+px+q)-\frac{\partial r}{\partial q}x-\frac{\partial s}{\partial q}
 $$
 
-Kết luận ở đây là: các đạo hàm riêng cần tìm chính là số dư khi tiếp tục chia thương. Phép chia đa thức cho tam thức bậc hai đã cho có thể tính trực tiếp. Đến đây ta tìm được bốn đạo hàm riêng.
+Kết luận thu được là: các đạo hàm riêng cần tìm chính là số dư khi tiếp tục chia thương. Phép chia đa thức cho tam thức bậc hai đã cho có thể tính trực tiếp. Từ đó tìm được bốn đạo hàm riêng.
 
-Ta mong $s$ và $r$ cộng với các độ lệch $ds$ và $dr$ sẽ thành $0$, tức $ds$ và $dr$ là các số đối của $s$ và $r$. Vì vậy cần giải hệ phương trình:
+Cần để $s$ và $r$ cộng với các độ lệch $ds$ và $dr$ thành $0$, tức $ds$ và $dr$ là các số đối của $s$ và $r$. Vì vậy cần giải hệ phương trình:
 
 $$
 -\frac{\partial r}{\partial p}dp-\frac{\partial r}{\partial q}dq=r

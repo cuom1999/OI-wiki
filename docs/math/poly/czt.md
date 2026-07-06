@@ -25,7 +25,7 @@ $$
 ij = \binom{i}{2} + \binom{-j}{2} - \binom{i - j}{2}
 $$
 
-với $i, j \in \mathbb{Z}$, ta có thể xây dựng
+với $i, j \in \mathbb{Z}$, có thể xây dựng
 
 $$
 \begin{aligned}
@@ -34,7 +34,7 @@ F(x) & := \sum_{i = 0}^{m - 1} f_i q^{\binom{-i}{2}}x^i.
 \end{aligned}
 $$
 
-trong đó $G(x) \in \mathbb{C}\left\lbrack x, x^{-1}\right\rbrack$, và với $i = 0, \dots, n - 1$ ta có
+trong đó $G(x) \in \mathbb{C}\left\lbrack x, x^{-1}\right\rbrack$, và với $i = 0, \dots, n - 1$ có
 
 $$
 \begin{aligned}
@@ -79,7 +79,7 @@ $$
 f(x) = \sum_{i = 0}^{n - 1}\left(f\left(x_i\right)\prod_{0 \leq j < n \atop j \neq i} \frac{x - x_j}{x_i - x_j}\right)
 $$
 
-với $x_i \neq x_j$ cho mọi $i \neq j$. Tương tự như trong [nội suy nhanh đa thức](./multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức), đặt $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$. Theo quy tắc L'Hopital, ta có
+với $x_i \neq x_j$ cho mọi $i \neq j$. Tương tự như trong [nội suy nhanh đa thức](./multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức), đặt $M(x) := \prod_{i = 0}^{n - 1}\left(x - x_i\right)$. Theo quy tắc L'Hopital, có
 
 $$
 M'(x_i) = \lim_{x \to x_i} \frac{M(x)}{x - x_i} = \prod_{0 \leq j < n \atop j \neq i}\left(x_i - x_j\right)
@@ -91,7 +91,7 @@ $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{f\left(x_i\right)/M'(x_i)}{x - x_i}\right)
 $$
 
-Khi đó hiện tại ta có
+Khi đó thu được
 
 $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{f\left(q^i\right)/M'\left(q^i\right)}{x - q^i}\right)
@@ -103,13 +103,13 @@ $$
 M(x) = H(x) \cdot q^{k^2} \cdot H\left(\frac{x}{q^k}\right)
 $$
 
-Điều này cho phép ta tính nhanh $M(x)$. Sau đó dùng thuật toán Bluestein để tính $M'(1), \dots, M'(q^{n - 1})$. Đặt $c_i := f\left(q^i\right)/M'\left(q^i\right)$, ta có
+Điều này cho phép tính nhanh $M(x)$. Sau đó dùng thuật toán Bluestein để tính $M'(1), \dots, M'(q^{n - 1})$. Đặt $c_i := f\left(q^i\right)/M'\left(q^i\right)$, có
 
 $$
 f(x) = M(x)\left(\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\right)
 $$
 
-Vì $\deg f(x) < n$, ta chỉ cần tính $\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\bmod{x^n}$, trong đó $\frac{c_i}{x - q^i} \in \mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$, tức là
+Vì $\deg f(x) < n$, chỉ cần tính $\sum_{i = 0}^{n - 1}\frac{c_i}{x - q^i}\bmod{x^n}$, trong đó $\frac{c_i}{x - q^i} \in \mathbb{C}\left\lbrack\left\lbrack x\right\rbrack\right\rbrack$, tức là
 
 $$
 \begin{aligned}
@@ -119,9 +119,9 @@ $$
 \end{aligned}
 $$
 
-trong đó $C(x) = \sum_{i = 0}^{n - 1} c_i x^i$. Ta có thể dùng thuật toán Bluestein để tính $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$.
+trong đó $C(x) = \sum_{i = 0}^{n - 1} c_i x^i$. Có thể dùng thuật toán Bluestein để tính $C\left(q^{-1}\right), \dots, C\left(q^{-n}\right)$.
 
-Nói ngắn gọn, ta lần lượt thực hiện các phép tính sau:
+Nói ngắn gọn, lần lượt thực hiện các phép tính sau:
 
 1.  Dùng giảm trị (decrease and conquer) để tính $M(x)$;
 2.  Dùng thuật toán Bluestein để tính $M'(1), \dots, M'(q^{n - 1})$;
