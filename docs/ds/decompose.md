@@ -3,7 +3,7 @@ author: Ir1d, HeRaNO, Xeonacid
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-Chia khối (sqrt decomposition) là một cách tư duy thuật toán, không phải một cấu trúc dữ liệu cụ thể.
+Chia khối (sqrt decomposition) là một tư tưởng thuật toán, không phải một cấu trúc dữ liệu cụ thể.
 
 Từ NOIP đến NOI rồi IOI, tư tưởng chia khối xuất hiện trong nhiều bài với độ khó khác nhau.
 
@@ -40,7 +40,10 @@ Chia dãy thành các khối, mỗi khối có $s$ phần tử,
 và ghi lại tổng đoạn của mỗi khối là $b_i$.
 
 $$
-\underbrace{a_1, a_2, \ldots, a_s}_{b_1}, \underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2}, \dots, \underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
+\underbrace{a_1, a_2, \ldots, a_s}_{b_1},
+\underbrace{a_{s+1}, \ldots, a_{2s}}_{b_2},
+\dots,
+\underbrace{a_{(s-1) \times s+1}, \dots, a_n}_{b_{\frac{n}{s}}}
 $$
 
 Khối cuối có thể không đầy đủ vì $n$ rất có thể không phải bội của $s$,
@@ -86,7 +89,7 @@ tối ưu $O(\sqrt n)$.
 
 Cách làm trước có độ phức tạp truy vấn/cập nhật là $O(\sqrt{n})$.
 
-Phần này giới thiệu một thuật toán $O(\sqrt{n}) - O(1)$.
+Phần này giới thiệu một thuật toán cập nhật $O(\sqrt{n})$, truy vấn $O(1)$.
 
 Để truy vấn trong $O(1)$, có thể duy trì thêm các loại tổng tiền tố.
 
@@ -95,7 +98,7 @@ thay vào đó chỉ duy trì tổng tiền tố bên trong từng khối.
 
 Đồng thời, duy trì tổng tiền tố trên dãy các khối nguyên vẹn, trong đó mỗi khối được xem như một đơn vị.
 
-Mỗi lần cập nhật tốn $O(T+\frac{n}{T})$.
+Nếu độ dài khối là $T$, mỗi lần cập nhật tốn $O(T+\frac{n}{T})$.
 
 Một truy vấn vẫn gồm ba phần; mỗi phần đều có thể lấy trực tiếp bằng tổng tiền tố, nên độ phức tạp thời gian là $O(1)$.
 
@@ -111,7 +114,7 @@ Giả sử ghi lại tối đa $T$ thao tác, khi đó cập nhật là $O(1)$, 
 
 Sau mỗi $T$ thao tác, tính lại tổng tiền tố, tốn $O(n)$.
 
-Tổng độ phức tạp: $O(mT+n\frac{m}{T})$.
+Tổng độ phức tạp là $O(mT+n\frac{m}{T})$.
 
 Khi $T=\sqrt{n}$, tổng độ phức tạp là $O(m \sqrt{n})$.
 
@@ -132,7 +135,8 @@ mỗi khối chứa $\sqrt{n}$ số.
 Mỗi khi thêm hoặc xóa một số,
 cần chia khối lại bằng cách di chuyển các số ở biên giữa các khối kề nhau.
 
-Một thuật toán ngoại tuyến rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia khối.
+Một thuật toán ngoại tuyến rất nổi tiếng, [thuật toán Mo](../misc/mo-algo.md), cũng được xây dựng dựa trên tư tưởng chia
+khối.
 
 <span id="bài-tập"></span>
 ## Bài tập
