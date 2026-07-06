@@ -349,7 +349,7 @@ Trong giới lập trình thi đấu Trung Quốc, thứ hạng này thường �
     1+3\times 5!+3\times 4!+1\times 3!+2\times 2!+1\times 1!+0\times 0!=444.
     $$
 
-    Với các cách sắp xếp khác nhau, điểm cốt lõi là xác định các hệ số đứng trước giai thừa. Thực ra, các hệ số này chính là số phần tử nằm sau vị trí đang xét nhưng nhỏ hơn phần tử tại vị trí đó.
+    Với các cách sắp xếp khác nhau, điểm cốt lõi là xác định các hệ số đứng trước giai thừa. Các hệ số này chính là số phần tử nằm sau vị trí đang xét nhưng nhỏ hơn phần tử tại vị trí đó.
 
 Từ ví dụ trên, thuật toán tính thứ hạng của một cách sắp xếp cho trước có thể chia thành hai bước:
 

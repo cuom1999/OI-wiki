@@ -34,7 +34,7 @@ $$
 \phi\left(x,a\right)=P_0\left(x,a\right)+P_1\left(x,a\right)+\cdots+P_k\left(x,a\right)+\cdots
 $$
 
-Tổng vô hạn này thực ra có thể biểu diễn thành tổng hữu hạn, vì khi $p_a^k>x$ thì $P_k\left(x,a\right)=0$.
+Tổng vô hạn này có thể biểu diễn thành tổng hữu hạn, vì khi $p_a^k>x$ thì $P_k\left(x,a\right)=0$.
 
 Đặt $y$ là một số nguyên thỏa mãn $x^{1/3}\le y\le x^{1/2}$, và ký hiệu $a=\pi\left(y\right)$.
 

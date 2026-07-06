@@ -230,7 +230,7 @@ Xét bài toán sau:
 ???+ note "Đếm số cặp có ước chung lớn nhất bằng $k$"
     Cho $1 \le x, y \le N$, $f(k)$ là số cặp có thứ tự $(x, y)$ có ước chung lớn nhất bằng $k$. Tính các giá trị từ $f(1)$ đến $f(N)$.
 
-Bài này chắc chắn có thể làm bằng hàm Euler hoặc nghịch đảo Mobius, nhưng không cách nào đơn giản bằng bao hàm-loại trừ.
+Bài này có thể làm bằng hàm Euler hoặc nghịch đảo Mobius, nhưng không cách nào đơn giản bằng bao hàm-loại trừ.
 
 Theo nguyên lý bao hàm-loại trừ, trước tiên tìm tất cả các cặp có $k$ là **ước chung**, rồi loại bỏ mọi cặp có một bội của $k$ là **ước chung**; các cặp còn lại chính là các cặp có $k$ là **ước chung lớn nhất**. Tức là $f(k)=$ số cặp có $k$ là **ước chung** $-$ số cặp có bội của $k$ là **ước chung**.
 
@@ -266,7 +266,7 @@ Xét bài toán sau:
 ???+ note "Công thức hàm Euler"
     Tính hàm Euler $\varphi(n)$, trong đó $\varphi(n)=|\{1\leq x\leq n|\gcd(x,n)=1\}|$.
 
-Tính trực tiếp là $O(n\log n)$, dùng sàng tuyến tính là $O(n)$, dùng Du Jiao sieve là $O(n^{\frac{2}{3}})$ (với một bài số học nhập môn mà dùng bao hàm-loại trừ, thật ra không cần nói đến Du Jiao sieve). Tiếp theo xét cách suy ra công thức hàm Euler bằng bao hàm-loại trừ.
+Tính trực tiếp là $O(n\log n)$, dùng sàng tuyến tính là $O(n)$, dùng Du Jiao sieve là $O(n^{\frac{2}{3}})$ (với một bài số học nhập môn dùng bao hàm-loại trừ thì không cần nói đến Du Jiao sieve). Tiếp theo xét cách suy ra công thức hàm Euler bằng bao hàm-loại trừ.
 
 Để kiểm tra hai số có nguyên tố cùng nhau hay không, trước hết phân tích thừa số nguyên tố:
 

@@ -83,7 +83,7 @@ trong đó mọi hệ số đều là số thực, và $k_1+k_2+\ldots+k_t+2(l_1
 
 Làm thế nào để thực hiện phân tích theo định lý cơ bản của đại số cho đa thức hệ số thực? Nếu mở rộng trường số sang số phức thì việc này sẽ phức tạp.
 
-Nếu chỉ phân tích trong phạm vi số thực, chỉ có thể chắc chắn rằng khi bậc lớn hơn $2$, nhất định tồn tại một nhân tử tam thức bậc hai hệ số thực.
+Nếu chỉ phân tích trong phạm vi số thực, khi bậc lớn hơn $2$, luôn tồn tại một nhân tử tam thức bậc hai hệ số thực.
 
 Lý do là: nếu đa thức có nghiệm ảo, chỉ cần ghép trực tiếp một cặp nghiệm ảo liên hợp. Nếu đa thức chỉ có nghiệm thực, lấy tùy ý hai nhân tử bậc một tương ứng với hai nghiệm thực và nhân chúng lại, cũng thu được một tam thức bậc hai hệ số thực.
 

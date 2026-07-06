@@ -112,7 +112,7 @@ $$
 f_{i,j}=\max_{k=0}^{+\infty}(f_{i-1,j-k\times w_i}+v_i\times k)
 $$
 
-Xét một tối ưu đơn giản. Có thể thấy với $f_{i,j}$, chỉ cần chuyển từ $f_{i,j-w_i}$ là đủ. Vì vậy phương trình chuyển trạng thái là:
+Xét một tối ưu đơn giản. Với $f_{i,j}$, chỉ cần chuyển từ $f_{i,j-w_i}$ là đủ. Vì vậy phương trình chuyển trạng thái là:
 
 $$
 f_{i,j}=\max(f_{i-1,j},f_{i,j-w_i}+v_i)

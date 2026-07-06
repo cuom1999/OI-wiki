@@ -306,7 +306,7 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 
 Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Hàm chuyển trạng thái cần thảo luận thêm việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng sẽ có nhiều thành phần liên thông.
 
-Cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Chương trình mẫu dưới đây chọn cách thứ hai.
+Cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Chương trình mẫu dưới đây dùng cách thứ hai.
 
 #### Chuyển trạng thái
 

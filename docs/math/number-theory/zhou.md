@@ -60,7 +60,7 @@ Biên là $g(0,l)=\sum_{i=1}^lf(i)$, chuyển trạng thái $g(t,l)=g(t-1,l)-f(p
 
 $l$ có cỡ $\sqrt n$ giá trị khác nhau, và với mỗi giá trị cần liệt kê các thừa số nguyên tố của nó, nên độ phức tạp là $\displaystyle O\left(\frac{\sqrt n}{\ln\sqrt n}\cdot\sqrt n\right)= O\left(\frac n{\log n}\right)$; cần tối ưu.
 
-Chú ý rằng khi $p_{t+1}^2>l$, các số thỏa điều kiện chỉ có $1$, nên khi đó $g(t,l)=f(1)=1$.
+Khi $p_{t+1}^2>l$, các số thỏa điều kiện chỉ có $1$, nên khi đó $g(t,l)=f(1)=1$.
 
 Thay vào công thức truy hồi được: khi $p_t^2>l$, $g(t,l)=g(t-1,l)-f(p_t)$.
 
@@ -80,7 +80,7 @@ Biên là $h(m+1,l)=1$, chuyển trạng thái $\displaystyle h(t,l)=h(t+1,l)+\s
 
 $l$ có cỡ $\sqrt n$ giá trị khác nhau, nên chuyển trạng thái trực tiếp có độ phức tạp $\displaystyle O\left(\sqrt n\cdot\frac{\sqrt n}{\ln\sqrt n}\right)= O\left(\frac n{\log n}\right)$; cần tối ưu.
 
-Tương tự cách tối ưu của $g$, chú ý rằng khi $p_t>l$, những số có thể tạo bởi $p_t,p_{t+1},\dots,p_m$ chỉ có $1$, khi đó $h(t,l)=f(1)=1$.
+Tương tự cách tối ưu của $g$, khi $p_t>l$, những số có thể tạo bởi $p_t,p_{t+1},\dots,p_m$ chỉ có $1$, khi đó $h(t,l)=f(1)=1$.
 
 Tương tự, suy ra $\forall p_t^2>l,h(t,l)=h(t+1,l)+f(p_t)$.
 

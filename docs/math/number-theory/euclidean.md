@@ -79,7 +79,7 @@ $$
 
 Đặt $(a',b',c',n')=(c,c-b-1,a,m-1)$, bài toán trở lại trường hợp $a'>c'$ đã thảo luận ở trên.
 
-Kết hợp hai bước biến đổi này, có thể thấy trong quá trình đó $(a,c)$ liên tục được lấy modulo rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
+Kết hợp hai bước biến đổi này, trong quá trình đó $(a,c)$ liên tục được lấy modulo rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
 
 Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó lời gọi đệ quy bên trong sẽ có $n=-1$. Điều này không ảnh hưởng kết quả cuối cùng. Tuy nhiên, nếu yêu cầu thuật toán dừng ngay khi $m=0$, độ phức tạp thời gian có thể cải thiện thành $O(\log\min\{a,c,n\})$.
 
@@ -318,7 +318,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \left\lfloor\dfrac{a}{b}\right\rfloor \le \dfrac{a}{b} <\dfrac{p}{q} <\dfrac{c}{d}\le\left\lfloor\dfrac{a}{b}\right\rfloor+1.
     $$
     
-    Từ bất đẳng thức này có thể thấy phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
+    Từ bất đẳng thức này, phần nguyên của $p/q$ được xác định là $\lfloor a/b\rfloor$; loại bỏ trực tiếp phần nguyên đó rồi lấy nghịch đảo toàn bộ để xác định phần thập phân của nó. Đây chính là [phương pháp cơ bản](./continued-fraction.md#cách-tìm-biểu-diễn-liên-phân-số) để xác định liên phân số của $p/q$. Nếu đáp án cuối cùng là $p/q$, độ phức tạp thời gian của thuật toán là $O(\log\min\{p,q\})$.
     
     Có một chi tiết cần xử lý: sau khi lấy nghịch đảo, phân số nhỏ nhất theo thứ tự từ điển có còn là phân số nhỏ nhất theo thứ tự từ điển trước khi lấy nghịch đảo hay không. Nói cách khác, trong các phân số $p/q$ thỏa mãn $a/b<p/q<c/d$, phân số có thứ tự từ điển $(q,p)$ nhỏ nhất có đồng thời là phân số có thứ tự từ điển $(p,q)$ nhỏ nhất hay không. Giả sử ngược lại, đặt $p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(q,p)$, nhưng $r/s\neq p/q$ là phân số nhỏ nhất theo thứ tự từ điển $(r,s)$. Khi đó phải có $r<p$ và $q<s$. Nhưng điều này cho thấy
     
@@ -474,7 +474,7 @@ Quá trình rút gọn cụ thể như sau:
 
     Có hai chi tiết cần xử lý:
 
-    -   Hạng tung độ gốc $-(b+1)/a$ là số âm. Chú ý rằng nếu tịnh tiến đoạn thẳng sang trái một đơn vị, có thể đưa tung độ gốc về không âm, vì luôn có $(c-b-1)/a\ge 0$. Do đó, có thể tách đoạn đầu $R^{\lfloor(c-b-1)/a\rfloor}U$ trước khi hoán đổi, và chỉ hoán đổi $U$ với $R$ trong phần dãy thao tác còn lại;
+    -   Hạng tung độ gốc $-(b+1)/a$ là số âm. Lưu ý rằng nếu tịnh tiến đoạn thẳng sang trái một đơn vị, có thể đưa tung độ gốc về không âm, vì luôn có $(c-b-1)/a\ge 0$. Do đó, có thể tách đoạn đầu $R^{\lfloor(c-b-1)/a\rfloor}U$ trước khi hoán đổi, và chỉ hoán đổi $U$ với $R$ trong phần dãy thao tác còn lại;
     -   Sau khi hoán đổi $U$ và $R$, ở cuối tồn tại ký tự $U$ dư. Vì vậy, trước khi hoán đổi $U$ và $R$, cần tách đoạn $R$ cuối cùng ra trước, và chỉ hoán đổi $U$ với $R$ trong phần dãy thao tác còn lại. Số lượng ký tự $R$ trong đoạn này là $n-\lfloor(cm-b-1)/a\rfloor$.
 
     Sau khi bỏ một số ký tự ở đầu và cuối, số ký tự $R$ đứng trước ký tự $U$ thứ $j$ trở thành:
