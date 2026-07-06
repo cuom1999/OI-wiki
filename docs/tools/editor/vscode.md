@@ -6,7 +6,7 @@ Visual Studio Code (dưới đây gọi tắt là VS Code) là một trình so�
 
 Trang chủ: [Visual Studio Code - trình soạn thảo mã nguồn mở có AI](https://code.visualstudio.com/)
 
-Trước khi đọc các nội dung bên dưới, bạn nên tìm hiểu sơ qua cách dùng cơ bản của VS Code: [Bắt đầu](https://code.visualstudio.com/docs/getstarted/getting-started).
+Trước khi đọc các nội dung bên dưới, nên tìm hiểu sơ qua cách dùng cơ bản của VS Code: [Bắt đầu](https://code.visualstudio.com/docs/getstarted/getting-started).
 
 ## Chạy mã bằng tiện ích mở rộng C/C++ Compile Run
 
@@ -39,7 +39,7 @@ Cách cài đặt là tìm Code Runner trong kho tiện ích mở rộng rồi n
 Sau khi cài đặt xong, mở tệp cần chạy, nhấp biểu tượng tam giác nhỏ ở góc trên bên phải để chạy mã; nhấn phím tắt <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>N</kbd> (trên macOS là <kbd>Control</kbd>+<kbd>Option</kbd>+<kbd>N</kbd>) cũng có hiệu quả tương tự.
 
 ???+ warning "Cảnh báo"
-    Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; hãy tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
+    Nếu sau khi cài VS Code và Code Runner mà mã vẫn không chạy được, rất có thể hệ thống chưa cài môi trường chạy C/C++; nên tham khảo [trang Hello, World!](../../lang/helloworld.md) để cài đặt.
 
     Nhớ chọn tùy chọn `Run In Terminal` (`chạy trong trình dòng lệnh`) trong phần cài đặt, như hình: ![](./images/vscode-7.png)
 
@@ -52,7 +52,7 @@ Trong VS Code, mở kho tiện ích mở rộng, nhập `C++` hoặc `@category:
 ![](./images/vscode-2.png)
 
 ???+ warning "Cảnh báo"
-    Trước khi cấu hình, hãy đảm bảo hệ thống đã cài G++ hoặc Clang và đã thêm vào biến môi trường `PATH`. Hãy dùng CMD hoặc PowerShell làm trình dòng lệnh tích hợp, không dùng Git Bash.
+    Trước khi cấu hình, cần bảo đảm hệ thống đã cài G++ hoặc Clang và đã thêm vào biến môi trường `PATH`. Nên dùng CMD hoặc PowerShell làm trình dòng lệnh tích hợp, không dùng Git Bash.
 
 ### Cấu hình trình gỡ lỗi GDB/LLDB
 
@@ -68,13 +68,13 @@ Sau khi hoàn tất, VS Code sẽ tự động hoàn thành thao tác khởi t�
 
 #### LLDB
 
-Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang phát hành của dự án này[^ref2], hãy cài đặt từ trang tiện ích mở rộng của VS Code.
+Nếu cần dùng LLDB, cần cài một tiện ích mở rộng khác[^ref1]: [CodeLLDB](https://github.com/vadimcn/vscode-lldb/). Sau khi tải tệp `.vsix` từ trang phát hành của dự án này[^ref2], cài đặt từ trang tiện ích mở rộng của VS Code.
 
 ![](images/vscode-9.png)
 
 Trước hết làm theo quy trình cấu hình GDB ở trên một lần, rồi xóa `.vscode/launch.json`, nhấn <kbd>F5</kbd>, chọn `LLDB`, sau đó đổi `${workspaceFolder}/<executable file>` trong `launch.json` thành `${fileDirname}/${fileBasenameNoExtension}` là được.
 
-Đến đây, cấu hình LLDB đã hoàn tất. Nhấn <kbd>F5</kbd> lần nữa là có thể thấy thông tin gỡ lỗi ở phía dưới phần mềm.
+Đến đây, cấu hình LLDB đã hoàn tất. Nhấn <kbd>F5</kbd> lần nữa, thông tin gỡ lỗi sẽ xuất hiện ở phía dưới phần mềm.
 
 Nếu sau này muốn dùng VS Code để biên dịch và gỡ lỗi mã, toàn bộ mã nguồn cần được lưu trong thư mục này. Nếu muốn biên dịch và gỡ lỗi mã nằm trong thư mục khác, cần thực hiện lại các bước trên (hoặc sao chép thư mục con `.vscode` trong thư mục cũ sang thư mục mới).
 
@@ -88,14 +88,14 @@ Nhấn <kbd>F5</kbd> để vào chế độ gỡ lỗi. Phía trên trình soạ
 
 ![](images/vscode-6.png)
 
-Nếu trình soạn thảo không tự động chuyển tới, hãy nhấp biểu tượng `Debug` (`Gỡ lỗi`) trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó có thể thấy giá trị biến ở bên trái.
+Nếu trình soạn thảo không tự động chuyển tới, nhấp biểu tượng `Debug` (`Gỡ lỗi`) trên thanh công cụ bên trái để vào cửa sổ gỡ lỗi; khi đó giá trị biến sẽ xuất hiện ở bên trái.
 
-Trong `Watch` (`Theo dõi`), bạn có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
+Trong `Watch` (`Theo dõi`), có thể nhập biểu thức; mỗi lần thực hiện thao tác như `next` hoặc `step`, biểu thức sẽ được tính lại và hiển thị.
 
-Trong `Call Stack` (`Ngăn xếp lời gọi`), bạn có thể thấy khung ngăn xếp của hàm hiện tại.
+Trong `Call Stack` (`Ngăn xếp lời gọi`), khung ngăn xếp của hàm hiện tại sẽ được hiển thị.
 
 ???+ note "Mẹo"
-    Bạn có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.
+    Có thể tham khảo [tài liệu chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb.html/Arrays.html) để xem nội dung của một đoạn trong mảng.
 
 Trong chế độ gỡ lỗi, trình soạn thảo sẽ dùng nền màu vàng để hiển thị dòng mã sẽ được thực thi tiếp theo.
 
@@ -103,7 +103,7 @@ Trong chế độ gỡ lỗi, trình soạn thảo sẽ dùng nền màu vàng �
 
 Dùng để điều chỉnh hoàn thành thông minh của VS Code.
 
-Nếu bạn dùng trình biên dịch Clang, trong `IntelliSense Mode` (`Chế độ IntelliSense`) hãy chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, bạn sẽ gặp lỗi `IntelliSense mode msvc-x64 is incompatible with compiler path.` (`Chế độ IntelliSense msvc-x64 không tương thích với đường dẫn trình biên dịch.`)
+Nếu dùng trình biên dịch Clang, trong `IntelliSense Mode` (`Chế độ IntelliSense`) chọn `clang-x64` thay vì `msvc-x64` mặc định; nếu dùng trình biên dịch G++, chọn `gcc-x64` để dùng tự động hoàn thành và các chức năng tương tự. Nếu không, sẽ gặp lỗi `IntelliSense mode msvc-x64 is incompatible with compiler path.` (`Chế độ IntelliSense msvc-x64 không tương thích với đường dẫn trình biên dịch.`)
 
 ![](images/vscode-4.png)
 
@@ -118,7 +118,7 @@ Theo phần giới thiệu của LLVM, clangd là một phần hiện thực Lan
 
 Nói đơn giản, clangd là phần triển khai Language Server Protocol của Clang. Nó cung cấp một số tính năng thông minh như lập chỉ mục toàn dự án, nhảy tới mã, đổi tên biến, hoàn thành mã nhanh hơn, gợi ý thông tin, định dạng mã, v.v.; đồng thời có thể phối hợp với các trình soạn thảo như Vim, Emacs, VS Code thông qua LSP. Dù định nghĩa chính thức nói clangd là phần triển khai LSP, chức năng của clangd gần với máy chủ ngôn ngữ hơn là chỉ bản thân giao thức.
 
-Tiện ích mở rộng C/C++ của VS Code cũng có các chức năng như tự động hoàn thành, nhưng về độ dễ đọc và độ chính xác của thông tin gợi ý thì kém hơn clangd một chút. Vì vậy đôi khi ta dùng clangd thay cho tiện ích mở rộng C/C++ để triển khai các chức năng như tự động hoàn thành mã.
+Tiện ích mở rộng C/C++ của VS Code cũng có các chức năng như tự động hoàn thành, nhưng về độ dễ đọc và độ chính xác của thông tin gợi ý thì kém hơn clangd một chút. Vì vậy đôi khi clangd được dùng thay cho tiện ích mở rộng C/C++ để triển khai các chức năng như tự động hoàn thành mã.
 
 ### Cài đặt
 
@@ -130,7 +130,7 @@ Mở kho tiện ích mở rộng của VS Code, nhập `clangd` vào thanh tìm 
 
 ![](images/vscode-8.png)
 
-Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, hãy nhấp `Disable Intellisense` (`Tắt IntelliSense`), tải lại không gian làm việc, rồi bạn có thể dùng các chức năng như tự động hoàn thành của clangd.
+Nếu phía dưới hiện hộp thoại clangd yêu cầu tắt IntelliSense, nhấp `Disable Intellisense` (`Tắt IntelliSense`), tải lại không gian làm việc, rồi có thể dùng các chức năng như tự động hoàn thành của clangd.
 
 ## Chỉnh sửa
 
@@ -175,7 +175,7 @@ Nhấn <kbd>Ctrl</kbd>+<kbd>F2</kbd> để đồng thời sửa tất cả kết
 
 ![](images/vscode-13.gif)
 
-Chú ý lúc này ở góc trên bên phải sẽ có một thanh công cụ, có thể bật/tắt phân biệt hoa thường, khớp cả từ, v.v. khi tìm kết quả khớp.
+Lưu ý rằng lúc này ở góc trên bên phải sẽ có một thanh công cụ, có thể bật/tắt phân biệt hoa thường, khớp cả từ, v.v. khi tìm kết quả khớp.
 
 ## Tài liệu tham khảo và chú thích
 

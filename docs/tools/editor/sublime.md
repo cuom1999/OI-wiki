@@ -51,7 +51,7 @@ Vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`), trong phần thi�
 Nên chọn phông chữ đơn cách có hỗ trợ Unicode và dấu tiếng Việt đầy đủ, chẳng hạn Cascadia Mono, Consolas, JetBrains Mono hoặc Noto Sans Mono.
 
 ???+ warning "Cảnh báo"
-    Chú ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập phần bổ trợ) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc phần bổ trợ) cập nhật, thiết lập mặc định sẽ bị đặt lại.
+    Lưu ý: dù có thể sửa, không nên sửa bất kỳ thiết lập nào (kể cả thiết lập phần bổ trợ) trong phần thiết lập mặc định bên trái. Đây là cách không được khuyến nghị, vì khi phần mềm (hoặc phần bổ trợ) cập nhật, thiết lập mặc định sẽ bị đặt lại.
 
 ### Cài phần bổ trợ và giao diện
 
@@ -183,7 +183,7 @@ Ví dụ, nếu muốn đổi phím biên dịch từ <kbd>Ctrl</kbd>+<kbd>B</kb
 
 #### Thiết lập phần bổ trợ
 
-Thiết lập của phần bổ trợ có thể tìm trong `Preferences->Package Settings->tên phần bổ trợ` (`Tùy chọn -> Thiết lập gói -> tên phần bổ trợ`); khi sửa, chú ý không sửa thiết lập mặc định.
+Thiết lập của phần bổ trợ có thể tìm trong `Preferences->Package Settings->tên phần bổ trợ` (`Tùy chọn -> Thiết lập gói -> tên phần bổ trợ`); khi sửa, lưu ý không sửa thiết lập mặc định.
 
 Ví dụ, dưới đây là một số thiết lập của BracketHighlighter, chỉnh trong `Preferences->Package Settings->BracketHighlighter->Bracket Settings` (`Tùy chọn -> Thiết lập gói -> BracketHighlighter -> Thiết lập ngoặc`):
 
@@ -229,7 +229,7 @@ Các tệp bên trong có hậu tố `.sublime-package`; thực chất đây là
 
 Ví dụ, nếu muốn sửa hoàn thành tự động, có thể mở các tệp `\Snippets\*.sublime-snippet` trong gói `\Packages\C++` ở **thư mục cài đặt** của ST để sửa. Nếu muốn **thêm** hoàn thành tự động, có thể cài C++ Snippets rồi sửa hoặc thêm tệp trong đó (hoặc tạo một phần bổ trợ mới, nhưng không được thêm trực tiếp vào gói C++ có sẵn, nếu không ST sẽ không nhận diện). Khi lưu bất kỳ sửa đổi nào, **bắt buộc** phải đóng ST và nên sao lưu trước, nếu không có thể mất tệp.
 
-Dĩ nhiên, mọi phần thêm mới đều có thể đặt dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
+Mọi phần thêm mới đều có thể đặt dưới `\Packages\User\` trong thư mục dữ liệu; cách này luôn được hỗ trợ.
 
 Ví dụ, một đoạn mẫu tệp có thể viết như sau:
 
@@ -315,7 +315,7 @@ ST có chức năng hoàn thành phong phú. Các mục hoàn thành có thể d
 
 Hoàn thành bằng đoạn mẫu thường có một số khối có thể chỉnh sửa. Sau khi hoàn thành, ST sẽ tự chọn phần cần thay thế; nếu là hoàn thành phức tạp như `for` có nhiều khối chỉnh sửa, sau khi sửa xong một khối thì nhấn lại <kbd>Tab</kbd> để sang khối tiếp theo. Khi đang ở trong khối chỉnh sửa mà muốn kích hoạt hoàn thành, cần dùng <kbd>Enter</kbd> (trong ST4 vẫn có thể tiếp tục dùng <kbd>Tab</kbd>).
 
-Nếu không có hoàn thành tự động, hãy sửa như sau:
+Nếu không có hoàn thành tự động, sửa như sau:
 
 1.  Kiểm tra xem đã chuyển ngôn ngữ chưa; tệp mới của ST mặc định là Plain Text.
 
@@ -437,7 +437,7 @@ Vào `Tools->Build System->New Build System...` (`Công cụ -> Hệ thống bi�
 "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
 ```
 
-Sau khi lưu, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> để chuyển hệ thống biên dịch là có thể dùng. Cấu hình ở đây là biên dịch rồi chạy trong CMD bên ngoài.
+Sau khi lưu, nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> để chuyển hệ thống biên dịch là có thể dùng. Cấu hình này sẽ biên dịch rồi chạy trong CMD bên ngoài.
 
 Tệp đã lưu nằm tại `\Packages\User\tên_hệ_thống_biên_dịch.sublime-build` dưới thư mục dữ liệu và có thể sửa nhiều lần.
 
@@ -448,7 +448,7 @@ Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biê
 Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trình. Bộ đếm thời gian này tính từ lúc nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> đến khi toàn bộ lệnh CMD kết thúc, nghĩa là bao gồm cả thời gian biên dịch, thời gian nhập liệu, và nếu chạy trong CMD bên ngoài thì còn gồm cả thời gian mở/đóng CMD.
 
 ???+ warning "Cảnh báo"
-    Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, hãy dùng đầu vào từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
+    Cửa sổ này không thể nhập <kbd>F6</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Nếu chương trình cần đọc đến cuối tệp, nên dùng đầu vào từ tệp hoặc cấu hình chạy trong CMD bên ngoài.
 
 ### Gỡ lỗi
 

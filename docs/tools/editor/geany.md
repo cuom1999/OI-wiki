@@ -33,13 +33,13 @@ Xem [Download | Geany](https://geany.org/download/)
 
 Chuyển trong *Document -> Set Filetype* (*Tài liệu -> Đặt loại tệp*).
 
-Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File* (*Tài liệu -> Đặt loại tệp -> Ngôn ngữ lập trình -> Tệp nguồn C++*), bạn sẽ thấy tệp đã được chuyển sang tô sáng cú pháp của ngôn ngữ C++.
+Ví dụ với ngôn ngữ C++, nhấp *Document -> Set Filetype -> Programming Languages -> C++ Source File* (*Tài liệu -> Đặt loại tệp -> Ngôn ngữ lập trình -> Tệp nguồn C++*) để chuyển tệp sang tô sáng cú pháp của ngôn ngữ C++.
 
 <span id="đặt-template-tệp"></span>
 
 ### Đặt mẫu tệp
 
-Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp đặt trong đó sẽ trở thành mẫu tệp. Sau khi mở lại Geany, bạn có thể tìm thấy chúng trong *File -> New (with Template)* (*Tệp -> Mới (với mẫu)*).
+Tạo thư mục `templates/files` trong thư mục cấu hình; các tệp đặt trong đó sẽ trở thành mẫu tệp. Sau khi mở lại Geany, có thể tìm thấy chúng trong *File -> New (with Template)* (*Tệp -> Mới (với mẫu)*).
 
 Thư mục cấu hình có thể được tìm thấy qua dòng thứ hai và thứ ba trong *Help -> Debug Messages* (*Trợ giúp -> Thông báo gỡ lỗi*).
 

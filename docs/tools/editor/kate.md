@@ -2,11 +2,11 @@ author: CoelacanthusHex
 
 ## Giới thiệu phần mềm
 
-Kate là một trình soạn thảo văn bản đa nền tảng với nhiều chức năng. Kate còn đi kèm nhiều phần bổ trợ, bao gồm trình dòng lệnh nhúng để bạn khởi động lệnh trực tiếp từ Kate, phần bổ trợ tìm kiếm và thay thế mạnh, cùng phần bổ trợ xem trước có thể hiển thị tệp MD, HTML, thậm chí SVG. Kate hỗ trợ khôi phục dữ liệu khi hệ thống gặp sự cố thông qua tệp hoán đổi, tự động hoàn thành kèm gợi ý tham số, đồng thời hỗ trợ [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) để có khả năng hoàn thành mã mạnh hơn.
+Kate là một trình soạn thảo văn bản đa nền tảng với nhiều chức năng. Kate còn đi kèm nhiều phần bổ trợ, bao gồm trình dòng lệnh nhúng để khởi động lệnh trực tiếp từ Kate, phần bổ trợ tìm kiếm và thay thế mạnh, cùng phần bổ trợ xem trước có thể hiển thị tệp MD, HTML, thậm chí SVG. Kate hỗ trợ khôi phục dữ liệu khi hệ thống gặp sự cố thông qua tệp hoán đổi, tự động hoàn thành kèm gợi ý tham số, đồng thời hỗ trợ [LSP (Language Server Protocol)](https://microsoft.github.io/language-server-protocol/) để có khả năng hoàn thành mã mạnh hơn.
 
 ## Tải xuống và cài đặt
 
-Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang tải xuống](https://kate-editor.org/get-it/). Sau đó, cài đặt theo hệ thống bạn dùng và cách cài đặt bạn thích.
+Có thể mở [trang chủ Kate](https://kate-editor.org/), rồi vào [trang tải xuống](https://kate-editor.org/get-it/). Sau đó, cài đặt theo hệ điều hành và cách cài đặt phù hợp.
 
 ## Cách dùng và chức năng
 
@@ -20,12 +20,12 @@ Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ. Nói chung, K
 
 #### Tự viết tệp tô sáng cú pháp
 
-Dù Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ, vẫn khó tránh khỏi có ngôn ngữ chưa được bao phủ. Khi đó, bạn có thể tự viết tệp tô sáng cú pháp.
+Dù Kate hỗ trợ tô sáng cú pháp cho hơn ba trăm ngôn ngữ, vẫn khó tránh khỏi có ngôn ngữ chưa được bao phủ. Khi đó, có thể tự viết tệp tô sáng cú pháp.
 Các tệp đi kèm Kate nằm tại [Syntax Highlighting Powered By KSyntaxHighlighting Framework](https://kate-editor.org/syntax/); cú pháp có thể tham khảo [Working with Syntax Highlighting](https://docs.kde.org/trunk5/en/kate/katepart/highlight.html); tệp viết xong đặt theo hướng dẫn trong [Syntax definition files](https://github.com/KDE/syntax-highlighting#syntax-definition-files). [CoelacanthusHex/dotfiles@80a913c/pam\_env.xml](https://github.com/CoelacanthusHex/dotfiles/blob/80a913cc5b90d7878eb0ed77b8df2d9b97926272/kate/.local/share/katepart5/syntax/pam_env.xml) là một tệp cấu hình do tác giả viết, có thể dùng để tham khảo.
 
 ### Chuyển ngôn ngữ
 
-Nhấp `Settings`/`Setting` ("Thiết lập"/"Cài đặt") trên thanh công cụ phía trên, rồi nhấp `Configure Language` ("Cấu hình ngôn ngữ"), sau đó chọn ngôn ngữ. Chú ý rằng có thể chọn ngôn ngữ dự phòng.
+Nhấp `Settings`/`Setting` ("Thiết lập"/"Cài đặt") trên thanh công cụ phía trên, rồi nhấp `Configure Language` ("Cấu hình ngôn ngữ"), sau đó chọn ngôn ngữ. Lưu ý rằng có thể chọn ngôn ngữ dự phòng.
 
 ### Mã hóa và ký tự cuối dòng
 
@@ -118,10 +118,10 @@ Mục cấu hình này nằm tại `Settings` -> `Configure Kate` -> `LSP Client
 
 ### Trình dòng lệnh tích hợp
 
-???+ note "Chú ý"
+???+ note "Lưu ý"
     Trình dòng lệnh tích hợp phụ thuộc vào Konsole[^ref1] của KDE, còn Konsole là gói chỉ có trên \*nix. Nói cách khác, tính năng này không dùng được trên Windows.
 
-Nhấn <kbd>F4</kbd> để mở hoặc đóng trình dòng lệnh tích hợp; cũng có thể nhấp nút `Terminal` (`Thiết bị đầu cuối`) ở góc dưới bên trái để mở. Thư mục hiện tại của trình dòng lệnh tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp bạn chọn. Các phần còn lại không khác nhiều so với trình dòng lệnh thông thường.
+Nhấn <kbd>F4</kbd> để mở hoặc đóng trình dòng lệnh tích hợp; cũng có thể nhấp nút `Terminal` (`Thiết bị đầu cuối`) ở góc dưới bên trái để mở. Thư mục hiện tại của trình dòng lệnh tích hợp sẽ tự động đồng bộ với tệp hiện tại và thay đổi theo tệp được chọn. Các phần còn lại không khác nhiều so với trình dòng lệnh thông thường.
 
 ### Công cụ ngoài
 
@@ -137,7 +137,7 @@ Sau khi vào trang cấu hình, nhấp `Add` -> `Add from Defaults` (`Thêm -> T
 
 ##### Thêm bằng cấu hình tự viết
 
-Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` (`Thêm -> Thêm công cụ`) ở góc dưới bên trái, rồi điền theo hướng dẫn. Có thể tham khảo [tài liệu này (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) để viết cấu hình công cụ ngoài của riêng mình. Chú ý có thể nhấp biểu tượng dưới đây để xem các biến có thể dùng.
+Sau khi vào trang cấu hình, nhấp `Add` -> `Add Tool` (`Thêm -> Thêm công cụ`) ở góc dưới bên trái, rồi điền theo hướng dẫn. Có thể tham khảo [tài liệu này (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html) để viết cấu hình công cụ ngoài tùy chỉnh. Lưu ý rằng có thể nhấp biểu tượng dưới đây để xem các biến có thể dùng.
 
 ![](images/kate-3-var.png)
 
@@ -150,7 +150,7 @@ Trên hệ thống \*nix, mở bất kỳ tệp nguồn C++ nào, tìm `Compile 
 ???+ note "Dành cho người dùng Windows"
     Theo mặc định, vì tệp thực thi của công cụ này là `sh`, công cụ này không dùng được trên Windows. Tuy nhiên, người dùng có thể chỉnh sửa công cụ này để dùng được trên Windows.
 
-    Để chỉnh sửa, trước hết hãy đảm bảo hệ thống của bạn có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` (`Biên dịch và chạy cpp`) từ công cụ mặc định, đổi `Executable` (`Tệp thực thi`) từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
+    Để chỉnh sửa, trước hết cần bảo đảm hệ thống có một trình biên dịch C++ dùng được. Sau đó thêm `Compile Run cpp` (`Biên dịch và chạy cpp`) từ công cụ mặc định, đổi `Executable` (`Tệp thực thi`) từ `sh` thành `powershell`, và đổi tham số thành `-ExecutionPolicy Bypass -Command "g++ %{Document:FilePath} -o %{Document:FileBaseName}.exe;./%{Document:FileBaseName}.exe"` [^note1][^note2].
 
 ##### Git Blame (truy vết dòng Git)
 
@@ -178,6 +178,6 @@ Sau khi bật tính năng này, Kate sẽ hiển thị bằng chữ nhạt ở c
 
 [^ref1]: Trong [mô tả gói này trên Arch Linux](https://archlinux.org/packages/extra/x86_64/kate/), gói có phụ thuộc tùy chọn là `konsole`, được mô tả là `open a terminal in Kate` (mở trình dòng lệnh trong Kate).
 
-[^note1]: Nếu `g++` không nằm trong biến môi trường `PATH`, hãy đổi nó thành đường dẫn tuyệt đối của trình biên dịch.
+[^note1]: Nếu `g++` không nằm trong biến môi trường `PATH`, đổi nó thành đường dẫn tuyệt đối của trình biên dịch.
 
-[^note2]: Hoặc nếu dùng Clang, hãy đổi `g++` thành `clang++`.
+[^note2]: Hoặc nếu dùng Clang, đổi `g++` thành `clang++`.
