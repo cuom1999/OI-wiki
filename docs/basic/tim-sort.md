@@ -4,7 +4,7 @@ Trang này giới thiệu Tim sort (Timsort), một thuật toán sắp xếp la
 
 Timsort do Tim Peters, một lập trình viên lõi của Python, thiết kế năm 2002 và
 được áp dụng trong ngôn ngữ Python. Thuật toán này kết hợp ưu điểm của sắp xếp
-chèn và sắp xếp trộn, đồng thời tận dụng rất tốt mức độ có thứ tự sẵn trong dữ
+chèn và sắp xếp trộn, đồng thời tận dụng hiệu quả mức độ có thứ tự sẵn trong dữ
 liệu; vì vậy nó đặc biệt phù hợp với các tập dữ liệu chứa nhiều dãy con đã có
 thứ tự một phần. Từ Python 2.3, Timsort được chọn làm thuật toán sắp xếp mặc
 định của thư viện chuẩn Python, và cũng được dùng rộng rãi trong các môi trường
@@ -84,7 +84,7 @@ sau:
     hẹp phạm vi cần trộn và chỉ xử lý các phần tử cần di chuyển.
 
 2.  **Bộ đệm tạm thời**: Các thuật toán hợp nhất tại chỗ truyền thống có hiệu
-    quả thấp và cần di chuyển rất nhiều phần tử. Để giảm chi phí này, Timsort
+    quả thấp và cần di chuyển nhiều phần tử. Để giảm chi phí này, Timsort
     dùng một bộ đệm tạm thời, sao chép đoạn ngắn hơn vào bộ đệm, rồi dần sao
     chép các phần tử từ bộ đệm trở lại mảng ban đầu.
 
@@ -124,8 +124,8 @@ phần tử. Các bước cụ thể như sau:
     thuật toán dùng tìm kiếm nhị phân trong khoảng đó để định vị chính xác vị
     trí của phần tử mục tiêu.
 
-Bằng cách này, Timsort có thể bỏ qua rất nhiều phép so sánh không cần thiết,
-nhanh chóng xử lý các phần tử liên tiếp nhỏ hơn (hoặc lớn hơn) trong một phía
+Bằng cách này, Timsort có thể bỏ qua nhiều phép so sánh không cần thiết,
+xử lý nhanh các phần tử liên tiếp nhỏ hơn (hoặc lớn hơn) trong một phía
 và chuyển hàng loạt chúng vào kết quả hợp nhất.
 
 Tuy nhiên, chế độ galloping không phải lúc nào cũng hiệu quả hơn. Với một số
@@ -151,10 +151,10 @@ dữ liệu ngẫu nhiên, thuật toán sẽ dần nghiêng về trộn thông 
 Độ phức tạp thời gian của Timsort phụ thuộc vào mức độ có thứ tự của dữ liệu:
 
 -   **Trường hợp tốt nhất**: $O(n)$
-    -   Khi dữ liệu đã có thứ tự hoặc gần như có thứ tự, các đoạn mà thuật toán
+    -   Khi dữ liệu đã có thứ tự hoặc gần có thứ tự, các đoạn mà thuật toán
         nhận diện được có độ dài gần $n$, số lần trộn giảm, và độ phức tạp tiến
         gần $O(n)$.
--   **Trường hợp xấu nhất**: $O(n \log n)$
+-   **Trường hợp bất lợi nhất**: $O(n \log n)$
     -   Khi dữ liệu hoàn toàn không có thứ tự, độ dài của mỗi đoạn đều gần $1$,
         do đó cần $O(\log n)$ lần trộn; mỗi lần trộn có chi phí $O(n)$, nên
         tổng độ phức tạp là $O(n \log n)$.
@@ -168,7 +168,7 @@ dữ liệu ngẫu nhiên, thuật toán sẽ dần nghiêng về trộn thông 
         phức tạp là $O(n)$.
 
 -   **Trộn đoạn**:
-    -   Tổng số thao tác trộn liên quan đến tổng số đoạn. Trong trường hợp xấu
+    -   Tổng số thao tác trộn liên quan đến tổng số đoạn. Trong trường hợp bất lợi
         nhất, số đoạn là `n / MIN_RUN`; vì `MIN_RUN` là hằng số, số đoạn có thể
         xem là $O(n)$.
     -   Với $O(n)$ đoạn, số lần trộn cần thực hiện là $O(\log n)$; mỗi thao tác

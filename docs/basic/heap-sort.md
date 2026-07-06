@@ -41,7 +41,7 @@ Tương tự sắp xếp chọn, do có thao tác hoán đổi vị trí, đây 
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất, trung bình và xấu nhất của sắp xếp vun đống đều là $O(n\log n)$.
+Độ phức tạp thời gian trong trường hợp tốt nhất, trung bình và bất lợi nhất của sắp xếp vun đống đều là $O(n\log n)$.
 
 ### Độ phức tạp bộ nhớ
 
