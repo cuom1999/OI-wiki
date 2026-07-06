@@ -343,7 +343,7 @@ trợ truy cập ngẫu nhiên với độ phức tạp hằng số.
 
 ### Cách dùng `deque`
 
-Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết có thể xem trong
+Phần này giới thiệu các cách dùng thường gặp; nội dung chi tiết xem trong
 [tài liệu C++](https://en.cppreference.com/w/cpp/container/deque). Các hàm bộ
 lặp của `deque` tương tự `vector`, nên không trình bày chi tiết.
 
@@ -377,8 +377,9 @@ deque<int> v5(std::move(v2));
 
 #### Truy cập phần tử
 
-Giống `vector`, nhưng không thể truy cập trực tiếp bộ nhớ nội bộ. Tốc độ truy
-cập phần tử thực tế được giải thích trong phần chi tiết cài đặt.
+Các cách truy cập phần tử của `deque` gần giống `vector`, nhưng `deque` không
+cung cấp con trỏ đến vùng bộ nhớ nội bộ như `vector::data()`. Tốc độ truy cập
+phần tử thực tế được giải thích trong phần chi tiết cài đặt.
 
 -   `at()` trả về tham chiếu đến phần tử tại vị trí chỉ định trong bộ chứa, có
     kiểm tra vượt biên, **độ phức tạp hằng số**.
@@ -391,24 +392,25 @@ cập phần tử thực tế được giải thích trong phần chi tiết cà
 
 #### Bộ lặp
 
-Giống `vector`.
+Các hàm bộ lặp của `deque` giống `vector`.
 
 <span id="độ-dài-deque"></span>
 
 #### Độ dài
 
-Giống `vector`, nhưng không có hàm `reserve()` và `capacity()`. (Vẫn có hàm
-`shrink_to_fit()`.)
+Các hàm liên quan đến độ dài của `deque` giống `vector`, nhưng `deque` không có
+`reserve()` và `capacity()`. Nó vẫn có `shrink_to_fit()`.
 
 <span id="thêm-xóa-và-sửa-phần-tử-deque"></span>
 
 #### Thêm, xóa và sửa phần tử
 
-Giống `vector`, và có thêm các hàm chèn phần tử vào đầu hàng đợi.
+Các thao tác thêm, xóa và sửa phần tử của `deque` gần giống `vector`, đồng thời
+có thêm các hàm thao tác ở đầu hàng đợi.
 
 -   `clear()` xóa tất cả phần tử.
 -   `insert()` hỗ trợ chèn một hoặc nhiều phần tử tại một vị trí bộ lặp. **Độ
-    phức tạp tuyến tính theo khoảng cách nhỏ hơn giữa `pos` và hai đầu**.
+    phức tạp tuyến tính theo khoảng cách nhỏ hơn từ `pos` đến hai đầu**.
 -   `erase()` xóa một phần tử tại bộ lặp hoặc một đoạn phần tử, trả về bộ lặp sau
     phần tử cuối cùng bị xóa. Độ phức tạp giống `insert`.
 -   `push_front()` chèn một phần tử vào đầu, **độ phức tạp hằng số**.
@@ -422,11 +424,11 @@ Giống `vector`, và có thêm các hàm chèn phần tử vào đầu hàng đ
 
 ### Chi tiết cài đặt của `deque`
 
-Bên dưới `deque` thường được cài đặt bằng nhiều vùng đệm không liên tục, nhưng
+Bên dưới, `deque` thường được cài đặt bằng nhiều vùng đệm không liên tục, nhưng
 bộ nhớ bên trong mỗi vùng đệm là liên tục. Mỗi vùng đệm còn ghi lại con trỏ đầu
 và con trỏ cuối để đánh dấu đoạn dữ liệu hợp lệ. Khi một vùng đệm đầy, `deque`
-sẽ cấp phát vùng đệm mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Có thể
-tham khảo giải thích chi tiết hơn tại bài
+sẽ cấp phát vùng đệm mới ở phía trước hoặc phía sau để lưu thêm dữ liệu. Xem
+giải thích chi tiết hơn tại bài
 [nguyên lý cài đặt `deque` trong "STL source code analysis"](https://www.cnblogs.com/q1076452761/p/16903229.html).
 
 ## `list`
