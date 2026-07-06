@@ -1,8 +1,8 @@
 Đôi khi cần thực hiện cùng một nhóm câu lệnh nhiều lần. Để không phải viết lại
 cùng một đoạn mã, có thể dùng vòng lặp.
 
-Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy, nên
-không thể sao chép mã nguồn nhiều lần bằng tay mà cần dùng vòng lặp.
+Trong nhiều bài toán, số lần lặp chỉ được biết khi chương trình đang chạy. Vì
+vậy, không thể sao chép mã nguồn nhiều lần bằng tay mà cần dùng vòng lặp.
 
 ## Câu lệnh for
 
@@ -43,7 +43,7 @@ Thứ tự thực thi:
 
 ![](images/while-loop.svg)
 
-Ví dụ, kiểm chứng giả thuyết $3x+1$:
+Ví dụ, mô phỏng quá trình trong giả thuyết $3x+1$:
 
 ```cpp
 while (x > 1) {
@@ -81,7 +81,7 @@ do {
 } while (next_permutation(a + 1, a + n + 1));
 ```
 
-## Mối liên hệ giữa ba loại câu lệnh
+## Quan hệ giữa ba loại câu lệnh
 
 ```cpp
 // Câu lệnh for
@@ -100,8 +100,8 @@ while (statement2) {
 ```
 
 Nếu trong `statement4` không có câu lệnh `continue` (xem phần sau), hai cách
-viết này là tương đương. Tuy nhiên, dạng `while` này ít khi được dùng để thay
-hẳn cho `for`.
+viết này là tương đương. Tuy nhiên, dạng `while` này ít khi được dùng để thay thế
+hoàn toàn cho `for`.
 
 ```cpp
 // Câu lệnh while
@@ -134,13 +134,13 @@ for (;;) {
 Hai cách viết này đều tạo vòng lặp vô hạn. Có thể dùng `break` (xem phần sau) để
 thoát khỏi vòng lặp.
 
-Ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình huống, nhưng nói
+Ba loại câu lệnh lặp có thể thay thế lẫn nhau trong nhiều tình huống, nhưng nhìn
 chung nên chọn theo các nguyên tắc sau:
 
 1.  Khi quá trình lặp có biến đếm hoặc bước cập nhật xác định, ví dụ liệt kê một
-    dãy chỉ số, dùng câu lệnh `for`;
+    dãy chỉ số, dùng câu lệnh `for`.
 2.  Khi chủ yếu chỉ biết điều kiện tiếp tục hoặc điều kiện kết thúc vòng lặp,
-    dùng câu lệnh `while`;
+    dùng câu lệnh `while`.
 3.  Khi cần thực thi thân vòng lặp trước rồi mới kiểm tra điều kiện, dùng câu
     lệnh `do...while`. Loại này thường ít dùng hơn; một tình huống phổ biến là
     xử lý dữ liệu nhập vào rồi mới quyết định có tiếp tục hay không.
@@ -183,7 +183,7 @@ for (int i = 1; i <= n; ++i) {
   }
 }
 
-// Logic dễ theo dõi hơn, các tầng dấu ngoặc nhọn đơn giản và dễ hiểu
+// Logic dễ theo dõi hơn, các tầng dấu ngoặc nhọn gọn và dễ hiểu
 
 for (int i = 1; i <= n; ++i) {
   if (i == x) continue;
@@ -201,7 +201,7 @@ for (int i = l; i <= r && i % 10 != 0; ++i) {
   // Xử lý i
 }
 
-// Câu lệnh for dùng để liệt kê, break dùng để chỉ điểm dừng
+// Câu lệnh for dùng để liệt kê, break dùng để chỉ điểm dừng.
 
 for (int i = l; i <= r; ++i) {
   if (i % 10 == 0) break;
@@ -218,7 +218,7 @@ while (statement3) {
   statement1;
 }
 
-// Không có câu lệnh lặp lại, thứ tự tự nhiên
+// Không có câu lệnh lặp lại, thứ tự tự nhiên hơn
 
 while (1) {
   statement1;
