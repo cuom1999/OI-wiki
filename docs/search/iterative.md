@@ -10,8 +10,8 @@ tìm kiếm sẽ mang theo một độ sâu $d$; khi $d$ đạt đến độ sâ
 Nó thường dùng để tìm lời giải tối ưu. Nếu một lần tìm kiếm không tìm được lời
 giải hợp lệ, tăng độ sâu đã đặt thêm một và tìm lại từ gốc.
 
-Nếu mục tiêu là tìm lời giải tối ưu, tại sao không dùng BFS? Ta biết nền tảng
-của BFS là hàng đợi, mà hàng đợi có độ phức tạp không gian lớn. Khi số trạng
+Nếu mục tiêu là tìm lời giải tối ưu, tại sao không dùng BFS? Nền tảng
+của BFS là hàng đợi, và hàng đợi có độ phức tạp không gian lớn. Khi số trạng
 thái nhiều hoặc mỗi trạng thái lớn, BFS dùng hàng đợi sẽ bộc lộ nhược điểm. Trên
 thực tế, tìm kiếm sâu dần giống như dùng DFS để hiện thực BFS, nên độ phức tạp
 không gian tương đối nhỏ.
@@ -41,7 +41,7 @@ kiếm.
     trả về
     ```
 
-## Chú ý
+## Lưu ý
 
 Trong đa số bài toán, tìm kiếm theo chiều rộng vẫn tiện hơn và dễ đánh dấu trạng
 thái trùng hơn. Khi phát hiện tìm kiếm theo chiều rộng không tốt về không gian,

@@ -34,8 +34,8 @@ $h\equiv 0$, thuật toán A\* suy biến thành [thuật toán Dijkstra](./../g
 khi $h\equiv 0$ và mọi cạnh có trọng số $1$, nó chính là [BFS](./bfs.md).
 
 Giả sử đồ thị không có cạnh trọng số âm. Nếu ước lượng $h(x)$ không bao giờ vượt
-quá khoảng cách thực $h^*(x)$, tức $0\le h\le h^*$, thì thuật toán A\* chắc chắn
-tìm được lời giải tối ưu. Hàm ước lượng $h(x)$ thỏa điều kiện này được gọi là
+quá khoảng cách thực $h^*(x)$, tức $0\le h\le h^*$, thì thuật toán A\* tìm được
+lời giải tối ưu. Hàm ước lượng $h(x)$ thỏa điều kiện này được gọi là
 **chấp nhận được** (admissible). Theo thảo luận phía trên, $h$ càng gần $h^*$
 thì thuật toán A\* tương ứng càng hiệu quả. Nói chung, trong trường hợp xấu
 nhất, thuật toán sẽ đi qua mọi nút thỏa mãn
@@ -71,7 +71,7 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
     Trên bàn cờ còn một ô trống, biểu diễn bằng $0$. Các quân cờ xung quanh ô
     trống có thể di chuyển vào ô trống, khi đó vị trí cũ sẽ trở thành ô trống.
     Cho một bố cục ban đầu và bố cục mục tiêu (để đơn giản, đặt trạng thái mục
-    tiêu như sau), hãy tìm cách di chuyển ít bước nhất từ bố cục ban đầu đến bố
+    tiêu như sau), cần tìm cách di chuyển ít bước nhất từ bố cục ban đầu đến bố
     cục mục tiêu.
     
     $$
@@ -83,7 +83,7 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
     $$
 
 ??? note "Ý tưởng giải"
-    Có thể định nghĩa hàm $h$ là số quân cờ không nằm đúng vị trí. Dễ thấy $h$
+    Có thể định nghĩa hàm $h$ là số quân cờ không nằm đúng vị trí. Khi đó $h$
     vừa chấp nhận được, vừa nhất quán. Bài này có thể dùng thuật toán A\* để
     giải.
 
@@ -96,5 +96,5 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
 
 -   [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
 
-[^note1]: $h$ ở đây nghĩa là heuristic. Xem thêm [Heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
+[^note1]: $h$ trong ngữ cảnh này nghĩa là heuristic. Xem thêm [Heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
     và phần Bounded relaxation của [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).

@@ -21,7 +21,7 @@ Vì khái niệm này khá trừu tượng, phần này dùng ví dụ để gi�
     trị lớn nhất, đồng thời tổng trọng lượng không vượt quá dung tích ba lô.
 
 ??? note "Ý tưởng giải"
-    Ta viết một hàm đánh giá $f$ để cắt bỏ mọi nhánh $0$ vô ích (tức cắt bỏ rất
+    Viết một hàm đánh giá $f$ để cắt bỏ mọi nhánh $0$ vô ích (tức cắt bỏ rất
     nhiều nhánh không chọn không cần thiết).
     
     Quá trình chạy của hàm đánh giá $f$ như sau:
