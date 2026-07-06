@@ -14,7 +14,8 @@ Trên một máy tính thông thường, các phép cộng, trừ, nhân, chia, 
 (biến thuộc kiểu dữ liệu cơ bản; các phần sau cũng hiểu tương tự), gán giá trị
 cho biến, v.v. đều có thể xem là phép toán cơ bản.
 
-Việc đếm hoặc ước lượng số phép toán cơ bản có thể dùng làm chỉ số đánh giá thời gian chạy của thuật toán.
+Việc đếm hoặc ước lượng số phép toán cơ bản có thể dùng làm chỉ số đánh giá thời
+gian chạy của thuật toán.
 
 ## Độ phức tạp thời gian
 
@@ -30,8 +31,8 @@ tạp thời gian**.
 
 ### Dẫn nhập
 
-Các lý do chính khiến cần xét xu hướng thời gian chạy thay đổi theo kích thước dữ
-liệu là:
+Các lý do chính khiến cần xét xu hướng thời gian chạy thay đổi theo kích thước
+dữ liệu là:
 
 1.  Máy tính hiện đại có thể xử lý hàng trăm triệu phép toán cơ bản, thậm chí
     nhiều hơn, trong mỗi giây, nên kích thước dữ liệu cần xử lý thường lớn. Nếu
@@ -68,10 +69,10 @@ gian một cách hình thức.
 
 ## Định nghĩa ký hiệu tiệm cận
 
-Ký hiệu tiệm cận là cách mô tả chuẩn cho bậc của hàm. Về cơ bản, ký hiệu tiệm cận
-bỏ qua các hạng tử tăng chậm hơn trong một hàm và hệ số của từng hạng tử (trong
-phân tích độ phức tạp thời gian, hệ số thường được gọi là "hằng số"), đồng thời
-giữ lại những phần quan trọng thể hiện xu hướng tăng trưởng của hàm đó.
+Ký hiệu tiệm cận là cách mô tả chuẩn cho bậc của hàm. Về cơ bản, ký hiệu này bỏ
+qua các hạng tử tăng chậm hơn trong một hàm và hệ số của từng hạng tử (trong
+phân tích độ phức tạp thời gian, hệ số thường được gọi là "hằng số"). Phần còn
+lại thể hiện xu hướng tăng trưởng quan trọng của hàm đó.
 
 Cách nhớ đơn giản là: có dấu bằng (không nghiêm ngặt) thì dùng chữ hoa, không có
 dấu bằng (nghiêm ngặt) thì dùng chữ thường; bằng nhau là $\Theta$, nhỏ hơn là
@@ -93,7 +94,7 @@ Nói cách khác, nếu $f(n)=\Theta(g(n))$, có thể tìm được hai số d�
 sao cho $f(n)$ nằm giữa $c_1\cdot g(n)$ và $c_2\cdot g(n)$.
 
 Ví dụ, $3n^2+5n-3=\Theta(n^2)$, trong đó $c_1, c_2, n_0$ có thể lần lượt là
-$2, 4, 100$. Với
+$2, 4, 100$. Với biểu thức
 $n\sqrt {n} + n{\log^5 n} + m{\log m} +nm=\Theta(n\sqrt {n} + m{\log m} + nm)$,
 $c_1, c_2, n_0$ có thể lần lượt là $1, 2, 100$.
 
@@ -130,9 +131,10 @@ $0\le c\cdot g(n)\le f(n)$.
 Nếu ký hiệu $O$ tương đương với dấu nhỏ hơn hoặc bằng, thì ký hiệu $o$ tương
 đương với dấu nhỏ hơn.
 
-Ký hiệu $o$ nhỏ được dùng nhiều trong giải tích toán học. Khai triển Taylor của
-hàm tại một điểm có phần dư Peano; ký hiệu $o$ nhỏ biểu diễn quan hệ nhỏ hơn
-nghiêm ngặt, từ đó phục vụ phân tích tiệm cận của các vô cùng bé tương đương.
+Ký hiệu $o$ nhỏ được dùng nhiều trong giải tích toán học. Chẳng hạn, khai triển
+Taylor của hàm tại một điểm có phần dư Peano; ký hiệu $o$ nhỏ biểu diễn quan hệ
+nhỏ hơn nghiêm ngặt, từ đó phục vụ phân tích tiệm cận của các vô cùng bé tương
+đương.
 
 $f(n)=o(g(n))$ khi và chỉ khi với mọi số dương $c$ cho trước, $\exists n_0$ sao
 cho $\forall n \ge n_0,0\le f(n)< c\cdot g(n)$.
@@ -259,7 +261,15 @@ $$
 Khi đó
 
 $$
-T(n) = \begin{cases}\Theta(n^{\log_b a}) & f(n) = O(n^{\log_b (a)-\epsilon}),\epsilon > 0 \\ \Theta(f(n)) & f(n) = \Omega(n^{\log_b (a)+\epsilon}),\epsilon\ge 0\\ \Theta(n^{\log_b a}\log^{k+1} n) & f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0 \end{cases}
+T(n) =
+\begin{cases}
+\Theta(n^{\log_b a}) &
+  f(n) = O(n^{\log_b (a)-\epsilon}),\epsilon > 0 \\
+\Theta(f(n)) &
+  f(n) = \Omega(n^{\log_b (a)+\epsilon}),\epsilon\ge 0 \\
+\Theta(n^{\log_b a}\log^{k+1} n) &
+  f(n)=\Theta(n^{\log_b a}\log^k n),k\ge 0
+\end{cases}
 $$
 
 Trường hợp thứ hai còn phải thỏa điều kiện chính quy (regularity condition), tức
