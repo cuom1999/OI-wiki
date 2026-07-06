@@ -14,22 +14,35 @@ Mặc định gói này sẽ cài kèm LLVM/Clang. Nếu không muốn cài, cũ
 
 ![](./images/compiler1.png)
 
-Sau khi tải xong, giải nén vào một vị trí nào đó trên máy tính. Trong hướng dẫn này, gói được giải nén vào thư mục gốc của ổ C. Tên thư mục tốt nhất không nên chứa ký tự ngoài tiếng Anh hoặc dấu cách, nếu không về sau có thể phát sinh một số vấn đề.
+Sau khi tải xong, giải nén vào một vị trí nào đó trên máy tính. Trong hướng dẫn
+này, gói được giải nén vào thư mục gốc của ổ C. Tên thư mục nên tránh ký tự ngoài
+tiếng Anh hoặc dấu cách, nếu không về sau có thể phát sinh một số vấn đề.
 
 ![](./images/compiler2.png)
 
-Tiếp theo, cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi trường hệ thống. Sau khi cấu hình xong, khi biên dịch sẽ không cần chỉ định đường dẫn trình biên dịch, nên việc sử dụng thuận tiện hơn. Ở trên, MinGW được giải nén vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là `C:\mingw64\bin`.
+Tiếp theo, cần thêm thư mục chứa tệp thực thi của trình biên dịch vào biến môi
+trường hệ thống. Sau khi cấu hình xong, khi biên dịch sẽ không cần chỉ định
+đường dẫn trình biên dịch, nên việc sử dụng thuận tiện hơn. Ở trên, MinGW được
+giải nén vào thư mục `C:\mingw64`, nên thư mục chứa tệp thực thi là
+`C:\mingw64\bin`.
 
-Nhấn tổ hợp phím logo Windows + R, nhập `rundll32.exe sysdm.cpl,EditEnvironmentVariables`, mở cửa sổ thiết lập biến môi trường hệ thống, chọn biến tên `Path` trong mục "Biến hệ thống", rồi nhấn nút "Chỉnh sửa":
+Nhấn tổ hợp phím logo Windows + R, nhập
+`rundll32.exe sysdm.cpl,EditEnvironmentVariables`, mở cửa sổ thiết lập biến môi
+trường hệ thống, chọn biến tên `Path` trong mục "Biến hệ thống", rồi nhấn nút
+"Chỉnh sửa":
 
 ![](./images/compiler3.png)
 
-Trong cửa sổ chỉnh sửa, nhấn nút "Mới" ở bên phải, tạo một mục mới cho biến `Path`, rồi điền thư mục chứa tệp thực thi đã ghi lại ở trên (trong hướng dẫn này là `C:\mingw64\bin`).
+Trong cửa sổ chỉnh sửa, nhấn nút "Mới" ở bên phải, tạo một mục mới cho biến
+`Path`, rồi điền thư mục chứa tệp thực thi đã ghi lại ở trên (trong hướng dẫn này
+là `C:\mingw64\bin`).
 
 ![](./images/compiler4.png)
 
 ??? note "Lưu ý cho một số hệ thống phiên bản cũ"
-    Một số hệ thống phiên bản cũ chỉ có thể sửa giá trị văn bản của biến bằng tay. Khi đó cần chèn một **dấu chấm phẩy ASCII** vào cuối giá trị của biến, rồi dán thư mục chứa tệp thực thi vào sau dấu chấm phẩy đó, như hình minh họa:
+    Một số hệ thống phiên bản cũ chỉ có thể sửa giá trị văn bản của biến bằng
+    tay. Khi đó cần chèn một **dấu chấm phẩy ASCII** vào cuối giá trị của biến,
+    rồi dán thư mục chứa tệp thực thi vào sau dấu chấm phẩy đó, như hình minh họa:
     
     ![](./images/compiler5.png)
 
@@ -120,7 +133,9 @@ Truy cập trang tải xuống của [LLVM](https://github.com/llvm/llvm-project
 
 Nếu chất lượng mạng không tốt, có thể chọn một máy chủ bản sao GitHub Releases đáng tin cậy hoặc tải lại từ mạng ổn định hơn.
 
-Mở tệp `.exe`; khi cài đặt, chọn "Add LLVM to system PATH for current user" ("Thêm LLVM vào PATH hệ thống cho người dùng hiện tại"), sau đó nhấn "Next" ("Tiếp theo") cho đến khi cài đặt hoàn tất.
+Mở tệp `.exe`; khi cài đặt, chọn "Add LLVM to system PATH for current user"
+("Thêm LLVM vào PATH hệ thống cho người dùng hiện tại"), sau đó nhấn "Next"
+("Tiếp theo") cho đến khi cài đặt hoàn tất.
 
 Mở trình dòng lệnh, nhập `clang++ --version` rồi nhấn Enter. Nếu xuất hiện nội dung tương tự:
 

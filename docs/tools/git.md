@@ -1,7 +1,10 @@
 ???+ note "Ghi chú"
-    Trang này tập trung giới thiệu hệ thống quản lý phiên bản Git. Nội dung liên quan đến GitHub xem tại [GitHub Docs](https://docs.github.com/en) và [Cách tham gia - OI Wiki](../intro/htc.md).
+    Trang này tập trung giới thiệu hệ thống quản lý phiên bản Git. Nội dung liên
+    quan đến GitHub xem tại [GitHub Docs](https://docs.github.com/en) và [Cách
+    tham gia - OI Wiki](../intro/htc.md).
 
-Git hiện là một trong những hệ thống quản lý phiên bản được sử dụng rộng rãi nhất. **OI Wiki** cũng dùng Git làm hệ thống quản lý phiên bản.
+Git hiện là một trong những hệ thống quản lý phiên bản được sử dụng rộng rãi
+nhất. **OI Wiki** cũng dùng Git làm hệ thống quản lý phiên bản.
 
 ## Cài đặt
 
@@ -9,18 +12,24 @@ Xem [Git - Downloads](https://git-scm.com/downloads).
 
 ## Cấu hình
 
-Dựa trên phạm vi áp dụng của tệp cấu hình, Git chia tệp cấu hình thành nhiều cấp. Hai cấp thường dùng hơn là[^note1]:
+Dựa trên phạm vi áp dụng của tệp cấu hình, Git chia tệp cấu hình thành nhiều cấp.
+Hai cấp thường dùng hơn là[^note1]:
 
-1.  Tệp cấu hình toàn cục áp dụng cho người dùng hiện tại; khi người dùng này thao tác với mọi kho trên hệ thống, Git đều tra cứu tệp cấu hình này.
+1.  Tệp cấu hình toàn cục áp dụng cho người dùng hiện tại; khi người dùng này
+    thao tác với mọi kho trên hệ thống, Git đều tra cứu tệp cấu hình này.
 2.  Tệp cấu hình áp dụng cho kho hiện tại.
 
-Khi nhiều tệp cấu hình cùng thiết lập một tùy chọn, thiết lập cục bộ sẽ tự động ghi đè thiết lập toàn cục. Vì vậy, nếu cần áp dụng một thiết lập riêng cho một kho nào đó, chỉ cần sửa thiết lập riêng trong kho đó, không ảnh hưởng đến thiết lập toàn cục.
+Khi nhiều tệp cấu hình cùng thiết lập một tùy chọn, thiết lập cục bộ sẽ tự động
+ghi đè thiết lập toàn cục. Vì vậy, nếu cần áp dụng một thiết lập riêng cho một
+kho nào đó, chỉ cần sửa thiết lập riêng trong kho đó, không ảnh hưởng đến thiết
+lập toàn cục.
 
 Muốn sửa tệp cấu hình cần dùng lệnh `git config`.
 
 ### Thiết lập thông tin người dùng
 
-Sau khi cài Git, việc đầu tiên là thiết lập tên người dùng và email. Các thông tin này sẽ được dùng trong mỗi lần commit.
+Sau khi cài Git, việc đầu tiên là thiết lập tên người dùng và email. Các thông
+tin này sẽ được dùng trong mỗi lần commit.
 
 ```console
 $ git config --global user.name "OI Wiki"
@@ -28,9 +37,12 @@ $ git config --global user.email oi-wiki@example.com
 ```
 
 ???+ note "Ghi chú"
-    Tên người dùng và email trong ví dụ này chỉ dùng để minh họa. Khi cấu hình theo nội dung trang này, cần đổi thành thông tin của chính mình.
+    Tên người dùng và email trong ví dụ này chỉ dùng để minh họa. Khi cấu hình
+    theo nội dung trang này, cần đổi thành thông tin của chính mình.
 
-Tùy chọn `--global` nghĩa là sửa cấu hình toàn cục, tức thiết lập này có hiệu lực với mọi kho của người dùng hiện tại. Nếu không thêm tùy chọn `--global`, Git sẽ mặc định sửa tệp cấu hình của kho hiện tại.
+Tùy chọn `--global` nghĩa là sửa cấu hình toàn cục, tức thiết lập này có hiệu lực
+với mọi kho của người dùng hiện tại. Nếu không thêm tùy chọn `--global`, Git sẽ
+mặc định sửa tệp cấu hình của kho hiện tại.
 
 Nếu muốn sửa thiết lập riêng của một kho, chỉ cần chạy lệnh không có `--global` trong kho đó.
 
@@ -42,17 +54,20 @@ $ git config --global core.editor emacs
 
 Chạy lệnh trên có thể đổi trình soạn thảo thành [Emacs](./editor/emacs.md).
 
-Trên Windows, trình soạn thảo mặc định của Git có thể được chọn khi cài Git. Nếu sau đó muốn sửa, nhập lệnh như trên trong Git Bash, thay tên trình soạn thảo bằng đường dẫn tuyệt đối của trình soạn thảo rồi chạy lệnh.
+Trên Windows, trình soạn thảo mặc định của Git có thể được chọn khi cài Git. Nếu
+sau đó muốn sửa, nhập lệnh như trên trong Git Bash, thay tên trình soạn thảo bằng
+đường dẫn tuyệt đối của trình soạn thảo rồi chạy lệnh.
 
 ### Hiển thị cấu hình
 
-Có thể dùng `git config -l` để liệt kê tất cả tham số cấu hình hiện đã đặt. Dùng `git config --global -l` để liệt kê toàn bộ cấu hình toàn cục.
+Có thể dùng `git config -l` để liệt kê tất cả tham số cấu hình hiện đã đặt. Dùng
+`git config --global -l` để liệt kê toàn bộ cấu hình toàn cục.
 
 ## Thao tác cơ bản với kho
 
 ### Tạo kho Git mới
 
-Tạo một kho Git mới rất đơn giản: chỉ cần nhập lệnh sau trong thư mục muốn tạo kho:
+Để tạo một kho Git mới, nhập lệnh sau trong thư mục muốn tạo kho:
 
 ```console
 $ git init
@@ -60,18 +75,24 @@ $ git init
 
 Git sẽ tạo một thư mục `.git` mới trong thư mục hiện tại; vậy là kho đã được tạo xong.
 
-Nếu muốn clone một kho về máy tính của mình (ví dụ sao chép mã nguồn **OI Wiki** về cục bộ để chỉnh sửa), chỉ cần dùng lệnh `git clone`.
+Nếu muốn clone một kho về máy tính của mình (ví dụ sao chép mã nguồn **OI Wiki**
+về cục bộ để chỉnh sửa), chỉ cần dùng lệnh `git clone`.
 
 ```console
 $ git clone https://github.com/OI-wiki/OI-wiki
 ```
 
 ???+ note "Liên kết của kho từ xa"
-    Liên kết kho trong ví dụ này là liên kết HTTP(S), tức dùng phương thức HTTP(S) để kết nối đến kho từ xa.
+    Liên kết kho trong ví dụ này là liên kết HTTP(S), tức dùng phương thức
+    HTTP(S) để kết nối đến kho từ xa.
 
-    Thực tế còn nhiều cách khác để kết nối đến kho từ xa. Trong đó, dùng ssh để kết nối kho từ xa thuận tiện và an toàn hơn; phần "Quản lý kho từ xa" sẽ giới thiệu ngắn gọn cách dùng ssh để kết nối kho từ xa.
+    Thực tế còn nhiều cách khác để kết nối đến kho từ xa. Trong đó, dùng ssh để
+    kết nối kho từ xa thuận tiện và an toàn hơn; phần "Quản lý kho từ xa" sẽ
+    giới thiệu ngắn gọn cách dùng ssh để kết nối kho từ xa.
 
-Như vậy, nội dung của kho được clone sẽ được lưu vào một thư mục mới cùng tên với kho dưới thư mục hiện tại. Trong ví dụ này, dưới thư mục hiện tại sẽ xuất hiện một thư mục mới tên `OI-wiki`.
+Như vậy, nội dung của kho được clone sẽ được lưu vào một thư mục mới cùng tên với
+kho dưới thư mục hiện tại. Trong ví dụ này, dưới thư mục hiện tại sẽ xuất hiện
+một thư mục mới tên `OI-wiki`.
 
 ### Theo dõi tệp
 
@@ -79,7 +100,8 @@ Sau khi sửa một số tệp trong kho, các thay đổi này cần được �
 
 Dùng lệnh `git status` để xem trạng thái tệp trong kho hiện tại.
 
-Ví dụ, sau khi thêm một tệp `README.md` trong một kho rỗng, chạy `git status` sẽ có kết quả như sau:
+Ví dụ, sau khi thêm một tệp `README.md` trong một kho rỗng, chạy `git status` sẽ
+có kết quả như sau:
 
 <!-- scripts.linter.preprocess.fix_details off -->
 
@@ -147,19 +169,30 @@ Changes not staged for commit:
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Lúc này `README.md` đồng thời có thay đổi đã nằm trong vùng staging và thay đổi chưa nằm trong vùng staging. Việc "đã stage hay chưa" áp dụng cho từng thay đổi, không phải cho cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không được commit.
+Lúc này `README.md` đồng thời có thay đổi đã nằm trong vùng staging và thay đổi
+chưa nằm trong vùng staging. Việc "đã stage hay chưa" áp dụng cho từng thay đổi,
+không phải cho cả tệp. Vì vậy, thay đổi trước đó của `README.md` đã được đưa vào
+vùng staging, còn thay đổi sau thì chưa. Nếu lúc này chạy `git commit`, chỉ các
+thay đổi đã nằm trong vùng staging được commit, còn thay đổi chưa stage sẽ không
+được commit.
 
-Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa stage vào vùng staging.
+Git đã đưa ra gợi ý: chạy `git add README.md` là có thể đưa các thay đổi chưa
+stage vào vùng staging.
 
 ???+ note "Đưa tất cả thay đổi vào vùng staging cùng lúc"
     Lệnh `git add` sẽ đưa các thay đổi của tệp chỉ định vào vùng staging.
 
-    Trong đa số trường hợp, người dùng muốn đưa tất cả thay đổi vào vùng staging cùng lúc. Khi đó có thể dùng lệnh `git add -A`. Lệnh này sẽ đưa mọi thay đổi (bao gồm tệp chưa được theo dõi, không bao gồm tệp bị bỏ qua) vào vùng staging.
+    Trong đa số trường hợp, cần đưa tất cả thay đổi vào vùng staging cùng lúc.
+    Khi đó có thể dùng lệnh `git add -A`. Lệnh này sẽ đưa mọi thay đổi (bao gồm
+    tệp chưa được theo dõi, không bao gồm tệp bị bỏ qua) vào vùng staging.
 
-    Nếu chỉ cần cập nhật các tệp đã được theo dõi, không đưa tệp chưa được theo dõi vào vùng staging, có thể dùng `git add -u`.
+    Nếu chỉ cần cập nhật các tệp đã được theo dõi, không đưa tệp chưa được theo
+    dõi vào vùng staging, có thể dùng `git add -u`.
 
 ???+ note "Bỏ qua tệp"
-    Đôi khi không muốn để Git theo dõi một số tệp (như tệp thực thi, v.v.). Khi đó có thể tạo tệp `.gitignore` ở thư mục gốc của kho và ghi các tệp muốn bỏ qua vào đó. Git sẽ không theo dõi các tệp này.
+    Đôi khi không muốn để Git theo dõi một số tệp (như tệp thực thi, v.v.). Khi
+    đó có thể tạo tệp `.gitignore` ở thư mục gốc của kho và ghi các tệp muốn bỏ
+    qua vào đó. Git sẽ không theo dõi các tệp này.
 
     Ví dụ, `*.exe` sẽ tự động bỏ qua mọi tệp có phần mở rộng `.exe` trong kho.
 
@@ -175,16 +208,25 @@ $ git commit # Sau đó trình soạn thảo sẽ bật lên; cần viết thôn
 
 Bây giờ lưu ý thông tin của commit này.
 
-`master` nghĩa là hiện đang ở nhánh `master` (vấn đề về nhánh sẽ được giới thiệu chi tiết bên dưới), `f992763` là một vài ký tự đầu của mã băm SHA-1 của commit này, phía sau là thông tin của commit.
+`master` nghĩa là hiện đang ở nhánh `master` (vấn đề về nhánh sẽ được giới thiệu
+chi tiết bên dưới), `f992763` là một vài ký tự đầu của mã băm SHA-1 của commit
+này, phía sau là thông tin của commit.
 
-Điểm cần đặc biệt lưu ý là mã băm SHA-1 trong dòng này: mỗi mã băm tương ứng với một ảnh chụp (snapshot) của kho tại một thời điểm nào đó. Nhờ đặc tính này, có thể truy cập ảnh chụp của kho ở một thời điểm trong lịch sử và sửa đổi trên ảnh chụp đó.
+Điểm cần đặc biệt lưu ý là mã băm SHA-1 trong dòng này: mỗi mã băm tương ứng với
+một ảnh chụp (snapshot) của kho tại một thời điểm nào đó. Nhờ đặc tính này, có
+thể truy cập ảnh chụp của kho ở một thời điểm trong lịch sử và sửa đổi trên ảnh
+chụp đó.
 
 Hai dòng tiếp theo mô tả chi tiết các thay đổi tệp liên quan đến lần cập nhật này.
 
 Ngoài ra, trong quá trình commit có thể dùng một vài tham số để đơn giản hóa:
 
--   `-a`: trước khi commit, đưa mọi thay đổi của các tệp đã được theo dõi vào vùng staging. Lưu ý rằng các tệp chưa được theo dõi (tệp mới tạo) sẽ không tự động được thêm vào vùng staging; cần dùng lệnh `git add` để thêm thủ công.
--   `-m`: phía sau tham số này là thông điệp commit, nghĩa là commit lần thay đổi này với thông điệp đó. Ví dụ `git commit -m "fix: typo"` sẽ tạo một commit có tiêu đề `fix: typo`.
+-   `-a`: trước khi commit, đưa mọi thay đổi của các tệp đã được theo dõi vào
+    vùng staging. Lưu ý rằng các tệp chưa được theo dõi (tệp mới tạo) sẽ không tự
+    động được thêm vào vùng staging; cần dùng lệnh `git add` để thêm thủ công.
+-   `-m`: phía sau tham số này là thông điệp commit, nghĩa là commit lần thay đổi
+    này với thông điệp đó. Ví dụ `git commit -m "fix: typo"` sẽ tạo một commit có
+    tiêu đề `fix: typo`.
 
 ### Xem lịch sử commit
 
@@ -477,32 +519,54 @@ $ git push <remote> <from>:<to> # Đẩy thay đổi của nhánh cục bộ <fr
 
 Tùy yêu cầu của kho từ xa, có thể phải nhập tên người dùng và mật khẩu của tài khoản kho từ xa.
 
-Lưu ý rằng để thay đổi cục bộ được đẩy thành công, phải thỏa mãn hai điều kiện: có quyền ghi vào kho (nhánh) này, và nhánh cục bộ mới hơn nhánh tương ứng trên kho từ xa (có thể hiểu là không có ai push trong khoảng thời gian sửa). Khi nhánh từ xa có thay đổi mới mà nhánh hiện tại chưa có, có thể chạy lệnh `git pull` để gộp rồi commit.
+Lưu ý rằng để thay đổi cục bộ được đẩy thành công, phải thỏa mãn hai điều kiện:
+có quyền ghi vào kho (nhánh) này, và nhánh cục bộ mới hơn nhánh tương ứng trên
+kho từ xa (có thể hiểu là không có ai push trong khoảng thời gian sửa). Khi nhánh
+từ xa có thay đổi mới mà nhánh hiện tại chưa có, có thể chạy lệnh `git pull` để
+gộp rồi commit.
 
-Nếu cần buộc đẩy thay đổi của nhánh cục bộ lên kho từ xa, có thể thêm tham số `-f`. Khi đó **lịch sử commit của kho từ xa sẽ bị lịch sử commit cục bộ ghi đè**, vì vậy cần dùng lệnh này thận trọng. Lựa chọn tốt hơn là dùng tham số `--force-with-lease`, tham số này chỉ ghi đè khi kho từ xa chưa cập nhật. Lưu ý rằng "cập nhật" trong ngữ cảnh này được tính so với lần fetch gần nhất; nếu dùng chức năng Auto Fetch do VS Code cung cấp, có thể không nhận ra đã có cập nhật, khiến `--force-with-lease` nguy hiểm chẳng khác gì `-f`.
+Nếu cần buộc đẩy thay đổi của nhánh cục bộ lên kho từ xa, có thể thêm tham số
+`-f`. Khi đó **lịch sử commit của kho từ xa sẽ bị lịch sử commit cục bộ ghi đè**,
+vì vậy cần dùng lệnh này thận trọng. Lựa chọn tốt hơn là dùng tham số
+`--force-with-lease`, tham số này chỉ ghi đè khi kho từ xa chưa cập nhật. Lưu ý
+rằng "cập nhật" trong ngữ cảnh này được tính so với lần fetch gần nhất; nếu dùng
+chức năng Auto Fetch do VS Code cung cấp, có thể không nhận ra đã có cập nhật,
+khiến `--force-with-lease` nguy hiểm chẳng khác gì `-f`.
 
 ### Theo dõi nhánh từ xa
 
-Bằng cách thiết lập một nhánh cục bộ theo dõi nhánh từ xa, có thể thuận tiện xem khác biệt giữa nhánh cục bộ và nhánh từ xa, đồng thời đơn giản hóa thao tác khi tương tác với nhánh từ xa.
+Bằng cách thiết lập một nhánh cục bộ theo dõi nhánh từ xa, có thể xem khác biệt
+giữa nhánh cục bộ và nhánh từ xa thuận tiện hơn, đồng thời đơn giản hóa thao tác
+khi tương tác với nhánh từ xa.
 
 Trước khi bắt đầu theo dõi, cần chạy `git fetch <remote-name>` để lấy thông tin kho từ xa về cục bộ.
 
-Tiếp theo chạy `git switch <remote-branch>`; Git sẽ tự động tạo một nhánh mới tên `<remote-branch>` ở cục bộ và thiết lập nhánh này tự động theo dõi nhánh từ xa tương ứng.
+Tiếp theo chạy `git switch <remote-branch>`; Git sẽ tự động tạo một nhánh mới tên
+`<remote-branch>` ở cục bộ và thiết lập nhánh này tự động theo dõi nhánh từ xa
+tương ứng.
 
 ???+ note "Ghi chú"
-    Lưu ý: chỉ khi cục bộ chưa tồn tại nhánh này và đúng một nhánh từ xa có tên khớp với nhánh đó, Git mới tự động tạo nhánh này và thiết lập nó theo dõi nhánh từ xa tương ứng.
+    Lưu ý: chỉ khi cục bộ chưa tồn tại nhánh này và đúng một nhánh từ xa có tên
+    khớp với nhánh đó, Git mới tự động tạo nhánh này và thiết lập nó theo dõi
+    nhánh từ xa tương ứng.
 
 Lúc này chạy lệnh `git status`, Git sẽ thông báo khác biệt giữa nhánh hiện tại và nhánh từ xa.
 
-Vì đã thiết lập nhánh từ xa mà nhánh cục bộ theo dõi, lệnh đẩy lên nhánh từ xa cũng được đơn giản hóa. Chỉ cần chạy lệnh `git push`, các thay đổi thực hiện trên nhánh cục bộ sẽ được đẩy lên nhánh từ xa mà nó theo dõi.
+Vì đã thiết lập nhánh từ xa mà nhánh cục bộ theo dõi, lệnh đẩy lên nhánh từ xa
+cũng được đơn giản hóa. Chỉ cần chạy lệnh `git push`, các thay đổi thực hiện trên
+nhánh cục bộ sẽ được đẩy lên nhánh từ xa mà nó theo dõi.
 
-Đối với nhánh cục bộ đã tồn tại, thiết lập nhánh theo dõi từ xa tương ứng cũng rất dễ. Chỉ cần chạy `git branch -u <remote-name>/<remote-branch>` dưới nhánh hiện tại, là có thể thiết lập nhánh cục bộ hiện tại theo dõi nhánh từ xa `<remote-name>/<remote-branch>`.
+Đối với nhánh cục bộ đã tồn tại, có thể thiết lập nhánh theo dõi từ xa tương ứng
+bằng cách chạy `git branch -u <remote-name>/<remote-branch>` dưới nhánh hiện tại.
+Lệnh này sẽ thiết lập nhánh cục bộ hiện tại theo dõi nhánh từ xa
+`<remote-name>/<remote-branch>`.
 
 ### Kết nối bằng ssh
 
 So với HTTP(S), dùng ssh để kết nối kho từ xa thuận tiện và an toàn hơn.
 
-Trước khi dùng ssh để kết nối kho từ xa, cần thêm khóa ssh ở cục bộ. Sau đó cần tải **khóa công khai** của khóa ssh đã thêm ở cục bộ lên tài khoản kho từ xa.
+Trước khi dùng ssh để kết nối kho từ xa, cần thêm khóa ssh ở cục bộ. Sau đó cần
+tải **khóa công khai** của khóa ssh đã thêm ở cục bộ lên tài khoản kho từ xa.
 
 Xét việc bài này chủ yếu là hướng dẫn dùng Git cho người đóng góp **OI Wiki**, phần này trực tiếp đưa [hướng dẫn do GitHub Docs cung cấp](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để người đọc tham khảo.
 
