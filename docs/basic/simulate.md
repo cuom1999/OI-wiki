@@ -2,25 +2,27 @@ Trang này giới thiệu ngắn gọn về thuật toán mô phỏng.
 
 ## Giới thiệu
 
-Mô phỏng là dùng máy tính để mô phỏng các thao tác mà đề bài yêu cầu.
+Mô phỏng là dùng chương trình để thực hiện đúng các thao tác mà đề bài mô tả.
 
-Các bài mô phỏng thường có đặc điểm là lượng mã lớn, nhiều thao tác và luồng xử
-lý phức tạp. Vì lượng mã lớn nên lỗi thường khó tìm; nếu viết sai trong phòng
-thi thì sẽ tốn nhiều thời gian.
+Các bài mô phỏng thường có lượng mã lớn, nhiều thao tác và luồng xử lý phức
+tạp. Vì vậy lỗi thường khó tìm; nếu viết sai trong phòng thi, việc sửa lỗi có
+thể tốn rất nhiều thời gian.
 
 ## Kỹ thuật
 
 Khi làm bài mô phỏng, các gợi ý sau giúp tăng tốc độ giải bài:
 
--   Trước khi bắt tay viết mã, nên ghi càng rõ càng tốt luồng xử lý cần cài đặt ra giấy nháp.
--   Trong mã, cố gắng mô-đun hóa từng phần thành hàm, struct hoặc class.
+-   Trước khi bắt tay viết mã, nên ghi luồng xử lý cần cài đặt ra giấy nháp
+    càng rõ càng tốt.
+-   Trong mã, cố gắng mô-đun hóa từng phần bằng hàm, struct hoặc class.
 -   Với những dữ liệu hoặc khái niệm xuất hiện nhiều lần, nên chuẩn hóa cách
     biểu diễn để dễ xử lý. Ví dụ, nếu đề bài cho `"YY-MM-DD giờ:phút"`, nên tách
-    việc xử lý này thành một hàm và chuyển thành giây; làm vậy sẽ giảm nhầm lẫn
-    giữa các khái niệm.
+    việc xử lý này thành một hàm riêng và chuyển thời điểm thành số giây; cách
+    làm đó giúp giảm nhầm lẫn giữa các khái niệm.
 -   Khi gỡ lỗi, nên gỡ lỗi theo từng khối. Lợi ích của việc mô-đun hóa là có thể
     kiểm tra riêng từng phần.
--   Khi viết mã, cần giữ mạch suy nghĩ mạch lạc; không nên nghĩ đến đâu viết đến đó, mà nên viết theo các bước đã ghi trên giấy.
+-   Khi viết mã, cần giữ mạch suy nghĩ mạch lạc. Không nên nghĩ đến đâu viết
+    đến đó; hãy bám theo các bước đã ghi trên giấy.
 
 Thực tế, các bước trên cũng hữu ích khi giải những dạng bài khác.
 
@@ -35,9 +37,9 @@ Thực tế, các bước trên cũng hữu ích khi giải những dạng bài 
     như nó đã ra khỏi miệng giếng.
 
 ??? note "Ý tưởng giải"
-    Dùng chương trình mô phỏng quá trình con sâu bò trong giếng. Một vòng lặp
-    lặp lại quá trình bò; khi độ cao đã bò được lớn hơn hoặc bằng độ sâu của
-    giếng thì thoát vòng lặp.
+    Dùng chương trình mô phỏng quá trình con sâu bò trong giếng. Một vòng lặp sẽ
+    lặp lại các bước bò lên rồi trượt xuống; khi độ cao đã bò được lớn hơn hoặc
+    bằng độ sâu của giếng thì thoát vòng lặp.
 
 ??? note "Mã tham khảo"
     === "C++"

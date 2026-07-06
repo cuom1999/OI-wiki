@@ -4,8 +4,8 @@ Trang này giới thiệu ngắn gọn về thuật toán liệt kê.
 
 ## Giới thiệu
 
-Liệt kê (enumeration) là một chiến lược giải bài toán bằng cách dựa trên kiến
-thức đã có để đoán đáp án.
+Liệt kê (enumeration) là một chiến lược giải bài toán bằng cách dựa trên thông
+tin đã biết để dự đoán đáp án.
 
 Ý tưởng của liệt kê là liên tục thử các khả năng: lần lượt xét từng phần tử
 trong tập ứng viên, rồi kiểm tra điều kiện của bài toán có được thỏa mãn hay
@@ -15,21 +15,24 @@ không.
 
 ### Xác định không gian nghiệm
 
-Xây dựng một mô hình toán học gọn gàng.
+Trước hết cần xây dựng một mô hình toán học rõ ràng.
 
 Khi liệt kê, cần xác định rõ các trường hợp có thể xảy ra và những yếu tố cần
 duyệt.
 
 ### Thu hẹp không gian liệt kê
 
-Phạm vi liệt kê là gì? Có cần duyệt toàn bộ không gian ứng viên hay không?
+Phạm vi cần liệt kê là gì? Có bắt buộc phải duyệt toàn bộ không gian ứng viên
+hay không?
 
 Khi giải bài toán bằng phương pháp liệt kê, cần cân nhắc kỹ hai câu hỏi này; nếu
 không sẽ phát sinh chi phí thời gian không cần thiết.
 
 ### Chọn thứ tự liệt kê phù hợp
 
-Cần quyết định theo yêu cầu của bài toán. Chẳng hạn nếu bài ví dụ yêu cầu số nguyên tố lớn nhất thỏa điều kiện, thì liệt kê từ lớn đến nhỏ sẽ phù hợp hơn.
+Cần quyết định thứ tự duyệt dựa trên yêu cầu của bài toán. Chẳng hạn, nếu đề
+bài yêu cầu tìm số nguyên tố lớn nhất thỏa điều kiện, liệt kê từ lớn đến nhỏ sẽ
+phù hợp hơn.
 
 ## Ví dụ
 
@@ -37,7 +40,8 @@ Sau đây là một ví dụ về cách dùng liệt kê để giải bài và t
 kê.
 
 ??? note "Đề bài"
-    Cho một mảng có tất cả phần tử đôi một khác nhau và đều khác $0$. Tìm số cặp số trong mảng có tổng bằng $0$.
+    Cho một mảng có các phần tử đôi một khác nhau và đều khác $0$. Hãy tìm số
+    cặp số trong mảng có tổng bằng $0$.
 
 ??? note "Ý tưởng giải"
     Có thể viết ngay đoạn mã liệt kê hai số.
@@ -64,12 +68,13 @@ kê.
             if (a[i] + a[j] == 0) ++ans;
         ```
     
-    Tiếp theo xét cách thu hẹp phạm vi liệt kê. Vì đề bài không yêu cầu cặp số
-    có thứ tự, đáp án bằng hai lần số trường hợp có thứ tự: nếu `(a, b)` là một
-    đáp án, thì `(b, a)` cũng là một đáp án. Với tình huống này, có thể tự đặt
-    thêm một thứ tự khi đếm, rồi cuối cùng nhân kết quả với $2$.
+    Tiếp theo, xét cách thu hẹp phạm vi liệt kê. Vì đề bài không yêu cầu cặp số
+    có thứ tự, mỗi cặp hợp lệ sẽ tương ứng với hai cách sắp thứ tự: nếu `(a, b)`
+    là một đáp án, thì `(b, a)` cũng là một đáp án. Trong tình huống này, ta có
+    thể tự đặt thêm một thứ tự khi đếm, rồi cuối cùng nhân kết quả với $2$.
     
-    Chẳng hạn, yêu cầu số thứ nhất phải xuất hiện ở vị trí phía sau. Đoạn mã như sau:
+    Chẳng hạn, chỉ đếm những cặp mà số thứ nhất xuất hiện ở vị trí phía sau.
+    Đoạn mã như sau:
     
     === "C++"
         ```cpp
@@ -96,15 +101,16 @@ kê.
         ans *= 2;
         ```
     
-    Phạm vi liệt kê của $j$ đã được giảm, nhờ đó giảm chi phí thời gian của đoạn mã này.
+    Phạm vi liệt kê của $j$ đã được giảm, nhờ đó chi phí thời gian của đoạn mã
+    cũng giảm theo.
     
     Vẫn có thể cải thiện thêm.
     
-    Có nhất thiết phải liệt kê cả hai số không? Sau khi liệt kê một số, điều
-    kiện của bài toán đã xác định số còn lại cần có. Nếu có cách kiểm tra số đó
-    có tồn tại hay không, có thể bỏ qua vòng liệt kê thứ hai. Tiến thêm một
-    bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các số
-    đã duyệt.
+    Có nhất thiết phải liệt kê cả hai số không? Sau khi chọn một số, điều kiện
+    của bài toán đã xác định số còn lại cần tìm. Nếu có cách kiểm tra nhanh số
+    đó có tồn tại hay không, ta có thể bỏ qua vòng liệt kê thứ hai. Tiến thêm
+    một bước, khi phạm vi dữ liệu cho phép, có thể dùng thùng[^1] để ghi lại các
+    số đã duyệt.
     
     === "C++"
         ```cpp
@@ -143,4 +149,6 @@ kê.
 
 ## Chú thích
 
-[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#thuật-toán-offline) và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure) (tiếng Anh)
+[^1]: [Sắp xếp thùng](../basic/bucket-sort.md), [Bài toán phần tử chính](../misc/main-element.md#thuật-toán-offline)
+    và [phần giải thích về cấu trúc dữ liệu thùng trên Stack Overflow](https://stackoverflow.com/questions/42399355/what-is-a-bucket-or-double-bucket-data-structure)
+    (tiếng Anh)
