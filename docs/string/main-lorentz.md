@@ -41,14 +41,14 @@ Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ
 Một vài kết luận thú vị về số lượng xâu lặp kép:
 
 -   Nếu xâu gốc của một xâu lặp kép không phải là xâu lặp kép, xâu lặp kép đó được gọi là **xâu lặp kép nguyên thủy (primitive repetition)**. Có thể chứng minh số xâu lặp kép nguyên thủy nhiều nhất là $O(n \log n)$.
--   Nếu nén một xâu lặp kép bằng bộ ba Crochemore $(i, p, r)$, trong đó $i$ là vị trí bắt đầu của xâu lặp kép, $p$ là độ dài của một chu kỳ nào đó của xâu lặp kép (chú ý không phải độ dài xâu gốc), và $r$ là số lần chu kỳ đó lặp lại, thì mọi xâu lặp kép của một xâu có thể được biểu diễn bằng $O(n \log n)$ bộ ba Crochemore.
+-   Nếu nén một xâu lặp kép bằng bộ ba Crochemore $(i, p, r)$, trong đó $i$ là vị trí bắt đầu của xâu lặp kép, $p$ là độ dài của một chu kỳ nào đó của xâu lặp kép (khác với độ dài xâu gốc), và $r$ là số lần chu kỳ đó lặp lại, thì mọi xâu lặp kép của một xâu có thể được biểu diễn bằng $O(n \log n)$ bộ ba Crochemore.
 -   Xâu Fibonacci được định nghĩa như sau:
 
 $$
 \begin{align} t_0 &= a, \\ t_1 &= b, \\ t_i &= t_{i-1} + t_{i-2}, \end{align}
 $$
 
-Có thể thấy xâu Fibonacci có tính chu kỳ rất cao. Với xâu Fibonacci $t_i$ có độ dài $f_i$, ngay cả khi nén bằng bộ ba Crochemore, vẫn có $O(f_i \log f_i)$ bộ ba. Số xâu lặp kép nguyên thủy của nó cũng là $O(f_i \log f_i)$.
+Xâu Fibonacci có tính chu kỳ rất cao. Với xâu Fibonacci $t_i$ có độ dài $f_i$, ngay cả khi nén bằng bộ ba Crochemore, vẫn có $O(f_i \log f_i)$ bộ ba. Số xâu lặp kép nguyên thủy của nó cũng là $O(f_i \log f_i)$.
 
 <span id="thuật-toán-main-lorentz"></span>
 ## Thuật toán Main-Lorentz
@@ -76,7 +76,7 @@ Tiếp theo sẽ xem cách tìm tất cả xâu lặp kép lệch trái.
 
 Gọi độ dài của một xâu lặp kép lệch trái là $2l$. Xét ký tự đầu tiên của xâu lặp kép này rơi vào $v$ (tức $s[|u|]$); ký tự đó nhất định bằng một ký tự $u[\textit{cntr}]$ nào đó trong $u$.
 
-Cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều kiện. Ví dụ, với xâu $\tt c \; \underset{\textit{cntr}}{a} \; c \; | \; a \; d \; a$ (dấu $\tt |$ dùng để phân tách trái/phải), nếu cố định $cntr = 1$, có thể thấy xâu lặp kép $\tt caca$ thỏa điều kiện.
+Cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều kiện. Ví dụ, với xâu $\tt c \; \underset{\textit{cntr}}{a} \; c \; | \; a \; d \; a$ (dấu $\tt |$ dùng để phân tách trái/phải), khi cố định $cntr = 1$, xâu lặp kép $\tt caca$ thỏa điều kiện.
 
 Khi cố định $\textit{cntr}$, giá trị của $l$ cũng được xác định. Nếu biết cách tìm mọi xâu lặp kép, có thể duyệt $\textit{cntr}$ từ $0$ đến $|u|-1$ và tìm tất cả xâu lặp kép thỏa điều kiện.
 
@@ -95,7 +95,7 @@ Tóm lại:
 
 -   Cố định một $\textit{cntr}$.
 -   Khi đó mọi xâu lặp kép cần tìm đều có độ dài $2l = 2(|u| - \textit{cntr})$. Vẫn có thể có nhiều xâu lặp kép thỏa điều kiện, phụ thuộc vào giá trị của $l_1$ và $l_2$.
--   Tính $k_1$, $k_2$ như đã nêu ở trên.
+-   Tính $k_1$, $k_2$ theo định nghĩa vừa nêu.
 -   Mọi xâu lặp kép thỏa điều kiện phải thỏa:
 
 $$
@@ -121,7 +121,7 @@ Duyệt $\textit{cntr}$ và dùng phương pháp tương tự để tìm các x�
 
 Thuật toán Main-Lorentz đưa ra tất cả xâu lặp kép dưới dạng bộ bốn $(\textit{cntr}, l, k_1, k_2)$. Nếu chỉ cần tính số lượng xâu lặp kép, hoặc chỉ cần tìm xâu lặp kép dài nhất, thông tin trong bộ bốn này là đủ. Theo [định lý chính](../basic/complexity.md#định-lý-chính-master-theorem), độ phức tạp thời gian của thuật toán Main-Lorentz là $O(n \log n)$.
 
-Chú ý rằng nếu muốn dùng các bộ bốn này để tìm mọi vị trí bắt đầu và kết thúc của xâu lặp kép, độ phức tạp thời gian trong trường hợp xấu nhất sẽ đạt $O(n^2)$. Chương trình dưới đây thực hiện điều đó, lưu mọi vị trí bắt đầu và kết thúc của xâu lặp kép vào `repetitions`.
+Nếu dùng các bộ bốn này để tìm mọi vị trí bắt đầu và kết thúc của xâu lặp kép, độ phức tạp thời gian trong trường hợp xấu nhất sẽ đạt $O(n^2)$. Chương trình dưới đây thực hiện điều đó, lưu mọi vị trí bắt đầu và kết thúc của xâu lặp kép vào `repetitions`.
 
 ```cpp
 vector<int> z_function(string const& s) {

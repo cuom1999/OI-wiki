@@ -10,13 +10,13 @@ author: Ir1d, sshwy, GavinZhengOI, Planet6174, ouuan, Marcythm, ylxmf2005, 0xis-
 
 ### Quy trình
 
-Nếu thử lần lượt xóa từng đỉnh rồi kiểm tra tính liên thông của đồ thị, độ phức tạp sẽ rất cao. Vì vậy, phần này giới thiệu một thuật toán thường dùng: Tarjan.
+Việc lần lượt xóa từng đỉnh rồi kiểm tra tính liên thông của đồ thị có độ phức tạp rất cao. Phần này giới thiệu một thuật toán thường dùng: Tarjan.
 
 Trước hết, xét đồ thị sau:
 
 ![](./images/cut1.svg)
 
-Có thể thấy đỉnh khớp là 2, và đồ thị này chỉ có đúng một đỉnh khớp đó.
+Đỉnh khớp trong đồ thị này là 2, đồng thời đó cũng là đỉnh khớp duy nhất.
 
 Đầu tiên, gán nhãn thời gian theo thứ tự DFS, tức thứ tự các đỉnh được thăm.
 
@@ -30,7 +30,7 @@ Ví dụ, `low[2]` bằng 1, còn `low[5]` và `low[6]` bằng 3.
 
 Sau đó bắt đầu DFS. Cơ sở để phán đoán một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
 
-Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, nó chắc chắn là đỉnh khớp (trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
+Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, đỉnh đó là đỉnh khớp (trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
 
 ![](./images/cut3.svg)
 

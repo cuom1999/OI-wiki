@@ -5,7 +5,7 @@ Bài viết này giới thiệu dãy Prüfer (Prüfer code), một phương phá
 
 Có thể dùng dãy Prüfer để chứng minh [công thức Cayley](#công-thức-cayley-cayleys-formula) (Cayley's formula). Bài viết cũng trình bày cách tính số phương án thêm cạnh vào một đồ thị để làm cho đồ thị liên thông.
 
-**Chú ý**: Không xét cây chỉ có $1$ đỉnh.
+**Quy ước**: Không xét cây chỉ có $1$ đỉnh.
 
 ## Dãy Prüfer
 
@@ -88,7 +88,7 @@ Ví dụ, đây là quá trình xây dựng dãy Prüfer cho một cây có $7$ 
 
 Dãy cuối cùng là $2,2,3,3,2$.
 
-Dĩ nhiên, cũng có một thuật toán xây dựng tuyến tính.
+Ngoài ra, còn có một thuật toán xây dựng tuyến tính.
 
 ### Thuật toán xây dựng dãy Prüfer tuyến tính
 
@@ -198,12 +198,12 @@ Về độ phức tạp, mỗi cạnh được thăm nhiều nhất một lần 
 
 ### Tính chất của dãy Prüfer
 
-1.  Sau khi xây dựng xong dãy Prüfer, cây ban đầu sẽ còn lại hai đỉnh, trong đó một đỉnh chắc chắn là đỉnh có số hiệu lớn nhất $n$.
+1.  Sau khi xây dựng xong dãy Prüfer, cây ban đầu sẽ còn lại hai đỉnh, trong đó một đỉnh là đỉnh có số hiệu lớn nhất $n$.
 2.  Số lần mỗi đỉnh xuất hiện trong dãy bằng bậc của nó trừ $1$. Các đỉnh không xuất hiện chính là các lá.
 
 ### Dựng lại cây từ dãy Prüfer
 
-Phương pháp dựng lại cây cũng tương tự. Dựa vào tính chất của dãy Prüfer, có thể suy ra bậc của mỗi đỉnh trong cây ban đầu. Từ đó cũng tìm được lá có số hiệu nhỏ nhất, và lá này chắc chắn nối với đỉnh tương ứng với số đầu tiên trong dãy Prüfer. Sau đó, đồng thời giảm bậc của hai đỉnh này đi một.
+Phương pháp dựng lại cây cũng tương tự. Dựa vào tính chất của dãy Prüfer, có thể suy ra bậc của mỗi đỉnh trong cây ban đầu. Từ đó cũng tìm được lá có số hiệu nhỏ nhất, và lá này nối với đỉnh tương ứng với số đầu tiên trong dãy Prüfer. Sau đó, đồng thời giảm bậc của hai đỉnh này đi một.
 
 Từ đó có quy trình dựng lại cây: mỗi lần chọn đỉnh có bậc $1$ và số hiệu nhỏ nhất, nối nó với đỉnh đang xét trong dãy Prüfer, rồi đồng thời giảm bậc của hai đỉnh. Cuối cùng còn lại hai đỉnh có bậc $1$, trong đó một đỉnh là đỉnh $n$; nối hai đỉnh này lại. Nếu dùng heap để duy trì quá trình này, mỗi khi bậc của một đỉnh giảm xuống $1$ thì thêm đỉnh đó vào heap. Độ phức tạp là $O(n\log n)$.
 
