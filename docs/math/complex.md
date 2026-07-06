@@ -1,4 +1,4 @@
-Nếu bạn đã học kiến thức liên quan đến số phức, hãy bỏ qua trang này.
+Nếu đã học kiến thức liên quan đến số phức, có thể bỏ qua trang này.
 
 Để học số phức cần một phần nền tảng về vectơ; nếu chưa học về vectơ, vui lòng chuyển sang [trang vectơ](../math/linear-algebra/vector.md).
 
@@ -11,17 +11,17 @@ Nếu bạn đã học kiến thức liên quan đến số phức, hãy bỏ qu
 
 Nhìn từ góc độ phương trình, việc một số thực âm có căn bậc hai hay không chính là việc phương trình $x^2+a=0 (a>0)$ có nghiệm hay không; tiếp đó có thể quy về việc phương trình $x^2+1=0$ có nghiệm hay không.
 
-Nhìn lại quá trình mở rộng các tập số đã biết, ta thấy mỗi lần mở rộng đều gắn chặt với nhu cầu thực tế. Chẳng hạn, để giải quyết việc đo đường chéo hình vuông, cũng như vấn đề phương trình $x^2-2=0$ không có nghiệm trong tập số hữu tỉ, người ta đã mở rộng tập số hữu tỉ thành tập số thực. Sau khi mở rộng tập số, phép cộng và phép nhân được quy định trong tập số thực vẫn tương thích với phép cộng và phép nhân vốn có trong tập số hữu tỉ; đồng thời phép cộng và phép nhân đều thỏa mãn tính giao hoán và tính kết hợp, còn phép nhân phân phối đối với phép cộng.
+Nhìn lại quá trình mở rộng các tập số đã biết, có thể thấy mỗi lần mở rộng đều gắn chặt với nhu cầu thực tế. Chẳng hạn, để giải quyết việc đo đường chéo hình vuông, cũng như vấn đề phương trình $x^2-2=0$ không có nghiệm trong tập số hữu tỉ, tập số hữu tỉ đã được mở rộng thành tập số thực. Sau khi mở rộng tập số, phép cộng và phép nhân được quy định trong tập số thực vẫn tương thích với phép cộng và phép nhân vốn có trong tập số hữu tỉ; đồng thời phép cộng và phép nhân đều thỏa mãn tính giao hoán và tính kết hợp, còn phép nhân phân phối đối với phép cộng.
 
-Theo tư tưởng đó, để giải quyết vấn đề phương trình $x^2+1=0$ không có nghiệm trong hệ số thực, ta hình dung sẽ đưa vào một số mới $\mathrm{i}$ sao cho $x=\mathrm{i}$ là nghiệm của phương trình $x^2+1=0$, tức là $\mathrm{i}^2=-1$.
+Theo tư tưởng đó, để giải quyết vấn đề phương trình $x^2+1=0$ không có nghiệm trong hệ số thực, có thể hình dung việc đưa vào một số mới $\mathrm{i}$ sao cho $x=\mathrm{i}$ là nghiệm của phương trình $x^2+1=0$, tức là $\mathrm{i}^2=-1$.
 
-Hãy suy nghĩ: khi thêm số mới $\mathrm{i}$ vào tập số thực, ta mong muốn số $\mathrm{i}$ và các số thực vẫn có thể thực hiện phép cộng và phép nhân giống như giữa các số thực; đồng thời mong muốn phép cộng và phép nhân đều thỏa mãn tính giao hoán, tính kết hợp, và phép nhân phân phối đối với phép cộng. Vậy sau khi hệ số thực được mở rộng, hệ số mới gồm những số nào?
+Khi thêm số mới $\mathrm{i}$ vào tập số thực, cần giữ cho $\mathrm{i}$ và các số thực vẫn có thể thực hiện phép cộng và phép nhân giống như giữa các số thực; đồng thời mong muốn phép cộng và phép nhân đều thỏa mãn tính giao hoán, tính kết hợp, và phép nhân phân phối đối với phép cộng. Vậy sau khi hệ số thực được mở rộng, hệ số mới gồm những số nào?
 
 Theo giả thiết trên, nhân số thực $b$ với $\mathrm{i}$, kết quả được viết là $b\mathrm{i}$; cộng số thực $a$ với $b\mathrm{i}$, kết quả được viết là $a+b\mathrm{i}$. Chú ý rằng mọi số thực và cả $\mathrm{i}$ đều có thể viết dưới dạng $a+b\mathrm{i}(a,b\in \mathbf{R})$, vì thế các số này đều nằm trong tập số mới sau khi mở rộng.
 
 ### Định nghĩa
 
-Ta định nghĩa các số có dạng $a+b\mathrm{i}$, trong đó $a,b\in \mathbf{R}$, là **số phức**; $\mathrm{i}$ được gọi là **đơn vị ảo**. Tập hợp tất cả các số phức được gọi là **tập số phức**, ký hiệu $\mathbf{C}$.
+Định nghĩa các số có dạng $a+b\mathrm{i}$, trong đó $a,b\in \mathbf{R}$, là **số phức**; $\mathrm{i}$ được gọi là **đơn vị ảo**. Tập hợp tất cả các số phức được gọi là **tập số phức**, ký hiệu $\mathbf{C}$.
 
 Số phức thường được ký hiệu bằng $z$, tức $z=a+b\mathrm{i}$. Dạng này được gọi là **dạng đại số của số phức**. Trong đó $a$ được gọi là **phần thực** của số phức $z$, ký hiệu $\operatorname{Re}(z)$; $b$ được gọi là **phần ảo** của số phức $z$, ký hiệu $\operatorname{Im}(z)$. Nếu không nói gì thêm, luôn có $a,b\in \mathbf{R}$.
 
@@ -35,25 +35,25 @@ Quan hệ giữa số thuần ảo, số ảo, số thực và số phức đư�
 
 ### Ý nghĩa hình học
 
-Ta đã biết những số có dạng tương tự $a+b\mathrm{i}$ được gọi là số phức, đồng thời đã có định nghĩa và phân loại; ta còn có thể khai thác các tính chất sâu hơn.
+Những số có dạng tương tự $a+b\mathrm{i}$ đã được gọi là số phức, đồng thời đã có định nghĩa và phân loại; tiếp theo có thể khai thác các tính chất sâu hơn.
 
-Ta đặt mọi số thực lên trục số và thấy rằng các điểm trên trục số tương ứng một-một với các số thực. Ta xét xử lý số phức theo cách tương tự.
+Đặt mọi số thực lên trục số sẽ thấy các điểm trên trục số tương ứng một-một với các số thực. Có thể xử lý số phức theo cách tương tự.
 
-Trước hết, ta định nghĩa **hai số phức bằng nhau**: hai số phức $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$ bằng nhau khi và chỉ khi $a=c$ và $b=d$.
+Trước hết, định nghĩa **hai số phức bằng nhau**: hai số phức $z_1=a+b\mathrm{i},z_2=c+d\mathrm{i}$ bằng nhau khi và chỉ khi $a=c$ và $b=d$.
 
-Định nghĩa này rất tự nhiên, ở đây không giải thích thêm.
+Định nghĩa này khá tự nhiên nên không giải thích thêm.
 
-Nói cách khác, ta có thể dùng duy nhất một cặp số thực có thứ tự $(a,b)$ để biểu diễn một số phức $z=a+b\mathrm{i}$. Từ đó, liên hệ với hệ tọa độ Descartes trong mặt phẳng, ta thấy **tập số phức tương ứng một-một với tập các điểm trong hệ tọa độ Descartes phẳng**. Như vậy, ta đã tìm được một ý nghĩa hình học của số phức.
+Nói cách khác, có thể dùng duy nhất một cặp số thực có thứ tự $(a,b)$ để biểu diễn một số phức $z=a+b\mathrm{i}$. Từ đó, liên hệ với hệ tọa độ Descartes trong mặt phẳng cho thấy **tập số phức tương ứng một-một với tập các điểm trong hệ tọa độ Descartes phẳng**. Như vậy, thu được một ý nghĩa hình học của số phức.
 
-Khi đó hệ tọa độ Descartes phẳng này không còn hoàn toàn thông thường, vì các điểm trong đó mang ý nghĩa đặc biệt: chúng biểu diễn số phức. Do đó ta gọi hệ tọa độ Descartes phẳng như vậy là **mặt phẳng phức**, trục $x$ là **trục thực**, trục $y$ là **trục ảo**. Nói thêm: **tập số phức tương ứng một-một với tập hợp tất cả các điểm trong mặt phẳng phức**.
+Khi đó hệ tọa độ Descartes phẳng này không còn hoàn toàn thông thường, vì các điểm trong đó mang ý nghĩa đặc biệt: chúng biểu diễn số phức. Do đó hệ tọa độ Descartes phẳng như vậy được gọi là **mặt phẳng phức**, trục $x$ là **trục thực**, trục $y$ là **trục ảo**. Nói thêm: **tập số phức tương ứng một-một với tập hợp tất cả các điểm trong mặt phẳng phức**.
 
-Xét kiến thức đã học về vectơ phẳng, ta thấy biểu diễn tọa độ của vectơ cũng là một cặp số thực có thứ tự $(a,b)$. Hiển nhiên, số phức $z=a+b\mathrm{i}$ tương ứng với điểm $Z(a,b)$ trong mặt phẳng phức, và cũng tương ứng với vectơ phẳng $\overrightarrow{OZ}=(a,b)$. Vì thế ta lại tìm được một ý nghĩa hình học khác của số phức: **tập số phức tương ứng một-một với tập hợp các vectơ trong mặt phẳng phức (số thực $0$ tương ứng với vectơ không)**.
+Xét kiến thức đã học về vectơ phẳng, biểu diễn tọa độ của vectơ cũng là một cặp số thực có thứ tự $(a,b)$. Số phức $z=a+b\mathrm{i}$ tương ứng với điểm $Z(a,b)$ trong mặt phẳng phức, và cũng tương ứng với vectơ phẳng $\overrightarrow{OZ}=(a,b)$. Vì thế thu được một ý nghĩa hình học khác của số phức: **tập số phức tương ứng một-một với tập hợp các vectơ trong mặt phẳng phức (số thực $0$ tương ứng với vectơ không)**.
 
-Do đó, chuyển kiến thức về vectơ sang số phức, ta định nghĩa **môđun của số phức** là độ dài của vectơ tương ứng với số phức đó. Môđun của số phức $z=a+b\mathrm{i}$ là $|z|=\sqrt{a^2+b^2}$.
+Do đó, chuyển kiến thức về vectơ sang số phức, định nghĩa **môđun của số phức** là độ dài của vectơ tương ứng với số phức đó. Môđun của số phức $z=a+b\mathrm{i}$ là $|z|=\sqrt{a^2+b^2}$.
 
-Vì tiện lợi, ta thường gọi số phức $z=a+b\mathrm{i}$ là điểm $Z$ hoặc vectơ $\overrightarrow {OZ}$, và quy ước các vectơ bằng nhau biểu diễn cùng một số phức.
+Để thuận tiện, thường gọi số phức $z=a+b\mathrm{i}$ là điểm $Z$ hoặc vectơ $\overrightarrow {OZ}$, và quy ước các vectơ bằng nhau biểu diễn cùng một số phức.
 
-Từ kiến thức vectơ, ta cũng thấy rằng các số ảo không thể so sánh lớn nhỏ (nhưng các số thực thì có thể).
+Từ kiến thức vectơ cũng có thể thấy các số ảo không thể so sánh lớn nhỏ (nhưng các số thực thì có thể).
 
 ### Phép cộng và phép trừ
 
@@ -63,9 +63,9 @@ $$
 z_1+z_2=(a+c)+(b+d)\mathrm{i}
 $$
 
-Rõ ràng tổng của hai số phức vẫn là số phức.
+Tổng của hai số phức vẫn là số phức.
 
-Xét phép cộng vectơ, ta thấy phép cộng số phức phù hợp với quy tắc cộng vectơ; điều này cũng chứng minh tính đúng đắn của ý nghĩa hình học của số phức.
+Xét phép cộng vectơ cho thấy phép cộng số phức phù hợp với quy tắc cộng vectơ; điều này cũng chứng minh tính đúng đắn của ý nghĩa hình học của số phức.
 
 Tương tự có thể kiểm chứng rằng phép cộng số phức thỏa mãn **tính giao hoán** và **tính kết hợp**. Tức là:
 
@@ -76,7 +76,7 @@ z_1+z_2&=z_2+z_1\\
 \end{aligned}
 $$
 
-Phép trừ là phép toán ngược của phép cộng. Ta có thể suy ra quy tắc trừ từ quy tắc cộng và định nghĩa bằng nhau của số phức:
+Phép trừ là phép toán ngược của phép cộng. Có thể suy ra quy tắc trừ từ quy tắc cộng và định nghĩa bằng nhau của số phức:
 
 $$
 z_1-z_2=(a-c)+(b-d)\mathrm{i}
@@ -100,15 +100,15 @@ Có thể thấy nhân hai số phức tương tự như nhân hai đa thức: c
 
 Phép nhân số phức có dạng tương tự tích vectơ của vectơ.
 
-Dễ thấy phép nhân số phức thỏa mãn **tính giao hoán**, **tính kết hợp** và **tính phân phối đối với phép cộng**, tức:
+Phép nhân số phức thỏa mãn **tính giao hoán**, **tính kết hợp** và **tính phân phối đối với phép cộng**, tức:
 
 -   $z_1z_2=z_2z_1$
 -   $(z_1z_2)z_3=z_1(z_2z_3)$
 -   $z_1(z_2+z_3)=z_1z_2+z_1z_3$
 
-Vì các luật phép toán được thỏa mãn, ta thấy các **hằng đẳng thức nhân trong trường số thực cũng áp dụng được trong trường số phức**.
+Vì các luật phép toán được thỏa mãn, các **hằng đẳng thức nhân trong trường số thực cũng áp dụng được trong trường số phức**.
 
-Phép chia là phép toán ngược của phép nhân. Ta có thể suy ra như sau:
+Phép chia là phép toán ngược của phép nhân. Có thể suy ra như sau:
 
 $$
 \begin{aligned}
@@ -117,11 +117,11 @@ $$
 \end{aligned}
 $$
 
-Vì vectơ không có phép chia, ở đây không bàn về quan hệ với vectơ.
+Vì vectơ không có phép chia, phần này không bàn về quan hệ với vectơ.
 
-Để hữu tỉ hóa mẫu số, ta đã nhân thêm $c-d\mathrm{i}$; biểu thức này có ý nghĩa quan trọng.
+Để hữu tỉ hóa mẫu số, đã nhân thêm $c-d\mathrm{i}$; biểu thức này có ý nghĩa quan trọng.
 
-Với số phức $z=a+b\mathrm{i}$, gọi $a-b\mathrm{i}$ là **số phức liên hợp** của $z$, thường ký hiệu là $\bar z$. Ta có thể thấy, nếu hai số phức liên hợp với nhau thì chúng **đối xứng qua trục thực**.
+Với số phức $z=a+b\mathrm{i}$, gọi $a-b\mathrm{i}$ là **số phức liên hợp** của $z$, thường ký hiệu là $\bar z$. Nếu hai số phức liên hợp với nhau thì chúng **đối xứng qua trục thực**.
 
 Với các số phức $z,w$, phép liên hợp phức có các tính chất sau:
 
@@ -134,7 +134,7 @@ Với các số phức $z,w$, phép liên hợp phức có các tính chất sau
 
 ### Argument và giá trị chính của argument
 
-Nếu lấy đơn vị thực $1$ làm hướng ngang dương và đơn vị ảo $\mathrm{i}$ làm hướng thẳng đứng dương, ta thu được mặt phẳng phức dưới góc nhìn tọa độ Descartes.
+Nếu lấy đơn vị thực $1$ làm hướng ngang dương và đơn vị ảo $\mathrm{i}$ làm hướng thẳng đứng dương, sẽ thu được mặt phẳng phức dưới góc nhìn tọa độ Descartes.
 
 Vị trí của số phức $z$ cũng có thể được xác định nhờ tọa độ cực $(r, \theta)$. Ở trên đã nói $r$ là môđun của số phức $z$.
 
@@ -246,7 +246,7 @@ Hai dạng này thuận tiện hơn cho việc tính hai phép toán nhân, chia
 
 ## Căn đơn vị
 
-Xét nghiệm của phương trình $x^n=1$ trong nghĩa số phức. Hiển nhiên, các nghiệm như vậy có $n$ nghiệm; $n$ nghiệm này đều được gọi là **căn đơn vị (phức) bậc $n$** ($n$-th root of unity). Theo kiến thức về mặt phẳng phức, các căn đơn vị bậc $n$ chia đều đường tròn đơn vị thành $n$ phần.
+Xét nghiệm của phương trình $x^n=1$ trong trường số phức. Phương trình này có $n$ nghiệm; $n$ nghiệm này đều được gọi là **căn đơn vị (phức) bậc $n$** ($n$-th root of unity). Theo kiến thức về mặt phẳng phức, các căn đơn vị bậc $n$ chia đều đường tròn đơn vị thành $n$ phần.
 
 Đặt $\omega_n=\exp\dfrac{2\pi \mathrm{i}}{n}$ (tức là số phức đơn vị có argument $2\pi/n$), thì tập nghiệm của $x^n=1$ được biểu diễn là $\{\omega_n^k\mid k=0,1\cdots,n-1\}$, trong đó,
 
@@ -256,7 +256,7 @@ $$
 
 Nếu không nói rõ, căn đơn vị bậc $n$ trong các phát biểu thông thường chỉ nghiệm đầu tiên tính từ $1$ theo chiều ngược chiều kim đồng hồ, tức $\omega_n$ ở trên; các nghiệm khác đều có thể biểu diễn bằng lũy thừa của $\omega_n$.
 
-???+ tip "Vì sao khi thường nhắc đến căn đơn vị bậc $n$, người ta luôn chỉ nghiệm đầu tiên?"
+???+ tip "Vì sao khi thường nhắc đến căn đơn vị bậc $n$, thường chỉ xét nghiệm đầu tiên?"
     Chủ yếu là để thuận tiện khi áp dụng. Tất cả các căn đơn vị bậc $n$ đều có thể biểu diễn thành lũy thừa của căn đơn vị bậc $n$ đầu tiên $\omega_n$; hơn nữa, với mọi $k < n$, số phức $\omega_n$ đều không phải là căn đơn vị bậc $k$.
 
 ### Căn đơn vị nguyên thủy
@@ -269,12 +269,12 @@ $$
 
 là **căn đơn vị nguyên thủy bậc $n$** ($n$-th primitive root of unity). Theo biểu thức trên, toàn bộ căn đơn vị nguyên thủy bậc $n$ có $\varphi(n)$ phần tử, trong đó $\varphi(n)$ là [hàm Euler](./number-theory/euler-totient.md).
 
-Một căn đơn vị nguyên thủy bất kỳ $\omega$ đều có cùng tính chất với $\omega_n$ ở trên: với mọi $0<k<n$, lũy thừa bậc $k$ của $\omega$ không bằng $1$, nói cách khác, $\omega$ không phải là căn đơn vị bậc $k$. Vì vậy, nhờ một căn đơn vị nguyên thủy bất kỳ, ta có thể sinh ra toàn bộ các căn đơn vị.
+Một căn đơn vị nguyên thủy bất kỳ $\omega$ đều có cùng tính chất với $\omega_n$ ở trên: với mọi $0<k<n$, lũy thừa bậc $k$ của $\omega$ không bằng $1$, nói cách khác, $\omega$ không phải là căn đơn vị bậc $k$. Vì vậy, từ một căn đơn vị nguyên thủy bất kỳ có thể sinh ra toàn bộ các căn đơn vị.
 
 Để hiểu cấu trúc của căn đơn vị nguyên thủy bậc $n$, cần xét tính chất sau của căn đơn vị:
 
 ???+ note "Tính chất"
-    Với các số nguyên $n$ và $k$, đặt $d=\gcd(n,k)$, ta có $\omega_n^k = \omega_{n/d}^{k/d}$.
+    Với các số nguyên $n$ và $k$, đặt $d=\gcd(n,k)$, có $\omega_n^k = \omega_{n/d}^{k/d}$.
 
 ??? note "Chứng minh"
     Tính trực tiếp được
@@ -283,7 +283,7 @@ Một căn đơn vị nguyên thủy bất kỳ $\omega$ đều có cùng tính 
     w_n^k = \exp\dfrac{2\pi k\mathrm{i}}{n} = \exp\dfrac{2\pi (k/d)\mathrm{i}}{n/d} = \omega_{n/d}^{k/d}.
     $$
 
-Điều này cho thấy, chỉ cần $\gcd(n,k)\neq 1$, thì $\omega_n^k$ chắc chắn là căn đơn vị (nguyên thủy) bậc $\dfrac{n}{\gcd(n,k)}$. Vì vậy, căn đơn vị $\omega_n^k$ thỏa mãn tính chất nói trên nhất định phải thỏa mãn $\gcd(n,k)=1$. Đây chính là lý do căn đơn vị nguyên thủy có định nghĩa trên.
+Điều này cho thấy, chỉ cần $\gcd(n,k)\neq 1$, thì $\omega_n^k$ là căn đơn vị (nguyên thủy) bậc $\dfrac{n}{\gcd(n,k)}$. Vì vậy, căn đơn vị $\omega_n^k$ thỏa mãn tính chất nói trên phải thỏa mãn $\gcd(n,k)=1$. Đây chính là lý do căn đơn vị nguyên thủy có định nghĩa trên.
 
 Ngoài ra, như một hệ quả đơn giản của các phân tích này, có:
 
@@ -334,7 +334,7 @@ Một đối tượng số phức còn có các hàm không phải thành viên:
 
 Một đối tượng số phức còn có các hàm không phải thành viên `exp`, `log` (giá trị chính của logarit cơ số $\mathrm{e}$), `log10` (giá trị chính của logarit cơ số 10, không có trong C), `pow`, `sqrt`, `sin`, `cos`, `tan`; ý nghĩa giống như trong C.
 
-Trong C++14 và các phiên bản sau, [toán tử literal `std::literals::complex_literals::""if, ""i, ""il`](https://en.cppreference.com/w/cpp/numeric/complex/operator%2522%2522i.html) đã được định nghĩa. Ví dụ nhập `100if`, `100i` và `100il`, ba biểu thức này lần lượt trả về `std::complex<float>{0.0f, 100.0f}`, `std::complex<double>{0.0, 100.0}` và `std::complex<long double>{0.0l, 100.0l}`. Nhờ vậy ta có thể viết thuận tiện các khai báo số phức như `auto z = 4.0 + 3i`.
+Trong C++14 và các phiên bản sau, [toán tử literal `std::literals::complex_literals::""if, ""i, ""il`](https://en.cppreference.com/w/cpp/numeric/complex/operator%2522%2522i.html) đã được định nghĩa. Ví dụ nhập `100if`, `100i` và `100il`, ba biểu thức này lần lượt trả về `std::complex<float>{0.0f, 100.0f}`, `std::complex<double>{0.0, 100.0}` và `std::complex<long double>{0.0l, 100.0l}`. Nhờ vậy có thể viết thuận tiện các khai báo số phức như `auto z = 4.0 + 3i`.
 
 ## Tài liệu tham khảo và liên kết
 
