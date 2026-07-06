@@ -28,9 +28,9 @@ Yêu cầu: $f(p)$ là tổng của các hàm hoàn toàn nhân theo $p$ có th�
 <span id="giải-thích"></span>
 ## Giải thích
 
-Quan sát định nghĩa của $F_{k}(n)$, có thể thấy đáp án chính là $F_{1}(n) + f(1) = F_{1}(n) + 1$.
+Quan sát định nghĩa của $F_{k}(n)$, đáp án chính là $F_{1}(n) + f(1) = F_{1}(n) + 1$.
 
-Xét cách tính $F_{k}(n)$. Bằng cách liệt kê thừa số nguyên tố nhỏ nhất của mỗi $i$ và số lần xuất hiện của nó, ta thu được công thức truy hồi:
+Xét cách tính $F_{k}(n)$. Bằng cách liệt kê thừa số nguyên tố nhỏ nhất của mỗi $i$ và số lần xuất hiện của nó, thu được công thức truy hồi:
 
 $$
 \begin{aligned}
@@ -42,7 +42,7 @@ $$
 \end{aligned}
 $$
 
-Bước suy diễn cuối cùng dựa trên sự thật sau: với $c$ thỏa mãn $p_{i}^{c} \le n < p_{i}^{c + 1}$, ta có $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$, nên $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$.
+Bước suy diễn cuối cùng dựa trên sự thật sau: với $c$ thỏa mãn $p_{i}^{c} \le n < p_{i}^{c + 1}$, có $p_{i}^{c + 1} > n \iff n / p_{i}^{c} < p_{i} < p_{i + 1}$, nên $F_{i + 1}\left(n / p_{i}^{c}\right) = 0$.
 Giá trị biên là $F_{k}(n) = 0 (p_{k} > n)$.
 
 Giả sử hiện đã tính được mọi $F_{\mathrm{prime}}(n)$, có hai cách để tính mọi $F_{k}(n)$:
@@ -51,21 +51,21 @@ Giả sử hiện đã tính được mọi $F_{\mathrm{prime}}(n)$, có hai cá
 2.  Liệt kê $p$ từ lớn xuống nhỏ để chuyển trạng thái; chỉ khi $p^{2} < n$ thì phần tăng thêm của chuyển trạng thái mới khác không, nên có thể tối ưu bằng tổng hậu tố theo công thức truy hồi.
 
 Bây giờ xét cách tính $F_{\mathrm{prime}}{(n)}$.
-Quan sát quá trình tính $F_{k}(n)$, dễ thấy $F_{\mathrm{prime}}$ chỉ cần các giá trị tại $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$, tổng cộng $O(\sqrt{n})$ điểm hữu dụng.
+Quan sát quá trình tính $F_{k}(n)$, nhận thấy $F_{\mathrm{prime}}$ chỉ cần các giá trị tại $1, 2, \dots, \left\lfloor\sqrt{n}\right\rfloor, n / \sqrt{n}, \dots, n / 2, n$, tổng cộng $O(\sqrt{n})$ điểm hữu dụng.
 Thông thường, $f(p)$ là một đa thức bậc thấp theo $p$, có thể viết thành $f(p) = \sum a_{i} p^{c_{i}}$.
 Khi đó, với mỗi $p^{c_{i}}$, phần đóng góp của nó vào $F_{\mathrm{prime}}(n)$ là $a_{i} \sum_{2 \le p \le n} p^{c_{i}}$.
-Xét riêng phần đóng góp của từng $p^{c_{i}}$, bài toán chuyển thành: cho $n, s, g(p) = p^{s}$, với mọi $m = n / i$, hãy tính $\sum_{p \le m} g(p)$.
+Xét riêng phần đóng góp của từng $p^{c_{i}}$, bài toán chuyển thành: cho $n, s, g(p) = p^{s}$, với mọi $m = n / i$, cần tính $\sum_{p \le m} g(p)$.
 
 ???+ tip "Lưu ý"
     $g(p) = p^{s}$ là hàm hoàn toàn nhân!
 
 Do đó đặt $G_{k}(n) := \sum_{i = 2}^{n} \left[p_{k} < \operatorname{lpf}(i) \lor \operatorname{isprime}(i)\right] g(i)$, tức là tổng các giá trị $g$ của những số còn lại sau vòng sàng Eratosthenes thứ $k$.
-Với một hợp số $x \le n$, chắc chắn có $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$. Gọi $p_{\ell(n)}$ là số nguyên tố lớn nhất không vượt quá $\sqrt{n}$, khi đó $\sum_{2\le p\le n}g(p) = G_{\ell(n)}(n)$, tức là sau khi sàng Eratosthenes chạy $\ell$ vòng, các số còn lại đều là số nguyên tố.
-Xét giá trị biên của $G$, hiển nhiên $G_{0}(n) = \sum_{i = 2}^{n} g(i)$. (Còn nhớ không? Ta đã quy ước riêng $p_{0} = 1$.)
+Với một hợp số $x \le n$, có $\operatorname{lpf}(x) \le \sqrt{x} \le \sqrt{n}$. Gọi $p_{\ell(n)}$ là số nguyên tố lớn nhất không vượt quá $\sqrt{n}$, khi đó $\sum_{2\le p\le n}g(p) = G_{\ell(n)}(n)$, tức là sau khi sàng Eratosthenes chạy $\ell$ vòng, các số còn lại đều là số nguyên tố.
+Xét giá trị biên của $G$, có $G_{0}(n) = \sum_{i = 2}^{n} g(i)$, do đã quy ước riêng $p_{0} = 1$.
 Với chuyển trạng thái, xét quá trình của sàng Eratosthenes và tách riêng đóng góp của từng phần:
 
 1.  Với phần $n < p_{k}^{2}$, giá trị $G$ không đổi, tức $G_{k}(n) = G_{k - 1}(n)$.
-2.  Với phần $p_{k}^{2} \le n$, các số bị sàng đi chắc chắn có thừa số nguyên tố $p_{k}$, tức là $-g(p_{k}) G_{k - 1}(n / p_{k})$.
+2.  Với phần $p_{k}^{2} \le n$, các số bị sàng đi đều có thừa số nguyên tố $p_{k}$, tức là $-g(p_{k}) G_{k - 1}(n / p_{k})$.
 3.  Với phần thứ hai, do $p_{k}^{2} \le n \iff p_{k} \le n / p_{k}$, các $i$ thỏa mãn $\operatorname{lpf}(i) < p_{k}$ sẽ bị trừ thừa. Phần này cần được cộng lại, tức là $g(p_{k}) G_{k - 1}(p_{k - 1})$.
 
 Vậy có:
@@ -93,18 +93,18 @@ $$
 \end{aligned}
 $$
 
-Về độ phức tạp không gian, có thể thấy dù là $F_{k}$ hay $F_{\mathrm{prime}}$, giá trị hữu hiệu của chúng chỉ xuất hiện tại các điểm $n / i$, tổng cộng $O(\sqrt{n})$ điểm. Chỉ ghi lại các giá trị hữu hiệu là có thể tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
+Về độ phức tạp không gian, dù là $F_{k}$ hay $F_{\mathrm{prime}}$, giá trị hữu hiệu của chúng chỉ xuất hiện tại các điểm $n / i$, tổng cộng $O(\sqrt{n})$ điểm. Chỉ ghi lại các giá trị hữu hiệu là có thể tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
-Trước hết, dùng một lần chia đoạn số học để lấy mọi giá trị hữu hiệu, lưu bằng một mảng $\text{lis}$ kích thước $O(\sqrt{n})$. Với giá trị hữu hiệu $v$, kí hiệu $\text{id}(v)$ là chỉ số của $v$ trong $\text{lis}$. Dễ thấy với mọi giá trị hữu hiệu $v$, $\text{id}(v) \le \sqrt{n}$.
+Trước hết, dùng một lần chia đoạn số học để lấy mọi giá trị hữu hiệu, lưu bằng một mảng $\text{lis}$ kích thước $O(\sqrt{n})$. Với giá trị hữu hiệu $v$, kí hiệu $\text{id}(v)$ là chỉ số của $v$ trong $\text{lis}$. Khi đó, với mọi giá trị hữu hiệu $v$, $\text{id}(v) \le \sqrt{n}$.
 
-Sau đó xét riêng các giá trị hữu hiệu không lớn hơn $\sqrt{n}$ và lớn hơn $\sqrt{n}$: với giá trị hữu hiệu $v$ không lớn hơn $\sqrt{n}$, dùng mảng $\text{le}$ ghi $\text{id}(v)$, tức $\text{le}_v = \text{id}(v)$; với giá trị hữu hiệu $v$ lớn hơn $\sqrt{n}$, dùng mảng $\text{ge}$ ghi $\text{id}(v)$. Vì $v$ quá lớn, ta mượn $v' = n / v < \sqrt{n}$ để ghi $\text{id}(v)$, tức $\text{ge}_{v'} = \text{id}(v)$.
+Sau đó xét riêng các giá trị hữu hiệu không lớn hơn $\sqrt{n}$ và lớn hơn $\sqrt{n}$: với giá trị hữu hiệu $v$ không lớn hơn $\sqrt{n}$, dùng mảng $\text{le}$ ghi $\text{id}(v)$, tức $\text{le}_v = \text{id}(v)$; với giá trị hữu hiệu $v$ lớn hơn $\sqrt{n}$, dùng mảng $\text{ge}$ ghi $\text{id}(v)$. Vì $v$ quá lớn, mượn $v' = n / v < \sqrt{n}$ để ghi $\text{id}(v)$, tức $\text{ge}_{v'} = \text{id}(v)$.
 
 Như vậy, có thể dùng hai mảng kích thước $O(\sqrt{n})$ để ghi $\text{id}$ của mọi giá trị hữu hiệu và truy vấn trong $O(1)$. Khi tính $F_{k}$ hoặc $F_{\mathrm{prime}}$, dùng $\text{id}$ của giá trị hữu hiệu thay cho chính giá trị hữu hiệu làm chỉ số, từ đó tối ưu độ phức tạp không gian xuống $O(\sqrt{n})$.
 
 <span id="quy-trình"></span>
 ## Quy trình
 
-Khi tính $F_{k}(n)$, trong cài đặt ta thường chọn phương pháp thứ nhất vì dễ hiện thực hơn; với dữ liệu quy mô nhỏ, nó thường chạy tốt hơn phương pháp thứ hai.
+Khi tính $F_{k}(n)$, trong cài đặt thường chọn phương pháp thứ nhất vì dễ hiện thực hơn; với dữ liệu quy mô nhỏ, nó thường chạy tốt hơn phương pháp thứ hai.
 
 Với việc tính $F_{\mathrm{prime}}(n)$, chỉ cần cài đặt trực tiếp theo công thức truy hồi.
 

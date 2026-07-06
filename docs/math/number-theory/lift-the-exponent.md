@@ -5,7 +5,7 @@ Bổ đề nâng số mũ (Lift the Exponent, LTE) là một định lý khá th
 
 Định nghĩa $\nu_p(n)$ là số mũ của thừa số nguyên tố $p$ trong phân tích chuẩn của số nguyên $n$, tức là $\nu_p(n)$ thỏa mãn $p^{\nu_p(n)}\mid n$ và $p^{\nu_p(n)+1}\nmid n$.
 
-Vì nội dung của bổ đề nâng số mũ tương đối dài, ta chia thành ba phần để trình bày.
+Vì nội dung của bổ đề nâng số mũ tương đối dài, phần trình bày được chia thành ba phần.
 
 Trong phần dưới đây, giả sử $p$ là số nguyên tố, $x,y$ là các số nguyên thỏa mãn $p\nmid x$ và $p\nmid y$, còn $n$ là số nguyên dương.
 
@@ -20,14 +20,14 @@ Với mọi số nguyên tố $p$ và số nguyên $n$ thỏa mãn $(n,p)=1$:
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)
     $$
 
-2.  Nếu $p\mid x+y$, thì với $n$ lẻ ta có:
+2.  Nếu $p\mid x+y$, thì với $n$ lẻ:
 
     $$
     \nu_p\left(x^n+y^n\right)=\nu_p(x+y)
     $$
 
 ???+ note "Chứng minh"
-    Nếu $p\mid x-y$, dễ thấy $p\mid x-y\iff x\equiv y\pmod p$, nên hiển nhiên:
+    Nếu $p\mid x-y$, thì $p\mid x-y\iff x\equiv y\pmod p$, nên:
     
     $$
     \sum_{i=0}^{n-1}x^iy^{n-1-i}\equiv nx^{n-1}\not\equiv 0\pmod p
@@ -48,14 +48,14 @@ Nếu $p$ là số nguyên tố lẻ:
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(n)
     $$
 
-2.  Nếu $p\mid x+y$, thì với $n$ lẻ ta có:
+2.  Nếu $p\mid x+y$, thì với $n$ lẻ:
 
     $$
     \nu_p\left(x^n+y^n\right)=\nu_p(x+y)+\nu_p(n)
     $$
 
 ???+ note "Chứng minh"
-    Nếu $p\mid x-y$, đặt $y=x+kp$. Ta chỉ cần chứng minh trường hợp $p\mid n$.
+    Nếu $p\mid x-y$, đặt $y=x+kp$. Chỉ cần chứng minh trường hợp $p\mid n$.
     
     -   Nếu $n=p$, theo định lý nhị thức:
     
@@ -86,19 +86,19 @@ Nếu $p$ là số nguyên tố lẻ:
 
 Nếu $p=2$ và $p\mid x-y$:
 
-1.  Với $n$ lẻ, ta có như phần thứ nhất:
+1.  Với $n$ lẻ, theo phần thứ nhất:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)
     $$
 
-2.  Với $n$ chẵn, ta có:
+2.  Với $n$ chẵn:
 
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(x+y)+\nu_p(n)-1
     $$
 
-Ngoài ra, với $x,y,n$ như trên, ta có:
+Ngoài ra, với $x,y,n$ như trên:
 
 Nếu $4\mid x-y$, thì:
 
@@ -106,7 +106,7 @@ Nếu $4\mid x-y$, thì:
 -   $\nu_2\left(x^n-y^n\right)=\nu_2(x-y)+\nu_2(n)$
 
 ???+ note "Chứng minh"
-    Ta chỉ cần chứng minh trường hợp $n$ chẵn. Vì lúc này $p\nmid \dbinom{p}{2}$, ta không thể dùng phương pháp ở phần thứ hai.
+    Chỉ cần chứng minh trường hợp $n$ chẵn. Vì lúc này $p\nmid \dbinom{p}{2}$, không thể dùng phương pháp ở phần thứ hai.
     
     Đặt $n=2^a b$, trong đó $a=\nu_p(n)$ và $2\nmid b$. Khi đó
     
@@ -117,7 +117,7 @@ Nếu $4\mid x-y$, thì:
     \end{aligned}
     $$
     
-    Chú ý rằng $2\mid x-y\implies 4\mid x^2-y^2$, nên $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$. Do đó biểu thức trên trở thành:
+    Lưu ý rằng $2\mid x-y\implies 4\mid x^2-y^2$, nên $(\forall i\geq 1),~~x^{2^i}+y^{2^i}\equiv 2\pmod 4$. Do đó biểu thức trên trở thành:
     
     $$
     \nu_p\left(x^n-y^n\right)=\nu_p(x-y)+\nu_p(x+y)+\nu_p(n)-1

@@ -27,7 +27,7 @@ Từ [định lý thặng dư Trung Hoa](./crt.md), việc giải phương trìn
 
 Dưới đây giả sử modulo có dạng $m=p^e~(p\in\mathbf{P},~e\in\mathbf{Z}_{>1})$.
 
-Chú ý rằng nếu $x_0$ là nghiệm của phương trình
+Lưu ý rằng nếu $x_0$ là nghiệm của phương trình
 
 $$
 f(x)\equiv 0\pmod{p^e}
@@ -39,7 +39,7 @@ $$
 f(x)\equiv 0\pmod{p^{e-1}}.
 $$
 
-Điều này gợi ý ta dùng nghiệm theo modulo lũy thừa thấp hơn để xây dựng nghiệm theo modulo lũy thừa cao hơn. Ta có định lý sau:
+Điều này gợi ý dùng nghiệm theo modulo lũy thừa thấp hơn để xây dựng nghiệm theo modulo lũy thừa cao hơn. Có định lý sau:
 
 <span id="định-lý-1"></span>
 
@@ -74,7 +74,7 @@ $$
     f(x_0+p^{e-1}t)\equiv 0\pmod{p^e}.
     $$
     
-    Biến đổi ta được
+    Biến đổi thu được
     
     $$
     f(x_0)+p^{e-1}tf'(x_0)\equiv 0\pmod{p^e}.
@@ -90,7 +90,7 @@ $$
     2.  Nếu $f'(x_0)\equiv 0\pmod p$ và $f(x_0)\equiv 0\pmod{p^e}$, mọi $t$ đều làm $(5)$ đúng; thay vào $(3)$ có thể kiểm tra tất cả đều là nghiệm của $(4)$.
     3.  Nếu $f'(x_0)\equiv 0\pmod p$ và $f(x_0)\not\equiv 0\pmod{p^e}$, phương trình $(5)$ vô nghiệm, nên không thể dùng $(3)$ để tạo nghiệm của $(4)$.
 
-Từ đó ta có hệ quả:
+Từ đó có hệ quả:
 
 <span id="hệ-quả-1"></span>
 
@@ -100,7 +100,7 @@ Từ đó ta có hệ quả:
     1.  Nếu $s$ là nghiệm của phương trình $f(x)\equiv 0\pmod p$ và $f'(s)\not\equiv 0\pmod p$, thì tồn tại $x_s\in\mathbf{Z}_{p^e}$, $x_s\equiv s\pmod p$ sao cho $x_s$ là nghiệm của phương trình $(4)$.
     2.  Nếu hai phương trình $f(x)\equiv 0\pmod p$ và $f'(x)\equiv 0\pmod p$ không có nghiệm chung, thì phương trình $(4)$ và phương trình $f(x)\equiv 0\pmod p$ có cùng số nghiệm.
 
-Vậy ta có thể quy phương trình đồng dư modulo lũy thừa nguyên tố về trường hợp modulo nguyên tố.
+Vậy có thể quy phương trình đồng dư modulo lũy thừa nguyên tố về trường hợp modulo nguyên tố.
 
 <span id="phương-trình-đồng-dư-modulo-nguyên-tố"></span>
 ## Phương trình đồng dư modulo nguyên tố
@@ -160,7 +160,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     Phương trình $(6)$ có nhiều nhất $n$ nghiệm phân biệt.
 
 ???+ note "Chứng minh"
-    Giả sử $f(x)$ có $n+1$ nghiệm phân biệt $x_1,x_2,\dots,x_{n+1}$. Khi đó theo [Định lý 2](#định-lý-2), với $x_1,x_2,\dots,x_n$ ta có
+    Giả sử $f(x)$ có $n+1$ nghiệm phân biệt $x_1,x_2,\dots,x_{n+1}$. Khi đó theo [Định lý 2](#định-lý-2), với $x_1,x_2,\dots,x_n$ có
     
     $$
     f(x)\equiv a_n\prod_{i=1}^n(x-x_i)\pmod p.
@@ -172,7 +172,7 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     0\equiv f(x_{n+1})\equiv a_n\prod_{i=1}^n(x_{n+1}-x_i)\pmod p.
     $$
     
-    Vế phải rõ ràng không chia hết cho $p$, mâu thuẫn.
+    Vế phải không chia hết cho $p$, mâu thuẫn.
 
 <span id="hệ-quả-3"></span>
 
@@ -197,12 +197,12 @@ Dưới đây đặt $p\in\mathbf{P}$, đa thức hệ số nguyên $f(x)=\sum_{
     
     trong đó $\deg r<p$.
     
-    Theo [định lý nhỏ Fermat](./fermat.md), với mọi số nguyên $x$ ta có $x^p\equiv x\pmod p$, do đó
+    Theo [định lý nhỏ Fermat](./fermat.md), với mọi số nguyên $x$ có $x^p\equiv x\pmod p$, do đó
     
     -   Nếu $r(x)\equiv 0\pmod p$, theo [Hệ quả 2](#hệ-quả-2), $f(x)$ có $p$ nghiệm phân biệt.
     -   Nếu $r(x)\not\equiv 0\pmod p$, từ $f(x)\equiv r(x)\pmod p$ suy ra $f(x)$ và $r(x)$ có cùng tập nghiệm.
 
-Ta có thể dùng định lý này để hạ bậc phương trình đồng dư.
+Có thể dùng định lý này để hạ bậc phương trình đồng dư.
 
 <span id="định-lý-5"></span>
 
@@ -235,7 +235,7 @@ Ta có thể dùng định lý này để hạ bậc phương trình đồng dư
     
         Tức phương trình $f(x)q(x)\equiv 0\pmod p$ có $p$ nghiệm.
     
-        Gọi số nghiệm của $(7)$ là $s$. Theo [định lý Lagrange](#định-lý-3-lagrange), ta có $s\leq n$.
+        Gọi số nghiệm của $(7)$ là $s$. Theo [định lý Lagrange](#định-lý-3-lagrange), có $s\leq n$.
     
         Mặt khác, vì $\deg q=p-n$, theo [định lý Lagrange](#định-lý-3-lagrange), phương trình $q(x)\equiv 0\pmod p$ có không quá $p-n$ nghiệm. Tập nghiệm của $f(x)q(x)\equiv 0\pmod p$ là hợp của tập nghiệm $f(x)\equiv 0\pmod p$ và tập nghiệm $q(x)\equiv 0\pmod p$, nên $s+(p-n)\geq p$, suy ra $s\geq n$.
     
@@ -286,7 +286,7 @@ Với đa thức không monic, vì $\mathbf{Z}_p$ là trường, có thể đưa
 
 Trước hết, có thể dùng [định lý thặng dư Trung Hoa](./crt.md) để chuyển việc giải **hệ phương trình đồng dư** thành giải từng **phương trình đồng dư**, và chuyển việc giải phương trình đồng dư modulo **hợp số** $m$ thành giải các phương trình đồng dư modulo **lũy thừa nguyên tố**. Sau đó, dùng [Định lý 1](#định-lý-1) để chuyển việc giải phương trình đồng dư modulo **lũy thừa nguyên tố** thành giải phương trình đồng dư modulo **nguyên tố**.
 
-Kết hợp với các định lý về phương trình đồng dư modulo nguyên tố, ta chỉ cần xét phương trình
+Kết hợp với các định lý về phương trình đồng dư modulo nguyên tố, chỉ cần xét phương trình
 
 $$
 x^n+\sum_{i=0}^{n-1}a_ix^i\equiv 0\pmod p

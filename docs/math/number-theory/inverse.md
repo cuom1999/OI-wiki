@@ -112,7 +112,7 @@ $$
 0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i) \pmod p.
 $$
 
-Nhân hai vế với $i^{-1}(p\bmod i)^{-1}$, ta được
+Nhân hai vế với $i^{-1}(p\bmod i)^{-1}$, thu được
 
 $$
 i^{-1} \equiv - \left\lfloor \dfrac{p}{i} \right\rfloor (p\bmod i)^{-1} \pmod p.
