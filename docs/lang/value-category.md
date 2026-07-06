@@ -1,6 +1,6 @@
 Loại giá trị là một khái niệm quan trọng trong C++. Trong lập trình thi đấu, ta
 không phải lúc nào cũng cần gọi tên khái niệm này, nhưng hiểu nó sẽ giúp phát
-hiện và tránh những phép sao chép không cần thiết, từ đó cải thiện hiệu năng của
+hiện và tránh các phép sao chép không cần thiết, từ đó cải thiện hiệu năng của
 mã.
 
 Khái niệm loại giá trị đã nhiều lần thay đổi từ ngôn ngữ C, qua C++98, C++11 rồi
@@ -8,7 +8,7 @@ Khái niệm loại giá trị đã nhiều lần thay đổi từ ngôn ngữ C
 
 ## Sao chép không cần thiết
 
-Xét quá trình thêm chuỗi vào một vector:
+Xét quá trình thêm chuỗi vào một `vector`:
 
 ```cpp
 int main() {
@@ -23,13 +23,13 @@ int main() {
 }
 ```
 
-Trong quá trình thêm chuỗi vào `vec`, cả `str` và phần tử mới trong `vec` đều giữ
-một bản dữ liệu riêng, làm lượng bộ nhớ sử dụng tăng lên.
+Trong quá trình thêm chuỗi vào `vec`, cả `str` và phần tử mới trong `vec` đều
+giữ một bản dữ liệu riêng, làm lượng bộ nhớ sử dụng tăng lên.
 
 Nếu muốn tiết kiệm phần bộ nhớ này, có thể tự mô phỏng một thao tác di chuyển:
-định nghĩa cấu trúc `MyString`, bên trong có một con trỏ trỏ tới vùng dữ liệu
-chuỗi. Khi đó, ta chỉ chuyển con trỏ sang nơi mới, đồng thời đặt lại con trỏ của
-đối tượng gốc để tránh hủy nhầm cùng một vùng nhớ.
+định nghĩa cấu trúc `MyString`, bên trong có con trỏ trỏ tới vùng dữ liệu chuỗi.
+Khi đó, ta chỉ chuyển con trỏ sang nơi mới, đồng thời đặt lại con trỏ của đối
+tượng gốc để tránh hủy nhầm cùng một vùng nhớ.
 
 ```cpp
 struct MyString {
@@ -50,12 +50,12 @@ khó phối hợp thủ công với các thao tác như khởi tạo và hủy c
 
 ## Loại giá trị trong ngôn ngữ C
 
-Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ một
-vùng dữ liệu trong môi trường thực thi. Các tính chất chính của đối tượng gồm
-kích thước, kiểu hiệu dụng và giá trị. Giá trị là ý nghĩa của vùng dữ liệu đó khi
-được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` thường đều
-chiếm 4 byte, cùng một vùng nhớ sẽ mang ý nghĩa khác nhau tùy kiểu dùng để diễn
-giải.
+Trong chuẩn ngôn ngữ C, đối tượng là một khái niệm tổng quát hơn biến; nó chỉ
+một vùng dữ liệu trong môi trường thực thi. Các tính chất chính của đối tượng
+gồm kích thước, kiểu hiệu dụng và giá trị. Giá trị là ý nghĩa của vùng dữ liệu
+đó khi được diễn giải theo kiểu của nó. Ví dụ, tuy kiểu `int` và `float` thường
+đều chiếm 4 byte, cùng một vùng nhớ sẽ mang ý nghĩa khác nhau tùy kiểu dùng để
+diễn giải.
 
 Trong ngôn ngữ C, mỗi biểu thức đều có kiểu và loại giá trị. Loại giá trị chủ
 yếu được chia thành ba loại:
@@ -70,9 +70,9 @@ Vì vậy, chỉ các trái trị có thể sửa đổi (trái trị không đ�
 và không phải mảng) mới có thể xuất hiện ở vế trái của biểu thức gán.
 
 Với một toán tử yêu cầu toán hạng của nó là phải trị, mỗi khi một trái trị được
-dùng làm toán hạng, biểu thức đó sẽ trải qua phép chuyển đổi chuẩn từ trái trị
-sang phải trị, từ mảng sang con trỏ, hoặc từ hàm sang con trỏ để trở thành phải
-trị.
+dùng làm toán hạng, biểu thức đó có thể trải qua phép chuyển đổi chuẩn từ trái
+trị sang phải trị, từ mảng sang con trỏ, hoặc từ hàm sang con trỏ để trở thành
+phải trị.
 
 Các hiểu lầm thường gặp:
 
@@ -99,9 +99,10 @@ C++98 gần với ngôn ngữ C về loại giá trị, nhưng bổ sung một s
 C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy elision), nhờ
 đó giảm việc tạo và hủy đối tượng tạm.
 
-Ví dụ, đoạn mã sau kích hoạt tối ưu hóa giá trị trả về (return value optimization,
-RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần khởi tạo và
-một lần khởi tạo sao chép, kể cả khi thao tác khởi tạo và hủy có tác dụng phụ.
+Ví dụ, đoạn mã sau kích hoạt tối ưu hóa giá trị trả về (return value
+optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần
+khởi tạo và một lần khởi tạo sao chép, kể cả khi thao tác khởi tạo và hủy có tác
+dụng phụ.
 
 ```cpp
 struct X {
@@ -127,8 +128,8 @@ int main() {
 ## Loại giá trị trong C++11
 
 C++11 đưa vào ngữ nghĩa di chuyển và tham chiếu phải trị (`T&&`), bao gồm hàm
-tạo di chuyển và toán tử gán di chuyển. Nhờ đó chương trình có thể tận dụng các
-đối tượng tạm.
+tạo di chuyển và toán tử gán di chuyển. Nhờ đó chương trình có thể tận dụng tài
+nguyên của các đối tượng tạm hoặc các đối tượng sắp không dùng nữa.
 
 Hàm `move_to` ở trên có thể được viết lại như sau:
 
@@ -168,8 +169,9 @@ Ngoài ra, C++11 còn đưa vào hai loại tổng hợp:
 ### std::move
 
 Để phối hợp với ngữ nghĩa di chuyển, C++11 còn đưa vào hàm tiện ích `std::move`.
-Hàm này ép biểu thức thành xvalue, nhờ đó có thể kích hoạt ngữ nghĩa di chuyển
-nếu kiểu dữ liệu hỗ trợ.
+Hàm này chỉ ép biểu thức thành xvalue; bản thân nó không di chuyển dữ liệu. Sau
+khi ép kiểu, nếu kiểu dữ liệu hỗ trợ, hàm tạo di chuyển hoặc toán tử gán di
+chuyển mới có thể được chọn.
 
 ```cpp
 int main() {
@@ -199,6 +201,9 @@ int main() {
   return 0;
 }
 ```
+
+Sau khi bị di chuyển, `str` vẫn là một đối tượng hợp lệ và có thể hủy hoặc gán
+giá trị mới, nhưng không nên dựa vào nội dung cũ của nó nữa.
 
 > Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các
 > chuỗi ngắn được lưu ngay bên trong đối tượng. Cần nhập chuỗi dài hơn mới dễ
@@ -239,10 +244,10 @@ int main() {
 }
 ```
 
-Đồng thời, C++17 đưa vào cơ chế vật chất hóa đối tượng tạm: khi cần truy cập thành
-viên dữ liệu, gọi hàm thành viên, hoặc gặp tình huống khác cần một giá trị trái
-tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định thành giá
-trị sắp hết hạn đã được vật chất hóa.
+Đồng thời, C++17 đưa vào cơ chế vật chất hóa đối tượng tạm: khi cần truy cập
+thành viên dữ liệu, gọi hàm thành viên, hoặc gặp tình huống khác cần một giá trị
+trái tổng quát (glvalue), giá trị thuần phải có thể được chuyển ngầm định thành
+giá trị sắp hết hạn đã được vật chất hóa.
 
 <span id="các-hiểu-lầm-thường-gặp"></span>
 
