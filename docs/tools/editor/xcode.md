@@ -50,7 +50,7 @@ Sau khi viết mã, có thể nhấn `⌘B` để biên dịch (`Build`), `⌘R`
 
 ![](images/xcode-8.jpg)
 
-Thông thường chỉ cần dùng vùng soạn thảo và vùng chạy. Nếu chương trình có dữ liệu vào, nhập trong vùng chạy rồi sẽ nhận được kết quả đầu ra. Giao diện hiển thị như sau:
+Thông thường, vùng soạn thảo và vùng chạy đã đủ dùng. Nếu chương trình có dữ liệu vào, nhập trong vùng chạy rồi sẽ nhận được kết quả đầu ra. Giao diện hiển thị như sau:
 
 ![](images/xcode-9.jpg)
 

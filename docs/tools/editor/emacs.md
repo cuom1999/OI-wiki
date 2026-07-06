@@ -6,8 +6,8 @@ Trang này là hướng dẫn nhập môn Emacs.
 
 ## Giới thiệu
 
-Emacs là một trình soạn thảo dễ bắt đầu; chỉ cần vài dòng cấu hình ngắn là có
-thể dùng. Tuy nhiên, để dùng Emacs thành thạo cho nhiều công việc khác nhau thì
+Emacs là một trình soạn thảo dễ bắt đầu; vài dòng cấu hình ngắn đã đủ để
+sử dụng. Tuy nhiên, để dùng Emacs thành thạo cho nhiều công việc khác nhau thì
 vẫn cần một khoảng thời gian nhất định.
 
 Là một hướng dẫn nhập môn, trang này chỉ giới thiệu các chức năng cơ bản của
