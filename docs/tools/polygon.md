@@ -8,19 +8,25 @@ Trang này giới thiệu ngắn gọn nền tảng ra đề cộng tác nhiều
 
 Trang web: [Index Page - Polygon](https://polygon.codeforces.com)
 
-Polygon là một nền tảng ra đề hỗ trợ nhiều người cộng tác, với hệ thống chức năng rất hoàn chỉnh. Mô tả trên trang chính thức là: "Sứ mệnh của Polygon là cung cấp một nền tảng để tạo bài toán cho các cuộc thi lập trình."
+Polygon là một nền tảng ra đề hỗ trợ nhiều người cộng tác, với hệ thống chức năng
+hoàn chỉnh. Mô tả trên trang chính thức là: "Sứ mệnh của Polygon là cung cấp một
+nền tảng để tạo bài toán cho các cuộc thi lập trình."
 
 Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đề ở nơi khác, đặc biệt là khi nhiều người cùng cộng tác, Polygon cũng là một lựa chọn tốt.
 
 ### Ưu điểm
 
--   Có hệ thống quản lý phiên bản; khi nhiều người cùng làm sẽ không rối, và cũng không cần truyền tệp qua lại.
+-   Có hệ thống quản lý phiên bản; khi nhiều người cùng làm sẽ dễ quản lý hơn và
+    không cần truyền tệp qua lại.
 
 -   Hệ thống ra đề hoàn chỉnh; trình xác thực dữ liệu, trình sinh dữ liệu, trình kiểm tra đáp án và lời giải liên kết chặt chẽ với nhau, đầu ra được tự động sinh.
 
--   Có thể đặt nhãn cho lời giải; nếu lời giải sai AC hoặc lời giải đúng không AC thì hệ thống đều cảnh báo, thuận tiện để lần lượt chặn các lời giải sai.
+-   Có thể đặt nhãn cho lời giải; nếu lời giải sai AC hoặc lời giải đúng không AC
+    thì hệ thống đều cảnh báo, thuận tiện cho việc chặn lần lượt các lời giải
+    sai.
 
--   Có thể kiểm thử stress rất thuận tiện; dữ liệu tìm được khi kiểm thử stress có thể thêm trực tiếp vào dữ liệu của bài.
+-   Hỗ trợ kiểm thử stress thuận tiện; dữ liệu tìm được khi kiểm thử stress có
+    thể thêm trực tiếp vào dữ liệu của bài.
 
 -   Khi phát hiện vấn đề có thể tạo issue (mục vấn đề), tránh việc vấn đề bị trôi trong tin nhắn mà vẫn chưa được sửa.
 
@@ -30,9 +36,13 @@ Khi ra đề trên Codeforces (CF), bắt buộc phải dùng Polygon. Khi ra đ
 
 ## Danh sách bài
 
-Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải chuẩn, trình xác thực dữ liệu và trình kiểm tra đáp án.
+Danh sách bài sẽ hiển thị thông tin cơ bản của một bài, chẳng hạn tình trạng viết
+đề bài, hướng dẫn, tình trạng sinh dữ liệu, cũng như thiết lập của lời giải
+chuẩn, trình xác thực dữ liệu và trình kiểm tra đáp án.
 
-Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ những việc cần tự nhắc (cần thêm bộ kiểm thử/cần viết hướng dẫn), hoặc phân bố điểm dự kiến của bài. Có thể điền tùy nhu cầu, hoặc để trống.
+Có thể nhấp đúp vào cột "Name" ("Tên") trong danh sách bài để ghi chú, ví dụ
+những việc cần tự nhắc (cần thêm bộ kiểm thử/cần viết hướng dẫn), hoặc phân bố
+điểm dự kiến của bài. Có thể điền tùy nhu cầu, hoặc để trống.
 
 Trong "Rev." ("Phiên bản"), "x/y" nghĩa là x là phiên bản hiện tại của bài, còn y là phiên bản gói. Nếu hai số khác nhau, y sẽ hiển thị màu đỏ.
 
@@ -61,9 +71,13 @@ Trong trang này, có thể thiết lập giới hạn thời gian, giới hạn
 
 ### Đề bài và hướng dẫn
 
-Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" ("Rà soát") để xem đề bài, trình xác thực dữ liệu và trình kiểm tra đáp án, thường dùng cho việc rà soát.
+Trang này dùng để viết đề bài và hướng dẫn. Cũng có thể dùng nút "Review" ("Rà
+soát") để xem đề bài, trình xác thực dữ liệu và trình kiểm tra đáp án, thường
+dùng cho việc rà soát.
 
-Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ chỉ là một tập con rất nhỏ; có thể tự thử cụ thể.
+Đề bài và hướng dẫn đều cần dùng cú pháp TeX, không thể dùng Markdown. Ví dụ, cần
+dùng `\textbf{text}` thay vì `**text**`. Tuy vậy, phần TeX mà Polygon hỗ trợ chỉ
+là một tập con nhỏ; có thể tự thử cụ thể.
 
 Có thể dùng liên kết "In HTML" ("Dạng HTML") ở phía trên cùng để xem đề bài sau khi dựng HTML, và dùng "Tutorial in HTML" ("Hướng dẫn dạng HTML") để xem hướng dẫn sau khi dựng HTML.
 
@@ -73,7 +87,8 @@ Nếu cần thêm ảnh vào đề bài, trước hết cần tải ảnh lên t
 
 "Source Files" ("Tệp nguồn") dùng để lưu các mã nguồn **ngoại trừ lời giải**, chẳng hạn trình xác thực dữ liệu, trình kiểm tra đáp án, trình sinh dữ liệu, và nếu là bài tương tác kiểu IO thì còn có trình tương tác.
 
-Nếu các mã nguồn này cần nạp tệp khác bằng `#include`, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator), thì cần đặt chúng trong "Resource Files" ("Tệp tài nguyên").
+Nếu các mã nguồn này cần nạp tệp khác bằng `#include`, ví dụ [Tree-Generator](https://github.com/ouuan/Tree-Generator),
+thì cần đặt chúng trong "Resource Files" ("Tệp tài nguyên").
 
 Tương tác kiểu grader xem [hướng dẫn chính thức](https://codeforces.com/blog/entry/66916).
 
@@ -99,13 +114,24 @@ Trình xác thực dữ liệu dùng để kiểm tra tính hợp lệ của d�
 
 Trang này dùng để quản lý dữ liệu.
 
-Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md) **có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần sinh đầu vào; đầu ra sẽ được sinh tự động.
+Trên Polygon, cách làm được khuyến nghị là dùng một số ít [trình sinh dữ liệu](./testlib/generator.md)
+**có tham số dòng lệnh** để sinh dữ liệu, thay vì viết nhiều trình sinh dữ liệu
+hoặc mỗi lần sinh một bộ dữ liệu lại sửa trình sinh dữ liệu. Ngoài ra, chỉ cần
+sinh đầu vào; đầu ra sẽ được sinh tự động.
 
 "Testset" ("Tập kiểm thử") dùng để nhóm các bộ kiểm thử. Nếu ra đề cho CF, cần tự thêm tập kiểm thử tên `pretests`, và `pretests` cần là tập con của `tests`.
 
-"Add Test" ("Thêm bộ kiểm thử") dùng để thêm thủ công một bộ dữ liệu, thường dùng để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này **không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh bằng trình sinh dữ liệu với một bộ tham số nào đó.
+"Add Test" ("Thêm bộ kiểm thử") dùng để thêm thủ công một bộ dữ liệu, thường dùng
+để nhập tay mẫu hoặc dữ liệu nhỏ. Dù có thể tải tệp dữ liệu lên, cách này
+**không được khuyến nghị**; dữ liệu nên hoặc được nhập thủ công, hoặc được sinh
+bằng trình sinh dữ liệu với một bộ tham số nào đó.
 
-Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you want to specify custom content of input or output data for statements click here" (nếu cần chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, nhấp vào đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
+Nếu chọn "Use in statements" (dùng trong đề bài), bộ dữ liệu này sẽ trở thành mẫu
+và được tự động thêm vào đề bài. Nếu cần nội dung hiển thị trong đề bài không
+phải đầu vào/đầu ra của mẫu (thường dùng cho bài tương tác), có thể nhấp "If you
+want to specify custom content of input or output data for statements click here"
+(nếu cần chỉ định nội dung đầu vào hoặc đầu ra tùy chỉnh cho đề bài, nhấp vào
+đây), rồi nhập đầu vào/đầu ra muốn hiển thị trong đề bài.
 
 Phần dưới của trang "Tests" dùng để nhập kịch bản sinh dữ liệu, ví dụ `generator-name [params] > test-index`. Có thể dùng `generator-name [params] > $` để không phải chỉ định thủ công số thứ tự bộ kiểm thử.
 
@@ -117,13 +143,17 @@ Có thể tham khảo [hướng dẫn do Polygon cung cấp](https://polygon.cod
 
 Trang này dùng để kiểm thử stress.
 
-Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script pattern" ("Mẫu kịch bản") là kịch bản sinh dữ liệu, trong đó có thể dùng dạng như "\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
+Nhấp "Add Stress" ("Thêm stress") để thêm một bộ kiểm thử stress. "Script
+pattern" ("Mẫu kịch bản") là kịch bản sinh dữ liệu, trong đó có thể dùng dạng như
+"\[10..100]" để biểu thị chọn ngẫu nhiên trong một khoảng.
 
 Sau đó chạy kiểm thử stress; nếu tìm được lỗi, hệ thống sẽ hiển thị "Crashed" ("Bị lỗi"), và có thể thêm bộ dữ liệu đó vào mục "Tests" bằng một lần nhấp.
 
 ### Tệp lời giải
 
-Trang này dùng để đặt mã nguồn lời giải của bài, có thể là lời giải đúng hoặc lời giải sai. Tải lời giải sai lên giúp chặn chúng thuận tiện hơn, và cũng có thể nhắc chính mình rằng cần chặn các lời giải đó.
+Trang này dùng để đặt mã nguồn lời giải của bài, có thể là lời giải đúng hoặc lời
+giải sai. Tải lời giải sai lên giúp chặn chúng thuận tiện hơn, và cũng có thể
+nhắc chính mình rằng cần chặn các lời giải đó.
 
 ### Lượt chạy kiểm thử
 
@@ -165,18 +195,29 @@ Khi ghi nhận thay đổi, nếu có chỗ không đúng quy chuẩn hoặc c�
 
 ## Quản lý cuộc thi
 
-Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc thi mới"), từ đó quản lý bài thuận tiện hơn.
+Nếu muốn ra một cuộc thi, có thể tạo bằng "New Contest" ("Cuộc thi mới"), từ đó
+quản lý bài thuận tiện hơn.
 
 "Add problems?" ("Thêm bài?") ở góc trên bên phải của danh sách bài trong trang quản lý cuộc thi dùng để thêm một bài đã có vào cuộc thi.
 
 "New problem" ("Bài mới") ở thanh bên dùng để tạo một bài mới rồi thêm vào cuộc thi.
 
-"Manage problem access" ("Quản lý quyền truy cập bài") ở phía trên dùng để xem quyền của từng bài; "Manage developers list" ("Quản lý danh sách người phát triển") ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi tạo bài bằng "New problem" ("Bài mới") và khi thêm người phát triển mới, quyền sẽ được tự động thêm; nhưng bài thêm vào bằng "Add problems?" ("Thêm bài?") sẽ không cấp quyền cho người phát triển đã có.
+"Manage problem access" ("Quản lý quyền truy cập bài") ở phía trên dùng để xem
+quyền của từng bài; "Manage developers list" ("Quản lý danh sách người phát
+triển") ở phía dưới dùng để quản lý những người có quyền trong cuộc thi này. Khi
+tạo bài bằng "New problem" ("Bài mới") và khi thêm người phát triển mới, quyền sẽ
+được tự động thêm; nhưng bài thêm vào bằng "Add problems?" ("Thêm bài?") sẽ không
+cấp quyền cho người phát triển đã có.
 
 Thanh bên còn có thể xem trước toàn bộ đề bài, toàn bộ hướng dẫn, toàn bộ trình xác thực dữ liệu và trình kiểm tra đáp án, tải gói của cả cuộc thi và đánh số lại các bài.
 
 ## Giải quyết xung đột
 
-Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với phiên bản bài trên kho từ xa (remote), và khi lấy phiên bản mới nhất từ kho từ xa hoặc khi ghi nhận thay đổi (commit) mà tệp đã sửa không thể tự động gộp (merge), xung đột (Conflicted) sẽ xảy ra.
+Khi nhiều người cùng dùng Polygon để ra đề, nếu phiên bản bài đang sửa khác với
+phiên bản bài trên kho từ xa (remote), và khi lấy phiên bản mới nhất từ kho từ xa
+hoặc khi ghi nhận thay đổi (commit) mà tệp đã sửa không thể tự động gộp (merge),
+xung đột (Conflicted) sẽ xảy ra.
 
-Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" ("Giải quyết xung đột") trong các tùy chọn của bài bị xung đột; người dùng có thể vào đó để giải quyết xung đột trên các tệp bị xung đột.
+Sau khi xảy ra xung đột, Polygon sẽ cung cấp tùy chọn "Resolve conflicts" ("Giải
+quyết xung đột") trong các tùy chọn của bài bị xung đột; có thể vào đó để giải
+quyết xung đột trên các tệp bị xung đột.

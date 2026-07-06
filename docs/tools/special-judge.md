@@ -4,17 +4,28 @@ Trang này chủ yếu giới thiệu cách viết SPJ cho một số công cụ
 
 ## Giới thiệu
 
-**Trình chấm đặc biệt** (Special Judge, viết tắt: SPJ, còn gọi là trình kiểm tra đáp án, checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một bài có nhiều lời giải hoặc nhiều đáp án đúng.
+**Trình chấm đặc biệt** (Special Judge, viết tắt: SPJ, còn gọi là trình kiểm tra
+đáp án, checker) là chương trình dùng để kiểm tra tính hợp lệ của đáp án khi một
+bài có nhiều lời giải hoặc nhiều đáp án đúng.
 
 ???+ warning "Cảnh báo"
-    SPJ cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách, nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay việc kiểm tra cuối tệp chỉ có Testlib làm được thuận tiện, còn kiểm tra định dạng kiểu này thì hầu như không ai cố ý làm riêng.
+    SPJ cũng nên kiểm tra cuối tệp có nội dung thừa hay không, và định dạng đầu
+    ra có đúng hay không (ví dụ đề yêu cầu các số cách nhau bằng một dấu cách,
+    nhưng thí sinh lại dùng xuống dòng). Tuy nhiên, hiện nay Testlib là công cụ
+    thuận tiện để kiểm tra cuối tệp, còn kiểm tra định dạng kiểu này thì ít khi
+    được viết riêng.
 
-    Khi kiểm tra số thực, cần lưu ý NaN. Cách kiểm tra không hợp lý có thể dẫn đến tình huống chỉ cần xuất NaN là AC.
+    Khi kiểm tra số thực, cần lưu ý NaN. Cách kiểm tra không hợp lý có thể dẫn
+    đến tình huống chỉ cần xuất NaN là AC.
 
-    Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay chưa, để tránh làm SPJ bị lỗi chạy. Một số OJ xử lý lỗi chạy của SPJ như lỗi hệ thống.
+    Khi đọc tệp của thí sinh, nên kiểm tra xem đã đọc đúng nội dung cần thiết hay
+    chưa, để tránh làm SPJ bị lỗi chạy. Một số OJ xử lý lỗi chạy của SPJ như lỗi
+    hệ thống.
 
 ???+ note "Ghi chú"
-    Các ví dụ bên dưới đều dùng C++ làm ngôn ngữ lập trình, với tình huống mẫu: yêu cầu sai khác giữa đáp án chuẩn và đáp án thí sinh nhỏ hơn `1e-3`, tên tệp là `num`, và điểm tối đa của một bộ kiểm thử là 10.
+    Các ví dụ bên dưới đều dùng C++ làm ngôn ngữ lập trình, với tình huống mẫu:
+    yêu cầu sai khác giữa đáp án chuẩn và đáp án thí sinh nhỏ hơn `1e-3`, tên tệp
+    là `num`, và điểm tối đa của một bộ kiểm thử là 10.
 
 ## Testlib
 
@@ -268,7 +279,11 @@ int main(int argc, char* argv[]) {
 
 ## HDOJ
 
-Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn trong SPJ rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ so sánh đáp án với nội dung mà SPJ xuất ra làm đầu ra chuẩn rồi đưa ra kết quả cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của SPJ trong trường hợp đúng.
+Tình huống của HDOJ về cơ bản giống QDUOJ: cũng cần triển khai lời giải chuẩn
+trong SPJ rồi so sánh với đầu ra của thí sinh. Tuy nhiên, khác với QDUOJ, HDOJ sẽ
+so sánh đáp án với nội dung mà SPJ xuất ra làm đầu ra chuẩn rồi đưa ra kết quả
+cuối cùng. Vì vậy, khi tải đầu ra lên, chỉ cần tải đầu ra của SPJ trong trường
+hợp đúng.
 
 HDOJ yêu cầu tải lên tệp nhị phân đã biên dịch trên Windows, không phải mã nguồn.
 
@@ -433,7 +448,9 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-Cũng có thể dùng tệp tiêu đề [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h) do Kattis Problem Tools cung cấp để viết, qua đó triển khai các chức năng phức tạp hơn.
+Cũng có thể dùng tệp tiêu đề [validate.h](https://github.com/Kattis/problemtools/blob/master/examples/different/output_validators/different_validator/validate.h)
+do Kattis Problem Tools cung cấp để viết, qua đó triển khai các chức năng phức
+tạp hơn.
 
 ## Tài liệu tham khảo
 
