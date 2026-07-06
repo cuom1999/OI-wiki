@@ -197,7 +197,7 @@ Do thiếu bảo trì lâu dài, hệ thống tồn tại một số lỗ hổng
 
 ### Đánh giá
 
-Sau khi hoàn tất phát triển, Arbiter 1.0.2 gần như không có cập nhật đáng kể nào,
+Sau khi hoàn tất phát triển, Arbiter 1.0.2 không có nhiều cập nhật đáng kể,
 khiến trải nghiệm chấm kém và giao diện không còn phù hợp với thẩm mỹ hiện đại.
 Trong NOI Linux 1.4.1, nó cùng với GUIDE đi kèm NOI Linux trở thành đối tượng bị
 thí sinh và huấn luyện viên phàn nàn nhiều. Trong NOI Linux 2.0, ngoài việc trình

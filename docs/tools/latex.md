@@ -48,7 +48,7 @@ Một tài liệu mới sẽ tự động được mở.
 
 $\rightarrow$ Vào menu **Format**, chọn **Line Numbers**.
 
-Số dòng không phải là thành phần bắt buộc, nhưng giúp đối chiếu mã với thông báo trên màn hình và tìm lỗi.
+Số dòng không phải là thành phần phải có, nhưng giúp đối chiếu mã với thông báo trên màn hình và tìm lỗi.
 
 $\rightarrow$ Vào menu **Format**, chọn **Syntax Coloring**, rồi chọn **LaTeX**.
 
@@ -68,7 +68,7 @@ Lệnh `\documentclass` phải xuất hiện ở đầu mỗi tài liệu LaTeX.
 
 Hai lệnh `\begin{document}` và `\end{document}` bao lấy phần nội dung văn bản. Mọi nội dung trước `\begin{document}` được xem là phần mở đầu và ảnh hưởng đến toàn bộ tài liệu. Mọi nội dung sau `\end{document}` đều bị bỏ qua.
 
-Dòng trống không bắt buộc, nhưng giúp tài liệu dài dễ đọc hơn.
+Dòng trống không phải là thành phần phải có, nhưng giúp tài liệu dài dễ đọc hơn.
 
 $\rightarrow$ Nhấn nút **Save**; $\rightarrow$ tạo một thư mục tên **LaTeX course** trong **Libraries>Documents**; $\rightarrow$ đặt tên tài liệu là **Doc1** và lưu nó dưới dạng **TeX document** trong thư mục này.
 
