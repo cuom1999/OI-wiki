@@ -2,9 +2,9 @@ Trang này giới thiệu ngắn gọn về sắp xếp nhanh.
 
 ## Định nghĩa
 
-Sắp xếp nhanh (tiếng Anh: Quicksort), còn gọi là sắp xếp trao đổi phân hoạch
-(tiếng Anh: partition-exchange sort), thường gọi tắt là quicksort, là một thuật
-toán sắp xếp được sử dụng rộng rãi.
+Sắp xếp nhanh (quicksort), còn gọi là sắp xếp trao đổi phân hoạch
+(partition-exchange sort), thường gọi tắt là quicksort, là một thuật toán sắp
+xếp được sử dụng rộng rãi.
 
 ## Nguyên lý cơ bản và cài đặt
 
@@ -261,9 +261,9 @@ Sau đây là một số cách tối ưu hóa sắp xếp nhanh tương đối h
 
 #### Định nghĩa
 
-Sắp xếp nhanh ba đường (tiếng Anh: 3-way Radix Quicksort) là sự kết hợp giữa
-sắp xếp nhanh và [sắp xếp cơ số](./radix-sort.md). Ý tưởng thuật toán của nó
-dựa trên lời giải của
+Sắp xếp nhanh ba đường (3-way radix quicksort) là sự kết hợp giữa sắp xếp nhanh
+và [sắp xếp cơ số](./radix-sort.md). Ý tưởng thuật toán của nó dựa trên lời giải
+của
 [bài toán quốc kỳ Hà Lan](https://en.wikipedia.org/wiki/Dutch_national_flag_problem).
 
 #### Quy trình
@@ -343,10 +343,10 @@ nhanh ba đường.
 
 #### Định nghĩa
 
-Sắp xếp nội quan (tiếng Anh: Introsort hoặc Introspective sort)[^ref4] là sự
-kết hợp giữa sắp xếp nhanh và [sắp xếp vun đống](./heap-sort.md), do David
-Musser phát minh năm 1997. Sắp xếp nội quan thực chất là một dạng tối ưu hóa
-của sắp xếp nhanh, bảo đảm độ phức tạp thời gian xấu nhất là $O(n\log n)$.
+Sắp xếp nội quan (introsort hoặc introspective sort)[^ref4] là sự kết hợp giữa
+sắp xếp nhanh và [sắp xếp vun đống](./heap-sort.md), do David Musser phát minh
+năm 1997. Sắp xếp nội quan thực chất là một dạng tối ưu hóa của sắp xếp nhanh,
+bảo đảm độ phức tạp thời gian xấu nhất là $O(n\log n)$.
 
 #### Tính chất
 
@@ -420,7 +420,7 @@ T find_kth_element(T arr[], int rk, const int len) {
 
 ### Cải tiến: trung vị của các trung vị
 
-Trung vị của các trung vị (tiếng Anh: Median of medians) cung cấp một cách chọn
+Trung vị của các trung vị (median of medians) cung cấp một cách chọn
 giá trị mốc xác định trong quá trình phân hoạch, nhờ đó thuật toán tìm phần tử
 hạng $k$ cũng đạt độ phức tạp thời gian tuyến tính trong trường hợp xấu nhất.
 

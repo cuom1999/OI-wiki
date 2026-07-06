@@ -2,7 +2,9 @@ Trang này giới thiệu ngắn gọn về sắp xếp vun đống.
 
 ## Định nghĩa
 
-Sắp xếp vun đống (tiếng Anh: Heapsort) là một thuật toán sắp xếp được thiết kế dựa trên cấu trúc dữ liệu [đống nhị phân](../ds/binary-heap.md). Cấu trúc dữ liệu phù hợp để cài đặt sắp xếp vun đống là mảng.
+Sắp xếp vun đống (heapsort) là một thuật toán sắp xếp được thiết kế dựa trên cấu
+trúc dữ liệu [đống nhị phân](../ds/binary-heap.md). Cấu trúc dữ liệu phù hợp để
+cài đặt sắp xếp vun đống là mảng.
 
 ## Quy trình
 
@@ -10,9 +12,12 @@ Bản chất của sắp xếp vun đống là sắp xếp chọn được xây 
 
 ### Sắp xếp
 
-Trước hết xây dựng một đống lớn (max-heap), sau đó lấy phần tử ở đỉnh đống làm giá trị lớn nhất, hoán đổi nó với phần tử cuối mảng, rồi duy trì tính chất của phần đống còn lại;
+Trước hết xây dựng một đống lớn (max-heap), sau đó lấy phần tử ở đỉnh đống làm
+giá trị lớn nhất, hoán đổi nó với phần tử cuối mảng, rồi duy trì tính chất của
+phần đống còn lại;
 
-Tiếp theo lấy phần tử ở đỉnh đống làm giá trị lớn thứ hai, hoán đổi nó với phần tử áp chót của mảng, rồi duy trì tính chất của phần đống còn lại;
+Tiếp theo lấy phần tử ở đỉnh đống làm giá trị lớn thứ hai, hoán đổi nó với phần
+tử áp chót của mảng, rồi duy trì tính chất của phần đống còn lại;
 
 Tiếp tục quá trình này, sau thao tác thứ $n-1$, toàn bộ mảng sẽ được sắp xếp.
 

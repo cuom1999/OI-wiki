@@ -5,10 +5,10 @@ Trang này giới thiệu ngắn gọn về sắp xếp cơ số.
 
 ## Định nghĩa
 
-Sắp xếp cơ số (tiếng Anh: Radix sort) là một thuật toán sắp xếp không dựa trên
-so sánh, ban đầu được dùng để giải bài toán sắp xếp thẻ. Sắp xếp cơ số tách
-các phần tử cần sắp xếp thành $k$ khóa, rồi lần lượt sắp xếp theo từng khóa để
-hoàn tất việc sắp xếp tất cả phần tử.
+Sắp xếp cơ số (radix sort) là một thuật toán sắp xếp không dựa trên so sánh,
+ban đầu được dùng để giải bài toán sắp xếp thẻ. Sắp xếp cơ số tách các phần tử
+cần sắp xếp thành $k$ khóa, rồi lần lượt sắp xếp theo từng khóa để hoàn tất việc
+sắp xếp tất cả phần tử.
 
 Nếu so sánh lần lượt từ khóa thứ $1$ đến khóa thứ $k$, dạng sắp xếp cơ số đó
 được gọi là sắp xếp cơ số MSD (Most Significant Digit first, xử lý chữ số quan

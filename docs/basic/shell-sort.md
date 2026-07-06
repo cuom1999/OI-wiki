@@ -2,7 +2,9 @@ Trang này giới thiệu ngắn gọn về sắp xếp Shell.
 
 ## Định nghĩa
 
-Sắp xếp Shell (tiếng Anh: Shell sort), còn gọi là phương pháp sắp xếp giảm dần khoảng cách, là một phiên bản cải tiến của [sắp xếp chèn](./insertion-sort.md). Sắp xếp Shell được đặt theo tên người phát minh ra thuật toán này, Donald Shell.
+Sắp xếp Shell (Shell sort), còn gọi là phương pháp sắp xếp giảm dần khoảng cách,
+là một phiên bản cải tiến của [sắp xếp chèn](./insertion-sort.md). Sắp xếp Shell
+được đặt theo tên người phát minh ra thuật toán này, Donald Shell.
 
 ## Quy trình
 

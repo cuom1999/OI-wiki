@@ -2,7 +2,8 @@ Trang này giới thiệu ngắn gọn về sắp xếp theo thùng.
 
 ## Định nghĩa
 
-Sắp xếp theo thùng (tiếng Anh: Bucket sort) là một thuật toán sắp xếp, phù hợp khi dữ liệu cần sắp xếp có miền giá trị lớn nhưng phân bố tương đối đều.
+Sắp xếp theo thùng (bucket sort) là một thuật toán sắp xếp, phù hợp khi dữ liệu
+cần sắp xếp có miền giá trị lớn nhưng phân bố tương đối đều.
 
 ## Quy trình
 
