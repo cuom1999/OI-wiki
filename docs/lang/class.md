@@ -228,35 +228,34 @@ Ví dụ này định nghĩa hàm tạo mặc định của `Object`. Hàm này 
 thành viên dữ liệu thành `0` khi tạo biến kiểu `Object`.
 
 Nếu không có hàm tạo do người viết tự định nghĩa, trình biên dịch xem lớp đó là
-có hàm tạo mặc định ngầm định. Nói cách khác, nếu không định nghĩa bất kỳ hàm tạo
-nào, trình biên dịch sẽ tự động sinh một hàm tạo mặc định. Khi đó, các thành viên
-dữ liệu kiểu dựng sẵn không nhất thiết được khởi tạo giá trị.
+có hàm tạo mặc định ngầm định. Tức là nếu không định nghĩa bất kỳ hàm tạo nào,
+trình biên dịch sẽ tự động sinh một hàm tạo mặc định. Khi đó, các thành viên dữ
+liệu kiểu dựng sẵn không nhất thiết được khởi tạo giá trị.
 
 Trong trường hợp này, nếu các thành viên dữ liệu chưa được khởi tạo mà đã bị
 truy cập, hành vi là không xác định, tức không thể biết chắc chương trình sẽ đọc
 được giá trị gì.
 
-Nếu cần tự định nghĩa giá trị khởi tạo, có thể định nghĩa thêm, hoặc nạp chồng,
+Nếu cần tự định nghĩa giá trị khởi tạo, có thể định nghĩa thêm hoặc nạp chồng
 hàm tạo.
 
 ??? note "Về định nghĩa hoặc nạp chồng hàm tạo"
-    Thông thường, hàm tạo mặc định là hàm tạo có thể được gọi khi không truyền đối
-    số. Đây là điểm khác với hàm tạo thông thường. Cách định nghĩa hàm tạo và hàm
-    tạo mặc định gần giống nhau, chỉ khác ở danh sách tham số.
+    Thông thường, hàm tạo mặc định là hàm tạo có thể được gọi khi không truyền
+    đối số. Đây là điểm khác với các hàm tạo còn lại. Cách định nghĩa hàm tạo và
+    hàm tạo mặc định gần giống nhau, chỉ khác ở danh sách tham số.
 
-    Hàm tạo có thể được nạp chồng; lần đầu viết cũng có thể gọi là
-    định nghĩa. Nếu đã định nghĩa hàm tạo, trình biên dịch sẽ
-    không tự sinh hàm tạo mặc định không tham số nữa. Điều này có thể khiến hành
-    vi thử tạo biến theo cách mặc định, tức không điền tham số khởi tạo, bị lỗi
-    biên dịch.
+    Hàm tạo có thể được nạp chồng; lần đầu viết cũng có thể gọi là định nghĩa.
+    Nếu đã định nghĩa hàm tạo, trình biên dịch sẽ không tự sinh hàm tạo mặc định
+    không tham số nữa. Điều này có thể khiến thao tác tạo biến theo cách mặc
+    định, tức không điền tham số khởi tạo, bị lỗi biên dịch.
 
 Khi dùng C++11 trở lên, có thể dùng `{}` để khởi tạo biến.
 
 ??? note "Về `{}`"
-    Dùng `{}` để khởi tạo có thể dùng đối tượng proxy nhẹ
-    `std::initializer_list` để khởi tạo.
+    Quá trình khởi tạo bằng `{}` có thể sử dụng đối tượng proxy nhẹ
+    `std::initializer_list`.
 
-    Các bước khởi tạo đại khái như sau:
+    Các bước khởi tạo thường diễn ra như sau:
 
     1.  Thử tìm hàm tạo nhận `std::initializer_list`; nếu có thì gọi hàm đó, và
         sau khi gọi xong không tiếp tục tìm các cách phía sau nữa. Các bước sau
@@ -315,15 +314,15 @@ Object C{1, 2};  // hợp lệ (C++11)
     Node a = 1;
     ```
 
-    Trông có vẻ rất vô lý: một kiểu `int` không thể chuyển thành kiểu `Node`.
-    Nhưng trình biên dịch sẽ không báo `error`.
+    Thoạt nhìn có vẻ không hợp lý: một kiểu `int` không thể chuyển thành kiểu
+    `Node`. Nhưng trình biên dịch sẽ không báo `error`.
 
     Nguyên nhân là trong quá trình khởi tạo sao chép, `1` được dùng làm tham số
     để gọi `Node::Node(int)`, từ đó tạo ra một đối tượng `Node`.
 
     Tuy nhiên trong đa số trường hợp, người viết muốn trình biên dịch báo lỗi.
     Khi đó có thể thêm từ khóa `explicit` trước hàm tạo. Từ khóa này cho trình
-    biên dịch biết rằng bắt buộc phải gọi tường minh.
+    biên dịch biết rằng hàm tạo phải được gọi tường minh.
 
     ```cpp
     class Node {
@@ -334,17 +333,16 @@ Object C{1, 2};  // hợp lệ (C++11)
     };
     ```
 
-    Nghĩa là `Node a = 1` sẽ báo lỗi, nhưng `Node a = Node(1)` thì không, vì đoạn
-    sau gọi hàm tạo một cách tường minh. Thông thường, ít người sẽ viết đoạn
-    sau, nhưng ví dụ này đủ để minh họa tác dụng của `explicit`.
+    Nghĩa là `Node a = 1` sẽ báo lỗi, nhưng `Node a = Node(1)` thì không, vì
+    đoạn sau gọi hàm tạo một cách tường minh. Thông thường, ít người sẽ viết
+    đoạn sau, nhưng ví dụ này đủ để minh họa tác dụng của `explicit`.
 
-    *Tuy vậy trong lập trình thi đấu, cách thường dùng để tránh tình huống này là
-    "nâng cao mức độ chuẩn mực của mã" ngay từ đầu.*
+    *Trong lập trình thi đấu, cách thường dùng để tránh tình huống này là viết
+    mã chặt chẽ ngay từ đầu.*
 
 ### Hủy
 
-Đây là vấn đề không thể tránh. Mỗi biến đều sẽ bị hủy khi ra khỏi phạm vi tác
-dụng.
+Mỗi biến đều sẽ bị hủy khi ra khỏi phạm vi tác dụng.
 
 Nhưng với con trỏ trỏ tới vùng nhớ được cấp phát động, khi bản thân con trỏ bị
 hủy, vùng nhớ mà nó trỏ tới sẽ không tự động được giải phóng; cần giải phóng bộ
@@ -379,15 +377,15 @@ class Object {
 ### Gán giá trị cho biến lớp
 
 Theo mặc định, khi gán giữa hai đối tượng cùng lớp, chương trình sẽ gán lần lượt
-từng thành viên cùng vị trí. Cũng có thể dùng `TênLớp(...)` hoặc `TênLớp{...}` làm
+từng thành viên tương ứng. Cũng có thể dùng `TênLớp(...)` hoặc `TênLớp{...}` làm
 đối tượng tạm để gán.
 
 Khi dùng đối tượng tạm, trước hết chương trình tạo đối tượng tạm bằng hàm tạo
 phù hợp, sau đó dùng toán tử gán để gán vào biến bên trái.
 
-Ngoài ra, theo mặc định, việc gán giữa các thành viên cùng vị trí đều là **sao chép
-nông**. Nếu thành viên có con trỏ, sau khi gán xong, con trỏ thành viên của hai
-biến sẽ có cùng địa chỉ.
+Ngoài ra, theo mặc định, việc gán giữa các thành viên tương ứng đều là **sao
+chép nông**. Nếu thành viên có con trỏ, sau khi gán xong, con trỏ thành viên của
+hai biến sẽ có cùng địa chỉ.
 
 ```cpp
 // A, tmp1, tmp2, tmp3 có kiểu Object
@@ -396,11 +394,10 @@ tmp2 = Object(...);
 tmp3 = {...};
 ```
 
-Nếu cần giải quyết vấn đề con trỏ hoặc cần thao tác khác, cần tự định nghĩa toán
-tử gán, hàm tạo sao chép hoặc các hàm thành viên đặc biệt liên quan.
+Nếu cần xử lý vấn đề con trỏ hoặc cần thao tác khác, cần tự định nghĩa toán tử
+gán, hàm tạo sao chép hoặc các hàm thành viên đặc biệt liên quan.
 
-*Nội dung khác về hàm tạo, xem mục thứ sáu trong "Tài liệu tham
-khảo".*
+*Nội dung khác về hàm tạo: xem mục thứ sáu trong "Tài liệu tham khảo".*
 
 ## Tài liệu tham khảo
 
