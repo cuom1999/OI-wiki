@@ -10,9 +10,11 @@ là một phiên bản cải tiến của [sắp xếp chèn](./insertion-sort.m
 
 Thuật toán sắp xếp bằng cách so sánh và di chuyển các phần tử không kề nhau:
 
-1.  Chia dãy cần sắp xếp thành nhiều dãy con (các phần tử trong mỗi dãy con có cùng khoảng cách trong mảng ban đầu);
+1.  Chia dãy cần sắp xếp thành nhiều dãy con. Các phần tử trong mỗi dãy con có
+    cùng khoảng cách trong mảng ban đầu;
 2.  Thực hiện sắp xếp chèn trên các dãy con này;
-3.  Giảm khoảng cách giữa các phần tử trong mỗi dãy con, lặp lại quá trình trên cho đến khi khoảng cách giảm xuống $1$.
+3.  Giảm khoảng cách giữa các phần tử trong mỗi dãy con, rồi lặp lại quá trình
+    trên cho đến khi khoảng cách giảm xuống $1$.
 
 ## Tính chất
 
@@ -30,10 +32,16 @@ Shell phụ thuộc vào cách chọn dãy khoảng cách. Gọi dãy khoảng c
 thuật toán giảm xuống bậc $o(n^2)$.
 
 ???+ note "Mệnh đề 1"
-    Nếu dãy khoảng cách là $H= \{ 2^k-1\mid k=1,2,\ldots,\lfloor\log_2 n\rfloor \}$ (theo thứ tự từ lớn đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là $O(n^{3/2})$.
+    Nếu dãy khoảng cách là
+    $H= \{ 2^k-1\mid k=1,2,\ldots,\lfloor\log_2 n\rfloor \}$ (theo thứ tự từ
+    lớn đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là
+    $O(n^{3/2})$.
 
 ???+ note "Mệnh đề 2"
-    Nếu dãy khoảng cách là $H= \{ k=2^p\cdot 3^q\mid p,q\in \mathbb N,k\le n \}$ (theo thứ tự từ lớn đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là $O(n\log^2 n)$.
+    Nếu dãy khoảng cách là
+    $H= \{ k=2^p\cdot 3^q\mid p,q\in \mathbb N,k\le n \}$ (theo thứ tự từ lớn
+    đến nhỏ), thì độ phức tạp thời gian của thuật toán sắp xếp Shell là
+    $O(n\log^2 n)$.
 
 Để chứng minh hai mệnh đề này, trước hết nêu và chứng minh một định lý quan
 trọng. Định lý này phản ánh đặc trưng chính của sắp xếp Shell.
@@ -57,7 +65,8 @@ Tiếp theo là phần chứng minh định lý 1.
 Trước hết chứng minh bổ đề 1.
 
 ???+ note "Bổ đề 1"
-    Với các số nguyên $n,m$, số nguyên dương $l$ và hai mảng $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$ thỏa mãn yêu cầu sau:
+    Với các số nguyên $n,m$, số nguyên dương $l$ và hai mảng
+    $X(x_1,x_2,\ldots,x_{n+l}),Y(y_1,y_2,\ldots,y_{m+l})$ thỏa mãn yêu cầu sau:
     
     $$
     y_1 \le x_{n+1},y_2 \le x_{n+2},\ldots,y_l \le x_{n+l}
@@ -66,19 +75,28 @@ Trước hết chứng minh bổ đề 1.
     Nếu sắp xếp riêng hai mảng theo thứ tự tăng dần, yêu cầu trên vẫn còn đúng.
 
 ??? note "Chứng minh bổ đề 1"
-    Giả sử sau khi sắp xếp, mảng $X$ trở thành $X'(x'_1,\ldots,x'_{n+l})$ và mảng $Y$ trở thành $Y'(y'_1,\ldots,y'_{m+l})$.
+    Giả sử sau khi sắp xếp, mảng $X$ trở thành
+    $X'(x'_1,\ldots,x'_{n+l})$ và mảng $Y$ trở thành
+    $Y'(y'_1,\ldots,y'_{m+l})$.
     
-    Với mọi $1\le i\le l$, $x'_{n+i}$ nhỏ hơn hoặc bằng $l-i$ phần tử trong mảng $X'$, và cũng nhỏ hơn hoặc bằng $l-i$ phần tử trong mảng $X$ (vì đa tập phần tử của $X$ và $X'$ là giống nhau).
+    Với mọi $1\le i\le l$, $x'_{n+i}$ nhỏ hơn hoặc bằng $l-i$ phần tử trong
+    mảng $X'$, và cũng nhỏ hơn hoặc bằng $l-i$ phần tử trong mảng $X$ (vì đa
+    tập phần tử của $X$ và $X'$ là giống nhau).
     
-    Khi đó trong đa tập $\{x_{n+1},\ldots,x_{n+l} \} \subset X$, số phần tử lớn hơn hoặc bằng $x'_{n+i}$ không vượt quá $l-i$.
+    Khi đó trong đa tập $\{x_{n+1},\ldots,x_{n+l} \} \subset X$, số phần tử lớn
+    hơn hoặc bằng $x'_{n+i}$ không vượt quá $l-i$.
     
-    Suy ra số phần tử nhỏ hơn $x'_{n+i}$ ít nhất là $i$. Lấy ra $i$ phần tử trong số đó, giả sử chúng là $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$. Khi đó có:
+    Suy ra số phần tử nhỏ hơn $x'_{n+i}$ ít nhất là $i$. Lấy ra $i$ phần tử
+    trong số đó, giả sử chúng là
+    $x_{n+k_1},x_{n+k_2},\ldots,x_{n+k_i}$. Khi đó có:
     
     $$
     y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}
     $$
     
-    Vì vậy $x'_{n+i}$ lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y$, tức cũng lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y'$. Do đó suy ra $y'_i\le x'_{n+i}\,(1\le i\le l)$.
+    Vì vậy $x'_{n+i}$ lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y$, tức cũng
+    lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y'$. Do đó suy ra
+    $y'_i\le x'_{n+i}\,(1\le i\le l)$.
 
 Quay lại chứng minh mệnh đề ban đầu:
 
@@ -132,11 +150,16 @@ $$
 A_i\le A_{i+h},A_{i+k}\le A_{i+h+k},\ldots
 $$
 
-nên theo bổ đề $1$, sau khi thực hiện $\text{InsertionSort}(k)$ để sắp xếp riêng hai nhóm, quan hệ này vẫn còn đúng, tức vẫn có $A_i\le A_{i+h}\,(1\le i\le \min(h,k))$.
+nên theo bổ đề $1$, sau khi thực hiện $\text{InsertionSort}(k)$ để sắp xếp
+riêng hai nhóm, quan hệ này vẫn còn đúng, tức vẫn có
+$A_i\le A_{i+h}\,(1\le i\le \min(h,k))$.
 
-Nếu $i>\min(h,k)$, có thể lấy một số nguyên dương $w$ $(1\le w\le \min(h,k))$ rồi cộng thêm một số lần $k$ để thu được $i$; do đó trường hợp đã xét ở trên đã bao hàm chứng minh cho trường hợp này.
+Nếu $i>\min(h,k)$, có thể lấy một số nguyên dương $w$
+$(1\le w\le \min(h,k))$ rồi cộng thêm một số lần $k$ để thu được $i$; do đó
+trường hợp đã xét ở trên đã bao hàm chứng minh cho trường hợp này.
 
-Tổng hợp các lập luận trên, sau khi thực hiện xong $\text{InsertionSort}(k)$ vẫn có $A_i\le A_{i+h}\,(1\le i\le n-h)$.
+Tổng hợp các lập luận trên, sau khi thực hiện xong $\text{InsertionSort}(k)$
+vẫn có $A_i\le A_{i+h}\,(1\le i\le n-h)$.
 
 Vì vậy định lý 1 được chứng minh.
 
@@ -151,7 +174,8 @@ Trong chứng minh độ phức tạp của sắp xếp Shell, nó cũng giúp m
 $1$.
 
 ???+ note "Bổ đề 2"
-    Nếu $a,b$ đều là số nguyên dương và nguyên tố cùng nhau, thì số nguyên dương lớn nhất không thuộc tập $\{ax+by\mid x,y\in \mathbb N \}$ là $ab-a-b$.
+    Nếu $a,b$ đều là số nguyên dương và nguyên tố cùng nhau, thì số nguyên dương
+    lớn nhất không thuộc tập $\{ax+by\mid x,y\in \mathbb N \}$ là $ab-a-b$.
 
 ??? note "Chứng minh bổ đề 2"
     Chứng minh theo hai bước:
@@ -162,7 +186,9 @@ $1$.
     
         Từ dạng nghiệm tổng quát $x=x_0+tb,y=y_0-ta$, suy ra hai nghiệm trên là "kề nhau" (vì $b-1-b=-1$).
     
-        Khi $t$ tăng, $x$ tăng còn $y$ giảm, nên nếu phương trình có nghiệm nguyên không âm, nghiệm đó tất phải nằm giữa hai nghiệm trên. Nhưng hai nghiệm này "kề nhau", ở giữa không có nghiệm nào khác.
+        Khi $t$ tăng, $x$ tăng còn $y$ giảm. Vì vậy, nếu phương trình có nghiệm
+        nguyên không âm, nghiệm đó tất phải nằm giữa hai nghiệm trên. Nhưng hai
+        nghiệm này "kề nhau", ở giữa không có nghiệm nào khác.
     
         Vì vậy không thể có nghiệm nguyên không âm.
     -   Tiếp theo chứng minh với mọi số nguyên $c > ab-a-b$, phương trình $ax+by=c$ có nghiệm nguyên không âm:
@@ -184,16 +210,24 @@ $1$.
 Định lý tiếp theo cho thấy bổ đề $2$ mở rộng định lý $1$ như thế nào.
 
 ???+ note "Định lý 2"
-    Nếu $\gcd(h_{t+1},h_t)=1$, thì sau khi chương trình lần lượt thực hiện xong $\text{InsertionSort}(h_{t+1})$ và $\text{InsertionSort}(h_t)$, thời gian thực hiện $\text{InsertionSort}(h_{t-1})$ là $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$; đồng thời với mỗi $j$, số lần di chuyển của $i$ là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
+    Nếu $\gcd(h_{t+1},h_t)=1$, thì sau khi chương trình lần lượt thực hiện xong
+    $\text{InsertionSort}(h_{t+1})$ và $\text{InsertionSort}(h_t)$, thời gian
+    thực hiện $\text{InsertionSort}(h_{t-1})$ là
+    $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$. Đồng thời, với mỗi $j$, số
+    lần di chuyển của $i$ là bậc
+    $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
 
 ??? note "Chứng minh định lý 2"
-    Với phần $j\le h_{t+1}h_t$, số lần di chuyển của $i$ là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
+    Với phần $j\le h_{t+1}h_t$, số lần di chuyển của $i$ là bậc
+    $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
     
     Vì vậy, sau đây giả sử $j>h_{t+1}h_t$.
     
-    Với số nguyên dương tùy ý $k$ thỏa mãn $1\le k\le j-h_{t+1}h_t$, có: $h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$.
+    Với số nguyên dương tùy ý $k$ thỏa mãn $1\le k\le j-h_{t+1}h_t$, có:
+    $h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$.
     
-    Lại vì $\gcd(h_{t+1},h_t)=1$, theo bổ đề $2$, tồn tại các số nguyên không âm $a,b$ sao cho: $ah_{t+1}+bh_t=j-k$.
+    Lại vì $\gcd(h_{t+1},h_t)=1$, theo bổ đề $2$, tồn tại các số nguyên không
+    âm $a,b$ sao cho: $ah_{t+1}+bh_t=j-k$.
     
     Suy ra:
     
@@ -217,7 +251,10 @@ $1$.
     
     Vì vậy với mọi $1\le k\le j-h_{t+1}h_t$ đều có $A_k\le A_j$.
     
-    Trong mã giả Shell-Sort, con trỏ $i$ mỗi lần giảm $h_{t-1}$; sau khi giảm $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ lần, có thể làm cho $i\le j-h_{t+1}h_t$, từ đó có $A_i\le A_j$, điều kiện của vòng lặp while không còn thỏa mãn và vòng lặp kết thúc.
+    Trong mã giả Shell-Sort, con trỏ $i$ mỗi lần giảm $h_{t-1}$. Sau khi giảm
+    $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$ lần, có thể làm cho
+    $i\le j-h_{t+1}h_t$. Khi đó $A_i\le A_j$, điều kiện của vòng lặp while
+    không còn thỏa mãn và vòng lặp kết thúc.
     
     Sau khi chứng minh xong độ phức tạp di chuyển cho mỗi $j$, thu được tổng độ phức tạp thời gian:
     
@@ -241,11 +278,15 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
     H(h_1=1,h_2=3,h_3=7,\ldots,h_{\lfloor \log_2 n\rfloor}=2^{\lfloor \log_2 n\rfloor}-1)
     $$
     
-    Thứ tự thực hiện của Shell-Sort là: $\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor}),\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1}),\ldots,\text{InsertionSort}(h_2),\text{InsertionSort}(h_1)$.
+    Thứ tự thực hiện của Shell-Sort là:
+    $\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor})$,
+    $\text{InsertionSort}(h_{\lfloor \log_2 n\rfloor-1})$, $\ldots$,
+    $\text{InsertionSort}(h_2)$, $\text{InsertionSort}(h_1)$.
     
     Chia việc phân tích độ phức tạp thành hai phần:
     
-    -   Với một số hạng đầu thỏa mãn $h_t\ge \sqrt{n}$, độ phức tạp thời gian của $\text{InsertionSort}(h_t)$ là $O\left(\dfrac{n^2}{h_t} \right)$.
+    -   Với một số hạng đầu thỏa mãn $h_t\ge \sqrt{n}$, độ phức tạp thời gian của
+        $\text{InsertionSort}(h_t)$ là $O\left(\dfrac{n^2}{h_t} \right)$.
     
         Xét hạng $h_k$ gần $\sqrt{n}$ nhất, có:
     
@@ -264,13 +305,17 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
         $$
         \sum_{i=k}^{\lfloor \log_2 n\rfloor}{O(n^{3/2}/2^{i-k})}=O(n^{3/2})
         $$
-    -   Với các hạng còn lại thỏa mãn $h_t< \sqrt{n}$, độ phức tạp của hai hạng đầu vẫn là $O(n^{3/2})$; còn với các hạng phía sau $h_t$, theo định lý $2$ có độ phức tạp thời gian:
+    -   Với các hạng còn lại thỏa mãn $h_t< \sqrt{n}$, độ phức tạp của hai hạng
+        đầu vẫn là $O(n^{3/2})$. Còn với các hạng phía sau $h_t$, theo định lý
+        $2$ có độ phức tạp thời gian:
     
         $$
         O\left(\frac{nh_{t+2}h_{t+1}}{h_t} \right)=O\left(\frac{nh_{t+2}\cdot h_{t+2}/2}{h_{t+2}/4} \right)=O(nh_{t+2})
         $$
     
-        Lại dùng tính chất $2h_i < h_{i+1}$, thu được tổng độ phức tạp thời gian của phần này là (trong công thức dưới, $k$ vẫn dùng theo nghĩa ở trường hợp trước):
+        Lại dùng tính chất $2h_i < h_{i+1}$, thu được tổng độ phức tạp thời gian
+        của phần này là (trong công thức dưới, $k$ vẫn dùng theo nghĩa ở trường
+        hợp trước):
     
         $$
         2O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{i+1})}=O(n^{3/2})+\sum_{i=1}^{k-3}{O(nh_{k-1}/2^{k-i-3})}=O(n^{3/2})+O(nh_{k-1})=O(n^{3/2})
@@ -302,14 +347,19 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
 
     Tiếp theo, chia việc phân tích độ phức tạp thành hai phần:
     
-    -   Với phần $h_t>n/3$, độ phức tạp khi thực hiện mỗi $\text{InsertionSort}(h_t)$ là $O(n^2/h_t)$.
+    -   Với phần $h_t>n/3$, độ phức tạp khi thực hiện mỗi
+        $\text{InsertionSort}(h_t)$ là $O(n^2/h_t)$.
     
         Vì $n^2/h_t<3n$, độ phức tạp của một lần sắp xếp chèn là $O(n)$.
     
-        Số phần tử trong phần này là bậc $O(\log^2 n)$, nên độ phức tạp thời gian của phần này là $O(n\log^2 n)$.
-    -   Với phần $h_t\le n/3$, vì $3h_t\le n$, trước đó đã thực hiện $\text{InsertionSort}(2h_t)$ và $\text{InsertionSort}(3h_t)$, nên độ phức tạp thời gian khi thực hiện $\text{InsertionSort}(h_t)$ là $O(n)$.
+        Số phần tử trong phần này là bậc $O(\log^2 n)$, nên độ phức tạp thời
+        gian của phần này là $O(n\log^2 n)$.
+    -   Với phần $h_t\le n/3$, vì $3h_t\le n$, trước đó đã thực hiện
+        $\text{InsertionSort}(2h_t)$ và $\text{InsertionSort}(3h_t)$, nên độ
+        phức tạp thời gian khi thực hiện $\text{InsertionSort}(h_t)$ là $O(n)$.
     
-        Tương tự, số phần tử trong phần này cũng là bậc $O(\log^2 n)$, nên độ phức tạp thời gian của phần này là $O(n\log^2 n)$.
+        Tương tự, số phần tử trong phần này cũng là bậc $O(\log^2 n)$, nên độ
+        phức tạp thời gian của phần này là $O(n\log^2 n)$.
     
     Tóm lại, tổng độ phức tạp thời gian là $O(n\log^2 n)$.
 
