@@ -32,7 +32,7 @@ Hàm không phải hàm thành viên:
 | `void registerGen(int argc, char* argv[], int randomGeneratorVersion)`                          | Đăng ký chương trình là trình sinh dữ liệu (generator)<br>Nên đặt `randomGeneratorVersion` là `1`                                            |
 | `void quit(TResult verdict, string message)`/`void quitf(TResult verdict, string message, ...)` | Kết thúc chương trình, trả về kết quả chấm `verdict` và xuất thông báo `message`                                                            |
 | `void quitif(bool condition, TResult verdict, string message, ...)`                             | Nếu `condition` đúng, gọi `quitf(verdict, message, ...)`                                                                                    |
-| `void quitp(F points, string message, ...)`                                                     | Kết thúc chương trình và trả về điểm thành phần. Với phần lớn OJ (như Luogu, UOJ), `points` cần là một số thực trong $[0,1]$, biểu thị phần trăm điểm; với một số OJ khác (như Lyrio), `points` cần là một số thực trong $[0,100]$ (OJ sẽ tự bỏ phần thập phân), biểu thị điểm của test theo thang 100. |
+| `void quitp(F points, string message, ...)`                                                     | Kết thúc chương trình và trả về điểm thành phần. Với phần lớn OJ (như Luogu, UOJ), `points` cần là một số thực trong $[0,1]$, biểu thị phần trăm điểm; với một số OJ khác (như Lyrio), `points` cần là một số thực trong $[0,100]$ (OJ sẽ tự bỏ phần thập phân), biểu thị điểm của bộ kiểm thử theo thang 100. |
 
 Hàm thành viên của luồng:
 
@@ -74,7 +74,7 @@ Một số hàm nhập ở trên cho phép sử dụng tính năng "biểu thứ
 
 ## Đặt testlib.h trước tiên
 
-Cần bảo đảm `testlib.h` là tệp header **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang generator](./generator.md) sẽ giải thích chi tiết hơn.
+Cần bảo đảm `testlib.h` là tệp tiêu đề **đầu tiên** được nạp bằng `#include`. Testlib sẽ ghi đè/vô hiệu hóa (thông qua xung đột tên) một số hàm liên quan đến ngẫu nhiên, chẳng hạn `random()`, để bảo đảm kết quả ngẫu nhiên không phụ thuộc môi trường. Điều này rất quan trọng với trình sinh dữ liệu; [trang trình sinh dữ liệu](./generator.md) sẽ giải thích chi tiết hơn.
 
 ## Dùng bí danh cho hạng mục
 

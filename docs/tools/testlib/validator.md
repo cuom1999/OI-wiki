@@ -57,7 +57,7 @@ int main(int argc, char* argv[]) {
 
 ## Liên kết ngoài
 
--   [Thêm ví dụ về validator](https://github.com/MikeMirzayanov/testlib/tree/master/validators)
+-   [Thêm ví dụ về trình xác thực dữ liệu](https://github.com/MikeMirzayanov/testlib/tree/master/validators)
 -   [Kho GitHub của `testlib.h`: MikeMirzayanov/testlib](https://github.com/MikeMirzayanov/testlib)
 
 ## Tài liệu tham khảo và chú thích
