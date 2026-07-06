@@ -214,8 +214,8 @@ của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng
 ### Kiểu ký tự
 
 Kiểu ký tự được chia thành "kiểu ký tự hẹp" và "kiểu ký tự rộng". Vì trong thi
-lập trình thuật toán hầu như không dùng đến kiểu ký tự rộng, phần này chỉ giới
-thiệu kiểu ký tự hẹp.
+lập trình thuật toán ít dùng đến kiểu ký tự rộng, phần này chỉ giới thiệu kiểu
+ký tự hẹp.
 
 Kiểu ký tự hẹp thường có $8$ bit. Về cách lưu trữ tầng dưới, ký tự vẫn là số
 nguyên; trong các bài toán OI thông thường, quan hệ giữa ký tự và số nguyên
@@ -303,7 +303,7 @@ Số nguyên có độ rộng cố định có các loại sau:
 -   `int_fastN_t`: kiểu số nguyên có dấu **nhanh nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_fast32_t`.
 -   `int_leastN_t`: kiểu số nguyên có dấu **nhỏ nhất** có độ rộng **ít nhất** $N$ bit, ví dụ `int_least32_t`.
 
-Phiên bản không dấu chỉ cần thêm tiền tố `u` trước phiên bản có dấu, ví dụ `uint32_t`, `uint_least8_t`.
+Phiên bản không dấu thêm tiền tố `u` trước phiên bản có dấu, ví dụ `uint32_t`, `uint_least8_t`.
 
 Chuẩn quy định bắt buộc phải triển khai 16 kiểu sau:
 
@@ -366,7 +366,7 @@ std::numeric_limits<double>::epsilon();  // hiệu giữa 1.0 và giá trị k�
 
 Trong một số trường hợp (chẳng hạn một hàm nhận tham số kiểu `int`, nhưng biến truyền vào lại có kiểu `double`), cần chuyển một kiểu nào đó thành một kiểu khác.
 
-Cơ chế chuyển đổi kiểu trong C++ khá phức tạp. Phần này chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
+Cơ chế chuyển đổi kiểu trong C++ tương đối phức tạp. Phần này chủ yếu giới thiệu hai loại chuyển đổi đối với kiểu dữ liệu cơ bản: nâng hạng số học và chuyển đổi số học.
 
 <a id="nâng-hạng-số-học"></a>
 
@@ -587,7 +587,7 @@ Ví dụ trong đoạn mã trên, giá trị $g$ được in ra sẽ là $10$. V
 
 Hằng là giá trị cố định, không thay đổi trong quá trình chương trình thực thi.
 
-Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, chỉ cần thêm từ khóa `const`.
+Giá trị của hằng không thể bị sửa sau khi định nghĩa. Khi định nghĩa, thêm từ khóa `const`.
 
 ```cpp
 const int a = 2;
