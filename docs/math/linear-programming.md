@@ -54,7 +54,7 @@ $$
 <span id="phương-pháp-đồ-thị"></span>
 ### Phương pháp đồ thị
 
-Với bài toán quy hoạch tuyến tính chỉ có hai biến quyết định, ta có thể giải trực quan bằng phương pháp đồ thị.
+Với bài toán quy hoạch tuyến tính chỉ có hai biến quyết định, phương pháp đồ thị cho phép giải bài toán một cách trực quan.
 
 Xét bài toán trong phần này:
 
@@ -72,13 +72,13 @@ Hình học tương ứng như sau. Ràng buộc ở dòng cuối nói rằng c�
 
 ![](images/linear-programming.svg)
 
-Tiếp theo cần tối đa hóa giá trị của $z=5x_1+6x_2$. Nếu xem đẳng thức này là phương trình đường thẳng $5x_1+6x_2=z$, thì khi $z$ thay đổi ta thu được một họ đường thẳng song song; $z$ càng lớn thì đường thẳng càng dịch về phía trên bên phải. Vì vậy chỉ cần liên tục dịch đường thẳng đến một vị trí tới hạn, sao cho nếu dịch thêm một chút về phía trên bên phải thì nó không còn giao với miền trong hình nữa. Giá trị $z$ ứng với đường thẳng lúc đó chính là giá trị lớn nhất cần tìm.
+Tiếp theo cần tối đa hóa giá trị của $z=5x_1+6x_2$. Nếu xem đẳng thức này là phương trình đường thẳng $5x_1+6x_2=z$, thì khi $z$ thay đổi sẽ thu được một họ đường thẳng song song; $z$ càng lớn thì đường thẳng càng dịch về phía trên bên phải. Vì vậy bài toán quy về việc dịch đường thẳng đến một vị trí tới hạn, sao cho nếu dịch thêm một chút về phía trên bên phải thì nó không còn giao với miền trong hình nữa. Giá trị $z$ ứng với đường thẳng lúc đó chính là giá trị lớn nhất cần tìm.
 
 Như hình vẽ, tình huống này xảy ra tại điểm đỏ. Đó là giao điểm của hai đường thẳng $4x_1 + 7x_2 = 66$ và $7x_1 + 3x_2 = 60$. Giải hệ hai phương trình đường thẳng cho tọa độ $(6,6)$. Đây là nghiệm tối ưu duy nhất của bài toán. Lợi nhuận lớn nhất của người bán là $z=66$.
 
 Khi bài toán có nhiều hơn hai biến quyết định, phương pháp đồ thị không còn dùng được. Tuy vậy, một số quan sát trong ví dụ này vẫn đúng. Mỗi ràng buộc bất đẳng thức trong bài toán quy hoạch tuyến tính mô tả một "nửa mặt phẳng"; tập các nghiệm khả thi là giao của các "nửa mặt phẳng" đó, nên luôn là một "đa giác lồi". Nghiệm tối ưu của bài toán quy hoạch luôn có thể đạt tại một "đỉnh" nào đó của "đa giác lồi". Tọa độ các "đỉnh" này có thể tìm bằng cách giải hệ phương trình của các "biên" của các "nửa mặt phẳng". Mở rộng các quan sát này lên không gian nhiều chiều sẽ dẫn tới một phương pháp hiệu quả để giải quy hoạch tuyến tính: phương pháp đơn hình. Đây cũng là phương pháp thường được dùng nhất trong thi thuật toán.
 
-Một điểm khác đáng chú ý là về nguyên tắc, số bánh bao và quẩy người bán làm ra không thể chia nhỏ vô hạn mà phải là số nguyên nào đó. Tuy trong quá trình giải bài toán này ta không ràng buộc rõ điều đó, nghiệm tối ưu cuối cùng quả thực là số nguyên, nên đáp án vẫn khả thi ngay cả khi thêm ràng buộc nguyên. Nhưng với nhiều bài toán quy hoạch, nghiệm tối ưu có thể không đạt tại điểm nguyên; những bài toán đó thực chất thuộc lớp quy hoạch nguyên, chứ không phải quy hoạch tuyến tính đơn giản. Cuối bài viết sẽ bàn ngắn gọn về lớp bài toán này.
+Một điểm khác đáng lưu ý là về nguyên tắc, số bánh bao và quẩy người bán làm ra không thể chia nhỏ vô hạn mà phải là số nguyên nào đó. Tuy trong quá trình giải bài toán này không đặt ràng buộc đó một cách tường minh, nghiệm tối ưu cuối cùng quả thực là số nguyên, nên đáp án vẫn khả thi ngay cả khi thêm ràng buộc nguyên. Tuy nhiên, với nhiều bài toán quy hoạch, nghiệm tối ưu có thể không đạt tại điểm nguyên; những bài toán đó thực chất thuộc lớp quy hoạch nguyên, chứ không phải quy hoạch tuyến tính đơn giản. Cuối bài viết sẽ bàn ngắn gọn về lớp bài toán này.
 
 <span id="khái-niệm-cơ-bản"></span>
 ## Khái niệm cơ bản
@@ -127,7 +127,7 @@ $$
 \max\{c^Tx : Ax = b \ge 0,~ x\ge 0\}.
 $$
 
-Ở đây, $x=(x_i)\in\mathbf R^n$ là biến quyết định, $b=(b_j)\in\mathbf R^m$ và $A=(a_{ji})\in\mathbf R^{m\times n}$ là các hằng số xuất hiện trong ràng buộc. Kích thước của một bài toán quy hoạch tuyến tính là số biến quyết định và số ràng buộc của nó.
+Trong biểu thức này, $x=(x_i)\in\mathbf R^n$ là biến quyết định, $b=(b_j)\in\mathbf R^m$ và $A=(a_{ji})\in\mathbf R^{m\times n}$ là các hằng số xuất hiện trong ràng buộc. Kích thước của một bài toán quy hoạch tuyến tính là số biến quyết định và số ràng buộc của nó.
 
 ???+ tip "Bất đẳng thức vector"
     Trong bài này sẽ nhiều lần xuất hiện bất đẳng thức vector như $b \ge 0$. Nói chung, với các vector $x,y\in\mathbf R^n$, bất đẳng thức $x\le y$ nghĩa là $\forall i(x_i\le y_i)$, tức so sánh theo nghĩa số thực trên từng chiều. Quan hệ này là một [quan hệ thứ tự bộ phận](./order-theory.md#quan-hệ-hai-ngôi) trên không gian vector; vì vậy có thể tồn tại hai vector không so sánh được với nhau.
@@ -153,7 +153,7 @@ Các thao tác sau có thể biến mọi bài toán quy hoạch tuyến tính m
 4.  Mọi ràng buộc bất đẳng thức $a_j^Tx \le(\ge) b_j$ đều có thể chuyển thành ràng buộc đẳng thức $a_j^Tx +(-) s_j = b_j$ bằng cách thêm biến dư không âm $s_j$, kèm ràng buộc không âm tương ứng $s_j\ge 0$.
 5.  Nếu một biến quyết định $x_i$ không có ràng buộc không âm, có thể thay nó bằng hiệu của hai biến không âm, tức $x_j = x^+_j - x^-_j$ với $x^+_j,x^-_j \ge 0$.
 
-Kích thước của bài toán quy hoạch tuyến tính thu được sau các thao tác này không vượt quá hai lần kích thước bài toán ban đầu, và nghiệm khả thi cũng như nghiệm tối ưu của các bài toán này rất dễ chuyển đổi qua lại. Do đó, với bài toán quy hoạch tuyến tính tổng quát, ta luôn có thể trước hết chuyển nó về dạng chuẩn (hoặc một trong sáu dạng trên) rồi mới giải.
+Kích thước của bài toán quy hoạch tuyến tính thu được sau các thao tác này không vượt quá hai lần kích thước bài toán ban đầu, và nghiệm khả thi cũng như nghiệm tối ưu của các bài toán này có thể chuyển đổi trực tiếp qua lại. Do đó, với bài toán quy hoạch tuyến tính tổng quát, luôn có thể trước hết chuyển nó về dạng chuẩn (hoặc một trong sáu dạng trên) rồi mới giải.
 
 ??? example "Ví dụ"
     Xét bài toán quy hoạch tuyến tính
@@ -206,7 +206,7 @@ Tập tất cả nghiệm khả thi $\mathcal D\subseteq\mathbf R^n$ gọi là *
     2.  **Không gian con affine** (affine subspace), tức giao của một số siêu phẳng $\{x\in\mathbf R^n:Ax = b\}$. Nó tương đương với tập nghiệm của hệ phương trình tuyến tính $Ax = b$: khi hệ vô nghiệm, nó là tập rỗng; ngược lại, nó luôn có thể viết dưới dạng $x_0+V$, trong đó $x_0\in\mathbf R^n$ và $V\subseteq\mathbf R^n$ là không gian con tuyến tính có chiều $n-\operatorname{rank}(A)$. Đặc biệt, siêu phẳng cũng là không gian con affine.
     3.  **Nón đa diện** (polyhedral cone), tức toàn bộ các tổ hợp tuyến tính không âm của hữu hạn điểm $\{x_i\}$ trong không gian: $\{\sum_i\alpha_ix_i:\alpha_i\ge 0\}$. Đây là một nón lồi có đỉnh tại gốc tọa độ. Tương đương, nó có thể xem là đa diện được bao bởi một số siêu phẳng đi qua gốc tọa độ, tức $\{x\in\mathbf R^n : Ax\le 0\}$. Đặc biệt, nửa không gian cũng là nón đa diện.
     4.  Đa bào, tức đa diện bị chặn. Đặc biệt, các đa bào chiều $-1$, $0$, $1$, $2$, $3$ lần lượt là tập rỗng, điểm, đoạn thẳng, đa giác và đa diện theo nghĩa thông thường. Một tập là đa bào khi và chỉ khi nó là bao lồi của hữu hạn điểm $\{x_i\}$: $\{\sum_i\alpha_ix_i:\alpha_i\ge 0,~\sum_i\alpha_i=1\}$. Một đa bào $k$ chiều ít nhất được sinh bởi bao lồi của $k+1$ điểm.
-    5.  **Đơn hình** (simplex), tức đa bào $k$ chiều được sinh đúng bởi $k+1$ điểm. Đây là đa bào $k$ chiều đơn giản nhất. Đặc biệt, các đa bào chiều $-1$, $0$, $1$, $2$, $3$ lần lượt là tập rỗng, điểm, đoạn thẳng, tam giác và tứ diện. Ví dụ đơn giản nhất của đơn hình $k$ chiều là $\{x\in\mathbf R^k:x_i\ge 0,~\sum_ix_i=1\}$. Thực ra, mọi đơn hình $k$ chiều đều có thể biến thành trường hợp đặc biệt này bằng một phép biến đổi affine (tịnh tiến và co giãn). Cần chú ý rằng phương pháp đơn hình không thực sự chạy trên một đơn hình.
+    5.  **Đơn hình** (simplex), tức đa bào $k$ chiều được sinh đúng bởi $k+1$ điểm. Đây là đa bào $k$ chiều đơn giản nhất. Đặc biệt, các đa bào chiều $-1$, $0$, $1$, $2$, $3$ lần lượt là tập rỗng, điểm, đoạn thẳng, tam giác và tứ diện. Ví dụ đơn giản nhất của đơn hình $k$ chiều là $\{x\in\mathbf R^k:x_i\ge 0,~\sum_ix_i=1\}$. Trên thực tế, mọi đơn hình $k$ chiều đều có thể biến thành trường hợp đặc biệt này bằng một phép biến đổi affine (tịnh tiến và co giãn). Lưu ý rằng phương pháp đơn hình không thực sự chạy trên một đơn hình.
     
     Mọi đa diện đều có thể xem là [tổng Minkowski](../geometry/convex-hull.md#tổng-minkowski) của một nón đa diện và một đa bào: phần trước mô tả phần không bị chặn của đa diện, phần sau mô tả hình dạng phần bị chặn của đa diện. Nón đa diện này là duy nhất: nón đa diện thu được khi phân rã đa diện $\{x\in\mathbf R^n:Ax\le b\}$ nhất định là $\{x\in\mathcal R^n:Ax\le 0\}$.
 
@@ -226,7 +226,7 @@ Về hình học, việc này tương đương với di chuyển siêu phẳng $
 
     Chiều của một mặt của đa diện $d$ chiều luôn là một số nguyên từ $0$ đến $d$. Mặt có chiều $0$ (tức một điểm) gọi là **đỉnh** (vertex) hoặc **điểm góc** (corner point) của đa diện $\mathcal D$; mặt có chiều $1$ gọi là **cạnh** (edge); mặt có chiều $d-1$ gọi là **diện** (facet) của đa diện $\mathcal D$. Tuy nhiên, không phải đa diện nào cũng có đỉnh. Vì mặt của một mặt của đa diện vẫn là mặt của đa diện, và chỉ có không gian con affine mới không có mặt không rỗng nhỏ hơn nghiêm ngặt, nên mọi mặt cực tiểu của đa diện $\mathcal D$ đều là không gian con affine. Hơn nữa, các mặt cực tiểu của cùng một đa diện có cùng chiều; đặc biệt, chiều của mặt cực tiểu của đa diện $\mathcal D=\{x\in\mathbf R^n:Ax\le b\}$ là $n-\operatorname{rank}A$.
 
-    Vì mặt của đa diện chính là tập nghiệm của một bài toán quy hoạch tuyến tính bị chặn, cần hiểu cách xác định phương trình của các mặt của đa diện. Giả sử đa diện $\mathcal D$ được mô tả bởi một số ràng buộc $a_j^Tx \lesseqqgtr b_j$, và $F$ là một mặt của $\mathcal D$. Nếu một ràng buộc đạt dấu bằng tại mọi $x\in F$, ta nói ràng buộc đó **chặt** (tight) trên mặt $F$. Các điểm trên $F$ hiển nhiên thỏa mãn hệ phương trình thu được bằng cách đặt dấu bằng cho các ràng buộc chặt này, và giao của không gian con affine xác định bởi hệ đó với đa diện $\mathcal D$ chính là mặt $F$. Ngược lại, chọn tùy ý một tập con các ràng buộc của đa diện $\mathcal D$, đặt chúng thành đẳng thức, giải hệ để được một không gian con affine rồi lấy giao với đa diện, ta thu được một mặt của $\mathcal D$. Hơn nữa, càng chọn nhiều ràng buộc chặt thì mặt thu được càng nhỏ theo nghĩa bao hàm.
+    Vì mặt của đa diện chính là tập nghiệm của một bài toán quy hoạch tuyến tính bị chặn, cần hiểu cách xác định phương trình của các mặt của đa diện. Giả sử đa diện $\mathcal D$ được mô tả bởi một số ràng buộc $a_j^Tx \lesseqqgtr b_j$, và $F$ là một mặt của $\mathcal D$. Nếu một ràng buộc đạt dấu bằng tại mọi $x\in F$, gọi ràng buộc đó là **chặt** (tight) trên mặt $F$. Các điểm trên $F$ thỏa mãn hệ phương trình thu được bằng cách đặt dấu bằng cho các ràng buộc chặt này, và giao của không gian con affine xác định bởi hệ đó với đa diện $\mathcal D$ chính là mặt $F$. Ngược lại, chọn tùy ý một tập con các ràng buộc của đa diện $\mathcal D$, đặt chúng thành đẳng thức, giải hệ để được một không gian con affine rồi lấy giao với đa diện, sẽ thu được một mặt của $\mathcal D$. Hơn nữa, càng chọn nhiều ràng buộc chặt thì mặt thu được càng nhỏ theo nghĩa bao hàm.
 
     Đặc biệt, miền khả thi của quy hoạch tuyến tính dạng chuẩn $\mathcal D=\{x\in\mathbf R^n:Ax=b,~x\ge 0\}$ có ma trận hệ số $\begin{pmatrix}A\\ I\end{pmatrix}$ với hạng bằng $n$, nên các mặt cực tiểu của nó chính là các đỉnh. Nói cách khác, nếu bài toán bị chặn thì luôn có thể chọn một nghiệm tối ưu là một đỉnh nào đó. Hơn nữa, đỉnh này có thể thu được bằng cách chọn $n$ ràng buộc chặt độc lập tuyến tính rồi giải hệ. Đây chính là điểm thuận tiện của dạng chuẩn của quy hoạch tuyến tính.
 
@@ -235,7 +235,7 @@ Về hình học, việc này tương đương với di chuyển siêu phẳng $
     
     ![](./images/lp-feasible.svg)
 
-Các thảo luận trên bỏ qua trường hợp $c=0$. Khi đó, bài toán quy hoạch tuyến tính hiển nhiên không thể không bị chặn, nên hoặc bản thân bài toán không khả thi, hoặc giá trị tối ưu bằng $0$ và tập nghiệm tối ưu chính là $\mathcal D$. Loại quy hoạch tuyến tính đặc biệt này còn gọi là **quy hoạch tuyến tính khả thi** (feasibility linear programming).
+Các thảo luận trên bỏ qua trường hợp $c=0$. Khi đó, bài toán quy hoạch tuyến tính không thể là bài toán không bị chặn, nên hoặc bản thân bài toán không khả thi, hoặc giá trị tối ưu bằng $0$ và tập nghiệm tối ưu chính là $\mathcal D$. Loại quy hoạch tuyến tính đặc biệt này còn gọi là **quy hoạch tuyến tính khả thi** (feasibility linear programming).
 
 Cần chỉ ra rằng các bài toán như quyết định một quy hoạch tuyến tính có khả thi hay không, có bị chặn hay không, hoặc tìm nghiệm khả thi của một hệ bất đẳng thức, đều khó tương đương với việc giải chính bài toán quy hoạch tuyến tính[^reducible]. Chẳng hạn, chứng minh định lý đối ngẫu mạnh dưới đây cho thấy việc giải một bài toán quy hoạch tuyến tính bị chặn tương đương với việc tìm nghiệm khả thi của một hệ bất đẳng thức. Vì vậy, với các nhiệm vụ như kiểm tra hệ bất đẳng thức có nghiệm hay không hoặc kiểm tra hệ phương trình có nghiệm không âm hay không, cách hiệu quả nhất là giải quy hoạch tuyến tính khả thi tương ứng[^other-methods].
 
@@ -259,7 +259,7 @@ Hiện vẫn chưa rõ liệu bài toán quy hoạch tuyến tính có thuật t
 <span id="bài-toán-đối-ngẫu"></span>
 ## Bài toán đối ngẫu
 
-Mỗi bài toán quy hoạch tuyến tính đều có một bài toán đối ngẫu tương ứng. Nghiệm của bài toán gốc và bài toán đối ngẫu có liên hệ chặt chẽ. Thông qua bài toán đối ngẫu, ta không chỉ hiểu sâu hơn cấu trúc bài toán mà còn thường có thể cải thiện hiệu quả giải bài toán gốc.
+Mỗi bài toán quy hoạch tuyến tính đều có một bài toán đối ngẫu tương ứng. Nghiệm của bài toán gốc và bài toán đối ngẫu có liên hệ chặt chẽ. Bài toán đối ngẫu không chỉ giúp làm rõ hơn cấu trúc bài toán mà còn thường có thể cải thiện hiệu quả giải bài toán gốc.
 
 Với bài toán quy hoạch tuyến tính $P$ sau (các biến chữ thường xuất hiện đều là vector)
 
@@ -327,7 +327,7 @@ Trước hết, **định lý đối ngẫu yếu** (weak duality theorem) nói 
     $$
 
 ??? note "Chứng minh"
-    Nếu một trong hai bài toán gốc và đối ngẫu không khả thi, bất đẳng thức là hiển nhiên. Giả sử cả hai đều khả thi. Khi đó, với mọi $x$ và $y$ khả thi, ta có
+    Nếu một trong hai bài toán gốc và đối ngẫu không khả thi, bất đẳng thức đúng theo quy ước về giá trị tối ưu. Giả sử cả hai đều khả thi. Khi đó, với mọi $x$ và $y$ khả thi, suy ra
     
     $$
     b^Ty = x^TA^Ty \le x^Tc.
@@ -350,20 +350,20 @@ Dựa trên định lý đối ngẫu yếu, trạng thái nghiệm của bài t
 Áp dụng định lý đối ngẫu yếu cho quy hoạch tuyến tính khả thi sẽ thu được bổ đề Farkas (và các biến thể của nó).
 
 ???+ note "Bổ đề Farkas"
-    Với $A\in\mathbf R^{m\times n}$ và $b\in\mathbf R^n$, đúng đúng một trong hai trường hợp sau:
+    Với $A\in\mathbf R^{m\times n}$ và $b\in\mathbf R^n$, đúng một và chỉ một trong hai trường hợp sau:
     
     1.  Tồn tại $x\in\mathbf R^n$ sao cho $Ax=b$ và $x\ge 0$;
     2.  Tồn tại $y\in\mathbf R^m$ sao cho $A^T y\ge 0$ và $b^Ty<0$.
 
 ??? note "Chứng minh"
-    Xét bài toán quy hoạch tuyến tính $\max\{0:Ax=b,~x\ge 0\}$; bài toán đối ngẫu của nó là $\min\{b^Ty:A^Ty\ge 0\}$. Bài toán đối ngẫu hiển nhiên khả thi, vì ít nhất $0\in\mathbf R^m$ là một nghiệm khả thi. Do đó, theo định lý đối ngẫu yếu, hoặc bài toán gốc khả thi, hoặc bài toán đối ngẫu không bị chặn, và đúng một trong hai trường hợp xảy ra. Bài toán gốc khả thi chính là trường hợp 1 trong bổ đề Farkas, còn bài toán đối ngẫu không bị chặn tương đương với trường hợp 2. Vậy bổ đề Farkas được chứng minh.
+    Xét bài toán quy hoạch tuyến tính $\max\{0:Ax=b,~x\ge 0\}$; bài toán đối ngẫu của nó là $\min\{b^Ty:A^Ty\ge 0\}$. Bài toán đối ngẫu khả thi, vì ít nhất $0\in\mathbf R^m$ là một nghiệm khả thi. Do đó, theo định lý đối ngẫu yếu, hoặc bài toán gốc khả thi, hoặc bài toán đối ngẫu không bị chặn, và đúng một trong hai trường hợp xảy ra. Bài toán gốc khả thi chính là trường hợp 1 trong bổ đề Farkas, còn bài toán đối ngẫu không bị chặn tương đương với trường hợp 2. Vậy bổ đề Farkas được chứng minh.
 
 Farkas thực chất là một [định lý tách siêu phẳng](https://en.wikipedia.org/wiki/Hyperplane_separation_theorem). Trường hợp 1 nói rằng điểm $b$ nằm trong nón đa diện $C$ sinh bởi các vector cột của $A$; vì vậy, bổ đề Farkas nói rằng khi và chỉ khi điểm $b$ không nằm trong nón lồi $C$ này, tồn tại một siêu phẳng $H:y^Tx = 0$ đi qua gốc tọa độ và có vector pháp tuyến $y$ tách mạnh điểm $b$ khỏi nón đa diện $C$.
 
-Thực ra, với khả năng thứ tư mà định lý đối ngẫu yếu cho phép, còn có một kết luận mạnh hơn: giá trị tối ưu của bài toán gốc và bài toán đối ngẫu bằng nhau. Gộp ba khả năng sau lại, ta thu được **định lý đối ngẫu mạnh** (strong duality theorem): miễn là một trong hai bài toán gốc hoặc đối ngẫu khả thi, giá trị tối ưu của chúng nhất định bằng nhau.
+Với khả năng thứ tư mà định lý đối ngẫu yếu cho phép, còn có một kết luận mạnh hơn: giá trị tối ưu của bài toán gốc và bài toán đối ngẫu bằng nhau. Gộp ba khả năng sau lại sẽ thu được **định lý đối ngẫu mạnh** (strong duality theorem): miễn là một trong hai bài toán gốc hoặc đối ngẫu khả thi, giá trị tối ưu của chúng bằng nhau.
 
 ???+ note "Định lý đối ngẫu mạnh"
-    Với mọi $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$ và $c\in\mathbf R^n$, ta có
+    Với mọi $A\in\mathbf R^{m\times n}$, $b\in\mathbf R^m$ và $c\in\mathbf R^n$, có
     
     $$
     \max\{b^Ty:A^Ty\le c\} = \min\{c^Tx:Ax=b,~x\ge 0\}.
@@ -378,7 +378,7 @@ Thực ra, với khả năng thứ tư mà định lý đối ngẫu yếu cho p
     \max\{0:c^Tx \le b^Ty,~Ax=b,~x\ge 0,~A^Ty\le c\}.
     $$
     
-    Nếu bài toán $Q$ có nghiệm khả thi $(x^*,y^*)\in\mathbf R^n\times\mathbf R^m$, thì theo định lý đối ngẫu yếu và tính tối ưu, ta có
+    Nếu bài toán $Q$ có nghiệm khả thi $(x^*,y^*)\in\mathbf R^n\times\mathbf R^m$, thì theo định lý đối ngẫu yếu và tính tối ưu, có
     
     $$
     b^Ty^* \le \max\{b^Ty:A^Ty\le c\} \le \min\{c^Tx:Ax=b,~x\ge 0\} \le c^Tx^*,
@@ -398,7 +398,7 @@ Thực ra, với khả năng thứ tư mà định lý đối ngẫu yếu cho p
     c^T\mu^* - b^T\lambda^* <0,~ ct^* - A^T\lambda^* \ge 0,~ -bt^* + A\mu^* = 0,~t^*\ge 0,~\mu^*\ge 0.
     $$
     
-    Khi đó, nếu $t^*>0$, các bất đẳng thức này thực ra nói rằng $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ là một nghiệm khả thi của bài toán nói trên, mâu thuẫn với giả thiết. Do đó chỉ có thể có $t^*=0$. Điều này cho
+    Khi đó, nếu $t^*>0$, các bất đẳng thức này cho thấy $(x,y)=(\mu^*/t^*,\lambda^*/t^*)$ là một nghiệm khả thi của bài toán nói trên, mâu thuẫn với giả thiết. Do đó chỉ có thể có $t^*=0$. Điều này cho
     
     $$
     c^T\mu^* < b^T\lambda^*,~ A^T\lambda^*\le 0,~ A\mu^*=0,~\mu^*\ge 0.
@@ -416,7 +416,7 @@ Thực ra, với khả năng thứ tư mà định lý đối ngẫu yếu cho p
     0 = (A\mu^*)^Ty_0 = (A^Ty_0)^T\mu^* \le c^T\mu^* < b^T\lambda^* = x_0^TA^T\lambda^* \le 0.
     $$
     
-    Đây là mâu thuẫn hiển nhiên. Mâu thuẫn này chứng tỏ $Q$ khả thi, từ đó suy ra đối ngẫu mạnh.
+    Đây là một mâu thuẫn. Mâu thuẫn này chứng tỏ $Q$ khả thi, từ đó suy ra đối ngẫu mạnh.
 
 Từ quá trình chứng minh định lý đối ngẫu mạnh còn suy ra hệ quả sau:
 
@@ -430,7 +430,7 @@ Từ quá trình chứng minh định lý đối ngẫu mạnh còn suy ra hệ 
 
 Giống các bài toán tối ưu khác, điều kiện bù trừ độ lỏng là một phần của điều kiện tối ưu của bài toán quy hoạch tuyến tính. Hơn nữa, vì hàm mục tiêu là tuyến tính, nên với quy hoạch tuyến tính, điều kiện bù trừ độ lỏng là điều kiện cần và đủ để một nghiệm khả thi trở thành nghiệm tối ưu.
 
-Cái gọi là điều kiện **bù trừ độ lỏng** (complementary slackness) nghĩa là chỉ khi một ràng buộc trong bài toán gốc (bài toán đối ngẫu) đạt dấu bằng, tức ràng buộc đó chặt, thì biến tương ứng trong bài toán đối ngẫu (bài toán gốc) mới có thể nhận giá trị khác không. Nếu cũng xem việc biến nhận giá trị khác không là một ràng buộc không bị lỏng, thì điều này tương đương với nói rằng biến và ràng buộc tương ứng trong bài toán gốc và đối ngẫu không thể đồng thời bị lỏng. Vì vậy điều kiện này gọi là điều kiện bù trừ độ lỏng.
+Điều kiện **bù trừ độ lỏng** (complementary slackness) nghĩa là chỉ khi một ràng buộc trong bài toán gốc (bài toán đối ngẫu) đạt dấu bằng, tức ràng buộc đó chặt, thì biến tương ứng trong bài toán đối ngẫu (bài toán gốc) mới có thể nhận giá trị khác không. Nếu cũng xem việc biến nhận giá trị khác không là một ràng buộc không bị lỏng, thì điều này tương đương với nói rằng biến và ràng buộc tương ứng trong bài toán gốc và đối ngẫu không thể đồng thời bị lỏng. Vì vậy điều kiện này gọi là điều kiện bù trừ độ lỏng.
 
 Với bài toán quy hoạch tuyến tính dạng chuẩn, kết luận sau đúng:
 
@@ -444,7 +444,7 @@ Với bài toán quy hoạch tuyến tính dạng chuẩn, kết luận sau đú
     đúng.
 
 ??? note "Chứng minh"
-    Vì $x^*$ và $y^*$ đều là nghiệm khả thi, ta có
+    Vì $x^*$ và $y^*$ đều là nghiệm khả thi, có
     
     $$
     b^Ty^* - c^Tx^* = (x^*)^T(A^T y^* - c).
@@ -497,7 +497,7 @@ phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng,
     I = \{i : (A^Ty - c)_i = 0\}.
     $$
 
-2.  Theo điều kiện bù trừ độ lỏng, nếu tồn tại nghiệm khả thi $x$ của bài toán $(P)$ sao cho $x_i>0$ chỉ xảy ra trên $i\in I$, thì ta đã tìm được một cặp nghiệm tối ưu. Do đó, xét bài toán quy hoạch tuyến tính
+2.  Theo điều kiện bù trừ độ lỏng, nếu tồn tại nghiệm khả thi $x$ của bài toán $(P)$ sao cho $x_i>0$ chỉ xảy ra trên $i\in I$, thì đã tìm được một cặp nghiệm tối ưu. Do đó, xét bài toán quy hoạch tuyến tính
 
     $$
     (RP)\qquad
@@ -523,9 +523,9 @@ phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng,
 
     Theo định lý đối ngẫu mạnh, $b^T\bar y = 1^Ts^*>0$.
 
-4.  Dùng nghiệm của $(DRP)$ để cải thiện nghiệm khả thi của bài toán đối ngẫu $(D)$. Đặt $y' = y + \varepsilon \bar y$, trong đó $\varepsilon>0$; khi đó chắc chắn $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$. Vì vậy, miễn là bảo đảm $y'$ vẫn là nghiệm khả thi của bài toán đối ngẫu $(D)$, ta nên chọn $\varepsilon$ lớn nhất có thể.
+4.  Dùng nghiệm của $(DRP)$ để cải thiện nghiệm khả thi của bài toán đối ngẫu $(D)$. Đặt $y' = y + \varepsilon \bar y$, trong đó $\varepsilon>0$; khi đó $b^Ty' = b^Ty + \varepsilon b^T\bar y > b^Ty$. Vì vậy, miễn là bảo đảm $y'$ vẫn là nghiệm khả thi của bài toán đối ngẫu $(D)$, nên chọn $\varepsilon$ lớn nhất có thể.
 
-    Với $i\in I$, ta có
+    Với $i\in I$, có
 
     $$
     \sum_ja_{ji}y'_j = \sum_ja_{ji}y_j + \varepsilon \sum_ja_{ji}\bar y_j \le c_i,
@@ -541,7 +541,7 @@ phần trước đã chỉ ra rằng để tìm nghiệm tối ưu của chúng,
 
     là có thể cải thiện nghiệm của bài toán đối ngẫu nhiều nhất có thể trong khi vẫn bảo đảm tính khả thi, rồi quay lại bước 1 để lặp tiếp. Đặc biệt, nếu tập trong công thức trên rỗng, tức $\varepsilon=+\infty$, thì bài toán đối ngẫu $(D)$ không bị chặn và bài toán gốc $(P)$ không khả thi.
 
-Trong quá trình này, thực ra chỉ có bài toán $(DRP)$ thật sự cần giải; nó liên hệ với bài toán $(RP)$ qua định lý đối ngẫu mạnh. Bài toán $(DRP)$ cung cấp một hướng cải thiện nghiệm của bài toán đối ngẫu, và so với bản thân bài toán đối ngẫu $(D)$, dạng của $(DRP)$ đơn giản hơn. Tính khả thi của $(DRP)$ được bảo đảm bởi bổ đề Farkas, còn ràng buộc $y\le 1$ chỉ là một nhóm điều kiện chuẩn hóa để bảo đảm $(DRP)$ bị chặn.
+Trong quá trình này, chỉ có bài toán $(DRP)$ thật sự cần giải; nó liên hệ với bài toán $(RP)$ qua định lý đối ngẫu mạnh. Bài toán $(DRP)$ cung cấp một hướng cải thiện nghiệm của bài toán đối ngẫu, và so với bản thân bài toán đối ngẫu $(D)$, dạng của $(DRP)$ đơn giản hơn. Tính khả thi của $(DRP)$ được bảo đảm bởi bổ đề Farkas, còn ràng buộc $y\le 1$ chỉ là một nhóm điều kiện chuẩn hóa để bảo đảm $(DRP)$ bị chặn.
 
 Trong thi thuật toán, phương pháp nguyên thủy-đối ngẫu được dùng rộng rãi trong nhiều bài toán tối ưu tổ hợp. Ví dụ, [thuật toán Hungary](../graph/graph-matching/bigraph-weight-match.md#hungarian-algorithmkuhnmunkres-algorithm) cho ghép cặp hai phía trọng số lớn nhất, [thuật toán khử chu trình](../graph/flow/min-cost.md) và [thuật toán SSP (thuật toán nguyên thủy-đối ngẫu)](../graph/flow/min-cost.md#thuật-toán-ssp) cho luồng chi phí nhỏ nhất, [thuật toán Dijkstra](../graph/shortest-path.md#thuật-toán-dijkstra) cho đường đi ngắn nhất, [thuật toán tăng luồng Ford-Fulkerson](../graph/flow/max-flow.md#tăng-luồng-fordfulkerson) cho luồng cực đại, v.v. đều có thể xem là ứng dụng trực tiếp của phương pháp nguyên thủy-đối ngẫu.
 
@@ -566,7 +566,7 @@ Ràng buộc nguyên làm tăng đáng kể độ phức tạp của bài toán 
 <span id="ma-trận-hoàn-toàn-đơn-môđun"></span>
 ### Ma trận hoàn toàn đơn môđun
 
-Chính vì vậy, với nhiều bài toán tối ưu nguyên quy mô lớn, đôi khi người ta nới lỏng ràng buộc nguyên và chuyển sang giải một bài toán quy hoạch tuyến tính. Thông thường, giá trị tối ưu của quy hoạch tuyến tính sau khi nới lỏng chỉ là một cận dưới của bài toán quy hoạch nguyên ban đầu (giả sử là bài toán tối thiểu hóa). Nhưng nếu nghiệm tối ưu của bài toán quy hoạch tuyến tính sau khi nới lỏng tình cờ là nghiệm nguyên, thì nó nhất định cũng là nghiệm tối ưu của bài toán quy hoạch nguyên ban đầu.
+Chính vì vậy, với nhiều bài toán tối ưu nguyên quy mô lớn, đôi khi có thể nới lỏng ràng buộc nguyên và chuyển sang giải một bài toán quy hoạch tuyến tính. Thông thường, giá trị tối ưu của quy hoạch tuyến tính sau khi nới lỏng chỉ là một cận dưới của bài toán quy hoạch nguyên ban đầu (giả sử là bài toán tối thiểu hóa). Nhưng nếu nghiệm tối ưu của bài toán quy hoạch tuyến tính sau khi nới lỏng tình cờ là nghiệm nguyên, thì nó cũng là nghiệm tối ưu của bài toán quy hoạch nguyên ban đầu.
 
 Một câu hỏi tự nhiên là liệu có điều kiện nào bảo đảm nghiệm tối ưu của bài toán quy hoạch tuyến tính đều là nghiệm nguyên hay không. Khái niệm ma trận hoàn toàn đơn môđun cung cấp một điều kiện như vậy.
 

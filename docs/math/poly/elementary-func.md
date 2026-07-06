@@ -57,7 +57,7 @@ Trang này trình bày các phép toán hàm sơ cấp thường gặp trên đa
 <span id="nghịch-đảo-đa-thức"></span>
 ## Nghịch đảo đa thức
 
-Cho đa thức $f\left(x\right)$, hãy tìm $f^{-1}\left(x\right)$.
+Cho đa thức $f\left(x\right)$, cần tìm $f^{-1}\left(x\right)$.
 
 <span id="cách-giải"></span>
 ### Cách giải
@@ -65,7 +65,7 @@ Cho đa thức $f\left(x\right)$, hãy tìm $f^{-1}\left(x\right)$.
 <span id="phương-pháp-nhân-đôi"></span>
 #### Phương pháp nhân đôi
 
-Trước hết, dễ thấy
+Trước hết, có
 
 $$
 \left[x^{0}\right]f^{-1}\left(x\right)=\left(\left[x^{0}\right]f\left(x\right)\right)^{-1}
@@ -81,7 +81,7 @@ $$
 \end{aligned}
 $$
 
-Bình phương hai vế, ta được:
+Bình phương hai vế, thu được:
 
 $$
 f^{-2}\left(x\right)-2f^{-1}\left(x\right)f^{-1}_{0}\left(x\right)+f^{-2}_{0}\left(x\right)\equiv 0 \pmod{x^{n}}
@@ -160,7 +160,7 @@ Chỉ cần tìm $g^{-1}(x)\bmod x^n$ rồi khôi phục $g^{-1}(x^2)\bmod x^{2n
 <span id="khai-căn-đa-thức"></span>
 ## Khai căn đa thức
 
-Cho đa thức $g\left(x\right)$, hãy tìm $f\left(x\right)$ thỏa:
+Cho đa thức $g\left(x\right)$, cần tìm $f\left(x\right)$ thỏa:
 
 $$
 f^{2}\left(x\right)\equiv g\left(x\right) \pmod{x^{n}}
@@ -174,7 +174,7 @@ $$
 
 Trước hết xét trường hợp $\left[x^0\right]g(x)$ khác $0$.
 
-Dễ thấy:
+Có:
 
 $$
 \left[x^0\right]f(x) = \sqrt{\left[x^0\right]g(x)}
@@ -212,7 +212,7 @@ Còn một cách viết có hằng số nhỏ hơn: khi nhân đôi và duy trì
 
 Phương pháp trên cần biết nghịch đảo của $f_{0}(x)$, nên hệ số tự do không được bằng $0$.
 
-Nếu $\left[x^0\right]g(x) = 0$, hãy phân tích $g(x)$ thành $x^{k}h(x)$, trong đó $\left[x^0\right]h(x) \not = 0$.
+Nếu $\left[x^0\right]g(x) = 0$, phân tích $g(x)$ thành $x^{k}h(x)$, trong đó $\left[x^0\right]h(x) \not = 0$.
 
 -   Nếu $k$ lẻ, thì $g(x)$ không có căn bậc hai.
 
@@ -235,7 +235,7 @@ Xem [phương pháp Newton](./newton.md#newtons-method).
 <span id="chia-đa-thức-và-lấy-dư"></span>
 ## Chia đa thức và lấy dư
 
-Cho hai đa thức $f\left(x\right),g\left(x\right)$, hãy tìm thương $Q\left(x\right)$ và dư $R\left(x\right)$ khi chia $f\left(x\right)$ cho $g\left(x\right)$.
+Cho hai đa thức $f\left(x\right),g\left(x\right)$, cần tìm thương $Q\left(x\right)$ và dư $R\left(x\right)$ khi chia $f\left(x\right)$ cho $g\left(x\right)$.
 
 <span id="cách-giải_2"></span>
 ### Cách giải
@@ -252,7 +252,7 @@ Quan sát cho thấy bản chất của nó là đảo ngược thứ tự hệ 
 
 Đặt $n=\operatorname{deg}{f},m=\operatorname{deg}{g}$.
 
-Thay $x$ trong $f\left(x\right)=Q\left(x\right)g\left(x\right)+R\left(x\right)$ bằng $\frac{1}{x}$ rồi nhân cả hai vế với $x^{n}$, ta được:
+Thay $x$ trong $f\left(x\right)=Q\left(x\right)g\left(x\right)+R\left(x\right)$ bằng $\frac{1}{x}$ rồi nhân cả hai vế với $x^{n}$, thu được:
 
 $$
 \begin{aligned}
@@ -261,7 +261,7 @@ $$
 \end{aligned}
 $$
 
-Chú ý rằng trong công thức trên, $R^{R}\left(x\right)$ được nhân với $x^{n-m+1}$, nên khi xét theo modulo $x^{n-m+1}$ thì có thể khử ảnh hưởng do $R^{R}\left(x\right)$ gây ra.
+Lưu ý rằng trong công thức trên, $R^{R}\left(x\right)$ được nhân với $x^{n-m+1}$, nên khi xét theo modulo $x^{n-m+1}$ thì có thể khử ảnh hưởng do $R^{R}\left(x\right)$ gây ra.
 
 Lại vì bậc của $Q^{R}\left(x\right)$ là $\left(n-m\right)<\left(n-m+1\right)$, nên $Q^{R}\left(x\right)$ không bị ảnh hưởng.
 
@@ -278,7 +278,7 @@ Dùng nghịch đảo đa thức là có thể tìm $Q\left(x\right)$; thay ngư
 <span id="hàm-logarit-và-hàm-mũ-của-đa-thức"></span>
 ## Hàm logarit và hàm mũ của đa thức
 
-Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}$.
+Cho đa thức $f(x)$, cần tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}$.
 
 <span id="cách-giải_3"></span>
 ### Cách giải
@@ -293,7 +293,7 @@ Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}
     [x^{0}]f(x)=1
     $$
     
-    Lấy đạo hàm của $\ln{f(x)}$ rồi tích phân, ta được:
+    Lấy đạo hàm của $\ln{f(x)}$ rồi tích phân, thu được:
     
     $$
     \begin{aligned}
@@ -313,7 +313,7 @@ Cho đa thức $f(x)$, hãy tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}
     
     Nếu không, hệ số tự do của $\exp{f(x)}$ sẽ không hội tụ.
     
-    Lấy đạo hàm của $\exp{f(x)}$, ta được:
+    Lấy đạo hàm của $\exp{f(x)}$, thu được:
     
     $$
     \frac{\mathrm{d} \exp{f(x)}}{\mathrm{d} x} \equiv \exp{f(x)}f'(x)\pmod{x^{n}}
@@ -408,7 +408,7 @@ Dùng [phương pháp Newton](./newton.md#newtons-method) có thể giải $\exp
 
     Cách thông thường là lũy thừa nhanh đa thức, độ phức tạp thời gian $O(n\log{n}\log{k})$.
 
-    Khi $[x^{0}]f(x)=1$, ta có:
+    Khi $[x^{0}]f(x)=1$, có:
 
     $$
     f^{k}(x)=\exp{\left(k\ln{f(x)}\right)}
@@ -425,12 +425,12 @@ Dùng [phương pháp Newton](./newton.md#newtons-method) có thể giải $\exp
 <span id="hàm-lượng-giác-của-đa-thức"></span>
 ## Hàm lượng giác của đa thức
 
-Cho đa thức $f\left(x\right)$, hãy tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo modulo $x^{n}$.
+Cho đa thức $f\left(x\right)$, cần tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo modulo $x^{n}$.
 
 <span id="cách-giải_4"></span>
 ### Cách giải
 
-Trước hết, từ [Euler's formula](../complex.md#công-thức-euler) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$, ta có thể suy ra [một biểu diễn khác của hàm lượng giác](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers):
+Trước hết, từ [Euler's formula](../complex.md#công-thức-euler) $\left(\mathrm{e}^{\mathrm{i}x} = \cos{x} + \mathrm{i}\sin{x}\right)$, có thể suy ra [một biểu diễn khác của hàm lượng giác](https://en.wikipedia.org/wiki/Trigonometric_functions#Relationship_to_exponential_function_and_complex_numbers):
 
 $$
 \begin{aligned}
@@ -439,7 +439,7 @@ $$
 \end{aligned}
 $$
 
-Thay $f\left(x\right)$ vào, ta có:
+Thay $f\left(x\right)$ vào, có:
 
 $$
 \begin{aligned}
@@ -454,7 +454,7 @@ Viết chương trình trực tiếp theo các biểu thức trên là có thể
 ### Mã nguồn
 
 ??? note "Hàm lượng giác của đa thức"
-    Lưu ý rằng ta đang làm NTT trên $\mathbb{Z}_{998244353}$, nên tương ứng, đơn vị ảo $\mathrm{i}$ cần được thay bằng $86583718$ hoặc $911660635$:
+    Lưu ý rằng đang làm NTT trên $\mathbb{Z}_{998244353}$, nên tương ứng, đơn vị ảo $\mathrm{i}$ cần được thay bằng $86583718$ hoặc $911660635$:
     
     $$
     \begin{aligned}
@@ -498,12 +498,12 @@ Viết chương trình trực tiếp theo các biểu thức trên là có thể
 <span id="hàm-lượng-giác-ngược-của-đa-thức"></span>
 ## Hàm lượng giác ngược của đa thức
 
-Cho đa thức $f\left(x\right)$, hãy tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo modulo $x^{n}$.
+Cho đa thức $f\left(x\right)$, cần tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo modulo $x^{n}$.
 
 <span id="cách-giải_5"></span>
 ### Cách giải
 
-Mô phỏng cách tính $\ln$ của đa thức: lấy đạo hàm của hàm lượng giác ngược rồi tích phân, ta được:
+Mô phỏng cách tính $\ln$ của đa thức: lấy đạo hàm của hàm lượng giác ngược rồi tích phân, thu được:
 
 $$
 \begin{aligned}
@@ -516,7 +516,7 @@ $$
 \end{aligned}
 $$
 
-Thay $f\left(x\right)$ vào, ta có:
+Thay $f\left(x\right)$ vào, có:
 
 $$
 \begin{aligned}

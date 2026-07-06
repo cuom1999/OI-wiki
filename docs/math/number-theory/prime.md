@@ -3,7 +3,7 @@ author: Ir1d, Tiphereth-A, c-forrest, Xeonacid, Enter-tainer, StudyingFather, ia
 Định nghĩa số nguyên tố và hợp số xem tại [cơ sở lý thuyết số](./basic.md).
 
 Hàm đếm số nguyên tố: số lượng số nguyên tố nhỏ hơn hoặc bằng $x$, ký hiệu là
-$\pi(x)$. Khi $x$ tăng, ta có xấp xỉ: $\pi(x) \sim \dfrac{x}{\ln(x)}$.
+$\pi(x)$. Khi $x$ tăng, có xấp xỉ: $\pi(x) \sim \dfrac{x}{\ln(x)}$.
 
 <span id="kiểm-tra-tính-nguyên-tố"></span>
 ## Kiểm tra tính nguyên tố
@@ -13,7 +13,7 @@ cho trước có phải là số nguyên tố hay không.
 
 Có hai loại kiểm tra tính nguyên tố:
 
-1.  Kiểm tra tất định: xác định chắc chắn một số có phải số nguyên tố hay
+1.  Kiểm tra tất định: xác định một số có phải số nguyên tố hay
     không. Các ví dụ thường gặp gồm phép thử chia, kiểm tra Lucas-Lehmer và
     chứng minh tính nguyên tố bằng đường cong elliptic.
 2.  Kiểm tra xác suất: thường nhanh hơn rất nhiều so với kiểm tra tất định,
@@ -21,7 +21,7 @@ Có hai loại kiểm tra tính nguyên tố:
     thành số nguyên tố; chiều ngược lại thì không xảy ra. Vì vậy, những số vượt
     qua kiểm tra xác suất được gọi là **số có khả năng nguyên tố** cho đến khi
     tính nguyên tố của chúng được chứng minh một cách tất định. Những số vượt
-    qua kiểm tra nhưng thực ra là hợp số được gọi là **giả nguyên tố**. Có
+    qua kiểm tra nhưng là hợp số được gọi là **giả nguyên tố**. Có
     nhiều kiểu giả nguyên tố cụ thể, thường gặp nhất là giả nguyên tố Fermat,
     tức các hợp số thỏa mãn định lý nhỏ Fermat. Ví dụ thường gặp của kiểm tra
     xác suất là kiểm tra Miller-Rabin.
@@ -54,15 +54,15 @@ hết hay không.
             return True
         ```
 
-Cách này rất chắc chắn, nhưng có cần kiểm tra từng số hay không?
+Cách này đáng tin cậy, nhưng có cần kiểm tra từng số hay không?
 
-Dễ thấy rằng: nếu $x$ là ước của $a$ thì $\frac{a}{x}$ cũng là ước của $a$.
+Nhận thấy rằng: nếu $x$ là ước của $a$ thì $\frac{a}{x}$ cũng là ước của $a$.
 
 Kết luận này cho biết với mỗi cặp $(x, \frac{a}{x} )$, chỉ cần kiểm tra một
-trong hai số. Để thuận tiện, ta chỉ xét số nhỏ hơn trong mỗi cặp. Không khó
-thấy tất cả các số nhỏ hơn đó đều nằm trong khoảng $[1, \sqrt{a}]$.
+trong hai số. Để thuận tiện, chỉ xét số nhỏ hơn trong mỗi cặp; tất cả các số
+nhỏ hơn đó đều nằm trong khoảng $[1, \sqrt{a}]$.
 
-Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
+Vì $1$ luôn là ước nên không cần kiểm tra nó.
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -93,7 +93,7 @@ Vì $1$ chắc chắn là ước nên ta không cần kiểm tra nó.
 giản nhất.
 
 Từ [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat),
-ta có một ý tưởng để kiểm tra số nguyên tố:
+có một ý tưởng để kiểm tra số nguyên tố:
 
 Ý tưởng cơ bản là liên tục chọn cơ số $a$ trong $[2, n-1]$ và kiểm tra mỗi lần
 có $a^{n-1} \equiv 1 \pmod n$ hay không.
@@ -127,11 +127,11 @@ có $a^{n-1} \equiv 1 \pmod n$ hay không.
             return True
         ```
 
-Nếu $a^{n−1} \equiv 1 \pmod n$ nhưng $n$ không phải số nguyên tố, ta gọi $n$
+Nếu $a^{n−1} \equiv 1 \pmod n$ nhưng $n$ không phải số nguyên tố, $n$ được gọi
 là **giả nguyên tố Fermat** có cơ số $a$. Trong thực tế, khi
 $a^{n−1} \equiv 1 \pmod n$, $n$ thường là số nguyên tố. Tuy nhiên có phản ví
 dụ: với $n = 341$ và $a = 2$, tuy $2^{340}\equiv 1 {\pmod {341}}$, nhưng
-$341 = 11 \cdot 31$ là hợp số. Thực ra, với mỗi cơ số cố định $a$, có vô hạn
+$341 = 11 \cdot 31$ là hợp số. Với mỗi cơ số cố định $a$, có vô hạn
 phản ví dụ như vậy[^inf-fermat-pp].
 
 Vì kiểm tra Fermat không bảo đảm đúng với một cơ số đơn lẻ, một ý tưởng tự
@@ -140,7 +140,7 @@ nguyên tố cùng nhau với $n$, vẫn không thể bảo đảm $n$ là số 
 khác, mệnh đề đảo của định lý nhỏ Fermat không đúng: ngay cả khi với mọi
 $a\perp n$ đều có $a^{n-1}\equiv 1\pmod n$, $n$ vẫn có thể không phải số nguyên
 tố. Các số như vậy được gọi là [số Carmichael](./primitive-root.md#số-carmichael),
-và cũng có vô hạn số. Điều này buộc ta tìm phép kiểm tra tính nguyên tố chặt
+và cũng có vô hạn số. Do đó cần tìm phép kiểm tra tính nguyên tố chặt
 chẽ hơn.
 
 <span id="kiểm-tra-tính-nguyên-tố-miller-rabin"></span>
@@ -149,9 +149,9 @@ chẽ hơn.
 **Kiểm tra tính nguyên tố Miller-Rabin** (Miller-Rabin primality test) là một
 phương pháp xác định số nguyên tố tốt hơn. Nó do Miller và Rabin cải tiến từ
 kiểm tra Fermat. Giống các kiểm tra số nguyên tố xác suất khác, nó chỉ có thể
-phát hiện giả nguyên tố. Nếu cần chắc chắn là số nguyên tố, phải dùng các thuật
-toán tất định chậm hơn nhiều. Tuy vậy, trên thực tế chưa biết số nào vượt qua
-Miller-Rabin và các kiểm tra xác suất mạnh khác nhưng lại là hợp số, nên ta có
+phát hiện giả nguyên tố. Nếu cần xác định tất định một số là số nguyên tố, phải
+dùng các thuật toán tất định chậm hơn nhiều. Tuy vậy, trên thực tế chưa biết số nào vượt qua
+Miller-Rabin và các kiểm tra xác suất mạnh khác nhưng lại là hợp số, nên có
 thể yên tâm sử dụng.
 
 Nếu không xét độ phức tạp của phép nhân, thực hiện $k$ vòng kiểm tra cho số
@@ -173,7 +173,7 @@ chất sau của số nguyên tố:
     Theo [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange),
     đây là tất cả nghiệm của phương trình.
 
-Kết hợp định lý nhỏ Fermat với định lý căn bậc hai, ta thu được kiểm tra tính
+Kết hợp định lý nhỏ Fermat với định lý căn bậc hai, thu được kiểm tra tính
 nguyên tố Miller-Rabin:
 
 1.  Phân tích số mũ $n-1$ trong $a^{n-1} \equiv 1 \pmod n$ thành
@@ -194,7 +194,7 @@ Một vài chi tiết khi cài đặt:
     cho $1$. Có thể trả về `false` ngay, hoặc đợi đến sau $t$ lần bình phương
     mới trả về `false`.
 
-Ta thu được phiên bản Miller-Rabin khá đúng sau (từ fjzzq2002):
+Thu được phiên bản Miller-Rabin khá đúng sau (từ fjzzq2002):
 
 ???+ example "Cài đặt tham khảo"
     === "C++"
@@ -289,14 +289,14 @@ là số nguyên tố không vượt quá $1/4^k$.
     ràng $a^{u2^{\ell-1}}\equiv 1\pmod n$ cũng đúng, tức $a\in S'$. Nếu tồn tại
     $0\le i < t$ sao cho $a^{u2^i}\equiv -1\pmod n$, thì với mọi thừa số nguyên
     tố $p\mid n$ đều có $a^{u2^i}\equiv-1\pmod p$. Gọi $\delta_p(a)$ là
-    [cấp](./primitive-root.md#bậc) của $a$ theo modulo $p$. Khi đó rõ ràng
+    [cấp](./primitive-root.md#bậc) của $a$ theo modulo $p$. Khi đó
     $\delta_p(a)\mid u2^{i+1}$ nhưng $\delta_p(a)\nmid u2^{i}$, nên trong phân
     tích thừa số nguyên tố của $\delta_p(a)$, số mũ của $2$ đúng bằng $i+1$, vì
     vậy $2^{i+1}\mid\delta_p(a)$. Theo định lý nhỏ Fermat,
     $\delta_p(a)\mid p-1$, do đó $2^{i+1}\mid p-1$. Điều này đúng với mọi thừa
     số nguyên tố $p$ của $n$, suy ra $i+1\le\ell$. Vậy
     $a^{u2^{\ell-1}} = (a^{u2^i})^{2^{\ell-1-i}} \equiv \pm 1 \pmod n$, nên
-    cũng có $a\in S'$. Tổng hợp hai khả năng, ta được $S\subseteq S'$.
+    cũng có $a\in S'$. Tổng hợp hai khả năng, thu được $S\subseteq S'$.
 
     **Bước 2**: Tính kích thước $|S'|$.
 
@@ -345,7 +345,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     \prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
     $$
 
-    Vì vậy, gộp hai trường hợp lại, ta có
+    Vì vậy, gộp hai trường hợp lại, có
 
     $$
     |S'| = 2\prod_{p\mid n}2^{\ell-1}\gcd(u,p-1).
@@ -353,7 +353,7 @@ là số nguyên tố không vượt quá $1/4^k$.
 
     **Bước 3**: Chứng minh $|S'|\le\varphi(n)/4$.
 
-    Kết hợp công thức của hàm Euler $\varphi(n)=\prod_ip_i^{e_i-1}(p_i-1)$, ta
+    Kết hợp công thức của hàm Euler $\varphi(n)=\prod_ip_i^{e_i-1}(p_i-1)$,
     có
 
     $$
@@ -398,7 +398,7 @@ Ngoài ra, nếu giả sử
 cả các số nguyên trong $[2, \min\{n-2, \lfloor 2\ln^2 n \rfloor\}]$ là có thể
 **xác định tất định** tính nguyên tố của $n$.[^deterministic-proof]
 
-Trong phạm vi OI, ta thường kiểm tra tính nguyên tố của các số trong khoảng
+Trong phạm vi OI, thường cần kiểm tra tính nguyên tố của các số trong khoảng
 $[1, 2^{64})$. Với khoảng $[1, 2^{32})$, chọn ba số $\{2, 7, 61\}$ làm cơ sở
 cho kiểm tra Miller-Rabin là đủ để xác định tất định tính nguyên tố; với khoảng
 $[1, 2^{64})$, chọn bảy số
@@ -446,12 +446,12 @@ dạng $n=p_{1}^{k_{1}}p_{2}^{k_{2}} \cdots p_{n}^{k_{n}}$, trong đó $p$ là s
 nguyên tố và $k$ là số mũ của nó. Khi đó tổng số ước là
 $(k_1+1) \times (k_2+1) \times (k_3+1) \cdots \times (k_n+1)$.
 
-Nhưng độ phức tạp của phân tích thừa số nguyên tố rõ ràng rất cao, và kết quả
+Nhưng độ phức tạp của phân tích thừa số nguyên tố rất cao, và kết quả
 của số trước không dùng lại được cho số sau. Vì vậy cần đổi cách làm.
 
-Hãy quan sát đặc điểm của số phản nguyên tố.
+Cần quan sát đặc điểm của số phản nguyên tố.
 
-1.  Số phản nguyên tố chắc chắn là tích của các lũy thừa của các số nguyên tố
+1.  Số phản nguyên tố là tích của các lũy thừa của các số nguyên tố
     liên tiếp bắt đầu từ $2$.
 
 2.  Số mũ của số nguyên tố có giá trị nhỏ hơn phải lớn hơn hoặc bằng số mũ của
@@ -483,11 +483,11 @@ Còn hai câu hỏi:
 
     Xét trường hợp cực đoan: khi một lũy thừa nào đó của số nguyên tố nhỏ nhất
     đã lớn hơn $n$ cho trước (giá trị lớn nhất của $n$), thì nếu khai triển
-    thành các dạng khác, số mũ lớn nhất chắc chắn nhỏ hơn số mũ đó. Trong
+    thành các dạng khác, số mũ lớn nhất sẽ nhỏ hơn số mũ đó. Trong
     trường hợp cực đoan $n$ là lũy thừa của $2$, chỉ cần liệt kê đến
     $\lfloor\log_2 n\rfloor$.
 
-Đã có các chi tiết trên, ta cài đặt cụ thể ra sao?
+Với các chi tiết trên, cài đặt cụ thể ra sao?
 
 Có thể xem trạng thái trước khi đi đến mỗi số nguyên tố như một nút gốc của
 cây, rồi tìm dần theo từng tầng. Khi nào dừng?
@@ -507,7 +507,7 @@ Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ
 ### Bài tập ví dụ
 
 ???+ example "[Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
-    Tìm số tự nhiên nhỏ nhất có số lượng ước cho trước. Đáp án được đảm bảo
+    Tìm số tự nhiên nhỏ nhất có số lượng ước cho trước. Đáp án được bảo đảm
     không vượt quá $10^{18}$.
 
 ??? note "Ý tưởng giải"
