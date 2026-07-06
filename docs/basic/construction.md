@@ -9,7 +9,7 @@ Bài xây dựng là một dạng bài thường gặp trong các cuộc thi.
 Xét về hình thức, đáp án của bài thường có một quy luật nào đó, nhờ vậy khi
 kích thước bài toán tăng nhanh, vẫn có cơ hội tìm được đáp án tương đối dễ.
 
-Điều này đòi hỏi khi giải bài phải suy nghĩ xem việc tăng kích thước bài toán
+Điều này đòi hỏi khi giải bài phải phân tích việc tăng kích thước bài toán
 ảnh hưởng đến đáp án như thế nào, và ảnh hưởng đó có thể tổng quát hóa hay
 không. Chẳng hạn khi thiết kế quy hoạch động, cần xét việc chuyển từ một
 trạng thái sang trạng thái kế tiếp gây ra tác động gì.
@@ -19,7 +19,7 @@ trạng thái sang trạng thái kế tiếp gây ra tác động gì.
 Một đặc điểm rất rõ của bài xây dựng là độ tự do cao. Nói cách khác, một bài
 có thể có nhiều cách xây dựng, nhưng thường tồn tại một cách tương đối đơn
 giản thỏa mãn đề bài. Thoạt nhìn yêu cầu có vẻ được nới lỏng và bài trở nên dễ
-hơn, nhưng nhiều khi chính độ tự do cao này làm bài không có hướng đi rõ ràng
+hơn, nhưng nhiều khi chính độ tự do cao này làm bài không có hướng đi cụ thể
 và khiến việc bắt đầu trở nên khó khăn.
 
 Một đặc điểm khác là hình thức linh hoạt và biến hóa đa dạng. Không có một lời
@@ -29,8 +29,8 @@ tìm ra điểm chung trong tư duy giải.
 ## Bài ví dụ
 
 Sau đây là một số bài ví dụ giúp người đọc cảm nhận tư tưởng của dạng bài xây
-dựng và gợi mở hướng suy nghĩ. Nên suy nghĩ kỹ trước khi xem lời giải.
-Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây dựng thú vị.
+dựng và gợi mở hướng suy nghĩ. Việc suy nghĩ kỹ trước khi xem lời giải sẽ hữu
+ích. Những bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
 ### Bài ví dụ 1
 
@@ -39,13 +39,13 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$.
 
 ??? note "Ý tưởng giải"
-    Từ ví dụ thứ hai có thể nhìn ra cách xây dựng của bài này.
+    Ví dụ thứ hai gợi ra cách xây dựng của bài này.
 
-    Rõ ràng $n,n+1,n(n+1)$ là một bộ nghiệm hợp lệ. Trường hợp đặc biệt
+    Bộ $n,n+1,n(n+1)$ là một nghiệm hợp lệ. Trường hợp đặc biệt
     $n=1$ thì vô nghiệm, vì khi đó $n+1$ và $n(n+1)$ bằng nhau.
 
-    Còn việc nghĩ ra cách xây dựng này có lẽ đến từ quan sát ví dụ cộng với
-    một chút cảm giác số học. Bài này không khó với người có trực giác toán tốt.
+    Việc nghĩ ra cách xây dựng này có lẽ đến từ quan sát ví dụ cộng với trực
+    giác số học. Bài này tương đối thuận lợi với người có trực giác toán tốt.
 
 ### Bài ví dụ 2
 
@@ -59,20 +59,20 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     hay không, và nếu có thì xây dựng.
 
 ??? note "Ý tưởng giải"
-    Với task 1:
+    Với nhiệm vụ 1:
 
     Khi $n$ là số lẻ, không thể xây dựng nghiệm hợp lệ.
 
     Khi $n$ là số chẵn, có thể xây dựng một dãy dạng
     $n,1,n-2,3,\cdots$.
 
-    Trước hết, có thể thấy $n$ bắt buộc phải xuất hiện ở vị trí đầu tiên của dãy.
-    Nếu không, hai tổng tiền tố trước và sau khi $n$ xuất hiện chắc chắn sẽ
+    Trước hết, $n$ bắt buộc phải xuất hiện ở vị trí đầu tiên của dãy.
+    Nếu không, hai tổng tiền tố trước và sau khi $n$ xuất hiện sẽ
     bằng nhau theo modulo.
 
     Sau đó xét cách xây dựng toàn bộ dãy:
 
-    Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Có thể nhận thấy
+    Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Nhận xét rằng
     hiệu giữa hai tổng tiền tố bất kỳ không được bằng nhau theo modulo, vì dãy
     sai phân của dãy tổng tiền tố tương ứng với hoán vị ban đầu.
 
@@ -82,9 +82,9 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     0,1,-1,2,-2,\cdots
     $$
 
-    Không khó để thấy dạng này thỏa mãn hoàn hảo mọi ràng buộc.
+    Dạng này thỏa mãn đầy đủ mọi ràng buộc.
 
-    Với task 2:
+    Với nhiệm vụ 2:
 
     Khi $n$ là hợp số khác $4$, không thể xây dựng nghiệm hợp lệ.
 
@@ -93,20 +93,20 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
 
     Trước hết xét khi nào có nghiệm:
 
-    Rõ ràng khi $n$ là hợp số thì vô nghiệm. Với một hợp số, tồn tại hai số
-    nhỏ hơn nó là $p,q$ sao cho $p\times q \equiv 0 \pmod n$, ví dụ
+    Với các hợp số khác $4$, bài toán vô nghiệm. Với một hợp số như vậy, tồn
+    tại hai số nhỏ hơn nó là $p,q$ sao cho $p\times q \equiv 0 \pmod n$, ví dụ
     $(3\times6)\%9=0$. Khi cả $p$ và $q$ đều đã xuất hiện, mọi tích tiền tố
-    phía sau sẽ luôn bằng $0$, nên hợp số là vô nghiệm. Riêng $4=2\times2$,
-    không tồn tại $p,q$ thỏa điều kiện trên theo cách này, vì vậy vẫn có nghiệm
-    hợp lệ.
+    phía sau sẽ luôn bằng $0$, nên các trường hợp này vô nghiệm. Riêng
+    $4=2\times2$, không tồn tại $p,q$ thỏa điều kiện trên theo cách này, vì vậy
+    vẫn có nghiệm hợp lệ.
 
     Tiếp theo xét cách xây dựng dãy:
 
-    Tương tự task 1, có thể thấy $1$ bắt buộc phải xuất hiện ở vị trí đầu tiên,
+    Tương tự nhiệm vụ 1, $1$ bắt buộc phải xuất hiện ở vị trí đầu tiên,
     nếu không hai tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau.
     Còn $n$ bắt buộc phải xuất hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện
     của $n$, mọi tích tiền tố theo modulo đều bằng $0$. Sau khi phân tích vài
-    ví dụ trong đề, có thể thấy mọi ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
+    ví dụ trong đề, các ví dụ đều có một nghiệm hợp lệ sao cho dãy tích
     tiền tố theo modulo là $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu
     ở trên để thỏa điều kiện này. Khi đó chỉ cần chứng minh $n$ số này đôi một
     khác nhau.
@@ -140,8 +140,8 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     Nếu $n$ lẻ, tách riêng $n$ thành một nhóm, rồi ghép cặp $n-1$ số còn
     lại: $\{n\},\{1,n-1\},\{2,n-2\}\cdots$.
 
-    Đồ thị xây dựng theo cách này dễ chứng minh là liên thông khi $n\ge 3$,
-    nên không trình bày thêm ở đây.
+    Tính liên thông của đồ thị khi $n\ge 3$ được suy ra trực tiếp từ cách ghép
+    trên, nên không trình bày thêm trong phần này.
 
     Bài toán được giải.
 
@@ -167,16 +167,16 @@ Chúng tôi cũng hoan nghênh mọi người chia sẻ thêm những bài xây 
     Đây là một trong những bài xây dựng có độ tự do cao nhất. Chính điều đó làm
     người giải dễ rơi vào tình trạng không có manh mối và khó bắt đầu.
 
-    Trước hết, không khó nhận ra modulo là giả. Vì dữ liệu được xây dựng tự do,
+    Trước hết, modulo không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự do,
     luôn có thể khiến số cách không vượt quá modulo.
 
-    Bằng một cách nghĩ khá lạ, có thể xây dựng $n$ đồ vật nhỏ có chi phí
-    $1$ và một vài đồ vật lớn có chi phí lớn hơn $\dfrac{w}{2}$.
+    Một hướng xây dựng ít trực tiếp hơn là dùng $n$ đồ vật nhỏ có thể tích
+    $1$ và một vài đồ vật lớn có thể tích lớn hơn $\dfrac{w}{2}$.
 
     Vì mỗi đồ vật lớn chỉ có thể chọn nhiều nhất một cái, nên một đồ vật lớn có
-    chi phí $x$ đóng góp $\dbinom{n}{w-x}$ vào số cách.
+    thể tích $x$ đóng góp $\dbinom{n}{w-x}$ vào số cách.
 
-    Gọi $f_{i,j}$ là số đồ vật lớn ít nhất cần dùng khi có $i$ đồ vật chi phí
+    Gọi $f_{i,j}$ là số đồ vật lớn ít nhất cần dùng khi có $i$ đồ vật thể tích
     $1$ và số cách là $j$.
 
     Dùng DP để tiền xử lý $f$. Tính toán cho thấy chỉ cần tiền xử lý mọi giá

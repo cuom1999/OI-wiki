@@ -49,7 +49,7 @@ int func(giá_trị_đầu_vào) {
 
 ### Vì sao nên viết đệ quy
 
-1.  Cấu trúc rõ ràng, dễ đọc. Ví dụ, sau đây là hai cách cài đặt
+1.  Cấu trúc mạch lạc, dễ đọc. Ví dụ, sau đây là hai cách cài đặt
     [merge sort](./merge-sort.md):
 
     === "C++"
@@ -97,10 +97,10 @@ int func(giá_trị_đầu_vào) {
             merge(a, front, mid, end)
         ```
 
-    Rõ ràng phiên bản đệ quy dễ hiểu hơn phiên bản không đệ quy. Cách làm của
-    phiên bản đệ quy rất trực quan: sắp xếp nửa trái, sắp xếp nửa phải, rồi
-    trộn hai nửa. Phiên bản không đệ quy thì khó đọc hơn, chứa nhiều chi tiết
-    tính biên khó hiểu, rất dễ lỗi và khó gỡ lỗi.
+    Phiên bản đệ quy dễ hiểu hơn phiên bản không đệ quy. Cách làm của phiên bản
+    đệ quy rất trực quan: sắp xếp nửa trái, sắp xếp nửa phải, rồi trộn hai nửa.
+    Phiên bản không đệ quy thì khó đọc hơn, chứa nhiều chi tiết tính biên khó
+    hiểu, rất dễ lỗi và khó gỡ lỗi.
 
 2.  Rèn luyện khả năng phân tích cấu trúc bài toán. Khi nhận ra bài toán có thể
     được tách thành các bài toán nhỏ có cùng cấu trúc, việc quen viết đệ quy sẽ
@@ -113,10 +113,10 @@ lời gọi hàm, ngăn xếp thêm một khung ngăn xếp; mỗi khi hàm tr�
 bớt một khung ngăn xếp. Ngăn xếp không có kích thước vô hạn, nên nếu tầng đệ
 quy quá sâu sẽ dẫn đến **tràn ngăn xếp**.
 
-Rõ ràng có lúc đệ quy hiệu quả, chẳng hạn merge sort; nhưng **cũng có lúc đệ
-quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ Không. Ngăn
-xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có thể không tốn thêm bộ
-nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ dài của nó.
+Trong một số trường hợp đệ quy rất hiệu quả, chẳng hạn merge sort; nhưng **cũng
+có lúc đệ quy kém hiệu quả**, chẳng hạn đếm số sợi lông trên người Tôn Ngộ
+Không. Ngăn xếp tiêu tốn thêm bộ nhớ, trong khi vòng lặp đơn giản có thể không
+tốn thêm bộ nhớ. Ví dụ sau: cho đầu một danh sách liên kết, tính độ dài của nó.
 
 ```cpp
 // khung duyệt lặp điển hình
@@ -166,21 +166,21 @@ Quy trình khái quát gồm ba bước: chia -> giải -> gộp.
 Những bài toán giải được bằng chia để trị thường có các đặc điểm sau:
 
 -   Khi kích thước bài toán giảm đến một mức nhất định, bài toán có thể được
-    giải dễ dàng.
+    giải trực tiếp.
 -   Bài toán có thể được chia thành một số bài toán nhỏ cùng dạng; tức là bài
     toán có tính chất cấu trúc con tối ưu, và nghiệm của các bài toán con có
     thể được gộp thành nghiệm của bài toán ban đầu.
 -   Các bài toán con được tách ra độc lập với nhau; giữa chúng không có bài
     toán con chung.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Nếu các bài toán con không độc lập, chia để trị sẽ phải giải lặp lại các
     bài toán con chung, gây nhiều công việc thừa. Khi đó vẫn có thể dùng chia
     để trị, nhưng thường dùng [quy hoạch động](../dp/basic.md) sẽ tốt hơn.
 
 Lấy merge sort làm ví dụ. Giả sử hàm cài đặt merge sort tên là `merge_sort`.
 Trước hết cần xác định rõ nhiệm vụ của hàm này: **sắp xếp mảng được truyền
-vào**. Bài toán này rõ ràng có thể chia được. Sắp xếp một mảng tương đương với
+vào**. Bài toán này có thể chia được. Sắp xếp một mảng tương đương với
 sắp xếp nửa trái, sắp xếp nửa phải, rồi gộp chúng thành một mảng.
 
 ```cpp
@@ -193,8 +193,8 @@ void merge_sort(một_mảng) {
 ```
 
 Khi truyền cho nó nửa mảng, sau khi xử lý xong thì nửa mảng đó đã được sắp
-xếp. Có thể thấy `merge_sort` rất giống mẫu duyệt hậu tự của cây nhị phân. Vì
-khuôn mẫu của chia để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**:
+xếp. Hàm `merge_sort` rất giống mẫu duyệt hậu tự của cây nhị phân. Vì khuôn mẫu
+của chia để trị là **chia -> giải (chạm đáy) -> gộp (quay lui)**:
 trước hết chia trái phải, sau đó xử lý gộp; bước quay lui chính là khi stack
 trả về, tương đương hậu tự.
 
@@ -224,7 +224,7 @@ Vài dòng này đã đủ để duyệt bất kỳ cây nhị phân nào. Với
 duyệt cả cây đó. Vì vậy, chỉ cần truyền tiếp nút trái và nút phải cho hàm.
 
 Mở rộng tương tự sang duyệt cây N phân. Cách viết gần như giống cây nhị phân,
-chỉ có điều cây N phân rõ ràng không có duyệt trung tự.
+chỉ có điều cây N phân không có duyệt trung tự theo nghĩa thông thường.
 
 ```cpp
 void traverse(TreeNode* root) {
@@ -292,12 +292,12 @@ loại bài toán.
 ??? note "Phân tích bài toán"
     Đề bài trông phức tạp, nhưng mã lại cực kỳ ngắn gọn.
 
-    Trước hết cần xác định rõ: giải bài toán trên cây bằng đệ quy chắc chắn
-    phải duyệt toàn bộ cây, nên khung duyệt cây nhị phân, tức gọi đệ quy chính
-    hàm đó trên cây con trái và phải, chắc chắn sẽ xuất hiện trong hàm chính
+    Trước hết cần xác định rõ: giải bài toán trên cây bằng đệ quy cần duyệt toàn
+    bộ cây, nên khung duyệt cây nhị phân, tức gọi đệ quy chính hàm đó trên cây
+    con trái và phải, sẽ xuất hiện trong hàm chính
     `pathSum`. Vậy với mỗi nút, nó cần làm gì? Nó cần xem bản thân nó và các
     cây con của nó chứa bao nhiêu đường đi thỏa điều kiện. Đến đây bài toán đã
-    có cấu trúc lời giải rõ ràng.
+    có cấu trúc lời giải mạch lạc.
 
     Theo kỹ thuật đã nói ở trên, dựa vào phân tích vừa rồi, định nghĩa rõ từng
     hàm đệ quy cần làm gì:
@@ -328,7 +328,7 @@ loại bài toán.
           int leftNode = count(node->left, sum - node->val);
           // bên phải có tạo được bao nhiêu đường đi có tổng sum - node.val?
           int rightNode = count(node->right, sum - node->val);
-          return isMe + leftNode + rightNode;  // tổng số đường đi tạo được ở đây
+          return isMe + leftNode + rightNode;  // tổng số đường đi tạo được tại nút này
         }
         ```
 
@@ -336,9 +336,9 @@ loại bài toán.
     làm được việc đó.**
 
     Tóm lại, hàm `PathSum` cung cấp khung duyệt cây nhị phân; trong quá trình
-    duyệt, nó gọi hàm `count` trên mỗi nút. Ở đây dùng duyệt tiền tự, nhưng
-    duyệt trung tự hoặc hậu tự cũng được. Hàm `count` cũng là một phép duyệt cây
-    nhị phân, dùng để tìm các đường đi mục tiêu bắt đầu từ nút đó.
+    duyệt, nó gọi hàm `count` trên mỗi nút. Lời giải này dùng duyệt tiền tự,
+    nhưng duyệt trung tự hoặc hậu tự cũng được. Hàm `count` cũng là một phép
+    duyệt cây nhị phân, dùng để tìm các đường đi mục tiêu bắt đầu từ nút đó.
 
 ## Bài tập
 

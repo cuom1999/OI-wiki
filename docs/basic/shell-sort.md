@@ -2,11 +2,11 @@ Trang này giới thiệu ngắn gọn về sắp xếp Shell.
 
 ## Định nghĩa
 
-Sắp xếp Shell (tiếng Anh: Shell sort), còn gọi là phương pháp sắp xếp giảm dần khoảng cách, là một phiên bản cải tiến của [sắp xếp chèn](./insertion-sort.md). Sắp xếp Shell được đặt theo tên người phát minh ra nó, Shell (tiếng Anh: Donald Shell).
+Sắp xếp Shell (tiếng Anh: Shell sort), còn gọi là phương pháp sắp xếp giảm dần khoảng cách, là một phiên bản cải tiến của [sắp xếp chèn](./insertion-sort.md). Sắp xếp Shell được đặt theo tên người phát minh ra thuật toán này, Donald Shell.
 
 ## Quy trình
 
-Thuật toán sắp xếp bằng cách so sánh và di chuyển các bản ghi không kề nhau:
+Thuật toán sắp xếp bằng cách so sánh và di chuyển các phần tử không kề nhau:
 
 1.  Chia dãy cần sắp xếp thành nhiều dãy con (các phần tử trong mỗi dãy con có cùng khoảng cách trong mảng ban đầu);
 2.  Thực hiện sắp xếp chèn trên các dãy con này;
@@ -70,11 +70,11 @@ Trước hết chứng minh bổ đề 1.
     y_{k_1}\le x_{n+k_1}\le x'_{n+i},y_{k_2}\le x_{n+k_2}\le x'_{n+i},\ldots,y_{k_i}\le x_{n+k_i}\le x'_{n+i}
     $$
     
-    Vì vậy $x'_{n+i}$ lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y$, tức cũng lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y'$. Do đó hiển nhiên có $y'_i\le x'_{n+i}\,(1\le i\le l)$.
+    Vì vậy $x'_{n+i}$ lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y$, tức cũng lớn hơn hoặc bằng ít nhất $i$ phần tử trong $Y'$. Do đó suy ra $y'_i\le x'_{n+i}\,(1\le i\le l)$.
 
 Quay lại chứng minh mệnh đề ban đầu:
 
-Thực ra chỉ cần chứng minh rằng sau khi gọi xong $\text{InsertionSort}(h)$, rồi ngay ở lần gọi kế tiếp thực hiện $\text{InsertionSort}(k)$, $h$ dãy con vẫn có thứ tự. Sau đó dễ dàng dùng quy nạp để suy ra kết luận. Sau đây chỉ xét lần gọi kế tiếp này.
+Chỉ cần chứng minh rằng sau khi gọi xong $\text{InsertionSort}(h)$, rồi ngay ở lần gọi kế tiếp thực hiện $\text{InsertionSort}(k)$, $h$ dãy con vẫn có thứ tự. Sau đó, áp dụng quy nạp sẽ suy ra kết luận. Phần dưới chỉ xét lần gọi kế tiếp này.
 
 Sau khi thực hiện xong $\text{InsertionSort}(h)$, các nhóm sau đã được sắp xếp:
 
@@ -119,7 +119,7 @@ $$
 
 nên theo bổ đề $1$, sau khi thực hiện $\text{InsertionSort}(k)$ để sắp xếp riêng hai nhóm, quan hệ này vẫn còn đúng, tức vẫn có $A_i\le A_{i+h}\,(1\le i\le \min(h,k))$.
 
-Nếu $i>\min(h,k)$, dễ thấy chỉ cần lấy một số nguyên dương $w$ $(1\le w\le \min(h,k))$ rồi cộng thêm một số lần $k$ là có thể thu được $i$; do đó trường hợp đã xét ở trên đã bao hàm chứng minh cho trường hợp này.
+Nếu $i>\min(h,k)$, có thể lấy một số nguyên dương $w$ $(1\le w\le \min(h,k))$ rồi cộng thêm một số lần $k$ để thu được $i$; do đó trường hợp đã xét ở trên đã bao hàm chứng minh cho trường hợp này.
 
 Tổng hợp các lập luận trên, sau khi thực hiện xong $\text{InsertionSort}(k)$ vẫn có $A_i\le A_{i+h}\,(1\le i\le n-h)$.
 
@@ -137,16 +137,16 @@ Tiếp theo, tách riêng một bổ đề số học để chứng minh. Địn
     
     -   Trước hết chứng minh phương trình $ax+by=ab-a-b$ không có nghiệm mà $x,y$ đều là số nguyên không âm:
     
-        Nếu bỏ điều kiện số nguyên không âm, dễ thu được hai nghiệm $(b-1,-1),(-1,a-1)$.
+        Nếu bỏ điều kiện số nguyên không âm, thu được hai nghiệm $(b-1,-1),(-1,a-1)$.
     
-        Từ dạng nghiệm tổng quát $x=x_0+tb,y=y_0-ta$, dễ thấy hai nghiệm trên là "kề nhau" (vì $b-1-b=-1$).
+        Từ dạng nghiệm tổng quát $x=x_0+tb,y=y_0-ta$, suy ra hai nghiệm trên là "kề nhau" (vì $b-1-b=-1$).
     
         Khi $t$ tăng, $x$ tăng còn $y$ giảm, nên nếu phương trình có nghiệm nguyên không âm, nghiệm đó tất phải nằm giữa hai nghiệm trên. Nhưng hai nghiệm này "kề nhau", ở giữa không có nghiệm nào khác.
     
         Vì vậy không thể có nghiệm nguyên không âm.
     -   Tiếp theo chứng minh với mọi số nguyên $c > ab-a-b$, phương trình $ax+by=c$ có nghiệm nguyên không âm:
     
-        Tìm một nghiệm $(x_0,y_0)$ thỏa mãn $0\le x_0 < b$ (từ biểu thức nghiệm tổng quát, có thể làm được điều này).
+        Tìm một nghiệm $(x_0,y_0)$ thỏa mãn $0\le x_0 < b$ (nghiệm như vậy tồn tại theo biểu thức nghiệm tổng quát).
     
         Khi đó:
     
@@ -166,11 +166,11 @@ Tiếp theo, tách riêng một bổ đề số học để chứng minh. Địn
     Nếu $\gcd(h_{t+1},h_t)=1$, thì sau khi chương trình lần lượt thực hiện xong $\text{InsertionSort}(h_{t+1})$ và $\text{InsertionSort}(h_t)$, thời gian thực hiện $\text{InsertionSort}(h_{t-1})$ là $O\left(\dfrac{nh_{t+1}h_t}{h_{t-1}} \right)$; đồng thời với mỗi $j$, số lần di chuyển của $i$ là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
 
 ??? note "Chứng minh định lý 2"
-    Với phần $j\le h_{t+1}h_t$, số lần di chuyển của $i$ hiển nhiên là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
+    Với phần $j\le h_{t+1}h_t$, số lần di chuyển của $i$ là bậc $O\left(\dfrac{h_{t+1}h_t}{h_{t-1}} \right)$.
     
     Vì vậy, sau đây giả sử $j>h_{t+1}h_t$.
     
-    Với số nguyên dương tùy ý $k$ thỏa mãn $1\le k\le j-h_{t+1}h_t$, chú ý rằng: $h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$.
+    Với số nguyên dương tùy ý $k$ thỏa mãn $1\le k\le j-h_{t+1}h_t$, có: $h_{t+1}h_t-h_{t+1}-h_t<h_{t+1}h_t\le j-k\le j-1$.
     
     Lại vì $\gcd(h_{t+1},h_t)=1$, theo bổ đề $2$, tồn tại các số nguyên không âm $a,b$ sao cho: $ah_{t+1}+bh_t=j-k$.
     
@@ -206,7 +206,7 @@ Tiếp theo, tách riêng một bổ đề số học để chứng minh. Địn
     
     Định lý được chứng minh.
 
-Quan sát kỹ quá trình chứng minh định lý $2$, có thể thấy: định lý 1 có thể được "tổ hợp tuyến tính", tức nếu $A$ có thứ tự theo khoảng cách $h$ và cũng có thứ tự theo khoảng cách $k$, thì nó vẫn có thứ tự theo tổ hợp tuyến tính với hệ số không âm của $h$ và $k$. Tính "tuyến tính" này được bảo đảm bởi bổ đề $2$.
+Quan sát kỹ quá trình chứng minh định lý $2$ cho thấy: định lý 1 có thể được "tổ hợp tuyến tính", tức nếu $A$ có thứ tự theo khoảng cách $h$ và cũng có thứ tự theo khoảng cách $k$, thì nó vẫn có thứ tự theo tổ hợp tuyến tính với hệ số không âm của $h$ và $k$. Tính "tuyến tính" này được bảo đảm bởi bổ đề $2$.
 
 Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
 
@@ -221,7 +221,7 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
     
     Chia việc phân tích độ phức tạp thành hai phần:
     
-    -   Với một số hạng đầu thỏa mãn $h_t\ge \sqrt{n}$, hiển nhiên độ phức tạp thời gian của $\text{InsertionSort}(h_t)$ là $O\left(\dfrac{n^2}{h_t} \right)$.
+    -   Với một số hạng đầu thỏa mãn $h_t\ge \sqrt{n}$, độ phức tạp thời gian của $\text{InsertionSort}(h_t)$ là $O\left(\dfrac{n^2}{h_t} \right)$.
     
         Xét hạng $h_k$ gần $\sqrt{n}$ nhất, có:
     
@@ -255,7 +255,7 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
     Tóm lại, tổng độ phức tạp thời gian là $O(n^{3/2})$.
 
 ??? note "Chứng minh mệnh đề 2"
-    Chú ý một sự thật: nếu đã thực hiện $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$, thì vì $2\cdot 3-2-3=1$, theo định lý $2$, với mỗi phần tử, chỉ có phần tử đứng ngay trước nó là có thể lớn hơn nó; tất cả phần tử trước đó đều nhỏ hơn nó. Do đó con trỏ $i$ chỉ cần nhiều nhất hai lần là có thể thoát khỏi vòng lặp while. Nói cách khác, lúc này thực hiện tiếp $\text{InsertionSort}(1)$ thì độ phức tạp giảm xuống $O(n)$.
+    Sử dụng nhận xét sau: nếu đã thực hiện $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$, thì vì $2\cdot 3-2-3=1$, theo định lý $2$, với mỗi phần tử, chỉ có phần tử đứng ngay trước nó là có thể lớn hơn nó; tất cả phần tử trước đó đều nhỏ hơn nó. Do đó con trỏ $i$ chỉ cần nhiều nhất hai lần là có thể thoát khỏi vòng lặp while. Nói cách khác, lúc này thực hiện tiếp $\text{InsertionSort}(1)$ thì độ phức tạp giảm xuống $O(n)$.
     
     Xa hơn: nếu đã thực hiện $\text{InsertionSort}(4)$ và $\text{InsertionSort}(6)$, xét dãy con gồm tất cả phần tử có chỉ số lẻ và dãy con gồm tất cả phần tử có chỉ số chẵn. Điều này tương đương với việc thực hiện riêng $\text{InsertionSort}(2)$ và $\text{InsertionSort}(3)$ trên hai dãy con đó. Khi ấy cũng tương tự, thực hiện tiếp $\text{InsertionSort}(2)$ tương đương với thực hiện $\text{InsertionSort}(1)$ trên từng dãy con, và chỉ cần độ phức tạp cùng bậc với tổng độ dài của hai dãy, tức $O(n)$, là có thể làm mảng có thứ tự theo khoảng cách $2$.
     
