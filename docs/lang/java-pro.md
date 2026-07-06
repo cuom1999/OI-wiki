@@ -4,14 +4,20 @@
 <span id="nhập-xuất-nhanh-hơn"></span>
 ## Nhập xuất nhanh hơn
 
-`Scanner` và `System.out.print` hoạt động tốt lúc đầu, nhưng khi xử lý dữ liệu lớn chúng trở nên kém hiệu quả. Vì vậy cần dùng một số cách để tăng tốc IO.
+`Scanner` và `System.out.print` hoạt động tốt với dữ liệu nhỏ, nhưng khi xử lý dữ
+liệu lớn chúng trở nên kém hiệu quả. Vì vậy cần dùng một số cách để tăng tốc IO.
 
 <span id="dùng-kattio-stringtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng Kattio + StringTokenizer để nhập dữ liệu
 
-Một cách rất thường dùng là dùng [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java) từ Kattis để cải thiện hiệu suất IO.[^ref1] Cách này gói `StringTokenizer` và `PrintWriter` vào cùng một lớp để tiện sử dụng. Khi giải bài, nếu cuộc thi hoặc hệ thống cho phép, có thể dùng trực tiếp mẫu này.
+Một cách phổ biến là dùng [Kattio.java](https://github.com/Kattis/kattio/blob/master/Kattio.java)
+từ Kattis để cải thiện hiệu suất IO.[^ref1] Cách này gói `StringTokenizer` và
+`PrintWriter` vào cùng một lớp để tiện sử dụng. Khi giải bài, nếu cuộc thi hoặc
+hệ thống cho phép, có thể dùng trực tiếp mẫu này.
 
-Dưới đây là mẫu IO cần đưa vào mã nguồn. Vì Kattio gốc của Kattis có một số chức năng không thường dùng, mẫu dưới đây đã được điều chỉnh lại. Kattio gốc dùng giấy phép MIT.
+Dưới đây là mẫu IO cần đưa vào mã nguồn. Vì Kattio gốc của Kattis có một số chức
+năng không thường dùng, mẫu dưới đây đã được điều chỉnh lại. Kattio gốc dùng
+giấy phép MIT.
 
 ```java
 class Kattio extends PrintWriter {
@@ -90,18 +96,32 @@ public class Main {
 <span id="phân-tích-và-so-sánh-kattio-stringtokenizer-với-streamtokenizer"></span>
 ### Phân tích và so sánh Kattio + StringTokenizer với StreamTokenizer
 
-1.  `StreamTokenizer` dùng ít bộ nhớ hơn `StringTokenizer`. Khi chương trình chuẩn Java bị MLE, có thể thử `StreamTokenizer`, nhưng `StreamTokenizer` có thể làm mất độ chính xác và gặp lỗi khi đọc một số kiểu dữ liệu.
-    -   Trong mã nguồn của `StreamTokenizer` có `Type`; `Type` này quyết định kiểu dựa trên nội dung đầu vào. Nếu nhập một chuỗi bắt đầu bằng chữ số như `123oi`, nó sẽ cưỡng ép coi kiểu là `double`, nên khi đọc dữ liệu kiểu `String` bằng kiểu `double` sẽ phát sinh ngoại lệ.
+1.  `StreamTokenizer` dùng ít bộ nhớ hơn `StringTokenizer`. Khi chương trình
+    chuẩn Java bị MLE, có thể thử `StreamTokenizer`, nhưng `StreamTokenizer` có
+    thể làm mất độ chính xác và gặp lỗi khi đọc một số kiểu dữ liệu.
+    -   Trong mã nguồn của `StreamTokenizer` có `Type`; `Type` này quyết định
+        kiểu dựa trên nội dung đầu vào. Nếu nhập một chuỗi bắt đầu bằng chữ số
+        như `123oi`, nó sẽ cưỡng ép coi kiểu là `double`, nên khi đọc dữ liệu
+        kiểu `String` bằng kiểu `double` sẽ phát sinh ngoại lệ.
     -   `StreamTokenizer` sẽ mất độ chính xác khi đọc các số có độ lớn từ `1e14` trở lên.
-2.  Khi dùng `PrintWriter`, cần lưu ý gọi `close()` để đóng luồng xuất ở cuối chương trình, hoặc gọi `flush()` khi cần xuất ngay bộ đệm; nếu không nội dung sẽ không được ghi ra console hoặc tệp.
-3.  `Kattio` kế thừa từ `PrintWriter`, nên đối tượng của nó có sẵn chức năng của `PrintWriter` và có thể gọi trực tiếp các hàm xuất của `PrintWriter`; đồng thời nó dùng `StringTokenizer` làm biến thành viên. Cách thứ hai trong lớp `Main` lại dùng `StreamTokenizer` và `PrintWriter` làm biến thành viên riêng, nên cách sử dụng hơi khác.
+2.  Khi dùng `PrintWriter`, cần lưu ý gọi `close()` để đóng luồng xuất ở cuối
+    chương trình, hoặc gọi `flush()` khi cần xuất ngay bộ đệm; nếu không nội dung
+    sẽ không được ghi ra console hoặc tệp.
+3.  `Kattio` kế thừa từ `PrintWriter`, nên đối tượng của nó có sẵn chức năng của
+    `PrintWriter` và có thể gọi trực tiếp các hàm xuất của `PrintWriter`; đồng
+    thời nó dùng `StringTokenizer` làm biến thành viên. Cách thứ hai trong lớp
+    `Main` lại dùng `StreamTokenizer` và `PrintWriter` làm biến thành viên riêng,
+    nên cách sử dụng hơi khác.
 
-Tóm lại, trong đa số trường hợp `StringTokenizer` thuận tiện hơn `StreamTokenizer`. Chỉ nên thử `StreamTokenizer` trong các trường hợp MLE cực đoan; ngoài ra, `StreamTokenizer` không xử lý tốt dữ liệu vượt phạm vi `int`.
+Tóm lại, trong đa số trường hợp `StringTokenizer` thuận tiện hơn
+`StreamTokenizer`. Chỉ nên thử `StreamTokenizer` trong các trường hợp MLE cực
+đoan; ngoài ra, `StreamTokenizer` không xử lý tốt dữ liệu vượt phạm vi `int`.
 
 <span id="biginteger-và-số-học"></span>
 ## BigInteger và số học
 
-`BigInteger` là lớp tính toán độ chính xác cao do Java cung cấp, rất tiện để giải các bài toán số lớn.
+`BigInteger` là lớp tính toán độ chính xác cao do Java cung cấp, hữu ích khi
+giải các bài toán số lớn.
 
 <span id="biginteger-khởi-tạo"></span>
 ### Khởi tạo
@@ -421,7 +441,8 @@ public class Main {
 }
 ```
 
-Có thể xem thêm kiến thức liên quan đến Miller-Rabin tại [kiểm tra tính nguyên tố Miller-Rabin](../math/number-theory/prime.md#kiểm-tra-tính-nguyên-tố-miller-rabin).
+Có thể xem thêm kiến thức liên quan đến Miller-Rabin tại [kiểm tra tính nguyên tố
+Miller-Rabin](../math/number-theory/prime.md#kiểm-tra-tính-nguyên-tố-miller-rabin).
 
 <span id="kiểu-dữ-liệu-nguyên-thủy-và-kiểu-bao"></span>
 ## Kiểu dữ liệu nguyên thủy và kiểu bao
@@ -429,7 +450,10 @@ Có thể xem thêm kiến thức liên quan đến Miller-Rabin tại [kiểm t
 <span id="kiểu-bao-giới-thiệu"></span>
 ### Giới thiệu
 
-Vì kiểu nguyên thủy không có đặc trưng hướng đối tượng, để chúng tham gia vào lập trình hướng đối tượng, Java cung cấp các lớp bao tương ứng cho tám kiểu nguyên thủy: `Byte`, `Double`, `Float`, `Integer`, `Long`, `Short`, `Character` và `Boolean`. Quan hệ tương ứng như sau:
+Vì kiểu nguyên thủy không có đặc trưng hướng đối tượng, để chúng tham gia vào lập
+trình hướng đối tượng, Java cung cấp các lớp bao tương ứng cho tám kiểu nguyên
+thủy: `Byte`, `Double`, `Float`, `Integer`, `Long`, `Short`, `Character` và
+`Boolean`. Quan hệ tương ứng như sau:
 
 | Kiểu dữ liệu nguyên thủy | Kiểu dữ liệu bao |
 | :---------------------: | :--------------: |
