@@ -154,7 +154,7 @@ Phần này lấy Ubuntu được Windows tự động cài đặt làm ví dụ
 
 Mở menu Start, tìm Ubuntu rồi khởi động; hoặc dùng lệnh `wsl` để khởi động từ dòng lệnh Windows.
 
-Có thể tạo ô ghim cho Ubuntu hoặc ghim vào thanh tác vụ để lần sau mở thuận tiện hơn.
+Có thể tạo ô ghim cho Ubuntu hoặc ghim vào thanh tác vụ để mở nhanh hơn trong những lần sau.
 
 ### Khởi tạo
 
@@ -253,7 +253,7 @@ Trong menu tiếp theo, chọn `vi_VN.UTF-8` rồi nhấn Enter.
 
 <!-- scripts.linter.preprocess.fix_details on -->
 
-Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` để kiểm tra locale hiện tại. Trang trợ giúp `man` thường vẫn là tiếng Anh; điều này thuận tiện hơn khi tra cứu thông báo lỗi và tài liệu kỹ thuật.
+Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` để kiểm tra locale hiện tại. Trang trợ giúp `man` thường vẫn là tiếng Anh; điều này hữu ích khi tra cứu thông báo lỗi và tài liệu kỹ thuật.
 
 ### Cài môi trường biên dịch[^ref7]
 
@@ -368,7 +368,7 @@ $ xfce4-session
 
 ![](./images/wsl-open-xfce4-session.png)
 
-Kết quả chạy như hình. (Trong Xming, dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> là có thể thoát giao diện này.)
+Kết quả chạy như hình. (Trong Xming, dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> để thoát giao diện này.)
 
 ![](./images/wsl-xfce.png)
 
@@ -401,11 +401,11 @@ Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\hom
 
 Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows
 để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh
-sửa tệp trong WSL thuận tiện hơn.
+sửa tệp trong WSL trực tiếp hơn.
 
 Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS
-Code trên Windows, chỉnh sửa tệp trong thư mục của WSL thuận tiện hơn và dùng
-trình dòng lệnh để gỡ lỗi thuận tiện hơn.
+Code trên Windows, chỉnh sửa tệp trong thư mục của WSL và dùng trình dòng lệnh
+để gỡ lỗi.
 
 Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 
