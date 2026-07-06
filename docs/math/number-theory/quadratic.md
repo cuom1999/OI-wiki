@@ -9,7 +9,7 @@ Phần này trước hết giới thiệu một loạt khái niệm cơ bản. T
 vành số nguyên bậc hai đều là các trường hợp đặc biệt của khái niệm tổng quát
 hơn là mở rộng đại số và vành số nguyên đại số, vì vậy hầu hết định nghĩa và
 kết quả trong phần này đều có thể mở rộng một cách thích hợp sang trường hợp
-tổng quát. Ở đây ta chỉ thảo luận riêng trường hợp trường bậc hai, không dựa
+tổng quát. Phần này chỉ thảo luận riêng trường hợp trường bậc hai, không dựa
 vào quá nhiều nội dung của số học đại số.
 
 <span id="trường-bậc-hai"></span>
@@ -29,7 +29,7 @@ $$
 trong đó $a$ và $b$ là các số hữu tỉ, $d$ là số nguyên không chứa nhân tử chính
 phương. Mọi số có dạng này cũng là số đại số bậc hai. Số đại số bậc hai có thể
 chia thành số hữu tỉ và **số vô tỉ bậc hai** (quadratic irrational number).
-Hiển nhiên, cách biểu diễn một số vô tỉ bậc hai dưới dạng trên là duy nhất.
+Cách biểu diễn một số vô tỉ bậc hai dưới dạng trên là duy nhất.
 
 Với mỗi số nguyên không chứa nhân tử chính phương $d\neq 0,1$, có thể kiểm tra
 tập $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng, trừ,
@@ -71,7 +71,7 @@ $$
 N(a+b\sqrt{d})=a^2-db^2
 $$
 
-Hiển nhiên, trong trường bậc hai ảo, khái niệm chuẩn trùng với bình phương
+Trong trường bậc hai ảo, khái niệm chuẩn trùng với bình phương
 modun của số phức; nhưng trong trường bậc hai thực, hai khái niệm này không
 trùng nhau.
 
@@ -94,7 +94,7 @@ $$
 \dfrac{1}{a+b\sqrt{d}}=\frac{a-b\sqrt{d}}{N(a+b\sqrt{d})}.
 $$
 
-Theo định lý Vieta, số đại số bậc hai $\alpha$ thực ra là nghiệm của phương
+Theo định lý Vieta, số đại số bậc hai $\alpha$ chính là nghiệm của phương
 trình
 
 $$
@@ -160,7 +160,7 @@ Tập hợp tất cả số nguyên bậc hai trong trường bậc hai $\mathbf
 được kí hiệu là $\mathbf Z[\omega]$. Vì tập này đóng dưới phép cộng, trừ, nhân,
 nó cũng được gọi là **vành số nguyên bậc hai** (quadratic integer ring). Các số
 hữu tỉ trong vành số nguyên bậc hai đúng bằng toàn bộ các số nguyên. Nếu xét
-tập tất cả các thương của các số nguyên bậc hai trong $\mathbf Z[\omega]$, ta
+tập tất cả các thương của các số nguyên bậc hai trong $\mathbf Z[\omega]$, sẽ
 thu được trường bậc hai tương ứng $\mathbf Q(\sqrt{d})$.
 
 Vết, chuẩn và biệt thức của số nguyên bậc hai đều là số nguyên. Giá trị nhỏ
@@ -172,8 +172,8 @@ $d\equiv 2,3\pmod 4$, biệt thức là $4d$.
 <span id="chia-hết-liên-kết-và-đơn-vị"></span>
 ### Chia hết, liên kết và đơn vị
 
-Tương tự số nguyên, ta cũng có thể xây dựng lí thuyết chia hết cho số nguyên
-bậc hai. Dĩ nhiên việc thảo luận phải được thực hiện trong cùng một vành số
+Tương tự số nguyên, có thể xây dựng lí thuyết chia hết cho số nguyên
+bậc hai. Việc thảo luận phải được thực hiện trong cùng một vành số
 nguyên bậc hai.
 
 Với các số nguyên bậc hai $\alpha$ và $\beta$ trong vành số nguyên bậc hai
@@ -198,7 +198,7 @@ thương của chúng là đơn vị. Vì vậy, muốn hiểu quan hệ liên k
 nguyên bậc hai thì cần hiểu cấu trúc các đơn vị của vành đó.
 
 Vì chuẩn bảo toàn phép nhân và chuẩn của số nguyên bậc hai luôn là số nguyên,
-ta có thể dùng chuẩn để chuyển quan hệ chia hết của số nguyên bậc hai thành
+có thể dùng chuẩn để chuyển quan hệ chia hết của số nguyên bậc hai thành
 quan hệ chia hết của số nguyên. Nói cách khác, nếu $\alpha\mid\beta$ thì nhất
 định $N(\alpha)\mid N(\beta)$. Tương tự, số nguyên bậc hai $\alpha$ là đơn vị
 khi và chỉ khi chuẩn của nó $N(\alpha)=\pm 1$. Do đó, để tìm tất cả đơn vị
@@ -219,7 +219,7 @@ a^2-db^2, & d\equiv 2,3\pmod 4.
 $$
 
 Với vành số nguyên bậc hai ảo, tức $d<0$, vì chuẩn nhất định là số nguyên không
-âm, dễ dàng kiểm tra rằng với mọi số âm không chứa nhân tử chính phương
+âm, có thể kiểm tra rằng với mọi số âm không chứa nhân tử chính phương
 $d\neq -1,-3$, nghiệm chỉ là $(a,b)=(\pm 1,0)$; tức ngoài
 $\mathbf Z[\sqrt{-1}]$ và $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$, các vành số
 nguyên bậc hai ảo chỉ có các đơn vị $\pm 1$. Đặt $\mathrm{i}=\sqrt{-1}$, vành
@@ -247,7 +247,7 @@ lập thành một [nhóm Abel hữu hạn sinh](../algebra/group-theory.md#nhó
 Các nội dung trong lí thuyết chia hết của số nguyên như ước chung lớn nhất,
 phép chia có dư, định lý Bézout, định lý phân tích duy nhất, v.v. đều có thể
 mở rộng lên một phần hoặc toàn bộ các vành số nguyên bậc hai. Việc có thể thực
-hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay không thực ra phản
+hiện các mở rộng như vậy trên một vành số nguyên bậc hai hay không phản
 ánh tính chất của vành đó có đủ gần với vành số nguyên hay không. Không phải
 mọi vành số nguyên bậc hai đều thỏa mãn định lý phân tích duy nhất; trong các
 vành thỏa mãn định lý phân tích duy nhất, cũng chỉ một phần cho phép thực hiện
@@ -260,7 +260,7 @@ trong phần lí thuyết vành hoặc các sách liên quan để biết thêm 
 Nếu định lý phân tích duy nhất của số nguyên có thể mở rộng lên vành số nguyên
 bậc hai, nó nên có dạng sau: mọi số nguyên bậc hai trong vành
 $\mathbf Z[\omega]$ đều có thể viết thành tích của một số phần tử bất khả quy,
-và phân tích này là duy nhất nếu bỏ qua liên kết và thứ tự. Ở đây [phần tử bất
+và phân tích này là duy nhất nếu bỏ qua liên kết và thứ tự. Trong đó, [phần tử bất
 khả quy](../algebra/ring-theory.md#quan-hệ-chia-hết) là số
 nguyên bậc hai không thể tiếp tục phân tích thành tích của các phần tử không
 phải đơn vị, tương tự số nguyên tố trong định lý phân tích duy nhất của số
@@ -278,7 +278,7 @@ $\mathbf Z[\sqrt{-5}]$ không có số nguyên bậc hai nào có chuẩn bằng
 Nguyên nhân chính khiến định lý phân tích duy nhất không đúng trong vành số
 nguyên bậc hai tổng quát là việc phân tích chỉ bằng số nguyên bậc hai chưa đủ
 tinh vi. Chuyện tương tự là cần phân tích tích $abcd$, nhưng các phần tử cơ bản
-khả dụng chỉ là $\{ab,cd,ac,bd\}$, thì phân tích thu được tất nhiên không duy
+khả dụng chỉ là $\{ab,cd,ac,bd\}$, thì phân tích thu được không duy
 nhất; để có định lý phân tích duy nhất, phải xét thêm $\{a,b,c,d\}$. Trong
 vành số nguyên bậc hai, cấu trúc tinh vi hơn số nguyên bậc hai là [iđêan](../algebra/ring-theory.md#iđêan)
 của vành số nguyên bậc hai. Ánh xạ một số nguyên bậc hai đến iđêan chính tương
@@ -386,8 +386,8 @@ Do đó, số nguyên tố Gauss gồm ba loại sau:
 Ví dụ trong $\mathbf Z[\mathrm{i}]$ có phân tích
 $60=2^2\times 3\times 5=-(1+\mathrm{i})^4\times 3\times(2+\mathrm{i})\times(2-\mathrm{i})$.
 
-Thảo luận ở đây về việc số nguyên tố $p$ có thể phân tích tiếp trong
-$\mathbf Z[\mathrm{i}]$ thực ra tương đương với thảo luận về việc $p$ có thể
+Thảo luận việc số nguyên tố $p$ có thể phân tích tiếp trong
+$\mathbf Z[\mathrm{i}]$ tương đương với thảo luận về việc $p$ có thể
 viết dưới dạng tổng hai bình phương nguyên $a^2+b^2$. Vì vậy từ kết quả này
 suy ra: số nguyên tố $p$ có thể viết thành tổng hai bình phương khi và chỉ khi
 $p=2$ hoặc $p\equiv 1\pmod 4$. Đây là [định lý Fermat về tổng hai bình phương](https://en.wikipedia.org/wiki/Fermat%27s_theorem_on_sums_of_two_squares).
@@ -405,7 +405,7 @@ $x+y\mathrm{i}$ có chuẩn bằng $n$.
 Để giải phương trình $N(x+y\mathrm{i})=n$, có thể xét phân tích số nguyên Gauss
 $x+y\mathrm{i}$ thành thừa số nguyên tố; khi đó tích chuẩn của các thừa số
 nguyên tố này bằng $n$. Do đó, chỉ cần trước hết có phân tích thừa số của $n$,
-ta có thể dựa vào các thừa số nguyên tố của $n$ để xác định những thừa số
+có thể dựa vào các thừa số nguyên tố của $n$ để xác định những thừa số
 nguyên tố mà $x+y\mathrm{i}$ có thể có. Giả sử phân tích thừa số nguyên tố của
 số nguyên $n$ là
 
@@ -438,7 +438,7 @@ $$
 $$
 
 Đặt $f(n)$ là số nghiệm nguyên của phương trình $x^2+y^2=n$. Khi phương trình
-có nghiệm, $f(n)$ được cho bởi biểu thức trên; nếu không thì $f(n)=0$. Dễ thấy,
+có nghiệm, $f(n)$ được cho bởi biểu thức trên; nếu không thì $f(n)=0$. Khi đó,
 $\dfrac14f(n)$ là [hàm nhân tính](./basic.md#hàm-nhân-tính).
 Giá trị của hàm nhân tính được xác định bởi giá trị trên các lũy thừa nguyên
 tố. Từ biểu thức của $f(n)$ có thể xác định giá trị của $\dfrac14f(n)$ trên
@@ -449,14 +449,14 @@ lũy thừa nguyên tố $p^k$ như sau:
 2.  Nếu $p$ là số nguyên tố dạng $4k+1$, thì $\dfrac14f(p^k)=k+1$;
 3.  Nếu $p=2$, thì $\dfrac14f(2^k)=1$.
 
-Dễ thấy ba trường hợp này đều có thể viết thành
+Ba trường hợp này đều có thể viết thành
 
 $$
 \dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^k = \sum_{j=0}^k\left(\dfrac{-4}{p^k}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
 $$
 
 Vì kí hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ là hàm hoàn toàn nhân tính,
-ta thu được
+thu được
 
 $$
 f(n) = 4\sum_{d\mid n}\left(\dfrac{-4}{d}\right)=4\sum_{d\mid n}\chi_{4,3}(d).
@@ -523,7 +523,7 @@ $(x,y,z)$ (tức $x,y,z$ có ước chung bằng một), $x,y$ nhất định m�
 $z$ lẻ và chỉ chứa các thừa số nguyên tố dạng $4k+1$.
 
 Dùng phương pháp tương tự còn có thể tìm nghiệm tổng quát của phương trình
-$x^2+y^2=z^3$, hoặc chứng minh phương trình $x^4+y^4=z^4$ vô nghiệm. Dĩ nhiên,
+$x^2+y^2=z^3$, hoặc chứng minh phương trình $x^4+y^4=z^4$ vô nghiệm. Ngoài ra,
 dùng nghiệm tổng quát của phương trình Pythagoras và phương pháp lùi vô hạn, có
 thể chứng minh kết quả mạnh hơn: phương trình $x^4+y^4=z^2$ vô nghiệm.
 
@@ -539,7 +539,7 @@ nguyên Eisenstein. Vành gồm tất cả số nguyên Eisenstein $\mathbf Z[\o
 được gọi là vành số nguyên Eisenstein. Vành số nguyên Eisenstein có sáu đơn
 vị, lần lượt là $\pm 1$, $\pm\omega$ và $\pm\omega^2$. Trên mặt phẳng phức, tất
 cả số nguyên Eisenstein tạo thành các điểm của một lưới tam giác. Khác với số
-nguyên Gauss, các điểm lưới ở đây nhìn chung không phải điểm nguyên.
+nguyên Gauss, các điểm lưới trong trường hợp này nhìn chung không phải điểm nguyên.
 
 ![](./images/eisenstein-integer.svg)
 
@@ -555,8 +555,8 @@ mặt phẳng phức.
 Số nguyên Eisenstein có nhiều tính chất rất giống số nguyên Gauss. Trên số
 nguyên Eisenstein, cũng có thể dùng chuẩn $N(\cdot)$ để định nghĩa phép chia có
 dư, rồi thiết lập thuật toán Euclid, định lí Bezout, định lí phân tích duy
-nhất, v.v. Tương tự phần trên, ta có thể suy ra cách các số nguyên tố phân rã
-trong vành số nguyên Eisenstein. Để làm việc này, chú ý rằng biệt thức của
+nhất, v.v. Tương tự phần trên, có thể suy ra cách các số nguyên tố phân rã
+trong vành số nguyên Eisenstein. Để làm việc này, cần lưu ý rằng biệt thức của
 $\mathbf Z[\omega]$ là $-3$, và kí hiệu Kronecker
 
 $$
@@ -598,7 +598,7 @@ chuẩn. Đổi biến $x=(u+v)/2$ và $y=(u-v)/2$ có thể chuyển nó thành
 đã giải $u^2-uv+v^2=n$. Tuy nhiên, mặc dù mỗi nghiệm nguyên của
 $x^2+3y^2=n$ đều tương ứng với một nghiệm nguyên của $u^2-uv+v^2=n$, chiều
 ngược lại không nhất thiết đúng. Nếu $n$ chẵn, thì $u$ và $v$ nhất định đều
-chẵn, nghĩa là $x$ và $y$ chắc chắn là số nguyên; khi đó số nghiệm nguyên của
+chẵn, nghĩa là $x$ và $y$ đều là số nguyên; khi đó số nghiệm nguyên của
 $x^2+3y^2=n$ vẫn là $f(n)$. Nhưng nếu $n$ lẻ, thì $u$ và $v$ có thể một lẻ một
 chẵn, hoặc đều lẻ, nên $x$ và $y$ tương ứng có thể đều là bán nguyên hoặc đều là
 số nguyên. Trường hợp này cần thảo luận kĩ hơn.
@@ -637,7 +637,7 @@ $$
 x^2+3y^2=z^3
 $$
 
-Nghiệm tổng quát của chúng không được trình bày thêm ở đây. Phương pháp tương
+Nghiệm tổng quát của chúng không được trình bày thêm trong phần này. Phương pháp tương
 tự cũng có thể dùng để chứng minh $x^3+y^3=z^3$ vô nghiệm.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
@@ -653,10 +653,10 @@ tự cũng có thể dùng để chứng minh $x^3+y^3=z^3$ vô nghiệm.
 -   [Franz Lemmermeyer's Notes on Ideals in Quadratic Number Fields](http://www.fen.bilkent.edu.tr/~franz/ant/ant02.pdf)
 -   [J.S. Milne - Algebraic Number Theory](https://www.jmilne.org/math/CourseNotes/ANT301.pdf)
 
-[^omega]: Chú ý rằng cách chọn $\omega$ ở đây khác với cách chọn ở trên. Theo
+[^omega]: Cần lưu ý rằng cách chọn $\omega$ trong phần này khác với cách chọn ở trên. Theo
     quy ước, khi thảo luận vành số nguyên bậc hai tổng quát, thường quy định
     $\omega=(1+\sqrt{d})/2$ (khi $d\equiv 1\pmod4$), còn với vành số nguyên
     Eisenstein lại thường quy định $\omega=(-1+\sqrt{-3})/2$. Khác biệt này
     không có ảnh hưởng bản chất nào, nhưng có thể làm thay đổi hình thức của
-    một số biểu thức. Chú ý không nên viết vành số nguyên Eisenstein thành
+    một số biểu thức. Không nên viết vành số nguyên Eisenstein thành
     $\mathbf Z[\sqrt{-3}]$.

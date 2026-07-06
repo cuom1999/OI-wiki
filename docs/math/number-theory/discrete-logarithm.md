@@ -3,15 +3,15 @@
 
 Kiến thức cần có: [bậc và căn nguyên thủy](./primitive-root.md).
 
-Cách định nghĩa logarit rời rạc tương tự như logarit thông thường. Xét một số nguyên dương $m$ có căn nguyên thủy, và gọi $g$ là một căn nguyên thủy modulo $m$. Với số nguyên $a$ thỏa mãn $(a,m)=1$, ta biết rằng tồn tại duy nhất một số nguyên $0\leq k<\varphi(m)$ sao cho
+Định nghĩa logarit rời rạc tương tự logarit thông thường. Xét một số nguyên dương $m$ có căn nguyên thủy, và gọi $g$ là một căn nguyên thủy modulo $m$. Với số nguyên $a$ thỏa mãn $(a,m)=1$, tồn tại duy nhất một số nguyên $0\leq k<\varphi(m)$ sao cho
 
 $$
 g^k\equiv a\pmod m
 $$
 
-Ta gọi $k$ là logarit rời rạc cơ số $g$ modulo $m$ của $a$, ký hiệu là $k=\operatorname{ind}_g a$; khi không gây nhầm lẫn, có thể viết là $\operatorname{ind} a$.
+Số $k$ được gọi là logarit rời rạc cơ số $g$ modulo $m$ của $a$, ký hiệu là $k=\operatorname{ind}_g a$; khi không gây nhầm lẫn, có thể viết là $\operatorname{ind} a$.
 
-Hiển nhiên $\operatorname{ind}_g 1=0$ và $\operatorname{ind}_g g=1$.
+Có $\operatorname{ind}_g 1=0$ và $\operatorname{ind}_g g=1$.
 
 <span id="tính-chất"></span>
 ## Tính chất
@@ -45,7 +45,7 @@ Logarit rời rạc cũng có nhiều tính chất tương tự logarit thông t
 <span id="thuật-toán-bước-lớn-bước-nhỏ"></span>
 ## Thuật toán bước lớn bước nhỏ
 
-Hiện nay bài toán logarit rời rạc vẫn chưa có thuật toán cổ điển chạy trong thời gian đa thức, trong đó kích thước đầu vào của bài toán được tính theo số bit của dữ liệu đầu vào. Trong mật mã học, dựa trên điều này người ta đã thiết kế nhiều thuật toán mã hóa bất đối xứng, chẳng hạn như [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519).
+Hiện nay bài toán logarit rời rạc vẫn chưa có thuật toán cổ điển chạy trong thời gian đa thức, trong đó kích thước đầu vào của bài toán được tính theo số bit của dữ liệu đầu vào. Trong mật mã học, nhiều thuật toán mã hóa bất đối xứng được thiết kế dựa trên tính chất này, chẳng hạn như [Ed25519](https://en.wikipedia.org/wiki/EdDSA#Ed25519).
 
 Trong lập trình thi đấu, BSGS (baby-step giant-step, thuật toán bước nhỏ bước lớn) thường được dùng để giải bài toán logarit rời rạc. Nói một cách hình thức, với $a,b,m\in\mathbf{Z}^+$, thuật toán này có thể giải trong thời gian $O(\sqrt{m})$ phương trình
 
@@ -58,14 +58,14 @@ trong đó $a\perp m$. Nghiệm $x$ của phương trình thỏa mãn $0 \le x <
 <span id="mô-tả-thuật-toán"></span>
 ### Mô tả thuật toán
 
-Đặt $x = A \left \lceil \sqrt m \right \rceil - B$, trong đó $0\le A,B \le \left \lceil \sqrt m \right \rceil$. Khi đó $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$; biến đổi một chút, ta có $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$.
+Đặt $x = A \left \lceil \sqrt m \right \rceil - B$, trong đó $0\le A,B \le \left \lceil \sqrt m \right \rceil$. Khi đó $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$; sau một phép biến đổi nhỏ, thu được $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$.
 
-Ta đã biết $a,b$, vì vậy có thể tính trước mọi giá trị của vế phải $ba^B$, duyệt $B$ và lưu bằng `hash`/`map`. Sau đó lần lượt tính $a^{A\left \lceil \sqrt m \right \rceil}$, duyệt $A$ và tìm xem có giá trị $ba^B$ nào bằng nó hay không. Từ đó ta thu được mọi $x$ với $x=A \left \lceil \sqrt m \right \rceil - B$.
+Vì $a,b$ đã biết, có thể tính trước mọi giá trị của vế phải $ba^B$, duyệt $B$ và lưu bằng `hash`/`map`. Sau đó lần lượt tính $a^{A\left \lceil \sqrt m \right \rceil}$, duyệt $A$ và tìm xem có giá trị $ba^B$ nào bằng nó hay không. Từ đó thu được mọi $x$ với $x=A \left \lceil \sqrt m \right \rceil - B$.
 
 Vì cả $A$ và $B$ đều nhỏ hơn $\left \lceil \sqrt m \right \rceil$, độ phức tạp thời gian là $\Theta\left  (\sqrt m\right )$; nếu dùng `map` thì có thêm một hệ số $\log$.
 
 ??? note "Vì sao cần $a$ và $m$ nguyên tố cùng nhau"
-    Lưu ý rằng thứ ta tìm được là $A,B$. Ta cần bảo đảm rằng từ $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$ có thể suy ngược lại $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$. Công thức sau thu được bằng cách chia hai vế của công thức trước cho $a^B$, nên bắt buộc phải có $a^B \perp m$, tức là $a\perp m$.
+    Lưu ý rằng kết quả tìm được là $A,B$. Cần bảo đảm rằng từ $a^{A\left \lceil \sqrt m \right \rceil} \equiv ba^B \pmod m$ có thể suy ngược lại $a^{A\left \lceil \sqrt m \right \rceil -B} \equiv b \pmod m$. Công thức sau thu được bằng cách chia hai vế của công thức trước cho $a^B$, nên bắt buộc phải có $a^B \perp m$, tức là $a\perp m$.
 
 <span id="thuật-toán-bsgs-mở-rộng"></span>
 ## Thuật toán BSGS mở rộng
@@ -78,9 +78,9 @@ $$
 
 trong đó $a,m$ không nhất thiết nguyên tố cùng nhau.
 
-Khi $(a, m)=1$, $a$ có nghịch đảo theo modulo $m$, nên có thể dùng thuật toán BSGS để giải. Vì vậy ta tìm cách biến chúng thành nguyên tố cùng nhau.
+Khi $(a, m)=1$, $a$ có nghịch đảo theo modulo $m$, nên có thể dùng thuật toán BSGS để giải. Vì vậy cần biến chúng thành nguyên tố cùng nhau.
 
-Cụ thể, đặt $d_1=(a, m)$. Nếu $d_1\nmid b$, phương trình ban đầu vô nghiệm. Ngược lại, ta chia đồng thời phương trình cho $d_1$ và được
+Cụ thể, đặt $d_1=(a, m)$. Nếu $d_1\nmid b$, phương trình ban đầu vô nghiệm. Ngược lại, chia đồng thời phương trình cho $d_1$ và được
 
 $$
 \frac{a}{d_1}\cdot a^{x-1}\equiv \frac{b}{d_1}\pmod{\frac{m}{d_1}}
@@ -100,16 +100,16 @@ $$
 \frac{a^k}{D}\cdot a^{x-k}\equiv\frac{b}{D} \pmod{\frac{m}{D}}
 $$
 
-Vì $a\perp\dfrac{m}{D}$, suy ra $\dfrac{a^k}{D}\perp \dfrac{m}{D}$. Như vậy $\dfrac{a^k}{D}$ có nghịch đảo; chuyển nó sang vế phải, ta nhận được một bài toán BSGS thông thường. Sau khi giải được $x-k$, cộng thêm $k$ sẽ được nghiệm của phương trình ban đầu.
+Vì $a\perp\dfrac{m}{D}$, suy ra $\dfrac{a^k}{D}\perp \dfrac{m}{D}$. Như vậy $\dfrac{a^k}{D}$ có nghịch đảo; chuyển nó sang vế phải sẽ nhận được một bài toán BSGS thông thường. Sau khi giải được $x-k$, cộng thêm $k$ sẽ được nghiệm của phương trình ban đầu.
 
-Lưu ý rằng vẫn có thể tồn tại nghiệm nhỏ hơn hoặc bằng $k$. Vì vậy trước khi khử các nhân tử, ta thực hiện một lượt duyệt $\Theta(k)$ và kiểm tra trực tiếp $a^i\equiv b \pmod m$ để tránh bỏ sót trường hợp này.
+Lưu ý rằng vẫn có thể tồn tại nghiệm nhỏ hơn hoặc bằng $k$. Vì vậy trước khi khử các nhân tử, cần thực hiện một lượt duyệt $\Theta(k)$ và kiểm tra trực tiếp $a^i\equiv b \pmod m$ để tránh bỏ sót trường hợp này.
 
 <span id="logarit-rời-rạc-nhanh-dựa-trên-tiền-xử-lý-miền-giá-trị"></span>
 ## Logarit rời rạc nhanh dựa trên tiền xử lý miền giá trị
 
-Thuật toán BSGS ở trên có độ phức tạp thời gian $O(\sqrt m)$ cho mỗi lần hỏi, nên kém hiệu quả khi số lượng truy vấn lớn. Nếu modulo cần giải ở mỗi lần là một số nguyên tố cố định $p$, ta có một thuật toán nhanh dựa trên tiền xử lý miền giá trị.
+Thuật toán BSGS ở trên có độ phức tạp thời gian $O(\sqrt m)$ cho mỗi lần hỏi, nên kém hiệu quả khi số lượng truy vấn lớn. Nếu modulo cần giải ở mỗi lần là một số nguyên tố cố định $p$, có một thuật toán nhanh dựa trên tiền xử lý miền giá trị.
 
-Ta đã biết $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{p-1}$, nên chỉ cần dùng thuật toán BSGS để tính logarit rời rạc của mọi số nguyên tố; logarit rời rạc của hợp số có thể được chuyển thành tổng của một số giá trị logarit rời rạc của các số nguyên tố đã biết theo công thức này. Độ phức tạp khi đó vẫn chưa tối ưu, nên ta xét việc chỉ tiền xử lý một phần các logarit rời rạc. Cụ thể, ta tiền xử lý logarit rời rạc của các số từ $1$ đến $L = \lfloor\sqrt p\rfloor + 1$. Lưu ý rằng độ dài khối BSGS $B$ lúc này **không được lấy** là $O(\sqrt{L})$, vì phần tiền xử lý của BSGS, tức là thao tác chèn vào bảng băm, có độ phức tạp $O(B)$, còn tổng số lần truy vấn là $O(\pi(L))$. Do đó tổng độ phức tạp thời gian là $O\left(B+\dfrac{\pi(L)p}{B}\right)$, và khi đó chọn $B=O(\sqrt{\pi(L)p})$ mới là tối ưu. Theo [định lý số nguyên tố](./prime.md), $\pi(n)\sim\dfrac{n}{\log n}$, nên tổng thời gian tiền xử lý có thể được cân bằng thành $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)$.
+Do $\operatorname{ind}_g(ab)\equiv\operatorname{ind}_g a+\operatorname{ind}_g b\pmod{p-1}$, chỉ cần dùng thuật toán BSGS để tính logarit rời rạc của mọi số nguyên tố; logarit rời rạc của hợp số có thể được chuyển thành tổng của một số giá trị logarit rời rạc của các số nguyên tố đã biết theo công thức này. Độ phức tạp khi đó vẫn chưa tối ưu, nên xét việc chỉ tiền xử lý một phần các logarit rời rạc. Cụ thể, tiền xử lý logarit rời rạc của các số từ $1$ đến $L = \lfloor\sqrt p\rfloor + 1$. Lưu ý rằng độ dài khối BSGS $B$ lúc này **không được lấy** là $O(\sqrt{L})$, vì phần tiền xử lý của BSGS, tức là thao tác chèn vào bảng băm, có độ phức tạp $O(B)$, còn tổng số lần truy vấn là $O(\pi(L))$. Do đó tổng độ phức tạp thời gian là $O\left(B+\dfrac{\pi(L)p}{B}\right)$, và khi đó chọn $B=O(\sqrt{\pi(L)p})$ mới là tối ưu. Theo [định lý số nguyên tố](./prime.md), $\pi(n)\sim\dfrac{n}{\log n}$, nên tổng thời gian tiền xử lý có thể được cân bằng thành $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)$.
 
 Tiếp theo là cách tính đáp án. Giả sử hiện cần tính $\operatorname{ind}_g y$. Nếu $y\le L$ thì trả về trực tiếp; ngược lại, đặt $p=vy+r$, khi đó $v=\left\lfloor\dfrac{p}{y}\right\rfloor<L$, $r=p\bmod y$, $y=\dfrac{p-r}{v}$, từ đó
 
@@ -123,17 +123,17 @@ $$
 
 Nhận thấy $\operatorname{ind}_g (p-1)=(p-1)/2$, vì vậy chỉ cần đệ quy tính logarit rời rạc của $r$.
 
-Ta cũng có thể xét một cách biểu diễn khác của $y$. Do $p=vy+r=(v+1)y+r-y$, nên $y=\dfrac{p-r+y}{v+1}$, từ đó
+Cũng có thể xét một cách biểu diễn khác của $y$. Do $p=vy+r=(v+1)y+r-y$, nên $y=\dfrac{p-r+y}{v+1}$, từ đó
 
 $$
 \operatorname{ind}_g y\equiv \operatorname{ind}_g (y-r)-\operatorname{ind}_g (v+1) \pmod{p-1}.
 $$
 
-Ta có $v+1 \le L$, vì vậy chỉ cần đệ quy tính logarit rời rạc của $y-r$.
+Có $v+1 \le L$, vì vậy chỉ cần đệ quy tính logarit rời rạc của $y-r$.
 
-Kết hợp hai cách tính trên, ta có $\min\{r,y-r\}\le \dfrac{y}{2}$, nên chỉ cần đệ quy trên phía nhỏ hơn là đạt được độ phức tạp truy vấn $O(\log p)$.
+Kết hợp hai cách tính trên, nhận được $\min\{r,y-r\}\le \dfrac{y}{2}$, nên chỉ cần đệ quy trên phía nhỏ hơn là đạt được độ phức tạp truy vấn $O(\log p)$.
 
-Đến đây, ta thu được một thuật toán có độ phức tạp thời gian $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)-O(\log p)$.
+Đến đây, thu được một thuật toán có độ phức tạp thời gian $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)-O(\log p)$.
 
 ??? example "[Luogu11175: Mẫu logarit rời rạc nhanh dựa trên tiền xử lý miền giá trị](https://www.luogu.com.cn/problem/P11175)"
     ```cpp
