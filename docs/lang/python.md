@@ -600,7 +600,10 @@ array([[0, 0, 1],
 
 #### Dùng `array`
 
-[`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được dùng; phần này chỉ nhắc qua.
+[`array`](https://docs.python.org/3/library/array.html) là một kiểu mảng số hiệu
+quả do thư viện chuẩn Python cung cấp. Nó biểu diễn mảng các giá trị kiểu cơ bản
+một cách gọn trong bộ nhớ, nhưng không hỗ trợ lồng mảng và cũng hiếm khi được
+dùng; phần này chỉ nhắc qua.
 
 Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sách".
 
@@ -608,13 +611,25 @@ Nếu không nói gì thêm, "mảng" trong phần sau thường chỉ "danh sá
 
 ### [Nhập xuất](https://docs.python.org/3/tutorial/inputoutput.html)
 
-Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng sẵn `input()` và `print()`. Phần trước đã giới thiệu cơ bản; sau đây là cách dùng nâng cao hơn.
+Nhập xuất trong Python chủ yếu thực hiện bằng các hàm dựng sẵn `input()` và
+`print()`. Phần trước đã giới thiệu cơ bản; sau đây là cách dùng nâng cao hơn.
 
 <a id="xuất-định-dạng"></a>
 
 #### Xuất định dạng
 
-Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi cơ bản, `print()` thường đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo phong cách `printf()`; cách khác là dùng [hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách thứ ba là [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals) thêm từ Python 3.6, ngắn gọn hơn nhưng không bảo đảm phiên bản Python trong phòng thi đủ mới. Có thể xem giải thích chi tiết hơn tại [trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ minh họa cách cũ tương tự `printf()`:
+Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi cơ bản, `print()`
+thường đã đủ. Chỉ khi cần khống chế số chữ số của số thực mới cần xuất chuỗi định
+dạng. Có ba cách định dạng: cách thứ nhất và cũ nhất là dùng toán tử `%` theo
+phong cách `printf()`; cách khác là dùng
+[hàm `format`](https://docs.python.org/3/library/string.html#formatstrings); cách
+thứ ba là
+[f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals)
+thêm từ Python 3.6, ngắn gọn hơn nhưng không bảo đảm phiên bản Python trong phòng
+thi đủ mới. Có thể xem giải thích chi tiết hơn tại
+[trang này](https://www.python-course.eu/python3_formatted_output.php). Tuy
+thường nên dùng phương thức `format()`, để có trải nghiệm gần với C, sau đây chỉ
+minh họa cách cũ tương tự `printf()`:
 
 ```pycon
 >>> pi = 3.1415926; print('%.4f' % pi)   # Định dạng: %[flags][width][.precision]type
@@ -627,7 +642,11 @@ Trong lập trình thi đấu, thông thường chỉ xuất số và chuỗi c�
 
 #### Hàm `split()`
 
-Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành chuỗi và không gồm ký tự xuống dòng ở cuối. Nhưng trong lập trình thi đấu, dạng nhập thường gặp là một dòng có nhiều số, nên cần dùng phương thức `split()` của chuỗi kết hợp với biểu thức sinh danh sách để lấy danh sách chứa các giá trị số. Sau đây minh họa bằng bài nhập n số và tính trung bình:
+Hành vi của hàm `input()` gần với `getline()` trong C++: đọc cả một dòng thành
+chuỗi và không gồm ký tự xuống dòng ở cuối. Nhưng trong lập trình thi đấu, dạng
+nhập thường gặp là một dòng có nhiều số, nên cần dùng phương thức `split()` của
+chuỗi kết hợp với biểu thức sinh danh sách để lấy danh sách chứa các giá trị số.
+Sau đây minh họa bằng bài nhập n số và tính trung bình:
 
 ```pycon
 >>> s = input('Nhập dãy số: '); s  # Khi tự gỡ lỗi, có thể truyền chuỗi vào input() làm lời nhắc
@@ -642,7 +661,10 @@ Nhập dãy số: 1 2 3 4 5 6
 3.5
 ```
 
-Đôi khi đề bài mỗi dòng nhập cố định vài số, chẳng hạn đỉnh đầu, đỉnh cuối và trọng số của cạnh. Nếu chỉ dùng cách trên, mỗi lần phải đọc vào mảng rồi gán theo chỉ số. Lúc này có thể dùng tính năng "mở gói" của Python để gán nhiều biến một lần:
+Đôi khi đề bài mỗi dòng nhập cố định vài số, chẳng hạn đỉnh đầu, đỉnh cuối và
+trọng số của cạnh. Nếu chỉ dùng cách trên, mỗi lần phải đọc vào mảng rồi gán theo
+chỉ số. Lúc này có thể dùng tính năng "mở gói" của Python để gán nhiều biến một
+lần:
 
 ```pycon
 >>> u, v, w = [int(x) for x in input().split()]
@@ -651,7 +673,10 @@ Nhập dãy số: 1 2 3 4 5 6
 1 2 4
 ```
 
-Trong đề bài thường gặp trường hợp nhập N dòng. Phần này chưa nói về câu lệnh vòng lặp cơ bản, nhưng các thao tác trên kiểu tuần tự mạnh của Python có thể xử lý nhập nhiều dòng mà không cần viết vòng lặp riêng. Sau đây giả sử đọc riêng điểm đầu, điểm cuối và trọng số của các cạnh vào ba mảng:
+Trong đề bài thường gặp trường hợp nhập N dòng. Phần này chưa nói về câu lệnh
+vòng lặp cơ bản, nhưng các thao tác trên kiểu tuần tự mạnh của Python có thể xử
+lý nhập nhiều dòng mà không cần viết vòng lặp riêng. Sau đây giả sử đọc riêng
+điểm đầu, điểm cuối và trọng số của các cạnh vào ba mảng:
 
 ```pycon
 >>> N = 4; mat = [[int(x) for x in input().split()] for i in range(N)]
@@ -665,7 +690,7 @@ Trong đề bài thường gặp trường hợp nhập N dòng. Phần này ch�
 # * mở gói mat để lấy các danh sách bên trong
 # zip() gom các phần tử cùng vị trí của nhiều danh sách thành tuple, tạo một bộ lặp
 # map(list, iterable) chuyển các phần tử trong kiểu tuần tự (trong ví dụ này là tuple) thành list
->>> print(u, v, w)  # Mở gói trực tiếp bộ lặp do map() tạo ra, gán lần lượt cho u, v, w
+>>> print(u, v, w)  # Mở gói bộ lặp do map() tạo ra
 [1, 1, 2, 3] [3, 4, 3, 4] [3, 1, 4, 1]
 ```
 
@@ -689,7 +714,10 @@ tạo ra `list`.
 
 #### [Đọc ghi tệp](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)
 
-Hàm dựng sẵn [`open()`](https://docs.python.org/3/library/functions.html#open) của Python dùng để đọc ghi tệp. Để tránh lỗi trong quá trình đọc ghi khiến tệp không được đóng đúng cách, phần này chỉ giới thiệu cách đọc ghi an toàn bằng câu lệnh [`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement):
+Hàm dựng sẵn [`open()`](https://docs.python.org/3/library/functions.html#open) của
+Python dùng để đọc ghi tệp. Để tránh lỗi trong quá trình đọc ghi khiến tệp không
+được đóng đúng cách, phần này chỉ giới thiệu cách đọc ghi an toàn bằng câu lệnh
+[`with`](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement):
 
 ```python
 a = []
@@ -701,19 +729,30 @@ with open("out.txt", "w") as f:
     f.write("1\n")
 ```
 
-Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì các kỳ thi OI hiện chưa hỗ trợ dùng Python, phần này không đi sâu.
+Có nhiều hàm liên quan đến đọc ghi tệp, phù hợp với các tình huống khác nhau. Vì
+các kỳ thi OI hiện chưa hỗ trợ dùng Python, phần này không đi sâu.
 
 <a id="luồng-điều-khiển"></a>
 
 ### [Luồng điều khiển](https://docs.python.org/3/tutorial/controlflow.html)
 
-Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng đôi khi vẫn khiến người quen C nhớ cảm giác tự do hơn, vì khi sao chép và dán làm mất thụt lề rồi phải căn lại bằng tay thì mất công.
+Tuy đã học nhiều tính năng của Python, đến lúc này các đoạn mã Python được trình
+bày đều là câu lệnh một dòng. Điều đó che đi khác biệt lớn giữa Python và C về
+phong cách mã: thứ nhất, Python không dùng `{}` mà dùng thụt lề để biểu diễn khối
+lệnh; nếu thụt lề không thẳng hàng sẽ báo lỗi ngay, nếu trộn tab và dấu cách cũng
+sẽ báo lỗi. Thứ hai, nơi bắt đầu khối lệnh, chẳng hạn dòng `if` và `for`, phải
+kết thúc bằng dấu hai chấm `:`. Điều này giúp mã dễ đọc hơn, nhưng đôi khi vẫn
+khiến người quen C thấy kém tự do hơn, vì khi sao chép và dán làm mất thụt lề thì
+phải căn lại bằng tay.
 
 <a id="cấu-trúc-vòng-lặp"></a>
 
 #### Cấu trúc vòng lặp
 
-Biểu thức sinh danh sách có thể thực hiện thao tác hàng loạt hiệu quả trong một dòng, nhưng đôi khi việc ép dòng trở nên quá gượng ép. Nhiều tình huống vẫn chỉ có thể dùng cấu trúc vòng lặp, nên phần này tiếp tục lấy ví dụ đọc nhiều dòng dữ liệu để minh họa cách viết vòng lặp trong Python:
+Biểu thức sinh danh sách có thể thực hiện thao tác hàng loạt hiệu quả trong một
+dòng, nhưng đôi khi việc ép mọi thứ vào một dòng trở nên gượng ép. Nhiều tình
+huống vẫn cần dùng cấu trúc vòng lặp, nên phần này tiếp tục lấy ví dụ đọc nhiều
+dòng dữ liệu để minh họa cách viết vòng lặp trong Python:
 
 ```python
 # Lưu ý từ đây trở đi không dùng REPL nữa; cần tự sao chép dữ liệu nhiều dòng
@@ -751,7 +790,11 @@ print(u, v, w)
 
 #### Cấu trúc rẽ nhánh
 
-Nhìn chung gần giống C/C++; các khác biệt về hình thức được minh họa trong ví dụ sau. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng toán tử gán (Python 3.8 trở lên có thể dùng [`:=`](https://www.python.org/dev/peps/pep-0572/)), và [không có câu lệnh switch](https://docs.python.org/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
+Nhìn chung cấu trúc rẽ nhánh gần với C/C++; các khác biệt về hình thức được minh
+họa trong ví dụ sau. Ngoài ra cần lưu ý biểu thức điều kiện không cho phép dùng
+toán tử gán (Python 3.8 trở lên có thể dùng
+[`:=`](https://www.python.org/dev/peps/pep-0572/)), và
+[không có câu lệnh switch](https://docs.python.org/3/faq/design.html#why-isn-t-there-a-switch-or-case-statement-in-python).
 
 ```python
 # Biểu thức điều kiện không cần ngoặc hai bên
@@ -772,7 +815,12 @@ if 4 >= 3 > 2 and 3 != 5 == 5 != 7:
 
 #### Xử lý ngoại lệ
 
-Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để xử lý ngoại lệ, trong thi đấu thông thường ít dùng. Còn trong Python, phong cách [EAFP](https://docs.python.org/3/glossary.html#term-eafp) phổ biến, nên trong mã có thể dùng nhiều câu lệnh [`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement). Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
+Tuy C++ có [khối `try`](https://en.cppreference.com/w/cpp/language/try_catch) để
+xử lý ngoại lệ, trong thi đấu thông thường ít dùng. Còn trong Python, phong cách
+[EAFP](https://docs.python.org/3/glossary.html#term-eafp) phổ biến, nên trong mã
+có thể dùng nhiều câu lệnh
+[`try-except`](https://docs.python.org/3/reference/compound_stmts.html#the-try-statement).
+Phần sau khi giới thiệu `dict` cũng sẽ dùng đến; đoạn dưới minh họa trước:
 
 ```python
 s = "OI-wiki"
