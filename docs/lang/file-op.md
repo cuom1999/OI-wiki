@@ -2,21 +2,20 @@ author: Ir1d, cqnuljs, akakw1, MingqiHuang, Chrogeek, henrytbtrue, Planet6174, S
 
 ## Khái niệm về tệp
 
-Tệp là tập hợp dữ liệu có liên quan được gom lại theo một mục đích cụ thể.
-C/C++ xem mỗi tệp là một luồng byte có thứ tự; khi đọc đến cuối tệp, chương
-trình sẽ gặp **dấu kết thúc tệp** (EOF). Nếu muốn thao tác với một tệp, trước
-hết chương trình phải mở tệp đó. Mỗi khi một tệp được mở, tệp ấy sẽ được liên
-kết với một luồng; luồng này là một dãy byte. Sau khi sử dụng xong, cần đóng tệp
-đã mở.
+Tệp là tập hợp dữ liệu có liên quan được gom lại theo một mục đích cụ thể. C/C++
+xem mỗi tệp là một luồng byte có thứ tự; khi đọc đến cuối tệp, chương trình sẽ
+gặp **dấu kết thúc tệp** (EOF). Muốn thao tác với một tệp, trước hết chương trình
+phải mở tệp đó. Mỗi tệp đang mở được liên kết với một luồng, và luồng này biểu
+diễn dãy byte của tệp. Sau khi sử dụng xong, cần đóng tệp đã mở.
 
-C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản là các tệp chứa
-nội dung dạng văn bản thông thường (trọng tâm của phần này); còn tệp nhị phân là
-các tệp có định dạng đặc biệt, tệp mã thực thi, v.v.
+C/C++ chia tệp thành tệp văn bản và tệp nhị phân. Tệp văn bản chứa nội dung dạng
+văn bản thông thường (trọng tâm của phần này); còn tệp nhị phân là các tệp có
+định dạng đặc biệt, tệp thực thi, v.v.
 
 ## Các bước thao tác với tệp
 
-1.  Mở tệp, liên kết con trỏ tệp hoặc luồng tệp với tệp, rồi xác định chế độ mở
-    tệp.
+1.  Mở tệp, liên kết con trỏ tệp hoặc luồng tệp với tệp đó, rồi xác định chế độ
+    mở.
 2.  Thực hiện thao tác đọc, ghi trên tệp. Phần này chỉ đề cập đến các thao tác
     thường dùng trong thi đấu.
 3.  Sau khi dùng xong, đóng tệp.
@@ -25,15 +24,14 @@ các tệp có định dạng đặc biệt, tệp mã thực thi, v.v.
 
 ### Giới thiệu hàm
 
-Hàm này dùng để chuyển hướng luồng nhập/xuất được chỉ định sang một tệp theo chế
-độ mở tệp đã cho. Hàm nằm trong tệp tiêu đề `<cstdio>` (hoặc `<stdio.h>` trong
-C). Nó có thể thay đổi nguồn nhập hoặc đích xuất mà không cần sửa cấu trúc ban
-đầu của chương trình, nhưng khi sử dụng cần kiểm tra thao tác mở tệp có thành
-công hay không.
+Hàm này dùng để chuyển hướng một luồng nhập/xuất sang tệp theo chế độ mở đã cho.
+Hàm nằm trong tệp tiêu đề `<cstdio>` (hoặc `<stdio.h>` trong C). Nó có thể thay
+đổi nguồn nhập hoặc đích xuất mà không cần sửa cấu trúc chính của chương trình,
+nhưng khi sử dụng cần kiểm tra thao tác mở tệp có thành công hay không.
 
 Hàm chủ yếu có ba cách dùng: đọc, ghi và ghi nối thêm.
 
-### Cú pháp lệnh
+### Nguyên mẫu hàm
 
 ```cpp
 FILE* freopen(const char* filename, const char* mode, FILE* stream);
@@ -42,8 +40,8 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 ### Giải thích tham số
 
 -   `filename`: tên tệp cần mở
--   `mode`: chế độ mở tệp, biểu thị cách đọc/ghi tệp
--   `stream`: con trỏ tệp, thường dùng luồng nhập/xuất chuẩn (`stdin`/`stdout`)
+-   `mode`: chế độ mở, biểu thị cách đọc/ghi tệp
+-   `stream`: con trỏ tệp, thường dùng luồng đầu vào/đầu ra chuẩn (`stdin`/`stdout`)
     hoặc luồng lỗi chuẩn (`stderr`)
 -   Giá trị trả về: con trỏ tệp trỏ tới tệp đã được mở; nếu thất bại thì trả về
     `NULL`
@@ -77,21 +75,21 @@ FILE* freopen(const char* filename, const char* mode, FILE* stream);
 
 ### Cách sử dụng
 
-Chuyển hướng chuẩn nhập để đọc nội dung từ tệp:
+Chuyển hướng đầu vào chuẩn để đọc nội dung từ tệp:
 
 ```cpp
 freopen("data.in", "r", stdin);
 // data.in là tên tệp cần đọc, phải đặt cùng thư mục với tệp thực thi
 ```
 
-Chuyển hướng chuẩn xuất để ghi nội dung ra tệp:
+Chuyển hướng đầu ra chuẩn để ghi nội dung ra tệp:
 
 ```cpp
 freopen("data.out", "w", stdout);
-// data.out là tên tệp xuất, nằm cùng thư mục với tệp thực thi
+// data.out là tên tệp đầu ra, nằm cùng thư mục với tệp thực thi
 ```
 
-Đóng luồng nhập/xuất chuẩn sau khi dùng xong:
+Đóng luồng đầu vào/đầu ra chuẩn sau khi dùng xong:
 
 ```cpp
 fclose(stdin);
@@ -100,8 +98,8 @@ fclose(stdout);
 
 ??? note "Ghi chú"
     Các hàm và đối tượng như `printf`/`scanf`/`cin`/`cout` mặc định sử dụng
-    `stdin`/`stdout`. Sau khi chuyển hướng `stdin`/`stdout`, chúng sẽ nhập/xuất
-    qua tệp được chuyển hướng.
+    `stdin`/`stdout`. Sau khi chuyển hướng `stdin`/`stdout`, chúng sẽ đọc/ghi
+    qua tệp tương ứng.
 
 ### Mẫu
 
@@ -124,8 +122,8 @@ int main(void) {
 ## Hàm `fopen` (đọc thêm)
 
 Hàm này mở tệp được chỉ định và trả về con trỏ tới tệp đã mở. Khác với
-`freopen`, `fopen` không chuyển hướng `stdin` hoặc `stdout`; cần dùng con trỏ
-được trả về để đọc/ghi tệp.
+`freopen`, `fopen` không chuyển hướng `stdin` hoặc `stdout`; khi đọc/ghi tệp, cần
+dùng con trỏ mà hàm trả về.
 
 ### Nguyên mẫu hàm
 
@@ -133,9 +131,9 @@ Hàm này mở tệp được chỉ định và trả về con trỏ tới tệp
 FILE* fopen(const char* path, const char* mode);
 ```
 
-Ý nghĩa các tham số giống với `freopen`.
+Ý nghĩa các tham số giống như trong `freopen`.
 
-### Các hàm đọc/ghi có thể dùng (cơ bản)
+### Các hàm đọc/ghi thường dùng (cơ bản)
 
 -   `fread/fwrite`
 -   `fgetc/fputc`
@@ -180,7 +178,7 @@ Mở luồng xuất để ghi nội dung ra tệp:
 
 ```cpp
 std::ofstream fout("data.out");
-// data.out là đường dẫn tương đối hoặc tuyệt đối đến tệp xuất
+// data.out là đường dẫn tương đối hoặc tuyệt đối đến tệp đầu ra
 ```
 
 Đóng luồng tệp sau khi dùng xong:
