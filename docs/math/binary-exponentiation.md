@@ -19,7 +19,7 @@ Tính lũy thừa bậc $n$ của $a$ nghĩa là nhân $n$ thừa số $a$ với
     3^{13} = 3^{(1101)_2} = 3^8 \times 3^4 \times 3^1,
     $$
     
-    nên nếu có thể nhanh chóng tính được $3^{1},3^{2},3^{4},3^{8}$, ta chỉ cần thêm $2$ phép nhân để thu được giá trị của $3^{13}$. Vì vậy, ta chỉ cần một cách nhanh để tính dãy các lũy thừa $2^k$ của $3$ nói trên. Điều này rất đơn giản, vì trong dãy đó, mỗi phần tử (trừ phần tử đầu tiên) đều là bình phương của phần tử đứng ngay trước nó.
+    nên nếu có thể nhanh chóng tính được $3^{1},3^{2},3^{4},3^{8}$, chỉ cần thêm $2$ phép nhân để thu được giá trị của $3^{13}$. Vì vậy, chỉ cần một cách nhanh để tính dãy các lũy thừa $2^k$ của $3$ nói trên. Điều này khá đơn giản, vì trong dãy đó, mỗi phần tử (trừ phần tử đầu tiên) đều là bình phương của phần tử đứng ngay trước nó.
     
     Từ phân tích trên, quá trình tính $3^{13}$ là:
     
@@ -46,7 +46,7 @@ $$
 n = n_t2^t + n_{t-1}2^{t-1} + \cdots + n_12^1 + n_02^0,
 $$
 
-trong đó $n_i\in\{0,1\}$. Khi đó ta có
+trong đó $n_i\in\{0,1\}$. Khi đó có
 
 $$
 \begin{aligned}
@@ -57,7 +57,7 @@ $$
 
 Lưu ý rằng chỉ các hạng ứng với $n_i=1$ mới thực sự xuất hiện trong phép nhân.
 
-Dựa trên biểu thức này, trước hết ta có thể tính $\Theta(\log n)$ giá trị lũy thừa dạng $2^k$ của $a$ trong thời gian $\Theta(\log n)$, rồi dùng thêm $\Theta(\log n)$ thời gian để chọn các lũy thừa tương ứng với bit nhị phân bằng $1$ và nhân chúng vào kết quả cuối cùng. Đây chính là cách cài đặt lũy thừa nhanh dạng lặp.
+Dựa trên biểu thức này, trước hết có thể tính $\Theta(\log n)$ giá trị lũy thừa dạng $2^k$ của $a$ trong thời gian $\Theta(\log n)$, rồi dùng thêm $\Theta(\log n)$ thời gian để chọn các lũy thừa tương ứng với bit nhị phân bằng $1$ và nhân chúng vào kết quả cuối cùng. Đây chính là cách cài đặt lũy thừa nhanh dạng lặp.
 
 Mã giả như sau:
 
@@ -81,12 +81,12 @@ $$
 \end{array}
 $$
 
-Khi dùng phương pháp này để tính lũy thừa nhanh, ta cần $\Theta(\log n)$ phép nhân.
+Khi dùng phương pháp này để tính lũy thừa nhanh, cần $\Theta(\log n)$ phép nhân.
 
 <span id="phiên-bản-đệ-quy"></span>
 ### Phiên bản đệ quy
 
-Quy trình trên cũng có thể được cài đặt bằng đệ quy. Chú ý rằng khai triển nhị phân của số mũ $n$ có thể được viết đệ quy như sau:
+Quy trình trên cũng có thể được cài đặt bằng đệ quy. Lưu ý rằng khai triển nhị phân của số mũ $n$ có thể được viết đệ quy như sau:
 
 $$
 (n_tn_{t-1}\cdots n_1n_0)_2 = 2 \times (n_tn_{t-1}\cdots n_1)_2 + n_0.
@@ -126,7 +126,7 @@ $$
 \end{array}
 $$
 
-Khi dùng phương pháp này để tính lũy thừa nhanh, ta cần $\Theta(\log n)$ tầng đệ quy và cũng cần $\Theta(\log n)$ phép nhân. Dù độ phức tạp giống nhau, bản lặp thường nhanh hơn trong thực tế vì bản đệ quy có thêm chi phí gọi hàm.
+Khi dùng phương pháp này để tính lũy thừa nhanh, cần $\Theta(\log n)$ tầng đệ quy và cũng cần $\Theta(\log n)$ phép nhân. Dù độ phức tạp giống nhau, bản lặp thường nhanh hơn trong thực tế vì bản đệ quy có thêm chi phí gọi hàm.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
@@ -135,11 +135,11 @@ Khi dùng phương pháp này để tính lũy thừa nhanh, ta cần $\Theta(\l
 ### Lũy thừa theo mô đun
 
 ???+ example "[Luogu P1226 - Mẫu lũy thừa nhanh](https://www.luogu.com.cn/problem/P1226)"
-    Cho ba số nguyên $a,b,p$, hãy tính $a^b\bmod p$, trong đó $p\ge 2$.
+    Cho ba số nguyên $a,b,p$, cần tính $a^b\bmod p$, trong đó $p\ge 2$.
 
-Đây là một ứng dụng rất thường gặp; chẳng hạn, nó có thể được dùng để tính nghịch đảo nhân theo mô đun. Vì phép lấy mô đun không làm ảnh hưởng đến phép nhân, ta chỉ cần lấy mô đun trong quá trình tính.
+Đây là một ứng dụng rất thường gặp; chẳng hạn, nó có thể được dùng để tính nghịch đảo nhân theo mô đun. Vì phép lấy mô đun không làm ảnh hưởng đến phép nhân, chỉ cần lấy mô đun trong quá trình tính.
 
-Trước hết, ta có thể cài đặt trực tiếp theo phương pháp đệ quy ở trên:
+Trước hết, có thể cài đặt trực tiếp theo phương pháp đệ quy ở trên:
 
 ???+ note "Cài đặt tham khảo"
     === "C++"
@@ -172,13 +172,13 @@ Cách cài đặt thứ hai là dạng không đệ quy. Trong vòng lặp, nó 
 <span id="tính-số-fibonacci"></span>
 ### Tính số Fibonacci
 
-Dựa vào công thức truy hồi của dãy Fibonacci $F_n = F_{n-1} + F_{n-2}$, ta có thể xây dựng một ma trận $2\times 2$ để biểu diễn phép biến đổi từ $F_i,F_{i+1}$ sang $F_{i+1},F_{i+2}$. Khi cần tính lũy thừa bậc $n$ của ma trận này, ta dùng ý tưởng lũy thừa nhanh để thu được kết quả trong thời gian $\Theta(\log n)$. Xem thêm chi tiết tại [dãy Fibonacci](./combinatorics/fibonacci.md); phần cài đặt lũy thừa nhanh cho ma trận có thể tham khảo ở [tăng tốc truy hồi bằng ma trận](../math/linear-algebra/matrix.md#dùng-ma-trận-tăng-tốc-truy-hồi).
+Dựa vào công thức truy hồi của dãy Fibonacci $F_n = F_{n-1} + F_{n-2}$, có thể xây dựng một ma trận $2\times 2$ để biểu diễn phép biến đổi từ $F_i,F_{i+1}$ sang $F_{i+1},F_{i+2}$. Khi cần tính lũy thừa bậc $n$ của ma trận này, dùng ý tưởng lũy thừa nhanh để thu được kết quả trong thời gian $\Theta(\log n)$. Xem thêm chi tiết tại [dãy Fibonacci](./combinatorics/fibonacci.md); phần cài đặt lũy thừa nhanh cho ma trận có thể tham khảo ở [tăng tốc truy hồi bằng ma trận](../math/linear-algebra/matrix.md#dùng-ma-trận-tăng-tốc-truy-hồi).
 
 <span id="hoán-vị-nhiều-lần"></span>
 ### Hoán vị nhiều lần
 
 ???+ note "Mô tả bài toán"
-    Cho một dãy độ dài $n$ và một hoán vị, hãy áp dụng hoán vị đó lên dãy $k$ lần.
+    Cho một dãy độ dài $n$ và một hoán vị, cần áp dụng hoán vị đó lên dãy $k$ lần.
 
 Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng nó lên dãy. Độ phức tạp thời gian là $O(n \log k)$. Xem thêm chi tiết tại [hợp thành hoán vị](./permutation.md#hợp-thành).
 
@@ -195,25 +195,25 @@ Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng 
     2.  Co giãn tọa độ của điểm theo một tỉ lệ (Scale).
     3.  Quay quanh một đường thẳng nào đó (Rotate).
     
-    Ngoài ra còn có một thao tác đặc biệt: lặp lại một dãy thao tác $k$ lần (Repeat). Các thao tác Repeat có thể lồng nhau. Hãy xuất tọa độ của từng điểm sau khi thực hiện xong mọi thao tác.
+    Ngoài ra còn có một thao tác đặc biệt: lặp lại một dãy thao tác $k$ lần (Repeat). Các thao tác Repeat có thể lồng nhau. Cần xuất tọa độ của từng điểm sau khi thực hiện xong mọi thao tác.
 
-Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, ta có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
+Theo nội dung trong [véc-tơ và ma trận](./linear-algebra/vector.md#vectơ-và-ma-trận), mỗi thao tác đều có thể được biểu diễn bằng một ma trận biến đổi, và một chuỗi biến đổi liên tiếp có thể được biểu diễn bằng tích các ma trận. Một thao tác Repeat tương đương với việc lấy lũy thừa bậc $k$ của một ma trận. Nhờ vậy, có thể tính ma trận cuối cùng của toàn bộ dãy biến đổi trong thời gian $O(m \log k)$. Cuối cùng áp dụng ma trận đó lên $n$ điểm, tổng độ phức tạp là $O(n + m \log k)$.
 
 <span id="đếm-đường-đi-có-độ-dài-cố-định"></span>
 ### Đếm đường đi có độ dài cố định
 
 ???+ note "Mô tả bài toán"
-    Cho một đồ thị có hướng (trọng số mỗi cạnh bằng 1), hãy tính số đường đi độ dài $k$ từ $u$ đến $v$ với mọi cặp đỉnh $u,v$.
+    Cho một đồ thị có hướng (trọng số mỗi cạnh bằng 1), cần tính số đường đi độ dài $k$ từ $u$ đến $v$ với mọi cặp đỉnh $u,v$.
 
-Ta lấy lũy thừa bậc $k$ của ma trận kề $M$ của đồ thị. Khi đó $M_{i,j}$ biểu thị số đường đi độ dài $k$ từ $i$ đến $j$. Độ phức tạp của thuật toán này là $O(n^3 \log k)$. Chi tiết của thuật toán có thể xem ở trang [ma trận](./linear-algebra/matrix.md#đếm-đường-đi-độ-dài-cố-định).
+Lấy lũy thừa bậc $k$ của ma trận kề $M$ của đồ thị. Khi đó $M_{i,j}$ biểu thị số đường đi độ dài $k$ từ $i$ đến $j$. Độ phức tạp của thuật toán này là $O(n^3 \log k)$. Chi tiết của thuật toán có thể xem ở trang [ma trận](./linear-algebra/matrix.md#đếm-đường-đi-độ-dài-cố-định).
 
 <span id="phép-nhân-số-nguyên-theo-mô-đun"></span>
 ### Phép nhân số nguyên theo mô đun
 
 ???+ note "Mô tả bài toán"
-    Cho các số nguyên không âm $a,b$ và số nguyên dương $m$, hãy tính $a\times b\bmod m$, trong đó $a,b\le m\le 10^{18}$.
+    Cho các số nguyên không âm $a,b$ và số nguyên dương $m$, cần tính $a\times b\bmod m$, trong đó $a,b\le m\le 10^{18}$.
 
-Tương tự ý tưởng lũy thừa nhị phân, lần này ta biểu diễn một trong hai thừa số dưới dạng tổng của một số lũy thừa nguyên của 2. Khi thực hiện phép nhân một số với 2 rồi lấy mô đun, ta có thể chuyển nó thành phép cộng trừ để tránh tràn số nguyên. Nhờ vậy bài toán có thể được giải trong thời gian $O(\log m)$. Công thức đệ quy như sau:
+Tương tự ý tưởng lũy thừa nhị phân, lần này biểu diễn một trong hai thừa số dưới dạng tổng của một số lũy thừa nguyên của 2. Khi thực hiện phép nhân một số với 2 rồi lấy mô đun, có thể chuyển nó thành phép cộng trừ để tránh tràn số nguyên. Nhờ vậy bài toán có thể được giải trong thời gian $O(\log m)$. Công thức đệ quy như sau:
 
 $$
 a \cdot b = \begin{cases}
@@ -223,7 +223,7 @@ a \cdot b = \begin{cases}
 \end{cases}
 $$
 
-Tuy nhiên, trong thực tế, phương pháp này không có hiệu quả thời gian tốt vì đưa vào độ phức tạp tính toán lớn hơn. Khi lập trình, với phép nhân có mô đun trong phạm vi `long long`, ta thường dùng [nhân nhanh](./number-theory/mod-arithmetic.md#nhân-nhanh).
+Tuy nhiên, trong thực tế, phương pháp này không có hiệu quả thời gian tốt vì đưa vào độ phức tạp tính toán lớn hơn. Khi lập trình, với phép nhân có mô đun trong phạm vi `long long`, thường dùng [nhân nhanh](./number-theory/mod-arithmetic.md#nhân-nhanh).
 
 <span id="lũy-thừa-nhanh-độ-chính-xác-cao"></span>
 ### Lũy thừa nhanh độ chính xác cao
@@ -231,7 +231,7 @@ Tuy nhiên, trong thực tế, phương pháp này không có hiệu quả thờ
 Kỹ năng cần có: [nhân số nguyên lớn](./bignum.md#phép-nhân)
 
 ???+ example "[Luogu P1045 - \[NOIP 2003 Nhóm phổ cập\] Số Mersenne](https://www.luogu.com.cn/problem/P1045)"
-    Cho số nguyên $P$ ($1000 < P < 3100000$), hãy tính số chữ số của $2^P−1$ và $500$ chữ số cuối cùng của nó (biểu diễn theo hệ thập phân). Nếu chưa đủ $500$ chữ số thì thêm các chữ số 0 ở đầu.
+    Cho số nguyên $P$ ($1000 < P < 3100000$), cần tính số chữ số của $2^P−1$ và $500$ chữ số cuối cùng của nó (biểu diễn theo hệ thập phân). Nếu chưa đủ $500$ chữ số thì thêm các chữ số 0 ở đầu.
 
 ??? note "Cài đặt"
     ```cpp
@@ -241,7 +241,7 @@ Kỹ năng cần có: [nhân số nguyên lớn](./bignum.md#phép-nhân)
 <span id="lũy-thừa-nhanh-tiền-xử-lý-với-cơ-số-cố-định"></span>
 ## Lũy thừa nhanh tiền xử lý với cơ số cố định
 
-Khi cơ số $a$ cố định, ta có thể dùng [tư tưởng phân khối](../ds/decompose.md) để tiền xử lý trong một khoảng thời gian nhất định, rồi trả lời mỗi truy vấn lũy thừa trong thời gian $O(1)$. Thuật toán này cũng thường được gọi là lũy thừa tốc độ ánh sáng. Quy trình như sau:
+Khi cơ số $a$ cố định, có thể dùng [tư tưởng phân khối](../ds/decompose.md) để tiền xử lý trong một khoảng thời gian nhất định, rồi trả lời mỗi truy vấn lũy thừa trong thời gian $O(1)$. Thuật toán này cũng thường được gọi là lũy thừa tốc độ ánh sáng. Quy trình như sau:
 
 1.  Chọn một số $s$, tiền xử lý các giá trị $a^0,a^1,\cdots,a^{s-1}$ và $a^0,a^s,\cdots,a^{\lfloor p/s\rfloor s}$ rồi lưu vào hai mảng;
 2.  Với mỗi truy vấn $a^b$, tách $b$ thành $\lfloor b/s\rfloor s+(b\bmod s)$, khi đó $a^b=a^{\lfloor b/s\rfloor s}\cdot a^{b\bmod s}$, nên có thể tìm đáp án trong thời gian $O(1)$.

@@ -14,7 +14,7 @@ Yêu cầu môi trường của kỳ thi NOI (từ ngày 1 tháng 9 năm 2021) n
 | :--- | :------------------- | :-------- | :------ |
 | Hệ thống | Nhân Linux | `5.4.0-42-generic` | x86 64-bit (AMD64) |
 | Môi trường ngôn ngữ | GCC (`gcc` và `g++`) | `9.3.0` | Trình biên dịch C và C++ |
-| | FPC | `3.0.4` | Trình biên dịch Pascal (chú ý: từ năm 2022, các kỳ thi NOI không còn hỗ trợ Pascal) |
+| | FPC | `3.0.4` | Trình biên dịch Pascal (lưu ý: từ năm 2022, các kỳ thi NOI không còn hỗ trợ Pascal) |
 | | Python 2 | `2.7` | Ngôn ngữ không dùng để thi |
 | | Python 3 | `3.8` | Ngôn ngữ không dùng để thi |
 | Công cụ gỡ lỗi | GDB | `9.1` | |
@@ -46,7 +46,7 @@ Môi trường trong phòng thi có một loạt điểm khác với môi trư�
 -   Muốn dùng <kbd>Ctrl</kbd>+<kbd>C</kbd> để sao chép, nhưng lại thoát chương trình.
 -   Chương trình thường ngày AC, nhưng khi đưa lên Linux lại WA.
 
-Để tránh những tình huống như vậy trong phòng thi, ta phải làm quen trước với cách thao tác trên hệ thống Linux.
+Để tránh những tình huống như vậy trong phòng thi, cần làm quen trước với cách thao tác trên hệ thống Linux.
 
 Mặc dù trang chính thức của NOI đã cung cấp ảnh ISO của NOI Linux, việc cấu hình máy ảo tương đối phiền phức. Hơn nữa, do NOI Linux mặc định có sẵn giao diện đồ họa, khó bảo đảm chạy mượt trên các máy cấu hình thấp.
 
@@ -66,26 +66,26 @@ Windows 10 giới thiệu WSL trong bản Anniversary Update, rồi nâng cấp 
 ???+ warning "Cảnh báo"
     Phần này áp dụng cho Windows 10 phiên bản 2004 trở lên (build 19041 trở lên) hoặc Windows 11.
 
-    Nếu bạn đang dùng phiên bản trước 2004 hoặc máy tính không hỗ trợ ảo hóa, hãy đọc phần cài đặt thủ công bên dưới.
+    Nếu đang dùng phiên bản trước 2004 hoặc máy tính không hỗ trợ ảo hóa, đọc phần cài đặt thủ công bên dưới.
 
-    Nếu bạn đang dùng Windows 10 trước phiên bản 1607, hệ thống của bạn không hỗ trợ WSL.
+    Nếu đang dùng Windows 10 trước phiên bản 1607, hệ thống hiện tại không hỗ trợ WSL.
 
 1.  Mở Windows PowerShell với quyền quản trị viên (nhấp chuột phải vào nút Start, chọn Windows PowerShell (Administrator) hoặc Windows Terminal (Administrator)).
 
-2.  Nhập `wsl --install`, rồi chờ các thành phần được cài đặt tự động. Trong quá trình này, bạn có thể cần khởi động lại máy tính để bật các tính năng Windows cần thiết.
+2.  Nhập `wsl --install`, rồi chờ các thành phần được cài đặt tự động. Trong quá trình này, có thể cần khởi động lại máy tính để bật các tính năng Windows cần thiết.
 
-3.  Sau khi cài xong, bạn có thể tìm bản phân phối đã cài trong menu Start hoặc trong tab của Windows Terminal.
+3.  Sau khi cài xong, bản phân phối đã cài có thể được tìm thấy trong menu Start hoặc trong tab của Windows Terminal.
 
-4.  Tiếp theo, hãy chuyển đến phần "Cấu hình bản phân phối" bên dưới để hoàn tất các thiết lập khác.
+4.  Tiếp theo, chuyển đến phần "Cấu hình bản phân phối" bên dưới để hoàn tất các thiết lập khác.
 
 ### Cài đặt thủ công[^ref4]
 
 ???+ warning "Cảnh báo"
-    Dưới đây là các bước cài đặt WSL thủ công. Nếu bạn đã hoàn tất cài đặt tự động, hãy bỏ qua phần này.
+    Dưới đây là các bước cài đặt WSL thủ công. Nếu đã hoàn tất cài đặt tự động, bỏ qua phần này.
 
 #### Bật Windows Subsystem for Linux
 
-Trước khi cài bất kỳ bản phân phối Linux nào cho WSL, hãy chọn một trong hai cách dưới đây để bảo đảm tính năng tùy chọn "Windows Subsystem for Linux" đã được bật:
+Trước khi cài bất kỳ bản phân phối Linux nào cho WSL, chọn một trong hai cách dưới đây để bảo đảm tính năng tùy chọn "Windows Subsystem for Linux" đã được bật:
 
 Dùng dòng lệnh:
 
@@ -93,7 +93,7 @@ Dùng dòng lệnh:
 
     ```powershell
     Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
-    # Nếu chỉ muốn dùng WSL 1, hãy bỏ qua bước này
+    # Nếu chỉ muốn dùng WSL 1, bỏ qua bước này
     Enable-WindowsOptionalFeature -Online -FeatureName VirtualMachinePlatform
     ```
 
@@ -115,7 +115,7 @@ Dùng giao diện đồ họa:
 
 #### Cài gói cập nhật nhân
 
-Nếu bạn muốn dùng WSL 1, hãy bỏ qua bước này.
+Nếu muốn dùng WSL 1, bỏ qua bước này.
 
 Tải và cài [gói cập nhật nhân Linux của WSL 2 dành cho máy x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
 
@@ -198,17 +198,17 @@ sudo apt install g++
 
 ### Đổi máy chủ mirror cho kho phần mềm
 
-Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một máy chủ mirror Ubuntu đáng tin cậy và gần vị trí của bạn để tăng tốc tải gói, ví dụ từ [danh sách máy chủ mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
+Nguồn phần mềm mặc định của Ubuntu đôi khi có tốc độ không ổn định. Có thể đổi sang một máy chủ mirror Ubuntu đáng tin cậy và gần vị trí địa lý hiện tại để tăng tốc tải gói, ví dụ từ [danh sách máy chủ mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors).
 
-???+ warning "Dùng nguồn phần mềm khớp với phiên bản hệ thống của bạn"
-    Hãy tìm nguồn tương ứng với phiên bản hệ thống của mình (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
+???+ warning "Dùng nguồn phần mềm khớp với phiên bản hệ thống"
+    Tìm nguồn tương ứng với phiên bản hệ thống hiện tại (có thể dùng `sudo lsb_release -a` để xem phiên bản Ubuntu).
 
-    Trừ khi bạn biết rõ mình đang làm gì, đừng dùng nguồn không khớp với phiên bản hệ thống của mình!
+    Trừ khi đã hiểu rõ thao tác, không dùng nguồn không khớp với phiên bản hệ thống hiện tại!
 
 Dùng các lệnh sau để cập nhật nguồn phần mềm và các gói đã cài:
 
 ```console
-$ sudo su # Sau khi chạy lệnh này, dấu nhắc dòng lệnh sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới hãy chú ý dấu nhắc
+$ sudo su # Sau khi chạy lệnh này, dấu nhắc dòng lệnh sẽ đổi từ $ thành #; trước khi chạy các lệnh bên dưới cần lưu ý dấu nhắc
 [sudo] mật khẩu của xxx:
 # cp /etc/apt/sources.list /etc/apt/sources.list.bak
 # vim /etc/apt/sources.list
@@ -229,7 +229,7 @@ $
 # dpkg-reconfigure locales
 ```
 
-Lúc này sẽ vào một menu thiết lập. Hãy bảo đảm `vi_VN.UTF-8` được chọn; nếu vẫn muốn giữ môi trường dòng lệnh tiếng Anh, có thể chọn thêm `en_US.UTF-8`.
+Lúc này sẽ vào một menu thiết lập. Cần bảo đảm `vi_VN.UTF-8` được chọn; nếu vẫn muốn giữ môi trường dòng lệnh tiếng Anh, có thể chọn thêm `en_US.UTF-8`.
 
 Trong menu tiếp theo, chọn `vi_VN.UTF-8` rồi nhấn Enter.
 
@@ -258,7 +258,7 @@ Sau đó đóng WSL rồi khởi động lại. Có thể dùng lệnh `locale` 
 
 Cách cài GUIDE xem tại [Cài GUIDE trên Debian hoặc Ubuntu](./editor/guide.md#cài-đặt-trên-debian-hoặc-ubuntu).
 
-Ở đây cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm khác.
+Phần này cài đặt môi trường cơ bản và môi trường chính thức mà NOI yêu cầu. Nếu cần, có thể dùng `sudo apt install <tên_chương_trình>` để cài các gói phần mềm khác.
 Nếu muốn cài phiên bản khác, có thể tham khảo [sổ tay quản lý gói](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html) chính thức của Debian.
 
 Dưới đây là một chương trình ví dụ:
@@ -278,13 +278,13 @@ AMD Ryzen 5 1400 Quad-Core Processor
 
 ### Dùng WSLg để chạy ứng dụng đồ họa
 
-Nếu bạn dùng Windows 10 phiên bản 19044 trở lên hoặc Windows 11, có thể dùng môi trường desktop tích hợp do WSL 2 cung cấp. Chức năng này cho phép cài và khởi động trực tiếp ứng dụng đồ họa Linux mà không cần cấu hình thêm.
+Nếu dùng Windows 10 phiên bản 19044 trở lên hoặc Windows 11, có thể dùng môi trường desktop tích hợp do WSL 2 cung cấp. Chức năng này cho phép cài và khởi động trực tiếp ứng dụng đồ họa Linux mà không cần cấu hình thêm.
 
 Xem [Chạy ứng dụng Linux GUI trên Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/tutorials/gui-apps).
 
 ### Cài môi trường đồ họa và kết nối bằng Remote Desktop
 
-Nếu phiên bản bạn dùng chưa hỗ trợ WSLg, có thể thử bật môi trường đồ họa theo hướng dẫn dưới đây.
+Nếu phiên bản hiện tại chưa hỗ trợ WSLg, có thể thử bật môi trường đồ họa theo hướng dẫn dưới đây.
 
 Dưới đây lấy Xfce làm ví dụ.
 
@@ -404,7 +404,7 @@ Trang Getting Started của phần mở rộng `Remote - WSL` giới thiệu chi
 ## Nâng cấp WSL1 lên WSL2
 
 ???+ warning "Cảnh báo"
-    Hãy xác nhận bạn đã hoàn thành các bước cài WSL1 ở phía trước.
+    Xác nhận rằng các bước cài WSL1 ở phía trước đã hoàn thành.
 
 Chạy lệnh `wsl -l -v` để xem phiên bản WSL hiện là 1; nếu cần dùng WSL 2 thì phải nâng cấp.
 
