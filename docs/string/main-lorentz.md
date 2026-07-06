@@ -6,7 +6,7 @@
 
 Cho một xâu $s$ có độ dài $n$.
 
-Ta gọi xâu mới thu được bằng cách viết liên tiếp hai lần cùng một xâu là **xâu lặp kép (tandem repetition)**. Để diễn đạt chính xác, phần dưới gọi xâu được lặp lại là xâu gốc. Nói cách khác, một xâu lặp kép tương đương với một cặp chỉ số $(i, j)$ sao cho $s[i \dots j]$ được tạo bằng cách nối hai xâu giống nhau.
+Xâu mới thu được bằng cách viết liên tiếp hai lần cùng một xâu được gọi là **xâu lặp kép (tandem repetition)**. Để diễn đạt chính xác, phần dưới gọi xâu được lặp lại là xâu gốc. Nói cách khác, một xâu lặp kép tương đương với một cặp chỉ số $(i, j)$ sao cho $s[i \dots j]$ được tạo bằng cách nối hai xâu giống nhau.
 
 Mục tiêu là tìm tất cả xâu lặp kép trong xâu $s$ đã cho. Hoặc, giải một bài toán đơn giản hơn: tìm một xâu lặp kép bất kỳ hoặc xâu lặp kép dài nhất trong $s$.
 
@@ -34,13 +34,13 @@ Một ví dụ khác là xâu $\tt abaaba$, chỉ có hai xâu lặp kép:
 <span id="số-lượng-xâu-lặp-kép"></span>
 ### Số lượng xâu lặp kép
 
-Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ hiển nhiên là xâu gồm $n$ ký tự giống nhau, khi đó mọi xâu con có độ dài chẵn đều là xâu lặp kép. Nói chung, một xâu tuần hoàn với chu kỳ nhỏ thường có rất nhiều xâu lặp kép.
+Một xâu độ dài $n$ có thể có tới $O(n^2)$ xâu lặp kép; ví dụ điển hình là xâu gồm $n$ ký tự giống nhau, khi đó mọi xâu con có độ dài chẵn đều là xâu lặp kép. Nói chung, một xâu tuần hoàn với chu kỳ nhỏ thường có rất nhiều xâu lặp kép.
 
-Điều này không ngăn ta tính số lượng xâu lặp kép trong thời gian $O(n \log n)$, vì thuật toán biểu diễn một xâu lặp kép dưới dạng nén nào đó, cho phép nén nhiều xâu lặp kép thành một biểu diễn.
+Điều này không ngăn việc tính số lượng xâu lặp kép trong thời gian $O(n \log n)$, vì thuật toán biểu diễn một xâu lặp kép dưới dạng nén nào đó, cho phép nén nhiều xâu lặp kép thành một biểu diễn.
 
 Một vài kết luận thú vị về số lượng xâu lặp kép:
 
--   Nếu xâu gốc của một xâu lặp kép không phải là xâu lặp kép, ta gọi xâu lặp kép đó là **xâu lặp kép nguyên thủy (primitive repetition)**. Có thể chứng minh số xâu lặp kép nguyên thủy nhiều nhất là $O(n \log n)$.
+-   Nếu xâu gốc của một xâu lặp kép không phải là xâu lặp kép, xâu lặp kép đó được gọi là **xâu lặp kép nguyên thủy (primitive repetition)**. Có thể chứng minh số xâu lặp kép nguyên thủy nhiều nhất là $O(n \log n)$.
 -   Nếu nén một xâu lặp kép bằng bộ ba Crochemore $(i, p, r)$, trong đó $i$ là vị trí bắt đầu của xâu lặp kép, $p$ là độ dài của một chu kỳ nào đó của xâu lặp kép (chú ý không phải độ dài xâu gốc), và $r$ là số lần chu kỳ đó lặp lại, thì mọi xâu lặp kép của một xâu có thể được biểu diễn bằng $O(n \log n)$ bộ ba Crochemore.
 -   Xâu Fibonacci được định nghĩa như sau:
 
@@ -70,15 +70,15 @@ Tính số lượng xâu lặp kép cắt ngang là điểm then chốt của th
 
 Gọi phần trái của một xâu là $u$, phần phải là $v$. Khi đó $s = u + v$, và độ dài của $u, v$ xấp xỉ một nửa độ dài của $s$.
 
-Với một xâu lặp kép bất kỳ, xét ký tự giữa của nó. Ở đây gọi ký tự đầu tiên của nửa phải xâu lặp kép là ký tự giữa; nói cách khác, nếu $s[i...j]$ là xâu lặp kép, thì ký tự giữa của nó là $s[(i + j + 1)/2]$. Nếu ký tự giữa của một xâu lặp kép nằm trong $u$, gọi xâu lặp kép đó là **lệch trái (left)**; ngược lại gọi là **lệch phải (right)**.
+Với một xâu lặp kép bất kỳ, xét ký tự giữa của nó. Trong bài này, ký tự giữa là ký tự đầu tiên của nửa phải xâu lặp kép; nói cách khác, nếu $s[i...j]$ là xâu lặp kép, thì ký tự giữa của nó là $s[(i + j + 1)/2]$. Nếu ký tự giữa của một xâu lặp kép nằm trong $u$, gọi xâu lặp kép đó là **lệch trái (left)**; ngược lại gọi là **lệch phải (right)**.
 
 Tiếp theo sẽ xem cách tìm tất cả xâu lặp kép lệch trái.
 
 Gọi độ dài của một xâu lặp kép lệch trái là $2l$. Xét ký tự đầu tiên của xâu lặp kép này rơi vào $v$ (tức $s[|u|]$); ký tự đó nhất định bằng một ký tự $u[\textit{cntr}]$ nào đó trong $u$.
 
-Ta cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều kiện. Ví dụ, với xâu $\tt c \; \underset{\textit{cntr}}{a} \; c \; | \; a \; d \; a$ (dấu $\tt |$ dùng để phân tách trái/phải), nếu cố định $cntr = 1$, ta thấy xâu lặp kép $\tt caca$ thỏa điều kiện.
+Cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều kiện. Ví dụ, với xâu $\tt c \; \underset{\textit{cntr}}{a} \; c \; | \; a \; d \; a$ (dấu $\tt |$ dùng để phân tách trái/phải), nếu cố định $cntr = 1$, có thể thấy xâu lặp kép $\tt caca$ thỏa điều kiện.
 
-Rõ ràng, một khi cố định $\textit{cntr}$, ta cũng cố định giá trị của $l$. Nếu biết cách tìm mọi xâu lặp kép, ta có thể duyệt $\textit{cntr}$ từ $0$ đến $|u|-1$ và tìm tất cả xâu lặp kép thỏa điều kiện.
+Khi cố định $\textit{cntr}$, giá trị của $l$ cũng được xác định. Nếu biết cách tìm mọi xâu lặp kép, có thể duyệt $\textit{cntr}$ từ $0$ đến $|u|-1$ và tìm tất cả xâu lặp kép thỏa điều kiện.
 
 <span id="kiểm-tra-xâu-lặp-kép-lệch-trái"></span>
 #### Kiểm tra xâu lặp kép lệch trái
@@ -89,7 +89,7 @@ Xét ví dụ xâu lặp kép $\overbrace{\tt a}^{l_1} \overbrace{\underset{\tex
 
 Khi đó có thể đưa ra **điều kiện cần và đủ** để một xâu con độ dài $2l = 2(l_1 + l_2) = 2(|u| - \textit{cntr})$ là xâu lặp kép:
 
-Gọi $k_1$ là số nguyên lớn nhất thỏa $u[\textit{cntr} - k_1 \dots \textit{cntr} - 1] = u[|u| - k_1 \dots |u| - 1]$, và $k_2$ là số nguyên lớn nhất thỏa $u[\textit{cntr} \dots \textit{cntr} + k_2 - 1] = v[0 \dots k_2 - 1]$. Khi đó với mọi cặp $(l_1, l_2)$ thỏa $l_1 \leq k_1$, $l_2 \leq k_2$, ta tìm được đúng một xâu lặp kép tương ứng.
+Gọi $k_1$ là số nguyên lớn nhất thỏa $u[\textit{cntr} - k_1 \dots \textit{cntr} - 1] = u[|u| - k_1 \dots |u| - 1]$, và $k_2$ là số nguyên lớn nhất thỏa $u[\textit{cntr} \dots \textit{cntr} + k_2 - 1] = v[0 \dots k_2 - 1]$. Khi đó với mọi cặp $(l_1, l_2)$ thỏa $l_1 \leq k_1$, $l_2 \leq k_2$, có đúng một xâu lặp kép tương ứng.
 
 Tóm lại:
 
@@ -102,7 +102,7 @@ $$
 \begin{align} l_1 + l_2 &= l = |u| - \textit{cntr} \\ l_1 &\le k_1, \\ l_2 &\le k_2. \\ \end{align}
 $$
 
-Tiếp theo chỉ còn cần xét cách tính nhanh $k_1$ và $k_2$. Nhờ [hàm Z](./z-func.md), ta có thể tính chúng trong $O(1)$:
+Tiếp theo chỉ còn cần xét cách tính nhanh $k_1$ và $k_2$. Nhờ [hàm Z](./z-func.md), có thể tính chúng trong $O(1)$:
 
 -   Tính $k_1$: chỉ cần tính hàm Z của $\overline{u}$.
 -   Tính $k_2$: chỉ cần tính hàm Z của $v + \# + u$, trong đó $\#$ là một ký tự không xuất hiện trong $u$ hoặc $v$.
