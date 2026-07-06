@@ -12,7 +12,7 @@ và tồn tại một giá trị $f_1$ sao cho $G\left(x, y\right)$ thỏa các 
 -   $G(0, f_1) = 0$;
 -   $\dfrac{\partial G}{\partial y}(0, f_1) \neq 0$.
 
-Hãy tìm $f\left(x\right)$ theo modulo $x^{n}$.
+Yêu cầu là tìm $f\left(x\right)$ theo modulo $x^{n}$.
 
 <span id="newtons-method"></span>
 ## Phương pháp Newton
@@ -23,7 +23,7 @@ Trước hết, khi $n=1$, nghiệm của $\left[x^{0}\right]G\left(x, f\left(x\
 
 Giả sử hiện đã có nghiệm $f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$, và cần tìm nghiệm $f\left(x\right) = f_n\left(x\right)$ theo modulo $x^{n}$.
 
-Khai triển Taylor $G\left(x, f(x)\right)$ theo $f(x)$ tại $f(x)=f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$, ta có:
+Khai triển Taylor $G\left(x, f(x)\right)$ theo $f(x)$ tại $f(x)=f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)$ cho:
 
 $$
 \sum_{i=0}^{+\infty}\frac{\frac{\partial^i G}{\partial y^i}\left(x, f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)}{i!}\left(f\left(x\right)-f_{\left\lceil\frac{n}{2}\right\rceil}\left(x\right)\right)^{i}\equiv 0\pmod{x^{n}}
@@ -66,7 +66,7 @@ $$
 G\left(x, y\right)=\frac{1}{y}-h\left(x\right)
 $$
 
-Áp dụng phương pháp Newton, ta được:
+Áp dụng phương pháp Newton thu được:
 
 $$
 \begin{aligned}
@@ -90,7 +90,7 @@ $$
 G\left(x, y\right)=y^{2}-h\left(x\right)\equiv 0
 $$
 
-Áp dụng phương pháp Newton, ta được:
+Áp dụng phương pháp Newton thu được:
 
 $$
 \begin{aligned}
@@ -114,7 +114,7 @@ $$
 G\left(x, y\right)=\ln{y}-h\left(x\right)
 $$
 
-Áp dụng phương pháp Newton, ta được:
+Áp dụng phương pháp Newton thu được:
 
 $$
 \begin{aligned}
@@ -137,15 +137,15 @@ $$
 <span id="căn-bậc-hai-của-đa-thức-hệ-số-phức-theo-modulo-một-lũy-thừa-đa-thức"></span>
 ### Căn bậc hai của đa thức hệ số phức theo modulo một lũy thừa đa thức
 
-Giả sử $h$ là một đa thức phức không chia hết cho $x$ (tức có hệ số tự do). Hãy tìm căn bậc hai của nó theo modulo $x^n$.
+Giả sử $h$ là một đa thức phức không chia hết cho $x$ (tức có hệ số tự do). Cần tìm căn bậc hai của nó theo modulo $x^n$.
 
-Ta có phương trình:
+Xét phương trình:
 
 $$
 G\left(f(x)\right) = f^2(x)-h(x) \equiv 0\pmod{x^{n}}
 $$
 
-Khai triển Taylor $G$ thu được công thức sau. Lưu ý ở đây là khai triển theo $f$, nên các đạo hàm đều là đạo hàm riêng theo $f$; $x$ được xem là hằng số.
+Khai triển Taylor $G$ thu được công thức sau. Vì khai triển theo $f$, các đạo hàm đều là đạo hàm riêng theo $f$; $x$ được xem là hằng số.
 
 $$
 G(f(x)) = \sum_{i=0}^{+\infty}\frac{G^{\left(i\right)}\left(f_{0}(x)\right)}{i!}\left(f(x)-f_{0}(x)\right)^{i}
@@ -157,32 +157,32 @@ Tính bằng cách nhân đôi. Giả sử các kết quả trung gian trong qu�
 -   bậc của $f_{j}(x)$ nhỏ hơn $2^j$;
 -   $f_{j+k}(x)-f_j(x)\equiv 0\pmod{x^{2^j}}$ với mọi $k$.
 
-Thay $f_{j+1}(x)$ và $f_j(x)$ vào công thức trên, ta có:
+Thay $f_{j+1}(x)$ và $f_j(x)$ vào công thức trên thu được:
 
 $$
 G(f_{j+1}(x)) = G(f_j(x)) + 2f_j(f_{j+1}(x)-f_j(x)) + (f_{j+1}(x)-f_{j}(x))^2  \equiv 0 \pmod{x^{2^{j+1}}}
 $$
 
-Rõ ràng $f_{j+1}(x)-f_j(x)$ phải là bội của $x^{2^j}$. Vì vậy:
+Theo điều kiện truy hồi, $f_{j+1}(x)-f_j(x)$ phải là bội của $x^{2^j}$. Vì vậy:
 
 $$
 f_{j+1}(x) \equiv f_j(x) - \frac{f_j^2(x)-h(x)}{2f_j(x)} \equiv \frac{f_j(x)^2 + h(x)}{2f_j(x)} \pmod{x^{2^{j+1}}}
 $$
 
-Nếu $f_j(x)$ tồn tại, thì $2f_j(x)$ không chia hết cho $x$ (có hệ số tự do), nên chắc chắn có nghịch đảo theo modulo $x^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Với đa thức phức $h(x)$ không chia hết cho $x$, căn bậc hai của nó theo modulo $x$ luôn tồn tại, vì $h(x)$ sau khi lấy modulo $x$ chỉ là một số phức khác $0$ thông thường, luôn có hai căn bậc hai. Vì vậy thuật toán này dùng được cho mọi $h(x)$ có hệ số tự do.
+Nếu $f_j(x)$ tồn tại, thì $2f_j(x)$ không chia hết cho $x$ (có hệ số tự do), nên nó có nghịch đảo theo modulo $x^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Với đa thức phức $h(x)$ không chia hết cho $x$, căn bậc hai của nó theo modulo $x$ luôn tồn tại, vì $h(x)$ sau khi lấy modulo $x$ chỉ là một số phức khác $0$ thông thường, luôn có hai căn bậc hai. Vì vậy thuật toán này dùng được cho mọi $h(x)$ có hệ số tự do.
 
 Lấy $h(x)=x+1$ làm ví dụ:
 
 -   $f_0(x)=1$,$f_1(x)=\dfrac{1^2+x+1}{2\times 1}\mod x^2 = \dfrac{1}{2}x+1$,$f_2(x)=\dfrac{\left(\dfrac{1}{2}x+1\right)^2+x+1}{2\times \left(\dfrac{1}{2}x+1\right)}\mod x^4 = \dfrac{1}{16}x^3-\dfrac{1}{8}x^2+\dfrac{1}{2}x+1$,$\ldots$
 -   $f_0(x)=-1$,$f_1(x)=\dfrac{(-1)^2+x+1}{2\times (-1)}\mod x^2 = -\dfrac{1}{2}x-1$,$\ldots$ (bằng đối của dãy trước)
 
-Có thể kiểm chứng cả hai đều là các dãy đa thức căn bậc hai đúng theo modulo tương ứng.
+Kiểm chứng trực tiếp cho thấy cả hai đều là các dãy đa thức căn bậc hai đúng theo modulo tương ứng.
 
 <span id="căn-bậc-hai-của-số-nguyên-theo-modulo-lũy-thừa-của-số-nguyên-tố"></span>
 ### Căn bậc hai của số nguyên theo modulo lũy thừa của số nguyên tố
 
 Thuật toán lặp Newton cũng có thể chuyển sang trường hợp số nguyên modulo lũy thừa của một số nguyên tố.
-Giả sử $h$ là một số nguyên "thuận tiện" không chia hết cho $3$. ("Thuận tiện" nghĩa là "chắc chắn có nghiệm"; điều kiện cụ thể sẽ nói ở sau.) Giả sử cần tính căn bậc hai $f$ của $h$ theo modulo $3^n$. Ta có phương trình:
+Giả sử $h$ là một số nguyên "thuận tiện" không chia hết cho $3$. ("Thuận tiện" nghĩa là có nghiệm; điều kiện cụ thể sẽ nêu sau.) Giả sử cần tính căn bậc hai $f$ của $h$ theo modulo $3^n$. Xét phương trình:
 
 $$
 G\left(f\right) = f^2-h \equiv 0\pmod{3^{n}}
@@ -206,20 +206,20 @@ $$
 G(f_{j+1}) = G(f_j) + 2f_j(f_{j+1}-f_j) + (f_{j+1}-f_{j})^2  \equiv 0 \pmod{3^{2^{j+1}}}
 $$
 
-Rõ ràng $f_{j+1}-f_j$ phải là bội của $3^{2^j}$. Vì vậy:
+Theo điều kiện truy hồi, $f_{j+1}-f_j$ phải là bội của $3^{2^j}$. Vì vậy:
 
 $$
 f_{j+1} \equiv f_j - \frac{f_j^2-h}{2f_j} \equiv \frac{f_j^2 + h}{2f_j} \pmod{3^{2^{j+1}}}
 $$
 
-Nếu $f_j$ tồn tại, thì $2f_j$ không chia hết cho $3$, nên chắc chắn có nghịch đảo modulo $3^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Một số nguyên $h$ không chia hết cho $3$ hoặc không có căn bậc hai modulo $3$, hoặc có hai căn. Vì vậy việc $h$ có căn bậc hai modulo $3$ là điều kiện duy nhất để toàn bộ thuật toán chạy được.
+Nếu $f_j$ tồn tại, thì $2f_j$ không chia hết cho $3$, nên nó có nghịch đảo modulo $3^{2^{j+1}}$. Do đó dãy $f_0,f_1\ldots,f_j$ tồn tại khi và chỉ khi $f_0$ tồn tại. Một số nguyên $h$ không chia hết cho $3$ hoặc không có căn bậc hai modulo $3$, hoặc có hai căn. Vì vậy việc $h$ có căn bậc hai modulo $3$ là điều kiện duy nhất để toàn bộ thuật toán chạy được.
 
 Ví dụ tính cụ thể với $h=46$.
 
 -   $f_0=1$,$f_1=\dfrac{1^2+46}{2\times 1}\mod 9 = 1$,$f_2=\dfrac{1^2+46}{2\times 1}\mod 81 = 64$,$f_3=\dfrac{64^2+46}{2\times 64}\mod 6561 = 955$,$\ldots$
 -   $f_0=2$,$f_1=\dfrac{2^2+46}{2\times 2}\mod 9 = 8$,$f_2=\dfrac{8^2+46}{2\times 8}\mod 81 = 17$,$f_3=\dfrac{17^2+46}{2\times 17}\mod 6561 = 5606$,$\ldots$ (bằng đối của dãy trước)
 
-Có thể kiểm chứng cả hai đều là các dãy căn bậc hai đúng theo modulo tương ứng.
+Kiểm chứng trực tiếp cho thấy cả hai đều là các dãy căn bậc hai đúng theo modulo tương ứng.
 
 <span id="chứng-minh-đại-số"></span>
 ## Chứng minh đại số
@@ -230,7 +230,7 @@ Phần này mở rộng nội dung phía trên và dùng ngôn ngữ đại số
 ### Chứng minh sự tồn tại nghiệm
 
 ???+ note "Bổ đề 1"
-    Cho [miền nguyên](../algebra/ring-theory.md#miền-nguyên) $R$ có đa thức hoặc [chuỗi lũy thừa hình thức](../algebra/ring-theory.md#vành-chuỗi-lũy-thừa-hình-thức) $f(X) = \sum_{i\geq 0}a_iX^i$ và $r,p\in R$ sao cho $f(r)\in Rp$ (tức $r$ là nghiệm của $f(X)$ theo modulo $p$) và $f'(r)\in R$ khả nghịch theo modulo $p$. Ở đây $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ là **đạo hàm hình thức** của $f(X)$. Khi đó $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$.
+    Cho [miền nguyên](../algebra/ring-theory.md#miền-nguyên) $R$ có đa thức hoặc [chuỗi lũy thừa hình thức](../algebra/ring-theory.md#vành-chuỗi-lũy-thừa-hình-thức) $f(X) = \sum_{i\geq 0}a_iX^i$ và $r,p\in R$ sao cho $f(r)\in Rp$ (tức $r$ là nghiệm của $f(X)$ theo modulo $p$) và $f'(r)\in R$ khả nghịch theo modulo $p$. Trong đó $f'(X) := \sum_{i\geq 0}(i+1)a_{i+1}X^i$ là **đạo hàm hình thức** của $f(X)$. Khi đó $f\left(r-\dfrac{f(r)}{f'(r)}\right) \equiv 0\pmod {p^2}$.
 
 ??? note "Chứng minh"
     Với mọi $s\in R$,
@@ -249,9 +249,9 @@ Phần này mở rộng nội dung phía trên và dùng ngôn ngữ đại số
     f(r+sp) \in Rp^2 \iff f(r)+f'(r)sp \in Rp^2
     $$
     
-    Vì $f(r)\in Rp$ và $f'(r)$ khả nghịch, chỉ cần lấy $sp = -\dfrac{f(r)}{f'(r)}$; ở đây $\dfrac{1}{f'(r)}$ là nghịch đảo theo modulo $p^2$. Do $f'(r)$ khả nghịch theo modulo $p$, nó cũng chắc chắn có nghịch đảo theo modulo $p^2$: giả sử tồn tại $a,b,c\in R$ sao cho $af'(r) = bp+1$ và $f(r)=cp$, khi đó $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$, nên có thể lấy $s=c(2-a^2f'(r))$.
+    Vì $f(r)\in Rp$ và $f'(r)$ khả nghịch, chỉ cần lấy $sp = -\dfrac{f(r)}{f'(r)}$; trong đó $\dfrac{1}{f'(r)}$ là nghịch đảo theo modulo $p^2$. Do $f'(r)$ khả nghịch theo modulo $p$, nó cũng có nghịch đảo theo modulo $p^2$: giả sử tồn tại $a,b,c\in R$ sao cho $af'(r) = bp+1$ và $f(r)=cp$, khi đó $\left(a^2f'(r)-2\right)f'(r) = b^2p^2+1$, nên có thể lấy $s=c(2-a^2f'(r))$.
 
-Với vành đa thức $k[X]$ trên trường $k$, giả sử có $G(X, Y)\in k[X, Y]$ và $f_n\in k[X]$ sao cho $G(X, f_n(X))\in k[X]X^n$. Áp dụng bổ đề 1, ta được
+Với vành đa thức $k[X]$ trên trường $k$, giả sử có $G(X, Y)\in k[X, Y]$ và $f_n\in k[X]$ sao cho $G(X, f_n(X))\in k[X]X^n$. Áp dụng bổ đề 1 thu được
 
 $$
 G\left(X, f_n(X) - \frac{G(X, f_n(X))}{\frac{\partial G}{\partial Y}(X, f_n(X))} \right)\equiv 0 \pmod {X^{2n}}
@@ -279,7 +279,7 @@ $$
     Giả sử $v$ là một giá trị thỏa các điều kiện trên, khi đó $v = r+tp$ và $f(r) + f'(r)tp \in Rp^{2}$.
     Do đó $f'(r)(t-s)p\in Rp^{2}$ và $v-u\in Rp^{2}$.
 
-Phương pháp Newton bảo đảm thu được toàn bộ nghiệm modulo $X^{2^n}$. Giả sử $G(X, h)\equiv 0\pmod {X^{2^n}}$. Đặt $h_{2^i} := h\pmod {X^{2^i}}$, rồi lấy $f_1 = h_1$ và áp dụng phương pháp Newton. Theo bổ đề 2, ta có $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$, nên chắc chắn $f_{2^n} = h$.
+Phương pháp Newton cho phép thu được toàn bộ nghiệm modulo $X^{2^n}$. Giả sử $G(X, h)\equiv 0\pmod {X^{2^n}}$. Đặt $h_{2^i} := h\pmod {X^{2^i}}$, rồi lấy $f_1 = h_1$ và áp dụng phương pháp Newton. Theo bổ đề 2, $f_{2^i} \equiv h_{2^i}\pmod {X^{2^i}}$, nên $f_{2^n} = h$.
 
 Lập luận trên cũng cho thấy, khi $\dfrac{\partial G}{\partial y}(0, y)$ luôn khả nghịch, số nghiệm của $G(X, f)\equiv 0\pmod {X^n}$ bằng số nghiệm của $G(0, f)\equiv 0\pmod X$. Kết luận này không hề tầm thường; xem ví dụ dưới đây.
 

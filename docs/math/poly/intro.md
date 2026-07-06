@@ -10,11 +10,11 @@ Các thuật toán đa thức dựa trên nền tảng [biến đổi Fourier nh
 
 ## Khái niệm cơ bản
 
-Với tổng $\sum a_nx^n$, nếu tổng chỉ gồm hữu hạn số hạng, ta gọi nó là đa thức, ký hiệu $f(x)=\sum_{n=0}^m a_nx^n$.
+Với tổng $\sum a_nx^n$, nếu tổng chỉ gồm hữu hạn số hạng, nó được gọi là đa thức, ký hiệu $f(x)=\sum_{n=0}^m a_nx^n$.
 
 Tổng gồm một số đếm được các số hạng được gọi là chuỗi. Trong tổng $\sum_{n=0}^\infty a_nx^n$, mỗi số hạng đều là một lũy thừa không âm của biến nhân với một hệ số hằng; chuỗi có dạng này được gọi là chuỗi lũy thừa.
 
-Khi nghiên cứu số học đa thức, trước hết ta xét các đa thức đơn giản hơn; khái niệm chuỗi lũy thừa chỉ dùng để tiện cho việc hiểu. Trong giải tích toán học, tính hội tụ hay phân kỳ của chuỗi lũy thừa sẽ được nghiên cứu sâu hơn.
+Khi nghiên cứu số học đa thức, trước hết xét các đa thức đơn giản hơn; khái niệm chuỗi lũy thừa chỉ dùng để tiện cho việc hiểu. Trong giải tích toán học, tính hội tụ hay phân kỳ của chuỗi lũy thừa sẽ được nghiên cứu sâu hơn.
 
 Định nghĩa tổng quát về vành, trường và các cấu trúc dẫn xuất của chúng xem tại [khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md).
 
@@ -26,15 +26,15 @@ $$
 f=\left<f_0,f_1,f_2,\cdots,f_n\right>\quad(f_0,f_1,f_2,\cdots,f_n\in R)
 $$
 
-Nói cách khác, ta định nghĩa trực tiếp đa thức là dãy các hệ số. Cũng có thể viết thành
+Nói cách khác, có thể định nghĩa trực tiếp đa thức là dãy các hệ số. Cũng có thể viết thành
 
 $$
 f(x)=f_0+f_1x+f_2x^2+\cdots+f_nx^n
 $$
 
-Ở đây ta xem $x$ chỉ là một **ký hiệu hình thức**, một dấu hiệu để nhận diện vị trí của hệ số.
+Trong ngữ cảnh này, $x$ chỉ là một **ký hiệu hình thức**, một dấu hiệu để nhận diện vị trí của hệ số.
 
-Nếu ta còn cho phép có vô hạn số hạng, tức là
+Nếu còn cho phép có vô hạn số hạng, tức là
 
 $$
 f(x)=f_0+f_1x+f_2x^2+\cdots
@@ -87,7 +87,7 @@ $$
 (f\circ g)(x)=f(g(x))=f_0+\sum_{k=1}^{+\infty}f_kg^k(x)
 $$
 
-Ta quy ước $f\circ g$ tồn tại khi và chỉ khi $f$ có hữu hạn số hạng hoặc $g_0=0$, như vậy không cần xét giới hạn trên $R$.
+Quy ước $f\circ g$ tồn tại khi và chỉ khi $f$ có hữu hạn số hạng hoặc $g_0=0$, như vậy không cần xét giới hạn trên $R$.
 
 $\circ$ thỏa mãn tính kết hợp khi cả $(f\circ g)\circ h$ và $f\circ (g\circ h)$ đều tồn tại, nhưng không thỏa mãn tính giao hoán. Khi $R$ là vành có đơn vị, $\circ$ có phần tử đơn vị $1\times x$.
 
@@ -97,7 +97,7 @@ Phép hợp thành đa thức và nghịch đảo hợp thành có cách làm $\
 
 ### Đạo hàm
 
-Dù một vành tổng quát thậm chí có thể không tồn tại giới hạn, ta vẫn có thể định nghĩa **đạo hàm hình thức** (formal derivative) của chuỗi lũy thừa hình thức là
+Dù một vành tổng quát thậm chí có thể không tồn tại giới hạn, vẫn có thể định nghĩa **đạo hàm hình thức** (formal derivative) của chuỗi lũy thừa hình thức là
 
 $$
 \left(\sum_{k=0}^{+\infty}f_kx^k\right)'=\sum_{k=1}^{+\infty}kf_kx^{k-1}
@@ -111,7 +111,7 @@ $$
 
 Những quy tắc đạo hàm cơ bản, gồm quy tắc cộng, quy tắc nhân và quy tắc dây chuyền khi phép hợp thành được phép, vẫn đúng.
 
-Nếu trên $R$ cho phép thực hiện phép chia, ta cũng có thể định nghĩa tương tự **nguyên hàm hình thức** (formal indefinite integral) của chuỗi lũy thừa hình thức.
+Nếu trên $R$ cho phép thực hiện phép chia, cũng có thể định nghĩa tương tự **nguyên hàm hình thức** (formal indefinite integral) của chuỗi lũy thừa hình thức.
 
 <span id="nghịch-đảo-nhân"></span>
 
@@ -123,7 +123,7 @@ $$
 \dfrac{1}{1-x}=1+x+x^2+\cdots
 $$
 
-có thể thấy nghịch đảo của một đa thức có thể khai triển thành một chuỗi vô hạn. Nghịch đảo tồn tại khi và chỉ khi hạng tự do khác $0$, và nghịch đảo cũng có hạng tự do khác $0$.
+nghịch đảo của một đa thức có thể khai triển thành một chuỗi vô hạn. Nghịch đảo tồn tại khi và chỉ khi hạng tự do khác $0$, và nghịch đảo cũng có hạng tự do khác $0$.
 
 Vì vậy định nghĩa: đối với chuỗi lũy thừa hình thức $f$, nếu $f_0\not=0$, **nghịch đảo nhân** (multiplicative inversion) $f^{-1}$ của nó là một chuỗi lũy thừa hình thức khác thỏa mãn
 
@@ -131,7 +131,7 @@ $$
 f\times f^{-1}=f^{-1}\times f=1
 $$
 
-Khai triển công thức này theo định nghĩa phép nhân chuỗi lũy thừa hình thức, ta được công thức truy hồi cho các hệ số của $f^{-1}$:
+Khai triển công thức này theo định nghĩa phép nhân chuỗi lũy thừa hình thức, thu được công thức truy hồi cho các hệ số của $f^{-1}$:
 
 $$
 f^{-1}_0=\dfrac{1}{f_0},f^{-1}_n=\dfrac{-1}{f_0}\sum_{k=0}^{n-1}f^{-1}_kf_{n-k}
@@ -140,7 +140,7 @@ $$
 Tính trực tiếp $n$ số hạng đầu bằng công thức truy hồi mất $O(n^2)$; [sử dụng FFT](./elementary-func.md#nghịch-đảo-đa-thức) có thể thu được thuật toán $O(n\log n)$.
 
 ???+ note "Ghi chú"
-    Dễ thấy rằng nghịch đảo của $f(x)$ chính là khai triển Maclaurin vô hạn số hạng của $\frac{1}{f(x)}$, tức khai triển Taylor vô hạn số hạng tại $x=0$.
+    Nghịch đảo của $f(x)$ chính là khai triển Maclaurin vô hạn số hạng của $\frac{1}{f(x)}$, tức khai triển Taylor vô hạn số hạng tại $x=0$.
 
 <span id="các-khai-triển-chuỗi-lũy-thừa-thường-gặp"></span>
 
@@ -152,7 +152,7 @@ Nếu khả vi vô hạn bậc, có thể thực hiện khai triển thành chu�
 
 Trong hàm biến phức, một số hàm tuy không thể khai triển Taylor tại điểm kỳ dị, nhưng có thể khai triển Laurent.
 
-Những đẳng thức dưới đây chỉ đúng khi chuỗi lũy thừa hội tụ, và không đúng khi không hội tụ. Ở đây chỉ liệt kê các khai triển, không thảo luận miền hội tụ.
+Những đẳng thức dưới đây chỉ đúng khi chuỗi lũy thừa hội tụ, và không đúng khi không hội tụ. Phần này chỉ liệt kê các khai triển, không thảo luận miền hội tụ.
 
 Hai khai triển cơ bản là của hàm mũ và hàm lũy thừa:
 
@@ -230,7 +230,7 @@ $$
 
 thì đa thức $g(x)$ chia hết đa thức $f(x)$.
 
-Hiển nhiên, đa thức $g(x)$ chia hết đa thức $f(x)$ khi và chỉ khi tất cả các nghiệm của $g(x)$ đều là nghiệm của $f(x)$, và bội số của chúng trong $g(x)$ không vượt quá bội số tương ứng trong $f(x)$.
+Đa thức $g(x)$ chia hết đa thức $f(x)$ khi và chỉ khi tất cả các nghiệm của $g(x)$ đều là nghiệm của $f(x)$, và bội số của chúng trong $g(x)$ không vượt quá bội số tương ứng trong $f(x)$.
 
 <span id="số-dư-và-thương-của-đa-thức"></span>
 
@@ -245,7 +245,7 @@ $$
 \end{aligned}
 $$
 
-Khi $\operatorname{deg}{f} \ge \operatorname{deg}{g}$, có $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$; ngược lại $Q(x) = 0$. Ta gọi $Q(x)$ là **thương** (quotient) khi chia $f(x)$ cho $g(x)$, và $R(x)$ là **số dư** (remainder) khi chia $f(x)$ cho $g(x)$.
+Khi $\operatorname{deg}{f} \ge \operatorname{deg}{g}$, có $\operatorname{deg}{Q} = \operatorname{deg}{f} - \operatorname{deg}{g}$; ngược lại $Q(x) = 0$. Gọi $Q(x)$ là **thương** (quotient) khi chia $f(x)$ cho $g(x)$, và $R(x)$ là **số dư** (remainder) khi chia $f(x)$ cho $g(x)$.
 
 <span id="đa-thức-modulo"></span>
 
@@ -271,7 +271,7 @@ $$
 f^{t}(x_0)=R^{t}(x_0)
 $$
 
-Ký hiệu ở đây biểu thị đạo hàm bậc $t$.
+Ký hiệu này biểu thị đạo hàm bậc $t$.
 
 Đồng dư modulo đa thức có thể áp dụng cho chuỗi lũy thừa. Một chuỗi lũy thừa có vô hạn số hạng có thể đồng dư với một đa thức hữu hạn số hạng trong trường hợp modulo một đa thức cụ thể. Ví dụ:
 
@@ -279,7 +279,7 @@ $$
 1+x+x^2+x^3+\ldots \equiv 1+x+\ldots+x^{n-1} \pmod{x^n}
 $$
 
-Rõ ràng tất cả các số hạng còn lại đều chia hết cho $x^n$, vì vậy phép toán modulo $x^n$ tương đương với "cắt cụt": cắt chuỗi lũy thừa vô hạn thành $n$ số hạng đầu và trực tiếp bỏ mất thông tin ở các bậc cao hơn.
+Tất cả các số hạng còn lại đều chia hết cho $x^n$, vì vậy phép toán modulo $x^n$ tương đương với "cắt cụt": cắt chuỗi lũy thừa vô hạn thành $n$ số hạng đầu và trực tiếp bỏ mất thông tin ở các bậc cao hơn.
 
 Trong một số trường hợp cụ thể, cũng có thể lấy modulo theo các đa thức khác; phần sau sẽ giải thích những trường hợp tương ứng.
 
@@ -354,7 +354,7 @@ $$
 c_1+c_2+\cdots+c_m=n,x_1,x_2,\cdots,x_m \text{ đôi một khác nhau}
 $$
 
-Khi đó, tương tự ước chung lớn nhất của các số nguyên dương, ta có [**ước chung lớn nhất**](../number-theory/gcd.md) (greatest common divisor, gcd) của đa thức. Nó có thể được tính bằng thuật toán Euclid
+Khi đó, tương tự ước chung lớn nhất của các số nguyên dương, có [**ước chung lớn nhất**](../number-theory/gcd.md) (greatest common divisor, gcd) của đa thức. Nó có thể được tính bằng thuật toán Euclid
 
 $$
 \gcd(f,0)=f,\gcd(f,g)=\gcd(g,f\bmod g)
@@ -364,7 +364,7 @@ Tính chất này có thể mở rộng đến trường hợp tổng quát hơn
 
 > Đối với vành đa thức $P[x]$ trên một trường bất kỳ $P$,
 > mọi đa thức đều có thể phân tích nhân tử duy nhất, và có thể dùng thuật toán Euclid để tính ước chung lớn nhất.
-> Cần chú ý rằng, với đa thức trên vành tổng quát, kết luận này chưa chắc đúng.
+> Cần lưu ý rằng, với đa thức trên vành tổng quát, kết luận này không nhất thiết đúng.
 
 Khi thuật toán Euclid dùng được, có thể dùng Euclid mở rộng để tìm một nghiệm riêng $(P(x),Q(x))$ của phương trình vô định
 
@@ -407,7 +407,7 @@ Xét khái niệm "cắt cụt", thông thường nghịch đảo theo modulo $x
     IDFT\left(\frac{DFT(1)}{DFT(f(x))}\right)
     $$
 
-    Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo modulo đa thức $x^n-1$, không phải nghịch đảo theo modulo đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này chưa chắc thực hiện được.
+    Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo modulo đa thức $x^n-1$, không phải nghịch đảo theo modulo đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này không nhất thiết thực hiện được.
 
 <span id="hàm-sinh"></span>
 
