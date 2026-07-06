@@ -24,11 +24,11 @@ Vì số đỉnh ở hai tập của đồ thị hai phía không phải lúc n�
     
     Với một ghép cặp hoàn hảo $M'$ bất kỳ trong đồ thị con đẳng thức ứng với một bộ nhãn đỉnh khả thi, tổng trọng số là
     
-    $val(M') = \sum_{(u,v)\in M} {l(u) + l(v)} = \sum_{i=1}^{n} l(i)$
+    $val(M') = \sum_{(u,v)\in M'} {l(u) + l(v)} = \sum_{i=1}^{n} l(i)$
     
     Do đó tổng trọng số của mọi ghép cặp hoàn hảo đều không lớn hơn $val(M')$, nên $M'$ chính là ghép cặp có trọng số lớn nhất.
 
-Từ định lý 1, mục tiêu của ta là liên tục điều chỉnh bộ nhãn đỉnh khả thi để đồ thị con đẳng thức có ghép cặp hoàn hảo.
+Từ định lý 1, mục tiêu là liên tục điều chỉnh bộ nhãn đỉnh khả thi để đồ thị con đẳng thức có ghép cặp hoàn hảo.
 
 Vì hai phía có số đỉnh bằng nhau, giả sử số đỉnh là $n$. Gọi $lx(i)$ là nhãn đỉnh của đỉnh thứ $i$ ở phía trái, $ly(i)$ là nhãn đỉnh của đỉnh thứ $i$ ở phía phải, và $w(u,v)$ là trọng số giữa đỉnh thứ $u$ ở phía trái và đỉnh thứ $v$ ở phía phải.
 
@@ -36,7 +36,7 @@ Trước hết khởi tạo một bộ nhãn đỉnh khả thi, ví dụ
 
 $lx(i) = \max_{1\leq j\leq n} \{ w(i, j)\},\, ly(i) = 0$
 
-Sau đó chọn một đỉnh chưa ghép cặp và tìm đường tăng giống như trong bài toán ghép cặp lớn nhất. Nếu tìm được đường tăng thì mở rộng ghép cặp; nếu không, ta thu được một cây luân phiên.
+Sau đó chọn một đỉnh chưa ghép cặp và tìm đường tăng giống như trong bài toán ghép cặp lớn nhất. Nếu tìm được đường tăng thì mở rộng ghép cặp; nếu không, thu được một cây luân phiên.
 
 Gọi $S$, $T$ lần lượt là các đỉnh phía trái và phía phải nằm trong cây luân phiên, còn $S'$, $T'$ là các đỉnh không nằm trong cây luân phiên.
 
@@ -47,14 +47,14 @@ Trong đồ thị con đẳng thức:
 -   Không tồn tại cạnh $S-T'$, nếu không cây luân phiên đã có thể mở rộng.
 -   Mọi cạnh $S'-T$ chắc chắn là cạnh không thuộc ghép cặp, nếu không đỉnh tương ứng đã thuộc $S$.
 
-Giả sử giảm nhãn của các đỉnh trong $S$ đi $a$ và tăng nhãn của các đỉnh trong $T$ thêm $a$, ta thấy rằng:
+Giả sử giảm nhãn của các đỉnh trong $S$ đi $a$ và tăng nhãn của các đỉnh trong $T$ thêm $a$, khi đó:
 
 -   Các cạnh $S-T$ vẫn nằm trong đồ thị con đẳng thức.
 -   Các cạnh $S'-T'$ không thay đổi.
 -   Với các cạnh $S-T'$, giá trị $lx + ly$ giảm xuống, nên chúng có thể được thêm vào đồ thị con đẳng thức.
 -   Với các cạnh $S'-T$, giá trị $lx + ly$ tăng lên, nên chúng không thể được thêm vào đồ thị con đẳng thức.
 
-Vì vậy giá trị $a$ rõ ràng nên được chọn là độ chênh nhỏ nhất trên các cạnh $S-T'$:
+Vì vậy nên chọn $a$ là độ chênh nhỏ nhất trên các cạnh $S-T'$:
 
 $a = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} , v\in{T'} \}$.
 
@@ -63,11 +63,11 @@ Khi một cạnh mới $(u,v)$ được thêm vào đồ thị con đẳng thứ
 -   $v$ là đỉnh chưa ghép cặp, khi đó tìm được đường tăng.
 -   $v$ đã được ghép cặp với một đỉnh trong $S'$.
 
-Như vậy, sau nhiều nhất $n$ lần sửa nhãn đỉnh, ta có thể tìm được một đường tăng.
+Như vậy, sau nhiều nhất $n$ lần sửa nhãn đỉnh, có thể tìm được một đường tăng.
 
-Mỗi lần sửa nhãn đỉnh, các cạnh trong cây luân phiên sẽ không rời khỏi đồ thị con đẳng thức, vì vậy ta có thể trực tiếp duy trì cây này.
+Mỗi lần sửa nhãn đỉnh, các cạnh trong cây luân phiên sẽ không rời khỏi đồ thị con đẳng thức, vì vậy có thể trực tiếp duy trì cây này.
 
-Với mỗi đỉnh $v$ trong $T$, ta duy trì
+Với mỗi đỉnh $v$ trong $T$, duy trì
 
 $slack(v) = \min \{ lx(u) + ly(v) - w(u,v) | u\in{S} \}$.
 
@@ -75,9 +75,9 @@ Vì vậy có thể tính giá trị sửa nhãn $a$ trong $O(n)$:
 
 $a = \min \{ slack(v) | v\in{T'} \}$
 
-Khi cây luân phiên thêm một đỉnh mới vào $S$, cần $O(n)$ để cập nhật $slack(v)$. Khi sửa nhãn, cần $O(n)$ để trừ $a$ khỏi mỗi $slack(v)$. Chỉ cần cây luân phiên tìm thấy một đỉnh chưa ghép cặp là ta tìm được đường tăng.
+Khi cây luân phiên thêm một đỉnh mới vào $S$, cần $O(n)$ để cập nhật $slack(v)$. Khi sửa nhãn, cần $O(n)$ để trừ $a$ khỏi mỗi $slack(v)$. Chỉ cần cây luân phiên tìm thấy một đỉnh chưa ghép cặp là tìm được đường tăng.
 
-Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một đường tăng, cây luân phiên cần mở rộng nhiều nhất $n$ lần, mỗi lần mở rộng cần $n$ thao tác duy trì, nên tổng độ phức tạp là $O(n^3)$.
+Ban đầu cần duyệt $n$ đỉnh để tìm đường tăng. Để tìm một đường tăng, cây luân phiên cần mở rộng nhiều nhất $n$ lần, mỗi lần mở rộng cần $n$ thao tác duy trì, nên tổng độ phức tạp là $O(n^3)$.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -222,7 +222,7 @@ Ban đầu ta duyệt $n$ đỉnh để tìm đường tăng. Để tìm một �
 
 Bài báo gốc: [The Dynamic Hungarian Algorithm for the Assignment Problem with Changing Costs](https://www.ri.cmu.edu/publications/the-dynamic-hungarian-algorithm-for-the-assignment-problem-with-changing-costs/)
 
-Bài báo có mã giả rõ ràng hơn: [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
+Bài báo có mã giả chi tiết hơn: [A Fast Dynamic Assignment Algorithm for Solving Resource Allocation Problems](https://www.researchgate.net/publication/352490780_A_Fast_Dynamic_Assignment_Algorithm_for_Solving_Resource_Allocation_Problems)
 
 Bài OJ liên quan: [DAP](https://www.spoj.com/problems/DAP/)
 
@@ -236,16 +236,16 @@ Bài OJ liên quan: [DAP](https://www.spoj.com/problems/DAP/)
     3.  Sửa trọng số giữa một đỉnh $u_i$ và một đỉnh $v_j$, tức là một phần tử trong ma trận trọng số.
         -   Chỉ cần thực hiện một trong hai thao tác 1 hoặc 2
     4.  Thêm một đỉnh $u_i$ hoặc một đỉnh $v_j$, tức là thêm hoặc xóa một hàng hoặc một cột trong ma trận trọng số.
-        -   Thực hiện thao tác 1 hoặc 2 tương ứng. Lưu ý rằng thao tác thêm đỉnh ở đây chỉ thêm đỉnh, không gán thêm giá trị trọng số; trọng số giữa đỉnh mới và các đỉnh khác là 0.
+        -   Thực hiện thao tác 1 hoặc 2 tương ứng. Lưu ý rằng thao tác thêm đỉnh này chỉ thêm đỉnh, không gán thêm giá trị trọng số; trọng số giữa đỉnh mới và các đỉnh khác là 0.
 
 ???+ note "Chứng minh thuật toán"
-    -   Gọi đồ thị ban đầu là G, nhãn đỉnh ở hai phía trái và phải lần lượt là $\alpha^{i}$ và $\beta^{j}$, và bộ nhãn khả thi là l. Khi đó $G_l$ là một đồ thị con của G, chứa các đỉnh và cạnh trong G thỏa mãn $w_{ij} = alpha_{i}+beta_{j}$.
+    -   Gọi đồ thị ban đầu là $G$, nhãn đỉnh ở hai phía trái và phải lần lượt là $\alpha^{i}$ và $\beta^{j}$, và bộ nhãn khả thi là $l$. Khi đó $G_l$ là một đồ thị con của $G$, chứa các đỉnh và cạnh trong $G$ thỏa mãn $w_{ij} = \alpha_{i}+\beta_{j}$.
     -   Trong phần thuật toán Hungarian ở trên, định lý 1 đã chứng minh rằng: với một bộ nhãn đỉnh khả thi, nếu đồ thị con đẳng thức của nó có ghép cặp hoàn hảo, thì ghép cặp đó là ghép cặp hoàn hảo có trọng số lớn nhất của đồ thị hai phía ban đầu.
-    -   Giả sử ghép cặp tối ưu ban đầu là $M^*$. Khi có một thay đổi, ta cập nhật nhãn đỉnh khả thi theo các quy tắc trên; nhãn sau khi cập nhật được ký hiệu là $\alpha^{i^*}$ hoặc $\beta^{j^*}$. Các trường hợp xảy ra như sau:
-        1.  Cả một hàng của ma trận trọng số bị sửa, giả sử đó là hàng $i^*$, tức là tất cả các cạnh của $u_{i^*}$ bị sửa. Vì vậy nhãn ban đầu của $u_{i^*}$ có thể không còn thỏa điều kiện, do ta cần $w_{i^{*}j} \leq alpha_{i^*}+beta_{j}$. Nhưng với các đỉnh $u_j$ khác, ngoài các cạnh liên quan đến $i^*$, trọng số các cạnh không thay đổi, nên nhãn của chúng vẫn hợp lệ. Do đó thuật toán sửa nhãn liên quan đến $u_{i^*}$ để bộ nhãn này trở thành một bộ nhãn khả thi.
+    -   Giả sử ghép cặp tối ưu ban đầu là $M^*$. Khi có một thay đổi, cập nhật nhãn đỉnh khả thi theo các quy tắc trên; nhãn sau khi cập nhật được ký hiệu là $\alpha^{i^*}$ hoặc $\beta^{j^*}$. Các trường hợp xảy ra như sau:
+        1.  Cả một hàng của ma trận trọng số bị sửa, giả sử đó là hàng $i^*$, tức là tất cả các cạnh của $u_{i^*}$ bị sửa. Vì vậy nhãn ban đầu của $u_{i^*}$ có thể không còn thỏa điều kiện, do cần $w_{i^{*}j} \leq \alpha_{i^*}+\beta_{j}$. Nhưng với các đỉnh $u_j$ khác, ngoài các cạnh liên quan đến $i^*$, trọng số các cạnh không thay đổi, nên nhãn của chúng vẫn hợp lệ. Do đó thuật toán sửa nhãn liên quan đến $u_{i^*}$ để bộ nhãn này trở thành một bộ nhãn khả thi.
         2.  Cả một cột của ma trận trọng số bị sửa. Lập luận tương tự cho thấy thuật toán sửa nhãn để bộ nhãn này trở thành một bộ nhãn khả thi.
         3.  Khi sửa một phần tử của ma trận trọng số, chỉ cần sửa một trong hai nhãn là có thể thỏa điều kiện nhãn.
-    -   Mỗi lần ma trận trọng số bị sửa đều liên quan đến một đỉnh cụ thể; đỉnh này có thể ở phía trái hoặc phía phải, nên ta ký hiệu chung là $x$. Trong ghép cặp tối ưu ban đầu, đỉnh này được ghép với một đỉnh nào đó $y$. Mỗi thao tác sửa nhiều nhất chỉ hủy ghép cặp giữa hai đỉnh này, vì vậy chỉ cần chạy một vòng tìm kiếm của thuật toán Hungarian là ta thu được một ghép cặp mới; theo định lý 1, ghép cặp mới tìm được là tối ưu.
+    -   Mỗi lần ma trận trọng số bị sửa đều liên quan đến một đỉnh cụ thể; đỉnh này có thể ở phía trái hoặc phía phải, nên ký hiệu chung là $x$. Trong ghép cặp tối ưu ban đầu, đỉnh này được ghép với một đỉnh nào đó $y$. Mỗi thao tác sửa nhiều nhất chỉ hủy ghép cặp giữa hai đỉnh này, vì vậy chỉ cần chạy một vòng tìm kiếm của thuật toán Hungarian là thu được một ghép cặp mới; theo định lý 1, ghép cặp mới tìm được là tối ưu.
 
 Đoạn mã sau được cho là mã do tác giả bài báo 2 nộp. Đoạn mã dưới đây là phiên bản tối đa hóa trọng số, còn bài báo gốc dùng tối thiểu hóa chi phí.
 
@@ -262,7 +262,7 @@ Trước hết, thêm vào đồ thị một đỉnh nguồn và một đỉnh �
 
 Nối từ nguồn đến mỗi đỉnh phía trái của đồ thị hai phía một cạnh có lưu lượng $1$ và chi phí $0$; nối từ mỗi đỉnh phía phải đến đích một cạnh có lưu lượng $1$ và chi phí $0$.
 
-Tiếp theo, với mỗi cạnh trong đồ thị hai phía nối đỉnh phía trái $u$ và đỉnh phía phải $v$, có trọng số $w$, ta nối một cạnh từ $u$ đến $v$ với lưu lượng $1$ và chi phí $w$.
+Tiếp theo, với mỗi cạnh trong đồ thị hai phía nối đỉnh phía trái $u$ và đỉnh phía phải $v$, có trọng số $w$, nối một cạnh từ $u$ đến $v$ với lưu lượng $1$ và chi phí $w$.
 
 Ngoài ra, do trong ghép cặp có trọng số lớn nhất, số cạnh được ghép không nhất thiết bằng số cạnh trong ghép cặp lớn nhất, nên với mỗi đỉnh phía trái, còn cần nối thêm một cạnh đến đích với lưu lượng $1$ và chi phí $0$.
 
