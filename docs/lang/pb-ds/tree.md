@@ -3,7 +3,7 @@
 Kèm theo: [tài liệu chính thức](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
 
 ```cpp
-#include <ext/pb_ds/assoc_container.hpp>  // tree được định nghĩa ở đây
+#include <ext/pb_ds/assoc_container.hpp>  // định nghĩa tree
 #include <ext/pb_ds/tree_policy.hpp>
 using namespace __gnu_pbds;
 __gnu_pbds::tree<Key, Mapped, Cmp_Fn = std::less<Key>, Tag = rb_tree_tag,
@@ -69,7 +69,7 @@ __gnu_pbds::tree<std::pair<int, int>, __gnu_pbds::null_type,
 -   `empty()`: trả về cây có rỗng hay không.
 -   `size()`: trả về kích thước.
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Hàm `join(x)` yêu cầu miền giá trị khóa của cây được gộp và cây nhận gộp
     **không giao nhau** (tức mọi giá trị trong cây được gộp phải đều lớn hơn
     hoặc đều nhỏ hơn mọi giá trị trong cây hiện tại), nếu không sẽ ném ngoại lệ

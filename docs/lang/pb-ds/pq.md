@@ -39,10 +39,10 @@ viên và cách dùng.
 
 Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
-Dijkstra, có thể thấy rằng:
-ít nhất với người học OI, bốn thẻ ngoài heap ghép cặp đều không đáng dùng: hoặc không có
-tác dụng thực tế, hoặc hằng số lớn đến mức thua `std`, thậm chí có thể gây MLE.
-Vì vậy, ở đây chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
+Dijkstra, rút ra nhận xét: ít nhất với người học OI, bốn thẻ ngoài heap ghép
+cặp đều không đáng dùng: hoặc không có tác dụng thực tế, hoặc hằng số lớn đến
+mức thua `std`, thậm chí có thể gây MLE.
+Vì vậy, chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
 tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>`.
 
 ## Cách khởi tạo
@@ -133,25 +133,25 @@ dùng bộ lặp của heap (như
 
 Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,
 cách cài đặt nội bộ không giống nhau, nên điều kiện vô hiệu hóa bộ lặp cũng
-khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba cấp đảm bảo theo thứ
+khác nhau. Theo thiết kế của thư viện \_\_gnu\_pbds, có ba mức bảo đảm theo thứ
 tự từ yếu đến mạnh:
 
-1.  Đảm bảo vô hiệu hóa cơ bản (`basic_invalidation_guarantee`): khi không sửa
+1.  Bảo đảm vô hiệu hóa cơ bản (`basic_invalidation_guarantee`): khi không sửa
     bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
     (khóa/giá trị) **vẫn** hợp lệ.
 
-2.  Đảm bảo vô hiệu hóa điểm (`point_invalidation_guarantee`): sau khi **sửa**
+2.  Bảo đảm vô hiệu hóa điểm (`point_invalidation_guarantee`): sau khi **sửa**
     bộ chứa, bộ lặp kiểu điểm (`point_iterator`), con trỏ và tham chiếu
     (khóa/giá trị) **vẫn** hợp lệ miễn là phần tử tương ứng chưa bị xóa khỏi
     bộ chứa.
 
-3.  Đảm bảo vô hiệu hóa phạm vi (`range_invalidation_guarantee`): sau khi
+3.  Bảo đảm vô hiệu hóa phạm vi (`range_invalidation_guarantee`): sau khi
     **sửa** bộ chứa, ngoài tính chất ở (2), mọi bộ lặp kiểu phạm vi (bao gồm
-    giá trị trả về của `begin()` và `end()`) đều hợp lệ. Các thẻ có đảm bảo vô
+    giá trị trả về của `begin()` và `end()`) đều hợp lệ. Các thẻ có bảo đảm vô
     hiệu hóa phạm vi gồm `rb_tree_tag`, `splay_tree_tag` dùng cho
     `__gnu_pbds::tree`, và `pat_trie_tag` dùng cho `__gnu_pbds::trie`.
 
-Từ kết quả chạy đoạn mã sau, có thể thấy ngoài `binary_heap_tag` là
+Từ kết quả chạy đoạn mã sau, ngoại trừ `binary_heap_tag` là
 `basic_invalidation_guarantee` và bộ lặp sẽ bị vô hiệu sau khi sửa, các thẻ
 còn lại đều là `point_invalidation_guarantee`, đáp ứng nhu cầu giữ bộ lặp kiểu
 điểm (`point_iterator`) không bị vô hiệu sau khi sửa.

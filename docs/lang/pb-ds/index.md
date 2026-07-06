@@ -19,11 +19,11 @@ lẻ.
 
 Vì nội dung chính của thư viện pb\_ds nằm trong không gian tên `__gnu_pbds`, bắt đầu
 bằng dấu gạch dưới, tính hợp lệ của nó trong các hoạt động thuộc hệ thống NOI
-từng không rõ ràng. Ngày 1 tháng 9 năm 2021, theo [bổ sung về giới hạn sử dụng
+từng chưa được xác định rõ. Ngày 1 tháng 9 năm 2021, theo [bổ sung về giới hạn sử dụng
 ngôn ngữ lập trình trong các hoạt động thuộc hệ thống NOI](https://www.noi.cn/xw/2021-09-01/735729.shtml),
 việc dùng hàm thư viện hoặc macro bắt đầu bằng dấu gạch dưới được cho phép (trừ
 các hàm thư viện và macro bị cấm tường minh). Vì vậy, việc dùng thư viện pb\_ds
-trong các hoạt động thuộc hệ thống NOI đã có cơ sở rõ ràng trong văn bản quy
+trong các hoạt động thuộc hệ thống NOI đã có cơ sở tường minh trong văn bản quy
 định.
 
 **Tài liệu tham khảo: [Ứng dụng thư viện pb\_ds của C++ trong OI](https://github.com/OI-Wiki/libs/blob/master/lang/pb-ds/C%2B%2B%E7%9A%84pb_ds%E5%BA%93%E5%9C%A8OI%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.pdf)**
