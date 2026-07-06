@@ -27,7 +27,7 @@ Nhiều bài toán 2-SAT đều cần tìm các quan hệ kiểu: nếu $a$ **kh
 
 Xét ý nghĩa của việc hai đỉnh nằm trong cùng một thành phần liên thông mạnh. Theo ý nghĩa logic của các cạnh ở trên: nếu hai đỉnh nằm trong cùng một thành phần liên thông mạnh, thì hai điều kiện mà chúng biểu diễn **hoặc cùng được thỏa mãn, hoặc cùng không được thỏa mãn**.
 
-Sau khi dựng đồ thị, dùng [thuật toán Tarjan tìm SCC](./scc.md), rồi với mỗi biến Boolean $a$, kiểm tra đỉnh biểu diễn $a$ đúng và đỉnh biểu diễn $a$ không đúng có nằm trong cùng một SCC hay không. Cùng một điều kiện không thể vừa được thỏa mãn vừa không được thỏa mãn, hoặc vừa không được thỏa mãn vừa không phải là không được thỏa mãn. Nếu tồn tại biến như vậy thì bài toán vô nghiệm, ngược lại bài toán có nghiệm.
+Sau khi dựng đồ thị, dùng [thuật toán Tarjan tìm SCC](./scc.md), rồi với mỗi biến Boolean $a$, kiểm tra đỉnh biểu diễn $a$ đúng và đỉnh biểu diễn $a$ không đúng có nằm trong cùng một SCC hay không. Cùng một biến không thể vừa đúng vừa sai. Nếu tồn tại biến như vậy thì bài toán vô nghiệm, ngược lại bài toán có nghiệm.
 
 Khi xuất một phương án, có thể dựa vào thứ tự topo của các biến trong đồ thị để xác định giá trị của biến. Nếu thứ tự topo của biến $x$ nằm sau $\neg x$, thì gán $x$ là đúng. Áp dụng vào đồ thị co SCC của thuật toán Tarjan, nếu số hiệu SCC chứa $x$ nằm trước số hiệu SCC chứa $\neg x$, gán $x$ là đúng. Lý do là Tarjan dùng ngăn xếp khi tìm thành phần liên thông mạnh: sau khi chạy Tarjan và co SCC, thành phần có thứ tự topo lớn hơn sẽ được Tarjan duyệt muộn hơn, nên được lấy khỏi ngăn xếp và co thành SCC sớm hơn, dẫn đến số hiệu thành phần nhỏ hơn. Vì vậy số hiệu SCC do Tarjan tìm được tương ứng với **thứ tự topo ngược**.
 
@@ -43,7 +43,7 @@ Thuật toán duyệt toàn bộ đồ thị một lần. Đồ thị có $O(n)$
 ### Ví dụ 1
 
 ???+ example "[HDU3062 Party](https://acm.hdu.edu.cn/showproblem.php?pid=3062)"
-    Có $n$ cặp vợ chồng được mời tham dự một buổi tiệc. Do giới hạn địa điểm, mỗi cặp vợ chồng chỉ có một người được tham dự. Trong $2n$ người, một số người có mâu thuẫn lớn với nhau, tất nhiên vợ chồng thì không có mâu thuẫn. Hai người có mâu thuẫn sẽ không cùng xuất hiện ở buổi tiệc. Hỏi có thể có đúng $n$ người cùng tham dự hay không?
+    Có $n$ cặp vợ chồng được mời tham dự một buổi tiệc. Do giới hạn địa điểm, mỗi cặp vợ chồng chỉ có một người được tham dự. Trong $2n$ người, một số người có mâu thuẫn lớn với nhau, còn vợ chồng thì không có mâu thuẫn. Hai người có mâu thuẫn sẽ không cùng xuất hiện ở buổi tiệc. Hỏi có thể có đúng $n$ người cùng tham dự hay không?
 
 Theo phân tích ở trên, nếu người chồng trong $a_1$ không hợp với người vợ trong $a_2$, nối cạnh từ người chồng trong $a_1$ đến người chồng trong $a_2$, đồng thời nối cạnh từ người vợ trong $a_2$ đến người vợ trong $a_1$, rồi co SCC và tô màu để kiểm tra.
 
@@ -57,7 +57,7 @@ Theo phân tích ở trên, nếu người chồng trong $a_1$ không hợp vớ
 ???+ example "[2018-2019 ACM-ICPC Asia Seoul Regional K TV Show Game](https://codeforces.com/gym/101987/problem/K)"
     Có $k$ bóng đèn, mỗi bóng có màu đỏ hoặc xanh lam, nhưng ban đầu chưa biết màu của từng bóng. Có $n$ người, mỗi người chọn ba bóng đèn và đoán màu của chúng. Một người nhận được giải thưởng nếu đoán đúng màu của ít nhất hai bóng đèn. Cần xác định có tồn tại một cách tô màu các bóng đèn sao cho mọi người đều nhận được giải thưởng hay không; nếu có, cần xuất một cách tô màu.
 
-Theo [Wu Yu - Solving 2-SAT Problems Using Symmetry](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2003%E8%AE%BA%E6%96%87%E9%9B%86/%E4%BC%8D%E6%98%B1--%E7%94%B1%E5%AF%B9%E7%A7%B0%E6%80%A7%E8%A7%A32-SAT%E9%97%AE%E9%A2%98/%E4%BC%8D%E6%98%B1.ppt), có thể rút ra kết luận: để xuất một nghiệm khả thi của bài toán 2-SAT, chỉ cần chọn và xóa từ dưới lên trên trên DAG thu được sau khi Tarjan co SCC.
+Theo [Wu Yu - Solving 2-SAT Problems Using Symmetry](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2003%E8%AE%BA%E6%96%87%E9%9B%86/%E4%BC%8D%E6%98%B1--%E7%94%B1%E5%AF%B9%E7%A7%B0%E6%80%A7%E8%A7%A32-SAT%E9%97%AE%E9%A2%98/%E4%BC%8D%E6%98%B1.ppt), để xuất một nghiệm khả thi của bài toán 2-SAT, chỉ cần chọn và xóa từ dưới lên trên trên DAG thu được sau khi Tarjan co SCC.
 
 Khi cài đặt cụ thể, có thể dựng đồ thị ngược của DAG rồi sắp xếp topo trên đồ thị ngược; cũng có thể dựa vào tính chất sau khi Tarjan co SCC: số hiệu thành phần liên thông chứa một đỉnh càng nhỏ thì đỉnh đó càng gần nút lá, nên ưu tiên chọn các đỉnh thuộc thành phần liên thông có số hiệu nhỏ hơn.
 

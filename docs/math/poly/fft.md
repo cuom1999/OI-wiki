@@ -83,7 +83,7 @@ $$
 x=\mathcal{F}^{-1}\hat{x}
 $$
 
-Thực ra, hệ số chuẩn hóa đứng trước các tổng trong công thức DFT và IDFT không quá quan trọng. Trong định nghĩa trên, hệ số trước DFT và IDFT lần lượt là $1$ và $\frac {1}{N}$. Đôi khi cả hai hệ số được đổi thành $\frac{1}{{\sqrt{N}}}$.
+Hệ số chuẩn hóa đứng trước các tổng trong công thức DFT và IDFT không ảnh hưởng đến bản chất phép biến đổi. Trong định nghĩa trên, hệ số trước DFT và IDFT lần lượt là $1$ và $\frac {1}{N}$. Đôi khi cả hai hệ số được đổi thành $\frac{1}{{\sqrt{N}}}$.
 
 Biến đổi Fourier rời rạc vẫn là phép biến đổi từ miền thời gian sang miền tần số. Do dạng tổng có tính chất đặc biệt, có thể giải thích nó theo những cách khác.
 
@@ -160,7 +160,7 @@ Trong đó $\alpha = \mathrm{e}^{-\mathrm{i}\frac{2\pi}{N}}$.
 
 FFT là một thuật toán cài đặt DFT hiệu quả, gọi là biến đổi Fourier nhanh (Fast Fourier Transform, FFT). Nó không phát hiện thêm điều gì mới về lý thuyết biến đổi Fourier, nhưng đối với việc ứng dụng biến đổi Fourier rời rạc trong hệ thống máy tính, hay nói cách khác là hệ thống số, có thể nói đây là một bước tiến lớn. Biến đổi số học nhanh (NTT) là cách cài đặt biến đổi Fourier nhanh (FFT) trên cơ sở số học.
 
-Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. Thực ra FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên tầm quan trọng của FFT chưa được nhận ra. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Nhưng thực tế Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
+Năm 1965, Cooley và Tukey công bố thuật toán biến đổi Fourier nhanh. FFT đã được phát hiện trước đó, nhưng máy tính hiện đại khi ấy chưa ra đời, nên tầm quan trọng của FFT chưa được nhận ra. Một số nhà khảo cứu cho rằng FFT do Runge và König phát hiện năm 1924. Theo các ghi chép lịch sử, Gauss đã phát minh thuật toán này từ năm 1805, chỉ là không công bố.
 
 <span id="cài-đặt-bằng-chia-để-trị"></span>
 ### Cài đặt bằng chia để trị
@@ -223,7 +223,7 @@ Vì DFT chia để trị chỉ xử lý được độ dài đa thức bằng $2
 
 Khi thay giá trị, vì cần thay $n$ giá trị khác nhau, các giá trị được thay là $\omega_n^0,\omega_n^1,\omega_n^2,\cdots, \omega_n^{n-1} (n=2^m(m \in \mathbf{N}^ \ast ))$, tổng cộng $2^m$ giá trị khác nhau.
 
-Về cài đặt, STL cung cấp mẫu số phức; tất nhiên cũng có thể tự cài đặt thủ công. Điểm khác nhau là khi dùng `complex` của STL, có thể gọi hàm `exp` để tính $\omega_n$. Nhưng thực ra dùng số phức thu được từ công thức Euler để tính $\omega_n$ cũng tương đương.
+Về cài đặt, STL cung cấp mẫu số phức; cũng có thể tự cài đặt thủ công. Điểm khác nhau là khi dùng `complex` của STL, có thể gọi hàm `exp` để tính $\omega_n$. Dùng số phức thu được từ công thức Euler để tính $\omega_n$ cũng tương đương.
 
 Trên đây là phần giới thiệu DFT trong thuật toán FFT: nó chuyển một đa thức từ biểu diễn hệ số sang biểu diễn bằng giá trị tại điểm.
 
@@ -242,7 +242,7 @@ Cần lưu ý là, vì dùng các căn phức của đơn vị, nên cần bổ 
     Comp tmp[MAX_N];
     
     // rev=1: DFT; rev=-1: IDFT
-    // Sau khi gọi hàm này cần chú ý xử lý hệ số chuẩn hóa
+    // Sau khi gọi hàm này cần xử lý hệ số chuẩn hóa
     void DFT(Comp* f, int n, int rev) {
       if (n == 1) return;
       for (int i = 0; i < n; ++i) tmp[i] = f[i];
@@ -292,7 +292,7 @@ Lấy đa thức $8$ hạng làm ví dụ, mô phỏng quá trình tách:
 -   Sau hai lần chia đôi: $\{x_0,x_4\} \{x_2, x_6\},\{x_1, x_5\},\{x_3, x_7 \}$
 -   Sau ba lần chia đôi: $\{x_0\}\{x_4\}\{x_2\}\{x_6\}\{x_1\}\{x_5\}\{x_3\}\{x_7 \}$
 
-Quy luật: thực ra đó là dãy ban đầu, mỗi số được biểu diễn nhị phân, rồi đảo ngược các bit nhị phân, sẽ thu được chỉ số của vị trí cuối cùng. Ví dụ $x_1$ là 001, đảo ngược thành 100, tức là 4, và vị trí cuối cùng thật sự là 4. Phép biến đổi này được gọi là hoán vị đảo bit (bit-reversal permutation); phần chứng minh có thể tự kiểm chứng.
+Quy luật: đó là dãy ban đầu, mỗi số được biểu diễn nhị phân, rồi đảo ngược các bit nhị phân để thu được chỉ số của vị trí cuối cùng. Ví dụ $x_1$ là 001, đảo ngược thành 100, tức là 4, và vị trí cuối cùng đúng là 4. Phép biến đổi này được gọi là hoán vị đảo bit (bit-reversal permutation); phần chứng minh suy ra trực tiếp từ quá trình đảo bit.
 
 Theo định nghĩa, có thể tính kết quả biến đổi của mỗi số trong thời gian $O(n)$:
 
@@ -354,7 +354,7 @@ Ví dụ: đặt $k=5$, $len=(100000)_2$. Để đảo $(11001)_2$:
         }
       }
       for (int i = 0; i < len; ++i) {
-        if (i < rev[i]) {  // Đảm bảo mỗi cặp số chỉ đảo một lần
+        if (i < rev[i]) {  // Mỗi cặp số chỉ đảo một lần
           swap(y[i], y[rev[i]]);
         }
       }

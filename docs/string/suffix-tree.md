@@ -103,7 +103,7 @@ Tiếp theo chèn thêm một $\texttt b$. Vì ký tự $\texttt b$ trước đ�
 
 Lưu ý rằng không xét các hậu tố sau $k$. Vì nếu $S[k,m]$ là một hậu tố ẩn, thì với $l>k$, $S[l,m]$ đều là hậu tố ẩn. Do $S[k,m]$ là hậu tố ẩn, tồn tại ký tự $c$ sao cho $S[k, m] + c$ là chuỗi con của $S$, do đó $S[l, m] + c$ cũng là chuỗi con của $S$. Theo định nghĩa của cây hậu tố ẩn, $S[l, m]$ cũng không xuất hiện dưới dạng nút lá.
 
-Tiếp theo chèn $\texttt c$. Lúc này $k=3$, vì vậy cần tìm $\texttt {bbc}$ từ gốc xuống và thấy nó không có trong cây. Cần tạo một cạnh đi ra nhãn $[5,\infty]$ tại nút biểu diễn $\texttt {bb}$. Nhưng nút này thực ra không tồn tại, mà nằm bên trong một cạnh; vì vậy cần tách cạnh này, tạo một nút mới, rồi tại nút vừa tạo kéo ra cạnh cần tạo. Lần này chèn thành công, đặt $k\to k+1$, vì $S[k,m]$ không còn là hậu tố ẩn.
+Tiếp theo chèn $\texttt c$. Lúc này $k=3$, vì vậy cần tìm $\texttt {bbc}$ từ gốc xuống và thấy nó không có trong cây. Cần tạo một cạnh đi ra nhãn $[5,\infty]$ tại nút biểu diễn $\texttt {bb}$. Nhưng nút này không tồn tại như một nút riêng mà nằm bên trong một cạnh; vì vậy cần tách cạnh này, tạo một nút mới, rồi tại nút vừa tạo kéo ra cạnh cần tạo. Lần này chèn thành công, đặt $k\to k+1$, vì $S[k,m]$ không còn là hậu tố ẩn.
 
 ![Tách cạnh khi chèn chuỗi abbbc](./images/suffix-tree6.webp)
 
@@ -126,7 +126,7 @@ Trước hết có bổ đề: với mọi nút $x$ trong cây hậu tố ẩn k
 
 Chứng minh. Gọi $s$ là chuỗi thu được từ $str_x$ sau khi bỏ ký tự đầu. Theo định nghĩa cây hậu tố ẩn, tồn tại hai ký tự khác nhau $c_1,c_2$ sao cho $str_x + c_1$ và $str_x + c_2$ đều là chuỗi con của $S$. Vì vậy $s + c_1$ và $s + c_2$ cũng là chuỗi con của $S$, nên trong trie hậu tố, $s$ cũng tương ứng với một điểm then chốt có phân nhánh, tức là trong trie hậu tố ẩn tồn tại $y$ sao cho $str_y=s$. Chứng minh xong.
 
-Từ bổ đề này, định nghĩa $\operatorname{Link}(x)=y$, gọi là **liên kết hậu tố (Suffix Link)** của $x$. Khi đó $now'=\operatorname{Link}(now)$ chắc chắn tồn tại. Bây giờ chỉ cần tính được $\operatorname{Link}$ cho mọi nút không phải gốc và không phải lá trong cây hậu tố ẩn.
+Từ bổ đề này, định nghĩa $\operatorname{Link}(x)=y$, gọi là **liên kết hậu tố (Suffix Link)** của $x$. Khi đó $now'=\operatorname{Link}(now)$ tồn tại theo bổ đề. Bây giờ chỉ cần tính được $\operatorname{Link}$ cho mọi nút không phải gốc và không phải lá trong cây hậu tố ẩn.
 
 <span id="thuật-toán-ukkonen"></span>
 #### Thuật toán Ukkonen
@@ -208,7 +208,7 @@ Cho một chuỗi $S$ chỉ gồm chữ cái thường.
 Tìm giá trị lớn nhất của số lần xuất hiện của một chuỗi con nhân với độ dài chuỗi con đó, xét trên mọi chuỗi con của $S$ có số lần xuất hiện khác $1$.
 
 ??? note "Lời giải"
-    Xây dựng cây hậu tố ẩn sau khi chèn thêm một ký tự kết thúc. Mỗi đường đi xuất phát từ gốc trên cây đều tạo thành một chuỗi con. Số lần xuất hiện của một hậu tố hiển thị chính là số nút lá trong cây con của nút tương ứng; các hậu tố ẩn không cần xét, vì số lần xuất hiện của một hậu tố ẩn bằng số lần xuất hiện của hậu tố hiển thị đầu tiên gặp được khi đi xuống, và hậu tố ẩn chắc chắn không dài hơn hậu tố hiển thị đó. Vì vậy duyệt toàn bộ cây, tính số lá trong cây con của mỗi nút và độ dài đường đi từ mỗi nút đến gốc. Nếu số lá $>1$ thì cập nhật đáp án. Độ phức tạp $O(|S||\Sigma|)$.
+    Xây dựng cây hậu tố ẩn sau khi chèn thêm một ký tự kết thúc. Mỗi đường đi xuất phát từ gốc trên cây đều tạo thành một chuỗi con. Số lần xuất hiện của một hậu tố hiển thị chính là số nút lá trong cây con của nút tương ứng; các hậu tố ẩn không cần xét, vì số lần xuất hiện của một hậu tố ẩn bằng số lần xuất hiện của hậu tố hiển thị đầu tiên gặp được khi đi xuống, và hậu tố ẩn không dài hơn hậu tố hiển thị đó. Vì vậy duyệt toàn bộ cây, tính số lá trong cây con của mỗi nút và độ dài đường đi từ mỗi nút đến gốc. Nếu số lá $>1$ thì cập nhật đáp án. Độ phức tạp $O(|S||\Sigma|)$.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -229,7 +229,7 @@ Tóm tắt đề bài: Cho một chuỗi mẹ $S$ chỉ gồm chữ cái thườ
     
     Nếu một lần nào đó khớp thành công chu kỳ hiện tại, và chu kỳ đó chưa từng xuất hiện trước đó, thì cập nhật đáp án.
     
-    Sau đó khi chuyển sang chu kỳ tiếp theo, cần xóa ký tự đầu của chuỗi con đang khớp: điều này đúng bằng việc đặt $now \to \operatorname{Link}(now)$. Dĩ nhiên, nếu $now=1$ thì chỉ cần đặt $rem\to rem-1$.
+    Sau đó khi chuyển sang chu kỳ tiếp theo, cần xóa ký tự đầu của chuỗi con đang khớp: điều này đúng bằng việc đặt $now \to \operatorname{Link}(now)$. Nếu $now=1$ thì chỉ cần đặt $rem\to rem-1$.
     
     Độ phức tạp $O(|S||\Sigma|+\sum|x_i|)$.
 

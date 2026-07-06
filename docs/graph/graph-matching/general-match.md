@@ -33,7 +33,7 @@ Gọi đồ thị ban đầu là $G$, đồ thị sau khi **co hoa** là $G'$. C
 
 Gọi cạnh không thuộc cây (cạnh tạo thành chu trình) là $(u,v)$, định nghĩa gốc hoa $h=LCA(u,v)$.
 Chu trình lẻ là chu trình xen kẽ, và chỉ có hai cạnh kề với $h$ có cùng loại, đều là cạnh không ghép cặp.
-Khi đó cạnh cây đi vào $h$ chắc chắn là cạnh ghép cặp; ngoài $h$, mọi cạnh từ các đỉnh khác trên chu trình đi ra ngoài chu trình đều là cạnh không ghép cặp.
+Khi đó cạnh cây đi vào $h$ là cạnh ghép cặp; ngoài $h$, mọi cạnh từ các đỉnh khác trên chu trình đi ra ngoài chu trình đều là cạnh không ghép cặp.
 
 Quan sát cho thấy khi đi ra bằng một cạnh ngoài chu trình, có hai khả năng: theo chiều kim đồng hồ hoặc ngược chiều kim đồng hồ.
 
@@ -269,7 +269,7 @@ Khi không gây nhầm lẫn, bên dưới viết tắt $\tilde{A}(G)$ thành $\
     
     Trong đó $\pi$ là một hoán vị bất kỳ, $(-1)^{\pi}$ nghĩa là nếu số cặp nghịch thế trong $\pi$ là lẻ thì lấy $-1$, ngược lại lấy $1$.
     
-    Mỗi hoán vị đều có thể được xem là một phủ chu trình của $G$. Nếu trong phủ chu trình này có chu trình lẻ, thì tổng sau khi đảo chiều chu trình đó chắc chắn bằng $0$. Do đó chỉ phủ chu trình chẵn mới có thể làm định thức khác $0$, chứng minh hoàn tất.
+    Mỗi hoán vị đều có thể được xem là một phủ chu trình của $G$. Nếu trong phủ chu trình này có chu trình lẻ, thì tổng sau khi đảo chiều chu trình đó bằng $0$. Do đó chỉ phủ chu trình chẵn mới có thể làm định thức khác $0$, chứng minh hoàn tất.
 
 **Định lý**: $\operatorname{rank}\tilde{A}$ luôn là số chẵn, và kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$.
 
@@ -282,7 +282,7 @@ Trong ứng dụng thực tế, không thể tính toán với $|E|$ biến. Tuy
 
 Xét rằng trong bài toán ghép cặp lớn nhất trên đồ thị tổng quát, $n$ thường không vượt quá $10^3$, nên trên thực tế chọn $p$ là một số nguyên tố cỡ $10^9$ là đủ.
 
-Từ định lý có thể thấy, nếu chỉ cần tìm số lượng cạnh trong ghép cặp lớn nhất mà không cần phương án ghép cặp, thì chỉ cần dùng một lần khử Gauss để tính $\operatorname{rank}\tilde{A}$, ngắn gọn hơn cây hoa rất nhiều. Tuy nhiên, nếu cần xuất phương án, bài toán sẽ phức tạp hơn một chút và cần dùng thuật toán được giới thiệu dưới đây.
+Từ định lý suy ra rằng nếu chỉ cần tìm số lượng cạnh trong ghép cặp lớn nhất mà không cần phương án ghép cặp, thì chỉ cần dùng một lần khử Gauss để tính $\operatorname{rank}\tilde{A}$, ngắn gọn hơn cây hoa rất nhiều. Tuy nhiên, nếu cần xuất phương án, bài toán sẽ phức tạp hơn một chút và cần dùng thuật toán được giới thiệu dưới đây.
 
 ### Xây dựng ghép cặp hoàn hảo
 
@@ -303,7 +303,7 @@ Nói cách khác, nếu $(v_i, v_j) \in E$ và $\tilde{A}^{-1}_{j, i} \ne 0$, th
 
 Từ định lý trên, với một đồ thị vô hướng $G$ có ghép cặp hoàn hảo, có thể đưa ra một thuật toán vét cạn khá trực tiếp để tìm một ghép cặp hoàn hảo: mỗi lần liệt kê $i, j$; nếu $(v_i, v_j)$ là một cạnh khả thi (có cạnh nối và $\tilde{A}^{-1}_{j, i} \ne 0$), thì thêm $(v_i, v_j)$ vào phương án ghép cặp, xóa cả hai đỉnh này khỏi $G$, rồi tính lại $\tilde{A}^{-1}$ mới.
 
-Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng đều là $O(n^3)$, nên tổng độ phức tạp là $O(n ^ 4)$, hơi chậm. Thực ra khi tính lại $\tilde{A}^{-1}$, không cần mỗi lần đều dùng khử Gauss để tính lại ma trận nghịch đảo từ đầu, mà có thể sử dụng định lý sau:
+Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng đều là $O(n^3)$, nên tổng độ phức tạp là $O(n ^ 4)$, hơi chậm. Khi tính lại $\tilde{A}^{-1}$, không cần mỗi lần đều dùng khử Gauss để tính lại ma trận nghịch đảo từ đầu, mà có thể sử dụng định lý sau:
 
 **Định lý** (định lý khử): Gọi
 

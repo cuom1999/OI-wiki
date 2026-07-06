@@ -143,8 +143,8 @@ Tương tự, cũng có thể định nghĩa cây BFS: trong quá trình BFS, b�
 -   Tìm tất cả các thành phần liên thông trong thời gian $O(n+m)$. Chỉ cần bắt đầu BFS từ mỗi đỉnh chưa được thăm; mỗi lần BFS sẽ duyệt hết một thành phần liên thông.
 -   Nếu xem mỗi hành động trong một trò chơi là một cạnh, tức một phép chuyển, trên đồ thị trạng thái, thì BFS có thể được dùng để tìm số bước ít nhất cần thiết để đi từ một trạng thái đến một trạng thái khác trong trò chơi.
 -   Tìm chu trình nhỏ nhất trong một đồ thị có hướng không trọng số. Bắt đầu BFS từ từng đỉnh; khi sắp đi tới một đỉnh đã được thăm trước đó, tức là đã gặp một chu trình. Chu trình nhỏ nhất của đồ thị là chu trình nhỏ nhất thu được trong các lần BFS.
--   Tìm các cạnh chắc chắn nằm trên một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi cạnh $(u, v)$, nếu $d_a[u]+1+d_b[v]=d_a[b]$, thì cạnh đó nằm trên một đường đi ngắn nhất.
--   Tìm các đỉnh chắc chắn nằm trên một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi đỉnh `v`, nếu $d_a[v]+d_b[v]=d_a[b]$, thì đỉnh đó nằm trên một đường đi ngắn nhất nào đó.
+-   Tìm các cạnh nằm trên ít nhất một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi cạnh $(u, v)$, nếu $d_a[u]+1+d_b[v]=d_a[b]$, thì cạnh đó nằm trên một đường đi ngắn nhất.
+-   Tìm các đỉnh nằm trên ít nhất một đường đi ngắn nhất từ $a$ đến $b$. Thực hiện BFS lần lượt từ $a$ và $b$ để thu được hai mảng `d`. Sau đó với mỗi đỉnh `v`, nếu $d_a[v]+d_b[v]=d_a[b]$, thì đỉnh đó nằm trên một đường đi ngắn nhất nào đó.
 -   Tìm một đường đi ngắn nhất có độ dài chẵn. Cần xây dựng một đồ thị mới bằng cách tách mỗi đỉnh thành hai đỉnh mới; cạnh $(u, v)$ của đồ thị ban đầu trở thành $((u, 0), (v, 1))$ và $((u, 1), (v, 0))$. Chạy BFS trên đồ thị mới, đường đi ngắn nhất giữa $(s, 0)$ và $(t, 0)$ chính là đáp án cần tìm.
 -   Tìm đường đi ngắn nhất trên một đồ thị có trọng số cạnh là 0/1, xem phần BFS hai đầu hàng đợi bên dưới.
 
@@ -198,13 +198,13 @@ Cách làm rất đơn giản: bắn ra theo một hướng không cần chi ph�
 
 Hàng đợi ưu tiên tương đương với một heap nhị phân. STL cung cấp [`std::priority_queue`](../lang/csl/container-adapter.md), hỗ trợ sử dụng hàng đợi ưu tiên một cách thuận tiện.
 
-Trong BFS dựa trên hàng đợi ưu tiên, mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm. Có thể chứng minh tư tưởng tham lam này là đúng, vì phần tìm kiếm mở rộng từ đỉnh này chắc chắn sẽ không cập nhật những đỉnh vốn có chi phí cao hơn. Nói cách khác, với những đỉnh còn lại có chi phí cao hơn, không cần quay lại xét để cập nhật chúng.
+Trong BFS dựa trên hàng đợi ưu tiên, mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm. Có thể chứng minh tư tưởng tham lam này là đúng, vì phần tìm kiếm mở rộng từ đỉnh này sẽ không cập nhật những đỉnh vốn có chi phí cao hơn. Nói cách khác, với những đỉnh còn lại có chi phí cao hơn, không cần quay lại xét để cập nhật chúng.
 
-Tất nhiên, mỗi đỉnh có thể được đưa vào hàng đợi nhiều lần, chỉ là chi phí của mỗi lần đưa vào khác nhau. Khi đỉnh đó lần đầu tiên được lấy ra khỏi hàng đợi ưu tiên, về sau không cần tiếp tục tìm kiếm từ đỉnh đó nữa, chỉ cần bỏ qua trực tiếp. Vì vậy, trong BFS dùng hàng đợi ưu tiên, mỗi đỉnh chỉ được xử lý một lần.
+Mỗi đỉnh có thể được đưa vào hàng đợi nhiều lần, với chi phí khác nhau ở từng lần. Khi đỉnh đó lần đầu tiên được lấy ra khỏi hàng đợi ưu tiên, về sau không cần tiếp tục tìm kiếm từ đỉnh đó nữa, chỉ cần bỏ qua trực tiếp. Vì vậy, trong BFS dùng hàng đợi ưu tiên, mỗi đỉnh chỉ được xử lý một lần.
 
 So với BFS dùng hàng đợi thông thường, độ phức tạp thời gian có thêm một thừa số $\log n$, bởi dù sao cũng phải duy trì hàng đợi ưu tiên này. Tuy nhiên, trong BFS thông thường, mỗi đỉnh cũng có thể vào hàng đợi và ra khỏi hàng đợi nhiều lần, khiến độ phức tạp thời gian đạt tới $O(n^2)$ chứ không phải $O(n)$. Vì vậy BFS hàng đợi ưu tiên thường vẫn nhanh hơn.
 
-Nghe có vẻ rất giống thuật toán [Dijkstra](./shortest-path.md#thuật-toán-dijkstra) tối ưu bằng heap phải không? Thật ra, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu tiên.
+Hình thức này rất giống thuật toán [Dijkstra](./shortest-path.md#thuật-toán-dijkstra) tối ưu bằng heap; thực chất, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu tiên.
 
 ## Bài tập
 
