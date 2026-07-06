@@ -4,7 +4,7 @@ Vim - trình soạn thảo văn bản có mặt ở khắp nơi.
 
 ## Giới thiệu
 
-Vim là một trình soạn thảo văn bản phát triển từ vi. Các chức năng tiện cho lập trình như hoàn thành mã, biên dịch, nhảy tới lỗi, v.v. rất phong phú, nên Vim được dùng rộng rãi trong cộng đồng lập trình viên.
+Vim là một trình soạn thảo văn bản phát triển từ vi. Vim cung cấp nhiều chức năng phục vụ lập trình như hoàn thành mã, biên dịch, nhảy tới lỗi, v.v., nên được dùng rộng rãi trong cộng đồng lập trình viên.
 
 ## Cài đặt
 
@@ -89,7 +89,7 @@ Trong chế độ nhập, nhấn <kbd>Ctrl</kbd>+<kbd>o</kbd> để vào "chế 
 
 Trong chế độ lệnh, nhấn <kbd>:</kbd> để vào chế độ dòng lệnh cuối.
 
-Chế độ dòng lệnh cuối có thể nhập các lệnh gồm một hoặc nhiều ký tự; số lệnh có thể dùng rất nhiều.
+Chế độ dòng lệnh cuối cho phép nhập các lệnh gồm một hoặc nhiều ký tự; chế độ này hỗ trợ nhiều lệnh khác nhau.
 
 Trong chế độ dòng lệnh cuối, các lệnh cơ bản gồm:
 
@@ -159,7 +159,7 @@ cout << a + b
 return 0
 ```
 
-Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chèn, có thể thêm dấu chấm phẩy ở cuối dòng rất hiệu quả.
+Kết hợp `.` với lệnh `A` để di chuyển tới cuối dòng rồi chèn, có thể thêm dấu chấm phẩy ở cuối nhiều dòng nhanh hơn.
 
 ```vim
 A;<Esc>
@@ -177,7 +177,7 @@ int check() {
 }
 ```
 
-Sửa từng chỗ một thì phiền, còn lệnh `s` trong chế độ dòng lệnh lại sẽ sửa tất cả.
+Sửa từng chỗ một sẽ tốn thời gian, còn lệnh `s` trong chế độ dòng lệnh lại sẽ sửa tất cả.
 
 Cách sửa thứ nhất là dùng kết hợp với lệnh `s` trong chế độ thường (xóa ký tự tại con trỏ rồi vào chế độ nhập). Tới chữ cái đầu của tên mảng sai đầu tiên, nhấn `3s`/`cw`, nhập tên mảng đúng rồi thoát. Sau đó lần lượt di chuyển con trỏ tới từng chỗ và dùng lệnh `.`.
 
@@ -189,15 +189,15 @@ Cách sửa thứ ba là lệnh tìm kiếm đơn giản `f`. Trong chế độ 
 
 Chức năng macro của Vim có thể lặp lại một chuỗi lệnh dài tùy ý.
 
-Trước khi dùng macro cần "ghi" nó, tức là ghi lại một chuỗi thao tác phím rồi phát lại để đạt hiệu quả lặp. Cách ghi rất đơn giản: trong chế độ thường, gõ `q` để bắt đầu ghi. Bước tiếp theo là chỉ định một phím lệnh cho macro được ghi; có thể nhấn bất kỳ chữ cái nào trong 26 chữ cái. Lúc này góc dưới bên trái sẽ hiển thị `recording @chữ_cái_vừa_chọn`. Sau đó có thể bắt đầu ghi lệnh. Tương tự, trong chế độ thường nhấn `q` để dừng ghi.
+Trước khi dùng macro cần "ghi" nó, tức là ghi lại một chuỗi thao tác phím rồi phát lại để lặp thao tác. Để bắt đầu ghi, trong chế độ thường hãy gõ `q`. Bước tiếp theo là chỉ định một phím lệnh cho macro được ghi; có thể nhấn bất kỳ chữ cái nào trong 26 chữ cái. Lúc này góc dưới bên trái sẽ hiển thị `recording @chữ_cái_vừa_chọn`. Sau đó có thể bắt đầu ghi lệnh. Tương tự, trong chế độ thường nhấn `q` để dừng ghi.
 
 Cách dùng là nhấn `:` để vào chế độ dòng lệnh, gõ `@chữ_cái_đã_chọn`, rồi lệnh đã ghi trước đó sẽ được gọi.
 
-Kết hợp `.` và macro, tức là ghi macro -> gọi macro -> dùng `.` lặp lệnh -> dùng `số + .`, có thể đạt hiệu suất rất cao.
+Kết hợp `.` và macro, tức là ghi macro -> gọi macro -> dùng `.` lặp lệnh -> dùng `số + .`, có thể xử lý nhiều thao tác lặp với ít phím hơn.
 
 ### Lệnh normal
 
-Lệnh này liên quan đến chế độ thường; hiệu quả của nó là lặp lệnh trên các dòng chỉ định.
+Lệnh này liên quan đến chế độ thường; tác dụng của nó là lặp lệnh trên các dòng chỉ định.
 
 Nhấn `:` để vào chế độ dòng lệnh, rồi nhập lệnh sau:
 
