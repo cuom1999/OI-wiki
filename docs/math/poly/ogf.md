@@ -37,9 +37,9 @@ Vì vậy $F(x)G(x)$ là hàm sinh thường của dãy $\langle \sum_{i=0}^n a_
 <span id="dạng-đóng"></span>
 ## Dạng đóng
 
-Khi sử dụng hàm sinh, ta không phải lúc nào cũng làm việc trực tiếp với dạng chuỗi lũy thừa hình thức; tùy lúc ta sẽ chuyển sang dạng đóng để rút gọn tốt hơn.
+Khi sử dụng hàm sinh, không phải lúc nào cũng làm việc trực tiếp với dạng chuỗi lũy thừa hình thức; tùy lúc cần chuyển sang dạng đóng để rút gọn tốt hơn.
 
-Ví dụ, hàm sinh thường của $\langle 1,1,1,\cdots\rangle$ là $F(x)=\sum_{n\ge 0}x^n$. Ta nhận thấy
+Ví dụ, hàm sinh thường của $\langle 1,1,1,\cdots\rangle$ là $F(x)=\sum_{n\ge 0}x^n$. Nhận thấy
 
 $$
 F(x)x+1=F(x)
@@ -53,7 +53,7 @@ $$
 
 Đây là dạng đóng của $\sum_{n\ge 0}x^n$.
 
-Xét cấp số nhân $\langle 1,p,p^2,p^3,p^4,\cdots\rangle$ với hàm sinh $F(x)=\sum_{n\ge 0}p^nx^n$, ta có
+Xét cấp số nhân $\langle 1,p,p^2,p^3,p^4,\cdots\rangle$ với hàm sinh $F(x)=\sum_{n\ge 0}p^nx^n$, có
 
 $$
 \begin{aligned}F(x)px+1 &=F(x)\\F(x) &=\frac{1}{1-px}\end{aligned}
@@ -62,7 +62,7 @@ $$
 Dạng đóng và dạng khai triển của cấp số nhân là hai phép biến đổi rất thường dùng.
 
 ???+ note "Bài tập nhỏ"
-    Hãy tìm hàm sinh thường của các dãy sau (cả dạng chuỗi lũy thừa hình thức và dạng đóng). Độ khó tăng dần.
+    Tìm hàm sinh thường của các dãy sau (cả dạng chuỗi lũy thừa hình thức và dạng đóng). Độ khó tăng dần.
     
     1.  $a=\langle 0,1,1,1,1,\cdots\rangle$.
     2.  $a=\langle 1,0,1,0,1,\cdots \rangle$.
@@ -109,7 +109,7 @@ Dạng đóng và dạng khai triển của cấp số nhân là hai phép biế
     
     Trước hết, khi $m=0$ thì $F(x)=\dfrac{1}{1-x}$.
     
-    Khi $m>0$, ta có
+    Khi $m>0$, có
     
     $$
     \begin{aligned}
@@ -124,9 +124,9 @@ Dạng đóng và dạng khai triển của cấp số nhân là hai phép biế
 <span id="hàm-sinh-của-dãy-fibonacci"></span>
 ## Hàm sinh của dãy Fibonacci
 
-Tiếp theo ta suy ra hàm sinh của dãy Fibonacci.
+Tiếp theo suy ra hàm sinh của dãy Fibonacci.
 
-Dãy Fibonacci được định nghĩa bởi $a_0=0,a_1=1,a_n=a_{n-1}+a_{n-2}\;(n>1)$. Giả sử hàm sinh thường của nó là $F(x)$. Dựa trên công thức truy hồi, ta có thể lập phương trình cho $F(x)$ tương tự:
+Dãy Fibonacci được định nghĩa bởi $a_0=0,a_1=1,a_n=a_{n-1}+a_{n-2}\;(n>1)$. Giả sử hàm sinh thường của nó là $F(x)$. Dựa trên công thức truy hồi, có thể lập phương trình cho $F(x)$ tương tự:
 
 $$
 F(x)=xF(x)+x^2F(x)-a_0x+a_1x+a_0
@@ -143,7 +143,7 @@ Câu hỏi tiếp theo là: làm thế nào tìm dạng khai triển của nó?
 <span id="cách-khai-triển-thứ-nhất"></span>
 ### Cách khai triển thứ nhất
 
-Ta có thể xem $x+x^2$ như một khối, khi đó
+Có thể xem $x+x^2$ như một khối, khi đó
 
 $$
 \begin{aligned}
@@ -161,7 +161,7 @@ $$
 a_n = \sum_{i=0}^{\lfloor(n-1)/2\rfloor}\binom{n-i-1}{i}.
 $$
 
-Đây chưa phải dạng liên quan tới tỉ lệ vàng mà ta quen thuộc.
+Đây chưa phải dạng liên quan tới tỉ lệ vàng thường gặp.
 
 <span id="cách-khai-triển-thứ-hai"></span>
 ### Cách khai triển thứ hai
@@ -178,7 +178,7 @@ $$
 \frac{A-Abx+B-aBx}{(1-ax)(1-bx)} = \frac{x}{1-x-x^2}
 $$
 
-So sánh các hệ số chưa biết, ta nhận được
+So sánh các hệ số chưa biết, nhận được
 
 $$
 \begin{cases}
@@ -200,7 +200,7 @@ b=\frac{1-\sqrt{5}}{2}
 \end{cases}
 $$
 
-Dựa vào khai triển của cấp số nhân, ta thu được công thức tổng quát của dãy Fibonacci:
+Dựa vào khai triển của cấp số nhân, thu được công thức tổng quát của dãy Fibonacci:
 
 $$
 \frac{x}{1-x-x^2}=\sum_{n\ge 0}x^n
@@ -209,7 +209,7 @@ $$
 
 Dạng này cũng được gọi là một dạng đóng khác của dãy Fibonacci ($\frac{x}{1-x-x^2}$ cũng là một dạng đóng).
 
-Với đa thức bất kỳ $P(x),Q(x)$, khai triển của hàm sinh $\dfrac{P(x)}{Q(x)}$ đều có thể tìm bằng phương pháp trên. Trong thực tế, ta thường tìm các nghiệm của $Q(x)$ trước, viết mẫu số dưới dạng $\prod (1-p_ix)^{d_i}$, rồi mới tìm tử số.
+Với đa thức bất kỳ $P(x),Q(x)$, khai triển của hàm sinh $\dfrac{P(x)}{Q(x)}$ đều có thể tìm bằng phương pháp trên. Trong thực tế, thường tìm các nghiệm của $Q(x)$ trước, viết mẫu số dưới dạng $\prod (1-p_ix)^{d_i}$, rồi mới tìm tử số.
 
 Khi phân tích mẫu số mà có nghiệm bội, mỗi bội thêm một phân thức nữa. Ví dụ xét hàm sinh
 
@@ -217,7 +217,7 @@ $$
 G(x)=\frac{1}{(1-x)(1-2x)^2}
 $$
 
-và công thức tổng quát cho hệ số của nó, ta có
+và công thức tổng quát cho hệ số của nó, có
 
 $$
 G(x)=\frac{c_0}{1-x}+\frac{c_1}{1-2x}+\frac{c_2}{(1-2x)^2}
@@ -242,19 +242,19 @@ $$
 <span id="định-lý-nhị-thức-newton"></span>
 ## Định lý nhị thức Newton
 
-Ta định nghĩa lại phép toán tổ hợp:
+Định nghĩa lại phép toán tổ hợp:
 
 $$
 \binom{r}{k}=\frac{r^{\underline{k}}}{k!}\quad(r\in\mathbf{C},k\in\mathbf{N})
 $$
 
-Lưu ý rằng miền giá trị của $r$ là trường số phức. Trong trường hợp này, với $\alpha\in\mathbf{C}$, ta có
+Lưu ý rằng miền giá trị của $r$ là trường số phức. Trong trường hợp này, với $\alpha\in\mathbf{C}$, có
 
 $$
 (1+x)^{\alpha}=\sum_{n\ge 0}\binom{\alpha}{n}x^n
 $$
 
-Định lý nhị thức thông thường thực ra là một trường hợp đặc biệt của định lý nhị thức Newton.
+Định lý nhị thức thông thường là một trường hợp đặc biệt của định lý nhị thức Newton.
 
 <span id="hàm-sinh-của-số-catalan"></span>
 ## Hàm sinh của số Catalan
@@ -281,11 +281,11 @@ Sau đây là một vài bài ví dụ để giới thiệu cách dùng hàm sin
     7.  Thịt xào khoai tây lát: không quá một cái.
     8.  Bánh mì: bội của $3$ cái.
     
-    Mỗi loại thức ăn đều tính theo đơn vị "cái"; chỉ cần tổng số lượng cộng lại bằng $n$ thì tính là một phương án. Với $n$ cho trước, hãy tính số phương án modulo $10007$.
+    Mỗi loại thức ăn đều tính theo đơn vị "cái"; chỉ cần tổng số lượng cộng lại bằng $n$ thì tính là một phương án. Với $n$ cho trước, cần tính số phương án modulo $10007$.
 
 Đây là một bài hàm sinh kinh điển. Với một loại thức ăn, đặt $a_n$ là số phương án chọn $n$ cái của loại đó, rồi tìm hàm sinh của nó. Hàm sinh cho số phương án chọn tổng cộng $n$ cái từ hai loại thức ăn chính là tích chập của hai hàm sinh tương ứng. Với nhiều loại thức ăn, hàm sinh cũng là tích chập của các hàm sinh.
 
-Sau khi hiểu rằng số phương án có thể biểu diễn bằng tích chập, ta xây dựng các hàm sinh sau (chỉ số tương ứng với số thứ tự loại thức ăn trong đề):
+Sau khi hiểu rằng số phương án có thể biểu diễn bằng tích chập, xây dựng các hàm sinh sau (chỉ số tương ứng với số thứ tự loại thức ăn trong đề):
 
 1.  $\displaystyle\sum_{n\ge 0}x^{2n}=\dfrac{1}{1-x^2}$.
 2.  $1+x$.
@@ -296,7 +296,7 @@ Sau khi hiểu rằng số phương án có thể biểu diễn bằng tích ch�
 7.  $1+x$.
 8.  $\dfrac{1}{1-x^3}$.
 
-Nhân tất cả lại, ta được hàm sinh của đáp án:
+Nhân tất cả lại, được hàm sinh của đáp án:
 
 $$
 F(x)=\frac{(1+x)(1-x^3)x(1-x^4)(1+x)}{(1-x^2)(1-x)(1-x^2)(1-x^4)(1-x)(1-x^3)}
@@ -320,7 +320,7 @@ Vì vậy đáp án là $\dbinom{n+2}{n-1}=\dbinom{n+2}{3}$.
     
     $n\le 10,0\le a\le b\le 10^7,m_i\le 10^6$.
 
-Hàm sinh cho số phương án ăn $j$ viên từ đống thứ $i$ (rõ ràng bằng $1$) là
+Hàm sinh cho số phương án ăn $j$ viên từ đống thứ $i$ (bằng $1$) là
 
 $$
 F_i(x)=\sum_{j=0}^{m_i}x^j=\frac{1-x^{m_i+1}}{1-x}
@@ -332,9 +332,9 @@ $$
 G(x)=\prod_{i=1}^n F_i(x)=(1-x)^{-n}\prod_{i=1}^n(1-x^{m_i+1})
 $$
 
-Ta cần tính $\sum_{i=a}^b[x^i]G(x)$.
+Cần tính $\sum_{i=a}^b[x^i]G(x)$.
 
-Do $n\le 10$, ta có thể khai triển trực tiếp $\prod_{i=1}^n(1-x^{m_i+1})$ (tối đa chỉ có $2^n$ hạng tử).
+Do $n\le 10$, có thể khai triển trực tiếp $\prod_{i=1}^n(1-x^{m_i+1})$ (tối đa chỉ có $2^n$ hạng tử).
 
 Sau đó áp dụng định lý nhị thức Newton cho $(1-x)^{-n}$:
 
@@ -346,7 +346,7 @@ $$
 \end{aligned}
 $$
 
-Ta liệt kê hạng tử $x^k$ trong $\prod_{i=1}^n(1-x^{m_i+1})$, giả sử hệ số của nó là $c_k$. Khi nhân với $(1-x)^{-n}$, đóng góp của nó vào đáp án là
+Liệt kê hạng tử $x^k$ trong $\prod_{i=1}^n(1-x^{m_i+1})$, giả sử hệ số của nó là $c_k$. Khi nhân với $(1-x)^{-n}$, đóng góp của nó vào đáp án là
 
 $$
 c_k\sum_{i=a-k}^{b-k}\binom{n-1+i}{i}=c_k\left(
