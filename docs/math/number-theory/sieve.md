@@ -154,7 +154,7 @@ không vượt quá $\sqrt n$.
                 prime.append(i)
     ```
 
-Tối ưu này không ảnh hưởng đến độ phức tạp tiệm cận. Trên thực tế, lặp lại
+Tối ưu này không ảnh hưởng đến độ phức tạp tiệm cận. Nếu lặp lại
 chứng minh trên sẽ thu được $n \ln \ln \sqrt n + o(n)$; theo tính chất của
 logarit, chúng tương đương về tiệm cận, nhưng số thao tác giảm đáng kể.
 

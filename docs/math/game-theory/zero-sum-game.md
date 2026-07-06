@@ -52,7 +52,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 
     Dạng bài này còn có một biến thể thường gặp: tìm số lượt ít nhất mà bên thắng cần dùng, và số lượt nhiều nhất mà bên thua có thể cầm cự. Để làm điều đó, lưu ý rằng khi bắt đầu BFS từ trạng thái kết thúc và dùng bổ đề để xác định trạng thái thắng chắc, thua chắc, số vòng BFS tại thời điểm trạng thái được xác định chính là số lượt cần tìm. Lý do là một trạng thái được xác định là thắng chắc chỉ cần có một trạng thái kế tiếp là thua chắc, nên nó luôn được chuyển từ trạng thái thua chắc có số vòng nhỏ nhất trong các trạng thái kế tiếp; còn một trạng thái được xác định là thua chắc cần mọi trạng thái kế tiếp đều là thắng chắc, nên nó luôn được chuyển từ trạng thái thắng chắc có số vòng lớn nhất trong các trạng thái kế tiếp.
 
-    Phương pháp này cũng có thể mở rộng cho [trò chơi trên đồ thị có hướng](./impartial-game.md#trò-chơi-trên-đồ-thị-có-hướng) nói chung.
+    Phương pháp này cũng có thể mở rộng cho các [trò chơi trên đồ thị có hướng](./impartial-game.md#trò-chơi-trên-đồ-thị-có-hướng) tổng quát.
 
 <span id="ví-dụ"></span>
 ### Ví dụ
@@ -124,7 +124,7 @@ Trò chơi đồng thời tổng bằng không thường được biểu diễn 
     \end{pmatrix}.
     $$
     
-    Trò chơi đồng thời hai người nói chung cũng có thể được biểu diễn dưới dạng tương tự, nên còn được gọi là [trò chơi song ma trận](https://en.wikipedia.org/wiki/Bimatrix_game) (bimatrix game). Với trò chơi tổng bằng không, do ma trận lợi ích của người chơi $1$ và ma trận lợi ích của người chơi $2$ là hai ma trận đối nhau, chỉ cần xét ma trận lợi ích của người chơi $1$:
+    Trò chơi đồng thời hai người cũng có thể được biểu diễn dưới dạng tương tự, nên còn được gọi là [trò chơi song ma trận](https://en.wikipedia.org/wiki/Bimatrix_game) (bimatrix game). Với trò chơi tổng bằng không, do ma trận lợi ích của người chơi $1$ và ma trận lợi ích của người chơi $2$ là hai ma trận đối nhau, chỉ cần xét ma trận lợi ích của người chơi $1$:
     
     $$
     V = (v(a_1,a_2))_{(a_1,a_2)\in A_1\times A_2} = \begin{pmatrix}
@@ -151,7 +151,7 @@ $$
 w_+ = \min_{a_2\in A_2}\max_{a_1\in A_1} v(a_1,a_2)
 $$
 
-Vì người chơi $1$ quan sát được hành động của người chơi $2$, đây nên là kết quả tốt nhất mà người chơi $1$ có thể đạt được. Người chơi $1$ nên kỳ vọng rằng trong trò chơi thực tế, lợi ích đạt được là $w\in[w_-,w_+]$. Mặc dù bất đẳng thức $w_-\le w_+$ luôn đúng (chứng minh xem tại [định lý đối ngẫu yếu](../linear-programming.md#nguyên-lý-đối-ngẫu)), nhưng vì dấu bằng không nhất thiết xảy ra, chỉ dùng phương pháp phân tích của trò chơi tuần tự thì nói chung không thể xác định duy nhất kết quả trò chơi.
+Vì người chơi $1$ quan sát được hành động của người chơi $2$, đây nên là kết quả tốt nhất mà người chơi $1$ có thể đạt được. Người chơi $1$ nên kỳ vọng rằng trong trò chơi thực tế, lợi ích đạt được là $w\in[w_-,w_+]$. Mặc dù bất đẳng thức $w_-\le w_+$ luôn đúng (chứng minh xem tại [định lý đối ngẫu yếu](../linear-programming.md#nguyên-lý-đối-ngẫu)), nhưng vì dấu bằng không nhất thiết xảy ra, chỉ dùng phương pháp phân tích của trò chơi tuần tự thường không thể xác định duy nhất kết quả trò chơi.
 
 ???+ example "Ví dụ (tiếp)"
     Trong trò chơi kéo búa bao, nếu có thứ tự ra tay trước sau, người đi trước sẽ thua, người đi sau sẽ thắng. Chuyển sang ngôn ngữ toán học, đó chính là bất đẳng thức sau:

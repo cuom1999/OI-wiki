@@ -22,7 +22,7 @@ $$
 
 Trong ngữ cảnh này, $\dfrac{1}{0}$ không phải là một phân số hữu tỉ theo nghĩa nghiêm ngặt; có thể hiểu nó là phân số tối giản biểu diễn $\infty$.
 
-Giữa hai phân số kề nhau $\dfrac{a}{b}$ và $\dfrac{c}{d}$ trong dãy Stern-Brocot bậc $k$, chèn trung vị phân số (mediant)[^mediant] của chúng là $\dfrac{a+c}{b+d}$, thu được dãy Stern-Brocot bậc $k+1$. Dù định nghĩa của trung vị phân số nói chung cho phép rút gọn phân số, trong quá trình xây dựng cây Stern-Brocot chỉ cần cộng riêng tử số và mẫu số, không cần lo việc rút gọn. Nhờ vậy, có thể xây dựng lặp các dãy Stern-Brocot ở mọi bậc. Một vài bước lặp đầu tiên như sau:
+Giữa hai phân số kề nhau $\dfrac{a}{b}$ và $\dfrac{c}{d}$ trong dãy Stern-Brocot bậc $k$, chèn trung vị phân số (mediant)[^mediant] của chúng là $\dfrac{a+c}{b+d}$, thu được dãy Stern-Brocot bậc $k+1$. Dù định nghĩa của trung vị phân số có thể cho phép rút gọn phân số, trong quá trình xây dựng cây Stern-Brocot chỉ cần cộng riêng tử số và mẫu số, không cần lo việc rút gọn. Nhờ vậy, có thể xây dựng lặp các dãy Stern-Brocot ở mọi bậc. Một vài bước lặp đầu tiên như sau:
 
 $$
 \begin{array}{ccccccccc}

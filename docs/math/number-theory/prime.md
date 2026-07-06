@@ -150,7 +150,7 @@ chẽ hơn.
 phương pháp xác định số nguyên tố tốt hơn. Nó do Miller và Rabin cải tiến từ
 kiểm tra Fermat. Giống các kiểm tra số nguyên tố xác suất khác, nó chỉ có thể
 phát hiện giả nguyên tố. Nếu cần xác định tất định một số là số nguyên tố, phải
-dùng các thuật toán tất định chậm hơn nhiều. Tuy vậy, trên thực tế chưa biết số nào vượt qua
+dùng các thuật toán tất định chậm hơn nhiều. Tuy vậy, chưa biết số nào vượt qua
 Miller-Rabin và các kiểm tra xác suất mạnh khác nhưng lại là hợp số, nên có
 thể yên tâm sử dụng.
 

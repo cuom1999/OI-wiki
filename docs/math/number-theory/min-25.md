@@ -80,7 +80,7 @@ $$
 Với việc tính $F_{k}(n)$, độ phức tạp thời gian của phương pháp thứ nhất được chứng minh là $O\left(n^{1 - \epsilon}\right)$ (xem mục 2.3 trong luận văn đội tuyển tập huấn của Zhu Zhenting, ["Một số bài toán tính tổng hàm số học đặc biệt"](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2018%E8%AE%BA%E6%96%87%E9%9B%86.pdf));
 Với phương pháp thứ hai, bản chất của nó chính là phần thứ hai của sàng Zhouge, cũng được nhắc đến trong luận văn của Ren Zhizhou ["Một số phương pháp tính tổng hàm nhân"](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2016%E8%AE%BA%E6%96%87%E9%9B%86.pdf) (6.5.4); độ phức tạp thời gian được chứng minh là $O\left(\frac{n^{\frac{3}{4}}}{\log{n}}\right)$.
 
-Với việc tính $F_{\mathrm{prime}}(n)$, trên thực tế cách cài đặt giống phần thứ nhất của sàng Zhouge.
+Với việc tính $F_{\mathrm{prime}}(n)$, cách cài đặt giống phần thứ nhất của sàng Zhouge.
 Xét từng $m = n / i$, chỉ khi liệt kê $p_{k}$ thỏa mãn $p_{k}^{2} \le m$ để chuyển trạng thái thì mới phát sinh đóng góp vào độ phức tạp thời gian, do đó có thể ước lượng:
 
 $$

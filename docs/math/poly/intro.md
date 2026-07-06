@@ -146,7 +146,7 @@ Tính trực tiếp $n$ số hạng đầu bằng công thức truy hồi mất 
 
 ### Các khai triển chuỗi lũy thừa thường gặp
 
-Trong giải tích toán học, một hàm một biến khả vi đến một số bậc nào đó tại một điểm hoặc trên một khoảng có thể được khai triển thành đa thức trong phạm vi tương ứng; nói chung gọi là khai triển Taylor. Nếu khai triển tại $0$, nó cũng được gọi là khai triển Maclaurin.
+Trong giải tích toán học, một hàm một biến khả vi đến một bậc nhất định tại một điểm hoặc trên một khoảng có thể được khai triển thành đa thức trong phạm vi tương ứng; khai triển này được gọi là khai triển Taylor. Nếu khai triển tại $0$, nó cũng được gọi là khai triển Maclaurin.
 
 Nếu khả vi vô hạn bậc, có thể thực hiện khai triển thành chuỗi lũy thừa. Trường hợp thường gặp nhất vẫn là khai triển tại $0$.
 

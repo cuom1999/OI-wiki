@@ -428,7 +428,7 @@ Phần này trình bày các cách cải tiến để giảm hằng số của t
 
     Điều này cũng cung cấp một cách tốt để kiểm tra phép tính thông qua việc thay đổi giá trị $z$.
 
--   Để trình bày mạch lạc, khi mô tả thuật toán chọn tách tổng $S$ tại $x^{1/4}$; nhưng trên thực tế chỉ cần có $p\le \dfrac{x}{pq}<p^2$ là đã có thể tính. Có thể tận dụng điểm này, trong khi độ phức tạp tiệm cận không đổi.
+-   Để trình bày mạch lạc, khi mô tả thuật toán chọn tách tổng $S$ tại $x^{1/4}$. Tuy nhiên, chỉ cần có $p\le \dfrac{x}{pq}<p^2$ là đã có thể tính. Có thể tận dụng điểm này mà không làm đổi độ phức tạp tiệm cận.
 
 -   Tiền xử lý phép tính bằng vài số nguyên tố đầu tiên $2,3,5$ có thể tiết kiệm thêm thời gian.
 

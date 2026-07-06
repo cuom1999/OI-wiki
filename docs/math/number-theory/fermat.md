@@ -86,7 +86,7 @@ Mệnh đề đảo của định lý nhỏ Fermat không đúng. Ngay cả khi 
     
     Lặp lại lập luận khử $\prod_{r\in R}r$ như trước, thu được $a^{\varphi(m)}\equiv 1\pmod m$.
 
-Với số nguyên tố $p$, có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler nói chung không phải số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#hàm-carmichael). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
+Với số nguyên tố $p$, có $\varphi(p)=p-1$, nên định lý nhỏ Fermat là một trường hợp đặc biệt của định lý Euler. Ngoài ra, số mũ $\varphi(m)$ trong định lý Euler không nhất thiết là số mũ nhỏ nhất làm cho công thức đúng. Có thể cải thiện nó thành $\lambda(m)$, trong đó $\lambda(\cdot)$ là [hàm Carmichael](./primitive-root.md#hàm-carmichael). Về nền tảng đại số của kết quả liên quan, có thể tham khảo mục [nhóm nhân của các lớp đồng dư nguyên](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên).
 
 <span id="định-lý-euler-mở-rộng"></span>
 ## Định lý Euler mở rộng

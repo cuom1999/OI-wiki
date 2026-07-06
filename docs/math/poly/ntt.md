@@ -66,7 +66,7 @@ Phương pháp chia để trị mà FNTT sử dụng hoàn toàn giống với p
 
 Trong thi lập trình, thuật ngữ NTT thường chỉ FNTT; thông thường, khi nói "biến đổi số học" thì mặc định là "biến đổi số học nhanh".
 
-Logic viết tắt này tương tự biến đổi Fourier nhanh. Trên thực tế, thuật ngữ "biến đổi Fourier nhanh" (FFT) chỉ "biến đổi Fourier rời rạc nhanh" (FDFT), nhưng vì tính chất "nhanh" chỉ áp dụng cho trường hợp rời rạc, thậm chí là trường hợp đặc biệt mà bậc của căn đơn vị nguyên thủy là lũy thừa của $2$, chứ không áp dụng cho trường hợp liên tục, nên từ "rời rạc" bị lược bỏ. Vì vậy FDFT trở thành FFT, tức FFT luôn chỉ trường hợp rời rạc đặc biệt đó.
+Cách viết tắt này tương tự biến đổi Fourier nhanh. Thuật ngữ "biến đổi Fourier nhanh" (FFT) vốn chỉ "biến đổi Fourier rời rạc nhanh" (FDFT), nhưng tính chất "nhanh" chỉ áp dụng cho trường hợp rời rạc, cụ thể hơn là trường hợp bậc của căn đơn vị nguyên thủy là lũy thừa của $2$, chứ không áp dụng cho trường hợp liên tục, nên từ "rời rạc" được lược bỏ. Vì vậy FDFT trở thành FFT, tức FFT luôn chỉ trường hợp rời rạc đặc biệt đó.
 
 Biến đổi số học hoặc biến đổi số học nhanh là phép toán trong nghĩa modulo, không có trường hợp liên tục, nên luôn là rời rạc và tự nhiên không cần nhắc đến từ "rời rạc".
 
