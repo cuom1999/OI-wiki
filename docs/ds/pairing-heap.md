@@ -3,10 +3,10 @@
 ## Mở đầu
 
 Heap ghép cặp (pairing heap) là một cấu trúc dữ liệu hỗ trợ các thao tác chèn,
-truy vấn/xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v.
+truy vấn hoặc xóa phần tử nhỏ nhất, hợp nhất, sửa phần tử, v.v.
 Đây là một loại heap có thể hợp nhất.
 Nó có ưu điểm là nhanh và có cấu trúc đơn giản,
-nhưng vì độ phức tạp khấu hao dựa trên phân tích thế năng nên không thể làm bền vững hóa.
+nhưng vì độ phức tạp chỉ được bảo đảm theo nghĩa khấu hao qua phân tích thế năng nên không phù hợp để bền vững hóa.
 
 <span id="định-nghĩa"></span>
 
@@ -14,14 +14,14 @@ nhưng vì độ phức tạp khấu hao dựa trên phân tích thế năng nê
 
 Heap ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất heap (như hình dưới),
 tức trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó.
-Bài viết xét heap nhỏ; các phần sau cũng dùng quy ước này.
+Bài viết xét min-heap; các phần sau cũng dùng quy ước này.
 
 ![](./images/pairingheap1.jpg)
 
 Thông thường, heap ghép cặp được lưu bằng biểu diễn con - anh em (như hình dưới).
 Tất cả các nút con của một nút tạo thành một danh sách liên kết đơn.
 Mỗi nút lưu con trỏ tới nút con đầu tiên, tức nút đầu của danh sách liên kết,
-và con trỏ tới anh em bên phải của nó.
+và con trỏ tới nút anh em bên phải của nó.
 
 Cách này thuận tiện cho việc cài đặt heap ghép cặp, đồng thời cũng giúp phân tích độ phức tạp dễ hơn.
 
@@ -45,7 +45,7 @@ Hơn nữa, bất kỳ cây nào thỏa mãn tính chất heap cũng là một h
 Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của heap ghép cặp trong thực tế.
 Để so sánh, hằng số lớn của heap Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
 
-Heap ghép cặp bảo đảm tổng độ phức tạp thông qua một trình tự thao tác được thiết kế cẩn thận.
+Heap ghép cặp bảo đảm tổng độ phức tạp bằng một trình tự thao tác được thiết kế cẩn thận.
 Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting Heap).
 Ở khía cạnh này, nó khá giống cây Splay
 (trong bài báo gốc gọi là Self Adjusting Binary Tree, tức cây nhị phân tự điều chỉnh).
@@ -65,7 +65,7 @@ Theo định nghĩa của heap ghép cặp, trọng số của nút gốc luôn 
 ### Hợp nhất
 
 Thao tác hợp nhất hai heap ghép cặp rất đơn giản:
-trước hết chọn nút gốc nhỏ hơn trong hai nút gốc làm nút gốc mới,
+trước hết chọn nút gốc có khóa nhỏ hơn trong hai nút gốc làm nút gốc mới,
 sau đó chèn nút gốc lớn hơn vào làm con của nó (xem hình dưới).
 
 ![](./images/pairingheap3.jpg)
@@ -80,7 +80,7 @@ còn nút ngoài cùng bên trái trở thành con của nút cha gần đây nh
       // Nếu một heap rỗng thì trả về heap còn lại
       if (x == nullptr) return y;
       if (y == nullptr) return x;
-      if (x->v > y->v) std::swap(x, y);  // sau khi swap, x là heap có trọng số nhỏ hơn, y là heap có trọng số lớn hơn
+      if (x->v > y->v) std::swap(x, y);  // Sau khi swap, x có khóa nhỏ hơn, y có khóa lớn hơn.
       // Đặt y làm con của x
       y->sibling = x->child;
       x->child = y;
@@ -99,10 +99,10 @@ thao tác chèn chỉ cần xem phần tử mới như một heap ghép cặp m�
 
 ### Xóa phần tử nhỏ nhất
 
-Trước hết cần nhắc rằng vài thao tác ở trên đều theo kiểu trì hoãn,
-hầu như không bảo trì cấu trúc dữ liệu ngay lập tức.
+Trước hết cần nhắc rằng một số thao tác ở trên đều mang tính trì hoãn,
+hầu như không bảo trì cấu trúc dữ liệu ngay tại thời điểm thực hiện.
 Vì vậy, thao tác xóa phần tử nhỏ nhất cần được thiết kế cẩn thận
-để bảo đảm tổng độ phức tạp không gặp vấn đề.
+để vẫn bảo đảm tổng độ phức tạp.
 
 Nút gốc chính là phần tử nhỏ nhất, nên nút cần xóa là nút gốc.
 Sau khi lấy nút gốc đi,
@@ -114,7 +114,7 @@ Một ý tưởng rất tự nhiên là dùng hàm `meld` để lần lượt h�
 Cách này vẫn đúng,
 nhưng độ phức tạp của một thao tác có thể suy giảm thành $O(n)$.
 
-Để bảo đảm tổng độ phức tạp khấu hao, cần dùng một phương pháp hợp nhất "hai bước":
+Để bảo đảm độ phức tạp khấu hao, cần dùng một phương pháp hợp nhất "hai bước":
 
 1.  Ghép các con thành từng cặp, rồi dùng thao tác `meld` để hợp nhất hai con trong cùng một cặp (xem hình 1 bên dưới).
 2.  Hợp nhất lần lượt các heap mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới) (xem hình 2 bên dưới).
@@ -129,7 +129,7 @@ Trước hết cài đặt một hàm phụ trợ `merges`, có tác dụng hợ
     ```cpp
     Node* merges(Node* x) {
       if (x == nullptr || x->sibling == nullptr)
-        return x;  // Nếu cây rỗng hoặc không có anh em kế tiếp thì không cần hợp nhất nữa, return.
+        return x;  // Nếu cây rỗng hoặc không có anh em kế tiếp thì không cần hợp nhất nữa.
       Node* y = x->sibling;                // y là anh em kế tiếp của x
       Node* c = y->sibling;                // c là anh em tiếp theo nữa
       x->sibling = y->sibling = nullptr;   // tách rời
@@ -177,7 +177,7 @@ Trước hết, định nghĩa nút được sửa thành:
       LL v;
       int id;
       Node *child, *sibling;
-      Node *father;  // thêm mới: con trỏ cha; nếu nút này là nút gốc thì trỏ tới nút rỗng nullptr
+      Node *father;  // Thêm mới: con trỏ cha; nếu nút này là nút gốc thì trỏ tới nullptr.
     };
     ```
 
@@ -189,11 +189,11 @@ Thao tác `meld` được sửa thành:
       if (x == nullptr) return y;
       if (y == nullptr) return x;
       if (x->v > y->v) std::swap(x, y);
-      if (x->child != nullptr) {  // thêm mới: duy trì con trỏ cha
+      if (x->child != nullptr) {  // Thêm mới: duy trì con trỏ cha.
         x->child->father = y;
       }
       y->sibling = x->child;
-      y->father = x;  // thêm mới: duy trì con trỏ cha
+      y->father = x;  // Thêm mới: duy trì con trỏ cha.
       x->child = y;
       return x;
     }
@@ -205,10 +205,10 @@ Thao tác `merges` được sửa thành:
     ```cpp
     Node *merges(Node *x) {
       if (x == nullptr) return nullptr;
-      x->father = nullptr;  // thêm mới: duy trì con trỏ cha
+      x->father = nullptr;  // Thêm mới: duy trì con trỏ cha.
       if (x->sibling == nullptr) return x;
       Node *y = x->sibling, *c = y->sibling;
-      y->father = nullptr;  // thêm mới: duy trì con trỏ cha
+      y->father = nullptr;  // Thêm mới: duy trì con trỏ cha.
       x->sibling = y->sibling = nullptr;
       return meld(merges(c), meld(x, y));
     }
@@ -220,8 +220,8 @@ Sau khi giảm trọng số của nút `x`,
 cây con gốc `x` vẫn thỏa mãn tính chất heap ghép cặp,
 nhưng giữa cha của `x` và `x` có thể không còn thỏa mãn tính chất heap.
 
-Do đó, tách cả cây con gốc `x` ra.
-Lúc này hai cây đều thỏa mãn tính chất heap ghép cặp,
+Do đó, tách cả cây con có gốc `x` ra.
+Lúc này cả hai cây đều thỏa mãn tính chất heap ghép cặp,
 rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tác.
 
 ???+ note "Cài đặt"
