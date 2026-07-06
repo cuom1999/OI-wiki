@@ -6,7 +6,8 @@ Trừ các hàm đã được nêu riêng, các hàm liệt kê trong trang này
 
 ## qsort
 
-Xem thêm: [`qsort`](https://en.cppreference.com/w/c/algorithm/qsort), [`std::qsort`](https://en.cppreference.com/w/cpp/algorithm/qsort)
+Xem thêm: [`qsort`](https://en.cppreference.com/w/c/algorithm/qsort),
+[`std::qsort`](https://en.cppreference.com/w/cpp/algorithm/qsort)
 
 Hàm này là hàm sắp xếp trong thư viện chuẩn C, định nghĩa trong `<stdlib.h>`.
 Tên `qsort` bắt nguồn từ [sắp xếp nhanh](./quick-sort.md), nhưng chuẩn C không
@@ -50,8 +51,8 @@ struct eg  // Cấu trúc ví dụ
   int g;
 };
 
-int compare(const void *p1,
-            const void *p2)  // Hàm so sánh cho mảng kiểu struct eg: sắp xếp theo thành viên e
+// Hàm so sánh cho mảng kiểu struct eg: sắp xếp theo thành viên e.
+int compare(const void *p1, const void *p2)
 {
   struct eg *a = (struct eg *)p1;
   struct eg *b = (struct eg *)p2;
@@ -118,9 +119,9 @@ std::nth_element(first, nth, last, cmp);
 ```
 
 Hàm này sắp xếp lại các phần tử trong `[first, last)` sao cho phần tử mà `nth`
-trỏ tới trở thành phần tử sẽ xuất hiện ở vị trí đó nếu `[first, last)` được sắp
-xếp đầy đủ. Tất cả phần tử đứng trước `nth` mới đều nhỏ hơn hoặc bằng tất cả
-phần tử đứng sau `nth` mới.
+trỏ tới trở thành phần tử sẽ nằm ở vị trí đó nếu `[first, last)` được sắp xếp
+đầy đủ. Tất cả phần tử đứng trước `nth` mới đều nhỏ hơn hoặc bằng tất cả phần tử
+đứng sau `nth` mới.
 
 Thuật toán cài đặt là một dạng sắp xếp nội quan chưa hoàn chỉnh.
 
@@ -168,15 +169,16 @@ $(\mathit{last}-\mathit{first})\log(\mathit{mid}-\mathit{first})$ lần áp dụ
 
 Nguyên lý:
 
-Ý tưởng của `std::partial_sort` là: thực hiện thao tác `make_heap()` trên khoảng
+Ý tưởng của `std::partial_sort` là thực hiện `make_heap()` trên khoảng
 `[first, mid)` trong container ban đầu để xây dựng một heap lớn nhất, rồi so
 sánh từng phần tử trong `[mid, last)` với `first`. Khi đó phần tử tại `first`
 luôn là phần tử lớn nhất trong heap. Nếu phần tử đang xét nhỏ hơn giá trị lớn
-nhất đó, hoán đổi vị trí hai phần tử, rồi điều chỉnh các phần tử trong
-`[first, mid)` để chúng tiếp tục duy trì thứ tự heap lớn nhất. Sau khi so sánh
-xong, thực hiện thêm thao tác sắp xếp heap `sort_heap()` trên các phần tử trong
-`[first, mid)`, để chúng được sắp theo thứ tự tăng dần. Lưu ý rằng thứ tự heap
-và thứ tự tăng dần là khác nhau.
+nhất đó, ta hoán đổi vị trí hai phần tử, rồi điều chỉnh các phần tử trong
+`[first, mid)` để chúng tiếp tục duy trì thứ tự heap lớn nhất.
+
+Sau khi so sánh xong, thuật toán thực hiện thêm `sort_heap()` trên các phần tử
+trong `[first, mid)`, để chúng được sắp theo thứ tự tăng dần. Lưu ý rằng thứ tự
+heap và thứ tự tăng dần là khác nhau.
 
 ## So sánh tự định nghĩa
 
@@ -213,8 +215,10 @@ bool cmp(const data u1, const data u2) {
 }
 
 // ...
-std::sort(da + 1, da + 1 + 10);  // Dùng toán tử < định nghĩa trong cấu trúc, sắp xếp từ nhỏ đến lớn
-std::sort(da + 1, da + 1 + 10, cmp);  // Dùng hàm cmp để so sánh, sắp xếp từ lớn đến nhỏ
+// Dùng toán tử < định nghĩa trong cấu trúc, sắp xếp từ nhỏ đến lớn.
+std::sort(da + 1, da + 1 + 10);
+// Dùng hàm cmp để so sánh, sắp xếp từ lớn đến nhỏ.
+std::sort(da + 1, da + 1 + 10, cmp);
 ```
 
 ### Thứ tự yếu nghiêm ngặt
@@ -236,8 +240,11 @@ Các cách làm sai thường gặp:
 
 ## Liên kết ngoài
 
--   [Bàn về ứng dụng của sắp xếp đổi chỗ phần tử kề nhau và những điểm cần lưu ý](https://ouuan.github.io/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
+-   [Bàn về ứng dụng của sắp xếp đổi chỗ phần tử kề nhau và những điểm cần lưu
+    ý][adjacent-swap-sort]
 
 ## Tài liệu tham khảo và chú thích
 
 [^note1]: Vì phần lớn thuật toán chuẩn mặc định dùng `operator<` để so sánh.
+
+[adjacent-swap-sort]: https://ouuan.github.io/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/
