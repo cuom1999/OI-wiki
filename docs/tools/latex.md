@@ -66,7 +66,7 @@ $\rightarrow$ Nhập văn bản sau:
 
 Lệnh `\documentclass` phải xuất hiện ở đầu mỗi tài liệu LaTeX. Phần văn bản trong ngoặc nhọn chỉ định kiểu tài liệu. Kiểu tài liệu **article** phù hợp với các bài viết ngắn, chẳng hạn bài báo tạp chí và báo cáo ngắn. Các kiểu tài liệu khác gồm **report** (dùng cho tài liệu dài có nhiều chương, chẳng hạn luận án tiến sĩ), **proc** (kỷ yếu hội nghị), **book** và **beamer**. Phần văn bản trong ngoặc vuông chỉ định các tùy chọn. Trong ví dụ, nó đặt khổ giấy là A4 và cỡ chữ chính là 12pt.
 
-Hai lệnh `\begin{document}` và `\end{document}` bao lấy phần nội dung văn bản. Mọi nội dung trước `\begin{document}` được xem là lệnh tiền tố và ảnh hưởng đến toàn bộ tài liệu. Mọi nội dung sau `\end{document}` đều bị bỏ qua.
+Hai lệnh `\begin{document}` và `\end{document}` bao lấy phần nội dung văn bản. Mọi nội dung trước `\begin{document}` được xem là phần mở đầu và ảnh hưởng đến toàn bộ tài liệu. Mọi nội dung sau `\end{document}` đều bị bỏ qua.
 
 Dòng trống không bắt buộc, nhưng nó giúp tài liệu dài dễ đọc hơn.
 
@@ -291,7 +291,7 @@ $\rightarrow$ Thêm nhiều văn bản hơn vào tài liệu và thử các hi�
 
 ### Chữ màu
 
-Để tài liệu hỗ trợ chữ màu, cần dùng gói lệnh. Có thể nạp nhiều gói lệnh để tăng cường khả năng dàn trang của LaTeX. Lệnh nạp gói được đặt trong phần lệnh tiền tố của tài liệu, tức là trước lệnh `\begin{document}`. Dùng `\usepackage[options]{package}` để nạp gói. Trong đó, **package** là tên gói, còn **options** là các tham số chỉ định đặc tính của gói.
+Để tài liệu hỗ trợ chữ màu, cần dùng gói lệnh. Có thể nạp nhiều gói lệnh để tăng cường khả năng dàn trang của LaTeX. Lệnh nạp gói được đặt trong phần mở đầu của tài liệu, tức là trước lệnh `\begin{document}`. Dùng `\usepackage[options]{package}` để nạp gói. Trong đó, **package** là tên gói, còn **options** là các tùy chọn chỉ định đặc tính của gói.
 
 Sau khi dùng `\usepackage{color}`, có thể gọi các màu thường gặp:
 
@@ -521,7 +521,7 @@ Lệnh `\includegraphics{...}` có thể tự động đặt hình vào tài li�
 
 ### Thực hành
 
-$\rightarrow$ Thêm `\usepackage{graphicx}` vào phần lệnh tiền tố của tài liệu. $\rightarrow$ Tìm một hình ảnh và đặt nó trong thư mục **LaTeX course**. $\rightarrow$ Tại nơi cần chèn hình, nhập nội dung sau:
+$\rightarrow$ Thêm `\usepackage{graphicx}` vào phần mở đầu của tài liệu. $\rightarrow$ Tìm một hình ảnh và đặt nó trong thư mục **LaTeX course**. $\rightarrow$ Tại nơi cần chèn hình, nhập nội dung sau:
 
 ```tex
 \begin{figure}[h!]
@@ -604,9 +604,9 @@ Tài liệu này chỉ là phần nhập môn về cách dùng ký hiệu toán 
 
 #### Số mũ và chỉ số dưới
 
-Số mũ (Powers) dùng `^` để biểu thị, chẳng hạn `$n^2$` tạo ra kết quả $n^2$.
+Số mũ dùng `^` để biểu thị, chẳng hạn `$n^2$` tạo ra kết quả $n^2$.
 
-Chỉ số dưới (Indices) dùng `_` để biểu thị, chẳng hạn `$2_a$` tạo ra kết quả $2_a$.
+Chỉ số dưới dùng `_` để biểu thị, chẳng hạn `$2_a$` tạo ra kết quả $2_a$.
 
 Nếu nội dung số mũ hoặc chỉ số dưới gồm nhiều ký tự, dùng ngoặc nhọn bao lại. Ví dụ `$b_{a-2}$` tạo ra kết quả $b_{a-2}$.
 
@@ -699,9 +699,9 @@ Tệp BibTeX chứa tất cả tài liệu cần trích dẫn trong tài liệu 
 }
 ```
 
-Mỗi tài liệu tham khảo trước hết khai báo kiểu tài liệu (reference type). Ví dụ dùng @article; các kiểu khác gồm @book, @incollection dùng để trích dẫn một chương trong sách, và @inproceedings dùng để trích dẫn bài báo hội nghị. Có thể xem thêm các kiểu được hỗ trợ [tại đây](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management).
+Mỗi tài liệu tham khảo trước hết khai báo kiểu tài liệu. Ví dụ dùng @article; các kiểu khác gồm @book, @incollection dùng để trích dẫn một chương trong sách, và @inproceedings dùng để trích dẫn bài báo hội nghị. Có thể xem thêm các kiểu được hỗ trợ [tại đây](http://en.wikibooks.org/wiki/LaTeX/Bibliography_Management).
 
-Trong cặp ngoặc nhọn tiếp theo, trước hết cần liệt kê một khóa trích dẫn (citation key). Phải bảo đảm khóa trích dẫn của các tài liệu được trích dẫn là khác nhau. Có thể tự định nghĩa chuỗi khóa, nhưng dùng tên tác giả đầu tiên kèm năm thường là một lựa chọn rõ nghĩa.
+Trong cặp ngoặc nhọn tiếp theo, trước hết cần liệt kê một khóa trích dẫn. Phải bảo đảm khóa trích dẫn của các tài liệu được trích dẫn là khác nhau. Có thể tự định nghĩa chuỗi khóa, nhưng dùng tên tác giả đầu tiên kèm năm thường là một lựa chọn rõ nghĩa.
 
 Các dòng tiếp theo gồm một số thông tin của tài liệu, theo định dạng:
 
