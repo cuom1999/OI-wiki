@@ -51,7 +51,7 @@ Sau khi dùng tối ưu $2$, chiều cao của k-D Tree được xây ra nhiều
 Lúc này, điểm nghẽn về độ phức tạp thời gian khi xây k-D Tree nằm ở việc nhanh chóng chọn ra trung vị trên một chiều,
 rồi đặt các phần tử có giá trị trên chiều đó nhỏ hơn trung vị sang bên trái trung vị, các phần tử còn lại sang bên phải.
 Nếu mỗi lần đều dùng hàm `sort` để sắp xếp theo chiều đó, độ phức tạp thời gian là $O(n\log^2 n)$.
-Thực ra, có thể tìm trung vị trong $n$ phần tử và đặt trung vị vào đúng vị trí sau khi sắp xếp với độ phức tạp $O(n)$.
+Có thể tìm trung vị trong $n$ phần tử và đặt trung vị vào đúng vị trí sau khi sắp xếp với độ phức tạp $O(n)$.
 
 Nhắc lại ý tưởng của quicksort.
 Mỗi lần chọn ra một số, đặt các số nhỏ hơn nó sang bên trái, các số lớn hơn nó sang bên phải,
@@ -106,7 +106,7 @@ Khi truy vấn hình chữ nhật $R$, chia các nút trên k-D Tree thành ba l
 3.  Bị $R$ chứa một phần.
 
 Độ phức tạp của một truy vấn phụ thuộc vào số nút loại $3$.
-Chú ý rằng hình chữ nhật của các nút loại ba hoặc chứa hoàn toàn $R$, hoặc không chứa lẫn nhau.
+Hình chữ nhật của các nút loại ba hoặc chứa hoàn toàn $R$, hoặc không chứa lẫn nhau.
 Trường hợp trước chỉ có $O(h)=O(\log n)$ nút,
 nên bây giờ phân tích số lượng của trường hợp sau.
 
@@ -115,7 +115,7 @@ sao cho hình chữ nhật truy vấn không đi qua bất kỳ điểm nào đ�
 Việc này không ảnh hưởng đến tập điểm mà truy vấn hình chữ nhật bao phủ.
 
 Với hình chữ nhật tương ứng với các nút loại $3$ không chứa lẫn nhau,
-chắc chắn có một cạnh của $R$ đi xuyên qua nó.
+luôn có một cạnh của $R$ đi xuyên qua nó.
 Vì vậy chỉ cần tính số hình chữ nhật mà mỗi cạnh của $R$ đi qua,
 tức một đoạn thẳng bất kỳ nhiều nhất đi qua bao nhiêu hình chữ nhật tương ứng với các nút.
 
@@ -124,11 +124,11 @@ Nó có bốn cháu, và từ nó đến mỗi cháu đều đã chia một lầ
 Nếu dùng cách này để chia một hình chữ nhật thành bốn hình chữ nhật con,
 một đoạn thẳng song song với trục tọa độ nhiều nhất đi qua hai vùng.
 Nói cách khác, truy vấn xuất phát từ $u$ nhiều nhất đi xuống hai cháu mà vẫn còn điểm loại $3$.
-Nếu đoạn thẳng vừa khít trùng với biên chia thì chưa chắc,
+Nếu đoạn thẳng vừa khít trùng với biên chia thì không nhất thiết như vậy,
 nhưng thao tác dịch biên hình chữ nhật truy vấn đã loại bỏ tình huống này.
 
 Do khi xây cây, mỗi điểm là trung vị của toàn bộ cây con theo chiều chia hiện tại,
-kích thước cây con chắc chắn giảm một nửa.
+kích thước cây con giảm một nửa.
 Vì vậy, nếu kích thước cây con của $u$ là $n$, có hệ thức truy hồi sau:
 
 $$
@@ -149,7 +149,7 @@ Với vấn đề này, có hai phương pháp duy trì khá thường gặp.
 
 ???+ note "Ghi chú"
     Nhiều thí sinh dùng cấu trúc scapegoat tree để duy trì.
-    Tuy nhiên, chú ý rằng trong phân tích độ phức tạp vừa rồi,
+    Tuy nhiên, trong phân tích độ phức tạp vừa rồi,
     yêu cầu kích thước cây con của con phải giảm đúng một nửa,
     tức chiều cao cây phải là $\log n+O(1)$ một cách chặt chẽ.
     Scapegoat tree chỉ thỏa mãn chiều cao $O(\log n)$,
@@ -176,7 +176,7 @@ Khi chèn, thêm một k-D Tree mới có kích thước $1$,
 rồi liên tục gộp các cây có cùng kích thước bằng cách trải phẳng rồi tái xây dựng trực tiếp.
 Khi cài đặt, có thể chỉ cần tái xây dựng một lần.
 
-Kích thước của các cây cần gộp chắc chắn bắt đầu từ $2^0$ và có các chỉ số mũ liên tiếp.
+Kích thước của các cây cần gộp bắt đầu từ $2^0$ và có các chỉ số mũ liên tiếp.
 Độ phức tạp tương tự phép cộng nhị phân, là trung bình $O(n\log^2 n)$,
 vì bản thân việc tái xây dựng có thêm một nhân tử $\log$.
 
@@ -229,7 +229,7 @@ nên cần cắt tỉa.
 Có thể duy trì giá trị tọa độ nhỏ nhất và lớn nhất trên từng chiều của tất cả các nút trong một cây con.
 Giả sử khoảng cách của cặp điểm gần nhất hiện đã tìm được là $ans$.
 Nếu khoảng cách **gần nhất** từ điểm truy vấn đến hình chữ nhật chứa tất cả các điểm trong cây con lớn hơn hoặc bằng $ans$,
-thì chắc chắn không có đáp án trong cây con này, và khi tìm kiếm không đi vào cây con đó.
+thì cây con này không chứa đáp án, và khi tìm kiếm không đi vào cây con đó.
 
 Ngoài ra, còn có thể dùng một phương pháp tìm kiếm theo kinh nghiệm:
 nếu hai cây con của một nút đều có khả năng chứa đáp án,

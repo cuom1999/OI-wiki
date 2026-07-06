@@ -22,36 +22,36 @@ Có thể chuyển bài toán thành việc duy trì các thao tác sau:
 -   Cho $k$, trong tất cả các hàm bậc nhất có miền xác định chứa $k$, tìm hàm có giá trị lớn nhất tại $x=k$; nếu có nhiều
     hàm có cùng giá trị, chọn hàm có chỉ số nhỏ nhất.
 
-???+ warning "Chú ý"
-    Khi đoạn thẳng vuông góc với trục $x$, sẽ xảy ra trường hợp chia cho không. Giả sử hai đầu mút của đoạn thẳng lần
-    lượt là $(x,y_0)$ và $(x,y_1)$, $y_0<y_1$, khi đó chèn hàm bậc nhất $f(x)=0\cdot x+y_1$ có miền xác định là $[x,x]$.
+???+ warning "Trường hợp đặc biệt"
+    Khi đoạn thẳng vuông góc với trục $x$, phép chia cho hệ số góc không xác định. Giả sử hai đầu mút của đoạn thẳng lần
+    lượt là $(x,y_0)$ và $(x,y_1)$, $y_0<y_1$; khi đó chèn hàm bậc nhất $f(x)=0\cdot x+y_1$ có miền xác định là $[x,x]$.
 
 Khi gặp cập nhật đoạn, dùng cách quen thuộc của cây phân đoạn: gán cho mỗi nút một nhãn lười. Nhãn lười của mỗi nút $i$
 là một đoạn thẳng, ký hiệu là $l_i$, biểu thị rằng cần dùng $l_i$ để cập nhật toàn bộ đoạn mà nút đó đại diện.
 
-Bây giờ cần chèn một đoạn thẳng $f$. Xét một đoạn trên cây phân đoạn được đoạn thẳng mới $f$ phủ hoàn toàn. Nếu đoạn này
-chưa có nhãn, trực tiếp gán nhãn cập nhật bằng đoạn thẳng đó.
+Khi cần chèn một đoạn thẳng $f$, xét một đoạn trên cây phân đoạn được đoạn thẳng mới $f$ phủ hoàn toàn. Nếu đoạn này
+chưa có nhãn, gán ngay nhãn cập nhật bằng đoạn thẳng đó.
 
-Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, chỉ có thể đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng
-và cũng có thể phát sinh xung đột, nên phải đệ quy đẩy nhãn xuống.
+Nếu đoạn này đã có nhãn, do các nhãn khó hợp nhất, cần đẩy nhãn xuống. Tuy nhiên các nút con cũng có nhãn riêng và vẫn
+có thể phát sinh xung đột, nên quá trình đẩy nhãn xuống phải được thực hiện đệ quy.
 
 ![](images/li-chao-tree-1.png)
 
 Như hình minh họa, dựa trên việc giá trị của đoạn thẳng mới $f$ có lớn hơn nhãn cũ $g$ hay không, có thể chia đoạn hiện
-tại thành hai đoạn con. Trong đó **chắc chắn có một đoạn con được nửa trái hoặc nửa phải chứa hoàn toàn**. Nói cách
-khác, trong hai đoạn thẳng, chắc chắn có một đoạn chỉ có thể trở thành đáp án ở nửa trái, hoặc chỉ có thể trở thành đáp
-án ở nửa phải. Dùng đoạn thẳng đó để đệ quy cập nhật cây con tương ứng, và dùng đoạn thẳng còn lại làm nhãn lười để cập
-nhật toàn bộ đoạn; nhờ vậy độ phức tạp của quá trình đệ quy đẩy xuống được bảo đảm. Một đoạn thẳng chỉ được đẩy xuống
-khi nó chỉ có thể trở thành đáp án ở nửa trái hoặc nửa phải, nên không cần lo bỏ sót đoạn thẳng nào.
+tại thành hai đoạn con. Trong đó **luôn có một đoạn con nằm trọn trong nửa trái hoặc nửa phải**. Nói cách khác, trong
+hai đoạn thẳng, luôn có một đoạn chỉ có thể trở thành đáp án ở nửa trái, hoặc chỉ có thể trở thành đáp án ở nửa phải.
+Dùng đoạn thẳng đó để đệ quy cập nhật cây con tương ứng, và dùng đoạn thẳng còn lại làm nhãn lười để cập nhật toàn bộ
+đoạn; nhờ vậy độ phức tạp của quá trình đệ quy đẩy xuống được bảo đảm. Một đoạn thẳng chỉ được đẩy xuống khi nó chỉ có
+thể trở thành đáp án ở nửa trái hoặc nửa phải, vì vậy không bỏ sót đoạn thẳng nào.
 
 Cụ thể, giả sử trung điểm của đoạn hiện tại là $m$. So sánh giá trị của đoạn thẳng mới $f$ tại trung điểm với giá trị của
 đoạn thẳng tối ưu cũ $g$ tại trung điểm.
 
 Nếu đoạn thẳng mới $f$ tốt hơn, hoán đổi $f$ và $g$. Khi đó chỉ cần xét trường hợp tại trung điểm $f$ không tốt bằng $g$:
 
-1.  Nếu tại đầu mút trái $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa trái. Khi đó $f$ chỉ có thể tốt hơn
+1.  Nếu tại đầu mút trái $f$ tốt hơn, thì $f$ và $g$ có giao điểm trong nửa trái. Khi đó $f$ chỉ có thể tốt hơn
     $g$ ở nửa trái, nên đệ quy xuống con trái để đẩy nhãn.
-2.  Nếu tại đầu mút phải $f$ tốt hơn, thì $f$ và $g$ chắc chắn có giao điểm trong nửa phải. Khi đó $f$ chỉ có thể tốt hơn
+2.  Nếu tại đầu mút phải $f$ tốt hơn, thì $f$ và $g$ có giao điểm trong nửa phải. Khi đó $f$ chỉ có thể tốt hơn
     $g$ ở nửa phải, nên đệ quy xuống con phải để đẩy nhãn.
 3.  Nếu tại cả hai đầu mút trái và phải $g$ đều tốt hơn, thì $f$ không thể trở thành đáp án, không cần tiếp tục đẩy xuống.
 
@@ -102,12 +102,12 @@ Tách đoạn thẳng:
     }
     ```
 
-Chú ý rằng nhãn lười không tương đương với đoạn thẳng có giá trị lớn nhất tại trung điểm của đoạn.
+Nhãn lười không tương đương với đoạn thẳng có giá trị lớn nhất tại trung điểm của đoạn.
 
 ![](images/li-chao-tree-2.png)
 
 Như hình minh họa, sau khi thêm đoạn thẳng màu vàng, chỉ nhãn của nút màu đỏ được cập nhật, còn nhãn của các nút màu xanh
-lá vẫn chưa thay đổi. Nhưng tại trung điểm của các đoạn màu xanh lá thứ hai, thứ ba và thứ tư, đoạn thẳng màu vàng có
+lá vẫn chưa thay đổi. Tuy vậy, tại trung điểm của các đoạn màu xanh lá thứ hai, thứ ba và thứ tư, đoạn thẳng màu vàng có
 giá trị lớn nhất.
 
 Khi truy vấn, có thể dùng tư tưởng vĩnh cửu hóa nhãn: trong các đoạn trên cây phân đoạn chứa $x$ (không quá $O(\log n)$

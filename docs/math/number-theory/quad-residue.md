@@ -3,7 +3,7 @@ author: hly1204, ShaoChenHeng, Chrogeek, Enter-tainer, Great-designer, iamtwz, m
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Có thể xem thặng dư bậc hai là việc bàn về tính khả thi của phép **khai căn bậc hai** theo modulo. Với khai căn bậc cao hơn, xem [thặng dư bậc $k$](./residue.md).
+Thặng dư bậc hai mô tả tính khả thi của phép **khai căn bậc hai** theo modulo. Với khai căn bậc cao hơn, xem [thặng dư bậc $k$](./residue.md).
 
 <span id="định-nghĩa"></span>
 ## Định nghĩa
@@ -20,7 +20,7 @@ Có thể xem thặng dư bậc hai là việc bàn về tính khả thi của p
 <span id="tiêu-chuẩn-euler"></span>
 ## Tiêu chuẩn Euler
 
-Khi modulo là số nguyên tố lẻ, có định lý sau:
+Với modulo là số nguyên tố lẻ, áp dụng định lý sau:
 
 ???+ abstract "Tiêu chuẩn Euler"
     Với số nguyên tố lẻ $p$ và số nguyên $a$ thỏa $(a,p)=1$, có
@@ -32,13 +32,13 @@ Khi modulo là số nguyên tố lẻ, có định lý sau:
     \end{cases}
     $$
     
-    Tức với $p$ và $a$ như trên,
+    Nói cách khác, với $p$ và $a$ như trên,
     
     1.  $a$ là thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{\frac{p-1}{2}}\equiv 1 \pmod p$.
     2.  $a$ là bất thặng dư bậc hai modulo $p$ khi và chỉ khi $a^{\frac{p-1}{2}}\equiv -1 \pmod p$.
 
 ??? note "Chứng minh"
-    Trước hết, từ [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat) có $a^{p-1}\equiv 1\pmod p$, nên
+    Từ [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fermat), có $a^{p-1}\equiv 1\pmod p$, nên
     
     $$
     \left(a^{\frac{p-1}{2}}+1\right)\left(a^{\frac{p-1}{2}}-1\right)\equiv 0\pmod p,
@@ -71,7 +71,7 @@ Dựa trên tiêu chuẩn Euler, có hệ quả sau:
 ??? note "Chứng minh"
     Theo tiêu chuẩn Euler, xét $a^{\frac{p-1}{2}}\equiv 1\pmod p.$
     
-    Chú ý rằng $\dfrac{p-1}{2}\mid (p-1)$. Theo [Định lý 6 về phương trình đồng dư](./congruence-equation.md#định-lý-6), phương trình $a^{\frac{p-1}{2}}\equiv 1\pmod p$ có $\dfrac{p-1}{2}$ nghiệm. Vì vậy trong số các lớp dư modulo $p$, số thặng dư bậc hai và số bất thặng dư bậc hai đều bằng $\dfrac{p-1}{2}$.
+    Do $\dfrac{p-1}{2}\mid (p-1)$, theo [Định lý 6 về phương trình đồng dư](./congruence-equation.md#định-lý-6), phương trình $a^{\frac{p-1}{2}}\equiv 1\pmod p$ có $\dfrac{p-1}{2}$ nghiệm. Vì vậy trong số các lớp dư modulo $p$, số thặng dư bậc hai và số bất thặng dư bậc hai đều bằng $\dfrac{p-1}{2}$.
 
 <span id="ký-hiệu-legendre"></span>
 ## Ký hiệu Legendre
@@ -89,7 +89,7 @@ Dựa trên tiêu chuẩn Euler, có hệ quả sau:
     \end{cases}
     $$
 
-Tức với $a$ thỏa $(a,p)=1$,
+Nói cách khác, với $a$ thỏa $(a,p)=1$,
 
 -   $a$ là thặng dư bậc hai modulo $p$ khi và chỉ khi $\left(\dfrac{a}{p}\right)=1.$
 -   $a$ là bất thặng dư bậc hai modulo $p$ khi và chỉ khi $\left(\dfrac{a}{p}\right)=-1.$
@@ -142,7 +142,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
 
 ??? note "Chứng minh"
     1.  Suy ra trực tiếp từ [định nghĩa ký hiệu Legendre](#ký-hiệu-legendre) và [tiêu chuẩn Euler](#tiêu-chuẩn-euler).
-    2.  Chú ý rằng
+    2.  Từ tính chất đồng dư,
     
         $$
         a_1\equiv a_2\pmod p\implies \left(\frac{a_1}{p}\right)\equiv\left(\frac{a_2}{p}\right)\pmod p,
@@ -166,7 +166,7 @@ Bảng dưới đây liệt kê một phần giá trị của ký hiệu Legendr
         $$
     4.  Xem [luật thuận nghịch bậc hai](#luật-thuận-nghịch-bậc-hai).
 
-Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì có thể tính ký hiệu Legendre trong mọi trường hợp hợp lệ. Tiếp theo là một định lý quan trọng, thiết lập liên hệ giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó có thể tính theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#thuật-toán-euclid).
+Dựa trên các tính chất trên, nếu tính được giá trị của $\left(\dfrac{p}{q}\right)$ với mọi số nguyên tố lẻ $p$ và $q$, thì ký hiệu Legendre có thể được tính trong mọi trường hợp hợp lệ. Định lý quan trọng tiếp theo thiết lập liên hệ giữa $\left(\dfrac{p}{q}\right)$ và $\left(\dfrac{q}{p}\right)$, nhờ đó việc tính toán đi theo ý tưởng tương tự [thuật toán Euclid](./gcd.md#thuật-toán-euclid).
 
 <span id="luật-thuận-nghịch-bậc-hai"></span>
 ### Luật thuận nghịch bậc hai
@@ -284,7 +284,7 @@ Luật thuận nghịch bậc hai không chỉ dùng để xác định số $n$
     -   Các số nguyên tố lẻ $p$ sao cho $-3$ là thặng dư bậc hai modulo $p$ thỏa $p\equiv 1\pmod 3.$
     -   Các số nguyên tố lẻ $p$ sao cho $-2$ và $3$ đồng thời là thặng dư bậc hai modulo $p$ thỏa $p\equiv 11\pmod{24}.$
 
-Ngoài ra, còn có thể chứng minh các kết luận như "có vô hạn số nguyên tố dạng $4k+1$". Loại kết luận này thực ra là hệ quả đơn giản của [định lý Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions).
+Ngoài ra, các kết luận như "có vô hạn số nguyên tố dạng $4k+1$" cũng có thể được chứng minh. Những kết luận này là hệ quả đơn giản của [định lý Dirichlet](https://en.wikipedia.org/wiki/Dirichlet%27s_theorem_on_arithmetic_progressions).
 
 <span id="ký-hiệu-jacobi"></span>
 ## Ký hiệu Jacobi
@@ -301,14 +301,14 @@ Luật thuận nghịch bậc hai gợi ý cách mở rộng ký hiệu Legendre
     Trong đó $\left(\frac{a}{p_i}\right)$ ở vế phải là [ký hiệu Legendre](#ký-hiệu-legendre). Ngoài ra, với số nguyên $a$ có $\left(\dfrac{a}{1}\right)=1.$
 
 ???+ warning "Cảnh báo"
-    Thông thường không phân biệt ký hiệu Legendre và ký hiệu Jacobi, vì từ tính nhân hoàn toàn có thể thấy ký hiệu Jacobi có các tính chất giống ký hiệu Legendre, nên cách tính hai ký hiệu này là như nhau. Tuy nhiên cần chú ý một điểm: khi $m$ **không phải số nguyên tố lẻ**, giá trị $\left(\dfrac{a}{m}\right)$ **không còn tương đương** với việc $a$ là thặng dư bậc hai modulo $m$. Nhưng nếu $\left(\dfrac{a}{m}\right)=-1$, thì $m$ có ít nhất một (thực ra là số lẻ) thừa số nguyên tố $p$ sao cho $a$ là bất thặng dư bậc hai modulo $p$; do đó lúc này $a$ là bất thặng dư bậc hai modulo $m$.
+    Thông thường không phân biệt ký hiệu Legendre và ký hiệu Jacobi, vì tính nhân hoàn toàn cho thấy ký hiệu Jacobi có các tính chất giống ký hiệu Legendre, nên cách tính hai ký hiệu này là như nhau. Tuy nhiên có một điểm cần lưu ý: khi $m$ **không phải số nguyên tố lẻ**, giá trị $\left(\dfrac{a}{m}\right)$ **không còn tương đương** với việc $a$ là thặng dư bậc hai modulo $m$. Nhưng nếu $\left(\dfrac{a}{m}\right)=-1$, thì số thừa số nguyên tố $p$ của $m$ sao cho $a$ là bất thặng dư bậc hai modulo $p$ là số lẻ và ít nhất bằng một; do đó lúc này $a$ là bất thặng dư bậc hai modulo $m$.
 
-Có thể mở rộng mẫu số từ số lẻ dương sang **số nguyên** bất kỳ bằng cách bổ sung định nghĩa cho $\left(\dfrac{a}{-1}\right)$, $\left(\dfrac{a}{0}\right)$ và $\left(\dfrac{a}{2}\right)$. Như vậy thu được [ký hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol).
+Mẫu số có thể được mở rộng từ số lẻ dương sang **số nguyên** bất kỳ bằng cách bổ sung định nghĩa cho $\left(\dfrac{a}{-1}\right)$, $\left(\dfrac{a}{0}\right)$ và $\left(\dfrac{a}{2}\right)$. Khi đó thu được [ký hiệu Kronecker](https://en.wikipedia.org/wiki/Kronecker_symbol).
 
 <span id="khai-căn-bậc-hai-trong-nghĩa-modulo"></span>
 ## Khai căn bậc hai theo modulo
 
-Phần này thảo luận các thuật toán khai căn bậc hai theo modulo. Cụ thể, phần này chủ yếu giới thiệu trường hợp modulo nguyên tố. Với modulo tổng quát, có thể tham khảo phần thảo luận về [khai căn bậc cao theo modulo](./residue.md#khai-căn-theo-modulo).
+Phần này thảo luận các thuật toán khai căn bậc hai theo modulo, chủ yếu trong trường hợp modulo nguyên tố. Với modulo tổng quát, có thể tham khảo phần thảo luận về [khai căn bậc cao theo modulo](./residue.md#khai-căn-theo-modulo).
 
 <span id="thuật-toán-cho-các-trường-hợp-đặc-biệt"></span>
 ### Thuật toán cho các trường hợp đặc biệt
@@ -360,7 +360,7 @@ Thuật toán Cipolla dùng để giải phương trình đồng dư $y^2\equiv 
 Phần này xét phép toán trong $\mathbf{F}_p\lbrack x\rbrack /(x^2-g)$, với $g \in \mathbf{F}_p$.
 
 ??? note "Cách tính"
-    Nếu chưa quen với [vành đa thức](../algebra/ring-theory.md#vành-đa-thức), có thể hiểu đơn giản rằng mỗi phần tử của tập này đều có dạng $a_0+a_1x$ với $a_0,a_1\in\mathbf F_p$, và tuân theo các quy tắc tính sau:
+    Nếu chưa quen với [vành đa thức](../algebra/ring-theory.md#vành-đa-thức), có thể hiểu đơn giản rằng mỗi phần tử của tập này đều có dạng $a_0+a_1x$ với $a_0,a_1\in\mathbf F_p$, và tuân theo các quy tắc tính dưới đây:
     
     $$
     \begin{aligned}
@@ -369,19 +369,19 @@ Phần này xét phép toán trong $\mathbf{F}_p\lbrack x\rbrack /(x^2-g)$, vớ
     \end{aligned}
     $$
     
-    Trong cấu trúc này, $x$ không phải một số cụ thể, mà là ký hiệu hình thức trong đa thức. Điểm then chốt của phép toán là dùng $x^2 \equiv g \pmod{(x^2-g)}$ để chuyển hạng bậc hai thành hạng bậc nhất và hạng hằng. Ngoài ra, mọi phép toán số nguyên đều cần lấy modulo $p$.
+    Trong cấu trúc này, $x$ không phải một số cụ thể, mà là ký hiệu hình thức trong đa thức. Điểm then chốt của phép toán là dùng $x^2 \equiv g \pmod{(x^2-g)}$ để chuyển hạng bậc hai thành hạng bậc nhất và hạng hằng. Ngoài ra, mọi phép toán trên số nguyên đều cần lấy modulo $p$.
     
     Để biết thêm về cấu trúc này, xem các trang [đa thức](../poly/intro.md) và [lý thuyết trường](../algebra/field-theory.md).
 
-Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là bất thặng dư bậc hai. Với $a \equiv 0 \pmod p$ thì không thể tìm được $r$ như vậy, nên cần xử lý riêng. Phần dưới chỉ xét trường hợp $a \not\equiv 0 \pmod p$. Khi đó có thể chọn ngẫu nhiên một $r$ rồi kiểm tra; kỳ vọng tìm được sau $2$ bước. Khi ấy, $(r-x)^{\frac{p+1}{2}}\bmod (x^2-(r^2-a))$ là một nghiệm, có thể tính bằng lũy thừa nhanh.
+Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là bất thặng dư bậc hai. Với $a \equiv 0 \pmod p$ thì không thể tìm được $r$ như vậy, nên cần xử lý riêng. Phần dưới chỉ xét trường hợp $a \not\equiv 0 \pmod p$. Khi đó có thể chọn ngẫu nhiên một $r$ rồi kiểm tra; kỳ vọng tìm được sau $2$ bước. Khi ấy, $(r-x)^{\frac{p+1}{2}}\bmod (x^2-(r^2-a))$ là một nghiệm và có thể được tính bằng lũy thừa nhanh.
 
 ??? note "Vì sao kỳ vọng chỉ cần hai bước"
-    Xét trường hợp $r^2-a$ là bình phương modulo $p$ (kể cả $0$). Khi đó tồn tại $x$ sao cho $r^2-a \equiv x^2 \pmod p$, chuyển vế được $(r+x)(r-x) \equiv a \pmod p$. Mỗi giá trị $(r+x) \in [1, p-1]$ tương ứng một-một với một nghiệm $(r,x)$, nên phương trình này có tổng cộng $p-1$ nghiệm. Chia thành hai trường hợp $x \equiv 0$ và $x \not\equiv 0$. Với $x \equiv 0$, vì $a$ là thặng dư bậc hai, có $2$ giá trị $r$ tương ứng; với $x \not\equiv 0$, có $p-1-2$ trường hợp, mỗi $r$ tương ứng với hai trường hợp trong đó, nên có tổng cộng $\dfrac{p-3}{2}$ giá trị $r$. Tóm lại, có $2+\dfrac{p-3}{2}=\dfrac{p+1}{2}$ trường hợp khiến $r^2-a$ là bình phương modulo $p$ (kể cả $0$). Vì vậy xác suất nhận được bất thặng dư bậc hai trong mỗi lần chọn ngẫu nhiên là $\dfrac{p-1}{2p}$, và số bước kỳ vọng là $\dfrac{2p}{p-1} \approx 2$.
+    Xét trường hợp $r^2-a$ là bình phương modulo $p$ (kể cả $0$). Khi đó tồn tại $x$ sao cho $r^2-a \equiv x^2 \pmod p$, chuyển vế được $(r+x)(r-x) \equiv a \pmod p$. Mỗi giá trị $(r+x) \in [1, p-1]$ tương ứng một-một với một nghiệm $(r,x)$, nên phương trình này có tổng cộng $p-1$ nghiệm. Chia thành hai trường hợp $x \equiv 0$ và $x \not\equiv 0$. Với $x \equiv 0$, vì $a$ là thặng dư bậc hai, có $2$ giá trị $r$ tương ứng; với $x \not\equiv 0$, có $p-1-2$ trường hợp, mỗi $r$ tương ứng với hai trường hợp trong đó, nên có tổng cộng $\dfrac{p-3}{2}$ giá trị $r$. Tóm lại, có $2+\dfrac{p-3}{2}=\dfrac{p+1}{2}$ trường hợp khiến $r^2-a$ là bình phương modulo $p$ (kể cả $0$). Vì vậy xác suất nhận được bất thặng dư bậc hai trong mỗi lần chọn ngẫu nhiên là $\dfrac{p-1}{2p}$, và số bước kỳ vọng bằng $\dfrac{2p}{p-1} \approx 2$.
 
 ???+ note "Chứng minh"
     Để tiện trình bày, trước hết đặt $f(x)=x^2-(r^2-a)\in\mathbf{F}_p\lbrack x\rbrack$.
     
-    Cần chứng minh rằng $(r-x)^{\frac{p+1}{2}} \bmod f(x)$ là nghiệm của phương trình ban đầu và thuộc $\mathbf{F}_p$. Trước hết chứng minh vế đầu, tức chứng minh $(r-x)^{p+1}\equiv a\pmod {f(x)}$. Để làm việc này, cần hai bổ đề:
+    Cần chứng minh rằng $(r-x)^{\frac{p+1}{2}} \bmod f(x)$ là nghiệm của phương trình ban đầu và thuộc $\mathbf{F}_p$. Trước hết chứng minh vế đầu, tức chứng minh $(r-x)^{p+1}\equiv a\pmod {f(x)}$. Việc này dùng hai bổ đề:
     
     **Bổ đề 1:** $x^p \equiv -x \pmod {f(x)}$
     
@@ -407,7 +407,7 @@ Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là 
     \end{aligned}
     $$
     
-    Có hai bổ đề này, quay lại chứng minh biểu thức ban đầu:
+    Từ hai bổ đề trên, quay lại chứng minh biểu thức ban đầu:
     
     $$
     \begin{aligned}
@@ -431,7 +431,7 @@ Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là 
     
     Hệ số của $x$ ở vế trái là $0$, nên hệ số của $x$ ở vế phải cũng bằng $0$, tức $a_0a_1 \equiv 0 \pmod p$. Vì đã giả sử $a_1 \not\equiv 0 \pmod p$, suy ra $a_0 \equiv 0 \pmod p$. Khi đó $(a_1x)^2 \equiv a \pmod {f(x)}$, tức $r^2-a \equiv aa_1^{-2} \pmod p$.
     
-    Vì $a$ và $a_1^{-2}$ đều là thặng dư bậc hai, từ tính nhân của ký hiệu Legendre suy ra $aa_1^{-2}$ cũng là thặng dư bậc hai. Điều này mâu thuẫn với việc $r^2-a$ là bất thặng dư bậc hai. Vậy không tồn tại nghiệm nào của phương trình ban đầu có hệ số của $x$ khác $0$; nghiệm tìm được cũng có hệ số của $x$ bằng $0$.
+    Vì $a$ và $a_1^{-2}$ đều là thặng dư bậc hai, từ tính nhân của ký hiệu Legendre suy ra $aa_1^{-2}$ cũng là thặng dư bậc hai. Điều này mâu thuẫn với việc $r^2-a$ là bất thặng dư bậc hai. Vậy không tồn tại nghiệm nào của phương trình ban đầu có hệ số của $x$ khác $0$; nghiệm tìm được vì thế cũng có hệ số của $x$ bằng $0$.
 
 ??? example "Bài mẫu [Luogu P5491 [Mẫu] Thặng dư bậc hai](https://www.luogu.com.cn/problem/P5491)"
     ```cpp
@@ -441,7 +441,7 @@ Bước đầu tiên của thuật toán là tìm một $r$ sao cho $r^2-a$ là 
 <span id="thuật-toán-bostan-mori"></span>
 ### Thuật toán Bostan-Mori
 
-Thuật toán này dựa trên thuật toán Cipolla: bài toán được chuyển thành [truy hồi tuyến tính thuần nhất hệ số hằng](../poly/linear-recurrence.md), rồi áp dụng thuật toán Bostan-Mori. Xét một cách mô tả thường gặp khác của thuật toán Cipolla: $b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ là một nghiệm thỏa $b^2\equiv a\pmod{p}$[^ref3], trong đó $x^2-tx+a\in \mathbf{F}_p\lbrack x\rbrack$ là đa thức bất khả quy. Hệ số $t$ cũng được chọn bằng phương pháp ngẫu nhiên. Phần chứng minh lược bỏ. Dựa trên thuật toán trong bài báo của Bostan và Mori[^ref4], có thể thấy bài toán được chuyển thành việc tìm một hệ số của nghịch đảo nhân của chuỗi lũy thừa hình thức:
+Thuật toán này dựa trên thuật toán Cipolla: bài toán được chuyển thành [truy hồi tuyến tính thuần nhất hệ số hằng](../poly/linear-recurrence.md), rồi áp dụng thuật toán Bostan-Mori. Xét một cách mô tả thường gặp khác của thuật toán Cipolla: $b=x^{\left(p+1\right)/2}\bmod{\left(x^2-tx+a\right)}$ là một nghiệm thỏa $b^2\equiv a\pmod{p}$[^ref3], trong đó $x^2-tx+a\in \mathbf{F}_p\lbrack x\rbrack$ là đa thức bất khả quy. Hệ số $t$ cũng được chọn bằng phương pháp ngẫu nhiên. Phần chứng minh được lược bỏ. Dựa trên thuật toán trong bài báo của Bostan và Mori[^ref4], bài toán được chuyển thành việc tìm một hệ số của nghịch đảo nhân của chuỗi lũy thừa hình thức:
 
 $$
 b=\left\lbrack x^{(p+1)/2}\right\rbrack\dfrac{1}{1-tx+ax^2}
