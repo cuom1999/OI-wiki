@@ -2,20 +2,20 @@
 
 ![Sơ đồ minh họa bảng ST](images/st.svg)
 
-Bảng ST (Sparse Table, bảng thưa) là cấu trúc dữ liệu dùng để giải các **bài toán có đóng góp lặp lại**.
+Bảng ST (Sparse Table, bảng thưa) là cấu trúc dữ liệu dùng để giải các **bài toán có phép toán lũy đẳng**.
 
-???+ note "Bài toán có đóng góp lặp lại là gì?"
-    **Bài toán có đóng góp lặp lại** là bài toán mà phép toán $\operatorname{opt}$ thỏa mãn
-    $x\operatorname{opt} x=x$. Khi đó, truy vấn đoạn tương ứng cho phép một phần tử được "đóng góp" nhiều lần mà kết quả
-    không đổi. Ví dụ, phép lấy giá trị lớn nhất có $\max(x,x)=x$, phép gcd có $\operatorname{gcd}(x,x)=x$, nên RMQ và
+???+ note "Bài toán có phép toán lũy đẳng là gì?"
+    **Bài toán có phép toán lũy đẳng** là bài toán mà phép toán $\operatorname{opt}$ thỏa mãn
+    $x\operatorname{opt} x=x$. Khi đó, trong truy vấn đoạn, một phần tử có thể được "đóng góp" nhiều lần mà kết quả
+    không đổi. Ví dụ, phép lấy giá trị lớn nhất có $\max(x,x)=x$, phép GCD có $\operatorname{gcd}(x,x)=x$, nên RMQ và
     GCD trên đoạn đều thuộc loại này. Ngược lại, tổng trên đoạn không có tính chất đó: nếu các đoạn đã tiền xử lý bị
     chồng lấn khi tính tổng, phần chồng lấn sẽ bị cộng hai lần. Ngoài ra, $\operatorname{opt}$ còn phải thỏa mãn tính
-    kết hợp thì mới có thể dùng bảng ST để giải.
+    kết hợp thì mới có thể dùng bảng ST.
 
 ???+ note "RMQ là gì?"
     RMQ thường là viết tắt của Range Minimum Query, tức truy vấn giá trị nhỏ nhất trên đoạn. Trong nhiều tài liệu thi
-    lập trình, thuật ngữ này cũng được dùng rộng hơn cho Range Maximum/Minimum Query, tức truy vấn giá trị lớn
-    nhất/nhỏ nhất trên đoạn. Có nhiều cách giải bài toán RMQ; có thể tham khảo [chuyên đề RMQ](../topic/rmq.md).
+    lập trình, thuật ngữ này cũng được dùng rộng hơn cho Range Maximum/Minimum Query, tức truy vấn giá trị lớn nhất hoặc
+    nhỏ nhất trên đoạn. Có nhiều cách giải bài toán RMQ; có thể tham khảo [chuyên đề RMQ](../topic/rmq.md).
 
 ## Dẫn nhập
 
@@ -30,18 +30,17 @@ Cách này không đáp ứng được giới hạn thời gian.
 ## Bảng ST
 
 Bảng ST dựa trên tư tưởng [nhân đôi](../basic/binary-lifting.md), có thể tiền xử lý trong $\Theta(n\log n)$ và trả lời
-mỗi truy vấn trong $\Theta(1)$. Tuy nhiên, cấu trúc này không hỗ trợ thao tác cập nhật.
+mỗi truy vấn trong $\Theta(1)$. Tuy nhiên, cấu trúc này không hỗ trợ cập nhật.
 
 Dựa trên tư tưởng nhân đôi, xét cách tìm giá trị lớn nhất trên đoạn. Nếu làm theo quy trình nhân đôi thông thường, mỗi
 lần nhảy $2^i$ bước, độ phức tạp truy vấn vẫn là $\Theta(\log n)$. Mức này không tốt hơn cây phân đoạn, trong khi bước
 tiền xử lý còn chậm hơn cây phân đoạn.
 
-Vì $\max(x,x)=x$, bài toán giá trị lớn nhất trên đoạn có tính chất "đóng góp lặp lại". Do đó, ngay cả khi các đoạn tiền
-xử lý dùng để trả lời truy vấn có phần chồng lấn, miễn là hợp của chúng đúng bằng đoạn cần hỏi, đáp án cuối cùng vẫn
-chính xác.
+Vì $\max(x,x)=x$, bài toán giá trị lớn nhất trên đoạn có tính chất lũy đẳng. Do đó, ngay cả khi các đoạn tiền xử lý dùng
+để trả lời truy vấn có phần chồng lấn, miễn là hợp của chúng đúng bằng đoạn cần hỏi, đáp án cuối cùng vẫn chính xác.
 
-Từ cách phủ này, nhiều nhất hai đoạn đã tiền xử lý là đủ để bao phủ đoạn truy vấn. Do đó, độ phức tạp truy vấn có thể
-giảm xuống $\Theta(1)$, rất hiệu quả trong các bài có nhiều truy vấn.
+Với cách phủ này, chỉ cần nhiều nhất hai đoạn đã tiền xử lý để bao phủ đoạn truy vấn. Do đó, độ phức tạp truy vấn có
+thể giảm xuống $\Theta(1)$, rất hiệu quả trong các bài có nhiều truy vấn.
 
 Cách cài đặt cụ thể như sau:
 
@@ -49,20 +48,20 @@ Gọi $f(i,j)$ là giá trị lớn nhất trong đoạn $[i,i+2^j-1]$.
 
 Theo định nghĩa, $f(i,0)=a_i$.
 
-Theo định nghĩa, chiều thứ hai tương ứng với việc "nhảy $2^j-1$ bước" trong nhân đôi. Dựa trên tư tưởng nhân đôi, có
-phương trình chuyển trạng thái: $f(i,j)=\max(f(i,j-1),f(i+2^{j-1},j-1))$.
+Theo định nghĩa, chiều thứ hai tương ứng với việc "nhảy $2^j-1$ bước" trong nhân đôi. Từ đó có phương trình chuyển trạng
+thái: $f(i,j)=\max(f(i,j-1),f(i+2^{j-1},j-1))$.
 
 ![](./images/st-preprocess-lift.svg)
 
 Đó là phần tiền xử lý. Phần truy vấn có thể cài đặt như sau:
 
-Với mỗi truy vấn $[l,r]$, chia nó thành hai phần: $[l,l+2^s-1]$ và $[r-2^s+1,r]$, trong đó
-$s=\left\lfloor\log_2(r-l+1)\right\rfloor$. Giá trị lớn nhất của kết quả trên hai phần này chính là đáp án.
+Với mỗi truy vấn $[l,r]$, chia nó thành hai đoạn: $[l,l+2^s-1]$ và $[r-2^s+1,r]$, trong đó
+$s=\left\lfloor\log_2(r-l+1)\right\rfloor$. Giá trị lớn nhất của kết quả trên hai đoạn này chính là đáp án.
 
 ![Quá trình truy vấn của bảng ST](./images/st-query.svg)
 
-Theo lập luận về "bài toán có đóng góp lặp lại", phép lấy giá trị lớn nhất không bị ảnh hưởng bởi phần chồng lấn. Đồng
-thời, hai đoạn nói trên phủ hoàn toàn $[l,r]$, nên đáp án thu được là đúng.
+Theo lập luận về tính lũy đẳng, phép lấy giá trị lớn nhất không bị ảnh hưởng bởi phần chồng lấn. Đồng thời, hai đoạn
+nói trên phủ hoàn toàn $[l,r]$, nên đáp án thu được là đúng.
 
 ???+ example "[Luogu P3865【Mẫu】Bảng ST & bài toán RMQ](https://www.luogu.com.cn/problem/P3865) Cài đặt tham khảo"
     === "Phong cách C"
@@ -100,23 +99,23 @@ $$
 
 ## Dùng bảng ST để duy trì thông tin khác
 
-Ngoài RMQ, còn có các "bài toán có đóng góp lặp lại" khác. Chẳng hạn, "phép AND bit trên đoạn", "phép OR bit trên
+Ngoài RMQ, còn có các bài toán đoạn khác có phép toán lũy đẳng. Chẳng hạn, "phép AND bit trên đoạn", "phép OR bit trên
 đoạn", "GCD trên đoạn" đều có thể được giải hiệu quả bằng bảng ST.
 
-Cần lưu ý rằng với "GCD trên đoạn", độ phức tạp truy vấn của bảng ST không tốt hơn cây phân đoạn. Gọi miền giá trị là
-$w$, độ phức tạp truy vấn của bảng ST là $\Theta(\log w)$, còn cây phân đoạn là $\Theta(\log n+\log w)$, và miền giá
-trị thường lớn hơn $n$. Tuy nhiên, độ phức tạp tiền xử lý của bảng ST cũng không kém hơn cây phân đoạn, trong khi độ
-phức tạp cài đặt của bảng ST đơn giản hơn cây phân đoạn rất nhiều.
+Cần lưu ý rằng với "GCD trên đoạn", độ phức tạp truy vấn của bảng ST không tốt hơn cây phân đoạn một cách rõ rệt. Gọi
+chặn trên của miền giá trị là $w$, độ phức tạp truy vấn của bảng ST là $\Theta(\log w)$, còn cây phân đoạn là
+$\Theta(\log n+\log w)$, và miền giá trị thường lớn hơn $n$. Tuy nhiên, độ phức tạp tiền xử lý của bảng ST cũng không
+kém hơn cây phân đoạn, trong khi cách cài đặt đơn giản hơn cây phân đoạn rất nhiều.
 
-Nếu phân tích sâu hơn, các "bài toán có đóng góp lặp lại" thường chứa một thành phần tương tự RMQ. Ví dụ, "AND bit
-trên đoạn" tương đương với lấy giá trị nhỏ nhất trên từng bit, còn "GCD trên đoạn" tương đương với lấy số mũ nhỏ nhất
-của từng thừa số nguyên tố.
+Nếu phân tích sâu hơn, các bài toán lũy đẳng thường chứa một thành phần tương tự RMQ. Ví dụ, "AND bit trên đoạn" tương
+đương với lấy giá trị nhỏ nhất trên từng bit, còn "GCD trên đoạn" tương đương với lấy số mũ nhỏ nhất của từng thừa số
+nguyên tố.
 
 ## Tổng kết
 
-Bảng ST duy trì tốt các thông tin trên đoạn có tính chất "đóng góp lặp lại" (đồng thời cũng cần thỏa mãn tính kết hợp),
-có độ phức tạp thời gian thấp và lượng mã tương đối nhỏ so với nhiều thuật toán khác. Tuy vậy, loại thông tin mà bảng
-ST duy trì được khá hạn chế, khó mở rộng tốt, và không hỗ trợ thao tác cập nhật.
+Bảng ST duy trì tốt các thông tin trên đoạn có tính chất lũy đẳng (đồng thời cũng cần thỏa mãn tính kết hợp), có độ
+phức tạp thời gian thấp và lượng mã tương đối nhỏ so với nhiều thuật toán khác. Tuy vậy, loại thông tin mà bảng ST duy
+trì được khá hạn chế, khó mở rộng tốt, và không hỗ trợ cập nhật.
 
 ## Bài tập
 
@@ -126,16 +125,16 @@ ST duy trì được khá hạn chế, khó mở rộng tốt, và không hỗ t
 
 ## Phụ lục: Phân tích độ phức tạp thời gian khi dùng bảng ST tìm GCD trên đoạn
 
-Khi thuật toán chạy, có thể cần trải qua $\Theta(\log n)$ lần lặp. Mỗi lần lặp đều có thể gọi đệ quy hàm GCD. Gọi miền
-giá trị là $w$, độ phức tạp thời gian của hàm GCD trong trường hợp lớn nhất là $\Omega(\log w)$, nên thoạt nhìn tổng độ
-phức tạp có vẻ là $O(n\log n\log w)$.
+Khi thuật toán chạy, phần tiền xử lý có thể cần trải qua $\Theta(\log n)$ lớp. Ở mỗi lớp, ta có thể phải gọi hàm GCD
+nhiều lần. Gọi chặn trên của miền giá trị là $w$, độ phức tạp thời gian của hàm GCD trong trường hợp xấu nhất có thể đạt
+$\Theta(\log w)$, nên thoạt nhìn tổng độ phức tạp có vẻ là $O(n\log n\log w)$.
 
 Tuy nhiên, trong quá trình tính GCD, mỗi lần đệ quy (ngoại trừ lần đệ quy cuối cùng) đều làm cho một số nào đó trong dãy
 giảm ít nhất một nửa. Tổng số lần các số trong dãy có thể bị giảm một nửa nhiều nhất là
 $\log_2 (w^n)=\Theta(n\log w)$. Vì vậy, phần đệ quy của GCD nhiều nhất chỉ chạy $O(n\log w)$ lần. Cộng thêm phần vòng
 lặp (và tầng đệ quy cuối cùng) có độ phức tạp $\Theta(n\log n)$, độ phức tạp thời gian cuối cùng là
-$O(n(\log w+\log n))$. Do có thể xây dựng dữ liệu khiến độ phức tạp đạt $\Omega(n(\log w+\log n))$, độ phức tạp cuối
-cùng là $\Theta(n(\log w+\log n))$.
+$O(n(\log w+\log n))$. Do có thể xây dựng dữ liệu khiến độ phức tạp đạt $\Omega(n(\log w+\log n))$, cận chặt là
+$\Theta(n(\log w+\log n))$.
 
 Độ phức tạp của phần truy vấn dễ phân tích hơn. Xét trường hợp xấu nhất, tức mỗi truy vấn đều hỏi đúng một cặp số xấu
 nhất, độ phức tạp là $\Theta(\log w)$. Do đó, khi bảng ST duy trì "GCD trên đoạn", độ phức tạp tiền xử lý là
