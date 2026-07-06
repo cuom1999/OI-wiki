@@ -1,6 +1,6 @@
 author: orzAtalod
 
-Nội dung phần này được đăng lại và chỉnh sửa từ
+Nội dung phần này được đăng lại và chỉnh sửa dựa trên
 [Thời gian phức tạp - bàn sơ về phân tích thế năng](https://www.luogu.com.cn/blog/Atalod/shi-jian-fu-za-du-shi-neng-fen-xi-qian-tan),
 đã được tác giả gốc cho phép.
 
@@ -10,7 +10,7 @@ Nội dung phần này được đăng lại và chỉnh sửa từ
 <span id="hàm-ackermann"></span>
 ### Hàm Ackermann
 
-Trước hết, cần định nghĩa $\alpha(n)$. Để làm điều đó, trước tiên cần định nghĩa $A_k(j)$.
+Trước hết, cần định nghĩa $\alpha(n)$. Để làm điều đó, ta định nghĩa $A_k(j)$ trước.
 
 Định nghĩa $A_k(j)$ như sau:
 
@@ -29,17 +29,17 @@ Trong định nghĩa này, $f^i(x)$ biểu thị việc áp dụng liên tiếp 
 tức là $f^0(x)=x$, $f^i(x)=f(f^{i-1}(x))$.
 
 Tiếp theo, định nghĩa $\alpha(n)$ là giá trị nguyên nhỏ nhất sao cho $A_{\alpha(n)}(1)\geq n$.
-Lưu ý rằng trước đây có cách mô tả bằng $A_{\alpha(n)}(\alpha(n))\geq n$;
-dù sao tốc độ tăng của chúng đều rất chậm, và giá trị đều không vượt quá 4.
+Lưu ý rằng cũng có cách mô tả bằng $A_{\alpha(n)}(\alpha(n))\geq n$;
+dù dùng quy ước nào thì tốc độ tăng đều rất chậm, và trong phạm vi thường gặp giá trị đều không vượt quá 4.
 
 <span id="định-nghĩa-cơ-bản"></span>
 ### Định nghĩa cơ bản
 
-Mỗi nút đều có một hạng. Hạng trong ngữ cảnh này không phải là số lượng nút, mà là độ sâu.
+Mỗi nút đều có một hạng. Hạng trong ngữ cảnh này không phải là số lượng nút, mà là một cận trên của độ sâu.
 Hạng ban đầu của một nút là 0. Khi hợp nhất, nếu hạng của hai nút khác nhau thì gắn nút có hạng nhỏ hơn vào nút có hạng
 lớn hơn, đồng thời không cập nhật hạng của nút lớn hơn.
 Nếu hạng bằng nhau, tùy ý gắn một nút vào nút còn lại và tăng hạng của nút gốc thêm 1.
-Hạng của nút gốc cho biết chiều cao của cây.
+Hạng của nút gốc cho biết một cận trên của chiều cao cây.
 Ký hiệu hạng của $x$ là $rnk(x)$; tương tự, ký hiệu nút cha của $x$ là $fa(x)$.
 Luôn có $rnk(x)+1\leq rnk(fa(x))$.
 
@@ -49,7 +49,7 @@ Khi $rnk(x)\geq1$, định nghĩa thêm một hàm phụ trợ
 $iter(x)=\max(i:rnk(fa(x))\geq A_{level(x)}^i(rnk(x)))$.
 Các hàm này được định nghĩa cho những $x$ thỏa $rnk(x)>0$ và $x$ không phải là gốc của một cây.
 
-Những định nghĩa trên có thể hơi rối. Sắp xếp lại một chút:
+Những định nghĩa trên có thể hơi rối; có thể sắp xếp lại như sau:
 với một $x$ và $fa(x)$, nếu $rnk(x)>0$,
 luôn có thể tìm một cặp $i,k$ sao cho $rnk(fa(x))\geq A_k^i(rnk(x))$.
 Khi đó $level(x)=\max(k)$, và dưới tiền đề này $iter(x)=\max(i)$.
@@ -67,8 +67,8 @@ $$
 1\leq iter(x)\leq rnk(x)
 $$
 
-Dựa vào định nghĩa của $level(x)$, $iter(x)$ và $A_k^j$, có thể chứng minh các bất đẳng thức này trực tiếp.
-Phần này được để lại như một bài kiểm tra nhỏ để làm quen với các định nghĩa.
+Dựa vào định nghĩa của $level(x)$, $iter(x)$ và $A_k^j$, có thể chứng minh trực tiếp hai bất đẳng thức này.
+Chi tiết được để lại như một bài kiểm tra nhỏ để làm quen với các định nghĩa.
 
 Định nghĩa hàm thế năng $\Phi(S)=\sum\limits_{x\in S}\Phi(x)$,
 trong đó $S$ biểu thị toàn bộ một DSU, còn $x$ là một nút trong DSU.
@@ -111,7 +111,7 @@ Xét bốn trường hợp.
 1.  $iter(c)$ và $level(c)$ đều không tăng. Khi đó $\Phi(c)=\Phi(c')$.
 2.  $iter(c)$ tăng, còn $level(c)$ không tăng.
     Khi đó $iter(c)$ tăng ít nhất một, tức là $\Phi(c')\leq \Phi(c)-1$;
-    hàm thế năng giảm, và giảm ít nhất 1.
+    thế năng giảm, và giảm ít nhất 1.
 3.  $level(c)$ tăng, còn $iter(c)$ có thể giảm.
     Tuy nhiên, vì $0<iter(c)\leq rnk(c)$, $iter(c)$ nhiều nhất chỉ giảm $rnk(c)-1$,
     trong khi $level(c)$ tăng ít nhất $1$.
@@ -122,7 +122,7 @@ Xét bốn trường hợp.
 Vì vậy, các nút có thế năng tăng chỉ có thể là $x$ hoặc $y$.
 Xét $x$: nó từ gốc cây trở thành không phải gốc.
 Nếu $rnk(x)=0$ thì luôn có $\Phi(x)=\Phi(x')=0$.
-Ngược lại, nhất định có
+Ngược lại, luôn có
 $\alpha(n)\times rnk(x)\geq(\alpha(n)-level(x))\times rnk(x)-iter(x)$,
 tức là $\Phi(x')\leq \Phi(x)$.
 
@@ -135,7 +135,7 @@ Vì vậy, độ phức tạp thời gian khấu hao của thao tác $union$ là
 
 Nếu đường tìm kiếm chứa $\Theta(s)$ nút, thời gian tìm kiếm là $\Theta(s)$.
 Nếu thao tác tìm kiếm không làm nút nào tăng thế năng, đồng thời có ít nhất $s-\alpha(n)$ nút giảm thế năng ít nhất $1$,
-thì có thể chứng minh độ phức tạp thời gian của thao tác $find(a)$ là $\Theta(\alpha(n))$.
+thì có thể chứng minh độ phức tạp thời gian khấu hao của thao tác $find(a)$ là $\Theta(\alpha(n))$.
 Để tránh nhầm lẫn, phần này dùng $a$ làm tham số,
 còn các $x$ xuất hiện bên dưới đều chỉ chung một nút nào đó trong DSU.
 
@@ -164,7 +164,7 @@ $rnk(root_x)\geq A_{k(x)}(A_{k(x)}^{i(x)}(rnk(x)))$.
 Đến đây công thức có thể khá khó theo dõi; có thể đọc lại vài lần, hoặc tạm bỏ qua một số chi tiết rồi quay lại sau.
 
 Để có thêm một lớp $A_{k(x)}$ ở bên ngoài, cần tìm thêm một điểm $y$.
-Cho $y$ là điểm nằm sau $x$ trên đường tìm kiếm và thỏa $k(y)=k(x)$;
+Cho $y$ là nút nằm sau $x$ trên đường tìm kiếm và thỏa $k(y)=k(x)$;
 trong ngữ cảnh này, "nằm sau trên đường tìm kiếm" tương đương với "là tổ tiên của $x$".
 Không phải mọi $x$ đều có một $y$ như vậy.
 Có thể chứng minh rằng số lượng $x$ không có $y$ như vậy không vượt quá $\alpha(n)+2$,
@@ -194,7 +194,7 @@ cuối cùng $\Phi(S)$ giảm ít nhất $s-\alpha(n)-2$,
 nên độ phức tạp thời gian khấu hao là $\Theta(\alpha(n)+2)=\Theta(\alpha(n))$.
 
 <span id="vì-sao-dsu-có-thể-bị-hack"></span>
-## Vì sao DSU có thể bị hack
+## Vì sao DSU có thể bị phá bởi dữ liệu đối kháng
 
 Câu hỏi này thực chất là:
 nếu không hợp nhất theo hạng, những tính chất nào sẽ bị phá vỡ,
@@ -205,7 +205,7 @@ thì đặt $rnk$ của nút có $rnk$ nhỏ hơn đó bằng $rnk$ của nút c
 Như vậy vẫn bảo đảm được $rnk(fa(x))\geq rnk(x)+1$,
 tránh việc các tính chất cần dùng bị phá vỡ hàng loạt.
 
-Nếu làm như vậy, thứ bị phá vỡ chính là câu trong hàm $union(x,y)$: "thế năng của y tăng nhiều nhất $\alpha(n)$".
+Nếu làm như vậy, điều bị phá vỡ chính là mệnh đề trong hàm $union(x,y)$: "thế năng của $y$ tăng nhiều nhất $\alpha(n)$".
 
 Tồn tại một cấu trúc có thể làm độ phức tạp thời gian của DSU có nén đường đi xấu đến
 $\Omega(m\log_{1+\frac{m}{n}}n)$, được định nghĩa như sau:
@@ -218,8 +218,8 @@ Trong đó $j$ là hằng số, $T_k$ được tạo bằng cách lấy một $T
 Điều kiện biên: $T_1$ đến $T_j$ đều là một điểm đơn lẻ.
 
 Đặt $rnk(T_k)=r_k$; khi đó có $r_k=(k-1)/j$ (lược bỏ chứng minh).
-Trong mỗi vòng thao tác, nối nó vào một nút đơn rồi truy vấn $j$ nút ở đáy.
-Nói cách khác, khi nối nó vào nút đơn, thế năng của nút đơn tăng thêm $(k-1)/j+1$.
+Trong mỗi vòng thao tác, nối cây này vào một nút đơn rồi truy vấn $j$ nút ở đáy.
+Nói cách khác, khi nối cây này vào nút đơn, thế năng của nút đơn tăng thêm $(k-1)/j+1$.
 Khi $j=\lfloor\frac{m}{n}\rfloor$, $i=\lfloor\log_{j+1}\frac{n}{2}\rfloor$, $k=ij$,
 lượng tăng thế năng là:
 
@@ -247,7 +247,7 @@ nhiều người chọn dùng hợp nhất theo heuristic khi cài DSU.
 Cụ thể, duy trì một $size(x)$ cho mỗi gốc,
 và mỗi lần hợp nhất thì gắn cây có $size$ nhỏ hơn vào cây lớn hơn.
 
-Vậy hợp nhất theo heuristic có bị hack không?
+Vậy hợp nhất theo heuristic có bị dữ liệu đối kháng phá hay không?
 
 Trước hết, có thể giải thích từ các tính chất mà hạng tham gia trong chứng minh.
 Nếu $size$ có thể thay thế vai trò của $rnk$, thì có thể dùng hợp nhất theo heuristic.
