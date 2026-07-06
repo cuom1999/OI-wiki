@@ -23,7 +23,7 @@ bộ lặp.
 ### Định nghĩa
 
 ```cpp
-std::stack<TypeName> s;             // dùng deque làm bộ chứa cơ sở mặc định, kiểu dữ liệu là TypeName
+std::stack<TypeName> s;             // mặc định dùng deque làm bộ chứa cơ sở
 std::stack<TypeName, Container> s;  // dùng Container làm bộ chứa cơ sở
 std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 ```
@@ -32,14 +32,16 @@ std::stack<TypeName> s2(s1);        // sao chép s1 để xây dựng s2
 
 ### Hàm thành viên
 
-**Tất cả các hàm sau đều có độ phức tạp hằng số**
+**Với bộ chứa cơ sở mặc định, các hàm sau có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử ở đỉnh ngăn xếp (nếu ngăn xếp rỗng thì thao tác này
-    gây lỗi)
+-   `top()` truy cập phần tử ở đỉnh ngăn xếp (nếu ngăn xếp rỗng thì hành vi
+    không xác định)
 -   `push(x)` chèn phần tử `x` vào ngăn xếp
+-   `emplace(args...)` xây dựng trực tiếp một phần tử ở đỉnh ngăn xếp (C++11)
 -   `pop()` xóa phần tử đỉnh ngăn xếp
 -   `size()` trả về số lượng phần tử trong bộ chứa
 -   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
+-   `swap()` trao đổi nội dung với một ngăn xếp khác
 
 <span id="ví-dụ-đơn-giản-ngăn-xếp"></span>
 
@@ -80,7 +82,7 @@ bộ lặp.
 ### Định nghĩa
 
 ```cpp
-std::queue<TypeName> q;             // dùng deque làm bộ chứa cơ sở mặc định, kiểu dữ liệu là TypeName
+std::queue<TypeName> q;             // mặc định dùng deque làm bộ chứa cơ sở
 std::queue<TypeName, Container> q;  // dùng Container làm bộ chứa cơ sở
 
 std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
@@ -90,14 +92,18 @@ std::queue<TypeName> q2(q1);  // sao chép q1 để xây dựng q2
 
 ### Hàm thành viên
 
-**Tất cả các hàm sau đều có độ phức tạp hằng số**
+**Với bộ chứa cơ sở mặc định, các hàm sau có độ phức tạp hằng số**
 
--   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì thao tác này
-    gây lỗi)
+-   `front()` truy cập phần tử đầu hàng đợi (nếu hàng đợi rỗng thì hành vi không
+    xác định)
+-   `back()` truy cập phần tử cuối hàng đợi (nếu hàng đợi rỗng thì hành vi không
+    xác định)
 -   `push(x)` chèn phần tử `x` vào hàng đợi
+-   `emplace(args...)` xây dựng trực tiếp một phần tử ở cuối hàng đợi (C++11)
 -   `pop()` xóa phần tử đầu hàng đợi
 -   `size()` trả về số lượng phần tử trong bộ chứa
 -   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
+-   `swap()` trao đổi nội dung với một hàng đợi khác
 
 <span id="ví-dụ-đơn-giản-hàng-đợi"></span>
 
@@ -119,8 +125,8 @@ std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 
 ## Hàng đợi ưu tiên
 
-Hàng đợi ưu tiên `std::priority_queue` là một dạng [heap](../../ds/heap.md),
-thường là [heap nhị phân](../../ds/binary-heap.md).
+Hàng đợi ưu tiên `std::priority_queue` là một bộ chuyển đổi bộ chứa được cài đặt
+bằng [heap](../../ds/heap.md), thường là [heap nhị phân](../../ds/binary-heap.md).
 
 <span id="tệp-tiêu-đề-hàng-đợi-ưu-tiên"></span>
 
@@ -155,20 +161,30 @@ std::priority_queue<std::pair<int, int>, std::vector<std::pair<int, int>>,
     pq(cmp);
 ```
 
+Trong `std::priority_queue`, `Compare` xác định phần tử nào có độ ưu tiên thấp
+hơn. Vì vậy, với `std::less<T>` mặc định, phần tử lớn nhất sẽ nằm ở `top()`.
+
 <span id="hàm-thành-viên-hàng-đợi-ưu-tiên"></span>
 
 ### Hàm thành viên
 
-**Tất cả các hàm sau đều có độ phức tạp hằng số**
+**Các hàm sau có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử ở đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+-   `top()` truy cập phần tử ở đỉnh heap (nếu hàng đợi ưu tiên rỗng thì hành vi
+    không xác định)
 -   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 -   `size()` trả về số lượng phần tử trong bộ chứa
 
-**Tất cả các hàm sau đều có độ phức tạp logarit**
+**Các hàm sau có độ phức tạp logarit**
 
 -   `push(x)` chèn phần tử rồi điều chỉnh lại heap trong bộ chứa cơ sở
--   `pop()` xóa phần tử ở đỉnh heap (lúc này hàng đợi ưu tiên không được rỗng)
+-   `emplace(args...)` xây dựng trực tiếp một phần tử rồi điều chỉnh lại heap
+    (C++11)
+-   `pop()` xóa phần tử ở đỉnh heap (nếu hàng đợi ưu tiên rỗng thì hành vi không
+    xác định)
+
+`std::priority_queue` cũng hỗ trợ `swap()` để trao đổi nội dung với một hàng đợi
+ưu tiên khác.
 
 <span id="ví-dụ-đơn-giản-hàng-đợi-ưu-tiên"></span>
 
