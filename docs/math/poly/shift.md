@@ -427,7 +427,7 @@ Với trường hợp tổng quát hơn, tương tự ví dụ thuật toán gia
 
 Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#ma-trận-lambda).
 
-Để thực hiện truy hồi đa thức, cần lưu ý rằng trong thuật toán giai thừa nhanh, các giá trị tại điểm được duy trì thực ra không phải là $n!$, mà là $\prod_{i=0}^{T-1}(aT+i)$, tức là **quan hệ bội số giữa một cặp giá trị**.
+Để thực hiện truy hồi đa thức, cần lưu ý rằng trong thuật toán giai thừa nhanh, các giá trị tại điểm được duy trì không phải là $n!$, mà là $\prod_{i=0}^{T-1}(aT+i)$, tức là **quan hệ bội số giữa một cặp giá trị**.
 
 Vì bậc truy hồi đa thức $m$ không còn chỉ là $1$, **không thể trực tiếp duy trì quan hệ bội số giữa một cặp số**; thay vào đó, cần duy trì **biến đổi tuyến tính giữa một cặp vector $m$ chiều**, tức một ma trận $m\times m$, trong đó **mỗi phần tử của ma trận tương ứng với một giá trị tại điểm của một đa thức**.
 

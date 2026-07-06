@@ -4,7 +4,7 @@ author: DanJoshua, opsiff, yzy-1, yingqi-z20
 
 Vì không còn cố định khái niệm **điểm nguồn và điểm đích**, cần định nghĩa lại khái niệm **lát cắt**.
 
-Thật ra, định nghĩa về lát cắt trong phần luồng mạng không hoàn toàn trùng với định nghĩa trên Wikipedia. Chỉ vì các lát cắt thường gặp đều thuộc "bài toán lát cắt nhỏ nhất có nguồn và đích", nên cách hiểu đó dần trở thành quy ước.
+Định nghĩa về lát cắt trong phần luồng mạng không hoàn toàn trùng với định nghĩa trên Wikipedia. Chỉ vì các lát cắt thường gặp đều thuộc "bài toán lát cắt nhỏ nhất có nguồn và đích", nên cách hiểu đó dần trở thành quy ước.
 
 ### Lát cắt
 

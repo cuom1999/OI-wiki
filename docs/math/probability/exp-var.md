@@ -249,7 +249,7 @@ Với các biến ngẫu nhiên $X, Y, Z$, có:
 ??? note "Về hiệp phương sai"
     Các tính chất của hiệp phương sai có hình thức rất giống với các tính chất phép toán của tích vô hướng giữa các vectơ.
     
-    Dưới góc nhìn của giải tích hàm, với một không gian xác suất cho trước, các biến ngẫu nhiên có mô men bậc hai hữu hạn tạo thành một không gian tuyến tính; hiệp phương sai là tích vô hướng trên không gian các biến đã quy tâm, hoặc tương đương trên không gian thương theo các biến hằng gần như chắc chắn. Độ lệch chuẩn là chuẩn tương ứng.
+    Dưới góc nhìn của giải tích hàm, với một không gian xác suất cho trước, các biến ngẫu nhiên có mô men bậc hai hữu hạn tạo thành một không gian tuyến tính; hiệp phương sai là tích vô hướng trên không gian các biến đã quy tâm, hoặc tương đương trên không gian thương theo các biến hằng hầu chắc. Độ lệch chuẩn là chuẩn tương ứng.
 
 Với câu hỏi thứ hai đã nêu ở trên, $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Một điều kiện đủ trực quan là $X$ và $Y$ độc lập, vì khi đó:
 
@@ -283,4 +283,4 @@ Khi $\rho_{X,Y} = 0$, các biến ngẫu nhiên $X$ và $Y$ được gọi là *
     
     Khi các kỳ vọng liên quan tồn tại, độc lập suy ra không tương quan; chiều ngược lại không đúng.
 
-Với câu hỏi thứ hai được nêu ở đầu tiểu mục này, kết luận là $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Nếu $\sigma(X) > 0$ và $\sigma(Y) > 0$, điều kiện này tương đương với $\rho_{X,Y} = 0$; nếu một trong hai biến là hằng gần như chắc chắn thì hiệp phương sai bằng $0$, nhưng hệ số tương quan Pearson không xác định.
+Với câu hỏi thứ hai được nêu ở đầu tiểu mục này, kết luận là $D(X + Y) = DX + DY$ khi và chỉ khi $\operatorname{Cov}(X, Y) = 0$. Nếu $\sigma(X) > 0$ và $\sigma(Y) > 0$, điều kiện này tương đương với $\rho_{X,Y} = 0$; nếu một trong hai biến là hằng hầu chắc thì hiệp phương sai bằng $0$, nhưng hệ số tương quan Pearson không xác định.

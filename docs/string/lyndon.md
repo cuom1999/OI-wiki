@@ -30,7 +30,7 @@ Giải thích chi tiết hơn như sau. Định nghĩa con trỏ $i$ trỏ tới
 
 1.  Nếu $s[j]=s[k]$, việc thêm $s[j]$ vào cuối $s_2$ không ảnh hưởng đến tính gần đơn giản. Do đó chỉ cần tăng hai con trỏ $j,k$ sang vị trí tiếp theo.
 2.  Nếu $s[j]>s[k]$, thì $s_2s[j]$ trở thành một xâu Lyndon. Tăng con trỏ $j$, đồng thời đưa $k$ về ký tự đầu của $s_2$, để $s_2$ trở thành một xâu Lyndon mới với số chu kỳ bằng 1.
-3.  Nếu $s[j]<s[k]$, thì $s_2s[j]$ không còn là xâu gần đơn giản. Khi đó phân tích ra từ $s_2$ một xâu con Lyndon, có độ dài $j-k$, tức một chu kỳ của nó. Sau đó biến $s_2$ thành phần còn lại sau khi cắt và tiếp tục vòng lặp (chú ý rằng trong trường hợp này không thay đổi $j,k$), cho tới khi cắt hết các chu kỳ. Với phần còn lại, chỉ cần "lùi" tiến độ về đầu phần còn lại.
+3.  Nếu $s[j]<s[k]$, thì $s_2s[j]$ không còn là xâu gần đơn giản. Khi đó phân tích ra từ $s_2$ một xâu con Lyndon, có độ dài $j-k$, tức một chu kỳ của nó. Sau đó biến $s_2$ thành phần còn lại sau khi cắt và tiếp tục vòng lặp (lưu ý rằng trong trường hợp này không thay đổi $j,k$), cho tới khi cắt hết các chu kỳ. Với phần còn lại, chỉ cần "lùi" tiến độ về đầu phần còn lại.
 
 <span id="cài-đặt"></span>
 ### Cài đặt

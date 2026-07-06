@@ -10,8 +10,8 @@ Tham khảo: [fprintf](https://en.cppreference.com/w/c/io/fprintf), [fscanf](htt
 -   `scanf("%s", &s)`: dùng `%s` để đọc một xâu (mảng ký tự).
 -   `sscanf(const char *__source, const char *__format, ...)`: đọc biến từ xâu `__source`, ví dụ `sscanf(str,"%d",&a)`.
 -   `sprintf(char *__stream, const char *__format, ...)`: xuất nội dung theo xâu định dạng `__format` vào `__stream`, ví dụ `sprintf(str,"%d",i)`.
--   `strlen(const char *str)`: trả về số ký tự từ `str[0]` tới trước `'\0'`. Chú ý, khi chưa bật tối ưu O2, nếu viết thao tác này trong điều kiện vòng lặp thì độ phức tạp là $\Theta(N)$.
--   `strcmp(const char *str1, const char *str2)`: so sánh `str1` và `str2` theo thứ tự từ điển. Nếu `str1` nhỏ hơn thì trả về số âm, nếu bằng nhau trả về `0`, nếu `str1` lớn hơn thì trả về số dương. Chú ý, không nên đơn giản cho rằng giá trị trả về chỉ có `0`, `1`, `-1`; trên các nền tảng khác nhau, giá trị trả về tuân theo dấu âm/dương nhưng không nhất thiết đúng là `0`, `1`, `-1`.
+-   `strlen(const char *str)`: trả về số ký tự từ `str[0]` tới trước `'\0'`. Lưu ý, khi chưa bật tối ưu O2, nếu viết thao tác này trong điều kiện vòng lặp thì độ phức tạp là $\Theta(N)$.
+-   `strcmp(const char *str1, const char *str2)`: so sánh `str1` và `str2` theo thứ tự từ điển. Nếu `str1` nhỏ hơn thì trả về số âm, nếu bằng nhau trả về `0`, nếu `str1` lớn hơn thì trả về số dương. Lưu ý, không nên đơn giản cho rằng giá trị trả về chỉ có `0`, `1`, `-1`; trên các nền tảng khác nhau, giá trị trả về tuân theo dấu âm/dương nhưng không nhất thiết đúng là `0`, `1`, `-1`.
 -   `strcpy(char *str, const char *src)`: sao chép ký tự từ `src` sang `str`; `str` và `src` đều là con trỏ đầu mảng ký tự, giá trị trả về là `str`, bao gồm ký tự kết thúc null `'\0'`.
 -   `strncpy(char *str, const char *src, int cnt)`: sao chép nhiều nhất `cnt` ký tự vào `str`; nếu `src` kết thúc trước khi đủ `cnt`, ghi ký tự rỗng vào `str` cho tới khi tổng cộng đã ghi `cnt` ký tự.
 -   `strcat(char *str1, const char *str2)`: nối `str2` vào cuối `str1`, thay `'\0'` ở cuối `str1` bằng `*str2`, rồi trả về `str1`.

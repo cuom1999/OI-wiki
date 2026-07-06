@@ -32,9 +32,9 @@ Biến ở trên được biểu diễn như sau:
 
 ### Khác biệt giữa hai thứ tự
 
-Thực ra, không có thứ tự byte nào tốt hơn thứ tự còn lại. Tên gọi "đầu nhỏ" và "đầu lớn" bắt nguồn từ tác phẩm *Gulliver's Travels*. Trong truyện, hai phe ở xứ Lilliput giao chiến không ngừng vì không thống nhất được nên đập trứng từ đầu nhỏ hay đầu to. Tương tự cuộc tranh luận về cách đập trứng, việc chọn thứ tự byte nào không phải là một vấn đề kỹ thuật.
+Không có thứ tự byte nào tốt hơn thứ tự còn lại. Tên gọi "đầu nhỏ" và "đầu lớn" bắt nguồn từ tác phẩm *Gulliver's Travels*. Trong truyện, hai phe ở xứ Lilliput giao chiến không ngừng vì không thống nhất được nên đập trứng từ đầu nhỏ hay đầu to. Tương tự cuộc tranh luận về cách đập trứng, việc chọn thứ tự byte nào không phải là một vấn đề kỹ thuật.
 
-Dĩ nhiên, nếu thứ tự byte không thống nhất, dữ liệu nhị phân có thể bị đảo thứ tự khi truyền giữa các loại máy khác nhau. Để tránh điều này, các ứng dụng mạng thiết lập một bộ chuẩn nhằm bảo đảm quá trình truyền dùng chuẩn mạng đã quy ước, thay vì biểu diễn nội bộ của từng máy.
+Nếu thứ tự byte không thống nhất, dữ liệu nhị phân có thể bị đảo thứ tự khi truyền giữa các loại máy khác nhau. Để tránh điều này, các ứng dụng mạng thiết lập một bộ chuẩn nhằm bảo đảm quá trình truyền dùng chuẩn mạng đã quy ước, thay vì biểu diễn nội bộ của từng máy.
 
 ## Quy ước thường gặp
 
