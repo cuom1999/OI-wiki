@@ -17,7 +17,7 @@ Trong quá trình phân trị theo đỉnh, ở mỗi tầng, tổng các lời 
 
 Nếu mỗi lần chọn [trọng tâm](./tree-centroid.md) của cây con làm gốc, số tầng đệ quy được bảo đảm là nhỏ nhất, và độ phức tạp thời gian là $O(n\log n)$. Do đó, trong cộng đồng thi lập trình quốc tế, phân trị theo đỉnh cũng thường được gọi là **phân rã trọng tâm** của cây, tức centroid decomposition.
 
-Cần chú ý rằng sau khi chọn lại gốc, nhất định phải tính lại kích thước cây con. Nếu không, chỉ một thay đổi tưởng như rất nhỏ cũng có thể làm sai độ phức tạp thời gian hoặc khiến tính đúng đắn khó được bảo đảm.
+Sau khi chọn lại gốc, bắt buộc phải tính lại kích thước cây con. Nếu không, chỉ một thay đổi tưởng như rất nhỏ cũng có thể làm sai độ phức tạp thời gian hoặc khiến tính đúng đắn khó được bảo đảm.
 
 ??? note "Mã tham khảo"
     ```cpp

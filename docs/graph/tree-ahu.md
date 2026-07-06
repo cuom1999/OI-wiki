@@ -131,7 +131,7 @@ Trước hết, nhận thấy tổng độ dài của các $NAME$ được tạo
 1.  Có thể dùng sắp xếp cơ số để hoàn thành việc sắp xếp trong $O(L+|\Sigma|)$, trong đó $|\Sigma|$ là kích thước bảng chữ cái. Có một số chi tiết cài đặt, xem phần tài liệu tham khảo.
 2.  Có thể dùng quicksort để hoàn thành việc sắp xếp trong $O(L \log m)$. Ý tưởng chứng minh đại khái là chiều cao của cây đệ quy quicksort là $O(\log m)$, và độ phức tạp khi so sánh trực tiếp hai chuỗi có độ dài $\ell_1$ và $\ell_2$ là $O(\min\{\ell_1,\ell_2\})$.
 
-Trong thuật toán AHU, kích thước bảng chữ cái của các chuỗi ở tầng thứ $i$ nhiều nhất bằng số đỉnh ở tầng thứ $i+1$, tức $L_i$, nên độ phức tạp của sắp xếp cơ số là tuyến tính. Từ $\sum_i L_i=O(n)$, cộng độ phức tạp của từng tầng lại, có thể thấy nếu dùng sắp xếp cơ số cho chuỗi thì tổng độ phức tạp của thuật toán là $T(n)=O(n)$. Tương tự, nếu dùng quicksort để sắp xếp chuỗi, thì $T(n)=O(n \log n)$.
+Trong thuật toán AHU, kích thước bảng chữ cái của các chuỗi ở tầng thứ $i$ nhiều nhất bằng số đỉnh ở tầng thứ $i+1$, tức $L_i$, nên độ phức tạp của sắp xếp cơ số là tuyến tính. Từ $\sum_i L_i=O(n)$, cộng độ phức tạp của từng tầng lại, nếu dùng sắp xếp cơ số cho chuỗi thì tổng độ phức tạp của thuật toán là $T(n)=O(n)$. Tương tự, nếu dùng quicksort để sắp xếp chuỗi, thì $T(n)=O(n \log n)$.
 
 ## Bài tập ví dụ
 

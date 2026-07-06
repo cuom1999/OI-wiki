@@ -45,7 +45,7 @@ Gọi $S$, $T$ lần lượt là các đỉnh phía trái và phía phải nằm
 Trong đồ thị con đẳng thức:
 
 -   Không tồn tại cạnh $S-T'$, nếu không cây luân phiên đã có thể mở rộng.
--   Mọi cạnh $S'-T$ chắc chắn là cạnh không thuộc ghép cặp, nếu không đỉnh tương ứng đã thuộc $S$.
+-   Mọi cạnh $S'-T$ là cạnh không thuộc ghép cặp, nếu không đỉnh tương ứng đã thuộc $S$.
 
 Giả sử giảm nhãn của các đỉnh trong $S$ đi $a$ và tăng nhãn của các đỉnh trong $T$ thêm $a$, khi đó:
 
@@ -266,7 +266,7 @@ Tiếp theo, với mỗi cạnh trong đồ thị hai phía nối đỉnh phía 
 
 Ngoài ra, do trong ghép cặp có trọng số lớn nhất, số cạnh được ghép không nhất thiết bằng số cạnh trong ghép cặp lớn nhất, nên với mỗi đỉnh phía trái, còn cần nối thêm một cạnh đến đích với lưu lượng $1$ và chi phí $0$.
 
-Tìm luồng cực đại có chi phí lớn nhất trên mạng này là thu được đáp án. Tương đương, có thể đổi dấu chi phí rồi dùng [luồng chi phí nhỏ nhất](../flow/min-cost.md). Khi đó lưu lượng cực đại của mạng chắc chắn bằng số đỉnh phía trái, và chi phí lớn nhất trong số các luồng cực đại tương ứng với một phương án ghép cặp có trọng số lớn nhất.
+Tìm luồng cực đại có chi phí lớn nhất trên mạng này là thu được đáp án. Tương đương, có thể đổi dấu chi phí rồi dùng [luồng chi phí nhỏ nhất](../flow/min-cost.md). Khi đó lưu lượng cực đại của mạng bằng số đỉnh phía trái, và chi phí lớn nhất trong số các luồng cực đại tương ứng với một phương án ghép cặp có trọng số lớn nhất.
 
 ## Bài tập
 

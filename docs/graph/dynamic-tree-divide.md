@@ -60,7 +60,7 @@ int main() {
 
 Khi truy vấn và cập nhật, nhảy lần lượt qua các đỉnh cha trên cây phân rã trọng tâm để cập nhật trực tiếp. Vì độ sâu của cây phân rã trọng tâm nhiều nhất là $O(\log n)$, độ phức tạp của cách làm này được khống chế.
 
-Trong quá trình phân rã trọng tâm động, cần các thông tin như khoảng cách từ một đỉnh đến các tổ tiên của nó trên cây phân rã trọng tâm. Vì mỗi đỉnh có nhiều nhất $O(\log n)$ tổ tiên, có thể tính thêm độ sâu $dep[x]$ khi xây cây phân rã trọng tâm, hoặc dùng LCA để tiền xử lý các khoảng cách này hay truy vấn trực tiếp khi cần. **Chú ý**: khoảng cách từ một đỉnh đến các tổ tiên của nó trên cây phân rã trọng tâm không nhất thiết tăng dần, nên không thể cộng dồn!
+Trong quá trình phân rã trọng tâm động, cần các thông tin như khoảng cách từ một đỉnh đến các tổ tiên của nó trên cây phân rã trọng tâm. Vì mỗi đỉnh có nhiều nhất $O(\log n)$ tổ tiên, có thể tính thêm độ sâu $dep[x]$ khi xây cây phân rã trọng tâm, hoặc dùng LCA để tiền xử lý các khoảng cách này hay truy vấn trực tiếp khi cần. **Lưu ý**: khoảng cách từ một đỉnh đến các tổ tiên của nó trên cây phân rã trọng tâm không nhất thiết tăng dần, nên không thể cộng dồn!
 
 Trong quá trình phân rã trọng tâm động, thông tin của một đỉnh có thể bị tính lặp trong thông tin của các tổ tiên của nó trên cây phân rã trọng tâm, vì vậy cần loại bỏ ảnh hưởng của phần bị tính trùng. Cách thường dùng là ghi nhận mỗi thành phần liên thông theo hai cách: một là thông tin khoảng cách của nó đến tâm phân rã, hai là thông tin khoảng cách của nó đến cha của tâm phân rã trên cây phân rã trọng tâm. Phần này sẽ được minh họa trong các ví dụ.
 

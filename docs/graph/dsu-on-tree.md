@@ -76,7 +76,7 @@ Lưu ý rằng ngoài con nặng, sau mỗi lần duyệt cần xóa ảnh hư�
 
 Số cạnh nhẹ trên đường đi từ gốc đến bất kỳ đỉnh nào trên cây không vượt quá $\log n$. Giả sử từ gốc đến đỉnh đó có $x$ cạnh nhẹ và kích thước cây con của đỉnh đó là $y$. Cây con của đỉnh con được nối bởi một cạnh nhẹ có kích thước nhỏ hơn một nửa kích thước cây con của cha, vì nếu lớn hơn một nửa thì nó sẽ không phải là cạnh nhẹ. Do đó $y<n/2^x$, suy ra $n>2^x$, nên $x<\log n$.
 
-Ngoài ra, nếu một đỉnh là con nặng của cha nó, thì cây con của nó chắc chắn là lớn nhất trong các cây con của anh em nó. Vì vậy, khi tính đáp án, mọi đỉnh cha nối bằng cạnh nặng trên đường từ một đỉnh bất kỳ lên gốc chắc chắn sẽ không duyệt tới đỉnh đó. Do đó số lần một đỉnh được duyệt bằng số cạnh nhẹ trên đường từ nó đến gốc $+1$, trong đó cộng thêm $1$ vì bản thân đỉnh đó cũng cần được duyệt. Vậy số lần một đỉnh được duyệt là $\log n+1$, và tổng độ phức tạp thời gian là $O(n(\log n+1))=O(n\log n)$. Việc xuất đáp án tốn $O(m)$.
+Ngoài ra, nếu một đỉnh là con nặng của cha nó, thì cây con của nó là lớn nhất trong các cây con của anh em nó. Vì vậy, khi tính đáp án, mọi đỉnh cha nối bằng cạnh nặng trên đường từ một đỉnh bất kỳ lên gốc sẽ không duyệt tới đỉnh đó. Do đó số lần một đỉnh được duyệt bằng số cạnh nhẹ trên đường từ nó đến gốc $+1$, trong đó cộng thêm $1$ vì bản thân đỉnh đó cũng cần được duyệt. Vậy số lần một đỉnh được duyệt là $\log n+1$, và tổng độ phức tạp thời gian là $O(n(\log n+1))=O(n\log n)$. Việc xuất đáp án tốn $O(m)$.
 
 ![Cạnh nặng và con nặng trong chứng minh độ phức tạp DSU on tree](./images/dsu-on-tree-3.svg)
 
@@ -88,7 +88,7 @@ Trong phần chứng minh đã nhắc đến việc DSU on tree dùng khái ni�
 
 Bản thân thứ tự DFS có tính chất sau: cây con của một đỉnh luôn là một đoạn liên tiếp trên thứ tự DFS. Vì vậy, có thể duyệt mảng thứ tự DFS theo chiều ngược lại. Cách này bảo đảm rằng khi duyệt tới một đỉnh, các đỉnh khác trong cây con của nó đều đã được xử lý.
 
-Thứ tự DFS thu được từ phân rã nặng-nhẹ còn có một tính chất tốt: mỗi chuỗi nặng luôn liên tiếp trên thứ tự DFS. Do đó, khi duyệt các đỉnh theo thứ tự DFS ngược, với đỉnh ở đầu một chuỗi nặng, đỉnh được duyệt tiếp theo chắc chắn không phải là cha của nó, nên cần xóa ảnh hưởng của nó. Ngoài trường hợp đó, với các đỉnh không nằm ở đầu chuỗi nặng, đỉnh được duyệt ngay trước đó hoặc là con nặng của chính nó, hoặc là một đỉnh thuộc nhánh khác đã được xóa ảnh hưởng, nên có thể trực tiếp kế thừa ảnh hưởng đó. Trên cơ sở này, tiếp tục dùng thứ tự DFS để thống kê nhanh ảnh hưởng của tất cả các con nhẹ và ghi lại đáp án.
+Thứ tự DFS thu được từ phân rã nặng-nhẹ còn có một tính chất tốt: mỗi chuỗi nặng luôn liên tiếp trên thứ tự DFS. Do đó, khi duyệt các đỉnh theo thứ tự DFS ngược, với đỉnh ở đầu một chuỗi nặng, đỉnh được duyệt tiếp theo không phải là cha của nó, nên cần xóa ảnh hưởng của nó. Ngoài trường hợp đó, với các đỉnh không nằm ở đầu chuỗi nặng, đỉnh được duyệt ngay trước đó hoặc là con nặng của chính nó, hoặc là một đỉnh thuộc nhánh khác đã được xóa ảnh hưởng, nên có thể trực tiếp kế thừa ảnh hưởng đó. Trên cơ sở này, tiếp tục dùng thứ tự DFS để thống kê nhanh ảnh hưởng của tất cả các con nhẹ và ghi lại đáp án.
 
 Quy trình trên được gọi là cài đặt không đệ quy hoặc cài đặt lặp của DSU on tree, cũng được gọi là cài đặt DSU on tree bằng thứ tự DFS. So với cài đặt đệ quy ban đầu, nó giảm chi phí thời gian và không gian của các lời gọi hàm đệ quy, đem lại tối ưu hằng số đáng kể, **đặc biệt có lợi rõ rệt về không gian ngăn xếp khi xử lý các cây chứa nhiều cấu trúc dạng chuỗi.**
 

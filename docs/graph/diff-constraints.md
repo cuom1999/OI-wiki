@@ -6,7 +6,7 @@ author: Ir1d, Anguei, hsfzLZH1
 
 Mỗi ràng buộc $x_i-x_j\leq c_k$ trong hệ ràng buộc hiệu đều có thể biến đổi thành $x_i\leq x_j+c_k$, rất giống bất đẳng thức tam giác $dist[y]\leq dist[x]+z$ trong bài toán đường đi ngắn nhất một nguồn. Vì vậy, có thể xem mỗi biến $x_i$ là một đỉnh trong đồ thị; với mỗi ràng buộc $x_i-x_j\leq c_k$, nối một cạnh có hướng độ dài $c_k$ từ đỉnh $j$ đến đỉnh $i$.
 
-Chú ý rằng nếu $\{a_1,a_2,\dots,a_n\}$ là một nghiệm của hệ ràng buộc hiệu này, thì với hằng số bất kỳ $d$, $\{a_1+d,a_2+d,\dots,a_n+d\}$ cũng là một nghiệm, vì khi lấy hiệu thì $d$ bị triệt tiêu.
+Lưu ý rằng nếu $\{a_1,a_2,\dots,a_n\}$ là một nghiệm của hệ ràng buộc hiệu này, thì với hằng số bất kỳ $d$, $\{a_1+d,a_2+d,\dots,a_n+d\}$ cũng là một nghiệm, vì khi lấy hiệu thì $d$ bị triệt tiêu.
 
 ## Quy trình
 

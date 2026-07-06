@@ -24,7 +24,7 @@ Gọi chi phí nhỏ nhất khi lượng luồng bằng $i$ là $f_i$. Giả s�
 
 Giả sử $f_i$ do thuật toán SSP tìm được là chi phí nhỏ nhất. Từ $f_i$, tìm một đường tăng luồng ngắn nhất để suy ra $f_{i+1}$. Khi đó $f_{i+1}-f_i$ chính là độ dài của đường tăng luồng ngắn nhất này.
 
-Giả sử tồn tại một giá trị $f_{i+1}$ nhỏ hơn, ký hiệu là $f'_{i+1}$. Vì $f_{i+1}-f_i$ đã là đường tăng luồng ngắn nhất, nên $f'_{i+1}-f_i$ chắc chắn tương ứng với một đường tăng luồng đi qua **ít nhất một chu trình âm**.
+Giả sử tồn tại một giá trị $f_{i+1}$ nhỏ hơn, ký hiệu là $f'_{i+1}$. Vì $f_{i+1}-f_i$ đã là đường tăng luồng ngắn nhất, nên $f'_{i+1}-f_i$ tương ứng với một đường tăng luồng đi qua **ít nhất một chu trình âm**.
 
 Mâu thuẫn nằm ở chỗ: nếu tồn tại một đường tăng luồng đi qua ít nhất một chu trình âm, thì $f_i$ không phải là chi phí nhỏ nhất. Thật vậy, chỉ cần đẩy thêm luồng trên chu trình âm này, có thể làm chi phí ứng với $f_i$ nhỏ hơn mà không làm tăng lượng luồng đi ra từ $s$.
 
@@ -178,13 +178,13 @@ Dùng Bellman–Ford để tìm đường đi ngắn nhất có độ phức t�
 
 Trước hết chạy một lần thuật toán đường đi ngắn nhất để tìm khoảng cách ngắn nhất từ nguồn đến mỗi đỉnh, cũng chính là thế năng ban đầu $h_i$ của đỉnh đó. Tiếp theo, giống thuật toán Johnson, với một cạnh từ $u$ đến $v$ có chi phí đơn vị $w$, đặt lại trọng số cạnh thành $w+h_u-h_v$.
 
-Có thể thấy rằng sau khi đặt thế năng như vậy, đường đi ngắn nhất trên mạng mới chắc chắn tương ứng với đường đi ngắn nhất trên mạng gốc. Chứng minh đã được đưa ra khi giới thiệu thuật toán Johnson, nên không trình bày lại trong phần này.
+Sau khi đặt thế năng như vậy, đường đi ngắn nhất trên mạng mới tương ứng với đường đi ngắn nhất trên mạng gốc. Chứng minh đã được đưa ra khi giới thiệu thuật toán Johnson, nên không trình bày lại trong phần này.
 
 Khác với bài toán đường đi ngắn nhất thông thường, sau mỗi lần tăng luồng, hình dạng của đồ thị sẽ thay đổi. Trong trường hợp này, thế năng của các đỉnh cần được cập nhật.
 
 Cập nhật như thế nào? Trước hết nêu kết luận: giả sử sau khi tăng luồng, khoảng cách ngắn nhất từ nguồn đến đỉnh số $i$ là $d'_i$ (khoảng cách này được tính sau khi đã đặt lại trọng số cho từng cạnh), chỉ cần cộng $d'_i$ vào $h_i$. Dưới đây chứng minh rằng sau cách cập nhật trọng số cạnh này, trọng số của mọi cạnh trên đồ thị đều không âm.
 
-Sau một lượt tăng luồng, do một số cạnh $(i,j)$ nằm trên đường tăng luồng, mạng dư sẽ xuất hiện tương ứng một số cạnh $(j,i)$, và chắc chắn thỏa mãn $d'_i+(w(i,j)+h_i-h_j)=d'_j$ (nếu không, cạnh $(i,j)$ đã không nằm trên đường tăng luồng). Biến đổi nhẹ sẽ được $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$. Vì vậy trọng số của các cạnh mới thêm là không âm.
+Sau một lượt tăng luồng, do một số cạnh $(i,j)$ nằm trên đường tăng luồng, mạng dư sẽ xuất hiện tương ứng một số cạnh $(j,i)$, và thỏa mãn $d'_i+(w(i,j)+h_i-h_j)=d'_j$ (nếu không, cạnh $(i,j)$ đã không nằm trên đường tăng luồng). Biến đổi nhẹ sẽ được $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$. Vì vậy trọng số của các cạnh mới thêm là không âm.
 
 Còn với các cạnh đã có, trước khi tăng luồng có $d'_i+(w(i,j)+h_i-h_j) - d'_j \geq 0$, do đó $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$. Tức là dùng $h_i+d'_i$ làm thế năng mới sẽ không khiến trọng số của cạnh $(i,j)$ trở thành âm.
 

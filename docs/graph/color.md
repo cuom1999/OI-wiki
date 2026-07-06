@@ -29,7 +29,7 @@ Giả sử đồ thị liên thông không phải là đồ thị đầy đủ v
     
     > Trong ngữ cảnh này, hoán đổi màu nghĩa là: nếu trong đồ thị chỉ có hai màu $a$ và $b$, thì đổi tất cả các đỉnh đang có màu $a$ thành màu $b$, đồng thời đổi tất cả các đỉnh đang có màu $b$ thành màu $a$.
     
-    Gọi thành phần liên thông nói trên là $C_{i,j}$. Khi đó $C_{i,j}$ chỉ có thể là một đường đi từ $v_i$ đến $v_j$. Vì bậc của $v_i$ trong $H$ là $\Delta-1$, các đỉnh kề của $v_i$ trong $H$ phải có màu đôi một khác nhau; nếu không có thể tô lại $v_i$ bằng một màu khác, làm màu của nó trùng với một đỉnh kề khác của $v$. Do đó số đỉnh kề của $v_i$ trong $C_{i,j}$ là 1, và với $v_j$ cũng tương tự. Tiếp theo, lấy một đường đi từ $v_i$ đến $v_j$ trong $C_{i,j}$ và gọi nó là $P$. Nếu $C_{i,j}\ne P$, tô lại màu các đỉnh trên đường đi $P$ theo thứ tự. Gọi $u$ là đỉnh đầu tiên gặp được có bậc lớn hơn 2. Chú ý rằng các đỉnh kề của $u$ dùng nhiều nhất $\Delta-2$ màu, nên có thể tô lại $u$, từ đó làm cho $v_i$ và $v_j$ không còn liên thông với nhau.
+    Gọi thành phần liên thông nói trên là $C_{i,j}$. Khi đó $C_{i,j}$ chỉ có thể là một đường đi từ $v_i$ đến $v_j$. Vì bậc của $v_i$ trong $H$ là $\Delta-1$, các đỉnh kề của $v_i$ trong $H$ phải có màu đôi một khác nhau; nếu không có thể tô lại $v_i$ bằng một màu khác, làm màu của nó trùng với một đỉnh kề khác của $v$. Do đó số đỉnh kề của $v_i$ trong $C_{i,j}$ là 1, và với $v_j$ cũng tương tự. Tiếp theo, lấy một đường đi từ $v_i$ đến $v_j$ trong $C_{i,j}$ và gọi nó là $P$. Nếu $C_{i,j}\ne P$, tô lại màu các đỉnh trên đường đi $P$ theo thứ tự. Gọi $u$ là đỉnh đầu tiên gặp được có bậc lớn hơn 2. Các đỉnh kề của $u$ dùng nhiều nhất $\Delta-2$ màu, nên có thể tô lại $u$, từ đó làm cho $v_i$ và $v_j$ không còn liên thông với nhau.
     
     Khi đó suy ra với ba đỉnh khác nhau bất kỳ $v_i$, $v_j$, $v_k$, có $V(C_{i,j})\cap V(C_{j,k})=\{v_j\}$.
     
@@ -72,7 +72,7 @@ Trước hết, sắp xếp các đỉnh theo bậc giảm dần, thu được:
 
 Vì vậy, số màu tối đa sau khi tô bằng thuật toán Welsh-Powell là 5.
 
-Ngoài ra, vì đồ thị này có đồ thị con $C_3$, nên số sắc chắc chắn không nhỏ hơn 3.
+Ngoài ra, vì đồ thị này có đồ thị con $C_3$, nên số sắc không nhỏ hơn 3.
 
 -   Lần tô màu thứ nhất:
 

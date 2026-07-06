@@ -115,7 +115,7 @@ Có $n$ vật phẩm và hai tập $A,B$. Nếu vật phẩm thứ $i$ không đ
 
 Đây là một bài toán lát cắt nhỏ nhất kinh điển thuộc dạng **chọn một trong hai**. Đặt đỉnh nguồn $s$ và đỉnh đích $t$ tương ứng với hai tập; với đỉnh thứ $i$, nối một cạnh từ $s$ đến nó có dung lượng $a_i$, và một cạnh từ nó đến $t$ có dung lượng $b_i$. Với mỗi ràng buộc $u,v,w$, nối cạnh hai chiều có dung lượng $w$ giữa $u$ và $v$.
 
-Cần chú ý rằng khi đỉnh nguồn và đỉnh đích không còn liên thông, các đỉnh ở mỗi phía đại diện cho việc chọn một trong hai tập. Nếu cắt cạnh nối với $s$ hoặc $t$, điều đó biểu thị vật phẩm không được đặt vào tập $A$ hoặc $B$; nếu cắt cạnh giữa hai vật phẩm, điều đó biểu thị hai vật phẩm này không được đặt trong cùng một tập.
+Khi đỉnh nguồn và đỉnh đích không còn liên thông, các đỉnh ở mỗi phía đại diện cho việc chọn một trong hai tập. Nếu cắt cạnh nối với $s$ hoặc $t$, điều đó biểu thị vật phẩm không được đặt vào tập $A$ hoặc $B$; nếu cắt cạnh giữa hai vật phẩm, điều đó biểu thị hai vật phẩm này không được đặt trong cùng một tập.
 
 Lát cắt nhỏ nhất chính là chi phí nhỏ nhất.
 
