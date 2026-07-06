@@ -1,6 +1,6 @@
 Bài viết này giới thiệu khác biệt giữa C++ và các ngôn ngữ thường dùng khác,
 tập trung vào những khác biệt quan trọng hoặc dễ bị bỏ qua giữa C và C++. Dù C++
-thường được xem là khá gần với C, không phải mọi mã C đều giữ nguyên ý nghĩa khi
+thường được xem là gần với C, không phải mọi mã C đều giữ nguyên ý nghĩa khi
 biên dịch bằng C++. Hiểu các khác biệt quan trọng giữa C/C++ giúp tránh một số
 lỗi khó hiểu. Với OIer đang dùng C làm ngôn ngữ chính, bài viết này cũng giúp
 việc chuyển sang C++ thuận lợi hơn. Các tính năng riêng mà C++ bổ sung
@@ -69,7 +69,7 @@ toàn giống nhau. `struct` trong C dùng để mô tả một cấu trúc tổ
 định của `struct` là `public`**, còn mặc định của `class` là `private`. Điểm này
 đặc biệt dễ gây lỗi khi viết mã trộn C/C++.
 
-Ngoài ra, khi khai báo `struct`, C++ cũng không cần rườm rà như C. Phiên bản C:
+Ngoài ra, khi khai báo `struct`, C++ không cần viết dài như C. Phiên bản C:
 
 ```c
 typedef struct Node_t {
@@ -104,7 +104,7 @@ phát bằng `new[]`. So với các hàm `malloc()`, `realloc()`, `free()` trong
 `new`/`delete` gắn với kiểu đối tượng rõ hơn và xử lý vòng đời đối tượng đúng
 hơn.
 
-Nói ngắn gọn, nếu chỉ cần một vùng nhớ thô, `malloc()` vẫn có thể dùng được.
+Nói ngắn gọn, khi mục tiêu là cấp phát một vùng nhớ thô, `malloc()` vẫn có thể dùng được.
 Nhưng nếu đối tượng cần cấp phát có hàm tạo, hàm hủy hoặc yêu cầu quản lý vòng
 đời kiểu C++, nên dùng `new` hoặc các công cụ thư viện chuẩn thích hợp. Lưu ý
 rằng dù `new` và `malloc()` đều trả về con trỏ, con trỏ sinh bởi `new` **chỉ** có
@@ -138,11 +138,11 @@ Chú thích một dòng kiểu C++ `//` không được C hỗ trợ trước C9
 
 ## Khác biệt giữa Python và C++
 
-Python được dùng rất rộng rãi trong học máy. So với C++, ưu điểm của Python là
+Python được dùng rộng rãi trong học máy. So với C++, ưu điểm của Python là
 dễ học và dễ thực hành. Python có cú pháp đơn giản, trực tiếp hơn; chẳng hạn khi
 định nghĩa biến, thường không cần khai báo trước kiểu của biến. Tuy nhiên sự đơn
-giản này cũng có cái giá của nó: Python thường có hiệu năng thấp hơn C++. C++ gần
-như áp dụng được trên mọi nền tảng, bao gồm cả hệ thống nhúng, và có tốc độ thực
+giản này cũng đi kèm đánh đổi: Python thường có hiệu năng thấp hơn C++. C++ có
+thể áp dụng trên hầu hết nền tảng, bao gồm cả hệ thống nhúng, và có tốc độ thực
 thi nhanh hơn. C++ cũng gần với phần cứng và hệ thống hơn, nên có thể dùng để
 viết hệ điều hành.
 
@@ -154,7 +154,7 @@ tượng như đóng gói, kế thừa, đa hình. Vì hướng đối tượng 
 với Python, Java và C++ giống nhau hơn.
 
 Khác biệt lớn nhất giữa hai ngôn ngữ nằm ở cơ chế JVM của Java. JVM là viết tắt
-của Java Virtual Machine, tức máy ảo Java. Một tính chất rất quan trọng của Java
+của Java Virtual Machine, tức máy ảo Java. Một tính chất quan trọng của Java
 là tính độc lập với nền tảng. Máy ảo Java là mấu chốt để đạt được tính chất này.
 Nếu muốn chạy trên các nền tảng khác nhau, ngôn ngữ bậc cao thông thường ít nhất
 cần biên dịch thành các mã máy khác nhau. Với Java, trình biên dịch sinh bytecode
