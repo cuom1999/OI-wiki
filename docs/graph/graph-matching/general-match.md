@@ -13,7 +13,7 @@ Sau một số sửa đổi, nó cũng có thể giải bài toán ghép cặp t
 Lấy đồ thị này làm ví dụ. Nếu trực tiếp đảo trạng thái các cạnh (đổi cạnh ghép cặp và cạnh chưa ghép cặp cho nhau), thì $M$ sau khi đảo sẽ không hợp lệ: một số đỉnh sẽ xuất hiện trong hai cạnh ghép cặp. Vấn đề nằm ở chu trình lẻ.
 
 Sau đây xét thuật toán tìm đường tăng cho đồ thị tổng quát.
-Nhìn từ góc độ đồ thị hai phía, mỗi lần ta liệt kê một đỉnh chưa được ghép cặp, đặt đỉnh xuất phát làm gốc và đánh dấu là **"o"**, sau đó đánh dấu xen kẽ **"o"** và **"i"**. Không khó để nhận thấy đoạn cạnh từ **"i"** đến **"o"** là cạnh ghép cặp.
+Nhìn từ góc độ đồ thị hai phía, mỗi lần liệt kê một đỉnh chưa được ghép cặp, đặt đỉnh xuất phát làm gốc và đánh dấu là **"o"**, sau đó đánh dấu xen kẽ **"o"** và **"i"**. Khi đó đoạn cạnh từ **"i"** đến **"o"** là cạnh ghép cặp.
 
 Giả sử đỉnh hiện tại là $v$, đỉnh kề là $u$, có thể chia thành hai trường hợp sau:
 
@@ -24,7 +24,7 @@ Trường hợp gặp chu trình chẵn có thể xem như xử lý trong đồ 
 
 ![Co hoa trong thuật toán blossom](./images/general-matching-2.png)
 
-Gọi đồ thị ban đầu là $G$, đồ thị sau khi **co hoa** là $G'$. Ta chỉ cần chứng minh:
+Gọi đồ thị ban đầu là $G$, đồ thị sau khi **co hoa** là $G'$. Chỉ cần chứng minh:
 
 1.  Nếu $G$ tồn tại đường tăng, thì $G'$ cũng tồn tại.
 2.  Nếu $G'$ tồn tại đường tăng, thì $G$ cũng tồn tại.
@@ -41,11 +41,11 @@ Quan sát cho thấy khi đi ra bằng một cạnh ngoài chu trình, có hai k
 
 Vì vậy, **co hoa** hay **không co hoa** đều không ảnh hưởng đến tính đúng đắn.
 
-Khi hiện thực, sau khi tìm được **hoa**, ta không cần thật sự **co hoa**; có thể dùng mảng để ghi lại mỗi đỉnh đang nằm trong bông hoa có gốc là đỉnh nào.
+Khi hiện thực, sau khi tìm được **hoa**, không cần thật sự **co hoa**; có thể dùng mảng để ghi lại mỗi đỉnh đang nằm trong bông hoa có gốc là đỉnh nào.
 
 ### Phân tích độ phức tạp
 
-Mỗi lần tìm đường tăng, ta duyệt qua tất cả các cạnh; khi gặp **hoa** thì cần duy trì các đỉnh trên **hoa**, độ phức tạp là $O(|E|^2)$.
+Mỗi lần tìm đường tăng, duyệt qua tất cả các cạnh; khi gặp **hoa** thì cần duy trì các đỉnh trên **hoa**, độ phức tạp là $O(|E|^2)$.
 
 Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng, tổng cộng là $O(|V||E|^2)$.
 
@@ -152,7 +152,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
           q.pop();
         }
         q.push(root);
-        // Đặt điểm ban đầu là "o"; ở đây dùng "0" thay cho "o", "1" thay cho "i"
+        // Đặt điểm ban đầu là "o"; trong mã dùng "0" thay cho "o", "1" thay cho "i"
         label[root] = 0;
         while (!q.empty()) {
           int v = q.front();
@@ -185,11 +185,11 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
     
       auto greedy = [&]() {
         vector<int> order(g.n);
-        // Xao tron ngau nhien order
+        // Xáo trộn ngẫu nhiên order
         iota(order.begin(), order.end(), 0);
         shuffle(order.begin(), order.end(), rng);
     
-        // Ghep cac dinh co the ghep cap
+        // Ghép các đỉnh có thể ghép cặp
         for (int i : order) {
           if (match[i] == -1) {
             for (auto id : g.g[i]) {
@@ -225,7 +225,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
 ## Thuật toán ghép cặp trong đồ thị tổng quát dựa trên khử Gauss
 
 ???+ tip "Gợi ý"
-    Trước khi đọc phần sau, có thể bạn cần đọc trước nội dung về ma trận trong phần "Đại số tuyến tính":
+    Trước khi đọc phần sau, nên đọc trước nội dung về ma trận trong phần "Đại số tuyến tính":
     
     -   [Ma trận](../../math/linear-algebra/matrix.md)
     -   [Định thức](../../math/linear-algebra/determinant.md)
@@ -252,12 +252,12 @@ Khi không gây nhầm lẫn, bên dưới viết tắt $\tilde{A}(G)$ thành $\
 **Định lý** (định lý Tutte): $G$ tồn tại ghép cặp hoàn hảo khi và chỉ khi $\det \tilde{A} \ne 0$.
 
 ??? note "Chứng minh"
-    Ở đây đưa vào khái niệm "phủ chu trình chẵn": một phủ chu trình chẵn của đồ thị vô hướng $G$ là cách dùng một số chu trình chẵn (bao gồm cả chu trình hai cạnh) để phủ tất cả các đỉnh, không trùng và không sót.
+    Cần đưa vào khái niệm "phủ chu trình chẵn": một phủ chu trình chẵn của đồ thị vô hướng $G$ là cách dùng một số chu trình chẵn (bao gồm cả chu trình hai cạnh) để phủ tất cả các đỉnh, không trùng và không sót.
     
-    Dễ chứng minh rằng $G$ tồn tại ghép cặp hoàn hảo khi và chỉ khi $G$ tồn tại phủ chu trình chẵn.
+    Có thể chứng minh rằng $G$ tồn tại ghép cặp hoàn hảo khi và chỉ khi $G$ tồn tại phủ chu trình chẵn.
     
-    -   Nếu $G$ tồn tại phủ chu trình chẵn, ta chỉ cần lấy xen kẽ các cạnh trên mỗi chu trình để thu được một ghép cặp hoàn hảo.
-    -   Nếu $G$ tồn tại ghép cặp hoàn hảo, ta chỉ cần lấy ra các chu trình hai cạnh tương ứng với các cạnh ghép cặp để thu được một phủ chu trình chẵn.
+    -   Nếu $G$ tồn tại phủ chu trình chẵn, chỉ cần lấy xen kẽ các cạnh trên mỗi chu trình để thu được một ghép cặp hoàn hảo.
+    -   Nếu $G$ tồn tại ghép cặp hoàn hảo, chỉ cần lấy ra các chu trình hai cạnh tương ứng với các cạnh ghép cặp để thu được một phủ chu trình chẵn.
     
     Tiếp theo chứng minh $G$ tồn tại phủ chu trình chẵn khi và chỉ khi $\tilde{A} \ne 0$.
     
@@ -269,14 +269,14 @@ Khi không gây nhầm lẫn, bên dưới viết tắt $\tilde{A}(G)$ thành $\
     
     Trong đó $\pi$ là một hoán vị bất kỳ, $(-1)^{\pi}$ nghĩa là nếu số cặp nghịch thế trong $\pi$ là lẻ thì lấy $-1$, ngược lại lấy $1$.
     
-    Không khó thấy rằng mỗi hoán vị đều có thể được xem là một phủ chu trình của $G$. Nếu trong phủ chu trình này có chu trình lẻ, thì tổng sau khi đảo chiều chu trình đó chắc chắn bằng $0$. Do đó chỉ phủ chu trình chẵn mới có thể làm định thức khác $0$, chứng minh hoàn tất.
+    Mỗi hoán vị đều có thể được xem là một phủ chu trình của $G$. Nếu trong phủ chu trình này có chu trình lẻ, thì tổng sau khi đảo chiều chu trình đó chắc chắn bằng $0$. Do đó chỉ phủ chu trình chẵn mới có thể làm định thức khác $0$, chứng minh hoàn tất.
 
 **Định lý**: $\operatorname{rank}\tilde{A}$ luôn là số chẵn, và kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$.
 
 ??? note "Chứng minh"
-    Hạng của ma trận phản đối xứng chỉ có thể là số chẵn; phần sau xin để bạn đọc tự suy nghĩ.
+    Hạng của ma trận phản đối xứng chỉ có thể là số chẵn; phần còn lại có thể suy ra từ định lý Tutte ở trên.
 
-Trong ứng dụng thực tế, không thể tính toán với $|E|$ biến. Tuy nhiên, ta có thể chọn một trường số, chẳng hạn trường thặng dư $\mathcal{Z}_p$ theo một số nguyên tố $p$, rồi thay ngẫu nhiên từng biến bằng một phần tử trong $\mathcal{Z}_p$ trước khi tính toán. Để tiện trình bày, khi không gây nhầm lẫn, bên dưới dùng $\tilde{A}$ để chỉ trực tiếp ma trận sau khi thay thế.
+Trong ứng dụng thực tế, không thể tính toán với $|E|$ biến. Tuy nhiên, có thể chọn một trường số, chẳng hạn trường thặng dư $\mathcal{Z}_p$ theo một số nguyên tố $p$, rồi thay ngẫu nhiên từng biến bằng một phần tử trong $\mathcal{Z}_p$ trước khi tính toán. Để tiện trình bày, khi không gây nhầm lẫn, bên dưới dùng $\tilde{A}$ để chỉ trực tiếp ma trận sau khi thay thế.
 
 **Định lý**: $\operatorname{rank}\tilde{A}$ không vượt quá hai lần kích thước ghép cặp lớn nhất của $G$, và xác suất để hai đại lượng này bằng nhau ít nhất là $1 - \frac n p$.
 
@@ -288,7 +288,7 @@ Từ định lý có thể thấy, nếu chỉ cần tìm số lượng cạnh t
 
 Từ định lý Tutte và định lý ở trên, nếu $G$ tồn tại ghép cặp hoàn hảo, thì $\tilde{A}$ có xác suất rất lớn là khả nghịch. Để tiện trình bày, trong phần sau đều lược bỏ cụm "với xác suất rất lớn".
 
-Ký hiệu đỉnh có nhãn $i$ trong $G$ là $v_i$. Hơn nữa, ta có định lý sau:
+Ký hiệu đỉnh có nhãn $i$ trong $G$ là $v_i$. Hơn nữa, có định lý sau:
 
 **Định lý**: $\tilde{A}^{-1}_{j,i} \ne 0 \iff G - \{v_i, v_j\}$ có ghép cặp hoàn hảo.
 
@@ -297,13 +297,13 @@ Ký hiệu đỉnh có nhãn $i$ trong $G$ là $v_i$. Hơn nữa, ta có định
     
     **Định lý**: Nếu $A$ khả nghịch, thì $A^{-1} = \frac 1 {\det A} A^*$.
     
-    Vì vậy ở đây $A^{-1}_{j, i} \ne 0 \iff M_{i, j} \ne 0$, tức là phần ma trận sau khi xóa hàng thứ $i$ và cột thứ $j$ của $A$ có hạng đầy đủ.
+    Vì vậy trong trường hợp này $A^{-1}_{j, i} \ne 0 \iff M_{i, j} \ne 0$, tức là phần ma trận sau khi xóa hàng thứ $i$ và cột thứ $j$ của $A$ có hạng đầy đủ.
 
 Nói cách khác, nếu $(v_i, v_j) \in E$ và $\tilde{A}^{-1}_{j, i} \ne 0$, thì tồn tại một phương án ghép cặp hoàn hảo chứa cạnh $(v_i, v_j)$. Bên dưới gọi những cạnh như vậy là **cạnh khả thi**.
 
-Từ định lý trên, với một đồ thị vô hướng $G$ có ghép cặp hoàn hảo, ta có thể đưa ra một thuật toán vét cạn khá hiển nhiên để tìm một ghép cặp hoàn hảo: mỗi lần liệt kê $i, j$; nếu $(v_i, v_j)$ là một cạnh khả thi (có cạnh nối và $\tilde{A}^{-1}_{j, i} \ne 0$), thì thêm $(v_i, v_j)$ vào phương án ghép cặp, xóa cả hai đỉnh này khỏi $G$, rồi tính lại $\tilde{A}^{-1}$ mới.
+Từ định lý trên, với một đồ thị vô hướng $G$ có ghép cặp hoàn hảo, có thể đưa ra một thuật toán vét cạn khá trực tiếp để tìm một ghép cặp hoàn hảo: mỗi lần liệt kê $i, j$; nếu $(v_i, v_j)$ là một cạnh khả thi (có cạnh nối và $\tilde{A}^{-1}_{j, i} \ne 0$), thì thêm $(v_i, v_j)$ vào phương án ghép cặp, xóa cả hai đỉnh này khỏi $G$, rồi tính lại $\tilde{A}^{-1}$ mới.
 
-Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng đều là $O(n^3)$, nên tổng độ phức tạp là $O(n ^ 4)$, hơi chậm. Thực ra khi tính lại $\tilde{A}^{-1}$, ta không cần mỗi lần đều dùng khử Gauss để tính lại ma trận nghịch đảo từ đầu, mà có thể sử dụng định lý sau:
+Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng đều là $O(n^3)$, nên tổng độ phức tạp là $O(n ^ 4)$, hơi chậm. Thực ra khi tính lại $\tilde{A}^{-1}$, không cần mỗi lần đều dùng khử Gauss để tính lại ma trận nghịch đảo từ đầu, mà có thể sử dụng định lý sau:
 
 **Định lý** (định lý khử): Gọi
 
@@ -323,14 +323,14 @@ $$
 B^{-1} = \hat B - \frac {\hat u \hat v^T} {\hat a_{1, 1}}
 $$
 
-Định lý mô tả trường hợp khử hàng đầu tiên và cột đầu tiên. Trên thực tế, nó có thể được mở rộng một cách rất rõ ràng sang trường hợp khử một hàng và một cột bất kỳ. Do đó ta chỉ cần tính $\tilde{A}^{-1}$ một lần ở đầu thuật toán; về sau mỗi lần xóa hai đỉnh, chỉ cần thực hiện hai lần quá trình khử $O(n^2)$.
+Định lý mô tả trường hợp khử hàng đầu tiên và cột đầu tiên. Trên thực tế, nó có thể được mở rộng trực tiếp sang trường hợp khử một hàng và một cột bất kỳ. Do đó chỉ cần tính $\tilde{A}^{-1}$ một lần ở đầu thuật toán; về sau mỗi lần xóa hai đỉnh, chỉ cần thực hiện hai lần quá trình khử $O(n^2)$.
 
 ??? note "Mô tả hơi trừu tượng, có thể tham khảo mã C++"
     ```cpp
-    void eliminate(int A[][MAXN], int r, int c) {  // khu hang r cot c
-      row_marked[r] = col_marked[c] = true;        // da bi khu
+    void eliminate(int A[][MAXN], int r, int c) {  // khử hàng r cột c
+      row_marked[r] = col_marked[c] = true;        // đã bị khử
     
-      int inv = quick_power(A[r][c], p - 2);  // nghich dao modulo
+      int inv = quick_power(A[r][c], p - 2);  // nghịch đảo modulo
     
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {
@@ -347,11 +347,11 @@ Cần thực hiện tổng cộng $\frac n 2$ vòng, mỗi vòng có độ phứ
 
 ### Xây dựng ghép cặp lớn nhất
 
-Ta vừa giải quyết bài toán xây dựng một ghép cặp hoàn hảo, nhưng khi giải bài thường cần ghép cặp lớn nhất.
+Phần trên đã giải quyết bài toán xây dựng một ghép cặp hoàn hảo, nhưng khi giải bài thường cần ghép cặp lớn nhất.
 
-Phần trước đã nhắc rằng kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$. Nếu ta tìm được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$, thì chỉ cần tìm một ghép cặp hoàn hảo trên đồ thị con cảm sinh tương ứng với ma trận con đó là có thể tìm được một ghép cặp lớn nhất của $G$.
+Phần trước đã nhắc rằng kích thước ghép cặp lớn nhất của $G$ bằng một nửa $\operatorname{rank}\tilde{A}$. Nếu tìm được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$, thì chỉ cần tìm một ghép cặp hoàn hảo trên đồ thị con cảm sinh tương ứng với ma trận con đó là có thể tìm được một ghép cặp lớn nhất của $G$.
 
-Xét theo góc nhìn khác, nếu $G$ có ghép cặp hoàn hảo, thì $\tilde{A}$ có hạng đầy đủ, nói cách khác, các hàng/cột của $\tilde{A}$ độc lập tuyến tính. Vậy nếu $\tilde{A}$ không có hạng đầy đủ, ta có thể tìm một cơ sở tuyến tính của $\tilde{A}$, rồi chỉ giữ lại các hàng và cột tương ứng với cơ sở tuyến tính đó để thu được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$.
+Xét theo góc nhìn khác, nếu $G$ có ghép cặp hoàn hảo, thì $\tilde{A}$ có hạng đầy đủ, nói cách khác, các hàng/cột của $\tilde{A}$ độc lập tuyến tính. Vậy nếu $\tilde{A}$ không có hạng đầy đủ, có thể tìm một cơ sở tuyến tính của $\tilde{A}$, rồi chỉ giữ lại các hàng và cột tương ứng với cơ sở tuyến tính đó để thu được một ma trận con vuông hạng đầy đủ lớn nhất của $\tilde{A}$.
 
 Sau khi tìm được ma trận con vuông hạng đầy đủ lớn nhất, dùng thuật toán ở trên để tìm một ghép cặp hoàn hảo của đồ thị con cảm sinh, từ đó thu được một ghép cặp lớn nhất của đồ thị ban đầu. Lưu ý rằng trong khử Gauss có thể xảy ra hoán đổi hàng, nên khi hiện thực cần duy trì cẩn thận chỉ số của các đỉnh.
 
