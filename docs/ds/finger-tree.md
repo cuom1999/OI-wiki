@@ -1,6 +1,6 @@
 author: isdanni
 
-???+ warning "Chú ý"
+???+ warning "Lưu ý"
     Chương này là nội dung đọc thêm. Trước khi đọc, nên có hiểu biết nhất định về lập trình hàm (Functional
     Programming).
 

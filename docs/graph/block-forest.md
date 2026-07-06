@@ -168,7 +168,7 @@ Phần này có thể chưa được trình bày đủ rõ. Bên dưới là m�
               T[x].push_back(cnt);
               printf("    BCC #%d has vertex #%d\n", cnt - N, x);
             }
-            // Chú ý rằng bản thân u cũng cần nối cạnh (nhưng không pop)
+            // Lưu ý rằng bản thân u cũng cần nối cạnh (nhưng không pop)
             T[cnt].push_back(u);
             T[u].push_back(cnt);
             printf("    BCC #%d has vertex #%d\n", cnt - N, u);
@@ -194,7 +194,7 @@ Phần này có thể chưa được trình bày đủ rõ. Bên dưới là m�
       // Xử lý đồ thị không liên thông
       for (int u = 1; u <= N; ++u)
         if (!dfn[u]) Tarjan(u), --tp;
-      // Chú ý khi thoát Tarjan, trong ngăn xếp vẫn còn một phần tử là gốc; pop nó ra
+      // Lưu ý khi thoát Tarjan, trong ngăn xếp vẫn còn một phần tử là gốc; pop nó ra
       return 0;
     }
     ```

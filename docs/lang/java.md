@@ -280,7 +280,7 @@ class Test {
 }
 ```
 
-## Chú ý
+## Lưu ý
 
 ### Tên lớp và tên tệp phải nhất quán
 
