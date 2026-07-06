@@ -11,9 +11,9 @@ Sắp xếp đếm (counting sort) là một thuật toán sắp xếp có thờ
 
 ## Quy trình
 
-Nguyên lý hoạt động của sắp xếp đếm là dùng một mảng phụ $C$, trong đó phần tử
-thứ $i$ là số phần tử có giá trị bằng $i$ trong mảng cần sắp xếp $A$, rồi dựa
-vào mảng $C$ để đưa các phần tử trong $A$ về đúng vị trí.[^ref1]
+Nguyên lý hoạt động của sắp xếp đếm là dùng một mảng phụ $C$. Trong đó, phần tử
+thứ $i$ lưu số phần tử có giá trị bằng $i$ trong mảng cần sắp xếp $A$. Sau đó,
+dựa vào mảng $C$ để đưa các phần tử trong $A$ về đúng vị trí.[^ref1]
 
 Quy trình của thuật toán gồm ba bước:
 
@@ -25,18 +25,19 @@ Quy trình của thuật toán gồm ba bước:
 ### Vì sao cần tính tổng tiền tố
 
 Nếu chỉ lần lượt đưa các phần tử có số lần xuất hiện dương trong $C$ vào $A$,
-thuật toán không xử lý tốt trường hợp có nhiều phần tử trùng khóa.
+thuật toán sẽ không xử lý tốt trường hợp có nhiều phần tử trùng khóa.
 
 Bằng cách tính tổng tiền tố trên mảng phụ $C$, rồi kết hợp với số lần xuất hiện
-của từng khóa, có thể xác định một thứ hạng duy nhất cho mỗi phần tử trùng khóa:
+của từng khóa, ta có thể xác định một thứ hạng duy nhất cho mỗi phần tử trùng
+khóa:
 
 Giá trị của mỗi ô trong mảng phụ $C$ chính là số phần tử có khóa tương ứng, còn
 tổng tiền tố tại ô đó chính là thứ hạng của phần tử đứng cuối cùng trong nhóm
 cùng khóa.
 
 Nếu duyệt $A$ theo thứ tự ngược, các phần tử có cùng khóa vẫn giữ nguyên thứ tự
-tương đối ban đầu trong mảng sau khi sắp xếp; do đó thu được một thuật toán sắp
-xếp ổn định.
+tương đối ban đầu trong mảng sau khi sắp xếp. Do đó, ta thu được một thuật toán
+sắp xếp ổn định.
 
 ![Minh họa động sắp xếp đếm](images/counting-sort-animate.svg)
 
@@ -57,8 +58,8 @@ miền giá trị của dữ liệu cần sắp xếp.
 
 $$
 \begin{array}{ll}
-1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm }n\text{ số nguyên dương không vượt quá } w. \\
-2 & \textbf{Đầu ra. } \text{Mảng }A\text{ sau khi được sắp xếp không giảm một cách ổn định.} \\
+1 & \textbf{Đầu vào. } \text{Mảng } A \text{ gồm } n \text{ số nguyên dương không vượt quá } w. \\
+2 & \textbf{Đầu ra. } \text{Mảng } A \text{ sau khi được sắp xếp không giảm một cách ổn định.} \\
 3 & \textbf{Phương pháp. }  \\
 4 & \textbf{với }i\gets0\textbf{ đến }w\\
 5 & \qquad \textit{cnt}[i]\gets0\\

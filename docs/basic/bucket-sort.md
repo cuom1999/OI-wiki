@@ -2,7 +2,7 @@ Trang này giới thiệu ngắn gọn về sắp xếp theo thùng.
 
 ## Định nghĩa
 
-Sắp xếp theo thùng (bucket sort) là một thuật toán sắp xếp, phù hợp khi dữ liệu
+Sắp xếp theo thùng (bucket sort) là một thuật toán sắp xếp phù hợp khi dữ liệu
 cần sắp xếp có miền giá trị lớn nhưng phân bố tương đối đều.
 
 ## Quy trình
@@ -18,15 +18,21 @@ Sắp xếp theo thùng gồm các bước sau:
 
 ### Tính ổn định
 
-Nếu dùng một thuật toán sắp xếp ổn định bên trong mỗi thùng, đồng thời không thay đổi thứ tự tương đối giữa các phần tử khi đưa chúng vào thùng, thì sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
+Nếu dùng một thuật toán sắp xếp ổn định bên trong mỗi thùng, đồng thời không
+thay đổi thứ tự tương đối giữa các phần tử khi đưa chúng vào thùng, thì sắp xếp
+theo thùng là một thuật toán sắp xếp ổn định.
 
-Vì số phần tử trong mỗi thùng thường không nhiều, có thể dùng sắp xếp chèn. Khi đó sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
+Vì số phần tử trong mỗi thùng thường không nhiều, có thể dùng sắp xếp chèn để
+xử lý từng thùng. Khi đó sắp xếp theo thùng là một thuật toán sắp xếp ổn định.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian trung bình của sắp xếp theo thùng là $O(n + n^2/k + k)$ (chia đều miền giá trị thành $k$ phần + sắp xếp + gộp lại các phần tử); khi $k\approx n$ thì là $O(n)$.[^ref1]
+Độ phức tạp thời gian trung bình của sắp xếp theo thùng là
+$O(n + n^2/k + k)$: chia đều miền giá trị thành $k$ phần, sắp xếp từng thùng rồi
+gộp lại các phần tử. Khi $k\approx n$, độ phức tạp là $O(n)$.[^ref1]
 
-Độ phức tạp thời gian trong trường hợp bất lợi nhất của sắp xếp theo thùng là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp bất lợi nhất của sắp xếp theo thùng là
+$O(n^2)$.
 
 ## Cài đặt
 
