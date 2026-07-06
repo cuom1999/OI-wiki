@@ -105,7 +105,7 @@ int main() {
 }
 ```
 
-Ghi chú: mã trên có khá nhiều dòng trống; nếu chưa quen có thể bỏ bớt.
+Ghi chú: mã trên có nhiều dòng trống; nếu chưa quen có thể bỏ bớt.
 
 #### Giải thích ngắn gọn
 
@@ -151,7 +151,7 @@ int a = 0, b = 0, c = 0;
 pháp tương ứng giữa Pascal và C++, cũng như các đặc điểm khác nhau của hai ngôn
 ngữ.
 
-Tuy vậy, trước khi tiếp tục, rất nên đọc trước phần [Phạm vi biến: biến toàn cục và biến cục bộ](#phạm-vi-biến-biến-toàn-cục-và-biến-cục-bộ).
+Tuy vậy, trước khi tiếp tục, nên đọc trước phần [Phạm vi biến: biến toàn cục và biến cục bộ](#phạm-vi-biến-biến-toàn-cục-và-biến-cục-bộ).
 
 Có thể tận dụng <kbd>Alt</kbd>+<kbd>←</kbd> và <kbd>Alt</kbd>+<kbd>→</kbd> để quay
 lại hoặc đi tới sau khi nhảy giữa các trang.
@@ -162,7 +162,7 @@ lại hoặc đi tới sau khi nhảy giữa các trang.
 
 #### Kiểu dữ liệu cơ bản
 
-C++ nhìn chung khá giống Pascal. Các kiểu thường gặp gồm:
+C++ nhìn chung giống Pascal ở phần này. Các kiểu thường gặp gồm:
 
 -   `bool`: kiểu Boolean
 -   `int`: kiểu số nguyên
@@ -244,7 +244,7 @@ Ba loại vòng lặp sau, với sáu đoạn mã, đều thực hiện cùng m�
 
 #### Vòng lặp `while`
 
-`while` rất giống nhau. (Đoạn C++ trong mục này không phải chương trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương tự.)
+`while` trong hai ngôn ngữ tương đồng. (Đoạn C++ trong mục này không phải chương trình hoàn chỉnh; một số phần khung mẫu được lược bỏ. Các phần sau cũng tương tự.)
 
 ```pas
 var i: integer;
@@ -269,7 +269,7 @@ while (i <= 10) {
 
 #### Vòng lặp `for`
 
-Câu lệnh `for` của C++ rất khác.
+Câu lệnh `for` của C++ khác đáng kể.
 
 ```pas
 var i: integer;
@@ -290,8 +290,8 @@ for (int i = 1; i <= 10; i++) {
 
 Ghi chú:
 
-1.  Dòng `for (int i = 1; i <= 10; i++){` chứa khá nhiều nội dung; trong `for` có ba câu lệnh.
-2.  Câu lệnh đầu tiên `int i = 1;` khai báo một biến cục bộ `i` và khởi tạo nó. (Thiết kế này hợp lý hơn Pascal khá nhiều.)
+1.  Dòng `for (int i = 1; i <= 10; i++){` chứa nhiều nội dung; trong `for` có ba câu lệnh.
+2.  Câu lệnh đầu tiên `int i = 1;` khai báo một biến cục bộ `i` và khởi tạo nó. (Thiết kế này linh hoạt hơn Pascal.)
 3.  Câu lệnh thứ hai `i <= 10;` là điều kiện để xác định vòng lặp có tiếp tục hay không.
 4.  Câu lệnh thứ ba `i++` được thực hiện ở cuối mỗi vòng lặp, ý nghĩa gần giống
     `inc(i)` trong Pascal. Viết `++i` trong vòng lặp này cũng cho kết quả như nhau. Sự khác nhau giữa
@@ -366,7 +366,7 @@ int main() {
 }
 ```
 
-Truy cập phần tử mảng trong C++ khá giống Pascal, nhưng có một khác biệt rất quan
+Truy cập phần tử mảng trong C++ gần giống Pascal, nhưng có một khác biệt quan
 trọng: phần tử đầu tiên của mảng là `a[0]`, còn trong Pascal có thể tự chỉ định
 chỉ số bắt đầu.
 
@@ -400,7 +400,7 @@ Tham khảo nội dung trong trang [Mảng](array.md).
 Nếu cần dùng mảng có độ dài thay đổi, nên dùng `vector`, không nên dùng mảng kiểu
 C.
 
-Mảng kiểu C có quan hệ rất chặt chẽ với con trỏ, nên bài này không trình bày thêm.
+Mảng kiểu C có quan hệ chặt chẽ với con trỏ, nên bài này không trình bày thêm.
 
 ## Những điểm khác biệt quan trọng
 
@@ -409,7 +409,7 @@ Mảng kiểu C có quan hệ rất chặt chẽ với con trỏ, nên bài này
 C++ gần như có thể khai báo biến ở **bất kỳ đâu**. Tham khảo thêm [Phạm vi
 biến](var.md#phạm-vi-của-biến).
 
-Khi viết thủ tục/hàm Pascal, rất dễ quên khai báo biến cục bộ `i` hoặc `j`.
+Khi viết thủ tục/hàm Pascal, người viết dễ quên khai báo biến cục bộ `i` hoặc `j`.
 Thông thường chương trình chính lại có vòng lặp, nên trong đa số trường hợp `i`
 và `j` đều là biến toàn cục. Khi đó, việc thao tác với `i` trong thủ tục/hàm rất
 dễ gây lỗi. Tệ hơn nữa, nếu quên khai báo các biến cục bộ kiểu này, trình biên
@@ -558,7 +558,7 @@ int main() {
 }
 ```
 
-`return` của C++ có một điểm rất khác so với việc gán giá trị cho biến hàm trong Pascal. Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm, mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có thể dùng trực tiếp `return`. Ví dụ:
+`return` của C++ khác rõ rệt so với việc gán giá trị cho biến hàm trong Pascal. Trong C++, `return` trả về một giá trị; sau khi thực thi câu lệnh này, hàm kết thúc ngay. Còn trong Pascal, gán giá trị cho biến hàm không làm thoát khỏi hàm, mà chương trình vẫn tiếp tục thực thi. Vì vậy, nếu Pascal cần dừng hàm/thủ tục ở một chỗ nào đó, cần thêm lệnh `exit`. C++ thì không cần; nếu cần dừng ở đâu, có thể dùng trực tiếp `return`. Ví dụ:
 
 ```cpp
 #include <iostream>
@@ -657,7 +657,7 @@ int main() {
 }
 ```
 
-Đoạn C++ này **liên quan đến con trỏ**. Con trỏ là vấn đề khá rắc rối,
+Đoạn C++ này **liên quan đến con trỏ**. Con trỏ là nội dung tương đối phức tạp,
 nên đọc thêm tài liệu liên quan.
 
 ```cpp
@@ -698,7 +698,7 @@ nên xem trước đã có hàm hoặc cấu trúc dữ liệu tương ứng hay
 
 ### Thư viện chuẩn C++
 
-Trong thư viện chuẩn C++, `<algorithm>` có rất nhiều hàm hữu ích như sắp xếp
+Trong thư viện chuẩn C++, `<algorithm>` có nhiều hàm hữu ích như sắp xếp
 nhanh, tìm kiếm nhị phân, v.v.; có thể gọi trực tiếp. Tham khảo trang [Thuật toán
 STL](csl/algorithm.md).
 
@@ -711,7 +711,7 @@ Nếu muốn tìm các hàm thao tác chuỗi, xem:
 -   [std::basic\_string - cppreference.com](https://en.cppreference.com/w/cpp/string/basic_string)
 -   [`<string>` - C++ Reference](https://www.cplusplus.com/reference/string/)
 
-Con trỏ trong C/C++ là một thứ rất linh hoạt; có thể tham khảo trang [Con trỏ](pointer.md). Nếu muốn hiểu thật kỹ con trỏ, nên tìm một cuốn sách hoặc sổ tay tham khảo để đọc cẩn thận.
+Con trỏ trong C/C++ là một cơ chế linh hoạt; có thể tham khảo trang [Con trỏ](pointer.md). Nếu muốn hiểu kỹ con trỏ, nên tìm một cuốn sách hoặc sổ tay tham khảo để đọc cẩn thận.
 
 ### Gỡ lỗi và mẹo
 
@@ -739,22 +739,21 @@ ký tự trong chuỗi, v.v. không phù hợp với một bài viết ngắn g�
 những thứ đó ra thì đây sẽ trở thành giáo trình nhập môn C++, nên cần tận dụng
 đầy đủ Wiki này, sổ tay tham khảo và công cụ tìm kiếm.
 
-Cần chỉ ra một điểm: cú pháp C++ nói ở trên có rất nhiều phần đến từ ngôn ngữ C. Tiêu đề viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
+Cần chỉ ra một điểm: nhiều cú pháp C++ nói ở trên đến từ ngôn ngữ C. Tiêu đề viết chính xác hơn có lẽ nên là "Bài cấp cứu chuyển từ Pascal sang C/C++".
 
-Pascal là một ngôn ngữ rất phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn
+Pascal là một ngôn ngữ phổ biến vào nửa sau thế kỷ trước. Nó ra đời sớm hơn
 C, nhưng cùng với sự phổ biến của hệ thống UNIX và việc Microsoft sử dụng C,
 Pascal nay đã trở thành lịch sử. Pascal về sau vẫn có phát triển, chẳng hạn dự
 án trình biên dịch mã nguồn mở Free Pascal đã bổ sung đặc điểm hướng đối tượng
 (ngôn ngữ Delphi). Hiện nay, ngoài việc dùng trong thi lập trình, Pascal có một
-đặc điểm mà các ngôn ngữ khác không có: hỗ trợ biên dịch cho rất nhiều máy cũ,
+đặc điểm mà các ngôn ngữ khác không có: hỗ trợ biên dịch cho nhiều máy cũ,
 chẳng hạn Gameboy, máy chơi game Nintendo từ thế kỷ trước. Một công dụng khác là
 xuất hiện dưới dạng mã giả (mã giả phong cách Pascal) trong nhiều sách giáo khoa.
 
-Cuối cùng, cộng đồng Pascal khá nhỏ, còn cộng đồng C/C++ rất lớn; tài
-liệu trợ giúp và giáo trình rất nhiều, rất đầy đủ. Tiếng Anh là kỹ năng rất quan
-trọng khi đọc tài liệu kỹ thuật. Trên thế giới còn rất nhiều ngôn ngữ lập trình,
-và ngành khoa học máy tính cùng kỹ thuật máy tính không chỉ có thi lập trình và
-ngôn ngữ lập trình.
+Cuối cùng, cộng đồng Pascal hiện nhỏ hơn cộng đồng C/C++; tài liệu trợ giúp và
+giáo trình cho C/C++ cũng phong phú hơn. Tiếng Anh là kỹ năng quan trọng khi đọc
+tài liệu kỹ thuật. Trên thế giới còn nhiều ngôn ngữ lập trình, và ngành khoa học
+máy tính cùng kỹ thuật máy tính không chỉ có thi lập trình và ngôn ngữ lập trình.
 
 ### Tài liệu tham khảo về ngôn ngữ Pascal trong bài này
 
