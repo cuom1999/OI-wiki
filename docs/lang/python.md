@@ -1016,8 +1016,8 @@ Từ Python 3.5, gợi ý kiểu được thêm vào, cho phép đặt kiểu ch
 trị trả về. Tuy nhiên, chúng chỉ là gợi ý, không có tác dụng ràng buộc thực tế;
 cần công cụ kiểm tra tĩnh mới phát hiện loại lỗi này, ví dụ
 [PyCharm](https://www.jetbrains.com/pycharm/) và [Mypy](http://mypy-lang.org/).
-Vì vậy tính năng này không thật thiết yếu với OIer, biết khái niệm là đủ. Có thể
-gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
+Vì vậy tính năng này không thật thiết yếu với người học OI, biết khái niệm là đủ.
+Có thể gán gợi ý kiểu cho tham số và giá trị trả về của hàm như sau:
 
 ```python
 def headline(
@@ -1033,7 +1033,7 @@ print(headline("type comments work", width=40))
 
 Ngoài tham số hàm, biến cũng có thể có gợi ý kiểu. Có thể gọi `__annotations__`
 để xem mọi gợi ý kiểu trong hàm. Gợi ý kiểu cho biến đem lại cho Python một phần
-tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị tách nhau.
+tính chất của ngôn ngữ tĩnh: khai báo và gán giá trị có thể tách nhau.
 
 ```pycon
 >>> nothing: str
@@ -1050,7 +1050,7 @@ NameError: name 'nothing' is not defined
 
 Hàm trang trí là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và
 trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được
-trang trí và có thêm một số chức năng. Nói ngắn gọn, hàm trang trí cho phép tăng
+trang trí và bổ sung một số chức năng. Nói ngắn gọn, hàm trang trí cho phép tăng
 cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo
 [tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
 
@@ -1059,14 +1059,14 @@ Một số hàm trang trí hữu dụng trong thi đấu, chẳng hạn
 Nó có thể tự động thêm khả năng ghi nhớ kết quả cho hàm, thiết thực trong thuật
 toán đệ quy:
 
-`@lru_cache(maxsize=128,typed=False)`
+`@lru_cache(maxsize=128, typed=False)`
 
 -   Có 2 tham số truyền vào: `maxsize` và `typed`. Nếu không truyền, giá trị mặc
     định của `maxsize` là 128, của `typed` là `False`.
 -   Tham số `maxsize` biểu thị dung lượng bộ nhớ đệm LRU, tức số lượng kết quả tối
-    đa mà phương thức được trang trí có thể lưu. Nếu giá trị này là 128, phương
-    thức đó tối đa lưu đệm 128 kết quả trả về; nếu `maxsize` là `None`, số kết
-    quả được lưu đệm không bị giới hạn.
+    đa mà hàm được trang trí có thể lưu. Nếu giá trị này là 128, hàm đó tối đa
+    lưu đệm 128 kết quả trả về; nếu `maxsize` là `None`, số kết quả được lưu đệm
+    không bị giới hạn.
 -   Nếu `typed` đặt thành `True`, các tham số hàm có kiểu khác nhau sẽ được lưu
     đệm riêng. Ví dụ, `f(3)` và `f(3.0)` sẽ được lưu đệm hai lần.
 
@@ -1093,7 +1093,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
 | [`array`](https://docs.python.org/3/library/array.html)             | Mảng độ dài cố định                            |
 | [`argparse`](https://docs.python.org/3/library/argparse.html)       | Xử lý tham số dòng lệnh                        |
 | [`bisect`](https://docs.python.org/3/library/bisect.html)           | Tìm kiếm nhị phân                              |
-| [`collections`](https://docs.python.org/3/library/collections.html) | Từ điển có thứ tự, `deque` và các cấu trúc dữ liệu khác |
+| [`collections`](https://docs.python.org/3/library/collections.html) | `deque`, bộ đếm và các cấu trúc dữ liệu khác |
 | [`fractions`](https://docs.python.org/3/library/fractions.html)     | Số hữu tỷ                                      |
 | [`heapq`](https://docs.python.org/3/library/heapq.html)             | Hàng đợi ưu tiên dựa trên đống                 |
 | [`io`](https://docs.python.org/3/library/io.html)                   | Luồng tệp, luồng bộ nhớ                        |
@@ -1112,7 +1112,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
 ??? note "[Bài mẫu Luogu P4779: Mẫu đường đi ngắn nhất đơn nguồn (bản chuẩn)](https://www.luogu.com.cn/problem/P4779)"
     Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và
     $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Tính khoảng cách
-    từ $s$ đến mọi đỉnh. Dữ liệu bảo đảm có thể đi từ $s$ đến mọi đỉnh.
+    từ $s$ đến mọi đỉnh. Dữ liệu bảo đảm từ $s$ có thể đi đến mọi đỉnh.
 
 <a id="khai-báo-hằng-số"></a>
 
@@ -1174,7 +1174,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
+    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
@@ -1261,7 +1261,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
 === "Python"
     ```python
     if __name__ == "__main__":
-        # Đọc nhiều số nguyên trên một dòng. Lưu ý nó đọc cả dòng vào
+        # Đọc nhiều số nguyên trên một dòng. Lưu ý input() đọc cả dòng
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
@@ -1356,7 +1356,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Định nghĩa hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
+    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
@@ -1396,7 +1396,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
 
     # Nếu chạy trực tiếp tệp Python này (không phải import như mô-đun) thì thực thi lệnh
     if __name__ == "__main__":
-        # Đọc nhiều số nguyên trên một dòng. Lưu ý nó đọc cả dòng vào
+        # Đọc nhiều số nguyên trên một dòng. Lưu ý input() đọc cả dòng
         n, m, s = map(int, input().split())
         for i in range(m):
             u, v, w = map(int, input().split())
