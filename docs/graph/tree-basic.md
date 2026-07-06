@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-Cây trong lý thuyết đồ thị trông giống cây trong đời thực, chỉ khác là khi xử lý bài toán, ta thường đặt gốc cây ở phía trên để xét. Cấu trúc dữ liệu này nhìn giống một cái cây bị treo ngược, nên được gọi là cây.
+Cây trong lý thuyết đồ thị trông giống cây trong đời thực, chỉ khác là khi xử lý bài toán, gốc cây thường được đặt ở phía trên để xét. Cấu trúc dữ liệu này nhìn giống một cái cây bị treo ngược, nên được gọi là cây.
 
 ## Định nghĩa
 
@@ -16,7 +16,7 @@ Một cây không có nút gốc cố định được gọi là **cây không g
 
 -   Đồ thị không có chu trình, và nếu thêm một cạnh giữa hai điểm khác nhau bất kỳ thì đồ thị thu được chứa đúng một chu trình.
 
-Trên cơ sở cây không gốc, nếu chỉ định một nút làm **gốc** thì ta thu được một **cây có gốc** (rooted tree). Cây có gốc trong nhiều trường hợp vẫn được biểu diễn bằng đồ thị vô hướng, chỉ là có quy ước quan hệ trên dưới giữa các nút. Xem chi tiết ở phần dưới.
+Trên cơ sở cây không gốc, nếu chỉ định một nút làm **gốc** thì thu được một **cây có gốc** (rooted tree). Cây có gốc trong nhiều trường hợp vẫn được biểu diễn bằng đồ thị vô hướng, chỉ là có quy ước quan hệ trên dưới giữa các nút. Xem chi tiết ở phần dưới.
 
 ## Các định nghĩa liên quan đến cây
 
@@ -29,7 +29,7 @@ Trên cơ sở cây không gốc, nếu chỉ định một nút làm **gốc** 
 -   **Nút lá của cây không gốc** (leaf node): nút có bậc không vượt quá $1$.
 
     ???+ question "Tại sao không phải bậc đúng bằng $1$?"
-        Hãy xét $n = 1$.
+        Xét trường hợp $n = 1$.
 
 -   **Nút lá của cây có gốc** (leaf node): nút không có nút con.
 
@@ -95,7 +95,7 @@ Cách này cung cấp được khá ít thông tin, không thuận tiện cho vi
     ```
 -   Với cây có gốc:
     -   Cách 1: nếu dữ liệu cho là đồ thị vô hướng, vẫn có thể lưu bằng dạng trên. Phần dưới sẽ giới thiệu cách phân biệt quan hệ trên dưới giữa các nút.
-    -   Cách 2: nếu dữ liệu đầu vào có thể đảm bảo quan hệ trên dưới giữa các nút, thì có thể tận dụng thông tin này. Tạo một danh sách tuyến tính cho mỗi nút để ghi lại tất cả nút con của nó; nếu cần, cũng có thể ghi nút cha của nó trong một mảng khác.
+    -   Cách 2: nếu dữ liệu đầu vào đã bảo đảm quan hệ trên dưới giữa các nút, thì có thể tận dụng thông tin này. Tạo một danh sách tuyến tính cho mỗi nút để ghi lại tất cả nút con của nó; nếu cần, cũng có thể ghi nút cha của nó trong một mảng khác.
         ```cpp
         std::vector<int> children[N];
         int parent[N];
@@ -117,12 +117,12 @@ Sau đó, với mỗi nút, ghi lại hai giá trị: **nút con đầu tiên** 
 Có thể duyệt tất cả nút con của một nút như sau.
 
 ```cpp
-int v = child[u];  // Bat dau tu nut con dau tien
+int v = child[u];  // Bắt đầu từ nút con đầu tiên
 while (v != EMPTY_NODE) {
   // ...
-  // Xu ly nut con v
+  // Xử lý nút con v
   // ...
-  v = sib[v];  // Chuyen sang nut con ke tiep, tuc mot anh em cua v
+  v = sib[v];  // Chuyển sang nút con kế tiếp, tức một anh em của v
 }
 ```
 
@@ -131,7 +131,7 @@ Cũng có thể viết gọn thành dạng sau.
 ```cpp
 for (int v = child[u]; v != EMPTY_NODE; v = sib[v]) {
   // ...
-  // Xu ly nut con v
+  // Xử lý nút con v
   // ...
 }
 ```
@@ -227,7 +227,7 @@ Trong quá trình BFS, cũng có thể đồng thời tìm độ sâu và nút c
 
 #### Duyệt cây theo mức
 
-Duyệt cây theo mức là duyệt ngang từng nút theo từng tầng, dựa trên quan hệ tầng từ nút gốc đến nút lá. Theo định nghĩa của BFS, ta biết thứ tự duyệt thu được bằng BFS chính là một dạng duyệt theo mức. Tuy nhiên, duyệt theo mức yêu cầu phân biệt các tầng khác nhau, nên kết quả thường được biểu diễn dưới dạng mảng hai chiều.
+Duyệt cây theo mức là duyệt ngang từng nút theo từng tầng, dựa trên quan hệ tầng từ nút gốc đến nút lá. Theo định nghĩa của BFS, thứ tự duyệt thu được bằng BFS chính là một dạng duyệt theo mức. Tuy nhiên, duyệt theo mức yêu cầu phân biệt các tầng khác nhau, nên kết quả thường được biểu diễn dưới dạng mảng hai chiều.
 
 Ví dụ, kết quả duyệt theo mức của cây trong hình dưới là `[[1], [2, 3, 4], [5, 6]]`, với mỗi tầng đi từ trái sang phải.
 
@@ -266,7 +266,7 @@ Bản chất của duyệt Morris là tránh dùng ngăn xếp, tận dụng con
 
 #### Quy trình duyệt Morris
 
-Giả sử ta đang ở nút hiện tại `cur`; ban đầu `cur` ở vị trí nút gốc.
+Giả sử đang ở nút hiện tại `cur`; ban đầu `cur` ở vị trí nút gốc.
 
 1.  Nếu `cur` rỗng thì dừng duyệt, nếu không thì thực hiện các bước sau.
 2.  Nếu `cur` không có cây con trái, di chuyển `cur` sang phải (`cur = cur->right`).
@@ -349,6 +349,6 @@ Với cây có gốc, cần phân biệt quan hệ trên dưới giữa các nú
 
 Xét quá trình duyệt ở trên: nếu bắt đầu duyệt từ gốc, thì khi thăm đến một nút, giá trị của `from` chính là chỉ số của nút cha của nó.
 
-Thông qua cách này, với đầu vào vô hướng, ta có thể tìm được nút cha của mọi nút, cũng như danh sách nút con.
+Thông qua cách này, với đầu vào vô hướng, có thể tìm được nút cha của mọi nút, cũng như danh sách nút con.
 
 **Một phần nội dung của trang này được trích dẫn từ bài viết [Cây nhị phân: duyệt tiền thứ tự, duyệt trung thứ tự, duyệt hậu thứ tự](https://blog.csdn.net/weixin_43357638/article/details/99730284), tuân theo giấy phép CC 4.0 BY-SA.**
