@@ -11,9 +11,9 @@ Phân khối số học thường được dùng cùng các kỹ thuật như [�
 <span id="ý-tưởng"></span>
 ## Ý tưởng
 
-Trước hết, ta dùng một ví dụ đơn giản để minh họa ý tưởng của phân khối số học. Giả sử cần đếm số điểm nguyên nằm dưới hyperbol trong hình sau:
+Trước hết, dùng một ví dụ đơn giản để minh họa ý tưởng của phân khối số học. Giả sử cần đếm số điểm nguyên nằm dưới đường hypebol trong hình sau:
 
-![Điểm nguyên dưới hyperbol](./images/sqrt-decomposition.svg)
+![Điểm nguyên dưới đường hypebol](./images/sqrt-decomposition.svg)
 
 Điều này tương đương với việc tính tổng
 
@@ -23,14 +23,14 @@ $$
 
 Đây là trường hợp đặc biệt của tổng ở trên khi $f(k)=1,~g(k)=k$.
 
-Cách trực tiếp nhất là tính từng cột rồi cộng lại, tức là lần lượt tính số điểm nguyên trong các cột $i=1,2,\cdots,11$. Quan sát hình vẽ, các cột điểm nguyên này có thể chia thành $5$ khối; trong mỗi khối, chiều cao của các cột là như nhau và tạo thành một lưới điểm hình chữ nhật. Vì vậy, chỉ cần biết độ rộng của từng khối, ta có thể đếm nhanh bằng cách tính kích thước của các khối chữ nhật đó.
+Cách trực tiếp nhất là tính từng cột rồi cộng lại, tức là lần lượt tính số điểm nguyên trong các cột $i=1,2,\cdots,11$. Quan sát hình vẽ, các cột điểm nguyên này có thể chia thành $5$ khối; trong mỗi khối, chiều cao của các cột là như nhau và tạo thành một lưới điểm hình chữ nhật. Vì vậy, chỉ cần biết độ rộng của từng khối là có thể đếm nhanh bằng cách tính kích thước của các khối chữ nhật đó.
 
 Đó là ý tưởng cơ bản của phân khối theo phép chia lấy phần nguyên.
 
 <span id="tính-chất"></span>
 ## Tính chất
 
-Mục này xét một số kết luận về cách chia khối các điểm nguyên dưới hyperbol $y = \dfrac{n}{x}$. Cụ thể, ta cần chia các số nguyên từ $1$ đến $n$ thành các khối theo giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$. Đặt
+Mục này xét một số kết luận về cách chia khối các điểm nguyên dưới đường hypebol $y = \dfrac{n}{x}$. Cụ thể, cần chia các số nguyên từ $1$ đến $n$ thành các khối theo giá trị của $\left\lfloor\dfrac{n}{i}\right\rfloor$. Đặt
 
 $$
 D(n) = \left\{\left\lfloor\dfrac{n}{i}\right\rfloor : 1 \le i \le n,~i\in\mathbf N_+\right\}.
@@ -47,11 +47,11 @@ Trước hết, số giá trị khác nhau như vậy chỉ là $O(\sqrt{n})$. D
     Xét hai trường hợp:
     
     -   Khi $i\le\sqrt{n}$, số giá trị có thể của $i$ nhiều nhất là $\sqrt{n}$, nên số giá trị có thể của $\left\lfloor\dfrac{n}{i}\right\rfloor$ cũng nhiều nhất là $\sqrt{n}$.
-    -   Khi $i>\sqrt{n}$, ta có $\left\lfloor\dfrac{n}{i}\right\rfloor \le\dfrac{n}{i} < \sqrt{n}$, nên cũng có nhiều nhất $\sqrt{n}$ giá trị.
+    -   Khi $i>\sqrt{n}$, có $\left\lfloor\dfrac{n}{i}\right\rfloor \le\dfrac{n}{i} < \sqrt{n}$, nên cũng có nhiều nhất $\sqrt{n}$ giá trị.
     
     Vì vậy, tổng số giá trị có thể là $|D(n)|\le 2\sqrt{n}$.
 
-Với phân tích chi tiết hơn, ta thực ra có thể mô tả chính xác tập $D(n)$ và kích thước của nó.
+Với phân tích chi tiết hơn, có thể mô tả chính xác tập $D(n)$ và kích thước của nó.
 
 ???+ note "Tính chất 2"
     Đặt $s = \lfloor\sqrt{n}\rfloor$. Các phần tử của $D(n)$ theo thứ tự tăng dần là
@@ -63,18 +63,18 @@ Với phân tích chi tiết hơn, ta thực ra có thể mô tả chính xác t
     Suy ra $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$.
 
 ??? note "Chứng minh"
-    Trước hết, với $1 \le i \le s$, có thể chứng minh $\left\lfloor\dfrac{n}{\lfloor n/i\rfloor}\right\rfloor = i$. Đặt $d = \left\lfloor\dfrac{n}{i}\right\rfloor$, ta cần chứng minh $\left\lfloor\dfrac{n}{d}\right\rfloor = i$. Viết dưới dạng bất đẳng thức, điều này tương đương với việc từ $d \le \dfrac{n}{i} < d + 1$ suy ra $i \le \dfrac{n}{d} < i + 1$. Điều kiện đã biết có thể viết thành $i\le\dfrac{n}{d} < i + \dfrac{i}{d}$, vì vậy chỉ cần chứng minh $\dfrac{i}{d} \le 1$, tức là $i \le d = \left\lfloor\dfrac{n}{i}\right\rfloor$. Điều này tương đương với $i \le \dfrac{n}{i}$, đúng với mọi $1 \le i \le s \le \sqrt{n}$.
+    Trước hết, với $1 \le i \le s$, có thể chứng minh $\left\lfloor\dfrac{n}{\lfloor n/i\rfloor}\right\rfloor = i$. Đặt $d = \left\lfloor\dfrac{n}{i}\right\rfloor$, cần chứng minh $\left\lfloor\dfrac{n}{d}\right\rfloor = i$. Viết dưới dạng bất đẳng thức, điều này tương đương với việc từ $d \le \dfrac{n}{i} < d + 1$ suy ra $i \le \dfrac{n}{d} < i + 1$. Điều kiện đã biết có thể viết thành $i\le\dfrac{n}{d} < i + \dfrac{i}{d}$, vì vậy chỉ cần chứng minh $\dfrac{i}{d} \le 1$, tức là $i \le d = \left\lfloor\dfrac{n}{i}\right\rfloor$. Điều này tương đương với $i \le \dfrac{n}{i}$, đúng với mọi $1 \le i \le s \le \sqrt{n}$.
     
     Kết quả này cho thấy ánh xạ $i \mapsto \left\lfloor\dfrac{n}{i}\right\rfloor$ tạo thành một song ánh giữa tập $\{i:1\le i \le s\}$ và tập $\left\{\left\lfloor\dfrac{n}{i}\right\rfloor: 1\le i\le s\right\}$. Vì các giá trị $i$ đôi một khác nhau, các giá trị $\left\lfloor\dfrac{n}{i}\right\rfloor$ tương ứng cũng đôi một khác nhau. Hai tập chỉ có thể trùng ở một phần tử, đó là $s$ và $\left\lfloor\dfrac{n}{s}\right\rfloor$. Do đó, $|D(n)|=2s - \left[s = \lfloor n/s\rfloor\right]$.
     
-    Để thu được biểu thức cuối cùng của $|D(n)|$, ta xét khi nào $s = \left\lfloor\dfrac{n}{s}\right\rfloor$.
+    Để thu được biểu thức cuối cùng của $|D(n)|$, xét khi nào $s = \left\lfloor\dfrac{n}{s}\right\rfloor$.
     
-    -   Nếu $s = \left\lfloor\dfrac{n}{s}\right\rfloor$, luôn có $s \le \dfrac{n}{s} < s + 1$, tức là $s^2 \le n < s^2+s$. Khi đó $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$. Vì $4n+1$ luôn là số lẻ, vế trái có thể nới tương đương thành $4s^2$, nên điều kiện này tương đương với $2s \le \sqrt{4n+1} < 2s+1$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s$.
-    -   Nếu $s < \left\lfloor\dfrac{n}{s}\right\rfloor$, luôn có $s + 1 \le \dfrac{n}{s}$, tức là $s^2 + s\le n$. Lại vì $n < (s+1)^2$, ta có $s^2 + s\le n < (s+1)^2$. Điều này tương đương với $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$. Một lần nữa dùng việc $4n+1$ là số lẻ, vế phải có thể siết tương đương thành $4(s+1)^2$, nên điều kiện này tương đương với $2s+1\le\sqrt{4n+1} < 2s+2$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s+1$.
+    -   Nếu $s = \left\lfloor\dfrac{n}{s}\right\rfloor$, suy ra $s \le \dfrac{n}{s} < s + 1$, tức là $s^2 \le n < s^2+s$. Khi đó $4s^2 + 1 \le 4n + 1 < 4s^2+4s+1 = (2s+1)^2$. Vì $4n+1$ luôn là số lẻ, vế trái có thể nới tương đương thành $4s^2$, nên điều kiện này tương đương với $2s \le \sqrt{4n+1} < 2s+1$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s$.
+    -   Nếu $s < \left\lfloor\dfrac{n}{s}\right\rfloor$, suy ra $s + 1 \le \dfrac{n}{s}$, tức là $s^2 + s\le n$. Lại vì $n < (s+1)^2$, có $s^2 + s\le n < (s+1)^2$. Điều này tương đương với $(2s+1)^2\le 4n+1 < 4(s+1)^2+1$. Một lần nữa dùng việc $4n+1$ là số lẻ, vế phải có thể siết tương đương thành $4(s+1)^2$, nên điều kiện này tương đương với $2s+1\le\sqrt{4n+1} < 2s+2$, tức là $\lfloor \sqrt{4n+1}\rfloor = 2s+1$.
     
-    Tổng hợp hai trường hợp, ta thu được $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$.
+    Tổng hợp hai trường hợp, thu được $|D(n)| = \lfloor \sqrt{4n+1}\rfloor - 1$.
 
-Tiếp theo, hai đầu mút của mỗi khối cũng rất dễ xác định.
+Tiếp theo, hai đầu mút của mỗi khối cũng có thể xác định trực tiếp.
 
 ???+ note "Tính chất 3"
     Với $d\in D(n)$, mọi số nguyên $i$ thỏa mãn $\left\lfloor\dfrac{n}{i}\right\rfloor=d$ nằm trong khoảng
@@ -96,21 +96,21 @@ Tiếp theo, hai đầu mút của mỗi khối cũng rất dễ xác định.
     \dfrac{n}{d+1} < i\le \dfrac{n}{d}.
     $$
     
-    Do $i\in\mathbf N_+$, ta có thể lấy phần nguyên của bất đẳng thức trên và thu được dạng tương đương
+    Do $i\in\mathbf N_+$, có thể lấy phần nguyên của bất đẳng thức trên và thu được dạng tương đương
     
     $$
     \left\lfloor\dfrac{n}{d+1}\right\rfloor + 1 \le i\le \left\lfloor\dfrac{n}{d}\right\rfloor.
     $$
 
-Tính chất này cũng thể hiện tính đối xứng của hình vẽ: tập các đầu mút phải của các khối (các điểm màu xanh trong hình phía trên) chính là $D(n)$. Điều này dễ hiểu vì toàn bộ hình đối xứng qua đường thẳng $y=x$.
+Tính chất này cũng thể hiện tính đối xứng của hình vẽ: tập các đầu mút phải của các khối (các điểm màu xanh trong hình phía trên) chính là $D(n)$. Điều này xuất phát từ việc toàn bộ hình đối xứng qua đường thẳng $y=x$.
 
 Ngoài các tính chất trên, tập $D(n)$ còn có tính chất đệ quy thuận tiện:
 
 ???+ note "Tính chất 4"
-    Với $m\in D(n)$, ta có $D(m)\subseteq D(n)$.
+    Với $m\in D(n)$, có $D(m)\subseteq D(n)$.
 
 ??? note "Chứng minh"
-    Giả sử $m = \left\lfloor\dfrac{n}{k}\right\rfloor$. Khi đó, với mọi $i\in\mathbf N_+$, ta có
+    Giả sử $m = \left\lfloor\dfrac{n}{k}\right\rfloor$. Khi đó, với mọi $i\in\mathbf N_+$, có
     
     $$
     \left\lfloor\dfrac{m}{i}\right\rfloor = \left\lfloor\dfrac{\lfloor n/k\rfloor}{i}\right\rfloor = \left\lfloor\dfrac{n}{ki}\right\rfloor \in D(n),
@@ -123,7 +123,7 @@ Như đã nói ở trên, $D(n)$ vừa là tập giá trị của $\left\lfloor\
 <span id="quy-trình"></span>
 ## Quy trình
 
-Từ các kết luận ở mục trước, ta có quy trình cụ thể của phân khối số học.
+Từ các kết luận ở mục trước, thu được quy trình cụ thể của phân khối số học.
 
 Để tính tổng
 
@@ -131,13 +131,13 @@ $$
 \sum_{i=1}^nf(i)g\left(\left\lfloor\dfrac ni\right\rfloor\right)
 $$
 
-ta có thể chia các chỉ số $i=1,2,\cdots,n$ thành các khối theo giá trị của $\left\lfloor\dfrac ni\right\rfloor$. Vì các chỉ số có cùng giá trị $\left\lfloor\dfrac ni\right\rfloor$ tạo thành một đoạn liên tiếp $[l,r]$, đóng góp của khối đó vào tổng là
+có thể chia các chỉ số $i=1,2,\cdots,n$ thành các khối theo giá trị của $\left\lfloor\dfrac ni\right\rfloor$. Vì các chỉ số có cùng giá trị $\left\lfloor\dfrac ni\right\rfloor$ tạo thành một đoạn liên tiếp $[l,r]$, đóng góp của khối đó vào tổng là
 
 $$
 \left(\sum_{i=l}^rf(i)\right)\cdot g\left(\left\lfloor\dfrac nl\right\rfloor\right).
 $$
 
-Để tính nhanh tổng này, thông thường ta cần tính nhanh tổng liên quan đến $f$ ở vế trái. Trong một số trường hợp, biểu thức của tổng này đã biết và có thể tính từng lần trong $O(1)$; trong các trường hợp khác, có thể tiền xử lý tổng tiền tố để mỗi truy vấn vẫn được trả lời trong $O(1)$.
+Để tính nhanh tổng này, thông thường cần tính nhanh tổng liên quan đến $f$ ở vế trái. Trong một số trường hợp, biểu thức của tổng này đã biết và có thể tính từng lần trong $O(1)$; trong các trường hợp khác, có thể tiền xử lý tổng tiền tố để mỗi truy vấn vẫn được trả lời trong $O(1)$.
 
 Khi lần lượt tính hai đầu mút của từng khối, đầu mút trái $l$ của khối hiện tại bằng đầu mút phải của khối trước cộng $1$, còn đầu mút phải của khối hiện tại bằng $\left\lfloor\dfrac n{\lfloor n/l\rfloor}\right\rfloor$. Từ đó có giả mã sau:
 
@@ -182,7 +182,7 @@ $$
 f(n)g(1) + \sum_{i=1}^{n-1}f(i)g\left(\left\lfloor\dfrac {n-1}i\right\rfloor + 1\right).
 $$
 
-Cần chú ý rằng cận trên của tổng đã thay đổi, và hạng tử ứng với $i=n$ được tách riêng.
+Cần lưu ý rằng cận trên của tổng đã thay đổi, và hạng tử ứng với $i=n$ được tách riêng.
 
 <span id="phân-khối-số-học-nhiều-chiều"></span>
 ### Phân khối số học nhiều chiều
@@ -239,10 +239,10 @@ Trong đó $\alpha,\beta$ là các số thực dương. Ở dạng cơ bản đ�
 ??? note "Chứng minh"
     Với mệnh đề thứ nhất, xét hai trường hợp:
     
-    -   Khi $i\le \dfrac{n^\alpha}{i^\beta}$, ta có $i\le n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
-    -   Khi $i > \dfrac{n^\alpha}{i^\beta}$, ta có $i> n^{\alpha/(1+\beta)}$, suy ra $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ cũng có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
+    -   Khi $i\le \dfrac{n^\alpha}{i^\beta}$, có $i\le n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
+    -   Khi $i > \dfrac{n^\alpha}{i^\beta}$, có $i> n^{\alpha/(1+\beta)}$, suy ra $\dfrac{n^\alpha}{i^\beta} < n^{\alpha/(1+\beta)}$, nên $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor$ cũng có nhiều nhất $n^{\alpha/(1+\beta)}$ giá trị.
     
-    Tổng hợp hai trường hợp, ta có $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$.
+    Tổng hợp hai trường hợp, có $|D(n,\alpha,\beta)|\le 2n^{\alpha/(1+\beta)}$.
     
     Với mệnh đề thứ hai, $\left\lfloor\dfrac{n^\alpha}{i^\beta}\right\rfloor=d$ tương đương với
     
@@ -252,7 +252,7 @@ Trong đó $\alpha,\beta$ là các số thực dương. Ở dạng cơ bản đ�
     
     Lấy phần nguyên của bất đẳng thức trên sẽ thu được mệnh đề thứ hai.
 
-Dựa vào các tính chất này, ta có thể thực hiện phân khối số học với số mũ tùy ý trong $O(n^{\alpha/(1+\beta)})$.
+Dựa vào các tính chất này, có thể thực hiện phân khối số học với số mũ tùy ý trong $O(n^{\alpha/(1+\beta)})$.
 
 ???+ example "Ví dụ"
     Chẳng hạn, với $\alpha=\beta=1/2$, tổng sau
@@ -261,13 +261,13 @@ Dựa vào các tính chất này, ta có thể thực hiện phân khối số 
     \sum_{i=1}^nf(i)g\left(\left\lfloor\sqrt{\dfrac {n}{i}}\right\rfloor\right)
     $$
     
-    có thể được giải bằng phân khối số học trong $O(n^{1/3})$. Khi biết đầu mút trái của khối là $l$, ta có thể tính đầu mút phải là $r=\left\lfloor\dfrac{n}{\lfloor\sqrt{n/l}\rfloor^2}\right\rfloor$.
+    có thể được giải bằng phân khối số học trong $O(n^{1/3})$. Khi biết đầu mút trái của khối là $l$, có thể tính đầu mút phải là $r=\left\lfloor\dfrac{n}{\lfloor\sqrt{n/l}\rfloor^2}\right\rfloor$.
 
 <span id="bài-tập-ví-dụ"></span>
 ## Bài tập ví dụ
 
 ???+ example "[UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)"
-    Có $T$ bộ dữ liệu, mỗi bộ gồm một số nguyên $n$. Với mỗi bộ dữ liệu, hãy in ra $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$.
+    Có $T$ bộ dữ liệu, mỗi bộ gồm một số nguyên $n$. Với mỗi bộ dữ liệu, in ra $\sum_{i=1}^n\left\lfloor\dfrac ni\right\rfloor$.
 
 ??? note "Lời giải"
     Theo phân tích ở trên, có thể tính gộp các chỉ số thuộc cùng một khối có giá trị $\left\lfloor\dfrac ni\right\rfloor$ giống nhau. Độ phức tạp thời gian là $O(T\sqrt n)$.
@@ -278,18 +278,18 @@ Dựa vào các tính chất này, ta có thể thực hiện phân khối số 
     ```
 
 ???+ example "[Codeforces 1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
-    Có một hàng gồm $n$ quái vật, quái vật thứ $i$ có lượng máu ban đầu là $a_i$. Một lần tấn công làm giảm $k$ máu của một đoạn liên tiếp các quái vật còn sống; quái vật có máu không dương được xem là đã chết. Với mọi $k$, hãy tính số lần tấn công cần để tiêu diệt toàn bộ quái vật. Trong đó $n,a_i\leq 10^5$.
+    Có một hàng gồm $n$ quái vật, quái vật thứ $i$ có lượng máu ban đầu là $a_i$. Một lần tấn công làm giảm $k$ máu của một đoạn liên tiếp các quái vật còn sống; quái vật có máu không dương được xem là đã chết. Với mọi $k$, tính số lần tấn công cần để tiêu diệt toàn bộ quái vật. Trong đó $n,a_i\leq 10^5$.
 
 ??? note "Lời giải"
-    Đặt $a_0=0$. Giả sử cần $T(k,i-1)$ lần tấn công để tiêu diệt tất cả $(i-1)$ quái vật đầu tiên, và quái vật thứ $i$ có lượng máu là $a_i$. Khi tiêu diệt quái vật thứ $(i-1)$, cần tấn công nó $\lceil a_{i-1}/k\rceil$ lần; các đòn tấn công này đều có thể kéo dài sang quái vật thứ $i$. Vì vậy, để tiêu diệt quái vật thứ $i$, ta chỉ cần tấn công thêm $\max\{0,\lceil a_i/k\rceil-\lceil a_{i-1}/k\rceil\}$ lần. Do đó, tổng số lần tấn công là
+    Đặt $a_0=0$. Giả sử cần $T(k,i-1)$ lần tấn công để tiêu diệt tất cả $(i-1)$ quái vật đầu tiên, và quái vật thứ $i$ có lượng máu là $a_i$. Khi tiêu diệt quái vật thứ $(i-1)$, cần tấn công nó $\lceil a_{i-1}/k\rceil$ lần; các đòn tấn công này đều có thể kéo dài sang quái vật thứ $i$. Vì vậy, để tiêu diệt quái vật thứ $i$, chỉ cần tấn công thêm $\max\{0,\lceil a_i/k\rceil-\lceil a_{i-1}/k\rceil\}$ lần. Do đó, tổng số lần tấn công là
     
     $$
     T(k,n)=\sum_{i=1}^n\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right).
     $$
     
-    Vì các giá trị $n,k$ trong bài đều lớn, không thể tính riêng tổng này cho từng $k$. Ta có thể xét từng $i=1,2,\cdots,n$ và duy trì dãy $\{T(k,i)\}_k$. Ban đầu đặt $T(k,0)\equiv 0$. Giả sử đã biết dãy $\{T(k,i-1)\}_k$, ta xét cách sửa nó để thu được dãy $\{T(k,i)\}_k$. Theo phân tích trên, chỉ cần cộng thêm $\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$ vào phần tử thứ $k$ của dãy. Dùng phân khối số học hai chiều, thao tác sửa đổi này có thể tách thành $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ phép cộng trên đoạn, và giá trị được cộng trên mỗi đoạn là cố định. Dãy $\{T(k,n)\}_k$ cuối cùng chính là đáp án.
+    Vì các giá trị $n,k$ trong bài đều lớn, không thể tính riêng tổng này cho từng $k$. Có thể xét từng $i=1,2,\cdots,n$ và duy trì dãy $\{T(k,i)\}_k$. Ban đầu đặt $T(k,0)\equiv 0$. Giả sử đã biết dãy $\{T(k,i-1)\}_k$, xét cách sửa nó để thu được dãy $\{T(k,i)\}_k$. Theo phân tích trên, chỉ cần cộng thêm $\max\left(0,\left\lceil\dfrac{a_i}{k}\right\rceil-\left\lceil\dfrac{a_{i-1}}{k}\right\rceil\right)$ vào phần tử thứ $k$ của dãy. Dùng phân khối số học hai chiều, thao tác sửa đổi này có thể tách thành $O(\sqrt{a_{i-1}}+\sqrt{a_i})$ phép cộng trên đoạn, và giá trị được cộng trên mỗi đoạn là cố định. Dãy $\{T(k,n)\}_k$ cuối cùng chính là đáp án.
     
-    Bài toán gồm một loạt thao tác cộng trên đoạn, còn truy vấn chỉ diễn ra sau khi mọi sửa đổi đã hoàn tất. Vì vậy, ta có thể duy trì mảng hiệu để thực hiện cộng trên đoạn, rồi lấy tổng tiền tố ở cuối để thu được dãy cần tìm. Tổng độ phức tạp thời gian là $O(\sum\sqrt{a_i})$. Bài này cũng có các cách giải khác.
+    Bài toán gồm một loạt thao tác cộng trên đoạn, còn truy vấn chỉ diễn ra sau khi mọi sửa đổi đã hoàn tất. Vì vậy, có thể duy trì mảng hiệu để thực hiện cộng trên đoạn, rồi lấy tổng tiền tố ở cuối để thu được dãy cần tìm. Tổng độ phức tạp thời gian là $O(\sum\sqrt{a_i})$. Bài này cũng có các cách giải khác.
 
 ??? note "Cài đặt"
     ```cpp
