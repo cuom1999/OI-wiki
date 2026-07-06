@@ -5,7 +5,7 @@ Bài viết này giới thiệu phần mở đầu của số học.
 
 ???+ note "Định nghĩa"
     Cho $a,b\in\mathbf{Z}$, $a\ne 0$. Nếu $\exists q\in\mathbf{Z}$ sao cho
-    $b=aq$, ta nói $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
+    $b=aq$, nói $b$ **chia hết** cho $a$, kí hiệu $a\mid b$; $b$ không chia
     hết cho $a$ được kí hiệu $a\nmid b$.
 
 Tính chất của quan hệ chia hết:
@@ -57,7 +57,7 @@ Với mọi giá trị nguyên của $d$, $r$ được gọi chung là số dư.
 đương với $a\mid r$.
 
 Thông thường lấy $d=0$; khi đó dạng $b=qa+r,0\le r<|a|$ được gọi là phép chia
-có dư. Số dư $r$ ở đây được gọi là số dư không âm nhỏ nhất.
+có dư. Số dư $r$ trong trường hợp này được gọi là số dư không âm nhỏ nhất.
 
 Số dư còn có hai cách chọn thường gặp:
 
@@ -218,7 +218,7 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
     duy nhất nếu không kể đến thứ tự các thừa số.
 
 ???+ note "Dạng phân tích thừa số nguyên tố chuẩn"
-    Gom các số nguyên tố giống nhau trong biểu diễn trên, ta được:
+    Gom các số nguyên tố giống nhau trong biểu diễn trên, thu được:
     
     $$
     a={p_1}^{\alpha_1}{p_2}^{\alpha_2}\cdots{p_s}^{\alpha_s},p_1<p_2<\cdots<p_s
@@ -234,7 +234,7 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
 ## Đồng dư
 
 ???+ note "Định nghĩa"
-    Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, ta gọi $m$ là **modun**
+    Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, gọi $m$ là **modun**
     (**modulo**), nói $a$ đồng dư với $b$ theo modulo $m$, và $b$ là **thặng
     dư** của $a$ theo modulo $m$. Kí hiệu $a\equiv b\pmod m$.
     
@@ -250,7 +250,7 @@ $a\equiv b\pmod{(-m)}$.
 Trong phần sau, nếu không nói rõ, modun luôn là **số nguyên dương**.
 
 $b$ trong biểu thức là thặng dư của $a$ theo modulo $m$; khái niệm này hoàn
-toàn trùng với số dư. Bằng cách giới hạn phạm vi của $b$, ta có thặng dư không
+toàn trùng với số dư. Bằng cách giới hạn phạm vi của $b$, có thặng dư không
 âm nhỏ nhất, thặng dư có trị tuyệt đối nhỏ nhất, và thặng dư dương nhỏ nhất của
 $a$ theo modulo $m$.
 
@@ -275,12 +275,12 @@ Tính chất của đồng dư:
 -   Nếu $a,b\in\mathbf{Z},k,m\in\mathbf{N}^*,a\equiv b\pmod m$, thì
     $ak\equiv bk\pmod{mk}$.
 -   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid a,d\mid b,d\mid m$, thì khi
-    $a\equiv b\pmod m$ đúng, ta có
+    $a\equiv b\pmod m$ đúng, có
     $\dfrac{a}{d}\equiv\dfrac{b}{d}\left(\bmod\;{\dfrac{m}{d}}\right)$.
 -   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*,d\mid m$, thì khi
-    $a\equiv b\pmod m$ đúng, ta có $a\equiv b\pmod d$.
+    $a\equiv b\pmod m$ đúng, có $a\equiv b\pmod d$.
 -   Nếu $a,b\in\mathbf{Z},d,m\in\mathbf{N}^*$, thì khi $a\equiv b\pmod m$ đúng,
-    ta có $(a,m)=(b,m)$. Nếu $d$ chia hết $m$ và chia hết một trong hai số
+    có $(a,m)=(b,m)$. Nếu $d$ chia hết $m$ và chia hết một trong hai số
     $a,b$, thì $d$ cũng chia hết số còn lại.
 
 Còn một tính chất khác là nghịch đảo nhân. Xem [Nghịch đảo nhân](./inverse.md).
@@ -288,7 +288,7 @@ Còn một tính chất khác là nghịch đảo nhân. Xem [Nghịch đảo nh
 <span id="lớp-đồng-dư-và-hệ-thặng-dư"></span>
 ## Lớp đồng dư và hệ thặng dư
 
-Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, ta dùng các kí hiệu
+Để thuận tiện thảo luận, với tập hợp $A,B$ và phần tử $r$, dùng các kí hiệu
 sau:
 
 -   $r+A:=\{r+a:a\in A\}$;
@@ -303,10 +303,10 @@ sau:
     **lớp đồng dư** hoặc **lớp thặng dư** modulo $m$. Dùng $r\bmod m$ để chỉ lớp
     đồng dư modulo $m$ chứa số nguyên $r$.
 
-    Không khó để chứng minh với mọi số nguyên khác không $m$, cách phân hoạch
+    Có thể chứng minh trực tiếp với mọi số nguyên khác không $m$, cách phân hoạch
     trên luôn tồn tại và duy nhất.
 
-Từ định nghĩa lớp đồng dư, ta có:
+Từ định nghĩa lớp đồng dư, có:
 
 -   $r\bmod m=\{r+km:k\in\mathbf{Z}\}$;
 -   $r\bmod m=s\bmod m\iff r\equiv s\pmod m$;
@@ -318,28 +318,28 @@ Từ định nghĩa lớp đồng dư, ta có:
 Vì đồng dư là quan hệ tương đương, lớp đồng dư chính là lớp tương đương của quan
 hệ đồng dư.
 
-Ta kí hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
+Kí hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
 
 $$
 \mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
 $$
 
-Dễ thấy rằng:
+Suy ra:
 
 -   Với mọi số nguyên $a$, $a+\mathbf{Z}_m=\mathbf{Z}_m$;
 -   Với mọi số nguyên $b$ nguyên tố cùng nhau với $m$,
     $b\mathbf{Z}_m=\mathbf{Z}_m$.
 
 Theo định nghĩa [nhóm thương](../algebra/group-theory.md#nhóm-thương),
-$\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$, vì vậy đôi khi ta cũng dùng
+$\mathbf{Z}_m=\mathbf{Z}/m\mathbf{Z}$, vì vậy đôi khi cũng dùng
 $\mathbf{Z}/m\mathbf{Z}$ để biểu diễn $\mathbf{Z}_m$.
 
-Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), ta có:
+Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
 -   Lấy tùy ý $m+1$ số nguyên, chắc chắn có hai số đồng dư theo modulo $m$.
 -   Tồn tại $m$ số nguyên đôi một không đồng dư theo modulo $m$.
 
-Từ đó ta đưa ra định nghĩa hệ thặng dư đầy đủ:
+Từ đó đưa ra định nghĩa hệ thặng dư đầy đủ:
 
 ???+ note "Hệ thặng dư (đầy đủ)"
     Với $m$ số nguyên $a_1,a_2,\dots,a_m$, nếu với mọi số $x$ có đúng một số
@@ -347,7 +347,7 @@ Từ đó ta đưa ra định nghĩa hệ thặng dư đầy đủ:
     $a_1,a_2,\dots,a_m$ được gọi là **hệ thặng dư đầy đủ** modulo $m$, gọi tắt
     là **hệ thặng dư**.
 
-Ta còn có thể định nghĩa các hệ sau modulo $m$:
+Còn có thể định nghĩa các hệ sau modulo $m$:
 
 -   Hệ thặng dư không âm nhỏ nhất (đầy đủ): $0,\dots,m-1$;
 -   Hệ thặng dư dương nhỏ nhất (đầy đủ): $1,\dots,m$;
@@ -356,10 +356,10 @@ Ta còn có thể định nghĩa các hệ sau modulo $m$:
 -   Hệ thặng dư không dương lớn nhất (đầy đủ): $-m+1,\dots,0$;
 -   Hệ thặng dư âm lớn nhất (đầy đủ): $-m,\dots,-1$.
 
-Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ thặng dư không âm nhỏ
+Nếu không có ghi chú đặc biệt, thông thường chỉ dùng hệ thặng dư không âm nhỏ
 nhất.
 
-Ta lưu ý mệnh đề sau là đúng:
+Lưu ý mệnh đề sau là đúng:
 
 -   Trong một lớp đồng dư bất kỳ modulo $m$, lấy tùy ý hai số nguyên $a_1,a_2$
     đều có $(a_1,m)=(a_2,m)$.
@@ -375,7 +375,7 @@ tìm cấu trúc của tập hợp các số nguyên nguyên tố cùng nhau v�
     Số lượng lớp thặng dư thu gọn modulo $m$ được kí hiệu là $\varphi(m)$ và
     được gọi là [hàm Euler](./euler-totient.md).
 
-Ta kí hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
+Kí hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
 $\mathbf{Z}_m^*$, tức là
 
 $$
@@ -383,18 +383,18 @@ $$
 $$
 
 ???+ warning "Cảnh báo"
-    Với số nguyên bất kỳ $a$ và số nguyên $b$ nguyên tố cùng nhau với $m$, ta có
+    Với số nguyên bất kỳ $a$ và số nguyên $b$ nguyên tố cùng nhau với $m$, có
     $b\mathbf{Z}_m^*=\mathbf{Z}_m^*$, nhưng $a+\mathbf{Z}_m^*$ không nhất thiết
     bằng $\mathbf{Z}_m^*$. Điểm này khác với $\mathbf{Z}_m$.
 
-Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), ta có:
+Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
 -   Lấy tùy ý $\varphi(m)+1$ số nguyên nguyên tố cùng nhau với $m$, chắc chắn có
     hai số đồng dư theo modulo $m$.
 -   Tồn tại $\varphi(m)$ số nguyên nguyên tố cùng nhau với $m$ và đôi một không
     đồng dư theo modulo $m$.
 
-Từ đó ta đưa ra định nghĩa hệ thặng dư thu gọn:
+Từ đó đưa ra định nghĩa hệ thặng dư thu gọn:
 
 ???+ note "Hệ thặng dư thu gọn"
     Với $t=\varphi(m)$ số nguyên $a_1,a_2,\dots,a_t$, nếu
@@ -402,20 +402,20 @@ Từ đó ta đưa ra định nghĩa hệ thặng dư thu gọn:
     đúng một số $a_i$ sao cho $x$ đồng dư với $a_i$ theo modulo $m$, thì $t$ số
     nguyên $a_1,a_2,\dots,a_t$ được gọi là **hệ thặng dư thu gọn** modulo $m$.
 
-Tương tự, ta cũng có thể định nghĩa hệ thặng dư thu gọn không âm nhỏ nhất và các
+Tương tự, cũng có thể định nghĩa hệ thặng dư thu gọn không âm nhỏ nhất và các
 khái niệm khác.
 
-Nếu không có ghi chú đặc biệt, thông thường ta chỉ dùng hệ thặng dư thu gọn không
+Nếu không có ghi chú đặc biệt, thông thường chỉ dùng hệ thặng dư thu gọn không
 âm nhỏ nhất.
 
 <span id="phép-ghép-hệ-thặng-dư"></span>
 ### Phép ghép hệ thặng dư
 
-Với số nguyên dương $m$, ta có định lý sau:
+Với số nguyên dương $m$, có định lý sau:
 
 -   Nếu $m=m_1m_2,~1\leq m_1,m_2$, gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ
     thặng dư **đầy đủ** modulo $m_1,m_2$, thì với mọi $a$ nguyên tố cùng nhau
-    với $m_1$ ta có:
+    với $m_1$ có:
 
     $$
     Z_m=aZ_{m_1}+m_1Z_{m_2}.
@@ -434,13 +434,13 @@ Với số nguyên dương $m$, ta có định lý sau:
 
 ???+ note "Chứng minh"
     Chỉ cần chứng minh với mọi $x,x'\in Z_{m_1}$, $y,y'\in Z_{m_2}$ thỏa mãn
-    $ax+m_1y\equiv ax'+m_1y'\pmod{m_1m_2}$, ta đều có:
+    $ax+m_1y\equiv ax'+m_1y'\pmod{m_1m_2}$, đều có:
     
     $$
     ax+m_1y=ax'+m_1y'.
     $$
     
-    Thật vậy, từ $m_1\mid m_1m_2$, ta có
+    Thật vậy, từ $m_1\mid m_1m_2$, có
     $ax+m_1y\equiv ax'+m_1y'\pmod{m_1}$, suy ra
     $ax\equiv ax'\pmod{m_1}$. Do $(a,m_1)=1$, suy ra
     $x\equiv x'\pmod{m_1}$, nên $x=x'$.
@@ -470,20 +470,20 @@ Với số nguyên dương $m$, ta có định lý sau:
 
 ???+ note "Chứng minh"
     Gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ thặng dư đầy đủ modulo $m_1,m_2$.
-    Ta đã chứng minh
+    Đã chứng minh
     
     $$
     Z_m=m_2Z_{m_1}+m_1Z_{m_2}
     $$
     
     là một hệ thặng dư đầy đủ modulo $m$. Đặt
-    $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$; rõ ràng $M$ là một hệ thặng dư thu
+    $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$; $M$ là một hệ thặng dư thu
     gọn modulo $m$, nên chỉ cần chứng minh $M=Z_m^*$.
     
-    Hiển nhiên $Z_m^*\subseteq Z_m$.
+    Theo định nghĩa, $Z_m^*\subseteq Z_m$.
     
     Lấy tùy ý $m_2x+m_1y\in M$, trong đó $x\in Z_{m_1}$ và $y\in Z_{m_2}$.
-    Ta có $(m_2x+m_1y,m_1m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
+    Có $(m_2x+m_1y,m_1m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
     1=(m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1),
@@ -497,7 +497,7 @@ Với số nguyên dương $m$, ta có định lý sau:
     $M\subseteq Z_m^*$.
     
     Lấy tùy ý $m_2x+m_1y\in Z_m^*$, trong đó $x\in Z_{m_1}^*$ và
-    $y\in Z_{m_2}^*$. Ta có $(x,m_1)=1$ và $(y,m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
+    $y\in Z_{m_2}^*$. Có $(x,m_1)=1$ và $(y,m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
     (m_2x+m_1y,m_1)=(m_2x,m_1)=(x,m_1)=1,
@@ -680,8 +680,8 @@ luận sau:
 
     ??? note "Chứng minh"
         Do tính đối xứng, chỉ cần chứng minh đẳng thức thứ nhất. Nếu $x$ là số
-        nguyên thì mệnh đề hiển nhiên. Ngược lại, $\lfloor x\rfloor < x$. Từ
-        tính đơn điệu của $f$ và của hàm sàn, ta có
+        nguyên thì mệnh đề đúng trực tiếp. Ngược lại, $\lfloor x\rfloor < x$. Từ
+        tính đơn điệu của $f$ và của hàm sàn, có
         $\lfloor f(x)\rfloor \ge \lfloor f(\lfloor x\rfloor)\rfloor$. Nếu dấu
         bằng không đúng, đặt $y = \lfloor f(x)\rfloor$; khi đó
         $\lfloor f(\lfloor x\rfloor)\rfloor < y \le \lfloor f(x)\rfloor$, tương
