@@ -19,18 +19,18 @@ struct Node_t {
 };
 ```
 
-Trong đó, `int v` là dữ liệu bổ sung do bạn tự quy định.
+Trong đó, `int v` là dữ liệu bổ sung do bài toán tự quy định.
 
 ???+ note "Từ khóa `mutable` có ý nghĩa gì?"
-    `mutable` có nghĩa là "có thể thay đổi", cho phép ta sửa giá trị của `v` trong các thao tác về sau. Trong C++, mutable được thiết kế để vượt qua ràng buộc của const. Biến được đánh dấu mutable (mutable chỉ dùng để đánh dấu thành viên dữ liệu phi tĩnh trong lớp) sẽ luôn ở trạng thái có thể thay đổi, kể cả trong một hàm const.
+    `mutable` có nghĩa là "có thể thay đổi", cho phép sửa giá trị của `v` trong các thao tác về sau. Trong C++, mutable được thiết kế để vượt qua ràng buộc của const. Biến được đánh dấu mutable (mutable chỉ dùng để đánh dấu thành viên dữ liệu phi tĩnh trong lớp) sẽ luôn ở trạng thái có thể thay đổi, kể cả trong một hàm const.
 
-    Điều này có nghĩa là ta có thể sửa trực tiếp giá trị `v` của phần tử đã chèn vào `set`, mà không cần lấy phần tử đó ra rồi chèn lại vào `set`.
+    Điều này có nghĩa là có thể sửa trực tiếp giá trị `v` của phần tử đã chèn vào `set`, mà không cần lấy phần tử đó ra rồi chèn lại vào `set`.
 
 ### Lưu trữ nút
 
-Ta muốn duy trì tất cả các nút sao cho đầu trái của các khoảng mà chúng đại diện tăng đơn điệu và đôi một không giao nhau. Tốt hơn nữa là đảm bảo hợp của tất cả các khoảng là một miền liên tục cực đại. Ở đây lấy `std::set` làm ví dụ, dùng một `set<Node_t> odt;` để duy trì tất cả các nút.
+Cần duy trì tất cả các nút sao cho đầu trái của các khoảng mà chúng đại diện tăng đơn điệu và đôi một không giao nhau. Tốt hơn nữa là hợp của tất cả các khoảng tạo thành một miền liên tục cực đại. Ví dụ với `std::set`, dùng một `set<Node_t> odt;` để duy trì tất cả các nút.
 
-Khi khởi tạo, chèn vào Chtholly Tree một khoảng rất dài (ví dụ nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, hãy chèn khoảng $[1,n+1]$).
+Khi khởi tạo, chèn vào Chtholly Tree một khoảng rất dài (ví dụ nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, chèn khoảng $[1,n+1]$).
 
 ### Thao tác `split`
 
@@ -58,7 +58,7 @@ Một thao tác quan trọng khác là `assign`. Nó dùng để gán giá trị
 
 Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`, và kí hiệu các iterator mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi iterator $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong $[l,r]$.
 
-Sau đó, xóa thông tin cũ. `std::set` có hàm thành viên `erase`, với chữ kí như `iterator erase( const_iterator first, const_iterator last );`, có thể loại bỏ các phần tử trong phạm vi `[first; last)`. Vì vậy ta gọi `odt.erase(itl, itr);` để xóa thông tin cũ.
+Sau đó, xóa thông tin cũ. `std::set` có hàm thành viên `erase`, với chữ kí như `iterator erase( const_iterator first, const_iterator last );`, có thể loại bỏ các phần tử trong phạm vi `[first; last)`. Vì vậy gọi `odt.erase(itl, itr);` để xóa thông tin cũ.
 
 Cuối cùng, chèn giá trị mới của khoảng $[l,r]$. Chỉ cần gọi `odt.insert(Node_t(l, r, v))`.
 
@@ -75,7 +75,7 @@ void assign(int l, int r, int v) {
 ???+ note "Vì sao cần gọi `split(r + 1)` trước rồi mới gọi `split(l)`?"
     1.  Phương thức `std::set::erase` sẽ làm mất hiệu lực các tham chiếu và iterator trỏ đến phần tử bị xóa. Các tham chiếu và iterator khác không bị ảnh hưởng.
     2.  Phương thức `std::set::insert` không làm mất hiệu lực bất kì iterator hay tham chiếu nào.
-    3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi `split` khoảng bên trái, chắc chắn ta không truy cập đến khoảng có đầu trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là $r + 1$ khiến iterator mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm iterator mất hiệu lực.
+    3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi `split` khoảng bên trái, quá trình sẽ không truy cập đến khoảng có đầu trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là $r + 1$ khiến iterator mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm iterator mất hiệu lực.
 
 ### Thao tác `perform`
 
@@ -92,7 +92,7 @@ void perform(int l, int r) {
 }
 ```
 
-Chú ý không nên lạm dụng cách trích khoảng như vậy, vì có thể làm sai độ phức tạp thời gian. Xem mục "Phân tích độ phức tạp" bên dưới.
+Lưu ý không nên lạm dụng cách trích khoảng như vậy, vì có thể làm sai độ phức tạp thời gian. Xem mục "Phân tích độ phức tạp" bên dưới.
 
 ## Cài đặt (`std::map`)
 
@@ -100,7 +100,7 @@ So với cách cài đặt bằng `std::set`, thao tác `split` trong cách cài
 
 ### Lưu trữ nút
 
-Vì các khoảng được Chtholly Tree lưu trữ là liên tục, ta không nhất thiết phải ghi lại đầu phải. Có thể dùng một `map<int, int> mp;` để lưu tất cả các khoảng: key duy trì đầu trái, value duy trì giá trị từ đầu trái tương ứng đến trước đầu trái kế tiếp.
+Vì các khoảng được Chtholly Tree lưu trữ là liên tục, không nhất thiết phải ghi lại đầu phải. Có thể dùng một `map<int, int> mp;` để lưu tất cả các khoảng: key duy trì đầu trái, value duy trì giá trị từ đầu trái tương ứng đến trước đầu trái kế tiếp.
 
 Khi khởi tạo, nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, gọi `mp[1] = -1, mp[n + 1] = -1` để biểu thị rằng $[1,n+1)$, tức $[1, n]$, đều được gán thành giá trị đặc biệt $-1$. Khoảng $[n+1, +\infty)$ được dùng làm lính canh, và cũng có thể khởi tạo nó.
 
@@ -125,14 +125,14 @@ auto split(int pos) {
 }
 ```
 
-Ở đây dùng overload `iterator insert( const_iterator pos, const value_type& value );` của `std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước `pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước container.
+Đoạn này dùng overload `iterator insert( const_iterator pos, const value_type& value );` của `std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước `pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước container.
 
 ### Thao tác `assign`
 
-Với thao tác assign, ta cần xóa tất cả đầu trái của các khoảng nằm trong $[l,r-1]$, rồi tạo khoảng mới.
+Với thao tác assign, cần xóa tất cả đầu trái của các khoảng nằm trong $[l,r-1]$, rồi tạo khoảng mới.
 
 ```cpp
-void assign(int l, int r, int v) {  // Chú ý: ở đây r là đầu phải của khoảng + 1
+void assign(int l, int r, int v) {  // Lưu ý: r là đầu phải của khoảng + 1
   split(l);
   split(r);
   auto it = mp.find(l);
@@ -146,7 +146,7 @@ void assign(int l, int r, int v) {  // Chú ý: ở đây r là đầu phải c�
 ### Thao tác `perform`
 
 ```cpp
-void perform(int l, int r) {  // Chú ý: ở đây r là đầu phải của khoảng + 1
+void perform(int l, int r) {  // Lưu ý: r là đầu phải của khoảng + 1
   split(l);
   split(r);
   auto it = mp.find(l);
@@ -204,7 +204,7 @@ Khi thao tác trên một khoảng, vì không thể chỉ duy trì một phần
 ```cpp
 Block *lb, *rb;
 
-// Tách trước để đảm bảo các thao tác sau nằm bên trong [l, r]
+// Tách trước để bảo đảm các thao tác sau nằm bên trong [l, r]
 void prepare(int l, int r) {
   lb = split(l - 1);
   rb = split(r);
@@ -221,7 +221,7 @@ void assign(int l, int r, i64 val) {
   lb->next = rb;  // Nối [lb.l, r] với khoảng kề bên phải của nó
 }
 
-// Ghi chú: ở đây không giải phóng bộ nhớ của các nút bị xóa; nếu cần, bạn có thể tự thêm
+// Ghi chú: đoạn này không giải phóng bộ nhớ của các nút bị xóa; có thể tự thêm nếu cần
 ```
 
 ### Thao tác `perform`
@@ -239,13 +239,13 @@ void perform(int l, int r) {
 
 ### Gọi assign ngay sau khi perform trên cùng một khoảng
 
-Quan sát trong trường hợp này, hai thao tác `split` tăng nhiều nhất hai khoảng; một thao tác `assign` sẽ xóa tất cả các khoảng trong phạm vi và thêm một khoảng, đồng thời duyệt qua các khoảng bị xóa. Vì vậy số khoảng ta duyệt tỉ lệ tuyến tính với số khoảng bị xóa, còn mỗi thao tác chỉ tăng thêm $O(1)$ khoảng. Do đó số khoảng mà ta thao tác là tuyến tính theo số thao tác (kể cả khởi tạo), và độ phức tạp thời gian là $O(m\log n)$ theo phân tích khấu hao, trong đó $m$ là số thao tác, $n$ là số khoảng lớn nhất trong Chtholly Tree (có thể xem $n\leq m$).
+Quan sát trong trường hợp này, hai thao tác `split` tăng nhiều nhất hai khoảng; một thao tác `assign` sẽ xóa tất cả các khoảng trong phạm vi và thêm một khoảng, đồng thời duyệt qua các khoảng bị xóa. Vì vậy số khoảng được duyệt tỉ lệ tuyến tính với số khoảng bị xóa, còn mỗi thao tác chỉ tăng thêm $O(1)$ khoảng. Do đó số khoảng được thao tác là tuyến tính theo số thao tác (kể cả khởi tạo), và độ phức tạp thời gian là $O(m\log n)$ theo phân tích khấu hao, trong đó $m$ là số thao tác, $n$ là số khoảng lớn nhất trong Chtholly Tree (có thể xem $n\leq m$).
 
 ### Không gọi assign sau perform
 
-Nếu cho phép tạo dữ liệu đặc biệt, cách này chắc chắn có thể bị hack: chỉ cần làm cho Chtholly Tree có đủ nhiều khoảng khác nhau và lặp lại việc duyệt, độ phức tạp của Chtholly Tree có thể đạt tới, thậm chí vượt qua, bậc hai.
+Nếu cho phép tạo dữ liệu đặc biệt, cách này có thể bị hack: chỉ cần làm cho Chtholly Tree có đủ nhiều khoảng khác nhau và lặp lại việc duyệt, độ phức tạp của Chtholly Tree có thể đạt tới, thậm chí vượt qua, bậc hai.
 
-Nếu muốn đảm bảo độ phức tạp đúng, dữ liệu phải ngẫu nhiên. Xem thêm [chứng minh về độ phức tạp của Chtholly Tree trên Codeforces](http://codeforces.com/blog/entry/56135?#comment-398940). Chứng minh nghiêm ngặt hơn có trong [phân tích độ phức tạp của Chtholly Tree](https://zhuanlan.zhihu.com/p/102786071). Kết luận của chứng minh là: độ phức tạp của Chtholly Tree cài đặt bằng `std::set` là $O(n \log \log n)$, còn cài đặt bằng danh sách liên kết là $O(n \log n)$.
+Nếu muốn có độ phức tạp đúng, dữ liệu phải ngẫu nhiên. Xem thêm [chứng minh về độ phức tạp của Chtholly Tree trên Codeforces](http://codeforces.com/blog/entry/56135?#comment-398940). Chứng minh nghiêm ngặt hơn có trong [phân tích độ phức tạp của Chtholly Tree](https://zhuanlan.zhihu.com/p/102786071). Kết luận của chứng minh là: độ phức tạp của Chtholly Tree cài đặt bằng `std::set` là $O(n \log \log n)$, còn cài đặt bằng danh sách liên kết là $O(n \log n)$.
 
 ## Bài tập
 
