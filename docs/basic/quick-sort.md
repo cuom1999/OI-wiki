@@ -16,13 +16,13 @@ Sắp xếp nhanh gồm ba bước:
 
 1.  Chia dãy số thành hai phần (cần bảo đảm quan hệ lớn nhỏ tương đối);
 2.  Đệ quy sắp xếp nhanh trên hai dãy con;
-3.  Không cần trộn, vì lúc này dãy đã hoàn toàn có thứ tự.
+3.  Không cần trộn, vì sau hai lời gọi đệ quy, toàn bộ dãy đã có thứ tự.
 
-Khác với sắp xếp trộn, bước đầu tiên không trực tiếp chia thành hai dãy trước và
-sau, mà trong quá trình chia phải bảo đảm quan hệ lớn nhỏ tương đối. Cụ thể,
+Khác với sắp xếp trộn, bước đầu tiên không chia sẵn thành hai dãy trước và sau,
+mà trong quá trình chia phải bảo đảm quan hệ lớn nhỏ tương đối. Cụ thể,
 bước đầu tiên là chia dãy số thành hai phần, đồng thời bảo đảm mọi số trong dãy
-con phía trước đều nhỏ hơn mọi số trong dãy con phía sau. Để bảo đảm độ phức
-tạp thời gian trung bình, thông thường chọn ngẫu nhiên một số $m$ làm mốc phân
+con phía trước đều nhỏ hơn mọi số trong dãy con phía sau. Để giữ độ phức tạp
+thời gian trung bình ở mức tốt, thường chọn ngẫu nhiên một số $m$ làm mốc phân
 chia giữa hai dãy con.
 
 Sau đó, duy trì hai con trỏ $p$ và $q$ ở hai đầu, lần lượt xét xem phần tử hiện
@@ -36,7 +36,7 @@ Thực tế, sắp xếp nhanh không quy định cụ thể phải cài đặt 
 nào; cả quá trình chọn $m$ lẫn quá trình phân hoạch đều có nhiều cách cài đặt.
 
 Ở bước thứ ba, hai dãy con đã lần lượt có thứ tự và mọi số trong dãy thứ nhất
-đều nhỏ hơn dãy thứ hai, nên chỉ cần ghép trực tiếp lại là được.
+đều nhỏ hơn dãy thứ hai, nên có thể ghép lại.
 
 === "C++"
     === "Cài đặt không đệ quy[^ref2]"
@@ -131,19 +131,21 @@ Sắp xếp nhanh là một thuật toán sắp xếp không ổn định.
 
 ### Độ phức tạp thời gian
 
-Độ phức tạp thời gian tốt nhất và trung bình của sắp xếp nhanh là
-$O(n\log n)$, còn độ phức tạp thời gian xấu nhất là $O(n^2)$.
+Độ phức tạp thời gian trong trường hợp tốt nhất và trung bình của sắp xếp nhanh
+là $O(n\log n)$, còn độ phức tạp thời gian trong trường hợp bất lợi nhất là
+$O(n^2)$.
 
 Trong trường hợp tốt nhất, giá trị mốc được chọn ở mỗi lần đều là trung vị của
 dãy. Khi đó độ phức tạp thời gian của thuật toán thỏa mãn truy hồi
 $T(n) = 2T(\dfrac{n}{2}) + \Theta(n)$; theo định lý Master,
 $T(n) = \Theta(n\log n)$.
 
-Trong trường hợp xấu nhất, giá trị mốc được chọn ở mỗi lần đều là giá trị cực
-trị của dãy. Khi đó độ phức tạp thời gian của thuật toán thỏa mãn truy hồi
+Trong trường hợp bất lợi nhất, giá trị mốc được chọn ở mỗi lần đều là giá trị
+cực trị của dãy. Khi đó độ phức tạp thời gian của thuật toán thỏa mãn truy hồi
 $T(n) = T(n - 1) + \Theta(n)$; cộng dồn suy ra $T(n) = \Theta(n^2)$.
 
-Trong trường hợp trung bình, giá trị mốc được chọn ở mỗi lần có thể xem là ngẫu nhiên đều.
+Trong trường hợp trung bình, giả sử giá trị mốc ở mỗi lần được chọn ngẫu nhiên
+đều.
 
 ??? note "Chứng minh"
     Sau đây là phần chứng minh độ phức tạp thời gian của thuật toán trong
@@ -229,19 +231,19 @@ Trong trường hợp trung bình, giá trị mốc được chọn ở mỗi l�
     
     Từ đó, độ phức tạp thời gian kỳ vọng của sắp xếp nhanh là $O(n \log n)$.
 
-Trong thực tế, gần như không thể gặp trường hợp xấu nhất, còn truy cập bộ nhớ
-của sắp xếp nhanh tuân theo nguyên lý cục bộ, nên trong đa số trường hợp sắp
-xếp nhanh hoạt động tốt hơn đáng kể so với sắp xếp vun đống và các thuật toán
+Trong thực tế, trường hợp bất lợi nhất hiếm khi xảy ra; đồng thời, truy cập bộ
+nhớ của sắp xếp nhanh tuân theo nguyên lý cục bộ. Vì vậy, trong đa số trường
+hợp, sắp xếp nhanh thường chạy nhanh hơn sắp xếp vun đống và nhiều thuật toán
 sắp xếp khác có độ phức tạp $O(n \log n)$.[^ref1]
 
 ## Tối ưu hóa
 
 ### Ý tưởng tối ưu hóa đơn giản
 
-Nếu chỉ cài đặt sắp xếp nhanh theo ý tưởng cơ bản đã nêu ở trên (hoặc chép
-nguyên mẫu cài đặt), rất có thể sẽ không được chấp nhận ở bài mẫu
+Nếu cài đặt sắp xếp nhanh theo đúng ý tưởng cơ bản đã nêu ở trên (hoặc chép
+nguyên mẫu cài đặt), lời giải có thể không được chấp nhận ở bài mẫu
 [Luogu P1177 - Mẫu sắp xếp nhanh](https://www.luogu.com.cn/problem/P1177), vì
-có dữ liệu ác ý có thể làm sắp xếp nhanh đơn giản suy biến thành $O(n^2)$.
+có dữ liệu được thiết kế để làm sắp xếp nhanh đơn giản suy biến thành $O(n^2)$.
 
 Vì vậy, cần tối ưu hóa ý tưởng sắp xếp nhanh đơn giản. Các hướng tối ưu hóa
 thường gặp gồm ba loại sau[^ref3].
@@ -250,7 +252,7 @@ thường gặp gồm ba loại sau[^ref3].
     tử đầu, cuối và giữa)** để chọn phần tử phân chia hai dãy con (tức pivot).
     Cách này tránh suy biến do dữ liệu cực đoan, chẳng hạn dãy tăng hoặc dãy
     giảm;
--   Khi dãy ngắn, dùng **sắp xếp chèn** sẽ hiệu quả hơn;
+-   Khi dãy ngắn, dùng **sắp xếp chèn** thường hiệu quả hơn;
 -   Sau mỗi lượt sắp xếp, **gom các phần tử bằng phần tử mốc quanh phần tử
     mốc**, từ đó tránh suy biến do dữ liệu cực đoan, chẳng hạn phần lớn phần tử
     trong dãy đều bằng nhau.
@@ -276,13 +278,12 @@ quanh phần tử mốc.
 #### Tính chất
 
 Khi xử lý mảng có nhiều giá trị trùng lặp, sắp xếp nhanh ba đường hiệu quả hơn
-rất nhiều so với sắp xếp nhanh nguyên bản. Độ phức tạp thời gian tốt nhất của
+sắp xếp nhanh nguyên bản. Độ phức tạp thời gian trong trường hợp tốt nhất của
 nó là $O(n)$.
 
 #### Cài đặt
 
-Sắp xếp nhanh ba đường rất dễ cài đặt; sau đây là một cài đặt C++ của sắp xếp
-nhanh ba đường.
+Sau đây là một cài đặt C++ của sắp xếp nhanh ba đường.
 
 === "C++"
     ```cpp
@@ -346,7 +347,7 @@ nhanh ba đường.
 Sắp xếp nội quan (introsort hoặc introspective sort)[^ref4] là sự kết hợp giữa
 sắp xếp nhanh và [sắp xếp vun đống](./heap-sort.md), do David Musser phát minh
 năm 1997. Sắp xếp nội quan thực chất là một dạng tối ưu hóa của sắp xếp nhanh,
-bảo đảm độ phức tạp thời gian xấu nhất là $O(n\log n)$.
+bảo đảm độ phức tạp thời gian trong trường hợp bất lợi nhất là $O(n\log n)$.
 
 #### Tính chất
 
@@ -367,7 +368,7 @@ Trong ví dụ mã sau, phần tử hạng $k$ được định nghĩa là số 
 dãy được sắp xếp tăng dần (đánh số từ 0).
 
 Để tìm phần tử hạng $k$ (K-th order statistic), cách đơn giản nhất là sắp xếp
-trước rồi trực tiếp lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp
+trước rồi lấy phần tử ở vị trí hạng $k$. Cách làm này có độ phức tạp
 thời gian $O(n\log n)$, không hiệu quả đối với bài toán này.
 
 Có thể mượn ý tưởng của sắp xếp nhanh để giải bài toán. Xét quá trình phân
@@ -420,14 +421,14 @@ T find_kth_element(T arr[], int rk, const int len) {
 
 ### Cải tiến: trung vị của các trung vị
 
-Trung vị của các trung vị (median of medians) cung cấp một cách chọn
-giá trị mốc xác định trong quá trình phân hoạch, nhờ đó thuật toán tìm phần tử
-hạng $k$ cũng đạt độ phức tạp thời gian tuyến tính trong trường hợp xấu nhất.
+Trung vị của các trung vị (median of medians) cung cấp một cách chọn giá trị
+mốc xác định trong quá trình phân hoạch, nhờ đó thuật toán tìm phần tử hạng $k$
+cũng đạt độ phức tạp thời gian tuyến tính trong trường hợp bất lợi nhất.
 
 Quy trình của thuật toán như sau:
 
 1.  Chia toàn bộ dãy thành $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm, mỗi nhóm có không quá 5 phần tử;
-2.  Tìm trung vị của mỗi nhóm phần tử (vì số phần tử ít, có thể dùng trực tiếp
+2.  Tìm trung vị của mỗi nhóm phần tử (vì số phần tử ít, có thể dùng
     các thuật toán như [sắp xếp chèn](./insertion-sort.md)).
 3.  Tìm trung vị trong các trung vị của
     $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm phần tử này. Dùng phần tử
@@ -435,13 +436,13 @@ Quy trình của thuật toán như sau:
 
 #### Chứng minh độ phức tạp thời gian
 
-Sau đây là phần chứng minh thuật toán này có độ phức tạp thời gian xấu nhất là
-$O(n)$. Gọi $T(n)$ là lượng tính toán cần thiết để giải bài toán có kích thước
-$n$.
+Sau đây là phần chứng minh thuật toán này có độ phức tạp thời gian trong trường
+hợp bất lợi nhất là $O(n)$. Gọi $T(n)$ là lượng tính toán cần thiết để giải bài
+toán có kích thước $n$.
 
 Trước hết phân tích hai bước đầu: chia nhóm và tìm trung vị. Vì số phần tử
-trong mỗi nhóm sau khi chia rất ít, có thể xem thời gian tìm trung vị của một
-nhóm phần tử là $O(1)$. Do đó thời gian tìm ra trung vị của tất cả
+trong mỗi nhóm sau khi chia là hằng số, thời gian tìm trung vị của một nhóm
+phần tử là $O(1)$. Do đó thời gian tìm ra trung vị của tất cả
 $\left \lfloor \dfrac{n}{5} \right \rfloor$ nhóm phần tử là $O(n)$.
 
 Tiếp theo phân tích bước thứ ba: quá trình đệ quy. Bước này thực hiện hai lời
@@ -480,7 +481,7 @@ T(n) & \leq T(\dfrac{n}{5}) + T(\dfrac{7n}{10}) + O(n)\\
 $$
 
 Đến đây đã chứng minh thuật toán này cũng có độ phức tạp thời gian $O(n)$ trong
-trường hợp xấu nhất.
+trường hợp bất lợi nhất.
 
 ## Tài liệu tham khảo và chú thích
 

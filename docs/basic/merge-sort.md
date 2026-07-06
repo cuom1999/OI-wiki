@@ -4,7 +4,10 @@ Sắp xếp trộn ([merge sort](https://en.wikipedia.org/wiki/Merge_sort)) là 
 
 ## Tính chất
 
-Sắp xếp trộn dựa trên tư tưởng chia để trị: chia mảng thành các đoạn, sắp xếp từng đoạn rồi trộn lại. Độ phức tạp thời gian trong trường hợp tốt nhất, xấu nhất và trung bình đều là $\Theta (n \log n)$; độ phức tạp không gian là $\Theta (n)$.
+Sắp xếp trộn dựa trên tư tưởng chia để trị: chia mảng thành các đoạn, sắp xếp
+từng đoạn rồi trộn lại. Độ phức tạp thời gian trong trường hợp tốt nhất, trung
+bình và bất lợi nhất đều là $\Theta (n \log n)$; độ phức tạp không gian là
+$\Theta (n)$.
 
 Sắp xếp trộn có thể chỉ dùng $\Theta (1)$ không gian phụ, nhưng để tiện cài đặt, thường dùng một mảng phụ có cùng độ dài với mảng ban đầu.
 
@@ -85,7 +88,9 @@ Duyệt `a[i]` và `b[j]` từ trái sang phải, tìm giá trị nhỏ nhất r
 
 1.  Khi độ dài mảng là $1$, mảng đó đã được sắp xếp, không cần phân tách tiếp.
 
-2.  Khi độ dài mảng lớn hơn $1$, mảng đó rất có thể chưa được sắp xếp. Khi đó, chia mảng thành hai đoạn, rồi lần lượt kiểm tra xem hai mảng con có được sắp xếp hay không (theo mục 1). Nếu đã sắp xếp thì trộn chúng thành một mảng đã sắp xếp; nếu chưa, lặp lại mục 2 với mảng chưa được sắp xếp rồi trộn lại.
+2.  Khi độ dài mảng lớn hơn $1$, chia mảng thành hai đoạn rồi tiếp tục sắp xếp
+    từng đoạn theo cùng quy trình. Sau khi hai đoạn con đã được sắp xếp, trộn
+    chúng lại thành một mảng đã sắp xếp.
 
 Có thể chứng minh bằng quy nạp toán học rằng quy trình này biến một mảng thành mảng đã sắp xếp.
 
@@ -141,7 +146,8 @@ Từ trái sang phải, lần lượt trộn hai đoạn đã sắp xếp có đ
 Lặp lại quá trình trên cho đến khi trong mảng chỉ còn một đoạn đã sắp xếp; đoạn này chính là mảng ban đầu sau khi đã sắp xếp.
 
 ???+ note "Vì sao là $\le n$ mà không phải $= n$"
-    Độ dài của mảng rất có thể không phải là $2^x$, khi đó ở cuối có thể xuất hiện các đoạn không đủ độ dài, thậm chí đoạn cuối cùng có thể đứng riêng.
+    Độ dài của mảng không nhất thiết là $2^x$, nên ở cuối có thể xuất hiện các
+    đoạn không đủ độ dài, thậm chí đoạn cuối cùng có thể đứng riêng.
 
 #### Cài đặt
 
@@ -184,7 +190,17 @@ Bài đọc liên quan và cài đặt tham khảo: [nghịch thế](../math/per
 
 Nghịch thế là cặp có thứ tự $(i, j)$ thỏa mãn $i < j$ và $a_i > a_j$.
 
-Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn của sắp xếp trộn, mỗi khi phần tử đầu của đoạn sau được lấy ra làm giá trị nhỏ nhất hiện tại, tổng số phần tử còn lại ở đoạn trước chính là số nghịch thế mà thao tác trộn đã loại bỏ; vì vậy, độ phức tạp thời gian để dùng sắp xếp trộn tính số nghịch thế là $\Theta (n \log n)$. Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc cây phân đoạn (segment tree), với độ phức tạp thời gian cũng là $O(n \log n)$; phần giải thích chi tiết của thuật toán này nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục). Cài đặt tham khảo của cả hai thuật toán đều có trong mục [nghịch thế](../math/permutation.md#số-nghịch-thế).
+Mảng sau khi sắp xếp không còn nghịch thế. Trong thao tác trộn của sắp xếp
+trộn, mỗi khi phần tử đầu của đoạn sau được lấy ra làm giá trị nhỏ nhất hiện
+tại, tổng số phần tử còn lại ở đoạn trước chính là số nghịch thế mà thao tác
+trộn đã loại bỏ. Vì vậy, có thể dùng sắp xếp trộn để tính số nghịch thế với độ
+phức tạp thời gian $\Theta (n \log n)$.
+
+Ngoài ra, bài toán đếm nghịch thế cũng có thể được giải bằng cây Fenwick hoặc
+cây phân đoạn (segment tree), với độ phức tạp thời gian $O(n \log n)$. Phần
+giải thích chi tiết nằm trong mô tả tương ứng ở trang [cây Fenwick](../ds/fenwick.md#cặp-nghịch-thế-toàn-cục-thứ-tự-bộ-phận-hai-chiều-toàn-cục).
+Cài đặt tham khảo của cả hai thuật toán đều có trong mục
+[nghịch thế](../math/permutation.md#số-nghịch-thế).
 
 ## Liên kết ngoài
 
