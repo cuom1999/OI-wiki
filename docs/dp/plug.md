@@ -2,7 +2,7 @@
 
 <span id="định-nghĩa"></span>
 
-Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ta ghi lại thông tin liên thông của trạng thái. Những bài toán như vậy thường được gọi một cách hình tượng là DP đầu nối (plug DP), hay DP nén trạng thái liên thông. Ví dụ: đếm đường đi Hamilton trên đồ thị lưới, đếm số cách tô đen trắng bàn cờ sao cho các ô cùng màu tạo thành một khối liên thông, hoặc đếm cây khung của một số đồ thị đặc biệt. Các bài toán này thường cần mã hóa tính liên thông của trạng thái và phân tích cách tính liên thông thay đổi trong quá trình chuyển trạng thái.
+Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ghi lại thông tin liên thông của trạng thái. Những bài toán như vậy thường được gọi một cách hình tượng là DP đầu nối (plug DP), hay DP nén trạng thái liên thông. Ví dụ: đếm đường đi Hamilton trên đồ thị lưới, đếm số cách tô đen trắng bàn cờ sao cho các ô cùng màu tạo thành một khối liên thông, hoặc đếm cây khung của một số đồ thị đặc biệt. Các bài toán này thường cần mã hóa tính liên thông của trạng thái và phân tích cách tính liên thông thay đổi trong quá trình chuyển trạng thái.
 
 ## Mở đầu
 
@@ -12,7 +12,7 @@ Một số bài toán [DP nén trạng thái](./state.md) yêu cầu ta ghi lạ
 
 <span id="lát-domino-và-dp-đường-biên"></span>
 
-Ôn cũ để biết mới: trước khi học DP đầu nối, ta hãy nhắc lại một bài toán kinh điển.
+Ôn cũ để biết mới: trước khi học DP đầu nối, trước hết nhắc lại một bài toán kinh điển.
 
 ???+ note "Ví dụ [「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400)"
     Tóm tắt đề bài: lát kín một bàn cờ $N\times M$ bằng các quân domino $1\times 2$ hoặc $2\times 1$, hỏi có bao nhiêu cách lát.
@@ -34,7 +34,7 @@ if (s >> j & 1) {       // Nếu đã được phủ
 }
 ```
 
-Ta thấy hai công thức "không đặt" và "đặt dọc" có thể gộp lại.
+Hai công thức "không đặt" và "đặt dọc" có thể gộp lại.
 
 ??? note "Cài đặt"
     ```cpp
@@ -81,7 +81,7 @@ Ta thấy hai công thức "không đặt" và "đặt dọc" có thể gộp l�
 
 <span id="thuật-ngữ"></span>
 
-Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của các giai đoạn sau chỉ phụ thuộc vào kết quả của các giai đoạn trước (không có hậu hiệu). Nhiều bài toán DP có thể có nhiều cách chia giai đoạn. Ví dụ trong bài toán ba lô, ta thường có thể chia theo vật phẩm hoặc theo dung lượng ba lô (vòng lặp ngoài duyệt gì trước). Còn trong bài toán domino, ta có thể chia theo hàng, cột, ô, đường chéo và các đặc trưng khác.
+Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của các giai đoạn sau chỉ phụ thuộc vào kết quả của các giai đoạn trước (không có hậu hiệu). Nhiều bài toán DP có thể có nhiều cách chia giai đoạn. Ví dụ trong bài toán ba lô, có thể chia theo vật phẩm hoặc theo dung lượng ba lô (vòng lặp ngoài duyệt gì trước). Còn trong bài toán domino, có thể chia theo hàng, cột, ô, đường chéo và các đặc trưng khác.
 
 Đường biên: ranh giới giữa phần trạng thái đã quyết định và phần chưa quyết định.
 
@@ -106,9 +106,9 @@ Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của c�
 ???+ note "Ví dụ [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng một số chu trình; một số vị trí có chướng ngại.
 
-Nói nghiêm ngặt, bài toán nhiều chu trình không thuộc DP đầu nối, vì cũng như bài toán lát domino ở trên, ta chỉ cần ghi lại đầu nối có tồn tại hay không, rồi ghép và sinh đầu nối theo từng cặp.
+Nói nghiêm ngặt, bài toán nhiều chu trình không thuộc DP đầu nối, vì cũng như bài toán lát domino ở trên, chỉ cần ghi lại đầu nối có tồn tại hay không, rồi ghép và sinh đầu nối theo từng cặp.
 
-Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, vì nó gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Sau khi duyệt xong một hàng, đầu nối trái ở ngoài cùng bên phải thường là trạng thái không hợp lệ; đồng thời ta cần bổ sung đầu nối trái đầu tiên của hàng tiếp theo. Việc này đòi hỏi điều chỉnh trạng thái đường biên hiện tại, thường là dịch trái toàn bộ trạng thái; ta gọi thao tác này là cuộn `roll()`.
+Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, vì nó gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Sau khi duyệt xong một hàng, đầu nối trái ở ngoài cùng bên phải thường là trạng thái không hợp lệ; đồng thời cần bổ sung đầu nối trái đầu tiên của hàng tiếp theo. Việc này đòi hỏi điều chỉnh trạng thái đường biên hiện tại, thường là dịch trái toàn bộ trạng thái; thao tác này gọi là cuộn `roll()`.
 
 ??? note "Mã ví dụ"
     ```cpp
@@ -133,22 +133,22 @@ Chú ý rằng với một bàn cờ rộng $m$, độ rộng của đường bi
 ???+ note "Ví dụ [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình.
 
-Trong cách biểu diễn trạng thái ở trên, mỗi lần ta ghép một nhóm đầu nối liên thông, một chu trình độc lập sẽ được tạo ra. Vì vậy ở bài này, ta còn cần phân biệt tính liên thông giữa các đầu nối (nó đã xuất hiện!). Điều này đòi hỏi mã hóa trạng thái thêm một bước.
+Trong cách biểu diễn trạng thái ở trên, mỗi lần ghép một nhóm đầu nối liên thông, một chu trình độc lập sẽ được tạo ra. Vì vậy ở bài này, còn cần phân biệt tính liên thông giữa các đầu nối (nó đã xuất hiện!). Điều này đòi hỏi mã hóa trạng thái thêm một bước.
 
 #### Mã hóa trạng thái
 
 <span id="mã-hóa-trạng-thái"></span>
 
-Các cách mã hóa thường dùng gồm biểu diễn bằng ngoặc và biểu diễn tối tiểu. Ở đây ta tập trung giới thiệu biểu diễn tối tiểu, vì nó có tính tổng quát tốt hơn. Ta dùng một mảng số nguyên độ dài $m+1$ để ghi lại trạng thái của từng đầu nối trên đường biên; $0$ nghĩa là không có đầu nối, và quy ước các đầu nối liên thông với nhau được đánh dấu bằng cùng một số.
+Các cách mã hóa thường dùng gồm biểu diễn bằng ngoặc và biểu diễn tối tiểu. Phần này tập trung giới thiệu biểu diễn tối tiểu, vì nó có tính tổng quát tốt hơn. Dùng một mảng số nguyên độ dài $m+1$ để ghi lại trạng thái của từng đầu nối trên đường biên; $0$ nghĩa là không có đầu nối, và quy ước các đầu nối liên thông với nhau được đánh dấu bằng cùng một số.
 
 Khi đó hai cách mã hóa sau biểu diễn cùng một trạng thái:
 
 -   `0 3 1 0 1 3`
 -   `0 1 2 0 2 1`
 
-Ta ánh xạ mọi trạng thái tương đương về biểu diễn có thứ tự từ điển nhỏ nhất; trong ví dụ trên, `0 1 2 0 2 1` là một biểu diễn tối tiểu.
+Mọi trạng thái tương đương được ánh xạ về biểu diễn có thứ tự từ điển nhỏ nhất; trong ví dụ trên, `0 1 2 0 2 1` là một biểu diễn tối tiểu.
 
-Ta dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối trên đường biên. `bb[]` biểu diễn, trong quá trình mã hóa tối tiểu, mỗi số được ánh xạ tới số nhỏ nhất nào. Chú ý $0$ biểu thị đầu nối không tồn tại, nên không được ánh xạ thành giá trị khác.
+Dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối trên đường biên. `bb[]` biểu diễn, trong quá trình mã hóa tối tiểu, mỗi số được ánh xạ tới số nhỏ nhất nào. Chú ý $0$ biểu thị đầu nối không tồn tại, nên không được ánh xạ thành giá trị khác.
 
 ??? note "Cài đặt mã"
     ```cpp
@@ -176,13 +176,13 @@ Ta dùng mảng `b[]` để biểu diễn trạng thái của các đầu nối 
     }
     ```
 
-Ta nhận thấy các đầu nối luôn xuất hiện theo cặp và biến mất theo cặp. Vì vậy trạng thái như `0 1 2 0 1 2` là không hợp lệ. Các trạng thái hợp lệ tạo thành một dãy ngoặc, và trong thực tế tập trạng thái hợp lệ có thể rất thưa.
+Các đầu nối luôn xuất hiện theo cặp và biến mất theo cặp. Vì vậy trạng thái như `0 1 2 0 1 2` là không hợp lệ. Các trạng thái hợp lệ tạo thành một dãy ngoặc, và trong thực tế tập trạng thái hợp lệ có thể rất thưa.
 
 #### Tự viết bảng băm
 
 <span id="tự-viết-bảng-băm"></span>
 
-Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, ta có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với người dùng C++, ta có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), và dĩ nhiên cũng có thể tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
+Trong một số bài toán [DP nén trạng thái](./state.md), các trạng thái hợp lệ có thể rất thưa (ví dụ bài này). Để tối ưu độ phức tạp thời gian và bộ nhớ, có thể dùng bảng băm để lưu các trạng thái DP hợp lệ. Với C++, có thể dùng [std::unordered\_map](http://www.cplusplus.com/reference/unordered_map/unordered_map/), và dĩ nhiên cũng có thể tự viết trực tiếp để linh hoạt đóng gói cả hàm chuyển trạng thái.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -223,7 +223,7 @@ Trong đoạn mã trên:
 -   `next[]` là con trỏ tới trạng thái kế tiếp.
 -   `state[]` là trạng thái của nút.
 -   `key[]` là khóa của nút; trong bài này chính là số phương án.
--   `clear()` là hàm khởi tạo. Tương tự danh sách kề tự viết, ta chỉ cần khởi tạo con trỏ của các nút đầu.
+-   `clear()` là hàm khởi tạo. Tương tự danh sách kề tự viết, chỉ cần khởi tạo con trỏ của các nút đầu.
 -   `push()` là hàm chuyển trạng thái; trong đó `d` là một biến toàn cục (để viết nhanh), biểu thị lượng tăng thêm do mỗi lần chuyển trạng thái mang lại. Nếu tìm thấy trạng thái thì `+=`, nếu không thì tạo một nút mới có trạng thái là `s` và khóa là `d`.
 -   `roll()` cuộn đường biên sau khi duyệt xong cả một hàng.
 
@@ -304,9 +304,9 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 ???+ note "Ví dụ [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     Tóm tắt đề bài: với một hình vuông $N\times M$ ($N,M\le 8$), mỗi điểm lưới có một trọng số. Tìm một đường đi sao cho tổng trọng số các điểm lưới được đường đi phủ là lớn nhất.
 
-Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Ta cần thảo luận thêm trong hàm chuyển trạng thái về việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng chắc chắn sẽ có nhiều thành phần liên thông.
+Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Hàm chuyển trạng thái cần thảo luận thêm việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng chắc chắn sẽ có nhiều thành phần liên thông.
 
-Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (chú ý rằng các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Trong chương trình mẫu dưới đây, ta chọn cách thứ hai.
+Cần ghi thêm trong trạng thái tổng số lần loại sự kiện này đã xảy ra. Có thể mã hóa thông tin này vào trạng thái (chú ý rằng các thông tin bổ sung kiểu này không cần cuộn theo khi điều chỉnh đường biên), hoặc thêm một chiều bên ngoài mảng `hashTable`. Chương trình mẫu dưới đây chọn cách thứ hai.
 
 #### Chuyển trạng thái
 
@@ -327,8 +327,8 @@ Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này
           int lt = b[j], up = b[j + 1];
           bool dn = A[i + 1][j], rt = A[i][j + 1];
           if (lt && up) {
-            if (lt == up) {  // Trong bài toán một đường đi, ta không được ghép hai đầu nối giống nhau.
-              // Không thể đặt chuyển trạng thái ở đây...
+            if (lt == up) {  // Trong bài toán một đường đi, không được ghép hai đầu nối giống nhau.
+              // Không thể đặt chuyển trạng thái tại vị trí này...
             } else {  // Hai đầu nối tham gia ghép có thể có đầu nối độc lập, nhưng vẫn xử lý bằng cùng đoạn mã
               REP(i, m + 1) if (b[i] == lt) b[i] = up;
               push(c, j, 0, 0);
@@ -393,14 +393,14 @@ Ta cần ghi thêm trong trạng thái tổng số lần loại sự kiện này
 
 <span id="mô-hình-tô-màu"></span>
 
-Ngoài mô hình đường đi, còn có một loại mô hình thường gặp khác, trong đó ta cần tô màu bàn cờ; các nút kề nhau có cùng màu được xem là liên thông. Trong các bài toán dạng đường đi, khi chuyển trạng thái ta liệt kê hướng của đường đi hiện tại; còn trong các bài toán tô màu, ta liệt kê màu sẽ tô cho nút hiện tại. Trong mô hình tô màu, các nút có cùng tính liên thông trong trạng thái có thể không chỉ có hai nút. Nhưng nhìn chung cách xử lý vẫn gần giống nhau. Ta hãy xét một ví dụ kinh điển.
+Ngoài mô hình đường đi, còn có một loại mô hình thường gặp khác, trong đó cần tô màu bàn cờ; các nút kề nhau có cùng màu được xem là liên thông. Trong các bài toán dạng đường đi, khi chuyển trạng thái cần liệt kê hướng của đường đi hiện tại; còn trong các bài toán tô màu, cần liệt kê màu sẽ tô cho nút hiện tại. Trong mô hình tô màu, các nút có cùng tính liên thông trong trạng thái có thể không chỉ có hai nút. Nhưng nhìn chung cách xử lý vẫn gần giống nhau. Xét một ví dụ kinh điển.
 
 ### Ví dụ「UVa 10572」Black & White
 
 <span id="ví-dụuva-10572black--white"></span>
 
 ???+ note "Ví dụ [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513)"
-    Tóm tắt đề bài: tô đen trắng các điểm lưới chưa tô trong một bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời màu trong bất kỳ hình chữ nhật con $2\times 2$ nào không được hoàn toàn giống nhau (ví dụ trường hợp trong hình dưới là không hợp lệ). Hãy đếm số phương án hợp lệ và dựng một phương án hợp lệ.
+    Tóm tắt đề bài: tô đen trắng các điểm lưới chưa tô trong một bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời màu trong bất kỳ hình chữ nhật con $2\times 2$ nào không được hoàn toàn giống nhau (ví dụ trường hợp trong hình dưới là không hợp lệ). Đếm số phương án hợp lệ và dựng một phương án hợp lệ.
     
     ![Cấu hình 2x2 không hợp lệ trong bài Black & White](./images/black_and_white1.svg)
 
@@ -408,15 +408,15 @@ Ngoài mô hình đường đi, còn có một loại mô hình thường gặp 
 
 <span id="mã-hóa-trạng-thái_1"></span>
 
-Trước hết xét cách mã hóa trạng thái. Nếu không xét tính liên thông thì đây chính là [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197), có thể giải trực tiếp bằng [DP nén trạng thái](./state.md). Bây giờ ta cần thể hiện đồng thời thông tin màu và tính liên thông trong trạng thái. Xét trạng thái của từng vị trí trên đường biên: mỗi `Offset` bit trong biểu diễn nhị phân mô tả một vị trí trên đường biên. Vì chỉ có hai màu đen trắng, ta dùng tính chẵn lẻ của bit thấp nhất để biểu thị màu, các phần còn lại biểu thị tính liên thông.
+Trước hết xét cách mã hóa trạng thái. Nếu không xét tính liên thông thì đây chính là [SGU 197. Nice Patterns Strike Back](https://codeforces.com/problemsets/acmsguru/problem/99999/197), có thể giải trực tiếp bằng [DP nén trạng thái](./state.md). Bây giờ cần thể hiện đồng thời thông tin màu và tính liên thông trong trạng thái. Xét trạng thái của từng vị trí trên đường biên: mỗi `Offset` bit trong biểu diễn nhị phân mô tả một vị trí trên đường biên. Vì chỉ có hai màu đen trắng, dùng tính chẵn lẻ của bit thấp nhất để biểu thị màu, các phần còn lại biểu thị tính liên thông.
 
-Xét các nút phía trên hàng đầu tiên và các nút bên trái cột đầu tiên. Nếu muốn tránh xử lý riêng, có thể đưa thêm màu thứ ba để phân biệt chúng. Ở đây ta nhận thấy thông tin liên thông của các trạng thái biên này chắc chắn bằng 0, nên không cần mã hóa thêm cho màu thứ ba.
+Xét các nút phía trên hàng đầu tiên và các nút bên trái cột đầu tiên. Nếu muốn tránh xử lý riêng, có thể đưa thêm màu thứ ba để phân biệt chúng. Thông tin liên thông của các trạng thái biên này chắc chắn bằng 0, nên không cần mã hóa thêm cho màu thứ ba.
 
-Trong bài toán đường đi, đường biên của ta gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Ở bài này, vì ta còn cần kiểm tra hình chữ nhật con $2\times 2$ có ô hiện tại là góc dưới phải có hợp lệ hay không, nên cần ghi lại màu của ô góc trên trái; do đó độ dài đường biên vẫn là $m+1$.
+Trong bài toán đường đi, đường biên gồm $m$ đầu nối phía trên và $1$ đầu nối bên trái. Ở bài này, vì còn cần kiểm tra hình chữ nhật con $2\times 2$ có ô hiện tại là góc dưới phải có hợp lệ hay không, nên cần ghi lại màu của ô góc trên trái; do đó độ dài đường biên vẫn là $m+1$.
 
-Cách mã hóa này vẫn giữ lại nhiều thông tin dư thừa (các vùng liên thông chắc chắn cùng màu, và ô góc trên trái chỉ cần thông tin màu, không cần thông tin liên thông). Tuy nhiên vì đã dùng bảng băm và biểu diễn tối tiểu, ảnh hưởng đến độ phức tạp thời gian không lớn; để giảm áp lực lập trình, ta không tinh giản thêm.
+Cách mã hóa này vẫn giữ lại nhiều thông tin dư thừa (các vùng liên thông chắc chắn cùng màu, và ô góc trên trái chỉ cần thông tin màu, không cần thông tin liên thông). Tuy nhiên vì đã dùng bảng băm và biểu diễn tối tiểu, ảnh hưởng đến độ phức tạp thời gian không lớn; để giảm áp lực lập trình, không tinh giản thêm.
 
-Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng xen kẽ), thông tin liên thông của mỗi đầu nối đều khác nhau. Vì vậy ta cần $4$ bit nhị phân để ghi tính liên thông; cộng thêm thông tin màu, `Offset` của bài này là $5$ bit.
+Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng xen kẽ), thông tin liên thông của mỗi đầu nối đều khác nhau. Vì vậy cần $4$ bit nhị phân để ghi tính liên thông; cộng thêm thông tin màu, `Offset` của bài này là $5$ bit.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -452,7 +452,7 @@ Trong trường hợp nhiều nhất (ví dụ hàng đầu tiên đen trắng x
 
 <span id="tự-viết-bảng-băm_1"></span>
 
-Vì cần dựng một phương án bất kỳ, bảng băm ở đây cần thêm một trường `pre[]` để ghi lại một tiền nhiệm bất kỳ của mỗi trạng thái ở giai đoạn trước.
+Vì cần dựng một phương án bất kỳ, bảng băm cần thêm một trường `pre[]` để ghi lại một tiền nhiệm bất kỳ của mỗi trạng thái ở giai đoạn trước.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -493,7 +493,7 @@ Vì cần dựng một phương án bất kỳ, bảng băm ở đây cần thê
 
 <span id="dựng-phương-án"></span>
 
-Với các thông tin trên, ta có thể dễ dàng dựng phương án. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, ta dùng mảng `pre` theo thứ tự ngược để dựng phương án. Chú ý ở cuối mỗi hàng, vì ta đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
+Với các thông tin trên, có thể dựng phương án trực tiếp. Trước hết duyệt các trạng thái trong bảng băm hiện tại; nếu số thành phần liên thông không vượt quá $2$ thì cộng vào số phương án. Nếu số phương án khác $0$, dùng mảng `pre` theo thứ tự ngược để dựng phương án. Chú ý ở cuối mỗi hàng, vì đã thực hiện thao tác `Roll()`, màu cần lấy từ `c[j+1]`.
 
 ???+ note "Cài đặt mã"
     ```cpp
@@ -528,14 +528,14 @@ Với các thông tin trên, ta có thể dễ dàng dựng phương án. Trư�
 
 <span id="chuyển-trạng-thái_2"></span>
 
-Ta ký hiệu:
+Ký hiệu:
 
 -   `cc` là màu của ô đang được tô
 -   `lf` là màu của ô bên trái
 -   `up` là màu của ô bên trên
 -   `lu` là màu của ô góc trên trái
 
-Ta dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuyển trạng thái, gồm ba trường hợp: ghép, kế thừa và sinh mới.
+Dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuyển trạng thái, gồm ba trường hợp: ghép, kế thừa và sinh mới.
 
 ???+ note "Chuyển trạng thái - mã"
     ```cpp
@@ -563,7 +563,7 @@ Ta dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuy�
     }
     ```
 
-Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, ta không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ ta cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, ta cũng có thể xử lý riêng.
+Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùng liên thông khép kín, không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, cũng có thể xử lý riêng.
 
 ???+ note "Xử lý riêng - mã"
     ```cpp
@@ -587,13 +587,13 @@ Với trường hợp cuối cùng, cần chú ý: nếu đã sinh ra một vùn
     }
     ```
 
-Thảo luận thêm về trường hợp một thành phần liên thông biến mất. Mỗi khi ta tô màu một ô, nếu không còn ô nào khác liên thông với ô phía trên nó, thì một thành phần liên thông khép kín sẽ được tạo thành. Sự kiện này chỉ được xảy ra ở hai cột cuối của hàng cuối; nếu không, để tránh xuất hiện khối $2\times 2$ cùng màu, màu này chắc chắn sẽ lại xuất hiện về sau, ngoại trừ trường hợp sau:
+Thảo luận thêm về trường hợp một thành phần liên thông biến mất. Mỗi khi tô màu một ô, nếu không còn ô nào khác liên thông với ô phía trên nó, thì một thành phần liên thông khép kín sẽ được tạo thành. Sự kiện này chỉ được xảy ra ở hai cột cuối của hàng cuối; nếu không, để tránh xuất hiện khối $2\times 2$ cùng màu, màu này chắc chắn sẽ lại xuất hiện về sau, ngoại trừ trường hợp sau:
 
     2 2
     o#
     #o
 
-Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể viết gọn mà không cần ghi lại trước đó đã sinh thành phần liên thông khép kín hay chưa.
+Trường hợp này được xử lý riêng. Nhờ vậy trong bài này có thể viết gọn mà không cần ghi lại trước đó đã sinh thành phần liên thông khép kín hay chưa.
 
 ??? note "Mã ví dụ"
     ```cpp
@@ -611,7 +611,7 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
     Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số lớn nhất.
 
 ??? note "Bài tập [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
-    Tóm tắt đề bài: cho một bàn cờ kích thước $N\times N$, mỗi ô ban đầu là đen hoặc trắng. Bạn có thể chọn đúng $K$ ô trắng và tô chúng thành đỏ. Hỏi có bao nhiêu phương án tô màu sao cho các ô đỏ tạo thành một khối liên thông.
+    Tóm tắt đề bài: cho một bàn cờ kích thước $N\times N$, mỗi ô ban đầu là đen hoặc trắng. Được chọn đúng $K$ ô trắng và tô chúng thành đỏ. Hỏi có bao nhiêu phương án tô màu sao cho các ô đỏ tạo thành một khối liên thông.
 
 ## Mô hình đồ thị
 
@@ -639,20 +639,20 @@ Ta xử lý riêng trường hợp này. Nhờ vậy trong bài này có thể v
 ???+ note "Ví dụ [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
     Tóm tắt đề bài: dựng một tập chu trình trong bàn cờ $N\times M$ để phân tách tất cả `x` và `o`.
 
-Có một lớp bài toán DP đầu nối yêu cầu ta dựng một tập tường trên bàn cờ để phân tách một số phần tử trên đó. Có thể tạm gọi đây là bài toán xây tường; loại bài toán này có thể xem như mô hình tô màu, cũng có thể xem như mô hình đường đi.
+Có một lớp bài toán DP đầu nối yêu cầu dựng một tập tường trên bàn cờ để phân tách một số phần tử trên đó. Có thể tạm gọi đây là bài toán xây tường; loại bài toán này có thể xem như mô hình tô màu, cũng có thể xem như mô hình đường đi.
 
 ![Mô hình xây tường để phân tách các phần tử trên bàn cờ](./images/greatwall.svg)
 
-Trong bài này, nếu xem như mô hình tô màu, ta không chỉ cần thảo luận thêm về chu vi của vùng được tô, mà còn phải kiểm tra trường hợp không hợp lệ do chạm nhau ở góc (hình 2). Ngoài ra, khác với [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513), bài này yêu cầu tường là đa giác đơn, nên trường hợp dạng vòng trong vòng dưới đây là không hợp lệ trong bài này.
+Trong bài này, nếu xem như mô hình tô màu, không chỉ cần thảo luận thêm về chu vi của vùng được tô, mà còn phải kiểm tra trường hợp không hợp lệ do chạm nhau ở góc (hình 2). Ngoài ra, khác với [「UVa 10572」Black & White](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1513), bài này yêu cầu tường là đa giác đơn, nên trường hợp dạng vòng trong vòng dưới đây là không hợp lệ trong bài này.
 
     3 3
     ooo
     oxo
     ooo
 
-Vì vậy ta dùng mô hình đường đi và chuyển thành bài toán [một chu trình](#một-chu-trình) để xử lý.
+Vì vậy dùng mô hình đường đi và chuyển thành bài toán [một chu trình](#một-chu-trình) để xử lý.
 
-Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều dài và chiều rộng cần tăng thêm $1$). Mỗi lần chuyển, cần bảo đảm tất cả `x` nằm ngoài chu trình và `o` nằm trong chu trình. Do đó ta còn cần duy trì vị trí hiện tại có nằm bên trong chu trình hay không. Với thông tin này, ta có thể thêm một chiều, hoặc trực tiếp thống kê tính chẵn lẻ của số đầu nối đi xuống đã xuất hiện trên đường biên trước vị trí này (phương pháp tia).
+Thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều dài và chiều rộng cần tăng thêm $1$). Mỗi lần chuyển, cần bảo đảm tất cả `x` nằm ngoài chu trình và `o` nằm trong chu trình. Do đó còn cần duy trì vị trí hiện tại có nằm bên trong chu trình hay không. Với thông tin này, có thể thêm một chiều, hoặc trực tiếp thống kê tính chẵn lẻ của số đầu nối đi xuống đã xuất hiện trên đường biên trước vị trí này (phương pháp tia).
 
 ??? note "Mã ví dụ"
     ```cpp
@@ -811,7 +811,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
     Tóm tắt đề bài: trên bàn cờ $r\times c$ có một số vị trí đặt chướng ngại. Hỏi có bao nhiêu cách dùng gạch hình chữ L lát kín tất cả các ô không có chướng ngại.
 
 ??? note "Bài tập [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
-    Tóm tắt đề bài: tô đen, trắng, xám các điểm lưới chưa tô trong bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời vùng đen và vùng trắng lần lượt liên thông với biên trên và biên dưới của bàn cờ, và vùng đen với vùng trắng không được kề nhau. Mỗi ô có một chi phí tương ứng; hãy tìm một phương án tô màu sao cho chi phí vùng xám nhỏ nhất.
+    Tóm tắt đề bài: tô đen, trắng, xám các điểm lưới chưa tô trong bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời vùng đen và vùng trắng lần lượt liên thông với biên trên và biên dưới của bàn cờ, và vùng đen với vùng trắng không được kề nhau. Mỗi ô có một chi phí tương ứng; tìm một phương án tô màu sao cho chi phí vùng xám nhỏ nhất.
     
     ![Ví dụ tô màu trong bài Winter's Coming](./images/4796.jpg)
 
@@ -832,7 +832,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
     Tóm tắt đề bài: có thể chuyển thành bài toán tìm đường đi dài nhất không tự chạm từ $\mathit{S}$ đến $\mathit{T}$; được phép chạm ở góc.
 
 ??? note "Bài tập [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
-    Tóm tắt đề bài: có một đồ thị $N\times M$, mỗi ô độc lập có xác suất $\mathit{p}$ trở thành chướng ngại vật. Bạn cần đi từ góc trên trái đến góc dưới phải của mê cung. Hãy tính xác suất để mỗi ô trở thành chướng ngại vật trong một **mê cung có lời giải (tức điểm đầu và điểm cuối liên thông bốn hướng)**. ($N \le 5$, $M \le 6$)
+    Tóm tắt đề bài: có một đồ thị $N\times M$, mỗi ô độc lập có xác suất $\mathit{p}$ trở thành chướng ngại vật. Cần đi từ góc trên trái đến góc dưới phải của mê cung. Tính xác suất để mỗi ô trở thành chướng ngại vật trong một **mê cung có lời giải (tức điểm đầu và điểm cuối liên thông bốn hướng)**. ($N \le 5$, $M \le 6$)
 
 ??? note "Bài tập [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     Tóm tắt đề bài: có tổng cộng 12 loại mẫu gạch, mỗi loại có số lượng cho trước. Cần lát chúng lên một sàn hình chữ nhật xem như đồ thị lưới $R\times C$, mỗi ô đặt một viên gạch, sao cho tâm của ô góc trên trái liên thông với tâm của ô góc dưới phải thông qua các đường trên mẫu gạch. $(2 \le R \times C \le 15)$
@@ -840,7 +840,7 @@ Ta thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chi�
     ![Các mẫu gạch trong bài Pipeline Plans](./images/plug2.png)
 
 ??? note "Bài tập [「SDOI 2014」Bảng mạch](https://www.luogu.com.cn/problem/P3314)"
-    Tóm tắt đề bài: một bảng mạch $N\times M$ có một số vị trí là chướng ngại mà dây điện không thể đi qua. Cho $K$ cặp ô, yêu cầu mỗi cặp ô đều được nối bằng dây điện, và các dây điện không giao nhau (cho phép một đường dây đi vào ô hiện tại từ biên trên rồi rời khỏi ô qua biên trái, đồng thời một đường dây khác đi vào từ biên dưới rồi ra qua biên phải). Xem dây điện là cạnh vô hướng; hãy tìm tổng chiều dài dây điện ngắn nhất thỏa mãn yêu cầu và số phương án.
+    Tóm tắt đề bài: một bảng mạch $N\times M$ có một số vị trí là chướng ngại mà dây điện không thể đi qua. Cho $K$ cặp ô, yêu cầu mỗi cặp ô đều được nối bằng dây điện, và các dây điện không giao nhau (cho phép một đường dây đi vào ô hiện tại từ biên trên rồi rời khỏi ô qua biên trái, đồng thời một đường dây khác đi vào từ biên dưới rồi ra qua biên phải). Xem dây điện là cạnh vô hướng; tìm tổng chiều dài dây điện ngắn nhất thỏa mãn yêu cầu và số phương án.
 
 ??? note "Bài tập [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
     Tóm tắt đề bài: một chiếc bánh có thể xem như lưới $N\times M$; nay cắt bánh dọc theo các đường lưới thành nhiều phần. Hỏi có bao nhiêu cách cắt khác nhau. Hai cách cắt được xem là giống nhau khi và chỉ khi từng miếng bánh sau khi cắt đều có cùng hình dạng và nằm ở cùng vị trí. ($\min(N,M) \le 5, \max(N,M) \le 130$)
