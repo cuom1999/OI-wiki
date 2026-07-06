@@ -1,7 +1,7 @@
 <span id="xây-dựng-mảng-chia-khối"></span>
 ## Xây dựng mảng chia khối
 
-Mảng chia khối là cách chia một mảng thành vài khối
+Mảng chia khối là cách chia một mảng thành nhiều khối
 và lưu thông tin tổng hợp bên trong mỗi khối.
 Khi truy vấn gặp hai khối biên không đầy đủ,
 các phần tử ở hai biên được xử lý trực tiếp bằng vét cạn.
@@ -43,8 +43,8 @@ Cần hỏi số lượng số trong một khối lớn hơn hoặc bằng một
 vì vậy dùng mảng `t` để lưu các phần tử trong khối sau khi sắp xếp;
 `a` là mảng ban đầu, chưa sắp xếp.
 Với cập nhật trên cả khối,
-có thể dùng cách tương tự đánh dấu lười được lưu bền vững:
-mảng `delta` ghi lại giá trị đang được cộng vào toàn bộ khối.
+có thể dùng cách tương tự đánh dấu lười:
+mảng `delta` ghi lại lượng đang được cộng vào toàn bộ khối.
 Gọi $q$ là tổng số thao tác truy vấn và cập nhật,
 độ phức tạp thời gian là $O(q\sqrt{n}\log n)$.
 
@@ -103,8 +103,8 @@ Dùng mảng `delta` để ghi lại giá trị mà cả khối hiện đang đ�
 Khi khối chưa bị gán toàn bộ,
 dùng một giá trị đặc biệt (chẳng hạn `0x3f3f3f3f3f3f3f3fll`) để biểu diễn.
 Với các khối ở biên, trước khi truy vấn cần `pushdown`,
-tức đẩy thông tin đang lưu trong khối xuống từng phần tử.
-Sau khi gán, cần `sort` lại.
+tức đẩy thông tin đang lưu ở mức khối xuống từng phần tử.
+Sau khi gán trực tiếp vào các phần tử trong khối, cần `sort` lại.
 Các phần còn lại giống bài trước.
 
 ???+ note "Cài đặt"
