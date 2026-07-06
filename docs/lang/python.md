@@ -6,7 +6,7 @@ author: cmpute, Henry-ZHR, ranwen, abc1763613206, billchenchina, chinggg, ChungZ
 
 Python là một ngôn ngữ thông dịch được sử dụng rộng rãi. Ngôn ngữ này cung cấp
 các cấu trúc dữ liệu bậc cao hiệu quả, hỗ trợ lập trình hướng đối tượng gọn gàng
-mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
+mà mạnh mẽ, đồng thời cũng có thể dùng trong lập trình thi đấu.
 
 <a id="ưu-điểm-của-python"></a>
 
@@ -15,8 +15,9 @@ mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
 -   Python là một ngôn ngữ **thông dịch**: không cần biên dịch và liên kết trước,
     nên giảm được nhiều thao tác khi chạy chương trình.
 -   Python là một ngôn ngữ **tương tác**: trình thông dịch Python hỗ trợ thao tác
-    tương tác, có thể nhập và chạy lệnh ngay trong trình dòng lệnh.
--   Python **dễ học, dễ dùng**: Python cung cấp nhiều cấu trúc dữ liệu tiện lợi và vẫn phù hợp để phát triển chương trình lớn.
+    tương tác, có thể nhập và chạy lệnh ngay trong dòng lệnh.
+-   Python **dễ học, dễ dùng**: Python cung cấp nhiều cấu trúc dữ liệu tiện lợi
+    và vẫn phù hợp để phát triển chương trình lớn.
 -   Python **tương thích tốt**: Python hỗ trợ Windows, macOS và các hệ điều hành Unix.
 -   Python **thực dụng**: từ nhập xuất cơ bản, tính toán khoa học cho đến các ứng
     dụng web lớn đều có thể viết bằng Python.
@@ -41,8 +42,8 @@ mà mạnh mẽ, và cũng có thể dùng trong lập trình thi đấu.
     phong cách thực dụng và gọn gàng.
 -   Python là ngôn ngữ thông dịch có tính động cao, nên **tốc độ chạy chương
     trình chậm**, đặc biệt khi dùng vòng lặp `for` thuần Python. Khi dùng Python,
-    nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng cú
-    pháp [biểu thức sinh danh sách](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python)
+    nên tận dụng các hàm dựng sẵn như `filter`, `map`, hoặc dùng
+    [biểu thức sinh danh sách](https://www.pythonforbeginners.com/basics/list-comprehensions-in-python)
     để cải thiện hiệu năng.
 
 <a id="thiết-lập-môi-trường"></a>
@@ -62,8 +63,8 @@ Xem [Python 3](../tools/compiler.md#python-3). Hoặc:
         gói), chẳng hạn các hệ Unix, nên chạy `python3` trong trình dòng lệnh để
         mở trình thông dịch Python 3.[^ref1]
 
-Ngoài ra, cũng có thể dùng các công cụ như venv, conda, Nix để quản lý bộ công
-cụ Python và các gói Python, tạo môi trường ảo độc lập và tránh lỗi phụ thuộc.
+Ngoài ra, cũng có thể dùng các công cụ như venv, conda, Nix để quản lý bộ công cụ
+Python và các gói Python, tạo môi trường ảo độc lập và tránh lỗi phụ thuộc.
 
 Là một ngôn ngữ thông dịch, cách thực thi Python khác với C++. Sự khác biệt này
 thường không lộ rõ khi lập trình bằng IDE, nên cần nhấn mạnh các cách chạy
@@ -71,8 +72,8 @@ chương trình.
 
 Khi gõ `python3` trên dòng lệnh hoặc vừa mở IDLE, môi trường lập trình tương tác
 sẽ được mở ra; môi trường này còn gọi là "REPL" (vòng lặp "đọc - đánh giá - in
-kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, phù hợp
-để kiểm tra nhanh cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
+kết quả"). Người mới học có thể nhập lệnh tại đây và thấy kết quả ngay, rất phù
+hợp để kiểm tra nhanh cú pháp. Phần sau cũng sẽ thường dùng hình thức này.
 
 Nhưng nếu muốn viết một chương trình hoàn chỉnh, tốt hơn hết là tạo một tệp văn
 bản mới (thường có đuôi `.py`), sau đó chạy `python3 filename.py` trên dòng lệnh
@@ -108,10 +109,10 @@ và `pip` là chương trình cài thư viện bên thứ ba được ưu tiên.
 `pip` được kèm sẵn trong bộ cài nhị phân Python.
 
 Thư viện bên thứ ba trong `pip` chủ yếu được lưu trên [Python Package Index
-(PyPI)](https://pypi.org/), và cũng có thể chỉ định các nền tảng lưu trữ thư
-viện bên thứ ba khác. Nếu cần dùng máy chủ phản chiếu, nên chọn nguồn đáng tin
-cậy và khớp với chính sách mạng đang dùng; có thể xem thêm danh sách máy chủ
-phản chiếu PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
+(PyPI)](https://pypi.org/), nhưng cũng có thể chỉ định các nền tảng lưu trữ thư
+viện khác. Nếu cần dùng máy chủ phản chiếu, nên chọn nguồn đáng tin cậy và khớp
+với chính sách mạng đang dùng; có thể xem thêm danh sách máy chủ phản chiếu PyPI
+trên [MirrorZ](https://mirrorz.org/list/pypi).
 
 ???+ info "Cài một gói bằng chỉ mục PyPI tùy chọn"
     ```sh
@@ -124,7 +125,7 @@ phản chiếu PyPI trên [MirrorZ](https://mirrorz.org/list/pypi).
 
 Cú pháp Python ngắn gọn và dễ hiểu, đồng thời có nhiều tài liệu và giáo trình cả
 chính thức lẫn bên thứ ba. Phần này chỉ giới thiệu một số đặc điểm ngôn ngữ hữu
-ích với OIer. Có thể đọc thêm các bài học Python trên
+ích với người học OI. Có thể đọc thêm các bài học Python trên
 [tài liệu Python](https://docs.python.org/3/) và
 [Python Wiki](https://wiki.python.org/moin/).
 
@@ -132,8 +133,8 @@ chính thức lẫn bên thứ ba. Phần này chỉ giới thiệu một số �
 
 ### Chú thích
 
-Thêm chú thích không ảnh hưởng đến việc chạy mã, nhưng giúp mã dễ hiểu và dễ
-dùng hơn.
+Thêm chú thích không ảnh hưởng đến việc chạy mã, nhưng giúp mã dễ đọc và dễ bảo
+trì hơn.
 
 ```python
 # Dòng bắt đầu bằng ký tự # là chú thích một dòng
@@ -145,8 +146,8 @@ nhưng nó cũng thường được dùng làm chú thích
 """
 ```
 
-Thêm mã chú thích sẽ không ảnh hưởng đến chương trình. Nên thêm chú thích để mã
-dễ hiểu và dễ dùng hơn.
+Chú thích không làm thay đổi hành vi của chương trình. Nên thêm chú thích vừa đủ
+để người đọc hiểu được ý định của đoạn mã.
 
 <a id="kiểu-dữ-liệu-cơ-bản"></a>
 
@@ -156,8 +157,8 @@ dễ hiểu và dễ dùng hơn.
 
 #### Mọi thứ đều là đối tượng
 
-Trong Python, không cần khai báo trước tên biến và kiểu của nó; gán giá trị sẽ
-tạo biến thuộc nhiều kiểu khác nhau:
+Trong Python, không cần khai báo trước tên biến và kiểu của nó; thao tác gán sẽ
+tạo biến thuộc kiểu tương ứng với giá trị được gán:
 
 ```pycon
 >>> x = -3  # Cuối câu lệnh không cần dấu chấm phẩy
@@ -175,9 +176,9 @@ False
 True
 ```
 
-Điều này không có nghĩa Python không có khái niệm kiểu. Thực tế, trình thông
-dịch sẽ tự động suy luận kiểu biến theo phép gán hoặc phép tính. Có thể dùng hàm
-dựng sẵn `type()` để xem kiểu của các biến này:
+Điều này không có nghĩa Python không có khái niệm kiểu. Thực tế, trình thông dịch
+sẽ tự động xác định kiểu biến theo phép gán hoặc phép tính. Có thể dùng hàm dựng
+sẵn `type()` để xem kiểu của các biến này:
 
 ```pycon
 >>> type(x)
@@ -195,7 +196,7 @@ dựng sẵn `type()` để xem kiểu của các biến này:
     nhau. Còn trình thông dịch Python tích hợp sẵn nhiều hàm thực dụng và tổng
     quát; có thể dùng ngay mà không cần quan tâm chúng nằm ở đâu. Điều này cũng
     tạo ra một vấn đề nhỏ: tên các hàm dựng sẵn thường là từ thông dụng, vì vậy
-    cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả kỳ lạ.
+    cần tránh đặt biến trùng tên, nếu không có thể sinh ra kết quả khó hiểu.
 
 Python có sẵn các kiểu số nguyên, số thực dấu phẩy động, chuỗi và luận lý, có thể
 đối chiếu với `int`, `float`, `string` và `bool` trong C++. Nhưng có một số khác
@@ -222,18 +223,17 @@ quan hệ giữa các đối tượng. Hàm là đối tượng, bản thân ki�
 Các khái niệm này ban đầu có thể khó hiểu và chưa hữu ích, nên phần này chưa đi
 sâu. Qua các ví dụ sau, có thể dần cảm nhận được rằng đối tượng Python cung cấp
 nhiều phương thức mạnh. Khi lập trình, nên ưu tiên suy nghĩ thao tác quanh đối
-tượng thay vì quanh quy trình; mã sẽ gọn và rõ hơn.
+tượng thay vì quanh từng bước thủ tục; mã sẽ gọn và rõ hơn.
 
 <a id="phép-toán-số-học"></a>
 
 #### Phép toán số học
 
 Có thể xem Python cài trên máy như một chiếc máy tính đa năng; cách hiểu này khá
-đúng.
-Trong chế độ tương tác, có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng các
-toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ khác
-(ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Có thể tự thử các phép
-toán này; phần này chỉ trình bày các điểm khác C++ rõ hơn:
+đúng. Trong chế độ tương tác, có thể nhập một biểu thức sau dấu nhắc `>>>`, dùng
+các toán tử `+`, `-`, `*`, `/`, `%` để tính toán trên số như phần lớn ngôn ngữ
+khác (ví dụ C++), và dùng `()` để nhóm theo thứ tự kết hợp. Có thể tự thử các
+phép toán này; phần này chỉ trình bày những điểm khác C++ rõ hơn:
 
 ```pycon
 >>> 5.0 * 6  # Kết quả phép tính với số thực là số thực
@@ -257,9 +257,9 @@ toán này; phần này chỉ trình bày các điểm khác C++ rõ hơn:
 ```
 
 Từ các thử nghiệm trên, phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong
-Python 2 thì trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn xuống,
-dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính phần dư,
-và dạng ký pháp khoa học cũng giống nhau.
+Python 2 thì có thể trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn
+xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính
+phần dư, và dạng ký pháp khoa học cũng giống nhau.
 
 Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của
 [lũy thừa nhanh](../math/binary-exponentiation.md) qua hàm dựng sẵn
@@ -385,8 +385,8 @@ các phương thức sẵn có trước khi tự viết lại.
 ### Tạo mảng
 
 Người chuyển từ C++ sang có thể bối rối về cách tạo mảng trong Python. Phần này
-giới thiệu cú pháp "mô phỏng mảng" trong Python. Cần nhấn mạnh rằng phần này
-đang nói về một số [kiểu tuần tự](https://docs.python.org/3/library/stdtypes.html#iterator-types),
+giới thiệu cú pháp "mô phỏng mảng" trong Python. Cần nhấn mạnh rằng phần này đang
+nói về một số [kiểu tuần tự](https://docs.python.org/3/library/stdtypes.html#iterator-types),
 khác bản chất với mảng C và gần với `vector` trong C++ hơn.
 
 <a id="dùng-list"></a>
@@ -397,7 +397,8 @@ Danh sách (`list`) có lẽ là kiểu tuần tự thường dùng và mạnh n
 Danh sách có thể chứa phần tử thuộc bất kỳ kiểu nào, kể cả danh sách lồng nhau,
 phù hợp với định nghĩa "danh sách tổng quát" trong cấu trúc dữ liệu. Lưu ý đừng
 nhầm với danh sách liên kết đôi [`list`](./csl/sequence-container.md#list) trong
-C++ STL; vì vậy bài này sẽ gọi là "danh sách" thay vì `list` để tránh hiểu nhầm.
+C++ STL; vì vậy bài này sẽ gọi là "danh sách" thay vì `list` khi cần tránh hiểu
+nhầm.
 
 ```pycon
 >>> []  # Tạo danh sách rỗng; lưu ý danh sách dùng ngoặc vuông
@@ -499,7 +500,7 @@ Sau đây là vài tình huống thường gặp hơn trong OI, chẳng hạn "m
 [1, 0, 0]
 >>> a3  # a3 không đổi
 [0, 0, 0]
->>> id(a1) == id(a2) and id(a1) != id(a3)  # Hàm dựng sẵn id() cho "định danh" của đối tượng, có thể so với địa chỉ; địa chỉ giống nhau tức là cùng một đối tượng
+>>> id(a1) == id(a2) and id(a1) != id(a3)  # id() cho biết định danh đối tượng
 True
 >>> vis2 = vis[:]  # Sao chép một danh sách hai chiều
 >>> vis[0][1] = 2; vis  # vis bị sửa hàng loạt
