@@ -468,7 +468,7 @@ $$
 
 Tại $j\leq2$ có $\texttt{ABAABAA}$, tại $2< j \leq 5$ có $\texttt{ABAA}$, và tại $5<j\leq8$ có $\texttt{A}$.
 
-Khuyết điểm của thuật toán Knuth là chỉ xét cặp dài nhất. Trên thực tế, phải xét mọi trường hợp hậu tố của $subpat$ bằng tiền tố của $pat$, tương đương với việc tính tất cả các hậu tố thực sự bằng tiền tố thực sự của $pat$, rồi tính các giá trị $delta_2(j)$ khác nhau theo các đoạn $j$, theo thứ tự độ dài từ lớn đến nhỏ.
+Khuyết điểm của thuật toán Knuth là chỉ xét cặp dài nhất. Trong bài toán này cần xét mọi trường hợp hậu tố của $subpat$ bằng tiền tố của $pat$, tương đương với việc tính tất cả các hậu tố thực sự bằng tiền tố thực sự của $pat$, rồi tính các giá trị $delta_2(j)$ khác nhau theo các đoạn $j$, theo thứ tự độ dài từ lớn đến nhỏ.
 
 Dùng hàm tiền tố và áp dụng ngược phương trình chuyển trạng thái khi tính hàm tiền tố: $j^{(n)} = \pi[j^{(n-1)}-1]$ sẽ thu được độ dài của mọi tiền tố thực sự bằng hậu tố thực sự của $pat$. Bắt đầu từ $\pi[patlastpos]$ là cặp dài nhất, sau đó chạy ngược phương trình chuyển trạng thái để lấy độ dài cặp tiền tố - hậu tố bằng nhau dài thứ hai, rồi tiếp tục tương tự.
 
@@ -483,10 +483,10 @@ Nếu dùng chính thuật toán BM để giải, sẽ thu được một cài �
 
 Hơn nữa, theo định nghĩa của $delta_2$, ký tự tiếp theo (tức ký tự bên trái) của lần tái xuất hiện $subpat$ tìm được không được giống ký tự tiếp theo của $subpat$ khi $subpat$ là hậu tố của $pat$.
 
-Điều này gợi ý rằng có thể dùng một quá trình tương tự tính hàm tiền tố để xử lý trường hợp thứ ba, chỉ khác là dùng hàm tiền tố theo chiều ngược trái phải:
+Điều này gợi ý rằng có thể dùng một quá trình tương tự tính hàm tiền tố để xử lý trường hợp thứ ba, chỉ khác là dùng hàm tiền tố theo chiều ngược lại, từ phải sang trái:
 
 -   Hai con trỏ lần lượt chỉ vào đầu trái của xâu con và vị trí "tiền tố" của tiền tố - hậu tố chung dài nhất của xâu con, rồi di chuyển từ phải sang trái. Khi hai ký tự đang chỉ đến bằng nhau, tiếp tục di chuyển; thao tác này tương đương với việc "tiền tố" dài ra.
--   Khi hai ký tự khác nhau, phần đã bằng nhau trước đó thỏa yêu cầu của $delta_2$ đối với một lần tái xuất hiện. Sau đó lùi con trỏ trỏ vào vị trí "tiền tố" cho đến khi tạo được cặp ký tự bằng nhau mới hoặc đi ra ngoài biên.
+-   Khi hai ký tự khác nhau, phần đã bằng nhau trước đó thỏa yêu cầu của $delta_2$ đối với một lần tái xuất hiện. Sau đó lùi con trỏ đang trỏ tới vị trí "tiền tố" cho đến khi tạo được cặp ký tự bằng nhau mới hoặc vượt khỏi biên.
 
 Giống hàm tiền tố, cần một mảng phụ để lùi trạng thái; có thể dùng lại không gian của mảng tiền tố đã sinh ra khi tính trường hợp thứ hai.
 

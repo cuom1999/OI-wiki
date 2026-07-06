@@ -50,7 +50,7 @@ modulo $b$ đều bằng nhau, mới xem hai chuỗi đó là bằng nhau. Cách
 ## Va chạm
 
 Nếu với mọi khóa, chỉ số do hàm băm tính ra đều khác nhau, chỉ cần dựa vào chỉ số để đặt `(key, value)` vào vị trí tương
-ứng. Nhưng trên thực tế, thường tồn tại hai khóa khác nhau cho ra cùng một chỉ số sau khi qua hàm băm. Khi đó cần một
+ứng. Tuy nhiên, thường tồn tại hai khóa khác nhau cho ra cùng một chỉ số sau khi qua hàm băm. Khi đó cần một
 phương pháp xử lý va chạm. Trong OI, phương pháp thường dùng nhất là phương pháp nối chuỗi.
 
 <span id="phương-pháp-nối-chuỗi"></span>

@@ -30,9 +30,9 @@ Quy ước nút gốc của cây từ điển và máy tự động hậu tố t
 <span id="tổng-quan"></span>
 ### Tổng quan
 
-Máy tự động hậu tố (suffix automaton, SAM) là một công cụ mạnh để xử lý các bài toán chuỗi con của một chuỗi đơn.
+Ô-tô-mát hậu tố (suffix automaton, SAM) là một công cụ mạnh để xử lý các bài toán xâu con của một xâu.
 
-Máy tự động hậu tố tổng quát (General Suffix Automaton) tích hợp máy tự động hậu tố vào cây từ điển để giải các bài toán chuỗi con trên nhiều chuỗi.
+Ô-tô-mát hậu tố tổng quát (General Suffix Automaton) tích hợp ô-tô-mát hậu tố vào cây từ điển để giải các bài toán xâu con trên nhiều xâu.
 
 <span id="các-máy-tự-động-hậu-tố-tổng-quát-giả-thường-gặp"></span>
 ## Các máy tự động hậu tố tổng quát giả thường gặp

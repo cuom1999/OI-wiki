@@ -99,8 +99,8 @@ thao tác chèn chỉ cần xem phần tử mới như một heap ghép cặp m�
 
 ### Xóa phần tử nhỏ nhất
 
-Trước hết cần nhắc rằng vài thao tác ở trên đều khá "lười",
-hầu như không bảo trì cấu trúc dữ liệu.
+Trước hết cần nhắc rằng vài thao tác ở trên đều theo kiểu trì hoãn,
+hầu như không bảo trì cấu trúc dữ liệu ngay lập tức.
 Vì vậy, thao tác xóa phần tử nhỏ nhất cần được thiết kế cẩn thận
 để bảo đảm tổng độ phức tạp không gặp vấn đề.
 

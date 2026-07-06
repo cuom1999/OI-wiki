@@ -196,7 +196,7 @@ Nút hiện tại là $P_i$, nút đỉnh ngăn xếp ký hiệu là $t$.
 #### Kiểm tra có thể gộp
 
 Cuối cùng, xét cách xử lý $L_i$.
-Trên thực tế, một đoạn liên tiếp $(P,[l,r])$ tương đương với hiệu giữa giá trị lớn nhất và nhỏ nhất của đoạn
+Thực chất, một đoạn liên tiếp $(P,[l,r])$ tương đương với hiệu giữa giá trị lớn nhất và nhỏ nhất của đoạn
 bằng độ dài đoạn trừ 1. Tức là
 
 $$

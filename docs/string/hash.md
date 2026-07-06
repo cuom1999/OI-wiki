@@ -15,9 +15,9 @@ Mong muốn của hàm $f$ là giúp kiểm tra hai chuỗi có bằng nhau hay 
     
     Trong [bảng băm](../ds/hash.md), miền giá trị cần đủ nhỏ để chấp nhận được độ phức tạp không gian và thời gian tuyến tính.
     
-    Trong hash chuỗi, miền giá trị cần đủ nhỏ để so sánh nhanh ($10^9$, $10^{18}$ đều có thể so sánh nhanh).
+    Với băm xâu, miền giá trị cần đủ nhỏ để so sánh nhanh ($10^9$, $10^{18}$ đều có thể so sánh nhanh).
     
-    Đồng thời, để giảm tỉ lệ va chạm hash, miền giá trị cũng không được quá nhỏ.
+    Đồng thời, để giảm tỉ lệ va chạm băm, miền giá trị cũng không được quá nhỏ.
 
 <span id="tính-chất"></span>
 ## Tính chất
@@ -28,7 +28,7 @@ Cụ thể, hai tính chất quan trọng nhất của hàm băm có thể tóm 
 
 2.  Khi giá trị của hàm băm bằng nhau, hai chuỗi không nhất thiết bằng nhau (nhưng xác suất cao là bằng nhau; trường hợp lý tưởng là chúng luôn bằng nhau).
 
-    Hiện tượng giá trị hàm băm bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm hash.
+    Hiện tượng giá trị hàm băm bằng nhau nhưng chuỗi gốc khác nhau được gọi là va chạm băm.
 
 <span id="giải-thích"></span>
 ## Giải thích
@@ -52,20 +52,20 @@ Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi 
 <span id="phân-tích-tỉ-lệ-lỗi-của-hash"></span>
 ## Phân tích tỉ lệ lỗi của hàm băm
 
-### Va chạm hash
+### Va chạm băm
 
-Va chạm hash chỉ việc hai chuỗi khác nhau được ánh xạ đến cùng một giá trị hash.
+Va chạm băm là hiện tượng hai chuỗi khác nhau được ánh xạ đến cùng một giá trị băm.
 
 Giả sử không gian giá trị của hash (số lượng tất cả chuỗi có thể xuất hiện) là $d$, và số lần tính (số chuỗi cần tính) là $n$.
 
-Khi đó xác suất xảy ra va chạm hash là:
+Khi đó xác suất xảy ra va chạm băm là:
 
 $$
 p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!} \approx 1 - \exp(-\frac{n(n-1)}{2d} )
 $$
 
 ??? note "Chứng minh"
-    Khi mỗi giá trị hash được sinh ra với xác suất như nhau, xác suất không xảy ra va chạm hash là:
+    Khi mỗi giá trị hash được sinh ra với xác suất như nhau, xác suất không xảy ra va chạm băm là:
     
     $$
     \overline{p}(n,d) = 1 \cdot \left (1 - \frac{1}{d} \right) \cdot \left ( 1- \frac{2}{d}\right) \cdots \left ( 1- \frac{n-1}{d}\right)
@@ -82,7 +82,7 @@ $$
     \end{aligned}
     $$
     
-    Vậy xác suất xảy ra va chạm hash là:
+    Vậy xác suất xảy ra va chạm băm là:
     
     $$
     p(n,d) = 1 - \frac{d!}{d^n\left(d-n\right)!}
@@ -98,7 +98,7 @@ $$
     
     Khi $x$ là một giá trị rất nhỏ, $\exp(x)$ tiến gần đến $1+x$.
     
-    Thay vào công thức gốc của xác suất không va chạm hash:
+    Thay vào công thức gốc của xác suất không va chạm băm:
     
     $$
     \overline{p}(n,d) \approx 1 \cdot \exp(-\frac{1}{d}) \cdot \exp(-\frac{2}{d}) \cdots \exp(-\frac{n-1}{d})
@@ -113,7 +113,7 @@ $$
     \end{aligned}
     $$
     
-    Do đó xác suất xảy ra va chạm hash là:
+    Do đó xác suất xảy ra va chạm băm là:
     
     $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
@@ -269,14 +269,14 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
 
 Sau khi xét nhiều cách đánh bại hash ở trên, vẫn có các phương pháp khắc phục.
 
-Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có modulo khác nhau; như vậy có thể giải quyết vấn đề va chạm hash.
+Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có modulo khác nhau; như vậy có thể giảm rủi ro va chạm băm.
 
 Khi so sánh, chỉ cần một trong các giá trị hash khác nhau thì coi hai chuỗi là khác nhau; nếu tất cả giá trị hash đều giống nhau thì coi hai chuỗi là giống nhau.
 
 Thông thường, hash hai giá trị là đủ dùng.
 
 <span id="nhiều-truy-vấn-hash-chuỗi-con"></span>
-### Nhiều truy vấn hash chuỗi con
+### Nhiều truy vấn băm chuỗi con
 
 Tính hash của một chuỗi một lần có độ phức tạp $O(n)$, trong đó $n$ là độ dài chuỗi; điều này không khác gì so khớp vét cạn. Nếu cần truy vấn hash của các chuỗi con trong cùng một chuỗi nhiều lần, tính lại mỗi lần sẽ rất kém hiệu quả.
 
@@ -401,7 +401,7 @@ Sau khi tính giá trị hash của mẫu, tính giá trị hash của mỗi chu
 <span id="so-khớp-chuỗi-cho-phép-k-vị-trí-khác-nhau"></span>
 ### So khớp chuỗi cho phép $k$ vị trí khác nhau
 
-Bài toán: Cho chuỗi nguồn $s$ độ dài $n$ và chuỗi mẫu $p$ độ dài $m$, yêu cầu tìm trong chuỗi nguồn có bao nhiêu chuỗi con khớp với chuỗi mẫu. $s'$ khớp với $s$ khi và chỉ khi $s'$ và $s$ có cùng độ dài, và có nhiều nhất $k$ vị trí có ký tự khác nhau. Trong đó $1\leq n,m\leq 10^6$, $0\leq k\leq 5$.
+Bài toán: Cho chuỗi nguồn $s$ độ dài $n$ và chuỗi mẫu $p$ độ dài $m$, yêu cầu tìm trong chuỗi nguồn có bao nhiêu chuỗi con khớp với chuỗi mẫu. $s'$ khớp với $p$ khi và chỉ khi $s'$ và $p$ có cùng độ dài, và có nhiều nhất $k$ vị trí có ký tự khác nhau. Trong đó $1\leq n,m\leq 10^6$, $0\leq k\leq 5$.
 
 Bài này không thể giải bằng KMP, nhưng có thể giải bằng hash + tìm kiếm nhị phân.
 

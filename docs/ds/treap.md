@@ -6,7 +6,7 @@ Kiến thức cần có: [Cây tìm kiếm nhị phân mộc mạc](./bst.md), [
 
 Treap là một **cây tìm kiếm nhị phân** **cân bằng yếu**.
 
-Ngoài **giá trị** cần được duy trì ($\textit{val}$), mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$). Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân, còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
+Ngoài **giá trị** cần duy trì ($\textit{val}$), mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$). Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân, còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
 
 Tính chất của cây tìm kiếm nhị phân là:
 
@@ -745,7 +745,7 @@ Trong cây phân đoạn, đánh dấu lười thường được đẩy xuống
 
 Trong Treap không xoay cũng vậy. Khi thao tác cụ thể, tách Treap thành ba cây như đã nói ở trên, sau đó gán đánh dấu lười cho cây ở giữa rồi hợp nhất ba cây này. Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà đánh dấu lười đại diện, cần đẩy đánh dấu xuống khi tách. Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút và tập nút mà đánh dấu lười của nó đại diện, nên trước khi hợp nhất cũng cần đẩy đánh dấu lười xuống.
 
-Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, nên đẩy đánh dấu xuống, không phải sau đó. Vì đánh dấu lười cần được đẩy cho các nút con; nếu đã thay đổi thông tin con trái/con phải mà đánh dấu lười chưa được đẩy xuống, đánh dấu lười sẽ mất đối tượng để đẩy xuống.[^ref4]
+Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, nên đẩy đánh dấu xuống, không phải sau đó. Vì đánh dấu lười cần đẩy xuống các nút con; nếu đã thay đổi thông tin con trái/con phải mà đánh dấu lười chưa được đẩy xuống, đánh dấu lười sẽ mất đối tượng để đẩy xuống.[^ref4]
 
 Dưới đây là phần giải thích mã, mã tham khảo từ [^ref3].
 

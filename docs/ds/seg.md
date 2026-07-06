@@ -103,7 +103,7 @@ Vẫn lấy hình ban đầu làm ví dụ, nếu cần truy vấn tổng đoạ
 Nếu đoạn cần truy vấn là $[3,5]$, lúc này không thể lấy trực tiếp giá trị của đoạn. Tuy nhiên $[3,5]$ có thể tách thành
 $[3,3]$ và $[4,5]$, rồi hợp nhất đáp án của hai đoạn này để thu được đáp án của cả đoạn.
 
-Nói chung, nếu đoạn cần truy vấn là $[l,r]$, có thể tách nó thành nhiều nhất $O(\log n)$ đoạn **cực đại**, rồi hợp nhất các
+Tổng quát hơn, nếu đoạn cần truy vấn là $[l,r]$, có thể tách nó thành nhiều nhất $O(\log n)$ đoạn **cực đại**, rồi hợp nhất các
 đoạn đó để tính đáp án của $[l,r]$.
 
 ### Cài đặt
@@ -420,7 +420,7 @@ thuật vĩnh cửu hóa nhãn.
 
 Dưới đây là một số tối ưu cho cây phân đoạn:
 
--   Không cần đẩy nhãn lười ở nút lá, nên nhãn lười có thể không cần được đẩy xuống nút lá.
+-   Không cần đẩy nhãn lười ở nút lá, nên có thể bỏ qua thao tác này tại nút lá.
 
 -   Có thể viết một hàm riêng `pushdown` để đẩy nhãn lười xuống, và một hàm riêng `maintain` (hoặc đối xứng là `pushup`)
     để cập nhật nút hiện tại từ các nút con, giúp giảm độ khó khi viết mã.

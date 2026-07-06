@@ -6,7 +6,7 @@ Chương này giới thiệu thuật toán sắp xếp hậu tố tại chỗ v�
 <span id="thiết-lập-chung"></span>
 ## Thiết lập chung
 
-Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ số xâu bắt đầu từ 0; ký tự cuối là lính canh, giả sử bằng 0.
+Xâu mục tiêu là $\texttt{Pat}$, mảng hậu tố là $\texttt{SA}$. Chỉ số xâu bắt đầu từ 0; ký tự cuối là ký tự canh, giả sử bằng 0.
 
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên
@@ -101,7 +101,7 @@ Giá trị bình thường:
 
     Theo thảo luận ở trên, lúc này dù bucket có hai hay nhiều hơn hai ký tự LMS, điều đó đều có nghĩa $\texttt{i}$ là vị trí của ký tự LMS cuối cùng cần chèn trong bucket.
 
-    Chỉ cần quét từ đầu bucket sang trái, tìm vị trí đầu tiên được đánh dấu E và đặt nó thành $\texttt{i}$.
+    Chỉ cần quét trong bucket từ phải sang trái, tìm vị trí đầu tiên được đánh dấu E và đặt nó thành $\texttt{i}$.
 
 Cuối cùng cần quét $\texttt{SA}$ một lượt từ cuối lên đầu để xóa các ký hiệu đặc biệt M có thể còn sót lại (bucket chưa được điền đầy, nên M và bộ đếm chưa bị ghi đè).
 
@@ -478,9 +478,9 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
         let mut rank = 0;
         sa[(patlen - 1) / 2] = rank;
         let mut has_duplicated_char = false;
-        for i in patlen - lms_cnt + 1..patlen {  // Bắt đầu từ ký tự ngay sau lính canh
+        for i in patlen - lms_cnt + 1..patlen {  // Bắt đầu từ ký tự ngay sau ký tự canh
             let mut j = sa[i];
-            while pat[j] <= pat[j + 1] { j += 1 } // Tìm ký tự L đầu tiên bên phải suf(sa[i]); hậu tố LMS lính canh đã bị loại, nên không thể vượt biên
+            while pat[j] <= pat[j + 1] { j += 1 } // Tìm ký tự L đầu tiên bên phải suf(sa[i]); hậu tố LMS chứa ký tự canh đã bị loại, nên không thể vượt biên
             let mut k = j;
             while k + 1 < patlen && pat[k] >= pat[k + 1] { k += 1 }  // Tìm ký tự LMS đầu tiên bên phải suf(sa[i])
             let cur_lms_str_len = k + 1 - sa[i];
@@ -830,6 +830,6 @@ Vì tác giả còn băn khoăn về độ phức tạp thời gian của phươ
 
 [^sa-is-gioi-thieu]: Nên đọc [bài viết](https://riteme.site/blog/2016-6-19/sais.html) và [danh sách issue](https://github.com/riteme/riteme.github.io/issues/28) của bài viết đó.
 
-[^thu-tu-cam-ung]: Nếu là hậu tố LML, nên cảm ứng hậu tố kiểu S trước. Khác biệt duy nhất là khi tính hậu tố LML cần tính cả ký tự lính canh.
+[^thu-tu-cam-ung]: Nếu là hậu tố LML, nên cảm ứng hậu tố kiểu S trước. Khác biệt duy nhất là khi tính hậu tố LML cần tính cả ký tự canh.
 
 [^np12]: Gonzalo Navarro and Eliana Providel. Fast, small, simple rank/select on bitmaps. In Proc. 11th International Symposium on Experimental Algorithms (SEA), pages 295–306, 2012.

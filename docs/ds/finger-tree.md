@@ -12,7 +12,7 @@ author: isdanni
 
 Trong lập trình hàm, danh sách là một kiểu dữ liệu rất phổ biến. Hầu như mọi ngôn ngữ hàm đều hỗ trợ các thao tác dựa
 trên dãy, bao gồm thêm và xóa phần tử ở hai đầu (thao tác hàng đợi hai đầu), chèn vào một nút bất kỳ, nối, xóa, tìm một
-phần tử thỏa điều kiện, và tách dãy thành các dãy con. Tuy nhiên, nhiều thao tác nâng cao khó được thực hiện hiệu quả.
+phần tử thỏa điều kiện, và tách dãy thành các dãy con. Tuy nhiên, nhiều thao tác nâng cao khó thực hiện hiệu quả.
 Ngay cả khi có cách cài đặt tương ứng, chúng thường rất phức tạp và khó dùng trong thực tế.
 
 Cây ngón tay cung cấp một cấu trúc dữ liệu dãy thuần hàm. Nó có thể thực hiện các thao tác như truy cập, thêm vào đầu và
