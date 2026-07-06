@@ -12,11 +12,11 @@ Ra đề là để người khác làm. So với việc thể hiện bản thân
 
 ### Sẵn sàng bỏ ra rất nhiều thời gian
 
-Nếu muốn ra đề nghiêm túc, chắc chắn sẽ phải tốn rất nhiều thời gian. Nếu không chuẩn bị tâm lý trước, việc chuẩn bị cuộc thi có thể trở nên vội vàng, chất lượng không đạt; hoặc sau đó bạn có thể hối tiếc vì đã không dành thời gian ấy cho việc học. Tuy nhiên, ra đề cũng có thể mang lại rất nhiều kỷ niệm đẹp. Nếu bạn thật sự có hứng thú với việc ra đề và đã chuẩn bị tâm lý đầy đủ, những gì thu được từ việc ra đề có thể bù đắp cho thời gian đã bỏ ra.
+Nếu muốn ra đề nghiêm túc, cần dành rất nhiều thời gian. Nếu không chuẩn bị tâm lý trước, việc chuẩn bị cuộc thi có thể trở nên vội vàng, chất lượng không đạt; hoặc sau đó người ra đề có thể hối tiếc vì đã không dành thời gian ấy cho việc học. Tuy nhiên, ra đề cũng có thể mang lại rất nhiều kỷ niệm đẹp. Nếu thật sự có hứng thú với việc ra đề và đã chuẩn bị tâm lý đầy đủ, những gì thu được từ việc ra đề có thể bù đắp cho thời gian đã bỏ ra.
 
 ### Đọc kỹ nội dung bài viết này
 
-Bài viết này giới thiệu toàn bộ quy trình ra đề từ hai góc độ: ra đề như thế nào và làm sao để ra đề hay. Với những ai muốn ra đề, đọc kỹ bài viết này chắc chắn sẽ có ích.
+Bài viết này giới thiệu toàn bộ quy trình ra đề từ hai góc độ: ra đề như thế nào và làm sao để ra đề hay. Với những ai muốn ra đề, đọc kỹ bài viết này sẽ có ích.
 
 ## Nội dung bài toán
 
@@ -62,11 +62,11 @@ Các ngoại lệ có thể nới lỏng yêu cầu:
 
 #### Về bài "độc"
 
-"Bài độc" là một khái niệm rất mơ hồ và chủ quan. Ở đây chỉ trích dẫn một số thảo luận của những người đi trước về vấn đề này, kèm theo một vài cách hiểu của người viết. Chủ đề này rất mở, hoan nghênh mọi người nêu quan điểm của mình.
+"Bài độc" là một khái niệm rất mơ hồ và chủ quan. Phần này chỉ trích dẫn một số thảo luận của những người đi trước về vấn đề này, kèm theo một vài cách hiểu của người viết. Chủ đề này rất mở, hoan nghênh mọi người nêu quan điểm của mình.
 
 > Một bài hay không nên là hai bài ghép lại với nhau; một bài hay sẽ có ý tưởng riêng của nó, và nó nên làm nổi bật ý tưởng ấy mà không cần quá nhiều lớp vỏ bọc.
 >
-> Một bài hay nên mới mẻ. Bài thật sự hay nên là bài có thể khiến người ta mở ra một cách nghĩ mới.
+> Một bài hay nên mới mẻ. Bài thật sự hay nên là bài có thể mở ra một cách nghĩ mới cho người đọc.
 >
 > --[vfk, *Nguồn gốc tinh thần của UOJ*][1]
 
@@ -90,13 +90,13 @@ Không chỉ vật lý, bài OI cũng không nên liên quan quá nhiều đến
 
 > Một bài hay, bất kể độ khó thế nào, đều nên có độ khó tư duy riêng, cần thí sinh suy nghĩ và phát hiện một số tính chất.
 >
-> Mã của một bài hay có thể dài, nhưng nhất định không phải dài vì cố tình lồng ghép hoặc thêm điều kiện một cách gượng ép; nó phải dài một cách tự nhiên, khiến người ta cảm thấy mã của bài này vốn nên dài như vậy.
+> Mã của một bài hay có thể dài, nhưng nhất định không phải dài vì cố tình lồng ghép hoặc thêm điều kiện một cách gượng ép; nó phải dài một cách tự nhiên, khiến người đọc cảm thấy mã của bài này vốn nên dài như vậy.
 >
 > --[Wang Tianyi, *Bàn về tác hại của đề lệch*][2]
 
 Ví dụ kinh điển: [SDOI2010: Sát Trư Quốc](https://loj.ac/problem/2885), [Kiểm tra chéo đội tuyển tập huấn 2015: Chương trình tương lai - bản sửa](https://uoj.ac/problem/98)
 
-Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phần chủ yếu. Dĩ nhiên, những bài kỹ thuật như Day 2+ của THUWC/THUSC cũng có lý do tồn tại của chúng: mục đích của trại trải nghiệm không chỉ là kiểm tra năng lực thiết kế thuật toán của thí sinh, mà còn kiểm tra khả năng viết mã kỹ thuật và học tài liệu để nối tiếp với việc học ở đại học. Nhưng trong các cuộc thi OI thông thường, điều cần khảo sát nhiều hơn vẫn nên là thiết kế thuật toán và năng lực tư duy.
+Trong các cuộc thi OI thông thường, độ khó tư duy nên chiếm phần chủ yếu. Những bài kỹ thuật như Day 2+ của THUWC/THUSC cũng có lý do tồn tại của chúng: mục đích của trại trải nghiệm không chỉ là kiểm tra năng lực thiết kế thuật toán của thí sinh, mà còn kiểm tra khả năng viết mã kỹ thuật và học tài liệu để nối tiếp với việc học ở đại học. Nhưng trong các cuộc thi OI thông thường, điều cần khảo sát nhiều hơn vẫn nên là thiết kế thuật toán và năng lực tư duy.
 
 ## Đề bài
 
@@ -108,7 +108,7 @@ Trên mạng có rất nhiều hướng dẫn LaTeX, chẳng hạn:
 -   [Tổng hợp công thức toán LaTeX](https://www.luogu.com.cn/blog/IowaBattleship/latex-gong-shi-tai-quan)
 -   [Các lệnh và ký hiệu LaTeX](https://blog.csdn.net/anxiaoxi45/article/details/39449445)
 
-Khi sử dụng, hãy chú ý [yêu cầu định dạng công thức LaTeX](../intro/format.md).
+Khi sử dụng, cần chú ý [yêu cầu định dạng công thức LaTeX](../intro/format.md).
 
 ### Bối cảnh bài toán
 
@@ -120,31 +120,31 @@ Khi cần thiết, có thể cung cấp hai phiên bản mô tả: một phiên 
 
 ### Mô tả bài toán
 
-Nói ngắn gọn, mô tả bài toán cần **rõ ràng, dễ hiểu**.
+Nói ngắn gọn, mô tả bài toán cần **mạch lạc, dễ hiểu**.
 
-Mọi định nghĩa trong đề có khả năng không được hiểu đều cần được giải thích; không nên đột ngột xuất hiện khái niệm chưa được định nghĩa. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), bạn phải giải thích trong đề "portal" là gì.
+Mọi định nghĩa trong đề có khả năng không được hiểu đều cần được giải thích; không nên đột ngột xuất hiện khái niệm chưa được định nghĩa. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), đề phải giải thích "portal" là gì.
 
 Mỗi khái niệm xuất hiện trong đề nên được mô tả bằng một từ duy nhất. Ví dụ: không nên lúc thì nói "chi phí", lúc lại nói "giá".
 
 Không nên dùng một từ với nghĩa khác nghĩa gốc hoặc nghĩa thông dụng mà không giải thích. Ví dụ: không nên dùng "đường đi" để chỉ một cạnh nếu không nói rõ.
 
-Bạn cần bảo đảm đề bài của mình không tự mâu thuẫn. Ví dụ: trong [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A), dấu "?" không được coi là một loại "kết quả", vì ý nghĩa của "?" là "có nhiều hơn một kết quả khả dĩ".
+Cần tránh để đề bài tự mâu thuẫn. Ví dụ: trong [CF1173A Nauuo and Votes](https://codeforces.com/problemset/problem/1173/A), dấu "?" không được coi là một loại "kết quả", vì ý nghĩa của "?" là "có nhiều hơn một kết quả khả dĩ".
 
-Bạn cần bảo đảm đề bài không thể bị hiểu sai mà vẫn tự hợp lý hóa được, kể cả khi cách hiểu đó trái với lẽ thường và không ai sẽ nghĩ như vậy. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), lý do phải định nghĩa rườm rà "đi vào" và phân biệt với "dịch chuyển" là để ngăn cách hiểu như sau: đi qua portal có thể tới một portal khác, mà tới portal thì sẽ dịch chuyển, nên sẽ nhảy qua lại vô hạn.
+Cần tránh để đề bài có cách hiểu sai nhưng vẫn tự hợp lý hóa được, kể cả khi cách hiểu đó trái với lẽ thường và gần như không ai sẽ nghĩ như vậy. Ví dụ: trong [CF1172D Nauuo and Portals](https://codeforces.com/problemset/problem/1172/D), lý do phải định nghĩa rườm rà "đi vào" và phân biệt với "dịch chuyển" là để ngăn cách hiểu như sau: đi qua portal có thể tới một portal khác, mà tới portal thì sẽ dịch chuyển, nên sẽ nhảy qua lại vô hạn.
 
-Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [GuOJ Round #1: Bữa tiệc băng tuyết của Cirno](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu đương nhiên có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "các cặp bạn bè và số token mỗi người nhận được nhờ tình bạn của họ" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
+Đọc xuôi phần mô tả bài toán nên hiểu được từng câu, đồng thời hiểu nhiệm vụ và yêu cầu của bài. Ít nhất, nếu có thắc mắc thì thắc mắc đó phải được giải thích ngay ở đoạn tiếp theo, chứ không phải đợi vài đoạn sau mới được giải thích, hoặc phải đọc phần định dạng vào ra mới hiểu ý đề, thậm chí phải dựa vào ví dụ để đoán đề. Ví dụ: trong [GuOJ Round #1: Bữa tiệc băng tuyết của Cirno](https://github.com/OI-wiki/problemset/blob/master/contest/online/GuOJ/OI%20Archive%20-%20GuOJ1171.pdf), mục tiêu của bài "lượng nước lớn nhất mà Hồ Sương Mù cuối cùng có thể nhận được" lần đầu tiên mới xuất hiện trong phần định dạng đầu ra; cộng thêm câu "Reimu có thể nhanh chóng tính ra tổng chi phí sau khi dọn sạch toàn bộ suối nhỏ" mang tính gây hiểu nhầm, càng dễ khiến người đọc hiểu sai ý đề. Điều này không nên xảy ra; mục tiêu của bài nên được nêu ngay trong mô tả bài toán. (Trong ví dụ này còn có vấn đề bối cảnh bài toán ảnh hưởng nghiêm trọng đến việc hiểu ý đề.) Lỗi tương tự cũng xuất hiện trong [CF1423(4)N Bubblesquare Tokens](https://codeforces.com/problemset/problem/1423/N), khi mục tiêu của bài "các cặp thân thiết và số token mỗi người nhận được nhờ quan hệ đó" lần đầu tiên mới xuất hiện ở phần định dạng đầu ra.
 
 ### Định dạng vào ra
 
-Định dạng vào ra chỉ cần rõ ràng và **đầy đủ**, không có yêu cầu cứng nhắc. Cá nhân người viết khuyên nên tham khảo cách viết đề của CF; chi tiết có thể xem [những điều người ra đề CF cần biết][3].
+Định dạng vào ra chỉ cần mạch lạc và **đầy đủ**, không có yêu cầu cứng nhắc. Cá nhân người viết khuyên nên tham khảo cách viết đề của CF; chi tiết có thể xem [những điều người ra đề CF cần biết][3].
 
 Để thuận tiện cho thí sinh làm bài, trong định dạng vào ra tốt nhất nên giải thích ý nghĩa cụ thể của từng biến, trừ khi ý nghĩa của biến rất dài và không thể nói rõ trong một câu (lúc này có thể viết "ý nghĩa xem trong mô tả bài toán").
 
-Cần đặc biệt chú ý rằng nếu đầu ra có số thập phân, hãy cố gắng dùng [SPJ](#special-judge) để giới hạn độ lớn sai số, thay vì yêu cầu "giữ lại x chữ số sau dấu thập phân".
+Cần đặc biệt chú ý rằng nếu đầu ra có số thập phân, nên cố gắng dùng [SPJ](#special-judge) để giới hạn độ lớn sai số, thay vì yêu cầu "giữ lại x chữ số sau dấu thập phân".
 
 "Giữ lại x chữ số sau dấu thập phân" có thể tạo ra yêu cầu độ chính xác vô hạn. Ví dụ: yêu cầu giữ lại ba chữ số sau dấu thập phân, đáp án thật là $0.0015$. Khi đó chỉ cần có sai số bất kỳ khiến đáp án tính được nhỏ hơn $0.0015$, dù đáp án tính được là $0.00149999\cdots$ thì cũng sẽ in ra đáp án sai.
 
-Nếu không thể dùng SPJ, hãy bảo đảm yêu cầu về độ chính xác là hữu hạn. Ví dụ: hãy in kết quả sau khi làm tròn đáp án đến ba chữ số sau dấu thập phân. Gọi đáp án chuẩn là $ans$, dữ liệu bảo đảm với mọi $x$ thỏa mãn $\frac{|x-ans|}{\max(1,ans)}<10^{-9}$, kết quả sau khi làm tròn của $x$ giống với kết quả sau khi làm tròn của $ans$.
+Nếu không thể dùng SPJ, cần quy định yêu cầu về độ chính xác là hữu hạn. Ví dụ: in kết quả sau khi làm tròn đáp án đến ba chữ số sau dấu thập phân. Gọi đáp án chuẩn là $ans$, dữ liệu thỏa mãn rằng với mọi $x$ có $\frac{|x-ans|}{\max(1,ans)}<10^{-9}$, kết quả sau khi làm tròn của $x$ giống với kết quả sau khi làm tròn của $ans$.
 
 Một số câu có thể tham khảo:
 
@@ -163,7 +163,7 @@ Dòng thứ $i$ trong $m$ dòng tiếp theo chứa hai số nguyên dương $l_i
 ```latex
 Mỗi dòng trong $n-1$ dòng tiếp theo chứa hai số nguyên dương $u$ và $v$ ($1\le u,v\le n$), biểu thị có một cạnh nối giữa $u$ và $v$.
 
-Dữ liệu bảo đảm các cạnh được cho tạo thành một cây.
+Dữ liệu thỏa mãn rằng các cạnh được cho tạo thành một cây.
 ```
 
 ```latex
@@ -175,11 +175,11 @@ Dòng thứ hai của dữ liệu vào chứa một số thực $x$ có không q
 ```
 
 ```latex
-Đầu ra chứa một số thực. Nếu sai số tuyệt đối hoặc sai số tương đối giữa đầu ra của bạn và đáp án chuẩn nhỏ hơn $10^{-6}$ thì được coi là đúng.
+Đầu ra chứa một số thực. Nếu sai số tuyệt đối hoặc sai số tương đối giữa đầu ra của thí sinh và đáp án chuẩn nhỏ hơn $10^{-6}$ thì được coi là đúng.
 ```
 
 ```latex
-Dòng thứ hai của đầu ra chứa $n$ số nguyên dương, biểu thị một phương án bạn xây dựng - trong đó số thứ $i$ biểu thị mã số lá bài thứ $i$ mà bạn đánh ra.
+Dòng thứ hai của đầu ra chứa $n$ số nguyên dương, biểu thị một phương án được xây dựng - trong đó số thứ $i$ biểu thị mã số lá bài thứ $i$ được đánh ra.
 
 Nếu có nhiều đáp án hợp lệ, có thể in ra bất kỳ một đáp án nào.
 ```
@@ -194,7 +194,7 @@ Nếu có nhiều đáp án hợp lệ, có thể in ra bất kỳ một đáp �
     -   Nếu bộ sinh số ngẫu nhiên được đóng gói không tốt, chỉ riêng việc hiểu cách dùng bộ sinh dữ liệu cũng có thể đã khó.
     -   Nếu thí sinh không dùng ngôn ngữ được người ra đề khuyến nghị, họ có thể phải tự viết một bộ sinh dữ liệu.
     
-    Cách làm này thường được dùng để tránh thời gian đọc dữ liệu quá lâu. Vì vậy, một phương án thay thế khả dĩ là phát một mẫu [tối ưu đọc, ghi](./io.md) đủ tốt về hiệu năng, để cố gắng bảo đảm thời gian đọc dữ liệu của mọi người là như nhau; như vậy ngay cả khi thời gian đọc rất lâu, nó cũng không ảnh hưởng đến chênh lệch thời gian giữa các thí sinh. Một phương án khác là đóng gói bài thành bài tương tác kiểu gọi hàm (thay vì kiểu IO). Dù trong quá trình thuật toán không có tương tác, bài tương tác vẫn có thể dùng để thống nhất thời gian đọc dữ liệu; IOI đã dùng phương án mọi bài đều là bài tương tác. Tuy nhiên, cả hai phương án này đều hạn chế ngôn ngữ mà thí sinh có thể dùng, và người ra đề cần hỗ trợ thủ công từng ngôn ngữ được phép sử dụng.
+    Cách làm này thường được dùng để tránh thời gian đọc dữ liệu quá lâu. Vì vậy, một phương án thay thế khả dĩ là phát một mẫu [tối ưu đọc, ghi](./io.md) đủ tốt về hiệu năng, để cố gắng giữ thời gian đọc dữ liệu của mọi người gần như nhau; như vậy ngay cả khi thời gian đọc rất lâu, nó cũng không ảnh hưởng đến chênh lệch thời gian giữa các thí sinh. Một phương án khác là đóng gói bài thành bài tương tác kiểu gọi hàm (thay vì kiểu IO). Dù trong quá trình thuật toán không có tương tác, bài tương tác vẫn có thể dùng để thống nhất thời gian đọc dữ liệu; IOI đã dùng phương án mọi bài đều là bài tương tác. Tuy nhiên, cả hai phương án này đều hạn chế ngôn ngữ mà thí sinh có thể dùng, và người ra đề cần hỗ trợ thủ công từng ngôn ngữ được phép sử dụng.
     
     Quay lại bản chất vấn đề, cũng có thể cân nhắc xem dữ liệu vào quá lớn có thật sự cần thiết hay không, liệu có thể dùng dữ liệu vào nhỏ hơn để đạt mục đích hay không, và liệu có cần thiết phải chặn những lời giải có độ phức tạp chỉ kém lời giải đúng một chút hay không.
 
@@ -202,7 +202,7 @@ Nếu có nhiều đáp án hợp lệ, có thể in ra bất kỳ một đáp �
 
 Theo yêu cầu của CF, giới hạn dữ liệu phải được viết trong phần định dạng vào, nhưng ở Trung Quốc, giới hạn dữ liệu thường được viết ở cuối đề.
 
-Lỗi dễ mắc nhất trong giới hạn dữ liệu là không đầy đủ. Mỗi con số, mỗi xâu trong dữ liệu vào đều phải có ràng buộc rõ ràng. Trong các ví dụ về định dạng vào ra ở trên đã có một số cách viết giới hạn dữ liệu đúng.
+Lỗi dễ mắc nhất trong giới hạn dữ liệu là không đầy đủ. Mỗi con số, mỗi xâu trong dữ liệu vào đều phải có ràng buộc cụ thể. Trong các ví dụ về định dạng vào ra ở trên đã có một số cách viết giới hạn dữ liệu đúng.
 
 Những thiếu sót thường gặp trong giới hạn dữ liệu:
 
@@ -212,14 +212,14 @@ Những thiếu sót thường gặp trong giới hạn dữ liệu:
 4.  Số thực không nói rõ số chữ số sau dấu thập phân.
 5.  Một số biến không có giới hạn.
 
-Bạn cần bảo đảm lời giải chuẩn có thể chạy qua **bất kỳ bộ dữ liệu nào** thỏa mãn giới hạn được nêu trong đề.
+Cần chắc rằng lời giải chuẩn có thể chạy qua **bất kỳ bộ dữ liệu nào** thỏa mãn giới hạn được nêu trong đề.
 
-???+ note "Về việc 'bảo đảm dữ liệu được sinh ngẫu nhiên'"
-    Một số bài sẽ "bảo đảm dữ liệu được sinh ngẫu nhiên". Trong rất nhiều trường hợp, ràng buộc như vậy không phải là phương án tối ưu, vì "sinh ngẫu nhiên" không đưa ra giới hạn rõ ràng cho dữ liệu, gây khó khăn cho việc xác định phạm vi dữ liệu cụ thể và cung cấp dữ liệu hack.
+???+ note "Về việc 'dữ liệu được sinh ngẫu nhiên'"
+    Một số bài sẽ ghi rằng "dữ liệu được sinh ngẫu nhiên". Trong rất nhiều trường hợp, ràng buộc như vậy không phải là phương án tối ưu, vì "sinh ngẫu nhiên" không đưa ra giới hạn cụ thể cho dữ liệu, gây khó khăn cho việc xác định phạm vi dữ liệu cụ thể và cung cấp dữ liệu hack.
     
-    Nói chung, "bảo đảm dữ liệu được sinh ngẫu nhiên" có thể được thay bằng tính chất dữ liệu mà lời giải cần. Ví dụ, sinh ngẫu nhiên một cây thường có thể được thay bằng giới hạn chiều cao của cây.
+    Nói chung, câu "dữ liệu được sinh ngẫu nhiên" có thể được thay bằng tính chất dữ liệu mà lời giải cần. Ví dụ, sinh ngẫu nhiên một cây thường có thể được thay bằng giới hạn chiều cao của cây.
     
-    Nếu nhất định phải bảo đảm dữ liệu được sinh ngẫu nhiên, cần chỉ rõ thao tác sinh ngẫu nhiên cụ thể. Ví dụ, khi sinh một cây, là chọn ngẫu nhiên đỉnh cha hay sinh ngẫu nhiên dãy Prüfer.
+    Nếu nhất định phải yêu cầu dữ liệu được sinh ngẫu nhiên, cần chỉ rõ thao tác sinh ngẫu nhiên cụ thể. Ví dụ, khi sinh một cây, là chọn ngẫu nhiên đỉnh cha hay sinh ngẫu nhiên dãy Prüfer.
     
     Cần chú ý rằng thuật toán không tất định và thuật toán phụ thuộc vào tính ngẫu nhiên của dữ liệu là khác nhau. Loại trước có thể cho lời giải đúng với xác suất rất cao trên dữ liệu bất kỳ, còn loại sau đúng với phần lớn dữ liệu nhưng không thể đúng trên một số dữ liệu đặc biệt.
 
@@ -245,7 +245,7 @@ Ví dụ lớn có thể không cần giải thích.
 
 ## Giới hạn thời gian, giới hạn bộ nhớ và điểm thành phần
 
-Mục đích của giới hạn thời gian và giới hạn bộ nhớ là chặn các lời giải sai về độ phức tạp. (Dĩ nhiên, chúng cũng dùng để tránh thời gian chấm quá dài; ví dụ, bài tương tác chỉ giới hạn số lần tương tác mà không giới hạn độ phức tạp thời gian cũng vẫn có giới hạn thời gian.)
+Mục đích của giới hạn thời gian và giới hạn bộ nhớ là chặn các lời giải sai về độ phức tạp. Ngoài ra, chúng cũng dùng để tránh thời gian chấm quá dài; ví dụ, bài tương tác chỉ giới hạn số lần tương tác mà không giới hạn độ phức tạp thời gian cũng vẫn có giới hạn thời gian.
 
 Vì vậy, về nguyên tắc, giới hạn thời gian nên được chọn lớn nhất có thể trong khi vẫn không để lời giải sai vượt qua.
 
@@ -269,11 +269,11 @@ Thông thường, giới hạn bộ nhớ nên đặt đủ lớn, trừ khi l�
 
 Điểm thành phần thường được chia thành hai loại: giới hạn dữ liệu nhỏ hơn và tính chất đặc biệt.
 
-Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều mức. Ngay cả khi bạn không nghĩ ra lời giải có độ phức tạp nào đó, cũng có thể cân nhắc cho độ phức tạp ấy một mức điểm. Nói chung, để tránh kẹt hằng số, có thể đặt một mức điểm bằng một nửa dữ liệu cực hạn.
+Giới hạn dữ liệu nhỏ hơn thường nên được chia thành nhiều mức. Ngay cả khi chưa nghĩ ra lời giải có độ phức tạp nào đó, cũng có thể cân nhắc cho độ phức tạp ấy một mức điểm. Nói chung, để tránh kẹt hằng số, có thể đặt một mức điểm bằng một nửa dữ liệu cực hạn.
 
 "Dữ liệu có phân tầng" tốt nhất nên được thay bằng nhiều mức điểm thành phần.
 
-Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy theo bài cụ thể. Điểm thành phần cho tính chất đặc biệt lý tưởng nên có khả năng dẫn dắt thí sinh suy nghĩ về lời giải đúng. Khác với điểm thành phần theo giới hạn dữ liệu nhỏ hơn, nếu bạn không biết lời giải cho một tính chất đặc biệt nào đó, tốt nhất đừng cho tính chất ấy một mức điểm. Ví dụ: mức điểm $k=1$ của [CTS2019: Lập phương ngẫu nhiên](https://loj.ac/problem/3119) đã bị nhiều người phàn nàn khi giảng bài, cho rằng mức điểm này cản trở việc suy nghĩ lời giải đúng.
+Việc đặt điểm thành phần cho tính chất đặc biệt cần tùy theo bài cụ thể. Điểm thành phần cho tính chất đặc biệt lý tưởng nên có khả năng dẫn dắt thí sinh suy nghĩ về lời giải đúng. Khác với điểm thành phần theo giới hạn dữ liệu nhỏ hơn, nếu chưa biết lời giải cho một tính chất đặc biệt nào đó, tốt nhất đừng cho tính chất ấy một mức điểm. Ví dụ: mức điểm $k=1$ của [CTS2019: Lập phương ngẫu nhiên](https://loj.ac/problem/3119) đã bị nhiều người phàn nàn khi giảng bài, cho rằng mức điểm này cản trở việc suy nghĩ lời giải đúng.
 
 Nếu cách tính điểm của bài khác với mặc định (ví dụ: trong một cuộc thi theo thể thức OI thông thường nhưng chấm theo bài con buộc chặt), nhất định phải nói rõ trong đề.
 
@@ -287,11 +287,11 @@ Sinh dữ liệu là một bước cần thiết trong quá trình ra đề, cũ
 
 #### Sinh số ngẫu nhiên
 
-Hãy tham khảo trang [hàm ngẫu nhiên](../misc/random.md).
+Tham khảo trang [hàm ngẫu nhiên](../misc/random.md).
 
 Cần đặc biệt nhắc rằng khi sinh một số có miền giá trị lớn hơn giá trị trả về của hàm ngẫu nhiên, **đừng** dùng cách viết như `rand() * rand()`, vì số ngẫu nhiên sinh ra theo cách này rất không đều.
 
-Ngoài ra, khi ra đề nên dùng [Testlib](../tools/testlib/generator.md) để tạo dữ liệu. Cách này có thể bảo đảm cùng một hạt giống (seed) sinh ra cùng một dãy số ngẫu nhiên trên các nền tảng khác nhau, và hạt giống sẽ được tự động sinh theo tham số dòng lệnh.
+Ngoài ra, khi ra đề nên dùng [Testlib](../tools/testlib/generator.md) để tạo dữ liệu. Cách này giúp cùng một hạt giống (seed) sinh ra cùng một dãy số ngẫu nhiên trên các nền tảng khác nhau, và hạt giống sẽ được tự động sinh theo tham số dòng lệnh.
 
 #### Sinh hoán vị ngẫu nhiên
 
@@ -400,7 +400,7 @@ gen 2000 1000 > 4.in
 gen 100000 100000 > 5.in
 ```
 
-Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một bộ sinh dữ liệu, đồng thời có thể dễ dàng sửa tham số của một bộ kiểm thử nào đó.
+Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một bộ sinh dữ liệu, đồng thời có thể sửa tham số của một bộ kiểm thử nào đó một cách thuận tiện.
 
 ### Yêu cầu đối với dữ liệu
 
@@ -412,19 +412,19 @@ Khi dùng bài con (subtask), dữ liệu (bao gồm đầu vào và đầu ra) 
 
 Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một bộ kiểm thử, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
 
-Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi bạn không biết lời giải sai nào sẽ chết trên cấu trúc đó. (Trong thể thức tính điểm theo bộ kiểm thử cần cân nhắc xử lý.)
+Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi chưa biết lời giải sai nào sẽ chết trên cấu trúc đó. (Trong thể thức tính điểm theo bộ kiểm thử cần cân nhắc xử lý.)
 
-Dĩ nhiên, nếu bạn biết một lời giải sai về tính đúng đắn mà người bình thường có thể nghĩ ra và viết ra, hãy cố gắng chặn nó.
+Nếu biết một lời giải sai về tính đúng đắn mà người bình thường có thể nghĩ ra và viết ra, nên cố gắng chặn nó.
 
 Cần đặc biệt nhắc rằng nếu có khả năng tràn số nguyên, nhất định phải chặn các lời giải sẽ bị tràn. Trong thể thức có điểm thành phần, không nên để người không dùng long long nhận điểm bằng với brute force, thậm chí thấp hơn.
 
-Nếu có bộ kiểm thử sơ bộ (pretests), các bộ này nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, bạn cần đưa tất cả các điểm yếu đã biết của bài vào bộ kiểm thử sơ bộ bằng số lượng bộ kiểm thử ít nhất có thể.
+Nếu có bộ kiểm thử sơ bộ (pretests), các bộ này nên mạnh hết mức có thể (đồng thời càng ít càng tốt). Nói cách khác, cần đưa tất cả các điểm yếu đã biết của bài vào bộ kiểm thử sơ bộ bằng số lượng bộ kiểm thử ít nhất có thể.
 
-Nếu bạn hy vọng có một lượng nhỏ FST chứ không phải không có FST, vẫn cần bảo đảm độ mạnh của bộ kiểm thử sơ bộ, vì trong cuộc thi thật rất có thể xuất hiện những lỗi bạn không ngờ tới, khiến số lượng FST cao hơn dự kiến rất nhiều.
+Nếu kỳ vọng có một lượng nhỏ FST chứ không phải không có FST, vẫn cần giữ độ mạnh của bộ kiểm thử sơ bộ, vì trong cuộc thi thật rất có thể xuất hiện những lỗi ngoài dự kiến, khiến số lượng FST cao hơn dự kiến rất nhiều.
 
 ### Định dạng dữ liệu
 
-Ở đây cung cấp một số yêu cầu định dạng đầu vào thường gặp, có thể dùng làm tham khảo trong trường hợp thông thường:
+Phần này cung cấp một số yêu cầu định dạng đầu vào thường gặp, có thể dùng làm tham khảo trong trường hợp thông thường:
 
 > 1.  Dùng định dạng xuống dòng của môi trường chấm.
 > 2.  Cuối dòng cuối cùng của tệp có ký tự xuống dòng, tức ký tự cuối cùng của toàn bộ tệp cần là `\n`.
@@ -450,7 +450,7 @@ Checker thường được viết bằng Testlib. Vì checker phải xử lý đ
 
 Khi viết checker cần chú ý hai điểm sau:
 
-1.  Bạn cần xử lý mọi loại đầu ra không hợp lệ, vì vậy hãy kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình kiểm tra, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
+1.  Cần xử lý mọi loại đầu ra không hợp lệ, vì vậy phải kiểm tra từng biến đọc vào có nằm trong phạm vi hợp lệ hay không (`readInt(minvalue, maxvalue)`). Ví dụ: khi đọc một biến sẽ được dùng làm chỉ số mảng trong quá trình kiểm tra, bắt buộc phải kiểm tra phạm vi của nó, nếu không có thể gây vượt biên mảng; đôi khi điều này dẫn đến RE, đôi khi lại có thể bị chấm là AC.
 2.  Về nguyên tắc, không nên kiểm tra ký tự trắng trong checker (tức không nên dùng `readSpace()`, `readEoln()`, `readEof()`; đáng nói là Testlib sẽ tự động kiểm tra có đầu ra thừa hay không).
 
 ## Lời giải
@@ -463,7 +463,7 @@ Trong các bài có điểm thành phần, có thể cân nhắc viết các cá
 
 ### Về kiến thức
 
-Các kiến thức dùng trong lời giải nên được chỉ ra rõ ràng. Với một số kiến thức có độ khó tương đương độ khó của bài, tốt nhất nên cung cấp tài liệu học kiến thức đó (chẳng hạn địa chỉ một bài blog).
+Các kiến thức dùng trong lời giải nên được chỉ ra cụ thể. Với một số kiến thức có độ khó tương đương độ khó của bài, tốt nhất nên cung cấp tài liệu học kiến thức đó (chẳng hạn địa chỉ một bài blog).
 
 ### Về định nghĩa
 
@@ -485,7 +485,7 @@ Nếu có liên quan đến một số chi tiết cài đặt không được gi
 
 ### Độ khó bài trong thông báo cuộc thi cần đúng với thực tế
 
-> Hãy nhớ rằng tác giả thường đánh giá thấp độ khó của bài mình.
+> Cần nhớ rằng tác giả thường đánh giá thấp độ khó của bài mình.
 >
 > --Lời nhắc trên trang PROPOSE A PROBLEM của Codeforces
 
@@ -495,7 +495,7 @@ Người ra đề rất có thể đánh giá sai độ khó của bài. Vì v�
 
 Trong các kỳ thi thử kiểu OI Trung Quốc, thường chỉ cần tổng thể độ khó của ba bài tương đương với độ khó cuộc thi.
 
-Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng bảo đảm độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện khoảng cách độ khó lớn. Có thể giảm khoảng cách độ khó bằng cách tách một bài thành hai phiên bản dễ/khó (hai bài con), nhưng việc chia bài con cần được cân nhắc thận trọng. Cũng có nhiều người không thích bài con trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
+Trong các cuộc thi trực tuyến kiểu CF/ATC, cần cố gắng giữ độ khó tăng dần (mặc dù do đánh giá sai độ khó nên nhiều khi không thật sự làm được), đồng thời cố gắng tránh xuất hiện khoảng cách độ khó lớn. Có thể giảm khoảng cách độ khó bằng cách tách một bài thành hai phiên bản dễ/khó (hai bài con), nhưng việc chia bài con cần được cân nhắc thận trọng. Cũng có nhiều người không thích bài con trong thể thức CF ([Are subtasks evil?](https://codeforces.com/blog/entry/71700)), với các lý do bao gồm nhưng không giới hạn ở:
 
 -   Do thể thức thi, làm phiên bản dễ trước rồi làm phiên bản khó có thể bị phạt thời gian ít hơn và tổng điểm cao hơn.
 -   Điểm của bài con thường không tỉ lệ thuận với độ khó của bài.
@@ -520,7 +520,7 @@ Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh
 
 ### Codeforces
 
-Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài tương đối cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng bạn cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
+Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài tương đối cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
 
 #### Tư cách ra đề
 
