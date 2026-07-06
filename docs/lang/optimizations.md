@@ -1,6 +1,6 @@
 author: inclyc
 
-Ngôn ngữ lập trình thường dùng trong giới OI là C++. Đã dùng ngôn ngữ này thì khó tránh việc phải làm việc với trình biên dịch và tiêu chuẩn ngôn ngữ. Ai cũng biết C++ khá rối rắm; bài viết này tập trung đưa ra những kiến thức thực dụng về trình biên dịch, đủ dùng cho thi đấu.
+Ngôn ngữ lập trình thường dùng trong giới OI là C++. Khi dùng ngôn ngữ này, khó tránh việc phải làm việc với trình biên dịch và tiêu chuẩn ngôn ngữ. C++ có nhiều chi tiết phức tạp; bài viết này tập trung đưa ra những kiến thức thực dụng về trình biên dịch, đủ dùng cho thi đấu.
 
 <a id="giới-thiệu-về-tối-ưu-hóa-của-trình-biên-dịch"></a>
 ## Giới thiệu về tối ưu hóa của trình biên dịch
@@ -118,7 +118,7 @@ for (int i = 0; i < n; ++i) {
 Nhưng thực tế, nếu `n <= 0` thì thân vòng lặp không bao giờ được thực thi, trong
 khi lại thực thi thêm một lệnh (có thể có tác dụng phụ!). Vì vậy, vòng lặp
 thường được xoay thành dạng do-while để có thể chèn một "điều kiện bảo vệ vòng
-lặp" một cách thuận tiện, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra
+lặp" dễ hơn, rồi sau đó mới thực hiện đưa bất biến vòng lặp ra
 ngoài.
 
 ```cpp
@@ -224,7 +224,7 @@ bố trí:
     coldblock:                           /*   |   */
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
-        Stmt; // <- lạnh                      |  Vượt qua rất nhiều lệnh, chi phí cao!
+        Stmt; // <- lạnh                      |  Phải đi qua nhiều lệnh, chi phí cao!
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
@@ -271,11 +271,11 @@ if (unlikely(/* một số kiểm tra điều kiện biên */ false)) {
 <a id="tách-mã-nóng-lạnh-hot-cold-splitting"></a>
 #### Tách mã nóng/lạnh
 
-Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh khá
+Một thủ tục có thể chứa đồng thời cả đường nóng và đường lạnh. Khi mã lạnh
 dài, cách tốt hơn là tách mã lạnh thành một lời gọi hàm, thay vì để nó chặn
 đường nóng. Điều này cũng nhắc rằng không nên tự tin quá mức mà biến mọi hàm
 thành `inline`. Trở ngại mà mã lạnh gây ra cho tốc độ thực thi lớn hơn chi phí
-gọi hàm rất nhiều.
+gọi hàm đáng kể.
 
 ???+ note "Bố cục mã không tốt"
     ```cpp
@@ -289,7 +289,7 @@ gọi hàm rất nhiều.
     coldblock:                           /*   |   */
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
-        Stmt; // <- lạnh                      |  Vượt qua rất nhiều lệnh, chi phí cao!
+        Stmt; // <- lạnh                      |  Phải đi qua nhiều lệnh, chi phí cao!
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
         Stmt; // <- lạnh                      |
@@ -306,7 +306,7 @@ gọi hàm rất nhiều.
     hotblock1:
       Stmts;  // <-- nóng!
       if (/* điều kiện biên */ false)
-        coldBlock();  // Tách mã lạnh ra để đường nóng thân thiện với cache hơn
+        coldBlock();  // Tách mã lạnh ra để đường nóng phù hợp với cache hơn
     hotblock2:
       Stmts;  // <- nóng!
     }
@@ -325,7 +325,7 @@ gọi hàm rất nhiều.
 Tách mã nóng/lạnh là thao tác ngược với nội tuyến hàm. Sự tồn tại của tối ưu
 hóa này cho thấy nội tuyến hàm không nhất thiết làm chương trình chạy nhanh hơn.
 Thậm chí nếu đoạn mã được nội tuyến là mã lạnh, nó còn có thể làm chương trình
-chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch bắt buộc nội tuyến,
+chạy chậm hơn. Một số trình biên dịch có tùy chọn biên dịch ép nội tuyến,
 nhưng không nên dùng. Bên trong trình biên dịch có quá trình phân tích tĩnh để
 tính xác suất của mỗi khối cơ bản và mỗi nhánh, cùng với một mô hình chi phí liên
 quan đến lời gọi hàm, rồi dựa vào đó quyết định có nội tuyến hay không. Tự quyết
@@ -403,7 +403,7 @@ tailCall(int):                           ; @tailCall(int)
 <a id="tự-động-viết-lại-đệ-quy-đuôi"></a>
 #### Tự động viết lại đệ quy đuôi
 
-Nếu lời gọi đuôi của một hàm là chính nó, hàm đó là hàm đệ quy đuôi. Nói rộng hơn, đệ quy gián tiếp (đệ quy tạo bởi hai hàm trở lên) nếu tất cả đều là lời gọi đuôi thì cũng thuộc phạm vi đệ quy đuôi. Đệ quy đuôi có thể được trình biên dịch tối ưu thành dạng không đệ quy, giảm chi phí ngăn xếp bổ sung và chi phí gọi hàm. Nhiều thí sinh lập trình thi đấu thích viết mã không đệ quy; khi không bật tối ưu hóa, cách này có thể cải thiện hằng số rất nhiều, nhưng nếu bật tối ưu hóa thì chất lượng nhị phân sinh ra từ mã đệ quy và mã viết tay không khác nhau bao nhiêu.
+Nếu lời gọi đuôi của một hàm là chính nó, hàm đó là hàm đệ quy đuôi. Nói rộng hơn, đệ quy gián tiếp (đệ quy tạo bởi hai hàm trở lên) nếu tất cả đều là lời gọi đuôi thì cũng thuộc phạm vi đệ quy đuôi. Đệ quy đuôi có thể được trình biên dịch tối ưu thành dạng không đệ quy, giảm chi phí ngăn xếp bổ sung và chi phí gọi hàm. Nhiều thí sinh lập trình thi đấu thích viết mã không đệ quy; khi không bật tối ưu hóa, cách này có thể cải thiện hằng số đáng kể, nhưng nếu bật tối ưu hóa thì chất lượng nhị phân sinh ra từ mã đệ quy và mã viết tay không khác nhau bao nhiêu.
 
 ```cpp
 int fac(int n) {
@@ -469,7 +469,7 @@ tay.
 <a id="giảm-độ-mạnh-phép-toán-strength-reduction"></a>
 ### Giảm độ mạnh phép toán
 
-Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản nhất là biến `x * 2` thành `x << 1`; cách viết thứ hai rất thường gặp trong OI. Trình biên dịch sẽ tự động làm các tối ưu hóa tương tự; khi bật tùy chọn tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương đương. Giảm độ mạnh phép toán biến các lệnh chi phí cao thành các lệnh chi phí thấp.
+Đây là một tối ưu hóa biên dịch phổ biến. Ví dụ đơn giản là biến `x * 2` thành `x << 1`; cách viết thứ hai thường gặp trong OI. Trình biên dịch sẽ tự động làm các tối ưu hóa tương tự; khi bật tùy chọn tối ưu hóa, `x * 2` và `x << 1` hoàn toàn tương đương. Giảm độ mạnh phép toán biến các lệnh chi phí cao thành các lệnh chi phí thấp.
 
 <a id="biến-đổi-toán-tử-scalar"></a>
 #### Biến đổi toán tử vô hướng
@@ -531,7 +531,7 @@ for (int i = 1; i < 10; i++) {
 }
 ```
 
-Việc viết trực tiếp `a = 3 * i` rất thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
+Việc viết trực tiếp `a = 3 * i` thường gặp trong OI, nhưng trình biên dịch có thể tự động phân tích được phép biến đổi tương đương `a = a + 3`, dùng phép cộng rẻ hơn thay cho phép nhân. Phân tích quá trình lặp của biến vòng lặp được gọi là SCEV (tiến triển vô hướng, Scalar Evolution).
 
 SCEV còn có thể tối ưu một số vòng lặp:
 
@@ -600,7 +600,7 @@ void test(int* __restrict a, int* __restrict b, int n) {
 }
 ```
 
-`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số rất khắt khe.
+`__restrict` không phải một phần của chuẩn C++, nhưng các trình biên dịch lớn đều hỗ trợ. Từ khóa này ảnh hưởng đến chất lượng sinh mã của tự động vector hóa; có thể dùng trong các trường hợp cần tối ưu hằng số khắt khe.
 
 <a id="các-cách-dùng-ngôn-ngữ-sai-thường-gặp-liên-quan-đến-tối-ưu-hóa-biên-dịch"></a>
 ## Các cách dùng ngôn ngữ sai thường gặp liên quan đến tối ưu hóa biên dịch
