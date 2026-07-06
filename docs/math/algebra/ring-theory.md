@@ -5,7 +5,7 @@ Kiến thức chuẩn bị: [các khái niệm cơ bản của đại số trừ
 
 **Lý thuyết vành** (ring theory) nghiên cứu các loại vành và cấu trúc của chúng.
 
-Nội dung lý thuyết vành trong bài này gắn chặt với lý thuyết chia hết trong số học. Trước hết, tương tự nhóm con chuẩn tắc trong lý thuyết nhóm, bài này giới thiệu hạt nhân của đồng cấu vành; đó chính là iđêan của vành. Có thể xem iđêan là sự khái quát của khái niệm bội số trong số học lên một vành tổng quát. Sau đó, khi khái quát các khái niệm như số nguyên tố, thuật toán Euclid và phân tích thừa số nguyên tố từ vành số nguyên sang các vành tổng quát, ta thu được nhiều loại miền nguyên khác nhau.
+Nội dung lý thuyết vành trong bài này gắn chặt với lý thuyết chia hết trong số học. Trước hết, tương tự nhóm con chuẩn tắc trong lý thuyết nhóm, bài này giới thiệu hạt nhân của đồng cấu vành; đó chính là iđêan của vành. Có thể xem iđêan là sự khái quát của khái niệm bội số trong số học lên một vành tổng quát. Sau đó, khi khái quát các khái niệm như số nguyên tố, thuật toán Euclid và phân tích thừa số nguyên tố từ vành số nguyên sang các vành tổng quát, sẽ thu được nhiều loại miền nguyên khác nhau.
 
 Nhiều kết luận trong số học vẫn đúng trên các vành thường gặp khác. Có thể nói, một phần nhiệm vụ của lý thuyết vành là xác định liệu các kết luận số học ấy còn đúng trên vành tổng quát hay không; nếu không, cần bổ sung điều kiện nào lên vành để chúng đúng.
 
@@ -18,13 +18,13 @@ Nhiều kết luận trong số học vẫn đúng trên các vành thường g�
 <span id="iđêan"></span>
 ## Iđêan
 
-Tương tự trường hợp của nhóm, ta có thể xây dựng các khái niệm vành con và đồng cấu vành.
+Tương tự trường hợp của nhóm, có thể xây dựng các khái niệm vành con và đồng cấu vành.
 
 ???+ abstract "Vành con"
     Với vành $(R,+,\cdot)$ và một tập con $S$ của nó, nếu $(S,+,\cdot)$ cũng là một vành, thì $S$ được gọi là **vành con** (subring) của $R$.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$"
-    Với mọi số nguyên $n$, ta có $n\mathbf Z=\{nk:k\in\mathbf Z\}$ là một vành con của $\mathbf Z$.
+    Với mọi số nguyên $n$, tập $n\mathbf Z=\{nk:k\in\mathbf Z\}$ là một vành con của $\mathbf Z$.
 
 ???+ abstract "Đồng cấu vành"
     Với hai vành $(R,+,\cdot)$ và $(S,\oplus,\odot)$, nếu ánh xạ $\pi$ bảo toàn phép cộng và phép nhân của vành, tức là với mọi $r_1,r_2\in R$ đều có $\pi(r_1+r_2)=\pi(r_1)\oplus\pi(r_2)$ và $\pi(r_1\cdot r_2)=\pi(r_1)\odot\pi(r_2)$, thì $\pi:R\rightarrow S$ được gọi là một **đồng cấu** (homomorphism) từ vành $R$ đến vành $S$.
@@ -40,16 +40,16 @@ Phần [thảo luận](./group-theory.md#đồng-cấu-nhóm) về hạt nhân v
 ???+ abstract "Hạt nhân của đồng cấu"
     **Hạt nhân** (kernel) của đồng cấu $\pi:R\rightarrow S$ từ vành $R$ đến vành $S$ là $\{r\in R:\pi(r)=0\}$, ký hiệu là $\ker\pi$, trong đó $0$ là đơn vị cộng của $S$.
 
-Rõ ràng, hạt nhân và ảnh của đồng cấu vành đều là vành con. Ngược lại, không phải mọi vành con đều có thể trở thành hạt nhân của một đồng cấu vành nào đó. Những vành con có thể xuất hiện dưới dạng hạt nhân của đồng cấu vành được gọi là iđêan của vành.
+Hạt nhân và ảnh của đồng cấu vành đều là vành con. Ngược lại, không phải mọi vành con đều có thể trở thành hạt nhân của một đồng cấu vành nào đó. Những vành con có thể xuất hiện dưới dạng hạt nhân của đồng cấu vành được gọi là iđêan của vành.
 
 ???+ abstract "Iđêan"
-    Với vành $R$ và vành con $I$ của nó, ta gọi $I$ là
+    Với vành $R$ và vành con $I$ của nó, $I$ được gọi là
     
     -   **iđêan trái** (left ideal), nếu với mọi $r\in R$ đều có $rI\subseteq I$, trong đó $rI=\{ra:a\in I\}$;
     -   **iđêan phải** (right ideal), nếu với mọi $r\in R$ đều có $Ir\subseteq I$, trong đó $Ir=\{ar:a\in I\}$;
     -   **iđêan** (ideal), nếu $I$ vừa là iđêan trái vừa là iđêan phải của $R$.
 
-Ở đây ta yêu cầu iđêan $I$ đóng dưới phép nhân trái và phép nhân phải bởi các phần tử của vành $R$. Điều kiện này rất tự nhiên. Các phần tử trong iđêan sẽ được ánh xạ về phần tử không dưới một đồng cấu vành, mà phần tử không nhân trái hay nhân phải với bất kỳ phần tử nào cũng vẫn là phần tử không; đó chính là tính đóng cần có. Ngoài ra, cấu trúc cộng của vành là nhóm Abel nên mọi nhóm con đều là nhóm con chuẩn tắc; còn cấu trúc nhân của vành khá yếu, không tự áp đặt thêm ràng buộc nào lên cấu trúc con. Điều này cho thấy điều kiện đóng dưới nhân trái và nhân phải cũng là đủ.
+Trong định nghĩa này, iđêan $I$ được yêu cầu đóng dưới phép nhân trái và phép nhân phải bởi các phần tử của vành $R$. Điều kiện này rất tự nhiên. Các phần tử trong iđêan sẽ được ánh xạ về phần tử không dưới một đồng cấu vành, mà phần tử không nhân trái hay nhân phải với bất kỳ phần tử nào cũng vẫn là phần tử không; đó chính là tính đóng cần có. Ngoài ra, cấu trúc cộng của vành là nhóm Abel nên mọi nhóm con đều là nhóm con chuẩn tắc; còn cấu trúc nhân của vành khá yếu, không tự áp đặt thêm ràng buộc nào lên cấu trúc con. Điều này cho thấy điều kiện đóng dưới nhân trái và nhân phải cũng là đủ.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
     Chẳng hạn, vành con $n\mathbf Z$ đã nhắc ở trên thực ra là một iđêan của $\mathbf Z$. Nó là tập hợp tất cả bội của $n$. Một bội của $n$ khi nhân với bất kỳ số nguyên nào vẫn là một bội của $n$. Trên thực tế, mọi iđêan của $\mathbf Z$ đều có dạng này; những vành như vậy được gọi là [miền iđêan chính](#miền-iđêan-chính). Đối với vành tổng quát, một số iđêan không phải là tập các bội của một phần tử nào đó; sự tồn tại của các vành như vậy cũng là động cơ ban đầu để nghiên cứu iđêan, thay vì chỉ nghiên cứu bội số[^ideal-history].
@@ -57,7 +57,7 @@ Rõ ràng, hạt nhân và ảnh của đồng cấu vành đều là vành con.
 <span id="vành-thương"></span>
 ### Vành thương
 
-Tương tự trường hợp nhóm, dựa trên iđêan của vành, ta có thể định nghĩa **vành thương** (quotient ring) trên tập tất cả các lớp kề theo nghĩa nhóm cộng. Xét tập
+Tương tự trường hợp nhóm, dựa trên iđêan của vành, có thể định nghĩa **vành thương** (quotient ring) trên tập tất cả các lớp kề theo nghĩa nhóm cộng. Xét tập
 
 $$
 R/I=\{a+I:a\in R\},
@@ -72,7 +72,7 @@ $$
 \end{aligned}
 $$
 
-là xác định tốt, tức là kết quả của các phép toán không phụ thuộc vào cách chọn đại diện trong lớp kề. Dưới các phép toán này, $R/I$ tạo thành một vành. Cũng như với nhóm, ta có thể xây dựng **định lý đẳng cấu thứ nhất** (first isomorphism theorem) cho vành, và tồn tại đồng cấu tự nhiên từ vành đến vành thương của nó. Những điều này cho thấy iđêan của vành và nhóm con chuẩn tắc của nhóm giữ cùng một vai trò trong đồng cấu của các cấu trúc tương ứng.
+là xác định tốt, tức là kết quả của các phép toán không phụ thuộc vào cách chọn đại diện trong lớp kề. Dưới các phép toán này, $R/I$ tạo thành một vành. Cũng như với nhóm, có thể xây dựng **định lý đẳng cấu thứ nhất** (first isomorphism theorem) cho vành, và tồn tại đồng cấu tự nhiên từ vành đến vành thương của nó. Những điều này cho thấy iđêan của vành và nhóm con chuẩn tắc của nhóm giữ cùng một vai trò trong đồng cấu của các cấu trúc tương ứng.
 
 ???+ note "Định lý đẳng cấu thứ nhất"
     Cho $\pi:R\rightarrow S$ là đồng cấu từ vành $R$ đến vành $S$. Khi đó $\ker\pi$ là một iđêan của $R$, và $R/\ker\pi\cong\pi(R)$ là một vành con của $S$.
@@ -81,7 +81,7 @@ là xác định tốt, tức là kết quả của các phép toán không ph�
     Với vành $R$ và iđêan $I$ của nó, ánh xạ $\pi:R\rightarrow R/I$ cho bởi $\pi(r)=r+I$ là một đồng cấu toàn ánh từ $R$ đến $R/I$, gọi là **đồng cấu tự nhiên** (natural homomorphism) từ vành $R$ đến vành thương $R/I$.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
-    Chẳng hạn, vành $\mathbf Z/n\mathbf Z$ gồm các lớp đồng dư modulo $n$ của số nguyên là vành thương thu được khi lấy $\mathbf Z$ modulo iđêan $n\mathbf Z$ của nó. Điều này cũng giải thích ý nghĩa của ký hiệu $\mathbf Z/n\mathbf Z$. Ánh xạ modulo $n$ đã nhắc ở trên, $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$, chính là ánh xạ tự nhiên ở đây, và hạt nhân tương ứng chính là iđêan $n\mathbf Z$.
+    Chẳng hạn, vành $\mathbf Z/n\mathbf Z$ gồm các lớp đồng dư modulo $n$ của số nguyên là vành thương thu được khi lấy $\mathbf Z$ modulo iđêan $n\mathbf Z$ của nó. Điều này cũng giải thích ý nghĩa của ký hiệu $\mathbf Z/n\mathbf Z$. Ánh xạ modulo $n$ đã nhắc ở trên, $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$, chính là ánh xạ tự nhiên trong ví dụ này, và hạt nhân tương ứng chính là iđêan $n\mathbf Z$.
 
 Trong trường hợp vành, các định lý đẳng cấu khác cũng đúng.
 
@@ -94,7 +94,7 @@ Trong trường hợp vành, các định lý đẳng cấu khác cũng đúng.
 ???+ note "Định lý tương ứng"
     Giả sử vành $R$ có iđêan $I$. Khi đó tồn tại song ánh $\varphi:\mathcal S\rightarrow\mathcal T$ giữa tập tất cả vành con của $R$ chứa $I$, $\mathcal S=\{S:I\subseteq S\subseteq R\}$, và tập tất cả nhóm con của nhóm thương $R/I$, $\mathcal T=\{T:T\le R/I\}$; song ánh này gửi $S\in\mathcal S$ đến $S/I\in\mathcal T$. Song ánh này bảo toàn quan hệ bao hàm giữa các vành con, và iđêan của vành $R$ luôn được ánh xạ thành iđêan của $R/I$.
 
-Các định lý này sẽ đóng vai trò nền tảng khi ta thảo luận về cấu trúc của vành và iđêan ở các phần sau.
+Các định lý này sẽ đóng vai trò nền tảng khi thảo luận về cấu trúc của vành và iđêan ở các phần sau.
 
 <span id="các-phép-toán-trên-iđêan"></span>
 ### Các phép toán trên iđêan
@@ -102,7 +102,7 @@ Các định lý này sẽ đóng vai trò nền tảng khi ta thảo luận v�
 Có thể định nghĩa nhiều phép toán khác nhau trên các iđêan của một vành. Điều này tương tự việc định nghĩa các khái niệm như ước chung lớn nhất, bội chung nhỏ nhất trong cấu trúc chia hết của số nguyên.
 
 ???+ abstract "Các phép toán trên iđêan"
-    Giả sử vành $R$ có các iđêan $I,J$. Ta có thể định nghĩa các phép toán sau:
+    Giả sử vành $R$ có các iđêan $I,J$. Có thể định nghĩa các phép toán sau:
     
     -   **tổng** (sum) của iđêan: $I+J=\{a+b:a\in I,b\in J\}$;
     -   **tích** (product) của iđêan: $IJ=\{\sum_{i=1}^na_ib_i:a_i\in I,b_i\in J\}$, tức là tập các tổng hữu hạn của những tích có dạng $ab$;
@@ -111,7 +111,7 @@ Có thể định nghĩa nhiều phép toán khác nhau trên các iđêan của
 Dễ kiểm tra rằng kết quả của các phép toán này vẫn là iđêan của vành.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
-    Xét trường hợp vành số nguyên $\mathbf Z$. Với các iđêan $n\mathbf Z$ và $m\mathbf Z$, ta có
+    Xét trường hợp vành số nguyên $\mathbf Z$. Với các iđêan $n\mathbf Z$ và $m\mathbf Z$, có
     
     $$
     \begin{aligned}
@@ -127,12 +127,12 @@ $$
 IJ\subseteq I\cap J\subseteq I,J\subseteq I+J.
 $$
 
-Dùng các định nghĩa này, ta có thể khái quát định lý số dư Trung Hoa từ số nguyên sang vành tổng quát. Trước đó, cần tiếp tục khái quát các khái niệm như nguyên tố và nguyên tố cùng nhau lên vành tổng quát.
+Dùng các định nghĩa này, có thể khái quát định lý số dư Trung Hoa từ số nguyên sang vành tổng quát. Trước đó, cần tiếp tục khái quát các khái niệm như nguyên tố và nguyên tố cùng nhau lên vành tổng quát.
 
 <span id="iđêan-cực-đại"></span>
 ### Iđêan cực đại
 
-Thông qua cấu trúc iđêan của vành, ta có thể hiểu các tính chất của vành.
+Thông qua cấu trúc iđêan của vành, có thể hiểu các tính chất của vành.
 
 Vành khác không $R$ luôn có hai iđêan tầm thường, là $\{0\}$ và $R$. Nếu $R$ còn là vành giao hoán, thì $R$ chỉ có hai iđêan này khi và chỉ khi nó là trường[^simple-ring].
 
@@ -140,9 +140,9 @@ Vành khác không $R$ luôn có hai iđêan tầm thường, là $\{0\}$ và $R
     Cho $R$ là vành giao hoán có đơn vị, khác không. Khi đó $R$ là trường khi và chỉ khi $R$ chỉ có các iđêan tầm thường $\{0\}$ và $R$.
 
 ??? note "Chứng minh"
-    Nếu $R$ là trường, thì với mọi iđêan khác không $I$, lấy một phần tử khác không $a\in I$. Khi đó với mọi phần tử $r\in R$, ta có $r=(ra^{-1})a\in (ra^{-1})I\subseteq I$, suy ra $I=R$. Ngược lại, với mọi $a\in R$ và $a\neq 0$, có thể kiểm tra $aR=\{ar:r\in R\}$ là một iđêan, nên nó phải bằng $R$. Vì vậy tồn tại $b\in R$ sao cho $ab=1$, tức là $a$ có nghịch đảo. Do đó $R$ là trường.
+    Nếu $R$ là trường, thì với mọi iđêan khác không $I$, lấy một phần tử khác không $a\in I$. Khi đó với mọi phần tử $r\in R$, có $r=(ra^{-1})a\in (ra^{-1})I\subseteq I$, suy ra $I=R$. Ngược lại, với mọi $a\in R$ và $a\neq 0$, có thể kiểm tra $aR=\{ar:r\in R\}$ là một iđêan, nên nó phải bằng $R$. Vì vậy tồn tại $b\in R$ sao cho $ab=1$, tức là $a$ có nghịch đảo. Do đó $R$ là trường.
 
-Điều kiện giao hoán ở đây là cần thiết; nếu không, phải đồng thời yêu cầu mọi iđêan trái và iđêan phải đều tầm thường mới bảo đảm vành là vành chia.
+Điều kiện giao hoán trong định lý này là cần thiết; nếu không, phải đồng thời yêu cầu mọi iđêan trái và iđêan phải đều tầm thường mới bảo đảm vành là vành chia.
 
 Kết luận trên có thể khái quát cho trường hợp bản thân vành không phải là trường. Tuy nhiên, lúc này cần chuyển sang xét vành thương, tức là thảo luận điều kiện để vành thương của một vành giao hoán có đơn vị, khác không là trường. Vành thương $R/I$ là trường nghĩa là $R/I$ chỉ có các iđêan tầm thường; theo định lý tương ứng, điều này có nghĩa là trong vành ban đầu $R$ không có iđêan nào nằm nghiêm ngặt giữa iđêan bị lấy modulo $I$ và toàn bộ vành $R$. Những iđêan $I$ như vậy được gọi là iđêan cực đại.
 
@@ -173,7 +173,7 @@ Nếu đối chiếu với lý thuyết chia hết, iđêan cực đại tương
 ???+ abstract "Iđêan nguyên tố"
     Với vành giao hoán $R$ và iđêan $P$ của nó, nếu $P\neq R$ và với mọi phần tử $a,b\in R$, hễ $ab\in P$ thì luôn có $a\in P$ hoặc $b\in P$, thì iđêan $P$ được gọi là một **iđêan nguyên tố** (prime ideal).
 
-Định nghĩa này thoạt nhìn có vẻ đột ngột, nhưng nếu so sánh với [định nghĩa số nguyên tố](../number-theory/basic.md#định-lý-cơ-bản-của-số-học), ta thấy nó rất tự nhiên.
+Định nghĩa này thoạt nhìn có vẻ đột ngột, nhưng khi so sánh với [định nghĩa số nguyên tố](../number-theory/basic.md#định-lý-cơ-bản-của-số-học), có thể thấy nó rất tự nhiên.
 
 ???+ note "Định lý"
     Giả sử vành giao hoán có đơn vị, khác không $R$ có iđêan $P$. Khi đó vành thương $R/P$ là miền nguyên khi và chỉ khi $P$ là iđêan nguyên tố.
@@ -186,12 +186,12 @@ Trong vành số nguyên $\mathbf Z$, $n\mathbf Z$ là iđêan cực đại và 
 ???+ note "Định lý"
     Với vành giao hoán có đơn vị, khác không $R$, mọi iđêan cực đại của nó đều là iđêan nguyên tố.
 
-Ta sẽ thấy ngay sau đây rằng mệnh đề đảo chỉ đúng trong những vành có tính chất tốt, đủ giống vành số nguyên.
+Phần ngay sau sẽ cho thấy mệnh đề đảo chỉ đúng trong những vành có tính chất tốt, đủ giống vành số nguyên.
 
 <span id="iđêan-chính"></span>
 ### Iđêan chính
 
-Tương tự khái niệm nhóm con sinh bởi một tập, trong thảo luận về vành ta cũng thường cần xét iđêan sinh bởi một tập con nào đó.
+Tương tự khái niệm nhóm con sinh bởi một tập, trong thảo luận về vành cũng thường cần xét iđêan sinh bởi một tập con nào đó.
 
 ???+ abstract "Iđêan sinh bởi một tập con"
     Với vành có đơn vị khác không $R$ và tập con khác rỗng $A\subseteq R$ của nó, nếu $I$ là iđêan nhỏ nhất theo quan hệ bao hàm trong số các iđêan của $R$ chứa $A$, thì $I$ được gọi là **iđêan sinh bởi tập con $A$** (ideal generated by a subset), ký hiệu là $(A)$. Khi đó, $A$ được gọi là **tập sinh** (generating set) của $(A)$.
@@ -199,7 +199,7 @@ Tương tự khái niệm nhóm con sinh bởi một tập, trong thảo luận 
 ???+ abstract "Iđêan chính"
     Iđêan sinh bởi một phần tử $a\in R$ được gọi là **iđêan chính** (principal ideal), ký hiệu là $(a)$. Khi đó, $a$ được gọi là **phần tử sinh** (generator) của $(a)$.
 
-Với tập $A$, ta có thể mô tả cách xây dựng iđêan do nó sinh ra. Trước hết, định nghĩa
+Với tập $A$, có thể mô tả cách xây dựng iđêan do nó sinh ra. Trước hết, định nghĩa
 
 $$
 \begin{aligned}
@@ -215,20 +215,20 @@ Tất cả iđêan $n\mathbf Z$ trong vành số nguyên đều là iđêan chí
 <span id="miền-nguyên"></span>
 ## Miền nguyên
 
-Miền nguyên là vành khác không, giao hoán, có đơn vị và không có ước của không. Khái niệm này chính là sự khái quát của vành số nguyên. Tuy nhiên, các vành thu được như vậy chưa chắc có đủ tính chất tốt để chuyển nguyên vẹn mọi kết luận trong lý thuyết chia hết của số nguyên sang. Để khái quát các kết luận trong số học, ta có thể đặt thêm điều kiện lên miền nguyên. Ba loại miền nguyên thường gặp nhất là miền Euclid, miền iđêan chính và miền phân tích duy nhất; các khái niệm đứng trước được chứa nghiêm ngặt trong các khái niệm đứng sau.
+Miền nguyên là vành khác không, giao hoán, có đơn vị và không có ước của không. Khái niệm này chính là sự khái quát của vành số nguyên. Tuy nhiên, các vành thu được như vậy chưa chắc có đủ tính chất tốt để chuyển nguyên vẹn mọi kết luận trong lý thuyết chia hết của số nguyên sang. Để khái quát các kết luận trong số học, có thể đặt thêm điều kiện lên miền nguyên. Ba loại miền nguyên thường gặp nhất là miền Euclid, miền iđêan chính và miền phân tích duy nhất; các khái niệm đứng trước được chứa nghiêm ngặt trong các khái niệm đứng sau.
 
 <span id="quan-hệ-chia-hết"></span>
 ### Quan hệ chia hết
 
-Trước hết, ta khái quát các khái niệm liên quan trong lý thuyết chia hết của số nguyên lên vành giao hoán tổng quát.
+Trước hết, khái quát các khái niệm liên quan trong lý thuyết chia hết của số nguyên lên vành giao hoán tổng quát.
 
 ???+ abstract "Chia hết"
-    Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu tồn tại $x\in R$ sao cho $a=bx$, thì ta nói $a$ **chia hết cho** $b$, hay $b$ **chia** (divide) $a$, ký hiệu $b\mid a$. Khi đó $b$ được gọi là **ước** (divisor) của $a$.
+    Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu tồn tại $x\in R$ sao cho $a=bx$, thì nói rằng $a$ **chia hết cho** $b$, hay $b$ **chia** (divide) $a$, ký hiệu $b\mid a$. Khi đó $b$ được gọi là **ước** (divisor) của $a$.
 
 ???+ abstract "Liên hợp"
     Giả sử vành giao hoán $R$ có các phần tử $a,b\in R$. Nếu chúng chỉ khác nhau bởi một phần tử khả nghịch, tức là tồn tại phần tử khả nghịch $u\in R$ sao cho $a=bu$, thì $a$ và $b$ được gọi là **liên hợp** (associate).
 
-Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi) trên vành, còn quan hệ liên hợp là một quan hệ tương đương trên vành. Từ góc nhìn iđêan, $a\mid b$ tương đương với $(b)\subseteq (a)$, còn $a$ và $b$ liên hợp tương đương với $(a)=(b)$. Vì vậy, khi thảo luận các phần tử trong vành, ta thường không phân biệt các phần tử liên hợp. Tương tự trường hợp số nguyên, ước chung lớn nhất của $a$ và $b$ trong vành giao hoán được định nghĩa là cận dưới lớn nhất của $\{a,b\}$ theo quan hệ chia hết.
+Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi) trên vành, còn quan hệ liên hợp là một quan hệ tương đương trên vành. Từ góc nhìn iđêan, $a\mid b$ tương đương với $(b)\subseteq (a)$, còn $a$ và $b$ liên hợp tương đương với $(a)=(b)$. Vì vậy, khi thảo luận các phần tử trong vành, thường không phân biệt các phần tử liên hợp. Tương tự trường hợp số nguyên, ước chung lớn nhất của $a$ và $b$ trong vành giao hoán được định nghĩa là cận dưới lớn nhất của $\{a,b\}$ theo quan hệ chia hết.
 
 ???+ abstract "Ước chung lớn nhất"
     Với vành giao hoán $R$ và các phần tử $a,b\in R$ của nó, nếu tồn tại phần tử khác không $d\in R$ thỏa mãn $d\mid a$ và $d\mid b$, đồng thời với mọi $d'$ thỏa mãn $d'\mid a$ và $d'\mid b$ đều có $d'\mid d$, thì $d$ được gọi là **ước chung lớn nhất** (greatest common divisor) của $a$ và $b$, ký hiệu là $\gcd(a,b)$.
@@ -251,14 +251,14 @@ Tương tự cách chứng minh trong miền iđêan chính rằng iđêan nguy�
     Giả sử $R$ là miền nguyên. Nếu $a\in R$ là phần tử nguyên tố, thì $a$ cũng là phần tử bất khả quy.
 
 ??? note "Chứng minh"
-    Giả sử $r\in R$ là phần tử nguyên tố, và $a,b\in R$ thỏa mãn $r=ab$. Vì $r$ là phần tử nguyên tố, không mất tính tổng quát giả sử $r\mid a$. Khi đó $a=cr=cba$. Vì luật khử đúng trên miền nguyên, ta có $1=bc$, nên $b$ có nghịch đảo $c$. Điều này cho thấy $r$ là phần tử bất khả quy.
+    Giả sử $r\in R$ là phần tử nguyên tố, và $a,b\in R$ thỏa mãn $r=ab$. Vì $r$ là phần tử nguyên tố, không mất tính tổng quát giả sử $r\mid a$. Khi đó $a=cr=cba$. Vì luật khử đúng trên miền nguyên, có $1=bc$, nên $b$ có nghịch đảo $c$. Điều này cho thấy $r$ là phần tử bất khả quy.
 
 Chiều ngược lại không đúng.
 
 ??? example "Phản ví dụ"
     Trong vành số nguyên bậc hai $\mathbf Z[\sqrt{-5}]$, $3$ là phần tử bất khả quy, nhưng $9=3\cdot 3=(2+\sqrt{-5})(2-\sqrt{-5})$, nên nó không phải là phần tử nguyên tố.
     
-    Sau đây là chứng minh cho phản ví dụ này; độc giả chưa quen với vành số nguyên bậc hai nên đọc trước phần [vành số nguyên bậc hai](#ví-dụ-vành-số-nguyên-bậc-hai). Gọi $N(\cdot)$ là chuẩn trên vành số nguyên bậc hai. Với mọi phân tích $3=ab$, ta có $N(a)N(b)=N(3)=9$. Nếu $a,b$ đều không khả nghịch, thì $N(a)$ và $N(b)$ đều lớn hơn $1$, do đó nhất định có $N(a)=N(b)=3$. Nhưng trên $\mathbf Z[\sqrt{-5}]$ không có phần tử như vậy, tức là $x^2+5y^2=3$ không có nghiệm nguyên. Điều này cho thấy $3$ là phần tử bất khả quy. Còn để thấy $3$ không phải là phần tử nguyên tố, chỉ cần chứng minh $3$ không chia $2\pm\sqrt{-5}$; điều này là hiển nhiên.
+    Sau đây là chứng minh cho phản ví dụ này; độc giả chưa quen với vành số nguyên bậc hai nên đọc trước phần [vành số nguyên bậc hai](#ví-dụ-vành-số-nguyên-bậc-hai). Gọi $N(\cdot)$ là chuẩn trên vành số nguyên bậc hai. Với mọi phân tích $3=ab$, có $N(a)N(b)=N(3)=9$. Nếu $a,b$ đều không khả nghịch, thì $N(a)$ và $N(b)$ đều lớn hơn $1$, do đó nhất định có $N(a)=N(b)=3$. Nhưng trên $\mathbf Z[\sqrt{-5}]$ không có phần tử như vậy, tức là $x^2+5y^2=3$ không có nghiệm nguyên. Điều này cho thấy $3$ là phần tử bất khả quy. Còn để thấy $3$ không phải là phần tử nguyên tố, chỉ cần chứng minh $3$ không chia $2\pm\sqrt{-5}$; điều này suy ra trực tiếp từ dạng phần tử của $\mathbf Z[\sqrt{-5}]$.
 
 <span id="miền-euclid"></span>
 ### Miền Euclid
@@ -273,7 +273,7 @@ Miền Euclid là miền nguyên cho phép thực hiện phép chia có dư, t�
 ??? info "Các định nghĩa tương đương khác"
     Định nghĩa dùng trong bài này chỉ định nghĩa chuẩn trên các phần tử khác không. Các tài liệu khác nhau có thể trình bày định nghĩa miền Euclid theo những cách khác nhau. Chẳng hạn, có tài liệu bổ sung định nghĩa $N(0)=0$; nhưng trong phép chia có dư, giá trị của $N(0)$ không được dùng đến, nên điều này không quan trọng. Một số tài liệu, như định nghĩa trên [Wikipedia](https://en.wikipedia.org/wiki/Euclidean_domain), còn yêu cầu chuẩn $N$ thỏa mãn tính chất: với mọi $a,b\in R$ khác không đều có $N(a)\le N(ab)$. Tuy nhiên, dễ kiểm tra rằng nếu miền Euclid $R$ có chuẩn $N(\cdot)$ thỏa mãn tính chất trong định nghĩa của bài này, thì có thể định nghĩa chuẩn $N'(a)=\min_{b\in R\setminus\{0\}} N(ab)$ để nó thỏa mãn thêm tính chất $N'(a)\le N'(ab)$. Do đó các định nghĩa khác nhau này đều tương đương.
 
-Định nghĩa này là sự khái quát của phép chia có dư trong số nguyên. Sự tồn tại của chuẩn cho phép đo kích thước tương đối giữa số dư và số chia. Khi thực hiện thuật toán Euclid, chuẩn của các số dư liên tiếp sẽ giảm dần; vì chuẩn nhận giá trị trong các số tự nhiên, quá trình này nhất định kết thúc khi $r=0$. Từ đó ta thu được thuật toán Euclid trên miền Euclid.
+Định nghĩa này là sự khái quát của phép chia có dư trong số nguyên. Sự tồn tại của chuẩn cho phép đo kích thước tương đối giữa số dư và số chia. Khi thực hiện thuật toán Euclid, chuẩn của các số dư liên tiếp sẽ giảm dần; vì chuẩn nhận giá trị trong các số tự nhiên, quá trình này nhất định kết thúc khi $r=0$. Từ đó thu được thuật toán Euclid trên miền Euclid.
 
 Việc thực hiện được thuật toán Euclid có nghĩa là trên miền Euclid có thể tính ước chung lớn nhất một cách hiệu quả. Hoàn toàn tương tự lý thuyết chia hết của số nguyên, có thể chứng minh kết quả của thuật toán Euclid là ước chung lớn nhất, và định lý Bézout vẫn đúng; các hệ số trong định lý có thể được xác định bằng thuật toán Euclid mở rộng.
 
@@ -288,7 +288,7 @@ Thực ra, mọi iđêan trong miền Euclid đều là iđêan chính.
     Mọi iđêan trong miền Euclid đều là iđêan chính.
 
 ??? note "Chứng minh"
-    Giả sử $R$ là miền Euclid, và $I$ là một iđêan của nó. Nếu $I=\{0\}$, nó hiển nhiên là iđêan chính. Giả sử $I$ là iđêan khác không. Theo định nghĩa, trên vành $R$ có chuẩn $N(\cdot)$, nên có thể chọn phần tử khác không $d$ trong $I$ có chuẩn nhỏ nhất. Khi đó với mọi $a\in I$, ta có $a=qd+r$ với $r=0$ hoặc $N(r)< N(d)$. Lại vì $r=a-qd\in I$, theo cách chọn $d$ suy ra $r=0$, tức là $a=qd\in (d)$. Điều này cho thấy $I$ là iđêan chính.
+    Giả sử $R$ là miền Euclid, và $I$ là một iđêan của nó. Nếu $I=\{0\}$, nó là iđêan chính. Giả sử $I$ là iđêan khác không. Theo định nghĩa, trên vành $R$ có chuẩn $N(\cdot)$, nên có thể chọn phần tử khác không $d$ trong $I$ có chuẩn nhỏ nhất. Khi đó với mọi $a\in I$, có $a=qd+r$ với $r=0$ hoặc $N(r)< N(d)$. Lại vì $r=a-qd\in I$, theo cách chọn $d$ suy ra $r=0$, tức là $a=qd\in (d)$. Điều này cho thấy $I$ là iđêan chính.
 
 <span id="miền-iđêan-chính"></span><span id="mien-ide-an-chinh"></span>
 ### Miền iđêan chính
@@ -309,7 +309,7 @@ Trong miền iđêan chính, iđêan cực đại tương đương với iđêan
     Giả sử miền iđêan chính $R$ có iđêan khác không $I$. Khi đó $I$ là iđêan nguyên tố khi và chỉ khi $I$ là iđêan cực đại.
 
 ??? note "Chứng minh"
-    Chỉ cần chứng minh mọi iđêan nguyên tố đều là iđêan cực đại. Giả sử trong miền iđêan chính $R$ có iđêan nguyên tố khác không $(p)$, và đồng thời có iđêan $(a)$ thỏa mãn $(p)\subseteq(a)\subseteq R$. Điều này cho thấy $a\mid p$, nên tồn tại $b\in R$ sao cho $p=ab$. Nhưng vì $(p)$ là iđêan nguyên tố, $ab\in(p)$ kéo theo $a\in(p)$ hoặc $b\in(p)$. Nếu $a\in(p)$, thì $(a)\subseteq (p)$, suy ra $(a)=(p)$; nếu $b\in(p)$, thì $b=cp$, nên $p=acp$, và vì $p\neq 0$, ta có $1=ac$, tức là $a$ có nghịch đảo $c$, do đó $(a)=R$. Điều này cho thấy $(p)$ là iđêan cực đại.
+    Chỉ cần chứng minh mọi iđêan nguyên tố đều là iđêan cực đại. Giả sử trong miền iđêan chính $R$ có iđêan nguyên tố khác không $(p)$, và đồng thời có iđêan $(a)$ thỏa mãn $(p)\subseteq(a)\subseteq R$. Điều này cho thấy $a\mid p$, nên tồn tại $b\in R$ sao cho $p=ab$. Nhưng vì $(p)$ là iđêan nguyên tố, $ab\in(p)$ kéo theo $a\in(p)$ hoặc $b\in(p)$. Nếu $a\in(p)$, thì $(a)\subseteq (p)$, suy ra $(a)=(p)$; nếu $b\in(p)$, thì $b=cp$, nên $p=acp$, và vì $p\neq 0$, có $1=ac$, tức là $a$ có nghịch đảo $c$, do đó $(a)=R$. Điều này cho thấy $(p)$ là iđêan cực đại.
 
 ???+ note "Hệ quả"
     Giả sử miền iđêan chính $R$ có phần tử khác không $r$. Khi đó $r$ là phần tử nguyên tố khi và chỉ khi $r$ là phần tử bất khả quy.
@@ -337,7 +337,7 @@ Khái niệm tổng quát hơn miền iđêan chính là miền phân tích duy 
     Với miền phân tích duy nhất $R$ và phần tử khác không $a\in R$ của nó, $a$ là phần tử nguyên tố khi và chỉ khi $a$ là phần tử bất khả quy.
 
 ??? note "Chứng minh"
-    Chỉ cần chứng minh mọi phần tử bất khả quy đều là phần tử nguyên tố. Với phần tử bất khả quy $r$, nếu $r\mid ab$, thì tồn tại $c\in R$ sao cho $ab=rc$. Vì $R$ là miền phân tích duy nhất, ta có thể phân tích $a,b,c\in R$ thành tích các phần tử bất khả quy. So sánh hai vế và dùng tính duy nhất của phân tích, suy ra $r$ liên hợp với một nhân tử bất khả quy nào đó của $a$ hoặc của $b$, do đó $r$ chia một trong hai phần tử $a$ hoặc $b$. Điều này cho thấy $r$ cũng là phần tử nguyên tố.
+    Chỉ cần chứng minh mọi phần tử bất khả quy đều là phần tử nguyên tố. Với phần tử bất khả quy $r$, nếu $r\mid ab$, thì tồn tại $c\in R$ sao cho $ab=rc$. Vì $R$ là miền phân tích duy nhất, có thể phân tích $a,b,c\in R$ thành tích các phần tử bất khả quy. So sánh hai vế và dùng tính duy nhất của phân tích, suy ra $r$ liên hợp với một nhân tử bất khả quy nào đó của $a$ hoặc của $b$, do đó $r$ chia một trong hai phần tử $a$ hoặc $b$. Điều này cho thấy $r$ cũng là phần tử nguyên tố.
 
 Mọi miền iđêan chính đều là miền phân tích duy nhất.
 
@@ -349,7 +349,7 @@ Mọi miền iđêan chính đều là miền phân tích duy nhất.
     
     Sự tồn tại của phân tích khá tự nhiên. Nếu $r$ đã là phần tử bất khả quy thì không cần tiếp tục phân tích; nếu không, tồn tại $r_1,r_2$ sao cho $r=r_1r_2$ và $r_1,r_2$ đều không khả nghịch. Tiếp theo, nếu $r_1$ và $r_2$ đều là phần tử bất khả quy thì cũng không cần tiếp tục phân tích; nếu không, phần tử nào trong $r_1$ và $r_2$ không bất khả quy có thể được phân tích tiếp, và $r$ có thể được viết thành tích của nhiều phần tử hơn. Vì vậy, chừng nào các thừa số trong tích chưa toàn là phần tử bất khả quy, quá trình phân tích còn có thể tiếp tục. Quá trình phân tích nhất định dừng sau hữu hạn bước. Nếu không, tiên đề chọn bảo đảm có thể chọn từ $R$ một dây chuyền vô hạn các phần tử $\{r_{(i)}\}_{i=0}^\infty$ thỏa mãn $r_{(0)}=r$ và $r_{(i+1)}\mid r_{(i)}$ với mọi $i\in\mathbf N$, đồng thời các quan hệ chia hết này đều nghiêm ngặt, tức là trong dây chuyền không có các phần tử liên hợp. Nói bằng ngôn ngữ iđêan, điều này tương ứng với dãy iđêan tăng nghiêm ngặt vô hạn: $I_{0}\subset I_{1}\subset \cdots\subset I_{i}\subset\cdots\subset R$, trong đó $I_i=(r_{(i)})$. Dễ kiểm tra hợp $I=\bigcup_{i=0}^\infty I_i$ của các iđêan này vẫn là iđêan, nên nhất định là iđêan chính. Gọi $a$ là phần tử sinh của iđêan chính $I$; khi đó tồn tại $n\in\mathbf N$ sao cho $a\in I_n$. Vì vậy $I=(a)\subseteq I_n$. Điều này cho thấy dãy iđêan tăng nghiêm ngặt vô hạn nói trên không tồn tại, nên quá trình phân tích ở trên nhất định dừng trong hữu hạn bước.
     
-    Sau đó chứng minh tính duy nhất của phân tích. Ta có thể quy nạp theo số nhân tử trong phân tích. Bước then chốt của quy nạp là kiểm tra rằng nếu $r=p_1p_2\cdots p_n=q_1q_2\cdots q_m$ và $n\le m$, thì nhất định có $p_1$ liên hợp với một $q_j$ nào đó. Ở đây cần dùng kết luận trước đó: trong miền iđêan chính, mọi phần tử bất khả quy đều là phần tử nguyên tố. Đã biết $p_1$ là phần tử bất khả quy trong $R$, nên nó cũng là phần tử nguyên tố; vì vậy với tích ở vế phải, có thể dùng quy nạp để chỉ ra rằng tồn tại $q_j$ sao cho $p_1\mid q_j$. Do đó tồn tại $c\in R$ sao cho $q_j=p_1c$, mà $q_j$ là phần tử bất khả quy và $p_1$ cũng là phần tử bất khả quy, nên theo định nghĩa $c$ chỉ có thể khả nghịch; do đó $p_1$ liên hợp với $q_j$. Khi ấy có thể dùng luật khử để khử $p_1$ và $q_j$ ở hai vế, rồi nhân phần tử khả nghịch biểu thị sự liên hợp giữa chúng vào một nhân tử còn lại bất kỳ. Theo giả thiết quy nạp, số phần tử bất khả quy trong $p_2\cdots p_n$ và $q_1\cdots q_{j-1}q_{j+1}\cdots q_m$ nhất định bằng nhau, và chúng giống nhau theo nghĩa liên hợp. Định lý được chứng minh.
+    Sau đó chứng minh tính duy nhất của phân tích. Có thể quy nạp theo số nhân tử trong phân tích. Bước then chốt của quy nạp là kiểm tra rằng nếu $r=p_1p_2\cdots p_n=q_1q_2\cdots q_m$ và $n\le m$, thì nhất định có $p_1$ liên hợp với một $q_j$ nào đó. Chứng minh cần dùng kết luận trước đó: trong miền iđêan chính, mọi phần tử bất khả quy đều là phần tử nguyên tố. Đã biết $p_1$ là phần tử bất khả quy trong $R$, nên nó cũng là phần tử nguyên tố; vì vậy với tích ở vế phải, có thể dùng quy nạp để chỉ ra rằng tồn tại $q_j$ sao cho $p_1\mid q_j$. Do đó tồn tại $c\in R$ sao cho $q_j=p_1c$, mà $q_j$ là phần tử bất khả quy và $p_1$ cũng là phần tử bất khả quy, nên theo định nghĩa $c$ chỉ có thể khả nghịch; do đó $p_1$ liên hợp với $q_j$. Khi ấy có thể dùng luật khử để khử $p_1$ và $q_j$ ở hai vế, rồi nhân phần tử khả nghịch biểu thị sự liên hợp giữa chúng vào một nhân tử còn lại bất kỳ. Theo giả thiết quy nạp, số phần tử bất khả quy trong $p_2\cdots p_n$ và $q_1\cdots q_{j-1}q_{j+1}\cdots q_m$ nhất định bằng nhau, và chúng giống nhau theo nghĩa liên hợp. Định lý được chứng minh.
 
 Cuối cùng, tính tồn tại của ước chung lớn nhất vẫn đúng trên miền phân tích duy nhất.
 
@@ -363,7 +363,7 @@ Cuối cùng, tính tồn tại của ước chung lớn nhất vẫn đúng tr�
 
 Đọc thêm: [trường bậc hai](../number-theory/quadratic.md)
 
-Việc hiểu đại số trừu tượng không thể tách khỏi các ví dụ. Chính vì quá trình nghiên cứu định lý lớn Fermat đòi hỏi khảo sát tính chất của một lớp số nguyên đại số, lý thuyết vành ngày nay mới dần phát triển[^ring-theory-history]. Ở đây ta thảo luận loại số nguyên đại số đơn giản nhất, tức số nguyên bậc hai. Chứng minh của nhiều kết luận trong phần này cần dùng kiến thức phức tạp của lý thuyết số đại số, nên sẽ được lược bỏ.
+Việc hiểu đại số trừu tượng không thể tách khỏi các ví dụ. Chính vì quá trình nghiên cứu định lý lớn Fermat đòi hỏi khảo sát tính chất của một lớp số nguyên đại số, lý thuyết vành ngày nay mới dần phát triển[^ring-theory-history]. Phần này thảo luận loại số nguyên đại số đơn giản nhất, tức số nguyên bậc hai. Chứng minh của nhiều kết luận trong phần này cần dùng kiến thức phức tạp của lý thuyết số đại số, nên sẽ được lược bỏ.
 
 **Số nguyên bậc hai** (quadratic integer) là nghiệm phức của một phương trình bậc hai hệ số nguyên có hệ số bậc hai bằng một, $\alpha^2+b\alpha+c=0$. Mọi số nguyên bậc hai có và chỉ có dạng
 
@@ -416,7 +416,7 @@ $$
 \end{cases}
 $$
 
-Lưu ý rằng khi $D>0$, số nguyên bậc hai là số thực, nên khái niệm liên hợp ở đây không hoàn toàn trùng với khái niệm liên hợp của số phức. Tuy vậy, cả hai đều là trường hợp đặc biệt của khái niệm liên hợp của phần tử đại số trong lý thuyết trường. Hai số nguyên bậc hai liên hợp là hai nghiệm của cùng một phương trình bậc hai hệ số nguyên.
+Lưu ý rằng khi $D>0$, số nguyên bậc hai là số thực, nên khái niệm liên hợp trong ngữ cảnh này không hoàn toàn trùng với khái niệm liên hợp của số phức. Tuy vậy, cả hai đều là trường hợp đặc biệt của khái niệm liên hợp của phần tử đại số trong lý thuyết trường. Hai số nguyên bậc hai liên hợp là hai nghiệm của cùng một phương trình bậc hai hệ số nguyên.
 
 Trên vành số nguyên bậc hai có thể định nghĩa **chuẩn**
 
@@ -454,15 +454,15 @@ $$
 D=-1,-2,-3,-7,-11,-19,-43,-67,-163
 $$
 
-các vành số nguyên bậc hai tương ứng là miền iđêan chính. So sánh với kết quả ở trên, ta biết các trường hợp như $D=-19$ cung cấp ví dụ về miền iđêan chính không phải miền Euclid. Khi $D>0$, hiện vẫn chưa có kết quả hoàn chỉnh.
+các vành số nguyên bậc hai tương ứng là miền iđêan chính. So sánh với kết quả ở trên, biết rằng các trường hợp như $D=-19$ cung cấp ví dụ về miền iđêan chính không phải miền Euclid. Khi $D>0$, hiện vẫn chưa có kết quả hoàn chỉnh.
 
-Tuy nhiên, có thể chứng minh rằng trong vành số nguyên bậc hai, miền phân tích duy nhất và miền iđêan chính là tương đương. Kết quả ở trên cho thấy, chẳng hạn $\mathbf Z[\sqrt{-5}]$ không phải là miền iđêan chính, nên cũng không phải miền phân tích duy nhất. Trước đó ta đã trực tiếp chứng minh bằng ví dụ rằng nó không thể phân tích duy nhất, cụ thể là
+Tuy nhiên, có thể chứng minh rằng trong vành số nguyên bậc hai, miền phân tích duy nhất và miền iđêan chính là tương đương. Kết quả ở trên cho thấy, chẳng hạn $\mathbf Z[\sqrt{-5}]$ không phải là miền iđêan chính, nên cũng không phải miền phân tích duy nhất. Trước đó đã trực tiếp chứng minh bằng ví dụ rằng nó không thể phân tích duy nhất, cụ thể là
 
 $$
 9=3\times3=(2+\sqrt{-5})\times(2-\sqrt{-5}).
 $$
 
-Dùng cùng ví dụ, có thể chỉ ra iđêan $(3,2+\sqrt{-5})$ cũng không phải là iđêan chính. Ta sẽ thấy sau rằng một ví dụ đơn giản về miền phân tích duy nhất nhưng không phải miền iđêan chính là vành đa thức $\mathbf Z[x]$.
+Dùng cùng ví dụ, có thể chỉ ra iđêan $(3,2+\sqrt{-5})$ cũng không phải là iđêan chính. Phần sau sẽ cho thấy một ví dụ đơn giản về miền phân tích duy nhất nhưng không phải miền iđêan chính là vành đa thức $\mathbf Z[x]$.
 
 Dù nhiều vành số nguyên bậc hai không phải miền phân tích duy nhất, chúng đều là [miền Dedekind](https://en.wikipedia.org/wiki/Dedekind_domain). Điều này nghĩa là mọi iđêan không tầm thường trong các vành số nguyên bậc hai đều có thể phân tích duy nhất thành tích của một dãy iđêan nguyên tố. Nhưng nếu bản thân vành số nguyên bậc hai không phải miền iđêan chính, các nhân tử iđêan nguyên tố này không nhất thiết tương ứng với phần tử nguyên tố, nên định lý phân tích duy nhất (tức là phân tích một số thành tích các số nguyên tố) không còn đúng. Đây cũng là động cơ ban đầu để nghiên cứu iđêan thay vì chỉ nghiên cứu các số.
 
@@ -471,7 +471,7 @@ Dù nhiều vành số nguyên bậc hai không phải miền phân tích duy nh
 
 Đọc thêm: [giới thiệu kỹ thuật đa thức](../poly/intro.md)
 
-Trong lập trình thi đấu, ta thường gặp nhiều phép toán khác nhau trên đa thức. Phép nhân, lấy nghịch đảo, lấy dư của đa thức có thể được xem là sự khái quát các phép toán trên số sang vành đa thức. Dùng ngôn ngữ đại số trừu tượng, ta có thể hiểu rõ hơn tính chất của các phép toán liên quan trên vành đa thức.
+Trong lập trình thi đấu, thường gặp nhiều phép toán khác nhau trên đa thức. Phép nhân, lấy nghịch đảo, lấy dư của đa thức có thể được xem là sự khái quát các phép toán trên số sang vành đa thức. Dùng ngôn ngữ đại số trừu tượng, có thể hiểu rõ hơn tính chất của các phép toán liên quan trên vành đa thức.
 
 ???+ abstract "Đa thức"
     Với vành giao hoán có đơn vị, khác không $R$, một **đa thức** (polynomial) trên $R$ là một tổng hình thức
@@ -490,12 +490,12 @@ $$
 (a_0,a_1,...,a_{n-1},a_n,0,0,\cdots).
 $$
 
-Tuy nhiên, một dãy như vậy chỉ được phép có hữu hạn nhiều hạng tử khác không. Nếu hai đa thức ứng với cùng một dãy hệ số, ta nói hai đa thức đó bằng nhau. Điều này tương đương với việc sau khi bổ sung các hạng tử có hệ số bằng không, các tổng hình thức của chúng hoàn toàn giống nhau. Trong phần dưới, ta không phân biệt ký hiệu tổng hình thức của các đa thức bằng nhau: nếu cần, độc giả có thể tự bổ sung các hệ số không còn thiếu.
+Tuy nhiên, một dãy như vậy chỉ được phép có hữu hạn nhiều hạng tử khác không. Nếu hai đa thức ứng với cùng một dãy hệ số, nói rằng hai đa thức đó bằng nhau. Điều này tương đương với việc sau khi bổ sung các hạng tử có hệ số bằng không, các tổng hình thức của chúng hoàn toàn giống nhau. Trong phần dưới, không phân biệt ký hiệu tổng hình thức của các đa thức bằng nhau: nếu cần, độc giả có thể tự bổ sung các hệ số không còn thiếu.
 
-Đôi khi cần thay một phần tử của vành vào biến không xác định trong đa thức. Chẳng hạn, giả sử $f(x)$ là đa thức trên $R$ và $a\in R$, thì kết quả thay $a$ vào đa thức $f(x)$ là $f(a)$. Ý nghĩa của nó là: trong tổng hình thức của đa thức, thay $x$ bằng $a$, ta thu được một biểu thức số học trong $R$, và $f(a)$ chính là kết quả tính biểu thức này trong $R$.
+Đôi khi cần thay một phần tử của vành vào biến không xác định trong đa thức. Chẳng hạn, giả sử $f(x)$ là đa thức trên $R$ và $a\in R$, thì kết quả thay $a$ vào đa thức $f(x)$ là $f(a)$. Ý nghĩa của nó là: trong tổng hình thức của đa thức, thay $x$ bằng $a$ sẽ thu được một biểu thức số học trong $R$, và $f(a)$ chính là kết quả tính biểu thức này trong $R$.
 
 ??? info "\"Đa thức\" và \"hàm đa thức\""
-    Độc giả không nên nhầm lẫn hai khái niệm này. Đa thức chỉ là một dãy hệ số hữu hạn; nó không tự động trở thành một hàm. Dù thao tác thay phần tử của vành vào biến không xác định ở đây thật sự ánh xạ đa thức thành hàm đa thức, ánh xạ như vậy không nhất thiết là đơn ánh. Chẳng hạn, $f(x)=x^p-x$ với tư cách là đa thức trên trường $\mathbf F_p$ hiển nhiên không bằng đa thức không; nhưng $f(x)$ với tư cách là hàm đa thức $\mathbf F_p\rightarrow \mathbf F_p$ thì đồng nhất bằng không (tức là định lý nhỏ Fermat). Dù hai khái niệm khác nhau, nhiều khái niệm của hàm đa thức đều có thể khái quát sang trường hợp đa thức; chẳng hạn có thể phỏng theo các định nghĩa vi phân, tích phân bất định và hợp thành của hàm đa thức để định nghĩa [đạo hàm](../poly/intro.md#đạo-hàm), [tích phân bất định](../poly/intro.md#đạo-hàm), [hợp thành](../poly/intro.md#phép-hợp-thành) hình thức của đa thức. Các phép toán hình thức này không phụ thuộc vào bất kỳ cấu trúc tôpô nào, nhưng nhiều quy tắc tính toán vẫn đúng.
+    Độc giả không nên nhầm lẫn hai khái niệm này. Đa thức chỉ là một dãy hệ số hữu hạn; nó không tự động trở thành một hàm. Dù thao tác thay phần tử của vành vào biến không xác định trong ngữ cảnh này thật sự ánh xạ đa thức thành hàm đa thức, ánh xạ như vậy không nhất thiết là đơn ánh. Chẳng hạn, $f(x)=x^p-x$ với tư cách là đa thức trên trường $\mathbf F_p$ khác đa thức không; nhưng $f(x)$ với tư cách là hàm đa thức $\mathbf F_p\rightarrow \mathbf F_p$ thì đồng nhất bằng không (tức là định lý nhỏ Fermat). Dù hai khái niệm khác nhau, nhiều khái niệm của hàm đa thức đều có thể khái quát sang trường hợp đa thức; chẳng hạn có thể phỏng theo các định nghĩa vi phân, tích phân bất định và hợp thành của hàm đa thức để định nghĩa [đạo hàm](../poly/intro.md#đạo-hàm), [tích phân bất định](../poly/intro.md#đạo-hàm), [hợp thành](../poly/intro.md#phép-hợp-thành) hình thức của đa thức. Các phép toán hình thức này không phụ thuộc vào bất kỳ cấu trúc tôpô nào, nhưng nhiều quy tắc tính toán vẫn đúng.
 
 Với các đa thức
 
@@ -520,7 +520,7 @@ $$
 
 trong đó hệ số của hạng tử $x^k$ là $\sum_{i=0}^ka_{k-i}b_i$. Dưới phép cộng và phép nhân được định nghĩa như vậy, có thể chứng minh tập tất cả đa thức trên $R$ tạo thành một vành, ký hiệu là $R[x]$.
 
-Bậc của đa thức $f(x)$ được ký hiệu là $\deg f(x)$. Những đa thức có bậc bằng không là đa thức hằng; chúng cùng với đa thức không tương ứng với phép nhúng $R$ vào $R[x]$. Rõ ràng, $R$ có ước của không khi và chỉ khi $R[x]$ có ước của không.
+Bậc của đa thức $f(x)$ được ký hiệu là $\deg f(x)$. Những đa thức có bậc bằng không là đa thức hằng; chúng cùng với đa thức không tương ứng với phép nhúng $R$ vào $R[x]$. Vành $R$ có ước của không khi và chỉ khi $R[x]$ có ước của không.
 
 ???+ note "Định lý"
     Vành đa thức $R[x]$ là miền nguyên khi và chỉ khi $R$ là miền nguyên.
@@ -534,17 +534,17 @@ $$
 \end{aligned}
 $$
 
-Ở đây đặt $\deg 0 = -\infty$. Vì vậy, các phần tử khả nghịch trong vành đa thức chỉ có thể là những phần tử khả nghịch nằm trong các đa thức hằng. Mọi đa thức bậc một trở lên đều không khả nghịch.
+Quy ước $\deg 0 = -\infty$. Vì vậy, các phần tử khả nghịch trong vành đa thức chỉ có thể là những phần tử khả nghịch nằm trong các đa thức hằng. Mọi đa thức bậc một trở lên đều không khả nghịch.
 
 Phần thảo luận dưới đây chỉ giới hạn trong đa thức trên miền nguyên.
 
 ???+ info "Quy ước"
-    Dưới đây, ta sẽ không phân biệt hai cách nói "đa thức trên vành $R$" và "đa thức trong vành đa thức $R[x]$". Chẳng hạn, nói đa thức bất khả quy trên vành $R$ nghĩa là đa thức bất khả quy trong vành $R[x]$. Hơn nữa, nếu $R$ là vành con của $S$, thì đa thức trên $R$ tự động trở thành đa thức trên $S$; điều này cũng sẽ không được nhắc lại.
+    Dưới đây, không phân biệt hai cách nói "đa thức trên vành $R$" và "đa thức trong vành đa thức $R[x]$". Chẳng hạn, nói đa thức bất khả quy trên vành $R$ nghĩa là đa thức bất khả quy trong vành $R[x]$. Hơn nữa, nếu $R$ là vành con của $S$, thì đa thức trên $R$ tự động trở thành đa thức trên $S$; điều này cũng sẽ không được nhắc lại.
 
 <span id="vành-đa-thức-trên-trường"></span>
 ### Vành đa thức trên trường
 
-Trong các vành đa thức trên miền nguyên, vành có tính chất đơn giản nhất đương nhiên là vành đa thức trên trường. Vành đa thức $F[x]$ trên trường $F$ có hệ số cho phép chia, nên có thể định nghĩa phép chia có dư. Giả sử chuẩn của đa thức khác không $f(x)$ là $N(f(x))=\deg f(x)$. Khi đó với đa thức $f(x)$ và đa thức khác không $g(x)$ trong $F[x]$, ta có thể thực hiện phép chia có dư
+Trong các vành đa thức trên miền nguyên, vành có tính chất đơn giản nhất đương nhiên là vành đa thức trên trường. Vành đa thức $F[x]$ trên trường $F$ có hệ số cho phép chia, nên có thể định nghĩa phép chia có dư. Giả sử chuẩn của đa thức khác không $f(x)$ là $N(f(x))=\deg f(x)$. Khi đó với đa thức $f(x)$ và đa thức khác không $g(x)$ trong $F[x]$, có thể thực hiện phép chia có dư
 
 $$
 f(x)=g(x)q(x)+r(x),
@@ -555,7 +555,7 @@ trong đó $q(x),r(x)\in F[x]$, và $r(x)=0$ hoặc $\deg r(x)<\deg g(x)$. Đi�
 ???+ note "Định lý"
     Vành đa thức $F[x]$ trên trường $F$ là miền Euclid, cũng là miền iđêan chính, và cũng là miền phân tích duy nhất.
 
-Trong lập trình thi đấu, do vấn đề độ chính xác tính toán, người ta thường xét vành đa thức $\mathbf F_p[x]=(\mathbf Z/p\mathbf Z)[x]$; khi đó môđun $p$ cần là số nguyên tố. Vành như vậy cho phép thực hiện các phép toán như thuật toán Euclid. Tuy nhiên, vành đa thức $(\mathbf Z/n\mathbf Z)[x]$ ứng với môđun tùy ý $n$ thậm chí còn không phải miền nguyên.
+Trong lập trình thi đấu, do vấn đề độ chính xác tính toán, thường xét vành đa thức $\mathbf F_p[x]=(\mathbf Z/p\mathbf Z)[x]$; khi đó môđun $p$ cần là số nguyên tố. Vành như vậy cho phép thực hiện các phép toán như thuật toán Euclid. Tuy nhiên, vành đa thức $(\mathbf Z/n\mathbf Z)[x]$ ứng với môđun tùy ý $n$ thậm chí còn không phải miền nguyên.
 
 Việc phép chia có dư đúng kéo theo nghiệm của đa thức luôn tương ứng với một nhân tử bậc nhất của nó.
 
@@ -566,7 +566,7 @@ Việc phép chia có dư đúng kéo theo nghiệm của đa thức luôn tươ
     Với đa thức $f(x)$ trên trường $F$ và phần tử $\xi\in F$ trong trường, $\xi$ là nghiệm của $f(x)$ khi và chỉ khi $f(x)$ có nhân tử bậc nhất $(x-\xi)$.
 
 ??? note "Chứng minh"
-    Phép chia có dư cho thấy tồn tại $q(x),r(x)$ sao cho $f(x)=q(x)(x-\xi)+r(x)$ và $\deg r(x)<\deg(x-\xi)=1$. Do đó $r(x)$ là đa thức hằng hoặc đa thức không; đặt $r(x)=c$, ta có $f(x)=q(x)(x-\xi)+c$. Thay $x=\xi$ vào, suy ra $0=f(\xi)=c$, tức là $f(x)=q(x)(x-\xi)$.
+    Phép chia có dư cho thấy tồn tại $q(x),r(x)$ sao cho $f(x)=q(x)(x-\xi)+r(x)$ và $\deg r(x)<\deg(x-\xi)=1$. Do đó $r(x)$ là đa thức hằng hoặc đa thức không; đặt $r(x)=c$, có $f(x)=q(x)(x-\xi)+c$. Thay $x=\xi$ vào, suy ra $0=f(\xi)=c$, tức là $f(x)=q(x)(x-\xi)$.
 
 Khái niệm nghiệm có thể được khái quát cho trường hợp nghiệm bội.
 
@@ -583,17 +583,17 @@ Dù định lý phân tích duy nhất đúng với đa thức trên trường, 
 
 Các kết luận trên đều nói về đa thức trên trường. Đa thức trên miền nguyên tổng quát hơn thường có thể được chuyển về trường hợp như vậy.
 
-Tiếp theo xét vành đa thức $R[x]$ trên miền phân tích duy nhất $R$. Nếu tính trực tiếp trong $R[x]$, vì hệ số thường không chia được, nhiều phép toán bị hạn chế. Ta mở rộng $R$ thành trường phân thức $F$ của nó, rồi xét phân tích đa thức $f(x)$ trong $R[x]$ bên trong $F[x]$. Đã biết $F[x]$ là miền phân tích duy nhất, nên có thể từ phân tích của $f(x)$ trong $F[x]$ suy ngược ra phân tích trong $R[x]$. May mắn là ý tưởng này luôn khả thi.
+Tiếp theo xét vành đa thức $R[x]$ trên miền phân tích duy nhất $R$. Nếu tính trực tiếp trong $R[x]$, vì hệ số thường không chia được, nhiều phép toán bị hạn chế. Mở rộng $R$ thành trường phân thức $F$ của nó, rồi xét phân tích đa thức $f(x)$ trong $R[x]$ bên trong $F[x]$. Đã biết $F[x]$ là miền phân tích duy nhất, nên có thể từ phân tích của $f(x)$ trong $F[x]$ suy ngược ra phân tích trong $R[x]$. May mắn là ý tưởng này luôn khả thi.
 
 ???+ note "Bổ đề Gauss"
     Với miền phân tích duy nhất $R$ và trường phân thức $F$ của nó, nếu $f(x)\in R[x]$ và trong $F[x]$ có $f(x)=A(x)B(x)$, thì tồn tại $s,t\in F$ sao cho $a(x)=sA(x)\in R[x]$, $b(x)=tB(x)\in R[x]$, và $f(x)=a(x)b(x)$. Do đó, nếu $f(x)$ bất khả quy trong $R[x]$, thì nó bất khả quy trong $F[x]$.
 
 ??? note "Chứng minh"
-    Giả sử $f(x)\in R[x]$ khả quy trong $F[x]$, và $f(x)=A(x)B(x)$. Gọi $r_a$ và $r_b$ lần lượt là bội chung nhỏ nhất của các mẫu số của mọi hệ số trong $A(x)$ và $B(x)$; khi đó $\tilde a(x)=r_aA(x)$ và $\tilde b(x)=r_bB(x)$ đều là đa thức trên $R$. Đặt $r=r_ar_b$, ta có $rf(x)=\tilde a(x)\tilde b(x)$. Nếu $r$ là phần tử khả nghịch trong $R$, thì có thể lấy phân tích $f(x)=(r^{-1}\tilde a(x))\tilde b(x)$, hiển nhiên thỏa mãn yêu cầu của bổ đề.
+    Giả sử $f(x)\in R[x]$ khả quy trong $F[x]$, và $f(x)=A(x)B(x)$. Gọi $r_a$ và $r_b$ lần lượt là bội chung nhỏ nhất của các mẫu số của mọi hệ số trong $A(x)$ và $B(x)$; khi đó $\tilde a(x)=r_aA(x)$ và $\tilde b(x)=r_bB(x)$ đều là đa thức trên $R$. Đặt $r=r_ar_b$, có $rf(x)=\tilde a(x)\tilde b(x)$. Nếu $r$ là phần tử khả nghịch trong $R$, thì có thể lấy phân tích $f(x)=(r^{-1}\tilde a(x))\tilde b(x)$, thỏa mãn yêu cầu của bổ đề.
     
-    Ngược lại, nếu trong $r$ tồn tại nhân tử bất khả quy $p$, cần chứng minh có thể khử nhân tử này ở hai vế của đẳng thức, đồng thời bảo đảm mọi hệ số vẫn nằm trong miền nguyên $R$. Lưu ý rằng $p$ cũng là phần tử nguyên tố, do đó $(p)$ là iđêan nguyên tố. Lấy modulo $p$ ở cả hai vế đẳng thức, ta được đẳng thức đa thức trên $(R/(p))[x]$ là $0=\bar a(x)\bar b(x)$, trong đó $\bar a$ và $\bar b$ là các đa thức sau khi lấy modulo. Vì $R/(p)$ là miền nguyên, $(R/(p))[x]$ cũng là miền nguyên, nên có thể giả sử $\bar a(x)=0$. Điều này cho thấy tất cả hệ số của $\tilde a(x)$ đều chia hết cho $p$. Do đó có thể trực tiếp khử nhân tử $p$ ở hai vế của đẳng thức.
+    Ngược lại, nếu trong $r$ tồn tại nhân tử bất khả quy $p$, cần chứng minh có thể khử nhân tử này ở hai vế của đẳng thức, đồng thời bảo đảm mọi hệ số vẫn nằm trong miền nguyên $R$. Lưu ý rằng $p$ cũng là phần tử nguyên tố, do đó $(p)$ là iđêan nguyên tố. Lấy modulo $p$ ở cả hai vế đẳng thức, thu được đẳng thức đa thức trên $(R/(p))[x]$ là $0=\bar a(x)\bar b(x)$, trong đó $\bar a$ và $\bar b$ là các đa thức sau khi lấy modulo. Vì $R/(p)$ là miền nguyên, $(R/(p))[x]$ cũng là miền nguyên, nên có thể giả sử $\bar a(x)=0$. Điều này cho thấy tất cả hệ số của $\tilde a(x)$ đều chia hết cho $p$. Do đó có thể trực tiếp khử nhân tử $p$ ở hai vế của đẳng thức.
     
-    Theo định nghĩa miền phân tích duy nhất, $r$ có nhiều nhất hữu hạn nhân tử bất khả quy như vậy, nên sau khi khử chúng hữu hạn lần, ta chuyển về trường hợp $r$ là phần tử khả nghịch trong $R$. Bổ đề được chứng minh.
+    Theo định nghĩa miền phân tích duy nhất, $r$ có nhiều nhất hữu hạn nhân tử bất khả quy như vậy, nên sau khi khử chúng hữu hạn lần, chuyển về trường hợp $r$ là phần tử khả nghịch trong $R$. Bổ đề được chứng minh.
 
 ???+ note "Hệ quả"
     Với miền phân tích duy nhất $R$ và trường phân thức $F$ của nó, nếu $f(x)\in R[x]$ và mọi hệ số khác không của $f(x)$ nguyên tố cùng nhau (tức là ước chung lớn nhất là phần tử đơn vị trong $R$), thì $f(x)$ bất khả quy trong $R[x]$ khi và chỉ khi $f(x)$ bất khả quy trong $F[x]$.
@@ -604,18 +604,18 @@ Nói cách khác, các phần tử bất khả quy trong vành đa thức hệ s
     Cho đa thức hệ số nguyên bậc $n$, $f(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n$. Nếu tồn tại số nguyên tố $p$ thỏa mãn $p\mid a_i$ với mọi $i=0,1,\cdots,n-1$, đồng thời $p$ không chia hết $a_n$ và $p^2$ không chia hết $a_0$, thì đa thức $f(x)$ bất khả quy trên trường số hữu tỉ $\mathbf Q$. Nếu $\gcd(a_0,a_1,\cdots,a_n)=1$, thì đa thức $f(x)$ cũng bất khả quy trên vành số nguyên $\mathbf Z$.
 
 ??? note "Chứng minh"
-    Dùng bổ đề Gauss, nếu đa thức $f(x)$ khả quy trên trường số hữu tỉ $\mathbf Q$, thì nó cũng khả quy trên vành số nguyên $\mathbf Z$. Giả sử $f(x)=b(x)c(x)$ là phân tích của nó trong $\mathbf Z[x]$. Lấy modulo số nguyên tố $p$ ở hai vế của đẳng thức, ta được phân tích trong $\mathbf F_p[x]$: $\overline{f}(x)=\overline{b}(x)\overline{c}(x)$. Nhưng điều kiện của định lý cho thấy $\overline{f}(x)=x^n$, nên tồn tại số nguyên $m$ sao cho $\overline b(x)=x^m$ và $\overline c(x)=x^{n-m}$, trong đó $0<m<n$. Vì vậy các hệ số hằng $b_0$ và $c_0$ của hai nhân tử $b(x)$ và $c(x)$ đều là bội của $p$. Do đó hệ số hằng $a_0=b_0c_0$ của $f(x)$ là bội của $p^2$. Điều này mâu thuẫn với điều kiện đã cho.
+    Dùng bổ đề Gauss, nếu đa thức $f(x)$ khả quy trên trường số hữu tỉ $\mathbf Q$, thì nó cũng khả quy trên vành số nguyên $\mathbf Z$. Giả sử $f(x)=b(x)c(x)$ là phân tích của nó trong $\mathbf Z[x]$. Lấy modulo số nguyên tố $p$ ở hai vế của đẳng thức, thu được phân tích trong $\mathbf F_p[x]$: $\overline{f}(x)=\overline{b}(x)\overline{c}(x)$. Nhưng điều kiện của định lý cho thấy $\overline{f}(x)=x^n$, nên tồn tại số nguyên $m$ sao cho $\overline b(x)=x^m$ và $\overline c(x)=x^{n-m}$, trong đó $0<m<n$. Vì vậy các hệ số hằng $b_0$ và $c_0$ của hai nhân tử $b(x)$ và $c(x)$ đều là bội của $p$. Do đó hệ số hằng $a_0=b_0c_0$ của $f(x)$ là bội của $p^2$. Điều này mâu thuẫn với điều kiện đã cho.
 
 ??? example "Ví dụ"
     1.  Đa thức $x^3-2$ bất khả quy trong $\mathbf Q[x]$. Chỉ cần áp dụng tiêu chuẩn Eisenstein với $p=2$.
     2.  Đa thức $x^4+1$ bất khả quy trong $\mathbf Q[x]$. Nếu không, $(x+1)^4+1=x^4+4x^3+6x^2+4x+2$ cũng khả quy. Nhưng áp dụng tiêu chuẩn Eisenstein với $p=2$ cho thấy đa thức sau bất khả quy.
 
-Với miền phân tích duy nhất $R$, vì vành đa thức trên trường phân thức tương ứng $F$ là miền phân tích duy nhất, còn bổ đề Gauss cho thấy phân tích của đa thức trên trường phân thức $F$ và phân tích của đa thức trên miền nguyên ban đầu $R$ tương ứng với nhau, nên $R[x]$ cũng là miền phân tích duy nhất. Do đó ta có định lý sau:
+Với miền phân tích duy nhất $R$, vì vành đa thức trên trường phân thức tương ứng $F$ là miền phân tích duy nhất, còn bổ đề Gauss cho thấy phân tích của đa thức trên trường phân thức $F$ và phân tích của đa thức trên miền nguyên ban đầu $R$ tương ứng với nhau, nên $R[x]$ cũng là miền phân tích duy nhất. Do đó có định lý sau:
 
 ???+ note "Định lý"
     Vành đa thức $R[x]$ là miền phân tích duy nhất khi và chỉ khi $R$ là miền phân tích duy nhất.
 
-Ở đây $\mathbf Z[x]$ cung cấp ví dụ về miền phân tích duy nhất không phải miền iđêan chính. Chẳng hạn, trong $\mathbf Z[x]$, $(2,x)$ không phải là iđêan chính.
+Trong phần này, $\mathbf Z[x]$ cung cấp ví dụ về miền phân tích duy nhất không phải miền iđêan chính. Chẳng hạn, trong $\mathbf Z[x]$, $(2,x)$ không phải là iđêan chính.
 
 Có nhiều cách mở rộng vành đa thức thành các tập lớn hơn. Chẳng hạn, với vành đa thức $R[x]$ trên miền nguyên, có thể mở rộng nó thành trường phân thức, ký hiệu là $R(x)$. Trường phân thức này thường được gọi là **trường phân thức hữu tỉ** (field of rational fractions), trong đó phần tử có dạng cơ bản $\dfrac{f(x)}{g(x)}$, với $f(x)$ và $g(x)$ đều là đa thức.
 
@@ -627,15 +627,15 @@ Vành đa thức có thể được khái quát sang trường hợp có nhiều
 <span id="vành-chuỗi-lũy-thừa-hình-thức"></span>
 ### Vành chuỗi lũy thừa hình thức
 
-Ta cũng có thể xét trường hợp tổng hình thức được phép có vô hạn nhiều hệ số khác không. **Chuỗi lũy thừa hình thức** (formal power series) trên vành giao hoán có đơn vị $R$ được định nghĩa là
+Cũng có thể xét trường hợp tổng hình thức được phép có vô hạn nhiều hệ số khác không. **Chuỗi lũy thừa hình thức** (formal power series) trên vành giao hoán có đơn vị $R$ được định nghĩa là
 
 $$
 \sum_{k=0}^\infty a_kx^k=a_0+a_1x+a_2x^2+\cdots.
 $$
 
-Dùng cách nhất quán với vành đa thức $R[x]$, có thể định nghĩa phép cộng và phép nhân giữa các chuỗi lũy thừa. Khi đó các chuỗi lũy thừa hình thức cũng tạo thành một vành, ký hiệu là $R[[x]]$. Ở đây chuỗi lũy thừa hình thức không cần xét tính hội tụ hay phân kỳ, vì trên thực tế mỗi chuỗi lũy thừa hình thức chỉ là dãy hệ số của nó và không được gán thêm cấu trúc tôpô nào.
+Dùng cách nhất quán với vành đa thức $R[x]$, có thể định nghĩa phép cộng và phép nhân giữa các chuỗi lũy thừa. Khi đó các chuỗi lũy thừa hình thức cũng tạo thành một vành, ký hiệu là $R[[x]]$. Trong định nghĩa này, chuỗi lũy thừa hình thức không cần xét tính hội tụ hay phân kỳ, vì trên thực tế mỗi chuỗi lũy thừa hình thức chỉ là dãy hệ số của nó và không được gán thêm cấu trúc tôpô nào.
 
-Cấu trúc của vành chuỗi lũy thừa hình thức rất thú vị. Trong vành đa thức trên miền nguyên, phần tử khả nghịch chỉ có thể là hằng số. Nhưng trong vành chuỗi lũy thừa hình thức, ta lại có
+Cấu trúc của vành chuỗi lũy thừa hình thức rất thú vị. Trong vành đa thức trên miền nguyên, phần tử khả nghịch chỉ có thể là hằng số. Nhưng trong vành chuỗi lũy thừa hình thức, lại có
 
 $$
 (1-x)^{-1}=\sum_{k=0}^\infty x^k=1+x+x^2+\cdots.
@@ -647,7 +647,7 @@ $$
 \left(\sum_{k=0}^\infty a_kx^k\right)\left(\sum_{k=0}^\infty b_kx^k\right)=1,
 $$
 
-thì khi viết ra hệ phương trình mà các hệ số cần thỏa mãn, ta có thể truy hồi để tìm biểu thức của $b_k$, trong đó chỉ cần dùng đến nghịch đảo của $a_0$.
+thì khi viết ra hệ phương trình mà các hệ số cần thỏa mãn, có thể truy hồi để tìm biểu thức của $b_k$, trong đó chỉ cần dùng đến nghịch đảo của $a_0$.
 
 Trên vành chuỗi lũy thừa hình thức có thể định nghĩa nhiều phép toán như lấy nghịch đảo, phép chia, nghịch đảo hợp thành, đạo hàm hình thức, hàm sơ cấp, v.v.; xem chi tiết tại [giới thiệu kỹ thuật đa thức](../poly/intro.md).
 
@@ -660,7 +660,7 @@ $$
 \sum_{k=N}^\infty a_kx^k,
 $$
 
-trong đó $N\in\mathbf Z$. Vì vậy, chuỗi Laurent hình thức có thể có hữu hạn nhiều hạng tử bậc âm. Mở rộng phép cộng và phép nhân trước đó sang chuỗi Laurent hình thức, ta thu được vành chuỗi Laurent hình thức, ký hiệu là $R((x))$. Nếu $F$ là trường, thì $F((x))$ cũng là trường.
+trong đó $N\in\mathbf Z$. Vì vậy, chuỗi Laurent hình thức có thể có hữu hạn nhiều hạng tử bậc âm. Mở rộng phép cộng và phép nhân trước đó sang chuỗi Laurent hình thức sẽ thu được vành chuỗi Laurent hình thức, ký hiệu là $R((x))$. Nếu $F$ là trường, thì $F((x))$ cũng là trường.
 
 Vành chuỗi Laurent hình thức có ứng dụng trong [nghịch đảo Lagrange](../poly/lagrange-inversion.md).
 
@@ -695,9 +695,9 @@ Trong trường hợp vành có đơn vị, nếu xét các iđêan chính $(a)$
 ??? note "Chứng minh"
     Nội dung định lý khá phong phú, nhưng những kết luận còn cần chứng minh chỉ có hai: $\varphi$ là toàn ánh và $I_1\cap\cdots\cap I_n=I_1\cdots I_n$. Điểm then chốt là tận dụng điều kiện cùng nhau cực đại.
     
-    Trước hết chứng minh trường hợp $n=2$. Vì các iđêan $I_1$ và $I_2$ cùng nhau cực đại, tức là $I_1+I_2=R$, nên phần tử đơn vị $1$ trong $R$ có thể viết dưới dạng $a_1+a_2$, trong đó $a_i\in I_i$. Vì $a_1\in I_1$ và $a_1=1-a_2\in 1+I_2$, nên $\varphi(a_1)=(I_1,1+I_2)$; tương tự, $\varphi(a_2)=(1+I_1,I_2)$. Do đó $(\varphi(a_2),\varphi(a_1))$ đóng vai trò tương tự một "cơ sở" trong không gian vectơ. Vì vậy, với ảnh tùy ý $(r_1+I_1,r_2+I_2)$, ta đều có thể tìm được nguyên ảnh dưới đồng cấu $\varphi$, là $r_1a_2+r_2a_1$. Điều này cho thấy $\varphi$ là toàn ánh.
+    Trước hết chứng minh trường hợp $n=2$. Vì các iđêan $I_1$ và $I_2$ cùng nhau cực đại, tức là $I_1+I_2=R$, nên phần tử đơn vị $1$ trong $R$ có thể viết dưới dạng $a_1+a_2$, trong đó $a_i\in I_i$. Vì $a_1\in I_1$ và $a_1=1-a_2\in 1+I_2$, nên $\varphi(a_1)=(I_1,1+I_2)$; tương tự, $\varphi(a_2)=(1+I_1,I_2)$. Do đó $(\varphi(a_2),\varphi(a_1))$ đóng vai trò tương tự một "cơ sở" trong không gian vectơ. Vì vậy, với ảnh tùy ý $(r_1+I_1,r_2+I_2)$, đều có thể tìm được nguyên ảnh dưới đồng cấu $\varphi$, là $r_1a_2+r_2a_1$. Điều này cho thấy $\varphi$ là toàn ánh.
     
-    Còn cần chứng minh $I_1\cap I_2=I_1I_2$. Với vành tổng quát luôn có $I_1I_2\subseteq I_1\cap I_2$, điểm then chốt là chiều ngược lại. Với mọi $r\in I_1\cap I_2$, ta có $r=r(a_1+a_2)=ra_1+ra_2\in I_1I_2$. Do đó cũng có $I_1\cap I_2\subseteq I_1I_2$. Suy ra điều phải chứng minh.
+    Còn cần chứng minh $I_1\cap I_2=I_1I_2$. Với vành tổng quát luôn có $I_1I_2\subseteq I_1\cap I_2$, điểm then chốt là chiều ngược lại. Với mọi $r\in I_1\cap I_2$, có $r=r(a_1+a_2)=ra_1+ra_2\in I_1I_2$. Do đó cũng có $I_1\cap I_2\subseteq I_1I_2$. Suy ra điều phải chứng minh.
     
     Với trường hợp $n>2$, cần dùng quy nạp toán học. Bước quy nạp then chốt là chứng minh rằng với các iđêan đôi một cùng nhau cực đại $I_1,\cdots,I_n$, luôn có $I_1$ và $I_2\cdots I_n$ cùng nhau cực đại. Vì $I_1$ cùng nhau cực đại với từng $I_2,\cdots,I_n$, nên với mỗi $i=2,\cdots,n$ đều tồn tại $a_i\in I_1$ và $b_i\in I_i$ sao cho $1=a_i+b_i$. Do đó $1=(a_2+b_2)\cdots(a_n+b_n)$. Vì vậy $1\in (b_2\cdots b_n)+I_1\subseteq I_1+(I_2\cdots I_n)$. Điều này cho thấy các iđêan $I_1$ và $I_2\cdots I_n$ cùng nhau cực đại.
 
@@ -706,7 +706,7 @@ Trong trường hợp vành có đơn vị, nếu xét các iđêan chính $(a)$
 
 Đọc thêm: [nội suy Lagrange](../numerical/interp.md#phương-pháp-nội-suy-lagrange), [nội suy nhanh đa thức](../poly/multipoint-eval-interpolation.md#nội-suy-nhanh-đa-thức)
 
-Bài toán nội suy (interpolation) là: cho một dãy giá trị tại các điểm $\{(x_i,y_i)\}_{i=1}^n$, tìm đa thức $f(x)$ trên trường $F$ sao cho $f(x_i)=y_i$ với mọi $i=1,\cdots,n$. Tất nhiên, ta giả sử các $x_i$ đôi một khác nhau. Công thức nội suy Lagrange cho nghiệm tổng quát của loại bài toán này.
+Bài toán nội suy (interpolation) là: cho một dãy giá trị tại các điểm $\{(x_i,y_i)\}_{i=1}^n$, tìm đa thức $f(x)$ trên trường $F$ sao cho $f(x_i)=y_i$ với mọi $i=1,\cdots,n$. Giả sử các $x_i$ đôi một khác nhau. Công thức nội suy Lagrange cho nghiệm tổng quát của loại bài toán này.
 
 Với đa thức $f(x)$ trên trường $F$, điều kiện $f(x_i)=y_i$ tương đương với việc $x_i$ là một nghiệm của đa thức $f(x)-y_i$, do đó tương đương với $(x-x_i)\mid(f(x)-y_i)$, tức là $f(x)\equiv y_i\pmod{x-x_i}$. Vì vậy, bài toán nội suy tương đương với việc giải hệ phương trình đồng dư
 
@@ -731,7 +731,7 @@ $$
 m_i(x_i)\prod_{j\neq i}(x_i-x_j) = 1.
 $$
 
-Ta có thể lấy $m_i(x)$ là đa thức hằng, tức là
+Có thể lấy $m_i(x)$ là đa thức hằng, tức là
 
 $$
 m_i(x) = \frac{1}{\prod_{j\neq i}(x_i-x_j)}.
@@ -750,9 +750,9 @@ Nói chung, khi khái quát phương pháp này, còn có thể suy ra [công th
 
 Đọc thêm: [căn nguyên thủy](../number-theory/primitive-root.md), [định lý cơ bản về nhóm Abel hữu hạn sinh](./group-theory.md#định-lý-phân-loại)
 
-Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, ở đây ta thảo luận cấu trúc của nhóm nhân modulo $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
+Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, phần này thảo luận cấu trúc của nhóm nhân modulo $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
 
-**Nhóm nhân modulo $n$ của số nguyên** (multiplicative group of integers modulo $n$) là $(\mathbf Z/n\mathbf Z)^\times$, tức là nhóm nhân của các phần tử khả nghịch trong vành thương $\mathbf Z/n\mathbf Z$ (cũng gọi là nhóm đơn vị). Cấp của nhóm $(\mathbf Z/n\mathbf Z)^\times$ là $\varphi(n)$, vì điều kiện cần và đủ để một lớp đồng dư có nghịch đảo chính là nguyên tố cùng nhau với $n$. Ở đây $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Hơn nữa, nhóm $(\mathbf Z/n\mathbf Z)^\times$ luôn là nhóm Abel.
+**Nhóm nhân modulo $n$ của số nguyên** (multiplicative group of integers modulo $n$) là $(\mathbf Z/n\mathbf Z)^\times$, tức là nhóm nhân của các phần tử khả nghịch trong vành thương $\mathbf Z/n\mathbf Z$ (cũng gọi là nhóm đơn vị). Cấp của nhóm $(\mathbf Z/n\mathbf Z)^\times$ là $\varphi(n)$, vì điều kiện cần và đủ để một lớp đồng dư có nghịch đảo chính là nguyên tố cùng nhau với $n$. Trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Hơn nữa, nhóm $(\mathbf Z/n\mathbf Z)^\times$ luôn là nhóm Abel.
 
 Theo định lý cơ bản của số học, môđun $n$ có thể phân tích thành tích các lũy thừa của các số nguyên tố khác nhau:
 
@@ -760,7 +760,7 @@ $$
 n=p_1^{\alpha_1}\cdots p_s^{\alpha_s}.
 $$
 
-Dễ kiểm tra rằng với các iđêan của vành số nguyên, điều kiện các iđêan cùng nhau cực đại tương đương với việc các phần tử sinh của chúng nguyên tố cùng nhau. Vì vậy, áp dụng định lý số dư Trung Hoa, ta thu được
+Có thể kiểm tra rằng với các iđêan của vành số nguyên, điều kiện các iđêan cùng nhau cực đại tương đương với việc các phần tử sinh của chúng nguyên tố cùng nhau. Vì vậy, áp dụng định lý số dư Trung Hoa sẽ thu được
 
 $$
 \mathbf Z/n\mathbf Z\cong\mathbf Z/p_1^{\alpha_1}\mathbf Z\times\cdots\times\mathbf Z/p_s^{\alpha_s}\mathbf Z.
@@ -779,7 +779,7 @@ Do đó, để nghiên cứu trường hợp môđun tổng quát, chỉ cần x
 -   Với trường hợp $p=2$, kiểm tra trực tiếp cho thấy $(\mathbf Z/2\mathbf Z)^\times\cong C_1$ và $(\mathbf Z/4\mathbf Z)^\times\cong C_2$. Với trường hợp $k\ge3$, có $(\mathbf Z/2^k\mathbf Z)^\times\cong C_2\times C_{2^{k-2}}$.
 
     ??? note "Chứng minh"
-        Dùng định lý nhị thức để tính trực tiếp, ta biết
+        Dùng định lý nhị thức để tính trực tiếp, biết rằng
         
         $$
         \begin{aligned}
@@ -788,7 +788,7 @@ Do đó, để nghiên cứu trường hợp môđun tổng quát, chỉ cần x
         \end{aligned}
         $$
         
-        Vì vậy, $5$ là phần tử cấp $2^{k-2}$ trong $(\mathbf Z/2^k\mathbf Z)^\times$. Đồng thời, $-1$ và $5^{2^{k-3}}$ là hai phần tử cấp hai khác nhau, nên $-1\notin\langle 5\rangle$. Do đó $\langle-1\rangle$ và $\langle 5\rangle$ có giao tầm thường, và theo định lý đẳng cấu thứ hai ta có
+        Vì vậy, $5$ là phần tử cấp $2^{k-2}$ trong $(\mathbf Z/2^k\mathbf Z)^\times$. Đồng thời, $-1$ và $5^{2^{k-3}}$ là hai phần tử cấp hai khác nhau, nên $-1\notin\langle 5\rangle$. Do đó $\langle-1\rangle$ và $\langle 5\rangle$ có giao tầm thường, và theo định lý đẳng cấu thứ hai có
         
         $$
         (\mathbf Z/2^k\mathbf Z)^\times\cong\langle-1\rangle\times\langle 5\rangle\cong C_2\times C_{2^{k-2}}.
@@ -815,7 +815,7 @@ Do đó, để nghiên cứu trường hợp môđun tổng quát, chỉ cần x
         C_{n_1}\times\cdots\times C_{n_r}.
         $$
         
-        Ở đây $n_1\mid n_2\mid \cdots \mid n_r$. Vì vậy, trong mỗi nhân tử tích trực tiếp đều có $n_1$ phần tử có cấp chia $n_1$. Nếu $r>1$, thì sẽ có nhiều hơn hẳn $n_1$ phần tử thỏa mãn phương trình $x^{n_1}=1$. Nhưng $\mathbf Z/p\mathbf Z$ là trường, và đa thức bậc $n_1$ trên trường có nhiều nhất $n_1$ nghiệm, nên $r=1$. Nói cách khác, $(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$.
+        Trong đó $n_1\mid n_2\mid \cdots \mid n_r$. Vì vậy, trong mỗi nhân tử tích trực tiếp đều có $n_1$ phần tử có cấp chia $n_1$. Nếu $r>1$, thì sẽ có nhiều hơn hẳn $n_1$ phần tử thỏa mãn phương trình $x^{n_1}=1$. Nhưng $\mathbf Z/p\mathbf Z$ là trường, và đa thức bậc $n_1$ trên trường có nhiều nhất $n_1$ nghiệm, nên $r=1$. Nói cách khác, $(\mathbf Z/p\mathbf Z)^\times\cong C_{p-1}$.
         
         Như vậy đã chứng minh $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$.
 
@@ -825,9 +825,9 @@ $$
 1,2,4,p^k,2p^k
 $$
 
-trong đó $p$ là số nguyên tố lẻ; nếu không, nhóm nhân modulo $n$ của số nguyên có nhóm con $C_2\times C_2$, nên không thể là nhóm cyclic. Khi nhóm nhân là nhóm cyclic, phần tử sinh của nhóm nhân được gọi là **căn nguyên thủy** (primitive root) modulo đó. Vì vậy, định lý ở đây chính là điều kiện cần và đủ để căn nguyên thủy tồn tại.
+trong đó $p$ là số nguyên tố lẻ; nếu không, nhóm nhân modulo $n$ của số nguyên có nhóm con $C_2\times C_2$, nên không thể là nhóm cyclic. Khi nhóm nhân là nhóm cyclic, phần tử sinh của nhóm nhân được gọi là **căn nguyên thủy** (primitive root) modulo đó. Vì vậy, định lý này chính là điều kiện cần và đủ để căn nguyên thủy tồn tại.
 
-Tất nhiên, phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiện tồn tại căn nguyên thủy. Nó phản ánh rõ ràng cấp của các phần tử khác nhau trong nhóm nhân. Trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, phần tử $x$ thỏa mãn $x^k=1$, tức là nghiệm của phương trình đồng dư $x^k\equiv 1\pmod n$, được gọi là **căn bậc $k$ của đơn vị modulo $n$** ($k$-th root of unity modulo $n$); phần tử có cấp đúng bằng $k$ được gọi là **căn nguyên thủy bậc $k$ của đơn vị modulo $n$** (primitive $k$-th root of unity modulo $n$). Dựa vào cấu trúc của nhóm nhân, ta có thể tính chính xác sự tồn tại và số lượng của các căn đơn vị này. Cuối cùng, bội chung nhỏ nhất của cấp của mọi phần tử trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, tức là số nguyên dương nhỏ nhất $k$ sao cho mọi $x\in (\mathbf Z/n\mathbf Z)^\times$ đều thỏa mãn $x^k=1$, khi xem như hàm của $n$, chính là [hàm Carmichael](../number-theory/primitive-root.md#hàm-carmichael). Một loạt tính chất của nó đều có thể thu được từ cấu trúc của nhóm nhân.
+Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiện tồn tại căn nguyên thủy. Nó phản ánh cụ thể cấp của các phần tử khác nhau trong nhóm nhân. Trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, phần tử $x$ thỏa mãn $x^k=1$, tức là nghiệm của phương trình đồng dư $x^k\equiv 1\pmod n$, được gọi là **căn bậc $k$ của đơn vị modulo $n$** ($k$-th root of unity modulo $n$); phần tử có cấp đúng bằng $k$ được gọi là **căn nguyên thủy bậc $k$ của đơn vị modulo $n$** (primitive $k$-th root of unity modulo $n$). Dựa vào cấu trúc của nhóm nhân, có thể tính chính xác sự tồn tại và số lượng của các căn đơn vị này. Cuối cùng, bội chung nhỏ nhất của cấp của mọi phần tử trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, tức là số nguyên dương nhỏ nhất $k$ sao cho mọi $x\in (\mathbf Z/n\mathbf Z)^\times$ đều thỏa mãn $x^k=1$, khi xem như hàm của $n$, chính là [hàm Carmichael](../number-theory/primitive-root.md#hàm-carmichael). Một loạt tính chất của nó đều có thể thu được từ cấu trúc của nhóm nhân.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
