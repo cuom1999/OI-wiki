@@ -234,9 +234,9 @@ Cấu hình khuyến nghị cho phòng thi như sau.
 
 Để khởi động Emacs ở chế độ trình dòng lệnh, thêm tham số `-nw` khi khởi động. Emacs có nhiều biến thể, chẳng hạn [GCC Emacs](http://akrl.sdf.org/gccemacs.html) dùng biên dịch mã gốc (native-comp) để giảm độ trễ và biến thể GTK thuần của nó, hoặc Emacs Macport được tối ưu cho macOS.
 
-Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài phần bổ trợ. Dùng [máy nhân bản](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
+Emacs có kho phần mềm tập trung; sau khi cấu hình, có thể dùng `M-x package-install` để cài phần bổ trợ. Dùng [máy chủ nhân bản (mirror)](https://mirrors.bfsu.edu.cn/help/elpa/) có thể tăng tốc tải xuống.
 
-Emacs có thể dùng máy chủ ngôn ngữ (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Phần nền (backend) cho C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Phần giao diện phía trước (frontend) có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi lựa chọn phần giao diện phía trước.
+Emacs có thể dùng máy chủ ngôn ngữ (Language Server Protocol) để cải thiện trải nghiệm chỉnh sửa. Phần xử lý phía sau (backend) cho C++ hiện được khuyến nghị là [Clangd](https://clangd.llvm.org/). Phần giao diện trong Emacs (frontend) có thể dùng [Eglot](https://github.com/joaotavora/eglot) hoặc [Emacs LSP](https://emacs-lsp.github.io/lsp-mode/); tham khảo [mục này](https://github.com/joaotavora/eglot#historical-differences-to-lsp-modeel) có thể hữu ích khi lựa chọn phần giao diện trong Emacs.
 
 Tài liệu Org Mode có phần mở rộng `.org` có thể được chuyển thành tài liệu Markdown bằng [Pandoc](https://pandoc.org/).
 
