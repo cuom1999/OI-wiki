@@ -558,7 +558,15 @@ viết tay. Dù vậy, vẫn phải tùy bài toán cụ thể.
 #### Dùng NumPy
 
 ??? note "NumPy là gì"
-    [NumPy](https://numpy.org/) là thư viện tính toán khoa học nổi tiếng của Python, cung cấp phép tính số học và ma trận hiệu năng cao. Khi thử nghiệm mẫu thuật toán, có thể dùng NumPy để tránh tự viết các thuật toán sắp xếp, tìm min/max, v.v. Cấu trúc dữ liệu cốt lõi của NumPy là `ndarray`, tức mảng n chiều; nó được lưu liên tục trong bộ nhớ và có độ dài cố định. Ngoài ra, phần lõi của NumPy được viết bằng C nên hiệu suất cao. Cần lưu ý NumPy không phải một phần của thư viện chuẩn; có thể cài bằng `pip install numpy`, nhưng không bảo đảm môi trường thi OI có sẵn (xem [phiên bản Python](#mot-so-phien-ban-python-tren-cac-nen-tang) ở đầu bài).
+    [NumPy](https://numpy.org/) là thư viện tính toán khoa học nổi tiếng của
+    Python, cung cấp phép tính số học và ma trận hiệu năng cao. Khi thử nghiệm
+    mẫu thuật toán, có thể dùng NumPy để tránh tự viết các thuật toán sắp xếp,
+    tìm min/max, v.v. Cấu trúc dữ liệu cốt lõi của NumPy là `ndarray`, tức mảng
+    n chiều; nó được lưu liên tục trong bộ nhớ và có độ dài cố định. Ngoài ra,
+    phần lõi của NumPy được viết bằng C nên hiệu suất cao. Cần lưu ý NumPy không
+    phải một phần của thư viện chuẩn; có thể cài bằng `pip install numpy`, nhưng
+    không bảo đảm môi trường thi OI có sẵn (xem
+    [phiên bản Python](#mot-so-phien-ban-python-tren-cac-nen-tang) ở đầu bài).
 
 Đoạn mã sau giới thiệu cách dùng NumPy để tạo mảng nhiều chiều và truy cập chúng.
 
@@ -1038,15 +1046,27 @@ NameError: name 'nothing' is not defined
 
 ## Hàm trang trí (decorator)
 
-Hàm trang trí là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được trang trí và có thêm một số chức năng. Nói ngắn gọn, hàm trang trí cho phép tăng cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo [tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
+Hàm trang trí là một hàm nhận một hàm hoặc phương thức làm tham số duy nhất và
+trả về một hàm hoặc phương thức mới, trong đó tích hợp hàm/phương thức đã được
+trang trí và có thêm một số chức năng. Nói ngắn gọn, hàm trang trí cho phép tăng
+cường chức năng của hàm mà không sửa mã của hàm đó. Có thể tham khảo
+[tài liệu chính thức](https://docs.python.org/3/glossary.html#term-decorator).
 
-Một số hàm trang trí hữu dụng trong thi đấu, chẳng hạn [`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache). Nó có thể tự động thêm khả năng ghi nhớ kết quả cho hàm, thiết thực trong thuật toán đệ quy:
+Một số hàm trang trí hữu dụng trong thi đấu, chẳng hạn
+[`lru_cache`](https://docs.python.org/3/library/functools.html#functools.lru_cache).
+Nó có thể tự động thêm khả năng ghi nhớ kết quả cho hàm, thiết thực trong thuật
+toán đệ quy:
 
 `@lru_cache(maxsize=128,typed=False)`
 
--   Có 2 tham số truyền vào: `maxsize` và `typed`. Nếu không truyền, giá trị mặc định của `maxsize` là 128, của `typed` là `False`.
--   Tham số `maxsize` biểu thị dung lượng bộ nhớ đệm LRU, tức số lượng kết quả tối đa mà phương thức được trang trí có thể lưu. Nếu giá trị này là 128, phương thức đó tối đa lưu đệm 128 kết quả trả về; nếu `maxsize` là `None`, có nghĩa số kết quả được lưu đệm không bị giới hạn.
--   Nếu `typed` đặt thành `True`, các tham số hàm có kiểu khác nhau sẽ được lưu đệm riêng. Ví dụ, `f(3)` và `f(3.0)` sẽ được lưu đệm hai lần.
+-   Có 2 tham số truyền vào: `maxsize` và `typed`. Nếu không truyền, giá trị mặc
+    định của `maxsize` là 128, của `typed` là `False`.
+-   Tham số `maxsize` biểu thị dung lượng bộ nhớ đệm LRU, tức số lượng kết quả tối
+    đa mà phương thức được trang trí có thể lưu. Nếu giá trị này là 128, phương
+    thức đó tối đa lưu đệm 128 kết quả trả về; nếu `maxsize` là `None`, số kết
+    quả được lưu đệm không bị giới hạn.
+-   Nếu `typed` đặt thành `True`, các tham số hàm có kiểu khác nhau sẽ được lưu
+    đệm riêng. Ví dụ, `f(3)` và `f(3.0)` sẽ được lưu đệm hai lần.
 
 Sau đây là ví dụ dùng `lru_cache` để tối ưu tính dãy Fibonacci:
 
@@ -1062,7 +1082,9 @@ def fib(n):
 
 ## Thư viện chuẩn thường dùng
 
-Phần này giới thiệu một số thư viện chuẩn có thể dùng khi viết thuật toán. Cách dùng cụ thể có thể tự tìm hoặc đọc [tài liệu chính thức](https://docs.python.org/3/library/index.html).
+Phần này giới thiệu một số thư viện chuẩn có thể dùng khi viết thuật toán. Cách
+dùng cụ thể có thể tự tìm hoặc đọc
+[tài liệu chính thức](https://docs.python.org/3/library/index.html).
 
 | Tên thư viện                                                        | Công dụng                                      |
 | ------------------------------------------------------------------- | ---------------------------------------------- |
@@ -1086,7 +1108,9 @@ Phần này giới thiệu một số thư viện chuẩn có thể dùng khi vi
 ## Đối chiếu C++ và Python qua bài mẫu
 
 ??? note "[Bài mẫu Luogu P4779: Mẫu đường đi ngắn nhất đơn nguồn (bản chuẩn)](https://www.luogu.com.cn/problem/P4779)"
-    Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Tính khoảng cách từ $s$ đến mọi đỉnh. Dữ liệu bảo đảm có thể đi từ $s$ đến mọi đỉnh.
+    Cho một đồ thị có hướng gồm $n(1 \leq n \leq 10^5)$ đỉnh và
+    $m(1 \leq m \leq 2\times 10^5)$ cạnh có trọng số không âm. Tính khoảng cách
+    từ $s$ đến mọi đỉnh. Dữ liệu bảo đảm có thể đi từ $s$ đến mọi đỉnh.
 
 <a id="khai-báo-hằng-số"></a>
 
