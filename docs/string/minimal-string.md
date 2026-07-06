@@ -25,7 +25,7 @@ Biểu diễn nhỏ nhất của xâu $S$ là xâu có thứ tự từ điển n
 <span id="cách-vét-cạn-đơn-giản"></span>
 ## Cách vét cạn đơn giản
 
-Mỗi lần ta so sánh hai xâu đẳng cấu vòng bắt đầu tại $i$ và $j$, đồng thời dùng $k$ để ghi vị trí đang so sánh. Mỗi khi gặp hai ký tự khác nhau, ta bỏ qua điểm bắt đầu cho xâu lớn hơn; điểm còn lại cuối cùng chính là nghiệm tối ưu.
+Mỗi lần so sánh hai xâu đẳng cấu vòng bắt đầu tại $i$ và $j$, đồng thời dùng $k$ để ghi vị trí đang so sánh. Mỗi khi gặp hai ký tự khác nhau, bỏ qua điểm bắt đầu cho xâu lớn hơn; điểm còn lại cuối cùng chính là nghiệm tối ưu.
 
 <span id="cài-đặt"></span>
 ### Cài đặt
@@ -70,9 +70,9 @@ Mỗi lần ta so sánh hai xâu đẳng cấu vòng bắt đầu tại $i$ và 
 
 Cách cài đặt này chạy tốt trên dữ liệu ngẫu nhiên, nhưng có thể bị chặn bằng dữ liệu đặc biệt.
 
-Ví dụ, với $\texttt{aaa}\cdots\texttt{aab}$, không khó thấy độ phức tạp của thuật toán suy biến thành $O(n^2)$.
+Ví dụ, với $\texttt{aaa}\cdots\texttt{aab}$, độ phức tạp của thuật toán sẽ suy biến thành $O(n^2)$.
 
-Ta nhận thấy khi trong xâu có nhiều đoạn con lặp liên tiếp, hiệu suất của thuật toán giảm xuống; vì vậy cần tối ưu quá trình này.
+Khi trong xâu có nhiều đoạn con lặp liên tiếp, hiệu suất của thuật toán giảm xuống; vì vậy cần tối ưu quá trình này.
 
 <span id="thuật-toán-biểu-diễn-nhỏ-nhất"></span>
 ## Thuật toán biểu diễn nhỏ nhất
@@ -88,9 +88,9 @@ $$
 
 Trước hết xét trường hợp $S[i+k]>S[j+k]$. Khi đó mọi xâu có vị trí bắt đầu $l$ thỏa $i\le l\le i+k$ đều không thể là đáp án, vì với mọi xâu $S_{i+p}$ (xâu bắt đầu tại $i+p$, $p \in [0, k]$), luôn tồn tại xâu $S_{j+p}$ tốt hơn nó.
 
-Vì vậy khi so sánh, ta có thể bỏ qua các chỉ số $l\in [i,i+k]$ và trực tiếp so sánh tiếp từ $S_{i+k+1}$.
+Vì vậy khi so sánh, có thể bỏ qua các chỉ số $l\in [i,i+k]$ và trực tiếp so sánh tiếp từ $S_{i+k+1}$.
 
-Như vậy ta đã tối ưu được cách vét cạn ở trên.
+Như vậy đã tối ưu được cách vét cạn ở trên.
 
 <span id="độ-phức-tạp-thời-gian"></span>
 ### Độ phức tạp thời gian
