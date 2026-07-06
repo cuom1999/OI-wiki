@@ -63,8 +63,8 @@ int compare(const void *p1,
 }
 ```
 
-Từ đây cũng có thể thấy rằng tương đương không có nghĩa là bằng nhau, mà chỉ
-biểu thị hai phần tử tương đương theo quy tắc so sánh đang xét.
+Từ đây suy ra rằng tương đương không có nghĩa là bằng nhau, mà chỉ biểu thị hai
+phần tử tương đương theo quy tắc so sánh đang xét.
 
 ## std::sort
 

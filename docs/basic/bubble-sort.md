@@ -8,7 +8,7 @@ Sắp xếp nổi bọt (tiếng Anh: Bubble sort) là một thuật toán sắp
 
 Nguyên lý hoạt động của thuật toán là mỗi lần kiểm tra hai phần tử kề nhau; nếu phần tử đứng trước và phần tử đứng sau thỏa điều kiện cần đổi theo thứ tự sắp xếp đã cho, thì hoán đổi hai phần tử kề nhau đó. Khi không còn cặp phần tử kề nhau nào cần hoán đổi, quá trình sắp xếp hoàn tất.
 
-Sau $i$ lượt quét, $i$ phần tử ở cuối dãy chắc chắn là $i$ phần tử lớn nhất. Vì vậy, sắp xếp nổi bọt chỉ cần quét mảng nhiều nhất $n-1$ lần để hoàn tất.
+Sau $i$ lượt quét, $i$ phần tử ở cuối dãy là $i$ phần tử lớn nhất. Vì vậy, sắp xếp nổi bọt chỉ cần quét mảng nhiều nhất $n-1$ lần để hoàn tất.
 
 ## Tính chất
 

@@ -130,7 +130,7 @@ Trong đó $n$ là số phần tử trong mảng, còn $m$ là dung lượng hi�
         -   $\Phi(h') - \Phi(h) = 2(n + 1) - 2n - (2n - n) = 2 - n$
     -   **Chi phí khấu hao**: $n + 1 + (2 - n) = 3$
 
-Từ phân tích trên có thể thấy, dù chi phí thực tế của thao tác mở rộng khá cao, nhờ cách thiết kế hàm thế năng, chi phí khấu hao tổng thể vẫn giữ ở mức hằng số $O(1)$.
+Từ phân tích trên, dù chi phí thực tế của thao tác mở rộng khá cao, nhờ cách thiết kế hàm thế năng, chi phí khấu hao tổng thể vẫn giữ ở mức hằng số $O(1)$.
 
 ## Ví dụ mở rộng: thao tác ngăn xếp
 

@@ -102,7 +102,7 @@ tế.
 Kiến thức cần biết trước: [Sắp xếp theo xô](./bucket-sort.md)
 
 Sắp xếp theo xô cần các thuật toán sắp xếp khác để hoàn tất việc sắp xếp các
-phần tử bên trong từng xô. Nhưng thực ra, hoàn toàn có thể tiếp tục thực hiện
+phần tử bên trong từng xô. Tuy nhiên, hoàn toàn có thể tiếp tục thực hiện
 sắp xếp theo xô trên mỗi xô cho đến khi số phần tử trong xô $\le 1$.
 
 Vì vậy, một cách hiểu khác về sắp xếp cơ số MSD là: sắp xếp theo xô được cài
@@ -190,7 +190,7 @@ Sau đây là cách dùng sắp xếp cơ số LSD để sắp xếp phần tử
     --8<-- "docs/basic/code/radix-sort/radix-sort_lsd.cpp:core"
     ```
 
-Thực ra, để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra
+Để có một phép sắp xếp ổn định, không nhất thiết phải duyệt từ sau ra
 trước; chỉ cần thực hiện trên mảng `cnt` một thao tác tương đương với
 `std::exclusive_scan`.
 

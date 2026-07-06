@@ -28,7 +28,7 @@ Cách tính độ phức tạp đơn giản thường là đếm số lần th�
 
 Cận dưới độ phức tạp thời gian của các thuật toán sắp xếp dựa trên so sánh là $O(n\log n)$.
 
-Tất nhiên, cũng có những thuật toán không có độ phức tạp $O(n\log n)$. Ví dụ, [sắp xếp đếm](./counting-sort.md) có độ phức tạp thời gian là $O(n+w)$, trong đó $w$ là kích thước miền giá trị của dữ liệu đầu vào.
+Cũng có những thuật toán không có độ phức tạp $O(n\log n)$. Ví dụ, [sắp xếp đếm](./counting-sort.md) có độ phức tạp thời gian là $O(n+w)$, trong đó $w$ là kích thước miền giá trị của dữ liệu đầu vào.
 
 Sau đây là phần so sánh một số thuật toán sắp xếp.
 
