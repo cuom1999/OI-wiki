@@ -155,14 +155,17 @@ Ngoài ra, trong libstdc++ có một số hàm thành viên nội bộ hữu d�
 <span id="libreoj-beta-round-2-tham-lam-chỉ-qua-được-ví-dụ-mẫu"></span>
 ### [LibreOJ β Round #2: Tham lam chỉ qua được ví dụ mẫu](https://loj.ac/problem/515)
 
-Có thể giải bài này bằng DP, công thức chuyển rất đơn giản:
+Bài này có thể giải bằng DP với công thức chuyển sau:
 
 $f(i,j)$ biểu diễn việc tổng bình phương của $i$ số đầu có thể bằng $j$ hay
-không. Khi đó $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$ (lấy OR).
+không. Khi đó $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$, tức lấy OR trên mọi
+giá trị $k$ hợp lệ.
 
-Nhưng nếu làm trực tiếp thì là $O(n^5)$, (có vẻ) không đáp ứng yêu cầu thời gian.
+Nếu tính trực tiếp, độ phức tạp là $O(n^5)$ và không đáp ứng được giới hạn thời
+gian.
 
-Nhận thấy có thể dùng `bitset` để tối ưu: chỉ cần dịch trái rồi OR lại:
+Có thể dùng `bitset` để tối ưu bước chuyển: dịch trái rồi OR vào trạng thái hiện
+tại.
 
 ??? note "Bản nộp: [std::bitset](https://loj.ac/submission/395274)"
     ```cpp
@@ -200,8 +203,8 @@ Nhận thấy có thể dùng `bitset` để tối ưu: chỉ cần dịch trái
 
 Vì cài đặt của libstdc++ nén các bit theo từng nhóm
 `__CHAR_BIT__ * sizeof(unsigned long)`[^bitset2], trên một số nền là $32$. Do
-đó, có thể tự viết `bitset` (chỉ cần hỗ trợ thao tác dịch trái rồi OR) nén $64$
-bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
+đó, có thể tự viết `bitset` chỉ hỗ trợ thao tác dịch trái rồi OR, và nén theo
+nhóm $64$ bit (`__CHAR_BIT__ * sizeof(unsigned long long)`) để tối ưu tiếp:
 
 ??? note "Bản nộp: [bitset tự viết](https://loj.ac/submission/395619)"
     ```cpp
