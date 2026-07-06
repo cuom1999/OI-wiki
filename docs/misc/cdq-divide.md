@@ -207,7 +207,7 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     Tóm tắt đề bài trong một câu: cho một đồ thị hỗ trợ sửa động trọng số cạnh, yêu cầu sau mỗi lần sửa trọng số cạnh, xuất ra tổng chi phí nhỏ nhất của cây khung nhỏ nhất của đồ thị đó.
 
 ??? note "Ý tưởng giải"
-    Một cách giải bài này là dùng chia để trị trên cây đoạn lồng LCT, nhưng cách hiện thực này có hằng số quá lớn, có thể cần kỹ thuật tối ưu hằng số tinh tế mới qua được bài. Vì vậy có thể cân nhắc dùng chia để trị CDQ để giải bài này.
+    Một cách giải bài này là dùng chia để trị trên cây đoạn lồng LCT, nhưng cách hiện thực này có hằng số quá lớn, có thể cần kỹ thuật tối ưu hằng số tinh tế mới được chấp nhận. Vì vậy có thể cân nhắc dùng chia để trị CDQ để giải bài này.
     
     Khác với các bài toán thông thường được giải bằng chia để trị CDQ, khi dùng chia để trị CDQ trong bài này không có quan hệ sửa đổi và truy vấn để chia để trị, vì không thể xét riêng "sửa một cạnh đóng góp gì cho cây khung nhỏ nhất của toàn bộ đồ thị". Cách tiếp cận chia để trị CDQ truyền thống không phù hợp trực tiếp.
     

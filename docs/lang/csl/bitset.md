@@ -157,7 +157,7 @@ Có thể giải bài này bằng DP, công thức chuyển rất đơn giản:
 
 $f(i,j)$ biểu diễn việc tổng bình phương của $i$ số đầu có thể bằng $j$ hay không. Khi đó $f(i,j)=\bigvee\limits_{k=a}^bf(i-1,j-k^2)$ (lấy OR).
 
-Nhưng nếu làm trực tiếp thì là $O(n^5)$, (có vẻ) không qua được.
+Nhưng nếu làm trực tiếp thì là $O(n^5)$, (có vẻ) không đáp ứng yêu cầu thời gian.
 
 Nhận thấy có thể dùng `bitset` để tối ưu: chỉ cần dịch trái rồi OR lại:
 

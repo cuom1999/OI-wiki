@@ -253,13 +253,13 @@ Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
 1.  Ít nhất bằng hai lần thời gian chạy của lời giải chuẩn (std) trong trường hợp xấu nhất.
 2.  Nếu cuộc thi cho phép dùng Java, phải để Java đủ thời gian chạy.
-3.  Không nên để lời giải sai vượt qua (trừ khi thật sự không chặn được, hoặc muốn cho một loại lời giải sai nào đó qua).
+3.  Không nên để lời giải sai được chấp nhận (trừ khi thật sự không chặn được, hoặc muốn cho một loại lời giải sai nào đó được chấp nhận).
 
-Để vừa cho qua các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
+Để vừa chấp nhận các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
 
-Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để những lời giải sai nhưng khá tốt và những lời giải đúng có hằng số lớn không vượt qua được toàn bộ dữ liệu, nhưng vẫn nhận được điểm thành phần khá cao.
+Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để những lời giải sai nhưng khá tốt và những lời giải đúng có hằng số lớn không được chấp nhận trên toàn bộ dữ liệu, nhưng vẫn nhận được điểm thành phần khá cao.
 
-Khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để vượt qua hay không.
+Khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để được chấp nhận hay không.
 
 Thông thường, giới hạn bộ nhớ nên đặt đủ lớn, trừ khi lời giải có độ phức tạp bộ nhớ tốt hơn thật sự rất khéo và đáng để chặn các lời giải dùng nhiều bộ nhớ. Trong trường hợp này có thể cân nhắc đặt một phần điểm với giới hạn bộ nhớ rộng hơn. Cần lưu ý rằng nếu không muốn chặn các lời giải tiêu tốn nhiều bộ nhớ, các bài về cấu trúc dữ liệu thường cần đặt giới hạn bộ nhớ lớn hơn.
 
@@ -410,7 +410,7 @@ Dữ liệu nên bao gồm các trường hợp biên khác nhau.
 
 Khi dùng bài con (subtask), dữ liệu (bao gồm đầu vào và đầu ra) tốt nhất nên bao phủ các khoảng khác nhau trong miền giá trị, chứ không chỉ có giá trị lớn nhất của giới hạn dữ liệu.
 
-Để tránh lời giải xét riêng cấu trúc đặc biệt qua được, có thể kết hợp nhiều cấu trúc khác nhau trong một bộ kiểm thử, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
+Để tránh lời giải xét riêng cấu trúc đặc biệt được chấp nhận, có thể kết hợp nhiều cấu trúc khác nhau trong một bộ kiểm thử, hoặc để phần lớn dữ liệu là dữ liệu dựng, xen lẫn một phần nhỏ dữ liệu ngẫu nhiên.
 
 Dữ liệu nên bao gồm nhiều loại cấu trúc khác nhau, ngay cả khi chưa biết lời giải sai nào sẽ chết trên cấu trúc đó. (Trong thể thức tính điểm theo bộ kiểm thử cần cân nhắc xử lý.)
 

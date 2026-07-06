@@ -1,4 +1,4 @@
-# Code này chỉ dùng để minh họa; không qua được bài gốc vì quá thời gian.
+# Code này chỉ dùng để minh họa; không được chấp nhận ở bài gốc vì quá thời gian.
 class Dsu:
     def __init__(self, size, m):
         self.id = size * 2

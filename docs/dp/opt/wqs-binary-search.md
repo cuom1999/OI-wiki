@@ -953,7 +953,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Mã tham khảo như sau:
     
     === "Cách một"
-        Mã chỉ mang tính minh họa; để vượt qua phạm vi dữ liệu gốc, cần dùng số nguyên 128 bit và điều chỉnh khoảng nhị phân ban đầu thành $[0,10^{60}]$.
+        Mã chỉ mang tính minh họa; để đáp ứng phạm vi dữ liệu gốc, cần dùng số nguyên 128 bit và điều chỉnh khoảng nhị phân ban đầu thành $[0,10^{60}]$.
         
         ```cpp
         --8<-- "docs/dp/code/opt/wqs-binary-search/teleporters-1.cpp"

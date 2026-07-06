@@ -317,7 +317,7 @@ SPFA cũng có thể dùng để xác định đỉnh $s$ có đi đến đượ
                             vis[v] = True
         ```
 
-Dù SPFA thường chạy rất nhanh, độ phức tạp thời gian trong trường hợp xấu nhất của nó là $O(nm)$; có thể tạo dữ liệu để đẩy nó đến độ phức tạp này. Vì vậy khi thi cần thận trọng khi dùng SPFA (nếu không có cạnh âm thì tốt nhất dùng Dijkstra; nếu có cạnh âm và đồ thị trong đề không có tính chất đặc biệt, còn lời giải chuẩn dựa vào SPFA, thì giới hạn dữ liệu không nên khiến Bellman-Ford không thể qua).
+Dù SPFA thường chạy rất nhanh, độ phức tạp thời gian trong trường hợp xấu nhất của nó là $O(nm)$; có thể tạo dữ liệu để đẩy nó đến độ phức tạp này. Vì vậy khi thi cần thận trọng khi dùng SPFA (nếu không có cạnh âm thì tốt nhất dùng Dijkstra; nếu có cạnh âm và đồ thị trong đề không có tính chất đặc biệt, còn lời giải chuẩn dựa vào SPFA, thì không nên đặt giới hạn dữ liệu đến mức Bellman-Ford không được chấp nhận).
 
 ???+ note "Các tối ưu khác của Bellman-Ford"
     Ngoài tối ưu bằng hàng đợi (SPFA), Bellman-Ford còn có các dạng tối ưu khác. Những tối ưu này hiệu quả rõ rệt trên một số đồ thị, nhưng trên vài đồ thị đặc biệt, độ phức tạp xấu nhất có thể đạt mức hàm mũ.

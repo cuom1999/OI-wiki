@@ -239,7 +239,7 @@ sắp xếp khác có độ phức tạp $O(n \log n)$.[^ref1]
 ### Ý tưởng tối ưu hóa đơn giản
 
 Nếu chỉ cài đặt sắp xếp nhanh theo ý tưởng cơ bản đã nêu ở trên (hoặc chép
-nguyên mẫu cài đặt), rất có thể sẽ không qua được bài mẫu
+nguyên mẫu cài đặt), rất có thể sẽ không được chấp nhận ở bài mẫu
 [Luogu P1177 - Mẫu sắp xếp nhanh](https://www.luogu.com.cn/problem/P1177), vì
 có dữ liệu ác ý có thể làm sắp xếp nhanh đơn giản suy biến thành $O(n^2)$.
 

@@ -77,7 +77,7 @@ Có thể với mỗi trạng thái $s$, nén $f_{s,1},f_{s,2},\dots,f_{s,n}$ v�
 
 Dễ có $f_{i,j}=\max(f_{i-1,j}, f_{i-1,j-v_i}+w_i)$.
 
-Do $v_i\le 10^{18}$, cách này không thể vượt qua bài.
+Do $v_i\le 10^{18}$, cách này không đáp ứng yêu cầu của bài.
 
 ### Cách giải tốt hơn
 
@@ -87,4 +87,4 @@ Tương tự, dễ có $f_{i,j}=\min(f_{i-1,j}, f_{i-1,j-w_i}+v_i)$.
 
 Lưu ý rằng sau khi đổi chiều thứ hai của trạng thái, công thức chuyển cũng phải đổi theo.
 
-Độ phức tạp thời gian là $O(n\sum w_i)$, đủ để vượt qua bài.
+Độ phức tạp thời gian là $O(n\sum w_i)$, đủ để giải bài.

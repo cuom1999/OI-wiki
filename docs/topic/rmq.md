@@ -60,7 +60,7 @@ Tuy nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đ
     
     Còn với truy vấn có hai đầu mút nằm trong cùng một khối, có thể vét cạn để tìm RMQ giữa hai điểm, với độ phức tạp thời gian $O(\sqrt n)$. Tuy nhiên, xác suất kỳ vọng để hai đầu mút của một truy vấn nằm trong cùng một khối là $O(\frac{\sqrt n}{n})$, nên độ phức tạp thời gian của phương pháp này là kỳ vọng $O(n)$.
     
-    Trong lập trình thi đấu, không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể vượt qua được.
+    Trong lập trình thi đấu, không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể được chấp nhận.
     
     Đây là một thuật toán đạt cận dưới về độ phức tạp thời gian kỳ vọng, đồng thời có độ khó cài đặt và hằng số thuật toán đều nhỏ, nên khá thực dụng trong lập trình thi đấu.
     

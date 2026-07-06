@@ -59,7 +59,7 @@ Do đó, tổng độ phức tạp là $O((n+m)(\sqrt n+\frac c{32}))$.
 
 Bài này về cơ bản giống bài trước; khác biệt duy nhất nằm ở cách tính đáp án sau khi có `bitset`.
 
-~~Vì BZOJ tính tổng giới hạn thời gian của mọi điểm kiểm thử và khó chặn cách làm này, có thể dùng `_Find_next()` để qua bài.~~
+~~Vì BZOJ tính tổng giới hạn thời gian của mọi điểm kiểm thử và khó chặn cách làm này, có thể dùng `_Find_next()` để được chấp nhận.~~
 
 Cách giải chuẩn là xử lý từng nhóm $16$ bit.
 Trước hết tiền xử lý cho $2^{16}$ trạng thái có thể:

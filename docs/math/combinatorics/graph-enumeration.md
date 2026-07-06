@@ -187,7 +187,7 @@ for (int i = 1; i <= n; ++i) B1[i] /= 2;
 exp(B, B1);
 ```
 
-Cả hai quá trình truy hồi đều có độ phức tạp $O(n^2)$ và đều qua được bài này.
+Cả hai quá trình truy hồi đều có độ phức tạp $O(n^2)$ và đều đủ để giải bài này.
 
 <span id="cách-3-exp-của-đa-thức_1"></span>
 #### Cách 3: exp của đa thức
@@ -327,7 +327,7 @@ $$
 \frac{1}{|G|}\sum_{g\in G} m^{c(g)}
 $$
 
-Trong bài này, nhóm hoán vị $G$ là nhóm hoán vị trên tập cạnh sinh bởi nhóm đối xứng cấp $n$ trên các đỉnh, nhưng cách làm vét cạn liệt kê $O(n!)$ trường hợp nên không qua được.
+Trong bài này, nhóm hoán vị $G$ là nhóm hoán vị trên tập cạnh sinh bởi nhóm đối xứng cấp $n$ trên các đỉnh, nhưng cách làm vét cạn liệt kê $O(n!)$ trường hợp nên không đáp ứng yêu cầu thời gian.
 
 Xét phân loại theo cấu trúc chu trình của hoán vị; mỗi cấu trúc chu trình tương ứng với một phân hoạch số. Dùng dfs() để sinh các phân hoạch, khi đó bài toán chuyển thành tính số hoán vị $w(p)$ ứng với mỗi phân hoạch $p$ và số chu trình $c(p)$ trong mỗi lớp hoán vị. Đáp án là
 

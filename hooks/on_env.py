@@ -19,7 +19,7 @@ HTML_TRANSLATIONS = {
     "最近更新：": "Cập nhật gần nhất: ",
     "Cập nhật gần nhất: , ": "Cập nhật gần nhất: ",
     "黑ICP备19005132号-2": "Giấy phép ICP Hắc Long Giang 19005132-2",
-    "少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.oi-wiki.org": "Chúc mừng bạn đã tìm thấy easter egg. Chúng tôi đang làm một số việc thú vị liên quan đến OI; nếu quan tâm, hãy truy cập https://join-us.oi-wiki.org",
+    "少年，恭喜你囍提彩蛋，我们在做一些 OI 相关的有趣的事情，如果您对此感兴趣，欢迎访问 https://join-us.oi-wiki.org": "Chúc mừng vì đã tìm thấy easter egg. Dự án đang thực hiện một số việc thú vị liên quan đến OI; nếu quan tâm, có thể truy cập https://join-us.oi-wiki.org",
     '"data-lang":"en-US"': '"data-lang":"vi"',
     "Made with": "Tạo bằng",
 }
