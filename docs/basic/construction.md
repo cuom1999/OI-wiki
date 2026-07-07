@@ -52,11 +52,11 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
 ???+ note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
     Nhiệm vụ 1: Xét xem có thể xây dựng một hoán vị độ dài $n$ của $1\dots n$
-    sao cho $n$ tổng tiền tố của nó đôi một khác nhau modulo $n$ hay không; nếu
+    sao cho $n$ tổng tiền tố của nó đôi một khác nhau theo môđun $n$ hay không; nếu
     có thì hãy xây dựng.
 
     Nhiệm vụ 2: Xét xem có thể xây dựng một hoán vị độ dài $n$ của $1\dots n$
-    sao cho $n$ tích tiền tố của nó đôi một khác nhau modulo $n$ hay không; nếu
+    sao cho $n$ tích tiền tố của nó đôi một khác nhau theo môđun $n$ hay không; nếu
     có thì hãy xây dựng.
 
 ??? note "Ý tưởng giải"
@@ -67,15 +67,15 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
     Khi $n$ là số chẵn, có thể xây dựng một dãy dạng $n,1,n-2,3,\cdots$.
 
     Trước hết, $n$ phải xuất hiện ở vị trí đầu tiên của dãy. Nếu không, hai tổng
-    tiền tố trước và sau khi $n$ xuất hiện sẽ bằng nhau theo modulo.
+    tiền tố trước và sau khi $n$ xuất hiện sẽ bằng nhau theo môđun.
 
     Sau đó xét cách xây dựng toàn bộ dãy:
 
     Thử xây dựng dãy tổng tiền tố rồi suy ra dãy ban đầu. Nhận xét rằng hiệu
-    giữa hai tổng tiền tố bất kỳ không được trùng nhau theo modulo, vì dãy sai
+    giữa hai tổng tiền tố bất kỳ không được trùng nhau theo môđun, vì dãy sai
     phân của dãy tổng tiền tố tương ứng với hoán vị ban đầu.
 
-    Vì vậy, thử xây dựng dãy tổng tiền tố theo modulo dưới dạng
+    Vì vậy, thử xây dựng dãy tổng tiền tố theo môđun dưới dạng
 
     $$
     0,1,-1,2,-2,\cdots
@@ -104,8 +104,8 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
     Tương tự nhiệm vụ 1, $1$ phải xuất hiện ở vị trí đầu tiên; nếu không, hai
     tích tiền tố trước và sau khi $1$ xuất hiện sẽ bằng nhau. Còn $n$ phải xuất
     hiện ở vị trí cuối cùng, vì sau vị trí xuất hiện của $n$, mọi tích tiền tố
-    theo modulo đều bằng $0$. Sau khi phân tích vài ví dụ trong đề, ta thấy các
-    ví dụ đều có một nghiệm hợp lệ sao cho dãy tích tiền tố theo modulo là
+    theo môđun đều bằng $0$. Sau khi phân tích vài ví dụ trong đề, ta thấy các
+    ví dụ đều có một nghiệm hợp lệ sao cho dãy tích tiền tố theo môđun là
     $1,2,3,\cdots,n$. Vì vậy có thể xây dựng dãy đã nêu ở trên để thỏa điều
     kiện này. Khi đó cần chứng minh $n$ số này đôi một khác nhau.
 
@@ -153,7 +153,7 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
     Cho $n$ đồ vật, thể tích của từng đồ vật lần lượt là $v_1,v_2,\ldots,v_n$.
     Tính số cách chọn một số đồ vật, cũng có thể không chọn đồ vật nào, sao
-    cho tổng thể tích đúng bằng $w$. Vì đáp án có thể lớn, hãy in đáp án modulo
+    cho tổng thể tích đúng bằng $w$. Vì đáp án có thể lớn, hãy in đáp án theo môđun
     $P$.
 
     Do thức khuya luyện bài lâu ngày, cậu chỉ nhìn thấy trong đầu vào mẫu có $w$
@@ -165,8 +165,8 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
     Đây là một trong những bài xây dựng có độ tự do rất cao. Chính điều đó làm
     người giải dễ rơi vào tình trạng không có manh mối và khó bắt đầu.
 
-    Trước hết, modulo không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự
-    do, luôn có thể khiến số cách không vượt quá modulo.
+    Trước hết, môđun không phải ràng buộc cốt lõi. Vì dữ liệu được xây dựng tự
+    do, luôn có thể khiến số cách không vượt quá môđun.
 
     Một hướng xây dựng gián tiếp hơn là dùng $n$ đồ vật nhỏ có thể tích $1$ và
     một vài đồ vật lớn có thể tích lớn hơn $\dfrac{w}{2}$.
