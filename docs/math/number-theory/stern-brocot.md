@@ -14,7 +14,7 @@ Cây Stern-Brocot là một cấu trúc thanh nhã để quản lý phân số, 
 <span id="xây-dựng-theo-từng-tầng"></span>
 #### Xây dựng theo từng tầng
 
-Cây Stern-Brocot có thể thu được trong quá trình lặp để xây dựng dãy Stern-Brocot bậc $k$ (Stern-Brocot sequence of order $k$). Dãy Stern-Brocot bậc $0$ gồm hai phân số đơn giản:
+Cây Stern-Brocot có thể thu được trong quá trình lặp để xây dựng dãy Stern-Brocot bậc $k$ (Stern-Brocot sequence of order $k$). Dãy Stern-Brocot bậc $0$ gồm hai phân số biên:
 
 $$
 \frac{0}{1},\ \frac{1}{0}.
@@ -198,7 +198,7 @@ Cài đặt thuật toán tìm phân số đơn giản như sau:
 
 Độ phức tạp của thuật toán là $O(p+q)$, nên trong lập trình thi đấu nó không thực dụng.
 
-Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Xếp các phân số tối giản ấy thành một dãy, mẫu số của các phân số trong dãy tăng nghiêm ngặt, và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, cần lưu ý rằng khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
+Trong hệ đếm Stern-Brocot, mỗi số vô tỉ dương tương ứng với một chuỗi vô hạn duy nhất. Có thể dùng cùng thuật toán để xây dựng chuỗi này. Mỗi tiền tố của chuỗi vô hạn đó tương ứng với một phân số hữu tỉ tối giản. Khi xếp các phân số tối giản ấy thành một dãy, mẫu số của chúng tăng nghiêm ngặt và giới hạn của dãy chính là số vô tỉ đó. Vì vậy, cây Stern-Brocot có thể dùng để tìm xấp xỉ hữu tỉ với độ chính xác tùy ý cho một số vô tỉ. Tuy nhiên, khoảng cách giữa dãy số hữu tỉ này và số vô tỉ không nhất thiết giảm nghiêm ngặt. Để có lý thuyết chặt chẽ về xấp xỉ hữu tỉ, nên tham khảo mục [xấp xỉ Diophantine](./continued-fraction.md#xấp-xỉ-diophantine) trong trang liên phân số. Khi dùng cây Stern-Brocot để tìm xấp xỉ tốt nhất của một số thực với mẫu số không vượt quá một giới hạn nào đó, cuối cùng cần so sánh khoảng cách từ hai đầu mút của đoạn hiện tại đến số thực đó.
 
 <span id="thuật-toán-nhanh"></span>
 #### Thuật toán nhanh
@@ -223,7 +223,7 @@ Thuật toán tìm kiếm hiện tại yêu cầu phân số $\dfrac{p}{q}$ đã
 <span id="thuật-toán-dựa-trên-liên-phân-số"></span>
 #### Thuật toán dựa trên liên phân số
 
-Với trường hợp phân số đã biết, có thể dùng liên phân số để đưa ra một thuật toán đơn giản hơn. Không mất tính tổng quát, giả sử nhóm bước đi đầu tiên là sang phải; nếu không, đặt số lần đi sang phải của nhóm đầu tiên bằng không. Di chuyển hai đầu mút xen kẽ sang phải và sang trái, rồi liệt kê vị trí đầu mút sau mỗi nhóm bước đi như sau:
+Với trường hợp phân số đã biết, có thể dùng liên phân số để thu được một thuật toán gọn hơn. Không mất tính tổng quát, giả sử nhóm bước đi đầu tiên là sang phải; nếu không, đặt số lần đi sang phải của nhóm đầu tiên bằng không. Di chuyển hai đầu mút xen kẽ sang phải và sang trái, rồi liệt kê vị trí đầu mút sau mỗi nhóm bước đi như sau:
 
 $$
 \dfrac{p_0}{q_0},~\dfrac{p_1}{q_1},~\dfrac{p_2}{q_2},~\cdots,~\dfrac{p_{n-2}}{q_{n-2}},~\dfrac{p_{n-1}}{q_{n-1}},~\dfrac{p_n}{q_n}.
@@ -268,12 +268,12 @@ Biểu diễn liên phân số của số hữu tỉ có thể tìm bằng thu�
         --8<-- "docs/math/code/stern-brocot/fraction-finding-3.py:core"
         ```
 
-Dùng biểu diễn liên phân số, có thể mô tả đơn giản nút cha và các nút con của một nút. Với nút $[t_0,t_1,\cdots,t_n,1]$, nút cha của nó là nút đi ít hơn một bước theo hướng di chuyển cuối cùng: khi $t_k>1$, nút cha là $[t_0,t_1,\cdots,t_n - 1,1]$; ngược lại, nút cha là $[t_0,t_1,\cdots,t_{n-1},1]$. Hai nút con của nó lần lượt là $[t_0,t_1,\cdots,t_n+1,1]$ và $[t_0,t_1,\cdots,t_n,1,1]$; nút nào là con trái và nút nào là con phải cần được xác định theo tính chẵn lẻ của $n$.
+Dùng biểu diễn liên phân số, có thể mô tả gọn nút cha và các nút con của một nút. Với nút $[t_0,t_1,\cdots,t_n,1]$, nút cha của nó là nút đi ít hơn một bước theo hướng di chuyển cuối cùng: khi $t_k>1$, nút cha là $[t_0,t_1,\cdots,t_n - 1,1]$; ngược lại, nút cha là $[t_0,t_1,\cdots,t_{n-1},1]$. Hai nút con của nó lần lượt là $[t_0,t_1,\cdots,t_n+1,1]$ và $[t_0,t_1,\cdots,t_n,1,1]$; nút nào là con trái và nút nào là con phải cần được xác định theo tính chẵn lẻ của $n$.
 
 <span id="cây-calkin-wilf"></span>
 ## Cây Calkin-Wilf
 
-Một cấu trúc đơn giản hơn để lưu các phân số hữu tỉ dương là cây Calkin-Wilf. Nó thường được vẽ như sau:
+Một cấu trúc gọn hơn để lưu các phân số hữu tỉ dương là cây Calkin-Wilf. Nó thường được vẽ như sau:
 
 ![Cây Calkin-Wilf của các phân số hữu tỉ dương](./images/calkin-wilf-tree.svg)
 
@@ -394,7 +394,7 @@ $$
 1 + \sum_{k = 1}^n\sum_{i=1}^{\lfloor rk\rfloor}[i\perp k] = 1 + \sum_{d=1}^n\mu(d)\sum_{j=1}^{\lfloor n/d\rfloor}\lfloor rj\rfloor.
 $$
 
-Để thu được vế phải, áp dụng [nghịch đảo Mobius](./mobius.md). Kết hợp sàng tuyến tính với việc liệt kê ước, có thể đạt $O(n)$ tiền xử lý và $O(n\log n)$ cho mỗi truy vấn; kết hợp sàng Du với [thuật toán Euclid mở rộng](./euclidean.md), có thể đạt $O(n^{2/3})$ tiền xử lý và $O(\sqrt n\log n)$ cho mỗi truy vấn.
+Để thu được vế phải, áp dụng [nghịch đảo Möbius](./mobius.md). Kết hợp sàng tuyến tính với việc liệt kê ước, có thể đạt $O(n)$ tiền xử lý và $O(n\log n)$ cho mỗi truy vấn; kết hợp sàng Du với [thuật toán Euclid mở rộng](./euclidean.md), có thể đạt $O(n^{2/3})$ tiền xử lý và $O(\sqrt n\log n)$ cho mỗi truy vấn.
 
 Ngược lại, nếu biết chỉ số và cần tìm phân số, cần tìm kiếm nhị phân trên các số thực trong $[0,1]$, hoặc [tìm kiếm nhị phân](#thuật-toán-nhanh) trên cây Stern-Brocot. Cách trước có thể chịu ảnh hưởng của sai số số thực, và cần $O(\log V)$ truy vấn chỉ số phân số, trong đó $V$ là phạm vi độ chính xác; cách sau không chịu giới hạn bởi sai số số thực, nhưng cần $O(\log^2n)$ truy vấn chỉ số phân số.
 
