@@ -3,7 +3,7 @@ author: Marcythm, Xeonacid, CSPNOIP
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Xét theo ý tưởng của phương pháp sàng này, nó còn được gọi là "sàng Eratosthenes mở rộng" (Extended Eratosthenes Sieve).
+Xét theo ý tưởng của phương pháp sàng này, nó còn được gọi là "sàng Eratosthenes mở rộng".
 
 Vì phương pháp này do [Min_25](https://web.archive.org/web/20211104125457/http://min-25.hatenablog.com/) phát minh và sử dụng sớm nhất, nên được gọi là "sàng Min_25".
 

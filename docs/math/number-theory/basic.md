@@ -617,8 +617,7 @@ $F(x)=\sum F(p_i^{k_i})=\sum F(p_i)\cdot k_i$.
 <span id="hàm-lấy-phần-nguyên"></span>
 ## Hàm lấy phần nguyên
 
-Với số thực $x$, định nghĩa **hàm sàn** (floor function) và **hàm trần**
-(ceiling function) lần lượt là
+Với số thực $x$, định nghĩa **hàm sàn** và **hàm trần** lần lượt là
 
 $$
 \lfloor x\rfloor = \max\{k\in\mathbf Z:k\le x\},~\lceil x\rceil = \min\{k\in\mathbf Z:k\ge x\}.

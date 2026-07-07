@@ -3,7 +3,7 @@ autor: iamtwz, billchenchina, CBW2007, CCXXXI, chinggg, Enter-tainer, eyedeng, F
 <span id="giới-thiệu"></span>
 ## Giới thiệu
 
-**Lũy thừa nhanh** (fast exponentiation), còn gọi là **lũy thừa nhị phân** (binary exponentiation) hoặc **phương pháp bình phương liên tiếp** (exponentiation by squaring), là một kỹ thuật nhỏ để tính $a^n$ trong thời gian $\Theta(\log n)$, trong khi cách tính trực tiếp cần thời gian $\Theta(n)$.
+**Lũy thừa nhanh**, còn gọi là **lũy thừa nhị phân** hoặc **phương pháp bình phương liên tiếp**, là một kỹ thuật nhỏ để tính $a^n$ trong thời gian $\Theta(\log n)$, trong khi cách tính trực tiếp cần thời gian $\Theta(n)$.
 
 Kỹ thuật này áp dụng được trong mọi tình huống mà phép nhân của $a$ có tính kết hợp, chẳng hạn lũy thừa theo mô đun, lũy thừa ma trận, v.v. Xem thêm phần [Ứng dụng](#ứng-dụng) ở bên dưới.
 

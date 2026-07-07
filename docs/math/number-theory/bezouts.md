@@ -157,7 +157,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, thu 
 <span id="phương-trình-nghiệm-nguyên-tuyến-tính"></span>
 ## Phương trình nghiệm nguyên tuyến tính
 
-**Phương trình nghiệm nguyên tuyến tính** (linear Diophantine equation) có dạng
+**Phương trình nghiệm nguyên tuyến tính** có dạng
 
 $$
 a_1x_1 + a_2x_2 + \cdots + a_nx_n = b
