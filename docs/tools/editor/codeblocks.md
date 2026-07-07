@@ -24,8 +24,8 @@ Nhược điểm:
 ## Cài đặt
 
 Xem [trang web chính thức của Code::Blocks](https://www.codeblocks.org/downloads/),
-chọn tải trình cài đặt nhị phân (Binary Release), hoặc tải mã nguồn để biên dịch
-cài đặt (Source Code). Sau đó chọn trình cài đặt phù hợp với nhu cầu và hệ điều
+chọn tải bản phát hành nhị phân (Binary Release), hoặc tải mã nguồn (Source Code)
+để biên dịch cài đặt. Sau đó chọn trình cài đặt phù hợp với nhu cầu và hệ điều
 hành, rồi hoàn thành cài đặt theo hướng dẫn.
 
 ???+ note "Tải gói cài đặt có kèm MinGW"
@@ -49,8 +49,8 @@ Tham khảo hướng dẫn cài đặt [trình biên dịch](../compiler.md) tr�
 Khi khởi động Code::Blocks lần đầu, phần mềm sẽ tự động quét các trình biên dịch đã cài trong hệ thống. Nếu không tìm thấy trình biên dịch, có thể thêm thủ công theo các bước sau:
 
 1.  Mở Code::Blocks, nhấp `Settings -> Compiler` (`Thiết lập -> Trình biên dịch`) trên thanh menu để mở hộp thoại thiết lập trình biên dịch (như hình dưới).![Thiết lập trình biên dịch trong Code::Blocks](./images/codeblocks-2.png)
-2.  Trong danh sách thả xuống `Selected compiler` (`Trình biên dịch đã chọn`), chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
-3.  Trong thẻ `Toolchain executables` (`Tệp thực thi của chuỗi công cụ`), nhấp nút `Auto-detect` (`Tự động phát hiện`); Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
+2.  Trong danh sách thả xuống `Trình biên dịch đã chọn` (`Selected compiler`), chọn trình biên dịch cần cấu hình, ví dụ `GNU GCC Compiler`.
+3.  Trong thẻ `Tệp thực thi của chuỗi công cụ` (`Toolchain executables`), nhấp nút `Tự động phát hiện` (`Auto-detect`); Code::Blocks sẽ tự động quét các trình biên dịch đã cài trong hệ thống.
 4.  Nếu tự động quét thất bại, có thể đặt thủ công đường dẫn trình biên dịch. Trong `Compiler's installation directory` (`Thư mục cài đặt trình biên dịch`), nhập đường dẫn cài đặt của trình biên dịch, ví dụ `C:\MinGW\bin`.
 5.  Sau khi thiết lập xong, nhấp `OK` (`Đồng ý`) để lưu; từ thời điểm này có thể dùng trình biên dịch đó để biên dịch và chạy dự án.
 
@@ -71,7 +71,7 @@ Các ngôn ngữ lập trình mà Code::Blocks hỗ trợ bao gồm C, C++ và F
 
 Code::Blocks cũng hỗ trợ biên dịch và chạy tệp đơn. Có thể tạo tệp mới qua
 `File -> New -> File` (`Tệp -> Mới -> Tệp`); sau khi viết mã và lưu, nhấp nút
-`Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`, để
+`Biên dịch và chạy` (`Build and run`) trên thanh công cụ, hoặc nhấn phím `F9`, để
 tự động biên dịch và chạy tệp hiện tại.
 
 <span id="build-và-chạy"></span>
@@ -81,7 +81,7 @@ tự động biên dịch và chạy tệp hiện tại.
 Lấy một dự án Console Application đơn giản làm ví dụ, dưới đây là cách biên dịch và chạy dự án:
 
 1.  Sau khi tạo dự án xong, sẽ thấy một tệp `main.cpp` mặc định. Có thể viết mã trong tệp này rồi lưu lại.
-2.  Sau khi viết mã xong, nhấp nút `Build and run` (`Biên dịch và chạy`) trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
+2.  Sau khi viết mã xong, nhấp nút `Biên dịch và chạy` (`Build and run`) trên thanh công cụ, hoặc nhấn phím `F9`; Code::Blocks sẽ tự động biên dịch và chạy dự án.
 3.  Sau khi biên dịch và chạy, cửa sổ đầu ra sẽ hiển thị kết quả xuất của chương trình. Có thể xem đầu ra trong cửa sổ này và điều chỉnh mã khi cần.
 4.  Để biên dịch dự án mà không chạy, có thể nhấp nút `Build` (`Biên dịch`) trên thanh công cụ, hoặc nhấn `Ctrl + F9`; Code::Blocks sẽ biên dịch dự án nhưng không chạy chương trình.
 

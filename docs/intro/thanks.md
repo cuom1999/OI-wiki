@@ -10,7 +10,7 @@ hợp hơn trong tương lai, để bày tỏ lời cảm ơn.
 
 ***
 
-|       id      | số tiền |    ngày    |
+| người quyên góp | số tiền |    ngày    |
 | :-----------: | :-----: | :--------: |
 |     Ẩn danh     |   10CNY  |  2021.6.20 |
 |     Ẩn danh     |  100CNY  |  2021.6.10 |

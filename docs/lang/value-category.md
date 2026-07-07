@@ -96,11 +96,11 @@ C++98 gần với ngôn ngữ C về loại giá trị, nhưng bổ sung một s
 
 ### Loại bỏ sao chép
 
-C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép** (copy elision), nhờ
+C++ cho phép trình biên dịch thực hiện **loại bỏ sao chép**, nhờ
 đó giảm việc tạo và hủy đối tượng tạm.
 
-Ví dụ, đoạn mã sau kích hoạt tối ưu hóa giá trị trả về (return value
-optimization, RVO) trong cơ chế loại bỏ sao chép. Chương trình chỉ in ra một lần
+Ví dụ, đoạn mã sau kích hoạt tối ưu hóa giá trị trả về (RVO) trong cơ chế loại
+bỏ sao chép. Chương trình chỉ in ra một lần
 khởi tạo và một lần khởi tạo sao chép, kể cả khi thao tác khởi tạo và hủy có tác
 dụng phụ.
 
@@ -205,7 +205,7 @@ int main() {
 Sau khi bị di chuyển, `str` vẫn là một đối tượng hợp lệ và có thể hủy hoặc gán
 giá trị mới, nhưng không nên dựa vào nội dung cũ của nó nữa.
 
-> Do `std::string` có tối ưu hóa chuỗi nhỏ (small string optimization, SSO), các
+> Do `std::string` có tối ưu hóa chuỗi nhỏ (SSO), các
 > chuỗi ngắn được lưu ngay bên trong đối tượng. Cần nhập chuỗi dài hơn mới dễ
 > quan sát việc vùng dữ liệu được chuyển giao khi di chuyển.
 

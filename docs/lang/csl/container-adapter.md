@@ -5,7 +5,7 @@ author: Xeonacid, ksyx, Early0v0
 ## Ngăn xếp
 
 STL [ngăn xếp](../../ds/stack.md) (`std::stack`) là một bộ chuyển đổi bộ chứa
-theo nguyên tắc vào sau ra trước (LIFO, Last In, First Out). Nó chỉ cho phép xem
+theo nguyên tắc vào sau ra trước (LIFO). Nó chỉ cho phép xem
 hoặc xóa phần tử được thêm vào sau cùng (phần tử đỉnh ngăn xếp), không hỗ trợ
 truy cập ngẫu nhiên. Để giữ đúng thứ tự LIFO, `std::stack` cũng không cung cấp
 bộ lặp.
