@@ -40,10 +40,10 @@ Với khái niệm "hàng đợi đơn điệu" ở trên, có thể dùng nó �
 
 Cần tìm giá trị lớn nhất (nhỏ nhất) trong mỗi $k$ số liên tiếp. Khi một số đi
 vào cửa sổ đang xét, nếu số này lớn hơn những số đứng trước nó (tức vào hàng
-đợi trước), thì có thể loại ngay các số phía trước khỏi cuối hàng đợi, vì chúng
+đợi trước), thì có thể loại ngay các số ở cuối hàng đợi, vì chúng
 không còn khả năng trở thành giá trị lớn nhất nữa.
 
-Nói cách khác, khi thỏa mãn điều kiện trên, có thể loại các số phía trước khỏi
+Nói cách khác, khi thỏa mãn điều kiện trên, có thể loại các số nhỏ hơn khỏi
 cuối hàng đợi, rồi mới đưa số hiện tại vào cuối hàng đợi.
 
 Điều này tương đương với việc duy trì một hàng đợi giảm dần, phù hợp với định
@@ -52,8 +52,8 @@ nghĩa hàng đợi đơn điệu và giảm số lần so sánh lặp lại. H�
 hàng đợi là giá trị lớn nhất trong vùng truy vấn, nên khi in kết quả
 chỉ cần in đầu hàng đợi.
 
-Trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều nhất một lần,
-vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
+Trong thuật toán này, mỗi số chỉ vào hàng đợi và ra khỏi hàng đợi nhiều nhất một
+lần, vì vậy độ phức tạp thời gian giảm xuống $O(n)$.
 
 Do độ dài đoạn truy vấn là cố định, một giá trị dù lớn đến đâu cũng không được
 in nếu đã vượt ra ngoài phạm vi truy vấn. Vì vậy, còn cần mảng `site` ghi lại
@@ -90,7 +90,7 @@ như sau (giả sử $k = 3$):
     ```
 
 Một khác biệt lớn giữa "hàng đợi" trong cấu trúc này và hàng đợi thông thường
-là có thể thao tác ở cuối hàng đợi;
+là có thể thao tác ở cả cuối hàng đợi;
 trong STL có cấu trúc dữ liệu tương tự là `deque`.
 
 ???+ note "Ví dụ 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
@@ -103,7 +103,7 @@ trong STL có cấu trúc dữ liệu tương tự là `deque`.
     Coi một giọt nước là được hứng nếu khi nó rơi xuống trục $x$, nó thẳng hàng
     với mép chậu hoa. Cho tọa độ của $N$ giọt nước và giá trị $D$, tính chiều
     rộng nhỏ nhất $W$ của chậu hoa.
-    $1\leq N \leq 100000 , 1 \leq D \leq 1000000, 0 \leq x,y\leq 10^6$
+    $1\leq N \leq 100000,\ 1 \leq D \leq 1000000,\ 0 \leq x,y\leq 10^6$
 
 Sau khi sắp xếp tất cả giọt nước theo tọa độ $x$, bài toán có thể chuyển thành
 tìm một đoạn có hiệu tọa độ $x$ nhỏ nhất sao cho trong đoạn đó, hiệu giữa giá
@@ -117,7 +117,7 @@ nhất và nhỏ nhất trong $[L,R]$ khi $R$ liên tục dịch sang phải. L�
 định $L$, thì giá trị lớn nhất trong $[L,R]$ chỉ có thể ngày càng lớn, còn giá
 trị nhỏ nhất chỉ có thể ngày càng nhỏ. Do đó, đặt
 $f(R) = \max[L,R]-\min[L,R]$, thì $f(R)$ là một hàm không giảm theo $R$, nên
-$f(R)\geq D \implies f(r)\geq D, R\lt r \leq N$. Điều này cho thấy với mỗi $L$
+$f(R)\geq D \implies f(r)\geq D,\ R<r\leq N$. Điều này cho thấy với mỗi $L$
 cố định, $R$ đầu tiên ở bên phải thỏa mãn điều kiện chính là lựa chọn tối ưu.
 
 Vì vậy, toàn bộ quá trình giải là: trước hết cố định $L$, rồi di chuyển $R$ từ
