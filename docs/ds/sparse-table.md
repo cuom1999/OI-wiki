@@ -56,7 +56,8 @@ thái: $f(i,j)=\max(f(i,j-1),f(i+2^{j-1},j-1))$.
 Đó là phần tiền xử lý. Phần truy vấn có thể cài đặt như sau:
 
 Với mỗi truy vấn $[l,r]$, chia nó thành hai đoạn: $[l,l+2^s-1]$ và $[r-2^s+1,r]$, trong đó
-$s=\left\lfloor\log_2(r-l+1)\right\rfloor$. Giá trị lớn nhất của kết quả trên hai đoạn này chính là đáp án.
+$s=\left\lfloor\log_2(r-l+1)\right\rfloor$. Lấy giá trị lớn hơn trong hai giá trị đã tiền xử lý của hai đoạn này chính
+là đáp án.
 
 ![Quá trình truy vấn của bảng ST](./images/st-query.svg)
 
@@ -86,7 +87,7 @@ nói trên phủ hoàn toàn $[l,r]$, nên đáp án thu được là đúng.
 2.  Khi tiền xử lý bảng ST, thường cần tạo một mảng có một chiều kích thước $\log n$ và chiều còn lại kích thước $n$.
     Khi đó nên ưu tiên đặt chiều có kích thước $\log n$ làm chiều thứ nhất để cải thiện tính cục bộ bộ nhớ đệm.
 
-3.  Không đáng để dùng [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) tính lại giá trị logarit mỗi lần.
+3.  Không nên dùng [std::log](https://en.cppreference.com/w/cpp/numeric/math/log) để tính lại giá trị logarit mỗi lần.
     Nên dùng các hàm nội tại như `__builtin_clz` hoặc `__lg` để tính. Nếu không dùng được các hàm này, có thể tiền xử
     lý giá trị logarit như sau:
 
@@ -125,7 +126,7 @@ trì được khá hạn chế, khó mở rộng tốt, và không hỗ trợ c�
 
 ## Phụ lục: Phân tích độ phức tạp thời gian khi dùng bảng ST tìm GCD trên đoạn
 
-Khi thuật toán chạy, phần tiền xử lý có thể cần trải qua $\Theta(\log n)$ lớp. Ở mỗi lớp, ta có thể phải gọi hàm GCD
+Khi thuật toán chạy, phần tiền xử lý có thể cần đi qua $\Theta(\log n)$ lớp. Ở mỗi lớp, ta có thể phải gọi hàm GCD
 nhiều lần. Gọi chặn trên của miền giá trị là $w$, độ phức tạp thời gian của hàm GCD trong trường hợp xấu nhất có thể đạt
 $\Theta(\log w)$, nên thoạt nhìn tổng độ phức tạp có vẻ là $O(n\log n\log w)$.
 
