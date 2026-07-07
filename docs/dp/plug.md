@@ -219,7 +219,7 @@ Trong đoạn mã trên:
 
 -   `MaxSZ` biểu thị cận trên của số trạng thái hợp lệ; có thể ước lượng hoặc tiền xử lý để có giá trị chính xác hơn.
 -   `Prime` là một số nguyên tố lớn nhỏ hơn `MaxSZ`.
--   `head[]` là con trỏ tới nút đầu của từng bucket.
+-   `head[]` là con trỏ tới nút đầu của từng thùng băm.
 -   `next[]` là con trỏ tới trạng thái kế tiếp.
 -   `state[]` là trạng thái của nút.
 -   `key[]` là khóa của nút; trong bài này chính là số phương án.

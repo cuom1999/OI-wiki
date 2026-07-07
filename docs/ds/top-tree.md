@@ -200,9 +200,14 @@ void pushup(int x, int type) {
 }
 ```
 
-Để truy vấn kích thước cây con của đỉnh $x$, đưa nó Access lên gốc SATT; đáp án là size của con giữa cộng $1$, vì theo phần trên, sau Access, con giữa mới là cây con thật của nó.
+Để truy vấn kích thước cây con của đỉnh $x$, thực hiện `access(x)` để đưa nó
+lên gốc SATT; đáp án là kích thước của con giữa cộng $1$, vì theo phần trên,
+sau `access`, con giữa mới là cây con thật của nó.
 
-Tiếp theo xét việc đẩy thông tin xuống, tức hàm `Pushdown(x)`. Nếu muốn cập nhật toàn bộ một cây con trong cây ban đầu, một ý tưởng rất tự nhiên là: đưa trực tiếp nút này Access lên gốc SATT, rồi đánh dấu vào con giữa của nó. Tương tự, truy vấn cây con thì sau Access trực tiếp truy vấn con giữa.
+Tiếp theo xét việc đẩy thông tin xuống, tức hàm `Pushdown(x)`. Nếu muốn cập nhật
+toàn bộ một cây con trong cây ban đầu, một ý tưởng rất tự nhiên là: thực hiện
+`access` để đưa trực tiếp nút này lên gốc SATT, rồi đánh dấu vào con giữa của
+nó. Tương tự, truy vấn cây con thì sau `access` trực tiếp truy vấn con giữa.
 
 Nếu muốn cập nhật toàn bộ một đường đi trong cây ban đầu, cần expose hai đầu mút của đường đi. Trong ngữ cảnh này, `expose(x, y)` được hiểu là làm cho đỉnh $x$ trở thành gốc của $T$, và làm cho đỉnh $y$ trở thành đầu mút còn lại của cụm gốc. Tương ứng trên SATT, lúc này cây nén của cụm gốc chính là đường đi từ $x$ đến $y$. Vì vậy, chỉ cần đánh dấu vào cây nén của cụm gốc. Tương tự, truy vấn đường đi thì expose rồi truy vấn nút gốc.
 
@@ -398,7 +403,12 @@ void access(int x) {
 }
 ```
 
-Nếu muốn làm cho một đỉnh trở thành gốc của cây ban đầu, Access đỉnh $x$ lên gốc SATT. Khi đó đỉnh $x$ đã là một đầu mút của cụm ở trạng thái cuối cùng. Từ tính chất duyệt trung thứ tự của cây nén, nếu đảo trái phải cây nén chứa đỉnh $x$ (hoán đổi con trái và con phải của mọi nút), thì đỉnh $x$ trở thành gốc của cây ban đầu. Trong cài đặt cụ thể, đánh dấu đảo cho đỉnh $x$, sau đó đẩy dấu xuống để thực hiện quá trình này.
+Nếu muốn làm cho một đỉnh trở thành gốc của cây ban đầu, thực hiện `access(x)`
+để đưa đỉnh $x$ lên gốc SATT. Khi đó đỉnh $x$ đã là một đầu mút của cụm ở trạng
+thái cuối cùng. Từ tính chất duyệt trung thứ tự của cây nén, nếu đảo trái phải
+cây nén chứa đỉnh $x$ (hoán đổi con trái và con phải của mọi nút), thì đỉnh $x$
+trở thành gốc của cây ban đầu. Trong cài đặt cụ thể, đánh dấu đảo cho đỉnh $x$,
+sau đó đẩy dấu xuống để thực hiện quá trình này.
 
 ```cpp
 void makeroot(int x) {
@@ -463,9 +473,10 @@ trong đó $r(i) = \lceil \log_2 \text{siz}(i) \rceil$. $\text{siz}(i)$ là kíc
 
 Khi đó độ phức tạp khấu hao của splay trong SATT vẫn là $3n\log n + 1$, kể cả khi SATT là một cây tam phân.
 
-Vì vậy với SATT, chỉ cần chứng minh độ phức tạp của hàm Access là đúng thì sẽ chứng minh được độ phức tạp của SATT.
+Vì vậy với SATT, chỉ cần chứng minh độ phức tạp của hàm `access` là đúng thì sẽ
+chứng minh được độ phức tạp của SATT.
 
-Phân tích từng bước độ phức tạp khấu hao của Access.
+Phân tích từng bước độ phức tạp khấu hao của `access`.
 
 Trước hết cần xoay đỉnh $x$ lên gốc của cây nén chứa nó. Độ phức tạp khấu hao của bước này là
 
@@ -588,9 +599,14 @@ $$
 \sum_{i=1}^m c_i \leq 3(m+n)\log n + 21m\log n +n\log n +4m +n
 $$
 
-Do đó đã chứng minh được độ phức tạp của Access; các hàm khác hoặc dựa trên Access, hoặc có độ phức tạp thời gian mỗi lần là hằng số, nên cũng chứng minh được độ phức tạp của SATT.
+Do đó đã chứng minh được độ phức tạp của `access`; các hàm khác hoặc dựa trên
+`access`, hoặc có độ phức tạp thời gian mỗi lần là hằng số, nên cũng chứng minh
+được độ phức tạp của SATT.
 
-Nhân tiện, nếu giống LCT mà bỏ qua quá trình splay toàn cục, đổi thành trong mỗi lần nối tách thì trực tiếp xoay đỉnh cần Access một lần, độ phức tạp thời gian vẫn đúng. Theo đo thực nghiệm, phiên bản bỏ splay toàn cục nhanh hơn rất nhiều và có thể chạy ngang ngửa LCT trên Luogu P3690.
+Nhân tiện, nếu giống LCT mà bỏ qua quá trình splay toàn cục, đổi thành trong mỗi
+lần nối tách thì trực tiếp xoay đỉnh cần `access` một lần, độ phức tạp thời gian
+vẫn đúng. Theo đo thực nghiệm, phiên bản bỏ splay toàn cục nhanh hơn rất nhiều
+và có thể chạy ngang ngửa LCT trên Luogu P3690.
 
 ### Bài tập ví dụ
 
