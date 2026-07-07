@@ -537,11 +537,11 @@ Sau đó trong tìm kiếm theo chiều sâu, liên tục liệt kê số mũ th
 1.  Rui-Juan Jing, Marc Moreno-Maza, Delaram Talaashrafi, "[Complexity Estimates for Fourier-Motzkin Elimination](https://arxiv.org/abs/1811.01510)", Journal of Functional Programming 16:2 (2006) pp 197-217.
 2.  [Phần lý thuyết số, bài 1: số nguyên tố và kiểm tra tính nguyên tố](http://www.matrix67.com/blog/archives/234)
 3.  [Ghi chú học Miller-Rabin và Pollard-Rho - Bill Yang's Blog](https://blog.bill.moe/miller-rabin-notes/)
-4.  [Primality test - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
-5.  [Fermat pseudoprime - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
+4.  [Kiểm tra tính nguyên tố - Wikipedia](https://en.wikipedia.org/wiki/Primality_test)
+5.  [Giả nguyên tố Fermat - Wikipedia](https://en.wikipedia.org/wiki/Fermat_pseudoprime)
 6.  [Ghi chú thuật toán của Taozi: giải thích số phản nguyên tố (acm/OI)](https://zhuanlan.zhihu.com/p/41759808)
-7.  [The Rabin-Miller Primality Test](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
-8.  [Highly composite number - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
+7.  [Kiểm tra nguyên tố Rabin-Miller](http://home.sandiego.edu/~dhoffoss/teaching/cryptography/10-Rabin-Miller.pdf)
+8.  [Số hợp thành cao - Wikipedia](https://en.wikipedia.org/wiki/Highly_composite_number)
 
 [^inf-fermat-pp]: Định lý 1 trong Pomerance, Carl, John L. Selfridge, and Samuel S. Wagstaff. "The pseudoprimes to 25⋅ 10⁹." Mathematics of Computation 35, no. 151 (1980): 1003-1026 cho thấy với cơ sở $a$ cố định, cũng có vô hạn hợp số vượt qua kiểm tra Miller-Rabin mạnh hơn.
 
@@ -549,4 +549,4 @@ Sau đó trong tìm kiếm theo chiều sâu, liên tục liệt kê số mũ th
 
 [^deterministic-proof]: Bach, Eric , "[Explicit bounds for primality testing and related problems](https://doi.org/10.2307%2F2008811)", Mathematics of Computation, 55:191 (1990) pp 355–380.
 
-[^witnesses]: Xem thêm các kết quả tương tự tại [Deterministic variant of the Miller-Rabin primality test](https://miller-rabin.appspot.com/#).
+[^witnesses]: Xem thêm các kết quả tương tự tại [biến thể tất định của kiểm tra nguyên tố Miller-Rabin](https://miller-rabin.appspot.com/#).

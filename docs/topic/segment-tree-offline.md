@@ -144,4 +144,4 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 -   [luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + cây Link-Cut để duy trì cây khung nhỏ nhất.
 -   [luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + cơ sở tuyến tính.
 
-**Một phần nội dung của trang này tham khảo từ bài viết [Deleting from a data structure](https://cp-algorithms.com/data_structures/deleting_in_log_n.html), với giấy phép CC-BY-SA 4.0.**
+**Một phần nội dung của trang này tham khảo từ bài viết [xóa khỏi cấu trúc dữ liệu](https://cp-algorithms.com/data_structures/deleting_in_log_n.html), với giấy phép CC-BY-SA 4.0.**

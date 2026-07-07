@@ -375,8 +375,8 @@ trong đó $p$ là số nguyên tố và $n<p$.
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
-1.  [Congruence Equation -- from Wolfram MathWorld](https://mathworld.wolfram.com/CongruenceEquation.html)
-2.  [Lagrange's theorem (number theory) - Wikipedia](https://en.wikipedia.org/wiki/Lagrange%27s_theorem_%28number_theory%29)
+1.  [Phương trình đồng dư -- Wolfram MathWorld](https://mathworld.wolfram.com/CongruenceEquation.html)
+2.  [Định lý Lagrange (lý thuyết số) - Wikipedia](https://en.wikipedia.org/wiki/Lagrange%27s_theorem_%28number_theory%29)
 3.  Pan Chengdong, Pan Chengbiao. Số học sơ cấp.
 4.  Feng Keqin. Số học sơ cấp và ứng dụng.
 5.  Min Sihe, Yan Shijian. Số học sơ cấp.

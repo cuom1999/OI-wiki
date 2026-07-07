@@ -375,8 +375,8 @@ Nếu cần thao tác trên chuỗi bit rất dài, có thể dùng [`std::bitse
 
 ## Tài liệu tham khảo và ghi chú
 
-1.  [Bit hacks](https://graphics.stanford.edu/~seander/bithacks.html)
-2.  [Bit Operation Builtins (Using the GNU Compiler Collection (GCC))](https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html)
-3.  [Bitwise operation - Wikipedia](https://en.wikipedia.org/wiki/Bitwise_operation)
+1.  [Mẹo bit](https://graphics.stanford.edu/~seander/bithacks.html)
+2.  [Hàm nội tại thao tác bit (dùng GNU Compiler Collection (GCC))](https://gcc.gnu.org/onlinedocs/gcc/Bit-Operation-Builtins.html)
+3.  [Phép toán bit - Wikipedia](https://en.wikipedia.org/wiki/Bitwise_operation)
 
 [^note1]: `lowbit` của một số là bit $1$ đầu tiên tính từ thấp lên cao trong biểu diễn nhị phân của số đó, kèm các bit $0$ phía sau; ví dụ `lowbit` của $(1010)_2$ là $(0010)_2$. Xem thêm [Fenwick tree](../ds/fenwick.md).
