@@ -6,14 +6,14 @@ Trang này giới thiệu ngắn gọn cách dùng Splay để duy trì cây tì
 Nó liên tục đưa một nút nào đó lên nút gốc bằng **thao tác splay**,
 sao cho toàn bộ cây vẫn thỏa mãn tính chất của cây tìm kiếm nhị phân.
 Nhờ đó, các thao tác chèn, tìm kiếm và xóa có thời gian khấu hao $O(\log N)$,
-đồng thời cây được giữ cân bằng để không suy biến thành một dây xích.
+đồng thời cây được giữ cân bằng để không suy biến thành một chuỗi.
 
 Cây Splay do Daniel Sleator và Robert Tarjan phát minh vào năm 1985.
 
 ## Cấu trúc và thao tác cơ bản
 
-Phần này thảo luận cấu trúc cơ bản của cây Splay và các thao tác cốt lõi của nó, trong đó quan trọng nhất là thao tác
-splay.
+Phần này thảo luận cấu trúc cơ bản của cây Splay và các thao tác cốt lõi của nó,
+trong đó quan trọng nhất là thao tác splay.
 
 Cây Splay là một cây tìm kiếm nhị phân. Khi tìm một giá trị, nó thỏa mãn tính chất:
 giá trị của mọi nút trong cây con trái $<$ giá trị của nút gốc $<$ giá trị của mọi nút trong cây con phải.
@@ -42,7 +42,8 @@ Trước hết là một vài thao tác phụ trợ đơn giản:
 
 ### Thao tác xoay
 
-Để Splay giữ được cân bằng, cần thực hiện thao tác xoay. Tác dụng của phép xoay là đưa một nút lên trên một mức.
+Để Splay giữ được cân bằng, cần thực hiện thao tác xoay.
+Tác dụng của phép xoay là đưa một nút lên trên một mức.
 
 Phép xoay cần bảo đảm:
 
@@ -59,10 +60,10 @@ Từ hình minh họa, nếu muốn dùng phép xoay để đưa nút $x$
 thì hướng xoay được xác định duy nhất bởi việc nút đó là con trái hay con phải của nút cha.
 Vì vậy, khi cài đặt thao tác xoay, chỉ cần truyền vào nút $x$ cần được đưa lên.
 
-Phân tích cụ thể các bước xoay: (giả sử nút cần đưa lên là $x$, lấy xoay phải làm ví dụ)
+Phân tích cụ thể các bước xoay như sau, giả sử nút cần đưa lên là $x$ và lấy xoay phải làm ví dụ:
 
-1.  Trước hết, ghi lại nút cha $y$ của nút $x$, nút cha $z$ của $y$ (có thể rỗng), và ghi lại $x$ là con trái hay con
-    phải của $y$;
+1.  Trước hết, ghi lại nút cha $y$ của nút $x$, nút cha $z$ của $y$ (có thể rỗng),
+    và ghi lại $x$ là con trái hay con phải của $y$;
 2.  Theo thứ tự từ dưới lên trong cây sau khi xoay, lần lượt cập nhật con trái của $y$ thành con phải của $x$,
     con phải của $x$ thành $y$, và nếu $z$ không rỗng thì cập nhật con của $z$ thành $x$;
 3.  Theo cùng thứ tự đó, lần lượt cập nhật nút cha của con trái hiện tại của $y$ (nếu tồn tại) thành $y$,
@@ -78,8 +79,9 @@ Khi cài đặt mọi hàm, không sửa thông tin của nút $0$.
 
 ### Thao tác splay
 
-Cây Splay yêu cầu sau mỗi lần truy cập một nút $x$, bắt buộc phải xoay nút đó lên nút gốc. Thao tác này cũng được gọi là
-thao tác splay.
+Cây Splay yêu cầu sau mỗi lần truy cập một nút $x$,
+bắt buộc phải xoay nút đó lên nút gốc.
+Thao tác này cũng được gọi là thao tác splay.
 
 Giả sử nút vừa được truy cập là $x$.
 Để thực hiện thao tác splay, thực hiện một chuỗi **bước splay** trên $x$.
@@ -89,7 +91,8 @@ Gọi $p$ là nút cha của $x$. Có ba loại bước splay:
 1.  **zig**: thực hiện khi $p$ là nút gốc.
     Cây Splay sẽ xoay theo cạnh giữa $x$ và $p$.
     **zig** tồn tại để xử lý vấn đề chẵn lẻ,
-    và chỉ được thực hiện như bước cuối cùng của thao tác splay khi $x$ có độ sâu lẻ tại thời điểm bắt đầu thao tác splay.
+    và chỉ được thực hiện như bước cuối cùng của thao tác splay
+    khi $x$ có độ sâu lẻ tại thời điểm bắt đầu thao tác splay.
 
     ![Bước zig trong cây Splay](./images/splay-zig.svg)
 
@@ -129,8 +132,8 @@ và $x$ cùng nút cha của nó có nằm cùng phía so với nút cha tương
 Cài đặt dưới đây cho phép chỉ định một nút gốc bất kỳ $z$,
 rồi đưa một nút $x$ bất kỳ trong cây con của nó lên vị trí $z$:
 
-1.  Trước hết ghi lại nút cha $w$ của nút gốc $z$, từ đó có thể dùng `fa[x] == w` để xác định $x$ đã nằm tại vị trí nút
-    gốc hay chưa;
+1.  Trước hết ghi lại nút cha $w$ của nút gốc $z$,
+    từ đó có thể dùng `fa[x] == w` để xác định $x$ đã nằm tại vị trí nút gốc hay chưa;
 2.  Ghi lại nút cha hiện tại $y$ của $x$. Nếu $y$ giống $w$, tức là $x$ đã tới nút gốc;
 3.  Ngược lại, dùng `fa[y] == w` để xác định $y$ có phải nút gốc hay không.
     Nếu đúng, trực tiếp thực hiện thao tác zig để xoay $x$;
@@ -142,12 +145,12 @@ rồi đưa một nút $x$ bất kỳ trong cây con của nó lên vị trí $z
     --8<-- "docs/ds/code/splay/splay-1.cpp:splay"
     ```
 
-Thao tác splay là thao tác cốt lõi của cây Splay, đồng thời là bước then chốt giúp bảo đảm độ phức tạp thời gian của
-cây.
+Thao tác splay là thao tác cốt lõi của cây Splay,
+đồng thời là bước then chốt giúp bảo đảm độ phức tạp thời gian của cây.
 Sau mỗi lần truy cập nút theo hướng đi xuống, cần thực hiện một lần thao tác splay.
 
-Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút trên đường đi từ nút hiện tại $x$ đến nút gốc $z$
-theo thứ tự từ dưới lên.
+Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút
+trên đường đi từ nút hiện tại $x$ đến nút gốc $z$ theo thứ tự từ dưới lên.
 Nhờ điểm này, có thể sửa một nút không phải gốc,
 rồi thông qua thao tác splay đưa nó lên gốc để hoàn tất việc cập nhật thông tin của cả cây.
 
@@ -164,7 +167,8 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
     
     **Định nghĩa**:
     
-    1.  **Thế năng của một nút**: $w(x) = \log(\text{size}(x))$, trong đó $\text{size}(x)$ biểu thị kích thước cây con có gốc là nút $x$.
+    1.  **Thế năng của một nút**: $w(x) = \log(\text{size}(x))$,
+        trong đó $\text{size}(x)$ biểu thị kích thước cây con có gốc là nút $x$.
     2.  **Thế năng của toàn bộ cây**: $\varphi = \sum w(x)$, tức tổng thế năng của tất cả các nút trong cây;
         thế năng ban đầu thỏa $\varphi_0 \leq n \log n$.
     3.  **Chi phí khấu hao của thao tác thứ $i$**: $c_i = t_i + \varphi_i - \varphi_{i-1}$,
@@ -175,9 +179,11 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
     
     1.  Nếu $p$ là nút cha của $x$, thì $w(p) \geq w(x)$, tức thế năng của nút cha không nhỏ hơn thế năng của nút con.
     
-    2.  Vì kích thước cây con của nút gốc không đổi trước và sau thao tác, nên thế năng của nút gốc không đổi trong quá trình thao tác.
+    2.  Vì kích thước cây con của nút gốc không đổi trước và sau thao tác,
+        nên thế năng của nút gốc không đổi trong quá trình thao tác.
     
-    3.  Nếu $\text{size}(p)\ge\text{size}(x)+\text{size}(y)$, thì có $2w(p) - w(x) - w(y) \geq 2$.
+    3.  Nếu $\text{size}(p) \ge \text{size}(x)+\text{size}(y)$,
+        thì có $2w(p) - w(x) - w(y) \geq 2$.
     
     ??? note "Chứng minh tính chất 3"
         Theo bất đẳng thức trung bình:
@@ -196,7 +202,9 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
     Gọi thế năng của nút $x$ trước và sau thao tác lần lượt là $w(x)$ và $w'(x)$.
     Ký hiệu của các nút nhất quán với [phần trên](#thao-tac-splay).
     
-    **zig**: theo tính chất 1 và 2, có $w(p) = w'(x)$, đồng thời $w'(x) \geq w'(p)$. Do đó, chi phí khấu hao là
+    **zig**: theo tính chất 1 và 2, có $w(p) = w'(x)$,
+    đồng thời $w'(x) \geq w'(p)$.
+    Do đó, chi phí khấu hao là
     
     $$
     \begin{aligned}
@@ -206,7 +214,9 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
     \end{aligned}
     $$
     
-    **zig-zig**: theo tính chất 1 và 2, có $w(g) = w'(x)$, đồng thời $w'(x) \geq w'(p)$, $w(x) \leq w(p)$. Vì
+    **zig-zig**: theo tính chất 1 và 2, có $w(g) = w'(x)$,
+    đồng thời $w'(x) \geq w'(p)$, $w(x) \leq w(p)$.
+    Vì
     
     $$
     \begin{aligned}
@@ -289,18 +299,19 @@ và độ phức tạp khấu hao của một thao tác là $O(\log n)$.
 
 ??? info "Vì sao thao tác tái cân bằng của cây Splay có thể đạt độ phức tạp khấu hao $O(\log n)$?"
     Cách tái cân bằng đơn giản là liên tục xoay một nút để nó đi lên cho đến khi trở thành nút gốc.
-    Vấn đề của cách đơn giản này là với một cây dạng dây xích mà mọi nút con đều là con trái (hoặc con phải),
+    Vấn đề của cách đơn giản này là với một cây dạng chuỗi mà mọi nút con đều là con trái (hoặc con phải),
     nó tương đương với việc lặp lại thao tác **zig** liên tục.
     Vì vậy, hạng tử hằng $1$ trong độ phức tạp khấu hao của thao tác **zig** sẽ tích lũy không ngừng,
     khiến độ phức tạp khấu hao cuối cùng đạt mức $O(\log n+n)$.
-    Thiết kế của thao tác tái cân bằng trong cây Splay tránh được việc tích lũy hằng số trong trường hợp **zig** liên tiếp,
+    Thiết kế của thao tác tái cân bằng trong cây Splay
+    tránh được việc tích lũy hằng số trong trường hợp **zig** liên tiếp,
     bảo đảm trong một thao tác splay hoàn chỉnh chỉ thực hiện nhiều nhất một thao tác **zig** đơn lẻ,
     từ đó tối ưu độ phức tạp thời gian.
 
 ## Thao tác trên cây cân bằng
 
 Phần này thảo luận cách cài đặt các thao tác thường gặp của cây cân bằng dựa trên cây Splay.
-Trong đó, quan trọng hơn cả là tìm phần tử theo giá trị hoặc theo thứ hạng:
+Trong đó, quan trọng hơn cả là tìm phần tử theo giá trị hoặc theo hạng:
 chúng có thể tìm ra một phần tử cụ thể và đưa nó lên nút gốc để tiện xử lý tiếp.
 
 Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây cân bằng thông thường](https://loj.ac/problem/104).
@@ -326,14 +337,17 @@ còn cây con phải luôn lưu các giá trị lớn hơn $v$.
 
 Cài đặt này cho phép chỉ định bất kỳ nút $z$ nào làm nút gốc, rồi tìm theo giá trị trong cây con của nó.
 
-### Truy cập theo thứ hạng
+### Truy cập theo hạng
 
-Vì đã ghi lại thông tin kích thước cây con, cây Splay còn có thể truy cập phần tử theo thứ hạng, tức tìm phần tử nhỏ thứ $k$ trong cây.
+Vì đã ghi lại thông tin kích thước cây con,
+cây Splay còn có thể truy cập phần tử theo hạng, tức tìm phần tử nhỏ thứ $k$ trong cây.
 
-Gọi $k$ là thứ hạng còn lại, các bước cụ thể như sau:
+Gọi $k$ là hạng còn lại, các bước cụ thể như sau:
 
--   Nếu cây con trái không rỗng và thứ hạng còn lại $k$ không lớn hơn kích thước cây con trái, thì tìm trong cây con trái;
--   Ngược lại, nếu $k$ không lớn hơn tổng kích thước cây con trái và kích thước của gốc, thì nút gốc chính là nút cần tìm;
+-   Nếu cây con trái không rỗng và hạng còn lại $k$ không lớn hơn kích thước cây con trái,
+    thì tìm trong cây con trái;
+-   Ngược lại, nếu $k$ không lớn hơn tổng kích thước cây con trái và kích thước của gốc,
+    thì nút gốc chính là nút cần tìm;
 -   Ngược lại, trừ khỏi $k$ tổng kích thước cây con trái và kích thước của gốc, rồi tiếp tục tìm trong cây con phải;
 -   Đưa phần tử cuối cùng tìm được lên gốc.
 
@@ -342,9 +356,10 @@ Gọi $k$ là thứ hạng còn lại, các bước cụ thể như sau:
     --8<-- "docs/ds/code/splay/splay-1.cpp:loc"
     ```
 
-Cài đặt này cần bảo đảm thứ hạng $k$ không vượt quá kích thước cây tại nút gốc $z$.
+Cài đặt này cần bảo đảm hạng $k$ không vượt quá kích thước cây tại nút gốc $z$.
 
-Trong bài mẫu, thao tác $4$ yêu cầu trả về giá trị theo thứ hạng; chỉ cần gọi trực tiếp phương thức này rồi trả về giá trị.
+Trong bài mẫu, thao tác $4$ yêu cầu trả về giá trị theo hạng;
+chỉ cần gọi trực tiếp phương thức này rồi trả về giá trị.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -380,8 +395,9 @@ Thao tác tách cũng tương tự. Vì vậy, cây Splay có thể mô phỏng 
 
 Thao tác chèn là một quá trình khá phức tạp. Các bước cụ thể như sau: (giả sử giá trị được chèn là $v$)
 
--   Tương tự quá trình tìm theo giá trị, dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng, đồng thời ghi lại nút cha
-    $y$ trong quá trình đó;
+-   Tương tự quá trình tìm theo giá trị,
+    dựa vào $v$ để đi xuống tìm nút lưu $v$ hoặc nút rỗng,
+    đồng thời ghi lại nút cha $y$ trong quá trình đó;
 -   Nếu tồn tại nút $x$ lưu $v$, trực tiếp cập nhật thông tin; ngược lại, tạo nút mới $x$;
 -   Thực hiện thao tác splay, đưa nút cuối cùng $x$ lên gốc.
 
@@ -408,12 +424,13 @@ Thao tác xóa cũng là một thao tác khá phức tạp. Các bước cụ th
     --8<-- "docs/ds/code/splay/splay-1.cpp:remove"
     ```
 
-### Truy vấn thứ hạng
+### Truy vấn hạng
 
 Trực tiếp truy cập nút theo giá trị $v$ (và đưa nó lên gốc), sau đó trả về giá trị tương ứng.
 
-Khi $v$ không tồn tại, quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định, cần thảo
-luận riêng.
+Khi $v$ không tồn tại,
+quan hệ lớn nhỏ giữa nút gốc mà phương thức `find(rt, v)` trả về và $v$ không xác định,
+cần thảo luận riêng.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -440,8 +457,10 @@ Cài đặt này cho phép tiền nhiệm không tồn tại; khi đó trả v�
 
 ### Truy vấn kế nhiệm
 
-Kế nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$. Cách truy vấn tương tự tiền nhiệm, chỉ thay giá trị lớn nhất trong
-cây con trái bằng giá trị nhỏ nhất trong cây con phải, tức gọi `loc(ch[rt][1], 1)`.
+Kế nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$.
+Cách truy vấn tương tự tiền nhiệm,
+chỉ thay giá trị lớn nhất trong cây con trái bằng giá trị nhỏ nhất trong cây con phải,
+tức gọi `loc(ch[rt][1], 1)`.
 
 ???+ example "Cài đặt"
     ```cpp
@@ -480,7 +499,7 @@ Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây
 ### Xây cây theo dãy
 
 Trước khi thao tác, cần xây cây Splay theo dãy đã cho.
-Dựa trên đặc tính của cây Splay, có thể trực tiếp xây một dây xích chỉ có con trái.
+Dựa trên đặc tính của cây Splay, có thể trực tiếp xây một chuỗi chỉ có con trái.
 Độ phức tạp thời gian là $O(n)$.
 
 ???+ example "Cài đặt tham khảo"
@@ -495,13 +514,15 @@ Thao tác splay cuối cùng đã cập nhật thông tin nút từ dưới lên
 
 Lấy đảo ngược đoạn làm ví dụ để hiểu phương pháp thao tác đoạn: (giả sử đoạn là $[L,R]$)
 
--   Trước hết đưa nút $L-1$ lên nút gốc, rồi trong cây con phải của nó, đưa nút $R+1$ lên nút gốc của cây con phải;
--   Lúc này, gọi $x$ là nút con trái của nút con phải của nút gốc, thì cây con có gốc là $x$ sẽ tương ứng với đoạn $[L,R]$;
+-   Trước hết đưa nút $L-1$ lên nút gốc,
+    rồi trong cây con phải của nó, đưa nút $R+1$ lên nút gốc của cây con phải;
+-   Lúc này, gọi $x$ là nút con trái của nút con phải của nút gốc,
+    thì cây con có gốc là $x$ sẽ tương ứng với đoạn $[L,R]$;
 -   Thực hiện thao tác trên đoạn $[L,R]$ tại $x$ và gắn đánh dấu lười;
 -   Tại $x$, đẩy đánh dấu xuống một lần, rồi dùng thao tác splay đưa $x$ lên gốc.
 
-Thao tác cần ở bước đầu tiên chính là "truy cập theo thứ hạng" trong phần thao tác cây cân bằng phía trước,
-vì chỉ số của phần tử chính là thứ hạng của nó.
+Thao tác cần ở bước đầu tiên chính là "truy cập theo hạng" trong phần thao tác cây cân bằng phía trước,
+vì chỉ số của phần tử chính là hạng của nó.
 Do liên quan tới quản lý đánh dấu lười, cài đặt của nó hơi khác phần trên.
 
 ???+ example "Cài đặt tham khảo"
@@ -528,7 +549,7 @@ Hàm trước hoán đổi nút trái và nút phải, đồng thời cập nh�
 
 Sau đó, chỉ cần đẩy đánh dấu xuống khi đi qua nút theo hướng xuống.
 Thao tác mà bài mẫu yêu cầu khá đơn giản,
-chỉ có thao tác tìm theo thứ hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống.
+chỉ có thao tác tìm theo hạng (tức `loc`) là liên quan đến việc truy cập nút theo hướng xuống.
 Cần đẩy đánh dấu xuống **trước** mỗi lần hàm truy cập một nút mới.
 
 ???+ example "Cài đặt tham khảo"
