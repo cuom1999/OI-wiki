@@ -182,7 +182,7 @@ Nếu nút hiện tại có thể trở thành con của nút đỉnh ngăn xế
 thì nút đỉnh ngăn xếp là một nút hợp nhất.
 Nếu là nút phân tách, sau khi gộp thì nút phân tách này sẽ tồn tại một đoạn liên tiếp con,
 không thỏa mãn tính chất của nút phân tách.
-Vì vậy nó nhất định là nút hợp nhất.
+Vì vậy nó phải là nút hợp nhất.
 
 Nếu không thể trở thành con của nút đỉnh ngăn xếp,
 kiểm tra xem một số nút liên tiếp trên đỉnh ngăn xếp có thể gộp cùng nút hiện tại hay không.
@@ -431,7 +431,7 @@ void build() {
         // Kiểm tra có thể trở thành con hay không, nếu có thì làm
         R[st[tp]] = i, M[st[tp]] = L[now], add(st[tp], now), now = st[tp--];
       } else if (judge(L[st[tp]], i)) {
-        typ[++cnt] = 1;  // Nút hợp nhất nhất định được tạo ra theo cách này
+        typ[++cnt] = 1;  // Nút hợp nhất được tạo ra theo cách này
         L[cnt] = L[st[tp]], R[cnt] = i, M[cnt] = L[now];
         // Mảng M ghi đầu trái của người con ngoài cùng bên phải của nút, dùng cho phần kiểm tra có thể trở thành con ở trên
         add(cnt, st[tp--]), add(cnt, now);

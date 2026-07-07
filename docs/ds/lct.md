@@ -351,8 +351,8 @@ int Find(int p) {
 
 ### Lưu ý
 
--   Trước khi thao tác, nhất định phải nghĩ xem có cần `PushUp` hoặc `PushDown` hay không. Vì LCT rất linh hoạt, thiếu một lần `Pushdown` hoặc `Pushup` cũng có thể khiến sửa đổi rơi vào điểm không nên sửa.
--   `Rotate` của LCT hơi khác Splay, `if (z)` nhất định phải đặt phía trước.
+-   Trước khi thao tác, phải nghĩ xem có cần `PushUp` hoặc `PushDown` hay không. Vì LCT rất linh hoạt, thiếu một lần `Pushdown` hoặc `Pushup` cũng có thể khiến sửa đổi rơi vào điểm không nên sửa.
+-   `Rotate` của LCT hơi khác Splay, `if (z)` phải đặt phía trước.
 -   Thao tác `Splay` của LCT chỉ xoay lên gốc; không có thao tác xoay tới làm con của một nút nào đó, vì không cần.
 
 ## Độ phức tạp thời gian
@@ -1126,7 +1126,7 @@ Trên đây là các chi tiết sửa mã. Cuối cùng, tóm tắt yêu cầu v
 
 1.  Thông tin được duy trì phải có **tính trừ được**, như số nút cây con hoặc tổng trọng số cây con; không thể trực tiếp duy trì giá trị lớn nhất/nhỏ nhất của cây con, vì khi một cạnh ảo biến thành cạnh thực cần loại bỏ đóng góp của cạnh ảo ban đầu.
 2.  Tạo một giá trị phụ để lưu đóng góp của cây con ảo; khi thống kê thì cộng nó vào đáp án của nút hiện tại, và duy trì kịp thời khi trạng thái ảo/thực của cạnh thay đổi.
-3.  Các phần còn lại giống LCT thông thường; khi thống kê thông tin cây con, nhất định phải đặt nút đó làm gốc.
+3.  Các phần còn lại giống LCT thông thường; khi thống kê thông tin cây con, phải đặt nút đó làm gốc.
 4.  Nếu thông tin được duy trì không có tính trừ được, chẳng hạn duy trì cực trị đoạn, có thể mở một cây cân bằng cho mỗi nút để duy trì cực trị trong các cây con ảo của nút đó.
 
 ??? note "Mã tham khảo"

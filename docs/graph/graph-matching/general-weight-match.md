@@ -456,7 +456,7 @@ int get_lca(int u, int v) {
     bool on_found_edge(const edge &e) {
       // Tìm thấy một cạnh đẳng thức e trong BFS
       // Cần xử lý nó theo các bước sau
-      // Tại đây u nhất định là đỉnh chẵn
+      // Tại đây u là đỉnh chẵn
       int u = st[e.u], v = st[e.v];
       if (S[v] == -1) {
         // v là nút chưa thăm

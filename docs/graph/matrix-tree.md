@@ -338,7 +338,7 @@ Mỗi cấu trúc con phản ánh tính chất của đồ thị con tương ứ
 
     khác không.
     Hơn nữa, khi biểu thức này khác không,
-    nó nhất định bằng $\prod_{e\in S}w(e)$, ký hiệu là $w(T)$.
+    nó bằng đúng $\prod_{e\in S}w(e)$, ký hiệu là $w(T)$.
 
 ??? note "Chứng minh"
     Không mất tính tổng quát, giả sử $w(e)=1$.

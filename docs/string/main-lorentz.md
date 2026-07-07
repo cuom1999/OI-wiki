@@ -74,7 +74,7 @@ Với một xâu lặp kép bất kỳ, xét ký tự giữa của nó. Trong b�
 
 Tiếp theo sẽ xem cách tìm tất cả xâu lặp kép lệch trái.
 
-Gọi độ dài của một xâu lặp kép lệch trái là $2l$. Xét ký tự đầu tiên của xâu lặp kép này rơi vào $v$ (tức $s[|u|]$); ký tự đó nhất định bằng một ký tự $u[\textit{cntr}]$ nào đó trong $u$.
+Gọi độ dài của một xâu lặp kép lệch trái là $2l$. Xét ký tự đầu tiên của xâu lặp kép này rơi vào $v$ (tức $s[|u|]$); ký tự đó phải bằng một ký tự $u[\textit{cntr}]$ nào đó trong $u$.
 
 Cố định $\textit{cntr}$ và tìm mọi xâu lặp kép thỏa điều kiện. Ví dụ, với xâu $\tt c \; \underset{\textit{cntr}}{a} \; c \; | \; a \; d \; a$ (dấu $\tt |$ dùng để phân tách trái/phải), khi cố định $cntr = 1$, xâu lặp kép $\tt caca$ thỏa điều kiện.
 
@@ -110,7 +110,7 @@ Tiếp theo chỉ còn cần xét cách tính nhanh $k_1$ và $k_2$. Nhờ [hàm
 <span id="xâu-lặp-kép-lệch-phải"></span>
 #### Xâu lặp kép lệch phải
 
-Cách tính xâu lặp kép lệch phải gần như giống với cách tính xâu lặp kép lệch trái. Xét ký tự đầu tiên của xâu lặp kép rơi vào $u$ (tức $s[|u| - 1]$); ký tự đó nhất định bằng một ký tự nào đó trong $v$, gọi vị trí của ký tự này trong $v$ là $\textit{cntr}$.
+Cách tính xâu lặp kép lệch phải gần như giống với cách tính xâu lặp kép lệch trái. Xét ký tự đầu tiên của xâu lặp kép rơi vào $u$ (tức $s[|u| - 1]$); ký tự đó phải bằng một ký tự nào đó trong $v$, gọi vị trí của ký tự này trong $v$ là $\textit{cntr}$.
 
 Gọi $k_1$ là số nguyên lớn nhất thỏa $v[\textit{cntr} - k_1 + 1 \dots \textit{cntr}] = u[|u| - k_1 \dots |u| - 1]$, và $k_2$ là số nguyên lớn nhất thỏa $v[\textit{cntr} + 1 \dots \textit{cntr} + k_2] = v[0 \dots k_2 - 1]$. Khi đó có thể tính $k_1$ và $k_2$ lần lượt bằng hàm Z của $\overline{u} + \# + \overline{v}$ và của $v$.
 
