@@ -210,7 +210,7 @@ Cuối cùng, tính đúng đắn của cách làm trên dựa vào điều sau:
     
     Giả sử $fail[x]$ xuất hiện tại một vị trí $j$ trong $(i-diff[x],i)$. Vì $x$ và $fail[x]$ thuộc cùng một cấp số cộng, nên $2len[fail[x]] \ge len[x]$. Phần $fail[x]$ dư ra và $fail[x]$ tại vị trí $i-diff[x]$ có giao nhau; gọi phần giao là $w$, và đặt xâu $u$ thỏa $uw=fail[x]$. Bằng cách tương tự Bổ đề $1$, có thể chứng minh $w$ là xâu đối xứng, và tiền tố $s[i-len[x]+1..j]=uwu$ của $x$ cũng là xâu đối xứng. Điều này mâu thuẫn với việc $fail[x]$ là tiền tố (hậu tố) đối xứng dài nhất của $x$.
 
-Bài ví dụ: [Codeforces 932G Palindrome Partition](https://codeforces.com/problemset/problem/932/G)
+Bài ví dụ: [Codeforces 932G Phân hoạch hồi văn](https://codeforces.com/problemset/problem/932/G)
 
 Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đó $k$ là số chẵn và $t_i=t_{k-i+1}$, tính số cách phân hoạch như vậy.
 

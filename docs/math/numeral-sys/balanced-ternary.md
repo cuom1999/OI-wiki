@@ -113,6 +113,6 @@ Câu trả lời là có. Tính chất này được gọi là tính duy nhất 
 <span id="bài-tập"></span>
 ## Bài tập
 
-[Topcoder SRM 604 PowerOfThree](https://archive.topcoder.com/ProblemStatement/pm/12917)
+[Topcoder SRM 604 Lũy thừa của ba](https://archive.topcoder.com/ProblemStatement/pm/12917)
 
 **Một phần nội dung trang này được dịch từ bài viết [Троичная сбалансированная система счисления](http://e-maxx.ru/algo/balanced_ternary) và bản dịch tiếng Anh [Balanced Ternary](https://cp-algorithms.com/algebra/balanced-ternary.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

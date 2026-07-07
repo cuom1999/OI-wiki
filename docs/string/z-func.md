@@ -165,14 +165,14 @@ Chứng minh tính chất này giống với chứng minh khi dùng [hàm tiền
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [luogu P5410 [Mẫu] KMP mở rộng/exKMP (hàm Z)](https://www.luogu.com.cn/problem/P5410)
--   [luogu P7114 [NOIP2020] Khớp xâu](https://www.luogu.com.cn/problem/P7114)
+-   [Luogu P5410 [Mẫu] KMP mở rộng/exKMP (hàm Z)](https://www.luogu.com.cn/problem/P5410)
+-   [Luogu P7114 [NOIP2020] Khớp xâu](https://www.luogu.com.cn/problem/P7114)
 -   [CF126B Mật khẩu](http://codeforces.com/problemset/problem/126/B)
 -   [UVa # 455 Chuỗi tuần hoàn](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
 -   [UVa # 11022 Phân tích chuỗi](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
 -   [UVa 11475 - Mở rộng thành hồi văn](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470)
 -   [CodeChef - Chef và các chuỗi](https://www.codechef.com/problems/CHSTR)
 -   [Codeforces - Tiền tố và hậu tố](http://codeforces.com/problemset/problem/432/D)
--   [Leetcode 2223 - Tổng điểm của các chuỗi được xây dựng](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
+-   [LeetCode 2223 - Tổng điểm của các chuỗi được xây dựng](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 
 **Trang này chủ yếu được dịch từ bài viết [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) và bản dịch tiếng Anh [hàm Z và cách tính](https://cp-algorithms.com/string/z-function.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

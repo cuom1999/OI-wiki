@@ -1577,7 +1577,7 @@ public class Main {
 
 Có thể kiểm chứng bằng đoạn mã sau:
 
-???+ example "[Codeforces 1646B - Quality vs Quantity](https://codeforces.com/problemset/problem/1646/B)"
+???+ example "[Codeforces 1646B - Chất lượng và số lượng](https://codeforces.com/problemset/problem/1646/B)"
     Có $n$ số nguyên. Cần chia chúng thành hai nhóm và kiểm tra liệu có tồn tại
     một nhóm có độ dài nhỏ hơn nhóm kia nhưng tổng lại lớn hơn hay không.
 

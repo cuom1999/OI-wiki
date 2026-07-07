@@ -13,7 +13,7 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
 <span id="ví-dụ"></span>
 ### Ví dụ
 
-???+ example "[Codeforces 148D Bag of mice](https://codeforces.com/problemset/problem/148/D)"
+???+ example "[Codeforces 148D Túi chuột](https://codeforces.com/problemset/problem/148/D)"
     Trong túi có $w$ con chuột trắng và $b$ con chuột đen. Công chúa và rồng lần lượt bắt chuột trong túi. Ai bắt được chuột trắng trước thì thắng; nếu trong túi không còn chuột và không ai bắt được chuột trắng thì tính là rồng thắng. Mỗi lượt công chúa bắt một con chuột; sau mỗi lần rồng bắt một con chuột sẽ có một con chuột chạy ra ngoài. Con chuột được bắt và con chuột chạy ra đều là ngẫu nhiên. Công chúa bắt trước. Hỏi xác suất công chúa thắng.
 
 ??? note "Lời giải"
@@ -44,7 +44,7 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
 <span id="ví-dụ_1"></span>
 ### Ví dụ
 
-???+ example "[POJ2096 Collecting Bugs](http://poj.org/problem?id=2096)"
+???+ example "[POJ2096 Thu thập lỗi](http://poj.org/problem?id=2096)"
     Một phần mềm có $s$ hệ thống con và có thể sinh ra $n$ loại lỗi. Mỗi ngày một người phát hiện một lỗi; lỗi này thuộc một loại lỗi nào đó và cũng thuộc một hệ thống con nào đó. Xác suất mỗi lỗi thuộc một hệ thống con cụ thể là $\dfrac{1}{s}$, và xác suất thuộc một loại lỗi cụ thể là $\dfrac{1}{n}$. Tính số ngày kỳ vọng để phát hiện đủ $n$ loại lỗi và để mỗi hệ thống con trong $s$ hệ thống con đều đã có lỗi được tìm thấy.
 
 ??? note "Lời giải"

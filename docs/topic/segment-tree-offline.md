@@ -60,7 +60,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 
 ## Ví dụ
 
-???+ note "[luogu P5787 Đồ thị hai phía / [Mẫu] Chia để trị bằng cây đoạn](https://www.luogu.com.cn/problem/P5787)"
+???+ note "[Luogu P5787 Đồ thị hai phía / [Mẫu] Chia để trị bằng cây đoạn](https://www.luogu.com.cn/problem/P5787)"
     Cần duy trì một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh. Cạnh thứ $i$ là $(x_i,y_i)$, xuất hiện trong khoảng thời gian $[l_i,r_i)$ và biến mất ở các thời điểm còn lại.
     
     Với mỗi thời điểm, nếu đồ thị lúc đó là đồ thị hai phía thì in `Yes`, ngược lại in `No`.
@@ -90,7 +90,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_2.cpp"
         ```
 
-???+ note "[luogu P4219 \[BJOI2014\] Đại dung hợp](https://www.luogu.com.cn/problem/P4219)"
+???+ note "[Luogu P4219 \[BJOI2014\] Đại dung hợp](https://www.luogu.com.cn/problem/P4219)"
     Cần duy trì một rừng có $n$ đỉnh, ban đầu là các đỉnh rời rạc.
     
     Có $q$ thao tác, hỗ trợ:
@@ -112,7 +112,7 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         --8<-- "docs/topic/code/segment-tree-offline/segment-tree-offline_3.cpp"
         ```
 
-???+ note "[luogu P2056 \[ZJOI2007\] Trốn tìm](https://www.luogu.com.cn/problem/P2056)"
+???+ note "[Luogu P2056 \[ZJOI2007\] Trốn tìm](https://www.luogu.com.cn/problem/P2056)"
     Cho một cây có $n$ đỉnh, mỗi đỉnh có một trong hai màu đen và trắng. Ban đầu mỗi đỉnh đều có màu đen. Có $q$ thao tác, hỗ trợ:
     
     -   `C x` đảo màu của đỉnh thứ $x$.
@@ -140,8 +140,8 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 
 -   [CF601E Một vụ cướp bảo tàng](https://codeforces.com/problemset/problem/601/E) chia để trị bằng cây đoạn + quy hoạch động ba lô.
 -   [CF19E Tiên nữ](https://codeforces.com/problemset/problem/19/E) chia để trị bằng cây đoạn + DSU duy trì tính chẵn lẻ.
--   [luogu P5227 \[AHOI2013\] Đồ thị liên thông](https://www.luogu.com.cn/problem/P5227) chia để trị bằng cây đoạn + DSU.
--   [luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + cây Link-Cut để duy trì cây khung nhỏ nhất.
--   [luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + cơ sở tuyến tính.
+-   [Luogu P5227 \[AHOI2013\] Đồ thị liên thông](https://www.luogu.com.cn/problem/P5227) chia để trị bằng cây đoạn + DSU.
+-   [Luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + cây Link-Cut để duy trì cây khung nhỏ nhất.
+-   [Luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + cơ sở tuyến tính.
 
 **Một phần nội dung của trang này tham khảo từ bài viết [xóa khỏi cấu trúc dữ liệu](https://cp-algorithms.com/data_structures/deleting_in_log_n.html), với giấy phép CC-BY-SA 4.0.**

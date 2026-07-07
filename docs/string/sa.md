@@ -466,14 +466,14 @@ Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
     
     Xét một vị trí đóng góp cho LCP của những cặp hậu tố nào: thực chất là chọn một hậu tố trong đoạn liên tiếp bên trái có $height$ lớn hơn nó, và chọn một hậu tố trong đoạn liên tiếp bên phải có $height$ không nhỏ hơn nó. Phần này có thể tính bằng [ngăn xếp đơn điệu](../ds/monotonic-stack.md).
     
-    Phần ngăn xếp đơn điệu tương tự [Luogu P2659 - Beautiful Sequence](https://www.luogu.com.cn/problem/P2659) và [phương pháp đường treo](../misc/hoverline.md).
+    Phần ngăn xếp đơn điệu tương tự [Luogu P2659 - Dãy đẹp](https://www.luogu.com.cn/problem/P2659) và [phương pháp đường treo](../misc/hoverline.md).
 
 ??? note "Mã tham khảo"
     ```cpp
     --8<-- "docs/string/code/sa/sa_3.cpp"
     ```
 
-Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem/2064).
+Bài tương tự: [HAOI2016 - Tìm các ký tự giống nhau](https://loj.ac/problem/2064).
 
 <span id="bài-tập"></span>
 ## Bài tập
