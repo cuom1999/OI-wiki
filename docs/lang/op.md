@@ -8,7 +8,7 @@ author: aofall, greyqz, Ir1d, Link-cute, Marcythm, ouuan, Shen-Linwood, sshwy, S
 | `-` (một ngôi) | âm        |
 | `*` (hai ngôi) | nhân      |
 | `/`           | chia      |
-| `%`           | lấy phần dư (modulo) |
+| `%`           | lấy phần dư |
 | `+` (hai ngôi) | cộng      |
 | `-` (hai ngôi) | trừ       |
 
@@ -22,7 +22,7 @@ Trong nhóm toán tử số học, có hai toán tử một ngôi (dương, âm)
 ngôi (nhân, chia, lấy phần dư, cộng, trừ). Các toán tử một ngôi có độ ưu tiên cao
 hơn các toán tử số học hai ngôi.
 
-Toán tử modulo `%` dùng để tính phần dư khi chia hai số nguyên.
+Toán tử lấy dư `%` dùng để tính phần dư khi chia hai số nguyên.
 
 Khi `-` là toán tử hai ngôi, nó biểu thị phép trừ, ví dụ `2 - 1`; khi là toán tử
 một ngôi, nó biểu thị giá trị âm, ví dụ `-1`.
@@ -257,7 +257,7 @@ có chỉnh sửa.
 | **Cấp 5** | | | |
 | `*` | nhân | `int i = 2 * 4;` | có thể |
 | `/` | chia | `float f = 10.0 / 3.0;` | có thể |
-| `%` | lấy phần dư (modulo) | `int rem = 4 % 3;` | có thể |
+| `%` | lấy phần dư | `int rem = 4 % 3;` | có thể |
 | **Cấp 6** | | | |
 | `+` | cộng | `int i = 2 + 3;` | có thể |
 | `-` | trừ | `int i = 5 - 1;` | có thể |
@@ -292,7 +292,7 @@ có chỉnh sửa.
 | `-=` | trừ rồi gán | `b -= 4;` | có thể |
 | `*=` | nhân rồi gán | `a *= 5;` | có thể |
 | `/=` | chia rồi gán | `a /= 2;` | có thể |
-| `%=` | modulo rồi gán | `a %= 3;` | có thể |
+| `%=` | lấy dư rồi gán | `a %= 3;` | có thể |
 | `<<=` | dịch trái bit rồi gán | `flags <<= 2;` | có thể |
 | `>>=` | dịch phải bit rồi gán | `flags >>= 2;` | có thể |
 | `&=` | AND bit rồi gán | `flags &= new_flags;` | có thể |

@@ -77,7 +77,7 @@ Về cách viết LaTeX của các ký hiệu, tham khảo [mã nguồn của b�
 | <a id="n4.15"></a>n4.15 | $x \to a$ | $x$ tiến tới $a$ | Thường xuất hiện trong biểu thức giới hạn.<br>$a$ cũng có thể là $\infty$, $+\infty$, $-\infty$. |
 | <a id="n4.16"></a>n4.16 | $m \mid n$ | $m$ chia hết $n$ | Với các số nguyên $m$, $n$:<br>$(\exists~k \in \mathbf{Z})~~m\cdot k = n$. |
 | <a id="n4.17"></a>n4.17 | $m \perp n$ | $m$ và $n$ nguyên tố cùng nhau | Với các số nguyên $m$, $n$:<br>$(\nexists~k \in \mathbf{Z}_{>1})~~(k \mid m) \land (k \mid n)$;<br>một cách dùng khác của ký hiệu này xem tại [n5.2](#n5.2). |
-| <a id="n4.18"></a>n4.18 | $n \equiv k \pmod m$ | $n$ đồng dư với $k$ modulo $m$ | Với các số nguyên $n$, $k$, $m$:<br>$m \mid (n - k)$;<br>đừng nhầm với nghĩa được nhắc tới trong [n4.1](#n4.1). |
+| <a id="n4.18"></a>n4.18 | $n \equiv k \pmod m$ | $n$ đồng dư với $k$ theo môđun $m$ | Với các số nguyên $n$, $k$, $m$:<br>$m \mid (n - k)$;<br>đừng nhầm với nghĩa được nhắc tới trong [n4.1](#n4.1). |
 
 ## Hình học sơ cấp
 
@@ -114,7 +114,7 @@ Về cách viết LaTeX của các ký hiệu, tham khảo [mã nguồn của b�
 | <a id="n6.18"></a>n6.18 | $\lceil a\rceil$ | Làm tròn lên<br>số nguyên nhỏ nhất lớn hơn hoặc bằng số thực $a$ | Ví dụ:<br>$\lceil 2.4\rceil = 3$;<br>$\lceil -2.4\rceil = -2$. |
 | <a id="n6.19"></a>n6.19 | $\min(a, b)$;<br>$\min\{a, b\}$ | Giá trị nhỏ nhất của $a$ và $b$ | Có thể mở rộng cho tập hữu hạn.<br>Để biểu thị giá trị nhỏ nhất trong tập vô hạn, nên dùng $\inf$, xem [n6.14](#n6.14). |
 | <a id="n6.20"></a>n6.20 | $\max(a, b)$;<br>$\max\{a, b\}$ | Giá trị lớn nhất của $a$ và $b$ | Có thể mở rộng cho tập hữu hạn.<br>Để biểu thị giá trị lớn nhất trong tập vô hạn, nên dùng $\sup$, xem [n6.15](#n6.15). |
-| <a id="n6.21"></a>n6.21 | $n \bmod m$ | Số dư của $n$ modulo $m$ | Với các số nguyên dương $n$, $m$:<br>$(\exists~q\in\mathbf{N}, r\in[0, m))~~n=qm+r$;<br>trong đó $r=n \bmod m$. |
+| <a id="n6.21"></a>n6.21 | $n \bmod m$ | Số dư của $n$ theo môđun $m$ | Với các số nguyên dương $n$, $m$:<br>$(\exists~q\in\mathbf{N}, r\in[0, m))~~n=qm+r$;<br>trong đó $r=n \bmod m$. |
 | <a id="n6.22"></a>n6.22 | $\gcd(a, b)$;<br>$\gcd\{a, b\}$ | Ước chung lớn nhất của các số nguyên $a$ và $b$ | Có thể mở rộng cho tập hữu hạn. Khi không gây nhầm lẫn, có thể viết là $(a, b)$. |
 | <a id="n6.23"></a>n6.23 | $\operatorname{lcm}(a, b)$;<br>$\operatorname{lcm}\{a, b\}$ | Bội chung nhỏ nhất của các số nguyên $a$ và $b$ | Có thể mở rộng cho tập hữu hạn. Khi không gây nhầm lẫn, có thể viết là $[a, b]$;<br>$(a, b)[a, b]=\lvert ab\rvert$. |
 | <a id="n6.24"></a>n6.24 | $[P]$ | Ngoặc Iverson | Nếu mệnh đề $P$ đúng thì $[P]=1$, ngược lại $[P]=0$. |

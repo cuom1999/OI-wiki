@@ -111,7 +111,7 @@ f(x)&=\sum _ {0\leq i\leq n}f(i)\prod _ {0\leq j\leq n\,\land \,j\neq i}\frac{x-
 \end{aligned}
 $$
 
-Biểu thức trên tuy có dạng tích chập nhưng không bảo đảm mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lý bằng phân loại, chẳng hạn khi hệ số được lấy theo modulo số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
+Biểu thức trên tuy có dạng tích chập nhưng không bảo đảm mẫu số $x-i\neq 0$. Vì vậy dưới đây chỉ xét trường hợp $c > n$; các trường hợp khác có thể xử lý bằng phân loại, chẳng hạn khi hệ số được lấy theo môđun số nguyên tố thì cần tránh mẫu số của hệ số trong $B_0(x)$ bằng không. Đặt
 
 $$
 \begin{aligned}
@@ -167,7 +167,7 @@ $$
 
 <span id="giai-thừa-theo-modulo-số-nguyên-tố"></span>
 
-### Giai thừa theo modulo số nguyên tố
+### Giai thừa theo môđun số nguyên tố
 
 ???+ note "Bài tập [P5282. Mẫu thuật toán giai thừa nhanh](https://www.luogu.com.cn/problem/P5282)"
     Tính $n!\bmod p$, trong đó $p$ là số nguyên tố và $1\leq n< p\leq 2^{31}-1$.
@@ -214,7 +214,7 @@ Mà chỉ cần khoảng $\sqrt{n}$ giá trị tại điểm, nên độ phức 
 
 <span id="tổng-tiền-tố-hệ-số-nhị-thức-theo-modulo-số-nguyên-tố"></span>
 
-### Tổng tiền tố hệ số nhị thức theo modulo số nguyên tố
+### Tổng tiền tố hệ số nhị thức theo môđun số nguyên tố
 
 ???+ note "Bài tập [LOJ 6386. Tổng tiền tố tổ hợp](https://loj.ac/p/6386)"
     Tính $\displaystyle \sum _ {i=0}^m\binom{n}{i}\bmod 998244353$, trong đó $0\leq m\leq n\leq 9\times 10^8$.
@@ -373,7 +373,7 @@ có thể được tính xong trong thời gian $O(\sqrt m\log m)$.
 
 <span id="số-điều-hòa-theo-modulo-số-nguyên-tố"></span>
 
-### Số điều hòa theo modulo số nguyên tố
+### Số điều hòa theo môđun số nguyên tố
 
 ???+ note "Bài tập [P5702. Tính tổng cấp số điều hòa](https://www.luogu.com.cn/problem/P5702)"
     Tính $\sum _ {i=1}^ni^{-1}\bmod p$, trong đó $p$ là số nguyên tố và $1\leq n< p< 2^{30}$.

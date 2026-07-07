@@ -2,8 +2,8 @@ Trang này giới thiệu ngắn gọn tìm kiếm theo kinh nghiệm và cách 
 
 ## Định nghĩa
 
-Tìm kiếm theo kinh nghiệm (tiếng Anh: heuristic search) là một loại thuật toán tìm kiếm
-đưa thêm hàm đánh giá theo kinh nghiệm (heuristic function) vào trên nền các thuật toán tìm kiếm thông thường.
+Tìm kiếm theo kinh nghiệm là một loại thuật toán tìm kiếm
+đưa thêm hàm đánh giá theo kinh nghiệm vào trên nền các thuật toán tìm kiếm thông thường.
 
 Vai trò của hàm đánh giá theo kinh nghiệm là dựa trên thông tin đã có để đánh giá từng lựa chọn
 nhánh trong quá trình tìm kiếm, rồi từ đó chọn nhánh. Nói đơn giản, tìm kiếm

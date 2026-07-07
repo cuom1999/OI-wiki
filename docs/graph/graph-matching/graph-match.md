@@ -6,29 +6,29 @@ author: 310552025atNYCU, accelsao, Chrogeek, Enter-tainer, iamtwz, mcendu, Shen-
 
 ## Ghép cặp trong đồ thị
 
-Gọi $G=(V,E)$ là một đồ thị vô hướng, trong đó $V$ là tập đỉnh và $E$ là tập cạnh. Nếu một tập cạnh $M\subseteq E$ không chứa khuyên và không có hai cạnh nào trong $M$ chung đầu mút, thì $M$ được gọi là một **ghép cặp** (matching) hay **tập cạnh độc lập** (independent edge set) của đồ thị $G$. Một cạnh $e\in E$ nếu thuộc ghép cặp $M$ thì được gọi là **cạnh được ghép**, ngược lại gọi là **cạnh không được ghép**. Tương ứng, một đỉnh $v\in V$ nếu là đầu mút của một cạnh được ghép thì được gọi là **đỉnh đã ghép**, ngược lại gọi là **đỉnh chưa ghép**.
+Gọi $G=(V,E)$ là một đồ thị vô hướng, trong đó $V$ là tập đỉnh và $E$ là tập cạnh. Nếu một tập cạnh $M\subseteq E$ không chứa khuyên và không có hai cạnh nào trong $M$ chung đầu mút, thì $M$ được gọi là một **ghép cặp** hay **tập cạnh độc lập** của đồ thị $G$. Một cạnh $e\in E$ nếu thuộc ghép cặp $M$ thì được gọi là **cạnh được ghép**, ngược lại gọi là **cạnh không được ghép**. Tương ứng, một đỉnh $v\in V$ nếu là đầu mút của một cạnh được ghép thì được gọi là **đỉnh đã ghép**, ngược lại gọi là **đỉnh chưa ghép**.
 
 Kích thước của ghép cặp $M$ là số cạnh mà nó chứa. Với ghép cặp trong đồ thị vô hướng (có trọng số), thường xét các khái niệm sau:
 
--   **Ghép cặp cực đại** (maximal matching): ghép cặp không thể thêm cạnh nào nữa mà vẫn là ghép cặp. Ghép cặp cực đại không phải lúc nào cũng là ghép cặp lớn nhất.
+-   **Ghép cặp cực đại**: ghép cặp không thể thêm cạnh nào nữa mà vẫn là ghép cặp. Ghép cặp cực đại không phải lúc nào cũng là ghép cặp lớn nhất.
 
     ![ghép cặp cực đại](images/graph-match-1.svg)
 
--   **Ghép cặp lớn nhất** (maximum matching or maximum cardinality matching): ghép cặp có nhiều cạnh nhất. Có thể có nhiều ghép cặp lớn nhất, nhưng kích thước của chúng là xác định và không thể vượt quá một nửa số đỉnh của đồ thị.
+-   **Ghép cặp lớn nhất**: ghép cặp có nhiều cạnh nhất. Có thể có nhiều ghép cặp lớn nhất, nhưng kích thước của chúng là xác định và không thể vượt quá một nửa số đỉnh của đồ thị.
 
     ![ghép cặp lớn nhất theo số cạnh](images/graph-match-2.svg)
 
--   **Ghép cặp trọng số lớn nhất** (maximum weight matching): trong đồ thị có trọng số, đây là ghép cặp có tổng trọng số cạnh lớn nhất.
+-   **Ghép cặp trọng số lớn nhất**: trong đồ thị có trọng số, đây là ghép cặp có tổng trọng số cạnh lớn nhất.
 
     ![ghép cặp trọng số lớn nhất](images/graph-match-3.svg)
 
--   **Ghép cặp lớn nhất có trọng số lớn nhất** (maximum weight maximum cardinality matching): trong số các ghép cặp có số cạnh lớn nhất, chọn ghép cặp có tổng trọng số cạnh lớn nhất. Nói cách khác, đó là ghép cặp có tổng trọng số lớn nhất trong tất cả các ghép cặp lớn nhất.
+-   **Ghép cặp lớn nhất có trọng số lớn nhất**: trong số các ghép cặp có số cạnh lớn nhất, chọn ghép cặp có tổng trọng số cạnh lớn nhất. Nói cách khác, đó là ghép cặp có tổng trọng số lớn nhất trong tất cả các ghép cặp lớn nhất.
 
     ![ghép cặp lớn nhất có trọng số lớn nhất](images/graph-match-4.svg)
 
--   **Ghép cặp hoàn hảo** (perfect matching): ghép cặp mà mọi đỉnh đều đã ghép. Mọi ghép cặp hoàn hảo đều là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh chẵn luôn tồn tại ghép cặp hoàn hảo.
+-   **Ghép cặp hoàn hảo**: ghép cặp mà mọi đỉnh đều đã ghép. Mọi ghép cặp hoàn hảo đều là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh chẵn luôn tồn tại ghép cặp hoàn hảo.
 
--   **Ghép cặp gần hoàn hảo** (near-perfect matching): ghép cặp có đúng một đỉnh chưa ghép. Điều này chỉ có thể xảy ra khi số đỉnh của đồ thị là lẻ. Mọi ghép cặp gần hoàn hảo cũng là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh lẻ luôn tồn tại ghép cặp gần hoàn hảo.
+-   **Ghép cặp gần hoàn hảo**: ghép cặp có đúng một đỉnh chưa ghép. Điều này chỉ có thể xảy ra khi số đỉnh của đồ thị là lẻ. Mọi ghép cặp gần hoàn hảo cũng là ghép cặp lớn nhất. Đồ thị đầy đủ có số đỉnh lẻ luôn tồn tại ghép cặp gần hoàn hảo.
 
 Trong lập trình thi đấu, các bài toán ghép cặp trong đồ thị chủ yếu nói đến ghép cặp lớn nhất hoặc ghép cặp trọng số lớn nhất.
 

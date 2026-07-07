@@ -258,7 +258,7 @@ phép toán này; phần này chỉ trình bày những điểm khác C++ rõ h�
 
 Từ các thử nghiệm trên, phép chia (`/`) luôn trả về kiểu dấu phẩy động (trong
 Python 2 thì có thể trả về số nguyên). Nếu muốn kết quả số nguyên hoặc làm tròn
-xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng modulo (`%`) để tính
+xuống, dùng chia nguyên (`//`). Tương tự C++, có thể dùng toán tử `%` để tính
 phần dư, và dạng ký pháp khoa học cũng giống nhau.
 
 Đặc biệt, Python dùng `**` để tính lũy thừa, và cung cấp cài đặt hiệu quả của
@@ -336,7 +336,7 @@ True
 >>> print(s1 + s2)  # Dùng hàm print() để in chuỗi
 OI-Wiki cam on ban
 chao mung dong gop!
->>> s2[1:4] + s2[-1]  # Chỉ số âm đếm từ bên phải; cộng lên len(s) tương đương đưa về modulo n
+>>> s2[1:4] + s2[-1]  # Chỉ số âm đếm từ bên phải; cộng lên len(s) tương đương đưa về theo môđun n
 'cam!'
 >>> s1[0] = 'o'  # str là kiểu bất biến, không thể sửa tại chỗ; += cũng tạo đối tượng mới
 Traceback (most recent call last):
