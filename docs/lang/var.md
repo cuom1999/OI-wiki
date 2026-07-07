@@ -180,7 +180,7 @@ của kỳ thi** để xác định việc dùng kiểu số nguyên mở rộng
         kiểu C, có chữ ký `int abs(int)`, nên trước hết `n` sẽ bị chuyển kiểu
         thành `int`, rồi mới gọi hàm `abs`.
     2.  Trong `__int128_t f4(__int128_t)`, hàm lấy trị tuyệt đối được dùng là hàm
-        kiểu C++. Hàm này không có overload với chữ ký
+        kiểu C++. Hàm này không có phiên bản nạp chồng với chữ ký
         `__int128_t std::abs(__int128_t)`, nên không thể biên dịch.
     3.  Toán tử xuất luồng của C++ không hỗ trợ `__int128_t` và `__uint128_t`.
 

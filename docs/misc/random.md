@@ -94,7 +94,9 @@ Với `minstd_rand()`, kiểu của $s$ là số nguyên không dấu 32 bit, $A
 
 Dùng để xáo trộn ngẫu nhiên một dãy được chỉ định. Khi sử dụng cần `#include<algorithm>`.
 
-Khi dùng, chỉ cần truyền con trỏ hoặc iterator đầu cuối của đoạn được chỉ định, theo dạng đóng trái mở phải: `std::random_shuffle(first, last)` hoặc `std::random_shuffle(first, last, myrand)`.
+Khi dùng, chỉ cần truyền con trỏ hoặc bộ lặp đầu cuối của đoạn được chỉ định,
+theo dạng đóng trái mở phải: `std::random_shuffle(first, last)` hoặc
+`std::random_shuffle(first, last, myrand)`.
 
 Bộ sinh số ngẫu nhiên dùng bên trong mặc định là `rand()`. Cũng có thể truyền vào bộ sinh số ngẫu nhiên tự định nghĩa.
 

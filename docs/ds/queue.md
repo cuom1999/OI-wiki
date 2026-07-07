@@ -195,9 +195,9 @@ gồm:
     -   `q.pop_back()` lấy phần tử cuối hàng đợi ra
     -   `q.push_front()` chèn phần tử vào đầu hàng đợi
     -   `q.pop_front()` xóa phần tử đầu hàng đợi
-    -   `q.insert()` chèn phần tử trước vị trí chỉ định (truyền vào iterator và
+    -   `q.insert()` chèn phần tử trước vị trí chỉ định (truyền vào bộ lặp và
         phần tử)
-    -   `q.erase()` xóa phần tử ở vị trí chỉ định (truyền vào iterator)
+    -   `q.erase()` xóa phần tử ở vị trí chỉ định (truyền vào bộ lặp)
 -   Dung lượng
     -   `q.empty()` kiểm tra hàng đợi có rỗng hay không
     -   `q.size()` trả về số phần tử trong hàng đợi

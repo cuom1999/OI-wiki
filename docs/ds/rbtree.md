@@ -369,8 +369,8 @@ Mã nguồn:
 -   [`java.util.HashMap<K, V>`](https://github.com/openjdk/jdk/blob/master/src/java.base/share/classes/java/util/HashMap.java)
 
 Trong JDK, `TreeMap` và `TreeSet` đều dùng cây đỏ-đen làm cấu trúc dữ liệu nền. Đồng thời, sau JDK 1.8, khi độ dài danh
-sách liên kết của mỗi bucket trong bảng băm nội bộ của `HashMap` vượt quá 8, nó cũng tự động chuyển thành cây đỏ-đen để
-nâng cao hiệu suất tìm kiếm.
+sách liên kết của mỗi thùng băm trong bảng băm nội bộ của `HashMap` vượt quá 8, nó cũng tự động chuyển thành cây đỏ-đen
+để nâng cao hiệu suất tìm kiếm.
 
 ## Tài liệu tham khảo
 

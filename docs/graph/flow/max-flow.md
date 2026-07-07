@@ -947,7 +947,7 @@ Một chi tiết cần lưu ý là xô trong bài báo[^ref2] được cài đ�
     int ht[N + 1];        // độ cao
     long long ex[N + 1];  // lượng dư
     int gap[N];           // tối ưu gap. gap[i] là số đỉnh có độ cao i
-    stack<int> B[N];      // bucket B[i] ghi tất cả v có ht[v] == i
+    stack<int> B[N];      // thùng B[i] ghi tất cả v có ht[v] == i
     int level = 0;        // độ cao lớn nhất của đỉnh đang hoạt động
     
     int push(int u) {      // đẩy lượng dư qua các cạnh có thể đẩy nhiều nhất có thể

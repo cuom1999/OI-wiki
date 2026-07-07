@@ -29,8 +29,8 @@ bộ chứa kết hợp có thứ tự.
 ??? warning "Cảnh báo"
     Trong trường hợp xấu nhất, độ phức tạp thời gian của các thao tác chèn, xóa,
     tìm kiếm trên bộ chứa kết hợp không thứ tự sẽ **tuyến tính theo kích thước
-    bộ chứa**. Tình huống này thường xảy ra khi nhiều khóa rơi vào cùng bucket,
-    tức có nhiều va chạm băm.
+    bộ chứa**. Tình huống này thường xảy ra khi nhiều khóa rơi vào cùng thùng
+    băm, tức có nhiều va chạm băm.
     
     Đồng thời, do các thao tác trên bộ chứa kết hợp không thứ tự thường có hằng
     số lớn, hiệu năng thực tế của chúng đôi khi không hơn bộ chứa kết hợp có thứ
@@ -56,7 +56,7 @@ bộ chứa.
 Khi hàm băm đã cố định, có thể xây dựng dữ liệu sao cho trong bộ chứa phát sinh
 nhiều va chạm băm, khiến độ phức tạp đạt tới cận xấu nhất.
 
-Trong một số cài đặt của thư viện chuẩn, bucket của mỗi phần tử được xác định
+Trong một số cài đặt của thư viện chuẩn, thùng băm của mỗi phần tử được xác định
 bằng cách lấy phần dư của giá trị băm theo một số nguyên tố. Các số nguyên tố
 đó có thể nằm trong
 [danh sách này](https://github.com/gcc-mirror/gcc/blob/releases/gcc-8.1.0/libstdc%2B%2B-v3/src/shared/hashtable-aux.cc)

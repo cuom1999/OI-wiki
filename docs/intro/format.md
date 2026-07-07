@@ -673,9 +673,14 @@ Nếu cần thêm bài mẫu:
 -   <a id="CODE-3.3"></a>CODE-3.3: tệp đáp án chuẩn không được có khoảng trắng thừa.
 -   <a id="CODE-3.4"></a>CODE-3.4: không dùng [alternative tokens](https://en.cppreference.com/w/cpp/language/operator_alternative#Alternative_tokens).
 -   <a id="CODE-3.5"></a>CODE-3.5: khi dùng [aggregate initialization](https://en.cppreference.com/w/cpp/language/aggregate_initialization), không được viết `object{args}` thành `(object){args}`.
--   <a id="CODE-3.6"></a>CODE-3.6: khi dùng [operator overloading](https://en.cppreference.com/w/cpp/language/operators), cần lưu ý định dạng; ví dụ khi overload toán tử so sánh, nếu dùng cách viết hàm thành viên thì không được bỏ từ định danh `const`.
+-   <a id="CODE-3.6"></a>CODE-3.6: khi dùng [nạp chồng toán tử](https://en.cppreference.com/w/cpp/language/operators),
+    cần lưu ý định dạng; ví dụ khi nạp chồng toán tử so sánh, nếu dùng cách viết
+    hàm thành viên thì không được bỏ từ định danh `const`.
 -   <a id="CODE-3.7"></a>CODE-3.7: không dùng macro giống `#define int long long`.
--   <a id="CODE-3.8"></a>CODE-3.8: nếu cần dùng [nhập/xuất có định dạng](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput) kiểu C, cần đặc biệt lưu ý cách viết format specifier: ví dụ `size_t` tương ứng `%zu`, `ptrdiff_t` tương ứng `%td`. Ví dụ khi xuất kích thước của một STL container, mã nên tương tự `printf("%zu", container.size());`.
+-   <a id="CODE-3.8"></a>CODE-3.8: nếu cần dùng [nhập/xuất có định dạng](https://en.cppreference.com/w/cpp/io/c#Formatted_input.2Foutput)
+    kiểu C, cần đặc biệt lưu ý cách viết đặc tả định dạng: ví dụ `size_t` tương
+    ứng `%zu`, `ptrdiff_t` tương ứng `%td`. Ví dụ khi xuất kích thước của một bộ
+    chứa STL, mã nên tương tự `printf("%zu", container.size());`.
 -   <a id="CODE-3.9"></a>CODE-3.9: do thư viện `<chrono>` của libstdc++ trong môi trường kiểm thử hiện tại có [BUG](https://github.com/actions/runner-images/issues/8659), vui lòng tránh dùng thư viện `<chrono>`.
 -   <a id="CODE-3.10"></a>CODE-3.10: do `long` và `unsigned long` là 32 bit trong một số môi trường kiểm thử, nhưng là 64 bit trong một số môi trường khác, để bảo đảm hành vi mã nhất quán trên mọi nền tảng, không khuyến nghị dùng hai kiểu này. Nên dùng [kiểu số nguyên có độ rộng cố định](../lang/var.md#kiểu-số-nguyên-có-độ-rộng-cố-định).
 -   <a id="CODE-3.11"></a>CODE-3.11: không khuyến nghị dùng các nội dung không chuẩn như `__gcd`, `__int128`, các hàm dòng `__builtin_`. Nếu cần dùng, cần bảo đảm mã vượt qua kiểm thử trên tất cả nền tảng; ví dụ [đoạn mã này](https://github.com/OI-wiki/OI-wiki/blob/4af83d6db6017f4c36db6d4a7583bbc3f6257484/docs/ds/code/tree-decompose/tree-decompose_1.cpp#L24-L47) cung cấp hiện thực đa nền tảng cho hàm thành viên `_Find_first()` đặc thù của [std::bitset](../lang/csl/bitset.md) trong libstdc++.
