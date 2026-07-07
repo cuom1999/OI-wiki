@@ -385,6 +385,6 @@ Khi cài đặt, điểm quan trọng là phải tính nhanh "thứ hạng của
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [Permutation - Wikipedia](https://en.wikipedia.org/wiki/Permutation)
--   [Lehmer code - Wikipedia](https://en.wikipedia.org/wiki/Lehmer_code)
--   [Factorial number system - Wikipedia](https://en.wikipedia.org/wiki/Factorial_number_system)
+-   [Hoán vị - Wikipedia](https://en.wikipedia.org/wiki/Permutation)
+-   [Mã Lehmer - Wikipedia](https://en.wikipedia.org/wiki/Lehmer_code)
+-   [Hệ giai thừa - Wikipedia](https://en.wikipedia.org/wiki/Factorial_number_system)

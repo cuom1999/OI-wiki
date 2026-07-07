@@ -338,9 +338,9 @@ Trong C++14 và các phiên bản sau, [toán tử literal `std::literals::compl
 
 ## Tài liệu tham khảo và liên kết
 
--   [Complex number - Wikipedia](https://en.wikipedia.org/wiki/Complex_number)
--   [Euler's formula - Wikipedia](https://en.wikipedia.org/wiki/Euler's_formula)
--   [Complex number arithmetic - cppreference.com](https://en.cppreference.com/w/c/numeric/complex)
+-   [Số phức - Wikipedia](https://en.wikipedia.org/wiki/Complex_number)
+-   [Công thức Euler - Wikipedia](https://en.wikipedia.org/wiki/Euler's_formula)
+-   [Số học số phức - cppreference.com](https://en.cppreference.com/w/c/numeric/complex)
 -   [std::complex - cppreference.com](https://en.cppreference.com/w/cpp/numeric/complex)
 
 [^ref1]: Để biết thêm về công thức Euler, có thể tham khảo hai video: [công thức Euler và lý thuyết nhóm sơ cấp](https://www.bilibili.com/video/BV1fx41187tZ), [nhập môn phương trình vi phân - Chương 5: hiểu $\mathrm{e}^{\mathrm{i}\pi}$ trong 3.14 phút](https://www.bilibili.com/video/BV1G4411D7kZ).

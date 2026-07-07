@@ -111,4 +111,4 @@ Nhìn theo cách khác, tách $n+m$ bước thành hai phần: đi $n$ bước t
 
 ## Tài liệu tham khảo và ghi chú
 
-1.  [Vandermonde's Convolution Formula](https://www.cut-the-knot.org/arithmetic/algebra/VandermondeConvolution.shtml)
+1.  [Công thức tích chập Vandermonde](https://www.cut-the-knot.org/arithmetic/algebra/VandermondeConvolution.shtml)

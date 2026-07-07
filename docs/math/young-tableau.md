@@ -157,7 +157,7 @@ Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Young tableau - from Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
-2.  [Young tableau - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
-3.  [Hook length formula - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
+1.  [Bảng Young - Wolfram MathWorld](https://mathworld.wolfram.com/YoungTableau.html)
+2.  [Bảng Young - Wikipedia](https://en.wikipedia.org/wiki/Young_tableau)
+3.  [Công thức độ dài móc - Wikipedia](https://en.wikipedia.org/wiki/Hook_length_formula)
 4.  Yuan Fangzhou, ["Bàn về ứng dụng của bảng Young trong lập trình thi đấu" IOI2019](https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2019%E8%AE%BA%E6%96%87%E9%9B%86.pdf), tuyển tập luận văn đội tuyển dự tuyển quốc gia Trung Quốc, tr. 202-229

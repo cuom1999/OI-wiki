@@ -615,4 +615,4 @@ Chỉ cần tính trực tiếp theo các công thức này.
 <span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
-[^ref1]: [Elementary function - Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)
+[^ref1]: [Hàm sơ cấp - Wikipedia](https://en.wikipedia.org/wiki/Elementary_function)

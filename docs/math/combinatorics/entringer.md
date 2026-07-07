@@ -241,4 +241,4 @@ $$
 <span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
-1.  [Alternating permutation - Wikipedia](https://en.wikipedia.org/wiki/Alternating_permutation)
+1.  [Hoán vị luân phiên - Wikipedia](https://en.wikipedia.org/wiki/Alternating_permutation)

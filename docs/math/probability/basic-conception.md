@@ -111,4 +111,4 @@ Việc thảo luận về xác suất chỉ có ý nghĩa trong một không gia
 ## Tài liệu tham khảo và chú thích
 
 -   [Lý thuyết xác suất (nhánh toán học) - Baidu Baike](https://baike.baidu.com/item/%E6%A6%82%E7%8E%87%E8%AE%BA/829122)
--   [Probability - Wikipedia](https://en.wikipedia.org/wiki/Probability)
+-   [Xác suất - Wikipedia](https://en.wikipedia.org/wiki/Probability)
