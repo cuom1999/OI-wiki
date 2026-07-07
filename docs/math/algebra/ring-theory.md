@@ -33,7 +33,7 @@ Tương tự trường hợp của nhóm, có thể xây dựng các khái niệ
     Nếu định nghĩa vành yêu cầu có phần tử đơn vị, thì định nghĩa đồng cấu vành cũng thường yêu cầu ánh xạ phần tử đơn vị đến phần tử đơn vị. Đối với đồng cấu giữa các vành có đơn vị khác không, điều kiện bổ sung này nhằm tránh trường hợp đồng cấu ánh xạ toàn bộ vành có đơn vị về phần tử không.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
-    Với mọi số nguyên khác không $n$, ánh xạ lấy phần dư modulo $n$, tức $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ với $\pi(a)=\bar a$, đều là đồng cấu vành.
+    Với mọi số nguyên khác không $n$, ánh xạ lấy phần dư theo môđun $n$, tức $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$ với $\pi(a)=\bar a$, đều là đồng cấu vành.
 
 Phần [thảo luận](./group-theory.md#đồng-cấu-nhóm) về hạt nhân và ảnh của đồng cấu nhóm gần như có thể chuyển nguyên vẹn sang đây. Ảnh của đồng cấu quyết định đồng cấu có toàn ánh hay không, còn việc hạt nhân có tầm thường hay không quyết định đồng cấu có đơn ánh hay không. Hạt nhân của đồng cấu vành được định nghĩa như sau:
 
@@ -81,7 +81,7 @@ là xác định tốt, tức là kết quả của các phép toán không ph�
     Với vành $R$ và iđêan $I$ của nó, ánh xạ $\pi:R\rightarrow R/I$ cho bởi $\pi(r)=r+I$ là một đồng cấu toàn ánh từ $R$ đến $R/I$, gọi là **đồng cấu tự nhiên** (natural homomorphism) từ vành $R$ đến vành thương $R/I$.
 
 ???+ example "Ví dụ: vành số nguyên $\mathbf Z$ (tiếp)"
-    Chẳng hạn, vành $\mathbf Z/n\mathbf Z$ gồm các lớp đồng dư modulo $n$ của số nguyên là vành thương thu được khi lấy $\mathbf Z$ modulo iđêan $n\mathbf Z$ của nó. Điều này cũng giải thích ý nghĩa của ký hiệu $\mathbf Z/n\mathbf Z$. Ánh xạ modulo $n$ đã nêu, $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$, chính là ánh xạ tự nhiên trong ví dụ này, và hạt nhân tương ứng chính là iđêan $n\mathbf Z$.
+    Chẳng hạn, vành $\mathbf Z/n\mathbf Z$ gồm các lớp đồng dư theo môđun $n$ của số nguyên là vành thương thu được khi lấy $\mathbf Z$ theo iđêan $n\mathbf Z$ của nó. Điều này cũng giải thích ý nghĩa của ký hiệu $\mathbf Z/n\mathbf Z$. Ánh xạ lấy dư theo môđun $n$ đã nêu, $\pi:\mathbf Z\rightarrow\mathbf Z/n\mathbf Z$, chính là ánh xạ tự nhiên trong ví dụ này, và hạt nhân tương ứng chính là iđêan $n\mathbf Z$.
 
 Trong trường hợp vành, các định lý đẳng cấu khác cũng đúng.
 
@@ -144,7 +144,7 @@ Vành khác không $R$ luôn có hai iđêan tầm thường, là $\{0\}$ và $R
 
 Điều kiện giao hoán trong định lý này là cần thiết; nếu không, phải đồng thời yêu cầu mọi iđêan trái và iđêan phải đều tầm thường mới bảo đảm vành là vành chia.
 
-Kết luận trên có thể khái quát cho trường hợp bản thân vành không phải là trường. Tuy nhiên, lúc này cần chuyển sang xét vành thương, tức là thảo luận điều kiện để vành thương của một vành giao hoán có đơn vị, khác không là trường. Vành thương $R/I$ là trường nghĩa là $R/I$ chỉ có các iđêan tầm thường; theo định lý tương ứng, điều này có nghĩa là trong vành ban đầu $R$ không có iđêan nào nằm nghiêm ngặt giữa iđêan bị lấy modulo $I$ và toàn bộ vành $R$. Những iđêan $I$ như vậy được gọi là iđêan cực đại.
+Kết luận trên có thể khái quát cho trường hợp bản thân vành không phải là trường. Tuy nhiên, lúc này cần chuyển sang xét vành thương, tức là thảo luận điều kiện để vành thương của một vành giao hoán có đơn vị, khác không là trường. Vành thương $R/I$ là trường nghĩa là $R/I$ chỉ có các iđêan tầm thường; theo định lý tương ứng, điều này có nghĩa là trong vành ban đầu $R$ không có iđêan nào nằm nghiêm ngặt giữa iđêan bị lấy làm môđun $I$ và toàn bộ vành $R$. Những iđêan $I$ như vậy được gọi là iđêan cực đại.
 
 ???+ abstract "Iđêan cực đại"
     Với vành $R$ và iđêan $M$ của nó, nếu $M\neq R$ và các iđêan của $R$ chứa $M$ chỉ có hai iđêan $M$ và $R$, thì iđêan $M$ được gọi là một **iđêan cực đại** (maximal ideal).
@@ -591,7 +591,7 @@ Tiếp theo xét vành đa thức $R[x]$ trên miền phân tích duy nhất $R$
 ??? note "Chứng minh"
     Giả sử $f(x)\in R[x]$ khả quy trong $F[x]$, và $f(x)=A(x)B(x)$. Gọi $r_a$ và $r_b$ lần lượt là bội chung nhỏ nhất của các mẫu số của mọi hệ số trong $A(x)$ và $B(x)$; khi đó $\tilde a(x)=r_aA(x)$ và $\tilde b(x)=r_bB(x)$ đều là đa thức trên $R$. Đặt $r=r_ar_b$, có $rf(x)=\tilde a(x)\tilde b(x)$. Nếu $r$ là phần tử khả nghịch trong $R$, thì có thể lấy phân tích $f(x)=(r^{-1}\tilde a(x))\tilde b(x)$, thỏa mãn yêu cầu của bổ đề.
     
-    Ngược lại, nếu trong $r$ tồn tại nhân tử bất khả quy $p$, cần chứng minh có thể khử nhân tử này ở hai vế của đẳng thức, đồng thời bảo đảm mọi hệ số vẫn nằm trong miền nguyên $R$. Vì $p$ cũng là phần tử nguyên tố, $(p)$ là iđêan nguyên tố. Lấy modulo $p$ ở cả hai vế đẳng thức, thu được đẳng thức đa thức trên $(R/(p))[x]$ là $0=\bar a(x)\bar b(x)$, trong đó $\bar a$ và $\bar b$ là các đa thức sau khi lấy modulo. Vì $R/(p)$ là miền nguyên, $(R/(p))[x]$ cũng là miền nguyên, nên có thể giả sử $\bar a(x)=0$. Điều này cho thấy tất cả hệ số của $\tilde a(x)$ đều chia hết cho $p$. Do đó có thể trực tiếp khử nhân tử $p$ ở hai vế của đẳng thức.
+    Ngược lại, nếu trong $r$ tồn tại nhân tử bất khả quy $p$, cần chứng minh có thể khử nhân tử này ở hai vế của đẳng thức, đồng thời bảo đảm mọi hệ số vẫn nằm trong miền nguyên $R$. Vì $p$ cũng là phần tử nguyên tố, $(p)$ là iđêan nguyên tố. Lấy theo môđun $p$ ở cả hai vế đẳng thức, thu được đẳng thức đa thức trên $(R/(p))[x]$ là $0=\bar a(x)\bar b(x)$, trong đó $\bar a$ và $\bar b$ là các đa thức sau khi lấy theo môđun. Vì $R/(p)$ là miền nguyên, $(R/(p))[x]$ cũng là miền nguyên, nên có thể giả sử $\bar a(x)=0$. Điều này cho thấy tất cả hệ số của $\tilde a(x)$ đều chia hết cho $p$. Do đó có thể trực tiếp khử nhân tử $p$ ở hai vế của đẳng thức.
     
     Theo định nghĩa miền phân tích duy nhất, $r$ có nhiều nhất hữu hạn nhân tử bất khả quy như vậy, nên sau khi khử chúng hữu hạn lần, chuyển về trường hợp $r$ là phần tử khả nghịch trong $R$. Bổ đề được chứng minh.
 
@@ -604,7 +604,7 @@ Nói cách khác, các phần tử bất khả quy trong vành đa thức hệ s
     Cho đa thức hệ số nguyên bậc $n$, $f(x)=a_0+a_1x+\cdots+a_{n-1}x^{n-1}+a_nx^n$. Nếu tồn tại số nguyên tố $p$ thỏa mãn $p\mid a_i$ với mọi $i=0,1,\cdots,n-1$, đồng thời $p$ không chia hết $a_n$ và $p^2$ không chia hết $a_0$, thì đa thức $f(x)$ bất khả quy trên trường số hữu tỉ $\mathbf Q$. Nếu $\gcd(a_0,a_1,\cdots,a_n)=1$, thì đa thức $f(x)$ cũng bất khả quy trên vành số nguyên $\mathbf Z$.
 
 ??? note "Chứng minh"
-    Dùng bổ đề Gauss, nếu đa thức $f(x)$ khả quy trên trường số hữu tỉ $\mathbf Q$, thì nó cũng khả quy trên vành số nguyên $\mathbf Z$. Giả sử $f(x)=b(x)c(x)$ là phân tích của nó trong $\mathbf Z[x]$. Lấy modulo số nguyên tố $p$ ở hai vế của đẳng thức, thu được phân tích trong $\mathbf F_p[x]$: $\overline{f}(x)=\overline{b}(x)\overline{c}(x)$. Nhưng điều kiện của định lý cho thấy $\overline{f}(x)=x^n$, nên tồn tại số nguyên $m$ sao cho $\overline b(x)=x^m$ và $\overline c(x)=x^{n-m}$, trong đó $0<m<n$. Vì vậy các hệ số hằng $b_0$ và $c_0$ của hai nhân tử $b(x)$ và $c(x)$ đều là bội của $p$. Do đó hệ số hằng $a_0=b_0c_0$ của $f(x)$ là bội của $p^2$. Điều này mâu thuẫn với điều kiện đã cho.
+    Dùng bổ đề Gauss, nếu đa thức $f(x)$ khả quy trên trường số hữu tỉ $\mathbf Q$, thì nó cũng khả quy trên vành số nguyên $\mathbf Z$. Giả sử $f(x)=b(x)c(x)$ là phân tích của nó trong $\mathbf Z[x]$. Lấy theo môđun số nguyên tố $p$ ở hai vế của đẳng thức, thu được phân tích trong $\mathbf F_p[x]$: $\overline{f}(x)=\overline{b}(x)\overline{c}(x)$. Nhưng điều kiện của định lý cho thấy $\overline{f}(x)=x^n$, nên tồn tại số nguyên $m$ sao cho $\overline b(x)=x^m$ và $\overline c(x)=x^{n-m}$, trong đó $0<m<n$. Vì vậy các hệ số hằng $b_0$ và $c_0$ của hai nhân tử $b(x)$ và $c(x)$ đều là bội của $p$. Do đó hệ số hằng $a_0=b_0c_0$ của $f(x)$ là bội của $p^2$. Điều này mâu thuẫn với điều kiện đã cho.
 
 ??? example "Ví dụ"
     1.  Đa thức $x^3-2$ bất khả quy trong $\mathbf Q[x]$. Chỉ cần áp dụng tiêu chuẩn Eisenstein với $p=2$.
@@ -750,9 +750,9 @@ Tổng quát hơn, khi khái quát phương pháp này, còn có thể suy ra [c
 
 Đọc thêm: [căn nguyên thủy](../number-theory/primitive-root.md), [định lý cơ bản về nhóm Abel hữu hạn sinh](./group-theory.md#định-lý-phân-loại)
 
-Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, phần này thảo luận cấu trúc của nhóm nhân modulo $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
+Là một ứng dụng của định lý số dư Trung Hoa và các nội dung liên quan đến lý thuyết nhóm, phần này thảo luận cấu trúc của nhóm nhân theo môđun $n$ của số nguyên. Mục này lược bỏ ký hiệu gạch ngang của lớp đồng dư.
 
-**Nhóm nhân modulo $n$ của số nguyên** (multiplicative group of integers modulo $n$) là $(\mathbf Z/n\mathbf Z)^\times$, tức là nhóm nhân của các phần tử khả nghịch trong vành thương $\mathbf Z/n\mathbf Z$ (cũng gọi là nhóm đơn vị). Cấp của nhóm $(\mathbf Z/n\mathbf Z)^\times$ là $\varphi(n)$, vì điều kiện cần và đủ để một lớp đồng dư có nghịch đảo chính là nguyên tố cùng nhau với $n$. Trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Hơn nữa, nhóm $(\mathbf Z/n\mathbf Z)^\times$ luôn là nhóm Abel.
+**Nhóm nhân theo môđun $n$ của số nguyên** (multiplicative group of integers modulo $n$) là $(\mathbf Z/n\mathbf Z)^\times$, tức là nhóm nhân của các phần tử khả nghịch trong vành thương $\mathbf Z/n\mathbf Z$ (cũng gọi là nhóm đơn vị). Cấp của nhóm $(\mathbf Z/n\mathbf Z)^\times$ là $\varphi(n)$, vì điều kiện cần và đủ để một lớp đồng dư có nghịch đảo chính là nguyên tố cùng nhau với $n$. Trong đó $\varphi(n)$ là [hàm Euler](../number-theory/euler-totient.md). Hơn nữa, nhóm $(\mathbf Z/n\mathbf Z)^\times$ luôn là nhóm Abel.
 
 Theo định lý cơ bản của số học, môđun $n$ có thể phân tích thành tích các lũy thừa của các số nguyên tố khác nhau:
 
@@ -819,15 +819,15 @@ Do đó, để nghiên cứu trường hợp môđun tổng quát, chỉ cần x
         
         Như vậy đã chứng minh $(\mathbf Z/p^k\mathbf Z)^\times\cong C_{p^{k-1}}\times C_{p-1}=C_{\varphi(p^{k})}$.
 
-Cấu trúc của nhóm nhân trong trường hợp môđun tổng quát cũng được xác định từ đó. Từ kết quả hiện có, nhóm nhân modulo $n$ của số nguyên là nhóm cyclic khi và chỉ khi môđun $n$ nhận một trong các dạng
+Cấu trúc của nhóm nhân trong trường hợp môđun tổng quát cũng được xác định từ đó. Từ kết quả hiện có, nhóm nhân theo môđun $n$ của số nguyên là nhóm cyclic khi và chỉ khi môđun $n$ nhận một trong các dạng
 
 $$
 1,2,4,p^k,2p^k
 $$
 
-trong đó $p$ là số nguyên tố lẻ; nếu không, nhóm nhân modulo $n$ của số nguyên có nhóm con $C_2\times C_2$, nên không thể là nhóm cyclic. Khi nhóm nhân là nhóm cyclic, phần tử sinh của nhóm nhân được gọi là **căn nguyên thủy** (primitive root) modulo đó. Vì vậy, định lý này chính là điều kiện cần và đủ để căn nguyên thủy tồn tại.
+trong đó $p$ là số nguyên tố lẻ; nếu không, nhóm nhân theo môđun $n$ của số nguyên có nhóm con $C_2\times C_2$, nên không thể là nhóm cyclic. Khi nhóm nhân là nhóm cyclic, phần tử sinh của nhóm nhân được gọi là **căn nguyên thủy** (primitive root) theo môđun đó. Vì vậy, định lý này chính là điều kiện cần và đủ để căn nguyên thủy tồn tại.
 
-Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiện tồn tại căn nguyên thủy. Nó phản ánh cụ thể cấp của các phần tử khác nhau trong nhóm nhân. Trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, phần tử $x$ thỏa mãn $x^k=1$, tức là nghiệm của phương trình đồng dư $x^k\equiv 1\pmod n$, được gọi là **căn bậc $k$ của đơn vị modulo $n$** ($k$-th root of unity modulo $n$); phần tử có cấp đúng bằng $k$ được gọi là **căn nguyên thủy bậc $k$ của đơn vị modulo $n$** (primitive $k$-th root of unity modulo $n$). Dựa vào cấu trúc của nhóm nhân, có thể tính chính xác sự tồn tại và số lượng của các căn đơn vị này. Cuối cùng, bội chung nhỏ nhất của cấp của mọi phần tử trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, tức là số nguyên dương nhỏ nhất $k$ sao cho mọi $x\in (\mathbf Z/n\mathbf Z)^\times$ đều thỏa mãn $x^k=1$, khi xem như hàm của $n$, chính là [hàm Carmichael](../number-theory/primitive-root.md#hàm-carmichael). Một loạt tính chất của nó đều có thể thu được từ cấu trúc của nhóm nhân.
+Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiện tồn tại căn nguyên thủy. Nó phản ánh cụ thể cấp của các phần tử khác nhau trong nhóm nhân. Trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, phần tử $x$ thỏa mãn $x^k=1$, tức là nghiệm của phương trình đồng dư $x^k\equiv 1\pmod n$, được gọi là **căn bậc $k$ của đơn vị theo môđun $n$** ($k$-th root of unity modulo $n$); phần tử có cấp đúng bằng $k$ được gọi là **căn nguyên thủy bậc $k$ của đơn vị theo môđun $n$** (primitive $k$-th root of unity modulo $n$). Dựa vào cấu trúc của nhóm nhân, có thể tính chính xác sự tồn tại và số lượng của các căn đơn vị này. Cuối cùng, bội chung nhỏ nhất của cấp của mọi phần tử trong nhóm $(\mathbf Z/n\mathbf Z)^\times$, tức là số nguyên dương nhỏ nhất $k$ sao cho mọi $x\in (\mathbf Z/n\mathbf Z)^\times$ đều thỏa mãn $x^k=1$, khi xem như hàm của $n$, chính là [hàm Carmichael](../number-theory/primitive-root.md#hàm-carmichael). Một loạt tính chất của nó đều có thể thu được từ cấu trúc của nhóm nhân.
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
@@ -835,7 +835,7 @@ Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiệ
 -   Dummitt, D.S. và Foote, R.M. (2004) Đại số trừu tượng. Ấn bản thứ 3, John Wiley & Sons, Inc.
 -   [Số nguyên bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
 -   [Chuỗi lũy thừa hình thức - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
--   [Nhóm nhân các số nguyên modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
+-   [Nhóm nhân các số nguyên theo môđun $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
 
