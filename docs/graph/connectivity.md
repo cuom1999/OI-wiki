@@ -61,7 +61,7 @@ Khi đó, giá trị luồng cực đại bằng kích thước của tập cắ
 
 -   [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity)
 -   [Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity)
--   [Edge connectivity/Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html)
+-   [Liên thông cạnh / liên thông đỉnh](https://cp-algorithms.com/graph/edge_vertex_connectivity.html)
 
 **Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
 

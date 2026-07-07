@@ -185,4 +185,4 @@ Tìm một chu trình Euler bất kỳ $C$ trong $D$, lấy chữ cái cuối c�
 
 -   [Luogu P6628 \[Kỳ thi liên tỉnh 2020, đề B\] Con đường hoa đinh hương](https://www.luogu.com.cn/problem/P6628)
 
--   [Luogu P3520 \[POI 2011\] SMI-Garbage](https://www.luogu.com.cn/problem/P3520)
+-   [Luogu P3520 \[POI 2011\] SMI-Rác](https://www.luogu.com.cn/problem/P3520)

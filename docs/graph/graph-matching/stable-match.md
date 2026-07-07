@@ -136,7 +136,7 @@ Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đ
 
 ## Bài tập
 
--   [UOJ 41. Tsinghua Training Camp 2014 - Biến đổi ma trận](https://uoj.ac/problem/41)
+-   [UOJ 41. Trại huấn luyện Tsinghua 2014 - Biến đổi ma trận](https://uoj.ac/problem/41)
 -   [Codeforces 1147 F. Trò chơi zích zắc](https://codeforces.com/problemset/problem/1147/F)
 
 ## Tài liệu tham khảo và chú thích

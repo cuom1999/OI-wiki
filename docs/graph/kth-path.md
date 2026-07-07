@@ -93,4 +93,4 @@ Vì độ phức tạp xây dựng cây đường đi ngắn nhất và xây d�
 
 ## Tài liệu tham khảo và ghi chú
 
--   [\[Tutorial\] k shortest paths and Eppstein's algorithm by meooow - Codeforces](https://codeforces.com/blog/entry/102085)
+-   [\[Hướng dẫn\] k đường đi ngắn nhất và thuật toán Eppstein bởi meooow - Codeforces](https://codeforces.com/blog/entry/102085)

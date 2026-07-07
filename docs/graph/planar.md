@@ -287,15 +287,15 @@ Với đồ thị ngoài phẳng, cũng có thể xét khái niệm đồ thị 
 -   [Luogu P3249 \[HNOI2016\] Khu mỏ](https://www.luogu.com.cn/problem/P3249)
 -   [Luogu P4001 \[ICPC-Beijing 2006\] Sói bắt thỏ](https://www.luogu.com.cn/problem/P4001)
 -   [Luogu P4073 \[WC2013\] Đồ thị phẳng](https://www.luogu.com.cn/problem/P4073)
--   [Luogu P7295 \[USACO21JAN\] Paint by Letters P](https://www.luogu.com.cn/problem/P7295)
+-   [Luogu P7295 \[USACO21JAN\] Tô màu bằng chữ cái P](https://www.luogu.com.cn/problem/P7295)
 
 ## Tài liệu tham khảo và chú thích
 
 -   [Đồ thị phẳng - Wikipedia](https://en.wikipedia.org/wiki/Planar_graph)
 -   [Kiểm tra tính phẳng - Wikipedia](https://en.wikipedia.org/wiki/Planarity_testing)
--   Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
--   Diestel, Reinhard. Graph theory. Vol. 173. Springer Nature, 2025.
--   Patrignani, Maurizio. "Planarity Testing and Embedding." (2013): 1-42.
+-   Bondy, John Adrian, và Uppaluri Siva Ramachandra Murty. Lý thuyết đồ thị với ứng dụng. Tập 290. London: Macmillan, 1976.
+-   Diestel, Reinhard. Lý thuyết đồ thị. Tập 173. Springer Nature, 2025.
+-   Patrignani, Maurizio. "Kiểm tra tính phẳng và nhúng phẳng." (2013): 1-42.
 
 [^face-2]: Nhưng đây không phải là khả năng duy nhất. Hai khuyên lồng nhau cũng tạo thành một mặt bậc hai. Ngoài ra, có mặt bậc hai không đồng nghĩa với việc đồ thị không đơn; chẳng hạn, trong một đồ thị chỉ có một cạnh, mặt duy nhất, tức mặt ngoài, cũng có bậc hai.
 
