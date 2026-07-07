@@ -240,17 +240,17 @@ Với $m$ thao tác, kết quả là
 $\Omega(m\log_{1+\frac{m}{n}}n-n)=\Omega(m\log_{1+\frac{m}{n}}n)$.
 
 <span id="về-hợp-nhất-theo-heuristic"></span>
-## Về hợp nhất theo heuristic
+## Về hợp nhất theo kinh nghiệm
 
-Vì hợp nhất theo hạng khó viết hơn hợp nhất theo heuristic,
-nhiều người chọn dùng hợp nhất theo heuristic khi cài DSU.
+Vì hợp nhất theo hạng khó viết hơn hợp nhất theo kinh nghiệm,
+nhiều người chọn dùng hợp nhất theo kinh nghiệm khi cài DSU.
 Cụ thể, duy trì một $size(x)$ cho mỗi gốc,
 và mỗi lần hợp nhất thì gắn cây có $size$ nhỏ hơn vào cây lớn hơn.
 
-Vậy hợp nhất theo heuristic có bị dữ liệu đối kháng phá hay không?
+Vậy hợp nhất theo kinh nghiệm có bị dữ liệu đối kháng phá hay không?
 
 Trước hết, có thể giải thích từ các tính chất mà hạng tham gia trong chứng minh.
-Nếu $size$ có thể thay thế vai trò của $rnk$, thì có thể dùng hợp nhất theo heuristic.
+Nếu $size$ có thể thay thế vai trò của $rnk$, thì có thể dùng hợp nhất theo kinh nghiệm.
 Tóm tắt nhanh, hạng tham gia vào chứng minh thông qua ba tính chất sau:
 
 1.  Mỗi lần hợp nhất, nhiều nhất một nút tăng hạng, và tăng nhiều nhất 1.
@@ -266,5 +266,5 @@ Vì vậy, có thể cân nhắc dùng $\log_2 siz(x)$ thay cho $rnk(x)$.
 nên $\log_2 siz(x)$ tăng nhiều nhất 1.
 Đối với tính chất thứ hai và thứ ba, kết luận tương tự nên lược bỏ chứng minh.
 
-Tóm lại, nếu không muốn viết hợp nhất theo hạng thì có thể viết hợp nhất theo heuristic;
+Tóm lại, nếu không muốn viết hợp nhất theo hạng thì có thể viết hợp nhất theo kinh nghiệm;
 độ phức tạp thời gian vẫn là $\Theta(m\alpha(n))$.

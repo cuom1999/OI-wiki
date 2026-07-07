@@ -4,7 +4,7 @@
 
 15-puzzle thường còn được gọi là **n-puzzle**, trong đó số $n$ chỉ tổng số ô vuông trong bàn. Các biến thể kích thước khác của 15-puzzle cũng dùng tên tương tự, ví dụ $8$-puzzle chỉ trò chơi có $8$ ô đặt trong bàn $3\times3$. Tuy vậy, $15$-puzzle cũng có thể được gọi là $16$-puzzle, trong đó 16 chỉ sức chứa của bàn. Các bài toán mở rộng của nó đôi khi cũng bao gồm bàn trượt kích thước $n \times m$.
 
-15-puzzle là một bài toán kinh điển trong mô hình hóa bằng [thuật toán heuristic](../search/heuristic.md). Dạng thường gặp của bài toán sử dụng [khoảng cách Manhattan](../geometry/distance.md#khoảng-cách-manhattan) và số ô đặt sai vị trí; cả hai đều là hàm đánh giá chấp nhận được, nghĩa là chúng không bao giờ đánh giá quá cao số bước di chuyển còn lại, qua đó bảo đảm tính tối ưu của một số thuật toán tìm kiếm, chẳng hạn [thuật toán A \*](../search/astar.md).
+15-puzzle là một bài toán kinh điển trong mô hình hóa bằng [thuật toán tìm kiếm theo kinh nghiệm](../search/heuristic.md). Dạng thường gặp của bài toán sử dụng [khoảng cách Manhattan](../geometry/distance.md#khoảng-cách-manhattan) và số ô đặt sai vị trí; cả hai đều là hàm đánh giá chấp nhận được, nghĩa là chúng không bao giờ đánh giá quá cao số bước di chuyển còn lại, qua đó bảo đảm tính tối ưu của một số thuật toán tìm kiếm, chẳng hạn [thuật toán A \*](../search/astar.md).
 
 ???+ note "Ghi chú"
     **Trò chơi trượt ô** là một loại câu đố trí tuệ trong đó người chơi trượt các ô trên mặt phẳng để tạo thành một cách sắp xếp cụ thể. Các trò chơi trượt ô thường gặp gồm câu đố số, Klotski và Rush Hour. Trong đó 15-puzzle là một trong những trò chơi trượt ô lâu đời nhất, do Noyes Chapman phát minh và rất thịnh hành vào thập niên 1880. Khác với các câu đố kiểu tour khác, trò chơi trượt ô cấm mọi ô rời khỏi bàn, và đặc điểm này phân biệt nó với các câu đố kiểu sắp xếp lại.
@@ -23,7 +23,7 @@ Johnson & Story (1879) đã chứng minh rằng nếu $m$ và $n$ đều ít nh�
 
 Tìm một nghiệm cho trò chơi trượt số tương đối dễ, nhưng tìm **nghiệm tối ưu** là một bài toán **NP-khó** (NP-hard). Nghiệm tối ưu của 15-Puzzle có nhiều nhất 80 bước; còn nghiệm tối ưu của 8-Puzzle có nhiều nhất 31 bước.
 
-N-Puzzle hỗ trợ các thuật toán tìm kiếm trên đồ thị thường gặp như tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu. Tương tự, cũng có thể dùng thuật toán [tìm kiếm A \*](../search/astar.md) để tìm nghiệm tối ưu. Hàm heuristic $h(n)$ có thể là:
+N-Puzzle hỗ trợ các thuật toán tìm kiếm trên đồ thị thường gặp như tìm kiếm theo chiều rộng và tìm kiếm theo chiều sâu. Tương tự, cũng có thể dùng thuật toán [tìm kiếm A \*](../search/astar.md) để tìm nghiệm tối ưu. Hàm đánh giá theo kinh nghiệm $h(n)$ có thể là:
 
 -   Số ô đặt sai vị trí.
 -   Tổng khoảng cách Euclid từ mọi ô đặt sai đến vị trí đích tương ứng.

@@ -114,7 +114,7 @@ nên có thể nối trực tiếp chúng vào nút gốc để tăng tốc các
 
 <span id="hợp-nhất-theo-heuristic"></span>
 
-### Hợp nhất theo heuristic
+### Hợp nhất theo kinh nghiệm
 
 Khi hợp nhất, việc chọn nút gốc của cây nào làm gốc mới sẽ ảnh hưởng đến độ phức tạp của các
 thao tác sau.
@@ -135,19 +135,19 @@ Có thể nối cây có ít nút hơn hoặc độ sâu nhỏ hơn vào cây c�
     Dù chọn cách nào, độ phức tạp đều là $O(m\alpha(m,n))$;
     chứng minh chi tiết có thể xem trong các bài báo được trích ở phần tài liệu tham khảo.
 
-    Trong mã thi lập trình thực tế, ngay cả khi không dùng hợp nhất theo heuristic,
+    Trong mã thi lập trình thực tế, ngay cả khi không dùng hợp nhất theo kinh nghiệm,
     chương trình thường vẫn chạy kịp thời gian.
     Trong bài báo của Tarjan[^tarjan1984worst],
-    độ phức tạp xấu nhất khi không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi được chứng
+    độ phức tạp xấu nhất khi không dùng hợp nhất theo kinh nghiệm mà chỉ dùng nén đường đi được chứng
     minh là $O(m \log n)$.
     Trong bài báo của Yao[^yao1985expected],
-    nếu không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi,
+    nếu không dùng hợp nhất theo kinh nghiệm mà chỉ dùng nén đường đi,
     độ phức tạp trung bình vẫn là $O(m\alpha(m,n))$.
 
-    Nếu chỉ dùng hợp nhất theo heuristic mà không dùng nén đường đi, độ phức tạp là $O(m\log n)$.
+    Nếu chỉ dùng hợp nhất theo kinh nghiệm mà không dùng nén đường đi, độ phức tạp là $O(m\log n)$.
     Vì một lần nén đường đi có thể gây ra nhiều thay đổi, đôi khi không nên dùng kỹ thuật này.
     Ví dụ, trong DSU bền vững hoặc chia để trị trên cây phân đoạn kết hợp với DSU,
-    thường dùng DSU chỉ có hợp nhất theo heuristic.
+    thường dùng DSU chỉ có hợp nhất theo kinh nghiệm.
 
 Cài đặt tham khảo cho hợp nhất theo kích thước tập hợp: (lưu ý cần điều chỉnh cách khởi tạo)
 
@@ -209,7 +209,7 @@ Cài đặt đầy đủ của DSU có nén đường đi và hợp nhất theo 
 
 ## Độ phức tạp
 
-Sau khi dùng đồng thời nén đường đi và hợp nhất theo heuristic,
+Sau khi dùng đồng thời nén đường đi và hợp nhất theo kinh nghiệm,
 thời gian khấu hao cho mỗi thao tác của DSU chỉ là $O(\alpha(n))$.
 Trong đó, $\alpha$ là hàm ngược của hàm Ackermann, tăng cực kỳ chậm.
 Nói cách khác, thời gian khấu hao của một thao tác DSU có thể xem như một hằng số rất nhỏ.

@@ -402,7 +402,7 @@ nó có thể xem là kết quả trộn (rồi sắp xếp lại) các đoạn 
 Trong bài toán thực tế, nếu một trong hai hàm $f$ và $g$ có ít đoạn độ dốc, có
 thể chèn trực tiếp các đoạn độ dốc ít hơn vào tập đoạn độ dốc nhiều hơn; nếu
 không, có thể cần dùng các kỹ thuật như
-[gộp theo heuristic](../../graph/dsu-on-tree.md) hoặc
+[gộp theo kinh nghiệm](../../graph/dsu-on-tree.md) hoặc
 [heap có thể gộp](../../ds/heap.md) để giảm độ phức tạp tổng thể của phép gộp,
 hoặc tìm cách xử lý riêng theo bài toán cụ thể.
 
