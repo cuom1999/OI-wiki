@@ -305,7 +305,7 @@ trong cây gốc $T$, tại mọi nút, độ chênh lệch chiều cao giữa c
     Định nghĩa cân bằng của cây AVL: $T$ là một cây AVL khi và chỉ khi hai cây con trái/phải cũng là cây AVL
     và $|height(T->left) - height(T->right)| \leq 1$.
 
--   [Size Balanced Tree](sbt.md) duy trì `size`, tức số nút trong cây gốc $N$, tại mỗi nút $N$.
+-   [Cây cân bằng theo kích thước](sbt.md) duy trì `size`, tức số nút trong cây gốc $N$, tại mỗi nút $N$.
     Định nghĩa cân bằng: `size` của một nút bất kỳ không nhỏ hơn `size` của mọi nút cháu đi qua nút anh em của nó
     (nephew qua sibling).
 

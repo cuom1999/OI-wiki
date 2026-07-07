@@ -389,7 +389,7 @@ Tóm lại, độ phức tạp của thao tác `Access` trong LCT là tổng đ�
 
 ## Bài tập
 
--   [BZOJ 3282 - Tree](https://hydro.ac/p/bzoj-P3282)
+-   [BZOJ 3282 - Cây](https://hydro.ac/p/bzoj-P3282)
 -   [HNOI2010 - Cừu bông bật nảy](https://www.luogu.com.cn/problem/P3203)
 
 ## Duy trì thông tin trên chuỗi cây
@@ -1242,4 +1242,4 @@ Trên đây là các chi tiết sửa mã. Cuối cùng, tóm tắt yêu cầu v
 ### Bài tập
 
 -   [luogu P4299 - Thủ đô](https://www.luogu.com.cn/problem/P4299)
--   [SPOJ QTREE5 - Query on a tree V](https://www.spoj.com/problems/QTREE5)
+-   [SPOJ QTREE5 - Truy vấn trên cây V](https://www.spoj.com/problems/QTREE5)

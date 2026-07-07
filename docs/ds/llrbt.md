@@ -561,8 +561,8 @@ Các thao tác chèn và xóa của cây 2-3 và cây đỏ-đen nghiêng trái 
 
 ## Tài liệu tham khảo và đọc thêm
 
--   [Left-Leaning Red-Black Trees](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf) - Robert Sedgewick, Princeton University
--   [Balanced Search Trees](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf) -
+-   [Cây đỏ-đen nghiêng trái](https://sedgewick.io/wp-content/themes/sedgewick/papers/2008LLRB.pdf) - Robert Sedgewick, Princeton University
+-   [Cây tìm kiếm cân bằng](https://algs4.cs.princeton.edu/lectures/keynote/33BalancedSearchTrees-2x2.pdf) -
     _Algorithms_, Robert Sedgewick và Kevin Wayne
 
 [^23-vs-llrbt]: [Bài viết này](https://riteme.site/blog/2016-3-12/2-3-tree-and-red-black-tree.html) cung cấp mô tả chi

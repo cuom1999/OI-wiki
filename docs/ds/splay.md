@@ -586,12 +586,12 @@ Các bài này đều là bài Splay Tree trực tiếp để duy trì cây tìm
 
 Cây Splay còn xuất hiện trong các bối cảnh ứng dụng phức tạp hơn:
 
--   [Cerc2007: robotic sort](https://www.luogu.com.cn/problem/P4402)
+-   [Cerc2007: sắp xếp robot](https://www.luogu.com.cn/problem/P4402)
 -   [HNOI2011: sửa ngoặc / JSOI2011: dãy ngoặc](https://www.luogu.com.cn/problem/P3215)
 -   [Cây cân bằng ngầu: cây lồng cây](https://loj.ac/problem/106)
 -   [BZOJ 2827: ngàn núi chim bay hết](https://hydro.ac/p/bzoj-P2827)
 -   [Lydsy1706 thi tháng: truy vấn giá trị nhỏ thứ K](https://hydro.ac/p/bzoj-P4923)
--   [POJ3580 SuperMemo](http://poj.org/problem?id=3580)
+-   [POJ3580 Siêu ghi nhớ](http://poj.org/problem?id=3580)
 
 ## Tài liệu tham khảo và chú thích
 
