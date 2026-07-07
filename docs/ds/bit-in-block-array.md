@@ -72,7 +72,7 @@ Cập nhật có độ phức tạp giống truy vấn, là $O(\sqrt n + \log(\s
 
 ## Ví dụ 1
 
-???+ note "[Intersection of Permutations](https://codeforces.com/problemset/problem/1093/E)"
+???+ note "[Giao của các hoán vị](https://codeforces.com/problemset/problem/1093/E)"
     Cho hai hoán vị $a$ và $b$, cần thực hiện hai loại thao tác sau:
     
     1.  Cho $l_a, r_a, l_b, r_b$,

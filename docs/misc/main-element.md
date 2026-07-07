@@ -29,7 +29,7 @@ Vì phần tử đa số xuất hiện nhiều hơn $n/2$ lần, nên với mộ
 
 ## Bài tập ví dụ
 
-???+ example "[Luogu P2397 yyy loves Maths VI (mode)](https://www.luogu.com.cn/problem/P2397)"
+???+ example "[Luogu P2397 yyy yêu Toán VI (mốt)](https://www.luogu.com.cn/problem/P2397)"
     Tìm phần tử đa số của dãy đã cho.
 
 ??? note "Mã tham khảo"

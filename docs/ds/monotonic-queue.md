@@ -5,7 +5,7 @@ author: Link-cute, Xeonacid, ouuan, Alphnia, Lyccrius
 Trước khi vào hàng đợi đơn điệu, xét một bài ví dụ.
 
 ???+ note "Ví dụ"
-    [Sliding Window](http://poj.org/problem?id=2823)
+    [Cửa sổ trượt](http://poj.org/problem?id=2823)
     
     Nội dung chính của bài là: cho một mảng độ dài $n$, viết chương trình in ra
     giá trị lớn nhất và nhỏ nhất trong mỗi đoạn gồm $k$ số liên tiếp.
@@ -93,7 +93,7 @@ Một khác biệt lớn giữa "hàng đợi" trong cấu trúc này và hàng 
 là có thể thao tác ở cả cuối hàng đợi;
 trong STL có cấu trúc dữ liệu tương tự là `deque`.
 
-???+ note "Ví dụ 2 [Luogu P2698 Flowerpot S](https://www.luogu.com.cn/problem/P2698)"
+???+ note "Ví dụ 2 [Luogu P2698 Chậu hoa S](https://www.luogu.com.cn/problem/P2698)"
     Cho tọa độ của $N$ giọt nước, trong đó $y$ biểu thị độ cao của giọt nước,
     còn $x$ biểu thị vị trí nó rơi xuống trục $x$. Mỗi giọt nước rơi với tốc độ
     1 đơn vị độ dài mỗi giây. Cần đặt chậu hoa ở một vị trí nào đó trên trục

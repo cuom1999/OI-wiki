@@ -127,7 +127,7 @@ Quan sát then chốt là $\sum_{i=1}^n[d|i]=\lfloor\frac{n}{d}\rfloor$, tức s
 
 Dùng công thức này, có thể duyệt các ước để tính tổng. Khi có nhiều truy vấn, có thể tiền xử lý tổng tiền tố của hàm Euler rồi dùng chia khối số học để trả lời.
 
-???+ note "[GCD SUM](https://www.luogu.com.cn/problem/P2398)"
+???+ note "[Tổng GCD](https://www.luogu.com.cn/problem/P2398)"
     Cho $n\le 100000$, cần tính
     
     $$

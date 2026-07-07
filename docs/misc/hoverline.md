@@ -50,7 +50,7 @@ Trong bài này, có thể xét liệt kê giá trị nhỏ nhất: xem số $a_
 
 ## Hình chữ nhật con lớn nhất
 
-???+ note "[P4147 Yu Chan Gong](https://www.luogu.com.cn/problem/P4147)"
+???+ note "[P4147 Cung Ngọc Thiềm](https://www.luogu.com.cn/problem/P4147)"
     Cho một ma trận $n \times m$ gồm các ký tự `'F'` và `'R'`. Cần tìm diện tích của ma trận con lớn nhất chỉ gồm toàn ký tự `'F'`, rồi nhân diện tích đó với $3$.
 
 Mô hình của bài này rất giống bài đầu tiên. Phân tích kỹ hơn, nếu mỗi lần chỉ xét tất cả phần tử trên một hàng, rồi lấy khoảng cách mà phần tử tại vị trí $(x, y)$ có thể mở rộng lên trên xa nhất làm độ dài đường treo tại vị trí đó, thì ma trận con lớn nhất là một trong các hình chữ nhật lớn nhất thu được bằng cách mở rộng các đường treo này sang trái và phải.

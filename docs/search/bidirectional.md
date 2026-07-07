@@ -88,7 +88,7 @@ $O(a^{b/2})$.
 
 ### Ví dụ
 
-???+ note "Ví dụ [USACO09NOV Lights](https://www.luogu.com.cn/problem/P2962)"
+???+ note "Ví dụ [USACO09NOV Đèn](https://www.luogu.com.cn/problem/P2962)"
     Có $n$ bóng đèn. Mỗi bóng được nối với một số bóng khác, và trên mỗi bóng có
     một công tắc. Nếu bấm công tắc trên một bóng, trạng thái bật/tắt của bóng đó
     và tất cả bóng nối với nó sẽ thay đổi. Ban đầu tất cả bóng đều tắt; cần bật
