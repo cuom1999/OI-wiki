@@ -5,10 +5,10 @@
 #include <vector>
 
 struct BipartiteGraph {
-  int n1, n2;                       // number of vertices in X and Y, resp.
-  std::vector<std::vector<int>> g;  // edges from X to Y
-  std::vector<int> ma, mb;  // matches from X to Y and from Y to X, resp.
-  std::vector<int> dist;    // distance from unsaturated vertices in X.
+  int n1, n2;                       // Số đỉnh tương ứng trong X và Y.
+  std::vector<std::vector<int>> g;  // Các cạnh từ X tới Y.
+  std::vector<int> ma, mb;  // Cặp ghép tương ứng từ X tới Y và từ Y tới X.
+  std::vector<int> dist;    // Khoảng cách từ các đỉnh chưa bão hòa trong X.
 
   BipartiteGraph(int n1, int n2)
       : n1(n1), n2(n2), g(n1), ma(n1, -1), mb(n2, -1) {}
@@ -66,7 +66,7 @@ struct BipartiteGraph {
         }
       }
     }
-    // Collect the matched pairs.
+    // Thu thập các cặp đã ghép.
     std::vector<std::pair<int, int>> matches;
     matches.reserve(n1);
     for (int u = 0; u < n1; ++u) {

@@ -15,7 +15,7 @@ int hd[N], tot;
 
 void add(int u, int v) { e[++tot] = {v, hd[u]}, hd[u] = tot; }
 
-void uadd(int u, int v) { add(u, v), add(v, u); }  // Forward-star bằng danh sách liên kết.
+void uadd(int u, int v) { add(u, v), add(v, u); }  // Danh sách kề forward-star.
 
 using ll = long long;
 #define P(x, y) ((ll)min(x, y) * N + (ll)max(x, y))

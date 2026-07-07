@@ -9,10 +9,10 @@ std::mt19937_64 rng(
     static_cast<std::mt19937_64::result_type>(std::time(nullptr)));
 
 struct BipartiteGraph {
-  int n1, n2;                       // number of vertices in X and Y, resp.
-  std::vector<std::vector<int>> g;  // edges from X to Y
-  std::vector<int> ma, mb;  // matches from X to Y and from Y to X, resp.
-  std::vector<bool> vis;    // visiting marks for DFS.
+  int n1, n2;                       // Số đỉnh tương ứng trong X và Y.
+  std::vector<std::vector<int>> g;  // Các cạnh từ X tới Y.
+  std::vector<int> ma, mb;  // Cặp ghép tương ứng từ X tới Y và từ Y tới X.
+  std::vector<bool> vis;    // Dấu đã thăm cho DFS.
 
   BipartiteGraph(int n1, int n2)
       : n1(n1), n2(n2), g(n1), ma(n1, -1), mb(n2, -1) {}
@@ -23,7 +23,7 @@ struct BipartiteGraph {
   // Tìm đường tăng bắt đầu từ u.
   bool dfs(int u) {
     vis[u] = true;
-    // Heuristic: ưu tiên tìm đỉnh chưa bão hòa khi có thể.
+    // Mẹo: ưu tiên tìm đỉnh chưa bão hòa khi có thể.
     for (int v : g[u]) {
       if (mb[v] == -1) {
         ma[u] = v;
@@ -56,7 +56,7 @@ struct BipartiteGraph {
       }
       if (!succ) break;
     }
-    // Collect the matched pairs.
+    // Thu thập các cặp đã ghép.
     std::vector<std::pair<int, int>> matches;
     matches.reserve(n1);
     for (int u = 0; u < n1; ++u) {

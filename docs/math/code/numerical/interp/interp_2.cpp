@@ -1,4 +1,4 @@
-// By: Luogu@rui_er(122461)
+// Tác giả: Luogu@rui_er(122461)
 #include <iostream>
 using namespace std;
 constexpr int N = 1e6 + 5, mod = 1e9 + 7;

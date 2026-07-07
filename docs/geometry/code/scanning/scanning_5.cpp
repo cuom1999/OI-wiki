@@ -20,12 +20,12 @@ struct ope {
 ope op[2500010];
 int tot;  // Tổng số thao tác.
 
-int sum[1000010];  // Fenwick tree.
+int sum[1000010];  // Cây Fenwick.
 
 int lowbit(int x) { return x & (-x); }
 
 void add(int x, int k) {
-  x++;  // Vị trí 0 cũng cần sửa, nên mọi chỉ số Fenwick tree đều cộng 1.
+  x++;  // Vị trí 0 cũng cần sửa, nên mọi chỉ số cây Fenwick đều cộng 1.
   while (x <= n) {
     sum[x] = sum[x] + k;
     x = x + lowbit(x);

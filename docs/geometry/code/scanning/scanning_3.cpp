@@ -25,7 +25,7 @@ struct ope {
 ope op[2500010];
 int tot;  // Tổng số thao tác.
 
-int sum[1500010];  // Fenwick tree.
+int sum[1500010];  // Cây Fenwick.
 
 int lowbit(int x) { return x & (-x); }
 

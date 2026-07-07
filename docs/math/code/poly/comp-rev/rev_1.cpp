@@ -122,7 +122,7 @@ std::vector<uint> FPSComposition(std::vector<uint> f, std::vector<uint> g,
   return res;
 }
 
-// Power Projection: [x^(n-1)] (fg^i) for i=0,..,n-1, yêu cầu g(0) = 0
+// Power Projection: [x^(n-1)] (fg^i) với i=0,..,n-1, yêu cầu g(0) = 0
 std::vector<uint> PowerProjection(std::vector<uint> f, std::vector<uint> g,
                                   int n) {
   assert(g.empty() || g[0] == 0);

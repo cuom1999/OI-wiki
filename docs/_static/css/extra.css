@@ -1,18 +1,18 @@
-/* Logo title */
+/* Tiêu đề logo */
 .md-header__topic:first-child {
   font-weight: initial !important;
 }
 
-/* Code font size in <details> */
+/* Cỡ chữ code trong <details> */
 details .linenos, details code {
   font-size: inherit !important;
 }
 
-/* Code block / tab in details */
+/* Khối code / tab trong details */
 details > summary + .highlight, details > summary + .tabbed-set { margin: 0 -0.6rem !important; }
 details > summary + .highlight > .highlighttable { margin: 0 !important; }
 
-/* Table full width */
+/* Bảng chiếm toàn chiều rộng */
 .md-typeset__table { display: block !important; }
 .md-typeset table:not(.highlighttable) { display: table !important; }
 
@@ -26,11 +26,11 @@ details > summary + .highlight > .highlighttable { margin: 0 !important; }
 
 blockquote.page-time {
   margin: 20px 0 !important;
-  border-left-color: #64b5f6 !important; /* Just change the color value and that's it*/
+  border-left-color: #64b5f6 !important; /* Chỉ cần đổi giá trị màu là xong */
 }
 blockquote.page-copyright {
   margin: 20px 0 !important;
-  border-left-color: #ff1700 !important; /* Just change the color value and that's it*/
+  border-left-color: #ff1700 !important; /* Chỉ cần đổi giá trị màu là xong */
 }
 blockquote.page-copyright i.md-icon {
   display: inline-block;
