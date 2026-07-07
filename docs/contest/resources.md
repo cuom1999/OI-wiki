@@ -15,11 +15,11 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 
 -   [51Nod](https://www.51nod.com/): có nhiều bài toán và bài tư duy đáng thử.
 -   [Comet OJ](https://www.cometoj.com): bắt đầu từ năm 2018, hướng đến việc cung cấp cho đông đảo người yêu thích thuật toán một nền tảng thi đấu, luyện tập và trao đổi; thường tổ chức các cuộc thi nguyên bản chất lượng cao và có kho bài phong phú.
--   [HDU Online Judge](http://acm.hdu.edu.cn/) bắt đầu từ năm 2005, là hệ thống chấm trực tuyến của Hangzhou Dianzi University, có các bài trong huấn luyện nhiều trường.
+-   [HDU Online Judge](http://acm.hdu.edu.cn/) bắt đầu từ năm 2005, là hệ thống chấm trực tuyến của Đại học Điện tử Hàng Châu, có các bài trong huấn luyện nhiều trường.
 -   [HydroOJ](https://hydro.ac/): bắt đầu từ năm 2021, là trang chính thức của dự án mã nguồn mở [Hydro](https://hydro.js.org/). Người dùng có thể tạo [miền](https://hydro.ac/discuss/6087cc44e098b0cd7dde1a0c) của riêng mình; trong miền có thể dùng các chức năng như kho bài, cuộc thi, thảo luận giống như trên trang chính.
 -   [Judge Duck Online](https://duck.ac/) dựa trên dự án mã nguồn mở [JudgeDuck](https://github.com/JudgeDuck) do [Song Song Song](https://github.com/wangyisong1996) phát triển, có thể đo thời gian chạy của trình chấm chính xác đến micro giây. (Số lượng bài còn ít)
 -   [LibreOJ](https://loj.ac/): bắt đầu từ năm 2017. Dựa trên dự án mã nguồn mở [Lyrio](https://github.com/lyrio-dev/lyrio); Libre mang nghĩa tự do. Tất cả dữ liệu kiểm thử của bài và mã nộp đều mở cho mọi người dùng. Hiện do [Menci](https://github.com/Menci) duy trì.
--   [CDOJ](https://cdoj.site/d/lutece/): hệ thống chấm trực tuyến của University of Electronic Science and Technology of China, bắt đầu từ năm 2012.
+-   [CDOJ](https://cdoj.site/d/lutece/): hệ thống chấm trực tuyến của Đại học Khoa học và Công nghệ Điện tử Trung Quốc, bắt đầu từ năm 2012.
 -   [Luogu](https://www.luogu.com.cn/): bắt đầu từ năm 2013, có cộng đồng rất lớn, tập hợp khá đầy đủ đề thật và bài luyện thuộc nhiều loại OI. Có cung cấp dịch vụ giáo dục trả phí.
 -   [Nowcoder](https://www.nowcoder.com/): bắt đầu từ năm 2014, cung cấp các dịch vụ như ôn luyện tuyển dụng kỹ thuật, giao lưu cộng đồng và tuyển dụng doanh nghiệp.
 -   [OpenJudge](http://openjudge.cn/): bắt đầu từ năm 2005, là nền tảng chấm theo nhóm do đội POJ phát triển.
@@ -33,7 +33,7 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 
 ### Quốc tế
 
--   [AizuOJ](https://onlinejudge.u-aizu.ac.jp): hệ thống chấm trực tuyến của University of Aizu, Nhật Bản, bắt đầu từ năm 2004. Bao gồm bài từ một số cuộc thi lập trình cấp trung học và đại học ở Nhật, đồng thời có sẵn khóa nhập môn lập trình/cấu trúc dữ liệu/thuật toán.
+-   [AizuOJ](https://onlinejudge.u-aizu.ac.jp): hệ thống chấm trực tuyến của Đại học Aizu, Nhật Bản, bắt đầu từ năm 2004. Bao gồm bài từ một số cuộc thi lập trình cấp trung học và đại học ở Nhật, đồng thời có sẵn khóa nhập môn lập trình/cấu trúc dữ liệu/thuật toán.
 -   [AtCoder](https://atcoder.jp/): OJ của Nhật Bản; bản tiếng Nhật có các cuộc thi của các trường đại học Nhật, còn bản tiếng Anh không hiển thị. Bài thú vị và chất lượng cao.
 -   [CodeChef](https://codechef.com/): OJ của Ấn Độ, tổ chức thi định kỳ. Hệ thống dựa trên Sphere Engine của SPOJ.
 -   [Codeforces](https://codeforces.com/): OJ của Nga, bắt đầu từ năm 2010, người sáng lập là [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/). Có nhiều chuỗi cuộc thi, hỗ trợ cá nhân ra đề và đăng ký tổ chức thi. Chất lượng bài cao.
@@ -47,8 +47,8 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Open Cup qua các năm và bài từ trại huấn luyện Petrozavodsk.
 -   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
 -   [TopCoder](https://www.topcoder.com/) bắt đầu từ năm 2001; [cộng đồng lập trình thi đấu](https://www.topcoder.com/community/competitive-programming/) của nền tảng này có nhiều cuộc thi; hiện mảng kinh doanh chính là crowdsourcing kỹ thuật.
--   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Ural Federal University phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Ural Federal University, Ural Championship, ICPC Ural Regional Contest và Petrozavodsk training camp.
--   Online Judge (trước đây là [UVaOJ](https://uva.onlinejudge.org/)) bắt đầu từ năm 1995, là OJ nổi tiếng quốc tế sớm nhất; người sáng lập là giáo sư Miguel Ángel Revilla của University of Valladolid (UVa), Tây Ban Nha. Do [giáo sư Revilla không may qua đời năm 2018](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) và University of Valladolid dừng bảo trì, UVaOJ đổi tên thành Online Judge từ tháng 7 năm 2019. Hiện người duy trì nền tảng này [đang xây dựng nền tảng chấm mới trên GitHub](https://github.com/TheOnlineJudge/ojudge).
+-   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Đại học Liên bang Ural phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Đại học Liên bang Ural, Ural Championship, ICPC Ural Regional Contest và trại huấn luyện Petrozavodsk.
+-   Online Judge (trước đây là [UVaOJ](https://uva.onlinejudge.org/)) bắt đầu từ năm 1995, là OJ nổi tiếng quốc tế sớm nhất; người sáng lập là giáo sư Miguel Ángel Revilla của Đại học Valladolid (UVa), Tây Ban Nha. Do [giáo sư Revilla không may qua đời năm 2018](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) và Đại học Valladolid dừng bảo trì, UVaOJ đổi tên thành Online Judge từ tháng 7 năm 2019. Hiện người duy trì nền tảng này [đang xây dựng nền tảng chấm mới trên GitHub](https://github.com/TheOnlineJudge/ojudge).
 -   [Yandex](https://contest.yandex.ru/) lưu trữ đề của Russian Olympiad in Informatics trong vài năm gần đây.
 
 ## Tài liệu hướng dẫn
@@ -121,26 +121,26 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 -   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
 -   [Sổ tay lập trình viên thi đấu](https://cses.fi/book/book.pdf) - Antti Laaksonen
     -   Tác giả dành ba năm thời gian cá nhân để hoàn thành. Sách hướng đến lập trình thi đấu, phạm vi rộng và mức độ chi tiết hợp lý.
--   [*Programming Challenges: The Programming Contest Training Manual*](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
-    -   Do hai giáo sư của University of Valladolid, Tây Ban Nha biên soạn.
+-   [*Thử thách lập trình: Sổ tay huấn luyện thi lập trình*](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
+    -   Do hai giáo sư của Đại học Valladolid, Tây Ban Nha biên soạn.
     -   Đọc [sách điện tử trực tuyến đã được dịch](http://www.tup.com.cn/upload/books/yz/030502-01.pdf)
     -   Mua [sách bản giấy](http://www.tup.tsinghua.edu.cn/booksCenter/book_03050201.html)
 -   *C++, thử thách lập trình - Hướng dẫn luyện tập nâng cao cho lập trình thi đấu* - Qiu Qiu
     -   [Trang giới thiệu trên blog tác giả](https://blog.csdn.net/metaphysis/article/details/90288252)
 -   [*Cấu trúc dữ liệu (bản ngôn ngữ C++, ấn bản 3)* - Deng Junhui](https://dsa.cs.tsinghua.edu.cn/~deng/ds/dsacpp/index.htm)
     -   Nên dùng cùng khóa học, slide bài giảng và lời giải bài tập đi kèm.
--   *Computational Geometry: Algorithms and Applications* - tác giả Berg, M.D., dịch bởi Deng Junhui
+-   *Hình học tính toán: Thuật toán và ứng dụng* - tác giả Berg, M.D., dịch bởi Deng Junhui
     Tên bản tiếng Anh là *Computational Geometry: Algorithms and Applications*
--   [*Handbook of Data Structures and Applications, 2nd Edition*](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
+-   [*Sổ tay cấu trúc dữ liệu và ứng dụng, ấn bản 2*](https://www.routledge.com/Handbook-of-Data-Structures-and-Applications/Mehta-Sahni/p/book/9780367572006)
     -   Do nhiều giáo sư nổi tiếng như Sartaj Sahni, Hanan Samet, Weiss cùng viết; nội dung khá nhiều, nên đọc khi đã có nền tảng nhất định về cấu trúc dữ liệu.
--   [Loạt *Algorithms Illuminated*](https://www.algorithmsilluminated.org/)
+-   [Loạt *Thuật toán được soi sáng*](https://www.algorithmsilluminated.org/)
     -   Giáo trình hướng đến người mới bắt đầu đã có nền tảng ngôn ngữ, nên dùng kèm khóa học đi kèm.
-    -   *Algorithms Illuminated, Part 1: The Basics* - Tim Roughgarden
-    -   *Algorithms Illuminated, Part 1: The Basics* - Xu Bo dịch
-    -   *Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures* - Tim Roughgarden
-    -   *Algorithms Illuminated, Part 2: Graph Algorithms and Data Structures* - Xu Bo dịch
-    -   *Algorithms Illuminated, Part 3: Greedy Algorithms and Dynamic Programming* - Tim Roughgarden
-    -   *Algorithms Illuminated, Part 4: Algorithms for NP-Hard Problems* - Tim Roughgarden
+    -   *Thuật toán được soi sáng, Phần 1: Cơ sở* - Tim Roughgarden
+    -   *Thuật toán được soi sáng, Phần 1: Cơ sở* - Xu Bo dịch
+    -   *Thuật toán được soi sáng, Phần 2: Thuật toán đồ thị và cấu trúc dữ liệu* - Tim Roughgarden
+    -   *Thuật toán được soi sáng, Phần 2: Thuật toán đồ thị và cấu trúc dữ liệu* - Xu Bo dịch
+    -   *Thuật toán được soi sáng, Phần 3: Thuật toán tham lam và quy hoạch động* - Tim Roughgarden
+    -   *Thuật toán được soi sáng, Phần 4: Thuật toán cho các bài toán NP-khó* - Tim Roughgarden
 
 ## Khóa học
 

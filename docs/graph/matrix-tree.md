@@ -904,7 +904,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     Viết lại thành $(\det M_n+2) = 3(\det M_{n-1}+2) - (\det M_{n-2} + 2)$,
     rồi dùng lũy thừa ma trận nhanh để tính đáp án.
 
-???+ note "Ví dụ 3: [BZOJ3659 - WHICH DREAMED IT](https://hydro.ac/p/bzoj-P3659)"
+???+ note "Ví dụ 3: [BZOJ3659 - Ai đã mơ thấy điều đó](https://hydro.ac/p/bzoj-P3659)"
     **Lời giải** Bài này áp dụng trực tiếp định lý BEST.
     Do đề bài quy định hai cách hoàn thành nhiệm vụ được xem là khác nhau
     khi và chỉ khi thứ tự sử dụng chìa khóa khác nhau,
