@@ -40,4 +40,4 @@ Giả sử kích thước khối của Mo có khôi phục trạng thái là $b$
 
 ## Tài liệu tham khảo
 
--   [Mo rollback và ứng dụng đơn giản | Parsnip's Blog](https://www.cnblogs.com/Parsnip/p/10969989.html)
+-   [Mo rollback và ứng dụng đơn giản | Blog của Parsnip](https://www.cnblogs.com/Parsnip/p/10969989.html)

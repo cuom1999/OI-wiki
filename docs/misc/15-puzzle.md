@@ -35,10 +35,10 @@ Vì các cấu hình của trò chơi trượt số 15 ô có thể được sin
 
 ## Bài tập
 
--   [N Puzzle](https://www.hackerrank.com/challenges/n-puzzle)
--   [A. Amity Assessment](https://codeforces.com/problemset/problem/645/A)
--   [Sliding Puzzle](https://leetcode.com/problems/sliding-puzzle/)
--   [POJ 1077 - Eight](http://poj.org/problem?id=1077)
+-   [Câu đố N](https://www.hackerrank.com/challenges/n-puzzle)
+-   [A. Đánh giá tình bạn](https://codeforces.com/problemset/problem/645/A)
+-   [Câu đố trượt](https://leetcode.com/problems/sliding-puzzle/)
+-   [POJ 1077 - Tám](http://poj.org/problem?id=1077)
 
 ## Tài liệu tham khảo và đọc thêm
 

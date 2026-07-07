@@ -93,9 +93,9 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
 
 -   [JSOI2016 Nhóm tốt nhất](https://loj.ac/problem/2071)
 -   [SDOI2017 Vũ hội tân sinh](https://loj.ac/problem/2003)
--   [UVa1389 Hard Life](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4135)
--   [Luogu P2868 \[USACO07DEC\] Sightseeing Cows G](https://www.luogu.com.cn/problem/P2868)
--   [AtCoder Beginner Contest 324 F - Beautiful Path](https://atcoder.jp/contests/abc324/tasks/abc324_f)
+-   [UVa1389 Cuộc sống khó khăn](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4135)
+-   [Luogu P2868 \[USACO07DEC\] Bò tham quan G](https://www.luogu.com.cn/problem/P2868)
+-   [AtCoder Beginner Contest 324 F - Đường đi đẹp](https://atcoder.jp/contests/abc324/tasks/abc324_f)
 
 ## Tài liệu tham khảo và chú thích
 

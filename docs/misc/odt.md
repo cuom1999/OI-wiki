@@ -249,7 +249,7 @@ Nếu muốn có độ phức tạp đúng, dữ liệu phải ngẫu nhiên. Xe
 
 ## Bài tập
 
--   ["Luogu 1840" Color the Axis](https://www.luogu.com.cn/problem/P1840)
+-   ["Luogu 1840" Tô màu trục](https://www.luogu.com.cn/problem/P1840)
 -   ~~["SCOI2010" Thao tác dãy](https://www.luogu.com.cn/problem/P2572)~~ (nguồn của bài này đã được thêm dữ liệu Hack)
 -   ["SHOI2015" Máy trị liệu não động](https://loj.ac/problem/2037)
 -   ["Luogu 4979" Mỏ: sập đổ](https://www.luogu.com.cn/problem/P4979)
@@ -261,9 +261,9 @@ Nếu muốn có độ phức tạp đúng, dữ liệu phải ngẫu nhiên. Xe
 
 ## Tài liệu tham khảo và chú thích
 
--   [Problem - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C) (nguồn gốc của Chtholly Tree)
--   [Lời giải CF896C Willem, Chtholly and Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s) (tham khảo cách cài đặt bằng `std::set`)
+-   [Bài toán - 896C - Codeforces](https://codeforces.com/problemset/problem/896/C) (nguồn gốc của Chtholly Tree)
+-   [Lời giải CF896C Willem, Chtholly và Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/gyxbe23s) (tham khảo cách cài đặt bằng `std::set`)
 -   [Cài đặt Chtholly Tree bằng map - Zhihu (zhihu.com)](https://zhuanlan.zhihu.com/p/469794466) (tham khảo cách cài đặt bằng `std::map`)
--   [Lời giải CF896C Willem, Chtholly and Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp) (tham khảo cách cài đặt bằng danh sách liên kết)
--   [Codeforces Round #449 Editorial - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940) (chứng minh về độ phức tạp của Chtholly Tree)
+-   [Lời giải CF896C Willem, Chtholly và Seniorious - chuyên mục Luogu (luogu.com.cn)](https://www.luogu.com.cn/article/umiw1fwp) (tham khảo cách cài đặt bằng danh sách liên kết)
+-   [Lời giải chính thức Codeforces Round #449 - Codeforces](https://codeforces.com/blog/entry/56135?#comment-398940) (chứng minh về độ phức tạp của Chtholly Tree)
 -   [Phân tích độ phức tạp của Chtholly Tree - Zhihu (zhihu.com)](https://zhuanlan.zhihu.com/p/102786071) (phân tích độ phức tạp của Chtholly Tree)

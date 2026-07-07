@@ -345,9 +345,9 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
 ### Bài tập tham khảo
 
 -   [Đội tuyển quốc gia: Nhân ma trận](https://www.luogu.com.cn/problem/P1527)
--   [POI2011 R3 Day2: Meteors](https://loj.ac/p/2169)
+-   [POI2011 R3 Day2: Thiên thạch](https://loj.ac/p/2169)
 -   [Cây cân bằng nâng cao](https://loj.ac/p/106)
--   [BalticOI 2004: Sequence, dãy số](https://www.luogu.com.cn/problem/P4331)
+-   [BalticOI 2004: Dãy số](https://www.luogu.com.cn/problem/P4331)
 
 ## Tài liệu tham khảo và chú thích
 

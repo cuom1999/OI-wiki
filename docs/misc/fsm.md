@@ -285,8 +285,8 @@ Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode
 
 ### Bài tập
 
--   [Median Replace Hard](https://qoj.ac/problem/12010)
--   [JOISC 2024 Card Collection](https://www.luogu.com.cn/problem/P10436) (xây dựng ô-tô-mát bằng định lý Myhill-Nerode; bài này có thể xử lý nhiều truy vấn đoạn)
+-   [Thay trung vị bản khó](https://qoj.ac/problem/12010)
+-   [JOISC 2024 Bộ sưu tập thẻ](https://www.luogu.com.cn/problem/P10436) (xây dựng ô-tô-mát bằng định lý Myhill-Nerode; bài này có thể xử lý nhiều truy vấn đoạn)
 
 ## Tối thiểu hóa DFA
 
@@ -407,8 +407,8 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
 
 ### Bài tập
 
--   [Language Recognition](http://poj.org/problem?id=3576)
--   [Equanimous](https://qoj.ac/problem/7083)
+-   [Nhận dạng ngôn ngữ](http://poj.org/problem?id=3576)
+-   [Điềm tĩnh](https://qoj.ac/problem/7083)
 
 ## Ứng dụng thường gặp của ô-tô-mát
 

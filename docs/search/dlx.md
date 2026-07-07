@@ -675,7 +675,7 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
 ## Bài tập
 
 -   [SUDOKU - Sudoku](https://www.spoj.com/problems/SUDOKU/)
--   [Chuyên đề 3 Dancing Links trong chuỗi "kuangbin dai ban bay"](https://vjudge.net/contest/65998#overview)
+-   [Chuyên đề 3 Dancing Links trong chuỗi "kuangbin đưa bạn bay"](https://vjudge.net/contest/65998#overview)
 
 <span id="liên-kết-ngoài"></span>
 ## Liên kết ngoài

@@ -212,4 +212,4 @@ Với bản viết gọn, nếu không có trường hợp đặc biệt `r == x
 
 ## Tài liệu tham khảo
 
--   [Ghi chú học thuật toán Mo | Sengxian's Blog](https://blog.sengxian.com/algorithms/mo-s-algorithm)
+-   [Ghi chú học thuật toán Mo | Blog của Sengxian](https://blog.sengxian.com/algorithms/mo-s-algorithm)
