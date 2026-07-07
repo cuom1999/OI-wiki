@@ -29,7 +29,7 @@ struct treap {  // Duy trì trực tiếp thành một cấu trúc dữ liệu, 
     k = t;
   }
 
-  void insert(int &k, int x) {  // Chen
+  void insert(int &k, int x) {  // Chèn
     if (!k) {
       sz++;
       k = sz;

@@ -13,7 +13,7 @@ int lc(int u) { return (u << 1); }
 int rc(int u) { return (u << 1) | 1; }
 
 struct node {
-  i64 mx_ab[2][2];  // 0: not max A or B; 1: is max A or B
+  i64 mx_ab[2][2];  // 0: không là cực đại của A hoặc B; 1: là cực đại của A hoặc B
 
   i64 max_val() {
     return std::max({mx_ab[0][0], mx_ab[0][1], mx_ab[1][0], mx_ab[1][1]});

@@ -13,9 +13,9 @@ vector<int> k, b;
 // --8<-- [start:core]
 struct node {
   int l, r;
-  int tag;   // the lazy propagation tag
-  int k, b;  // the linear function
-  int swc;   // the time of certificate violation
+  int tag;   // Thẻ lan truyền lười.
+  int k, b;  // Hàm tuyến tính.
+  int swc;   // Thời điểm chứng chỉ bị vi phạm.
 };
 
 vector<node> v;

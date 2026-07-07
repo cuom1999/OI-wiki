@@ -160,7 +160,7 @@ void solve() {
 
     // Xử lý riêng ba trường hợp.
 
-    if (op[0] == 'A') {  // ADD
+    if (op[0] == 'A') {  // Thao tác ADD.
       cin >> a;
       na = a.size();
       decode(a, na, mask);
@@ -170,7 +170,7 @@ void solve() {
         t[++n] = a[i];
         insert(root, n, 0, INF);
       }
-    } else if (op[0] == 'D') {  // DEL
+    } else if (op[0] == 'D') {  // Thao tác DEL.
       int x;
       cin >> x;
       while (x) {
@@ -178,7 +178,7 @@ void solve() {
         --n;
         --x;
       }
-    } else if (op[0] == 'Q') {  // QUERY
+    } else if (op[0] == 'Q') {  // Thao tác QUERY.
       cin >> a;
       na = a.size();
       decode(a, na, mask);
