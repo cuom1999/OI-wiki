@@ -34,7 +34,7 @@ Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với ph�
 
 #### Định nghĩa
 
-**Bảng Young** (Young tableau) thu được bằng cách điền các ký hiệu lấy từ một bảng chữ cái nào đó vào các ô của biểu đồ Young; thông thường bảng chữ cái này cần là một tập sắp thứ tự toàn phần. Các phần tử được viết là $x_{1}$, $x_{2}$, $x_{3}$, $\ldots$. Tuy nhiên, để thuận tiện, các số nguyên dương thường được điền trực tiếp.
+**Bảng Young** (Young tableau) thu được bằng cách điền các ký hiệu lấy từ một bảng chữ cái nào đó vào các ô của biểu đồ Young; thông thường bảng chữ cái này cần là một tập được sắp thứ tự toàn phần. Các phần tử được viết là $x_{1}$, $x_{2}$, $x_{3}$, $\ldots$. Tuy nhiên, để thuận tiện, các số nguyên dương thường được điền trực tiếp.
 
 Trong cách dùng ban đầu của bảng Young trong lý thuyết biểu diễn của nhóm đối xứng, các số nguyên dương phân biệt từ $1$ đến $n$ được phép điền tùy ý vào $n$ ô của biểu đồ Young. Trong nghiên cứu hiện nay, phần lớn sử dụng bảng Young "chuẩn", tức là ngoài điều kiện trên, các số trong mỗi hàng và mỗi cột đều tăng nghiêm ngặt. Số lượng bảng Young phân biệt gồm $n$ ô tạo thành dãy [số đối hợp](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29):
 

@@ -286,7 +286,7 @@ Chẳng hạn, nếu một cây tìm kiếm nhị phân có mỗi nút chỉ có
 và mọi thao tác (chèn, xóa, sửa, tìm) đều mất $O(n)$.
 
 Độ phức tạp của thao tác liên quan trực tiếp đến chiều cao $h$ của cây.
-Vì vậy cần dùng cây cân bằng: thông qua một số thao tác điều chỉnh để duy trì chiều cao,
+Vì vậy cần dùng cây cân bằng: dùng một số thao tác điều chỉnh để duy trì chiều cao,
 hay tính cân bằng của cây, từ đó giảm độ phức tạp thao tác.
 
 ### Định nghĩa tính cân bằng

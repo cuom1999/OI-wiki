@@ -226,7 +226,7 @@ Cách giải này sẽ quá thời gian. Thử tối ưu:
     -   Thêm/xóa một cặp đỉnh.
     -   Cho một cạnh $e$, kiểm tra xem với mọi cặp đỉnh $(s,t)$ trong tập, $e$ có nằm trên đường đi đơn giữa $s,t$ hay không.
 
-Với mỗi cạnh $e$ trong đồ thị, định nghĩa tập $S_e$ là tập các đường đi quan trọng đi qua cạnh đó, tức các cặp $(a,b)$ trong đề. Xét duy trì động giá trị băm của tập $S_e$ cho mỗi cạnh, khi đó có thể phán định $S_e$ có bằng toàn tập hay không, tức là $e$ có phải "cạnh bắt buộc phải đi qua" hay không.
+Với mỗi cạnh $e$ trong đồ thị, định nghĩa tập $S_e$ là tập các đường đi quan trọng đi qua cạnh đó, tức các cặp $(a,b)$ trong đề. Xét duy trì động giá trị băm của tập $S_e$ cho mỗi cạnh, khi đó có thể kiểm tra $S_e$ có bằng toàn tập hay không, tức là $e$ có phải "cạnh bắt buộc phải đi qua" hay không.
 
 Cách băm là: với mỗi $(a,b)$, gán một số nguyên không âm ngẫu nhiên $H_{(a,b)}$ nhỏ hơn $2^{64}$; giá trị băm của một tập là xor của các giá trị $H$ của phần tử trong tập.
 
@@ -280,11 +280,11 @@ $$
 ### Ví dụ: [UOJ #552 Isomorphism Checking Duck](https://uoj.ac/problem/552) và phân tích tỉ lệ sai
 
 ???+ note "Tóm tắt đề bài"
-    Cho hai đồ thị có hướng $G_0,G_1$ có trọng số cạnh là các chữ cái thường. Với mỗi đồ thị, cần tính "đa tập các xâu tương ứng với tất cả đường đi" (có thể là tập vô hạn), và phán định hai đa tập này có bằng nhau hay không. Nếu không bằng nhau, cần đưa ra một xâu ngắn nhất sao cho số lần xuất hiện của nó trong hai đa tập là khác nhau.
+    Cho hai đồ thị có hướng $G_0,G_1$ có trọng số cạnh là các chữ cái thường. Với mỗi đồ thị, cần xét "đa tập các xâu tương ứng với tất cả đường đi" (có thể là tập vô hạn), rồi xác định hai đa tập này có bằng nhau hay không. Nếu không bằng nhau, cần đưa ra một xâu ngắn nhất sao cho số lần xuất hiện của nó trong hai đa tập là khác nhau.
 
 Đặt $f_{K,i,j}$ là giá trị băm của đa tập gồm tất cả xâu tương ứng với mọi đường đi dài $j$ bắt đầu từ đỉnh $i$ trong đồ thị $G_K$. Xét mỗi trạng thái theo thứ tự tăng dần của $j$; khi chuyển trạng thái, liệt kê các cạnh ra của $i$ và quy định cạnh đó là cạnh đầu tiên trên đường đi.
 
-Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
+Để xác định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
 
 Tiếp theo xét cách băm cụ thể. Lưu ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo môđun $Q$, không dùng được trong bài toán này. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
 
@@ -354,7 +354,7 @@ Bổ đề: cho $X_{1\cdots k}$ là các biến ngẫu nhiên độc lập, và 
 
 Lấy $k$ là số lượng phần tử khác nhau, và dựa vào bổ đề trên để suy ngược $k$ từ $\min\limits_i X_i$.
 
-Xét dùng một hàm băm nào đó, ánh xạ mỗi phần tử trong ma trận một cách đều và độc lập vào số thực trong $[0,1]$, đồng thời các phần tử bằng nhau sẽ được ánh xạ đến cùng một số thực. Khi đó các số thực tương ứng với mọi phần tử trong một ma trận con, sau khi loại trùng, đúng là một thực thể của tập $\{X_1,\cdots,X_k\}$ ở trên, trong đó $k$ bằng số lượng phần tử khác nhau trong ma trận con.
+Xét dùng một hàm băm nào đó, ánh xạ mỗi phần tử trong ma trận một cách đều và độc lập vào số thực trong $[0,1]$, đồng thời các phần tử bằng nhau sẽ được ánh xạ đến cùng một số thực. Khi đó, sau khi loại các giá trị trùng, các số thực tương ứng với những phần tử trong ma trận con có thể coi là một lần lấy mẫu từ các biến $\{X_1,\cdots,X_k\}$ ở trên, với $k$ là số phần tử khác nhau trong ma trận con.
 
 Do đó có thuật toán:
 

@@ -6,7 +6,7 @@ Trong lập trình thi đấu, có rất nhiều kiểu bài toán khác nhau.
 
 **Bài truyền thống** là dạng bài hiện khá phổ biến trong lập trình thi đấu.
 
-Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu đầu vào và dữ liệu đầu ra tương ứng đã được chuẩn bị trước làm các bộ kiểm thử[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu đầu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu đầu ra đã chuẩn bị trước để phán định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
+Thí sinh cần nộp mã nguồn. Hệ thống chấm sẽ dùng một số dữ liệu đầu vào và dữ liệu đầu ra tương ứng đã được chuẩn bị trước làm các bộ kiểm thử[^note1], biên dịch mã nguồn thí sinh nộp[^note2], cho chương trình của thí sinh đọc dữ liệu đầu vào, rồi so sánh dữ liệu thí sinh xuất ra với dữ liệu đầu ra đã chuẩn bị trước để xác định chương trình có đúng hay không. Cách chấm này được gọi là **chấm hộp đen**[^note3].
 
 Với một bộ kiểm thử, thường sẽ có thêm giới hạn thời gian và giới hạn bộ nhớ.
 
@@ -76,7 +76,7 @@ Phương thức tương tác với trình chấm thường gặp trong các kỳ
 ???+ note "Ví dụ [UOJ #206. APIO2016 Gap](https://uoj.ac/problem/206)"
     Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Nhiệm vụ là tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
-    Chương trình không thể trực tiếp đọc dãy số nguyên này, nhưng có thể truy vấn thông tin của dãy thông qua các hàm đã cho. Chi tiết của hàm truy vấn được mô tả trong phần chi tiết cài đặt bên dưới theo từng ngôn ngữ.
+    Chương trình không thể trực tiếp đọc dãy số nguyên này, nhưng có thể truy vấn thông tin của dãy bằng các hàm đã cho. Chi tiết của hàm truy vấn được mô tả trong phần chi tiết cài đặt bên dưới theo từng ngôn ngữ.
 
     Cần cài đặt một hàm trả về giá trị lớn nhất trong $a_{i+1}−a_i (0\leq i\leq N−1)$.
 

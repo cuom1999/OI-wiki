@@ -231,7 +231,7 @@ Lúc này $f$ là luồng cực đại.
 
 Trước khi phân tích độ phức tạp của thuật toán này, cần giải thích kỹ quá trình "DFS trên $G_L$ để tìm luồng chặn $f_b$". Mặc dù việc dùng BFS để xây dựng đồ thị tầng khá đơn giản, quá trình DFS tìm luồng chặn cần một kỹ thuật quan trọng: tối ưu cung hiện tại.
 
-Trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm đã biết cạnh $(u, v)$ đã được tăng luồng đến giới hạn, tức cạnh $(u, v)$ không còn dung lượng còn dư hoặc phía sau $v$ đã bị chặn, thì luồng của $u$ không cần thử chảy vào cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo quy ước, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
+Trong quá trình DFS trên $G_L$, nếu đỉnh $u$ đồng thời có rất nhiều cạnh vào và cạnh ra, và mỗi khi $u$ nhận luồng từ cạnh vào đều duyệt danh sách cạnh ra để quyết định truyền luồng sang cạnh ra nào, thì độ phức tạp thời gian cục bộ tại $u$ trong trường hợp xấu nhất có thể đạt $O(|E|^2)$. Để tránh nhược điểm này, nếu tại một thời điểm đã biết cạnh $(u, v)$ không thể dùng để đẩy thêm luồng nữa, tức là cạnh đó đã hết dung lượng dư hoặc phần phía sau $v$ đã bị chặn, thì DFS tại $u$ không cần thử cạnh ra $(u, v)$ nữa. Vì vậy, với mỗi đỉnh $u$, duy trì cạnh ra đầu tiên trong danh sách cạnh ra của $u$ mà vẫn còn cần thử. Theo quy ước, con trỏ được duy trì này được gọi là cung hiện tại, và cách làm này được gọi là tối ưu cung hiện tại.
 
 ??? note "Tăng luồng nhiều đường"
     Tăng luồng nhiều đường là một tối ưu hằng số của thuật toán Dinic. Nếu tìm được một đường tăng luồng $p$ từ $s$ đến $t$ trên đồ thị tầng, thì tiếp theo không nhất thiết phải quay lại từ $s$ để tìm đường tăng luồng kế tiếp, mà có thể bắt đầu từ vị trí cuối cùng trên $p$ vẫn còn dung lượng còn dư để tìm một nhánh rẽ và tăng luồng. Tối ưu này cũng tự nhiên trong cài đặt DFS dạng quay lui.
@@ -280,7 +280,7 @@ Số tầng của đồ thị tầng không thể vượt quá $|V|$. Nếu có 
     
     Gọi $(u, v)$ là cạnh thỏa mãn khẳng định đó. Lý do khiến nó thỏa mãn khẳng định chỉ có thể là một trong hai trường hợp sau.
     
-    -   $(u, v) \in E_f$ nhưng $d_f(u) \leq d_f(v) + 1$ không đạt dấu bằng, nên theo định nghĩa đồ thị tầng, $(u, v) \not \in E_L$, và sau khi tăng luồng được thêm vào $E'_L$ trong lần phân tầng lại mới.
+    -   $(u, v) \in E_f$ nhưng bất đẳng thức $d_f(u) \leq d_f(v) + 1$ không xảy ra với dấu bằng; vì vậy theo định nghĩa đồ thị tầng, $(u, v) \notin E_L$, và cạnh này chỉ xuất hiện trong $E'_L$ sau lần phân tầng lại.
     -   $(u, v) \not \in E_f$, nghĩa là cạnh $(u, v)$ được sinh ra do luồng chặn trong vòng tăng luồng hiện tại đi qua $(v, u)$ và tạo cạnh ngược do hoàn luồng, tức $d_f(u) = d_f(v) - 1$.
     
     Dù khẳng định được thỏa mãn theo cách nào, đều có $d_f(u) \neq d_f(v) + 1$. Tức là điều kiện cần và đủ để $d_{f'}(s) \geq d_f(s)$ đạt dấu bằng không thể được thỏa mãn, mâu thuẫn với giả thiết phản chứng $d_{f'}(s) = d_f(s)$. Mệnh đề ban đầu được chứng minh.

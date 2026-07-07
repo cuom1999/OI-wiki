@@ -12,7 +12,7 @@ Kết quả của cách làm này là đường đi mà BFS tìm được
 sẽ là đường đi hợp lệ **ngắn nhất** xuất phát từ đỉnh bắt đầu.
 Nói cách khác, đường đi đó có số cạnh nhỏ nhất.
 
-Khi BFS kết thúc, mỗi đỉnh đều được thăm thông qua một đường đi ngắn nhất từ đỉnh bắt đầu đến đỉnh đó.
+Khi BFS kết thúc, mỗi đỉnh đều được thăm theo một đường đi ngắn nhất từ đỉnh bắt đầu đến đỉnh đó.
 
 Quá trình của thuật toán có thể được xem như sự lan truyền theo từng lớp trên đồ thị:
 ban đầu chỉ có đỉnh xuất phát được thăm,

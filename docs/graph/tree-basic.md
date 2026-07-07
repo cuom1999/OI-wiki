@@ -282,7 +282,7 @@ Khi `cur` thăm nút 2 lần đầu, tìm nút ngoài cùng bên phải trên c�
 
 ![Ví dụ duyệt Morris tạo liên kết tạm](images/tree-basic-morris-2.svg)
 
-`cur` thông qua con trỏ `right` của 4 để quay lại tầng trên. Khi thăm nút 2 lần thứ hai, tìm nút ngoài cùng bên phải trên cây con trái là 4, đổi con trỏ `right` của 4 thành `null`, rồi tiếp tục thăm cây con phải. Các bước sau được lược bỏ.
+`cur` đi theo con trỏ `right` của 4 để quay lại tầng trên. Khi thăm nút 2 lần thứ hai, tìm nút ngoài cùng bên phải trên cây con trái là 4, đổi con trỏ `right` của 4 thành `null`, rồi tiếp tục thăm cây con phải. Các bước sau được lược bỏ.
 
 ![Ví dụ duyệt Morris khôi phục liên kết](images/tree-basic-morris-1.svg)
 

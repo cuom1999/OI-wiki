@@ -24,7 +24,7 @@ Thông thường, một biến kiểu `bool` chiếm $1$ byte bộ nhớ; số b
 tùy thuộc nền tảng, nhưng thường là $8$ bit.
 
 ???+ tip "Mẹo"
-    Có thể lấy số bit trong một byte thông qua hằng macro `CHAR_BIT` trong tệp
+    Có thể lấy số bit trong một byte bằng hằng macro `CHAR_BIT` trong tệp
     tiêu đề `<climits>` (C++)/`<limits.h>` (C).
 
 ???+ note "Kiểu luận lý trong ngôn ngữ C"
@@ -52,7 +52,7 @@ tùy thuộc nền tảng, nhưng thường là $8$ bit.
     đưa vào làm từ khóa, đồng thời vẫn giữ `_Bool` như một cách viết thay
     thế[^note10].
 
-    Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý thông qua hằng
+    Ngoài ra, từ C23 cũng có thể lấy độ rộng bit của kiểu luận lý bằng hằng
     macro `BOOL_WIDTH` trong `<limits.h>`.
 
 <a id="kiểu-số-nguyên"></a>

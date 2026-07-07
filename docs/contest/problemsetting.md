@@ -225,7 +225,7 @@ Cần chắc rằng lời giải chuẩn có thể chạy qua **bất kỳ bộ 
 
 ### Ví dụ
 
-Ví dụ nên có độ mạnh nhất định, có thể phát hiện một số lỗi đơn giản. Người đọc sai ý đề nên có thể thông qua ví dụ để nhận ra mình đã hiểu sai.
+Ví dụ nên có độ mạnh nhất định, có thể phát hiện một số lỗi đơn giản. Người đọc sai ý đề nên có thể nhờ ví dụ mà nhận ra mình đã hiểu sai.
 
 Với bài có nhiều loại thao tác, mỗi loại thao tác đều nên xuất hiện trong ví dụ.
 

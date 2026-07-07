@@ -152,7 +152,7 @@ Sau mỗi lần truy cập nút theo hướng đi xuống, cần thực hiện m
 Ngoài ra, thao tác splay sẽ cập nhật lại thông tin của tất cả các nút
 trên đường đi từ nút hiện tại $x$ đến nút gốc $z$ theo thứ tự từ dưới lên.
 Nhờ điểm này, có thể sửa một nút không phải gốc,
-rồi thông qua thao tác splay đưa nó lên gốc để hoàn tất việc cập nhật thông tin của cả cây.
+rồi dùng thao tác splay đưa nó lên gốc để hoàn tất việc cập nhật thông tin của cả cây.
 
 ### Độ phức tạp thời gian
 

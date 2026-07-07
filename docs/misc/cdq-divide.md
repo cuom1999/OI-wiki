@@ -102,9 +102,9 @@ Cách làm ở bước thứ ba gần giống với chia để trị CDQ cho th�
 
 Khác biệt lớn nhất giữa cách viết CDQ này và cách viết CDQ xử lý quan hệ giữa các cặp điểm nằm ở phần xử lý các cặp điểm có $l \leq j \leq mid$, $mid+1 \leq i \leq r$. Trong cách viết CDQ xử lý quan hệ cặp điểm, phần này có thể đặt ở nhiều vị trí. Nhưng khi dùng chia để trị CDQ để tối ưu DP, quy trình này bắt buộc phải kẹp giữa $solve(l,mid)$ và $solve(mid+1,r)$. Nguyên nhân là chuyển trạng thái của DP là **có thứ tự**, nó phải thỏa hai điều kiện sau, nếu không sẽ sai:
 
-1.  Tất cả các giá trị $dp_{j}$ dùng để tính $dp_{i}$ đều phải đã được tính xong, không được tồn tại "bán thành phẩm";
+1.  Tất cả các giá trị $dp_j$ dùng để tính $dp_i$ đều phải đã được tính xong; không được dùng giá trị đang tính dở;
 
-2.  Tất cả các giá trị $dp_{j}$ dùng để tính $dp_{i}$ đều phải có khả năng cập nhật vào $dp_{i}$, không được tồn tại giá trị $dp_{j}$ chưa cập nhật tới.
+2.  Mọi giá trị $dp_j$ cần thiết cho $dp_i$ đều phải được đưa vào xét khi cập nhật $dp_i$; không được bỏ sót giá trị $dp_j$ hợp lệ nào.
 
 Hai điều kiện trên dễ bảo đảm khi vét cạn $O(n^2)$, nhưng sau khi dùng chia để trị CDQ, thứ tự chuyển trạng thái đã bị xáo trộn, vì vậy cần kiểm tra tính đúng đắn của các chuyển trạng thái.
 
@@ -177,7 +177,7 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     
     Trong cách hiện thực chia để trị CDQ như vậy, thuật toán xử lý cùng một truy vấn $O(\log n)$ lần. Điều này không ảnh hưởng đến kết quả, vì các sửa đổi đóng góp cho truy vấn đó ở mỗi lần là rời nhau. Độ phức tạp thời gian của toàn bộ quy trình là $T(n)=T(\lfloor \frac{n}{2} \rfloor)+T(\lceil \frac{n}{2} \rceil)+ O(n\log n)=O(n\log^2n)$.
     
-    Quan sát quy trình thuật toán trên, ban đầu chỉ giải được bài toán tĩnh cộng hình chữ nhật, tính tổng hình chữ nhật; nhưng sau khi dùng chia để trị CDQ, có thể giải ngoại tuyến một bài toán động cộng hình chữ nhật, tính tổng hình chữ nhật. Tinh túy của việc chuyển bài toán động thành bài toán tĩnh nằm ở chỗ chia để trị CDQ mỗi lần chỉ xử lý quan hệ sửa đổi và truy vấn vượt qua một điểm nào đó, nhờ vậy chỉ cần xét bài toán đơn giản "mọi truy vấn đều nằm sau các sửa đổi". Chính vì điểm này, chia để trị CDQ được gọi là "công cụ chuyển bài toán động thành bài toán tĩnh".
+    Quan sát quy trình thuật toán trên, ban đầu chỉ giải được bài toán tĩnh cộng hình chữ nhật, tính tổng hình chữ nhật; nhưng sau khi dùng chia để trị CDQ, có thể giải ngoại tuyến một bài toán động cộng hình chữ nhật, tính tổng hình chữ nhật. Điểm mấu chốt khi chuyển bài toán động thành bài toán tĩnh là: ở mỗi bước, chia để trị CDQ chỉ xử lý các cặp sửa đổi - truy vấn nằm ở hai phía của một điểm chia, nên bài toán con cần xét luôn có dạng đơn giản "mọi truy vấn đều xảy ra sau các sửa đổi". Chính vì điểm này, chia để trị CDQ được gọi là "công cụ chuyển bài toán động thành bài toán tĩnh".
 
 ???+ example "[\[Ynoi2016\] Côn trùng trong gương](https://www.luogu.com.cn/problem/P4690)"
     Duy trì một dãy $a_i$ độ dài $n$, có $m$ thao tác.

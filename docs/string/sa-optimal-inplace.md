@@ -806,7 +806,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên chỉ đọc
 
-Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp: thông qua chia để trị, giải quyết hạn chế về không gian.
+Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp: dùng chia để trị để xử lý hạn chế về không gian.
 
 Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng BitMaps[^np12] trên $\texttt{SA}$ để thay thế các vị trí đầu/cuối bucket vốn được chỉ ra bởi T sau khi đổi tên.
 

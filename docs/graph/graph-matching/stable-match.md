@@ -84,7 +84,7 @@ Một thị trường ghép cặp có thể có số lượng ghép cặp ổn �
 -   $\mu_1\preceq_M\mu_2$ khi và chỉ khi $\mu_1(m)\preceq_m\mu_2(m)$ đúng với mọi $m\in M$;
 -   $\mu_1\preceq_W\mu_2$ khi và chỉ khi $\mu_1(w)\preceq_w\mu_2(w)$ đúng với mọi $w\in W$.
 
-Hai thứ tự bộ phận này lần lượt biểu thị rằng kết quả ghép cặp tốt hơn cho tất cả nam và cho tất cả nữ. Hai ghép cặp ổn định không nhất thiết so sánh được với nhau. Tuy nhiên, bất kỳ hai ghép cặp ổn định nào cũng cảm sinh một phép phân rã như hình dưới, sao cho trong ba phần thu được từ phân rã, lần lượt có $\mu_1\preceq_M\mu_2$, $\mu_1=\mu_2$ và $\mu_2\preceq_M\mu_1$. Dù không được vẽ trực tiếp, phần $\mu_1=\mu_2$ vẫn bao gồm cả trường hợp ghép với chính mình (tức là chưa được ghép cặp).
+Hai thứ tự bộ phận này lần lượt biểu thị rằng kết quả ghép cặp tốt hơn cho tất cả nam và cho tất cả nữ. Hai ghép cặp ổn định không nhất thiết so sánh được với nhau. Tuy nhiên, bất kỳ hai ghép cặp ổn định nào cũng xác định một cách phân rã như hình dưới; trong ba phần thu được, lần lượt có $\mu_1\preceq_M\mu_2$, $\mu_1=\mu_2$ và $\mu_2\preceq_M\mu_1$. Dù không được vẽ trực tiếp, phần $\mu_1=\mu_2$ vẫn bao gồm cả trường hợp ghép với chính mình (tức là chưa được ghép cặp).
 
 ![](./images/stable-match-decompose.svg)
 
@@ -109,10 +109,10 @@ Bổ đề này cho thấy hai tập thứ tự bộ phận $(\mathcal S,\preceq
 Cuối cùng, trong tất cả các ghép cặp ổn định, tập nam và nữ chưa được ghép cặp là cố định.
 
 ???+ note "Định lý 4 (McVitie và Wilson, 1970)"
-    Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Khi đó, tập điểm bất động của $\mu_1$ và $\mu_2$ là như nhau.
+    Gọi $\mu_1$ và $\mu_2$ là hai ghép cặp ổn định. Khi đó, tập người không được ghép cặp trong $\mu_1$ và $\mu_2$ là như nhau.
 
 ??? note "Chứng minh"
-    Giả sử tồn tại $m\in M$ sao cho $\mu_1(m)=m$ và $\mu_2(m)\neq m$ với một cặp $\mu_1,\mu_2\in\mathcal S$ nào đó. Khi đó, $m\in M(\mu_2)$. Theo bổ đề, $m=\mu_1(m)\in W(\mu_1)$, mâu thuẫn với $m\in M$. Vì vậy, không tồn tại nam $m\in M$ như vậy. Tương tự, cũng không tồn tại nữ $w\in W$ như vậy. Do đó, tập điểm bất động của bất kỳ hai ghép cặp ổn định nào cũng giống nhau.
+    Giả sử tồn tại $m\in M$ sao cho $\mu_1(m)=m$ và $\mu_2(m)\neq m$ với một cặp $\mu_1,\mu_2\in\mathcal S$ nào đó. Khi đó, $m\in M(\mu_2)$. Theo bổ đề, $m=\mu_1(m)\in W(\mu_1)$, mâu thuẫn với $m\in M$. Vì vậy, không tồn tại nam $m\in M$ như vậy. Tương tự, cũng không tồn tại nữ $w\in W$ như vậy. Do đó, tập người không được ghép cặp trong bất kỳ hai ghép cặp ổn định nào cũng giống nhau.
 
 Ngoài các tính chất được thảo luận trong phần này, ghép cặp ổn định còn có một số tính chất chiến lược tốt. Các tài liệu ở cuối bài trình bày thêm về các nội dung này.
 

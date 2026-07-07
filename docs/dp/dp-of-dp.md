@@ -3,7 +3,7 @@ author: Hope666666
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
 
-Bài viết này giới thiệu ý tưởng DP lồng DP, đồng thời thông qua hai ví dụ để minh họa cách áp dụng kỹ thuật này vào các bài toán cụ thể.
+Bài viết này giới thiệu ý tưởng DP lồng DP, đồng thời dùng hai ví dụ để minh họa cách áp dụng kỹ thuật này vào các bài toán cụ thể.
 
 <span id="tư-tưởng"></span>
 ## Ý tưởng

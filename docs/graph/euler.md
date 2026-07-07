@@ -50,7 +50,7 @@ Nếu không, chọn một đỉnh bất kỳ $v_1$ trên $P_1$ và một đỉn
 Do $G$ liên thông, tồn tại một đường đi nối $v_1$ với $v_2$ gồm các cạnh $e_1, e_2, \ldots, e_k$.
 Trong đó mỗi cạnh $e_i$ nằm trong một chu trình $C_i$, đồng thời $P_1$ và $C_1$, $C_i$ và $C_{i+1}$, $C_k$ và $P_2$ đều có đỉnh chung.
 Trường hợp $C_i = C_{i+1}$ không ảnh hưởng đến chứng minh.
-Khi đó, $P_1$ và $P_2$ có thể được ghép thông qua $C_1, \ldots, C_k$.
+Khi đó, $P_1$ và $P_2$ có thể được ghép qua $C_1, \ldots, C_k$.
 Nói cách khác, hai chu trình bất kỳ đều có thể được ghép, nên chu trình cuối cùng còn lại là duy nhất.
 Tập cạnh tạo nên chu trình đó chính là hợp của tất cả chu trình không chung cạnh, tức là $E(G)$.
 Chu trình này là chu trình Euler trên $G$, do đó $G$ là đồ thị Euler.

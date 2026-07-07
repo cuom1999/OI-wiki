@@ -1,6 +1,6 @@
 author: sshwy
 
-DSU và cây tái cấu trúc Kruskal có cách tư duy rất giống nhau; cả hai đều có thể dùng để xử lý các bài toán liên quan đến tính liên thông. Bài viết này giới thiệu các ứng dụng của tư tưởng DSU thông qua một số ví dụ.
+DSU và cây tái cấu trúc Kruskal có cách tư duy rất giống nhau; cả hai đều có thể dùng để xử lý các bài toán liên quan đến tính liên thông. Bài viết này giới thiệu các ứng dụng của tư tưởng DSU qua một số ví dụ.
 
 ## A
 

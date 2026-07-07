@@ -252,14 +252,14 @@ Một ví dụ kinh điển là [ô-tô-mát hậu tố](../string/sam.md), đư
 
 ### Ví dụ
 
-Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode thông qua một bài ví dụ.
+Mục này giới thiệu cách áp dụng thực tế định lý Myhill-Nerode qua một bài ví dụ.
 
 ???+ example "[P12294 \[THUPC 2025 Final\] Một xâu 01, n lần toán tử ba ngôi, giá trị cuối là 1 (bản tăng cường)](https://www.luogu.com.cn/problem/P12294)"
     Bảng toán tử ba ngôi $s_0s_1\cdots s_7$ (trong đó $s$ chỉ gồm $0,1$) theo các biến $a,b,c$ có ý nghĩa như sau: nếu bit thứ $a+2b+4c$ của $s$ là $1$, thì trả về $1$, ngược lại trả về $0$.
     
     Cho bảng toán tử $s$ và $q$ chuỗi $01$ có độ dài $2n+1$, với mỗi chuỗi $01$ cần trả lời riêng:
     
-    Có thể thực hiện $n$ lần thao tác, mỗi lần thay ba chữ số liên tiếp bằng giá trị phép toán tương ứng, sao cho kết quả phép toán là $1$ hay không; cần đưa ra phương án, hoặc phán định vô nghiệm.
+    Có thể thực hiện $n$ lần thao tác, mỗi lần thay ba chữ số liên tiếp bằng giá trị phép toán tương ứng, sao cho kết quả phép toán là $1$ hay không; cần đưa ra phương án, hoặc kết luận vô nghiệm.
     
     $1\le 2n+1\le 10^5,~\sum(2n+1)\le 3\times 10^5$.
 
@@ -348,7 +348,7 @@ Hiện thực tham khảo này cho phép trạng thái của ô-tô-mát mang nh
 
 ### Ví dụ
 
-Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiểu hóa DFA thông qua hai bài ví dụ.
+Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiểu hóa DFA qua hai bài ví dụ.
 
 ???+ example "Bài ví dụ"
     Cho một chuỗi $01?$ độ dài $n$ là $a$, biến ban đầu $x = 0$. Duyệt từng vị trí $a_i$ theo thứ tự và thực hiện thao tác sau:
