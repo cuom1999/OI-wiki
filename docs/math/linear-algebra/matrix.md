@@ -320,7 +320,7 @@ $$
 
 Tại sao phải nhân với lũy thừa $n-2$ của ma trận $\text{base}$ mà không phải lũy thừa $n$? Vì $F_1, F_2$ không cần phép nhân ma trận cũng có thể tính được. Nói cách khác, chỉ thực hiện một phép nhân đã tính được $F_3$. Nếu vẫn chưa hiểu vì sao số mũ là $n-2$, nên tự tính tay một lần.
 
-Dưới đây là mã ví dụ phần lõi để tính số hạng thứ $n$ của dãy Fibonacci theo modulo $10^9+7$.
+Dưới đây là mã ví dụ phần lõi để tính số hạng thứ $n$ của dãy Fibonacci theo môđun $10^9+7$.
 
 ```cpp
 constexpr int mod = 1000000007;
@@ -425,7 +425,7 @@ $$
         -   Hấp thu dung hợp năng lượng nguyên tố đất: đặt $C_i = v$.
     3.  Giải phóng ma lực: Tiểu L gom năng lượng của tất cả quả cầu pha lê trong đoạn lại, dung hợp thành một quả cầu pha lê mới, rồi tặng cho khán giả ngoài sân. Giá trị năng lượng của mỗi thuộc tính trong quả cầu pha lê tạo ra bằng tổng đại số của các giá trị năng lượng thuộc tính tương ứng trong đoạn. **Cần lưu ý rằng quá trình giải phóng ma lực không thật sự thay đổi năng lượng của các quả cầu pha lê trong đoạn**.
     
-    Đáng nói là nguyên liệu tạo và dung hợp cầu pha lê của Tiểu L đều là cầu pha lê phiên bản tùy chỉnh từ nhà máy OI, nên các quả cầu pha lê này có ngưỡng năng lượng $998244353$. Khi giá trị năng lượng của một thuộc tính trong quả cầu pha lê lớn hơn hoặc bằng ngưỡng này, giá trị năng lượng sẽ tự động lấy modulo theo ngưỡng để tránh quả cầu pha lê phát nổ.
+    Đáng nói là nguyên liệu tạo và dung hợp cầu pha lê của Tiểu L đều là cầu pha lê phiên bản tùy chỉnh từ nhà máy OI, nên các quả cầu pha lê này có ngưỡng năng lượng $998244353$. Khi giá trị năng lượng của một thuộc tính trong quả cầu pha lê lớn hơn hoặc bằng ngưỡng này, giá trị năng lượng sẽ tự động lấy dư theo ngưỡng để tránh quả cầu pha lê phát nổ.
     
     Tiểu W là khán giả duy nhất của Tiểu L, theo dõi toàn bộ buổi biểu diễn và nhận được từng quả cầu pha lê mà Tiểu L dung hợp trong buổi biểu diễn. Tiểu W muốn biết ba giá trị năng lượng thuộc tính chứa trong các quả cầu pha lê này lần lượt là bao nhiêu.
 

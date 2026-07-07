@@ -6,7 +6,7 @@ Kiến thức tiên quyết: [Các khái niệm cơ bản của đại số tr�
 
 **Lý thuyết nhóm** (group theory) chủ yếu nghiên cứu nhóm, một loại [cấu trúc đại số](https://en.wikipedia.org/wiki/Algebraic_structure).
 
-Để nghiên cứu cấu trúc của nhóm, cần nắm một số công cụ cơ bản, gồm nhóm con, đồng cấu nhóm và tác động nhóm. Trong lập trình thi đấu, các nhóm thường gặp chủ yếu là các nhóm liên quan đến lý thuyết số (chẳng hạn nhóm nhân modulo $n$ của các số nguyên, $(\mathbf Z/n\mathbf Z)^\times$) và các nhóm hoán vị; bài này sẽ tập trung giới thiệu các khái niệm liên quan. Những phần lý thuyết nhóm không được đề cập trong bài, như lý thuyết cấu trúc của nhóm hữu hạn và lý thuyết biểu diễn tuyến tính của nhóm, nên được tìm đọc trong các giáo trình chuyên sâu.
+Để nghiên cứu cấu trúc của nhóm, cần nắm một số công cụ cơ bản, gồm nhóm con, đồng cấu nhóm và tác động nhóm. Trong lập trình thi đấu, các nhóm thường gặp chủ yếu là các nhóm liên quan đến lý thuyết số (chẳng hạn nhóm nhân theo môđun $n$ của các số nguyên, $(\mathbf Z/n\mathbf Z)^\times$) và các nhóm hoán vị; bài này sẽ tập trung giới thiệu các khái niệm liên quan. Những phần lý thuyết nhóm không được đề cập trong bài, như lý thuyết cấu trúc của nhóm hữu hạn và lý thuyết biểu diễn tuyến tính của nhóm, nên được tìm đọc trong các giáo trình chuyên sâu.
 
 ???+ info "Ký hiệu"
     Khi không gây nhầm lẫn, bài này có thể viết $g\cdot h$ thành $gh$, và cũng có thể viết nhóm $(G,\cdot)$ thành nhóm $G$.
@@ -80,7 +80,7 @@ Nhóm chỉ được sinh bởi một phần tử có cấu trúc rất đơn gi
 ???+ example "Ví dụ: nhóm đối xứng $D_6$ của tam giác đều (tiếp)"
     Mỗi nhóm con không tầm thường của $D_6$ và cả $\{e\}$ đều là nhóm vòng.
 
-Có thể chứng minh cấu trúc của nhóm vòng được xác định duy nhất bởi kích thước của nó. Nếu nhóm vòng vô hạn, nó có cùng cấu trúc nhóm với nhóm cộng các số nguyên $(\mathbf Z,+)$, ký hiệu $C_\infty$ hoặc $\mathbf Z$; nếu không, gọi số phần tử của nhóm là $n\in\mathbf N_+$, thì nó có cùng cấu trúc nhóm với nhóm cộng các lớp đồng dư modulo $n$, $(\mathbf Z/n\mathbf Z,+)$, ký hiệu $C_n$ hoặc $\mathbf Z_n$. Phát biểu nghiêm ngặt của kết quả này cần dùng khái niệm [đẳng cấu nhóm](#đẳng-cấu-nhóm) ở phần sau, dùng để mô tả chính xác việc hai nhóm có cùng cấu trúc.
+Có thể chứng minh cấu trúc của nhóm vòng được xác định duy nhất bởi kích thước của nó. Nếu nhóm vòng vô hạn, nó có cùng cấu trúc nhóm với nhóm cộng các số nguyên $(\mathbf Z,+)$, ký hiệu $C_\infty$ hoặc $\mathbf Z$; nếu không, gọi số phần tử của nhóm là $n\in\mathbf N_+$, thì nó có cùng cấu trúc nhóm với nhóm cộng các lớp đồng dư theo môđun $n$, $(\mathbf Z/n\mathbf Z,+)$, ký hiệu $C_n$ hoặc $\mathbf Z_n$. Phát biểu nghiêm ngặt của kết quả này cần dùng khái niệm [đẳng cấu nhóm](#đẳng-cấu-nhóm) ở phần sau, dùng để mô tả chính xác việc hai nhóm có cùng cấu trúc.
 
 ???+ note "Định lý phân loại nhóm vòng"
     Nhóm vòng hữu hạn $G$ có kích thước $n$ đẳng cấu với $C_n$; nhóm vòng vô hạn $G$ đẳng cấu với $C_\infty$.
@@ -111,7 +111,7 @@ Cấp của phần tử luôn không vượt quá cấp của nhóm; phần sau 
     
     Đặc biệt, số phần tử sinh của $C_n$ là $\varphi(n)$, trong đó $\varphi(\cdot)$ là [hàm phi Euler](../number-theory/euler-totient.md).
 
-Ứng dụng thảo luận trên, cấp của nhóm nhân modulo $n$ của các số nguyên bằng $\varphi(n)$, và cấp của mọi phần tử $a$ trong nhóm đều là ước của nó, nên tất yếu $a^{\varphi(n)}=1$. Đây chính là [định lý Euler](../number-theory/fermat.md#định-lý-euler), vì các phần tử trong nhóm này chính là tất cả các phần tử nguyên tố cùng nhau với $n$.
+Ứng dụng thảo luận trên, cấp của nhóm nhân theo môđun $n$ của các số nguyên bằng $\varphi(n)$, và cấp của mọi phần tử $a$ trong nhóm đều là ước của nó, nên tất yếu $a^{\varphi(n)}=1$. Đây chính là [định lý Euler](../number-theory/fermat.md#định-lý-euler), vì các phần tử trong nhóm này chính là tất cả các phần tử nguyên tố cùng nhau với $n$.
 
 ### Lớp kề
 
@@ -554,7 +554,7 @@ Nói cách khác, nhóm con Sylow $p$ là nhóm con $p$ cực đại. Định l�
     
     Đẳng thức này đúng với mọi nhóm con $p$ là $Q$.
     
-    Đặc biệt, nhóm con Sylow $p$ là $P$ cũng là một nhóm con $p$. Thế $Q=P$ vào đẳng thức trên, vế phải có đúng một hạng bằng $1$, các hạng còn lại đều là bội của $p$. Vì vậy, kích thước $|\mathcal S|$ của lớp liên hợp của nhóm con Sylow $p$ là $P$ tất yếu dư $1$ modulo $p$. Đồng thời, vì công thức này đúng với mọi nhóm con $p$ là $Q$, suy ra tồn tại $g\in G$ sao cho $Q\le gPg^{-1}$; nếu không, với mọi $P_i$ trong đẳng thức trên đều có $|Q\cap P_i|<|Q|$, mâu thuẫn với $|\mathcal S|\equiv 1\pmod p$. Nếu lúc này cho $Q$ là một nhóm con Sylow $p$ khác $P$, tất yếu $Q=gPg^{-1}$ với một $g\in G$, tức mọi nhóm con Sylow $p$ đều liên hợp. Do đó, số nhóm con Sylow $p$, $n_p$, chính là $|\mathcal S|$, nên $n_p\equiv 1\pmod p$. Cuối cùng, vì $n_p=|\mathcal S|=[G:N_G(P)]$ và $P\le N_G(P)$, suy ra $n_p\mid m$. Như vậy chứng minh đầy đủ phần thứ hai và thứ ba.
+    Đặc biệt, nhóm con Sylow $p$ là $P$ cũng là một nhóm con $p$. Thế $Q=P$ vào đẳng thức trên, vế phải có đúng một hạng bằng $1$, các hạng còn lại đều là bội của $p$. Vì vậy, kích thước $|\mathcal S|$ của lớp liên hợp của nhóm con Sylow $p$ là $P$ tất yếu dư $1$ theo môđun $p$. Đồng thời, vì công thức này đúng với mọi nhóm con $p$ là $Q$, suy ra tồn tại $g\in G$ sao cho $Q\le gPg^{-1}$; nếu không, với mọi $P_i$ trong đẳng thức trên đều có $|Q\cap P_i|<|Q|$, mâu thuẫn với $|\mathcal S|\equiv 1\pmod p$. Nếu lúc này cho $Q$ là một nhóm con Sylow $p$ khác $P$, tất yếu $Q=gPg^{-1}$ với một $g\in G$, tức mọi nhóm con Sylow $p$ đều liên hợp. Do đó, số nhóm con Sylow $p$, $n_p$, chính là $|\mathcal S|$, nên $n_p\equiv 1\pmod p$. Cuối cùng, vì $n_p=|\mathcal S|=[G:N_G(P)]$ và $P\le N_G(P)$, suy ra $n_p\mid m$. Như vậy chứng minh đầy đủ phần thứ hai và thứ ba.
 
 ??? example "Ứng dụng: theo nghĩa đẳng cấu, nhóm cấp sáu chỉ có $C_6$ và $S_3$"
     Giả sử $G$ có cấp $6$. Theo định lý Sylow, nó có nhóm con Sylow $2$, và số nhóm con đó thỏa $n_2\equiv 1\pmod 2$ và $n_2\mid 3$, nên chỉ có hai trường hợp: $n_2=1$ hoặc $n_2=3$. Tương tự, có thể chứng minh $G$ có đúng một nhóm con Sylow $3$, tức $n_3=1$.

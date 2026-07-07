@@ -48,7 +48,7 @@ Vì đầu vào của hàm Boolean $n$ ngôi có $2^n$ trường hợp, nên có
 
 Tổ hợp các toán tử logic được gọi là **biểu thức logic** (logical expression).
 
-Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#lớp-đồng-dư-và-hệ-thặng-dư) modulo $2$, thì XOR tương đương với phép cộng modulo $2$, còn AND tương đương với phép nhân modulo $2$. Vì vậy đôi khi $\mathbf{Z}_2$ cũng được dùng để biểu thị miền Boolean.
+Nếu xem $\mathbf{B}$ như một [lớp thặng dư](./number-theory/basic.md#lớp-đồng-dư-và-hệ-thặng-dư) theo môđun $2$, thì XOR tương đương với phép cộng theo môđun $2$, còn AND tương đương với phép nhân theo môđun $2$. Vì vậy đôi khi $\mathbf{Z}_2$ cũng được dùng để biểu thị miền Boolean.
 
 <span id="thứ-tự-ưu-tiên"></span>
 ### Thứ tự ưu tiên
