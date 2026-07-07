@@ -47,16 +47,16 @@ Gói [garsia-wachs](https://hackage.haskell.org/package/garsia-wachs) của ngô
 
 ## Bài tập ví dụ
 
-???+ note "[POJ 1738 An old Stone Game](http://poj.org/problem?id=1738)"
+???+ note "[POJ 1738 Một trò chơi xếp đá cổ](http://poj.org/problem?id=1738)"
     Có một trò chơi xếp đá cổ. Khi trò chơi bắt đầu, người chơi xếp $n$ ($1 \leq n \leq 50000$) đống đá thành một hàng. Mục tiêu là gộp các đống đá thành một đống duy nhất, theo quy tắc sau: ở mỗi bước, người chơi có thể gộp hai đống kề nhau thành một đống mới. Điểm nhận được là tổng số viên đá trong đống mới. Cần tính giá trị nhỏ nhất của tổng điểm.
 
 ??? note "Ý tưởng lời giải"
     Bài toán gộp đá là bài toán kinh điển, thường có thể giải bằng DP đoạn. Nhưng khi dữ liệu rất lớn, chẳng hạn $n$ ($1 \leq n \leq 50000$) trong bài này, dùng thuật toán Garsia–Wachs sẽ hiệu quả hơn: bước đầu, khởi tạo một mảng $\mathit{num}[n]$ kích thước $n$, trong đó $\mathit{num}[0] = \mathit{num}[n+1] = \infty$. Bước hai, mỗi lần tìm chỉ số nhỏ nhất $i$ sao cho $\mathit{num}[i-1] \leq \mathit{num}[i+1]$, rồi gộp $\mathit{num}[i-1], \mathit{num}[i]$ thành $\mathit{temp}$; tìm chỉ số lớn nhất $j$ ở phía trước sao cho $\mathit{num}[j] > \mathit{temp}$, rồi chuyển $\mathit{temp}$ ra sau $j$. Lặp lại bước này cho đến khi số đống còn lại là $1$.
     Về yêu cầu mỗi lần chỉ được gộp hai đống đá kề nhau, vì $\mathit{num}[j]\geq \mathit{num}[i-1] + \mathit{num}[i]$, có thể xem đoạn từ $\mathit{num}[j+1]$ đến $\mathit{num}[i-2]$ như một khối $\mathit{num}[mid]$, nên $\mathit{sum}$ sẽ được gộp trước. Vì vậy không vi phạm yêu cầu của đề bài.
 
-???+ note "[ATCODER N-Slimes](https://atcoder.jp/contests/dp/tasks/dp_n)"
-    $N$ slime xếp thành một hàng. Ban đầu, slime thứ $i$ từ bên trái có kích thước $a_{i}$. Taro cố gắng gộp tất cả slime thành một slime lớn hơn. Taro lặp lại thao tác sau cho đến khi chỉ còn một slime:
-    Chọn hai slime kề nhau và gộp chúng thành một slime mới. Kích thước của slime mới là $x+y$, trong đó $x$ và $y$ là kích thước của hai slime trước khi gộp. Bước này phát sinh chi phí $x+y$. Quan hệ vị trí của các slime không thay đổi khi gộp. Cần tìm tổng chi phí nhỏ nhất có thể phát sinh.
+???+ note "[AtCoder N - Các khối nhầy](https://atcoder.jp/contests/dp/tasks/dp_n)"
+    $N$ khối nhầy xếp thành một hàng. Ban đầu, khối nhầy thứ $i$ từ bên trái có kích thước $a_{i}$. Taro cố gắng gộp tất cả các khối nhầy thành một khối nhầy lớn hơn. Taro lặp lại thao tác sau cho đến khi chỉ còn một khối nhầy:
+    Chọn hai khối nhầy kề nhau và gộp chúng thành một khối nhầy mới. Kích thước của khối nhầy mới là $x+y$, trong đó $x$ và $y$ là kích thước của hai khối nhầy trước khi gộp. Bước này phát sinh chi phí $x+y$. Quan hệ vị trí của các khối nhầy không thay đổi khi gộp. Cần tìm tổng chi phí nhỏ nhất có thể phát sinh.
 
 ## Tài liệu tham khảo và đọc thêm
 

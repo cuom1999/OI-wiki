@@ -349,7 +349,7 @@ Cách tính này có thể mở rộng sang tổng trên các bội (mở rộng
 
 Phần này dùng các bài tập để minh họa cách ứng dụng đảo Möbius và một số kỹ thuật biến đổi thường gặp. Trước hết, làm quen với kỹ thuật cơ bản để xử lý điều kiện ước chung lớn nhất trong tổng.
 
-???+ example "[Luogu P2522 \[HAOI 2011\] Problem b](https://www.luogu.com.cn/problem/P2522)"
+???+ example "[Luogu P2522 \[HAOI 2011\] Bài toán b](https://www.luogu.com.cn/problem/P2522)"
     Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, tính:
     
     $$
@@ -567,7 +567,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     --8<-- "docs/math/code/mobius/mobius_2.cpp"
     ```
 
-???+ example "[BZOJ 2154 \[National Training Team\] Number Table of Crash](https://hydro.ac/p/bzoj-P2154)"
+???+ example "[BZOJ 2154 \[Đội tuyển quốc gia\] Bảng số của Crash](https://hydro.ac/p/bzoj-P2154)"
     Tính:
     
     $$

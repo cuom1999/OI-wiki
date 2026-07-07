@@ -465,8 +465,8 @@ Bài này rất hữu ích để hiểu nguyên lý của DP chữ số.
 
 [Luogu P3413 SAC#1 - Số dễ thương](https://www.luogu.com.cn/problem/P3413)
 
-[HDU 6148 Valley Number](https://acm.hdu.edu.cn/showproblem.php?pid=6148)
+[HDU 6148 Số thung lũng](https://acm.hdu.edu.cn/showproblem.php?pid=6148)
 
-[CF55D Beautiful numbers](http://codeforces.com/problemset/problem/55/D)
+[CF55D Các số đẹp](http://codeforces.com/problemset/problem/55/D)
 
-[CF628D Magic Numbers](http://codeforces.com/problemset/problem/628/D)
+[CF628D Các số ma thuật](http://codeforces.com/problemset/problem/628/D)

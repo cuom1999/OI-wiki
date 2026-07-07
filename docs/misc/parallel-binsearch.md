@@ -145,7 +145,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
 
 ### Truy vấn phần tử nhỏ thứ k trên đoạn có sửa đổi
 
-???+ note "Bài 4 ([Dynamic Rankings](https://www.luogu.com.cn/problem/P2617))"
+???+ note "Bài 4 ([Xếp hạng động](https://www.luogu.com.cn/problem/P2617))"
     Cho một dãy số, cần hỗ trợ sửa đổi tại một điểm và truy vấn phần tử nhỏ thứ $k$ trên đoạn.
 
 ??? note "Lời giải"
@@ -304,7 +304,7 @@ Dưới đây là cách viết thiên về phong cách thi đấu dùng chặt n
 
 ### Xây dựng dãy có tính đơn điệu
 
-???+ note "Bài 7 ([Sequence](https://www.luogu.com.cn/problem/P4597))"
+???+ note "Bài 7 ([Dãy số](https://www.luogu.com.cn/problem/P4597))"
     Cho một dãy, mỗi thao tác có thể tăng một số nào đó thêm $1$ hoặc giảm đi $1$. Yêu cầu biến dãy thành không giảm đơn điệu, và dãy sau khi sửa chỉ được chứa các số đã xuất hiện trong dãy trước khi sửa. Cần xuất ra số thao tác ít nhất.
 
 ??? note "Lời giải"
