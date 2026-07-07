@@ -999,13 +999,13 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 ## Tài liệu tham khảo và chú thích
 
 -   [Wang Qinshi, "Phân tích sơ lược một lớp phương pháp nhị phân"](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
--   [Theoretical grounds of lambda optimization by adamant - Codeforces blog](https://codeforces.com/blog/entry/98334)
--   [Phương pháp WQS nhị phân chặt chẽ by YeahPotato - Luogu Blog](https://www.luogu.com.cn/article/vsffwrc3)
--   [Ghi chú học tập: giải thích chi tiết WQS nhị phân và các hiểu lầm thường gặp by ikrvxt - CSDN Blog](https://blog.csdn.net/Emm_Titan/article/details/124035796)
--   [Convex conjugate - Wikipedia](https://en.wikipedia.org/wiki/Convex_conjugate)
--   [Fenchel-Moreau theorem - Wikipedia](https://en.wikipedia.org/wiki/Fenchel%E2%80%93Moreau_theorem)
--   [Subderivative - Wikipedia](https://en.wikipedia.org/wiki/Subderivative)
--   [Boyd, Stephen P., and Lieven Vandenberghe. Convex optimization. Cambridge university press, 2004.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
+-   [Cơ sở lý thuyết của tối ưu lambda của adamant - blog Codeforces](https://codeforces.com/blog/entry/98334)
+-   [Phương pháp WQS nhị phân chặt chẽ của YeahPotato - Luogu Blog](https://www.luogu.com.cn/article/vsffwrc3)
+-   [Ghi chú học tập: giải thích chi tiết WQS nhị phân và các hiểu lầm thường gặp của ikrvxt - CSDN Blog](https://blog.csdn.net/Emm_Titan/article/details/124035796)
+-   [Liên hợp lồi - Wikipedia](https://en.wikipedia.org/wiki/Convex_conjugate)
+-   [Định lý Fenchel-Moreau - Wikipedia](https://en.wikipedia.org/wiki/Fenchel%E2%80%93Moreau_theorem)
+-   [Đạo hàm dưới - Wikipedia](https://en.wikipedia.org/wiki/Subderivative)
+-   [Boyd, Stephen P., and Lieven Vandenberghe. Tối ưu lồi. Cambridge University Press, 2004.](https://web.stanford.edu/~boyd/cvxbook/bv_cvxbook.pdf)
 -   Papadimitriou, Christos H., and Kenneth Steiglitz. Combinatorial optimization: algorithms and complexity. Courier Corporation, 1998.
 -   Conforti, Michele, Gerard Cornuejols, and Giacomo Zambelli. Integer programming. Springer International Publishing, 2014.
 -   Schrijver, Alexander. Combinatorial optimization: polyhedra and efficiency. Vol. 24, no. 2. Berlin: Springer, 2003.

@@ -500,4 +500,4 @@ Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có th�
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [Nine Lectures on the Knapsack Problem - Cui Tianyi](https://github.com/tianyicui/pack).
+-   [Chín bài giảng về bài toán ba lô - Cui Tianyi](https://github.com/tianyicui/pack).

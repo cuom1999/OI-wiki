@@ -849,7 +849,7 @@ Thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều
 
 <span id="ghi-chú-chương"></span>
 
-Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức tạp, nên thuộc nhóm lĩnh vực tương đối [ít phổ biến](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt) trong OI/ACM. Tài liệu kinh điển nhất về hướng này là luận văn đội tuyển năm 2008 của [Chen Danqi](https://www.cs.princeton.edu/~danqic/) - [Dynamic Programming Based on Connectivity State Compression](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B). Ngoài ra, năm 2011 notonlysuccess của HDU từng viết hai bài chuyên đề từ dễ đến khó trên blog, cũng là tài liệu rất quý, nhưng hiện nay phải tra lại qua Web Archive.
+Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức tạp, nên thuộc nhóm lĩnh vực tương đối [ít phổ biến](https://github.com/OI-wiki/libs/blob/master/topic/7-%E7%8E%8B%E5%A4%A9%E6%87%BF-%E8%AE%BA%E5%81%8F%E9%A2%98%E7%9A%84%E5%8D%B1%E5%AE%B3.ppt) trong OI/ACM. Tài liệu kinh điển nhất về hướng này là luận văn đội tuyển năm 2008 của [Chen Danqi](https://www.cs.princeton.edu/~danqic/) - [quy hoạch động dựa trên nén trạng thái liên thông](https://github.com/AngelKitty/review_the_national_post-graduate_entrance_examination/tree/master/books_and_notes/professional_courses/data_structures_and_algorithms/sources/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2008%E8%AE%BA%E6%96%87%E9%9B%86/%E9%99%88%E4%B8%B9%E7%90%A6%E3%80%8A%E5%9F%BA%E4%BA%8E%E8%BF%9E%E9%80%9A%E6%80%A7%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9%E7%9A%84%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E9%97%AE%E9%A2%98%E3%80%8B). Ngoài ra, năm 2011 notonlysuccess của HDU từng viết hai bài chuyên đề từ dễ đến khó trên blog, cũng là tài liệu rất quý, nhưng hiện nay phải tra lại qua Web Archive.
 
 -   [notonlysuccess, chuyên đề DP đầu nối](https://web.archive.org/web/20110815044829/http://www.notonlysuccess.com/?p=625)
 -   [notonlysuccess, bản đầy đủ về DP đầu nối](https://web.archive.org/web/20111007185146/http://www.notonlysuccess.com/?p=931)
@@ -858,7 +858,7 @@ Các bài toán DP đầu nối thường khó mã hóa và thảo luận phức
 
 <span id="lát-domino"></span>
 
-[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) cũng xuất hiện trong [Training Guide for Algorithmic Contests](../contest/resources.md#sách), với vai trò bài ví dụ của mục "quy hoạch động trên đường biên". [Lát domino (Domino tiling)](https://en.wikipedia.org/wiki/Domino_tiling) là một nhóm bài toán toán học rất kinh điển; chỉ cần thay đổi nhẹ phạm vi dữ liệu là có thể thu được các bài toán con ở nhiều mức độ khó khác nhau, đòi hỏi các thuật toán khác nhau.
+[「HDU 1400」Mondriaan’s Dream](https://acm.hdu.edu.cn/showproblem.php?pid=1400) cũng xuất hiện trong [Training Guide for Algorithmic Contests](../contest/resources.md#sách), với vai trò bài ví dụ của mục "quy hoạch động trên đường biên". [Lát domino](https://en.wikipedia.org/wiki/Domino_tiling) là một nhóm bài toán toán học rất kinh điển; chỉ cần thay đổi nhẹ phạm vi dữ liệu là có thể thu được các bài toán con ở nhiều mức độ khó khác nhau, đòi hỏi các thuật toán khác nhau.
 
 Khi giới hạn $m=2$, lát domino tương đương với dãy Fibonacci. [Concrete Mathematics](https://www.csie.ntu.edu.tw/~r97002/temp/Concrete%20Mathematics%202e.pdf) dùng bài toán này để dẫn nhập dãy Fibonacci, đồng thời dùng nhiều phương pháp để thu được nghiệm giải tích của nó.
 
@@ -871,10 +871,10 @@ Khi $n,m\le 100$, có thể dùng [thuật toán FKT](https://en.wikipedia.org/w
 -   [「51nod 1031」Lát domino](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
 -   [「51nod 1033」Lát domino V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
 -   [「51nod 1034」Lát domino V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
--   [Wolfram MathWorld, Chebyshev Polynomial of the Second Kind](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
+-   [Wolfram MathWorld, đa thức Chebyshev loại hai](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### Một đường đi
 
 <span id="một-đường-đi_1"></span>
 
-"Một đường đi" là một trường hợp đặc biệt của bài toán [đường đi Hamilton (Hamiltonian Path)](https://en.wikipedia.org/wiki/Hamiltonian_path) trên [đồ thị lưới (Grid Graph)](https://mathworld.wolfram.com/GridGraph.html). Bài toán quyết định của đường đi Hamilton là một thành viên quan trọng trong họ [NP-complete](https://en.wikipedia.org/wiki/NP-completeness).
+"Một đường đi" là một trường hợp đặc biệt của bài toán [đường đi Hamilton](https://en.wikipedia.org/wiki/Hamiltonian_path) trên [đồ thị lưới](https://mathworld.wolfram.com/GridGraph.html). Bài toán quyết định của đường đi Hamilton là một thành viên quan trọng trong họ [NP-đầy đủ](https://en.wikipedia.org/wiki/NP-completeness).

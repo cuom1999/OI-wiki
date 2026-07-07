@@ -852,10 +852,10 @@ trình, có thể giải bằng Slope Trick để luyện tập.
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [\[Tutorial\] Slope Trick - zscoder](https://codeforces.com/blog/entry/47821)
--   [Slope trick explained - Kuroni](https://codeforces.com/blog/entry/77298)
--   [Slope Trick - USACO Guide](https://usaco.guide/adv/slope-trick?lang=cpp)
--   [\[Tutorial\] Intuition on Slope Trick - maomao90](https://codeforces.com/blog/entry/103222)
+-   [\[Hướng dẫn\] Slope Trick - zscoder](https://codeforces.com/blog/entry/47821)
+-   [Giải thích slope trick - Kuroni](https://codeforces.com/blog/entry/77298)
+-   [Slope trick - USACO Guide](https://usaco.guide/adv/slope-trick?lang=cpp)
+-   [\[Hướng dẫn\] Trực giác về slope trick - maomao90](https://codeforces.com/blog/entry/103222)
 
 [^convex-def]: Các giáo trình khác nhau có thể dùng tên gọi khác nhau cho hàm lồi.
 

@@ -440,15 +440,15 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 
--   [Quora Answer by Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
--   [Video Tutorial by "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
--   [Divide and Conquer DP](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)
--   [Knuth's Optimization](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
--   [Quadrangle Inequality Properties](https://codeforces.com/blog/entry/86306)
+-   [Câu trả lời Quora của Michael Levin](https://www.quora.com/What-is-divide-and-conquer-optimization-in-dynamic-programming)
+-   [Video hướng dẫn của "Sothe" the Algorithm Wolf](https://www.youtube.com/watch?v=wLXEWuDWnzI)
+-   [DP chia để trị](https://cp-algorithms.com/dynamic_programming/divide-and-conquer-dp.html)
+-   [Tối ưu Knuth](https://cp-algorithms.com/dynamic_programming/knuth-optimization.html)
+-   [Các tính chất của bất đẳng thức tứ giác](https://codeforces.com/blog/entry/86306)
 -   [Wang Qinshi, Phân tích sơ lược một lớp phương pháp nhị phân](https://github.com/hzwer/shareOI/blob/master/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/%E6%B5%85%E6%9E%90%E4%B8%80%E7%B1%BB%E4%BA%8C%E5%88%86%E6%96%B9%E6%B3%95_%E7%8E%8B%E9%92%A6%E7%9F%B3.pdf)
--   [Simplified LARSCH Algorithm by noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
--   [Bất đẳng thức tứ giác và tính đơn điệu quyết định by b6e0\_ - Luogu Column](https://www.luogu.com.cn/article/h81hh5lk)
--   [Thuật toán LARSCH giản lược cho tính đơn điệu quyết định trực tuyến by Register\_int - Luogu Column](https://www.luogu.com.cn/article/vqf42hah)
+-   [Thuật toán LARSCH giản lược của noshi91](https://noshi91.hatenablog.com/entry/2023/02/18/005856)
+-   [Bất đẳng thức tứ giác và tính đơn điệu quyết định của b6e0\_ - Luogu Column](https://www.luogu.com.cn/article/h81hh5lk)
+-   [Thuật toán LARSCH giản lược cho tính đơn điệu quyết định trực tuyến của Register\_int - Luogu Column](https://www.luogu.com.cn/article/vqf42hah)
 
 [^cmp-min-opt]: Các cụm "kém hơn" và "tốt hơn" trong mô tả thuật toán đều nên được hiểu là đang mô tả thứ tự từ điển: trước hết so sánh giá trị hàm, rồi so sánh điểm quyết định. Trong thứ tự từ điển này, "tốt hơn" nghĩa là hoặc giá trị hàm nhỏ hơn, hoặc giá trị hàm bằng nhau nhưng điểm quyết định nhỏ hơn.
 
