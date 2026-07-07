@@ -1,4 +1,4 @@
-# Extended Euclidean algorithm.
+# Thuật toán Euclid mở rộng.
 def ex_gcd(a, b):
     if b == 0:
         return 1, 0
@@ -9,25 +9,25 @@ def ex_gcd(a, b):
         return x, y
 
 
-# Returns the modular inverse of a modulo m.
-# Assumes that gcd(a, m) = 1, so the inverse exists.
+# Trả về nghịch đảo modulo của a theo modulo m.
+# Giả sử gcd(a, m) = 1, nên nghịch đảo tồn tại.
 def inverse(a, m):
     x, y = ex_gcd(a, m)
     return (x % m + m) % m
 
 
 # --8<-- [start:core]
-# Returns the modular inverses for each x in a modulo m.
-# Assume x mod m exists for each x in a.
+# Trả về nghịch đảo modulo của từng x trong a theo modulo m.
+# Giả sử nghịch đảo của mọi x trong a theo modulo m đều tồn tại.
 def batch_inverse(a, m):
     n = len(a)
     prod = [0] * n
     s = 1
     for i in range(n):
-        # prod[i] = product of a[0...i-1]; prod[0] = 1.
+        # prod[i] = tích của a[0...i-1]; prod[0] = 1.
         prod[i] = s
         s = s * a[i] % m
-    # s = product of all elements in a.
+    # s = tích của mọi phần tử trong a.
     s = inverse(s, m)
     res = [0] * n
     for i in reversed(range(n)):

@@ -1,4 +1,4 @@
-// Submission: https://judge.yosupo.jp/submission/311622
+// Bài nộp: https://judge.yosupo.jp/submission/311622
 #include <iostream>
 #include <queue>
 #include <vector>
@@ -12,15 +12,15 @@ struct Edge {
 };
 
 int n, m, s, t, k;
-std::vector<std::vector<int>> gr, ig;  // Graph and inverse graph.
-std::vector<Edge> edges;               // Edges.
+std::vector<std::vector<int>> gr, ig;  // Đồ thị và đồ thị ngược.
+std::vector<Edge> edges;               // Các cạnh.
 std::priority_queue<std::pair<long long, int>,
                     std::vector<std::pair<long long, int>>, std::greater<>>
     pq;
 
 std::vector<long long> dist_t;
 
-// Calculate distances to the destination node t. (Dijkstra)
+// Tính khoảng cách tới đỉnh đích t. (Dijkstra)
 void calc_distances_to_t() {
   dist_t.assign(n, inf);
   dist_t[t] = 0;
@@ -43,8 +43,8 @@ void calc_distances_to_t() {
 
 std::vector<long long> ans;
 
-// Find the k shortest walk. (A* search)
-// Complexity: O(k * n * log(k * n)).
+// Tìm k hành trình ngắn nhất. (tìm kiếm A*)
+// Độ phức tạp: O(k * n * log(k * n)).
 void find_k_shortest_walks() {
   ans.assign(k, -1);
   std::vector<int> cnt(n);
@@ -53,13 +53,13 @@ void find_k_shortest_walks() {
     long long cost = pq.top().first;
     int cur = pq.top().second;
     pq.pop();
-    // Skip unreachable nodes.
+    // Bỏ qua các đỉnh không thể tới.
     if (cost >= inf) continue;
     if (cur == t) ans[cnt[t]] = cost;
     ++cnt[cur];
-    // Terminate when the destination has been visited k times.
+    // Dừng khi đỉnh đích đã được thăm k lần.
     if (cnt[t] >= k) break;
-    // Expand the same node at most k times.
+    // Mở rộng cùng một đỉnh tối đa k lần.
     if (cnt[cur] > k) continue;
     for (auto e : gr[cur]) {
       int nxt = edges[e].v;
@@ -70,7 +70,7 @@ void find_k_shortest_walks() {
 }
 
 int main() {
-  // Input.
+  // Nhập dữ liệu.
   std::cin >> n >> m >> s >> t >> k;
   gr.resize(n);
   ig.resize(n);
@@ -82,10 +82,10 @@ int main() {
     gr[u].push_back(i);
     ig[v].push_back(i);
   }
-  // Calculate.
+  // Tính toán.
   calc_distances_to_t();
   find_k_shortest_walks();
-  // Output.
+  // Xuất kết quả.
   for (auto x : ans) std::cout << x << '\n';
   return 0;
 }

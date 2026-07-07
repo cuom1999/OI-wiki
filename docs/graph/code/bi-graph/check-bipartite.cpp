@@ -6,7 +6,7 @@ int n;
 std::vector<std::vector<int>> gr;
 std::vector<int> colors, vis;
 
-// Depth-first search to color vertices.
+// Tìm kiếm theo chiều sâu để tô màu các đỉnh.
 bool dfs(int cr) {
   vis[cr] = true;
   for (int nt : gr[cr]) {
@@ -20,11 +20,11 @@ bool dfs(int cr) {
   return true;
 }
 
-// Check whether the graph GR is bipartite.
-// If so, the vector COLORS will store a feasible coloring.
+// Kiểm tra đồ thị GR có phải đồ thị hai phía hay không.
+// Nếu có, vector COLORS sẽ lưu một cách tô màu hợp lệ.
 bool check_bipartite() {
   for (int i = 1; i <= n; ++i) {
-    // Check connected components one by one.
+    // Kiểm tra từng thành phần liên thông.
     if (!vis[i]) {
       colors[i] = 0;
       if (!dfs(i)) return false;

@@ -1,5 +1,5 @@
 # --8<-- [start:core]
-# Extended Euclidean algorithm.
+# Thuật toán Euclid mở rộng.
 def ex_gcd(a, b):
     if b == 0:
         return 1, 0
@@ -10,8 +10,8 @@ def ex_gcd(a, b):
         return x, y
 
 
-# Returns the modular inverse of a modulo m.
-# Assumes that gcd(a, m) = 1, so the inverse exists.
+# Trả về nghịch đảo modulo của a theo modulo m.
+# Giả sử gcd(a, m) = 1, nên nghịch đảo tồn tại.
 def inverse(a, m):
     x, y = ex_gcd(a, m)
     return (x % m + m) % m

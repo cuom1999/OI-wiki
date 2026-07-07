@@ -4,12 +4,12 @@
 
 constexpr int N = 2e6;
 constexpr double ALPHA = 0.7;
-int id, rt, lc[N], rc[N], tot[N], tot_active;  // Tree structure info.
-int tmp[N], n_tmp;                             // Space for rebuilding trees.
-int val[N], cnt[N], sz[N];                     // Node info.
+int id, rt, lc[N], rc[N], tot[N], tot_active;  // Thông tin cấu trúc cây.
+int tmp[N], n_tmp;                             // Không gian để dựng lại cây.
+int val[N], cnt[N], sz[N];                     // Thông tin nút.
 
 // --8<-- [start:push-up]
-// Update node info from its children.
+// Cập nhật thông tin nút từ các con.
 void push_up(int x) {
   tot[x] = 1 + tot[lc[x]] + tot[rc[x]];
   sz[x] = cnt[x] + sz[lc[x]] + sz[rc[x]];
@@ -17,7 +17,7 @@ void push_up(int x) {
 
 // --8<-- [end:push-up]
 // --8<-- [start:rebuild]
-// Tree -> Array.
+// Cây -> mảng.
 void flatten(int x) {
   if (!x) return;
   flatten(lc[x]);
@@ -25,7 +25,7 @@ void flatten(int x) {
   flatten(rc[x]);
 }
 
-// Array -> Tree.
+// Mảng -> cây.
 int build(int ll, int rr) {
   if (ll > rr) return 0;
   int mm = (ll + rr) / 2;

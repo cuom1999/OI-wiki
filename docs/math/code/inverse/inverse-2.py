@@ -1,6 +1,6 @@
 # --8<-- [start:core]
-# Returns the modular inverse of a prime modulo p.
-# Use built-in pow function.
+# Trả về nghịch đảo modulo của a theo modulo nguyên tố p.
+# Dùng hàm pow dựng sẵn.
 def inverse(a, p):
     return pow(a, p - 2, p)
 

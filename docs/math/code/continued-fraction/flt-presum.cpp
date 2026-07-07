@@ -31,7 +31,7 @@ struct FracLinearTrans {
 int main() {
   int n, q;
   std::cin >> n >> q;
-  // Get prefix sum of FLTs.
+  // Tính tổng tiền tố của các FLT.
   std::vector<FracLinearTrans> ps(1, {1, 0, 0, 1});
   ps.reserve(n + 1);
   for (int i = 1; i <= n; ++i) {
@@ -39,14 +39,14 @@ int main() {
     std::cin >> a;
     ps[i] = ps[i - 1] * FracLinearTrans(a);
   }
-  // Query.
+  // Truy vấn.
   for (; q; --q) {
     int l, r;
     std::cin >> l >> r;
-    // Difference.
+    // Hiệu.
     auto res = ps[l - 1].inv() * ps[r];
     int u = res.mat[0], d = res.mat[2];
-    // Correct signs.
+    // Hiệu chỉnh dấu.
     if (!(l & 1)) {
       if (u) u = M - u;
       if (d) d = M - d;

@@ -1,9 +1,9 @@
 # --8<-- [start:core]
 def ex_gcd(a, b):
     """
-    Extended Euclidean Algorithm.
-    Finds integers x, y such that a*x + b*y = gcd(a, b),
-    and returns (gcd, x, y).
+    Thuật toán Euclid mở rộng.
+    Tìm các số nguyên x, y sao cho a*x + b*y = gcd(a, b),
+    và trả về (gcd, x, y).
     """
     if b == 0:
         return a, 1, 0
@@ -15,10 +15,10 @@ def ex_gcd(a, b):
 
 def solve_linear_congruence_equation(a, b, n):
     """
-    Solves the linear congruence equation:
-        a * x ≡ b (mod n), where n > 0.
-    Returns the smallest non-negative solution x,
-    or -1 if there is no solution.
+    Giải phương trình đồng dư tuyến tính:
+        a * x ≡ b (mod n), với n > 0.
+    Trả về nghiệm không âm nhỏ nhất x,
+    hoặc -1 nếu không có nghiệm.
     """
     d, x, y = ex_gcd(a, n)
     if b % d != 0:

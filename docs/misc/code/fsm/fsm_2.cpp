@@ -7,7 +7,7 @@
 
 int main() {
   constexpr int M = 998244353;
-  // Initialize the DFA.
+  // Khởi tạo DFA.
   const auto lowbit = [](int x) { return x & -x; };
   int n, k, r;
   std::cin >> n >> k >> r;
@@ -17,7 +17,7 @@ int main() {
     raw_dfa.trans[1][x] = x + lowbit((1 << k) - 1 - x);
     if (x <= r) raw_dfa.acc[x] = 1;
   }
-  // DFA minimization.
+  // Tối tiểu hóa DFA.
   auto dfa = raw_dfa.hopcroft_minimize();
   // DP.
   std::string s;
