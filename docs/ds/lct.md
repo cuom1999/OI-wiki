@@ -1,10 +1,10 @@
 ## Giới thiệu
 
-Link/Cut Tree là một cấu trúc dữ liệu dùng để giải **bài toán cây động**.
+Cây Link/Cut là một cấu trúc dữ liệu dùng để giải **bài toán cây động**.
 
-Link/Cut Tree còn được gọi là Link-Cut Tree, viết tắt là LCT. Tuy vậy bản thân nó không được gọi là "cây động"; cây động là tên của một lớp bài toán.
+Cây Link/Cut còn được gọi là cây Link-Cut, viết tắt là LCT. Tuy vậy bản thân nó không được gọi là "cây động"; cây động là tên của một lớp bài toán.
 
-Splay Tree là nền tảng của LCT, nhưng Splay Tree dùng trong LCT khác Splay thông thường ở một vài chi tiết (có thêm một số mở rộng).
+Cây Splay là nền tảng của LCT, nhưng cây Splay dùng trong LCT khác Splay thông thường ở một vài chi tiết (có thêm một số mở rộng).
 
 ## Dẫn nhập bài toán
 
@@ -46,7 +46,7 @@ Vì bài toán duy trì động một rừng, loại chuỗi mong muốn là chu
 
 ## Phân rã chuỗi thực
 
-Với các cạnh nối một điểm tới tất cả con của nó, tự chọn một cạnh để đưa vào phân rã. Cạnh được chọn gọi là cạnh thực, các cạnh còn lại gọi là cạnh ảo. Với một cạnh thực, đứa con mà nó nối tới gọi là con thực. Một chuỗi gồm các cạnh thực cũng được gọi là chuỗi thực. Lý do quan trọng nhất để chọn phân rã chuỗi thực là nó được chọn chủ động, linh hoạt và có thể thay đổi. Chính tính linh hoạt đó khiến Splay Tree phù hợp để duy trì các chuỗi thực này.
+Với các cạnh nối một điểm tới tất cả con của nó, tự chọn một cạnh để đưa vào phân rã. Cạnh được chọn gọi là cạnh thực, các cạnh còn lại gọi là cạnh ảo. Với một cạnh thực, đứa con mà nó nối tới gọi là con thực. Một chuỗi gồm các cạnh thực cũng được gọi là chuỗi thực. Lý do quan trọng nhất để chọn phân rã chuỗi thực là nó được chọn chủ động, linh hoạt và có thể thay đổi. Chính tính linh hoạt đó khiến cây Splay phù hợp để duy trì các chuỗi thực này.
 
 ## LCT
 
@@ -65,11 +65,11 @@ Trong bài này, có thể xem một số Splay hợp thành một cây phụ tr
 
 Giả sử có một cây gốc như hình dưới. (Cạnh tô đậm là cạnh thực, cạnh nét đứt là cạnh ảo.)
 
-![Cây gốc trong Link-Cut Tree](images/lct-atree-1.svg)
+![Cây gốc trong cây Link-Cut](images/lct-atree-1.svg)
 
 Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 
-![Cây phụ trợ trong Link-Cut Tree](images/lct-atree-2.svg)
+![Cây phụ trợ trong cây Link-Cut](images/lct-atree-2.svg)
 
 ### Quan hệ cấu trúc giữa cây gốc và cây phụ trợ
 
@@ -100,7 +100,7 @@ Theo định nghĩa vừa nêu, cấu trúc cây phụ trợ như hình sau.
 
 #### Các hàm của cây Splay
 
-Sau đây là các hàm dùng trong cây Splay; xem chi tiết tại [Splay Tree](./splay.md).
+Sau đây là các hàm dùng trong cây Splay; xem chi tiết tại [cây Splay](./splay.md).
 
 1.  `Get(x)` lấy xem $x$ là con nào của cha nó.
 2.  `Splay(x)` phối hợp với thao tác `Rotate` để xoay $x$ lên **gốc của Splay hiện tại**.
@@ -147,7 +147,7 @@ void PushDown(int p) {
 
 ### `Splay() && Rotate()`
 
-Trong LCT, `Splay()` và `Rotate()` có vài điểm khác với cách cài đặt Splay Tree thông thường.
+Trong LCT, `Splay()` và `Rotate()` có vài điểm khác với cách cài đặt cây Splay thông thường.
 
 ```cpp
 #define Get(x) (ch[f[x]][1] == x)
@@ -171,7 +171,7 @@ void Splay(int x) {
 }
 ```
 
-Các hàm trên có thể xem thêm tại [Splay Tree](./splay.md).
+Các hàm trên có thể xem thêm tại [cây Splay](./splay.md).
 
 Sau đây là các hàm riêng của LCT.
 
@@ -230,7 +230,7 @@ int Access(int x) {
 
     ![Cây phụ trợ sau bước Access thứ hai](images/lct-access-5.svg)
 
--   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, xoay $H$ lên gốc của Splay Tree chứa nó, rồi đặt `rs` của $H$ thành $I$.
+-   Tiếp theo, theo các bước vừa rồi, vì `Father` của $I$ trỏ tới $H$, xoay $H$ lên gốc của cây Splay chứa nó, rồi đặt `rs` của $H$ thành $I$.
 
 -   Cây sau đó có dạng như sau.
 

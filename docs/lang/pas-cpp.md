@@ -32,9 +32,9 @@ cũng không cần dấu chấm `.`.
 Về chú thích, `//` biểu thị chú thích trên một dòng, còn `/* */` biểu thị chú
 thích dạng khối.
 
-Theo thông lệ, hãy bắt đầu bằng chương trình Hello World.
+Theo thông lệ, hãy bắt đầu bằng chương trình "Xin chào thế giới".
 
-### Hello World: chương trình C++ đầu tiên
+### Xin chào thế giới: chương trình C++ đầu tiên
 
 ```cpp
 #include <iostream>  // nạp thư viện iostream
@@ -86,7 +86,7 @@ Trong câu này, `"Hello World!"` là chuỗi. Trong Pascal, chuỗi dùng dấu
 `'` chứ không dùng dấu nháy kép; còn trong C++, chuỗi phải dùng dấu nháy kép. Ký
 tự đặt trong dấu nháy đơn ở C++ có ý nghĩa khác, phần sau sẽ nhắc lại.
 
-Đến đây, phần Hello World gần như đã được giải thích xong.
+Đến đây, phần "Xin chào thế giới" gần như đã được giải thích xong.
 
 Có thể sẽ có thắc mắc `return 0` ở cuối chương trình nghĩa là gì, hoặc
 `int main()` nghĩa là gì. **Tạm thời chưa cần bận tâm**; khi mới bắt đầu viết

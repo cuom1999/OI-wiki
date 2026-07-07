@@ -1,15 +1,15 @@
 author:F7487
 
 <span id="self-adjusting-top-tree"></span>
-## Top tree tự điều chỉnh (self-adjusting top tree)
+## Top tree tự điều chỉnh
 
 ### Giới thiệu
 
-Top tree tự điều chỉnh (Self-Adjusting Top Tree, viết tắt là SATT) là một cấu trúc dữ liệu dựa trên lý thuyết top tree để duy trì rừng động hoàn toàn, được Tarjan và Werneck đề xuất năm 2005 trong bài báo Self-Adjusting Top Trees.
+Top tree tự điều chỉnh (tiếng Anh: self-adjusting top tree, viết tắt là SATT) là một cấu trúc dữ liệu dựa trên lý thuyết top tree để duy trì rừng động hoàn toàn, được Tarjan và Werneck đề xuất năm 2005 trong bài báo về top tree tự điều chỉnh.
 
 Top tree tự điều chỉnh có thể thực hiện các thao tác cập nhật/truy vấn trên đường đi, cập nhật/truy vấn trên cây con, cũng như tìm kiếm phi cục bộ trong bất kỳ cây nào của rừng.
 
-Splay Tree là nền tảng của SATT, nhưng Splay Tree dùng trong SATT khác Splay thông thường ở một số chi tiết, vì nó được mở rộng thêm.
+Cây Splay là nền tảng của SATT, nhưng cây Splay dùng trong SATT khác Splay thông thường ở một số chi tiết, vì nó được mở rộng thêm.
 
 ### Đặt vấn đề
 
@@ -129,13 +129,13 @@ Tách riêng đường cụm ra. Đây là một cây có hình dạng đặc bi
 
 ![](./images/top-tree10.jpg)
 
-Cấu trúc này được gọi là **cây nén** (Compress Tree), vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác nén.
+Cấu trúc này được gọi là **cây nén**, vì trong top tree này, hai con của bất kỳ nút nào được gộp thành cha của chúng bằng thao tác nén.
 
-Các nút trong cây nén được gọi là **nút nén** (Compress Node). Nếu chỉ xét đường cụm hiện tại, một nút nén không phải lá đại diện cho một quá trình nén: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Cây nén này duy trì thông tin của đường cụm của $C(k,g)$.
+Các nút trong cây nén được gọi là **nút nén**. Nếu chỉ xét đường cụm hiện tại, một nút nén không phải lá đại diện cho một quá trình nén: nó gộp thông tin của con trái và con phải, rồi thêm thông tin của chính đỉnh $x$ được lưu bởi `compress(x)`. Cây nén này duy trì thông tin của đường cụm của $C(k,g)$.
 
 Ngoài ra, trong cây nén còn đặt thêm một số ràng buộc lên top tree được sử dụng. Cây nén duy trì một dây chuyền gồm các đỉnh trong $T$ có độ sâu đôi một khác nhau. Quy định rằng thứ tự duyệt trung thứ tự của các cụm cơ sở trong cây nén phải nhất quán với độ sâu của các cạnh tương ứng trong $T$, và thứ tự trung thứ tự càng nhỏ thì độ sâu càng nông. Quan hệ của `compress(x)` ứng với mỗi đỉnh $x$ cũng tương tự.
 
-Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách gom lá lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại được biểu diễn bằng một cây tam phân. Cấu trúc này được gọi là **cây gom lá** (Rake Tree), và các nút trong cây gom lá tương ứng được gọi là **nút gom lá** (Rake Node). Mỗi nút gom lá đều đại diện cho một cụm, được hình thành bằng cách gom lá con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; mỗi nút trong cây gom lá đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
+Bây giờ xét cách duy trì thông tin không nằm trên đường cụm. Giả sử các đỉnh và cạnh không nằm trên đường cụm đã hình thành từng cụm cực đại, và các cụm cực đại này được tạo ra bằng cách gom lá lẫn nhau giữa các cụm nhỏ hơn được khoanh bằng đường xanh. Quá trình gộp một số cụm nhỏ hơn thành một cụm cực đại được biểu diễn bằng một cây tam phân. Cấu trúc này được gọi là **cây gom lá**, và các nút trong cây gom lá tương ứng được gọi là **nút gom lá**. Mỗi nút gom lá đều đại diện cho một cụm, được hình thành bằng cách gom lá con trái và con phải vào cụm nhỏ hơn do con giữa đại diện. Cụ thể xem hình dưới; mỗi nút trong cây gom lá đều đại diện cho một cụm nhỏ hơn có cùng đầu mút trong $T$.
 
 ![](./images/top-tree11.jpg)
 
