@@ -9,11 +9,11 @@ trang này chủ yếu nói về cấu trúc dữ liệu ngăn xếp, không ph�
 thống hay không gian ngăn xếp khi chương trình chạy.
 
 Các thao tác sửa đổi và truy cập của ngăn xếp tuân theo nguyên tắc vào sau ra
-trước. Vì vậy ngăn xếp thường được gọi là cấu trúc vào sau ra trước, viết tắt
-là LIFO.
+trước. Vì vậy ngăn xếp thường được gọi là cấu trúc vào sau ra trước, viết tắt là
+LIFO.
 
 ??? warning "Cảnh báo"
-    LIFO mô tả việc **phần tử vào sau cùng trong container hiện tại** sẽ ra trước.
+    LIFO mô tả việc **phần tử vào sau cùng trong ngăn xếp hiện tại** sẽ ra trước.
 
     Xét một ngăn xếp như sau:
 
@@ -29,7 +29,7 @@ là LIFO.
     trước ra trước, điều này là sai.
 
     Vì vậy, khi xét một cấu trúc dữ liệu là LIFO hay FIFO, cần xét trạng thái
-    của các phần tử đang nằm trong container tại đúng thời điểm đó.
+    của các phần tử đang nằm trong cấu trúc tại đúng thời điểm đó.
 
 <span id="mô-phỏng-ngăn-xếp-bằng-mảng"></span>
 
@@ -46,9 +46,9 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
 
         // Đẩy vào ngăn xếp:
         st[++*st] = var1;
-        // Lấy đỉnh ngăn xếp:
+        // Đọc đỉnh ngăn xếp:
         int u = st[*st];
-        // Pop khỏi ngăn xếp: lưu ý vượt biên, không thể pop khi *st == 0.
+        // Pop khỏi ngăn xếp: lưu ý không thể pop khi *st == 0.
         if (*st) --*st;
         // Xóa rỗng ngăn xếp:
         *st = 0;
@@ -63,9 +63,9 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
         # Đẩy vào ngăn xếp:
         st[st[0] + 1] = var1
         st[0] = st[0] + 1
-        # Lấy đỉnh ngăn xếp:
+        # Đọc đỉnh ngăn xếp:
         u = st[st[0]]
-        # Pop khỏi ngăn xếp: lưu ý vượt biên, không thể pop khi st[0] == 0.
+        # Pop khỏi ngăn xếp: lưu ý không thể pop khi st[0] == 0.
         if st[0]:
             st[0] = st[0] - 1
         # Xóa rỗng ngăn xếp:
@@ -76,7 +76,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
 
 ## Ngăn xếp trong C++ STL
 
-C++ STL cung cấp container `std::stack`; trước khi dùng cần nạp tệp tiêu đề
+C++ STL cung cấp adapter container `std::stack`; trước khi dùng cần nạp tệp tiêu đề
 `<stack>`.
 
 ???+ info "Định nghĩa `stack` trong STL"
@@ -90,7 +90,7 @@ C++ STL cung cấp container `std::stack`; trước khi dùng cần nạp tệp 
 
     `T` là kiểu dữ liệu cần lưu trong `stack`.
 
-    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải
+    `Container` là kiểu container nền dùng để lưu phần tử. Container nền này phải
     cung cấp các hàm sau với ngữ nghĩa thông thường:
 
     -   `back()`
@@ -101,13 +101,13 @@ C++ STL cung cấp container `std::stack`; trước khi dùng cần nạp tệp 
     những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm
     container nền.
 
-Container `stack` trong STL cung cấp nhiều hàm thành viên; các hàm thường dùng
+Adapter `stack` trong STL cung cấp nhiều hàm thành viên; các hàm thường dùng
 gồm:
 
 -   Truy cập phần tử
     -   `st.top()` trả về đỉnh ngăn xếp
 -   Sửa đổi
-    -   `st.push()` chèn tham số truyền vào lên đỉnh ngăn xếp
+    -   `st.push()` chèn giá trị truyền vào lên đỉnh ngăn xếp
     -   `st.pop()` xóa phần tử ở đỉnh ngăn xếp
 -   Dung lượng
     -   `st.empty()` trả về ngăn xếp có rỗng hay không
