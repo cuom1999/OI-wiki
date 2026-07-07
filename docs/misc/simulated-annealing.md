@@ -7,13 +7,13 @@ Mô phỏng luyện kim, hay simulated annealing, là một thuật toán ngẫu
 Dựa trên quá trình của [thuật toán leo đồi](./hill-climbing.md), nhận thấy rằng với một nghiệm không tối ưu nằm gần nghiệm tốt nhất hiện tại, thuật toán leo đồi sẽ loại bỏ trực tiếp nghiệm đó. Nhưng trong nhiều trường hợp, cần chấp nhận nghiệm không tối ưu này để thoát khỏi nghiệm tối ưu cục bộ. Đó chính là thuật toán mô phỏng luyện kim.
 
 ??? note "Ủ là gì? Trích từ [Baidu Baike](https://baike.baidu.com/item/%E9%80%80%E7%81%AB/1039313)"
-    Ủ là một công nghệ xử lý nhiệt kim loại, trong đó kim loại được làm nóng chậm tới một nhiệt độ nhất định, giữ trong một khoảng thời gian đủ dài, rồi được làm nguội với tốc độ thích hợp. Mục đích là giảm độ cứng, cải thiện khả năng gia công cắt gọt, khử ứng suất dư, ổn định kích thước, giảm xu hướng biến dạng và nứt, làm mịn hạt tinh thể, điều chỉnh tổ chức vật liệu và loại bỏ khuyết tật tổ chức. Nói chính xác, ủ là một công nghệ xử lý nhiệt vật liệu, bao gồm cả vật liệu kim loại và phi kim loại. Mục đích ủ của vật liệu mới cũng có điểm giống và khác so với ủ kim loại truyền thống.
+    Ủ là một công nghệ xử lý nhiệt kim loại, trong đó kim loại được làm nóng chậm tới một nhiệt độ cho trước, giữ trong một khoảng thời gian đủ dài, rồi được làm nguội với tốc độ thích hợp. Mục đích là giảm độ cứng, cải thiện khả năng gia công cắt gọt, khử ứng suất dư, ổn định kích thước, giảm xu hướng biến dạng và nứt, làm mịn hạt tinh thể, điều chỉnh tổ chức vật liệu và loại bỏ khuyết tật tổ chức. Nói chính xác, ủ là một công nghệ xử lý nhiệt vật liệu, bao gồm cả vật liệu kim loại và phi kim loại. Mục đích ủ của vật liệu mới cũng có điểm giống và khác so với ủ kim loại truyền thống.
 
 Do quy luật ủ đưa vào nhiều yếu tố ngẫu nhiên hơn, xác suất thu được nghiệm tối ưu sẽ tăng đáng kể. Vì vậy có thể mô phỏng quá trình này, coi hàm mục tiêu là hàm năng lượng.
 
 ### Quá trình
 
-Tóm tắt trong một câu: nếu nghiệm của trạng thái mới tốt hơn thì cập nhật đáp án, nếu không thì chấp nhận trạng thái mới với một xác suất nhất định.
+Tóm tắt trong một câu: nếu nghiệm của trạng thái mới tốt hơn thì cập nhật đáp án, nếu không thì chấp nhận trạng thái mới với một xác suất phụ thuộc vào nhiệt độ.
 
 Gọi nhiệt độ hiện tại là $T$, hiệu năng lượng, hay hiệu giá trị, giữa trạng thái mới $S'$ và trạng thái đã biết $S$, trong đó trạng thái mới được sinh ngẫu nhiên từ trạng thái đã biết, là $\Delta E$ với $\Delta E\geqslant 0$. Khi đó xác suất xảy ra chuyển trạng thái, tức là sửa nghiệm tối ưu, là
 

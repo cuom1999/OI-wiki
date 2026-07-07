@@ -39,7 +39,7 @@ Gọi $val_i$ là giá trị của nút $i$. Nếu khi dựng cây cân bằng, 
 
 Có thể cho mỗi nút trong cây cân bằng tương ứng với một khoảng số thực, trong đó nút gốc tương ứng với $(0, 1)$. Với nút $i$, gọi khoảng số thực tương ứng của nó là $(l, r)$, khi đó $tag_i = \frac{l + r}{2}$; cây con trái của nó tương ứng với $(l, tag_i)$, còn cây con phải tương ứng với $(tag_i, r)$. Có thể chứng minh rằng $tag_i$ thỏa mãn yêu cầu trên.
 
-Vì dùng cây cân bằng có chiều cao kỳ vọng $O(\log n)$, độ chính xác số học được bảo đảm ở mức nhất định. Khi cài đặt thực tế cũng có thể dùng một khoảng lớn hơn, chẳng hạn cho gốc tương ứng với $(0, 10^{18})$.
+Vì dùng cây cân bằng có chiều cao kỳ vọng $O(\log n)$, độ chính xác số học được bảo đảm ở mức đủ dùng. Khi cài đặt thực tế cũng có thể dùng một khoảng lớn hơn, chẳng hạn cho gốc tương ứng với $(0, 10^{18})$.
 
 <span id="cách-4"></span>
 ### Cách 4

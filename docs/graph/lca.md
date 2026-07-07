@@ -28,7 +28,7 @@ Một cách khác là trước hết điều chỉnh đỉnh có độ sâu lớ
 
 #### Tính chất
 
-Khi tiền xử lý, thuật toán đơn giản cần DFS toàn bộ cây, nên độ phức tạp thời gian là $O(n)$; độ phức tạp thời gian cho một truy vấn là $\Theta(n)$. Nếu cây được sinh ngẫu nhiên theo một mô hình nhất định, độ phức tạp thời gian liên quan đến chiều cao kỳ vọng của loại cây ngẫu nhiên đó.
+Khi tiền xử lý, thuật toán đơn giản cần DFS toàn bộ cây, nên độ phức tạp thời gian là $O(n)$; độ phức tạp thời gian cho một truy vấn là $\Theta(n)$. Nếu cây được sinh ngẫu nhiên theo một mô hình cho trước, độ phức tạp thời gian liên quan đến chiều cao kỳ vọng của loại cây ngẫu nhiên đó.
 
 ### Thuật toán nhân đôi
 

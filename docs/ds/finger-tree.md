@@ -1,7 +1,7 @@
 author: isdanni
 
 ???+ warning "Lưu ý"
-    Chương này là nội dung đọc thêm. Trước khi đọc, nên có hiểu biết nhất định về lập trình hàm (functional
+    Chương này là nội dung đọc thêm. Trước khi đọc, nên có hiểu biết cơ bản về lập trình hàm (functional
     programming).
 
 ## Giới thiệu

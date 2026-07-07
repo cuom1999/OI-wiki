@@ -110,7 +110,7 @@ Dưới đây giới thiệu một cách làm dựa trên [chia để trị CDQ]
 
 So sánh "Đóng gói đồ chơi" và "Đóng gói đồ chơi - phiên bản sửa", có thể rút ra hai điểm:
 
--   Nhị phân/CDQ/cây cân bằng có thể tối ưu việc tính phương trình DP và giảm độ phức tạp ở mức nhất định, nhưng không thay đổi bản thân phương trình.
+-   Nhị phân/CDQ/cây cân bằng có thể tối ưu việc tính phương trình DP và giảm độ phức tạp ở một mức nào đó, nhưng không thay đổi bản thân phương trình.
 -   Tính chất của phương trình DP phụ thuộc vào đặc trưng dữ liệu, còn bản thân phương trình DP phụ thuộc vào mô hình toán học của đề bài.
 
 ## Tổng kết

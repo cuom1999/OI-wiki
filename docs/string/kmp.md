@@ -299,7 +299,7 @@ Vì vậy nếu tại một vị trí $i$ có $\pi[i] = n$, thì chuỗi $s$ xu�
 
 ![](./images/strstr_kmp_indices.svg)
 
-Như đã đề cập khi tính hàm tiền tố, nếu biết giá trị hàm tiền tố không bao giờ vượt quá một giá trị nhất định, thì không cần lưu toàn bộ chuỗi và toàn bộ hàm tiền tố, mà chỉ cần lưu phần đầu của cả hai. Trong trường hợp này, điều đó có nghĩa là chỉ cần lưu chuỗi $s + \#$ cùng các giá trị hàm tiền tố tương ứng. Có thể đọc từng ký tự của chuỗi $t$ và tính giá trị hàm tiền tố tại vị trí hiện tại.
+Như đã đề cập khi tính hàm tiền tố, nếu biết giá trị hàm tiền tố không bao giờ vượt quá một ngưỡng cho trước, thì không cần lưu toàn bộ chuỗi và toàn bộ hàm tiền tố, mà chỉ cần lưu phần đầu của cả hai. Trong trường hợp này, điều đó có nghĩa là chỉ cần lưu chuỗi $s + \#$ cùng các giá trị hàm tiền tố tương ứng. Có thể đọc từng ký tự của chuỗi $t$ và tính giá trị hàm tiền tố tại vị trí hiện tại.
 
 Do đó thuật toán Knuth-Morris-Pratt (viết tắt là KMP) giải bài toán này trong thời gian $O(n + m)$ và bộ nhớ $O(n)$.
 

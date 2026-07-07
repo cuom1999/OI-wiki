@@ -258,7 +258,7 @@ Bài báo gốc[^ref1] chỉ phân tích được rằng các thao tác `meld` v
 nhưng đưa ra phỏng đoán rằng mọi thao tác của nó đều có độ phức tạp giống heap Fibonacci.
 
 Đáng tiếc là các nghiên cứu sau đó phát hiện rằng với heap ghép cặp không duy trì thông tin phụ,
-trong một số chuỗi thao tác nhất định,
+trong một số chuỗi thao tác cụ thể,
 cận dưới độ phức tạp khấu hao của thao tác `decrease-key`
 ít nhất là $\Omega (\log \log n)$[^ref2].
 

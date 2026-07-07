@@ -390,7 +390,7 @@ duyệt từ vật phẩm cuối về vật phẩm đầu {
 <span id="đếm-số-phương-án"></span>
 #### Đếm số phương án
 
-Với bài toán cho trước sức chứa ba lô, chi phí vật phẩm, các quan hệ khác, v.v., cần đếm tổng số phương án đạt đến một sức chứa nhất định.
+Với bài toán cho trước sức chứa ba lô, chi phí vật phẩm, các quan hệ khác, v.v., cần đếm tổng số phương án đạt đến một sức chứa cụ thể.
 
 Dạng bài này chỉ cần thay việc lấy giá trị lớn nhất bằng phép cộng là được.
 

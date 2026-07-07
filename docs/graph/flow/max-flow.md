@@ -293,7 +293,7 @@ Số tầng của đồ thị tầng không thể vượt quá $|V|$. Nếu có 
 
 Nhân độ phức tạp thời gian của một vòng tăng luồng $O(|V||E|)$ với số vòng tăng luồng $O(|V|)$, độ phức tạp thời gian của thuật toán Dinic là $O(|V|^2|E|)$.
 
-Muốn thời gian chạy thực tế của thuật toán Dinic tiệm cận cận trên lý thuyết, thường phải xây dựng mạng đầu vào có tính chất đặc biệt. Trong thực hành thi thuật toán, phần kiểm tra kiến thức luồng mạng thường tập trung vào kỹ thuật mô hình hóa bài toán gốc thành bài toán luồng mạng. Khi đó, mô hình thường không chứa các tính chất đặc biệt khiến thuật toán Dinic chạy chậm; ngược lại, Dinic có hiệu quả rất tốt trên phần lớn đồ thị. Vì vậy, phạm vi dữ liệu của bài toán luồng mạng thường khá lớn, và cách "thay giá trị $|V|, |E|$ vào $|V|^2|E|$ để ước lượng thời gian chạy" không phù hợp. Thực tế, để ước lượng chính xác, thí sinh cần có kinh nghiệm nhất định về hiệu suất thực tế của thuật toán Dinic.
+Muốn thời gian chạy thực tế của thuật toán Dinic tiệm cận cận trên lý thuyết, thường phải xây dựng mạng đầu vào có tính chất đặc biệt. Trong thực hành thi thuật toán, phần kiểm tra kiến thức luồng mạng thường tập trung vào kỹ thuật mô hình hóa bài toán gốc thành bài toán luồng mạng. Khi đó, mô hình thường không chứa các tính chất đặc biệt khiến thuật toán Dinic chạy chậm; ngược lại, Dinic có hiệu quả rất tốt trên phần lớn đồ thị. Vì vậy, phạm vi dữ liệu của bài toán luồng mạng thường khá lớn, và cách "thay giá trị $|V|, |E|$ vào $|V|^2|E|$ để ước lượng thời gian chạy" không phù hợp. Thực tế, để ước lượng chính xác, thí sinh cần có kinh nghiệm thực tế về hiệu suất của thuật toán Dinic.
 
 #### Phân tích độ phức tạp thời gian trong các trường hợp đặc biệt
 

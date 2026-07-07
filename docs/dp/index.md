@@ -6,7 +6,7 @@ Quy hoạch động là phương pháp giải bài toán phức tạp bằng cá
 ban đầu thành các bài toán con đơn giản hơn.
 
 Vì quy hoạch động không phải một thuật toán cụ thể mà là một cách giải quyết
-một số loại bài toán nhất định, nó có thể xuất hiện trong nhiều cấu trúc dữ
+một số loại bài toán, nó có thể xuất hiện trong nhiều cấu trúc dữ
 liệu khác nhau; các dạng bài liên quan cũng vì thế đa dạng hơn.
 
 Trong OI, các lời giải truy hồi cho bài toán không tối ưu hóa, chẳng hạn bài

@@ -6,7 +6,7 @@ Máy tự động hậu tố tổng quát dựa trên các kiến thức sau:
 -   [Cây từ điển (Trie)](./trie.md)
 -   [Máy tự động hậu tố](./sam.md)
 
-Người đọc nên rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết nhất định về **liên kết hậu tố** trong **máy tự động hậu tố**.
+Người đọc nên rất quen thuộc với hai chủ đề trên trước khi đọc bài này, đặc biệt là có hiểu biết cơ bản về **liên kết hậu tố** trong **máy tự động hậu tố**.
 
 <span id="dẫn-nhập"></span>
 ## Dẫn nhập
