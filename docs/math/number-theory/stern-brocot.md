@@ -503,10 +503,10 @@ Các bài toán cần tìm kiếm nhị phân trên cây Stern-Brocot:
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Stern-Brocot tree - Wikipedia](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree)
--   [Calkin-Wilf tree - Wikipedia](https://en.wikipedia.org/wiki/Calkin%E2%80%93Wilf_tree)
--   [Farey sequence - Wikipedia](https://en.wikipedia.org/wiki/Farey_sequence)
+-   [Cây Stern-Brocot - Wikipedia](https://en.wikipedia.org/wiki/Stern%E2%80%93Brocot_tree)
+-   [Cây Calkin-Wilf - Wikipedia](https://en.wikipedia.org/wiki/Calkin%E2%80%93Wilf_tree)
+-   [Dãy Farey - Wikipedia](https://en.wikipedia.org/wiki/Farey_sequence)
 
-**Một phần nội dung của trang này được dịch từ bài viết [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) và bản dịch tiếng Anh [The Stern-Brocot Tree and Farey Sequences](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0. Trang này cũng có một phần nội dung được dịch từ bài viết [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html), giấy phép CC-BY-SA 4.0. Nội dung đều đã được chỉnh sửa.**
+**Một phần nội dung của trang này được dịch từ bài viết [Дерево Штерна-Броко. Ряд Фарея](http://e-maxx.ru/algo/stern_brocot_farey) và bản dịch tiếng Anh [Cây Stern-Brocot và dãy Farey](https://cp-algorithms.com/others/stern_brocot_tree_farey_sequences.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0. Trang này cũng có một phần nội dung được dịch từ bài viết [Liên phân số](https://cp-algorithms.com/algebra/continued-fractions.html), giấy phép CC-BY-SA 4.0. Nội dung đều đã được chỉnh sửa.**
 
 [^mediant]: Tên gọi trong tiếng Việt được dịch theo nghĩa của thuật ngữ "mediant".

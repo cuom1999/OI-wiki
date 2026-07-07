@@ -699,8 +699,8 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo môđun bất kỳ nh�
 ## Tài liệu tham khảo và ghi chú
 
 -   Feng Keqin. Elementary Number Theory and Its Applications.
--   [Root of unity modulo n - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
--   [No.981 General Power Root, editorial by 37zigen](https://yukicoder.me/problems/no/981/editorial)
+-   [Căn đơn vị modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
+-   [No.981 Căn lũy thừa tổng quát, lời giải của 37zigen](https://yukicoder.me/problems/no/981/editorial)
 
 [^fnnt]: Môđun $m$ có thể không phải là số nguyên tố. Chỉ cần $a$ là căn đơn vị
     nguyên thủy bậc $k=2^e$ theo môđun $m$, nó có thể được dùng cho biến đổi số

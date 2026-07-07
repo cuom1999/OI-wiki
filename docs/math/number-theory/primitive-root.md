@@ -892,13 +892,13 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
 ## Tài liệu tham khảo và ghi chú
 
--   [Primitive root modulo n - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
--   [The order of a unit - Course Notes](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
--   [The primitive root theorem - Amin Witno's notes](http://witno.com/philadelphia/notes/won5.pdf)
--   [Carmichael function - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
--   [Carmichael's Lambda Function - Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
--   [Carmichael number - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
--   [Carmichael Number - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
+-   [Căn nguyên thủy modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
+-   [Cấp của một đơn vị - ghi chú bài giảng](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
+-   [Định lý căn nguyên thủy - ghi chú của Amin Witno](http://witno.com/philadelphia/notes/won5.pdf)
+-   [Hàm Carmichael - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
+-   [Hàm lambda Carmichael - Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
+-   [Số Carmichael - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
+-   [Số Carmichael - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 
 [^yuan1959note]: Wang Y. "On the least primitive root of a prime." (in Chinese). Acta Math Sinica, 1959, 4: 432-441; English transl. in *Sci. Sinica*, 1961, 10: 1-14.
 

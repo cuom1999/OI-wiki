@@ -1162,12 +1162,12 @@ trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có th�
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Pell's equation - Wikipedia](https://en.wikipedia.org/wiki/Pell%27s_equation)
--   [John P. Robertson - Solving the generalized Pell equation $x^2-Dy^2=N$](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5ac34a344ee346855184ff949eeaed18685b155c)
--   [Keith Matthews - The Diophantine Equation $x^2-Dy^2=N$,$D>0$](http://www.numbertheory.org/PDFS/patz5.pdf)
--   [Existence of Solution to Pell's Equation - Suryateja Gavva's Blog](https://surya-teja.com/2011/01/11/existence-of-solution-to-pells-equation/)
--   [Calculating the simple continued fraction of a quadratic irrational - Number Theory Web](http://www.numbertheory.org/php/surd.html) (thuật toán PQa)
--   [Solving the diophantine equation x2-Dy2 = N, D > 0 and not a perfect square, N != 0 - Number Theory Web](http://www.numbertheory.org/php/patz.html) (thuật toán Lagrange–Matthews–Mollin)
+-   [Phương trình Pell - Wikipedia](https://en.wikipedia.org/wiki/Pell%27s_equation)
+-   [John P. Robertson - Giải phương trình Pell tổng quát $x^2-Dy^2=N$](https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=5ac34a344ee346855184ff949eeaed18685b155c)
+-   [Keith Matthews - Phương trình Diophantine $x^2-Dy^2=N$,$D>0$](http://www.numbertheory.org/PDFS/patz5.pdf)
+-   [Sự tồn tại nghiệm của phương trình Pell - Blog của Suryateja Gavva](https://surya-teja.com/2011/01/11/existence-of-solution-to-pells-equation/)
+-   [Tính liên phân số đơn giản của một số vô tỉ bậc hai - Number Theory Web](http://www.numbertheory.org/php/surd.html) (thuật toán PQa)
+-   [Giải phương trình Diophantine $x^2-Dy^2=N$, $D>0$ và không là số chính phương, $N\neq 0$ - Number Theory Web](http://www.numbertheory.org/php/patz.html) (thuật toán Lagrange–Matthews–Mollin)
 
 [^not-square]: Khi $D$ là số chính phương, chỉ cần phân tích nhân tử là biết $(x+y\sqrt{D})(x-y\sqrt{D})=N$, vì vậy mọi nghiệm có thể tìm bằng cách duyệt các ước của $N$. Đặc biệt, khi $N=1$, phương trình chỉ có nghiệm $(\pm 1,0)$; khi $N=-1$ và $D\neq 1$, phương trình vô nghiệm.
 

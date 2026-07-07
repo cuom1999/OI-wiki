@@ -191,7 +191,7 @@ nghị dùng các phương pháp thông thường đã nêu ở trên.
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Modular multiplicative inverse - Wikipedia](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
+-   [Nghịch đảo nhân modulo - Wikipedia](https://en.wikipedia.org/wiki/Modular_multiplicative_inverse)
 
 [^linear-recursion]: [Câu trả lời của riteme trên Zhihu](https://www.zhihu.com/question/59033693/answer/323292359)
     chỉ ra rằng cận trên độ phức tạp đã biết về lý thuyết của cách này là

@@ -508,13 +508,13 @@ $$
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [Fast modular multiplication by orz - Codeforces](https://codeforces.com/blog/entry/96759)
--   [Barrett Reduction - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
--   [Barrett Reduction - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
+-   [Phép nhân modulo nhanh bởi orz - Codeforces](https://codeforces.com/blog/entry/96759)
+-   [Rút gọn Barrett - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
+-   [Rút gọn Barrett - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
 -   [Nguyên lý và chứng minh tính đúng của Barrett reduction by Chen - Zhihu](https://zhuanlan.zhihu.com/p/690876166)
--   [Montgomery Multiplication - CP Algorithms](https://cp-algorithms.com/algebra/montgomery_multiplication.html)
+-   [Phép nhân Montgomery - CP Algorithms](https://cp-algorithms.com/algebra/montgomery_multiplication.html)
 -   [Phép nhân modulo Montgomery by Chen - Zhihu](https://zhuanlan.zhihu.com/p/645428404)
--   [Binary Exponentiation by Factoring - CP Algorithms](https://cp-algorithms.com/algebra/factoring-exp.html)
+-   [Lũy thừa nhị phân bằng phân tích nhân tử - CP Algorithms](https://cp-algorithms.com/algebra/factoring-exp.html)
 -   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. "Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1." IACR Transactions on Cryptographic Hardware and Embedded Systems (2022): 221-244.
 -   Montgomery, Peter L. "Modular multiplication without trial division." Mathematics of computation 44, no. 170 (1985): 519-521.
@@ -522,7 +522,7 @@ $$
 [^long-double-80bit]: Điều này đúng với GCC hoặc Clang trên phần lớn hệ thống
     64 bit.
 
-[^floating-format]: Xem [Double-precision floating-point format - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format).
+[^floating-format]: Xem [định dạng dấu phẩy động độ chính xác kép - Wikipedia](https://en.wikipedia.org/wiki/Double-precision_floating-point_format).
 
 [^ld-mul-err]: Điều kiện dùng trong ghi chú này là $a < m$, tức là $a / m \in [0,1)$.
 

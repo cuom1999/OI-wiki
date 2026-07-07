@@ -1795,12 +1795,12 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 -   Hardy, G. H., Wright, E. M., Heath-Brown, R., & Silverman, J. (2008). An Introduction to the Theory of Numbers. Oxford Mathematics.
 -   Zhu Yaochen, Wang Lianxiang, *Nhập môn xấp xỉ Diophantine*
 -   [Blog của FatFish - Nhập môn liên phân số](https://chaoli.club/index.php/2756)
--   [Simple continued fraction - Wikipedia](https://en.wikipedia.org/wiki/Simple_continued_fraction)
--   [Periodic continued fraction - Wikipedia](https://en.wikipedia.org/wiki/Periodic_continued_fraction)
--   [Gosper's original notes on continued fraction arithmetic algorithms](https://perl.plover.com/yak/cftalk/INFO/gosper.txt)
--   [Understanding Bill Gosper's continued fraction arithmetic (implemented in Python)](https://hsinhaoyu.github.io/cont_frac/)
+-   [Liên phân số đơn giản - Wikipedia](https://en.wikipedia.org/wiki/Simple_continued_fraction)
+-   [Liên phân số tuần hoàn - Wikipedia](https://en.wikipedia.org/wiki/Periodic_continued_fraction)
+-   [Ghi chú gốc của Gosper về thuật toán số học liên phân số](https://perl.plover.com/yak/cftalk/INFO/gosper.txt)
+-   [Tìm hiểu số học liên phân số của Bill Gosper (triển khai bằng Python)](https://hsinhaoyu.github.io/cont_frac/)
 
-**Nội dung chính của trang này được dịch từ bài viết [Continued fractions](https://cp-algorithms.com/algebra/continued-fractions.html), có giấy phép CC-BY-SA 4.0 và đã được chỉnh sửa.**
+**Nội dung chính của trang này được dịch từ bài viết [Liên phân số](https://cp-algorithms.com/algebra/continued-fractions.html), có giấy phép CC-BY-SA 4.0 và đã được chỉnh sửa.**
 
 [^one-representation]: Số tự nhiên $1$ chỉ có biểu diễn không chuẩn: $1=[1]=[0,1]$.
 

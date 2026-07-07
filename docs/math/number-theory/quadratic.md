@@ -642,15 +642,15 @@ tự cũng có thể dùng để chứng minh $x^3+y^3=z^3$ vô nghiệm.
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Quadratic field - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_field)
--   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
--   [Gaussian integer - Wikipedia](https://en.wikipedia.org/wiki/Gaussian_integer)
--   [Eisenstein integer - Wikipedia](https://en.wikipedia.org/wiki/Eisenstein_integer)
--   [Kronecker symbol - Wolfram MathWorld](https://mathworld.wolfram.com/KroneckerSymbol.html)
--   [Dirichlet character - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_character)
--   [Theodorus J. Dekker's Notes on Primes in Quadratic Fields](https://staff.science.uva.nl/t.j.dekker/PrimesPaper/Primes.pdf)
--   [Franz Lemmermeyer's Notes on Ideals in Quadratic Number Fields](http://www.fen.bilkent.edu.tr/~franz/ant/ant02.pdf)
--   [J.S. Milne - Algebraic Number Theory](https://www.jmilne.org/math/CourseNotes/ANT301.pdf)
+-   [Trường bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_field)
+-   [Số nguyên bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
+-   [Số nguyên Gauss - Wikipedia](https://en.wikipedia.org/wiki/Gaussian_integer)
+-   [Số nguyên Eisenstein - Wikipedia](https://en.wikipedia.org/wiki/Eisenstein_integer)
+-   [Ký hiệu Kronecker - Wolfram MathWorld](https://mathworld.wolfram.com/KroneckerSymbol.html)
+-   [Ký tự Dirichlet - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_character)
+-   [Ghi chú của Theodorus J. Dekker về số nguyên tố trong trường bậc hai](https://staff.science.uva.nl/t.j.dekker/PrimesPaper/Primes.pdf)
+-   [Ghi chú của Franz Lemmermeyer về iđêan trong trường số bậc hai](http://www.fen.bilkent.edu.tr/~franz/ant/ant02.pdf)
+-   [J.S. Milne - Lý thuyết số đại số](https://www.jmilne.org/math/CourseNotes/ANT301.pdf)
 
 [^omega]: Cần lưu ý rằng cách chọn $\omega$ trong phần này khác với cách chọn ở trên. Theo
     quy ước, khi thảo luận vành số nguyên bậc hai tổng quát, thường quy định

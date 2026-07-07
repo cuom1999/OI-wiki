@@ -225,13 +225,13 @@ $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)-O(\log p)$.
 
 **Một phần nội dung và mã nguồn của trang này được dịch từ bài viết
 [Дискретное извлечение корня](http://e-maxx.ru/algo/discrete_root) và bản dịch
-tiếng Anh [Discrete Root](https://cp-algorithms.com/algebra/discrete-root.html).
+tiếng Anh [Căn rời rạc](https://cp-algorithms.com/algebra/discrete-root.html).
 Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản
 tiếng Anh là CC-BY-SA 4.0.**
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
-1.  [Discrete logarithm - Wikipedia](https://en.wikipedia.org/wiki/Discrete_logarithm)
+1.  [Logarit rời rạc - Wikipedia](https://en.wikipedia.org/wiki/Discrete_logarithm)
 2.  Pan Chengdong, Pan Chengbiao. Số học sơ cấp.
 3.  Feng Keqin. Số học sơ cấp và ứng dụng.
