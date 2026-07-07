@@ -249,11 +249,11 @@ Khi $\operatorname{deg}{f} \ge \operatorname{deg}{g}$, có $\operatorname{deg}{Q
 
 <span id="đa-thức-modulo"></span>
 
-## Đa thức modulo
+## Đa thức theo môđun
 
-Đa thức modulo là vành thương của vành đa thức, thu được bằng cách lấy vành đa thức theo quan hệ tương đương đồng dư.
+Đa thức theo môđun là vành thương của vành đa thức, thu được bằng cách lấy vành đa thức theo quan hệ tương đương đồng dư.
 
-Trong phép chia có dư nói ở trên, đa thức $f(x)$ và số dư $R(x)$ của nó đồng dư theo modulo đa thức $g(x)$.
+Trong phép chia có dư nói ở trên, đa thức $f(x)$ và số dư $R(x)$ của nó đồng dư theo môđun đa thức $g(x)$.
 
 $$
 f(x) \equiv R(x) \pmod{g(x)}
@@ -273,15 +273,15 @@ $$
 
 Ký hiệu này biểu thị đạo hàm bậc $t$.
 
-Đồng dư modulo đa thức có thể áp dụng cho chuỗi lũy thừa. Một chuỗi lũy thừa có vô hạn số hạng có thể đồng dư với một đa thức hữu hạn số hạng trong trường hợp modulo một đa thức cụ thể. Ví dụ:
+Đồng dư theo môđun đa thức có thể áp dụng cho chuỗi lũy thừa. Một chuỗi lũy thừa có vô hạn số hạng có thể đồng dư với một đa thức hữu hạn số hạng trong trường hợp lấy môđun theo một đa thức cụ thể. Ví dụ:
 
 $$
 1+x+x^2+x^3+\ldots \equiv 1+x+\ldots+x^{n-1} \pmod{x^n}
 $$
 
-Tất cả các số hạng còn lại đều chia hết cho $x^n$, vì vậy phép toán modulo $x^n$ tương đương với "cắt cụt": cắt chuỗi lũy thừa vô hạn thành $n$ số hạng đầu và trực tiếp bỏ mất thông tin ở các bậc cao hơn.
+Tất cả các số hạng còn lại đều chia hết cho $x^n$, vì vậy phép toán theo môđun $x^n$ tương đương với "cắt cụt": cắt chuỗi lũy thừa vô hạn thành $n$ số hạng đầu và trực tiếp bỏ mất thông tin ở các bậc cao hơn.
 
-Trong một số trường hợp cụ thể, cũng có thể lấy modulo theo các đa thức khác; phần sau sẽ giải thích những trường hợp tương ứng.
+Trong một số trường hợp cụ thể, cũng có thể lấy môđun theo các đa thức khác; phần sau sẽ giải thích những trường hợp tương ứng.
 
 <span id="tính-giá-trị-nhiều-điểm-và-nội-suy-đa-thức"></span>
 
@@ -308,7 +308,7 @@ Bản chất của hai thao tác này là chuyển đổi đa thức giữa **bi
 
     Các phép tính giá trị và nội suy thường gặp trong lập trình, chẳng hạn biến đổi Fourier rời rạc và biến đổi ngược của nó, chọn $n+1$ điểm đều có bội số $1$, tức đôi một khác nhau, nên tránh được phiền phức của việc tính đạo hàm.
 
-    Việc "nén" này chỉ bảo đảm sự nhất quán trên $n+1$ điểm đó. Theo giải thích về đồng dư modulo đa thức ở trên, nếu chuỗi lũy thừa $f(x)$ được tính giá trị tại các điểm từ $x_0$ đến $x_n$ rồi nội suy để thu được đa thức $R(x)$, thì đặt đa thức:
+    Việc "nén" này chỉ bảo đảm sự nhất quán trên $n+1$ điểm đó. Theo giải thích về đồng dư theo môđun đa thức ở trên, nếu chuỗi lũy thừa $f(x)$ được tính giá trị tại các điểm từ $x_0$ đến $x_n$ rồi nội suy để thu được đa thức $R(x)$, thì đặt đa thức:
 
     $$
     g(x)=(x-x_0)\ldots(x-x_n)
@@ -320,15 +320,15 @@ Bản chất của hai thao tác này là chuyển đổi đa thức giữa **bi
     f(x) \equiv R(x) \pmod{g(x)}
     $$
 
-    Vì bậc của $R(x)$ nhỏ hơn nghiêm ngặt bậc của $g(x)$, $R(x)$ tìm được bằng tính giá trị và nội suy chính là số dư. Do đó trong trường hợp này, nếu chuỗi lũy thừa có thể tính giá trị tại các nghiệm, thì có thể lấy modulo đa thức. Một phản ví dụ là:
+    Vì bậc của $R(x)$ nhỏ hơn nghiêm ngặt bậc của $g(x)$, $R(x)$ tìm được bằng tính giá trị và nội suy chính là số dư. Do đó trong trường hợp này, nếu chuỗi lũy thừa có thể tính giá trị tại các nghiệm, thì có thể lấy dư theo đa thức. Một phản ví dụ là:
 
     $$
     \frac{1}{1-x}=1+x+x^2+x^3+\ldots
     $$
 
-    Tại $x=1$ nó không thể tính giá trị, vì vậy chuỗi $1+x+x^2+x^3+\ldots$ không thể lấy modulo đa thức $x-1$.
+    Tại $x=1$ nó không thể tính giá trị, vì vậy chuỗi $1+x+x^2+x^3+\ldots$ không thể lấy dư theo đa thức $x-1$.
 
-    Vì đạo hàm bậc bất kỳ của chuỗi lũy thừa tại $0$ luôn tồn tại, modulo $x^n$ luôn có thể tính được, phù hợp với ý nghĩa "cắt cụt" đã nêu ở trên. Biến đổi Fourier rời rạc và biến đổi ngược của nó tương đương với modulo đa thức $x^n-1$.
+    Vì đạo hàm bậc bất kỳ của chuỗi lũy thừa tại $0$ luôn tồn tại, việc lấy môđun theo $x^n$ luôn có thể tính được, phù hợp với ý nghĩa "cắt cụt" đã nêu ở trên. Biến đổi Fourier rời rạc và biến đổi ngược của nó tương đương với lấy môđun theo đa thức $x^n-1$.
 
 <span id="phân-tích-nhân-tử-và-euclid"></span>
 
@@ -382,9 +382,9 @@ $$
 
 <span id="nghịch-đảo-nhân-modulo-đa-thức"></span>
 
-### Nghịch đảo nhân modulo đa thức
+### Nghịch đảo nhân theo môđun đa thức
 
-Theo modulo đa thức $h(x)$, chuỗi lũy thừa $f(x)$ đôi khi có nghịch đảo. Nghịch đảo chính là số dư thu được khi lấy nghịch đảo của chuỗi lũy thừa $f(x)$ theo modulo đa thức $h(x)$.
+Theo môđun đa thức $h(x)$, chuỗi lũy thừa $f(x)$ đôi khi có nghịch đảo. Nghịch đảo chính là số dư thu được khi lấy nghịch đảo của chuỗi lũy thừa $f(x)$ theo môđun đa thức $h(x)$.
 
 Định nghĩa này cũng tương đương với: đối với đa thức $f(x)$, nếu tồn tại $g(x)$ thỏa mãn:
 
@@ -394,11 +394,11 @@ $$
 \end{aligned}
 $$
 
-thì gọi $g(x)$ là **nghịch đảo** (inverse element) của $f(x)$ theo modulo $h(x)$. Khi có thể dùng Euclid đa thức, nghịch đảo tồn tại khi và chỉ khi $\gcd(f,h)=1$.
+thì gọi $g(x)$ là **nghịch đảo** (inverse element) của $f(x)$ theo môđun $h(x)$. Khi có thể dùng Euclid đa thức, nghịch đảo tồn tại khi và chỉ khi $\gcd(f,h)=1$.
 
-Nghịch đảo theo modulo đa thức $h(x)$ luôn là duy nhất. Nếu bậc của đa thức $f(x)$ cũng nhỏ hơn bậc của $h(x)$, thì $g(x)$ thu được và $f(x)$ là nghịch đảo của nhau.
+Nghịch đảo theo môđun đa thức $h(x)$ luôn là duy nhất. Nếu bậc của đa thức $f(x)$ cũng nhỏ hơn bậc của $h(x)$, thì $g(x)$ thu được và $f(x)$ là nghịch đảo của nhau.
 
-Xét khái niệm "cắt cụt", thông thường nghịch đảo theo modulo $x^n$ được ký hiệu là $f^{-1}(x)$, và đây cũng là khái niệm nghịch đảo mặc định được dùng ở các phần sau. Nếu không nói rõ, modulo của nghịch đảo được hiểu là $x^n$.
+Xét khái niệm "cắt cụt", thông thường nghịch đảo theo môđun $x^n$ được ký hiệu là $f^{-1}(x)$, và đây cũng là khái niệm nghịch đảo mặc định được dùng ở các phần sau. Nếu không nói rõ, môđun của nghịch đảo được hiểu là $x^n$.
 
 ???+ note "Ghi chú"
     Một câu hỏi là: có thể dùng các phép biến đổi nội suy để trực tiếp tìm "nghịch đảo" hay không, chẳng hạn tính:
@@ -407,7 +407,7 @@ Xét khái niệm "cắt cụt", thông thường nghịch đảo theo modulo $x
     IDFT\left(\frac{DFT(1)}{DFT(f(x))}\right)
     $$
 
-    Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo modulo đa thức $x^n-1$, không phải nghịch đảo theo modulo đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này không nhất thiết thực hiện được.
+    Câu trả lời là không. Theo giải thích ở trên, nghịch đảo thu được trực tiếp bằng biến đổi Fourier rời rạc và biến đổi ngược của nó là nghịch đảo theo môđun đa thức $x^n-1$, không phải nghịch đảo theo môđun đa thức $x^n$ thông thường. Hơn nữa, vì đa thức ban đầu có thể bằng $0$ tại một số giá trị điểm, cách tính này không nhất thiết thực hiện được.
 
 <span id="hàm-sinh"></span>
 

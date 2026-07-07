@@ -281,7 +281,7 @@ Sau đây là một vài bài ví dụ để giới thiệu cách dùng hàm sin
     7.  Thịt xào khoai tây lát: không quá một cái.
     8.  Bánh mì: bội của $3$ cái.
     
-    Mỗi loại thức ăn đều tính theo đơn vị "cái"; chỉ cần tổng số lượng cộng lại bằng $n$ thì tính là một phương án. Với $n$ cho trước, cần tính số phương án modulo $10007$.
+    Mỗi loại thức ăn đều tính theo đơn vị "cái"; chỉ cần tổng số lượng cộng lại bằng $n$ thì tính là một phương án. Với $n$ cho trước, cần tính số phương án theo môđun $10007$.
 
 Đây là một bài hàm sinh kinh điển. Với một loại thức ăn, đặt $a_n$ là số phương án chọn $n$ cái của loại đó, rồi tìm hàm sinh của nó. Hàm sinh cho số phương án chọn tổng cộng $n$ cái từ hai loại thức ăn chính là tích chập của hai hàm sinh tương ứng. Với nhiều loại thức ăn, hàm sinh cũng là tích chập của các hàm sinh.
 

@@ -493,9 +493,9 @@ $$
 \end{bmatrix}
 $$
 
-Nếu modulo của đề bài có căn đơn vị, có thể cài đặt đơn giản.
+Nếu môđun của đề bài có căn đơn vị, có thể cài đặt đơn giản.
 
-Tuy nhiên **căn đơn vị có thể không tồn tại theo modulo**, nên xét mở rộng trường: tự định nghĩa một $x$ thỏa $x^K=1$, rồi thay trực tiếp $x$ vào để tính. Khi đó mỗi số là một đa thức theo $x$ bậc $k-1$. Chỉ cần tính dưới modulo $x^K-1$. Khi ấy ma trận có thể biểu diễn như sau:
+Tuy nhiên **căn đơn vị có thể không tồn tại theo môđun**, nên xét mở rộng trường: tự định nghĩa một $x$ thỏa $x^K=1$, rồi thay trực tiếp $x$ vào để tính. Khi đó mỗi số là một đa thức theo $x$ bậc $k-1$. Chỉ cần tính theo môđun $x^K-1$. Khi ấy ma trận có thể biểu diễn như sau:
 
 $$
 \begin{bmatrix}
@@ -518,7 +518,7 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
 ## Ví dụ
 
 ???+ note "[CF 1103E - Tổng theo cơ số](https://www.luogu.com.cn/problem/CF1103E)"
-    Cho một dãy $a_1,a_2,...,a_n$ độ dài $n$. Với mỗi $p \in [0,n-1]$, tính số dãy số nguyên $i_1,i_2,...,i_n$ thỏa mãn các điều kiện sau, lấy modulo $2^{58}$:
+    Cho một dãy $a_1,a_2,...,a_n$ độ dài $n$. Với mỗi $p \in [0,n-1]$, tính số dãy số nguyên $i_1,i_2,...,i_n$ thỏa mãn các điều kiện sau, lấy kết quả theo môđun $2^{58}$:
     
     -   $\forall j \in [1,n] , i_j \in [1,n]$;
     -   $\sum\limits_{j=1}^n a_{i_j} = p$, trong đó phép cộng được định nghĩa là phép cộng thập phân không nhớ.
@@ -528,11 +528,11 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
     ??? note "Lời giải"
         Có thể nghĩ đến DP: thiết kế trạng thái $f_{i,s}$ biểu diễn đã xét đến số thứ $i$, và trạng thái phép cộng hiện tại là $s$. Vì biến đổi FWT là tuyến tính, có thể biến đổi trước sang biểu diễn giá trị điểm FWT, sau đó đưa thành lũy thừa bậc $n$ của chính nó, cuối cùng biến đổi ngược lại.
         
-        Phần trên là trực tiếp, nhưng đề bài cho modulo $2^{58}$. Do không có căn đơn vị, cần xét mở rộng trường.
+        Phần trên là trực tiếp, nhưng đề bài cho môđun $2^{58}$. Do không có căn đơn vị, cần xét mở rộng trường.
         
         Đa thức cyclotomic trong trường hợp này là $\Phi_{10}(x)=x^4-x^3+x^2-x+1$.
         
-        Tuy nhiên khi UFWT, cần chia cho cơ số $10$, mà $10$ không có nghịch đảo modulo $2^{58}$. Số $5$ có nghịch đảo modulo $2^{58}$: $57646075230342349$; phần còn lại là chia thêm một thừa số $2$. Giả sử đáp án sau khi đã chia cho $5$ là $x$, đáp án thật là $y$, tức $2^5y\equiv x\pmod{2^{64}}$. Khi đó $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$, tức $y\equiv \frac{x}{2^5}\pmod{2^{59}}$. Vì vậy chỉ cần chia đáp án cuối cùng cho $2^5$. Mặc dù không rõ vì sao tác giả đề bài lại yêu cầu modulo $2^{58}$, sau đó chỉ cần lấy modulo lại là đủ.
+        Tuy nhiên khi UFWT, cần chia cho cơ số $10$, mà $10$ không có nghịch đảo theo môđun $2^{58}$. Số $5$ có nghịch đảo theo môđun $2^{58}$: $57646075230342349$; phần còn lại là chia thêm một thừa số $2$. Giả sử đáp án sau khi đã chia cho $5$ là $x$, đáp án thật là $y$, tức $2^5y\equiv x\pmod{2^{64}}$. Khi đó $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$, tức $y\equiv \frac{x}{2^5}\pmod{2^{59}}$. Vì vậy chỉ cần chia đáp án cuối cùng cho $2^5$. Mặc dù không rõ vì sao tác giả đề bài lại yêu cầu môđun $2^{58}$, sau đó chỉ cần lấy dư lại là đủ.
 
 ???+ note "[CF103329F, XXII Opencup, Grand Prix of XiAn - Cuộc đấu tranh](https://codeforces.com/gym/103329/problem/F)"
     Cho một elip $E$, trong đó tọa độ của mọi điểm nguyên đều nằm trong $[1,4 \cdot 10^6]$. Tính giá trị $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$.
