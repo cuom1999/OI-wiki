@@ -30,7 +30,9 @@ Bất đẳng thức này không thể cải thiện thêm. Nói cách khác, v�
 
 ### Định lý Menger
 
-Từ [định lý luồng cực đại - cắt nhỏ nhất](./flow/min-cut.md) (còn gọi là định lý Ford-Fulkerson), có thể suy ra rằng số lượng đường đi không giao nhau (tức là đôi một không có cạnh chung) lớn nhất giữa hai đỉnh bằng kích thước nhỏ nhất của tập cắt. Hệ quả này còn được gọi là **định lý Menger**.
+Từ [định lý luồng cực đại - cắt nhỏ nhất](./flow/min-cut.md) (còn gọi là định lý Ford-Fulkerson), có thể suy ra rằng số lượng đường đi không giao nhau lớn nhất giữa hai đỉnh bằng kích thước nhỏ nhất của tập cắt.
+Ở đây, các đường đi không giao nhau nghĩa là đôi một không có cạnh chung.
+Hệ quả này còn được gọi là **định lý Menger**.
 
 ## Tính toán
 
@@ -38,7 +40,10 @@ Trong các đồ thị dưới đây, trọng số của mọi cạnh đều là
 
 ### Tính độ liên thông cạnh bằng luồng cực đại
 
-Liệt kê mọi cặp đỉnh $(s, t)$, lấy $s$ làm nguồn và $t$ làm đích, rồi chạy luồng cực đại với trọng số cạnh bằng $1$. Cần chạy luồng cực đại $O(n^2)$ lần. Nếu dùng thuật toán Edmonds-Karp, độ phức tạp là $O(|V|^3 |E|^2)$. Dùng thuật toán Dinic sẽ tốt hơn, với độ phức tạp $O(|V|^2 |E| \min(|V|^{2/3}, |E|^{1/2}))$.
+Liệt kê mọi cặp đỉnh $(s, t)$, lấy $s$ làm nguồn và $t$ làm đích, rồi chạy luồng cực đại với trọng số cạnh bằng $1$.
+Cần chạy luồng cực đại $O(n^2)$ lần.
+Nếu dùng thuật toán Edmonds-Karp, độ phức tạp là $O(|V|^3 |E|^2)$.
+Dùng thuật toán Dinic sẽ tốt hơn, với độ phức tạp $O(|V|^2 |E| \min(|V|^{2/3}, |E|^{1/2}))$.
 
 ### Cắt nhỏ nhất toàn cục
 
@@ -46,10 +51,20 @@ Dùng [thuật toán Stoer-Wagner](./stoer-wagner.md), chỉ cần chạy một 
 
 ### Độ liên thông đỉnh
 
-Vẫn liệt kê các cặp đỉnh. Lần này, với mỗi đỉnh $x$ không phải nguồn hoặc đích, tách nó thành hai đỉnh $x_1$ và $x_2$, rồi nối cạnh $(x_1, x_2)$. Thay mọi cạnh $(u, v)$ trong đồ thị ban đầu bằng hai cạnh $(u_2, v_1)$ và $(v_2, u_1)$. Khi đó, giá trị luồng cực đại bằng kích thước của tập cắt đỉnh nhỏ nhất giữa $s$ và $t$ (còn gọi là độ liên thông đỉnh cục bộ). Độ phức tạp giống với cách dùng luồng cực đại để tính độ liên thông cạnh.
+Vẫn liệt kê các cặp đỉnh.
+Lần này, với mỗi đỉnh $x$ không phải nguồn hoặc đích, tách nó thành hai đỉnh $x_1$ và $x_2$, rồi nối cạnh $(x_1, x_2)$.
+Thay mọi cạnh $(u, v)$ trong đồ thị ban đầu bằng hai cạnh $(u_2, v_1)$ và $(v_2, u_1)$.
+Khi đó, giá trị luồng cực đại bằng kích thước của tập cắt đỉnh nhỏ nhất giữa $s$ và $t$, còn gọi là độ liên thông đỉnh cục bộ.
+Độ phức tạp giống với cách dùng luồng cực đại để tính độ liên thông cạnh.
 
-**Trang này được dịch từ các bài blog [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity), [Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity) và bản dịch tiếng Anh của chúng [Edge connectivity/Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
+**Trang này được dịch từ các nguồn sau:**
+
+-   [Рёберная связность. Свойства и нахождение](http://e-maxx.ru/algo/rib_connectivity)
+-   [Вершинная связность. Свойства и нахождение](http://e-maxx.ru/algo/vertex_connectivity)
+-   [Edge connectivity/Vertex connectivity](https://cp-algorithms.com/graph/edge_vertex_connectivity.html)
+
+**Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
 
 ## Đọc thêm
 
--   Bài báo [*Connectivity Algorithms*](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) giới thiệu những tiến triển trong các thuật toán tính liên thông trong những năm gần đây, có thể tham khảo thêm khi cần.
+-   Bài báo [*Connectivity Algorithms*](https://www.cse.msu.edu/~cse835/Papers/Graph_connectivity_revised.pdf) giới thiệu những tiến triển gần đây trong các thuật toán tính liên thông, có thể tham khảo thêm khi cần.
