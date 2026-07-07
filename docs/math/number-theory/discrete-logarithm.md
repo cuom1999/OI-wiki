@@ -219,7 +219,7 @@ $O\left(\dfrac{p^{3/4}}{\log^{1/2} p}\right)-O(\log p)$.
 -   [SDOI2013 Trình sinh số ngẫu nhiên](https://www.luogu.com.cn/problem/P3306)
 -   [SGU261 Căn rời rạc](https://codeforces.com/problemsets/acmsguru/problem/99999/261) mẫu
 -   [SDOI2011 Máy tính](https://loj.ac/problem/10214) mẫu
--   [Luogu4195: Mẫu exBSGS/Spoj3105 Mod](https://www.luogu.com.cn/problem/P4195) mẫu
+-   [Luogu4195: Mẫu exBSGS/Spoj3105 Modulo](https://www.luogu.com.cn/problem/P4195) mẫu
 -   [Codeforces - Tết Nguyên đán và một dãy truy hồi](https://codeforces.com/contest/1106/problem/F)
 -   [LOJ6542 Logarit rời rạc](https://loj.ac/problem/6542) phương pháp index calculus, không phải bài mẫu
 

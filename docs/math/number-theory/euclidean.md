@@ -223,7 +223,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     --8<-- "docs/math/code/euclidean/euclidean-1.cpp"
     ```
 
-???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
+???+ example "[Tsinghua Training 2014 - Tổng](https://www.luogu.com.cn/problem/P5172)"
     Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, cần tính
     
     $$
@@ -648,7 +648,7 @@ Dùng thuật toán Euclid vạn năng, có cài đặt cho bài mẫu như sau:
     --8<-- "docs/math/code/euclidean/euclidean-5.cpp"
     ```
 
-???+ example "[Tsinghua Training 2014 - Sum](https://www.luogu.com.cn/problem/P5172)"
+???+ example "[Tsinghua Training 2014 - Tổng](https://www.luogu.com.cn/problem/P5172)"
     Có nhiều truy vấn. Cho các số nguyên dương $n$ và $r$, cần tính
     
     $$
