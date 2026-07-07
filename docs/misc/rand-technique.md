@@ -250,22 +250,22 @@ Hướng giải đại khái của bài này:
 Phần này chỉ tập trung vào phần thứ hai, tức là cách tìm truy hồi của một dãy ma trận. Vì vậy chỉ cần xét bài toán sau:
 
 ???+ note "Bài toán"
-    Cho một dãy ma trận. Dãy này, theo modulo $P:=998244353$, tuân theo một truy hồi tuyến tính thuần nhất (phép nhân vô hướng và phép cộng trong truy hồi được định nghĩa là phép nhân vô hướng và phép cộng ma trận). Cần tìm truy hồi ngắn nhất.
+    Cho một dãy ma trận. Dãy này, theo môđun $P:=998244353$, tuân theo một truy hồi tuyến tính thuần nhất (phép nhân vô hướng và phép cộng trong truy hồi được định nghĩa là phép nhân vô hướng và phép cộng ma trận). Cần tìm truy hồi ngắn nhất.
 
-Nếu một dãy ma trận tuân theo một truy hồi $F$, thì mỗi phần tử của ma trận cũng nhất định tuân theo $F$. Tuy nhiên, nếu tìm truy hồi ngắn nhất $F'$ cho một vị trí nào đó, $F'$ có thể ngắn hơn $F$, gây ra vấn đề.
+Nếu một dãy ma trận tuân theo một truy hồi $F$, thì mỗi phần tử của ma trận cũng tuân theo $F$. Tuy nhiên, nếu tìm truy hồi ngắn nhất $F'$ cho một vị trí nào đó, $F'$ có thể ngắn hơn $F$, gây ra vấn đề.
 
-Cách xử lý: gán cho mỗi vị trí $(i,j)$ của ma trận một trọng số ngẫu nhiên $x_{i,j}<P$. Sau đó với mỗi ma trận trong dãy, tính tổng có trọng số của tất cả các vị trí theo modulo $P$, nối các số tính được từ mỗi ma trận thành một dãy số, cuối cùng chạy thuật toán BM trên dãy số thu được.
+Cách xử lý: gán cho mỗi vị trí $(i,j)$ của ma trận một trọng số ngẫu nhiên $x_{i,j}<P$. Sau đó với mỗi ma trận trong dãy, tính tổng có trọng số của tất cả các vị trí theo môđun $P$, nối các số tính được từ mỗi ma trận thành một dãy số, cuối cùng chạy thuật toán BM trên dãy số thu được.
 
 Phân tích tỉ lệ sai:
 
 -   Giả sử cách làm trên tìm được một truy hồi bậc $l$ là $F'$, khác $F$ và không dài hơn $F$.
--   Vì dãy ma trận không tuân theo $F'$, nên nhất định tồn tại một vị trí $(i,j)$ trong ma trận sao cho dãy số tương ứng với vị trí đó, $S_{i,j}$, không tuân theo $F'$ tại một $N$ nào đó. Tức là:
+-   Vì dãy ma trận không tuân theo $F'$, nên phải tồn tại một vị trí $(i,j)$ trong ma trận sao cho dãy số tương ứng với vị trí đó, $S_{i,j}$, không tuân theo $F'$ tại một $N$ nào đó. Tức là:
 
 $$
 S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\not\equiv 0\pmod {P}
 $$
 
--   Giả sử $(i,j)$ là vị trí duy nhất không tuân theo, khi đó nhất định có:
+-   Giả sử $(i,j)$ là vị trí duy nhất không tuân theo, khi đó có:
 
 $$
 T_{i,j}:=\Big(x_{i,j}\cdot\big(S(N)_{i,j}-F'_1S(N-1)_{i,j}-\cdots-F'_lS(N-l)_{i,j}\big)\bmod P\Big)=0
@@ -274,7 +274,7 @@ $$
 -   Điều này chỉ xảy ra khi $x_{i,j}=0$, với xác suất $P^{-1}$.
 -   Nếu có nhiều vị trí không tuân theo thì sao?
     -   Với mỗi vị trí $(i,j)$ như vậy, dễ chứng minh $T_{i,j}$ tuân theo phân bố đều trên $R:=\{0,1,\cdots,P-1\}$.
-    -   Tổng theo modulo của một số biến ngẫu nhiên độc lập và đều trên $R$ vẫn tuân theo phân bố đều trên $R$. Có thể chứng minh trực tiếp.
+    -   Tổng theo môđun của một số biến ngẫu nhiên độc lập và đều trên $R$ vẫn tuân theo phân bố đều trên $R$. Có thể chứng minh trực tiếp.
     -   Do đó tỉ lệ sai trong trường hợp này cũng là $P^{-1}$.
 
 ### Ví dụ: [UOJ #552 Isomorphism Checking Duck](https://uoj.ac/problem/552) và phân tích tỉ lệ sai
@@ -284,13 +284,13 @@ $$
 
 Đặt $f_{K,i,j}$ là giá trị băm của đa tập gồm tất cả xâu tương ứng với mọi đường đi dài $j$ bắt đầu từ đỉnh $i$ trong đồ thị $G_K$. Xét mỗi trạng thái theo thứ tự tăng dần của $j$; khi chuyển trạng thái, liệt kê các cạnh ra của $i$ và quy định cạnh đó là cạnh đầu tiên trên đường đi.
 
-Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, nhất định không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
+Để phán định có tồn tại xâu xấu có độ dài $=L$ hay không, chỉ cần "tổng hợp" riêng các tập $\{f_{0,*,L}\}$ và $\{f_{1,*,L}\}$ rồi so sánh (ký tự đại diện `*` trong ngữ cảnh này biểu thị mọi đỉnh; ví dụ $\{f_{0,*,L}\}$ biểu thị tập tất cả $f_{0,i,L}$, trong đó $i$ chạy qua mọi đỉnh). Lời giải chính thức[^ref2] chứng minh độ dài xâu xấu ngắn nhất, nếu tồn tại, không vượt quá $n_1+n_2$, nên độ phức tạp của cách giải này đủ tin cậy.
 
-Tiếp theo xét cách băm cụ thể. Lưu ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$, không dùng được trong bài toán này. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
+Tiếp theo xét cách băm cụ thể. Lưu ý rằng cách băm thông thường, tức là ánh xạ xâu $a_1a_2\cdots a_k$ thành $\big(a_1+Pa_2+P^2a_3+\cdots+P^{k-1}a_k\big)\bmod Q$, rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo môđun $Q$, không dùng được trong bài toán này. Một phản ví dụ là tập `{"ab","cd"}` và tập `{"cb","ad"}` có giá trị băm như nhau, bất kể chọn $P,Q$ thế nào.
 
 Vấn đề của cách làm trên nằm ở chỗ giá trị băm của một xâu là một tổng, nên mỗi hạng tử có thể bị tách ra và ghép lại. Để tránh vấn đề này, xét đổi giá trị băm thành dạng tích. Ngoài ra, tính giao hoán của phép nhân sẽ khiến các vị trí khác nhau không phân biệt được, nên cần gán trọng số khác nhau cho các vị trí khác nhau.
 
-Với mỗi cặp $(c,j)$, trong đó $c$ là ký tự và $j$ là số nguyên biểu thị vị trí thứ mấy của $c$ trong một xâu, sinh trước một số ngẫu nhiên $x_{c,j}$. Sau đó ánh xạ xâu $a_1a_2\cdots a_k$ thành $x_{a_1,1}x_{a_2,2}\cdots x_{a_k,k}\bmod Q$ (trong đó $Q$ là một số nguyên tố **được chọn ngẫu nhiên**), rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo modulo $Q$. Tiếp theo phân tích tỉ lệ sai.
+Với mỗi cặp $(c,j)$, trong đó $c$ là ký tự và $j$ là số nguyên biểu thị vị trí thứ mấy của $c$ trong một xâu, sinh trước một số ngẫu nhiên $x_{c,j}$. Sau đó ánh xạ xâu $a_1a_2\cdots a_k$ thành $x_{a_1,1}x_{a_2,2}\cdots x_{a_k,k}\bmod Q$ (trong đó $Q$ là một số nguyên tố **được chọn ngẫu nhiên**), rồi đặt giá trị băm của đa tập là tổng giá trị băm các phần tử theo môđun $Q$. Tiếp theo phân tích tỉ lệ sai.
 
 ???+ note "(*) Bổ đề Schwartz-Zippel"
     Cho $f\in F[z_1,\cdots,z_k]$ là một đa thức khác không bậc $d$ với $k$ biến trên trường $F$, và $S$ là một tập con hữu hạn của $F$. Khi đó có nhiều nhất $d\cdot |S|^{k-1}$ bộ $(z_1,\cdots,z_k)\in S^k$ thỏa $f(z_1,\cdots,z_k)=0$.
@@ -298,27 +298,27 @@ Với mỗi cặp $(c,j)$, trong đó $c$ là ký tự và $j$ là số nguyên 
     ??? note "Nếu chưa biết trường là gì"
         Chỉ cần nhớ hai thứ sau đều là trường:
         
-        1.  Hệ thặng dư modulo một số nguyên tố, cùng các phép toán trên đó.
+        1.  Hệ thặng dư theo môđun một số nguyên tố, cùng các phép toán trên đó.
         2.  Tập số thực, cùng các phép toán trên đó.
     
     Hệ quả: nếu $z_1,\cdots,z_k$ đều được chọn độc lập và đều ngẫu nhiên trong $S$, thì $\mathrm{Pr}\big[f(z_1,\cdots,z_k)=0\big]\leq \dfrac d{|S|}$.
 
-Ký hiệu $F$ là trường ứng với hệ thặng dư modulo $Q$. Khi đó, với một $L\leq n_1+n_2$, $\sum\limits_i f_{0,i,L}$ và $\sum\limits_i f_{1,i,L}$ lần lượt tương ứng với hai đa thức nhiều biến bậc $L$ trên $F$ theo tập biến $\{x_{*,*}\}$. Gọi hai đa thức này là $P_0,P_1$.
+Ký hiệu $F$ là trường ứng với hệ thặng dư theo môđun $Q$. Khi đó, với một $L\leq n_1+n_2$, $\sum\limits_i f_{0,i,L}$ và $\sum\limits_i f_{1,i,L}$ lần lượt tương ứng với hai đa thức nhiều biến bậc $L$ trên $F$ theo tập biến $\{x_{*,*}\}$. Gọi hai đa thức này là $P_0,P_1$.
 
 Nếu giá trị băm của hai đa tập xâu khác nhau lại bằng nhau, có hai khả năng:
 
-1.  $P_0\equiv P_1\pmod {Q}$, tức là hệ số của mỗi hạng tử trong $P_0,P_1$ đều bằng nhau theo modulo $Q$.
+1.  $P_0\equiv P_1\pmod {Q}$, tức là hệ số của mỗi hạng tử trong $P_0,P_1$ đều bằng nhau theo môđun $Q$.
 2.  $P_0\not\equiv P_1\pmod {Q}, P_0(x_{*,*})\equiv P_1(x_{*,*})\pmod {Q}$, tức là tuy $P_0,P_1$ không đồng nhất, bộ $\{x_{*,*}\}$ được chọn lại tình cờ làm giá trị tại điểm này của chúng bằng nhau.
 
 Phân tích xác suất của trường hợp đầu:
 
--   Nhận xét: với bất kỳ $A\neq B; A,B\leq N$ và số nguyên tố $Q\leq Q_{\max}$ được chọn ngẫu nhiên, nhất định có:
+-   Nhận xét: với bất kỳ $A\neq B; A,B\leq N$ và số nguyên tố $Q\leq Q_{\max}$ được chọn ngẫu nhiên, có:
 
 $$
 \mathrm{Pr}\big[A\equiv B\pmod {Q}\big]=O\Big(\dfrac{\log N \log Q_{max}}{Q_{max}}\Big)
 $$
 
--   Lý do: để $A\equiv B$ đúng, $Q$ nhất định phải thỏa $Q\big|(A-B)$. Số lượng $Q$ như vậy là $\omega(A-B)\leq \log_2 N$; theo định lý số nguyên tố, số số nguyên tố khác nhau không vượt quá $Q_{\max}$ là $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$. Chia hai đại lượng này sẽ được công thức trên.
+-   Lý do: để $A\equiv B$ đúng, $Q$ phải thỏa $Q\big|(A-B)$. Số lượng $Q$ như vậy là $\omega(A-B)\leq \log_2 N$; theo định lý số nguyên tố, số số nguyên tố khác nhau không vượt quá $Q_{\max}$ là $\Theta\Big(\dfrac {Q_{\max}}{\log Q_{\max}}\Big)$. Chia hai đại lượng này sẽ được công thức trên.
 -   Trong nhận xét trên, lấy $A,B$ (với $A\neq B$) là hệ số của một hạng tử cụ thể trong $P_0,P_1$ (cũng bằng số lần xuất hiện của xâu ứng với hạng tử đó trong $G_0,G_1$). Khi đó $A,B\leq (m_1+m_2)^{L}$, suy ra:
 
 $$
@@ -330,14 +330,14 @@ $$
 Phân tích xác suất của trường hợp sau:
 
 -   Trong bổ đề Schwartz-Zippel:
-    -   Lấy trường $F$ là trường ứng với hệ thặng dư modulo $Q$.
+    -   Lấy trường $F$ là trường ứng với hệ thặng dư theo môđun $Q$.
     -   Lấy $f(x_{*,*})=P_0(x_{*,*})-P_1(x_{*,*})$ là đa thức khác không bậc $L$.
     -   Lấy $S=F$.
 -   Suy ra xác suất cần tìm $\leq \dfrac LQ$.
 
 Lưu ý rằng cần bảo đảm tính đúng cho mọi $L$, nên nếu muốn lập luận chặt chẽ thì cần dùng thêm Union Bound (xem bên dưới).
 
-Trong thực hành không nhất thiết phải chọn modulo ngẫu nhiên, vì chẳng hạn dùng ngày sinh làm modulo thì cũng đã tương đương một số ngẫu nhiên.
+Trong thực hành không nhất thiết phải chọn môđun ngẫu nhiên, vì chẳng hạn dùng ngày sinh làm môđun thì cũng đã tương đương một số ngẫu nhiên.
 
 ### Ví dụ: (*) số lượng phần tử khác nhau trong ma trận con
 
