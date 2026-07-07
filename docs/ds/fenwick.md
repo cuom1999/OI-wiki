@@ -31,7 +31,8 @@ Lưu ý:
 -   Với phép nhân theo modulo, để có thể lấy sai phân thì cần bảo đảm mỗi số đều có nghịch đảo (luôn tồn tại khi modulo là số nguyên tố).
 -   Các thông tin như $\gcd$, $\max$ không thể lấy sai phân, nên không thể xử lý bằng cây Fenwick thông thường. Tuy nhiên:
     -   Có thể dùng hai cây Fenwick để xử lý cực trị trên đoạn, xem [Efficient Range Minimum Queries using Binary Indexed Trees](http://history.ioinformatics.org/oi/files/volume9.pdf#page=41).
-    -   Trang này cũng sẽ giới thiệu một mở rộng của cây Fenwick hỗ trợ truy vấn thông tin không thể lấy sai phân với độ phức tạp thời gian $\Theta(\log^2n)$.
+    -   Trang này cũng sẽ giới thiệu một mở rộng của cây Fenwick hỗ trợ truy vấn thông tin không thể lấy sai phân
+        với độ phức tạp thời gian $\Theta(\log^2 n)$.
 
 Tập bài toán mà cây Fenwick giải được là một tập con của tập bài toán mà cây phân đoạn giải được: những gì cây Fenwick làm được thì cây phân đoạn đều xử lý được, nhưng những gì cây phân đoạn làm được thì cây Fenwick không phải lúc nào cũng xử lý được. Tuy vậy, mã của cây Fenwick ngắn hơn cây phân đoạn rất nhiều và hằng số thời gian cũng nhỏ hơn, nên vẫn rất đáng học.
 
@@ -693,15 +694,28 @@ Dùng cây Fenwick theo giá trị có thể giải một số bài toán kinh �
 
 ### Sửa đổi một điểm, truy vấn phần tử nhỏ thứ $k$ toàn cục
 
-Phần này chỉ thảo luận phần tử nhỏ thứ $k$; bài toán phần tử lớn thứ $k$ có thể chuyển thành phần tử nhỏ thứ $k$ bằng tính toán đơn giản.
+Phần này chỉ thảo luận phần tử nhỏ thứ $k$;
+bài toán phần tử lớn thứ $k$ có thể chuyển thành phần tử nhỏ thứ $k$ bằng tính toán đơn giản.
 
-Bài toán này có thể rời rạc hóa. Nếu miền giá trị của dãy gốc $a$ quá lớn, cần rời rạc hóa rồi xây mảng tần suất giá trị $b$. Cũng cần rời rạc hóa cả các giá trị xuất hiện trong thao tác sửa đổi một điểm, không thể chỉ rời rạc hóa các phần tử ban đầu của mảng $a$.
+Bài toán này có thể rời rạc hóa.
+Nếu miền giá trị của dãy gốc $a$ quá lớn,
+cần rời rạc hóa rồi xây mảng tần suất giá trị $b$.
+Cũng cần rời rạc hóa cả các giá trị xuất hiện trong thao tác sửa đổi một điểm,
+không thể chỉ rời rạc hóa các phần tử ban đầu của mảng $a$.
 
-Với sửa đổi một điểm, chỉ cần chuyển thao tác sửa trên dãy gốc thành thao tác sửa trên mảng tần suất giá trị. Cụ thể, nếu $a[x]$ trong mảng gốc được đổi từ $y$ thành $z$, thì trên mảng tần suất $b$ giảm $b[y]$ đi $1$ và tăng $b[z]$ thêm $1$.
+Với sửa đổi một điểm,
+chỉ cần chuyển thao tác sửa trên dãy gốc thành thao tác sửa trên mảng tần suất giá trị.
+Cụ thể, nếu $a[x]$ trong mảng gốc được đổi từ $y$ thành $z$,
+thì trên mảng tần suất $b$ giảm $b[y]$ đi $1$ và tăng $b[z]$ thêm $1$.
 
-Với truy vấn phần tử nhỏ thứ $k$, có thể nhị phân $x$, truy vấn tổng tiền tố $[1, x]$ trong mảng tần suất giá trị, rồi tìm $x_0$ sao cho tổng tiền tố $[1, x_0] < k$ còn tổng tiền tố $[1, x_0 + 1] \ge k$. Khi đó phần tử nhỏ thứ $k$ là $x_0 + 1$ (quy ước tổng tiền tố $[1, 0]$ là $0$).
+Với truy vấn phần tử nhỏ thứ $k$,
+có thể nhị phân $x$, truy vấn tổng tiền tố $[1, x]$ trong mảng tần suất giá trị,
+rồi tìm $x_0$ sao cho tổng tiền tố $[1, x_0] < k$
+còn tổng tiền tố $[1, x_0 + 1] \ge k$.
+Khi đó phần tử nhỏ thứ $k$ là $x_0 + 1$
+(quy ước tổng tiền tố $[1, 0]$ là $0$).
 
-Cách này có độ phức tạp thời gian $\Theta(\log^2n)$.
+Cách này có độ phức tạp thời gian $\Theta(\log^2 n)$.
 
 Xét dùng nhân đôi thay cho nhị phân.
 
@@ -806,16 +820,22 @@ Ngoài ra, việc đếm nghịch thế cũng có thể giải bằng [sắp x�
 
 Ví dụ như duy trì cực trị trên đoạn.
 
-Lưu ý rằng tuy phương pháp này có lượng mã nhỏ, độ phức tạp thời gian của cả sửa đổi một điểm và truy vấn đoạn đều là $\Theta(\log^2n)$, kém hơn độ phức tạp $\Theta(\log n)$ khi dùng cây phân đoạn.
+Lưu ý rằng tuy phương pháp này có lượng mã nhỏ,
+độ phức tạp thời gian của cả sửa đổi một điểm và truy vấn đoạn đều là $\Theta(\log^2 n)$,
+kém hơn độ phức tạp $\Theta(\log n)$ khi dùng cây phân đoạn.
 
 ### Truy vấn đoạn
 
-Vẫn dựa trên ý tưởng trước đó: từ $r$ liên tục nhảy lùi theo $\operatorname{lowbit}$, nhưng không được nhảy sang bên trái $l$.
+Vẫn dựa trên ý tưởng trước đó:
+từ $r$ liên tục nhảy lùi theo $\operatorname{lowbit}$,
+nhưng không được nhảy sang bên trái $l$.
 
-Do đó, nếu nhảy tới $c[x]$, trước hết kiểm tra vị trí lần sau sẽ nhảy tới, $x - \operatorname{lowbit}(x)$, có nhỏ hơn $l$ hay không:
+Do đó, nếu nhảy tới $c[x]$, trước hết kiểm tra vị trí lần sau sẽ nhảy tới,
+$x - \operatorname{lowbit}(x)$, có nhỏ hơn $l$ hay không:
 
 -   Nếu nhỏ hơn $l$, gộp trực tiếp **một điểm $\boldsymbol{a[x]}$** vào tổng thông tin, rồi nhảy tới $c[x - 1]$.
--   Nếu lớn hơn hoặc bằng $l$, nghĩa là không vượt biên, cứ gộp $c[x]$ bình thường rồi nhảy tới $c[x - \operatorname{lowbit}(x)]$.
+-   Nếu lớn hơn hoặc bằng $l$, nghĩa là không vượt biên,
+    cứ gộp $c[x]$ bình thường rồi nhảy tới $c[x - \operatorname{lowbit}(x)]$.
 
 Dưới đây là mã ví dụ cho truy vấn giá trị lớn nhất trên đoạn:
 
@@ -836,36 +856,63 @@ Dưới đây là mã ví dụ cho truy vấn giá trị lớn nhất trên đo�
     }
     ```
 
-Có thể chứng minh độ phức tạp thời gian của thuật toán trên là $\Theta(\log^2n)$.
+Có thể chứng minh độ phức tạp thời gian của thuật toán trên là $\Theta(\log^2 n)$.
 
 ??? note "Chứng minh độ phức tạp thời gian"
-    Xét bit cao nhất mà $r$ và $l$ khác nhau. Khi đó $r$ có bit này bằng $1$, còn $l$ có bit này bằng $0$ (vì $r \ge l$).
+    Xét bit cao nhất mà $r$ và $l$ khác nhau.
+    Khi đó $r$ có bit này bằng $1$, còn $l$ có bit này bằng $0$ (vì $r \ge l$).
     
-    Nếu phía sau bit này của $r$ vẫn còn bit $1$, có $r - \operatorname{lowbit}(r) \ge l$, nên bước tiếp theo đổi bit `1` thấp nhất của $r$ thành `0`.
+    Nếu phía sau bit này của $r$ vẫn còn bit $1$,
+    có $r - \operatorname{lowbit}(r) \ge l$,
+    nên bước tiếp theo đổi bit `1` thấp nhất của $r$ thành `0`.
     
-    Nếu bit $1$ này của $r$ chính là bit `1` thấp nhất của $r$, thì dù thực hiện $r \gets r - \operatorname{lowbit}(r)$ hay $r \gets r - 1$, bit $1$ này của $r$ đều sẽ trở thành $0$.
+    Nếu bit $1$ này của $r$ chính là bit `1` thấp nhất của $r$,
+    thì dù thực hiện $r \gets r - \operatorname{lowbit}(r)$ hay $r \gets r - 1$,
+    bit $1$ này của $r$ đều sẽ trở thành $0$.
     
-    Vì vậy, sau nhiều nhất $\log n$ lần biến đổi, bit cao nhất mà $r$ và $l$ khác nhau sẽ giảm xuống một vị trí. Do đó, tổng độ phức tạp thời gian là $\Theta(\log^2n)$.
+    Vì vậy, sau nhiều nhất $\log n$ lần biến đổi,
+    bit cao nhất mà $r$ và $l$ khác nhau sẽ giảm xuống một vị trí.
+    Do đó, tổng độ phức tạp thời gian là $\Theta(\log^2 n)$.
 
 ### Cập nhật một điểm
 
 ???+ note "Lưu ý"
     Cần nắm hai tính chất sau của dạng cây Fenwick trước khi đọc phần này.
     
-    -   Đặt $u = s \times 2^{k + 1} + 2^k$. Khi đó số con của nó là $k = \log_2\operatorname{lowbit}(u)$, được đánh số lần lượt là $u - 2^t(0 \le t < k)$.
+    -   Đặt $u = s \times 2^{k + 1} + 2^k$.
+        Khi đó số con của nó là $k = \log_2\operatorname{lowbit}(u)$,
+        được đánh số lần lượt là $u - 2^t(0 \le t < k)$.
     -   Các đoạn quản lý bởi $c$ ứng với mọi con của $u$ ghép lại đúng bằng $[l(u), u - 1]$.
     
-    Ý nghĩa và chứng minh của hai tính chất này đều có trong phần [cây Fenwick và các tính chất của dạng cây](#cây-fenwick-và-các-tính-chất-của-dạng-cây) trên trang này.
+    Ý nghĩa và chứng minh của hai tính chất này đều có trong phần
+    [cây Fenwick và các tính chất của dạng cây](#cây-fenwick-và-các-tính-chất-của-dạng-cây)
+    trên trang này.
 
 Sau khi cập nhật $a[x]$, chỉ cần cập nhật các $c[y]$ sao cho trên dạng cây Fenwick, $y$ là tổ tiên của $x$.
 
-Với cực trị (lấy giá trị lớn nhất làm ví dụ), một suy nghĩ sai thường gặp là: nếu sửa $a[x]$ thành $p$, thì cập nhật mọi $c[y]$ thành $\max(c[y], p)$. Phản ví dụ: trong $(1, 2, 3, 4, 5)$, sửa $5$ thành $4$ thì giá trị lớn nhất là $4$, nhưng cách cập nhật trên vẫn cho kết quả $5$. Cập nhật trực tiếp $c[y]$ thành $p$ cũng sai; một phản ví dụ là sửa $3$ trong ví dụ trên thành $4$.
+Với cực trị (lấy giá trị lớn nhất làm ví dụ),
+một suy nghĩ sai thường gặp là:
+nếu sửa $a[x]$ thành $p$, thì cập nhật mọi $c[y]$ thành $\max(c[y], p)$.
+Phản ví dụ: trong $(1, 2, 3, 4, 5)$,
+sửa $5$ thành $4$ thì giá trị lớn nhất là $4$,
+nhưng cách cập nhật trên vẫn cho kết quả $5$.
+Cập nhật trực tiếp $c[y]$ thành $p$ cũng sai;
+một phản ví dụ là sửa $3$ trong ví dụ trên thành $4$.
 
-Với thông tin không thể lấy sai phân, không tồn tại cách sửa trực tiếp $c[y]$ chỉ dựa vào $p$. Lý do là thao tác sửa tương đương với việc "loại bỏ" số cũ khỏi đoạn gốc rồi thêm một số mới. Ảnh hưởng của bước "loại bỏ" lên thông tin đoạn tương đương với thực hiện "phép nghịch đảo"; nhưng thông tin không thể lấy sai phân không có "phép nghịch đảo", nên không thể sửa trực tiếp $c[y]$.
+Với thông tin không thể lấy sai phân,
+không tồn tại cách sửa trực tiếp $c[y]$ chỉ dựa vào $p$.
+Lý do là thao tác sửa tương đương với việc "loại bỏ" số cũ khỏi đoạn gốc rồi thêm một số mới.
+Ảnh hưởng của bước "loại bỏ" lên thông tin đoạn tương đương với thực hiện "phép nghịch đảo";
+nhưng thông tin không thể lấy sai phân không có "phép nghịch đảo",
+nên không thể sửa trực tiếp $c[y]$.
 
 Nói cách khác, với mỗi $c[y]$ bị ảnh hưởng, bắt buộc phải dựng lại thông tin của đoạn đó.
 
-Xét các con của $c[y]$. Thông tin của chúng đều đúng (vì cập nhật con trước rồi cập nhật cha), và các con này ghép lại đúng đoạn quản lý $[l(y), y - 1]$. Khi gộp thêm một điểm $a[y]$, thu được thông tin của $[l(y), y]$, tức $c[y]$. Như vậy, mỗi $c$ cần sửa có thể được dựng lại bằng cách gộp nhiều nhất $\log n$ đoạn.
+Xét các con của $c[y]$.
+Thông tin của chúng đều đúng (vì cập nhật con trước rồi cập nhật cha),
+và các con này ghép lại đúng đoạn quản lý $[l(y), y - 1]$.
+Khi gộp thêm một điểm $a[y]$, thu được thông tin của $[l(y), y]$, tức $c[y]$.
+Như vậy, mỗi $c$ cần sửa có thể được dựng lại bằng cách gộp nhiều nhất $\log n$ đoạn.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -881,11 +928,11 @@ Xét các con của $c[y]$. Thông tin của chúng đều đúng (vì cập nh�
     }
     ```
 
-Thuật toán trên có độ phức tạp thời gian $\Theta(\log^2n)$.
+Thuật toán trên có độ phức tạp thời gian $\Theta(\log^2 n)$.
 
 ### Xây cây
 
-Có thể tách thành $n$ lần sửa đổi một điểm, xây cây trong $\Theta(n\log^2n)$.
+Có thể tách thành $n$ lần sửa đổi một điểm, xây cây trong $\Theta(n\log^2 n)$.
 
 Cũng có cách xây cây $\Theta(n)$, xem phương pháp một trong phần [$\Theta(n)$ xây cây](#thetan-xây-cây) trên trang này.
 
@@ -897,7 +944,10 @@ Lấy việc duy trì tổng đoạn làm ví dụ.
 
 Phương pháp một:
 
-Giá trị của mỗi nút thu được bằng cách cộng giá trị của mọi con trực tiếp của nó. Vì vậy, có thể xét đóng góp theo chiều ngược: mỗi khi xác định xong giá trị của một con, dùng giá trị của nó để cập nhật cha trực tiếp.
+Giá trị của mỗi nút thu được bằng cách cộng giá trị của mọi con trực tiếp của nó.
+Vì vậy, có thể xét đóng góp theo chiều ngược:
+mỗi khi xác định xong giá trị của một con,
+dùng giá trị của nó để cập nhật cha trực tiếp.
 
 ???+ note "Cài đặt"
     === "C++"
@@ -925,7 +975,9 @@ Giá trị của mỗi nút thu được bằng cách cộng giá trị của m�
 
 Phương pháp hai:
 
-Phía trước đã nêu đoạn mà $c[i]$ biểu diễn là $[i-\operatorname{lowbit}(i)+1, i]$, nên có thể tiền xử lý một mảng tổng tiền tố $\mathrm{sum}$ rồi tính mảng $c$.
+Phía trước đã nêu đoạn mà $c[i]$ biểu diễn là
+$[i-\operatorname{lowbit}(i)+1, i]$,
+nên có thể tiền xử lý một mảng tổng tiền tố $\mathrm{sum}$ rồi tính mảng $c$.
 
 ???+ note "Cài đặt"
     === "C++"
@@ -948,7 +1000,14 @@ Phía trước đã nêu đoạn mà $c[i]$ biểu diễn là $[i-\operatorname{
 
 ### Tối ưu bằng dấu thời gian
 
-Đây là kỹ thuật rất thường gặp khi xử lý nhiều bộ dữ liệu. Nếu mỗi lần nhập dữ liệu mới đều xóa thô toàn bộ cây Fenwick, có thể bị quá thời gian. Vì vậy, dùng nhãn $\mathrm{tag}$ để lưu thời điểm sử dụng gần nhất của nút hiện tại (tức lần gần nhất nó được dùng ở bộ dữ liệu thứ mấy). Mỗi lần thao tác, kiểm tra thời gian trong $\mathrm{tag}$ tại vị trí này có bằng thời gian hiện tại hay không, từ đó biết vị trí này nên được xem là $0$ hay là giá trị trong mảng.
+Đây là kỹ thuật rất thường gặp khi xử lý nhiều bộ dữ liệu.
+Nếu mỗi lần nhập dữ liệu mới đều xóa trắng toàn bộ cây Fenwick,
+có thể bị quá thời gian.
+Vì vậy, dùng nhãn $\mathrm{tag}$ để lưu thời điểm sử dụng gần nhất của nút hiện tại
+(tức lần gần nhất nó được dùng ở bộ dữ liệu thứ mấy).
+Mỗi lần thao tác, kiểm tra thời gian trong $\mathrm{tag}$ tại vị trí này
+có bằng thời gian hiện tại hay không,
+từ đó biết vị trí này nên được xem là $0$ hay là giá trị trong mảng.
 
 ???+ note "Cài đặt"
     === "C++"
