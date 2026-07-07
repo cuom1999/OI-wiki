@@ -8,7 +8,7 @@ Notepad++ có nhiều chức năng hơn các trình soạn thảo văn bản cơ
 
 ## Tải xuống và cài đặt
 
-Xem [Hướng dẫn bắt đầu | Notepad++ User Manual](https://npp-user-manual.org/docs/getting-started/) trong tài liệu chính thức.
+Xem [hướng dẫn bắt đầu | sổ tay người dùng Notepad++](https://npp-user-manual.org/docs/getting-started/) trong tài liệu chính thức.
 
 ## Đổi ngôn ngữ giao diện
 

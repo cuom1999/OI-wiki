@@ -321,7 +321,7 @@ Hoàn thành bằng đoạn mẫu thường có một số khối có thể ch�
 
 Nếu không có hoàn thành tự động, sửa như sau:
 
-1.  Kiểm tra xem đã chuyển ngôn ngữ chưa; tệp mới của ST mặc định là Plain Text.
+1.  Kiểm tra xem đã chuyển ngôn ngữ chưa; tệp mới của ST mặc định là Plain Text (văn bản thuần).
 
 2.  Vào `Preferences->Settings` (`Tùy chọn -> Thiết lập`) rồi thêm hai dòng:
 

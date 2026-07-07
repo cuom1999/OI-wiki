@@ -6,11 +6,11 @@ CLion là một môi trường phát triển tích hợp (IDE) C/C++ đa nền t
 
 ## Hướng dẫn chính thức
 
-Trang web chính thức cung cấp hướng dẫn [Learn CLion](https://www.jetbrains.com/clion/learn/).
+Trang web chính thức cung cấp hướng dẫn [học CLion](https://www.jetbrains.com/clion/learn/).
 
 ## Cài đặt
 
-Xem [Download CLion](https://www.jetbrains.com/clion/download/).
+Xem [tải CLion](https://www.jetbrains.com/clion/download/).
 
 ## Cấu hình
 
@@ -22,7 +22,7 @@ Mặc định CLion không đi kèm trình biên dịch, công cụ xây dựng 
 
 #### Windows
 
-Xem [Tutorial: Configure CLion on Windows | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html).
+Xem [hướng dẫn cấu hình CLion trên Windows | tài liệu CLion](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-windows.html).
 
 Cần lưu ý rằng phiên bản CLion cho Windows có sẵn MinGW, nên có thể không cần cài đặt thêm chuỗi công cụ MinGW.
 
@@ -54,7 +54,7 @@ sudo dnf install clang clang++ llvm lldb # cũng có thể chọn dùng chuỗi 
 
 #### macOS
 
-Xem [Tutorial: Configure CLion on macOS | CLion Documentation](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html).
+Xem [hướng dẫn cấu hình CLion trên macOS | tài liệu CLion](https://www.jetbrains.com/help/clion/quick-tutorial-on-configuring-clion-on-macos.html).
 
 <span id="thiết-lập-toolchain"></span>
 
@@ -111,7 +111,7 @@ CLion là sản phẩm trả phí, nhưng có thể xin giấy phép đặc bi�
 
 ### Dùng email giáo dục để nhận
 
-Vào trang [Free Educational Licenses](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply` (`Áp dụng`), rồi điền thông tin liên quan để đăng ký.
+Vào trang [giấy phép giáo dục miễn phí](https://www.jetbrains.com/community/education/#students) trên trang chính thức, nhấp nút `Apply` (`Áp dụng`), rồi điền thông tin liên quan để đăng ký.
 
 ![Giấy phép giáo dục](./images/clion-edu.png)
 

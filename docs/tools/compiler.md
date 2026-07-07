@@ -113,12 +113,12 @@ brew install gcc
 
 JDK có nhiều bản phân phối. Sau đây là hai bản thường gặp:
 
--   [Eclipse Temurin](https://adoptium.net/) trong OpenJDK[^temurin]: xem [Install Eclipse Temurin™ | Adoptium](https://adoptium.net/installation/).
--   Oracle JDK: có thể tham khảo [JDK Installation Guide (JDK 17)](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html).
+-   [Eclipse Temurin](https://adoptium.net/) trong OpenJDK[^temurin]: xem [cài đặt Eclipse Temurin™ | Adoptium](https://adoptium.net/installation/).
+-   Oracle JDK: có thể tham khảo [hướng dẫn cài đặt JDK (JDK 17)](https://docs.oracle.com/en/java/javase/17/install/overview-jdk-installation.html).
 
 ## Python 3
 
-Python cũng có nhiều bản triển khai[^pythonimpl]. Lấy CPython 3 làm ví dụ, xem [Download Python | Python.org](https://www.python.org/downloads/).
+Python cũng có nhiều bản triển khai[^pythonimpl]. Lấy CPython 3 làm ví dụ, xem [tải Python | Python.org](https://www.python.org/downloads/).
 
 ## LLVM
 
@@ -176,4 +176,4 @@ Nếu không muốn cài Visual Studio đầy đủ, có thể cuộn xuống m�
 
 [^temurin]: [Eclipse Temurin](https://adoptium.net/) chính là [AdoptOpenJDK](https://adoptopenjdk.net/) trước đây; dự án sau đã được chuyển giao cho [Eclipse Foundation](https://www.eclipse.org/org/foundation/) vào tháng 7 năm 2021. Xem chi tiết trong [thông báo này](https://blog.adoptopenjdk.net/2021/03/transition-to-eclipse-an-update/).
 
-[^pythonimpl]: [Alternative Python Implementations | Python.org](https://www.python.org/download/alternatives/)
+[^pythonimpl]: [Các bản triển khai Python thay thế | Python.org](https://www.python.org/download/alternatives/)

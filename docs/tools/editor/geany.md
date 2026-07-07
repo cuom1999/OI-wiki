@@ -25,7 +25,7 @@ Trang chủ: <https://geany.org/>
 
 ## Cài đặt
 
-Xem [Download | Geany](https://geany.org/download/)
+Xem [tải Geany](https://geany.org/download/)
 
 ## Mẹo sử dụng
 

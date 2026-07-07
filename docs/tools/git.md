@@ -588,7 +588,7 @@ Phần này giới thiệu ngắn gọn cách dùng TortoiseGit. Sau khi tải v
 
 ![Menu chuột phải của TortoiseGit trong thư mục kho cục bộ](images/git11.png)
 
-Phần này không trình bày chi tiết cách sử dụng nữa; có thể tham khảo tài liệu sử dụng trên trang chính thức hoặc học qua công cụ tìm kiếm, ví dụ [TortoiseGit Manual](https://tortoisegit.org/docs/tortoisegit/index.html).
+Phần này không trình bày chi tiết cách sử dụng nữa; có thể tham khảo tài liệu sử dụng trên trang chính thức hoặc học qua công cụ tìm kiếm, ví dụ [sổ tay TortoiseGit](https://tortoisegit.org/docs/tortoisegit/index.html).
 
 Nhiều công cụ GUI có hỗ trợ nhiều ngôn ngữ giao diện, ví dụ Git Desktop và TortoiseGit. Tuy nhiên vẫn có một số bản dịch đọc hơi gượng, nên khuyến nghị dùng bản tiếng Anh nếu cần đối chiếu thuật ngữ chính xác.
 
