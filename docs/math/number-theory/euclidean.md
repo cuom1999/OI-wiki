@@ -16,7 +16,7 @@ Do các phương pháp như [liên phân số](./continued-fraction.md) và [câ
 <span id="thuật-toán-euclid-tương-tự"></span>
 ## Thuật toán Euclid tương tự
 
-Ví dụ đơn giản nhất là bài toán tính tổng:
+Ví dụ cơ bản nhất là bài toán tính tổng:
 
 $$
 f(a,b,c,n)=\sum_{i=0}^n\left\lfloor \frac{ai+b}{c} \right\rfloor,
@@ -27,7 +27,7 @@ trong đó $a,b,c,n$ đều là số nguyên dương.
 <span id="cách-giải-đại-số"></span>
 ### Cách giải đại số
 
-Trước hết, lấy phần dư của $a,b$ theo $c$ để đơn giản hóa bài toán, đưa nó về trường hợp $0\le a,b<c$:
+Trước hết, lấy phần dư của $a,b$ theo $c$ để rút gọn bài toán, đưa nó về trường hợp $0\le a,b<c$:
 
 $$
 \begin{aligned}
@@ -79,7 +79,7 @@ $$
 
 Đặt $(a',b',c',n')=(c,c-b-1,a,m-1)$, bài toán trở lại trường hợp $a'>c'$ đã thảo luận ở trên.
 
-Kết hợp hai bước biến đổi này, trong quá trình đó $(a,c)$ liên tục được lấy modulo rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
+Kết hợp hai bước biến đổi này, trong quá trình đó $(a,c)$ liên tục được lấy dư rồi hoán đổi vị trí cho đến khi $a=0$. Điều này tương tự phép chia Euclid trên $(a,c)$, và cũng là nguồn gốc tên gọi thuật toán Euclid tương tự. Độ phức tạp thời gian là $O(\log\min\{a,c\})$.
 
 Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó lời gọi đệ quy bên trong sẽ có $n=-1$. Điều này không ảnh hưởng kết quả cuối cùng. Tuy nhiên, nếu yêu cầu thuật toán dừng ngay khi $m=0$, độ phức tạp thời gian có thể cải thiện thành $O(\log\min\{a,c,n\})$.
 
@@ -88,7 +88,7 @@ Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó
     
     Đặt $m=\lfloor(an+b)/c\rfloor$, đồng thời ký hiệu $S=mn$, $k=m/n$; trong trực giác hình học (xem phần tiếp theo), chúng lần lượt tương ứng với diện tích của lưới điểm và hệ số góc của đường thẳng. Với $n$ đủ lớn, xấp xỉ có $k\doteq a/c$.
     
-    Xét sự thay đổi của $S$ và $k$ trong quá trình thuật toán. Ở bước lấy modulo đầu tiên, $n$ không đổi, $k$ xấp xỉ chuyển từ $a/c$ thành $(a\bmod c)/c$, tương đương hệ số góc chuyển từ $k$ thành $k-\lfloor k\rfloor$, còn $S$ cũng xấp xỉ trở thành $(k-\lfloor k\rfloor)$ lần giá trị cũ. Ở bước thứ hai, khi hoán đổi trục hoành và trục tung, $S$ xấp xỉ không đổi, còn $k$ trở thành nghịch đảo của nó. Vì vậy, nếu sau hai bước thao tác, cặp $(k,S)$ biến thành $(k',S')$, thì $k'=(k-\lfloor k\rfloor)^{-1}$ và $S'=(k-\lfloor k\rfloor)S$.
+    Xét sự thay đổi của $S$ và $k$ trong quá trình thuật toán. Ở bước lấy dư đầu tiên, $n$ không đổi, $k$ xấp xỉ chuyển từ $a/c$ thành $(a\bmod c)/c$, tương đương hệ số góc chuyển từ $k$ thành $k-\lfloor k\rfloor$, còn $S$ cũng xấp xỉ trở thành $(k-\lfloor k\rfloor)$ lần giá trị cũ. Ở bước thứ hai, khi hoán đổi trục hoành và trục tung, $S$ xấp xỉ không đổi, còn $k$ trở thành nghịch đảo của nó. Vì vậy, nếu sau hai bước thao tác, cặp $(k,S)$ biến thành $(k',S')$, thì $k'=(k-\lfloor k\rfloor)^{-1}$ và $S'=(k-\lfloor k\rfloor)S$.
     
     Vì $1\le\lfloor k'\rfloor\le k'<\lfloor k'\rfloor+1$, nên sau hai vòng đệ quy, hệ số giảm nhỏ nhất của tích là
     
@@ -96,7 +96,7 @@ Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó
     (k'-\lfloor k'\rfloor)(k-\lfloor k\rfloor) = 1-\dfrac{\lfloor k'\rfloor}{k'} < 1-\dfrac{\lfloor k'\rfloor}{\lfloor k'\rfloor+1} = \dfrac{1}{\lfloor k'\rfloor+1}\le \dfrac{1}{2}.
     $$
     
-    Do đó sau nhiều nhất $O(\log S)$ vòng, thuật toán sẽ dừng. Từ vòng thứ hai trở đi, $S$ ở đầu mỗi vòng luôn không vượt quá $S$ sau khi kết thúc bước lấy modulo của vòng trước; giá trị sau này xấp xỉ $kn^2$ và $k<1$, nên $O(\log S)\subseteq O(\log n)$. Từ đó suy ra kết luận trên.
+    Do đó sau nhiều nhất $O(\log S)$ vòng, thuật toán sẽ dừng. Từ vòng thứ hai trở đi, $S$ ở đầu mỗi vòng luôn không vượt quá $S$ sau khi kết thúc bước lấy dư của vòng trước; giá trị sau này xấp xỉ $kn^2$ và $k<1$, nên $O(\log S)\subseteq O(\log n)$. Từ đó suy ra kết luận trên.
 
 Cài đặt tham khảo cho bài mẫu như sau:
 
@@ -164,7 +164,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
 ??? note "Lời giải 1"
     Tương tự cách suy ra công thức cho $f$, có thể thu được các biểu thức đệ quy cho $g,h$.
     
-    Trước hết, dùng phép lấy modulo để chuyển bài toán về trường hợp $0\le a,b<c$:
+    Trước hết, dùng phép lấy dư để chuyển bài toán về trường hợp $0\le a,b<c$:
     
     $$
     \begin{aligned}
@@ -274,7 +274,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     \end{aligned}
     $$
     
-    Trong suy luận này, điều kiện để hoán đổi $i$ và $j$ đơn giản hơn trường hợp ở phần chính, vì đường thẳng $y=kx$ không có điểm lưới nào ngoài gốc tọa độ nằm trên nó. Mấu chốt là viết tổng sau khi hoán đổi về dạng $f(a,b,c,n)$, tương đương với việc yêu cầu $a',b',c'$ thỏa mãn
+    Trong suy luận này, điều kiện để hoán đổi $i$ và $j$ gọn hơn trường hợp ở phần chính, vì đường thẳng $y=kx$ không có điểm lưới nào ngoài gốc tọa độ nằm trên nó. Mấu chốt là viết tổng sau khi hoán đổi về dạng $f(a,b,c,n)$, tương đương với việc yêu cầu $a',b',c'$ thỏa mãn
     
     $$
     k^{-1} = \dfrac{a'\sqrt{r}+b'}{c'}.
@@ -730,4 +730,4 @@ Bài ứng dụng:
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
-[^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng thực hiện một vòng lấy modulo của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng đơn giản hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.
+[^complexity]: Trong những bài toán thường xét, $b$ thường cùng bậc với $a$, nên hạng $O(\log(b/c))$ có thể bỏ qua. Hơn nữa, nếu trước khi gọi thuật toán Euclid vạn năng thực hiện một vòng lấy dư của thuật toán Euclid tương tự để loại bỏ ảnh hưởng của $b$, thì có thể tránh độ phức tạp của phép lũy thừa nhanh ở hạng này. Thực chất là vì trong các bài toán thông thường, dạng ban đầu của $U$ khá đặc biệt, lũy thừa của nó có dạng gọn hơn và không cần tính bằng lũy thừa nhanh. Chẳng hạn trong ví dụ ở phần chính, kết quả của $U^{\lfloor b/a\rfloor}$ chỉ là thay số $1$ không nằm trên đường chéo trong $U$ bằng $\lfloor b/a\rfloor$, không cần dùng lũy thừa nhanh.
