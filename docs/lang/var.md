@@ -741,7 +741,7 @@ Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn b
     [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
 [^note13]: Có hiệu lực từ C++20. Trước C++20, kết quả là do bản triển khai định
-    nghĩa (implementation-defined). Xem chi tiết tại
+    nghĩa. Xem chi tiết tại
     [chuyển đổi số nguyên - cppreference](https://en.cppreference.com/w/cpp/language/implicit_conversion#Integral_conversions).
 
 [^note14]: Khi định nghĩa một biến, ngoài bộ mô tả kiểu, còn có thể chứa các bộ

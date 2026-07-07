@@ -15,21 +15,21 @@ __gnu_pbds::priority_queue<T, Compare, Tag, Allocator>
 
 -   `T`: kiểu phần tử được lưu trữ.
 -   `Compare`: kiểu so sánh cung cấp thứ tự yếu nghiêm ngặt.
--   `Tag`: chọn một trong năm loại heap do `__gnu_pbds` cung cấp; giá trị mặc
+-   `Tag`: chọn một trong năm loại đống do `__gnu_pbds` cung cấp; giá trị mặc
     định là `pairing_heap_tag`. Năm loại này gồm:
-    -   `pairing_heap_tag`: heap ghép cặp (pairing heap)
-        Tài liệu chính thức cho rằng heap ghép cặp có hiệu năng tốt nhất với
+    -   `pairing_heap_tag`: đống ghép cặp (pairing heap)
+        Tài liệu chính thức cho rằng đống ghép cặp có hiệu năng tốt nhất với
         phần tử không nguyên thủy, chẳng hạn `struct` tự định nghĩa,
         `std::string`, `pair`.
-    -   `binary_heap_tag`: heap nhị phân
-        Tài liệu chính thức cho rằng heap nhị phân có hiệu năng tốt nhất với
+    -   `binary_heap_tag`: đống nhị phân
+        Tài liệu chính thức cho rằng đống nhị phân có hiệu năng tốt nhất với
         phần tử nguyên thủy, nhưng kết quả thử nghiệm của tác giả không tốt đến
         vậy.
-    -   `binomial_heap_tag`: heap nhị thức
-        Heap nhị thức có hiệu năng hợp nhất tốt hơn heap nhị phân, nhưng thao
-        tác loại bỏ phần tử đầu heap có độ phức tạp cao hơn heap nhị phân.
-    -   `rc_binomial_heap_tag`: heap nhị thức đếm dư thừa
-    -   `thin_heap_tag`: một thẻ có hầu hết độ phức tạp giống heap Fibonacci, trừ
+    -   `binomial_heap_tag`: đống nhị thức
+        Đống nhị thức có hiệu năng hợp nhất tốt hơn đống nhị phân, nhưng thao
+        tác loại bỏ phần tử đầu đống có độ phức tạp cao hơn đống nhị phân.
+    -   `rc_binomial_heap_tag`: đống nhị thức đếm dư thừa
+    -   `thin_heap_tag`: một thẻ có hầu hết độ phức tạp giống đống Fibonacci, trừ
         thao tác hợp nhất.
 -   `Allocator`: bộ cấp phát bộ nhớ; vì hiếm gặp trong OI nên không giải thích ở
     đây.
@@ -38,12 +38,12 @@ Vì bài này hướng đến người học lập trình thi đấu, bốn th�
 thiệu sơ lược qua độ phức tạp; thẻ đầu tiên sẽ được trình bày kỹ hơn về hàm
 thành viên và cách dùng.
 
-Qua thử nghiệm các thao tác heap cơ bản trên máy của tác giả (Core i5 @3.1 GHz
+Qua thử nghiệm các thao tác đống cơ bản trên máy của tác giả (Core i5 @3.1 GHz
 trên macOS), kết hợp với kiểm thử độ phức tạp chính thức của GNU và kiểm thử
-Dijkstra, có thể rút ra nhận xét: ít nhất với người học OI, bốn thẻ ngoài heap
+Dijkstra, có thể rút ra nhận xét: ít nhất với người học OI, bốn thẻ ngoài đống
 ghép cặp thường không đáng dùng trong thực tế, vì hoặc không đem lại lợi ích rõ
 ràng, hoặc có hệ số hằng lớn đến mức thua `std`, thậm chí có thể gây MLE. Vì
-vậy, thường chỉ nên dùng heap ghép cặp mặc định. Tương tự, heap ghép cặp cũng
+vậy, thường chỉ nên dùng đống ghép cặp mặc định. Tương tự, đống ghép cặp cũng
 tốt hơn `make_heap()` trong tệp tiêu đề `<algorithm>` trong các thử nghiệm này.
 
 ## Cách khởi tạo
@@ -61,15 +61,15 @@ id = q.push(1);
 
 ## Hàm thành viên
 
--   `push()`: đưa một phần tử vào heap, trả về bộ lặp kiểu điểm trỏ tới phần tử
+-   `push()`: đưa một phần tử vào đống, trả về bộ lặp kiểu điểm trỏ tới phần tử
     đó.
--   `pop()`: loại bỏ phần tử ở đỉnh heap.
--   `top()`: trả về phần tử ở đỉnh heap.
+-   `pop()`: loại bỏ phần tử ở đỉnh đống.
+-   `top()`: trả về phần tử ở đỉnh đống.
 -   `size()`: trả về số phần tử.
--   `empty()`: trả về `true` nếu heap rỗng, ngược lại trả về `false`.
+-   `empty()`: trả về `true` nếu đống rỗng, ngược lại trả về `false`.
 -   `modify(point_iterator, const key)`: sửa phần tử tại vị trí bộ lặp thành
-    giá trị `key` truyền vào, rồi điều chỉnh lại cấu trúc heap bên trong.
--   `erase(point_iterator)`: xóa phần tử tại vị trí bộ lặp khỏi heap.
+    giá trị `key` truyền vào, rồi điều chỉnh lại cấu trúc đống bên trong.
+-   `erase(point_iterator)`: xóa phần tử tại vị trí bộ lặp khỏi đống.
 -   `join(__gnu_pbds::priority_queue &other)`: hợp nhất `other` vào `*this` rồi
     làm rỗng `other`.
 
@@ -91,34 +91,34 @@ Thẻ được dùng quyết định độ phức tạp thời gian của từng
 #include <ext/pb_ds/priority_queue.hpp>
 #include <iostream>
 using namespace __gnu_pbds;
-// Vì hướng đến người học OI, bài này dùng heap thường gặp pairing_heap_tag làm ví dụ
+// Vì hướng đến người học OI, bài này dùng loại đống thường gặp pairing_heap_tag làm ví dụ
 // Để dễ đọc hơn, định nghĩa bí danh như sau:
 using pair_heap = __gnu_pbds::priority_queue<int>;
-pair_heap q1;  // heap lớn (max-heap), heap ghép cặp
+pair_heap q1;  // đống lớn (max-heap), đống ghép cặp
 pair_heap q2;
 pair_heap::point_iterator id;  // một bộ lặp
 
 int main() {
   id = q1.push(1);
-  // Phần tử trong heap: [1];
+  // Phần tử trong đống: [1];
   for (int i = 2; i <= 5; i++) q1.push(i);
-  // Phần tử trong heap: [1, 2, 3, 4, 5];
+  // Phần tử trong đống: [1, 2, 3, 4, 5];
   std::cout << q1.top() << std::endl;
   // Kết quả in ra: 5;
   q1.pop();
-  // Phần tử trong heap: [1, 2, 3, 4];
+  // Phần tử trong đống: [1, 2, 3, 4];
   id = q1.push(10);
-  // Phần tử trong heap: [1, 2, 3, 4, 10];
+  // Phần tử trong đống: [1, 2, 3, 4, 10];
   q1.modify(id, 1);
-  // Phần tử trong heap: [1, 1, 2, 3, 4];
+  // Phần tử trong đống: [1, 1, 2, 3, 4];
   std::cout << q1.top() << std::endl;
   // Kết quả in ra: 4;
   q1.pop();
-  // Phần tử trong heap: [1, 1, 2, 3];
+  // Phần tử trong đống: [1, 1, 2, 3];
   id = q1.push(7);
-  // Phần tử trong heap: [1, 1, 2, 3, 7];
+  // Phần tử trong đống: [1, 1, 2, 3, 7];
   q1.erase(id);
-  // Phần tử trong heap: [1, 1, 2, 3];
+  // Phần tử trong đống: [1, 1, 2, 3];
   q2.push(1), q2.push(3), q2.push(5);
   // Phần tử trong q1: [1, 1, 2, 3], phần tử trong q2: [1, 3, 5];
   q2.join(q1);
@@ -128,9 +128,9 @@ int main() {
 
 ## Bảo đảm vô hiệu hóa bộ lặp của `__gnu_pbds` (`invalidation_guarantee`)
 
-Trong ví dụ trên và trong một số tình huống thực tế (như dùng heap `pb_ds` của
+Trong ví dụ trên và trong một số tình huống thực tế (như dùng đống `pb_ds` của
 chương này để viết thuật toán đường đi ngắn nhất từ một nguồn), ta thường cần
-lưu và dùng bộ lặp của heap, chẳng hạn
+lưu và dùng bộ lặp của đống, chẳng hạn
 `__gnu_pbds::priority_queue<int>::point_iterator`).
 
 Tuy nhiên, với các tham số `Tag` khác nhau của `__gnu_pbds::priority_queue`,

@@ -1174,7 +1174,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
+    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là đống nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
@@ -1225,7 +1225,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
         dist[s] = 0
         q.put((0, s))
         while not q.empty():
-            u = q.get()  # Hàm get tiện thể xóa phần tử tương ứng trong heap
+            u = q.get()  # Hàm get tiện thể xóa phần tử tương ứng trong đống
             if dist[u[1]] < u[0]:
                 continue
             for i in nextedgeid(u[1]):
@@ -1356,7 +1356,7 @@ dùng cụ thể có thể tự tìm hoặc đọc
     cnt = 0
 
     dist = [INF for i in range(N)]
-    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là heap nhỏ nhất theo phần tử đầu
+    q = pq.PriorityQueue()  # Hàng đợi ưu tiên; mặc định là đống nhỏ nhất theo phần tử đầu
 
 
     def add_path(f, t, v):  # Thêm cạnh vào sao tiến
