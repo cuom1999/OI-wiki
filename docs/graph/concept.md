@@ -283,19 +283,19 @@ Kích thước của tập độc lập lớn nhất của đồ thị $G$ đư�
 
 ### Ghép cặp
 
-Với đồ thị $G=(V, E)$, nếu $E'\subseteq E$, mọi cặp cạnh khác nhau trong $E'$ đều không có đầu mút chung, và không có cạnh nào trong $E'$ là khuyên, thì $E'$ là một **ghép cặp (matching)** của đồ thị $G$, cũng có thể gọi là **tập cạnh độc lập (independent edge set)**. Nếu một đỉnh là đầu mút của một cạnh nào đó trong ghép cặp, thì đỉnh đó được gọi là **được ghép (matched)/bão hòa (saturated)**; ngược lại được gọi là **không được ghép (unmatched)**.
+Với đồ thị $G=(V, E)$, nếu $E'\subseteq E$, mọi cặp cạnh khác nhau trong $E'$ đều không có đầu mút chung, và không có cạnh nào trong $E'$ là khuyên, thì $E'$ là một **ghép cặp** của đồ thị $G$, cũng có thể gọi là **tập cạnh độc lập**. Nếu một đỉnh là đầu mút của một cạnh nào đó trong ghép cặp, thì đỉnh đó được gọi là **được ghép** hoặc **bão hòa**; ngược lại được gọi là **không được ghép**.
 
-Ghép cặp có số cạnh nhiều nhất được gọi là **ghép cặp lớn nhất theo số cạnh (maximum-cardinality matching)** của một đồ thị. Kích thước của ghép cặp lớn nhất của đồ thị $G$ được ký hiệu là $\nu(G)$.
+Ghép cặp có số cạnh nhiều nhất được gọi là **ghép cặp lớn nhất theo số cạnh** của một đồ thị. Kích thước của ghép cặp lớn nhất của đồ thị $G$ được ký hiệu là $\nu(G)$.
 
-Nếu cạnh có trọng số, thì ghép cặp có tổng trọng số lớn nhất được gọi là **ghép cặp trọng số lớn nhất (maximum-weight matching)** của một đồ thị.
+Nếu cạnh có trọng số, thì ghép cặp có tổng trọng số lớn nhất được gọi là **ghép cặp trọng số lớn nhất** của một đồ thị.
 
-Nếu sau khi thêm bất kỳ cạnh nào vào một ghép cặp thì nó không còn là ghép cặp nữa, thì ghép cặp này là một **ghép cặp cực đại (maximal matching)**. Ghép cặp cực đại có kích thước lớn nhất chính là ghép cặp lớn nhất; mọi ghép cặp lớn nhất đều là ghép cặp cực đại. Ghép cặp cực đại luôn là tập thống trị cạnh, nhưng tập thống trị cạnh không phải lúc nào cũng là ghép cặp. Kích thước của ghép cặp cực đại có kích thước nhỏ nhất bằng kích thước của tập thống trị cạnh nhỏ nhất, nhưng tập thống trị cạnh nhỏ nhất không phải lúc nào cũng là ghép cặp. Tìm ghép cặp cực đại có kích thước nhỏ nhất là bài toán NP-khó.
+Nếu sau khi thêm bất kỳ cạnh nào vào một ghép cặp thì nó không còn là ghép cặp nữa, thì ghép cặp này là một **ghép cặp cực đại**. Ghép cặp cực đại có kích thước lớn nhất chính là ghép cặp lớn nhất; mọi ghép cặp lớn nhất đều là ghép cặp cực đại. Ghép cặp cực đại luôn là tập thống trị cạnh, nhưng tập thống trị cạnh không phải lúc nào cũng là ghép cặp. Kích thước của ghép cặp cực đại có kích thước nhỏ nhất bằng kích thước của tập thống trị cạnh nhỏ nhất, nhưng tập thống trị cạnh nhỏ nhất không phải lúc nào cũng là ghép cặp. Tìm ghép cặp cực đại có kích thước nhỏ nhất là bài toán NP-khó.
 
-Nếu trong một ghép cặp, mọi đỉnh đều được ghép, thì ghép cặp đó là một **ghép cặp hoàn hảo (perfect matching)**. Nếu trong một ghép cặp chỉ có một đỉnh không được ghép, thì ghép cặp đó là một **ghép cặp gần hoàn hảo (near-perfect matching)**.
+Nếu trong một ghép cặp, mọi đỉnh đều được ghép, thì ghép cặp đó là một **ghép cặp hoàn hảo**. Nếu trong một ghép cặp chỉ có một đỉnh không được ghép, thì ghép cặp đó là một **ghép cặp gần hoàn hảo**.
 
 Đếm số ghép cặp hoặc ghép cặp hoàn hảo của một đồ thị thông thường hay đồ thị hai phía đều là bài toán [#P-đầy đủ](../misc/cc-basic.md#p_1).
 
-Với một ghép cặp $M$, nếu một đường đi bắt đầu từ một đỉnh chưa được ghép, và trong mỗi cặp cạnh kề nhau có đúng một cạnh thuộc ghép cặp còn cạnh kia không thuộc ghép cặp, thì đường đi đó được gọi là một **đường luân phiên (alternating path)**; một đường luân phiên kết thúc ở một đỉnh chưa được ghép được gọi là một **đường tăng (augmenting path)**.
+Với một ghép cặp $M$, nếu một đường đi bắt đầu từ một đỉnh chưa được ghép, và trong mỗi cặp cạnh kề nhau có đúng một cạnh thuộc ghép cặp còn cạnh kia không thuộc ghép cặp, thì đường đi đó được gọi là một **đường luân phiên**; một đường luân phiên kết thúc ở một đỉnh chưa được ghép được gọi là một **đường tăng**.
 
 **Định lý Tutte**: đồ thị vô hướng $G$ cấp $n$ có ghép cặp hoàn hảo khi và chỉ khi với mọi $V' \subset V(G)$, $p_{\text{odd}}(G-V')\leq |V'|$, trong đó $p_{\text{odd}}$ biểu thị số thành phần liên thông có cấp lẻ.
 

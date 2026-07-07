@@ -192,7 +192,7 @@ Nếu các sửa đổi **độc lập** với nhau, không cần xử lý quan 
     
     Bằng cách xem một đoạn màu liên tiếp là một điểm, có thể chứng minh lượng thay đổi của $pre$ là $O(n+m)$, tức một thao tác đơn lẻ chỉ gây ra $O(1)$ thay đổi ở giá trị $pre$. Khi đó có thể dùng chia để trị CDQ để giải bài toán động cộng điểm đơn, tính tổng hình chữ nhật.
     
-    Có thể dùng `std::set` để xử lý các thay đổi cụ thể của mảng $pre$. Kỹ thuật dùng set để duy trì các đoạn liên tiếp này còn được gọi là [old driver tree](./odt.md).
+    Có thể dùng `std::set` để xử lý các thay đổi cụ thể của mảng $pre$. Kỹ thuật dùng `std::set` để duy trì các đoạn liên tiếp này còn được gọi là [cây Chtholly/ODT](./odt.md).
 
 ??? note "Mã mẫu"
     ```cpp

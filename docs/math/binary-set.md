@@ -13,9 +13,9 @@ Có thể xem biểu diễn nhị phân của một số như một tập hợp 
 Trước khi giới thiệu thao tác duyệt tập con của tập hợp, xét một vài ứng dụng liên quan của phép toán bit.
 
 <span id="lấy-modulo-lũy-thừa-của-2"></span>
-### Lấy modulo lũy thừa của 2
+### Lấy dư theo lũy thừa của 2
 
-Lấy một số modulo một lũy thừa không âm của $2$ tương đương với lấy một số bit cuối trong biểu diễn nhị phân của số đó, cũng tương đương với phép AND với $mod-1$.
+Lấy dư của một số theo một lũy thừa không âm của $2$ tương đương với lấy một số bit cuối trong biểu diễn nhị phân của số đó, cũng tương đương với phép AND với $mod-1$.
 
 === "C++"
     ```cpp

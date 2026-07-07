@@ -1,6 +1,6 @@
 ## Giới thiệu
 
-Cây Chtholly Tree, còn gọi là Old Driver Tree ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
+Cây Chtholly, còn gọi là ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
 
 Tên gọi này chỉ một kỹ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lý. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ thuận tiện hơn.
 

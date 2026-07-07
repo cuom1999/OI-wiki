@@ -141,9 +141,9 @@ trong đó $Q$ là giả nghịch đảo Pólya (quasi-inversion).
 
 <span id="cấu-trúc-multiset-của-tập-hợp"></span>
 
-### Cấu trúc Multiset của tập hợp
+### Cấu trúc đa tập của tập hợp
 
-Cấu trúc Multiset sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt thứ tự giữa các phần tử thành phần.
+Cấu trúc đa tập sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt thứ tự giữa các phần tử thành phần.
 
 ???+ note "Ví dụ"
     $$
@@ -237,9 +237,9 @@ Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là 
 
 <span id="cấu-trúc-powerset-của-tập-hợp"></span>
 
-### Cấu trúc Powerset của tập hợp
+### Cấu trúc tập con của tập hợp
 
-Cấu trúc Powerset sinh ra tất cả các tập con.
+Cấu trúc tập con sinh ra tất cả các tập con.
 
 ???+ note "Ví dụ"
     $$
@@ -281,9 +281,9 @@ Theo định nghĩa, $\operatorname{PSET}(\mathcal{A})\subset \operatorname{MSET
 
 <span id="cấu-trúc-cycle-của-tập-hợp"></span>
 
-### Cấu trúc Cycle của tập hợp
+### Cấu trúc chu trình của tập hợp
 
-Cấu trúc Cycle sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt các tổ hợp chỉ khác nhau bởi phép quay vòng.
+Cấu trúc chu trình sinh ra tất cả các tổ hợp có thể, nhưng không phân biệt các tổ hợp chỉ khác nhau bởi phép quay vòng.
 
 Định nghĩa
 

@@ -7,7 +7,7 @@
 Bảng Young là một dạng ma trận đặc biệt. Nó thuận tiện cho việc nghiên cứu biểu diễn nhóm và tính chất của nhóm đối xứng cũng như nhóm tuyến tính tổng quát. Bảng Young do nhà toán học Cambridge Alfred Young đưa ra lần đầu vào năm 1900, rồi được nhà toán học Đức Ferdinand Georg Frobenius áp dụng vào nghiên cứu nhóm đối xứng năm 1903.
 
 ???+ note "Ghi chú"
-    **Lý thuyết biểu diễn** (Representation theory) là một nhánh của toán học nghiên cứu các cấu trúc đại số trừu tượng bằng cách biểu diễn phần tử của chúng thành các phép biến đổi tuyến tính trên không gian vectơ. **Phép tính Schubert** (Schubert calculus) là một nhánh của hình học đại số, được Hermann Schubert đưa ra vào thế kỷ 19 để giải các bài toán đếm trong hình học xạ ảnh.
+    **Lý thuyết biểu diễn** là một nhánh của toán học nghiên cứu các cấu trúc đại số trừu tượng bằng cách biểu diễn phần tử của chúng thành các phép biến đổi tuyến tính trên không gian vectơ. **Phép tính Schubert** là một nhánh của hình học đại số, được Hermann Schubert đưa ra vào thế kỷ 19 để giải các bài toán đếm trong hình học xạ ảnh.
 
 <span id="định-nghĩa"></span>
 
@@ -39,11 +39,11 @@ Sau đây là hai cách vẽ khác nhau của biểu đồ Young ứng với ph�
 Trong cách dùng ban đầu của bảng Young trong lý thuyết biểu diễn của nhóm đối xứng, các số nguyên dương phân biệt từ $1$ đến $n$ được phép điền tùy ý vào $n$ ô của biểu đồ Young. Trong nghiên cứu hiện nay, phần lớn sử dụng bảng Young "chuẩn", tức là ngoài điều kiện trên, các số trong mỗi hàng và mỗi cột đều tăng nghiêm ngặt. Số lượng bảng Young phân biệt gồm $n$ ô tạo thành dãy [số đối hợp](https://en.wikipedia.org/wiki/Telephone_number_%28mathematics%29):
 
 ???+ note "Ghi chú"
-    **Số đối hợp** (involution number/telephone number) là một dãy số nguyên trong toán học, dùng để đếm số cách nối các đường dây khi trong $n$ đường dây điện thoại mỗi đường dây được nối với nhiều nhất một đường dây khác. Nó cũng có thể mô tả số matching trên đồ thị đầy đủ $n$ đỉnh, số hoán vị là đối hợp của $n$ phần tử, tổng trị tuyệt đối các hệ số của đa thức Hermite, số bảng Young chuẩn có $n$ ô, và tổng bậc của các biểu diễn bất khả quy của nhóm đối xứng.
+    **Số đối hợp** (còn gọi là số điện thoại) là một dãy số nguyên trong toán học, dùng để đếm số cách nối các đường dây khi trong $n$ đường dây điện thoại mỗi đường dây được nối với nhiều nhất một đường dây khác. Nó cũng có thể mô tả số ghép cặp trên đồ thị đầy đủ $n$ đỉnh, số hoán vị là đối hợp của $n$ phần tử, tổng trị tuyệt đối các hệ số của đa thức Hermite, số bảng Young chuẩn có $n$ ô, và tổng bậc của các biểu diễn bất khả quy của nhóm đối xứng.
 
 $1, 1, 2, 4, 10, 26, 76, 232, 764, 2620, 9496, \ldots$ (dãy [A000085](https://oeis.org/A000085) trong [OEIS](https://en.wikipedia.org/wiki/On-Line_Encyclopedia_of_Integer_Sequences))
 
-Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **nửa chuẩn** (Semistandard Young tableaux, đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn luôn là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
+Trong các ứng dụng khác, biểu đồ Young cũng có thể được điền các số trùng nhau. Nếu các số trong cùng một cột tăng nghiêm ngặt, còn các số trong cùng một hàng tăng không giảm, bảng Young đó được gọi là **bảng Young nửa chuẩn** (đôi khi gọi là chặt theo cột). Dãy ghi lại số lần xuất hiện của từng số trong bảng Young được xem là **trọng số** của bảng Young. Vì vậy, trọng số của bảng Young chuẩn luôn là $(1,1,\ldots,1)$, bởi trong bảng Young chuẩn, mỗi số nguyên dương từ $1$ đến $n$ xuất hiện đúng một lần.
 
 <span id="thuật-toán-chèn-bảng-young-chuẩn"></span>
 
@@ -65,13 +65,13 @@ Ví dụ, các bước chèn $3$ vào bảng Young $(2, 5, 9)(6, 7)(8)$ là:
 
 ### Các biến thể
 
-Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể** (variations). Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng (plane partitions), các điều kiện tăng trong định nghĩa trên thường được đổi thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
+Bảng Young không hoàn toàn chuẩn theo nghĩa nghiêm ngặt có nhiều **biến thể**. Chẳng hạn, bảng Young chặt theo hàng yêu cầu các số trong cùng hàng tăng nghiêm ngặt và các số trong cùng cột tăng không giảm; nó chính là liên hợp của bảng Young chặt theo cột. Ngoài ra, trong lý thuyết phân hoạch phẳng, các điều kiện tăng trong định nghĩa trên thường được đổi thành giảm. Một biến thể khác là bảng Young dạng dải: trước hết gom một số ô thành từng nhóm, rồi yêu cầu các ô trong cùng một nhóm phải được điền cùng một số.
 
 <span id="bảng-young-lệch"></span>
 
 ### Bảng Young lệch
 
-Cho hai biểu đồ Young $\lambda = (\lambda_{1}, \lambda_{2}, \ldots)$ và $\mu = (\mu_{1}, \mu_{2},\ldots)$, trong đó $\lambda$ chứa $\mu$, tức là $\mu_{i} \leq \lambda_{i}$ với mọi $i$. Định nghĩa **biểu đồ Young lệch** $\lambda/\mu$ là tập các ô của $\lambda$ sau khi bỏ đi tất cả các ô của $\mu$, tức là hiệu tập hợp $\lambda$ trừ $\mu$. Điền phần tử vào các ô của biểu đồ Young lệch sẽ tạo thành **bảng Young lệch** (Skew tableaux).
+Cho hai biểu đồ Young $\lambda = (\lambda_{1}, \lambda_{2}, \ldots)$ và $\mu = (\mu_{1}, \mu_{2},\ldots)$, trong đó $\lambda$ chứa $\mu$, tức là $\mu_{i} \leq \lambda_{i}$ với mọi $i$. Định nghĩa **biểu đồ Young lệch** $\lambda/\mu$ là tập các ô của $\lambda$ sau khi bỏ đi tất cả các ô của $\mu$, tức là hiệu tập hợp $\lambda$ trừ $\mu$. Điền phần tử vào các ô của biểu đồ Young lệch sẽ tạo thành **bảng Young lệch**.
 
 Ví dụ, hình sau là một bảng Young lệch chuẩn ứng với phân hoạch số nguyên $(5,4,1)$:
 

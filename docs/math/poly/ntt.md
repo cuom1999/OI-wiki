@@ -8,7 +8,7 @@ author: ChungZH, Yukimaikoriya, tigerruanyifan, isdanni, Saisyc, 383494, Tiphere
 
 **Biến đổi số học** là một thuật toán nhanh để tính tích chập (convolution). Một trong những thuật toán thường dùng nhất chính là biến đổi Fourier nhanh đã nhắc ở phần trước. Tuy nhiên, FFT có một số nhược điểm khi hiện thực: vector dữ liệu phải được xử lý bằng cách nhân với ma trận hệ số phức, mà phần thực và phần ảo của mỗi hệ số phức là các giá trị của hàm sin và cos, nên phần lớn hệ số là số thực dấu phẩy động. Nói cách khác, cần thực hiện phép toán trên số phức và số dấu phẩy động, khiến lượng tính toán lớn hơn và sai số do phép toán dấu phẩy động cũng đáng kể hơn.
 
-NTT xử lý trường hợp nhân đa thức có lấy modulo. Có thể nói nó chịu một số ràng buộc từ modulo, và các số thường tương đối lớn. Modulo phổ biến nhất hiện nay là 998244353.
+NTT xử lý trường hợp nhân đa thức có lấy dư theo môđun. Có thể nói nó chịu một số ràng buộc từ môđun, và các số thường tương đối lớn. Môđun phổ biến nhất hiện nay là 998244353.
 
 <span id="kiến-thức-cần-có"></span>
 

@@ -4,7 +4,7 @@
 
 15-puzzle thường còn được gọi là **n-puzzle**, trong đó số $n$ chỉ tổng số ô vuông trong bàn. Các biến thể kích thước khác của 15-puzzle cũng dùng tên tương tự, ví dụ $8$-puzzle chỉ trò chơi có $8$ ô đặt trong bàn $3\times3$. Tuy vậy, $15$-puzzle cũng có thể được gọi là $16$-puzzle, trong đó 16 chỉ sức chứa của bàn. Các bài toán mở rộng của nó đôi khi cũng bao gồm bàn trượt kích thước $n \times m$.
 
-15-puzzle là một bài toán kinh điển trong mô hình hóa bằng [thuật toán heuristic](../search/heuristic.md). Dạng thường gặp của bài toán sử dụng [khoảng cách Manhattan](../geometry/distance.md#khoảng-cách-manhattan) và số ô đặt sai vị trí; cả hai đều là heuristic chấp nhận được (tiếng Anh: admissible heuristic), nghĩa là chúng không bao giờ đánh giá quá cao số bước di chuyển còn lại, qua đó bảo đảm tính tối ưu của một số thuật toán tìm kiếm, chẳng hạn [thuật toán A \*](../search/astar.md).
+15-puzzle là một bài toán kinh điển trong mô hình hóa bằng [thuật toán heuristic](../search/heuristic.md). Dạng thường gặp của bài toán sử dụng [khoảng cách Manhattan](../geometry/distance.md#khoảng-cách-manhattan) và số ô đặt sai vị trí; cả hai đều là hàm đánh giá chấp nhận được, nghĩa là chúng không bao giờ đánh giá quá cao số bước di chuyển còn lại, qua đó bảo đảm tính tối ưu của một số thuật toán tìm kiếm, chẳng hạn [thuật toán A \*](../search/astar.md).
 
 ???+ note "Ghi chú"
     **Trò chơi trượt ô** là một loại câu đố trí tuệ trong đó người chơi trượt các ô trên mặt phẳng để tạo thành một cách sắp xếp cụ thể. Các trò chơi trượt ô thường gặp gồm câu đố số, Klotski và Rush Hour. Trong đó 15-puzzle là một trong những trò chơi trượt ô lâu đời nhất, do Noyes Chapman phát minh và rất thịnh hành vào thập niên 1880. Khác với các câu đố kiểu tour khác, trò chơi trượt ô cấm mọi ô rời khỏi bàn, và đặc điểm này phân biệt nó với các câu đố kiểu sắp xếp lại.
@@ -31,7 +31,7 @@ N-Puzzle hỗ trợ các thuật toán tìm kiếm trên đồ thị thường g
 
 ### Lý thuyết nhóm
 
-Vì các cấu hình của trò chơi trượt số 15 ô có thể được sinh bởi các "3-cycle" (tiếng Anh: 3-cycles), có thể chứng minh rằng trò chơi trượt số 15 ô có thể được biểu diễn bằng nhóm luân phiên $A_{15}$. Tổng quát hơn, mọi trò chơi trượt số dùng $2\times k-1$ ô vuông cùng diện tích đều có thể được biểu diễn bằng nhóm luân phiên $A_{2k-1}$.
+Vì các cấu hình của trò chơi trượt số 15 ô có thể được sinh bởi các chu trình 3 phần tử, có thể chứng minh rằng trò chơi trượt số 15 ô có thể được biểu diễn bằng nhóm luân phiên $A_{15}$. Tổng quát hơn, mọi trò chơi trượt số dùng $2\times k-1$ ô vuông cùng diện tích đều có thể được biểu diễn bằng nhóm luân phiên $A_{2k-1}$.
 
 ## Bài tập
 
