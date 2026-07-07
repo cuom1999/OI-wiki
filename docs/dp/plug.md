@@ -103,7 +103,7 @@ Giai đoạn: thứ tự thực hiện quy hoạch động; kết quả của c�
 
 <span id="ví-dụ"></span>
 
-???+ note "Ví dụ [「HDU 1693」Eat the Trees](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
+???+ note "Ví dụ [「HDU 1693」Ăn cây](https://acm.hdu.edu.cn/showproblem.php?pid=1693)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng một số chu trình; một số vị trí có chướng ngại.
 
 Nói nghiêm ngặt, bài toán nhiều chu trình không thuộc DP đầu nối, vì cũng như bài toán lát domino ở trên, chỉ cần ghi lại đầu nối có tồn tại hay không, rồi ghép và sinh đầu nối theo từng cặp.

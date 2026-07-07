@@ -332,7 +332,7 @@ int merge(int a, int b) {
 
 Trie nào cũng có thể hợp nhất. Nói cách khác, thao tác hợp nhất trie không chỉ giới hạn ở 01-trie.
 
-???+ note "[luogu-P6018 Ynoi2010 Fusion tree](https://www.luogu.com.cn/problem/P6018)"
+???+ note "[Luogu P6018 Ynoi2010 Cây hợp nhất](https://www.luogu.com.cn/problem/P6018)"
     Cho một cây $n$ đỉnh, mỗi đỉnh có trọng số. Có $m$ thao tác.
     Cần hỗ trợ các thao tác sau.
     

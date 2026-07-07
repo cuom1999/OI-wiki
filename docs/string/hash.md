@@ -468,7 +468,7 @@ Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường ti�
 <span id="bài-tập-ví-dụ_1"></span>
 ### Bài tập ví dụ
 
-???+ note "[CF1200E Compress Words](http://codeforces.com/contest/1200/problem/E)"
+???+ note "[CF1200E Nén các từ](http://codeforces.com/contest/1200/problem/E)"
     Cho nhiều chuỗi. Chuỗi đáp án ban đầu rỗng. Ở bước thứ $i$, thêm chuỗi thứ $i$ vào cuối chuỗi đáp án, nhưng cố gắng loại bỏ phần lặp (tức loại bỏ chuỗi dài nhất vừa là hậu tố của đáp án hiện tại, vừa là tiền tố của chuỗi thứ $i$). Tìm chuỗi cuối cùng thu được.
     
     Số lượng chuỗi không vượt quá $10^5$, tổng độ dài không vượt quá $10^6$.

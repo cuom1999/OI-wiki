@@ -517,7 +517,7 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
 <span id="ví-dụ"></span>
 ## Ví dụ
 
-???+ note "[CF 1103E - Radix sum](https://www.luogu.com.cn/problem/CF1103E)"
+???+ note "[CF 1103E - Tổng theo cơ số](https://www.luogu.com.cn/problem/CF1103E)"
     Cho một dãy $a_1,a_2,...,a_n$ độ dài $n$. Với mỗi $p \in [0,n-1]$, tính số dãy số nguyên $i_1,i_2,...,i_n$ thỏa mãn các điều kiện sau, lấy modulo $2^{58}$:
     
     -   $\forall j \in [1,n] , i_j \in [1,n]$;
