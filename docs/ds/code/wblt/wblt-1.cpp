@@ -20,7 +20,7 @@ void push_up(int x) {
 
 // --8<-- [end:push-up]
 // --8<-- [start:helper]
-// Return a new empty node.
+// Trả về một nút rỗng mới.
 int new_node() {
   int x = top ? pool[--top] : ++id;
   sz[x] = val[x] = ch[x][0] = ch[x][1] = 0;
@@ -33,7 +33,7 @@ void del_node(int& x) {
   x = 0;
 }
 
-// Return a new leaf node of value v.
+// Trả về một nút lá mới có giá trị v.
 int new_leaf(int v) {
   int x = new_node();
   val[x] = v;
@@ -41,7 +41,7 @@ int new_leaf(int v) {
   return x;
 }
 
-// Return a new node with subtrees x and y.
+// Trả về một nút mới với hai cây con x và y.
 int join(int x, int y) {
   int z = new_node();
   ch[z][0] = x;
@@ -50,7 +50,7 @@ int join(int x, int y) {
   return z;
 }
 
-// Return subtrees of x and release x.
+// Trả về các cây con của x và giải phóng x.
 auto cut(int& x) {
   int y = ch[x][0];
   int z = ch[x][1];
@@ -60,8 +60,8 @@ auto cut(int& x) {
 
 // --8<-- [end:helper]
 // --8<-- [start:too-heavy]
-// Check whether a subtree of weight SX is too heavy
-//     in a tree of weight SX + SY.
+// Kiểm tra một cây con có trọng lượng SX có quá nặng
+//     trong cây có trọng lượng SX + SY hay không.
 bool too_heavy(int sx, int sy) {
   // or sx > sy * 3;
   return sy < ALPHA * (sx + sy);
@@ -73,7 +73,7 @@ bool too_heavy(int sx, int sy) {
 #if ROTATE_BY_JOINING
 
 // --8<-- [start:rotate-by-joining]
-// Rotate the subtree at x such that ch[x][r] is the new root.
+// Xoay cây con tại x sao cho ch[x][r] trở thành gốc mới.
 void rotate(int& x, bool r) {
   int a, b, c, d;
   std::tie(a, b) = cut(x);
@@ -90,7 +90,7 @@ void rotate(int& x, bool r) {
 #else
 
 // --8<-- [start:rotate-not-by-joining]
-// Rotate the subtree at x such that ch[x][r] is the new root.
+// Xoay cây con tại x sao cho ch[x][r] trở thành gốc mới.
 void rotate(int& x, bool r) {
   int y = ch[x][r];
   ch[x][r] = ch[y][!r];
@@ -104,13 +104,13 @@ void rotate(int& x, bool r) {
 #endif
 
 // --8<-- [start:balance]
-// Check if ch[x][!r] is too heavy so that a double rotation is needed.
+// Kiểm tra ch[x][!r] có quá nặng đến mức cần xoay kép hay không.
 bool need_double_rotation(int x, bool r) {
   // or sz[ch[x][!r]] > sz[ch[x][r]] * 2;
   return sz[ch[x][!r]] > sz[x] / (2 - ALPHA);
 }
 
-// Balance the subtree at x;
+// Cân bằng cây con tại x.
 void balance(int& x) {
   if (sz[x] == 1) return;
   bool r = sz[ch[x][1]] > sz[ch[x][0]];
@@ -123,7 +123,7 @@ void balance(int& x) {
 
 // --8<-- [end:balance]
 // --8<-- [start:merge-by-balancing]
-// Merge two subtrees.
+// Hợp nhất hai cây con.
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   int a, b;
@@ -146,7 +146,7 @@ int merge(int x, int y) {
 #else
 
 // --8<-- [start:merge]
-// Merge two subtrees.
+// Hợp nhất hai cây con.
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   int a, b, c, d;
@@ -173,7 +173,7 @@ int merge(int x, int y) {
 
 // --8<-- [end:merge]
 // --8<-- [start:balance-by-merging]
-// Balance the subtree at x;
+// Cân bằng cây con tại x.
 void balance(int& x) {
   if (sz[x] == 1) return;
   if (too_heavy(sz[ch[x][0]], sz[ch[x][1]]) ||
@@ -188,7 +188,7 @@ void balance(int& x) {
 #endif
 
 // --8<-- [start:insert-remove]
-// Insert v to the subtree at x.
+// Chèn v vào cây con tại x.
 void insert(int& x, int v) {
   if (!x) {
     x = new_leaf(v);
@@ -205,10 +205,10 @@ void insert(int& x, int v) {
   }
 }
 
-// Insert v.
+// Chèn v.
 void insert(int v) { insert(rt, v); }
 
-// Remove v from the subtree at x.
+// Xóa v khỏi cây con tại x.
 bool remove(int& x, int v) {
   if (!x) return false;
   if (sz[x] == 1) {
@@ -231,12 +231,12 @@ bool remove(int& x, int v) {
   }
 }
 
-// Remove v.
+// Xóa v.
 bool remove(int v) { return remove(rt, v); }
 
 // --8<-- [end:insert-remove]
 // --8<-- [start:rank]
-// Count the number of nodes less than v in the subtree at x.
+// Đếm số nút nhỏ hơn v trong cây con tại x.
 int count_less_than(int x, int v) {
   if (!x) return 0;
   int res = 0;
@@ -251,13 +251,13 @@ int count_less_than(int x, int v) {
   return res + (val[x] < v ? 1 : 0);
 }
 
-// Find the rank of v.
+// Tìm rank của v.
 int find_rank(int v) { return count_less_than(rt, v) + 1; }
 
 // --8<-- [end:rank]
 // --8<-- [start:kth-element]
-// Find the k-th element in the subtree at x.
-// It is guaranteed that such an element exists.
+// Tìm phần tử thứ k trong cây con tại x.
+// Bảo đảm phần tử này tồn tại.
 int find_kth(int x, int k) {
   while (sz[x] > 1) {
     if (sz[ch[x][0]] >= k) {
@@ -270,15 +270,15 @@ int find_kth(int x, int k) {
   return val[x];
 }
 
-// Find the k-th element.
+// Tìm phần tử thứ k.
 int find_kth(int k) { return k > sz[rt] || k <= 0 ? -1 : find_kth(rt, k); }
 
 // --8<-- [end:kth-element]
 // --8<-- [start:prev-next]
-// Find the predecessor of v.
+// Tìm phần tử đứng trước v.
 int find_prev(int v) { return find_kth(find_rank(v) - 1); }
 
-// Find the successor of v.
+// Tìm phần tử đứng sau v.
 int find_next(int v) { return find_kth(find_rank(v + 1)); }
 
 // --8<-- [end:prev-next]

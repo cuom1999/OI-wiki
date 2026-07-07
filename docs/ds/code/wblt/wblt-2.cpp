@@ -28,7 +28,7 @@ void push_down(int x) {
   }
 }
 
-// Return a new empty node.
+// Trả về một nút rỗng mới.
 int new_node() {
   int x = top ? pool[--top] : ++id;
   sz[x] = val[x] = ch[x][0] = ch[x][1] = 0;
@@ -41,7 +41,7 @@ void del_node(int& x) {
   x = 0;
 }
 
-// Return a new leaf node of value v.
+// Trả về một nút lá mới có giá trị v.
 int new_leaf(int v) {
   int x = new_node();
   val[x] = v;
@@ -49,7 +49,7 @@ int new_leaf(int v) {
   return x;
 }
 
-// Return a new node with subtrees x and y.
+// Trả về một nút mới với hai cây con x và y.
 int join(int x, int y) {
   int z = new_node();
   ch[z][0] = x;
@@ -58,7 +58,7 @@ int join(int x, int y) {
   return z;
 }
 
-// Return subtrees of x and release x.
+// Trả về các cây con của x và giải phóng x.
 auto cut(int& x) {
   push_down(x);
   int y = ch[x][0];
@@ -67,8 +67,8 @@ auto cut(int& x) {
   return std::make_pair(y, z);
 }
 
-// Check whether a subtree of weight SX is too heavy
-//     in a tree of weight SX + SY.
+// Kiểm tra một cây con có trọng lượng SX có quá nặng
+//     trong cây có trọng lượng SX + SY hay không.
 bool too_heavy(int sx, int sy) {
   // or sx > sy * 3;
   return sy < ALPHA * (sx + sy);
@@ -78,7 +78,7 @@ bool too_heavy(int sx, int sy) {
 
 #if ROTATE_BY_JOINING
 
-// Rotate the subtree at x such that ch[x][r] is the new root.
+// Xoay cây con tại x sao cho ch[x][r] trở thành gốc mới.
 void rotate(int& x, bool r) {
   int a, b, c, d;
   std::tie(a, b) = cut(x);
@@ -93,7 +93,7 @@ void rotate(int& x, bool r) {
 
 #else
 
-// Rotate the subtree at x such that ch[x][r] is the new root.
+// Xoay cây con tại x sao cho ch[x][r] trở thành gốc mới.
 void rotate(int& x, bool r) {
   int y = ch[x][r];
   ch[x][r] = ch[y][!r];
@@ -105,13 +105,13 @@ void rotate(int& x, bool r) {
 
 #endif
 
-// Check if ch[x][!r] is too heavy so that a double rotation is needed.
+// Kiểm tra ch[x][!r] có quá nặng đến mức cần xoay kép hay không.
 bool need_double_rotation(int x, bool r) {
   // or sz[ch[x][!r]] > sz[ch[x][r]] * 2;
   return sz[ch[x][!r]] > sz[x] / (2 - ALPHA);
 }
 
-// Balance the subtree at x;
+// Cân bằng cây con tại x.
 void balance(int& x) {
   if (sz[x] == 1) return;
   push_down(x);
@@ -125,7 +125,7 @@ void balance(int& x) {
   rotate(x, r);
 }
 
-// Merge two subtrees.
+// Hợp nhất hai cây con.
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   int a, b;
@@ -146,7 +146,7 @@ int merge(int x, int y) {
 
 #else
 
-// Merge two subtrees.
+// Hợp nhất hai cây con.
 int merge(int x, int y) {
   if (!x || !y) return x | y;
   int a, b, c, d;
@@ -171,7 +171,7 @@ int merge(int x, int y) {
   }
 }
 
-// Balance the subtree at x;
+// Cân bằng cây con tại x.
 void balance(int& x) {
   if (sz[x] == 1) return;
   if (too_heavy(sz[ch[x][0]], sz[ch[x][1]]) ||
@@ -185,8 +185,8 @@ void balance(int& x) {
 #endif
 
 // --8<-- [start:split]
-// Split the subtree at x.
-// The left half will have k elements.
+// Tách cây con tại x.
+// Nửa bên trái sẽ có k phần tử.
 std::pair<int, int> split(int x, int k) {
   if (!x) return {0, 0};
   if (!k) return {0, x};
@@ -205,7 +205,7 @@ std::pair<int, int> split(int x, int k) {
 }
 
 // --8<-- [end:split]
-// Reverse the interval [l, r].
+// Đảo đoạn [l, r].
 void reverse(int l, int r) {
   int ll, rr;
   std::tie(rt, rr) = split(rt, r);
@@ -214,7 +214,7 @@ void reverse(int l, int r) {
   rt = merge(ll, merge(rt, rr));
 }
 
-// Output the subtree at x.
+// Xuất cây con tại x.
 void print(int x) {
   if (sz[x] == 1) {
     std::cout << val[x] << ' ';
@@ -225,14 +225,14 @@ void print(int x) {
   }
 }
 
-// Output the tree.
+// Xuất cây.
 void print() {
   print(rt);
   std::cout << '\n';
 }
 
 // --8<-- [start:build]
-// Build the tree for the interval [ll, rr].
+// Dựng cây cho đoạn [ll, rr].
 int build(int ll, int rr) {
   if (ll == rr) return new_leaf(ll);
   int mm = (ll + rr) / 2;

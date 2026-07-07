@@ -799,11 +799,11 @@ class AvlTreeMap {
     action(node);
 
     if (node->isLeaf()) {
-      // Case 1: no child
+      // Trường hợp 1: không có con
       node = nullptr;
     } else if (node->right == nullptr) {
       // clang-format off
-      // Case 2: left child only
+      // Trường hợp 2: chỉ có con trái
       //     P
       //     |  remove(N)  P
       //     N  ========>  |
@@ -814,7 +814,7 @@ class AvlTreeMap {
       node->updateHeight();
     } else if (node->left == nullptr) {
       // clang-format off
-      // Case 3: right child only
+      // Trường hợp 3: chỉ có con phải
       //   P
       //   |    remove(N)  P
       //   N    ========>  |
@@ -825,7 +825,7 @@ class AvlTreeMap {
       node->updateHeight();
     } else if (node->right->left == nullptr) {
       // clang-format off
-      // Case 4: both left and right child, right child has no left child
+      // Trường hợp 4: có cả con trái và con phải, con phải không có con trái
       //    |                 |
       //    N    remove(N)    R
       //   / \   ========>   /
@@ -839,12 +839,12 @@ class AvlTreeMap {
       fixBalance(node);
     } else {
       // clang-format off
-      // Case 5: both left and right child, right child is not a leaf
-      //   Step 1. find the node N with the smallest key
-      //           and its parent P on the right subtree
-      //   Step 2. swap S and N
-      //   Step 3. remove node N like Case 1 or Case 3
-      //   Step 4. update height for P
+      // Trường hợp 5: có cả con trái và con phải, con phải không phải lá
+      //   Bước 1. tìm nút N có khóa nhỏ nhất
+      //           và cha P của nó trong cây con phải
+      //   Bước 2. hoán đổi S và N
+      //   Bước 3. xóa nút N như trường hợp 1 hoặc trường hợp 3
+      //   Bước 4. cập nhật chiều cao cho P
       //     |                  |
       //     N                  S                 |
       //    / \                / \                S
@@ -857,20 +857,20 @@ class AvlTreeMap {
       //       R                  R
       // clang-format on
 
-      // Step 1
+      // Bước 1
       NodePtr successor = node->right;
       NodePtr parent = node;
       while (successor->left != nullptr) {
         parent = successor;
         successor = parent->left;
       }
-      // Step 2
+      // Bước 2
       swapNode(node, successor);
-      // Step 3
+      // Bước 3
       parent->left = node->right;
-      // Restore node
+      // Khôi phục nút
       node = successor;
-      // Step 4
+      // Bước 4
       parent->updateHeight();
     }
 

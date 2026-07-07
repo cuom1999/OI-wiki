@@ -36,7 +36,7 @@ int build(int ll, int rr) {
   return x;
 }
 
-// Rebuild a subtree.
+// Dựng lại một cây con.
 void rebuild(int& x) {
   n_tmp = 0;
   flatten(x);
@@ -45,7 +45,7 @@ void rebuild(int& x) {
 
 // --8<-- [end:rebuild]
 // --8<-- [start:insert]
-// Insert v into subtree of x.
+// Chèn v vào cây con của x.
 bool insert(int& x, int v, int dep) {
   bool check = false;
   if (!x) {
@@ -69,12 +69,12 @@ bool insert(int& x, int v, int dep) {
   return check;
 }
 
-// Insert v into the tree.
+// Chèn v vào cây.
 void insert(int v) { insert(rt, v, 0); }
 
 // --8<-- [end:insert]
 // --8<-- [start:remove]
-// Remove v from subtree of x.
+// Xóa v khỏi cây con của x.
 bool remove(int x, int v) {
   if (!x) return false;
   bool succ = true;
@@ -92,7 +92,7 @@ bool remove(int x, int v) {
   return succ;
 }
 
-// Remove v from the tree.
+// Xóa v khỏi cây.
 bool remove(int v) {
   bool succ = remove(rt, v);
   if (!tot_active) {
@@ -105,7 +105,7 @@ bool remove(int v) {
 
 // --8<-- [end:remove]
 // --8<-- [start:find-rank]
-// Find the rank of v, i.e., #{val < v} + 1.
+// Tìm rank của v, tức #{val < v} + 1.
 int find_rank(int v) {
   int res = 0;
   int x = rt;
@@ -122,7 +122,7 @@ int find_rank(int v) {
 
 // --8<-- [end:find-rank]
 // --8<-- [start:find-kth]
-// Find the k-th smallest element.
+// Tìm phần tử nhỏ thứ k.
 int find_kth(int k) {
   if (k <= 0 || sz[rt] < k) return -1;
   int x = rt;
@@ -141,10 +141,10 @@ int find_kth(int k) {
 
 // --8<-- [end:find-kth]
 // --8<-- [start:pred-succ]
-// Find predecessor.
+// Tìm phần tử trước.
 int find_prev(int x) { return find_kth(find_rank(x) - 1); }
 
-// Find successor.
+// Tìm phần tử sau.
 int find_next(int x) { return find_kth(find_rank(x + 1)); }
 
 // --8<-- [end:pred-succ]

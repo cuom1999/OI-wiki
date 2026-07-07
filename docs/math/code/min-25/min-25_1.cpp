@@ -1,4 +1,4 @@
-/* LOJ #6053: Ham don gian */
+/* LOJ #6053: Hàm đơn giản */
 #include <cmath>
 #include <iostream>
 

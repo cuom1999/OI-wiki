@@ -2,21 +2,21 @@
 #include <queue>
 using namespace std;
 
-constexpr int MAXN = 2000000;  // Twice the total string length.
-constexpr int CHAR_NUM = 30;   // Alphabet size; update (-'a') below as needed.
-constexpr int NUM = 15;        // Number of strings.
+constexpr int MAXN = 2000000;  // Gấp đôi tổng độ dài các chuỗi.
+constexpr int CHAR_NUM = 30;   // Kích thước bảng chữ cái; cập nhật (-'a') bên dưới nếu cần.
+constexpr int NUM = 15;        // Số lượng chuỗi.
 
 struct exSAM {
-  int len[MAXN];             // Node length.
-  int link[MAXN];            // Suffix link.
-  int next[MAXN][CHAR_NUM];  // Transitions.
-  int tot;                   // Total number of nodes: [0, tot).
-  int lenSorted[MAXN];   // Array sorted by len; only [1, tot) is sorted.
-                         // The final index range is [0, tot - 1).
-  int sizeC[MAXN][NUM];  // Number of substrings for each string.
-  int curString;         // Actual number of strings.
+  int len[MAXN];             // Độ dài nút.
+  int link[MAXN];            // Liên kết hậu tố.
+  int next[MAXN][CHAR_NUM];  // Chuyển trạng thái.
+  int tot;                   // Tổng số nút: [0, tot).
+  int lenSorted[MAXN];   // Mảng được sắp theo len; chỉ [1, tot) được sắp.
+                         // Phạm vi chỉ số cuối cùng là [0, tot - 1).
+  int sizeC[MAXN][NUM];  // Số xâu con của mỗi chuỗi.
+  int curString;         // Số lượng chuỗi thực tế.
   /**
-   * Auxiliary array used for counting sort.
+   * Mảng phụ dùng cho sắp xếp đếm.
    */
   int lc[MAXN];  // Counts.
 

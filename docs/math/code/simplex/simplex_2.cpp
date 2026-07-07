@@ -9,15 +9,15 @@
 #include <vector>
 
 // --8<-- [start:core]
-int m, n;  // Number of constraints and variables.
+int m, n;  // Số ràng buộc và số biến.
 std::vector<std::vector<long double>>
-    tab;                             // Compressed tableau (transposed) with
-                                     // first-phase objective attached.
-std::vector<int> B, N;               // Basic and nonbasic variables.
-constexpr long double eps = 1e-12l;  // Precision.
+    tab;                             // Tableau nén (chuyển vị), kèm theo
+                                     // hàm mục tiêu của giai đoạn một.
+std::vector<int> B, N;               // Biến cơ sở và biến phi cơ sở.
+constexpr long double eps = 1e-12l;  // Độ chính xác.
 
 // --8<-- [start:pivot]
-// Pivot on (N[x], B[y]).
+// Xoay trục trên (N[x], B[y]).
 void pivot(int x, int y) {
   std::swap(N[x], B[y]);
   long double v = -1 / tab[x][y];
@@ -36,8 +36,8 @@ void pivot(int x, int y) {
 
 // --8<-- [end:pivot]
 // --8<-- [start:initialize]
-// First phase: find an initial BFS.
-// Return false if no feasible solution.
+// Giai đoạn một: tìm một BFS ban đầu.
+// Trả về false nếu không có nghiệm khả thi.
 bool initialize() {
   while (true) {
     int y = -1;

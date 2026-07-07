@@ -2,14 +2,14 @@
 #include <iostream>
 #include <queue>
 using namespace std;
-constexpr int MAXN = 2000000;  // Twice the total string length.
-constexpr int CHAR_NUM = 30;   // Alphabet size; update (-'a') below as needed.
+constexpr int MAXN = 2000000;  // Gấp đôi tổng độ dài các chuỗi.
+constexpr int CHAR_NUM = 30;   // Kích thước bảng chữ cái; cập nhật (-'a') bên dưới nếu cần.
 
 struct exSAM {
-  int len[MAXN];             // Node length.
-  int link[MAXN];            // Suffix link.
-  int next[MAXN][CHAR_NUM];  // Transitions.
-  int tot;                   // Total number of nodes: [0, tot).
+  int len[MAXN];             // Độ dài nút.
+  int link[MAXN];            // Liên kết hậu tố.
+  int next[MAXN][CHAR_NUM];  // Chuyển trạng thái.
+  int tot;                   // Tổng số nút: [0, tot).
 
   void init() {  // Initialization function.
     tot = 1;
@@ -65,7 +65,7 @@ struct exSAM {
     int root = 0;
     for (int i = 0; i < n; ++i)
       root =
-          insertTrie(root, s[i] - 'a');  // Insert while updating the parent.
+          insertTrie(root, s[i] - 'a');  // Chèn đồng thời cập nhật cha.
   }
 
   void build() {

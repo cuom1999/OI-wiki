@@ -51,7 +51,7 @@ struct treap {  // Duy trì trực tiếp thành một cấu trúc dữ liệu, 
     }
   }
 
-  bool del(int &k, int x) {  // Xoa nut
+  bool del(int &k, int x) {  // Xóa nút
     if (!k) return false;
     if (val[k] == x) {
       if (w[k] > 1) {
