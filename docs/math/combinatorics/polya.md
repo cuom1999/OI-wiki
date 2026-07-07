@@ -515,8 +515,8 @@ Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và á
 
 Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba lô hoặc phương pháp tổ hợp để tính số cách tô các chu trình.
 
--   [Luogu P1446 [HNOI2008] Cards](https://www.luogu.com.cn/problem/P1446)
--   [UVA10601 Cubes](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1542)
+-   [Luogu P1446 [HNOI2008] Lá bài](https://www.luogu.com.cn/problem/P1446)
+-   [UVA10601 Khối lập phương](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1542)
 -   [Luogu P4916 [MtOI2018] Vòng ma lực](https://www.luogu.com.cn/problem/P4916)
 
 <span id="đếm-đồ-thị"></span>
@@ -524,7 +524,7 @@ Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba l�
 
 Nguyên lý đếm Pólya có thể dùng cho bài toán [đếm đồ thị](../combinatorics/graph-enumeration.md); khó khăn của loại bài này nằm ở việc liệt kê nhóm hoán vị cạnh của đồ thị.
 
--   [SGU 282. Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)
+-   [SGU 282. Đẳng cấu](https://codeforces.com/problemsets/acmsguru/problem/99999/282)
 -   [Luogu P4727 [HNOI2009] Đếm đẳng cấu đồ thị](https://www.luogu.com.cn/problem/P4727)
 -   [Luogu P4128 [SHOI2006] Đồ thị có màu](https://www.luogu.com.cn/problem/P4128)
 

@@ -103,9 +103,9 @@ Nhìn theo cách khác, tách $n+m$ bước thành hai phần: đi $n$ bước t
 
 ## Bài tập
 
--   [CF785D Anton and School - 2](https://codeforces.com/problemset/problem/785/D)
+-   [CF785D Anton và trường học - 2](https://codeforces.com/problemset/problem/785/D)
 
--   [Luogu P2791 Kindergarten Basketball Problem](https://www.luogu.com.cn/problem/P2791)
+-   [Luogu P2791 Bài toán bóng rổ mẫu giáo](https://www.luogu.com.cn/problem/P2791)
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 

@@ -226,17 +226,17 @@ $$
 -   [BZOJ 3864. Người bạn lớn và cây đa phân](https://hydro.ac/p/bzoj-P3864)
 -   [BZOJ 2863. Nguyên thủ phẫn nộ](https://hydro.ac/p/bzoj-P2863)
 -   [Luogu P6295. Đếm DAG có nhãn](https://www.luogu.com.cn/problem/P6295)
--   [LOJ 6569. Đếm cactus](https://loj.ac/p/6569)
--   [LOJ 6570. Đếm caterpillar](https://loj.ac/p/6570)
+-   [LOJ 6569. Đếm đồ thị xương rồng](https://loj.ac/p/6569)
+-   [LOJ 6570. Đếm cây sâu bướm](https://loj.ac/p/6570)
 -   [Luogu P5434. Đếm sa mạc có nhãn](https://www.luogu.com.cn/problem/P5434)
 -   [Luogu P3343. \[ZJOI2015\] Vùng đất ảo tưởng sau động đất](https://www.luogu.com.cn/problem/P3343)
--   [HDU 5279. YJC plays Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
+-   [HDU 5279. YJC chơi Minecraft](https://acm.hdu.edu.cn/showproblem.php?pid=5279)
 -   [Luogu P7364. Đếm đồ thị hai phía có nhãn](https://www.luogu.com.cn/problem/P7364)
 -   [Luogu P5827. Đếm đồ thị song liên thông đỉnh](https://www.luogu.com.cn/problem/P5827)
 -   [Luogu P5827. Đếm đồ thị song liên thông cạnh](https://www.luogu.com.cn/problem/P5828)
--   [Luogu P6596. How Many of Them](https://www.luogu.com.cn/problem/P6596)
+-   [Luogu P6596. Có bao nhiêu trong số chúng](https://www.luogu.com.cn/problem/P6596)
 -   [Luogu U152448. Đếm đồ thị liên thông mạnh có nhãn](https://www.luogu.com.cn/problem/U152448)
--   [Project Euler 434. Rigid graphs](https://projecteuler.net/problem=434)
+-   [Project Euler 434. Đồ thị cứng](https://projecteuler.net/problem=434)
 
 <span id="riddells-formula"></span>
 ## Công thức Riddell
@@ -315,10 +315,10 @@ Với miền dữ liệu lớn hơn, cách làm cũng tương tự; sau biến �
 <span id="đồ-thị-đơn-không-nhãn"></span>
 ## Đồ thị đơn không nhãn
 
-<span id="ví-dụ-sgu-282-isomorphism-isomorphism"></span>
-### Ví dụ "SGU 282. Isomorphism" Isomorphism
+<span id="ví-dụ-sgu-282-đẳng-cấu"></span>
+### Ví dụ "SGU 282. Đẳng cấu"
 
-???+ note "Ví dụ [\"SGU 282. Isomorphism\" Isomorphism](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
+???+ note "Ví dụ [\"SGU 282. Đẳng cấu\"](https://codeforces.com/problemsets/acmsguru/problem/99999/282)"
     Tóm tắt đề bài: tính số cách tô m màu các cạnh của đồ thị đầy đủ không nhãn trên n đỉnh.
 
 Lưu ý rằng khi m = 2, đối tượng cần tính chính là đồ thị đơn không nhãn [A000088](https://oeis.org/A000088). Xét định lý đếm Polya:
