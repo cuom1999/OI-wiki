@@ -155,7 +155,7 @@ Pell luôn có nghiệm không tầm thường.
 
     Do đó, tồn tại số nguyên $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho có vô hạn
     cặp $(x,y)$ thỏa mãn $x^2-Dy^2 = m$. Phân loại các cặp $(x,y)$ này theo
-    phần dư modulo $m$, suy ra với một cặp số nguyên $(x_0,y_0)$ nào đó, tồn tại
+    phần dư theo môđun $m$, suy ra với một cặp số nguyên $(x_0,y_0)$ nào đó, tồn tại
     vô hạn cặp $(x,y)$ sao cho $x\equiv x_0\pmod m$ và
     $y\equiv y_0\pmod m$. Chọn hai cặp phân biệt bất kỳ $(x_1,y_1)$ và
     $(x_2,y_2)$ thỏa mãn các điều kiện này, khi đó
@@ -562,8 +562,8 @@ hiện xen kẽ.
 
 Để phán định phương trình Pell âm có nghiệm hay không cần tính độ dài chu kỳ của
 khai triển liên phân số của $\sqrt{D}$; điều này không dễ tính, nên cần
-có tiêu chuẩn đơn giản hơn. Tuy nhiên, hiện chưa có điều kiện nào vừa ngắn gọn
-vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết quả đơn giản.
+có tiêu chuẩn gọn hơn. Tuy nhiên, hiện chưa có điều kiện nào vừa ngắn gọn
+vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết quả cơ bản.
 
 ???+ note "Định lý"
     Nếu phương trình $x^2-Dy^2=-1$ có nghiệm, thì $4\nmid D$ và $D$ không chứa
@@ -572,7 +572,7 @@ vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết q
 
 ??? note "Chứng minh"
     Trước hết, phương trình Pell âm có nghiệm có nghĩa $-1$ là thặng dư bậc hai
-    modulo $D$, nên $-1$ cũng là thặng dư bậc hai modulo mọi ước $d$ của $D$; do
+    theo môđun $D$, nên $-1$ cũng là thặng dư bậc hai theo môđun $d$ với mọi ước $d$ của $D$; do
     đó $d\neq 4$ và $d$ không phải số nguyên tố dạng $4k+3$. Ngược lại, phương
     trình $x^2-2y^2=-1$ có nghiệm không tầm thường $(1,1)$. Phần còn lại là
     trường hợp $D$ là số nguyên tố dạng $4k+1$.
@@ -580,8 +580,8 @@ vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết q
     Giả sử $D$ là số nguyên tố dạng $4k+1$, cần chứng minh phương trình
     $x^2-Dy^2=-1$ có nghiệm. Ý tưởng là bắt đầu từ nghiệm cơ bản $(u,v)$ của
     phương trình Pell $x^2-Dy^2=1$, rồi xây dựng nghiệm $(\alpha,\beta)$ của
-    $x^2-Dy^2=-1$. Nếu $u$ chẵn, lấy đồng dư hai vế của $u^2-Dv^2=1$ modulo $4$
-    sẽ được $v^2\equiv -1\pmod 4$, nhưng $-1$ không phải thặng dư bậc hai modulo
+    $x^2-Dy^2=-1$. Nếu $u$ chẵn, lấy đồng dư hai vế của $u^2-Dv^2=1$ theo môđun $4$
+    sẽ được $v^2\equiv -1\pmod 4$, nhưng $-1$ không phải thặng dư bậc hai theo môđun
     $4$. Mâu thuẫn này cho thấy $u$ lẻ. Xét đẳng thức
     $Dv^2=u^2-1=(u+1)(u-1)$. Vì $u$ lẻ,
     $\gcd(u+1,u-1)=\gcd(u+1,2)=2$. Dựa vào điều này, khi phân bổ các thừa số của
@@ -612,13 +612,13 @@ chất của nghiệm phụ thuộc vào giá trị của $D\bmod 4$.
 Một số trường hợp rất dễ xử lý. Nếu $D\equiv 0\pmod 4$, thì $x$ chẵn, nên
 $(x/2,y)$ là nghiệm của phương trình $u^2-(D/4)v^2=\pm 1$. Các trường hợp còn
 lại, $x,y$ đồng thời lẻ hoặc đồng thời chẵn. Nếu $x,y$ đồng thời lẻ,
-lấy modulo $4$ hai vế phương trình cho $D\equiv 1\pmod 4$. Vì vậy, nếu
+lấy đồng dư hai vế phương trình theo môđun $4$ cho $D\equiv 1\pmod 4$. Vì vậy, nếu
 $D\equiv 2,3\pmod 4$, thì $x,y$ chỉ có thể đồng thời chẵn, nên $(x/2,y/2)$ là
 nghiệm của phương trình $u^2-Dv^2=\pm 1$. Do đó, ngoài trừ trường hợp
 $D\equiv 1\pmod 4$, nghiệm của phương trình $x^2-Dy^2=\pm 4$ đều có thể thu
 được từ nghiệm của phương trình Pell (âm) tương ứng.
 
-Bây giờ xét trường hợp $D\equiv 1\pmod 4$; nó không thể chuyển đơn giản về các
+Bây giờ xét trường hợp $D\equiv 1\pmod 4$; nó không thể quy gọn về các
 trường hợp đã giải. Để tìm nghiệm cơ bản, có thể áp dụng thuật toán PQa cho
 $(P_0,Q_0,D)=(1,2,D)$. Khi lần đầu thu được $Q_\ell=2$, đó là cuối chu kỳ đầu
 tiên. Nếu độ dài chu kỳ $\ell$ chẵn, $(G_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản
@@ -801,7 +801,7 @@ có kết quả sau:
     $$
 
 ??? note "Chứng minh"
-    Lấy modulo $8$ hai vế của đẳng thức $x_1^2-Dy_1^2=\pm 4$, thu được
+    Lấy đồng dư hai vế của đẳng thức $x_1^2-Dy_1^2=\pm 4$ theo môđun $8$, thu được
     $D\equiv 5\pmod 8$. Để chứng minh kết quả thứ hai, trước hết chứng minh
     $(x_3,y_3)$ đều chẵn, vì
 
@@ -810,7 +810,7 @@ có kết quả sau:
     $$
 
     nên chỉ cần chứng minh vế phải là số nguyên. Vì bình phương của số lẻ đồng
-    dư $1$ modulo $8$, có
+    dư $1$ theo môđun $8$, có
 
     $$
     \begin{aligned}
@@ -934,7 +934,7 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
 
 Cuối cùng, phần này thảo luận cách giải phương trình Pell tổng quát.
 
-Với trường hợp $|N|<\sqrt{D}$ có một cách giải đơn giản. Kết quả ở trên cho
+Với trường hợp $|N|<\sqrt{D}$ có một cách giải gọn. Kết quả ở trên cho
 biết nghiệm $(x,y)$ của phương trình $x^2-Dy^2=N$ thỏa
 $\dfrac{x}{y}$ bằng một phân số tiệm cận nào đó của $\sqrt{D}$. Hơn nữa, theo
 cấu trúc nghiệm đã thảo luận, mọi nghiệm cơ bản $(x,y)$ đều thỏa
