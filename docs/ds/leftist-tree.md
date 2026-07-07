@@ -210,7 +210,7 @@ Gắn đánh dấu ở gốc; khi xóa gốc hoặc hợp nhất heap, tức khi
 Điểm khác biệt duy nhất của cách cài đặt này là dùng lựa chọn ngẫu nhiên trong quá trình hợp nhất, nhờ đó có thể bỏ các
 tính toán liên quan đến $\mathrm{dist}$.
 Độ phức tạp thời gian trung bình cũng là $O(\log n)$;
-chứng minh chi tiết có thể xem tại [Randomized Heap](https://cp-algorithms.com/data_structures/randomized_heap.html).
+chứng minh chi tiết có thể xem tại [heap ngẫu nhiên](https://cp-algorithms.com/data_structures/randomized_heap.html).
 
 <span id="heap-nghiêng"></span>
 
@@ -231,7 +231,7 @@ Theo phân tích khấu hao, với heap nghiêng từ trên xuống (top-down sk
 
 [Luogu P3377【Mẫu】Cây lệch trái (heap có thể hợp nhất)](https://www.luogu.com.cn/problem/P3377)
 
-[Monkey King](https://www.luogu.com.cn/problem/P1456)
+[Vua khỉ](https://www.luogu.com.cn/problem/P1456)
 
 [Trò chơi La Mã](https://www.luogu.com.cn/problem/P2713)
 
@@ -253,7 +253,7 @@ Lưu ý:
 
 ### Bài toán trên cây
 
-[APIO2012 Dispatching](https://www.luogu.com.cn/problem/P1552)
+[APIO2012 Điều phối](https://www.luogu.com.cn/problem/P1552)
 
 [JLOI2015 Chiếm thành trì](https://loj.ac/problem/2107)
 
@@ -316,6 +316,6 @@ Vì vậy, các thao tác lần lượt như sau:
 
 ## Tài liệu tham khảo
 
-[^ref1]: [Self-Adjusting Heaps](https://epubs.siam.org/doi/10.1137/0215004)
+[^ref1]: [Heap tự điều chỉnh](https://epubs.siam.org/doi/10.1137/0215004)
 
 [huang-leftist-tree]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2005%E8%AE%BA%E6%96%87%E9%9B%86/%E9%BB%84%E6%BA%90%E6%B2%B3--%E5%B7%A6%E5%81%8F%E6%A0%91%E7%9A%84%E7%89%B9%E7%82%B9%E5%8F%8A%E5%85%B6%E5%BA%94%E7%94%A8/%E9%BB%84%E6%BA%90%E6%B2%B3.pdf

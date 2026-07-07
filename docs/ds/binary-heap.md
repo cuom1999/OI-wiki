@@ -180,7 +180,7 @@ dựng tuyến tính như vậy.
 
 ### Heap đối đỉnh
 
-??? note "[SPOJ RMID2 - Running Median Again](https://www.spoj.com/problems/RMID2/)"
+??? note "[SPOJ RMID2 - Lại tính trung vị động](https://www.spoj.com/problems/RMID2/)"
     Duy trì một dãy và hỗ trợ hai thao tác:
     
     1.  Chèn một phần tử vào dãy
@@ -225,5 +225,5 @@ này đều là $O(\log n)$.
 
 ### Bài tập
 
--   [SPOJ RMID - Running Median](https://www.spoj.com/problems/RMID)
+-   [SPOJ RMID - Trung vị động](https://www.spoj.com/problems/RMID)
 -   [Luogu P1801 - Hộp đen](https://www.luogu.com.cn/problem/P1801)

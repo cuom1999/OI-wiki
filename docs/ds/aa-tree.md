@@ -172,8 +172,7 @@ hơn, giúp thao tác tìm kiếm trên cây AA nhanh hơn đôi chút.
 
 ## Tài liệu tham khảo
 
-1.  [AA tree - Wikipedia](https://en.wikipedia.org/wiki/AA_tree)
-2.  [Introduction to AA trees](https://iq.opengenus.org/aa-trees/)
-3.  [AA tree - Visualization](https://kubokovac.eu/gnarley-trees/AAtree.html)
-4.  [CMSC 420 Lecture 6: 2-3, Red-black, and AA
-    trees](https://www.cs.umd.edu/class/fall2019/cmsc420-0201/Lects/lect06-aa.pdf)
+1.  [Cây AA - Wikipedia](https://en.wikipedia.org/wiki/AA_tree)
+2.  [Nhập môn cây AA](https://iq.opengenus.org/aa-trees/)
+3.  [Trực quan hóa cây AA](https://kubokovac.eu/gnarley-trees/AAtree.html)
+4.  [CMSC 420 Bài giảng 6: cây 2-3, cây đỏ-đen và cây AA](https://www.cs.umd.edu/class/fall2019/cmsc420-0201/Lects/lect06-aa.pdf)

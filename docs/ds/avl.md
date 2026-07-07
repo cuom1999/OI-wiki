@@ -166,6 +166,6 @@ thường.
 ## Tài liệu khác
 
 Có thể quan sát quá trình duy trì cân bằng của cây AVL tại
-[AVL Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
+[Trực quan hóa cây AVL](https://www.cs.usfca.edu/~galles/visualization/AVLtree.html).
 
-[Wikipedia -- AVL tree](https://en.wikipedia.org/wiki/AVL_tree)
+[Wikipedia -- cây AVL](https://en.wikipedia.org/wiki/AVL_tree)

@@ -455,8 +455,8 @@ Có thể chứng minh rằng độ phức tạp thời gian của thao tác nà
 
 ## Tài liệu tham khảo
 
-1.  [Skip Lists: A Probabilistic Alternative to Balanced Trees][skip-lists-paper]
-2.  [Skip List](https://en.wikipedia.org/wiki/Skip_list)
-3.  [A Skip List Cookbook](http://cglab.ca/~morin/teaching/5408/refs/p90b.pdf)
+1.  [Skip list: một lựa chọn xác suất thay thế cây cân bằng][skip-lists-paper]
+2.  [Skip list](https://en.wikipedia.org/wiki/Skip_list)
+3.  [Sổ tay skip list](http://cglab.ca/~morin/teaching/5408/refs/p90b.pdf)
 
 [skip-lists-paper]: https://15721.courses.cs.cmu.edu/spring2018/papers/08-oltpindexes1/pugh-skiplists-cacm1990.pdf
