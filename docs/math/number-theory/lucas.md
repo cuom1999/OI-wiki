@@ -287,7 +287,7 @@ $$
 \end{cases}
 $$
 
-Cuối cùng, dùng [định lý phần dư Trung Hoa](./crt.md#định-nghĩa) để tìm phần dư
+Cuối cùng, dùng [định lý số dư Trung Hoa](./crt.md#định-nghĩa) để tìm phần dư
 theo môđun $m$.
 
 <span id="cài-đặt-tham-khảo-exlucas"></span>
@@ -303,7 +303,7 @@ Cuối cùng là cài đặt tham khảo cho bài mẫu [Hệ số nhị thức]
 Thuật toán này phân tích môđun $m$ thành các lũy thừa nguyên tố trong bước tiền
 xử lý, sau đó với mọi $p^\alpha$ tiền xử lý tích của các số tự nhiên từ $1$ đến
 $p^\alpha$ không phải bội của $p$, cũng như hệ số tương ứng khi gộp đáp án bằng
-định lý phần dư Trung Hoa. Độ phức tạp tiền xử lý là
+định lý số dư Trung Hoa. Độ phức tạp tiền xử lý là
 $O(\sqrt{m}+\sum_ip_i^{\alpha_i})$. Với mỗi truy vấn, độ phức tạp là
 $O(\log m+\sum_i\log_{p_i}n)$; hai hạng trong độ phức tạp lần lượt đến từ việc
 tính nghịch đảo và việc tính số mũ, phần dư giai thừa.
