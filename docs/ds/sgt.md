@@ -284,7 +284,7 @@ Cuối phần này là cài đặt tham khảo cho bài mẫu [Cây cân bằng 
 
 -   Galperin, Igal, and Ronald L. Rivest. "Scapegoat trees." Proceedings of the fourth annual ACM-SIAM Symposium on
     Discrete Algorithms. 1993.
--   [Scapegoat Tree - Wikipedia](https://en.wikipedia.org/wiki/Scapegoat_tree)
+-   [Cây scapegoat - Wikipedia](https://en.wikipedia.org/wiki/Scapegoat_tree)
 -   [Bài viết của riteme về cây scapegoat](https://riteme.site/blog/2016-4-6/scapegoat.html)
 
 [^tot-cnt]: Cũng có thể chỉ thống kê số nút chưa bị xóa.

@@ -72,7 +72,7 @@ for (int i = 1; i <= n; i++) {
 
 ## Bài tập ví dụ
 
-???+ note "[HDU 1506. Largest Rectangle in a Histogram](https://acm.hdu.edu.cn/showproblem.php?pid=1506)"
+???+ note "[HDU 1506. Hình chữ nhật lớn nhất trong histogram](https://acm.hdu.edu.cn/showproblem.php?pid=1506)"
     Có $n$ vị trí, chiều cao tại mỗi vị trí là $h_i$; cần tìm hình chữ nhật con có diện tích lớn
     nhất. Xem hình sau:
 

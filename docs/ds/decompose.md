@@ -141,16 +141,16 @@ khối.
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [UVa - 12003 - Array Transformer](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3154)
--   [UVa - 11990 Dynamic Inversion](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3141)
--   [SPOJ - Give Away](http://www.spoj.com/problems/GIVEAWAY/)
--   [Codeforces - Till I Collapse](http://codeforces.com/contest/786/problem/C)
--   [Codeforces - Destiny](http://codeforces.com/contest/840/problem/D)
--   [Codeforces - Holes](http://codeforces.com/contest/13/problem/E)
--   [Codeforces - XOR and Favorite Number](https://codeforces.com/problemset/problem/617/E)
--   [Codeforces - Powerful array](http://codeforces.com/problemset/problem/86/D)
+-   [UVa - 12003 - Biến đổi mảng](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3154)
+-   [UVa - 11990 Nghịch thế động](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3141)
+-   [SPOJ - Cho đi](http://www.spoj.com/problems/GIVEAWAY/)
+-   [Codeforces - Đến khi tôi gục ngã](http://codeforces.com/contest/786/problem/C)
+-   [Codeforces - Định mệnh](http://codeforces.com/contest/840/problem/D)
+-   [Codeforces - Lỗ](http://codeforces.com/contest/13/problem/E)
+-   [Codeforces - XOR và con số yêu thích](https://codeforces.com/problemset/problem/617/E)
+-   [Codeforces - Mảng mạnh](http://codeforces.com/problemset/problem/86/D)
 -   [SPOJ - DQUERY](https://www.spoj.com/problems/DQUERY)
 
     **Trang này chủ yếu được dịch từ bài viết [Sqrt-декомпозиция](http://e-maxx.ru/algo/sqrt_decomposition) và bản dịch
-    tiếng Anh [Sqrt Decomposition](https://cp-algorithms.com/data_structures/sqrt_decomposition.html). Bản tiếng Nga được
+    tiếng Anh [Phân rã căn](https://cp-algorithms.com/data_structures/sqrt_decomposition.html). Bản tiếng Nga được
     cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**

@@ -256,7 +256,7 @@ Nhờ vậy, khi xóa một nút, sẽ không xóa nhầm các nút khác.
 Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không,
 các thao tác hợp nhất và xóa về sau sẽ không còn đúng.
 
-??? example "Bài mẫu [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/), cài đặt tham khảo"
+??? example "Bài mẫu [SPOJ JMFILTER - Bộ lọc thư rác](https://www.spoj.com/problems/JMFILTER/), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_4.cpp"
@@ -276,7 +276,7 @@ xem trong ví dụ.
 
 Có thể định nghĩa trọng số trên các cạnh của DSU,
 cùng với phép toán cập nhật trọng số khi nén đường đi, để giải quyết nhiều bài toán hơn.
-Chẳng hạn, với bài kinh điển "NOI2001 Food Chain",
+Chẳng hạn, với bài kinh điển "NOI2001 Chuỗi thức ăn",
 có thể duy trì nhóm cộng theo môđun $3$ trên trọng số cạnh.
 Với các bài toán duy trì trọng số cạnh theo môđun nhỏ như vậy,
 còn có thể giải bằng cách tách một điểm DSU thành nhiều trạng thái.
@@ -293,7 +293,7 @@ phải cộng khoảng cách từ cha cũ đến gốc vào trọng số đang l
 Tương tự, khi hợp nhất hai tập hợp chứa hai nút,
 cần tính trọng số của cạnh mới nối giữa hai nút gốc.
 
-??? example "Bài mẫu [Library Checker - Unionfind with Potential](https://judge.yosupo.jp/problem/unionfind_with_potential), cài đặt tham khảo"
+??? example "Bài mẫu [Library Checker - DSU có thế năng](https://judge.yosupo.jp/problem/unionfind_with_potential), cài đặt tham khảo"
     === "C++"
         ```cpp
         --8<-- "docs/ds/code/dsu/dsu_5.cpp"
@@ -310,7 +310,7 @@ cần tính trọng số của cạnh mới nối giữa hai nút gốc.
 
 Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần lớn đều cần thiết kế biến thể phù hợp với đề bài.
 
-???+ example "[UVa11987 Almost Union-Find](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=229&page=show_problem&problem=3138)"
+???+ example "[UVa11987 Gần như DSU](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=229&page=show_problem&problem=3138)"
     Cài đặt một cấu trúc dữ liệu tương tự DSU, hỗ trợ các thao tác sau:
 
     1.  Hợp nhất hai tập hợp chứa hai phần tử.
@@ -342,7 +342,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
         --8<-- "docs/ds/code/dsu/dsu_1.py"
         ```
 
-???+ example "[Luogu P2024 NOI2001 Food Chain](https://www.luogu.com.cn/problem/P2024)"
+???+ example "[Luogu P2024 NOI2001 Chuỗi thức ăn](https://www.luogu.com.cn/problem/P2024)"
     Trong vương quốc động vật có ba loại động vật $A,B,C$;
     chuỗi thức ăn của ba loại động vật này tạo thành một vòng thú vị.
     $A$ ăn $B$, $B$ ăn $C$, và $C$ ăn $A$.
@@ -421,7 +421,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
         --8<-- "docs/ds/code/dsu/dsu_2.py"
         ```
 
-???+ example "[ABC396E Min of Restricted Sum](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
+???+ example "[ABC396E Tổng bị ràng buộc nhỏ nhất](https://atcoder.jp/contests/abc396/tasks/abc396_e)"
     Cho các số nguyên $N, M$ và ba dãy số nguyên độ dài $M$:
     $X=(X_1,X_2,\ldots,X_M)$, $Y=(Y_1,Y_2,\ldots,Y_M)$, $Z=(Z_1,Z_2,\ldots,Z_M)$.
     Bảo đảm mọi phần tử của $X$ và $Y$ đều nằm trong phạm vi từ $1$ đến $N$.
@@ -460,10 +460,10 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 
 ## Bài tập
 
--   [NOI2015 Program Automatic Analysis](https://uoj.ac/problem/127)
--   [JSOI2008 Star Wars](https://www.luogu.com.cn/problem/P1197)
--   [NOIP2023 Three-Valued Logic](https://www.luogu.com.cn/problem/P9869)
--   [NOI2002 Legend of Galactic Heroes](https://www.luogu.com.cn/problem/P1196)
+-   [NOI2015 Phân tích tự động chương trình](https://uoj.ac/problem/127)
+-   [JSOI2008 Chiến tranh giữa các vì sao](https://www.luogu.com.cn/problem/P1197)
+-   [NOIP2023 Logic ba giá trị](https://www.luogu.com.cn/problem/P9869)
+-   [NOI2002 Huyền thoại anh hùng ngân hà](https://www.luogu.com.cn/problem/P1196)
 
 <span id="ứng-dụng-khác"></span>
 

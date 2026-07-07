@@ -1,6 +1,6 @@
 author: Ir1d, sshwy, Enter-tainer, H-J-Granger, ouuan, GavinZhengOI, hsfzLZH1, xyf007
 
-[Giá trị nhỏ thứ $k$ trên đoạn tĩnh (POJ 2104 K-th Number)](http://poj.org/problem?id=2104) có thể được giải bằng
+[Giá trị nhỏ thứ $k$ trên đoạn tĩnh (POJ 2104 Số thứ k)](http://poj.org/problem?id=2104) có thể được giải bằng
 [cây phân đoạn theo giá trị](./persistent-seg.md) với độ phức tạp thời gian $O(n\log n)$.
 
 Nếu đoạn trở thành động thì sao? Nói cách khác, nếu còn phải hỗ trợ thao tác sửa giá trị tại một vị trí đơn lẻ thì cần làm thế nào?
@@ -14,7 +14,7 @@ Nếu đoạn trở thành động thì sao? Nói cách khác, nếu còn phải
     -   Truy vấn tiền nhiệm của $x$ trong đoạn (tiền nhiệm được định nghĩa là số lớn nhất nhỏ hơn $x$);
     -   Truy vấn kế nhiệm của $x$ trong đoạn (kế nhiệm được định nghĩa là số nhỏ nhất lớn hơn $x$).
 
-??? note "Bài ví dụ [Luogu P2617 Dynamic Rankings](https://www.luogu.com.cn/problem/P2617)"
+??? note "Bài ví dụ [Luogu P2617 Xếp hạng động](https://www.luogu.com.cn/problem/P2617)"
     Cho một dãy $a_1,a_2 \dots a_n$ gồm $n$ số, cần hỗ trợ hai thao tác:
 
     -   `Q l r k` biểu thị truy vấn số nhỏ thứ $k$ trong các phần tử có chỉ số thuộc đoạn $[l,r]$
