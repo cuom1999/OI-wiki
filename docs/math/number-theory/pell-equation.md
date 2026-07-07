@@ -1,4 +1,4 @@
-Kiến thức nền: [phân số liên tục](./continued-fraction.md), [trường bậc hai](./quadratic.md)
+Kiến thức nền: [liên phân số](./continued-fraction.md), [trường bậc hai](./quadratic.md)
 
 <span id="mở-đầu"></span>
 ## Mở đầu
@@ -35,9 +35,9 @@ $$
 
 nên phương trình Pell tổng quát về cơ bản là bài toán tìm số nguyên bậc hai có
 chuẩn bằng $N$. Tuy nhiên, hai bài toán có khác biệt nhỏ. Khi $x$ và $y$ đều là
-số nguyên, $x+y\sqrt{D}$ nhất định là số nguyên bậc hai; ngược lại, số nguyên
-bậc hai không nhất thiết yêu cầu $x$ và $y$ đều là số nguyên: trong trường hợp
-$D\equiv 1\pmod 4$, $x$ và $y$ còn có thể đồng thời là bán nguyên[^half-int].
+số nguyên, $x+y\sqrt{D}$ là số nguyên bậc hai; chiều ngược lại không luôn đúng:
+trong trường hợp $D\equiv 1\pmod 4$, số nguyên bậc hai có thể có $x$ và $y$ đồng
+thời là bán nguyên[^half-int].
 
 Khác biệt này đặc biệt quan trọng khi tìm đơn vị cơ bản. Đơn vị trong vành số
 nguyên bậc hai là số nguyên bậc hai có chuẩn bằng $\pm 1$. Với
@@ -69,10 +69,10 @@ bậc hai, phép ghép nghiệm chính là phép nhân số nguyên bậc hai; �
 của cách ghi nghiệm phương trình Pell dưới dạng số nguyên bậc hai. Đặc biệt,
 lấy $N_1=N$ và $N_2=1$ cho thấy: nếu đã biết một nghiệm của $x^2-Dy^2=N$ và tất
 cả nghiệm của phương trình Pell tương ứng $x^2-Dy^2=1$, có thể thu thêm
-nhiều nghiệm của $x^2-Dy^2=N$. Tuy vậy, phương pháp này không nhất thiết sinh
-ra tất cả nghiệm. Nhưng ít nhất nó cho thấy việc hiểu cấu trúc nghiệm của
-phương trình Pell có vai trò quan trọng đối với cấu trúc nghiệm của phương trình
-Pell tổng quát.
+nhiều nghiệm của $x^2-Dy^2=N$. Tuy vậy, phương pháp này không phải lúc nào cũng
+sinh ra tất cả nghiệm. Dù thế, nó cho thấy việc hiểu cấu trúc nghiệm của phương
+trình Pell có vai trò quan trọng đối với cấu trúc nghiệm của phương trình Pell
+tổng quát.
 
 <span id="phương-trình-pell"></span>
 ### Phương trình Pell
@@ -89,10 +89,10 @@ Hyperbol đồng thời đối xứng qua trục $x$ và trục $y$, nên khi th
 của phương trình Pell chỉ cần xét đoạn nằm trong góc phần tư thứ nhất; các
 nghiệm còn lại thu được bằng đối xứng. Điều này tương đương với chỉ xét các
 nghiệm $x+y\sqrt{D}>1$. Nếu ngoài $(\pm 1,0)$ phương trình còn có nghiệm không
-tầm thường, thì trong góc phần tư thứ nhất nhất định tồn tại nghiệm $(x_1,y_1)$
-có giá trị $x+y\sqrt{D}$ nhỏ nhất; đây cũng là điểm nguyên trong góc phần tư thứ
-nhất (không kể trục tọa độ) có cả hoành độ và tung độ nhỏ nhất. Nó được gọi là
-nghiệm cơ bản (fundamental solution) của phương trình Pell[^fundamental-solution].
+tầm thường, thì trong góc phần tư thứ nhất tồn tại nghiệm $(x_1,y_1)$ có giá trị
+$x+y\sqrt{D}$ nhỏ nhất; đây cũng là điểm nguyên trong góc phần tư thứ nhất
+(không kể trục tọa độ) có cả hoành độ và tung độ nhỏ nhất. Nó được gọi là nghiệm
+cơ bản (fundamental solution) của phương trình Pell[^fundamental-solution].
 Theo thảo luận ở trên, mọi cặp số nguyên $(x_k,y_k)$ thỏa mãn
 $x_k+y_k\sqrt{D}=(x_1+y_1\sqrt{D})^k$ đều là nghiệm của phương trình Pell và đều
 nằm trong góc phần tư thứ nhất. Ngược lại, đây thực sự là tất cả nghiệm của
@@ -153,10 +153,10 @@ Pell luôn có nghiệm không tầm thường.
     |x^2-Dy^2|=y^2\left|\dfrac{x}{y}-\sqrt{D}\right|\left|\dfrac{x}{y}+\sqrt{D}\right| \le \dfrac{1}{y^2}+2\sqrt{D}<1+2\sqrt{D}.
     $$
 
-    Do đó, nhất định tồn tại số nguyên $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho
-    có vô hạn cặp $(x,y)$ thỏa mãn $x^2-Dy^2 = m$. Phân loại các cặp $(x,y)$
-    này theo phần dư modulo $m$, suy ra với một cặp số nguyên $(x_0,y_0)$ nào
-    đó, nhất định tồn tại vô hạn cặp $(x,y)$ sao cho $x\equiv x_0\pmod m$ và
+    Do đó, tồn tại số nguyên $m\in(-1-2\sqrt{D},1+2\sqrt{D})$ sao cho có vô hạn
+    cặp $(x,y)$ thỏa mãn $x^2-Dy^2 = m$. Phân loại các cặp $(x,y)$ này theo
+    phần dư modulo $m$, suy ra với một cặp số nguyên $(x_0,y_0)$ nào đó, tồn tại
+    vô hạn cặp $(x,y)$ sao cho $x\equiv x_0\pmod m$ và
     $y\equiv y_0\pmod m$. Chọn hai cặp phân biệt bất kỳ $(x_1,y_1)$ và
     $(x_2,y_2)$ thỏa mãn các điều kiện này, khi đó
 
@@ -177,10 +177,10 @@ Pell luôn có nghiệm không tầm thường.
     $(x_1,y_1)\neq(x_2,y_2)$, nghiệm này không tầm thường. Điều này chứng minh
     phương trình Pell thực sự có nghiệm không tầm thường.
 
-Phần này đưa ra chứng minh không xây dựng. Ở phần dưới khi thảo luận
-cách giải phương trình Pell, các phân số gần đúng của phân
-số liên tục sẽ được dùng trực tiếp để xây dựng nghiệm, qua đó đưa ra một chứng minh khác cho sự tồn
-tại nghiệm không tầm thường của phương trình Pell. Ngoài ra, mặc dù cấu trúc
+Phần này đưa ra chứng minh không xây dựng. Ở phần dưới khi thảo luận cách giải
+phương trình Pell, các phân số tiệm cận của liên phân số sẽ được dùng trực tiếp
+để xây dựng nghiệm, qua đó đưa ra một chứng minh khác cho sự tồn tại nghiệm
+không tầm thường của phương trình Pell. Ngoài ra, mặc dù cấu trúc
 nghiệm của phương trình Pell thu được nêu trên phù hợp với cấu trúc đơn vị của
 vành số nguyên bậc hai thực, nhưng với trường hợp $D\equiv 1\pmod 4$, phần này
 vẫn chưa giải quyết hoàn toàn cấu trúc đơn vị của vành số nguyên bậc hai tương
@@ -207,11 +207,11 @@ Vì nghiệm của phương trình Pell tương đối dễ tìm, một ý tư�
 một nghiệm trong mỗi lớp tương đương nói trên. Một khi biết các nghiệm này, có
 thể dùng nghiệm của phương trình Pell tương ứng để thu tất cả nghiệm của
 phương trình Pell tổng quát cần tìm. Trong các lớp tương đương của nghiệm
-phương trình Pell tổng quát, do tính đối xứng, mỗi lớp đều tồn tại nghiệm có
-tung độ $y$ không âm nhưng nhỏ nhất có thể. Nếu nghiệm như vậy duy nhất, nó được
-gọi là nghiệm cơ bản của lớp tương đương; nếu không, lớp tương đương đó nhất
-định có hai nghiệm có $y$ không âm và nhỏ nhất, và chúng đối xứng qua trục $y$,
-khi đó chọn nghiệm có $x>0$ làm nghiệm cơ bản. Vì vậy, giải phương trình Pell
+phương trình Pell tổng quát, do tính đối xứng, mỗi lớp đều có nghiệm với tung độ
+$y$ không âm và nhỏ nhất có thể. Nếu nghiệm như vậy duy nhất, nó được gọi là
+nghiệm cơ bản của lớp tương đương; nếu không, lớp tương đương đó có hai nghiệm
+với $y$ không âm và nhỏ nhất, và chúng đối xứng qua trục $y$, khi đó chọn nghiệm
+có $x>0$ làm nghiệm cơ bản. Vì vậy, giải phương trình Pell
 tổng quát $x^2-Dy^2=N$ tương đương với tìm tập nghiệm cơ bản $U$ của nó. Giả sử
 nghiệm cơ bản của phương trình Pell tương ứng là $(r,s)$, thì tập tất cả nghiệm
 của phương trình Pell tổng quát là
@@ -220,9 +220,9 @@ $$
 \{(x,y):x+y\sqrt{D}=\pm(r+s\sqrt{D})^k(u+v\sqrt{D}),k\in\mathbf Z,u+v\sqrt{D}\in U\}.
 $$
 
-Số nghiệm cơ bản của phương trình Pell tổng quát nhất định hữu hạn. Vì từ biểu
-thức nghiệm tổng quát ở trên, giá trị tuyệt đối $|u+v\sqrt{D}|$ nhất định nằm
-giữa $r-s\sqrt{D}$ và $r+s\sqrt{D}$. Tài liệu tham khảo ở cuối bài cung cấp các
+Số nghiệm cơ bản của phương trình Pell tổng quát là hữu hạn. Thật vậy, từ biểu
+thức nghiệm tổng quát ở trên, giá trị tuyệt đối $|u+v\sqrt{D}|$ nằm giữa
+$r-s\sqrt{D}$ và $r+s\sqrt{D}$. Tài liệu tham khảo ở cuối bài cung cấp các
 ước lượng chặt hơn về miền tọa độ của nghiệm cơ bản. Tuy nhiên, khác với trường
 hợp phương trình Pell, phương trình Pell tổng quát có thể vô nghiệm.
 
@@ -245,13 +245,13 @@ cần ít phép nhân hơn.
 ## Phương pháp giải
 
 Việc giải phương trình Pell và phương trình Pell tổng quát đều có thể dựa trên
-phân số liên tục.
+liên phân số.
 
 <span id="thuật-toán-pqa"></span>
 ### Thuật toán PQa
 
 Những thuật toán được thảo luận trong bài này đều dựa trên thuật toán PQa, dùng
-để tìm khai triển phân số liên tục của một số vô tỉ bậc hai cụ thể.
+để tìm khai triển liên phân số của một số vô tỉ bậc hai cụ thể.
 
 Giả sử các số nguyên $P_0,Q_0,D$ thỏa mãn $Q_0\neq 0$, $D>0$ không phải số chính
 phương, và $P_0^2\equiv D\pmod{Q_0}$. Khi đó số vô tỉ bậc hai
@@ -260,7 +260,7 @@ $$
 \omega=\dfrac{P_0+\sqrt{D}}{Q_0}
 $$
 
-có khai triển phân số liên tục $[a_0,a_1,\cdots]$ tính được bằng
+có khai triển liên phân số $[a_0,a_1,\cdots]$ tính được bằng
 [công thức truy hồi](./continued-fraction.md#số-vô-tỉ-bậc-hai)
 sau:
 
@@ -268,7 +268,7 @@ $$
 a_k = \left\lfloor\dfrac{P_k+\sqrt{D}}{Q_k}\right\rfloor,\ P_{k+1} = a_kQ_k - P_k,\ Q_{k+1} = \dfrac{D-P_{k+1}^2}{Q_k}.
 $$
 
-Tiếp theo, tử số và mẫu số $A_k$ và $B_k$ của phân số gần đúng thứ $k$ của
+Tiếp theo, tử số và mẫu số $A_k$ và $B_k$ của phân số tiệm cận thứ $k$ của
 $\omega$ được cho bởi [công thức truy hồi](./continued-fraction.md#quan-hệ-truy-hồi)
 
 $$
@@ -277,12 +277,12 @@ $$
 
 với $A_{-1} = 1$, $A_{-2}=0$, $B_{-1}=0$, $B_{-2}=1$.
 
-Tính đúng đắn của các công thức này đã được chứng minh trong bài phân số liên
-tục. Ở đó cũng đã giải thích rằng vì số vô tỉ bậc hai là
-[phân số liên tục tuần hoàn](./continued-fraction.md#số-vô-tỉ-bậc-hai),
+Tính đúng đắn của các công thức này đã được chứng minh trong bài liên phân số.
+Ở đó cũng đã giải thích rằng vì số vô tỉ bậc hai là
+[liên phân số tuần hoàn](./continued-fraction.md#số-vô-tỉ-bậc-hai),
 nên bộ ba $(P_k,Q_k,a_k)$ cuối cùng sẽ đi vào chu kỳ, và thuật toán luôn kết
 thúc sau hữu hạn bước. Giả sử độ dài nhỏ nhất của chu kỳ là $\ell$, và vị trí
-bắt đầu sớm nhất của chu kỳ là $k_0$, khi đó khai triển phân số liên tục của số
+bắt đầu sớm nhất của chu kỳ là $k_0$, khi đó khai triển liên phân số của số
 vô tỉ bậc hai có thể viết là
 
 $$
@@ -302,7 +302,7 @@ $$
     và ước chung lớn nhất của chúng $\gcd(G_{k-1},B_{k-1})$ là ước của $Q_{k}$.
 
 ??? note "Chứng minh"
-    Giả sử trong khai triển phân số liên tục của $\omega$, thương hoàn toàn thứ
+    Giả sử trong khai triển liên phân số của $\omega$, thương hoàn toàn thứ
     $k$ là $\omega_{k}$, tức
 
     $$
@@ -338,7 +338,7 @@ $$
     $$
 
     Bước cuối dùng [công thức sai phân](./continued-fraction.md#ước-lượng-sai-số)
-    của phân số gần đúng. Kết quả đầu tiên đã được chứng minh.
+    của phân số tiệm cận. Kết quả đầu tiên đã được chứng minh.
 
     Để chứng minh kết quả thứ hai, thay biểu thức của $G_k$ vào kết quả đầu
     tiên:
@@ -361,12 +361,12 @@ chọn hợp lý $Q_0>0$ và chọn $P_0$ là một nghiệm của đồng dư
 $P_0^2\equiv D\pmod{Q_0}$, rồi chạy thuật toán PQa trên
 $(P_0+\sqrt{D})/Q_0$ cho đến khi tìm được $(-1)^kQ_0Q_{k}=N$, thì
 $(G_{k-1},B_{k-1})$ trở thành một nghiệm của phương trình ban đầu. Hơn nữa, nếu
-$Q_k=\pm 1$, nghiệm thu được theo cách này nhất định là nghiệm nguyên thủy, tức
-$G_{k-1}$ và $B_{k-1}$ nhất định nguyên tố cùng nhau.
+$Q_k=\pm 1$, nghiệm thu được theo cách này là nghiệm nguyên thủy, tức
+$G_{k-1}$ và $B_{k-1}$ nguyên tố cùng nhau.
 
 Ý tưởng này là cốt lõi để giải phương trình Pell và phương trình Pell tổng quát.
-Sau khi hiểu ý tưởng này, phần tiếp theo xử lý một số chi tiết của thuật toán và chứng minh
-mọi nghiệm đều có thể thu được theo cách này.
+Sau khi hiểu ý tưởng này, phần tiếp theo xử lý một số chi tiết của thuật toán và
+chứng minh mọi nghiệm đều có thể thu được theo cách này.
 
 <span id="phương-trình-pell_1"></span>
 ### Phương trình Pell
@@ -377,33 +377,33 @@ $(A_{k-1},B_{k-1})$ là một nghiệm của phương trình Pell (vì lúc này
 $G_{k-1}$ chính là $A_{k-1}$). Với phương trình Pell, có thể mô tả
 quá trình này chính xác hơn.
 
-Trước hết, nghiệm nhất định xuất hiện ở cuối chu kỳ. Quá trình trên tương đương
-với khai triển phân số liên tục của $\sqrt{D}$. Về điều này, đã có
+Trước hết, nghiệm luôn xuất hiện ở cuối chu kỳ. Quá trình trên tương đương với
+khai triển liên phân số của $\sqrt{D}$. Về điều này, đã có
 [kết quả](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn):
 
 $$
 \sqrt{D} = [\lfloor\sqrt{D}\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\sqrt{D}\rfloor}].
 $$
 
-Trong khai triển này, độ dài chu kỳ là $\ell$, và vị trí bắt đầu là hạng thứ $1$ (chỉ số bắt
-đầu từ $0$). Hơn nữa, thương hoàn toàn thứ $\ell$ của nó bằng
+Trong khai triển này, độ dài chu kỳ là $\ell$, và vị trí bắt đầu là hạng thứ
+$1$ (chỉ số bắt đầu từ $0$). Hơn nữa, thương hoàn toàn thứ $\ell$ của nó bằng
 $\lfloor\sqrt{D}\rfloor+\sqrt{D}$, cho thấy $Q_{\ell}=1$. Do đó, nếu $\ell$
 chẵn thì $(A_{\ell-1},B_{\ell-1})$ là một nghiệm không tầm thường của phương
 trình Pell; nếu $\ell$ lẻ thì $(A_{2\ell-1},B_{2\ell-1})$ là một nghiệm không
 tầm thường của phương trình Pell.
 
-Tiếp theo cần chỉ ra nghiệm vừa thu được nhất định là nghiệm cơ bản. Kết quả này
+Tiếp theo cần chỉ ra nghiệm vừa thu được là nghiệm cơ bản. Kết quả này
 dựa trên hai lý do: thứ nhất, mọi nghiệm nguyên dương $(x,y)$ của phương trình
-Pell đều có phân số $x/y$ xuất hiện trong các phân số gần đúng của $\sqrt{D}$,
-cho thấy $(x,y)$ nhất định là một $(A_k,B_k)$ nào đó trong quá trình PQa; thứ
+Pell đều có phân số $x/y$ xuất hiện trong các phân số tiệm cận của $\sqrt{D}$,
+cho thấy $(x,y)$ là một $(A_k,B_k)$ nào đó trong quá trình PQa; thứ
 hai, ngoài cuối chu kỳ sẽ không có vị trí nào khác có $Q_k=1$, vì hệ thức truy
 hồi của $A_k$ và $B_k$ cho thấy kích thước của chúng tăng theo chỉ số, nên nghiệm
-nguyên dương nhỏ nhất (tức nghiệm cơ bản) nhất định xuất hiện tại vị trí vừa chỉ
-ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
+nguyên dương nhỏ nhất (tức nghiệm cơ bản) xuất hiện tại vị trí vừa chỉ ra. Hai
+lý do này lần lượt suy ra từ hai định lý sau:
 
 ???+ note "Định lý"
     Giả sử phương trình $x^2-Dy^2=N$ có nghiệm nguyên dương $(x,y)$. Nếu
-    $|N|<\sqrt{D}$, thì $\dfrac{x}{y}$ nhất định là một phân số gần đúng của
+    $|N|<\sqrt{D}$, thì $\dfrac{x}{y}$ là một phân số tiệm cận của
     $\sqrt{D}$.
 
 ??? note "Chứng minh"
@@ -414,30 +414,30 @@ ra. Hai lý do này lần lượt suy ra từ hai định lý sau:
     $$
 
     Theo [tiêu chuẩn Legendre](./continued-fraction.md#nhận-biết-phân-số-tiệm-cận),
-    $\dfrac{x}{y}$ là phân số gần đúng của $\sqrt{D}$.
+    $\dfrac{x}{y}$ là phân số tiệm cận của $\sqrt{D}$.
 
     Khi $N<0$, bất đẳng thức $x>y\sqrt{D}$ không còn đúng. Do đó xét phương
     trình $y^2-\dfrac{1}{D}x^2=-\dfrac{N}{D}$. Vì
     $\dfrac{|N|}{D}<\sqrt{\dfrac{1}{D}}$, lặp lại lập luận trên vẫn đúng. Điều
-    này cho thấy $\dfrac{y}{x}$ là phân số gần đúng của $\dfrac{1}{\sqrt{D}}$.
+    này cho thấy $\dfrac{y}{x}$ là phân số tiệm cận của $\dfrac{1}{\sqrt{D}}$.
     Theo [định lý nghịch đảo](./continued-fraction.md#quan-hệ-truy-hồi),
-    $\dfrac{x}{y}$ cũng là phân số gần đúng của $\sqrt{D}$.
+    $\dfrac{x}{y}$ cũng là phân số tiệm cận của $\sqrt{D}$.
 
 ???+ note "Định lý"
     Trong quá trình chạy thuật toán PQa ở trên với $(P_0,Q_0,D)=(0,1,D)$,
-    $Q_k=1$ nhất định kéo theo $\ell\mid k$.
+    $Q_k=1$ kéo theo $\ell\mid k$.
 
 ??? note "Chứng minh"
-    Trong khai triển phân số liên tục của $\sqrt{D}$, ngoài thương hoàn toàn thứ
-    $0$, mọi thương hoàn toàn khác đều là [phân số liên tục thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
-    Giả sử $Q_k=1$. Theo kết quả của Galois, nhất định có thương hoàn toàn
+    Trong khai triển liên phân số của $\sqrt{D}$, ngoài thương hoàn toàn thứ
+    $0$, mọi thương hoàn toàn khác đều là [liên phân số thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
+    Giả sử $Q_k=1$. Theo kết quả của Galois, thương hoàn toàn
     $\omega_k=P_k+\sqrt{D}>1$, và liên hợp của nó $-1<P_k-\sqrt{D}<0$, suy ra
     $P_k=\lfloor\sqrt{D}\rfloor$. Do đó thương hoàn toàn $\omega_k$ bằng
-    $\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa phân số liên
-    tục vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu thuẫn với
-    việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy nhất định $\ell\mid k$.
+    $\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa liên phân số
+    vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu thuẫn với việc
+    $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy $\ell\mid k$.
 
-Tổng hợp thảo luận trong phần này: chỉ cần khai triển phân số liên tục của
+Tổng hợp thảo luận trong phần này: chỉ cần khai triển liên phân số của
 $\sqrt{D}$, tức chạy thuật toán PQa từ $(P_0,Q_0,D)=(0,1,D)$; khi lần đầu có
 $Q_\ell=1$ thì đã đến cuối chu kỳ đầu tiên. Nếu $\ell$ chẵn,
 $(A_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản của phương trình Pell; nếu không,
@@ -487,9 +487,9 @@ tính từ nghiệm cơ bản.
 <span id="phương-trình-pell-âm"></span>
 ### Phương trình Pell âm
 
-Theo thảo luận ở phần trước, nghiệm của phương trình Pell âm cũng nhất định
-tương ứng với phân số gần đúng của $\sqrt{D}$, và chỉ có thể xuất hiện tại vị
-trí $(-1)^kQ_k=-1$. Điều này chỉ có thể xảy ra ở cuối chu kỳ. Vì vậy, phương
+Theo thảo luận ở phần trước, nghiệm của phương trình Pell âm cũng tương ứng với
+phân số tiệm cận của $\sqrt{D}$, và chỉ có thể xuất hiện tại vị trí
+$(-1)^kQ_k=-1$. Điều này chỉ có thể xảy ra ở cuối chu kỳ. Vì vậy, phương
 trình Pell âm có nghiệm khi và chỉ khi độ dài chu kỳ $\ell$ là lẻ. Khi nghiệm
 tồn tại, $(A_{\ell-1},B_{\ell-1})$ là nghiệm cơ bản của phương trình Pell âm.
 Cách giải của nó giống phần trước.
@@ -517,7 +517,7 @@ có thể chứng minh kết quả sau:
     $x^2-Dy^2=1$.
 
     Theo cách xây dựng, $(x_2,y_2)$ là nghiệm của $x^2-Dy^2=1$. Nếu đặt $(z,w)$ là
-    nghiệm cơ bản của $x^2-Dy^2=1$, thì nhất định
+    nghiệm cơ bản của $x^2-Dy^2=1$, thì
     $1<z+w\sqrt{D}\le x_2+y_2\sqrt{D}$. Nếu bất đẳng thức bên phải là nghiêm
     ngặt, chia bất đẳng thức cho $x_1+y_1\sqrt{D}$ sẽ được
     $-x_1+y_1\sqrt{D}<(z+w\sqrt{D})(-x_1+y_1\sqrt{D})<x_1+y_1\sqrt{D}$. Khai
@@ -525,15 +525,15 @@ có thể chứng minh kết quả sau:
     $(x',y')$ cũng là nghiệm nguyên. Lấy nghịch đảo bất đẳng thức này, suy ra
     $-x'+y'\sqrt{D}$ cũng nằm giữa $-x_1+y_1\sqrt{D}$ và
     $x_1+y_1\sqrt{D}$. Hai số nguyên bậc hai $\pm x'+y'\sqrt{D}$ là nghịch đảo
-    của nhau, nên nhất định có một số lớn hơn $1$. Nhưng giữa $1$ và
-    $x_1+y_1\sqrt{D}$ không nên xuất hiện số nguyên bậc hai nào khác có chuẩn
+    của nhau, nên có một số lớn hơn $1$. Nhưng giữa $1$ và
+    $x_1+y_1\sqrt{D}$ không thể xuất hiện số nguyên bậc hai nào khác có chuẩn
     $-1$, mâu thuẫn với tính nhỏ nhất của $x_1+y_1\sqrt{D}$. Vì vậy phải có
     $x_2+y_2\sqrt{D}=z+w\sqrt{D}$, tức $(x_2,y_2)$ là nghiệm cơ bản của phương
     trình $x^2-Dy^2=1$.
 
     Dựa trên điều này, nếu tồn tại nghiệm $(x,y)$ của phương trình
     $x^2-Dy^2=\pm 1$ không tương ứng với một lũy thừa
-    $(x_1+y_1\sqrt{D})^k$, thì nhất định tồn tại $k$ sao cho
+    $(x_1+y_1\sqrt{D})^k$, thì tồn tại $k$ sao cho
     $(x_1+y_1\sqrt{D})^{2k}<x+y\sqrt{D}<(x_1+y_1\sqrt{D})^{2k+2}$.
     Khử thừa số $(x_1+y_1\sqrt{D})^{2k+1}$, suy ra tồn tại số nguyên bậc hai
     $x'+y'\sqrt{D}\neq 1$ có chuẩn $\pm 1$ nằm giữa $-x_1+y_1\sqrt{D}$ và
@@ -548,9 +548,9 @@ $$
 \{(x,y):x+y\sqrt{D}=(A_{\ell-1}+B_{\ell-1}\sqrt{D})^k,k\in\mathbf N_+\}
 $$
 
-hơn nữa các nghiệm nguyên dương này nhất định tương ứng với phân số gần đúng của
+hơn nữa các nghiệm nguyên dương này đều tương ứng với phân số tiệm cận của
 $\sqrt{D}$ ở vị trí cuối chu kỳ (trước một vị trí), và tử số cùng mẫu số của
-phân số gần đúng tăng nghiêm ngặt, nên với mọi $k\in\mathbf N_+$ luôn có
+phân số tiệm cận tăng nghiêm ngặt, nên với mọi $k\in\mathbf N_+$ luôn có
 
 $$
 (A_{\ell-1}+B_{\ell-1}\sqrt{D})^k = A_{k\ell-1}+B_{k\ell-1}\sqrt{D}.
@@ -561,14 +561,14 @@ trình Pell âm, khi $k$ chẵn thì là nghiệm của phương trình Pell; ha
 hiện xen kẽ.
 
 Để phán định phương trình Pell âm có nghiệm hay không cần tính độ dài chu kỳ của
-khai triển phân số liên tục của $\sqrt{D}$; điều này không dễ tính, nên cần
+khai triển liên phân số của $\sqrt{D}$; điều này không dễ tính, nên cần
 có tiêu chuẩn đơn giản hơn. Tuy nhiên, hiện chưa có điều kiện nào vừa ngắn gọn
 vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết quả đơn giản.
 
 ???+ note "Định lý"
     Nếu phương trình $x^2-Dy^2=-1$ có nghiệm, thì $4\nmid D$ và $D$ không chứa
     thừa số nguyên tố dạng $4k+3$. Ngược lại, nếu $D=2$ hoặc $D$ là số nguyên tố
-    dạng $4k+1$, thì phương trình nhất định có nghiệm.
+    dạng $4k+1$, thì phương trình có nghiệm.
 
 ??? note "Chứng minh"
     Trước hết, phương trình Pell âm có nghiệm có nghĩa $-1$ là thặng dư bậc hai
@@ -585,7 +585,7 @@ vừa dễ tính[^solubility-neg-pell]. Phần này chỉ đưa ra một kết q
     $4$. Mâu thuẫn này cho thấy $u$ lẻ. Xét đẳng thức
     $Dv^2=u^2-1=(u+1)(u-1)$. Vì $u$ lẻ,
     $\gcd(u+1,u-1)=\gcd(u+1,2)=2$. Dựa vào điều này, khi phân bổ các thừa số của
-    $Dv^2$ vào $u+1$ và $u-1$, nhất định một trong hai là $2\alpha^2$, số còn
+    $Dv^2$ vào $u+1$ và $u-1$, một trong hai là $2\alpha^2$, số còn
     lại là $2D\beta^2$, trong đó $\alpha$ và $\beta$ là các số nguyên dương
     nguyên tố cùng nhau và $v=2\alpha\beta$. Thay $u=\alpha^2+D\beta^2$ và
     $v=2\alpha\beta$ vào $u^2-Dv^2=1$, thu được
@@ -611,7 +611,7 @@ chất của nghiệm phụ thuộc vào giá trị của $D\bmod 4$.
 
 Một số trường hợp rất dễ xử lý. Nếu $D\equiv 0\pmod 4$, thì $x$ chẵn, nên
 $(x/2,y)$ là nghiệm của phương trình $u^2-(D/4)v^2=\pm 1$. Các trường hợp còn
-lại, nhất định $x,y$ đồng thời lẻ hoặc đồng thời chẵn. Nếu $x,y$ đồng thời lẻ,
+lại, $x,y$ đồng thời lẻ hoặc đồng thời chẵn. Nếu $x,y$ đồng thời lẻ,
 lấy modulo $4$ hai vế phương trình cho $D\equiv 1\pmod 4$. Vì vậy, nếu
 $D\equiv 2,3\pmod 4$, thì $x,y$ chỉ có thể đồng thời chẵn, nên $(x/2,y/2)$ là
 nghiệm của phương trình $u^2-Dv^2=\pm 1$. Do đó, ngoài trừ trường hợp
@@ -639,11 +639,11 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
 
 ???+ note "Định lý"
     Giả sử phương trình $x^2-Dy^2=\pm 4$ có nghiệm nguyên dương $(x,y)$. Nếu
-    $D\equiv 1\pmod 4$, thì $\dfrac{(x+y)/2}{y}$ nhất định là một phân số gần
-    đúng của $\dfrac{1+\sqrt{D}}{2}$.
+    $D\equiv 1\pmod 4$, thì $\dfrac{(x+y)/2}{y}$ là một phân số tiệm cận của
+    $\dfrac{1+\sqrt{D}}{2}$.
 
 ??? note "Chứng minh"
-    Trước hết, khi đó $x,y$ nhất định cùng tính chẵn lẻ, nên
+    Trước hết, khi đó $x,y$ cùng tính chẵn lẻ, nên
     $(x+y)/2$ là số nguyên. Nếu $(x,y)$ là nghiệm của phương trình
     $x^2-Dy^2=4$, thì $x>y\sqrt{D}>2y$, do đó
 
@@ -652,7 +652,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     $$
 
     Theo [tiêu chuẩn Legendre](./continued-fraction.md#nhận-biết-phân-số-tiệm-cận),
-    $\dfrac{(x+y)/2}{y}$ là phân số gần đúng của $\dfrac{1+\sqrt{D}}{2}$.
+    $\dfrac{(x+y)/2}{y}$ là phân số tiệm cận của $\dfrac{1+\sqrt{D}}{2}$.
 
     Nếu $(x,y)$ là nghiệm của phương trình $x^2-Dy^2=-4$, để thiết lập bất đẳng
     thức trên chỉ cần chứng minh $4y<x+y\sqrt{D}$. Điều này đúng ít nhất với mọi
@@ -661,12 +661,12 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     $(D,y)=(5,1)$, bất đẳng thức này đúng với mọi $D=5,13$ và số nguyên dương
     $y$. Còn lại chỉ cần kiểm tra trường hợp $(D,y)=(5,1)$; khi đó nghiệm của
     phương trình $x^2-5y^2=-4$ là $(x,y)=(1,1)$, và cần kiểm tra $\dfrac{1}{1}$
-    là phân số gần đúng của $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, điều này
+    là phân số tiệm cận của $\dfrac{1+\sqrt{5}}{2}=[\overline{1}]$, điều này
     đúng trực tiếp từ khai triển này.
 
 ???+ note "Định lý"
-    Giả sử $D$ là số nguyên dương không phải số chính phương. Khai triển phân số
-    liên tục của số vô tỉ bậc hai $\omega=\dfrac{1+\sqrt{D}}{2}$ có dạng
+    Giả sử $D$ là số nguyên dương không phải số chính phương. Khai triển liên
+    phân số của số vô tỉ bậc hai $\omega=\dfrac{1+\sqrt{D}}{2}$ có dạng
 
     $$
     \omega = [\lfloor\omega\rfloor,\overline{a_1,\cdots,a_{\ell-1},2\lfloor\omega\rfloor-1}],
@@ -678,7 +678,7 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     Vì $\lfloor\omega\rfloor-1+\omega>1$, và liên hợp của nó bằng
     $\lfloor\omega\rfloor - \omega$, nằm giữa $-1$ và $0$, nên theo
     [kết quả của Galois](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn),
-    $\lfloor\omega\rfloor-1+\omega$ là phân số liên tục thuần tuần hoàn, có thể
+    $\lfloor\omega\rfloor-1+\omega$ là liên phân số thuần tuần hoàn, có thể
     viết thành
 
     $$
@@ -691,34 +691,33 @@ Tính đúng đắn của thuật toán này dựa trên các sự kiện sau:
     \dfrac{1}{\omega-\lfloor\omega\rfloor} = [\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
 
-    Do đó, theo định nghĩa phân số liên tục,
+    Do đó, theo định nghĩa liên phân số,
 
     $$
     \lfloor\omega\rfloor-1+\omega = 2\lfloor\omega\rfloor-1 + \dfrac{1}{\dfrac{1}{\omega-\lfloor\omega\rfloor}} = [2\lfloor\omega\rfloor-1,\overline{a_{\ell-1},\cdots,a_1,2\lfloor\omega\rfloor-1}].
     $$
 
-    Tính duy nhất của khai triển phân số liên tục cho thấy $a_k=a_{\ell-k}$ với
+    Tính duy nhất của khai triển liên phân số cho thấy $a_k=a_{\ell-k}$ với
     mọi $1<k<\ell$, và do đó dạng khai triển cần chứng minh cũng đúng.
 
 ???+ note "Định lý"
     Giả sử $D\equiv 1\pmod 4$. Trong quá trình chạy thuật toán PQa ở trên với
-    $(P_0,Q_0,D)=(1,2,D)$, $Q_k=2$ nhất định kéo theo $\ell\mid k$.
+    $(P_0,Q_0,D)=(1,2,D)$, $Q_k=2$ kéo theo $\ell\mid k$.
 
 ??? note "Chứng minh"
-    Trong khai triển phân số liên tục của $\dfrac{1+\sqrt{D}}{2}$, ngoài thương
+    Trong khai triển liên phân số của $\dfrac{1+\sqrt{D}}{2}$, ngoài thương
     hoàn toàn thứ $0$, mọi thương hoàn toàn khác đều là
-    [phân số liên tục thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
+    [liên phân số thuần tuần hoàn](./continued-fraction.md#liên-phân-số-thuần-tuần-hoàn).
     Giả sử $Q_k=2$. Theo kết quả của Galois, liên hợp của thương hoàn toàn
-    $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ nhất định thỏa
+    $\omega_k=\dfrac{P_k+\sqrt{D}}{2}$ thỏa
     $-1<\dfrac{P_k-\sqrt{D}}{2}<0$, tức $\sqrt{D}-2<P_k<\sqrt{D}$. Vì trong
     thuật toán PQa luôn có $Q_k\mid P_k^2-D$ (xem
     [chứng minh tính đúng đắn của thuật toán](./continued-fraction.md#số-vô-tỉ-bậc-hai)),
-    nên $P_k$ nhất định lẻ; điều này cho thấy giá trị của $P_k$ là duy nhất,
+    nên $P_k$ lẻ; điều này cho thấy giá trị của $P_k$ là duy nhất,
     tức $P_k=P_0+2(\lfloor\omega\rfloor-1)$, hay thương hoàn toàn
-    $\omega_k=\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa phân
-    số liên tục vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu
-    thuẫn với việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy nhất định
-    $\ell\mid k$.
+    $\omega_k=\omega_\ell$. Nhưng sự lặp lại của thương hoàn toàn có nghĩa liên
+    phân số vào chu kỳ; nếu $k$ không phải bội của $\ell$, điều này mâu thuẫn với
+    việc $\ell$ là chu kỳ dương nhỏ nhất. Vì vậy $\ell\mid k$.
 
 ???+ note "Định lý"
     Giả sử nghiệm nguyên dương nhỏ nhất của phương trình $x^2-Dy^2=\pm 4$ là
@@ -775,10 +774,10 @@ $x^2-Dy^2=\pm 4$ đều đồng thời chẵn, nên tương ứng với nghiệm
 $x^2-Dy^2=\pm 1$.
 
 Khi $D\equiv 0\pmod 4$, trong nghiệm $(x,y)$ của phương trình
-$x^2-Dy^2=\pm 4$, $x$ nhất định chẵn nhưng $y$ có thể lẻ. Nếu trong nghiệm
-nguyên dương nhỏ nhất $(x_1,y_1)$ của phương trình $x^2-Dy^2=\pm 4$, $y_1$
-chẵn, thì trong mọi nghiệm $y$ cũng nhất định chẵn; khi đó các nghiệm nguyên này
-tương ứng một-một với nghiệm nguyên của $x^2-Dy^2=\pm 1$. Nhưng nếu trong
+$x^2-Dy^2=\pm 4$, $x$ luôn chẵn nhưng $y$ có thể lẻ. Nếu trong nghiệm nguyên
+dương nhỏ nhất $(x_1,y_1)$ của phương trình $x^2-Dy^2=\pm 4$, $y_1$ chẵn, thì
+trong mọi nghiệm $y$ cũng chẵn; khi đó các nghiệm nguyên này tương ứng một-một
+với nghiệm nguyên của $x^2-Dy^2=\pm 1$. Nhưng nếu trong
 nghiệm nguyên nhỏ nhất $(x_1,y_1)$, $y_1$ lẻ, thì tính chẵn lẻ của $y_k$ sẽ
 trùng với tính chẵn lẻ của $k$ và thay đổi xen kẽ; vì vậy chỉ khi $k$ chẵn mới
 tương ứng với nghiệm của $x^2-Dy^2=\pm 1$. Nếu trong nghiệm nguyên dương nhỏ
@@ -787,8 +786,8 @@ với $D$ như vậy, $x^2-Dy^2=-4$ có nghiệm nhưng $x^2-Dy^2=-1$ vô nghi�
 
 Khi $D\equiv 1\pmod 4$, nghiệm $(x,y)$ của phương trình $x^2-Dy^2=\pm 4$ có thể
 đồng thời lẻ, cũng có thể đồng thời chẵn. Nếu nghiệm nguyên dương nhỏ nhất
-$(x_1,y_1)$ đã đồng thời chẵn, thì mọi nghiệm nguyên của nó cũng nhất định đồng
-thời chẵn, nên luôn tương ứng với nghiệm nguyên của phương trình
+$(x_1,y_1)$ đã đồng thời chẵn, thì mọi nghiệm nguyên của nó cũng đồng thời chẵn,
+nên luôn tương ứng với nghiệm nguyên của phương trình
 $x^2-Dy^2=\pm 1$. Nếu nghiệm nguyên dương nhỏ nhất $(x_1,y_1)$ đồng thời lẻ,
 có kết quả sau:
 
@@ -893,9 +892,9 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
         \dfrac{4098+640\sqrt{41}}{2} = \left(\dfrac{64+10\sqrt{41}}{2}\right)^2.
         $$
 
-        Vì $D\equiv 1\pmod 8$, theo kết quả ở trên, nghiệm nguyên
-        dương nhỏ nhất của phương trình $x^2-41y^2=\pm 4$ khi đó nhất định đều
-        chẵn, và luôn bằng hai lần nghiệm nguyên dương nhỏ nhất của
+        Vì $D\equiv 1\pmod 8$, theo kết quả ở trên, nghiệm nguyên dương nhỏ nhất
+        của phương trình $x^2-41y^2=\pm 4$ khi đó đều chẵn, và luôn bằng hai lần
+        nghiệm nguyên dương nhỏ nhất của
         $x^2-41y^2=\pm 1$; do đó cũng có thể suy trực tiếp từ ví dụ trước.
     3.  Giải phương trình $x^2-13y^2=\pm 4$.
 
@@ -936,13 +935,13 @@ $D\equiv 1\pmod 4$, đơn vị cơ bản là $\dfrac{\pm x\pm y\sqrt{D}}{2}$.
 Cuối cùng, phần này thảo luận cách giải phương trình Pell tổng quát.
 
 Với trường hợp $|N|<\sqrt{D}$ có một cách giải đơn giản. Kết quả ở trên cho
-biết nghiệm $(x,y)$ của phương trình $x^2-Dy^2=N$ nhất định thỏa
-$\dfrac{x}{y}$ bằng một phân số gần đúng nào đó của $\sqrt{D}$. Hơn nữa, theo
+biết nghiệm $(x,y)$ của phương trình $x^2-Dy^2=N$ thỏa
+$\dfrac{x}{y}$ bằng một phân số tiệm cận nào đó của $\sqrt{D}$. Hơn nữa, theo
 cấu trúc nghiệm đã thảo luận, mọi nghiệm cơ bản $(x,y)$ đều thỏa
 $x+y\sqrt{D}$ không vượt quá nghiệm cơ bản $x_1+y_1\sqrt{D}$ của phương trình
 Pell tương ứng $x^2-Dy^2=1$. Dùng tính đơn điệu của dãy mẫu số $B_k$ trong
-thuật toán PQa, các nghiệm cơ bản này của phương trình Pell tổng quát nhất định
-xuất hiện trước khi nghiệm cơ bản của phương trình Pell tương ứng xuất hiện. Vì
+thuật toán PQa, các nghiệm cơ bản này của phương trình Pell tổng quát xuất hiện
+trước khi nghiệm cơ bản của phương trình Pell tương ứng xuất hiện. Vì
 vậy, chỉ cần chạy thuật toán PQa với $(P_0,Q_0,D)=(0,1,D)$ cho đến khi
 $Q_{\ell'}=1$ và $\ell'$ chẵn; trong quá trình đó, kiểm tra mỗi $(A_k,B_k)$
 xuất hiện xem có tồn tại số nguyên $f$ sao cho
@@ -983,7 +982,7 @@ Tính đúng đắn của thuật toán được chứng minh bằng định lý
     $P_0$ là nghiệm của đồng dư $x\equiv -P_0y\pmod{Q_0}$ và
     $-Q_0/2<P_0\le Q_0/2$, đồng thời đặt số nguyên $X$ sao cho
     $x=Q_0X-P_0y$. Khi đó $P_0^2\equiv D\pmod{Q_0}$, $\dfrac{X}{y}$ là một phân
-    số gần đúng $\dfrac{A_{k-1}}{B_{k-1}}$ của
+    số tiệm cận $\dfrac{A_{k-1}}{B_{k-1}}$ của
     $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, và $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
 ??? note "Chứng minh"
@@ -1014,15 +1013,15 @@ Tính đúng đắn của thuật toán được chứng minh bằng định lý
     \dfrac{P\zeta+R}{Q\zeta+S} = \dfrac{(x+P_0y)\sqrt{D}+(P_0x+Dy)}{(x+y\sqrt{D})Q_0} = \dfrac{P_0+\sqrt{D}}{Q_0} = \omega.
     $$
 
-    Tiếp theo chứng minh $\dfrac{P}{Q}$ là một phân số gần đúng của $\omega$.
-    Giả sử $\dfrac{P}{Q}$ có [khai triển phân số liên tục](./continued-fraction.md#liên-phân-số-đơn-giản)
+    Tiếp theo chứng minh $\dfrac{P}{Q}$ là một phân số tiệm cận của $\omega$.
+    Giả sử $\dfrac{P}{Q}$ có [khai triển liên phân số](./continued-fraction.md#liên-phân-số-đơn-giản)
 
     $$
     \dfrac{P}{Q} = [a_0,a_1,\cdots,a_k]
     $$
 
-    và $PS-QR = (-1)^{k-1}$. Nếu $\dfrac{p_k}{q_k}$ là phân số gần đúng thứ $k$
-    của nó, thì $(p_k,q_k)=(P,Q)$, và theo [công thức sai phân của phân số gần đúng](./continued-fraction.md#ước-lượng-sai-số),
+    và $PS-QR = (-1)^{k-1}$. Nếu $\dfrac{p_k}{q_k}$ là phân số tiệm cận thứ $k$
+    của nó, thì $(p_k,q_k)=(P,Q)$, và theo [công thức sai phân của phân số tiệm cận](./continued-fraction.md#ước-lượng-sai-số),
     $p_kq_{k-1}-q_kp_{k-1}=(-1)^{k-1}$. Điều này cho thấy
 
     $$
@@ -1031,13 +1030,13 @@ Tính đúng đắn của thuật toán được chứng minh bằng định lý
 
     Xét từng trường hợp:
 
-    -   Nếu $S=0$, suy ra $Q=R=1$, nên $\omega=P+\zeta^{-1}=[P,\zeta]$, do đó $\dfrac{P}{Q}=P$ là phân số gần đúng thứ $0$ của $\omega$;
+    -   Nếu $S=0$, suy ra $Q=R=1$, nên $\omega=P+\zeta^{-1}=[P,\zeta]$, do đó $\dfrac{P}{Q}=P$ là phân số tiệm cận thứ $0$ của $\omega$;
     -   Nếu $Q=S>0$, thì $Q=S=1$ và $P-R=\pm 1$. Khi đó:
-        -   Nếu $P=R+1$, thì $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$, do đó $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ là phân số gần đúng thứ $1$ của $\omega$;
-        -   Nếu $P=R-1$, thì $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$, do đó $\dfrac{P}{Q}=R-1$ là phân số gần đúng thứ $0$ của $\omega$;
-    -   Nếu $Q\neq S>0$, thì vì $Q=q_k\mid(S-q_{k-1})$, luôn tồn tại số nguyên $\kappa$ sao cho $S=\kappa q_k+q_{k-1}$ và $R=\kappa p_k+p_{k-1}$. Vì $q_k\ge q_{k-1}$ và $S>0$, nên $\kappa\ge 0$. Do đó, $\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$, nên $\dfrac{P}{Q}$ là phân số gần đúng thứ $k$ của nó.
+        -   Nếu $P=R+1$, thì $\omega=R+\dfrac{1}{1+\zeta^{-1}}=[R,1,\zeta]$, do đó $\dfrac{P}{Q}=\dfrac{R+1}{1}=[R,1]$ là phân số tiệm cận thứ $1$ của $\omega$;
+        -   Nếu $P=R-1$, thì $\omega=R-1+\dfrac{1}{1+\zeta}=[R-1,\zeta-1]$, do đó $\dfrac{P}{Q}=R-1$ là phân số tiệm cận thứ $0$ của $\omega$;
+    -   Nếu $Q\neq S>0$, thì vì $Q=q_k\mid(S-q_{k-1})$, luôn tồn tại số nguyên $\kappa$ sao cho $S=\kappa q_k+q_{k-1}$ và $R=\kappa p_k+p_{k-1}$. Vì $q_k\ge q_{k-1}$ và $S>0$, nên $\kappa\ge 0$. Do đó, $\omega=\dfrac{(\kappa+\zeta)p_k+p_{k-1}}{(\kappa+\zeta)q_k+q_{k-1}}=[a_0,a_1,\cdots,a_k,\kappa+\zeta]$, nên $\dfrac{P}{Q}$ là phân số tiệm cận thứ $k$ của nó.
 
-    Tóm lại, $\dfrac{X}{y}$ luôn là phân số gần đúng của
+    Tóm lại, $\dfrac{X}{y}$ luôn là phân số tiệm cận của
     $\omega=\dfrac{P_0+\sqrt{D}}{Q_0}$, và theo ký hiệu trong thuật toán PQa
     được viết là $\dfrac{A_{k-1}}{B_{k-1}}$. Khi đó
     $x=Q_0A_{k-1}-P_0B_{k-1}=G_{k-1}$. Vì
@@ -1045,12 +1044,12 @@ Tính đúng đắn của thuật toán được chứng minh bằng định lý
     $Q_k=(-1)^k\dfrac{N}{|N|}$.
 
 Định lý này cho thấy mọi nghiệm dương của phương trình đều nằm trong các phân số
-gần đúng của số vô tỉ bậc hai tương ứng. Vì khi tính phân số gần đúng bằng thuật
-toán PQa, một khi đi vào chu kỳ thì các phân số gần đúng về sau đều dương. Do đó,
+tiệm cận của số vô tỉ bậc hai tương ứng. Vì khi tính phân số tiệm cận bằng thuật
+toán PQa, một khi đi vào chu kỳ thì các phân số tiệm cận về sau đều dương. Do đó,
 chỉ cần liệt kê mọi số vô tỉ bậc hai được điều kiện của định lý
-cho phép, tính các phân số gần đúng của nó đến hết một chu kỳ, có thể tìm
-được một nghiệm. Vì hai nghiệm xuất hiện trong các phân số gần đúng của cùng một
-số vô tỉ bậc hai nhất định tương đương, nên khi thu được nghiệm đầu tiên thỏa
+cho phép, tính các phân số tiệm cận của nó đến hết một chu kỳ, có thể tìm
+được một nghiệm. Vì hai nghiệm xuất hiện trong các phân số tiệm cận của cùng một
+số vô tỉ bậc hai là tương đương, nên khi thu được nghiệm đầu tiên thỏa
 $(-1)^kQ_k=N/|N|$, thì không cần tính tiếp nữa. Khác với tất cả thuật toán
 trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có thể xuất hiện trước khi vào chu kỳ.
 
@@ -1132,7 +1131,7 @@ trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có th�
         Đây chính là các nghiệm nguyên dương nhỏ nhất trong mỗi lớp tương đương đã liệt kê ở trên; có thể dùng nghiệm cơ bản của phương trình Pell để chuyển chúng thành nghiệm cơ bản.
     3.  Giải phương trình $x^2-79y^2=\pm 101$.
 
-        Vẫn dùng thuật toán Lagrange–Matthews–Mollin. Vì $N=101$ là số nguyên tố, nhất định $f=1$. Khi đó $m=101$, và đồng dư tương ứng $P^2\equiv 79\pmod{101}$ có nghiệm $P=\pm 33$.
+        Vẫn dùng thuật toán Lagrange–Matthews–Mollin. Vì $N=101$ là số nguyên tố nên $f=1$. Khi đó $m=101$, và đồng dư tương ứng $P^2\equiv 79\pmod{101}$ có nghiệm $P=\pm 33$.
 
         Chạy thuật toán PQa với $(P_0,Q_0,D)=(33,101,79)$ cho kết quả sau: (phần màu đỏ là chu kỳ đầu tiên)
 
