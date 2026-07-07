@@ -262,7 +262,7 @@ Sao chép đoạn mã dưới đây và dán vào trình dòng lệnh:
 
 Tệp này lấy từ [libstdc++ phiên bản 10.2.0](https://github.com/gcc-mirror/gcc/blob/ee5c3db6c5b2c3332912fb4c9cfa2864569ebd9a/libstdc++-v3/include/precompiled/stdc++.h) và đã được chỉnh sửa nhẹ để tương thích với libc++.
 
-Nhấn <kbd>Esc</kbd> ở góc trên bên trái bàn phím để thoát chế độ chỉnh sửa, sau đó nhập trực tiếp `:wq` rồi xuống dòng để lưu tệp.
+Nhấn <kbd>Esc</kbd> ở góc trên bên trái bàn phím để thoát chế độ chỉnh sửa, sau đó nhập `:wq` rồi xuống dòng để lưu tệp.
 
 ### Bước 3
 

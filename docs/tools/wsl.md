@@ -393,21 +393,21 @@ Ngoài ra, cũng có thể truy cập thư mục WSL từ trình quản lý tệ
 trong thanh bên của File Explorer sẽ thấy mục Linux; trong đó có thể truy cập tệp
 của tất cả bản phân phối đã cài.
 
-Tương tự, cũng có thể nhập trực tiếp `\\wsl$` trong đường dẫn của File Explorer hoặc Run (Win+R) để chuyển đến thư mục WSL.
+Tương tự, cũng có thể nhập `\\wsl$` trong đường dẫn của File Explorer hoặc Run (Win+R) để chuyển đến thư mục WSL.
 
-Cũng có thể dùng trực tiếp các đường dẫn như `\\wsl$\Ubuntu\home\` để truy cập thư mục con.
+Cũng có thể dùng các đường dẫn như `\\wsl$\Ubuntu\home\` để truy cập thư mục con.
 
 ### Phối hợp với Visual Studio Code để soạn thảo
 
 Nếu quen dùng [Visual Studio Code](./editor/vscode.md) trong môi trường Windows
 để soạn thảo mã, có thể cài phần mở rộng `Remote - WSL` trong VS Code để chỉnh
-sửa tệp trong WSL trực tiếp hơn.
+sửa tệp trong WSL thuận tiện hơn.
 
-Thông qua `Remote - WSL`, có thể thao tác trực tiếp với WSL trong giao diện VS
+Thông qua `Remote - WSL`, có thể thao tác với WSL ngay trong giao diện VS
 Code trên Windows, chỉnh sửa tệp trong thư mục của WSL và dùng trình dòng lệnh
 để gỡ lỗi.
 
-Bằng cách nhập trực tiếp `code .` trong WSL, có thể gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
+Nhập `code .` trong WSL sẽ gọi Visual Studio Code ngay tại thư mục đó để chỉnh sửa các tệp trong thư mục.
 
 Đồng thời, cũng có thể dùng lệnh tương tự `code filename` để chỉnh sửa tệp chỉ định.
 
@@ -415,8 +415,8 @@ Trang Getting Started của phần mở rộng `Remote - WSL` giới thiệu chi
 
 Đồng thời, cũng có thể tham khảo nội dung về WSL trong tài liệu chính thức của
 Visual Studio Code ([Remote development in WSL](https://code.visualstudio.com/docs/remote/wsl-tutorial));
-bài viết này giới thiệu toàn bộ quy trình từ cài WSL đến sử dụng cùng phần mở
-rộng một cách chi tiết hơn.
+bài viết này giới thiệu chi tiết hơn toàn bộ quy trình từ cài WSL đến sử dụng
+cùng phần mở rộng.
 
 ## Nâng cấp WSL1 lên WSL2
 

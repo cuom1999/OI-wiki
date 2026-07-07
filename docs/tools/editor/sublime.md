@@ -116,11 +116,11 @@ Cũng có thể dùng thiết lập phím tắt để gán thao tác vào chế 
 
 Vintage của ST có một số điểm khác với Vi, một phần được liệt kê dưới đây:
 
--   Trong chế độ chèn, thao tác chọn bằng chuột sẽ không vào chế độ chọn trực quan; lúc này nội dung nhập vào không được nhận diện là lệnh mà sẽ trực tiếp thay thế văn bản. Chế độ chọn trực quan chỉ có thể vào từ chế độ lệnh.
+-   Trong chế độ chèn, thao tác chọn bằng chuột sẽ không vào chế độ chọn trực quan; lúc này nội dung nhập vào không được nhận diện là lệnh mà sẽ thay thế văn bản ngay. Chế độ chọn trực quan chỉ có thể vào từ chế độ lệnh.
 -   Không có các lệnh `r`, `R`, `zA`, `za`, `zi`, `z=`, `@` và các lệnh dùng phím <kbd>\[</kbd>, <kbd>]</kbd> hoặc <kbd>"</kbd>.
 -   Các phím tắt dùng <kbd>Ctrl</kbd>, <kbd>Shift</kbd> và <kbd>Alt</kbd> vẫn giữ nguyên phím tắt do ST thiết lập; ví dụ <kbd>Ctrl</kbd>+<kbd>V</kbd> sẽ không vào chế độ chọn trực quan mà vẫn dán bình thường.
 -   Chế độ dòng lệnh chỉ giữ lại `:e`, `:0`, `:$`, `:s`.
--   Khi dùng lệnh `\` và `?`, ST sẽ tự gọi hộp tìm kiếm thay vì nhập trực tiếp từ cần tìm trong lệnh. Đồng thời, số đếm sẽ không có hiệu lực.
+-   Khi dùng lệnh `\` và `?`, ST sẽ tự gọi hộp tìm kiếm thay vì cho nhập từ cần tìm ngay trong lệnh. Đồng thời, số đếm sẽ không có hiệu lực.
 -   Lệnh ghi macro `q` sẽ khởi động chức năng ghi macro có sẵn của ST. Sau khi nhấn <kbd>Q</kbd>, cần nhấn thêm một phím để bắt đầu ghi, nhưng macro đã ghi sẽ không được gắn với phím đó; cần nhấn <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Q</kbd> mới chạy. Nếu cần lưu, dùng `Tools->Save Macro` (`Công cụ -> Lưu macro`); phím tắt cần tự thiết lập.
 -   Không thể dùng tổ hợp `số+.`.
 
@@ -332,7 +332,7 @@ Nếu không có hoàn thành tự động, sửa như sau:
 
 ### Chọn nhiều điểm
 
-Giữ <kbd>Ctrl</kbd> và nhấp chuột để thêm con trỏ trên màn hình. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> có thể trực tiếp thêm con trỏ ở các dòng kề nhau. Mọi thao tác chỉnh sửa sẽ được áp dụng đồng thời cho tất cả con trỏ.
+Giữ <kbd>Ctrl</kbd> và nhấp chuột để thêm con trỏ trên màn hình. <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Up</kbd> hoặc <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Down</kbd> có thể thêm con trỏ ở các dòng kề nhau. Mọi thao tác chỉnh sửa sẽ được áp dụng đồng thời cho tất cả con trỏ.
 
 ### Tìm kiếm và thay thế
 
@@ -417,13 +417,13 @@ Về cách lưu macro và gán phím, xem [tài liệu cộng đồng](https://d
 
 ## Biên dịch và chạy
 
-Môi trường biên dịch của ST đã được cấu hình sẵn, có thể dùng trực tiếp.
+Môi trường biên dịch của ST đã được cấu hình sẵn, có thể dùng ngay.
 
 Trên Windows, cần thêm thư mục chứa g++ vào biến môi trường rồi khởi động lại ST.
 
 ### Biên dịch
 
-Nhấn trực tiếp <kbd>Ctrl</kbd>+<kbd>B</kbd> để biên dịch. Lần đầu sử dụng cần chọn hệ thống biên dịch: chọn `C++ Single File` (biên dịch) hoặc `C++ Single File - Run` (biên dịch và chạy).
+Nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> để biên dịch. Lần đầu sử dụng cần chọn hệ thống biên dịch: chọn `C++ Single File` (biên dịch) hoặc `C++ Single File - Run` (biên dịch và chạy).
 
 #### Sửa tùy chọn biên dịch
 
@@ -447,7 +447,7 @@ Tệp đã lưu nằm tại `\Packages\User\tên_hệ_thống_biên_dịch.subli
 
 ### Chạy
 
-Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biên dịch) hoặc đã cấu hình tự chạy, cửa sổ thông tin biên dịch bật lên ở phía dưới thường sẽ không hiển thị gì (trừ khi lỗi biên dịch), vì cửa sổ thông tin biên dịch của ST thực chất là một cửa sổ dòng lệnh, có thể nhập dữ liệu trực tiếp.
+Nếu khi biên dịch chọn `C++ Single File - Run` (tức chạy sau khi biên dịch) hoặc đã cấu hình tự chạy, cửa sổ thông tin biên dịch bật lên ở phía dưới thường sẽ không hiển thị gì (trừ khi lỗi biên dịch), vì cửa sổ thông tin biên dịch của ST thực chất là một cửa sổ dòng lệnh, có thể nhập dữ liệu ngay tại đó.
 
 Sau khi chạy xong, ST sẽ hiển thị thời gian chạy của chương trình. Bộ đếm thời gian này tính từ lúc nhấn <kbd>Ctrl</kbd>+<kbd>B</kbd> đến khi toàn bộ lệnh CMD kết thúc, nghĩa là bao gồm cả thời gian biên dịch, thời gian nhập liệu, và nếu chạy trong CMD bên ngoài thì còn gồm cả thời gian mở/đóng CMD.
 

@@ -216,7 +216,7 @@ Lưu ý rằng lúc này ở góc trên bên phải sẽ có một thanh công c
 [^ref1]: Nếu tiện ích mở rộng C/C++ của VS Code chọn lldb làm trình gỡ lỗi, mặc định nó sẽ dùng chương trình lldb-mi; chương trình này đã được nhóm phát triển LLVM tách khỏi dự án và cần tự biên dịch. Bản thân nó cũng có một số lỗi, nên trải nghiệm và mức độ tiện lợi đều không bằng CodeLLDB.
 
 [^ref2]: Sau khi cài CodeLLDB từ kho tiện ích mở rộng, nó sẽ tải phần lõi từ
-    GitHub, tốc độ tải chậm và đôi khi lỗi tải, nên ưu tiên tải trực tiếp phần
-    lõi rồi cài đặt. Khi cập nhật cũng có thể tải và cài theo các bước trên.
+    GitHub, tốc độ tải chậm và đôi khi lỗi tải, nên ưu tiên tải riêng phần lõi
+    rồi cài đặt. Khi cập nhật cũng có thể tải và cài theo các bước trên.
 
 [^ref3]: [Tài liệu chính thức của VS Code](https://code.visualstudio.com/docs/).

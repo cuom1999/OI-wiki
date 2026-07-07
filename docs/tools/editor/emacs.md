@@ -79,7 +79,7 @@ Do số lượng phím tắt quá nhiều, cách dùng phím tắt của Emacs k
 
 Thông thường có ba dạng sau:
 
--   `F?`, `ESC`: nhấn trực tiếp phím chức năng tương ứng.
+-   `F?`, `ESC`: nhấn phím chức năng tương ứng.
 -   `M-?`, `C-?`, `C-M-?`: giữ <kbd>Alt</kbd> hoặc <kbd>Ctrl</kbd> đồng thời nhấn `?`.
 -   `? ?`: trước hết nhấn phím tương ứng với `?` đầu tiên, thả ra rồi nhấn phím tương ứng với `?` thứ hai.
 
@@ -94,9 +94,9 @@ Dưới đây là một số phím tắt thường dùng:
 
 Thiết lập mặc định của Emacs có thể chưa phù hợp với thói quen sử dụng, vì vậy nên cá nhân hóa nó.
 
-Vì các mục cấu hình khó nhớ, với một số mục có giao diện thiết lập trực tiếp thì không cần ghi nhớ cấu hình thủ công.
+Vì các mục cấu hình khó nhớ, với một số mục có giao diện thiết lập sẵn thì không cần ghi nhớ cấu hình thủ công.
 
-### Thiết lập trực tiếp
+### Thiết lập qua giao diện
 
 -   Options (`Tùy chọn`): `Highlight Matching Parentheses` (`Tô sáng cặp ngoặc khớp`) tô sáng cặp ngoặc khớp.
 -   Options (`Tùy chọn`): `Blink Cursor` (`Con trỏ nhấp nháy`) thiết lập con trỏ nhấp nháy.
