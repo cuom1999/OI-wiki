@@ -185,7 +185,7 @@ Một dãy phần tử sinh ngẫu nhiên có thể có các tính chất như "
 
 Xem chi tiết tại [phương pháp gia tăng ngẫu nhiên](../geometry/random-incremental.md).
 
-### Ví dụ: lời giải ngẫu nhiên hóa cho [TopCoder MagicMolecule](https://archive.topcoder.com/ProblemStatement/pm/11705)
+### Ví dụ: lời giải ngẫu nhiên hóa cho [TopCoder Phân tử ma thuật](https://archive.topcoder.com/ProblemStatement/pm/11705)
 
 ???+ note "Tóm tắt đề bài"
     Cho một đồ thị vô hướng có $n$ đỉnh, mỗi đỉnh có trọng số. Trong tất cả các clique có kích thước không nhỏ hơn $\dfrac {2n}3$, cần tìm clique có tổng trọng số lớn nhất.

@@ -228,9 +228,9 @@ Theo định nghĩa của tâm tuyệt đối của đồ thị, tâm tuyệt đ
 
 [SPOJ MDST](https://www.spoj.com/problems/MDST/)
 
-[timus 1569. Networking the "Iset"](https://acm.timus.ru/problem.aspx?space=1&num=1569)
+[timus 1569. Kết nối "Iset"](https://acm.timus.ru/problem.aspx?space=1&num=1569)
 
-[SPOJ PT07C - The GbAaY Kingdom](https://www.spoj.com/problems/PT07C)
+[SPOJ PT07C - Vương quốc GbAaY](https://www.spoj.com/problems/PT07C)
 
 ## Tài liệu tham khảo
 

@@ -132,7 +132,7 @@ Với các số phức $z,w$, phép liên hợp phức có các tính chất sau
 -   $\overline{zw}=\bar{z}\bar{w}$
 -   $\overline{z/w}=\bar{z}/\bar{w}$
 
-### Argument và giá trị chính của argument
+### Góc pha và giá trị chính của góc pha
 
 Nếu lấy đơn vị thực $1$ làm hướng ngang dương và đơn vị ảo $\mathrm{i}$ làm hướng thẳng đứng dương, sẽ thu được mặt phẳng phức dưới góc nhìn tọa độ Descartes.
 
@@ -144,25 +144,25 @@ $$
 \tan \theta=\frac{y}{x}
 $$
 
-Góc này được gọi là **argument** của số phức $z$, ký hiệu:
+Góc này được gọi là **góc pha** của số phức $z$, ký hiệu:
 
 $$
 \theta= \arg z
 $$
 
-Một số phức **khác không** $z$ có vô số argument, nên $\arg z$ thực chất là một tập hợp. Dùng $\operatorname{Arg} z$ viết hoa chữ đầu để biểu diễn **một giá trị cụ thể trong đó**, thỏa mãn điều kiện:
+Một số phức **khác không** $z$ có vô số góc pha, nên $\arg z$ thực chất là một tập hợp. Dùng $\operatorname{Arg} z$ viết hoa chữ đầu để biểu diễn **một giá trị cụ thể trong đó**, thỏa mãn điều kiện:
 
 $$
 -\pi<\operatorname{Arg} z \le \pi
 $$
 
-Gọi $\operatorname{Arg} z$ là **giá trị chính của argument** hoặc **argument chính**. Argument là giá trị chính cộng thêm một số nguyên lần (có thể bằng không hoặc là số nguyên âm) của $2k\pi$, tức $\arg z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$.
+Gọi $\operatorname{Arg} z$ là **giá trị chính của góc pha** hoặc **góc pha chính**. Góc pha là giá trị chính cộng thêm một số nguyên lần (có thể bằng không hoặc là số nguyên âm) của $2k\pi$, tức $\arg z = \{\operatorname{Arg} z + 2k\pi \mid k\in \mathbf Z\}$.
 
-Tổng của hai giá trị chính của argument không nhất thiết vẫn là giá trị chính của argument, còn tổng của hai argument thì luôn là một argument hợp lệ.
+Tổng của hai giá trị chính của góc pha không nhất thiết vẫn là giá trị chính của góc pha, còn tổng của hai góc pha thì luôn là một góc pha hợp lệ.
 
 Số phức có môđun nhỏ hơn $1$ tạo thành hình **đĩa đơn vị** trên mặt phẳng phức. Số phức có môđun bằng $1$ được gọi là **số phức đơn vị**; toàn bộ các số phức đơn vị tạo thành **đường tròn đơn vị** trên mặt phẳng phức. Khi không gây nhầm lẫn, đôi khi đường tròn đơn vị cũng được gọi tắt là vòng tròn đơn vị.
 
-Dưới góc nhìn tọa độ cực, phép nhân và phép chia số phức trở nên rất đơn giản. Khi nhân số phức, môđun được nhân với nhau, argument được cộng với nhau. Khi chia số phức, môđun được chia cho nhau, argument được trừ cho nhau.
+Dưới góc nhìn tọa độ cực, phép nhân và phép chia số phức trở nên rất đơn giản. Khi nhân số phức, môđun được nhân với nhau, góc pha được cộng với nhau. Khi chia số phức, môđun được chia cho nhau, góc pha được trừ cho nhau.
 
 <span id="công-thức-euler"></span>
 
@@ -190,7 +190,7 @@ $$
 Hàm mũ phức hoàn toàn nhất quán với định nghĩa của hàm mũ thực trên tập số thực. Trên mặt phẳng phức, nó có các tính chất:
 
 -   Môđun luôn dương: $|\exp z|=\exp x>0$.
--   Argument: $\arg(\exp z)=\{y + 2k\pi \mid k\in\mathbf Z\}$.
+-   Góc pha: $\arg(\exp z)=\{y + 2k\pi \mid k\in\mathbf Z\}$.
 -   Định lý cộng: $\exp (z_1+z_2)=\exp (z_1)\exp (z_2)$.
 -   Tính tuần hoàn: $\exp z$ là hàm tuần hoàn có chu kỳ cơ bản $2\pi \mathrm{i}$. Nếu chu kỳ của một hàm $f(z)$ là bội nguyên của một chu kỳ nào đó, chu kỳ đó được gọi là **chu kỳ cơ bản**.
 
@@ -248,7 +248,7 @@ Hai dạng này thuận tiện hơn cho việc tính hai phép toán nhân, chia
 
 Xét nghiệm của phương trình $x^n=1$ trong trường số phức. Phương trình này có $n$ nghiệm; $n$ nghiệm này đều được gọi là **căn đơn vị (phức) bậc $n$** ($n$-th root of unity). Theo kiến thức về mặt phẳng phức, các căn đơn vị bậc $n$ chia đều đường tròn đơn vị thành $n$ phần.
 
-Đặt $\omega_n=\exp\dfrac{2\pi \mathrm{i}}{n}$ (tức là số phức đơn vị có argument $2\pi/n$), thì tập nghiệm của $x^n=1$ được biểu diễn là $\{\omega_n^k\mid k=0,1\cdots,n-1\}$, trong đó,
+Đặt $\omega_n=\exp\dfrac{2\pi \mathrm{i}}{n}$ (tức là số phức đơn vị có góc pha $2\pi/n$), thì tập nghiệm của $x^n=1$ được biểu diễn là $\{\omega_n^k\mid k=0,1\cdots,n-1\}$, trong đó,
 
 $$
 w_n^k = \exp\dfrac{2\pi k \mathrm{i}}{n} = \cos\dfrac{2\pi k}{n} + \mathrm{i}\sin\dfrac{2\pi k}{n}.
@@ -304,7 +304,7 @@ Các toán tử số học '+', '-', '\*' và '/' có thể dùng cho mọi tổ
 
 Tệp tiêu đề `<complex.h>` cung cấp đơn vị ảo `I`; khi đưa tệp tiêu đề này vào, chữ cái viết hoa `I` không thể dùng làm tên biến.
 
-Đối với một số phức đơn lẻ, `<complex.h>` cung cấp một số thao tác: hàm `creal` dùng để trích phần thực, hàm `cimag` dùng để trích phần ảo, hàm `cabs` dùng để tính môđun, hàm `carg` dùng để tính giá trị chính của argument.
+Đối với một số phức đơn lẻ, `<complex.h>` cung cấp một số thao tác: hàm `creal` dùng để trích phần thực, hàm `cimag` dùng để trích phần ảo, hàm `cabs` dùng để tính môđun, hàm `carg` dùng để tính giá trị chính của góc pha.
 
 Mỗi hàm đều có ba phiên bản tùy theo kiểu. Ví dụ hàm `creal` có ba phiên bản `creal`, `crealf`, `creall`, dùng để xử lý ba kiểu tương ứng là `double`, `float` và `long double`. Phiên bản không có hậu tố ở cuối mặc định xử lý kiểu `double`. Tất cả các hàm dưới đây đều tuân theo quy luật này, nên không giải thích riêng nữa.
 
@@ -328,7 +328,7 @@ Trong C++, kiểu số phức được định nghĩa bằng `complex<float>`, `
 
 Một đối tượng số phức có các hàm thành viên `real` và `imag`, dùng để truy cập phần thực và phần ảo.
 
-Một đối tượng số phức có các hàm không phải thành viên `real`, `imag`, `abs`, `arg`, trả về phần thực, phần ảo, môđun và argument.
+Một đối tượng số phức có các hàm không phải thành viên `real`, `imag`, `abs`, `arg`, trả về phần thực, phần ảo, môđun và góc pha.
 
 Một đối tượng số phức còn có các hàm không phải thành viên: `norm` là bình phương môđun, `conj` là số phức liên hợp.
 
