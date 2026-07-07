@@ -80,7 +80,7 @@ Ngược lại, xét mạng dư sau khi xóa toàn bộ các cạnh phụ và đ
 Chạy thêm một lần luồng cực đại từ $S$ đến $T$ trên mạng dư.
 Lấy giá trị luồng khả thi cộng với giá trị luồng cực đại vừa tìm được sẽ cho đáp án.
 
-??? warning "Một điểm rất dễ sai"
+??? warning "Một điểm dễ sai"
     Luồng cực đại từ $S$ đến $T$ phải được chạy trực tiếp trên mạng dư sau khi đã chạy xong bước tìm luồng khả thi có cận trên, cận dưới, nguồn và đích.
     
     Tuyệt đối không chạy trên mạng luồng ban đầu.

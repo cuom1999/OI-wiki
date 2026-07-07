@@ -43,7 +43,7 @@ $$
 <span id="cài-đặt"></span>
 ### Cài đặt
 
-Còn một điểm cần lưu ý: rất dễ viết ra đoạn **mã lõi sai** như sau:
+Còn một điểm cần lưu ý: dễ viết ra đoạn **mã lõi sai** như sau:
 
 === "C++"
     ```cpp

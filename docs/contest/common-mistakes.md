@@ -428,7 +428,7 @@ khác nhau.
     nếu `a<b` là `true` và `b<c` là `true` thì `a<c` là `true`. Cần đặc biệt
     lưu tâm đến điều kiện thứ hai.
 
-    Nếu không thỏa các yêu cầu trên, khi sắp xếp rất dễ RE.
+    Nếu không thỏa các yêu cầu trên, khi sắp xếp dễ RE.
 
     Ví dụ, khi viết thứ tự lẻ/chẵn cho Mo's algorithm, cách viết sau là sai:
 

@@ -274,7 +274,7 @@ Từ đó có kết luận sau:
 ??? note "Chứng minh"
     Mỗi ghép cặp $M'$ của đồ thị hai phía $G'$ tương ứng với một đồ thị con $F$ của đồ thị $G$, và trong đồ thị con $F$, bậc vào và bậc ra của mỗi đỉnh đều không vượt quá một. Nói cách khác, đồ thị con $F$ là một tập các đường đi hoặc chu trình rời nhau trong đồ thị có hướng $G$. Tuy nhiên, do giả sử $G$ không chứa chu trình, $F$ chỉ chứa một số đường đi rời nhau. Ngược lại, với mỗi đồ thị con $F$ như vậy, đều có thể xây dựng ghép cặp tương ứng. Vì kích thước của ghép cặp $M'$ chính là hiệu giữa số đỉnh và số đường đi trong $F$, nên bài toán phủ đường đi nhỏ nhất của đồ thị $G$ tương ứng với bài toán ghép cặp lớn nhất của đồ thị $G'$.
 
-Chứng minh mang tính xây dựng, nên rất dễ dựng phủ đường đi nhỏ nhất tương ứng từ ghép cặp lớn nhất tìm được. Hơn nữa, cách xây dựng này cho thấy đối với đồ thị có hướng tổng quát, phép quy về này không còn đúng, chính vì ghép cặp trong đồ thị hai phía có thể tương ứng với chu trình trong đồ thị có hướng.
+Chứng minh mang tính xây dựng, nên có thể dựng phủ đường đi nhỏ nhất tương ứng từ ghép cặp lớn nhất tìm được. Hơn nữa, cách xây dựng này cho thấy đối với đồ thị có hướng tổng quát, phép quy về này không còn đúng, chính vì ghép cặp trong đồ thị hai phía có thể tương ứng với chu trình trong đồ thị có hướng.
 
 Đặc biệt, với tập $X$ và quan hệ thứ tự bộ phận $P$ trên nó, có thể xây dựng đồ thị có hướng không chu trình $G=(X,P)$. Khi đó, theo [định lý Dilworth](../../math/order-theory.md#định-lý-dilworth-và-định-lý-mirsky), kích thước phủ đường đi nhỏ nhất của đồ thị $G$ bằng độ dài của phản xích dài nhất của nó, cũng tức là chiều rộng của poset $(X,P)$. Vì vậy, phần này đưa ra một cách tính hiệu quả chiều rộng của một poset bất kỳ.
 

@@ -216,7 +216,7 @@ giản hơn.
     $\delta_m(a)\perp\delta_m(b)$.
 
 Trong trường hợp tổng quát, các cận thu được từ [Tính chất 4](#ord-prop-4) đã
-là chặt. Trường hợp bậc của tích đạt cận dưới rất dễ xây dựng: chẳng hạn với
+là chặt. Trường hợp bậc của tích đạt cận dưới dễ xây dựng: chẳng hạn với
 $(a,b,m)=(3,5,7)$, có $\delta_m(a)=\delta_m(b)=6$, nhưng bậc của tích là
 $\delta_m(ab)=1$.
 

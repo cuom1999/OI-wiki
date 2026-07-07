@@ -12,7 +12,7 @@ Q: Nếu đã biết là hàm đơn đỉnh thì tại sao không dùng tìm ki�
 
 A: Ưu điểm của leo đồi là trong các tình huống chưa rõ cách viết lời giải chuẩn, thường gặp ở các bài hình học tính toán hoặc toán khó, hoặc khi bản thân trạng thái có nhiều chiều khiến việc viết chia để trị trở nên khó, vẫn có thể tìm nghiệm tối ưu bằng cách tính toán khá thiên về vét cạn. Chẳng hạn, ví dụ 2 bên dưới vẫn có thể dùng nhị phân để có lời giải chuẩn.
 
-Tuy nhiên, với phần lớn các hàm cần giải, thuật toán leo đồi rất dễ rơi vào một nghiệm tối ưu cục bộ, như hình dưới đây. Nghiệm tối ưu là $\color{green}{\Uparrow}$, còn nghiệm tốt nhất mà leo đồi có thể tìm được là $\color{red}{\Downarrow}$.
+Tuy nhiên, với phần lớn các hàm cần giải, thuật toán leo đồi dễ rơi vào một nghiệm tối ưu cục bộ, như hình dưới đây. Nghiệm tối ưu là $\color{green}{\Uparrow}$, còn nghiệm tốt nhất mà leo đồi có thể tìm được là $\color{red}{\Downarrow}$.
 
 ![](./images/hill-climbing.png)
 

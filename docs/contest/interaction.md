@@ -26,7 +26,7 @@ Ví dụ:
 
 Mỗi số nguyên tố có đúng hai ước, nên có thể trực tiếp liệt kê các ước của số cần đoán. Vì giới hạn tối đa 20 truy vấn, và với các số lớn hơn (như 92), khi thử phân tích thừa số nguyên tố sẽ thấy cần liệt kê các số nguyên tố đến tận $\lfloor\frac{n}{2}\rfloor$ trong trường hợp xấu nhất. Vì vậy trước tiên sàng các số nguyên tố không vượt quá 50, rồi lần lượt hỏi tất cả các số đó.
 
-Do bài này khá dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Khi đó sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
+Do bài này dễ đối chiếu kiểm thử, có thể trực tiếp thử mọi số trong miền giá trị. Khi đó sẽ thấy chương trình không xử lý hiệu quả bình phương của số nguyên tố. Vì vậy cần thêm bình phương của 2,3,5,7, tức 4,9,25,49, tổng cộng 19 số, thỏa mãn yêu cầu đề bài.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -282,7 +282,7 @@ Khi đó thuật toán vừa khít trường hợp xấu nhất 16 lần.
 
 Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
 
--   Khi đi sát mép tường, rất dễ biết mình có va vào tường hay không, nhờ đó thu được nhiều thông tin nhất có thể.
+-   Khi đi sát mép tường, dễ biết mình có va vào tường hay không, nhờ đó thu được nhiều thông tin nhất có thể.
 -   Các ô sát tường đều không thể là ô có cổng dịch chuyển, nhờ vậy có thể tránh để robot bị lạc.
 
 Vì vậy, nếu đã biết robot có thể đang ở một vị trí nào đó sát tường, để xác định robot có thật sự ở vị trí này hay không, có thể dùng [phương pháp "một tay men tường"](https://en.wikipedia.org/wiki/Maze_solving_algorithm). Theo nguyên lý tô pô, trong mê cung có tường ở hai bên, nếu đi vào từ cửa vào và luôn dùng một tay men theo cùng một bên tường, có thể tìm được lối ra. Vì tường trong bài này khép kín, chỉ cần đi dọc theo đường sát tường là có thể quay về điểm xuất phát mà không va tường. Ngoài ra, vì đường sát tường là chu trình khép kín lớn nhất trên bản đồ, trong mã thực tế không cần cố tình đâm vào tường để xác nhận robot đang ở sát tường; có thể dùng đánh dấu để chỉ ra đường sát tường trên bản đồ. Hơn nữa, một khi va vào tường thì cần nhanh chóng quay lại theo đường cũ, vừa tránh để robot bị lạc vừa giảm số bước.

@@ -361,7 +361,7 @@ Việc hai lớp độ phức tạp $\mathsf{P}$ và $\mathsf{NP}$ có bằng nh
 Nếu $\mathsf{P}=\mathsf{NP}$, có thể suy ra $\mathsf{NP}=\mathsf{co-NP}$, nhưng chiều ngược lại thì không (hiện chưa có phương pháp chứng minh $\mathsf{P}=\mathsf{NP}$ dựa trên $\mathsf{NP}=\mathsf{co-NP}$).
 
 ???+ note "Vì sao NP?=co-NP không trực tiếp đúng?"
-    Vì một bài toán $\mathsf{NP}$ và bài toán $\mathsf{co-NP}$ tương ứng có đáp án trái ngược nhau, rất dễ nảy sinh ý nghĩ này: với một bài toán $\mathsf{co-NP}$, chỉ cần đảo ngược đầu ra của máy Turing không tất định giải phần bù của nó là giải được bài toán $\mathsf{co-NP}$ đó, nên $\mathsf{NP}=\mathsf{co-NP}$.
+    Vì một bài toán $\mathsf{NP}$ và bài toán $\mathsf{co-NP}$ tương ứng có đáp án trái ngược nhau, dễ nảy sinh ý nghĩ này: với một bài toán $\mathsf{co-NP}$, chỉ cần đảo ngược đầu ra của máy Turing không tất định giải phần bù của nó là giải được bài toán $\mathsf{co-NP}$ đó, nên $\mathsf{NP}=\mathsf{co-NP}$.
     
     Cách nói trên đúng là có thể giải bài toán $\mathsf{co-NP}$ đó, nhưng nó không tìm được một máy Turing không tất định để giải bài toán này: nếu việc một máy Turing làm là đảo ngược đầu ra của một máy Turing không tất định, thì máy Turing đó không phải là máy Turing không tất định. Bởi vì máy Turing không tất định chấp nhận khi có một nhánh nào đó chấp nhận, còn từ chối khi mọi nhánh đều từ chối; khi đảo ngược đầu ra của nó, việc chấp nhận biến thành xảy ra ở mọi nhánh, còn từ chối biến thành xảy ra ở một nhánh, điều này không phù hợp với định nghĩa của máy Turing không tất định. Vì vậy, việc có thể dùng máy Turing đó để giải bài toán $\mathsf{co-NP}$ này không làm cho bài toán $\mathsf{co-NP}$ này trở thành một bài toán $\mathsf{NP}$.
 

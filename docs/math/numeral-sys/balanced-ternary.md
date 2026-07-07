@@ -20,7 +20,7 @@ Một vài ví dụ:
 | `3` | `10`  | `8` | `10Z` |
 | `4` | `11`  | `9` | `100` |
 
-Hệ ghi số này biểu diễn số âm rất dễ: chỉ cần đảo từng chữ số của số dương (`Z` thành `1`, `1` thành `Z`).
+Hệ ghi số này biểu diễn số âm rất đơn giản: chỉ cần đảo từng chữ số của số dương (`Z` thành `1`, `1` thành `Z`).
 
 | Thập phân | Tam phân cân bằng |
 | ---- | ----- |

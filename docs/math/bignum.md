@@ -617,7 +617,7 @@ Dưới đây là mã cộng độ chính xác cao gộp chữ số, dùng để
 
 Khi dùng độ chính xác cao gộp chữ số, nếu vẫn thử thương bằng phương pháp đã giới thiệu trước đó, số lần thử thương sẽ rất nhiều và hằng số tính toán sẽ cực lớn. Chẳng hạn trong hệ cơ số mười nghìn, trung bình mỗi vị trí cần thử thương 5000 lần; hằng số lớn như vậy là không thể chấp nhận. Vì thế cần một cách thử thương hiệu quả hơn.
 
-Có thể dùng `double` làm trung gian. Giả sử số bị chia có 4 chữ số là $a_4,a_3,a_2,a_1$, số chia có 3 chữ số là $b_3,b_2,b_1$. Khi đó chỉ cần thử một chữ số của thương: trong hệ cơ số $base$, dùng biểu thức $\dfrac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$ để ước lượng thương. Với trường hợp nhiều chữ số, chỉ cần lặp cách làm một chữ số này. Vì dùng 3 chữ số độ chính xác của số chia để tham gia ước lượng, có thể chứng minh quan hệ giữa thương ước lượng q' và thương thực q thỏa $q-1 \le q' \le q$, nên trong trường hợp xấu nhất mỗi vị trí cũng chỉ cần thử thương hai lần. Đồng thời, phương pháp này yêu cầu $base^3$ nằm trong độ chính xác hiệu dụng của `double`, tức $base^3 < 2^{53}$. Vì vậy khi dùng cách này, không nên vượt quá hệ cơ số 32768; nếu không rất dễ sinh sai số do thiếu độ chính xác và dẫn đến kết quả sai.
+Có thể dùng `double` làm trung gian. Giả sử số bị chia có 4 chữ số là $a_4,a_3,a_2,a_1$, số chia có 3 chữ số là $b_3,b_2,b_1$. Khi đó chỉ cần thử một chữ số của thương: trong hệ cơ số $base$, dùng biểu thức $\dfrac{a_4 base + a_3}{b_3 + b_2 base^{-1} + (b_1+1)base^{-2}}$ để ước lượng thương. Với trường hợp nhiều chữ số, chỉ cần lặp cách làm một chữ số này. Vì dùng 3 chữ số độ chính xác của số chia để tham gia ước lượng, có thể chứng minh quan hệ giữa thương ước lượng q' và thương thực q thỏa $q-1 \le q' \le q$, nên trong trường hợp xấu nhất mỗi vị trí cũng chỉ cần thử thương hai lần. Đồng thời, phương pháp này yêu cầu $base^3$ nằm trong độ chính xác hiệu dụng của `double`, tức $base^3 < 2^{53}$. Vì vậy khi dùng cách này, không nên vượt quá hệ cơ số 32768; nếu không dễ sinh sai số do thiếu độ chính xác và dẫn đến kết quả sai.
 
 Ngoài ra, vì thương ước lượng luôn nhỏ hơn hoặc bằng thương thực, vẫn còn không gian tối ưu thêm. Trong phần lớn trường hợp, mỗi vị trí chỉ cần ước lượng thương một lần. Khi ước lượng ở vị trí kế tiếp, dù kết quả có thể do sai số ở vị trí trước khiến chữ số thương thử lớn hơn hoặc bằng base, điều đó vẫn không sao; chỉ cần xử lý nhớ thống nhất ở cuối. Ví dụ, giả sử base là 10 và cần tính $395081/9876$, các bước thử thương như sau:
 
@@ -625,7 +625,7 @@ Ngoài ra, vì thương ước lượng luôn nhỏ hơn hoặc bằng thương 
 2.  Tiếp tục thử thương với phần dư 98801, được $9880/988=10$, nên $98801-(9876 \times 10 \times 10^0) = 41$. Đây chính là số dư cuối cùng.
 3.  Cộng các kết quả trong quá trình thử thương rồi xử lý nhớ, tức $3 \times 10^1 + 10 \times 10^0 = 40$, thu được thương chính xác.
 
-Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể rất dễ mắc lỗi. Vì vậy dưới đây cung cấp một cài đặt đã được kiểm chứng nhiều lần để tham khảo; các chi tiết cần lưu ý cũng được viết trong chú thích.
+Phương pháp nhìn qua khá đơn giản, nhưng khi cài đặt cụ thể dễ mắc lỗi. Vì vậy dưới đây cung cấp một cài đặt đã được kiểm chứng nhiều lần để tham khảo; các chi tiết cần lưu ý cũng được viết trong chú thích.
 
 ??? note "Cài đặt tham khảo phép chia đặt dọc hiệu quả cho độ chính xác cao gộp chữ số"
     ```cpp
