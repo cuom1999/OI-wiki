@@ -15,14 +15,18 @@ Phần này có thể xem là phiên bản tại chỗ của thuật toán SA-IS
 
 Đây là thuật toán được bài gốc mô tả khá đầy đủ, cài đặt cũng khá đơn giản, đồng thời là nền tảng để hiểu các thuật toán phía sau, nên là trọng tâm của bài này.
 
-Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các bucket S và L, rồi dùng thêm $O(n)$ thao tác để thay cho bucket kiểu.
+Nguyên lý tại chỗ là dùng $\texttt{Pat}$ đã được đổi tên để thay thế các thùng S
+và L, rồi dùng thêm $O(n)$ thao tác để thay cho thùng kiểu.
 
 <span id="đổi-tên-xâu-mục-tiêu-pat"></span>
 ### Đổi tên xâu mục tiêu Pat
 
-Nói ngắn gọn, đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các bucket S và L ban đầu, qua đó chỉ ra đầu bucket hoặc cuối bucket.
+Nói ngắn gọn, đổi tên $\texttt{Pat}$ mà không làm thay đổi thứ tự tương đối giữa
+các hậu tố. Sau đó dùng $\texttt{Pat}$ đã đổi tên để thay thế các thùng S và L
+ban đầu, qua đó chỉ ra đầu thùng hoặc cuối thùng.
 
-Cách đổi tên là thay ký tự kiểu S trong $\texttt{Pat}$ bằng chỉ số cuối bucket của nó, và thay ký tự kiểu L bằng chỉ số đầu bucket của nó.
+Cách đổi tên là thay ký tự kiểu S trong $\texttt{Pat}$ bằng chỉ số cuối thùng của
+nó, và thay ký tự kiểu L bằng chỉ số đầu thùng của nó.
 
 Như hình dưới đây:
 
@@ -45,11 +49,15 @@ $$
 \end{aligned}
 $$
 
-Trong cùng một bucket, hậu tố của ký tự kiểu L nhỏ hơn nên nằm ở đầu bucket, còn hậu tố của ký tự kiểu S lớn hơn nên nằm ở cuối bucket; do đó thứ tự tương đối giữa các hậu tố được giữ nguyên.
+Trong cùng một thùng, hậu tố của ký tự kiểu L nhỏ hơn nên nằm ở đầu thùng, còn
+hậu tố của ký tự kiểu S lớn hơn nên nằm ở cuối thùng; do đó thứ tự tương đối
+giữa các hậu tố được giữ nguyên.
 
 Các bước đổi tên cụ thể:
 
-1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của chúng (sắp xếp đếm) để xây dựng bucket S/L; khác biệt là biến thể này dùng $\texttt{SA}$ để chứa các tổng tiền tố này.
+1.  Giống SA-IS, đếm từng ký tự trong $\texttt{Pat}$ và tính tổng tiền tố của
+    chúng (sắp xếp đếm) để xây dựng thùng S/L; khác biệt là biến thể này dùng
+    $\texttt{SA}$ để chứa các tổng tiền tố này.
 2.  Quét từng ký tự của $\texttt{Pat}$ từ cuối lên đầu. Khi đó chỉ cần ghi nhớ kiểu của ký tự trước đó là có thể xác định động kiểu của từng ký tự, rồi đổi tên theo tổng tiền tố.
 
 <span id="sắp-xếp-ký-tự-lms"></span>
@@ -88,24 +96,35 @@ Quét $\texttt{Pat}$ từ cuối lên đầu. Với ký tự LMS $\texttt{Pat[i]
 
 U: đặt trực tiếp $\texttt{SA[Pat[i]] = i}$.
 
-M: nghĩa là trong bucket có ít nhất hai ký tự LMS.
+M: nghĩa là trong thùng có ít nhất hai ký tự LMS.
 
-1.  Nếu bucket có ít nhất ba ký tự LMS:
-    dùng vị trí áp chót của bucket làm bộ đếm tạm, ghi số ký tự LMS đã được điền vào bucket (vị trí cuối bucket là dấu M).
-    Chèn ký tự LMS mới bắt đầu từ vị trí thứ ba tính từ cuối, rồi tăng bộ đếm tạm thêm 1.
-    Nếu phát hiện bucket đã đầy, dịch toàn bộ phần tử từ đầu bucket đến vị trí thứ ba tính từ cuối sang phải 2 vị trí, rồi chèn phần tử mới vào vị trí thứ hai của bucket (vị trí đầu bucket điền E).
+1.  Nếu thùng có ít nhất ba ký tự LMS:
+    dùng vị trí áp chót của thùng làm bộ đếm tạm, ghi số ký tự LMS đã được điền
+    vào thùng (vị trí cuối thùng là dấu M).
+    Chèn ký tự LMS mới bắt đầu từ vị trí thứ ba tính từ cuối, rồi tăng bộ đếm
+    tạm thêm 1.
+    Nếu phát hiện thùng đã đầy, dịch toàn bộ phần tử từ đầu thùng đến vị trí thứ
+    ba tính từ cuối sang phải 2 vị trí, rồi chèn phần tử mới vào vị trí thứ hai
+    của thùng (vị trí đầu thùng điền E).
 
-2.  Nếu bucket có đúng 2 ký tự LMS thì không cần bộ đếm; chỉ cần chèn theo thứ tự từ phải sang trái.
+2.  Nếu thùng có đúng 2 ký tự LMS thì không cần bộ đếm; chỉ cần chèn theo thứ tự
+    từ phải sang trái.
 
-Giá trị bình thường:
+Trường hợp còn lại:
 
-    Theo thảo luận ở trên, lúc này dù bucket có hai hay nhiều hơn hai ký tự LMS, điều đó đều có nghĩa $\texttt{i}$ là vị trí của ký tự LMS cuối cùng cần chèn trong bucket.
+    Theo thảo luận ở trên, lúc này dù thùng có hai hay nhiều hơn hai ký tự LMS,
+    điều đó đều có nghĩa $\texttt{i}$ là vị trí của ký tự LMS cuối cùng cần chèn
+    trong thùng.
 
-    Chỉ cần quét trong bucket từ phải sang trái, tìm vị trí đầu tiên được đánh dấu E và đặt nó thành $\texttt{i}$.
+    Chỉ cần quét trong thùng từ phải sang trái, tìm vị trí đầu tiên được đánh
+    dấu E và đặt nó thành $\texttt{i}$.
 
-Cuối cùng cần quét $\texttt{SA}$ một lượt từ cuối lên đầu để xóa các ký hiệu đặc biệt M có thể còn sót lại (bucket chưa được điền đầy, nên M và bộ đếm chưa bị ghi đè).
+Cuối cùng cần quét $\texttt{SA}$ một lượt từ cuối lên đầu để xóa các ký hiệu đặc
+biệt M có thể còn sót lại (thùng chưa được điền đầy, nên M và bộ đếm chưa bị ghi
+đè).
 
-Cách làm là dịch các ký tự LMS trong bucket sang phải 2 vị trí như bước trên, rồi điền E vào các vị trí trống bên trái.
+Cách làm là dịch các ký tự LMS trong thùng sang phải 2 vị trí như bước trên, rồi
+điền E vào các vị trí trống bên trái.
 
 Như hình dưới đây:
 
@@ -128,7 +147,8 @@ $$
 \end{aligned}
 $$
 
-Ở giai đoạn này, mỗi bucket chỉ cần được dịch chuyển và quét một lần, nên độ phức tạp thời gian là $O(n)$.
+Ở giai đoạn này, mỗi thùng chỉ cần được dịch chuyển và quét một lần, nên độ phức
+tạp thời gian là $O(n)$.
 
 <span id="sắp-xếp-cảm-ứng-xâu-con-lms"></span>
 ### Sắp xếp cảm ứng xâu con LMS
@@ -210,7 +230,8 @@ $$
 \end{aligned}
 $$
 
-Đưa các hậu tố LMS đã sắp xếp ở đầu $\texttt{SA}$ vào bucket tương ứng theo thứ tự (đặt từ cuối bucket):
+Đưa các hậu tố LMS đã sắp xếp ở đầu $\texttt{SA}$ vào thùng tương ứng theo thứ
+tự (đặt từ cuối thùng):
 
 $$
 \begin{aligned}
@@ -224,7 +245,8 @@ $$
 
 Phần này dùng lại kỹ thuật bộ đếm nội bộ ở trên để thực hiện sắp xếp cảm ứng phiên bản tại chỗ.
 
-Giả sử đã có các hậu tố LMS được sắp xếp (ở cuối bucket), dùng chúng để cảm ứng các hậu tố kiểu L[^thu-tu-cam-ung]:
+Giả sử đã có các hậu tố LMS được sắp xếp (ở cuối thùng), dùng chúng để cảm ứng
+các hậu tố kiểu L[^thu-tu-cam-ung]:
 
 $$
 \begin{aligned}
@@ -311,7 +333,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
     
     fn rename_pat(pat: &mut [usize], sa: &mut [usize]) {
         let patlastpos = pat.len() - 1;
-        // Đặt tất cả về đầu bucket
+        // Đặt tất cả về đầu thùng
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
         
@@ -321,7 +343,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
         for i in 0..pat.len() - 1 {
             pat[i] = sa[pat[i]] - 1;
         };
-        // Đặt các L-suffix về đầu bucket
+        // Đặt các hậu tố kiểu L về đầu thùng
         //sa.fill(0);
         for i in 0..sa.len() { sa[i] = 0 }
         
@@ -428,15 +450,15 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
         let pat_last_pos = pat.len() - 1;
         let mut lms_cnt = 0;
         let mut i = pat_last_pos;
-        let mut bucket_tail_ptr = pat_last_pos + 1;  // Dành cho phiên bản bucket đã đổi tên
+        let mut bucket_tail_ptr = pat_last_pos + 1;  // Dành cho phiên bản thùng đã đổi tên
         let mut bucket = EMPTY;  // Có thể bỏ, nhưng giữ lại để code dễ viết hơn
-        let mut num = 0;  // Số ký tự kiểu S trong bucket
+        let mut num = 0;  // Số ký tự kiểu S trong thùng
         while i > 0 {
-            if pat[sa[i]] != bucket {  // Gặp bucket mới
+            if pat[sa[i]] != bucket {  // Gặp thùng mới
                 num = 0;
                 
                 let mut l = 0;
-                while pat[sa[i - l]] == pat[sa[i]] {  // Quét bucket để đếm ký tự kiểu S; theo định nghĩa, vòng lặp sẽ dừng khi l = i
+                while pat[sa[i - l]] == pat[sa[i]] {  // Quét thùng để đếm ký tự kiểu S; theo định nghĩa, vòng lặp sẽ dừng khi l = i
                     let pat_i = sa[i - l];             // l < i, tức i - l > 0, 0 <= pat_i < patlen - 1
                     if pat[pat_i] < pat[pat_i + 1] {
                         let mut k = pat_i;
@@ -597,7 +619,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                 let mut is_ltype = false;
                 if pat[j] > pat[j + 1] {
                     is_ltype = true;
-                } else if pat[j] == pat[j + 1] {  // Kiểm tra sa[i] có phải chỉ số của một L-suffix hay không
+                } else if pat[j] == pat[j + 1] {  // Kiểm tra sa[i] có phải chỉ số của một hậu tố kiểu L hay không
                     let next_i = sa[pat[sa[i]]];
                     if next_i >= MULTI {
                         is_ltype = true;
@@ -626,7 +648,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                         let e = pat[j];
                         let c = sa[e + 1];
                         let lfp = e + c + 2;
-                        if  c + 2 < sa[pat[j]] - EMPTY {  // Chưa đến cuối bucket
+                        if  c + 2 < sa[pat[j]] - EMPTY {  // Chưa đến cuối thùng
                             sa[lfp] = j;
                             sa[e + 1] += 1;  // Cập nhật bộ đếm
                         } else {
@@ -655,7 +677,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             i += 1;
         }
         
-        // Xóa các LMS-suffix khỏi SA; một bucket có thể chứa nhiều LMS-suffix
+        // Xóa các hậu tố LMS khỏi SA; một thùng có thể chứa nhiều hậu tố LMS
         last_scanned_type = STYPE;
         for i in (0..pat.len() - 1).rev() {
             if pat_char_type(pat[i], pat[i + 1], last_scanned_type) == STYPE {
@@ -737,7 +759,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                         let e = pat[j];
                         let c = sa[e - 1];
                         let num = sa[pat[j]] - EMPTY;
-                        if c + 2 < num {  // Chưa đến đầu bucket
+                        if c + 2 < num {  // Chưa đến đầu thùng
                             let rfp = e - c - 2;
                             sa[rfp] = j;
                             sa[e - 1] += 1;
@@ -806,13 +828,17 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-số-nguyên-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái số nguyên chỉ đọc
 
-Dùng phương pháp phức tạp để giải quyết vấn đề phức tạp: dùng chia để trị để xử lý hạn chế về không gian.
+Để xử lý hạn chế về không gian, phần này dùng chia để trị.
 
-Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng BitMaps[^np12] trên $\texttt{SA}$ để thay thế các vị trí đầu/cuối bucket vốn được chỉ ra bởi T sau khi đổi tên.
+Khó khăn khi cài đặt thuật toán nằm ở việc xây dựng bitmap[^np12] trên
+$\texttt{SA}$ để thay thế các vị trí đầu/cuối thùng vốn được chỉ ra bởi T sau
+khi đổi tên.
 
-Trong ngữ cảnh này, BitMaps là từ điển có thứ tự (multiset) được biểu diễn bằng vector bit (bit vector), một dạng cấu trúc dữ liệu gọn (compact data structure).
+Trong ngữ cảnh này, bitmap là tập đa hợp có thứ tự được biểu diễn bằng véc-tơ
+bit, một dạng cấu trúc dữ liệu gọn.
 
-Nếu muốn tìm hiểu sâu hơn, hiện tại nên đọc bài gốc và các bài báo liên quan đến BitMaps được trích dẫn trong bài này.
+Nếu muốn tìm hiểu sâu hơn, hiện tại nên đọc bài gốc và các bài báo liên quan
+đến bitmap được trích dẫn trong bài này.
 
 <span id="sắp-xếp-hậu-tố-trên-bảng-chữ-cái-tổng-quát-chỉ-đọc"></span>
 ## Sắp xếp hậu tố trên bảng chữ cái tổng quát chỉ đọc
