@@ -2,7 +2,7 @@ author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Ac
 
 ## Giới thiệu
 
-DFS là viết tắt của [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search), tức tìm kiếm theo chiều sâu.
+DFS là viết tắt của [tìm kiếm theo chiều sâu](https://en.wikipedia.org/wiki/Depth-first_search).
 Đây là một thuật toán dùng để duyệt hoặc tìm kiếm trên cây hay đồ thị.
 "Theo chiều sâu" có nghĩa là mỗi lần thuật toán đều cố gắng đi tới một đỉnh sâu hơn.
 

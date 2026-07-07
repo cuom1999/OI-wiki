@@ -223,10 +223,10 @@ Với đồ thị có trọng số, bài toán phủ cạnh trọng số nhỏ n
 
 ## Tài liệu tham khảo
 
-1.  [Wikiwand - Matching (graph theory)](https://www.wikiwand.com/en/Matching_%28graph_theory%29)
-2.  [Wikiwand - Blossom algorithm](https://www.wikiwand.com/en/Blossom_algorithm)
+1.  [Wikiwand - ghép cặp (lý thuyết đồ thị)](https://www.wikiwand.com/en/Matching_%28graph_theory%29)
+2.  [Wikiwand - thuật toán blossom](https://www.wikiwand.com/en/Blossom_algorithm)
 3.  Bài viết năm 2015 "Bàn về thuật toán ghép cặp trong đồ thị và ứng dụng" - Chen Yinbo
-4.  [Ghi chú thuật toán - Matching](http://web.ntnu.edu.tw/~algo/Matching.html)
+4.  [Ghi chú thuật toán - ghép cặp](http://web.ntnu.edu.tw/~algo/Matching.html)
 5.  [the-tourist/algo](https://github.com/the-tourist/algo)
 6.  [Bill Yang's Blog - Ghi chú học thuật toán blossom](https://blog.bill.moe/blossom-algorithm-notes/)
 7.  [Ghép cặp lớn nhất, ghép cặp hoàn hảo và thuật toán Hungarian trong đồ thị hai phía](https://www.renfei.org/blog/bipartite-matching.html)

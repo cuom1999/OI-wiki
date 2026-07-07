@@ -143,12 +143,12 @@ Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đ
 
 -   [Thuật toán là gì: cách tìm một ghép cặp hôn nhân ổn định - Matrix67](https://matrix67.com/blog/archives/2976)
 -   [Thuật toán Gale–Shapley: tìm ghép cặp ổn định trong đồ thị hai phía](https://reimuyk.github.io/2021-03-24-Gale-Shapley-Algorithm/)
--   [Stable matching problem - Wikipedia](https://en.wikipedia.org/wiki/Stable_matching_problem)
--   [Lattice of stable matchings - Wikipedia](https://en.wikipedia.org/wiki/Lattice_of_stable_matchings)
--   [Stable roommates problem - Wikipedia](https://en.wikipedia.org/wiki/Stable_roommates_problem)
--   [Top trading cycle - Wikipedia](https://en.wikipedia.org/wiki/Top_trading_cycle)
--   [Stable matching: Theory, evidence, and practical design - the 2012 Nobel Prize in Economics](https://www.nobelprize.org/uploads/2018/06/popular-economicsciences2012.pdf)
--   [Notes on Matching and Market Design by Xiang Sun](https://www.xiangsun.org/wp-content/uploads/2013/02/notes-2015-matching.pdf)
+-   [Bài toán ghép cặp ổn định - Wikipedia](https://en.wikipedia.org/wiki/Stable_matching_problem)
+-   [Dàn của các ghép cặp ổn định - Wikipedia](https://en.wikipedia.org/wiki/Lattice_of_stable_matchings)
+-   [Bài toán bạn cùng phòng ổn định - Wikipedia](https://en.wikipedia.org/wiki/Stable_roommates_problem)
+-   [Chu trình trao đổi ưu tiên - Wikipedia](https://en.wikipedia.org/wiki/Top_trading_cycle)
+-   [Ghép cặp ổn định: lý thuyết, bằng chứng và thiết kế thực tiễn - Nobel Kinh tế 2012](https://www.nobelprize.org/uploads/2018/06/popular-economicsciences2012.pdf)
+-   [Ghi chú về ghép cặp và thiết kế thị trường của Xiang Sun](https://www.xiangsun.org/wp-content/uploads/2013/02/notes-2015-matching.pdf)
 -   Gale, David, and Lloyd S. Shapley. "College admissions and the stability of marriage." The American mathematical monthly 69, no. 1 (1962): 9-15.
 -   Irving, Robert W. "An efficient algorithm for the stable roommates problem." Journal of Algorithms 6, no. 4 (1985): 577-595.
 -   Knuth, Donald Ervin. "Marriages stables." Technical report (1976).

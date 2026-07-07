@@ -103,7 +103,7 @@ Hiện thực C++ sau khi thêm tối ưu hóa:
 
 ## Tài liệu tham khảo
 
--   [Clique problem - Wikipedia](https://en.wikipedia.org/wiki/Clique_problem)
+-   [Bài toán clique - Wikipedia](https://en.wikipedia.org/wiki/Clique_problem)
 -   [Clique cực đại và clique lớn nhất trong đồ thị vô hướng (thuật toán Bron–Kerbosch)](https://blog.csdn.net/yo_bc/article/details/77453478)
 -   [Bài toán clique lớn nhất - thuật toán Bron–Kerbosch](https://hallelujahjeff.github.io/2018/04/12/34/)
 -   [Bài toán clique lớn nhất](https://www.cnblogs.com/zhj5chengfeng/archive/2013/07/29/3224092.html)

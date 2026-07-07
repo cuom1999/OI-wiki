@@ -234,7 +234,7 @@ trong đó $H_i=G[V_1 \cup V(G_i)]$
 
 ## Tài liệu tham khảo
 
-1.  [Graph coloring - Wikipedia](https://en.wikipedia.org/wiki/Graph_coloring)
+1.  [Tô màu đồ thị - Wikipedia](https://en.wikipedia.org/wiki/Graph_coloring)
 2.  Welsh, D. J. A.; Powell, M. B. (1967),
     "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)",
     The Computer Journal, 10 (1): 85-86

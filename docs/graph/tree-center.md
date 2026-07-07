@@ -104,6 +104,6 @@ Giả sử có một cây như sau:
 
 ## Tham khảo
 
--   [TutorialsPoint: Centers of a Tree](https://www.tutorialspoint.com/centers-of-a-tree)
--   [ProofWiki: Definition of Center of Tree](https://proofwiki.org/wiki/Definition:Center_of_Tree)
--   [Wikipedia: Tree (graph theory)](https://en.wikipedia.org/wiki/Tree_%28graph_theory%29#Properties)
+-   [TutorialsPoint: tâm của cây](https://www.tutorialspoint.com/centers-of-a-tree)
+-   [ProofWiki: định nghĩa tâm của cây](https://proofwiki.org/wiki/Definition:Center_of_Tree)
+-   [Wikipedia: cây (lý thuyết đồ thị)](https://en.wikipedia.org/wiki/Tree_%28graph_theory%29#Properties)

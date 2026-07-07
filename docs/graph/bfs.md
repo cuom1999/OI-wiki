@@ -1,7 +1,6 @@
 author: Ir1d, greyqz, yjl9903, Anguei, Marcythm, ChungZH, Xeonacid, ylxmf2005
 
-BFS là viết tắt của [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search),
-trong tiếng Việt thường gọi là tìm kiếm theo chiều rộng.
+BFS là viết tắt của [tìm kiếm theo chiều rộng](https://en.wikipedia.org/wiki/Breadth-first_search).
 
 Đây là một trong những thuật toán tìm kiếm cơ bản và quan trọng nhất trên đồ thị.
 

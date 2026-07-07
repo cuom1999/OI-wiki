@@ -291,8 +291,8 @@ Với đồ thị ngoài phẳng, cũng có thể xét khái niệm đồ thị 
 
 ## Tài liệu tham khảo và chú thích
 
--   [Planar graph - Wikipedia](https://en.wikipedia.org/wiki/Planar_graph)
--   [Planarity testing - Wikipedia](https://en.wikipedia.org/wiki/Planarity_testing)
+-   [Đồ thị phẳng - Wikipedia](https://en.wikipedia.org/wiki/Planar_graph)
+-   [Kiểm tra tính phẳng - Wikipedia](https://en.wikipedia.org/wiki/Planarity_testing)
 -   Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
 -   Diestel, Reinhard. Graph theory. Vol. 173. Springer Nature, 2025.
 -   Patrignani, Maurizio. "Planarity Testing and Embedding." (2013): 1-42.

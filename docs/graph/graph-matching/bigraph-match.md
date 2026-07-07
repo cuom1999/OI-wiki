@@ -364,12 +364,12 @@ Khó khăn khi áp dụng ghép cặp trên đồ thị hai phía nằm ở vi�
 
 ## Tài liệu tham khảo
 
--   [Kuhn's Algorithm - Maximum Bipartite Matching](https://cp-algorithms.com/graph/kuhn_maximum_bipartite_matching.html)
+-   [Thuật toán Kuhn - ghép cặp lớn nhất trên đồ thị hai phía](https://cp-algorithms.com/graph/kuhn_maximum_bipartite_matching.html)
 -   [Định lý König cho ghép cặp lớn nhất trên đồ thị hai phía và chứng minh](https://matrix67.com/blog/archives/116)
--   [Implementing Dinitz on bipartite graphs by adamant - Codeforces blogs](https://codeforces.com/blog/entry/118098)
+-   [Cài đặt Dinitz trên đồ thị hai phía của adamant - blog Codeforces](https://codeforces.com/blog/entry/118098)
 -   Bondy, John Adrian, and Uppaluri Siva Ramachandra Murty. Graph theory with applications. Vol. 290. London: Macmillan, 1976.
 -   Chen Yinbo. Bàn về thuật toán ghép cặp trên đồ thị và ứng dụng. Tuyển tập luận văn đội tuyển ứng viên quốc gia Trung Quốc Olympic Tin học năm 2015.
--   [Dulmage-Mendelsohn decomposition - Wikipedia](https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition)
--   [Notes on Dulmage-Mendelsohn decomposition](https://www.cse.iitm.ac.in/~meghana/matchings/bip-decomp.pdf)
+-   [Phân rã Dulmage-Mendelsohn - Wikipedia](https://en.wikipedia.org/wiki/Dulmage%E2%80%93Mendelsohn_decomposition)
+-   [Ghi chú về phân rã Dulmage-Mendelsohn](https://www.cse.iitm.ac.in/~meghana/matchings/bip-decomp.pdf)
 
 [^hk-comp-ref]: Bast, Holger; Mehlhorn, Kurt; Schäfer, Guido; Tamaki, Hisao (2006), "Matching algorithms are fast in sparse random graphs", Theory of Computing Systems, 39 (1): 3-14.

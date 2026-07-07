@@ -313,5 +313,5 @@ Chỉ cần thay hàng đợi trong thuật toán Kahn bằng hàng đợi ưu t
 ## Tham khảo
 
 1.  Toán rời rạc và ứng dụng. ISBN:9787111555391
-2.  [Topological sorting - Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)
+2.  [Sắp xếp tô pô - Wikipedia](https://en.wikipedia.org/wiki/Topological_sorting)
 3.  [Bài giảng Cấu trúc dữ liệu số 9, đồ thị: sắp xếp topo, đường găng, đường đi ngắn nhất - chuyên mục Zhihu](https://zhuanlan.zhihu.com/p/164751109)
