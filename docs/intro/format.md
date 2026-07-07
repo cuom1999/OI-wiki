@@ -179,7 +179,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
 -   <a id="LINT-5"></a>LINT-5: trước và sau công thức riêng dòng đều cần có một dòng trống, nếu không nó sẽ bị xem là công thức trong dòng.
 
--   <a id="LINT-6"></a>LINT-6: khi dùng cú pháp Details bắt đầu bằng `???` hoặc `!!!`, mỗi dòng thuộc phần văn bản trong hộp của cú pháp Details phải bắt đầu bằng ít nhất 4 khoảng trắng.
+-   <a id="LINT-6"></a>LINT-6: khi dùng cú pháp hộp gấp bắt đầu bằng `???` hoặc `!!!`, mỗi dòng thuộc phần văn bản trong hộp gấp phải bắt đầu bằng ít nhất 4 khoảng trắng.
 
     **Ngay cả dòng trống cũng phải giữ thụt lề nhất quán với các dòng khác. Vui lòng không dùng tính năng tự động cắt khoảng trắng cuối dòng của trình soạn thảo.**
 
@@ -190,7 +190,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         ???+ warning
         ␣␣␣␣Cần nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
         ␣␣␣␣
-        ␣␣␣␣Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
+        ␣␣␣␣Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp gấp.
         ␣␣␣␣
         ␣␣␣␣Câu hỏi `???` này là gì sẽ được giải thích ở [phần sau](#MDFM-5).
         ```
@@ -198,7 +198,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         ???+ warning "Cảnh báo"
             Cần nhớ thêm 4 khoảng trắng trước văn bản. Các cú pháp khác vẫn giống cú pháp Markdown.
             
-            Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp Details.
+            Nếu không thêm 4 khoảng trắng, văn bản sẽ không xuất hiện trong hộp gấp.
             
             Câu hỏi `???` này là gì sẽ được giải thích ở [phần sau](#MDFM-5).
 
@@ -290,7 +290,7 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         
         Ngày 21 tháng 1 năm 2020, CCF thông báo khôi phục NOIP.[^ref2]
 
--   <a id="MDFM-5"></a>MDFM-5: nên dùng định dạng `???+note` được chủ đề mở rộng (tức [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)) để mô tả đề bài và mã tham khảo. Cũng có thể dùng định dạng này để hiển thị các nội dung khác cần giới thiệu bổ sung.
+-   <a id="MDFM-5"></a>MDFM-5: nên dùng định dạng `???+note` được chủ đề mở rộng (tức [khối có thể gấp](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks)) để mô tả đề bài và mã tham khảo. Cũng có thể dùng định dạng này để hiển thị các nội dung khác cần giới thiệu bổ sung.
 
     Mã ví dụ (trong đoạn mã dưới đây, `␣` biểu thị khoảng trắng ` `):
 
@@ -324,9 +324,9 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
 
     Khác nhau giữa hai định dạng là: định dạng có `+` mặc định giữ trạng thái mở, còn định dạng không có `+` mặc định giữ trạng thái gấp.
 
-    Tiêu đề của hộp gấp, tức nội dung sau `note` trong `???+note`, nên được bao bằng `"`. Nội dung trong đó hỗ trợ cú pháp Markdown. Xem [Admonition - Changing the title](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title). (Loại không có chức năng gấp là Admonitions thông thường; tham khảo [Admonitions - Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions).)
+    Tiêu đề của hộp gấp, tức nội dung sau `note` trong `???+note`, nên được bao bằng `"`. Nội dung trong đó hỗ trợ cú pháp Markdown. Xem [admonition - đổi tiêu đề](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#changing-the-title). (Loại không có chức năng gấp là admonition thông thường; tham khảo [admonition trong Material for MkDocs](https://squidfunk.github.io/mkdocs-material/reference/admonitions).)
 
--   <a id="MDFM-6"></a>MDFM-6: khi cần thêm mã bằng nhiều ngôn ngữ khác nhau, nên dùng Content tabs để có thể chuyển đổi giữa mã của các ngôn ngữ. Content tabs còn có các cách dùng khác; xem [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage). Cách dùng và hiệu quả như sau.
+-   <a id="MDFM-6"></a>MDFM-6: khi cần thêm mã bằng nhiều ngôn ngữ khác nhau, nên dùng tab nội dung để có thể chuyển đổi giữa mã của các ngôn ngữ. Tab nội dung còn có các cách dùng khác; xem [tab nội dung](https://squidfunk.github.io/mkdocs-material/reference/content-tabs/#usage). Cách dùng và hiệu quả như sau.
 
     ???+ success "Ví dụ"
         Lưu ý cần thêm 4 khoảng trắng trước văn bản (dưới đây dùng `␣` để biểu thị). Các cú pháp khác vẫn giống cú pháp Markdown.
@@ -748,13 +748,13 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 
 [^note2]: Giữa tên đầy đủ bằng tiếng Anh của thuật ngữ khoa học kỹ thuật và dạng viết tắt của nó nên dùng dấu phẩy tiếng Anh. Khi trong câu tiếng Việt có chèn câu hoặc cụm câu tiếng Anh để chú thích, bổ sung hoặc giải thích, đặt phần đó trong ngoặc tròn nửa chiều rộng.
 
-[^note3]: Hộp gấp: xem [Collapsible Blocks](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi "cú pháp Details" cũng được dùng để chỉ cú pháp này, vì về chức năng nó giống với [`<details>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
+[^note3]: Hộp gấp: xem [khối có thể gấp](https://squidfunk.github.io/mkdocs-material/reference/admonitions/#collapsible-blocks). Đôi khi "cú pháp `<details>`" cũng được dùng để chỉ cú pháp này, vì về chức năng nó giống với [phần tử `<details>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/details) trong HTML.
 
 [^note4]: Đã chuyển đến [Cách đóng góp](./htc.md).
 
 [^note5]: Quy phạm này được viết vào [Những điều cần biết trước khi biên tập](../edit-landing.md) và đã công bố thông báo, nhưng không được viết vào tài liệu này.
 
-[^note6]: Tab: xem [Content tabs](https://squidfunk.github.io/mkdocs-material/reference/content-tabs).
+[^note6]: Tab: xem [tab nội dung](https://squidfunk.github.io/mkdocs-material/reference/content-tabs).
 
 [^ref1]: [cstdio stdio.h namespace](https://stackoverflow.com/questions/10460250/cstdio-stdio-h-namespace)
 
