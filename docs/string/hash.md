@@ -280,7 +280,7 @@ Thông thường, hash hai giá trị là đủ dùng.
 
 Tính hash của một chuỗi một lần có độ phức tạp $O(n)$, trong đó $n$ là độ dài chuỗi; điều này không khác gì so khớp vét cạn. Nếu cần truy vấn hash của các chuỗi con trong cùng một chuỗi nhiều lần, tính lại mỗi lần sẽ rất kém hiệu quả.
 
-Cách làm thông dụng là tiền xử lý giá trị hash của mỗi tiền tố trong toàn bộ chuỗi. Xem giá trị hash như kết quả của một số hệ cơ số $b$ lấy modulo $M$, khi đó mỗi lần có thể tính nhanh hash của chuỗi con:
+Cách làm thông dụng là tiền xử lý giá trị hash của mỗi tiền tố trong toàn bộ chuỗi. Xem giá trị hash như kết quả của một số hệ cơ số $b$ lấy theo môđun $M$, khi đó mỗi lần có thể tính nhanh hash của chuỗi con:
 
 Gọi $f_i(s)$ là $f(s[1..i])$, tức giá trị hash của tiền tố độ dài $i$ của chuỗi gốc. Theo định nghĩa, có $f_i(s)=s[1]\cdot b^{i-1}+s[2]\cdot b^{i-2}+\dots+s[i-1]\cdot b+s[i]$.
 
@@ -292,7 +292,7 @@ So sánh hai công thức trên, có $f(s[l..r])=f_r(s)-f_{l-1}(s) \times b^{r-l
 ## Cài đặt
 
 <span id="hash-modulo"></span>
-### Hash theo modulo
+### Hash theo môđun
 
 Ghi chú: hiệu năng thấp, không khuyến nghị dùng trong thực tế.
 

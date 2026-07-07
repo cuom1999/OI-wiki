@@ -23,7 +23,7 @@ Ví dụ về ứng dụng của số ngẫu nhiên và số giả ngẫu nhiên
 
 Dùng để sinh số giả ngẫu nhiên. Nhược điểm là khá chậm; khi sử dụng cần `#include<cstdlib>`.
 
-Gọi hàm `rand()` sẽ trả về một số nguyên không âm ngẫu nhiên trong `[0,RAND_MAX]`, trong đó `RAND_MAX` là một macro trong thư viện chuẩn. Trên hệ thống Linux, `RAND_MAX` bằng $2^{31}-1$. Có thể dùng phép lấy modulo để giới hạn kích thước của số được sinh ra.
+Gọi hàm `rand()` sẽ trả về một số nguyên không âm ngẫu nhiên trong `[0,RAND_MAX]`, trong đó `RAND_MAX` là một macro trong thư viện chuẩn. Trên hệ thống Linux, `RAND_MAX` bằng $2^{31}-1$. Có thể dùng phép lấy dư theo môđun để giới hạn kích thước của số được sinh ra.
 
 Khi dùng `rand()` cần có một hạt giống ngẫu nhiên. Có thể dùng hàm `srand(seed)` để đổi hạt giống ngẫu nhiên thành `seed`; cũng có thể không khởi tạo.
 
@@ -333,7 +333,7 @@ So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống
     
       unsigned next() {
         vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
-        // Dùng kiểu unsigned để tự động lấy modulo 2^32
+        // Dùng kiểu unsigned để tự động lấy dư theo môđun 2^32
         return vec[cur++];
       }
     };

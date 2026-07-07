@@ -330,7 +330,7 @@ $$
     void eliminate(int A[][MAXN], int r, int c) {  // khử hàng r cột c
       row_marked[r] = col_marked[c] = true;        // đã bị khử
     
-      int inv = quick_power(A[r][c], p - 2);  // nghịch đảo modulo
+      int inv = quick_power(A[r][c], p - 2);  // nghịch đảo theo môđun
     
       for (int i = 1; i <= n; i++)
         if (!row_marked[i] && A[i][c]) {

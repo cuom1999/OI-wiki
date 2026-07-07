@@ -4,7 +4,7 @@
 
 ### Ý tưởng cơ bản
 
-Bài toán đếm thường là bài toán tính kích thước của một tập $S$. Trong OI, kích thước của $S$ đôi khi có thể đạt mức $\Theta(n^n)$, thậm chí $\Theta(2^{n!})$ (thường đáp án sẽ lấy modulo một số cố định), trong đó $n$ là quy mô bài toán. Vì vậy không thể liệt kê từng phần tử của $S$.
+Bài toán đếm thường là bài toán tính kích thước của một tập $S$. Trong OI, kích thước của $S$ đôi khi có thể đạt mức $\Theta(n^n)$, thậm chí $\Theta(2^{n!})$ (thường đáp án sẽ lấy theo một môđun cố định), trong đó $n$ là quy mô bài toán. Vì vậy không thể liệt kê từng phần tử của $S$.
 
 Nếu có thể chia $S$ thành một số tập con rời nhau, thì số phần tử của $S$ bằng tổng số phần tử của các phần đó. Nếu việc đếm trên các tập con này lại có dạng tương tự bài toán ban đầu, có thể giải bằng phương pháp giống quy hoạch động.
 

@@ -835,7 +835,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     Chỉ cần tính định thức con cấp $n$ của nó; phần còn lại là tính toán số lớn.
 
 ??? note "Ví dụ 2+"
-    Tăng cường dữ liệu của Ví dụ 2: yêu cầu $n\leq 100000$, nhưng đáp án lấy modulo 1000007. Bài này cần một số kiến thức đại số tuyến tính.
+    Tăng cường dữ liệu của Ví dụ 2: yêu cầu $n\leq 100000$, nhưng đáp án lấy theo môđun 1000007. Bài này cần một số kiến thức đại số tuyến tính.
 
     **Lời giải** Sau khi suy ra công thức truy hồi, dùng lũy thừa ma trận nhanh là có thể tính đáp án.
 

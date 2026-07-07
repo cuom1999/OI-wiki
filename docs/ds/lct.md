@@ -402,7 +402,7 @@ Thông qua thao tác `Split(x,y)`, LCT có thể trích xuất đường đi t�
     1.  `- u1 v1 u2 v2`: xóa cạnh giữa hai điểm $u_1,v_1$ trên cây, rồi nối hai điểm $u_2,v_2$; bảo đảm thao tác hợp lệ và sau khi nối cạnh vẫn là một cây.
     2.  `+ u v c`: tăng trọng số của mọi điểm trên đường đi giữa hai điểm $u,v$ trên cây thêm $c$.
     3.  `* u v c`: nhân trọng số của mọi điểm trên đường đi giữa hai điểm $u,v$ trên cây với $c$.
-    4.  `/ u v`: xuất tổng trọng số các điểm trên đường đi giữa hai điểm $u,v$ trên cây sau khi lấy modulo $51061$.
+    4.  `/ u v`: xuất tổng trọng số các điểm trên đường đi giữa hai điểm $u,v$ trên cây sau khi lấy dư theo môđun $51061$.
     
         $1\le n,q\le 10^5,0\le c\le 10^4$
     

@@ -144,7 +144,7 @@ nên $e(A_i, B_j)=\binom{n-1+b_j-a_i}{n-1}$.
 
 Có thể dùng khử Gauss để tính định thức.
 
-Độ phức tạp là $O(n+k(k^2 + \log p))$, trong đó $\log p$ là độ phức tạp tính nghịch đảo modulo.
+Độ phức tạp là $O(n+k(k^2 + \log p))$, trong đó $\log p$ là độ phức tạp tính nghịch đảo theo môđun.
 
 ??? note "Mã tham khảo"
     ```cpp

@@ -26,7 +26,7 @@ Trong trường hợp tổng quát, tổng độ phức tạp thời gian của 
     
     Mặt khác, các bài toán có cùng điểm quyết định tối ưu nhỏ nhất tạo thành một khoảng. Khoảng này, nếu xem như hàm của điểm quyết định tối ưu nhỏ nhất, phải tăng nghiêm ngặt. Nói cách khác, cho $j_1 = \operatorname{opt}(i_1)$ và $j_2 = \operatorname{opt}(i_2)$, nếu $j_1 < j_2$ thì tất yếu $i_1 < i_2$. Tương đương, nếu các khoảng bài toán mà quyết định $j_1 < j_2$ có thể trở thành quyết định tối ưu nhỏ nhất lần lượt là $[l_{j_1},r_{j_1}]$ và $[l_{j_2},r_{j_2}]$, thì tất yếu $r_{j_1} < l_{j_2}$.
 
-Cách thường gặp nhất để phán đoán tính đơn điệu quyết định là thông qua bất đẳng thức tứ giác (quadrangle inequality). Trong các ngữ cảnh khác nhau, tính chất này cũng thường được gọi là tính chất Monge (khi mô tả ma trận $A_{j,i}$) hoặc tính dưới mô-đun (submodularity, khi mô tả một hàm có biến là khoảng $f([j,i])$).
+Cách thường gặp nhất để phán đoán tính đơn điệu quyết định là thông qua bất đẳng thức tứ giác (quadrangle inequality). Trong các ngữ cảnh khác nhau, tính chất này cũng thường được gọi là tính chất Monge (khi mô tả ma trận $A_{j,i}$) hoặc tính dưới môđun (submodularity, khi mô tả một hàm có biến là khoảng $f([j,i])$).
 
 -   **Bất đẳng thức tứ giác**: nếu với mọi $a\leq b\leq c\leq d$ đều có
 
