@@ -48,7 +48,8 @@ Quá trình phân tích cụ thể có thể xem trong luận văn.
     5.  `5 l r` xuất $\max\limits_{i=l}^r a_i$.
     6.  `6 l r` xuất $\min\limits_{i=l}^r a_i$.
 
-    $n,m\le 5\times 10^5,~|a_i|\le 10^8$. Mọi thao tác loại $1$ có $|x|\le 10^3$, các thao tác còn lại thỏa $|x|\le10^8$.
+    $n,m\le 5\times 10^5,~|a_i|\le 10^8$. Mọi thao tác loại $1$ có $|x|\le 10^3$,
+    các thao tác còn lại thỏa $|x|\le 10^8$.
 
 Với cùng phương pháp, cần duy trì giá trị lớn nhất, lớn thứ hai, số lượng giá trị lớn nhất,
 giá trị nhỏ nhất, nhỏ thứ hai, số lượng giá trị nhỏ nhất và tổng đoạn.
@@ -92,11 +93,12 @@ Trước hết xét thao tác cộng đoạn đơn giản nhất.
 Chỉ cần $x\neq 0$ thì mọi số trong đoạn đều thay đổi,
 nên chỉ việc cộng đoạn một lần cho $B$.
 
-Với thao tác lấy cực trị trên đoạn, việc gắn nhãn và đẩy nhãn xuống tương ứng một-một với mảng $B$.
+Với thao tác lấy cực trị trên đoạn, việc gắn nhãn và đẩy nhãn xuống tương ứng một-một với cách
+cập nhật mảng $B$.
 Về bản chất, chia các số của dãy thành ba loại:
 giá trị lớn nhất, giá trị nhỏ nhất và không phải cực trị,
 rồi duy trì riêng từng loại.
-Dù không thực sự dựng ra tập cực trị cụ thể, điều đó không cản trở việc duy trì.
+Dù không thật sự dựng ra tập cực trị cụ thể, điều đó không cản trở việc duy trì.
 Vì vậy khi gắn nhãn, có thể đồng thời cập nhật thông tin cho $B$
 (lưu ý: không phải gắn nhãn cho $B$, mà là cập nhật thông tin).
 Khi truy vấn, truy vấn trên $A$; lúc đẩy nhãn xuống thì đồng thời cập nhật thông tin cho $B$.
@@ -126,11 +128,11 @@ Khi đẩy nhãn cộng đoạn và nhãn $\min$ xuống,
 cách xử lý giá trị lớn nhất và lớn thứ hai của $A,B$ giống hai ví dụ trên.
 Nhãn $\min$ của $A$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{1,0}$,
 còn nhãn của $B$ sẽ ảnh hưởng tới $C_{1,1}$ và $C_{0,1}$.
-Phép cộng của $A,B$ sẽ ảnh hưởng tới cả $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$.
+Phép cộng trên $A,B$ sẽ ảnh hưởng tới cả $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$.
 Chỉ cần lưu ý các trường hợp biên khi $C_{0,0},C_{1,0},C_{0,1}$ không tồn tại
 (ví dụ đoạn $[i,i]$ chỉ có giá trị lớn nhất của $A,B$ và $C_{1,1}$ tồn tại).
 
-Tiếp theo cần xét cách duy trì $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ khi pushup.
+Tiếp theo cần xét cách duy trì $C_{0,0},C_{1,0},C_{0,1},C_{1,1}$ khi đẩy thông tin lên.
 Có thể xét sau khi đã cập nhật giá trị lớn nhất của $A,B$,
 rồi thảo luận xem giá trị lớn nhất của $A,B$ ở con trái và con phải
 có bằng giá trị lớn nhất của $A,B$ ở nút hiện tại hay không.
@@ -261,7 +263,7 @@ Việc cập nhật thông tin cũng tương tự: dùng nhãn tương ứng đ�
 Tiếp theo xét thao tác 1.
 
 Thao tác gán đoạn sẽ biến mọi số thành cùng một số.
-Sau đó, dù là cộng/trừ đoạn hay gán đoạn, mọi số trong cả đoạn vẫn là cùng một số
+Sau đó, dù tiếp tục cộng/trừ đoạn hay gán đoạn, mọi số trong cả đoạn vẫn là cùng một số
 (trừ khi kết thúc vòng đời của nhãn hiện tại và đẩy nhãn xuống).
 Vì vậy có thể xem mọi nhãn sau thao tác gán đoạn đầu tiên đều là nhãn gán đoạn.
 Nói cách khác, vòng đời của một nhãn có thể chia thành hai giai đoạn:
