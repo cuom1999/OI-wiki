@@ -7,7 +7,7 @@
 #include <vector>
 using namespace std;
 
-// graph
+// đồ thị
 template <typename T>
 class graph {
  public:
@@ -54,7 +54,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   // để lấy thời gian hiện tại.
   vector<int> match(g.n, -1);   // Ghép cặp.
   vector<int> aux(g.n, -1);     // Dấu timestamp.
-  vector<int> label(g.n);       // "o" or "i"
+  vector<int> label(g.n);       // "o" hoặc "i"
   vector<int> orig(g.n);        // Gốc blossom.
   vector<int> parent(g.n, -1);  // Đỉnh cha.
   queue<int> q;

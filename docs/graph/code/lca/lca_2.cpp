@@ -6,7 +6,7 @@ using namespace std;
 constexpr int N = 5e5 + 5;
 
 struct PlusMinusOneRMQ {  // RMQ
-  // Copyright (C) 2018 Skqliao. All rights served.
+  // Bản quyền (C) 2018 Skqliao. Bảo lưu mọi quyền.
   constexpr static int M = 9;
 
   int blocklen, block, Minv[N], F[N / M * 2 + 5][M << 1], T[N], f[1 << M][M][M],

@@ -45,7 +45,7 @@ int main() {
   cin >> n >> m >> d;
   for (int i = 1; i <= m; i++) cin >> a[i] >> b[i] >> t[i];
 
-  // then dp
+  // sau đó DP
   dp();
   ll ans = -1e18;
   for (int i = 1; i <= n; i++) ans = max(ans, f[fl ^ 1][i]);

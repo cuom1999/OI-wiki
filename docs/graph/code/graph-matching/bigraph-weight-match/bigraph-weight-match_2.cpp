@@ -115,7 +115,7 @@ struct hungarian {  // km
       bfs(i);
     }
 
-    // custom
+    // tùy chỉnh
     for (int i = 0; i < n; i++) {
       if (g[i][matchx[i]] > 0) {
         res += g[i][matchx[i]];

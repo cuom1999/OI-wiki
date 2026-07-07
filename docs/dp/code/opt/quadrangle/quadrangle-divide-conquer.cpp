@@ -1,4 +1,4 @@
-// Submission: https://loj.ac/s/2464464
+// Bài nộp: https://loj.ac/s/2464464
 #include <algorithm>
 #include <cmath>
 #include <functional>

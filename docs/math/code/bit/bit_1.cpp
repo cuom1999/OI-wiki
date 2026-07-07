@@ -1,5 +1,5 @@
 // --8<-- [start:core]
-// From <https://stackoverflow.com/a/776523/224132>
+// Theo <https://stackoverflow.com/a/776523/224132>
 #include <climits>
 #include <cstdint>
 

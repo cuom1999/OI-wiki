@@ -96,7 +96,7 @@ std::vector<uint> Product(std::vector<uint> f, std::vector<uint> g) {
 }
 
 // Guillaume Hanrot, Michel Quercia, Paul Zimmermann.
-// The Middle Product Algorithm I.
+// Thuật toán tích giữa I.
 // Appl. Algebra Eng. Commun. Comput. 14(6): 415-438 (2004)
 // url: https://inria.hal.science/inria-00071921/document
 // Hơi khác với bài báo: ta đặt độ dài của f lớn hơn hoặc bằng độ dài của g,

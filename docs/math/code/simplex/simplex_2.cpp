@@ -1,4 +1,4 @@
-// Verified by https://uoj.ac/submission/779760
+// Đã được kiểm chứng tại https://uoj.ac/submission/779760
 // --8<-- [start:full-text]
 #include <algorithm>
 #include <climits>

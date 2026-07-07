@@ -1,4 +1,4 @@
-// Verified by https://www.spoj.com/problems/BRKSTRNG/
+// Đã được kiểm chứng tại https://www.spoj.com/problems/BRKSTRNG/
 #include <cstring>
 #include <functional>
 #include <iostream>

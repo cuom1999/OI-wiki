@@ -1,4 +1,4 @@
-// LOJ Submission: https://loj.ac/s/2401204
+// Bài nộp LOJ: https://loj.ac/s/2401204
 #include <iostream>
 #include <vector>
 
