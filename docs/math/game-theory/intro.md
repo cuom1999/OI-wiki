@@ -81,7 +81,7 @@ Trò chơi tổ hợp công bằng và không công bằng đều có thể là 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
--   [Game theory - Wikipedia](https://en.wikipedia.org/wiki/Game_theory)
--   [Combinatorial game theory - Wikipedia](https://en.wikipedia.org/wiki/Combinatorial_game_theory)
--   [Impartial game - Wikipedia](https://en.wikipedia.org/wiki/Impartial_game)
+-   [Lý thuyết trò chơi - Wikipedia](https://en.wikipedia.org/wiki/Game_theory)
+-   [Lý thuyết trò chơi tổ hợp - Wikipedia](https://en.wikipedia.org/wiki/Combinatorial_game_theory)
+-   [Trò chơi công bằng - Wikipedia](https://en.wikipedia.org/wiki/Impartial_game)
 -   [Misère - Wikipedia](https://en.wikipedia.org/wiki/Mis%C3%A8re)

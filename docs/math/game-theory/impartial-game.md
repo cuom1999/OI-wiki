@@ -712,10 +712,10 @@ Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. V�
 -   [(Đăng lại) Lý thuyết trò chơi Nim (bản sưu tầm đầy đủ) by exponent - Blog Garden](http://www.cnblogs.com/exponent/articles/2141477.html)
 -   [[Trò chơi tổ hợp và lý thuyết trò chơi] Ghi chú học tập by Candy? - Blog Garden](https://www.cnblogs.com/candy99/p/6548836.html)
 -   [Nim - Wikipedia](https://en.wikipedia.org/wiki/Nim)
--   [Sprague-Grundy theorem - Wikipedia](https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem)
+-   [Định lý Sprague-Grundy - Wikipedia](https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem)
 -   [Nimber - Wikipedia](https://en.wikipedia.org/wiki/Nimber)
--   [Beatty Sequence - Wikipedia](https://en.wikipedia.org/wiki/Beatty_sequence)
--   [Games on arbitrary graphs - CP Algorithms](https://cp-algorithms.com/game_theory/games_on_graphs.html)
+-   [Dãy Beatty - Wikipedia](https://en.wikipedia.org/wiki/Beatty_sequence)
+-   [Trò chơi trên đồ thị tùy ý - CP Algorithms](https://cp-algorithms.com/game_theory/games_on_graphs.html)
 -   [Ghi chú học thuật toán (74): Trò chơi trên đồ thị hai phía by Pecco - Zhihu](https://zhuanlan.zhihu.com/p/359334008)
 -   Conway, John H. On numbers and games. AK Peters/CRC Press, 2000.
 -   Berlekamp, Elwyn R., John H. Conway, and Richard K. Guy. Winning ways for your mathematical plays, volume 1-4. AK Peters/CRC Press, 2001-2004.
