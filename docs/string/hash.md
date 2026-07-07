@@ -45,7 +45,7 @@ Cả hai cách định nghĩa hàm hash trên đều khả thi, nhưng công th�
 
 Do định nghĩa hash đầu tiên tính toán gọn hơn, được dùng phổ biến hơn, và có thể hiểu như một số trong hệ cơ số $b$, phần còn lại của bài viết sẽ thảo luận hàm hash được định nghĩa bằng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i} \pmod M$.
 
-Ngoài ra, để tiện lợi và để mở rộng modulo, trong C++ đôi khi có thể dùng `unsigned long long` để lưu kết quả của hàm hash. Do đặc tính của C++, điều này tương đương với việc đặt modulo $M$ là $2^{64}$, cũng là một lựa chọn tốt.
+Ngoài ra, để tiện lợi và để mở rộng môđun, trong C++ đôi khi có thể dùng `unsigned long long` để lưu kết quả của hàm hash. Do đặc tính của C++, điều này tương đương với việc đặt môđun $M$ là $2^{64}$, cũng là một lựa chọn tốt.
 
 Độ chính xác sẽ được thảo luận ở phần sau.
 
@@ -119,7 +119,7 @@ $$
     p(n,d) \approx 1 - \exp(-\frac{n(n-1)}{2d})
     $$
 
-### Đánh bại hash modulo lớn
+### Đánh bại hash với môđun lớn
 
 Xét công thức:
 
@@ -257,7 +257,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
     Cho một hash được cài đặt bằng **tràn tự nhiên**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
 ???+ note "[Ví dụ: BZOJ 3097 Kẻ phá hash II](https://hydro.ac/p/bzoj-P3098)"
-    Cho một hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
+    Cho một hash được cài đặt bằng **môđun lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
 ???+ note "[Ví dụ: Luogu U461211 Băm xâu (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
     Cho $n$ chuỗi, xác định có bao nhiêu chuỗi khác nhau.
@@ -269,7 +269,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
 
 Sau khi xét nhiều cách đánh bại hash ở trên, vẫn có các phương pháp khắc phục.
 
-Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có modulo khác nhau; như vậy có thể giảm rủi ro va chạm băm.
+Hàm băm nhiều giá trị nghĩa là dùng nhiều hàm hash, mỗi hàm hash có môđun khác nhau; như vậy có thể giảm rủi ro va chạm băm.
 
 Khi so sánh, chỉ cần một trong các giá trị hash khác nhau thì coi hai chuỗi là khác nhau; nếu tất cả giá trị hash đều giống nhau thì coi hai chuỗi là giống nhau.
 

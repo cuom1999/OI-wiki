@@ -28,7 +28,7 @@ Lấy dư của một số theo một lũy thừa không âm của $2$ tương �
         return x & (mod - 1)
     ```
 
-Do đó, một lũy thừa không âm của $2$ khi lấy modulo chính nó sẽ cho kết quả $0$. Nói cách khác, nếu $n$ là một lũy thừa không âm của $2$, kết quả AND của $n$ và $n-1$ là $0$.
+Do đó, một lũy thừa không âm của $2$ khi lấy dư theo chính nó sẽ cho kết quả $0$. Nói cách khác, nếu $n$ là một lũy thừa không âm của $2$, kết quả AND của $n$ và $n-1$ là $0$.
 
 Thực tế, với một số nguyên dương $n$, $n-1$ sẽ đưa bit `1` thấp nhất của $n$ về `0` và đặt toàn bộ các bit phía sau thành `1`. Vì vậy phép AND giữa $n$ và $n-1$ tương đương với việc xóa bit `1` thấp nhất của $n$.
 

@@ -26,7 +26,7 @@ NTT xử lý trường hợp nhân đa thức có lấy dư theo môđun. Có th
 
 Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [vành](../algebra/basic.md#vành) bất kì. Trong trường hợp trường hữu hạn, nó thường được gọi là biến đổi số học (NTT).
 
-**Biến đổi số học** (NTT) thu được bằng cách chuyển biến đổi Fourier rời rạc sang $F={\mathbb {Z}/p}$, tức các số nguyên modulo số nguyên tố $p$. Đây là một **trường hữu hạn**. Miễn là $n$ chia hết $p-1$, sẽ tồn tại căn nguyên thủy bậc $n$, nên suy ra $p=\xi n+1$ với số nguyên dương $\xi$. Cụ thể, với số nguyên tố $p=qn+1, (n=2^m)$, căn nguyên thủy $g$ thỏa mãn $g^{qn} \equiv 1 \pmod p$; nếu xem $g_n=g^q\pmod p$ là phần tử tương ứng với $\omega_n$, thì nó thỏa mãn các tính chất tương tự, chẳng hạn $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$.
+**Biến đổi số học** (NTT) thu được bằng cách chuyển biến đổi Fourier rời rạc sang $F={\mathbb {Z}/p}$, tức các số nguyên theo môđun số nguyên tố $p$. Đây là một **trường hữu hạn**. Miễn là $n$ chia hết $p-1$, sẽ tồn tại căn nguyên thủy bậc $n$, nên suy ra $p=\xi n+1$ với số nguyên dương $\xi$. Cụ thể, với số nguyên tố $p=qn+1, (n=2^m)$, căn nguyên thủy $g$ thỏa mãn $g^{qn} \equiv 1 \pmod p$; nếu xem $g_n=g^q\pmod p$ là phần tử tương ứng với $\omega_n$, thì nó thỏa mãn các tính chất tương tự, chẳng hạn $g_n^n \equiv 1 \pmod p, g_n^{n/2} \equiv -1 \pmod p$.
 
 Vì phần này liên quan đến biến đổi số học, nên $N$ (để phân biệt với $n$ trong FFT, ký hiệu $n$ được đổi thành $N$) có thể lớn hơn $n$ trong FFT; chỉ cần xem $\frac{qN}{n}$ là $q$ trong ngữ cảnh này là đủ để tránh vấn đề về kích thước.
 
@@ -78,11 +78,11 @@ Quan hệ cụ thể giữa DFT, FFT, NTT và FNTT là:
 
 -   Trên cơ sở DFT và NTT, thêm thao tác chia để trị để thu được FFT và FNTT. Phương pháp và nguyên lý của thao tác chia để trị có thể xem trong bài về biến đổi Fourier nhanh.
 
--   Trên cơ sở DFT và FFT, thay phép cộng và phép nhân số phức bằng phép cộng và phép nhân theo modulo $p$, thường giới hạn giá trị trong khoảng từ $0$ đến $p-1$; thay căn đơn vị nguyên thủy bằng căn đơn vị nguyên thủy cùng bậc trong nghĩa modulo $p$, với bậc là lũy thừa của $2$, thì có thể thu được NTT và FNTT.
+-   Trên cơ sở DFT và FFT, thay phép cộng và phép nhân số phức bằng phép cộng và phép nhân theo môđun $p$, thường giới hạn giá trị trong khoảng từ $0$ đến $p-1$; thay căn đơn vị nguyên thủy bằng căn đơn vị nguyên thủy cùng bậc theo môđun $p$, với bậc là lũy thừa của $2$, thì có thể thu được NTT và FNTT.
 
 Vì các phép toán được thay thế chỉ gồm cộng và nhân, nên DFT, FFT, NTT và FNTT có cùng nguyên lý: đều thực hiện trên một vành thỏa mãn phép cộng và phép nhân, không cần điều kiện chặt hơn là phải có phép chia như trên trường.
 
-Miễn là có căn nguyên thủy, tức phần tử sinh trong lý thuyết nhóm, thì NTT hoặc FNTT dưới modulo đó có thể thực hiện được. Xét rằng các modulo $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, khi đã có căn nguyên thủy $g$ của modulo $p^\alpha$ và $2p^\alpha$, cùng phương pháp vẫn cho phép thực hiện NTT hoặc FNTT.
+Miễn là có căn nguyên thủy, tức phần tử sinh trong lý thuyết nhóm, thì NTT hoặc FNTT theo môđun đó có thể thực hiện được. Xét rằng các môđun $1$, $2$ và $4$ quá nhỏ và không có ý nghĩa thực tế, với số nguyên tố lẻ $p$ và số nguyên dương $\alpha$, khi đã có căn nguyên thủy $g$ theo môđun $p^\alpha$ và $2p^\alpha$, cùng phương pháp vẫn cho phép thực hiện NTT hoặc FNTT.
 
 <span id="mẫu"></span>
 

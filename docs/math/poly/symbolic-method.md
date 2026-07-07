@@ -203,7 +203,7 @@ $$
 Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là biến đổi Euler.
 
 ???+ note "Bài tập [LOJ 6268. Số phân hoạch](https://loj.ac/p/6268)"
-    **Đề bài**: gọi $f(n)$ là số cách phân hoạch $n$. Tính $f(1),f(2),\dots,f(10^5)$ modulo $998244353$.
+    **Đề bài**: gọi $f(n)$ là số cách phân hoạch $n$. Tính $f(1),f(2),\dots,f(10^5)$ theo môđun $998244353$.
     
     **Lời giải**: gọi lớp của toàn bộ các số nguyên dương là $\mathcal{I}$, khi đó $\mathcal{I}=\operatorname{SEQ}_{\geq 1}(\mathcal{Z})=\mathcal{Z}\times \operatorname{SEQ}(\mathcal{Z})$, trong đó chỉ số dưới $\geq 1$ là cấu trúc có ràng buộc, xem phần sau. Đại lượng cần tìm là
     
@@ -214,12 +214,12 @@ Trong đó $\operatorname{Exp}$ là chỉ số Pólya, cũng được gọi là 
     Các hệ số đầu tiên của OGF tương ứng là `1 2 3 5 7 11 15 22 30 42`; bỏ qua hằng số thì chính là OEIS [A000041](https://oeis.org/A000041).
 
 ???+ note "Bài tập [Luogu P4389. Balo của công chúa Fu](https://www.luogu.com.cn/problem/P4389)"
-    **Đề bài**: cho $n$ loại hàng hóa có thể tích lần lượt là $v_1,\dots ,v_n$ và số nguyên dương $m$. Tính số cách lấp đầy balo có thể tích $1,2,\dots,m$ modulo $998244353$, trong đó số lượng hàng hóa không bị giới hạn và các hàng hóa khác loại nhưng cùng thể tích vẫn được phân biệt. Quy ước $1\leq n,m\leq 10^5$ và $1\leq v_i\leq m$.
+    **Đề bài**: cho $n$ loại hàng hóa có thể tích lần lượt là $v_1,\dots ,v_n$ và số nguyên dương $m$. Tính số cách lấp đầy balo có thể tích $1,2,\dots,m$ theo môđun $998244353$, trong đó số lượng hàng hóa không bị giới hạn và các hàng hóa khác loại nhưng cùng thể tích vẫn được phân biệt. Quy ước $1\leq n,m\leq 10^5$ và $1\leq v_i\leq m$.
     
     **Lời giải**: gọi lớp tổ hợp của các hàng hóa là $\mathcal{A}$. Đại lượng cần tìm chính là các hệ số của OGF tương ứng với $\operatorname{MSET}(\mathcal{A})$.
 
 ???+ note "Bài tập [Luogu P5900. Đếm cây không gốc không gắn nhãn](https://www.luogu.com.cn/problem/P5900)"
-    **Đề bài**: tính số cây không gắn nhãn, không gốc, có $n$ đỉnh modulo $998244353$. Quy ước $1\leq n\leq 2\times 10^5$.
+    **Đề bài**: tính số cây không gắn nhãn, không gốc, có $n$ đỉnh theo môđun $998244353$. Quy ước $1\leq n\leq 2\times 10^5$.
     
     **Lời giải**: gọi lớp tổ hợp của cây có gốc không gắn nhãn là $\mathcal{T}$. Khi đó
     
@@ -448,7 +448,7 @@ Cần lưu ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal
 Cách tính trên tuy hiệu quả nhưng khá rườm rà. Có thể đọc thêm các mục [định lý đếm Pólya](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [chỉ số chu trình](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; chỉ số chu trình cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
 
 ???+ note "Bài tập [LOJ 6538. Đếm alkyl, bản tăng cường hai lần](https://loj.ac/p/6538)"
-    **Đề bài**: tính số cây không thứ tự có $n$ đỉnh, có gốc và bậc của nút gốc không vượt quá $3$, còn bậc của các nút còn lại không vượt quá $4$, modulo $998244353$. Quy ước $1\leq n\leq 10^5$.
+    **Đề bài**: tính số cây không thứ tự có $n$ đỉnh, có gốc và bậc của nút gốc không vượt quá $3$, còn bậc của các nút còn lại không vượt quá $4$, theo môđun $998244353$. Quy ước $1\leq n\leq 10^5$.
     
     **Lời giải**: gọi lớp tổ hợp là $\mathcal{T}$. Khi đó
     

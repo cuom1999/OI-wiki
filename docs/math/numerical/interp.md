@@ -71,9 +71,9 @@ Cài đặt trực tiếp có độ phức tạp thời gian $O(n^2)$; có thể
         f(k)=\sum_{i=1}^{n}y_i\prod_{j\neq i }\frac{k-x_j}{x_i-x_j}
         $$
         
-        Bài này còn cần tính nghịch đảo modulo. Nếu trước tiên lần lượt tính tử số và mẫu số, rồi nhân tử số với nghịch đảo của mẫu số và cộng vào đáp án cuối cùng, nút thắt độ phức tạp thời gian sẽ không nằm ở việc tính nghịch đảo; độ phức tạp là $O(n^2)$.
+        Bài này còn cần tính nghịch đảo theo môđun. Nếu trước tiên lần lượt tính tử số và mẫu số, rồi nhân tử số với nghịch đảo của mẫu số và cộng vào đáp án cuối cùng, nút thắt độ phức tạp thời gian sẽ không nằm ở việc tính nghịch đảo; độ phức tạp là $O(n^2)$.
         
-        Vì các phép toán được thực hiện dưới modulo cố định $998244353$, phần này tạm xem độ phức tạp thời gian của việc tính nghịch đảo nhân là hằng số.
+        Vì các phép toán được thực hiện theo môđun cố định $998244353$, phần này tạm xem độ phức tạp thời gian của việc tính nghịch đảo nhân là hằng số.
     
     ??? note "Cài đặt mã nguồn"
         ```cpp
@@ -115,7 +115,7 @@ $$
 Tiền xử lý tích tiền tố và hậu tố của $(x-i)$, giai thừa và nghịch đảo giai thừa, rồi thay vào công thức này; độ phức tạp là $O(n)$.
 
 ???+ note "Bài ví dụ [CF622F Tổng các lũy thừa bậc k](https://codeforces.com/contest/622/problem/F)"
-    Cho $n,k$, cần tính giá trị của $\sum\limits_{i=1}^ni^k$ modulo $10^9+7$.
+    Cho $n,k$, cần tính giá trị của $\sum\limits_{i=1}^ni^k$ theo môđun $10^9+7$.
     
     ??? note "Lời giải"
         Trong bài này, đáp án là một đa thức bậc $k+1$, vì vậy có thể dùng sàng tuyến tính để tính các giá trị $1^i,\cdots,(k+2)^i$, rồi nội suy trong $O(n)$.

@@ -55,7 +55,7 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch thành k phần"
-    Tính số phân hoạch $k$ phần $p(n,k)$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $10000$, cận trên của $k$ là $1000$, lấy kết quả modulo $1000007$.
+    Tính số phân hoạch $k$ phần $p(n,k)$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $10000$, cận trên của $k$ là $1000$, lấy kết quả theo môđun $1000007$.
     
     Quan sát bảng và công thức truy hồi, cập nhật theo cột sẽ thuận lợi hơn cho việc lưu trữ. Chương trình có thể viết như sau:
     
@@ -171,7 +171,7 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch phân biệt"
-    Tính số phân hoạch phân biệt $pd_n$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $50000$, lấy kết quả modulo $1000007$.
+    Tính số phân hoạch phân biệt $pd_n$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $50000$, lấy kết quả theo môđun $1000007$.
     
     Quan sát bảng và công thức truy hồi, cập nhật theo cột sẽ thuận lợi hơn cho việc lưu trữ. Trong mã, chỉ giữ hai mục kề nhau để giảm không gian.
     
@@ -321,7 +321,7 @@ Công thức truy hồi này có vô hạn hạng, nhưng nếu quy ước số 
 ### Ví dụ
 
 ???+ note "Tính số phân hoạch"
-    Tính số phân hoạch $p_n$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $50000$, lấy kết quả modulo $1000007$.
+    Tính số phân hoạch $p_n$. Có nhiều bộ dữ liệu vào, trong đó cận trên của $n$ là $50000$, lấy kết quả theo môđun $1000007$.
     
     Dùng phương pháp từ định lý số ngũ giác. Mã như sau:
     
