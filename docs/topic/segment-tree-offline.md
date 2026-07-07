@@ -138,8 +138,8 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
 
 ## Bài tập
 
--   [CF601E A Museum Robbery](https://codeforces.com/problemset/problem/601/E) chia để trị bằng cây đoạn + quy hoạch động ba lô.
--   [CF19E Fairy](https://codeforces.com/problemset/problem/19/E) chia để trị bằng cây đoạn + DSU duy trì tính chẵn lẻ.
+-   [CF601E Một vụ cướp bảo tàng](https://codeforces.com/problemset/problem/601/E) chia để trị bằng cây đoạn + quy hoạch động ba lô.
+-   [CF19E Tiên nữ](https://codeforces.com/problemset/problem/19/E) chia để trị bằng cây đoạn + DSU duy trì tính chẵn lẻ.
 -   [luogu P5227 \[AHOI2013\] Đồ thị liên thông](https://www.luogu.com.cn/problem/P5227) chia để trị bằng cây đoạn + DSU.
 -   [luogu P4319 Những con đường thay đổi](https://www.luogu.com.cn/problem/P4319) chia để trị bằng cây đoạn + cây Link-Cut để duy trì cây khung nhỏ nhất.
 -   [luogu P3733 \[HAOI2017\] Tám tung tám hoành](https://www.luogu.com.cn/problem/P3733) chia để trị bằng cây đoạn + cơ sở tuyến tính.

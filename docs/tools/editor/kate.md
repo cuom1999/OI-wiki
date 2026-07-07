@@ -170,7 +170,7 @@ Sau khi bật tính năng này, Kate sẽ hiển thị bằng chữ nhạt ở c
 
 ## Liên kết ngoài liên quan
 
--   [The Kate Handbook](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
+-   [Sổ tay Kate](https://docs.kde.org/stable5/en/kate/kate/kate.pdf)
 -   [Về cách tự viết cấu hình LSP Client (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-lspclient.html#Configuration)
 -   [Về cách tự viết cấu hình công cụ ngoài (tiếng Anh)](https://docs.kde.org/trunk5/en/kate/kate/kate-application-plugin-external-tools.html)
 

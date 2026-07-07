@@ -468,9 +468,9 @@ Xem: [Câu hỏi thường gặp](https://learn.microsoft.com/en-us/windows/wsl/
 
 ## Liên kết ngoài
 
--   [Về Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
+-   [Giới thiệu Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/)
 -   [Danh sách máy chủ mirror Ubuntu](https://launchpad.net/ubuntu/+archivemirrors)
--   [Dev on Windows with WSL](https://dowww.spencerwoo.com)
+-   [Phát triển trên Windows với WSL](https://dowww.spencerwoo.com)
 -   [Awesome-WSL trên GitHub](https://github.com/sirredbeard/Awesome-WSL)
 -   [Khắc phục sự cố Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/troubleshooting)
 -   [Nâng cấp WSL1 lên WSL2](https://www.cnblogs.com/stulzq/p/13926936.html)

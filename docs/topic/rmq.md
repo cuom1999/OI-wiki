@@ -102,7 +102,7 @@ Nếu dữ liệu ngẫu nhiên, cũng có thể tìm kiếm vét cạn trên c�
 
 ### Kiến thức chuẩn bị
 
--   [Sparse Table](../ds/sparse-table.md)
+-   [Bảng thưa](../ds/sparse-table.md)
 
 -   Các thao tác bit cơ bản
 
