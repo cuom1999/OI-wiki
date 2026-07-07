@@ -46,7 +46,7 @@ struct IO_luogu_P3369_P6136 {
   }
 };
 
-// Doi tham so mau o day thanh false de lay ma cho Luogu P3369 [Mau] Cay can bang thong thuong.
+// Đổi tham số mẫu ở đây thành false để lấy mã cho Luogu P3369 [Mẫu] Cây cân bằng thông thường.
 IO_luogu_P3369_P6136<true> io;
 
 int main() {

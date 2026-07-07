@@ -180,7 +180,7 @@ Dưới đây là hiện thực cho các toán tử nhị phân $+$, $-$, $*$, $
     bool is_unary(char c) { return c == '+' || c == '-'; }
     
     int priority(char op) {
-      if (op < 0)  // unary operator
+      if (op < 0)  // toán tử một ngôi
         return 3;
       if (op == '+' || op == '-') return 1;
       if (op == '*' || op == '/') return 2;

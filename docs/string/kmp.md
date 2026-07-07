@@ -141,7 +141,7 @@ Vì vậy khi chuyển sang vị trí tiếp theo, giá trị của hàm tiền 
           int n = (int)s.length();
           vector<int> pi(n);
           for (int i = 1; i < n; i++)
-            for (int j = pi[i - 1] + 1; j >= 0; j--)  // improved: j=i => j=pi[i-1]+1
+            for (int j = pi[i - 1] + 1; j >= 0; j--)  // cải tiến: j=i => j=pi[i-1]+1
               if (s.substr(0, j) == s.substr(i - j + 1, j)) {
                 pi[i] = j;
                 break;

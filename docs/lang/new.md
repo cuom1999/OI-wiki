@@ -134,7 +134,7 @@ int main() {
   C c = {1, 9, 2, 6};
   for (auto i : c) std::cout << i << " ";
   std::cout << std::endl;
-  // output: 1 9 2 6
+  // đầu ra: 1 9 2 6
   return 0;
 }
 ```

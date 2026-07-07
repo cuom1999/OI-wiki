@@ -63,7 +63,7 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
     #include <cstdio>
     #include <cstring>
     
-    int p[10005][1005]; /* So cach phan hoach so tu nhien n thanh k phan */
+    int p[10005][1005]; /* Số cách phân hoạch số tự nhiên n thành k phần */
     
     int main() {
       int n, k;
@@ -179,7 +179,7 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
     #include <cstdio>
     #include <cstring>
     
-    int pd[50005][2]; /* So cach phan hoach n thanh k phan phan biet */
+    int pd[50005][2]; /* Số cách phân hoạch n thành k phần phân biệt */
     
     int main() {
       int n;

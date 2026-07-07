@@ -1,12 +1,12 @@
 #include <iostream>
 
 // --8<-- [start:core]
-// Duyet trung tu cay Stern-Brocot den tang N.
+// Duyệt trung tự cây Stern-Brocot đến tầng N.
 void build(int n, int a = 0, int b = 1, int c = 1, int d = 0, int level = 1) {
-  if (level > n) return;  // Chi lay n tang dau.
+  if (level > n) return;  // Chỉ lấy n tầng đầu.
   int x = a + c, y = b + d;
   build(n, a, b, x, y, level + 1);
-  std::cout << x << '/' << y << ' ';  // In phan so hien tai.
+  std::cout << x << '/' << y << ' ';  // In phân số hiện tại.
   build(n, x, y, c, d, level + 1);
 }
 

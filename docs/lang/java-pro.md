@@ -1706,9 +1706,9 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
         else if (midVal > key)
             high = mid - 1;
         else
-            return mid; // key found
+            return mid; // tìm thấy key
     }
-    return -(low + 1);  // key not found.
+    return -(low + 1);  // không tìm thấy key.
 }
 ```
 

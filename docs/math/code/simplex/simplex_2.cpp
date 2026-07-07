@@ -65,8 +65,8 @@ bool initialize() {
 
 // --8<-- [end:initialize]
 // --8<-- [start:simplex]
-// Second phase: find an optimal BFS.
-// Return false if the problem is unbounded.
+// Giai đoạn hai: tìm một BFS tối ưu.
+// Trả về false nếu bài toán không bị chặn.
 bool simplex() {
   while (true) {
     int x = -1;

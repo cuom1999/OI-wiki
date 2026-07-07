@@ -1,6 +1,6 @@
-# XAY DUNG CAY STERN-BROCOT.
+# XÂY DỰNG CÂY STERN-BROCOT.
 # --8<-- [start:core]
-# Duyet trung tu cay Stern-Brocot den tang N.
+# Duyệt trung tự cây Stern-Brocot đến tầng N.
 def build(n, a=0, b=1, c=1, d=0, level=1):
     if level > n:
         return

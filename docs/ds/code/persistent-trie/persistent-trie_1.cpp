@@ -11,7 +11,7 @@ struct Trie {
 
   void insert(int o, int lst, int v) {
     for (int i = 28; i >= 0; i--) {
-      val[o] = val[lst] + 1;  // Cap nhat tren co so phien ban cu
+      val[o] = val[lst] + 1;  // Cập nhật trên cơ sở phiên bản cũ
       if ((v & (1 << i)) == 0) {
         if (!ch[o][0]) ch[o][0] = ++cnt;
         ch[o][1] = ch[lst][1];
@@ -33,7 +33,7 @@ struct Trie {
       int t = ((v & (1 << i)) ? 1 : 0);
       if (val[ch[o1][!t]] - val[ch[o2][!t]])
         ret += (1 << i), o1 = ch[o1][!t],
-                         o2 = ch[o2][!t];  // Co gang di sang nhanh khac bit
+                         o2 = ch[o2][!t];  // Cố gắng đi sang nhánh khác bit
       else
         o1 = ch[o1][t], o2 = ch[o2][t];
     }

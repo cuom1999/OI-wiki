@@ -11,7 +11,7 @@ constexpr int MAXM = 200000 + 5;
 
 SegmentTree
     t[MAXN * 2 +
-      MAXM * 40];  // Moi thao tac 1 sua hai lan: cha va rank cua cha
+      MAXM * 40];  // Mỗi thao tác 1 sửa hai lần: cha và rank của cha
 int rt[MAXM];
 int n, m, tot;
 
@@ -28,7 +28,7 @@ int build(int l, int r) {
   return p;
 }
 
-int getRnk(int p, int l, int r, int pos) {  // Truy van rank
+int getRnk(int p, int l, int r, int pos) {  // Truy vấn rank
   if (l == r) {
     return t[p].rnk;
   }
@@ -40,7 +40,7 @@ int getRnk(int p, int l, int r, int pos) {  // Truy van rank
   }
 }
 
-int modifyRnk(int now, int l, int r, int pos, int val) {  // Sua rank (chieu cao)
+int modifyRnk(int now, int l, int r, int pos, int val) {  // Sửa rank (chiều cao)
   int p = ++tot;
   t[p] = t[now];
   if (l == r) {
@@ -56,7 +56,7 @@ int modifyRnk(int now, int l, int r, int pos, int val) {  // Sua rank (chieu cao
   return p;
 }
 
-int query(int p, int l, int r, int pos) {  // Truy van nut cha (gia tri trong day)
+int query(int p, int l, int r, int pos) {  // Truy vấn nút cha (giá trị trong dãy)
   if (l == r) {
     return t[p].val;
   }
@@ -68,7 +68,7 @@ int query(int p, int l, int r, int pos) {  // Truy van nut cha (gia tri trong da
   }
 }
 
-int findRoot(int p, int pos) {  // Truy van nut goc
+int findRoot(int p, int pos) {  // Truy vấn nút gốc
   int f = query(p, 1, n, pos);
   if (pos == f) {
     return pos;
@@ -76,7 +76,7 @@ int findRoot(int p, int pos) {  // Truy van nut goc
   return findRoot(p, f);
 }
 
-int modify(int now, int l, int r, int pos, int fa) {  // Sua nut cha (hop nhat)
+int modify(int now, int l, int r, int pos, int fa) {  // Sửa nút cha (hợp nhất)
   int p = ++tot;
   t[p] = t[now];
   if (l == r) {
@@ -105,7 +105,7 @@ int main() {
       int fa = findRoot(rt[i - 1], a), fb = findRoot(rt[i - 1], b);
       if (fa != fb) {
         if (getRnk(rt[i - 1], 1, n, fa) >
-            getRnk(rt[i - 1], 1, n, fb)) {  // Hop nhat theo rank
+            getRnk(rt[i - 1], 1, n, fb)) {  // Hợp nhất theo rank
           swap(fa, fb);
         }
         int tmp = modify(rt[i - 1], 1, n, fa, fb);

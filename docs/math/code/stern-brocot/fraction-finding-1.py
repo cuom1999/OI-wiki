@@ -1,6 +1,6 @@
-# TIM PHAN SO TRONG CAY STERN-BROCOT.
+# TÌM PHÂN SỐ TRONG CÂY STERN-BROCOT.
 # --8<-- [start:core]
-# Tim vi tri cua mot phan so cho truoc trong cay Stern-Brocot.
+# Tìm vị trí của một phân số cho trước trong cây Stern-Brocot.
 def find(x, y, a=0, b=1, c=1, d=0):
     m = a + c
     n = b + d

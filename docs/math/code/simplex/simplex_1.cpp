@@ -7,7 +7,7 @@ constexpr int M = 10005, N = 1005, INF = 1e9;
 int n, m;
 double a[M][N], b[M], c[N], v;
 
-void pivot(int l, int e) {  // Ham thuc hien xoay truc.
+void pivot(int l, int e) {  // Hàm thực hiện xoay trục.
   b[l] /= a[l][e];
   for (int j = 1; j <= n; j++)
     if (j != e) a[l][j] /= a[l][e];
@@ -42,7 +42,7 @@ double simplex() {
         l = i;
       }
     }
-    if (mn == INF) return INF;  // unbounded
+    if (mn == INF) return INF;  // không bị chặn
     pivot(l, e);                // Xoay theo l, e.
   }
 }
@@ -54,7 +54,7 @@ int main() {
   for (int i = 1; i <= m; i++) {
     int s, t;
     cin >> s >> t;
-    for (int j = s; j <= t; j++) a[i][j] = 1;  // Loai tinh nguyen vien i co the phuc vu o thoi diem j.
+    for (int j = s; j <= t; j++) a[i][j] = 1;  // Loại tình nguyện viên i có thể phục vụ ở thời điểm j.
     cin >> b[i];
   }
   cout << (int)(simplex() + 0.5);

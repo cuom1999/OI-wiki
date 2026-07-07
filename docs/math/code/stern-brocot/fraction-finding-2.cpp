@@ -3,7 +3,7 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Tim vi tri cua mot phan so cho truoc trong cay Stern-Brocot.
+// Tìm vị trí của một phân số cho trước trong cây Stern-Brocot.
 auto find(int x, int y) {
   std::vector<std::pair<int, char>> res;
   int a = 0, b = 1, c = 1, d = 0;

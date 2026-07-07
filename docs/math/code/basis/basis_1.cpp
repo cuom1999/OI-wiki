@@ -6,7 +6,7 @@ ull p[64];
 
 void insert(ull x) {
   for (int i = 63; ~i; --i) {
-    if (!(x >> i))  // Bit thu i cua x bang 0.
+    if (!(x >> i))  // Bit thứ i của x bằng 0.
       continue;
     if (!p[i]) {
       p[i] = x;

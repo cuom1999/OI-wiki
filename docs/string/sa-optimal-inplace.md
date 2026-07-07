@@ -532,7 +532,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             }
         }
         
-        // move SA1 to SA[0...n1-1]
+        // Chuyển SA1 sang SA[0...n1-1]
         for i in 0..lms_cnt {
             sa[i] = sa[patlen- lms_cnt + i];
         }

@@ -72,7 +72,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
       virtual int add(int from, int to, T cost) = 0;
     };
     
-    // undirectedgraph
+    // Đồ thị vô hướng
     template <typename T>
     class undirectedgraph : public graph<T> {
      public:
@@ -92,7 +92,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
       }
     };
     
-    // blossom / find_max_unweighted_matching
+    // Hoa / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       std::mt19937 rng(std::random_device{}());

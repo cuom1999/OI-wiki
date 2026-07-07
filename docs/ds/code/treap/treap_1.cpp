@@ -5,7 +5,7 @@ constexpr int INF = 1 << 30;
 
 int n;
 
-struct treap {  // Duy tri truc tiep thanh mot cau truc du lieu, co the dung ngay
+struct treap {  // Duy trì trực tiếp thành một cấu trúc dữ liệu, có thể dùng ngay
   int l[MAXN], r[MAXN], val[MAXN], rnd[MAXN], size_[MAXN], w[MAXN];
   int sz, ans, rt;
 
