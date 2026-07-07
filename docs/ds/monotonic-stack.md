@@ -42,7 +42,7 @@ xếp.
 
 ## Ứng dụng
 
-??? note "[POJ3250 Bad Hair Day](http://poj.org/problem?id=3250)"
+??? note "[POJ3250 Ngày tóc xấu](http://poj.org/problem?id=3250)"
     Có $N$ con bò xếp thành một hàng từ trái sang phải, mỗi con bò có chiều cao
     $h_i$. Gọi $c_i$ là số con bò nằm giữa con bò thứ $i$ tính từ trái sang và
     "con bò đầu tiên ở bên phải nó có chiều cao $\ge h_i$". Tính

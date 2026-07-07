@@ -119,7 +119,7 @@ Với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, 
 
 <span id="bài-tập"></span>
 
-??? note "Bài tập [「ZOJ 3466」The Hive II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
+??? note "Bài tập [「ZOJ 3466」Tổ ong II](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827368730)"
     Tóm tắt đề bài: giống bài trên, nhưng các ô trở thành lục giác.
 
 ### Một chu trình
@@ -275,22 +275,22 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 
 <span id="bài-tập_1"></span>
 
-??? note "Bài tập [「Ural 1519」Formula 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
+??? note "Bài tập [「Ural 1519」Công thức 1](https://acm.timus.ru/problem.aspx?space=1&num=1519)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình; một số vị trí có chướng ngại.
 
-??? note "Bài tập [「USACO 5.4.4」Betsy's Tours](https://hydro.ac/d/USACO/p/USACO544)"
+??? note "Bài tập [「USACO 5.4.4」Các chuyến tham quan của Betsy](https://hydro.ac/d/USACO/p/USACO544)"
     Tóm tắt đề bài: với một hình vuông $N\times N$ ($N\le 7$), đếm số đường đi bắt đầu từ góc trên trái, kết thúc ở góc dưới trái và đi qua mọi ô. Tuy là một đường đi, nhưng vì điểm đầu và điểm cuối cố định, có thể chuyển thành bài toán một chu trình.
 
-??? note "Bài tập [「POJ 1739」Tony's Tour](http://poj.org/problem?id=1739)"
+??? note "Bài tập [「POJ 1739」Chuyến tham quan của Tony](http://poj.org/problem?id=1739)"
     Tóm tắt đề bài: với một bàn cờ $N\times M$, đếm số đường đi bắt đầu từ góc dưới trái, kết thúc ở góc dưới phải và đi qua mọi ô; một số vị trí có chướng ngại.
 
-??? note "Bài tập [「USACO 6.1.1」Postal Vans](https://vjudge.net/problem/UVALive-2738)"
+??? note "Bài tập [「USACO 6.1.1」Xe thư](https://vjudge.net/problem/UVALive-2738)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $4\times N$ bằng một chu trình có hướng; cần số học độ chính xác cao.
 
 ??? note "Bài tập [「HNOI 2007」Công viên kỳ diệu](https://www.luogu.com.cn/problem/P3190)"
     Tóm tắt đề bài: cho một đồ thị lưới $n\times m$, mỗi ô có một trọng số. Tìm một chu trình bất kỳ sao cho tổng trọng số đi qua là lớn nhất.
 
-??? note "Bài tập [「ProjectEuler 393」Migrating ants](https://projecteuler.net/problem=393)"
+??? note "Bài tập [「ProjectEuler 393」Kiến di cư](https://projecteuler.net/problem=393)"
     Tóm tắt đề bài: phủ một hình vuông $n\times n$ bằng nhiều chu trình; mỗi phương án có $m$ chu trình đóng góp $2^m$ vào đáp án. Tính tổng đóng góp của mọi phương án.
 
 ### Một đường đi
@@ -301,7 +301,7 @@ Về phân tích độ phức tạp của bảng băm, cũng như sự khác nha
 
 <span id="ví-dụ_2"></span>
 
-???+ note "Ví dụ [「ZOJ 3213」Beautiful Meadow](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
+???+ note "Ví dụ [「ZOJ 3213」Đồng cỏ đẹp](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=22&problemSetProblemId=91827367895)"
     Tóm tắt đề bài: với một hình vuông $N\times M$ ($N,M\le 8$), mỗi điểm lưới có một trọng số. Tìm một đường đi sao cho tổng trọng số các điểm lưới được đường đi phủ là lớn nhất.
 
 Đây là bài toán một đường đi tiêu chuẩn. Trong bài toán một đường đi, trạng thái mã hóa còn có thể tồn tại các đầu nối độc lập không thể ghép cặp. Hàm chuyển trạng thái cần thảo luận thêm việc sinh, ghép và biến mất của các đầu nối độc lập. Việc sinh và biến mất của đầu nối độc lập tương ứng với một đầu mút của đường đi, nên loại sự kiện này không xảy ra quá hai lần (một lần sinh một lần biến mất, hoặc hai lần sinh một lần ghép); nếu không, kết quả cuối cùng sẽ có nhiều thành phần liên thông.
@@ -563,7 +563,7 @@ Dùng $-1$ để biểu thị màu không tồn tại. Tiếp theo xét chuyển
     }
     ```
 
-Với trường hợp cuối cùng, cần lưu ý: nếu đã sinh ra một vùng liên thông khép kín, không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Beautiful Meadow](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, cũng có thể xử lý riêng.
+Với trường hợp cuối cùng, cần lưu ý: nếu đã sinh ra một vùng liên thông khép kín, không thể tiếp tục dùng màu của vùng đó để tô, nếu không màu này sẽ có hai thành phần liên thông. Có vẻ cần ghi thêm loại sự kiện này; có thể tham khảo cách làm trong [「ZOJ 3213」Đồng cỏ đẹp](#ví-dụ_2), thêm một chiều để ghi lại sự kiện. Tuy nhiên nhờ tính chất đặc biệt của bài này, cũng có thể xử lý riêng.
 
 ???+ note "Xử lý riêng - mã"
     ```cpp
@@ -636,7 +636,7 @@ Trường hợp này được xử lý riêng. Nhờ vậy trong bài này có t
 
 <span id="ví-dụ_3"></span>
 
-???+ note "Ví dụ [「HDU 4113」Construct the Great Wall](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
+???+ note "Ví dụ [「HDU 4113」Xây Vạn Lý Trường Thành](https://acm.hdu.edu.cn/showproblem.php?pid=4113)"
     Tóm tắt đề bài: dựng một tập chu trình trong bàn cờ $N\times M$ để phân tách tất cả `x` và `o`.
 
 Có một lớp bài toán DP đầu nối yêu cầu dựng một tập tường trên bàn cờ để phân tách một số phần tử trên đó. Có thể tạm gọi đây là bài toán xây tường; loại bài toán này có thể xem như mô hình tô màu, cũng có thể xem như mô hình đường đi.
@@ -810,39 +810,39 @@ Thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều
 ??? note "Bài tập [「SCOI 2011」Sàn nhà](https://www.luogu.com.cn/problem/P3272)"
     Tóm tắt đề bài: trên bàn cờ $r\times c$ có một số vị trí đặt chướng ngại. Hỏi có bao nhiêu cách dùng gạch hình chữ L lát kín tất cả các ô không có chướng ngại.
 
-??? note "Bài tập [「HDU 4796」Winter's Coming](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
+??? note "Bài tập [「HDU 4796」Mùa đông đang đến](https://acm.hdu.edu.cn/showproblem.php?pid=4796)"
     Tóm tắt đề bài: tô đen, trắng, xám các điểm lưới chưa tô trong bàn cờ $N\times M$, yêu cầu toàn bộ vùng đen và toàn bộ vùng trắng đều liên thông, đồng thời vùng đen và vùng trắng lần lượt liên thông với biên trên và biên dưới của bàn cờ, và vùng đen với vùng trắng không được kề nhau. Mỗi ô có một chi phí tương ứng; tìm một phương án tô màu sao cho chi phí vùng xám nhỏ nhất.
     
-    ![Ví dụ tô màu trong bài Winter's Coming](./images/4796.jpg)
+    ![Ví dụ tô màu trong bài Mùa đông đang đến](./images/4796.jpg)
 
-??? note "Bài tập [「ZOJ 2125」Rocket Mania](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
+??? note "Bài tập [「ZOJ 2125」Cơn sốt tên lửa](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365624)"
     Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái của hàng X thông qua ống.
 
-??? note "Bài tập [「ZOJ 2126」Rocket Mania Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
+??? note "Bài tập [「ZOJ 2126」Cơn sốt tên lửa Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái thông qua ống.
 
-??? note "Bài tập [「World Finals 2009/2010 Harbin」Channel](https://qoj.ac/problem/13134)"
+??? note "Bài tập [「World Finals 2009/2010 Harbin」Kênh](https://qoj.ac/problem/13134)"
     Tóm tắt đề bài: trên một bản đồ ô vuông, dùng `.` biểu thị đất trống và `#` biểu thị đá. Tìm một đường đi dài nhất thỏa mãn:
     
     1.  Điểm đầu ở góc trên trái, điểm cuối ở góc dưới phải.
     2.  Không được đi qua đá.
     3.  Bản thân đường đi không được tạo chu trình theo nghĩa tám hướng. (Tức là kể cả ở góc cũng không được chạm nhau)
 
-??? note "Bài tập [「HDU 3958」Tower Defence](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
+??? note "Bài tập [「HDU 3958」Phòng thủ tháp](https://acm.hdu.edu.cn/showproblem.php?pid=3958)"
     Tóm tắt đề bài: có thể chuyển thành bài toán tìm đường đi dài nhất không tự chạm từ $\mathit{S}$ đến $\mathit{T}$; được phép chạm ở góc.
 
-??? note "Bài tập [「UVa 10531」Maze Statistics](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
+??? note "Bài tập [「UVa 10531」Thống kê mê cung](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=1472)"
     Tóm tắt đề bài: có một đồ thị $N\times M$, mỗi ô độc lập có xác suất $\mathit{p}$ trở thành chướng ngại vật. Cần đi từ góc trên trái đến góc dưới phải của mê cung. Tính xác suất để mỗi ô trở thành chướng ngại vật trong một **mê cung có lời giải (tức điểm đầu và điểm cuối liên thông bốn hướng)**. ($N \le 5$, $M \le 6$)
 
-??? note "Bài tập [「Aizu 2452」Pipeline Plans](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
+??? note "Bài tập [「Aizu 2452」Kế hoạch đường ống](https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=2452)"
     Tóm tắt đề bài: có tổng cộng 12 loại mẫu gạch, mỗi loại có số lượng cho trước. Cần lát chúng lên một sàn hình chữ nhật xem như đồ thị lưới $R\times C$, mỗi ô đặt một viên gạch, sao cho tâm của ô góc trên trái liên thông với tâm của ô góc dưới phải thông qua các đường trên mẫu gạch. $(2 \le R \times C \le 15)$
     
-    ![Các mẫu gạch trong bài Pipeline Plans](./images/plug2.png)
+    ![Các mẫu gạch trong bài Kế hoạch đường ống](./images/plug2.png)
 
 ??? note "Bài tập [「SDOI 2014」Bảng mạch](https://www.luogu.com.cn/problem/P3314)"
     Tóm tắt đề bài: một bảng mạch $N\times M$ có một số vị trí là chướng ngại mà dây điện không thể đi qua. Cho $K$ cặp ô, yêu cầu mỗi cặp ô đều được nối bằng dây điện, và các dây điện không giao nhau (cho phép một đường dây đi vào ô hiện tại từ biên trên rồi rời khỏi ô qua biên trái, đồng thời một đường dây khác đi vào từ biên dưới rồi ra qua biên phải). Xem dây điện là cạnh vô hướng; tìm tổng chiều dài dây điện ngắn nhất thỏa mãn yêu cầu và số phương án.
 
-??? note "Bài tập [「SPOJ CAKE3」Delicious Cake](https://www.spoj.com/problems/CAKE3)"
+??? note "Bài tập [「SPOJ CAKE3」Bánh ngon](https://www.spoj.com/problems/CAKE3)"
     Tóm tắt đề bài: một chiếc bánh có thể xem như lưới $N\times M$; nay cắt bánh dọc theo các đường lưới thành nhiều phần. Hỏi có bao nhiêu cách cắt khác nhau. Hai cách cắt được xem là giống nhau khi và chỉ khi từng miếng bánh sau khi cắt đều có cùng hình dạng và nằm ở cùng vị trí. ($\min(N,M) \le 5, \max(N,M) \le 130$)
 
 ## Ghi chú chương

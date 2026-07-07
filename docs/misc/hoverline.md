@@ -12,7 +12,7 @@ Thoạt nhìn, phương pháp đường treo có thể được thay thế và k
 
 ## Ví dụ
 
-???+ note "[SPOJ HISTOGRA - Largest Rectangle in a Histogram](https://www.spoj.com/problems/HISTOGRA)"
+???+ note "[SPOJ HISTOGRA - Hình chữ nhật lớn nhất trong biểu đồ cột](https://www.spoj.com/problems/HISTOGRA)"
     Tóm tắt: Trên một đường thẳng nằm ngang có $n$ hình chữ nhật, mỗi hình rộng $1$. Cần tìm diện tích hình chữ nhật con lớn nhất nằm trong các hình chữ nhật đó.
 
 Đường treo là một đoạn thẳng đứng. Đoạn thẳng này có hai thuộc tính là vị trí ban đầu và chiều cao; nó có thể di chuyển sang trái hoặc phải miễn là đầu trên của nó không vượt quá chiều cao hình chữ nhật tại vị trí hiện tại.
@@ -38,7 +38,7 @@ Bằng phân tích khấu hao, có thể chứng minh mỗi $l_i$ nhiều nhất
     --8<-- "docs/misc/code/hoverline/hoverline_1.cpp"
     ```
 
-???+ note "[UVa1619 Feel Good](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4494)"
+???+ note "[UVa1619 Cảm thấy thoải mái](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4494)"
     Với một dãy số độ dài $n$, cần tìm một đoạn con sao cho tích giữa giá trị nhỏ nhất trong đoạn và tổng các phần tử trong đoạn là lớn nhất. Khi cùng đạt giá trị thoải mái lớn nhất, yêu cầu đoạn có độ dài nhỏ nhất; nếu vẫn còn hòa, chọn đoạn có chỉ số đầu trái nhỏ nhất.
 
 Trong bài này, có thể xét liệt kê giá trị nhỏ nhất: xem số $a_i$ ở mỗi vị trí là giá trị nhỏ nhất, rồi mở rộng từ $i$ sang hai bên để tìm đoạn $[l, r]$ mở rộng xa nhất sao cho $\min\limits _ {j = l} ^ r a_j = a_i$. Như vậy bài toán được chuyển thành mô hình đường treo.

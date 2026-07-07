@@ -6,7 +6,7 @@ DAG là [đồ thị có hướng không chu trình](../graph/dag.md). Một s�
 
 Lấy bài sau làm ví dụ để phân tích quá trình mô hình hóa bằng DAG.
 
-???+ note "Bài ví dụ [UVa 437 The Tower of Babylon](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=378)"
+???+ note "Bài ví dụ [UVa 437 Tháp Babylon](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=378)"
     Có $n (n\leqslant 30)$ loại khối hộp, biết độ dài ba cạnh của mỗi loại, và số lượng mỗi loại là vô hạn. Cần chọn một số khối để xếp thành một tháp cao nhất có thể (mỗi khối có thể tự chọn một cạnh làm chiều cao), sao cho chiều dài và chiều rộng đáy của mỗi khối đều nhỏ hơn nghiêm ngặt so với khối nằm ngay bên dưới. Tính chiều cao lớn nhất của tháp.
 
 ## Quy trình

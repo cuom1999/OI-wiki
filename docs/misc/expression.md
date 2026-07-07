@@ -279,6 +279,6 @@ Dưới đây là hiện thực cho các toán tử nhị phân $+$, $-$, $*$, $
 
 ## Bài tập
 
-1.  [NOIP2013 Junior Group Expression Evaluation](https://www.luogu.com.cn/problem/P1981)
-2.  [Postfix Expression](https://www.luogu.com.cn/problem/P1449)
-3.  [Transform the Expression](https://www.spoj.com/problems/ONP/)
+1.  [NOIP2013 nhóm phổ thông: Đánh giá biểu thức](https://www.luogu.com.cn/problem/P1981)
+2.  [Biểu thức hậu tố](https://www.luogu.com.cn/problem/P1449)
+3.  [Biến đổi biểu thức](https://www.spoj.com/problems/ONP/)
