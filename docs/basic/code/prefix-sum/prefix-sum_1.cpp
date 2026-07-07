@@ -2,21 +2,21 @@
 #include <vector>
 
 // --8<-- [start:core]
-int n;                // Array size.
-std::vector<int> a;   // Array. (indexed from 1)
-std::vector<int> ps;  // Prefix sum array.
+int n;                // Kích thước mảng.
+std::vector<int> a;   // Mảng, đánh số từ 1.
+std::vector<int> ps;  // Mảng tổng tiền tố.
 
-// Calculate prefix sum.
+// Tính tổng tiền tố.
 void prefix_sum() {
   ps = a;
-  // Or simply:
+  // Hoặc đơn giản là:
   // std::partial_sum(a.begin(), a.end(), ps.begin());
   for (int i = 1; i <= n; ++i) {
     ps[i] += ps[i - 1];
   }
 }
 
-// Query sum of elements in [l, r].
+// Truy vấn tổng các phần tử trong [l, r].
 int query(int l, int r) { return ps[r] - ps[l - 1]; }
 
 // --8<-- [end:core]

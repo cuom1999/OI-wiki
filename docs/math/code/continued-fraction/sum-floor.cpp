@@ -3,8 +3,8 @@
 #include <tuple>
 #include <vector>
 
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số tiệm cận của liên phân số A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -15,10 +15,10 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
-// Find [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute
-// upper convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x,
-// where r = [a0, a1, a2, ...] and there are ah[i]-1 integer points on the
-// segment between r[i] and r[i+1].
+// Tìm [ah, ph, qh] sao cho các điểm r[i]=(ph[i], qh[i]) tạo thành bao lồi trên
+// của các điểm nguyên thỏa 0 <= x <= N và 0 <= y <= r * x,
+// trong đó r = [a0, a1, a2, ...] và có ah[i]-1 điểm nguyên trên đoạn
+// giữa r[i] và r[i+1].
 auto hull(std::vector<int> a, int N) {
   std::vector<int> p, q;
   std::tie(p, q) = convergents(a);
@@ -44,15 +44,15 @@ auto hull(std::vector<int> a, int N) {
 }
 
 // --8<-- [start:core]
-// Find sum of floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...]
+// Tìm tổng floor(k * x) với k trong [1, N] và x = [a0; a1, a2, ...]
 int sum_floor(std::vector<int> a, int N) {
   N++;
   std::vector<int> ah, ph, qh;
   std::tie(ah, ph, qh) = hull(a, N);
 
-  // The number of lattice points within a vertical right trapezoid
-  // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-  // a+1 integer points on the segment (0; y1) - (dx; y2).
+  // Số điểm nguyên bên trong hình thang vuông đứng có các đỉnh
+  // (0; 0) - (0; y1) - (dx; y2) - (dx; 0), với a+1 điểm nguyên
+  // trên đoạn (0; y1) - (dx; y2).
   auto picks = [](int y1, int y2, int dx, int a) -> int {
     int b = y1 + y2 + a + dx;
     int A = (y1 + y2) * dx;

@@ -7,7 +7,7 @@
 int n, m;
 std::vector<std::vector<int>> a, ps;  // (n + 1) x (m + 1).
 
-// Calculate the prefix sum of 2-d array.
+// Tính tổng tiền tố của mảng 2 chiều.
 void prefix_sum() {
   ps = a;
   for (int i = 1; i <= n; ++i)
@@ -15,7 +15,7 @@ void prefix_sum() {
       ps[i][j] += ps[i - 1][j] + ps[i][j - 1] - ps[i - 1][j - 1];
 }
 
-// Find the sum of elements in submatrix [x1, y1] to [x2, y2].
+// Tìm tổng các phần tử trong hình chữ nhật con từ [x1, y1] đến [x2, y2].
 int query(int x1, int y1, int x2, int y2) {
   return ps[x2][y2] - ps[x1 - 1][y2] - ps[x2][y1 - 1] + ps[x1 - 1][y1 - 1];
 }

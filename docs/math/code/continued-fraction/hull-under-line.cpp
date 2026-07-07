@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// Find the continued fraction representation of P/Q.
+// Tìm biểu diễn liên phân số của P/Q.
 auto fraction(int p, int q) {
   std::vector<int> a;
   while (q) {
@@ -13,8 +13,8 @@ auto fraction(int p, int q) {
   return a;
 }
 
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số tiệm cận của liên phân số A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -26,10 +26,10 @@ auto convergents(std::vector<int> a) {
 }
 
 // --8<-- [start:core]
-// Find [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute
-// upper convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x,
-// where r = [a0, a1, a2, ...] and there are ah[i]-1 integer points on the
-// segment between r[i] and r[i+1].
+// Tìm [ah, ph, qh] sao cho các điểm r[i]=(ph[i], qh[i]) tạo thành bao lồi trên
+// của các điểm nguyên thỏa 0 <= x <= N và 0 <= y <= r * x,
+// trong đó r = [a0, a1, a2, ...] và có ah[i]-1 điểm nguyên trên đoạn
+// giữa r[i] và r[i+1].
 auto hull(std::vector<int> a, int N) {
   std::vector<int> p, q;
   std::tie(p, q) = convergents(a);

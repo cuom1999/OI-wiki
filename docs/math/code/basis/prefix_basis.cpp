@@ -11,7 +11,7 @@ class LinearBasis {
  public:
   LinearBasis() : a{}, t{} {}
 
-  // Insert vector x at time i.
+  // Chèn vectơ x tại thời điểm i.
   void insert(int x, int i) {
     for (int k = K - 1; ~k && x; --k) {
       if (((x >> k) & 1)) {
@@ -24,7 +24,7 @@ class LinearBasis {
     }
   }
 
-  // Find max xor of subsets of elements from time i till now.
+  // Tìm xor lớn nhất của các tập con gồm các phần tử từ thời điểm i đến hiện tại.
   int query(int i) const {
     int res = 0;
     for (int k = K - 1; ~k; --k) {

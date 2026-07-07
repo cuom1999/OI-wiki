@@ -10,7 +10,7 @@ constexpr int L = 3;
 std::array<int, 1 << L> op;
 constexpr int X = (1 << L) - 2;
 
-// Build a DFA that accepts binary strings which evaluate to a given string.
+// Xây dựng DFA chấp nhận các xâu nhị phân cho ra một xâu cho trước.
 //   0b000 → "00"
 //   0b001 → "01"
 //   0b010 → "10"
@@ -19,18 +19,18 @@ constexpr int X = (1 << L) - 2;
 //   0b101 → "1"
 DFA build(int x) {
   constexpr int L1 = 9, L2 = 6;
-  // The result for string `st` of length `len` is stored at (1 << len) | st.
+  // Kết quả của xâu `st` độ dài `len` được lưu tại (1 << len) | st.
   const auto idx = [](int len, int st) -> int { return (1 << len) | st; };
 
-  // Compute which bit strings are accepted using dynamic programming.
+  // Dùng quy hoạch động để tính các xâu bit được chấp nhận.
   std::vector<bool> acc(1 << (L1 + L2 + 1));
   acc[(x >> 2) ? idx(1, x & 1) : idx(2, x)] = true;
 
   for (int len = (x >> 2) ? 3 : 4; len <= L1 + L2; len += 2) {
     for (int st = 0; st < (1 << len); ++st) {
       for (int i = 0; i + L <= len; ++i) {
-        // Replace st[i..i+2] using the op[] rule, and check if the result is
-        // accepted. Result = st[0..i-1] + op[st[i..i+2]] + st[i+3..end]
+        // Thay st[i..i+2] theo quy tắc op[], rồi kiểm tra kết quả có được
+        // chấp nhận hay không. Kết quả = st[0..i-1] + op[st[i..i+2]] + st[i+3..end]
         int pr =
             ((((st >> (i + L)) << 1) | op[(st >> i) & ((1 << L) - 1)]) << i) |
             (st & ((1 << i) - 1));
@@ -42,16 +42,16 @@ DFA build(int x) {
     }
   }
 
-  // Construct a DFA using the Myhill-Nerode theorem.
+  // Xây dựng DFA bằng định lý Myhill-Nerode.
   DFA dfa(2);
   std::unordered_map<std::vector<bool>, int>
-      mp;                // Maps characteristic vectors to state IDs.
-  std::vector<int> sts;  // Representative 01 strings for each state.
-  std::vector<int> ids(1 << (L1 + 1));  // Maps 01 strings to DFA state IDs.
+      mp;                // Ánh xạ vectơ đặc trưng tới ID trạng thái.
+  std::vector<int> sts;  // Xâu 01 đại diện cho mỗi trạng thái.
+  std::vector<int> ids(1 << (L1 + 1));  // Ánh xạ xâu 01 tới ID trạng thái DFA.
 
   for (int len = 0; len <= L1; ++len) {
     for (int st = (1 << len); st < (2 << len); ++st) {
-      // Construct characteristic vector for this prefix.
+      // Xây dựng vectơ đặc trưng cho tiền tố này.
       std::vector<bool> key(1 << (L2 + 1));
       for (int nxt = 0; nxt <= L2; ++nxt)
         std::copy(acc.begin() + (st << nxt), acc.begin() + ((st + 1) << nxt),
@@ -65,7 +65,7 @@ DFA build(int x) {
     }
   }
 
-  // Build transitions.
+  // Xây dựng các chuyển.
   for (int c = 0; c < 2; ++c) {
     dfa.trans[c].resize(dfa.n);
     for (int i = 0; i < dfa.n; ++i) dfa.trans[c][i] = ids[(sts[i] << 1) | c];
@@ -76,7 +76,7 @@ DFA build(int x) {
 
 std::vector<DFA> dfa;
 
-// Initialize the DFA's.
+// Khởi tạo các DFA.
 void init() {
   std::string s;
   std::cin >> s;
@@ -87,7 +87,7 @@ void init() {
 }
 
 std::string s;
-constexpr int B = 5;  // Block size is 2^B.
+constexpr int B = 5;  // Kích thước khối là 2^B.
 std::vector<std::vector<std::array<std::vector<int>, X>>> pre;
 
 void precompute() {
@@ -96,7 +96,7 @@ void precompute() {
   int nn = ((n - 1) >> B) + 1;
   pre.clear();
 
-  // Compute transitions over single blocks (2^B characters) for each DFA.
+  // Tính chuyển trên từng khối đơn (2^B ký tự) cho mỗi DFA.
   pre.emplace_back(nn);
   for (int i = 0; i < nn; ++i) {
     for (int x = 0; x < X; ++x) {
@@ -110,7 +110,7 @@ void precompute() {
     }
   }
 
-  // Build higher-level transitions using binary lifting.
+  // Xây dựng các chuyển cấp cao hơn bằng nhảy nhị phân.
   for (int d = 1; (1 << d) <= nn; ++d) {
     pre.emplace_back(nn - (1 << d) + 1);
     for (int i = 0; i <= nn - (1 << d); ++i) {
@@ -124,7 +124,7 @@ void precompute() {
   }
 }
 
-// Check if the x-th DFA accepts s[l...r].
+// Kiểm tra DFA thứ x có chấp nhận s[l...r] hay không.
 bool check(int l, int r, int x) {
   if (l > r) return false;
   int cr = dfa[x].q0;
@@ -143,7 +143,7 @@ bool check(int l, int r, int x) {
   return dfa[x].acc[cr];
 }
 
-// Construct expression for s[l...r].
+// Xây dựng biểu thức cho s[l...r].
 void calc(int l, int r, int x) {
   if (l == r) return (void)(std::cout << (x & 1));
   if (x >> 2) {

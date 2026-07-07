@@ -2,19 +2,19 @@
 # --8<-- [start:core]
 n, m = 0, 0
 a = []  # (n+1) x (m+1)
-ps = []  # prefix sum array
+ps = []  # mảng tổng tiền tố
 
 
-# Calculate the prefix sum of 2D array.
+# Tính tổng tiền tố của mảng 2 chiều.
 def prefix_sum():
     global ps
-    ps = [row[:] for row in a]  # Deep copy of a
+    ps = [row[:] for row in a]  # Sao chép sâu a
     for i in range(1, n + 1):
         for j in range(1, m + 1):
             ps[i][j] += ps[i - 1][j] + ps[i][j - 1] - ps[i - 1][j - 1]
 
 
-# Find the sum of elements in submatrix [x1, y1] to [x2, y2].
+# Tìm tổng các phần tử trong ma trận con từ [x1, y1] đến [x2, y2].
 def query(x1, y1, x2, y2):
     return ps[x2][y2] - ps[x1 - 1][y2] - ps[x2][y1 - 1] + ps[x1 - 1][y1 - 1]
 
@@ -23,7 +23,7 @@ def query(x1, y1, x2, y2):
 if __name__ == "__main__":
     n, m = map(int, input().split())
 
-    # Initialize with zero padding for 1-based indexing
+    # Khởi tạo với phần đệm 0 để đánh số từ 1
     a = [[0] * (m + 1)]
     for _ in range(n):
         row = list(map(int, input().split()))

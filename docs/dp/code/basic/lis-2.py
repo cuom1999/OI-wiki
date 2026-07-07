@@ -21,7 +21,7 @@ def dp():
         if tmp == ans:
             ans += 1
 
-    # Construct the subsequence
+    # Khôi phục dãy con
     k = ans
     i = di[ans - 1]
     while k:

@@ -19,7 +19,7 @@ class LinearBasis {
  public:
   LinearBasis() : a{} {}
 
-  // Insert vector x.
+  // Chèn vectơ x.
   void insert(int x) {
     for (int k = K - 1; ~k && x; --k) {
       if ((x >> k) & 1) {
@@ -52,7 +52,7 @@ class LinearBasis {
     return res;
   }
 
-  // Output.
+  // Xuất dữ liệu.
   void print() const {
     std::cout << size();
     for (auto x : a) {

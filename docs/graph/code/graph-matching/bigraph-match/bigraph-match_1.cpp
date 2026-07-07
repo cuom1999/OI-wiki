@@ -17,13 +17,13 @@ struct BipartiteGraph {
   BipartiteGraph(int n1, int n2)
       : n1(n1), n2(n2), g(n1), ma(n1, -1), mb(n2, -1) {}
 
-  // Add an edge from u in X to v in Y.
+  // Thêm cạnh từ u trong X tới v trong Y.
   void add_edge(int u, int v) { g[u].emplace_back(v); }
 
-  // Find an augmenting path starting at u.
+  // Tìm đường tăng bắt đầu từ u.
   bool dfs(int u) {
     vis[u] = true;
-    // Heuristic: find unsaturated vertices whenever possible.
+    // Heuristic: ưu tiên tìm đỉnh chưa bão hòa khi có thể.
     for (int v : g[u]) {
       if (mb[v] == -1) {
         ma[u] = v;
@@ -41,13 +41,13 @@ struct BipartiteGraph {
     return false;
   }
 
-  // Kuhn's maximum matching algorithm.
+  // Thuật toán ghép cặp cực đại Kuhn.
   std::vector<std::pair<int, int>> kuhn_maximum_matching() {
-    // Randomly shuffle the edges.
+    // Xáo trộn ngẫu nhiên các cạnh.
     for (int u = 0; u < n1; ++u) {
       std::shuffle(g[u].begin(), g[u].end(), rng);
     }
-    // Find a maximal set of vertex-disjoint augmenting paths in each round.
+    // Mỗi vòng tìm một tập cực đại các đường tăng không chung đỉnh.
     while (true) {
       bool succ = false;
       vis.assign(n1, false);

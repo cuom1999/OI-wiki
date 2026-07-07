@@ -8,7 +8,7 @@ class LinearBasis {
  public:
   LinearBasis(int K) : K(K), a(K) {}
 
-  // Insert vector x.
+  // Chèn vectơ x.
   void insert(long long x) {
     for (int k = K - 1; ~k && x; --k) {
       if ((x >> k) & 1) {

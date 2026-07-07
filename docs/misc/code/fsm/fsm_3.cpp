@@ -13,18 +13,18 @@ using state = std::bitset<L>;
 DFA raw_dfa(B), dfa(B);
 std::unordered_map<state, int> ids;
 
-// Construct a DFA by DFS.
+// Xây dựng DFA bằng DFS.
 int dfs(const state& cr) {
   if (ids.count(cr)) return ids[cr];
   int id = ids[cr] = raw_dfa.n++;
-  // Check if accepted.
+  // Kiểm tra có được chấp nhận hay không.
   for (int i = 0; i < B; ++i) {
     if (cr[i]) {
       raw_dfa.acc.push_back(i);
       break;
     }
   }
-  // Construct transitions recursively.
+  // Xây dựng các chuyển bằng đệ quy.
   for (int c = 0; c < B; ++c) {
     raw_dfa.trans[c].push_back(0);
   }
@@ -62,13 +62,13 @@ long long calc(long long n, int k) {
 };
 
 int main() {
-  // Construct a DFA.
+// Xây dựng DFA.
   for (int c = 0; c < B; ++c) raw_dfa.trans[c].reserve(20000);
   dfs(1);
-  // DFA minimization.
+  // Tối thiểu hóa DFA.
   dfa = raw_dfa.hopcroft_minimize();
   memo.assign(dfa.n * 20 * B, -1);
-  // Queries.
+  // Truy vấn.
   int t;
   std::cin >> t;
   for (; t; --t) {

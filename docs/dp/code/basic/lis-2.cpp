@@ -15,7 +15,7 @@ int dp() {
     di[tmp] = i;
     if (tmp == ans) ++ans;
   }
-  // Construct the subsequence.
+  // Khôi phục dãy con.
   for (int k = ans, i = di[ans - 1]; k; --k) {
     res[k] = a[i];
     i = pre[i];

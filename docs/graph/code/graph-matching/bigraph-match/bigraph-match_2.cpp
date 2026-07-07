@@ -13,10 +13,10 @@ struct BipartiteGraph {
   BipartiteGraph(int n1, int n2)
       : n1(n1), n2(n2), g(n1), ma(n1, -1), mb(n2, -1) {}
 
-  // Add an edge from u in X to v in Y.
+  // Thêm cạnh từ u trong X tới v trong Y.
   void add_edge(int u, int v) { g[u].emplace_back(v); }
 
-  // Build the level graph.
+  // Xây dựng đồ thị tầng.
   bool bfs() {
     dist.assign(n1, -1);
     std::queue<int> q;
@@ -26,7 +26,7 @@ struct BipartiteGraph {
         q.emplace(u);
       }
     }
-    // Build the level graph for all reachable vertices.
+    // Xây dựng đồ thị tầng cho tất cả đỉnh tới được.
     bool succ = false;
     while (!q.empty()) {
       int u = q.front();
@@ -43,7 +43,7 @@ struct BipartiteGraph {
     return succ;
   }
 
-  // Find an augmenting path starting at u.
+  // Tìm đường tăng bắt đầu từ u.
   bool dfs(int u) {
     for (int v : g[u]) {
       if (mb[v] == -1 || (dist[mb[v]] == dist[u] + 1 && dfs(mb[v]))) {
@@ -52,13 +52,13 @@ struct BipartiteGraph {
         return true;
       }
     }
-    dist[u] = -1;  // Mark this point as inreachable after one visit.
+    dist[u] = -1;  // Đánh dấu đỉnh này là không tới được sau một lần thăm.
     return false;
   }
 
-  // Hopcroft-Karp maximum matching algorithm.
+  // Thuật toán ghép cặp cực đại Hopcroft-Karp.
   std::vector<std::pair<int, int>> hopcroft_karp_maximum_matching() {
-    // Build the level graph and then find a blocking flow.
+    // Xây dựng đồ thị tầng rồi tìm luồng chặn.
     while (bfs()) {
       for (int u = 0; u < n1; ++u) {
         if (ma[u] == -1) {

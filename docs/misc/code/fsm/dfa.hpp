@@ -7,69 +7,69 @@
 #include <vector>
 
 // --8<-- [start:dfa]
-// Deterministic Finite Automaton (DFA)
+// Ô-tô-mát hữu hạn đơn định (DFA)
 struct DFA {
-  int m;                                // Alphabet size.
-  int n;                                // Number of states.
-  int q0;                               // Initial state.
-  std::vector<std::vector<int>> trans;  // Transitions: trans[c][q].
-  std::vector<int> acc;                 // Acceptance labels per state:
-                                        // - 0 = non-accepting
+  int m;                                // Kích thước bảng chữ cái.
+  int n;                                // Số trạng thái.
+  int q0;                               // Trạng thái ban đầu.
+  std::vector<std::vector<int>> trans;  // Chuyển trạng thái: trans[c][q].
+  std::vector<int> acc;                 // Nhãn chấp nhận của từng trạng thái:
+                                        // - 0 = không chấp nhận
 
   DFA(int m, int n = 0, int q0 = 0)
       : m(m), n(n), q0(q0), trans(m, std::vector<int>(n)), acc(n) {}
 
-  // Returns minimized DFA via Hopcroft's algorithm.
+  // Trả về DFA tối thiểu hóa bằng thuật toán Hopcroft.
   DFA hopcroft_minimize() const;
 };
 
 // --8<-- [end:dfa]
 // --8<-- [start:hopcroft]
-// DFA minimization via Hopcroft's algorithm.
-// Complexity: O(n * m * log(n)).
+// Tối thiểu hóa DFA bằng thuật toán Hopcroft.
+// Độ phức tạp: O(n * m * log(n)).
 DFA DFA::hopcroft_minimize() const {
-  // Construct inverse transition maps:
-  // - pre[c] stores states sorted by the target of transition c.
-  // - pos[c][s] is the start index in pre[c] of transitions going to state s.
+  // Xây dựng các ánh xạ chuyển ngược:
+  // - pre[c] lưu các trạng thái được sắp theo đích của chuyển c.
+  // - pos[c][s] là chỉ số bắt đầu trong pre[c] của các chuyển đi tới trạng thái s.
   std::vector<std::vector<int>> pre(m), pos(m);
   for (int c = 0; c < m; ++c) {
     pre[c].assign(n, 0);
     pos[c].assign(n + 1, 0);
-    // Counting sort.
+    // Sắp xếp đếm.
     for (int i = 0; i < n; ++i) ++pos[c][trans[c][i]];
     for (int i = 0; i < n; ++i) pos[c][i + 1] += pos[c][i];
     for (int i = 0; i < n; ++i) pre[c][--pos[c][trans[c][i]]] = i;
   }
 
-  // Partition element structure:
-  // - os: starting index in the state list.
-  // - sz: number of states in this class.
-  // - cnt: temporary count of marked states during refinement.
+  // Cấu trúc phần tử của phép chia:
+  // - os: chỉ số bắt đầu trong danh sách trạng thái.
+  // - sz: số trạng thái trong lớp này.
+  // - cnt: số trạng thái được đánh dấu tạm thời trong quá trình tinh chỉnh.
   struct EquivClasses {
     int os, sz, cnt;
 
     EquivClasses(int os, int sz, int cnt) : os(os), sz(sz), cnt(cnt) {}
   };
 
-  // Partition and helper data structures.
-  std::vector<EquivClasses> ec;  // Current list of equivalence classes.
-  std::vector<int> ids(n);       // Permutation of states, grouped by ECs.
-  std::vector<int> par(n);       // Maps state to its EC index.
-  std::vector<bool> tag(n);      // Temporary marking for splitting.
-  std::queue<int> evidences;     // Worklist of ECs to check.
+  // Phép chia và các cấu trúc dữ liệu phụ trợ.
+  std::vector<EquivClasses> ec;  // Danh sách lớp tương đương hiện tại.
+  std::vector<int> ids(n);       // Hoán vị các trạng thái, được nhóm theo lớp tương đương.
+  std::vector<int> par(n);       // Ánh xạ trạng thái tới chỉ số lớp tương đương.
+  std::vector<bool> tag(n);      // Đánh dấu tạm thời để tách lớp.
+  std::queue<int> evidences;     // Danh sách lớp tương đương cần kiểm tra.
 
-  // Initial partition by acceptance label.
+  // Chia ban đầu theo nhãn chấp nhận.
   std::iota(ids.begin(), ids.end(), 0);
   std::sort(ids.begin(), ids.end(),
             [&](int l, int r) { return acc[l] < acc[r]; });
   for (int l = 0, r; l < n; l = r) {
     for (r = l; r < n && acc[ids[r]] == acc[ids[l]]; ++r)
       par[ids[r]] = ec.size();
-    if (l) evidences.push(ec.size());  // Add all but first class to worklist.
+    if (l) evidences.push(ec.size());  // Đưa mọi lớp trừ lớp đầu tiên vào danh sách chờ.
     ec.emplace_back(l, r - l, 0);
   }
 
-  // Refinement loop.
+  // Vòng lặp tinh chỉnh.
   while (!evidences.empty()) {
     int cr = evidences.front();
     evidences.pop();
@@ -85,11 +85,11 @@ DFA DFA::hopcroft_minimize() const {
           }
         }
       }
-      // Perform splits.
+      // Thực hiện tách lớp.
       for (int i : todo) {
         int ti = i;
         if (ec[i].cnt != ec[i].sz) {
-          // Split into two: larger vs smaller segment.
+          // Tách thành hai phần: đoạn lớn hơn và đoạn nhỏ hơn.
           bool majority_tagged = ec[i].cnt * 2 >= ec[i].sz;
           int mid =
               std::partition(ids.begin() + ec[i].os,
@@ -97,7 +97,7 @@ DFA DFA::hopcroft_minimize() const {
                              [&](int x) { return tag[x] == majority_tagged; }) -
               ids.begin() - ec[i].os;
 
-          // Assign new EC index to the smaller segment.
+          // Gán chỉ số lớp tương đương mới cho đoạn nhỏ hơn.
           for (int j = ec[i].os + mid; j < ec[i].os + ec[i].sz; ++j)
             par[ids[j]] = ec.size();
 
@@ -106,7 +106,7 @@ DFA DFA::hopcroft_minimize() const {
           ec.emplace_back(ec[i].os + mid, ec[i].sz - mid, 0);
           ec[i].sz = mid;
         }
-        // Clear temporary counters and tags.
+        // Xóa bộ đếm và đánh dấu tạm thời.
         ec[i].cnt = 0;
         for (int j = ec[ti].os; j < ec[ti].os + ec[ti].sz; ++j)
           tag[ids[j]] = false;
@@ -114,10 +114,10 @@ DFA DFA::hopcroft_minimize() const {
     }
   }
 
-  // Build minimized DFA.
+  // Xây dựng DFA đã tối thiểu hóa.
   DFA res(m, ec.size(), par[q0]);
   for (const auto& e : ec) {
-    int i = ids[e.os];  // Representative state.
+    int i = ids[e.os];  // Trạng thái đại diện.
     res.acc[par[i]] = acc[i];
     for (int c = 0; c < m; ++c) res.trans[c][par[i]] = par[trans[c][i]];
   }

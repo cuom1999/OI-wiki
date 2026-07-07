@@ -67,8 +67,8 @@ std::priority_queue<std::pair<long long, int>,
 std::vector<long long> dist_t;
 std::vector<int> out;
 
-// Calculate distances to the destination node t. (Dijkstra)
-// Record the optimal outgoing edges which form the shortest path tree T.
+// Tính khoảng cách tới đỉnh đích t. (Dijkstra)
+// Ghi lại các cạnh đi ra tối ưu tạo thành cây đường đi ngắn nhất T.
 void calc_distances_to_t() {
   dist_t.assign(n, inf);
   dist_t[t] = 0;
@@ -91,16 +91,16 @@ void calc_distances_to_t() {
   }
 }
 
-// Construct sidetracks and propagate them through tree T.
+// Dựng các cạnh rẽ nhánh và lan truyền chúng trên cây T.
 void build_sidetracks() {
-  // Insert all valid sidetracks into heaps.
+  // Đưa mọi cạnh rẽ nhánh hợp lệ vào các heap.
   for (int i = 0; i < m; ++i) {
     auto edge = edges[i];
     if (out[edge.u] != i && dist_t[edge.u] < inf && dist_t[edge.v] < inf) {
       heaps.insert(edge.u, edge.c + dist_t[edge.v] - dist_t[edge.u], edge.v);
     }
   }
-  // Propagate sidetracks down the shortest path tree.
+  // Lan truyền các cạnh rẽ nhánh xuống cây đường đi ngắn nhất.
   std::queue<int> q;
   q.push(t);
   while (!q.empty()) {
@@ -118,14 +118,14 @@ void build_sidetracks() {
 
 std::vector<long long> ans;
 
-// Insert a non-empty heap into the priority queue.
-// Total cost is the heap top value adjusted by accumulated cost.
+// Đưa heap không rỗng vào hàng đợi ưu tiên.
+// Tổng chi phí bằng giá trị ở đỉnh heap sau khi cộng chi phí tích lũy.
 void insert(int x, long long cost) {
   if (x) pq.emplace(cost + heaps.va[x], x);
 }
 
-// Find the k shortest paths in the sidetrack graph. (Dijkstra)
-// These correspond to the k shortest walks in the original graph.
+// Tìm k đường đi ngắn nhất trong đồ thị cạnh rẽ nhánh. (Dijkstra)
+// Chúng tương ứng với k walk ngắn nhất trong đồ thị ban đầu.
 void find_k_shortest_walks() {
   int cnt = 0;
   ans.assign(k, -1);
@@ -144,7 +144,7 @@ void find_k_shortest_walks() {
 }
 
 int main() {
-  // Input.
+  // Nhập dữ liệu.
   std::cin >> n >> m >> s >> t >> k;
   gr.resize(n);
   ig.resize(n);
@@ -156,11 +156,11 @@ int main() {
     gr[u].push_back(i);
     ig[v].push_back(i);
   }
-  // Calculate.
+  // Tính toán.
   calc_distances_to_t();
   build_sidetracks();
   find_k_shortest_walks();
-  // Output.
+  // Xuất dữ liệu.
   for (auto x : ans) std::cout << x << '\n';
   return 0;
 }

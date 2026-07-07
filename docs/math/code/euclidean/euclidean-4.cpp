@@ -24,7 +24,7 @@ T pow(T a, int b) {
   return res;
 }
 
-// Universal Euclidean algorithm.
+// Thuật toán Euclid tổng quát.
 template <typename T>
 T euclid(int a, int b, int c, int n, T U, T R) {
   if (b >= c) return pow(U, b / c) * euclid(a, b % c, c, n, U, R);

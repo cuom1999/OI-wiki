@@ -18,20 +18,20 @@ struct StableMatching {
         match_x(nx, -1),
         match_y(ny, -1) {}
 
-  // Gale-Shapley algorithm.
-  // Complexity: O(nx * ny).
+  // Thuật toán Gale-Shapley.
+  // Độ phức tạp: O(nx * ny).
   void solve() {
-    // Compute Y's ranks over X.
+    // Tính thứ hạng của X theo từng phần tử trong Y.
     std::vector<std::vector<int>> ranks(ny, std::vector<int>(nx));
     for (int j = 0; j != ny; ++j) {
       for (int i = 0; i != pref_y[j].size(); ++i) {
         ranks[j][pref_y[j][i]] = nx - i;
       }
     }
-    // Initialize.
-    std::vector<int> waitlist(ny);  // Best proposal rank for j in Y.
-    std::vector<int> ids(nx);       // Next j in Y for i in X to propose to.
-    std::queue<int> q;              // Currently active i's in X.
+    // Khởi tạo.
+    std::vector<int> waitlist(ny);  // Thứ hạng lời cầu hôn tốt nhất cho j trong Y.
+    std::vector<int> ids(nx);       // j tiếp theo trong Y mà i trong X sẽ cầu hôn.
+    std::queue<int> q;              // Các i trong X đang hoạt động.
     for (int i = 0; i != nx; ++i) q.push(i);
     // Loop.
     while (!q.empty()) {
@@ -45,7 +45,7 @@ struct StableMatching {
         q.push(i);
       }
     }
-    // Output.
+    // Xuất dữ liệu.
     for (int j = 0; j != ny; ++j) {
       if (waitlist[j]) {
         int i = pref_y[j][nx - waitlist[j]];
@@ -57,7 +57,7 @@ struct StableMatching {
 };
 
 void solve() {
-  // Input.
+  // Nhập dữ liệu.
   int n;
   std::cin >> n;
   StableMatching solver(n, n);
@@ -77,9 +77,9 @@ void solve() {
       cur.push_back(y - 1);
     }
   }
-  // Solve the problem.
+  // Giải bài toán.
   solver.solve();
-  // Output.
+  // Xuất dữ liệu.
   for (int i = 0; i < n; ++i) {
     std::cout << (i + 1) << ' ' << (solver.match_x[i] + 1) << '\n';
   }
