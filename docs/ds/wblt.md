@@ -10,7 +10,7 @@ là một loại cây cân bằng. So với nhiều cây cân bằng khác, WBLT
 
 Trong cây cân bằng theo trọng số, mỗi nút lưu kích thước cây con của nó. Chiều cao cây được
 khống chế bằng cách giữ tỷ lệ kích thước giữa cây con trái và cây con phải trong một phạm vi
-nhất định.
+cho trước.
 
 Cây lá chỉ lưu thông tin gốc cần duy trì trên **nút lá**. Các nút trong chỉ dùng để tổng hợp
 thông tin từ nút con và giữ dạng của cấu trúc dữ liệu. Cây đoạn quen thuộc cũng là một loại
@@ -498,7 +498,7 @@ Có thể chứng minh rằng cách này duy trì được cân bằng của câ
     $\alpha^2/(1-\alpha)^2$ lần so với ban đầu. Nhưng trong một lần lặp, trọng số cây con nhiều nhất
     chỉ có thể co lại thành $\alpha$ lần so với ban đầu; trong phạm vi $\alpha$ nói trên, lại có
     $\alpha>\alpha^2/(1-\alpha)^2$. Điều này cho thấy tình huống giả định trước đó là không thể, và
-    sau một lần lặp nào đó nhất định sẽ xuất hiện trường hợp $y$ cân bằng với một cây con nào đó của
+    sẽ có một lần lặp mà $y$ cân bằng với một cây con nào đó của
     $x$.
 
 ### Duy trì bằng phép hợp nhất
@@ -640,7 +640,7 @@ thuộc vào kích thước tương đối của chúng.
         \dfrac{z+u}{v+y} = \dfrac{x+y}{v+y}-1 \ge \dfrac{x+y}{(1-\alpha)^2x+y}-1 > \dfrac{1}{(1-\alpha)^3+\alpha}-1 > \dfrac{\alpha}{1-\alpha}.
         $$
         
-        Từ các bất đẳng thức này, có thể chỉ ra rằng cây cuối cùng thu được nhất định cân bằng. Theo
+        Từ các bất đẳng thức này, có thể chỉ ra rằng cây cuối cùng thu được là cây cân bằng. Theo
         giả thiết quy nạp, hợp nhất $z$ với $u$ và hợp nhất $v$ với $y$ đều cho cây cân bằng. Hơn
         nữa, bước đầu tiên hợp nhất $z$ và $u$ thực chất là nối trực tiếp hai cây. Với việc hợp nhất
         cây $z+u$ và cây $v+y$, lại có hai trường hợp con:
@@ -663,7 +663,7 @@ thuộc vào kích thước tương đối của chúng.
         Nếu cộng trực tiếp ba bất đẳng thức, hệ số trước hạng logarit sẽ trở thành $2C$, nên không
         thể hoàn tất quy nạp. Vì vậy, cần một ước lượng tinh tế hơn.
         
-        Khi $\max\{v/y,(z+u)/(v+y)\}\le(1-\alpha)/\alpha$, trong $\tau(v,y)$ và $\tau(z+u,v+y)$ nhất định có một hạng bằng $1$, nên có
+        Khi $\max\{v/y,(z+u)/(v+y)\}\le(1-\alpha)/\alpha$, trong $\tau(v,y)$ và $\tau(z+u,v+y)$ có ít nhất một hạng bằng $1$, nên có
         
         $$
         \begin{aligned}

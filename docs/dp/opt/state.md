@@ -31,7 +31,7 @@ Cách làm trên có độ phức tạp thời gian $O(nm)$, không đáp ứng 
 
 Suy nghĩ kỹ hơn, có một tính chất: đáp án cuối cùng không vượt quá $m$.
 
-Tiếp tục xét kỹ, LCS có một tính chất tham lam nhất định.
+Tiếp tục xét kỹ, LCS có một tính chất tham lam.
 
 Đổi định nghĩa trạng thái: $f_{i,j}$ là độ dài tiền tố ngắn nhất của $A$ sao cho LCS với $i$ ký tự đầu của $B$ có độ dài $j$ (tức là hoán đổi đáp án trong cách đơn giản với chiều trạng thái thứ nhất).
 

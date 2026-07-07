@@ -10,7 +10,7 @@ Sau đây là một vài cách dùng cụ thể của hai con trỏ.
 
 ## Duy trì thông tin đoạn
 
-Nếu không kết hợp với cấu trúc dữ liệu khác, mẫu đơn giản nhất khi dùng hai con trỏ để duy trì thông tin đoạn là duy trì những thông tin có tính đơn điệu nhất định và việc thêm, xóa một phần tử đều dễ xử lý, chẳng hạn tổng các số dương, tích các số nguyên dương, v.v.
+Nếu không kết hợp với cấu trúc dữ liệu khác, mẫu đơn giản nhất khi dùng hai con trỏ để duy trì thông tin đoạn là duy trì những thông tin có tính đơn điệu và việc thêm, xóa một phần tử đều dễ xử lý, chẳng hạn tổng các số dương, tích các số nguyên dương, v.v.
 
 ### Ví dụ 1
 

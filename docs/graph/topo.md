@@ -30,7 +30,7 @@ Mục tiêu của sắp xếp tô pô là sắp thứ tự tất cả các đỉ
 ## Mạng AOV
 
 Trong đời sống, một công trình lớn có thể được xem là tập hợp của nhiều công việc con.
-Giữa các công việc con này thường tồn tại một thứ tự trước sau nhất định, nghĩa là một số công việc con chỉ có thể bắt đầu sau khi một số công việc con khác đã hoàn thành.
+Giữa các công việc con này thường tồn tại một thứ tự trước sau, nghĩa là một số công việc con chỉ có thể bắt đầu sau khi một số công việc con khác đã hoàn thành.
 
 Dùng đồ thị có hướng để biểu diễn quan hệ trước sau giữa các công việc con, trong đó quan hệ trước sau là các cạnh có hướng.
 Loại đồ thị có hướng này được gọi là mạng hoạt động trên đỉnh, tức **mạng AOV (Activity On Vertex Network)**.
