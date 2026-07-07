@@ -32,15 +32,16 @@ chia thành số hữu tỉ và **số vô tỉ bậc hai** (quadratic irrationa
 Cách biểu diễn một số vô tỉ bậc hai dưới dạng trên là duy nhất.
 
 Với mỗi số nguyên không chứa nhân tử chính phương $d\neq 0,1$, có thể kiểm tra
-tập $Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng, trừ,
+tập $\mathbf Q(\sqrt{d})=\{a+b\sqrt{d}:a,b\in\mathbf Q\}$ đóng dưới phép cộng, trừ,
 nhân, chia. Vì một tập đóng dưới bốn phép toán số học được gọi là
-[trường](../algebra/basic.md#trường), tập $Q(\sqrt{d})$ được gọi là
+[trường](../algebra/basic.md#trường), tập $\mathbf Q(\sqrt{d})$ được gọi là
 **trường bậc hai** (quadratic field). Mọi trường bậc hai đều chứa toàn bộ các
 số hữu tỉ, do đó chúng đều là [mở rộng bậc hai](../algebra/field-theory.md#mở-rộng-trường)
 của trường số hữu tỉ $\mathbf Q$. Khi $d>0$, mọi số trong trường bậc hai
 $\mathbf Q(\sqrt{d})$ đều là số thực; khi đó $\mathbf Q(\sqrt{d})$ được gọi là
-trường bậc hai thực. Khi $d<0$, trong trường bậc hai, ngoài các số hữu tỉ ra
-đều là số phức; khi đó $\mathbf Q(\sqrt{d})$ được gọi là trường bậc hai ảo.
+trường bậc hai thực. Khi $d<0$, trong trường bậc hai, mọi phần tử không hữu tỉ
+đều là số phức không thực; khi đó $\mathbf Q(\sqrt{d})$ được gọi là trường bậc
+hai ảo.
 
 <span id="liên-hợp-và-chuẩn"></span>
 ### Liên hợp và chuẩn
@@ -53,7 +54,7 @@ của số vô tỉ bậc hai không trùng với liên hợp phức của nó; 
 liên hợp của một số hữu tỉ được quy ước là chính nó. Như vậy khái niệm liên hợp
 được định nghĩa cho tất cả các số đại số bậc hai.
 
-Trong bất kì trường bậc hai nào, các đẳng thức sinh ra từ bốn phép cộng, trừ,
+Trong bất kỳ trường bậc hai nào, các đẳng thức sinh ra từ bốn phép cộng, trừ,
 nhân, chia không phân biệt được quan hệ liên hợp. Nói cách khác, nếu thay mỗi
 số trong một đẳng thức bằng liên hợp của nó, tức đổi dấu mọi căn bậc hai, thì
 đẳng thức vẫn đúng.
@@ -72,7 +73,7 @@ N(a+b\sqrt{d})=a^2-db^2
 $$
 
 Trong trường bậc hai ảo, khái niệm chuẩn trùng với bình phương
-modun của số phức; nhưng trong trường bậc hai thực, hai khái niệm này không
+môđun của số phức; nhưng trong trường bậc hai thực, hai khái niệm này không
 trùng nhau.
 
 Chuẩn có các tính chất tốt. Trước hết, vì $d$ không chứa nhân tử chính phương
@@ -137,8 +138,7 @@ $$
 Nếu $p$ chẵn, tức $p=2k$, thì hai nghiệm có thể viết là
 $-k\pm\sqrt{k^2-q}$; nếu $p$ lẻ, tức $p=2k+1$, thì hai nghiệm có thể viết là
 $-k-\dfrac{1\pm\sqrt{4(k^2+k-q)+1}}{2}$. Từ hai trường hợp này có thể suy ra
-các số nguyên bậc hai trong $\mathbf Q(\sqrt{d})$ nhất định có thể viết dưới
-dạng
+các số nguyên bậc hai trong $\mathbf Q(\sqrt{d})$ đều có thể viết dưới dạng
 
 $$
 a+b\omega
@@ -179,7 +179,7 @@ nguyên bậc hai.
 Với các số nguyên bậc hai $\alpha$ và $\beta$ trong vành số nguyên bậc hai
 $\mathbf Z[\omega]$, nếu tồn tại số nguyên bậc hai $\gamma$ trong cùng vành sao
 cho $\beta=\alpha\gamma$, thì nói $\alpha$ chia hết $\beta$, ký hiệu
-$\alpha\mid\beta$. Quan hệ chia hết là một quan hệ [thứ tự bộ phận](../order-theory.md#quan-hệ-hai-ngôi)
+$\alpha\mid\beta$. Quan hệ chia hết là một [quan hệ hai ngôi](../order-theory.md#quan-hệ-hai-ngôi)
 trên vành số nguyên bậc hai. Nếu đồng thời có $\alpha\mid\beta$ và
 $\beta\mid\alpha$, thì khi nghiên cứu lý thuyết chia hết có thể xem $\alpha$
 và $\beta$ như cùng một số; chúng được gọi là **liên kết** (associate). Quan hệ
@@ -190,8 +190,8 @@ nhau. Thông thường chỉ cần xét các số tự nhiên trong lý thuyết
 cần xét trường hợp số âm. Đối với số nguyên bậc hai, quan hệ liên kết có thể
 phức tạp hơn. Nếu hai số nguyên bậc hai $\alpha$ và $\beta$ liên kết, thì tồn
 tại các số nguyên bậc hai $\gamma$ và $\delta$ sao cho $\beta=\alpha\gamma$ và
-$\alpha=\beta\delta$. Do đó, thương $\gamma$ của $\beta$ và $\alpha$ nhất định
-là một số nguyên bậc hai đặc biệt: tồn tại số nguyên bậc hai $\delta$ sao cho
+$\alpha=\beta\delta$. Do đó, thương $\gamma$ của $\beta$ và $\alpha$ là một số
+nguyên bậc hai đặc biệt: tồn tại số nguyên bậc hai $\delta$ sao cho
 $\gamma\delta=1$. Số nguyên bậc hai $\gamma$ như vậy được gọi là **đơn vị**
 (unit), hay phần tử khả nghịch. Hai số nguyên bậc hai liên kết khi và chỉ khi
 thương của chúng là đơn vị. Vì vậy, muốn hiểu quan hệ liên kết trên vành số
@@ -199,14 +199,14 @@ nguyên bậc hai thì cần hiểu cấu trúc các đơn vị của vành đó
 
 Vì chuẩn bảo toàn phép nhân và chuẩn của số nguyên bậc hai luôn là số nguyên,
 có thể dùng chuẩn để chuyển quan hệ chia hết của số nguyên bậc hai thành
-quan hệ chia hết của số nguyên. Nói cách khác, nếu $\alpha\mid\beta$ thì nhất
-định $N(\alpha)\mid N(\beta)$. Tương tự, số nguyên bậc hai $\alpha$ là đơn vị
+quan hệ chia hết của số nguyên. Nói cách khác, nếu $\alpha\mid\beta$ thì
+$N(\alpha)\mid N(\beta)$. Tương tự, số nguyên bậc hai $\alpha$ là đơn vị
 khi và chỉ khi chuẩn của nó $N(\alpha)=\pm 1$. Do đó, để tìm tất cả đơn vị
 trong vành số nguyên bậc hai $\mathbf Z[\omega]$, chỉ cần giải phương trình vô
 định:
 
 $$
-N(a+b\sqrt{d})=1,
+N(a+b\omega)=\pm 1,
 $$
 
 trong đó biểu thức của chuẩn là
@@ -218,8 +218,8 @@ a^2-db^2, & d\equiv 2,3\pmod 4.
 \end{cases}
 $$
 
-Với vành số nguyên bậc hai ảo, tức $d<0$, vì chuẩn nhất định là số nguyên không
-âm, có thể kiểm tra rằng với mọi số âm không chứa nhân tử chính phương
+Với vành số nguyên bậc hai ảo, tức $d<0$, vì chuẩn luôn là số nguyên không âm,
+có thể kiểm tra rằng với mọi số âm không chứa nhân tử chính phương
 $d\neq -1,-3$, nghiệm chỉ là $(a,b)=(\pm 1,0)$; tức ngoài
 $\mathbf Z[\sqrt{-1}]$ và $\mathbf Z[\frac{1+\sqrt{-3}}{2}]$, các vành số
 nguyên bậc hai ảo chỉ có các đơn vị $\pm 1$. Đặt $\mathrm{i}=\sqrt{-1}$, vành
@@ -305,9 +305,9 @@ $\mathbf Z[\omega]$, cần biết các iđêan nguyên tố trong $\mathbf Z[\om
 những iđêan nào. Trước hết, mọi iđêan nguyên tố trong $\mathbf Z[\omega]$ đều
 chia chuẩn của nó (dưới dạng iđêan chính). Phân tích chuẩn của nó trong các số
 nguyên thành tích các số nguyên tố; theo định lý phân tích duy nhất, iđêan
-nguyên tố đó nhất định chia một trong các thừa số nguyên tố này (dưới dạng
-iđêan chính). Vì vậy, các iđêan nguyên tố trong $\mathbf Z[\omega]$ nhất định
-thu được bằng cách phân tích tiếp các số nguyên tố trong $\mathbf Z$. Để liệt
+nguyên tố đó chia một trong các thừa số nguyên tố này (dưới dạng iđêan chính).
+Vì vậy, các iđêan nguyên tố trong $\mathbf Z[\omega]$ thu được bằng cách phân
+tích tiếp các số nguyên tố trong $\mathbf Z$. Để liệt
 kê toàn bộ iđêan nguyên tố trong $\mathbf Z[\omega]$, chỉ cần cho phân tích duy
 nhất của số nguyên tố $p$ của $\mathbf Z$ (dưới dạng iđêan chính) trong
 $\mathbf Z[\omega]$. Vì chuẩn của số nguyên tố $p$ (dưới dạng iđêan chính)
@@ -422,8 +422,7 @@ $q_1,\cdots,q_m$ cũng là số nguyên tố Gauss, chuẩn của chúng bằng 
 của chính chúng, nên trong phân tích thừa số nguyên tố của chuẩn chúng bắt buộc
 xuất hiện thành cặp.
 
-Bây giờ giả sử phương trình có nghiệm. Khi đó nghiệm của phương trình nhất định
-có dạng
+Bây giờ giả sử phương trình có nghiệm. Khi đó nghiệm của phương trình có dạng
 
 $$
 u(1+\mathrm{i})^k(a_1+b_1\mathrm{i})^{r_{1}^+}(a_1-b_1\mathrm{i})^{r_{1}^-}\cdots(a_\ell+ b_\ell\mathrm{i})^{r_\ell^+}(a_\ell-b_\ell\mathrm{i})^{r_\ell^-}q_1^{s_1/2}\cdots q_{m}^{s_m/2},
@@ -452,7 +451,7 @@ lũy thừa nguyên tố $p^k$ như sau:
 Ba trường hợp này đều có thể viết thành
 
 $$
-\dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^k = \sum_{j=0}^k\left(\dfrac{-4}{p^k}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
+\dfrac14f(p^k) = \sum_{j=0}^k\left(\dfrac{-4}{p}\right)^j = \sum_{j=0}^k\left(\dfrac{-4}{p^j}\right) = \sum_{d\mid p^k}\left(\dfrac{-4}{d}\right).
 $$
 
 Vì ký hiệu Kronecker $\left(\dfrac{-4}{n}\right)$ là hàm hoàn toàn nhân tính,
@@ -500,7 +499,7 @@ $$
 
 Rút gọn ước chung này, thì $\kappa^{-1}(x+y\mathrm{i})$ chỉ chứa các thừa số
 nguyên tố dạng $a_j\pm b_j\mathrm{i}$, các thừa số liên hợp không xuất hiện
-thành cặp, và các số mũ $|r_j^+-r_j^-|$ của chúng nhất định chẵn (vì tổng của
+thành cặp, và các số mũ $|r_j^+-r_j^-|$ của chúng đều chẵn (vì tổng của
 chúng $2r_j$ là chẵn). Do đó, $\kappa^{-1}(x+y\mathrm{i})$ là bình phương của
 một số nguyên bậc hai nào đó $u+v\mathrm{i}$. Từ đây thu được phương trình:
 
@@ -519,7 +518,7 @@ thỏa mãn phương trình Pythagoras. Vì vậy, đây là nghiệm tổng qu�
 trình Pythagoras.
 
 Từ quá trình trên có thể biết rằng, trong bộ số Pythagoras nguyên thủy
-$(x,y,z)$ (tức $x,y,z$ có ước chung bằng một), $x,y$ nhất định một lẻ một chẵn,
+$(x,y,z)$ (tức $x,y,z$ có ước chung bằng một), $x,y$ một lẻ một chẵn,
 $z$ lẻ và chỉ chứa các thừa số nguyên tố dạng $4k+1$.
 
 Dùng phương pháp tương tự còn có thể tìm nghiệm tổng quát của phương trình
@@ -554,7 +553,7 @@ mặt phẳng phức.
 
 Số nguyên Eisenstein có nhiều tính chất rất giống số nguyên Gauss. Trên số
 nguyên Eisenstein, cũng có thể dùng chuẩn $N(\cdot)$ để định nghĩa phép chia có
-dư, rồi thiết lập thuật toán Euclid, định lý Bezout, định lý phân tích duy
+dư, rồi thiết lập thuật toán Euclid, định lý Bézout, định lý phân tích duy
 nhất, v.v. Tương tự phần trên, có thể suy ra cách các số nguyên tố phân rã
 trong vành số nguyên Eisenstein. Để làm việc này, cần lưu ý rằng biệt thức của
 $\mathbf Z[\omega]$ là $-3$, và ký hiệu Kronecker
@@ -597,11 +596,11 @@ $x^2+3y^2=n$; nghiệm nguyên của nó tương ứng với các điểm nguyê
 chuẩn. Đổi biến $x=(u+v)/2$ và $y=(u-v)/2$ có thể chuyển nó thành phương trình
 đã giải $u^2-uv+v^2=n$. Tuy nhiên, mặc dù mỗi nghiệm nguyên của
 $x^2+3y^2=n$ đều tương ứng với một nghiệm nguyên của $u^2-uv+v^2=n$, chiều
-ngược lại không nhất thiết đúng. Nếu $n$ chẵn, thì $u$ và $v$ nhất định đều
-chẵn, nghĩa là $x$ và $y$ đều là số nguyên; khi đó số nghiệm nguyên của
+ngược lại không luôn đúng. Nếu $n$ chẵn, thì $u$ và $v$ đều chẵn, nghĩa là
+$x$ và $y$ đều là số nguyên; khi đó số nghiệm nguyên của
 $x^2+3y^2=n$ vẫn là $f(n)$. Nhưng nếu $n$ lẻ, thì $u$ và $v$ có thể một lẻ một
 chẵn, hoặc đều lẻ, nên $x$ và $y$ tương ứng có thể đều là bán nguyên hoặc đều là
-số nguyên. Trường hợp này cần thảo luận kĩ hơn.
+số nguyên. Trường hợp này cần thảo luận kỹ hơn.
 
 Khi biết một nghiệm nguyên $(u,v)$ của phương trình $u^2-uv+v^2=n$, các số
 nguyên Eisenstein liên kết với $u+v\omega$ (kể cả chính nó) tương ứng với các
@@ -611,9 +610,9 @@ $$
 (u,v),(u-v,u),(-v,u-v),(-u,-v),(v-u,-u),(v,v-u).
 $$
 
-Vì trong ba số nguyên $u,v,u-v$, nếu không phải tất cả đều chẵn thì nhất định có
-hai số lẻ và một số chẵn, nên trong sáu nghiệm nguyên trên nhất định có hai
-nghiệm toàn lẻ và bốn nghiệm một lẻ một chẵn. Điều này cho thấy khi $n$ lẻ, chỉ
+Vì trong ba số nguyên $u,v,u-v$, nếu không phải tất cả đều chẵn thì có hai số lẻ
+và một số chẵn, nên trong sáu nghiệm nguyên trên có hai nghiệm toàn lẻ và bốn
+nghiệm một lẻ một chẵn. Điều này cho thấy khi $n$ lẻ, chỉ
 có $\dfrac13$ số nghiệm nguyên của phương trình $u^2-uv+v^2=n$ là toàn lẻ, và
 chỉ khi đó chúng mới tương ứng với nghiệm nguyên của $x^2+3y^2=n$. Vì vậy, khi
 $n$ lẻ, số nghiệm nguyên của $x^2+3y^2=n$ là $\dfrac13f(n)$.
