@@ -95,7 +95,7 @@ Kết quả thu được giống với phương pháp trên.
 ## Tịnh tiến các giá trị tại điểm liên tiếp
 
 ???+ note "Bài tập [LOJ 166. Nội suy Lagrange 2](https://loj.ac/p/166)"
-    Cho các giá trị tại điểm liên tiếp $f(0),f(1),\dots ,f(n)$ của một đa thức $f$ có bậc không vượt quá $n$. Tính $f(c),f(c+1),\dots ,f(c+n)$ theo modulo $998244353$, trong đó $1\leq n\leq 10^5,n < m\leq 10^8$.
+    Cho các giá trị tại điểm liên tiếp $f(0),f(1),\dots ,f(n)$ của một đa thức $f$ có bậc không vượt quá $n$. Tính $f(c),f(c+1),\dots ,f(c+n)$ theo môđun $998244353$, trong đó $1\leq n\leq 10^5,n < m\leq 10^8$.
 
 <span id="phương-pháp-công-thức-nội-suy-lagrange"></span>
 
@@ -145,7 +145,7 @@ Công thức nội suy Lagrange cũng cho một phương pháp tính một giá 
 ### Các số Stirling không dấu loại một trên cùng một hàng
 
 ???+ note "Bài tập [P5408. Hàng của số Stirling loại một](https://www.luogu.com.cn/problem/P5408)"
-    Theo modulo số nguyên tố $167772161$, tính $\displaystyle {n\brack 0},{n\brack 1},\dots ,{n\brack n}$, trong đó $1\leq n< 262144$.
+    Theo môđun số nguyên tố $167772161$, tính $\displaystyle {n\brack 0},{n\brack 1},\dots ,{n\brack n}$, trong đó $1\leq n< 262144$.
 
 Xét
 
@@ -423,7 +423,7 @@ Với trường hợp tổng quát hơn, tương tự ví dụ thuật toán gia
 ???+ note "Bài tập [P6115. Mẫu truy hồi đa thức](https://www.luogu.com.cn/problem/P6115)"
     Hiện có dãy $a$ thỏa mãn $\forall n\ge m,\sum_{k=0}^ma_{n-k}P_k(n)=0$, trong đó $P_k$ là đa thức bậc không vượt quá $d$.<br>
     Cho các hệ số của mọi $P_k$ và $a_0,a_1,\dots,a_{m-1}$, tính $a_n$.
-    Lấy kết quả modulo $998244353$. $n\le6\times10^8$, $1\le m,d\le7$, giới hạn thời gian $7s$.
+    Lấy kết quả theo môđun $998244353$. $n\le6\times10^8$, $1\le m,d\le7$, giới hạn thời gian $7s$.
 
 Để mô tả có hệ thống hơn quá trình xây dựng ma trận trong vài bài tập trên, đưa vào khái niệm [ma trận $\lambda$](../linear-algebra/jordan.md#ma-trận-lambda).
 
@@ -489,4 +489,4 @@ Trong ứng dụng thực tế, thường cần trích hệ số xa của một 
 
 -   Alin Bostan, Pierrick Gaudry, and Eric Schost. Linear recurrences with polynomial coefficients and application to integer factorization and Cartier-Manin operator.
 -   Blog của Min\_25
--   [Blog của ZZQ - Giai thừa modulo số nguyên tố lớn](https://www.cnblogs.com/zzqsblog/p/8408691.html)
+-   [Blog của ZZQ - Giai thừa theo môđun số nguyên tố lớn](https://www.cnblogs.com/zzqsblog/p/8408691.html)

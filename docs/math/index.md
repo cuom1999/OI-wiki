@@ -16,7 +16,7 @@ có thể giúp tối ưu những thuật toán và cấu trúc dữ liệu khá
     thể tiếp tục dùng hàm sinh để suy luận và giải, cũng như dùng chia để trị
     dựa trên FFT để tối ưu hiệu suất thuật toán.
 -   Dùng đồng dư và chu trình để phân tích tổng trọng số có thể có của đường đi
-    không đơn trên đồ thị theo modulo, rồi duy trì bằng DSU có trọng số.
+    không đơn trên đồ thị theo môđun, rồi duy trì bằng DSU có trọng số.
 
 Ngoài ra, toán phổ thông là nền tảng của toán trong thi đấu Tin học. Nắm chắc
 các khái niệm và tính chất cơ bản trong sách giáo khoa sẽ giúp việc học chương

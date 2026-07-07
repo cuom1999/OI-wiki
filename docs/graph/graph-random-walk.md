@@ -122,7 +122,7 @@ Nhận thấy chuyển trạng thái của $f$ không phụ thuộc vào $i$, c�
 
 Xét việc tìm hàm sinh của một dãy truy hồi tuyến tính bậc $k$ là $a$. Giả sử khi $i ≥ i_0$ thì $a_i=\sum_{j=1}^kc_ja_{i-j}$. Gọi hàm sinh của $a$ và $c$ lần lượt là $A(x)$ và $C(x)$, khi đó $A(x)=A(x)C(x)+A_0(x)$, trong đó $A_0(x)$ được quyết định bởi các hạng tử có $i < i_0$.
 
-Quay lại bài toán ban đầu, vì có thể tìm công thức truy hồi ngắn nhất của $\Pr[t > i]$, nên có thể tính $C(x)$ và $A_0(x)$ (định nghĩa như đoạn trước). Chuyển vế được $A(x)=\frac{A_0(x)}{1-C(x)}$. Đại lượng cần tìm là $\sum_{i\geq0}[x^i]A(x)$; giá trị này bằng $A(1)$, vì vậy chỉ cần thay $x = 1$ vào để giải bài toán ban đầu. Do modulo là một số nguyên tố ngẫu nhiên, có thể xem như mẫu số sẽ không bằng $0$.
+Quay lại bài toán ban đầu, vì có thể tìm công thức truy hồi ngắn nhất của $\Pr[t > i]$, nên có thể tính $C(x)$ và $A_0(x)$ (định nghĩa như đoạn trước). Chuyển vế được $A(x)=\frac{A_0(x)}{1-C(x)}$. Đại lượng cần tìm là $\sum_{i\geq0}[x^i]A(x)$; giá trị này bằng $A(1)$, vì vậy chỉ cần thay $x = 1$ vào để giải bài toán ban đầu. Do môđun là một số nguyên tố ngẫu nhiên, có thể xem như mẫu số sẽ không bằng $0$.
 
 Như vậy, bài này được giải với độ phức tạp thời gian $O(nm+n^2)$. Nếu số đỉnh và số cạnh của đồ thị $G$ cùng bậc, trong bài này có thể xem độ phức tạp thời gian là $O(n^2)$.
 

@@ -96,5 +96,5 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
 
 -   [Thuật toán tìm kiếm A\* - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
 
-[^note1]: $h$ trong ngữ cảnh này nghĩa là heuristic. Xem thêm [heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
+[^note1]: $h$ trong ngữ cảnh này nghĩa là hàm đánh giá theo kinh nghiệm. Xem thêm [heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
     và phần nới lỏng bị chặn của [thuật toán tìm kiếm A\* - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).

@@ -381,7 +381,7 @@ Hệ quả này thực chất là dạng phần bù, cách chứng minh tương 
 ## Đếm DAG
 
 ???+ note "Đếm DAG"
-    Đếm số đồ thị có hướng không chu trình có nhãn trên $n$ đỉnh, lấy modulo $10^9+7$. $n\leq 5\times 10^3$.
+    Đếm số đồ thị có hướng không chu trình có nhãn trên $n$ đỉnh, lấy kết quả theo môđun $10^9+7$. $n\leq 5\times 10^3$.
 
 <span id="dp-trực-tiếp"></span>
 
@@ -559,7 +559,7 @@ Vì $\operatorname{lcm},\gcd,a^{1},a^{-1}$ lần lượt tương ứng với $\m
     
     Đặc biệt, đỉnh $x$ (đỉnh xuất phát) được xem là đã được đi qua ngay từ đầu.
     
-    Lấy modulo $998244353$.
+    Lấy kết quả theo môđun $998244353$.
     
     $1\le n\le 18,1\le Q\le 5000,1\le |S|\le n$.
 

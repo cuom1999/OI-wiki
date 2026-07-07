@@ -97,7 +97,7 @@ Chứng minh hoàn tất[^1].
     trong đó một số ô có thể đi qua và một số ô không thể đi qua.
     Một con rùa ở $(x, y)$ chỉ có thể đi đến $(x+1, y)$ và $(x, y+1)$.
     Cần tính số cặp đường đi không giao nhau theo đỉnh của rùa từ $(1, 1)$ đến $(n, m)$,
-    lấy kết quả modulo $10^9+7$.
+    lấy kết quả theo môđun $10^9+7$.
     $2\le n,m\le3000$.
 
 Đây là một ứng dụng khá trực tiếp của bổ đề LGV.
@@ -130,7 +130,7 @@ nên dễ tính được $f$.
     Có $k$ quân cờ; ban đầu quân cờ thứ $i$ đặt tại $(1, a_i)$,
     cuối cùng cần đi đến $(n, b_i)$.
     Các đường đi phải đôi một không giao nhau theo đỉnh.
-    Cần tính số phương án modulo $10^9+7$.
+    Cần tính số phương án theo môđun $10^9+7$.
     $1\le n\le 10^5$, $1\le k\le 100$,
     thỏa $1\le a_1<a_2<\dots<a_k\le n$, $1\le b_1<b_2<\dots<b_k\le n$.
 

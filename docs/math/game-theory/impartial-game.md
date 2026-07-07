@@ -337,7 +337,7 @@ Với trò chơi này, có kết luận sau:
     f(n) = \operatorname{mex}\{f(n-k),f(n-k+1),\cdots,f(n-1)\}.
     $$
     
-    Tập này duyệt qua mọi số dư modulo $k+1$, ngoại trừ $n\bmod{(k+1)}$. Vì vậy $f(n) = n\bmod{(k+1)}$.
+    Tập này duyệt qua mọi số dư theo môđun $k+1$, ngoại trừ $n\bmod{(k+1)}$. Vì vậy $f(n) = n\bmod{(k+1)}$.
 
 <span id="trò-chơi-nim-k-của-moore"></span>
 ### Trò chơi Nim-$k$ của Moore
@@ -350,7 +350,7 @@ So với Nim, trò chơi Nim-$k$ của Moore cho phép lấy đá từ $k$ đố
 Với trò chơi này, có kết luận sau:
 
 ???+ note "Định lý"
-    Biểu diễn số đá của mỗi đống dưới dạng nhị phân. Với mỗi vị trí bit $d$, đếm có bao nhiêu đống mà bit thứ $d$ của số đá bằng $1$, rồi lấy số đếm này modulo $(k+1)$. Nếu với mọi vị trí bit, số dư này đều bằng $0$, thì người đi trước tất bại; nếu không, người đi trước tất thắng.
+    Biểu diễn số đá của mỗi đống dưới dạng nhị phân. Với mỗi vị trí bit $d$, đếm có bao nhiêu đống mà bit thứ $d$ của số đá bằng $1$, rồi lấy số đếm này theo môđun $(k+1)$. Nếu với mọi vị trí bit, số dư này đều bằng $0$, thì người đi trước tất bại; nếu không, người đi trước tất thắng.
 
 ??? note "Chứng minh"
     Có thể chứng minh kết luận này bằng cách mô phỏng chứng minh cho Nim. Gọi $d$ là vị trí bit nhị phân cao nhất có số dư khác $0$, và số dư tương ứng là $k'\le k$. Khi đó chiến lược thắng là chọn $k'$ đống trong số các đống có bit thứ $d$ của số đá bằng $1$, rồi chọn số đá cần lấy sao cho trong cục diện của đối thủ, số dư ở mỗi vị trí bit đều bằng $0$. Điều duy nhất cần giải thích là việc chọn số đá cuối cùng luôn khả thi.
@@ -622,7 +622,7 @@ Phần này thảo luận một số bài tập điển hình.
     
     Cần chứng minh rằng $d\in S_k$ khi và chỉ khi trong biểu diễn nhị phân của $(k-1)$, bit thứ $d$ với bit thấp nhất là bit thứ $0$ bằng $1$.
     
-    Dùng quy nạp toán học. Cơ sở quy nạp $S_1=\varnothing$ đúng. Giả sử mệnh đề đúng với mọi số nguyên dương nhỏ hơn $k$. Khi đó $d\in S_k$ khi và chỉ khi tồn tại $i,j\in\mathbf N_+$ sao cho $i+j=k$, đồng thời trong hai số $(i-1)$ và $(j-1)$, ở mỗi bit $d' < d$ có ít nhất một số có bit bằng $1$, còn bit thứ $d$ của cả hai đều bằng $0$. Tồn tại một cách chia như vậy khi và chỉ khi nếu chỉ xét phần gồm các bit $0\sim d$, tức xét modulo $2^{d+1}$, giá trị của $(k-1)=(i-1)+(j-1)+1$ nằm trong khoảng $[2^d,2^{d+1}-1)$. Điều kiện này tương đương với bit thứ $d$ của $(k-1)$ bằng $1$. Từ đó bước quy nạp đúng, và mệnh đề ban đầu được chứng minh.
+    Dùng quy nạp toán học. Cơ sở quy nạp $S_1=\varnothing$ đúng. Giả sử mệnh đề đúng với mọi số nguyên dương nhỏ hơn $k$. Khi đó $d\in S_k$ khi và chỉ khi tồn tại $i,j\in\mathbf N_+$ sao cho $i+j=k$, đồng thời trong hai số $(i-1)$ và $(j-1)$, ở mỗi bit $d' < d$ có ít nhất một số có bit bằng $1$, còn bit thứ $d$ của cả hai đều bằng $0$. Tồn tại một cách chia như vậy khi và chỉ khi nếu chỉ xét phần gồm các bit $0\sim d$, tức xét theo môđun $2^{d+1}$, giá trị của $(k-1)=(i-1)+(j-1)+1$ nằm trong khoảng $[2^d,2^{d+1}-1)$. Điều kiện này tương đương với bit thứ $d$ của $(k-1)$ bằng $1$. Từ đó bước quy nạp đúng, và mệnh đề ban đầu được chứng minh.
 
 ??? note "Mã tham khảo"
     ```cpp

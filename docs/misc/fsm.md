@@ -361,7 +361,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     
     Bây giờ cần với mỗi $j = 1 \ldots n$, tính số lượng dãy đầy đủ "tốt" với điều kiện bắt buộc $a_j = 0$. Đặc biệt, khi $a_j = 1$, đáp án là $0$.
     
-    $1\le n\le 10^5,~1\le k\le 20,~0\le r<2^k$. In kết quả modulo $998244353$.
+    $1\le n\le 10^5,~1\le k\le 20,~0\le r<2^k$. In kết quả theo môđun $998244353$.
 
 ??? note "Lời giải"
     Xét DP đơn giản. Gọi $f_{i,j}$ là số phương án bắt đầu từ $x=0$, sau khi thực hiện các thao tác trên $[1,i]$, số hiện tại là $j$. Gọi $g_{i,j}$ là số phương án bắt đầu từ $x=j$, sau khi thực hiện các thao tác trên $[i,n]$, cuối cùng có $x \in [0, r]$. Đáp án khi bắt buộc $a_i=0$ là $\sum_j f_{i-1,j}g_{i+1,j - \text{lowbit}(j)}$. Độ phức tạp là $O(n2^k)$.

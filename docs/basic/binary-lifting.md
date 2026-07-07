@@ -59,7 +59,7 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     Cho một vòng độ dài $n$ và một hằng số $k$. Mỗi lần nhảy từ điểm thứ $i$
     sang điểm thứ $(i+k)\bmod n+1$, tổng cộng nhảy $m$ lần. Mỗi điểm có một
     trọng số $a_i$. Tính tổng trọng số của các điểm xuất phát trong $m$ lần
-    nhảy, lấy modulo $10^9+7$.
+    nhảy, lấy kết quả theo môđun $10^9+7$.
 
     Giới hạn: $1\leq n\leq 10^6$, $1\leq m\leq 10^{18}$,
     $1\leq k\leq n$, $0\leq a_i\leq 10^9$.
@@ -116,7 +116,7 @@ Xem thêm: [tổ tiên chung gần nhất](../graph/lca.md)
     constexpr int mod = 1000000007;
 
     int modadd(int a, int b) {
-      if (a + b >= mod) return a + b - mod;  // dùng phép trừ thay modulo để chạy nhanh hơn
+      if (a + b >= mod) return a + b - mod;  // dùng phép trừ thay phép lấy dư để chạy nhanh hơn
       return a + b;
     }
 
