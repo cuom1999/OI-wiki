@@ -1160,7 +1160,7 @@ Từ đó có thể thu được dạng trên bằng quy nạp. Biến đổi tu
 
 Dùng biến đổi tuyến tính phân thức, có thể thực hiện bốn phép toán trên liên phân số. Thuật toán này được Gosper đề xuất đầu tiên.
 
-Nền tảng của thuật toán là tính biến đổi tuyến tính phân thức của liên phân số. Phần này lấy liên phân số hữu hạn làm ví dụ, nhưng vì mỗi lần thuật toán xuất một chữ số thì chỉ cần đọc vào hữu hạn hạng của liên phân số, nên nó cũng áp dụng được cho liên phân số vô hạn và có thể tính tới độ chính xác tùy ý. Kết hợp với thuật toán so sánh liên phân số ở trên, có thể so sánh chính xác các số thực với độ chính xác tùy ý.
+Nền tảng của thuật toán là tính biến đổi tuyến tính phân thức của liên phân số. Phần này lấy liên phân số hữu hạn làm ví dụ, nhưng vì mỗi lần thuật toán xuất một chữ số thì chỉ cần đọc vào hữu hạn hạng của liên phân số, nên nó cũng áp dụng được cho liên phân số vô hạn và có thể tính tới độ chính xác bất kỳ. Kết hợp với thuật toán so sánh liên phân số ở trên, có thể so sánh chính xác các số thực với độ chính xác bất kỳ.
 
 ???+ example "Biến đổi tuyến tính phân thức của liên phân số"
     Cho biến đổi tuyến tính phân thức $L(x)=\dfrac{ax+b}{cx+d}$ và liên phân số $\alpha=[\alpha_0,\alpha_1,\cdots,\alpha_n]$, tìm biểu diễn liên phân số $[\beta_0,\beta_1,\cdots,\beta_m]$ của $\beta=L(\alpha)$.
@@ -1186,7 +1186,7 @@ Nền tảng của thuật toán là tính biến đổi tuyến tính phân th�
     L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x) = \dfrac{a_kx+b_k}{c_kx+d_k}
     $$
     
-    và $c_k,d_k$ cùng dấu. Khi đó, $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ đơn điệu trên $[0,\infty]$, và giá trị của nó nhất định nằm giữa $\dfrac{a_k}{c_k}$ và $\dfrac{b_k}{d_k}$. Vì vậy, nếu
+    và $c_k,d_k$ cùng dấu. Khi đó, $L\circ L_{\alpha_0}\circ L_{\alpha_1}\circ \cdots \circ L_{\alpha_k}(x)$ đơn điệu trên $[0,\infty]$, và giá trị của nó luôn nằm giữa $\dfrac{a_k}{c_k}$ và $\dfrac{b_k}{d_k}$. Vì vậy, nếu
     
     $$
     \left\lfloor\dfrac{a_k}{c_k}\right\rfloor = \left\lfloor\dfrac{b_k}{d_k}\right\rfloor,
@@ -1200,7 +1200,7 @@ Nền tảng của thuật toán là tính biến đổi tuyến tính phân th�
     
     Lúc này, tiếp tục thêm $L_{\alpha_{k+1}},L_{\alpha_{k+2}},\cdots$ để xác định phần nguyên mới, tức $\beta_1$. Cứ tính như vậy cho tới khi xác định xong mọi giá trị $\beta_j$.
     
-    Thuật toán yêu cầu $c$ và $d$ cùng dấu để bảo đảm điểm gián đoạn của hàm không nằm trong phạm vi $[0,\infty]$. Điều này luôn có thể đạt được, vì định nghĩa liên phân số đơn giản yêu cầu các hệ số (trừ $\alpha_0$) đều là số nguyên dương. Từ đó có thể chứng minh rằng sau hữu hạn bước, $c$ và $d$ nhất định cùng dấu, và sau đó luôn giữ cùng dấu.
+    Thuật toán yêu cầu $c$ và $d$ cùng dấu để bảo đảm điểm gián đoạn của hàm không nằm trong phạm vi $[0,\infty]$. Điều này luôn thực hiện được, vì định nghĩa liên phân số đơn giản yêu cầu các hệ số (trừ $\alpha_0$) đều là số nguyên dương. Từ đó có thể chứng minh rằng sau hữu hạn bước, $c$ và $d$ sẽ cùng dấu, và sau đó luôn giữ cùng dấu.
     
     Khi cài đặt cụ thể, chỉ cần duy trì ma trận hệ số hiện tại của biến đổi tuyến tính phân thức $\begin{pmatrix}a&b\\c&d\end{pmatrix}$, rồi kiểm tra $c$ và $d$ có cùng dấu hay không, cũng như $\dfrac{a}{c}$ và $\dfrac{b}{d}$ có cùng phần nguyên hay không. Khi hợp thành bên phải với $L_{\alpha_i}$, thu được $\begin{pmatrix}a\alpha_i+b&a\\ c\alpha_i+d&c\end{pmatrix}$. Nếu hai phần nguyên giống nhau và bằng $\beta_j$, thì thêm $\beta_j$ vào liên phân số kết quả, rồi hợp thành bên trái với $L_{\beta_j}^{-1}$; việc này tương đương với tính $\begin{pmatrix}c&d\\ a\bmod c & b \bmod d \end{pmatrix}$.
 
@@ -1340,7 +1340,7 @@ Kết quả của Lagrange cho thấy chiều ngược lại cũng đúng, nên 
     
     Theo giả thiết quy nạp, $Q_k\mid D-P_k^2$, nên đúng là $P_{k+1}$ và $Q_{k+1}$ đều là số nguyên; tức $r_{k+1}$ cũng có dạng yêu cầu.
     
-    Cuối cùng, chứng minh phần dư chỉ có thể nhận hữu hạn giá trị, nên nhất định lặp lại. Ở trên đã tính được phần dư
+    Cuối cùng, chứng minh phần dư chỉ có thể nhận hữu hạn giá trị, nên phải lặp lại. Ở trên đã tính được phần dư
     
     $$
     \dfrac{P_k+\sqrt{D}}{Q_k} = r_k = -\dfrac{q_{k-2}x-p_{k-2}}{q_{k-1}x-p_{k-1}}
@@ -1352,7 +1352,7 @@ Kết quả của Lagrange cho thấy chiều ngược lại cũng đúng, nên 
     \dfrac{P_k-\sqrt{D}}{Q_k} = r_k^* = -\dfrac{q_{k-2}x^*-p_{k-2}}{q_{k-1}x^*-p_{k-1}} = -\dfrac{q_{k-2}}{q_{k-1}}\dfrac{x^*-\dfrac{p_{k-2}}{q_{k-2}}}{x^*-\dfrac{p_{k-1}}{q_{k-1}}}
     $$
     
-    nhất định nhỏ hơn $0$ với $k$ đủ lớn, vì
+    sẽ nhỏ hơn $0$ với $k$ đủ lớn, vì
     
     $$
     \dfrac{q_{k-2}}{q_{k-1}}>0,\ \lim_{k\rightarrow\infty}\dfrac{x^*-\dfrac{p_{k-2}}{q_{k-2}}}{x^*-\dfrac{p_{k-1}}{q_{k-1}}}=\dfrac{x^*-x}{x^*-x}=1.
@@ -1370,7 +1370,7 @@ Kết quả của Lagrange cho thấy chiều ngược lại cũng đúng, nên 
     D-P_{k}^2=Q_kQ_{k-1}>0 \iff |P_k|<\sqrt{D},
     $$
     
-    nên $P_k$ cũng chỉ có thể nhận hữu hạn giá trị. Vì vậy, phần dư $r_k$ chỉ có hữu hạn giá trị khả dĩ, nên nhất định lặp lại trong dãy vô hạn.
+    nên $P_k$ cũng chỉ có thể nhận hữu hạn giá trị. Vì vậy, phần dư $r_k$ chỉ có hữu hạn giá trị khả dĩ, nên phải lặp lại trong dãy vô hạn.
 
 Chứng minh định lý cũng cung cấp công thức truy hồi để tính phần dư của số vô tỉ bậc hai:
 
@@ -1529,7 +1529,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     a_k = -\dfrac{1}{r_{k+1}^*}+r_k^* = \left\lfloor-\dfrac{1}{r_{k+1}^*}\right\rfloor.
     $$
     
-    Vì số vô tỉ bậc hai nhất định là liên phân số tuần hoàn, tồn tại số nguyên dương $L$ và ít nhất một $k$ đủ lớn sao cho $r_{k}=r_{k+L}$. Nhưng khi đó nhất định cũng có
+    Vì số vô tỉ bậc hai luôn có liên phân số tuần hoàn, tồn tại số nguyên dương $L$ và ít nhất một $k$ đủ lớn sao cho $r_{k}=r_{k+L}$. Nhưng khi đó cũng có
     
     $$
     a_{k-1} = \left\lfloor-\dfrac{1}{r_{k}^*}\right\rfloor = \left\lfloor-\dfrac{1}{r_{k+L}^*}\right\rfloor = a_{k+L-1}.
@@ -1541,7 +1541,7 @@ Từ quan sát này, Galois tiếp tục đưa ra điều kiện cần và đủ
     r_{k-1} = a_{k-1}+\dfrac{1}{r_k} = a_{k+L-1}+\dfrac{1}{r_{k+L}} = r_{k+L-1}.
     $$
     
-    Điều này nghĩa là $k$ nhỏ nhất để $r_{k}=r_{k+L}$ có thể xảy ra nhất định là $0$. Nói cách khác, $x$ có thể biểu diễn thành liên phân số thuần tuần hoàn.
+    Điều này nghĩa là $k$ nhỏ nhất để $r_{k}=r_{k+L}$ có thể xảy ra phải là $0$. Nói cách khác, $x$ có thể biểu diễn thành liên phân số thuần tuần hoàn.
 
 Định lý Galois cho thấy quy luật biểu diễn liên phân số của căn thức bậc hai thuần (pure quadratic surd), tức số vô tỉ bậc hai có dạng $\sqrt{r}$.
 
@@ -1625,7 +1625,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     ![](./images/lattice-hull.svg)
     
-    Bắt đầu từ $(0,0)$, có thể tìm tất cả điểm nguyên trên bao lồi trên từ trái sang phải. Giả sử điểm nguyên cuối cùng trên bao lồi trên đã tìm được là $(x,y)$. Cần tìm điểm nguyên tiếp theo $(x',y')$. Đỉnh $(x',y')$ nằm phía trên bên phải $(x,y)$; ký hiệu $(\Delta x,\Delta y)=(x'-x,y'-y)$ là hiệu giữa hai điểm. Khi đó nhất định
+    Bắt đầu từ $(0,0)$, có thể tìm tất cả điểm nguyên trên bao lồi trên từ trái sang phải. Giả sử điểm nguyên cuối cùng trên bao lồi trên đã tìm được là $(x,y)$. Cần tìm điểm nguyên tiếp theo $(x',y')$. Đỉnh $(x',y')$ nằm phía trên bên phải $(x,y)$; ký hiệu $(\Delta x,\Delta y)=(x'-x,y'-y)$ là hiệu giữa hai điểm. Khi đó
     
     $$
     0<\Delta x\le N-x,\ 0\le \Delta y\le r\Delta x.
@@ -1633,13 +1633,13 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     
     Bất đẳng thức thứ hai đúng vì điều kiện $\Delta y>r\Delta x$ mâu thuẫn với việc $(x,y)$ đã nằm trên bao lồi trên. Quan sát các điều kiện mà $(\Delta x,\Delta y)$ cần thỏa mãn: với các điểm $(x,y)$ khác nhau, chỉ cận trên của $\Delta x$ thay đổi. Vì vậy, chỉ cần giải được bài toán con này là có thể tìm đệ quy mọi điểm nguyên của bài toán ban đầu.
     
-    Tiếp theo xét cách giải bài toán con. So với bài toán ban đầu, bài toán con tương đương với việc đổi cận trên của $x$ thành $N'$, rồi tìm điểm nguyên đầu tiên trên bao lồi trên kề với gốc tọa độ. Gọi nghiệm của bài toán con là $(q,p)$. Khi đó $p$ và $q$ nhất định nguyên tố cùng nhau (nếu không thì đó không phải điểm nguyên đầu tiên), và hệ số góc $\dfrac{p}{q}$ của đường nối với gốc tọa độ là lớn nhất trong các điểm nguyên nằm dưới đường thẳng $y=rx$ và có hoành độ không vượt quá $N'$ (nếu không thì điểm đó không nằm trên bao lồi). Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm $(x,y)$ như vậy nhất định tương ứng với một phân số trung gian dưới của $r$. Vì phân số trung gian dưới có mẫu càng lớn thì càng gần $r$, nên nghiệm $(q,p)$ của bài toán con tương ứng với phân số trung gian dưới có mẫu lớn nhất trong tất cả các phân số trung gian dưới có mẫu không vượt quá $N'$.
+    Tiếp theo xét cách giải bài toán con. So với bài toán ban đầu, bài toán con tương đương với việc đổi cận trên của $x$ thành $N'$, rồi tìm điểm nguyên đầu tiên trên bao lồi trên kề với gốc tọa độ. Gọi nghiệm của bài toán con là $(q,p)$. Khi đó $p$ và $q$ phải nguyên tố cùng nhau (nếu không thì đó không phải điểm nguyên đầu tiên), và hệ số góc $\dfrac{p}{q}$ của đường nối với gốc tọa độ là lớn nhất trong các điểm nguyên nằm dưới đường thẳng $y=rx$ và có hoành độ không vượt quá $N'$ (nếu không thì điểm đó không nằm trên bao lồi). Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm $(x,y)$ như vậy phải tương ứng với một phân số trung gian dưới của $r$. Vì phân số trung gian dưới có mẫu càng lớn thì càng gần $r$, nên nghiệm $(q,p)$ của bài toán con tương ứng với phân số trung gian dưới có mẫu lớn nhất trong tất cả các phân số trung gian dưới có mẫu không vượt quá $N'$.
     
-    khi giải thực tế, không cần tìm lại phân số trung gian dưới như vậy cho từng bài toán con. Nên tìm tất cả phân số tiệm cận trước; điều này tương đương với việc có cách duyệt tất cả phân số trung gian dưới. Sau đó duyệt các phân số trung gian dưới theo mẫu giảm dần, mỗi lần thử cộng nó vào điểm nguyên trước đó $(x,y)$, cho tới khi không thể cộng nữa thì mới thử phân số trung gian dưới tiếp theo.
+    Khi giải thực tế, không cần tìm lại phân số trung gian dưới như vậy cho từng bài toán con. Nên tìm tất cả phân số tiệm cận trước; điều này tương đương với việc có cách duyệt tất cả phân số trung gian dưới. Sau đó duyệt các phân số trung gian dưới theo mẫu giảm dần, mỗi lần thử cộng nó vào điểm nguyên trước đó $(x,y)$, cho tới khi không thể cộng nữa thì mới thử phân số trung gian dưới tiếp theo.
     
-    Có một số tối ưu tự nhiên. Trước hết, với phân số trung gian dưới $(q,p)$, nhất định tồn tại $k$ lẻ và $0\le t<a_k$ sao cho $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$. Chỉ cần tìm $t$ lớn nhất thỏa mãn $q_{k-1}+tq_k+x\le N$, tức $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Không cần lo $t$ vượt giới hạn, vì phân số tiệm cận dưới lớn hơn $(q_{k+2},p_{k+2})$ đã được cộng xong. Mỗi lần xác định số lần cộng, chỉ cần tính trực tiếp $\left\lfloor\dfrac{N-x}{q}\right\rfloor$, không cần thử từng lần.
+    Có một số tối ưu tự nhiên. Trước hết, với phân số trung gian dưới $(q,p)$, luôn tồn tại $k$ lẻ và $0\le t<a_k$ sao cho $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$. Chỉ cần tìm $t$ lớn nhất thỏa mãn $q_{k-1}+tq_k+x\le N$, tức $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Không cần lo $t$ vượt giới hạn, vì phân số tiệm cận dưới lớn hơn $(q_{k+2},p_{k+2})$ đã được cộng xong. Mỗi lần xác định số lần cộng, chỉ cần tính trực tiếp $\left\lfloor\dfrac{N-x}{q}\right\rfloor$, không cần thử từng lần.
     
-    Độ phức tạp của thuật toán sau tối ưu là $O(n)$. Dù có thể có nhiều điểm nguyên tương ứng với các phân số trung gian dưới, số điểm thật sự trở thành gia lượng không nhiều. Có thể chỉ ra rằng trong tất cả phân số trung gian dưới $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ với $0\le t<a_k$, nhiều nhất chỉ có hai gia lượng xuất hiện. Giả sử trong các phân số trung gian dưới này thật sự có gia lượng, khi đó nhất định $q_{k-1}\le N-x<q_{k+1}$. Đặt $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Nếu $t=0$, gia lượng có $\Delta x=q_{k-1}$; sau khi cộng gia lượng, có $N-x'<q_{k-1}$, nên sẽ không xuất hiện gia lượng mới trong các phân số trung gian dưới này. Nếu $t>0$, sau khi cộng gia lượng, nhất định $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$; ngay cả nếu cùng đoạn phân số trung gian dưới này còn xuất hiện gia lượng mới, lần sau cũng chỉ có thể có $t'=0$. Vì vậy, trong một đoạn phân số trung gian dưới như vậy, nhiều nhất chỉ có hai gia lượng. Điều này chứng minh độ phức tạp tổng thể là $O(n)$.
+    Độ phức tạp của thuật toán sau tối ưu là $O(n)$. Dù có thể có nhiều điểm nguyên tương ứng với các phân số trung gian dưới, số điểm thật sự trở thành gia lượng không nhiều. Có thể chỉ ra rằng trong tất cả phân số trung gian dưới $(q,p)=(q_{k-1},p_{k-1})+t(q_k,p_k)$ với $0\le t<a_k$, nhiều nhất chỉ có hai gia lượng xuất hiện. Giả sử trong các phân số trung gian dưới này thật sự có gia lượng, khi đó phải có $q_{k-1}\le N-x<q_{k+1}$. Đặt $t=\left\lfloor\dfrac{N-q_{k-1}-x}{q_k}\right\rfloor$. Nếu $t=0$, gia lượng có $\Delta x=q_{k-1}$; sau khi cộng gia lượng, có $N-x'<q_{k-1}$, nên sẽ không xuất hiện gia lượng mới trong các phân số trung gian dưới này. Nếu $t>0$, sau khi cộng gia lượng, ta có $N-x'=(N-q_{k-1}-x)\bmod q_k<q_k$; ngay cả nếu cùng đoạn phân số trung gian dưới này còn xuất hiện gia lượng mới, lần sau cũng chỉ có thể có $t'=0$. Vì vậy, trong một đoạn phân số trung gian dưới như vậy, nhiều nhất chỉ có hai gia lượng. Điều này chứng minh độ phức tạp tổng thể là $O(n)$.
     
     === "C++"
         ```cpp
@@ -1673,7 +1673,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
     \Delta y \le \dfrac{A}{B}\Delta x+\dfrac{C-(By-Ax)}{B}.
     $$
     
-    Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất nhất định tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
+    Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, chỉ cần hằng số phía sau nhỏ hơn $1$, thì trong các điểm nguyên $(\Delta x,\Delta y)$ thỏa mãn bất đẳng thức này, điểm có hoành độ nhỏ nhất phải tương ứng với một phân số trung gian trên. Lý do là nó là phân số xấp xỉ một số thực từ phía trên tốt nhất trong tất cả các phân số có mẫu không vượt quá mẫu của nó, và điều đó chỉ có thể là phân số trung gian trên. Sau mỗi lần cộng gia lượng, cận trên của $\Delta y$ sẽ chặt hơn, nghĩa là phải xét các phân số trung gian trên có mẫu lớn hơn.
     
     Làm tương tự ví dụ trước. Xét tất cả phân số trung gian trên theo mẫu tăng dần; nếu tìm được phân số trung gian trên có cả hoành độ và tung độ không vượt giới hạn, thì cộng nó vào và cập nhật cận trên tương ứng. Khi đã cộng xong mọi phân số trung gian trên khả thi, thu được nghiệm tối ưu. So với trước, bài này cần đồng thời bảo đảm cả hoành độ và tung độ không vượt giới hạn, nên cần đặc biệt lưu ý. Dựa trên lập luận tương tự ví dụ trước, nhưng lần này dùng $B\Delta y-A\Delta x$ thay cho $\Delta x$, có thể chỉ ra rằng độ phức tạp của thuật toán là $O(\log\min\{A,B\})$.
     
@@ -1749,18 +1749,18 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         ```
 
 ???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
-    Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Được phép hỏi giá trị của $pq^{-1}$ modulo một số nguyên tố $m\in[10^9,10^{12}]$. Cần xác định $p$ và $q$ trong không quá mười lần hỏi.
+    Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Được phép hỏi giá trị của $pq^{-1}$ theo môđun một số nguyên tố $m\in[10^9,10^{12}]$. Cần xác định $p$ và $q$ trong không quá mười lần hỏi.
     
     Bài toán này tương đương với việc tìm $x$ trong $[1,N]$ sao cho $Ax\bmod M$ nhỏ nhất.
 
 ??? note "Lời giải"
-    Theo [định lý phần dư Trung Hoa](./crt.md), hỏi kết quả modulo nhiều số nguyên tố tương đương với hỏi kết quả modulo tích của các số nguyên tố đó. Vì vậy, bài này có thể xem là hỏi kết quả của phân số modulo một môđun đủ lớn $m$, rồi yêu cầu xác định tử số và mẫu số của phân số.
+    Theo [định lý số dư Trung Hoa](./crt.md), hỏi kết quả theo nhiều môđun nguyên tố tương đương với hỏi kết quả theo môđun là tích của các số nguyên tố đó. Vì vậy, bài này có thể xem là hỏi kết quả của phân số theo một môđun đủ lớn $m$, rồi yêu cầu xác định tử số và mẫu số của phân số.
     
-    Với một môđun $m$, cặp $(p,q)$ làm cho $qr\equiv p\pmod m$ đúng có thể không duy nhất. Giả sử $(p_1,q_1)$ và $(p_2,q_2)$ đều làm đẳng thức này đúng, thì nhất định $(p_1q_2-p_2q_1)r\equiv 0\pmod m$. Theo cách dựng $r$, $r$ nguyên tố cùng nhau với $m$, nên $p_1q_2-p_2q_1\equiv 0\pmod m$, tức $m\mid(p_1q_2-p_2q_1)$. Nếu $p_1q_2-p_2q_1$ khác không, giá trị tuyệt đối của nó ít nhất là $m$. Bài toán giới hạn $p,q\in[1,10^9]$, nghĩa là hiệu này không nên vượt quá $10^{18}$; vì vậy chỉ cần lấy $m>10^{18}$ là có thể bảo đảm $(p,q)$ tìm được là duy nhất.
+    Với một môđun $m$, cặp $(p,q)$ làm cho $qr\equiv p\pmod m$ đúng có thể không duy nhất. Giả sử $(p_1,q_1)$ và $(p_2,q_2)$ đều làm đẳng thức này đúng, thì suy ra $(p_1q_2-p_2q_1)r\equiv 0\pmod m$. Theo cách dựng $r$, $r$ nguyên tố cùng nhau với $m$, nên $p_1q_2-p_2q_1\equiv 0\pmod m$, tức $m\mid(p_1q_2-p_2q_1)$. Nếu $p_1q_2-p_2q_1$ khác không, giá trị tuyệt đối của nó ít nhất là $m$. Bài toán giới hạn $p,q\in[1,10^9]$, nghĩa là hiệu này không vượt quá $10^{18}$; vì vậy chỉ cần lấy $m>10^{18}$ là có thể bảo đảm $(p,q)$ tìm được là duy nhất.
     
     Bây giờ bài toán quy về: cho môđun $m$ và phần dư $r$, tìm cặp số nguyên dương $(p,q)$ không vượt quá $n$ sao cho $qr\equiv p\pmod m$. Khi đã biết nghiệm như vậy là duy nhất, chỉ cần tìm $q\in[1,n]$ làm cho $qr\bmod m$ nhỏ nhất, vì khi đó có đúng một $q$ khiến phần dư không vượt quá $n$. Đây chính là phát biểu tương đương đã nêu ở trên.
     
-    Trong hệ tọa độ phẳng $(q,k)$, điều này tương đương với việc tìm điểm nguyên với $q\in[1,n]$ nằm dưới đường thẳng $qr-km=0$ và gần nó nhất, vì phần dư $qr\bmod m$ tỉ lệ với khoảng cách từ điểm nguyên tới đường thẳng. Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm nguyên như vậy nhất định tương ứng với một phân số trung gian dưới của phân số hữu tỉ $\dfrac{r}{m}$. Độ phức tạp thuật toán là $O(\log\min\{r,m\})$.
+    Trong hệ tọa độ phẳng $(q,k)$, điều này tương đương với việc tìm điểm nguyên với $q\in[1,n]$ nằm dưới đường thẳng $qr-km=0$ và gần nó nhất, vì phần dư $qr\bmod m$ tỉ lệ với khoảng cách từ điểm nguyên tới đường thẳng. Kết hợp với [diễn giải hình học](#diễn-giải-hình-học) ở trên, điểm nguyên như vậy phải tương ứng với một phân số trung gian dưới của phân số hữu tỉ $\dfrac{r}{m}$. Độ phức tạp thuật toán là $O(\log\min\{r,m\})$.
     
     === "C++"
         ```cpp
@@ -1806,7 +1806,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 
 [^continuant]: Tên gọi này tham khảo bản dịch tiếng Trung chương 6.7 của *Concrete Mathematics* do Zhang Mingyao và Zhang Fan dịch.
 
-[^sqrt5]: Không thể mặc định phân số tối giản $\dfrac{p}{q}$ nhất định là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$  chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
+[^sqrt5]: Không thể mặc định phân số tối giản $\dfrac{p}{q}$ là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$  chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
 
 [^semi-range]: Các tài liệu khác nhau có thể xử lý khác nhau về việc miền giá trị của $t$ trong định nghĩa này có bao gồm hai đầu mút hay không.
 
