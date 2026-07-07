@@ -773,7 +773,7 @@ container STL](csl/container.md).
 Nếu muốn tìm các hàm thao tác chuỗi, xem:
 
 -   [std::basic\_string - cppreference.com](https://en.cppreference.com/w/cpp/string/basic_string)
--   [`<string>` - C++ Reference](https://www.cplusplus.com/reference/string/)
+-   [`<string>` - tài liệu tham khảo C++](https://www.cplusplus.com/reference/string/)
 
 Con trỏ trong C/C++ là một cơ chế linh hoạt; có thể tham khảo trang
 [Con trỏ](pointer.md). Nếu muốn hiểu kỹ con trỏ, nên tìm một cuốn sách hoặc sổ
@@ -791,10 +791,10 @@ tay tham khảo để đọc cẩn thận.
     quan trọng nhất
 -   [C++ Tutorial - Runoob](https://www.runoob.com/cplusplus/cpp-tutorial.html)
 -   [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
--   [Reference - C++ Reference](https://www.cplusplus.com/reference/)
+-   [Tài liệu tham khảo C++ - cplusplus.com](https://www.cplusplus.com/reference/)
 -   [C++ Standard Library - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library)
 -   [The Ultimate Question of Programming, Refactoring, and Everything](https://www.gitbook.com/book/alexastva/the-ultimate-question-of-programming-refactoring-/details)
--   [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
+-   [Quy chuẩn phong cách C++ của Google](https://google.github.io/styleguide/cppguide.html)
 
 ## Lời bạt
 
@@ -826,7 +826,7 @@ máy tính cùng kỹ thuật máy tính không chỉ có thi lập trình và n
 ### Tài liệu tham khảo về ngôn ngữ Pascal trong bài này
 
 -   [Lazarus wiki](https://wiki.freepascal.org/)
--   [Free Pascal Reference guide](https://freepascal.org/docs-html/current/ref/ref.html)
+-   [Sổ tay tham khảo Free Pascal](https://freepascal.org/docs-html/current/ref/ref.html)
 
 ## Phụ lục: bảng đối chiếu cú pháp toán tử và hàm toán học giữa Pascal và C++
 

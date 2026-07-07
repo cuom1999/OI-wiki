@@ -1416,12 +1416,12 @@ dùng cụ thể có thể tự tìm hoặc đọc
 
 ## Tài liệu tham khảo
 
-1.  [Python Documentation](https://www.python.org/doc/)
+1.  [Tài liệu Python](https://www.python.org/doc/)
 2.  [Python tutorial chính thức bằng tiếng Anh](https://docs.python.org/3/tutorial/)
-3.  [Learn Python3 In Y Minutes](https://learnxinyminutes.com/docs/python3/)
-4.  [Real Python Tutorials](https://realpython.com/)
+3.  [Học Python 3 trong Y phút](https://learnxinyminutes.com/docs/python3/)
+4.  [Hướng dẫn Real Python](https://realpython.com/)
 5.  [Python tutorial của Liao Xuefeng](https://www.liaoxuefeng.com/wiki/1016959663602400/)
-6.  [GeeksforGeeks: Python Tutorials](https://www.geeksforgeeks.org/python-programming-language/)
+6.  [GeeksforGeeks: hướng dẫn Python](https://www.geeksforgeeks.org/python-programming-language/)
 
 <a id="tài-liệu-và-chú-thích-tham-khảo"></a>
 
