@@ -302,7 +302,7 @@ Sắp xếp tô pô còn có thể dùng để tìm đường găng trong mạng
 
 ### Tìm thứ tự tô pô lớn nhất hoặc nhỏ nhất theo thứ tự từ điển
 
-Chỉ cần thay hàng đợi trong thuật toán Kahn bằng hàng đợi ưu tiên được cài đặt bằng heap lớn hoặc heap nhỏ. Khi đó tổng độ phức tạp thời gian là $O(E+V \log{V})$.
+Chỉ cần thay hàng đợi trong thuật toán Kahn bằng hàng đợi ưu tiên được cài đặt bằng đống lớn hoặc đống nhỏ. Khi đó tổng độ phức tạp thời gian là $O(E+V \log{V})$.
 
 ## Bài tập
 

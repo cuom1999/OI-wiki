@@ -258,7 +258,7 @@ Sau đó chạy trực tiếp 0-1 BFS là được.
 
 ## BFS hàng đợi ưu tiên
 
-Hàng đợi ưu tiên tương đương với một heap nhị phân.
+Hàng đợi ưu tiên tương đương với một đống nhị phân.
 STL cung cấp [`std::priority_queue`](../lang/csl/container-adapter.md),
 hỗ trợ sử dụng hàng đợi ưu tiên thuận tiện.
 
@@ -287,8 +287,8 @@ khiến độ phức tạp thời gian đạt tới $O(n^2)$ chứ không phải
 Vì vậy BFS hàng đợi ưu tiên thường vẫn nhanh hơn.
 
 Hình thức này rất giống thuật toán [Dijkstra](./shortest-path.md#thuật-toán-dijkstra)
-tối ưu bằng heap;
-thực chất, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu tiên.
+tối ưu bằng hàng đợi ưu tiên;
+thực chất, Dijkstra tối ưu bằng hàng đợi ưu tiên chính là BFS hàng đợi ưu tiên.
 
 ## Bài tập
 

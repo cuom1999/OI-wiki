@@ -255,10 +255,10 @@ chính là hàm đánh giá của bài này.
 
 Tương tự ví dụ trước, bài toán chuyển từ cặp điểm gần nhất sang cặp điểm xa thứ $k$,
 và hàm đánh giá đổi thành khoảng cách xa nhất từ điểm truy vấn đến vùng hình chữ nhật tương ứng với cây con.
-Dùng một heap nhỏ để duy trì khoảng cách của $k$ cặp điểm xa nhất đã tìm được hiện tại.
-Nếu khoảng cách của cặp điểm vừa tìm được lớn hơn đỉnh heap,
-lấy đỉnh heap ra rồi chèn khoảng cách này.
-Tương tự, dùng khoảng cách ở đỉnh heap để cắt tỉa.
+Dùng một đống nhỏ để duy trì khoảng cách của $k$ cặp điểm xa nhất đã tìm được hiện tại.
+Nếu khoảng cách của cặp điểm vừa tìm được lớn hơn đỉnh đống,
+lấy đỉnh đống ra rồi chèn khoảng cách này.
+Tương tự, dùng khoảng cách ở đỉnh đống để cắt tỉa.
 
 Vì đề bài nhấn mạnh cặp điểm không thứ tự,
 tức sau khi hoán đổi thứ tự hai điểm vẫn là cùng một cặp điểm,
