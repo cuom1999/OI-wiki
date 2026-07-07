@@ -177,7 +177,7 @@ không nói rõ, số nguyên tố luôn được hiểu là số nguyên tố d
 Nếu một nhân tử của số nguyên là số nguyên tố, thì số nguyên tố đó được gọi là
 thừa số nguyên tố (ước nguyên tố) của số nguyên ấy.
 
-Tính chất đơn giản của số nguyên tố và hợp số:
+Một số tính chất cơ bản của số nguyên tố và hợp số:
 
 -   Số nguyên $a$ lớn hơn $1$ là hợp số khi và chỉ khi $a$ có thể biểu diễn
     thành tích của hai số nguyên $d$ và $e$ với $1<d,e<a$.
@@ -568,7 +568,7 @@ $F(x)=\prod F(p_i^{k_i})=\prod F(p_i)^{k_i}$.
     được viết gọn là $d(n)$ hoặc $\tau(n)$, $\sigma_{1}(n)$ thường được viết gọn
     là $\sigma(n)$.
 -   Hàm Euler: $\varphi(n)=\sum_{i=1}^n[(i,n)=1]$.
--   Hàm Mobius:
+-   Hàm Möbius:
     $\mu(n)=\begin{cases}1&n=1\\0&\exists d>1,d^{2}\mid n\\(-1)^{\omega(n)}&\text{ngược lại}\end{cases}$,
     trong đó $\omega(n)$ là số lượng thừa số nguyên tố phân biệt của $n$.
 
