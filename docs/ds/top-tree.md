@@ -117,7 +117,7 @@ SATT duy trì thông tin trên cây bằng cách thay đổi thứ tự mà thô
 
 ### Cấu trúc thực tế
 
-Trước hết, gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm gốc của một top tree ứng với một thứ tự co rút cây nào đó. Cụm gốc có hai đầu mút; chọn một trong hai đầu mút đó làm gốc của cây ban đầu, đầu mút còn lại chọn tùy ý.
+Trước hết, gốc hóa cây ban đầu $T$ theo tầng. Sau đó xét cụm gốc của một top tree ứng với một thứ tự co rút cây nào đó. Cụm gốc có hai đầu mút; chọn một trong hai đầu mút đó làm gốc của cây ban đầu, đầu mút còn lại chọn bất kỳ.
 
 ![](./images/top-tree9.jpg)
 
@@ -125,7 +125,7 @@ Như hình, chọn một cặp đầu mút cho cụm gốc; khi đánh dấu c�
 
 Từ các thao tác cơ bản của co rút cây, thông tin của các đỉnh và cạnh trên đường cụm $(j,h,c,jh,hc)$ cuối cùng được thêm vào $C(k,g)$ thông qua thao tác nén, còn thông tin của các đỉnh và cạnh không nằm trên đường cụm $(a,b,i,f,g,e,ig,\cdots)$ được thêm vào $C(k,g)$ thông qua thao tác gom lá.
 
-Tách riêng đường cụm ra. Đây là một cây có hình dạng đặc biệt, cụ thể là một dây chuyền, và dựng một top tree cho cây này với thứ tự co rút cây tùy ý.
+Tách riêng đường cụm ra. Đây là một cây có hình dạng đặc biệt, cụ thể là một dây chuyền, và dựng một top tree cho cây này với thứ tự co rút cây bất kỳ.
 
 ![](./images/top-tree10.jpg)
 

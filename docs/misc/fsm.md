@@ -123,7 +123,7 @@ Quá trình tính toán của NFA tương đương với việc chạy nhiều D
     
     thì nói rằng $N$ **chấp nhận** $w$. Ngược lại, nói rằng $N$ **không chấp nhận** $w$.
 
-Do cho phép ký tự rỗng, khi biểu diễn chuỗi $w$ thành $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$, có thể chèn tùy ý nhiều ký tự rỗng. Ví dụ, chuỗi $\texttt{abc}$ có thể được biểu diễn thành $\texttt{a}\varepsilon\texttt{bc}\varepsilon\varepsilon\in\Sigma^*_\varepsilon$. So với DFA, trong đó mỗi đầu vào chỉ tương ứng với một kết quả, mỗi đầu vào của NFA có thể tương ứng với nhiều kết quả và tạo thành một tập kết quả.
+Do cho phép ký tự rỗng, khi biểu diễn chuỗi $w$ thành $y_1y_2\cdots y_m\in\Sigma^*_\varepsilon$, có thể chèn số lượng ký tự rỗng bất kỳ. Ví dụ, chuỗi $\texttt{abc}$ có thể được biểu diễn thành $\texttt{a}\varepsilon\texttt{bc}\varepsilon\varepsilon\in\Sigma^*_\varepsilon$. So với DFA, trong đó mỗi đầu vào chỉ tương ứng với một kết quả, mỗi đầu vào của NFA có thể tương ứng với nhiều kết quả và tạo thành một tập kết quả.
 
 ## Tính tương đương giữa DFA và NFA
 
@@ -228,7 +228,7 @@ Một hệ quả đơn giản là mọi ngôn ngữ hữu hạn đều là ngôn
 ???+ abstract "Quan hệ tương đương Nerode"
     Với một ngôn ngữ $L$ và hai chuỗi bất kỳ $x,y\in \Sigma^\ast$, nếu với mọi $z\in\Sigma^*$ đều có $xz\in L\iff yz\in L$, thì nói rằng hai chuỗi $x$ và $y$ tương đương đối với $L$, ký hiệu $x\equiv_L y$.
 
-Nói cách khác, nếu với hai chuỗi $x$ và $y$, khi nối cùng một chuỗi tùy ý $z$ (kể cả xâu rỗng) vào sau $x$ và $y$, chúng luôn hoặc cùng thuộc $L$ hoặc cùng không thuộc $L$, thì $x$ và $y$ tương đương đối với $L$.
+Nói cách khác, nếu với hai chuỗi $x$ và $y$, khi nối cùng một chuỗi bất kỳ $z$ (kể cả xâu rỗng) vào sau $x$ và $y$, chúng luôn hoặc cùng thuộc $L$ hoặc cùng không thuộc $L$, thì $x$ và $y$ tương đương đối với $L$.
 
 Theo định nghĩa trên, tập mọi chuỗi hữu hạn được chia thành một hoặc nhiều lớp tương đương. Khi và chỉ khi số lớp tương đương này là hữu hạn, có thể dùng các lớp tương đương đó để xây dựng một DFA nhận dạng ngôn ngữ này. Số trạng thái của DFA đó bằng số lớp tương đương. Hơn nữa, số trạng thái này là nhỏ nhất trong mọi DFA có thể nhận dạng ngôn ngữ đó. Đây chính là định lý Myhill-Nerode.
 
@@ -241,8 +241,8 @@ Theo định nghĩa trên, tập mọi chuỗi hữu hạn được chia thành 
 
 Định lý này cung cấp một phương pháp dùng quan hệ tương đương để xây dựng DFA:
 
--   Tập trạng thái là tất cả các lớp tương đương thu được từ phép chia theo quan hệ tương đương. Với mỗi lớp tương đương, chọn tùy ý một chuỗi đại diện (ví dụ một chuỗi có độ dài nhỏ nhất).
--   Để xây dựng hàm chuyển, chỉ cần thêm ký tự chuyển vào sau chuỗi đại diện đã chọn, rồi tìm trạng thái tương ứng với lớp tương đương chứa chuỗi thu được; đó chính là trạng thái kế tiếp của chuyển tương ứng. Vì mọi chuỗi trong cùng một lớp tương đương đều tương đương, nên việc chọn tùy ý chuỗi đại diện không ảnh hưởng đến kết quả chuyển.
+-   Tập trạng thái là tất cả các lớp tương đương thu được từ phép chia theo quan hệ tương đương. Với mỗi lớp tương đương, chọn một chuỗi đại diện bất kỳ (ví dụ một chuỗi có độ dài nhỏ nhất).
+-   Để xây dựng hàm chuyển, chỉ cần thêm ký tự chuyển vào sau chuỗi đại diện đã chọn, rồi tìm trạng thái tương ứng với lớp tương đương chứa chuỗi thu được; đó chính là trạng thái kế tiếp của chuyển tương ứng. Vì mọi chuỗi trong cùng một lớp tương đương đều tương đương, nên việc chọn chuỗi đại diện bất kỳ không ảnh hưởng đến kết quả chuyển.
 -   Trạng thái ban đầu là lớp tương đương tương ứng với xâu rỗng $\varepsilon$.
 -   Tập trạng thái chấp nhận là tập các lớp tương đương mà chuỗi đại diện thuộc ngôn ngữ đã cho.
 
@@ -304,7 +304,7 @@ $$
 
 Nếu $S_x$ và $P_x\setminus S_x$ đều không rỗng, thì trong phép chia hiện tại, tập trạng thái $P_x$ có thể được tinh chỉnh thành $S_x$ và $P_x\setminus S_x$.
 
-Ban đầu, đưa tập trạng thái chấp nhận $F$ vào tập chứng cứ $W$, tức $W\gets\{F\}$, và duy trì phép chia hiện tại là $P\gets\{F,~Q\setminus F\}$. Chứng cứ ban đầu đúng trực tiếp: các trạng thái trong $F$ và $Q\setminus F$ tuyệt đối không thể tương đương. Mỗi lần tùy ý lấy một tập $A$ từ tập chứng cứ $W$ để tinh chỉnh phép chia hiện tại. Liệt kê mọi ký tự $c\in\Sigma$. Với mỗi tập trạng thái $P_x$ trong phép chia hiện tại $P$, tính $S_x$ như đã mô tả ở trên. Nếu $S_x\neq\varnothing$ và $|S_x|\neq|P_x|$, nghĩa là $P_x$ có thể tiếp tục được tách thành hai tập $S_x$ và $P_x\setminus S_x$; khi đó trực tiếp dùng chúng thay thế $P_x$ trong $P$.
+Ban đầu, đưa tập trạng thái chấp nhận $F$ vào tập chứng cứ $W$, tức $W\gets\{F\}$, và duy trì phép chia hiện tại là $P\gets\{F,~Q\setminus F\}$. Chứng cứ ban đầu đúng trực tiếp: các trạng thái trong $F$ và $Q\setminus F$ tuyệt đối không thể tương đương. Mỗi lần lấy một tập $A$ bất kỳ từ tập chứng cứ $W$ để tinh chỉnh phép chia hiện tại. Liệt kê mọi ký tự $c\in\Sigma$. Với mỗi tập trạng thái $P_x$ trong phép chia hiện tại $P$, tính $S_x$ như đã mô tả ở trên. Nếu $S_x\neq\varnothing$ và $|S_x|\neq|P_x|$, nghĩa là $P_x$ có thể tiếp tục được tách thành hai tập $S_x$ và $P_x\setminus S_x$; khi đó trực tiếp dùng chúng thay thế $P_x$ trong $P$.
 
 Mỗi khi thu được phép chia tinh hơn, tức là đã thu được chứng cứ mới. Về nguyên tắc, có thể đưa cả $S_x$ và $P_x\setminus S_x$ mới thu được vào tập chứng cứ $W$, chờ các bước kiểm tra tiếp theo. Nhưng làm như vậy là không cần thiết. Với ba chứng cứ $P_x,S_x,P_x\setminus S_x$, chỉ cần kiểm tra hai chứng cứ bất kỳ là đã đủ bảo đảm tính đúng đắn: vì kết quả chỉ có ba loại $\delta(u,c)\in S_x$, $\delta(u,c)\in P_x\setminus S_x$ và $\delta(u,c)\notin P_x$, còn chia một tập thành ba phần chỉ cần hai lần kiểm tra. Vì vậy, khi chia $P_x$ thành $S_x$ và $P_x\setminus S_x$, nếu $P_x$ vẫn nằm trong tập chứng cứ $W$, điều này nghĩa là chứng cứ $P_x$ vẫn chưa được kiểm tra, nên cần thay $P_x$ trong tập chứng cứ $W$ bằng cả $S_x$ và $P_x\setminus S_x$; ngược lại, phép chia hiện tại tương đương với[^smaller-evidence] kết quả sau khi đã kiểm tra $P_x$, nên chỉ cần đưa tập nhỏ hơn trong $S_x$ và $P_x\setminus S_x$ vào tập chứng cứ $W$. Tương tự cách tách theo kinh nghiệm, cách làm này cho độ phức tạp tốt.
 
@@ -355,7 +355,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     
     1.  Nếu $a_i = 0$, đặt $x \gets x - \text{lowbit}(x)$;
     2.  Nếu $a_i = 1$, đặt $x \gets x + \text{lowbit}(2^k - 1 - x)$;
-    3.  Nếu $a_i = ?$, có thể tùy ý chọn $0$ hoặc $1$, tương ứng với một trong hai thao tác trên.
+    3.  Nếu $a_i = ?$, có thể tự do chọn $0$ hoặc $1$, tương ứng với một trong hai thao tác trên.
     
     Nếu cuối cùng $x \in [0, r]$, gọi dãy thao tác này là tốt.
     

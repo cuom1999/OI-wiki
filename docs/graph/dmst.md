@@ -72,7 +72,7 @@ Giả sử đồ thị đầu vào liên thông mạnh. Nếu chưa thỏa đi�
 
 Thuật toán cần một heap để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh.
 Vì các bước sau có thao tác gộp heap, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt.
-Ở mỗi bước, chọn một đỉnh tùy ý $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap.
+Ở mỗi bước, chọn một đỉnh bất kỳ $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap.
 Sau đó đưa cạnh vào nhỏ nhất của $v$ vào heap.
 Nếu cạnh mới thêm khiến các cạnh trong heap tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; các đỉnh đã được co như vậy được gọi là **siêu đỉnh**.
 Quá trình tiếp diễn cho đến khi toàn bộ các đỉnh được co thành một siêu đỉnh, khi đó giai đoạn co kết thúc.
@@ -85,7 +85,7 @@ Mỗi lần chọn một cạnh vào nhỏ nhất $v_k\leftarrow u$.
 Nếu $u$ không phải một trong các đỉnh $v_0,v_1,\dots,v_k$, mở rộng đường đi tới $v_{k+1}=u$.
 Nếu $u$ là một đỉnh $v_i$ trong số đó, đã tìm được chu trình $v_i\leftarrow\dots\leftarrow v_k\leftarrow v_i$, rồi co các đỉnh này thành một siêu đỉnh $c$.
 
-Đưa tất cả các đỉnh hoặc siêu đỉnh vào hàng đợi $P$, đồng thời ban đầu chọn một đỉnh tùy ý $a$. Chừng nào hàng đợi còn chưa rỗng, thực hiện các bước sau:
+Đưa tất cả các đỉnh hoặc siêu đỉnh vào hàng đợi $P$, đồng thời ban đầu chọn một đỉnh bất kỳ $a$. Chừng nào hàng đợi còn chưa rỗng, thực hiện các bước sau:
 
 1.  Chọn cạnh vào nhỏ nhất của $a$, bảo đảm không có khuyên, rồi tìm đỉnh $b$ ở đầu còn lại.
     Nếu đỉnh $b$ chưa từng được ghi nhận, nghĩa là chưa hình thành chu trình; đặt $a\leftarrow b$ và tiếp tục thao tác hiện tại để tìm chu trình.

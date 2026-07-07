@@ -45,7 +45,7 @@ Tính chất thứ hai phức tạp hơn một chút.
 Có thể thử tô màu đồ thị $G$ bằng hai màu.
 Vì việc tô màu giữa các thành phần liên thông khác nhau không ảnh hưởng lẫn nhau,
 chỉ cần xét từng thành phần liên thông.
-Chọn tùy ý một đỉnh $s$ trong thành phần liên thông,
+Chọn một đỉnh bất kỳ $s$ trong thành phần liên thông,
 chạy DFS, và ghi lại khoảng cách từ mỗi đỉnh $v$ trong thành phần đó đến $s$.
 Bằng quy nạp trên cây DFS bắt đầu từ $s$,
 nếu tồn tại một cách tô màu hợp lệ,
@@ -80,7 +80,7 @@ ngược lại, nó là đồ thị hai phía.
 Quy trình cụ thể như sau:
 
 -   Duyệt qua các đỉnh; nếu gặp một đỉnh chưa được tô màu, nghĩa là đã tìm thấy một thành phần liên thông mới.
--   Tô đỉnh đó bằng một màu tùy ý,
+-   Tô đỉnh đó bằng một màu bất kỳ,
     rồi lấy nó làm đỉnh xuất phát để chạy [DFS](./dfs.md) hoặc [BFS](./bfs.md),
     thử tô màu thành phần liên thông này.
 -   Khi duyệt các đỉnh kề, nếu gặp một đỉnh đã được tô màu,
