@@ -46,7 +46,7 @@ Nếu một đồ thị liên thông $G$ có thể được phân rã thành h�
 Với một tập các chu trình không chung cạnh, mỗi lần chọn hai chu trình có đỉnh chung rồi ghép chúng thành một chu trình, lặp lại cho đến khi không còn hai chu trình nào có đỉnh chung.
 Khi quá trình này kết thúc, chu trình còn lại là duy nhất.
 Với hai chu trình không chung cạnh bất kỳ $P_1, P_2$, nếu $P_1$ và $P_2$ có đỉnh chung thì có thể ghép trực tiếp tại đỉnh chung đó.
-Nếu không, chọn tùy ý một đỉnh $v_1$ trên $P_1$ và một đỉnh $v_2$ trên $P_2$.
+Nếu không, chọn một đỉnh bất kỳ $v_1$ trên $P_1$ và một đỉnh bất kỳ $v_2$ trên $P_2$.
 Do $G$ liên thông, tồn tại một đường đi nối $v_1$ với $v_2$ gồm các cạnh $e_1, e_2, \ldots, e_k$.
 Trong đó mỗi cạnh $e_i$ nằm trong một chu trình $C_i$, đồng thời $P_1$ và $C_1$, $C_i$ và $C_{i+1}$, $C_k$ và $P_2$ đều có đỉnh chung.
 Trường hợp $C_i = C_{i+1}$ không ảnh hưởng đến chứng minh.
@@ -146,7 +146,7 @@ Cạnh $a_{j_1}a_{j_2}\cdots a_{j_{n-1}}$ đi vào đỉnh $a_{j_2}a_{j_3}\cdots
 
 Đồ thị $D$ như vậy là liên thông, và mỗi đỉnh có bậc vào bằng bậc ra (đều bằng $m$), nên $D$ là đồ thị Euler có hướng.
 
-Tìm tùy ý một chu trình Euler $C$ trong $D$, lấy chữ cái cuối cùng của mỗi cạnh trong $C$, rồi đặt chúng theo thứ tự các cạnh trong $C$ thành một vòng tròn trên đĩa.
+Tìm một chu trình Euler bất kỳ $C$ trong $D$, lấy chữ cái cuối cùng của mỗi cạnh trong $C$, rồi đặt chúng theo thứ tự các cạnh trong $C$ thành một vòng tròn trên đĩa.
 
 ## Bài tập mẫu
 

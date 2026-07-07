@@ -185,7 +185,7 @@ Với đường thẳng trong **không gian**, có các cách tìm vectơ chỉ 
 
 Với một mặt $ABCD$, vectơ pháp tuyến $\boldsymbol{n}$ của nó vuông góc với mặt đó.
 
-Cách tính: chọn tùy ý hai đường thẳng trong mặt, chẳng hạn $\overrightarrow{AB},\overrightarrow{AD}$, sao cho $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ và $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$, rồi dùng phương pháp tọa độ để tính.
+Cách tính: chọn hai đường thẳng bất kỳ trong mặt, chẳng hạn $\overrightarrow{AB},\overrightarrow{AD}$, sao cho $\overrightarrow{AB} \cdot \boldsymbol{n}=\boldsymbol{0}$ và $\overrightarrow{AD} \cdot \boldsymbol{n}=\boldsymbol{0}$, rồi dùng phương pháp tọa độ để tính.
 
 <span id="vectơ-và-ma-trận"></span>
 ## Vectơ và ma trận

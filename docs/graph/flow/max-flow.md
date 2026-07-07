@@ -48,7 +48,7 @@ Sau phần trực quan về tư tưởng tăng luồng Ford–Fulkerson, cần c
 
 Tính đúng đắn của tăng luồng Ford–Fulkerson tương đương với định lý luồng cực đại - lát cắt nhỏ nhất. Định lý này phát biểu rằng với mọi mạng $G = (V, E)$, luồng cực đại $f$ và lát cắt nhỏ nhất $\{S, T\}$ trên mạng đó luôn thỏa mãn $|f| = ||S, T||$.
 
-Để chứng minh định lý luồng cực đại - lát cắt nhỏ nhất, trước hết xét một bổ đề: với mạng $G = (V, E)$, lấy tùy ý một luồng $f$ và một lát cắt $\{S, T\}$, luôn có $|f| \leq ||S, T||$. Dấu bằng xảy ra khi và chỉ khi mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng, và mọi cạnh trong $\{(u, v) \mid u \in T, v \in S\}$ đều có luồng bằng không.
+Để chứng minh định lý luồng cực đại - lát cắt nhỏ nhất, trước hết xét một bổ đề: với mạng $G = (V, E)$, lấy một luồng bất kỳ $f$ và một lát cắt $\{S, T\}$, luôn có $|f| \leq ||S, T||$. Dấu bằng xảy ra khi và chỉ khi mọi cạnh trong $\{(u, v) \mid u \in S, v \in T\}$ đều đầy luồng, và mọi cạnh trong $\{(u, v) \mid u \in T, v \in S\}$ đều có luồng bằng không.
 
 ???+ note "Chứng minh"
     $$

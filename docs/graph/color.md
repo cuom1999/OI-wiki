@@ -21,7 +21,7 @@ Giả sử đồ thị liên thông không phải là đồ thị đầy đủ v
     
     Không mất tính tổng quát, chỉ cần xét đồ thị $\Delta(G)$-chính quy, vì đồ thị không chính quy có thể xem là thu được bằng cách xóa một số cạnh khỏi một đồ thị chính quy, và quá trình này không ảnh hưởng đến kết luận.
     
-    Với một đồ thị chính quy $G$ bất kỳ không phải đồ thị đầy đủ cũng không phải chu trình lẻ, chọn tùy ý một đỉnh $v$ và xét đồ thị con $H:=G-v$.
+    Với một đồ thị chính quy $G$ bất kỳ không phải đồ thị đầy đủ cũng không phải chu trình lẻ, chọn một đỉnh bất kỳ $v$ và xét đồ thị con $H:=G-v$.
     Theo giả thiết quy nạp, $\chi(H)\leq\Delta(H)=\Delta(G)$.
     Do đó chỉ cần chứng minh rằng chèn lại $v$ vào $H$ không làm thay đổi kết luận.
     

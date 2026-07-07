@@ -7,7 +7,7 @@ Phân trị theo đỉnh thích hợp để xử lý các bài toán thông tin 
     
     $n\le 10000,m\le 100,k\le 10000000$
 
-Trước hết, chọn tùy ý một đỉnh làm gốc $\mathit{rt}$. Mọi đường đi nằm hoàn toàn trong cây con của nó có thể chia thành hai loại: đường đi đi qua gốc hiện tại và đường đi không đi qua gốc hiện tại. Với các đường đi đi qua gốc hiện tại, lại có thể chia thành hai loại: đường đi có gốc là một đầu mút và đường đi mà cả hai đầu mút đều không phải gốc. Loại thứ hai có thể được ghép từ hai chuỗi thuộc loại thứ nhất. Vì vậy, với gốc đang xét $\mathit{rt}$, trước tiên tính đóng góp vào đáp án của các đường đi nằm trong cây con của nó và đi qua đỉnh này, sau đó đệ quy xuống các cây con để giải các đường đi không đi qua đỉnh này.
+Trước hết, chọn một đỉnh bất kỳ làm gốc $\mathit{rt}$. Mọi đường đi nằm hoàn toàn trong cây con của nó có thể chia thành hai loại: đường đi đi qua gốc hiện tại và đường đi không đi qua gốc hiện tại. Với các đường đi đi qua gốc hiện tại, lại có thể chia thành hai loại: đường đi có gốc là một đầu mút và đường đi mà cả hai đầu mút đều không phải gốc. Loại thứ hai có thể được ghép từ hai chuỗi thuộc loại thứ nhất. Vì vậy, với gốc đang xét $\mathit{rt}$, trước tiên tính đóng góp vào đáp án của các đường đi nằm trong cây con của nó và đi qua đỉnh này, sau đó đệ quy xuống các cây con để giải các đường đi không đi qua đỉnh này.
 
 Trong bài này, với các đường đi đi qua gốc $\mathit{rt}$, lần lượt duyệt mọi con $\mathit{ch}$ của nó, rồi lấy $\mathit{ch}$ làm gốc để tính khoảng cách từ mọi đỉnh trong cây con của $\mathit{ch}$ đến $\mathit{rt}$. Gọi khoảng cách từ đỉnh $i$ đến gốc hiện tại $\mathit{rt}$ là $\mathit{dist}_i$, và $\mathit{tf}_{d}$ biểu thị trong các cây con đã xử lý trước đó có tồn tại một đỉnh $v$ sao cho $\mathit{dist}_v=d$ hay không. Nếu một truy vấn $k$ thỏa mãn $\mathit{tf}_{k-\mathit{dist}_i}=\text{true}$, thì tồn tại một đường đi có độ dài $k$. Sau khi tính xong liệu các cạnh nối trong cây con của $\mathit{ch}$ có thể tạo thành đáp án hay không, thêm các khoảng cách mới này vào mảng $\mathit{tf}$.
 
@@ -50,7 +50,7 @@ Trong quá trình phân trị theo đỉnh, chỉ cần lần lượt thống k�
 
 Phần 1 dễ xử lý. Vì trong phân trị theo đỉnh, số tầng đệ quy không vượt quá $\log{n}$, ở mỗi tầng đều có thể duyệt toàn bộ cây con, nên có thể dùng trực tiếp công thức định nghĩa của $\mathit{sum}_i$ để thống kê trong quá trình duyệt cây con.
 
-Với phần 2, giả sử một đỉnh con của gốc hiện tại $u$ là $d$, và chọn tùy ý một đỉnh $v$ trong cây con của $d$. Khi đó đáp án của $v$ có thể chia thành hai phần:
+Với phần 2, giả sử một đỉnh con của gốc hiện tại $u$ là $d$, và chọn một đỉnh bất kỳ $v$ trong cây con của $d$. Khi đó đáp án của $v$ có thể chia thành hai phần:
 
 1.  Các màu đã xuất hiện trên đường đi $(u, v)$, giả sử số lượng là $\mathit{num}$. Gọi tổng kích thước của tất cả các cây con khác của $u$ ngoài $d$ là $\mathit{siz1}$. Khi đó đóng góp của các màu đã xuất hiện này vào đáp án của $v$ là $\mathit{num}\times \mathit{siz1}$.
 2.  Với các màu $j$ chưa xuất hiện trên đường đi $(u, v)$, đóng góp của chúng đến từ $\mathit{cnt_j}$ của tất cả các cây con khác của $u$ ngoài $d$. Phần đáp án này là $\sum_{j \notin (u, v)} \mathit{cnt_j}$.

@@ -339,7 +339,7 @@ Vì cây là đồ thị không có chu trình, chỉ cần ghi lại nút hiệ
     
     // Khi bắt đầu duyệt
     int EMPTY_NODE = -1;  // Một chỉ số không tồn tại
-    int root = 0;         // Chọn tùy ý một nút làm điểm xuất phát
+    int root = 0;         // Chọn một nút bất kỳ làm điểm xuất phát
     dfs(root, EMPTY_NODE);
     ```
 

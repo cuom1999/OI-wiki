@@ -149,7 +149,7 @@ Nếu xem biểu diễn nhị phân của một số như một xâu, có thể 
     Số đỉnh không quá $10^5$, trọng số cạnh nằm trong $[0,2^{31})$.
     
     ??? note "Lời giải"
-        Chọn tùy ý một gốc $root$. Gọi $T(u, v)$ là tổng xor các trọng số cạnh trên đường đi giữa $u$ và $v$. Khi đó $T(u,v)=T(root, u)\oplus T(root,v)$, vì phần nằm phía trên [LCA](../graph/lca.md) bị xor hai lần và triệt tiêu nhau.
+        Chọn một gốc bất kỳ $root$. Gọi $T(u, v)$ là tổng xor các trọng số cạnh trên đường đi giữa $u$ và $v$. Khi đó $T(u,v)=T(root, u)\oplus T(root,v)$, vì phần nằm phía trên [LCA](../graph/lca.md) bị xor hai lần và triệt tiêu nhau.
         
         Nếu chèn tất cả $T(root, u)$ vào một trie, thì với mỗi $T(root, u)$ có thể nhanh chóng tìm $T(root, v)$ sao cho giá trị xor với nó là lớn nhất:
         

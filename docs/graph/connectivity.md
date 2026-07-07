@@ -19,9 +19,9 @@ $$
 $$
 
 ???+ note "Chứng minh"
-    Trực giác là: nếu có một tập cắt cạnh kích thước $\lambda$, chọn tùy ý một đầu mút của mỗi cạnh trong đó thì có thể thu được một tập cắt đỉnh kích thước $\lambda$. Vì vậy bất đẳng thức thứ nhất đúng.
+    Trực giác là: nếu có một tập cắt cạnh kích thước $\lambda$, chọn một đầu mút bất kỳ của mỗi cạnh trong đó thì có thể thu được một tập cắt đỉnh kích thước $\lambda$. Vì vậy bất đẳng thức thứ nhất đúng.
 
-    Tất cả các cạnh kề với một đỉnh có bậc nhỏ nhất (nếu có nhiều đỉnh như vậy thì chọn tùy ý một đỉnh) tạo thành một tập cắt cạnh kích thước $\delta$, nên bất đẳng thức thứ hai cũng đúng.
+    Tất cả các cạnh kề với một đỉnh có bậc nhỏ nhất (nếu có nhiều đỉnh như vậy thì chọn một đỉnh bất kỳ) tạo thành một tập cắt cạnh kích thước $\delta$, nên bất đẳng thức thứ hai cũng đúng.
 
 Bất đẳng thức này không thể cải thiện thêm. Nói cách khác, với mọi bộ ba thỏa mãn nó, đều có thể tìm được một đồ thị có đúng bộ ba giá trị đó.
 

@@ -85,7 +85,7 @@ Làm thế nào để thực hiện phân tích theo định lý cơ bản của
 
 Nếu chỉ phân tích trong phạm vi số thực, khi bậc lớn hơn $2$, luôn tồn tại một nhân tử tam thức bậc hai hệ số thực.
 
-Lý do là: nếu đa thức có nghiệm ảo, chỉ cần ghép trực tiếp một cặp nghiệm ảo liên hợp. Nếu đa thức chỉ có nghiệm thực, lấy tùy ý hai nhân tử bậc một tương ứng với hai nghiệm thực và nhân chúng lại, cũng thu được một tam thức bậc hai hệ số thực.
+Lý do là: nếu đa thức có nghiệm ảo, chỉ cần ghép trực tiếp một cặp nghiệm ảo liên hợp. Nếu đa thức chỉ có nghiệm thực, lấy hai nhân tử bậc một bất kỳ tương ứng với hai nghiệm thực và nhân chúng lại, cũng thu được một tam thức bậc hai hệ số thực.
 
 Sau khi tìm được nhân tử tam thức bậc hai, việc giải nghiệm thực hoặc nghiệm phức từ phương trình bậc hai là trực tiếp. Vì vậy có phương pháp tính nghiệm phức của phương trình bằng cách lần lượt **tìm ra một nhân tử bậc hai**; phương pháp này tránh được các phép tính với số phức.
 

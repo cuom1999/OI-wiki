@@ -33,7 +33,7 @@ Có thể chứng minh mọi không gian tuyến tính đều tồn tại cơ s�
     3.  Nếu mọi vectơ trong $V$ đều có thể được biểu diễn tuyến tính bởi hệ vectơ $a_1,a_2,\dots,a_n$, thì hệ này là một cơ sở của $V$.
 
         ???+ note "Chứng minh"
-            Lấy tùy ý một cơ sở $b_1,b_2,\dots,b_n$ của $V$. Theo giả thiết, hệ vectơ $b_1,b_2,\dots,b_n$ có thể được biểu diễn tuyến tính bởi $a_1,a_2,\dots,a_n$, nên
+            Lấy một cơ sở bất kỳ $b_1,b_2,\dots,b_n$ của $V$. Theo giả thiết, hệ vectơ $b_1,b_2,\dots,b_n$ có thể được biểu diễn tuyến tính bởi $a_1,a_2,\dots,a_n$, nên
             
             $$
             n=\operatorname{rank}\{b_1,b_2,\dots,b_n\}\leq\operatorname{rank}\{a_1,a_2,\dots,a_n\}\leq n

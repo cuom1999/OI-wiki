@@ -69,7 +69,7 @@ Cách này chỉ mô tả một tính chất đại số của định thức; �
 <span id="phần-bù-đại-số"></span>
 ### Phần bù đại số
 
-Trong định thức bậc $n$ $\det A$, chọn tùy ý $k$ hàng và $k$ cột của ma trận $A$. Các phần tử nằm tại giao của những hàng và cột này tạo thành một ma trận con bậc $k$, và định thức của nó được gọi là một định thức con bậc $k$.
+Trong định thức bậc $n$ $\det A$, chọn $k$ hàng và $k$ cột bất kỳ của ma trận $A$. Các phần tử nằm tại giao của những hàng và cột này tạo thành một ma trận con bậc $k$, và định thức của nó được gọi là một định thức con bậc $k$.
 
 Với định thức bậc $n$ $\det A$, ma trận phụ $M_{ij}$ của phần tử $a_{ij}$ là ma trận con bậc $n-1$ còn lại sau khi xóa hàng và cột chứa $a_{ij}$ khỏi ma trận gốc $A$; định thức $\det M_{ij}$ của nó được gọi là phần bù.
 
