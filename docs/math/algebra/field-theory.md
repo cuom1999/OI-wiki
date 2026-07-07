@@ -720,7 +720,7 @@ Kết luận này là một trường hợp đặc biệt của định lý cơ 
 
 ### Đa thức bất khả quy
 
-Đa thức bất khả quy trên trường hữu hạn $\mathbf F_q$ rất dễ đặc trưng. Vì mỗi đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ tương ứng với mở rộng đại số bậc $n$, mà mở rộng như vậy là duy nhất, nên nghiệm của mọi đa thức bất khả quy bậc $n$ đều có thể tìm thấy trong $\mathbf F_{q^n}$. Điều này cho thấy đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ nhất định là nhân tử của $x^{q^n}-x$. Để xác định toàn bộ đa thức bất khả quy bậc $n$ trên trường hữu hạn $\mathbf F_q$, cần khảo sát phân tích nhân tử của $x^{q^n}-x$ trên $\mathbf F_q$. Điều này rất giống trường hợp đa thức cyclotomic.
+Đa thức bất khả quy trên trường hữu hạn $\mathbf F_q$ dễ đặc trưng. Vì mỗi đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ tương ứng với mở rộng đại số bậc $n$, mà mở rộng như vậy là duy nhất, nên nghiệm của mọi đa thức bất khả quy bậc $n$ đều có thể tìm thấy trong $\mathbf F_{q^n}$. Điều này cho thấy đa thức bất khả quy bậc $n$ trên $\mathbf F_q$ phải là nhân tử của $x^{q^n}-x$. Để xác định toàn bộ đa thức bất khả quy bậc $n$ trên trường hữu hạn $\mathbf F_q$, cần khảo sát phân tích nhân tử của $x^{q^n}-x$ trên $\mathbf F_q$. Điều này rất giống trường hợp đa thức cyclotomic.
 
 Các phần tử đại số trên trường hữu hạn $\mathbf F_q$ có thể được phân loại theo bậc đa thức tối tiểu. Gọi $P_n$ là tập các phần tử có đa thức tối tiểu bậc đúng bằng $n$, khi đó
 

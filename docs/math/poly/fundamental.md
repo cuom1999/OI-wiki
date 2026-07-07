@@ -87,7 +87,7 @@ Nếu chỉ phân tích trong phạm vi số thực, khi bậc lớn hơn $2$, l
 
 Lý do là: nếu đa thức có nghiệm ảo, chỉ cần ghép trực tiếp một cặp nghiệm ảo liên hợp. Nếu đa thức chỉ có nghiệm thực, lấy tùy ý hai nhân tử bậc một tương ứng với hai nghiệm thực và nhân chúng lại, cũng thu được một tam thức bậc hai hệ số thực.
 
-Sau khi tìm được nhân tử tam thức bậc hai, việc giải nghiệm thực hoặc nghiệm phức từ phương trình bậc hai là rất dễ. Vì vậy có phương pháp tính nghiệm phức của phương trình bằng cách lần lượt **tìm ra một nhân tử bậc hai**; phương pháp này tránh được các phép tính với số phức.
+Sau khi tìm được nhân tử tam thức bậc hai, việc giải nghiệm thực hoặc nghiệm phức từ phương trình bậc hai là trực tiếp. Vì vậy có phương pháp tính nghiệm phức của phương trình bằng cách lần lượt **tìm ra một nhân tử bậc hai**; phương pháp này tránh được các phép tính với số phức.
 
 Vào tháng 8 năm 1940, tháng 8 năm 1943 và tháng 7 năm 1947, Lin Shie lần lượt chính thức công bố ba bài báo về phương pháp tính nghiệm phức của phương trình bậc cao trên tạp chí *Mathematical Physics* do MIT xuất bản[^note1], mỗi lần đều có cải tiến.
 

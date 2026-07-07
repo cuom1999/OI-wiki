@@ -609,7 +609,7 @@ nghiệm; chẳng hạn $x^2-34y^2=-1$ vô nghiệm.
 Tiếp theo thảo luận nghiệm của phương trình $x^2-Dy^2=\pm 4$. Lúc này tính
 chất của nghiệm phụ thuộc vào giá trị của $D\bmod 4$.
 
-Một số trường hợp rất dễ xử lý. Nếu $D\equiv 0\pmod 4$, thì $x$ chẵn, nên
+Một số trường hợp có thể xử lý trực tiếp. Nếu $D\equiv 0\pmod 4$, thì $x$ chẵn, nên
 $(x/2,y)$ là nghiệm của phương trình $u^2-(D/4)v^2=\pm 1$. Các trường hợp còn
 lại, $x,y$ đồng thời lẻ hoặc đồng thời chẵn. Nếu $x,y$ đồng thời lẻ,
 lấy đồng dư hai vế phương trình theo môđun $4$ cho $D\equiv 1\pmod 4$. Vì vậy, nếu

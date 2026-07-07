@@ -159,7 +159,7 @@ x-a_{1,1}&-a_{1,2}&\cdots &-a_{1,n}\\
 \end{aligned}
 $$
 
-có thể tính rất dễ; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
+có thể tính trực tiếp; với ma trận tam giác dưới cũng tương tự. Nhưng nếu $A$ không thuộc hai loại ma trận này, cần dùng biến đổi tương tự để đưa ma trận về dạng dễ tính đa thức đặc trưng.
 
 <span id="định-nghĩa"></span>
 ### Định nghĩa
@@ -241,7 +241,7 @@ Với ma trận $n\times n$ $B$, có thể thực hiện khử Gauss; các thao 
 
 Sau khi áp dụng các thao tác trên cho ma trận (nhân trái với ma trận sơ cấp), lại nhân phải với ma trận nghịch đảo của nó thì thu được một biến đổi tương tự. Nhân trái là biến đổi hàng, còn nhân phải tương ứng với biến đổi cột.
 
-Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể tính đa thức đặc trưng khá dễ. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
+Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể tính đa thức đặc trưng trực tiếp. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
 
 Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách thuận tiện.
 

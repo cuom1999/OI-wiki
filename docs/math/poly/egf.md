@@ -193,7 +193,7 @@ Số cách để các phần tử trong một tập tạo thành chu trình hoá
 Tổng quát hơn:
 
 -   Nếu EGF của cây sinh **có nhãn** trên $n$ đỉnh là $\hat{F}(x)$, thì EGF của rừng sinh **có nhãn** trên $n$ đỉnh là $\exp \hat{F}(x)$: trực giác là chia $n$ đỉnh thành một số tập, mỗi tập tạo thành một cây sinh, rồi nhân số phương án của từng tập.
--   Nếu EGF của đồ thị vô hướng liên thông có nhãn trên $n$ đỉnh là $\hat{F}(x)$, thì EGF của đồ thị vô hướng có nhãn trên $n$ đỉnh là $\exp \hat{F}(x)$. EGF sau có thể tính rất dễ:
+-   Nếu EGF của đồ thị vô hướng liên thông có nhãn trên $n$ đỉnh là $\hat{F}(x)$, thì EGF của đồ thị vô hướng có nhãn trên $n$ đỉnh là $\exp \hat{F}(x)$. EGF sau có thể tính trực tiếp:
 
     $$
     \exp \hat{F}(x)=\sum_{n\ge 0}2^{\binom{n}{2}}\frac{x^n}{n!}

@@ -489,7 +489,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     H_2(p^e) = p^{2e} + (1-p)\dfrac{1-p^{2e}}{1-p^2} = H_2(p^{e-1}) + p^{2e} - p^{2e-1}.
     $$
     
-    Công thức này rất dễ tính bằng sàng tuyến tính. Sau khi sàng tuyến tính tiền xử lý $H_2(n)$, mỗi truy vấn có thể được trả lời trong $O(1)$ bằng biểu thức $f(n)=(n/2)(H_2(n)+1)$. Tổng độ phức tạp thời gian là $O(N+T)$, trong đó $N$ là cận trên của $n$, còn $T$ là số bộ dữ liệu.
+    Công thức này dễ tính bằng sàng tuyến tính. Sau khi sàng tuyến tính tiền xử lý $H_2(n)$, mỗi truy vấn có thể được trả lời trong $O(1)$ bằng biểu thức $f(n)=(n/2)(H_2(n)+1)$. Tổng độ phức tạp thời gian là $O(N+T)$, trong đó $N$ là cận trên của $n$, còn $T$ là số bộ dữ liệu.
     
     Trong cài đặt tham khảo, do tính đặc biệt của biểu thức trong bài này, phần sàng tuyến tính được suy luận sâu hơn; điều này không bắt buộc. Chỉ dùng giá trị tại lũy thừa nguyên tố vẫn có thể hoàn thành tiền xử lý trong $O(N)$. Các suy luận này được trình bày trong lời giải 2.
 

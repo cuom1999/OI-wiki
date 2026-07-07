@@ -290,7 +290,7 @@ Bài toán vẫn xét khi nào một số nguyên $k$ có thể biểu diễn d�
 $a_1x_1+a_2x_2+\cdots+a_nx_n$. Trong định lý Bézout, $x_i$ có thể là số nguyên
 bất kỳ, còn trong bài toán đồng xu Frobenius, $x_i$ chỉ được là số tự nhiên.
 
-Trường hợp chỉ có một loại đồng xu khá dễ xử lý, vì khi đó chỉ có thể có $a_1=1$
+Trường hợp chỉ có một loại đồng xu dễ xử lý, vì khi đó chỉ có thể có $a_1=1$
 và mọi số tự nhiên đều biểu diễn được. Trường hợp $n>2$ lại quá phức tạp, nên
 mục này chỉ thảo luận trường hợp $n=2$.
 

@@ -495,7 +495,7 @@ Lợi ích của cách làm này là ma trận hệ số $(A,I)$ của dạng ch
 <span id="nghiệm-cơ-bản-khả-thi-ban-đầu"></span>
 ### Nghiệm cơ bản khả thi ban đầu
 
-Mô tả phương pháp đơn hình ở trên luôn giả định đã biết một nghiệm cơ bản khả thi. Đôi khi rất dễ tìm một nghiệm như vậy. Chẳng hạn, nếu trong dạng dư nói trên có $b\ge 0$, thì $(x,s)=(0,b)$ là một nghiệm cơ bản khả thi. Đây chính là tình huống trong ví dụ số ở trên.
+Mô tả phương pháp đơn hình ở trên luôn giả định đã biết một nghiệm cơ bản khả thi. Đôi khi có thể tìm một nghiệm như vậy ngay. Chẳng hạn, nếu trong dạng dư nói trên có $b\ge 0$, thì $(x,s)=(0,b)$ là một nghiệm cơ bản khả thi. Đây chính là tình huống trong ví dụ số ở trên.
 
 Với trường hợp tổng quát, có thể dùng **phương pháp hai pha** (two-phase method). Trong phương pháp hai pha, cần chạy phương pháp đơn hình hai lần. Pha thứ nhất giải một bài toán quy hoạch tuyến tính khả thi để tìm một nghiệm cơ bản khả thi của bài toán gốc. Pha thứ hai bắt đầu từ nghiệm cơ bản khả thi này và áp dụng phương pháp đơn hình để giải bài toán gốc.
 
@@ -622,7 +622,7 @@ Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán 
 
     Nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (không nhất thiết khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
 
-Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, rất dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
+Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
 
 <span id="cài-đặt-tham-khảo"></span>
 ## Cài đặt tham khảo

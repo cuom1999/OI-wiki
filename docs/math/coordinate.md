@@ -41,7 +41,7 @@ $$
 
 Xét một góc. Nếu tiếp tục quay cạnh cuối thêm một vòng, thậm chí nhiều vòng, trong khi vị trí cạnh đầu giữ nguyên, thì vị trí cạnh cuối vẫn luôn như cũ; các góc này được gọi là các góc có cùng vị trí cạnh cuối.
 
-Tập hợp các góc có cùng vị trí cạnh cuối với góc $\alpha$ rất dễ xác định, là $\{\varphi \mid \varphi = \alpha + 2k\pi, k \in \mathbf{Z}\}$.
+Tập hợp các góc có cùng vị trí cạnh cuối với góc $\alpha$ có thể xác định trực tiếp là $\{\varphi \mid \varphi = \alpha + 2k\pi, k \in \mathbf{Z}\}$.
 
 Có thể hiểu là: liên tục quay thêm tròn một vòng cho cạnh của góc thì vị trí cạnh cuối không đổi.
 

@@ -353,7 +353,7 @@ Với trò chơi này, có kết luận sau:
     Biểu diễn số đá của mỗi đống dưới dạng nhị phân. Với mỗi vị trí bit $d$, đếm có bao nhiêu đống mà bit thứ $d$ của số đá bằng $1$, rồi lấy số đếm này modulo $(k+1)$. Nếu với mọi vị trí bit, số dư này đều bằng $0$, thì người đi trước tất bại; nếu không, người đi trước tất thắng.
 
 ??? note "Chứng minh"
-    Có thể chứng minh kết luận này rất dễ bằng cách mô phỏng chứng minh cho Nim. Gọi $d$ là vị trí bit nhị phân cao nhất có số dư khác $0$, và số dư tương ứng là $k'\le k$. Khi đó chiến lược thắng là chọn $k'$ đống trong số các đống có bit thứ $d$ của số đá bằng $1$, rồi chọn số đá cần lấy sao cho trong cục diện của đối thủ, số dư ở mỗi vị trí bit đều bằng $0$. Điều duy nhất cần giải thích là việc chọn số đá cuối cùng luôn khả thi.
+    Có thể chứng minh kết luận này bằng cách mô phỏng chứng minh cho Nim. Gọi $d$ là vị trí bit nhị phân cao nhất có số dư khác $0$, và số dư tương ứng là $k'\le k$. Khi đó chiến lược thắng là chọn $k'$ đống trong số các đống có bit thứ $d$ của số đá bằng $1$, rồi chọn số đá cần lấy sao cho trong cục diện của đối thủ, số dư ở mỗi vị trí bit đều bằng $0$. Điều duy nhất cần giải thích là việc chọn số đá cuối cùng luôn khả thi.
     
     Thật vậy, chỉ cần chọn $k'$ đống đá và ở mỗi đống lấy đi $2^d$ viên là có thể làm số dư ở bit thứ $d$ trong kết quả trở thành $0$. Với số dư ở các bit thấp hơn, có thể phân bổ tùy ý các số dư này cho một đống nào đó.
 
@@ -614,7 +614,7 @@ Phần này thảo luận một số bài tập điển hình.
     
     Bằng quy nạp đơn giản, $g(i,j)$ là số lần ít nhất cần đồng thời chia $i$ và $j$ cho $2$ cho tới khi nhận được hai số chẵn. Nói cách khác, nó chính là số bit $1$ liên tiếp ở cuối trong phép OR bit của $i$ và $j$. Từ đó cũng có thể trực tiếp dùng `__builtin_ctz(~(i | j))` để tính giá trị này.
     
-    Trong loại bài này, sau khi quan sát từ bảng và nhận được biểu thức hàm SG, biểu thức đó thường rất dễ chứng minh bằng quy nạp; vì vậy điểm mấu chốt khi giải bài là thu được các kết luận này bằng một hình thức nào đó, chứ không phải suy diễn từ đầu. Ví dụ, sau khi biết kết luận, quan hệ truy hồi trong bài này có thể được chứng minh quy nạp như sau. Gọi $S_k$ là tập các giá trị SG của các cục diện có thể nhận được khi chia $k$ viên đá thành hai đống không rỗng. Khi đó $f(i,j) = \operatorname{mex}(S_i \cup S_j)$. Vì vậy $S_k$ có quan hệ truy hồi:
+    Trong loại bài này, sau khi quan sát từ bảng và nhận được biểu thức hàm SG, biểu thức đó thường dễ chứng minh bằng quy nạp; vì vậy điểm mấu chốt khi giải bài là thu được các kết luận này bằng một hình thức nào đó, chứ không phải suy diễn từ đầu. Ví dụ, sau khi biết kết luận, quan hệ truy hồi trong bài này có thể được chứng minh quy nạp như sau. Gọi $S_k$ là tập các giá trị SG của các cục diện có thể nhận được khi chia $k$ viên đá thành hai đống không rỗng. Khi đó $f(i,j) = \operatorname{mex}(S_i \cup S_j)$. Vì vậy $S_k$ có quan hệ truy hồi:
     
     $$
     S_k = \{\operatorname{mex}(S_i \cup S_j) : i + j = k,~i,j\in\mathbf N_+\}.
