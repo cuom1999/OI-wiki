@@ -144,7 +144,7 @@ tính lười cho phép một cài đặt đơn giản hơn.
 1.  Ralf Hinze and Ross Paterson, "[Finger trees: a simple general-purpose data
     structure](http://www.staff.city.ac.uk/~ross/papers/FingerTree.html)", Journal of Functional Programming 16:2
     (2006) pp 197-217.
-2.  [Finger Tree - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
+2.  [Cây ngón tay - Wikipedia](https://en.wikipedia.org/wiki/Finger_tree)
 
 [^okasaki1999purely]: [Purely Functional Data Structures](https://doi.org/10.1017/CBO9780511530104),
     Chris Okasaki (1999)

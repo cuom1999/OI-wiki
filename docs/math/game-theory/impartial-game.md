@@ -713,7 +713,7 @@ Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. V�
 -   [[Trò chơi tổ hợp và lý thuyết trò chơi] Ghi chú học tập bởi Candy? - Blog Garden](https://www.cnblogs.com/candy99/p/6548836.html)
 -   [Nim - Wikipedia](https://en.wikipedia.org/wiki/Nim)
 -   [Định lý Sprague-Grundy - Wikipedia](https://en.wikipedia.org/wiki/Sprague%E2%80%93Grundy_theorem)
--   [Nimber - Wikipedia](https://en.wikipedia.org/wiki/Nimber)
+-   [Số Nim - Wikipedia](https://en.wikipedia.org/wiki/Nimber)
 -   [Dãy Beatty - Wikipedia](https://en.wikipedia.org/wiki/Beatty_sequence)
 -   [Trò chơi trên đồ thị tùy ý - CP Algorithms](https://cp-algorithms.com/game_theory/games_on_graphs.html)
 -   [Ghi chú học thuật toán (74): Trò chơi trên đồ thị hai phía bởi Pecco - Zhihu](https://zhuanlan.zhihu.com/p/359334008)
