@@ -4,7 +4,7 @@ Trang này chủ yếu liệt kê một số tài nguyên liên quan đến lậ
 
 ## Nền tảng chấm trực tuyến
 
-Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết tắt: OJ) thường được dùng để luyện giải bài, tham gia và tổ chức cuộc thi, cũng như trao đổi và chia sẻ giữa người dùng.
+Nền tảng chấm trực tuyến (viết tắt: OJ) thường được dùng để luyện giải bài, tham gia và tổ chức cuộc thi, cũng như trao đổi và chia sẻ giữa người dùng.
 
 ### Việt Nam
 
@@ -23,13 +23,13 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [Luogu](https://www.luogu.com.cn/): bắt đầu từ năm 2013, có cộng đồng rất lớn, tập hợp khá đầy đủ đề thật và bài luyện thuộc nhiều loại OI. Có cung cấp dịch vụ giáo dục trả phí.
 -   [Nowcoder](https://www.nowcoder.com/): bắt đầu từ năm 2014, cung cấp các dịch vụ như ôn luyện tuyển dụng kỹ thuật, giao lưu cộng đồng và tuyển dụng doanh nghiệp.
 -   [OpenJudge](http://openjudge.cn/): bắt đầu từ năm 2005, là nền tảng chấm theo nhóm do đội POJ phát triển.
--   [POJ](http://poj.org/): hệ thống chấm trực tuyến của Peking University, bắt đầu từ năm 2003, là một trong những OJ lâu đời nhất ở Trung Quốc. Có nhiều bài tiếng Anh, gồm cả bài nền tảng lẫn các bài hay đáng thử. Có thể nộp bài POJ trong kho bài [Bailian](http://bailian.openjudge.cn/practice/).
--   [PTA (Pintia)](https://pintia.cn/): bắt đầu từ năm 2016, là sản phẩm của Hangzhou Baiteng Education Technology Co., Ltd. tách ra từ Zhejiang University.
+-   [POJ](http://poj.org/): hệ thống chấm trực tuyến của Đại học Bắc Kinh, bắt đầu từ năm 2003, là một trong những OJ lâu đời nhất ở Trung Quốc. Có nhiều bài tiếng Anh, gồm cả bài nền tảng lẫn các bài hay đáng thử. Có thể nộp bài POJ trong kho bài [Bailian](http://bailian.openjudge.cn/practice/).
+-   [PTA (Pintia)](https://pintia.cn/): bắt đầu từ năm 2016, là sản phẩm của Công ty TNHH Công nghệ Giáo dục Baiteng Hàng Châu, tách ra từ Đại học Chiết Giang.
 -   [QOJ](https://qoj.ac/): thu thập nhiều bài từ các kỳ thi OI và ICPC trong và ngoài Trung Quốc, có giá trị luyện tập.
 -   [Universal Online Judge](https://uoj.ac/): bắt đầu từ năm 2014, Universal mang nghĩa thông dụng, [dự án mã nguồn mở](https://github.com/UniversalOJ/UOJ-System); OJ của [VFK](https://github.com/vfleaking): có nhiều bài thi nguyên bản và bài CCF/THU, độ khó cao.
 -   [Vijos](https://vijos.org/): bắt đầu từ năm 2005. Các dự án như [máy chủ](https://github.com/vijos/vj4) và [máy chấm](https://github.com/vijos/jd4) đều là mã nguồn mở.
--   [WZOI](https://wzoi.cn): bắt đầu từ năm 2017, là hệ thống chấm [mã nguồn mở](https://github.com/massimodong/wzoj) do Wenzhou High School, Zhejiang duy trì.
--   [ZOJ](https://zoj.pintia.cn/home): hệ thống chấm trực tuyến của Zhejiang University, bắt đầu từ năm 2001.
+-   [WZOI](https://wzoi.cn): bắt đầu từ năm 2017, là hệ thống chấm [mã nguồn mở](https://github.com/massimodong/wzoj) do Trường THPT Ôn Châu, Chiết Giang duy trì.
+-   [ZOJ](https://zoj.pintia.cn/home): hệ thống chấm trực tuyến của Đại học Chiết Giang, bắt đầu từ năm 2001.
 
 ### Quốc tế
 
@@ -37,14 +37,14 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [AtCoder](https://atcoder.jp/): OJ của Nhật Bản; bản tiếng Nhật có các cuộc thi của các trường đại học Nhật, còn bản tiếng Anh không hiển thị. Bài thú vị và chất lượng cao.
 -   [CodeChef](https://codechef.com/): OJ của Ấn Độ, tổ chức thi định kỳ. Hệ thống dựa trên Sphere Engine của SPOJ.
 -   [Codeforces](https://codeforces.com/): OJ của Nga, bắt đầu từ năm 2010, người sáng lập là [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/). Có nhiều chuỗi cuộc thi, hỗ trợ cá nhân ra đề và đăng ký tổ chức thi. Chất lượng bài cao.
--   [CSES](https://cses.fi/problemset/) (Code Submission Evaluation System), kho bài được chia theo chuyên đề, [mục tiêu](https://cses.fi/problemset/text/2433) là trở thành một kho bài tổng hợp chất lượng cao, chủ yếu do Antti Laaksonen, tác giả của [Sổ tay lập trình viên thi đấu](https://cses.fi/book/book.pdf), phát triển; bắt đầu từ năm 2013.
+-   [CSES](https://cses.fi/problemset/) (hệ thống đánh giá bài nộp mã nguồn), kho bài được chia theo chuyên đề, [mục tiêu](https://cses.fi/problemset/text/2433) là trở thành một kho bài tổng hợp chất lượng cao, chủ yếu do Antti Laaksonen, tác giả của [Sổ tay lập trình viên thi đấu](https://cses.fi/book/book.pdf), phát triển; bắt đầu từ năm 2013.
 -   [CS Academy](https://csacademy.com/)
 -   [DMOJ](https://dmoj.ca/) là OJ mã nguồn mở của Canada, hỗ trợ nhiều ngôn ngữ; kho bài lưu trữ đề của nhiều cuộc thi lớn và cũng có các cuộc thi tự tổ chức định kỳ.
 -   [HackerRank](https://www.hackerrank.com/) có nhiều cuộc thi.
 -   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức `trivial`/`easy`/`medium`/`hard` phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng Elo](https://en.wikipedia.org/wiki/Elo_rating_system).
 -   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode Trung Quốc](https://leetcode.cn).
 -   [Light OJ](https://lightoj.com)
--   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Open Cup qua các năm và bài từ trại huấn luyện Petrozavodsk.
+-   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Cúp mở rộng Nga, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Cúp mở rộng qua các năm và bài từ trại huấn luyện Petrozavodsk.
 -   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
 -   [TopCoder](https://www.topcoder.com/) bắt đầu từ năm 2001; [cộng đồng lập trình thi đấu](https://www.topcoder.com/community/competitive-programming/) của nền tảng này có nhiều cuộc thi; hiện mảng kinh doanh chính là crowdsourcing kỹ thuật.
 -   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Đại học Liên bang Ural phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Đại học Liên bang Ural, Giải vô địch Ural, vòng khu vực ICPC Ural và trại huấn luyện Petrozavodsk.
@@ -58,15 +58,15 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [VNOI Wiki](https://wiki.vnoi.info/): tài liệu thuật toán tiếng Việt, có VNOI Roadmap cho nhiều mức độ học.
 -   [Một bộ sưu tập hướng dẫn do người dùng Codeforces tổng hợp](https://codeforces.com/blog/entry/125623)
 -   [E-Maxx Algorithms bản tiếng Anh](https://cp-algorithms.com/)
--   [Algorithm Notes](https://web.ntnu.edu.tw/~algo/): tài liệu hướng dẫn do National Taiwan Normal University tổng hợp
--   [How to prepare for ACM-ICPC? - geeksforgeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
--   [Tutorials do Topcoder tổng hợp](https://www.topcoder.com/community/competitive-programming/tutorials/)
--   [Coding Interview University](https://github.com/jwasham/coding-interview-university)
+-   [Ghi chú thuật toán](https://web.ntnu.edu.tw/~algo/): tài liệu hướng dẫn do Đại học Sư phạm Quốc gia Đài Loan tổng hợp
+-   [Chuẩn bị cho ACM-ICPC như thế nào? - GeeksforGeeks](https://www.geeksforgeeks.org/how-to-prepare-for-acm-icpc/)
+-   [Các bài hướng dẫn do Topcoder tổng hợp](https://www.topcoder.com/community/competitive-programming/tutorials/)
+-   [Đại học phỏng vấn lập trình](https://github.com/jwasham/coding-interview-university)
 -   [Slide bài giảng do hzwer thu thập và tổng hợp từ Internet](https://github.com/hzwer/shareOI)
 -   [Slide bài giảng của Trinkle23897](https://github.com/Trinkle23897/oi_slides)
 -   [Slide bài giảng của huzecong](https://github.com/huzecong/oi-slides)
--   [Open Data Structure](https://opendatastructures.org/): chứa nhiều bài giảng về cấu trúc dữ liệu
--   [IOI Syllabus (2020)](https://ioinformatics.org/files/ioi-syllabus-2020.pdf)
+-   [Cấu trúc dữ liệu mở](https://opendatastructures.org/): chứa nhiều bài giảng về cấu trúc dữ liệu
+-   [Đề cương IOI (2020)](https://ioinformatics.org/files/ioi-syllabus-2020.pdf)
 
 ## Sách
 
@@ -184,8 +184,8 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 -   [Danh sách bài Luogu](https://www.luogu.com.cn/training/list)
 -   [Danh sách bài của -Morass- đăng trên Codeforces](https://codeforces.com/blog/entry/55274)
 -   Các bài viết thuật toán chất lượng cao từ cộng đồng Codeforces: [phần một](https://codeforces.com/blog/entry/57282)  [phần hai](https://codeforces.com/blog/entry/13529)
--   [Bài ví dụ trong slide khóa hè ICPC của Peking University](https://vjudge.net/article/446)
--   [Slide khóa hè ICPC của Peking University](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
+-   [Bài ví dụ trong slide khóa hè ICPC của Đại học Bắc Kinh](https://vjudge.net/article/446)
+-   [Slide khóa hè ICPC của Đại học Bắc Kinh](https://lib-pku.github.io/#acm-icpc%E6%9A%91%E6%9C%9F%E8%AF%BE)
 -   [GitHub.com:OI-wiki/libs](https://github.com/OI-wiki/libs)
 -   [Huấn luyện nhiều trường](http://acm.hdu.edu.cn) từ khóa: `Multi-University Training Contest`
 -   [Vjudge](https://vjudge.net/)
