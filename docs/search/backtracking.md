@@ -19,7 +19,7 @@ Bản chất của nó là: đi không được thì quay lại.
 
 ## Ví dụ
 
-???+ example "[USACO 1.5.4 Checker Challenge](https://www.luogu.com.cn/problem/P1219)"
+???+ example "[USACO 1.5.4 Thử thách đặt hậu](https://www.luogu.com.cn/problem/P1219)"
     Có một bàn cờ dạng $6 \times 6$ như sau. Sáu quân cờ được đặt trên bàn sao
     cho mỗi hàng, mỗi cột, mỗi đường chéo (bao gồm mọi đường chéo thuộc hai họ
     đường chéo chính) có nhiều nhất một quân cờ.

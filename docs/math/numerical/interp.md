@@ -114,7 +114,7 @@ $$
 
 Tiền xử lý tích tiền tố và hậu tố của $(x-i)$, giai thừa và nghịch đảo giai thừa, rồi thay vào công thức này; độ phức tạp là $O(n)$.
 
-???+ note "Bài ví dụ [CF622F The Sum of the k-th Powers](https://codeforces.com/contest/622/problem/F)"
+???+ note "Bài ví dụ [CF622F Tổng các lũy thừa bậc k](https://codeforces.com/contest/622/problem/F)"
     Cho $n,k$, cần tính giá trị của $\sum\limits_{i=1}^ni^k$ modulo $10^9+7$.
     
     ??? note "Lời giải"

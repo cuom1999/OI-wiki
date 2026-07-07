@@ -628,7 +628,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
 
 Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm đếm số ước của một tích.
 
-???+ example "[LOJ 2185. \[SDOI2015\] Sum of Divisor Counts](https://loj.ac/problem/2185)"
+???+ example "[LOJ 2185. \[SDOI2015\] Tổng số lượng ước](https://loj.ac/problem/2185)"
     Có $T$ bộ dữ liệu. Với mỗi bộ dữ liệu, tính:
     
     $$

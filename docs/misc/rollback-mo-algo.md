@@ -6,7 +6,7 @@ Trong một số bài toán, khi chuyển trạng thái giữa các đoạn, tha
 
 Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao tác thêm và loại chỉ dùng thao tác xóa. Phần dưới chỉ giới thiệu Mo có khôi phục trạng thái chỉ dùng thao tác thêm; loại chỉ dùng thao tác xóa chỉ khác đôi chút trong hiện thực thuật toán, nên không trình bày thêm.
 
-## Ví dụ [JOISC 2014 Day1 Historical Research](https://loj.ac/problem/2874)
+## Ví dụ [JOISC 2014 Day1 Nghiên cứu lịch sử](https://loj.ac/problem/2874)
 
 Cho một mảng $A$ độ dài $n$ và $m$ truy vấn $(1 \leq n, m \leq 10^5)$. Mỗi truy vấn hỏi số có độ quan trọng lớn nhất trong đoạn $[L, R]$, và yêu cầu **in ra độ quan trọng đó**. Độ quan trọng của một số $i$ được định nghĩa là $i$ nhân với số lần $i$ xuất hiện trong đoạn.
 

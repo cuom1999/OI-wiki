@@ -316,7 +316,7 @@ Với mỗi giá trị $i$, ký hiệu $x_i$ là vị trí của nó trong hoán
 
 ## Ví dụ 2
 
-???+ note "[Complicated Computations](https://codeforces.com/contest/1436/problem/E)"
+???+ note "[Tính toán phức tạp](https://codeforces.com/contest/1436/problem/E)"
     Cho một dãy $a$.
     Lấy tất cả MEX của mọi dãy con liên tiếp của $a$ để tạo thành mảng $b$,
     hỏi MEX của $b$.

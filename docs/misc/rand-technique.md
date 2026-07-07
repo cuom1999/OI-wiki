@@ -119,7 +119,7 @@ Phân tích xác suất đúng:
 
 Tổng hợp lại, độ phức tạp của thuật toán là $O\big(|S|\cdot -\dfrac n{|S|}\log\epsilon\big)=O(-n\log\epsilon)$.
 
-### Ví dụ: [CSES 1685 New Flight Routes](https://cses.fi/problemset/task/1685)
+### Ví dụ: [CSES 1685 Các đường bay mới](https://cses.fi/problemset/task/1685)
 
 ???+ note "Tóm tắt đề bài"
     Cho một đồ thị có hướng. Cần thêm ít cạnh nhất để đồ thị liên thông mạnh, và phải **in ra phương án**.
@@ -277,7 +277,7 @@ $$
     -   Tổng theo môđun của một số biến ngẫu nhiên độc lập và đều trên $R$ vẫn tuân theo phân bố đều trên $R$. Có thể chứng minh trực tiếp.
     -   Do đó tỉ lệ sai trong trường hợp này cũng là $P^{-1}$.
 
-### Ví dụ: [UOJ #552 Isomorphism Checking Duck](https://uoj.ac/problem/552) và phân tích tỉ lệ sai
+### Ví dụ: [UOJ #552 Vịt kiểm tra đẳng cấu](https://uoj.ac/problem/552) và phân tích tỉ lệ sai
 
 ???+ note "Tóm tắt đề bài"
     Cho hai đồ thị có hướng $G_0,G_1$ có trọng số cạnh là các chữ cái thường. Với mỗi đồ thị, cần xét "đa tập các xâu tương ứng với tất cả đường đi" (có thể là tập vô hạn), rồi xác định hai đa tập này có bằng nhau hay không. Nếu không bằng nhau, cần đưa ra một xâu ngắn nhất sao cho số lần xuất hiện của nó trong hai đa tập là khác nhau.
@@ -382,7 +382,7 @@ Những vai trò khác của ngẫu nhiên hóa còn bao gồm:
 
 Trong các bối cảnh này, ngẫu nhiên hóa thường, nhưng không phải lúc nào cũng, gắn với các cách làm thử nghiệm hoặc lấy điểm một phần.
 
-### Ví dụ: ["TJOI2015" Linear Algebra](https://loj.ac/problem/2100)
+### Ví dụ: ["TJOI2015" Đại số tuyến tính](https://loj.ac/problem/2100)
 
 Thuật toán chuẩn của bài này là luồng mạng, nhưng phần này dùng cách làm thử nghiệm sau:
 
