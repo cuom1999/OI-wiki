@@ -680,7 +680,7 @@ khác nhau.
 
                 Tóm tắt: khi tỉ lệ phần được truy cập tăng lên, bộ nhớ vật lý
                 dần tiến gần bộ nhớ ảo, giả sử không có page reclaim.
--   Chèn quá nhiều phần tử vào container STL.
+-   Chèn quá nhiều phần tử vào bộ chứa STL.
 
     -   Thường là vì vòng lặp chèn vào STL bị lặp vô hạn.
 

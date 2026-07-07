@@ -127,7 +127,7 @@ Nếu muốn gọi hàm thành viên `print` của `var`, có thể dùng `var.p
 
 ??? note "Nạp chồng là gì?"
     C++ cho phép người viết cung cấp nhiều định nghĩa cho hàm hoặc toán tử cùng
-    tên. Điều này được gọi là **nạp chồng** (overload).
+    tên. Điều này được gọi là **nạp chồng**.
 
     Nếu các hàm cùng tên khác nhau ở kiểu tham số hoặc số lượng tham số, chúng
     được xem là những hàm khác nhau.

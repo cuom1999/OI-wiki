@@ -48,7 +48,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
         st[++*st] = var1;
         // Đọc đỉnh ngăn xếp:
         int u = st[*st];
-        // Lấy khỏi ngăn xếp: lưu ý không thể pop khi *st == 0.
+        // Lấy khỏi ngăn xếp: lưu ý không thể lấy ra khi *st == 0.
         if (*st) --*st;
         // Xóa rỗng ngăn xếp:
         *st = 0;
@@ -65,7 +65,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
         st[0] = st[0] + 1
         # Đọc đỉnh ngăn xếp:
         u = st[st[0]]
-        # Lấy khỏi ngăn xếp: lưu ý không thể pop khi st[0] == 0.
+        # Lấy khỏi ngăn xếp: lưu ý không thể lấy ra khi st[0] == 0.
         if st[0]:
             st[0] = st[0] - 1
         # Xóa rỗng ngăn xếp:

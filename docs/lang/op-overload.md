@@ -2,8 +2,8 @@ Nạp chồng toán tử là việc định nghĩa cách một toán tử hoạt
 liệu cụ thể. Đây là một trường hợp đặc biệt của nạp chồng hàm.
 
 Khi một toán tử xuất hiện trong biểu thức và ít nhất một toán hạng của nó có kiểu
-lớp hoặc kiểu liệt kê, C++ sẽ dùng cơ chế phân giải nạp chồng (overload
-resolution) để quyết định hàm `operator` nào cần được gọi.[^ref1]
+lớp hoặc kiểu liệt kê, C++ sẽ dùng cơ chế phân giải nạp chồng để quyết định hàm
+`operator` nào cần được gọi.[^ref1]
 
 Nói ngắn gọn, dùng "toán tử" cũng giống như gọi một hàm đặc biệt. Ví dụ, có thể
 hình dung `1 + 2` như lời gọi `add(1, 2)`. Khi ít nhất một toán hạng có kiểu

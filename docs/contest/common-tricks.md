@@ -21,7 +21,7 @@ for (int i = 0; i < N; i++) {
 #define f(x, y, z) for (int x = (y), __ = (z); x < __; ++x)
 
 // Khi viết vòng lặp như vậy, có thể rút gọn thành `f(i, 0, N)`. Ví dụ:
-// a là một STL container
+// a là một bộ chứa STL
 f(i, 0, a.size()) { ... }
 ```
 
