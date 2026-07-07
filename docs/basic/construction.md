@@ -35,7 +35,7 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
 ### Bài ví dụ 1
 
-???+ note "[Codeforces Round #384 (Div. 2) C. Vladik and fractions](http://codeforces.com/problemset/problem/743/C)"
+???+ note "[Codeforces Round #384 (Div. 2) C. Vladik và các phân số](http://codeforces.com/problemset/problem/743/C)"
     Với $n$ cho trước, hãy xây dựng một bộ $x,y,z$ sao cho đẳng thức sau đúng:
     $\dfrac{1}{x}+\dfrac{1}{y}+\dfrac{1}{z}=\dfrac{2}{n}$.
 
@@ -50,7 +50,7 @@ bài xây dựng thú vị khác cũng rất đáng được chia sẻ thêm.
 
 ### Bài ví dụ 2
 
-???+ note "[Luogu P3599 Koishi Loves Construction](https://www.luogu.com.cn/problem/P3599)"
+???+ note "[Luogu P3599 Koishi yêu xây dựng](https://www.luogu.com.cn/problem/P3599)"
     Nhiệm vụ 1: Xét xem có thể xây dựng một hoán vị độ dài $n$ của $1\dots n$
     sao cho $n$ tổng tiền tố của nó đôi một khác nhau theo môđun $n$ hay không; nếu
     có thì hãy xây dựng.

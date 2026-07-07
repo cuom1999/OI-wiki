@@ -99,7 +99,7 @@ using namespace __gnu_cxx;
 
 ## Bài mẫu
 
-[POJ2887 Big String](http://poj.org/problem?id=2887)
+[POJ2887 Xâu lớn](http://poj.org/problem?id=2887)
 
 Lời giải:
 Đây là một bài mẫu đơn giản. Mã như sau:

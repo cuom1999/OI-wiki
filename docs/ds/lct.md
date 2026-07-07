@@ -396,7 +396,7 @@ Tóm lại, độ phức tạp của thao tác `Access` trong LCT là tổng đ�
 
 Thông qua thao tác `Split(x,y)`, LCT có thể trích xuất đường đi từ điểm $x$ tới điểm $y$ trên cây vào Splay có gốc $y$. Việc sửa và thống kê thông tin chuỗi cây được chuyển thành thao tác trên cây cân bằng, giúp LCT có ưu thế khi duy trì thông tin chuỗi cây. Ngoài ra, nhị phân trên chuỗi cây bằng LCT ít hơn một hệ số $O(\log n)$ so với phân rã cây theo chuỗi.
 
-???+ note "Ví dụ [Đội tuyển quốc gia - Tree II](https://www.luogu.com.cn/problem/P1501)"
+???+ note "Ví dụ [Đội tuyển quốc gia - Cây II](https://www.luogu.com.cn/problem/P1501)"
     Cho một cây có $n$ nút, trọng số ban đầu của mỗi điểm là $1$. Có $q$ thao tác, mỗi thao tác thuộc một trong bốn loại sau:
     
     1.  `- u1 v1 u2 v2`: xóa cạnh giữa hai điểm $u_1,v_1$ trên cây, rồi nối hai điểm $u_2,v_2$; bảo đảm thao tác hợp lệ và sau khi nối cạnh vẫn là một cây.
@@ -576,7 +576,7 @@ Khi đẩy đánh dấu xuống, thứ tự cần là: đẩy đánh dấu nhân
 
 ### Bài tập
 
--   [luogu P3690 - Mẫu Link Cut Tree (cây động)](https://www.luogu.com.cn/problem/P3690)
+-   [Luogu P3690 - Mẫu Link Cut Tree (cây động)](https://www.luogu.com.cn/problem/P3690)
 -   [SDOI2011 - Tô màu](https://www.luogu.com.cn/problem/P2486)
 -   [SHOI2014 - Cây thần kinh tam thoa](https://loj.ac/problem/2187)
 

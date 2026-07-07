@@ -832,7 +832,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
 -   [Luogu P6222 Bài toán đơn giản, bản tăng cường](https://www.luogu.com.cn/problem/P6222)
 -   [Luogu P6825 \[EZEC-4\] Tổng](https://www.luogu.com.cn/problem/P6825)
 -   [Luogu P7486 \[Stoi2031\] Cầu vồng](https://www.luogu.com.cn/problem/P7486)
--   [AtCoder Grand Contest 038 C - LCM](https://atcoder.jp/contests/agc038/tasks/agc038_c)
+-   [AtCoder Grand Contest 038 C - Bội chung nhỏ nhất](https://atcoder.jp/contests/agc038/tasks/agc038_c)
 -   [Codeforces 1139 D. Các bước về một](https://codeforces.com/problemset/problem/1139/D)
 
 <span id="tài-liệu-tham-khảo"></span>

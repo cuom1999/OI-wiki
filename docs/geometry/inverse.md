@@ -66,7 +66,7 @@ Hình dưới đây minh họa phép nghịch đảo của một điểm $P$ tr�
 
 ## Ví dụ
 
-### [ICPC 2013 Hangzhou Regional - Problem of Apollonius](https://acm.hdu.edu.cn/showproblem.php?pid=4773)
+### [ICPC 2013 Hangzhou Regional - Bài toán Apollonius](https://acm.hdu.edu.cn/showproblem.php?pid=4773)
 
 #### Tóm tắt đề bài
 

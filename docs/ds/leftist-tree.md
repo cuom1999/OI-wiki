@@ -307,7 +307,7 @@ Vì vậy, các thao tác lần lượt như sau:
 
 <span id="boi2004-sequence-dãy-số"></span>
 
-### [BOI2004 Sequence Dãy số](https://www.luogu.com.cn/problem/P4331)
+### [BOI2004 Dãy số](https://www.luogu.com.cn/problem/P4331)
 
 Đây là một bài được trình bày trong luận văn; xem chi tiết tại
 [Huang Yuanhe - Đặc điểm và ứng dụng của cây lệch trái][huang-leftist-tree].
