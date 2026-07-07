@@ -146,9 +146,9 @@ chứng minh dùng định lý phân tích duy nhất thường dễ hiểu hơn
     Nếu $(a_1,\ldots,a_k)=1$, thì $a_1,\ldots,a_k$ được gọi là **nguyên tố
     cùng nhau** (**tối giản**).
 
-Nhiều số nguyên nguyên tố cùng nhau không nhất thiết phải nguyên tố cùng nhau
-từng đôi. Ví dụ $6$, $10$ và $15$ nguyên tố cùng nhau, nhưng bất kỳ hai số nào
-trong đó cũng không nguyên tố cùng nhau.
+Nhiều số nguyên có thể nguyên tố cùng nhau nhưng không nguyên tố cùng nhau từng
+đôi. Ví dụ $6$, $10$ và $15$ nguyên tố cùng nhau, nhưng bất kỳ hai số nào trong
+đó cũng không nguyên tố cùng nhau.
 
 Tính chất của nguyên tố cùng nhau và lý thuyết ước chung lớn nhất: định lý
 Bézout (Bézout's identity). Xem [Định lý Bézout](./bezouts.md).
@@ -232,25 +232,25 @@ Mệnh đề đảo của bổ đề cơ bản của số học, sau khi điều
 ## Đồng dư
 
 ???+ note "Định nghĩa"
-    Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, gọi $m$ là **modun**
-    (**modulo**), nói $a$ đồng dư với $b$ theo modulo $m$, và $b$ là **thặng
-    dư** của $a$ theo modulo $m$. Ký hiệu $a\equiv b\pmod m$.
+    Cho số nguyên $m\ne0$. Nếu $m\mid(a-b)$, gọi $m$ là **môđun**
+    (**modulo**), nói $a$ đồng dư với $b$ theo môđun $m$, và $b$ là **thặng dư**
+    của $a$ theo môđun $m$. Ký hiệu $a\equiv b\pmod m$.
     
-    Ngược lại, $a$ không đồng dư với $b$ theo modulo $m$, và $b$ không phải
-    thặng dư của $a$ theo modulo $m$. Ký hiệu $a\not\equiv b\pmod m$.
+    Ngược lại, $a$ không đồng dư với $b$ theo môđun $m$, và $b$ không phải thặng
+    dư của $a$ theo môđun $m$. Ký hiệu $a\not\equiv b\pmod m$.
     
-    Một đẳng thức như vậy được gọi là đồng dư thức modulo $m$, gọi tắt là
+    Một đẳng thức như vậy được gọi là đồng dư thức theo môđun $m$, gọi tắt là
     **đồng dư thức**.
 
 Theo tính chất chia hết, đồng dư thức trên cũng tương đương với
 $a\equiv b\pmod{(-m)}$.
 
-Trong phần sau, nếu không nói rõ, modun luôn là **số nguyên dương**.
+Trong phần sau, nếu không nói rõ, môđun luôn là **số nguyên dương**.
 
-$b$ trong biểu thức là thặng dư của $a$ theo modulo $m$; khái niệm này hoàn
+$b$ trong biểu thức là thặng dư của $a$ theo môđun $m$; khái niệm này hoàn
 toàn trùng với số dư. Bằng cách giới hạn phạm vi của $b$, có thặng dư không
 âm nhỏ nhất, thặng dư có trị tuyệt đối nhỏ nhất, và thặng dư dương nhỏ nhất của
-$a$ theo modulo $m$.
+$a$ theo môđun $m$.
 
 Tính chất của đồng dư:
 
@@ -297,9 +297,9 @@ sau:
 ???+ note "Lớp đồng dư"
     Với số nguyên khác không $m$, chia tất cả các số nguyên thành $|m|$ tập hợp
     đôi một không giao nhau, sao cho hai số bất kỳ trong cùng một tập hợp đều
-    đồng dư theo modulo $m$. Mỗi tập hợp trong $|m|$ tập hợp đó được gọi là
-    **lớp đồng dư** hoặc **lớp thặng dư** modulo $m$. Dùng $r\bmod m$ để chỉ lớp
-    đồng dư modulo $m$ chứa số nguyên $r$.
+    đồng dư theo môđun $m$. Mỗi tập hợp trong $|m|$ tập hợp đó được gọi là
+    **lớp đồng dư** hoặc **lớp thặng dư** theo môđun $m$. Dùng $r\bmod m$ để chỉ
+    lớp đồng dư theo môđun $m$ chứa số nguyên $r$.
 
     Có thể chứng minh trực tiếp với mọi số nguyên khác không $m$, cách phân hoạch
     trên luôn tồn tại và duy nhất.
@@ -316,7 +316,7 @@ Từ định nghĩa lớp đồng dư, có:
 Vì đồng dư là quan hệ tương đương, lớp đồng dư chính là lớp tương đương của quan
 hệ đồng dư.
 
-Ký hiệu tập hợp tất cả các lớp đồng dư modulo $m$ là $\mathbf{Z}_m$, tức là
+Ký hiệu tập hợp tất cả các lớp đồng dư theo môđun $m$ là $\mathbf{Z}_m$, tức là
 
 $$
 \mathbf{Z}_m:=\{r\bmod m:0\leq r<m\}
@@ -334,18 +334,18 @@ $\mathbf{Z}/m\mathbf{Z}$ để biểu diễn $\mathbf{Z}_m$.
 
 Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
--   Trong $m+1$ số nguyên bất kỳ, tồn tại hai số đồng dư theo modulo $m$.
--   Tồn tại $m$ số nguyên đôi một không đồng dư theo modulo $m$.
+-   Trong $m+1$ số nguyên bất kỳ, tồn tại hai số đồng dư theo môđun $m$.
+-   Tồn tại $m$ số nguyên đôi một không đồng dư theo môđun $m$.
 
 Từ đó đưa ra định nghĩa hệ thặng dư đầy đủ:
 
 ???+ note "Hệ thặng dư (đầy đủ)"
     Với $m$ số nguyên $a_1,a_2,\dots,a_m$, nếu với mọi số $x$ có đúng một số
-    $a_i$ sao cho $x$ đồng dư với $a_i$ theo modulo $m$, thì $m$ số nguyên
-    $a_1,a_2,\dots,a_m$ được gọi là **hệ thặng dư đầy đủ** modulo $m$, gọi tắt
+    $a_i$ sao cho $x$ đồng dư với $a_i$ theo môđun $m$, thì $m$ số nguyên
+    $a_1,a_2,\dots,a_m$ được gọi là **hệ thặng dư đầy đủ** theo môđun $m$, gọi tắt
     là **hệ thặng dư**.
 
-Còn có thể định nghĩa các hệ sau modulo $m$:
+Còn có thể định nghĩa các hệ sau theo môđun $m$:
 
 -   Hệ thặng dư không âm nhỏ nhất (đầy đủ): $0,\dots,m-1$;
 -   Hệ thặng dư dương nhỏ nhất (đầy đủ): $1,\dots,m$;
@@ -359,7 +359,8 @@ nhất.
 
 Mệnh đề sau là đúng:
 
--   Trong một lớp đồng dư bất kỳ modulo $m$, lấy tùy ý hai số nguyên $a_1,a_2$
+-   Trong một lớp đồng dư bất kỳ theo môđun $m$, lấy hai số nguyên bất kỳ
+    $a_1,a_2$
     đều có $(a_1,m)=(a_2,m)$.
 
 Xét lớp đồng dư $r\bmod m$. Nếu $(r,m)=1$, thì mọi phần tử của lớp đồng dư này
@@ -370,10 +371,10 @@ tìm cấu trúc của tập hợp các số nguyên nguyên tố cùng nhau v�
     Với lớp đồng dư $r\bmod m$, nếu $(r,m)=1$, thì lớp đồng dư này được gọi là
     **lớp đồng dư thu gọn** hoặc **lớp thặng dư thu gọn**.
 
-    Số lượng lớp thặng dư thu gọn modulo $m$ được ký hiệu là $\varphi(m)$ và
+    Số lượng lớp thặng dư thu gọn theo môđun $m$ được ký hiệu là $\varphi(m)$ và
     được gọi là [hàm Euler](./euler-totient.md).
 
-Ký hiệu tập hợp tất cả các lớp đồng dư thu gọn modulo $m$ là
+Ký hiệu tập hợp tất cả các lớp đồng dư thu gọn theo môđun $m$ là
 $\mathbf{Z}_m^*$, tức là
 
 $$
@@ -382,23 +383,23 @@ $$
 
 ???+ warning "Cảnh báo"
     Với số nguyên bất kỳ $a$ và số nguyên $b$ nguyên tố cùng nhau với $m$, có
-    $b\mathbf{Z}_m^*=\mathbf{Z}_m^*$, nhưng $a+\mathbf{Z}_m^*$ không nhất thiết
+    $b\mathbf{Z}_m^*=\mathbf{Z}_m^*$, nhưng $a+\mathbf{Z}_m^*$ có thể không
     bằng $\mathbf{Z}_m^*$. Điểm này khác với $\mathbf{Z}_m$.
 
 Theo [nguyên lý chuồng chim](../combinatorics/drawer-principle.md), có:
 
 -   Trong $\varphi(m)+1$ số nguyên bất kỳ nguyên tố cùng nhau với $m$, tồn tại
-    hai số đồng dư theo modulo $m$.
+    hai số đồng dư theo môđun $m$.
 -   Tồn tại $\varphi(m)$ số nguyên nguyên tố cùng nhau với $m$ và đôi một không
-    đồng dư theo modulo $m$.
+    đồng dư theo môđun $m$.
 
 Từ đó đưa ra định nghĩa hệ thặng dư thu gọn:
 
 ???+ note "Hệ thặng dư thu gọn"
     Với $t=\varphi(m)$ số nguyên $a_1,a_2,\dots,a_t$, nếu
     $(a_i,m)=1,~\forall 1\leq i\leq t$, và với mọi số $x$ thỏa mãn $(x,m)=1$ có
-    đúng một số $a_i$ sao cho $x$ đồng dư với $a_i$ theo modulo $m$, thì $t$ số
-    nguyên $a_1,a_2,\dots,a_t$ được gọi là **hệ thặng dư thu gọn** modulo $m$.
+    đúng một số $a_i$ sao cho $x$ đồng dư với $a_i$ theo môđun $m$, thì $t$ số
+    nguyên $a_1,a_2,\dots,a_t$ được gọi là **hệ thặng dư thu gọn** theo môđun $m$.
 
 Tương tự, cũng có thể định nghĩa hệ thặng dư thu gọn không âm nhỏ nhất và các
 khái niệm khác.
@@ -412,23 +413,23 @@ Nếu không có ghi chú đặc biệt, thông thường chỉ dùng hệ thặ
 Với số nguyên dương $m$, có định lý sau:
 
 -   Nếu $m=m_1m_2,~1\leq m_1,m_2$, gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ
-    thặng dư **đầy đủ** modulo $m_1,m_2$, thì với mọi $a$ nguyên tố cùng nhau
+    thặng dư **đầy đủ** theo môđun $m_1,m_2$, thì với mọi $a$ nguyên tố cùng nhau
     với $m_1$ có:
 
     $$
     Z_m=aZ_{m_1}+m_1Z_{m_2}.
     $$
 
-    Đây là một hệ thặng dư **đầy đủ** modulo $m$. Hơn nữa, nếu
+    Đây là một hệ thặng dư **đầy đủ** theo môđun $m$. Hơn nữa, nếu
     $m=\prod_{i=1}^k m_i,~1\leq m_1,m_2,\dots,m_k$, gọi
-    $Z_{m_1},\dots,Z_{m_k}$ lần lượt là các hệ thặng dư **đầy đủ** modulo
+    $Z_{m_1},\dots,Z_{m_k}$ lần lượt là các hệ thặng dư **đầy đủ** theo môđun
     $m_1,\dots,m_k$, thì:
 
     $$
     Z_m=\sum_{i=1}^k\left(\prod_{j=1}^{i-1}m_j\right)Z_{m_i}.
     $$
 
-    Đây là một hệ thặng dư **đầy đủ** modulo $m$.
+    Đây là một hệ thặng dư **đầy đủ** theo môđun $m$.
 
 ???+ note "Chứng minh"
     Chỉ cần chứng minh với mọi $x,x'\in Z_{m_1}$, $y,y'\in Z_{m_2}$ thỏa mãn
@@ -453,34 +454,36 @@ Với số nguyên dương $m$, có định lý sau:
     $$
 
 -   Nếu $m=m_1m_2,~1\leq m_1,m_2,(m_1,m_2)=1$, gọi
-    $Z_{m_1}^*,Z_{m_2}^*$ lần lượt là các hệ thặng dư **thu gọn** modulo
+    $Z_{m_1}^*,Z_{m_2}^*$ lần lượt là các hệ thặng dư **thu gọn** theo môđun
     $m_1,m_2$, thì:
 
     $$
     Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
     $$
 
-    Đây là một hệ thặng dư **thu gọn** modulo $m$.
+    Đây là một hệ thặng dư **thu gọn** theo môđun $m$.
 
 ???+ tip "Mẹo"
     Định lý này tương đương với việc chứng minh hàm Euler là
     [hàm nhân tính](#hàm-nhân-tính).
 
 ???+ note "Chứng minh"
-    Gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ thặng dư đầy đủ modulo $m_1,m_2$.
+    Gọi $Z_{m_1},Z_{m_2}$ lần lượt là các hệ thặng dư đầy đủ theo môđun
+    $m_1,m_2$.
     Đã chứng minh
     
     $$
     Z_m=m_2Z_{m_1}+m_1Z_{m_2}
     $$
     
-    là một hệ thặng dư đầy đủ modulo $m$. Đặt
+    là một hệ thặng dư đầy đủ theo môđun $m$. Đặt
     $M=\{a\in Z_m:(a,m)=1\}\subseteq Z_m$; $M$ là một hệ thặng dư thu
-    gọn modulo $m$, nên chỉ cần chứng minh $M=Z_m^*$.
+    gọn theo môđun $m$, nên chỉ cần chứng minh $M=Z_m^*$.
     
     Theo định nghĩa, $Z_m^*\subseteq Z_m$.
     
-    Lấy tùy ý $m_2x+m_1y\in M$, trong đó $x\in Z_{m_1}$ và $y\in Z_{m_2}$.
+    Lấy một phần tử bất kỳ $m_2x+m_1y\in M$, trong đó $x\in Z_{m_1}$ và
+    $y\in Z_{m_2}$.
     Có $(m_2x+m_1y,m_1m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
@@ -494,7 +497,7 @@ Với số nguyên dương $m$, có định lý sau:
     Do đó $x\in Z_{m_1}^*$ và $y\in Z_{m_2}^*$, tức là
     $M\subseteq Z_m^*$.
     
-    Lấy tùy ý $m_2x+m_1y\in Z_m^*$, trong đó $x\in Z_{m_1}^*$ và
+    Lấy một phần tử bất kỳ $m_2x+m_1y\in Z_m^*$, trong đó $x\in Z_{m_1}^*$ và
     $y\in Z_{m_2}^*$. Có $(x,m_1)=1$ và $(y,m_2)=1$. Từ $(m_1,m_2)=1$ suy ra
     
     $$
@@ -513,7 +516,7 @@ Với số nguyên dương $m$, có định lý sau:
     Z_m^*=m_2Z_{m_1}^*+m_1Z_{m_2}^*.
     $$
     
-    Đây là một hệ thặng dư **thu gọn** modulo $m$.
+    Đây là một hệ thặng dư **thu gọn** theo môđun $m$.
 
 <span id="hàm-số-học"></span>
 ## Hàm số học
@@ -708,8 +711,8 @@ tham khảo trang [thuật toán Euclid mở rộng dạng lớp](./euclidean.md
 Có thể tham khảo thêm các tính chất và ứng dụng của hàm lấy phần nguyên ở các
 trang sau:
 
--   Phép modulo: $n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$.
-    Nó có thể dùng để [tối ưu phép modulo số nguyên](./mod-arithmetic.md#thuật-toán-liên-quan).
+-   Phép lấy dư: $n\bmod m = n - \left\lfloor\dfrac{n}{m}\right\rfloor m$.
+    Nó có thể dùng để [tối ưu phép lấy dư số nguyên](./mod-arithmetic.md#thuật-toán-liên-quan).
 -   Dùng bổ đề Gauss để chứng minh
     [luật tương hỗ bậc hai](./quad-residue.md#luật-thuận-nghịch-bậc-hai).
 -   [Chia khối số học](./sqrt-decomposition.md), đặc biệt là phần chứng minh
