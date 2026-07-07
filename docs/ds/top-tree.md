@@ -29,7 +29,7 @@ Duy trì một rừng, hỗ trợ các thao tác sau:
 
 Với một cây bất kỳ, có thể dùng lý thuyết **co rút cây** để co nó thành một cạnh.
 
-Cụ thể, co rút cây có hai thao tác cơ bản: **nén** (Compress) và **gom lá** (Rake). Thao tác nén chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, rồi nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, sau đó các đối tượng cũ bị xóa. Minh họa như hình dưới.
+Cụ thể, co rút cây có hai thao tác cơ bản: **nén** và **gom lá**. Thao tác nén chọn một đỉnh $x$ có bậc $2$; gọi hai đỉnh kề với $x$ là $y$ và $z$, rồi nối một cạnh mới $yz$. Thông tin của đỉnh $x$, cạnh $xz$ và cạnh $xy$ được lưu vào $yz$, sau đó các đối tượng cũ bị xóa. Minh họa như hình dưới.
 
 ![](./images/top-tree1.svg)
 
@@ -53,19 +53,19 @@ Ngoài thông tin của chính cạnh đó (nếu cạnh này không tồn tại
 
 Trong hình, cạnh được chọn và đồ thị tương ứng đã được khoanh bằng đường đỏ.
 
-Các đỉnh và cạnh trong $T$ mà thông tin của cạnh này đại diện tạo thành một phần liên thông. Từ đó suy ra, với bất kỳ cạnh nào trong bất kỳ $T_x$ nào, thông tin được lưu trong cạnh đó, khi nhìn tổng thể trong $T$, đều biểu diễn một đồ thị con liên thông. Đồ thị con liên thông như vậy được gọi là **cụm (Cluster)**.
+Các đỉnh và cạnh trong $T$ mà thông tin của cạnh này đại diện tạo thành một phần liên thông. Từ đó suy ra, với bất kỳ cạnh nào trong bất kỳ $T_x$ nào, thông tin được lưu trong cạnh đó, khi nhìn tổng thể trong $T$, đều biểu diễn một đồ thị con liên thông. Đồ thị con liên thông như vậy được gọi là **cụm**.
 
-Tuy nhiên, cụm là một **đồ thị con không đầy đủ**: nó chứa một số cạnh mà đầu mút của các cạnh đó không được chính cụm chứa. Do đó, các đầu mút này được gọi là **đầu mút (Endpoint)** của cụm; các đỉnh thuộc đồ thị con liên thông mà cụm chứa được gọi là **đỉnh trong (Internal Node)**; các cạnh của đồ thị con liên thông được gọi là **cạnh trong (Internal Edge)**.
+Tuy nhiên, cụm là một **đồ thị con không đầy đủ**: nó chứa một số cạnh mà đầu mút của các cạnh đó không được chính cụm chứa. Do đó, các đầu mút này được gọi là **đầu mút** của cụm; các đỉnh thuộc đồ thị con liên thông mà cụm chứa được gọi là **đỉnh trong**; các cạnh của đồ thị con liên thông được gọi là **cạnh trong**.
 
 Với mọi cụm, có các tính chất sau:
 
 1.  Cụm chỉ lưu trữ và duy trì thông tin của các đỉnh trong và cạnh trong.
 
-2.  Cụm có hai đầu mút. Hai đầu mút này chính là hai đỉnh kề với cạnh đại diện cho cụm đó trong $T_x$. Đường đi giữa hai đầu mút được gọi là **đường cụm (Cluster Path)**. Nếu hai đầu mút của một cụm lần lượt là $x$ và $y$, bên dưới dùng $C(x,y)$ để biểu diễn cụm này.
+2.  Cụm có hai đầu mút. Hai đầu mút này chính là hai đỉnh kề với cạnh đại diện cho cụm đó trong $T_x$. Đường đi giữa hai đầu mút được gọi là **đường cụm**. Nếu hai đầu mút của một cụm lần lượt là $x$ và $y$, bên dưới dùng $C(x,y)$ để biểu diễn cụm này.
 
 3.  Đỉnh trong chỉ kề với đầu mút hoặc đỉnh trong.
 
-Đặc biệt, mỗi cạnh trong $T$ tự nó là một cụm độc lập (chỉ chứa thông tin của chính cạnh đó); loại cụm này được gọi là **cụm cơ sở (Base Cluster)**. Khi $T$ đã được co đến $T_x$ cuối cùng chỉ còn một cạnh, cụm do cạnh đó đại diện chứa thông tin của toàn bộ $T$ trừ hai đầu mút; cụm này được gọi là **cụm gốc (Root Cluster)**.
+Đặc biệt, mỗi cạnh trong $T$ tự nó là một cụm độc lập (chỉ chứa thông tin của chính cạnh đó); loại cụm này được gọi là **cụm cơ sở**. Khi $T$ đã được co đến $T_x$ cuối cùng chỉ còn một cạnh, cụm do cạnh đó đại diện chứa thông tin của toàn bộ $T$ trừ hai đầu mút; cụm này được gọi là **cụm gốc**.
 
 ![](./images/top-tree5.svg)
 
@@ -312,7 +312,7 @@ Nếu lúc này đỉnh $x$ đã ở gốc thì thoát. Nếu chưa, thực hi�
 
 4.  Nếu nút ông không có con phải, trước hết cho đỉnh $x$ trở thành con phải của nút ông. Lúc này nút cha ban đầu của đỉnh $x$ không có con giữa; theo tính chất của nút gom lá ở trên, nó không thể tồn tại. Do đó gọi hàm `Delete` để xóa nó, rồi thoát.
 
-Hai bước 1 và 2 được gọi chung là **splay cục bộ** (Local Splay). Hai bước 3 và 4 được gọi chung là **nối tách** (Splice). Để thuận tiện, toàn bộ được viết trong hàm `Splice(x)`.
+Hai bước 1 và 2 được gọi chung là **splay cục bộ**. Hai bước 3 và 4 được gọi chung là **nối tách**. Để thuận tiện, toàn bộ được viết trong hàm `Splice(x)`.
 
 Hàm `Delete(x)` nói trên hoạt động như sau:
 
@@ -322,7 +322,7 @@ Hàm `Delete(x)` nói trên hoạt động như sau:
 
 `Splice(x)` đã thay đổi cách chọn đầu mút của một số cụm trong cây ban đầu. Sau khi hoàn thành một lần nối tách, lấy nút cha của đỉnh $x$ làm đỉnh $x$ mới và thực hiện lần nối tách tiếp theo.
 
-Cuối cùng, đỉnh $x$ ban đầu cần thao tác nằm ở đầu phải nhất của cây nén của cụm gốc. Chỉ cần thực hiện một lần **splay toàn cục** (Global Splay) cuối cùng để xoay nó lên gốc SATT.
+Cuối cùng, đỉnh $x$ ban đầu cần thao tác nằm ở đầu phải nhất của cây nén của cụm gốc. Chỉ cần thực hiện một lần **splay toàn cục** cuối cùng để xoay nó lên gốc SATT.
 
 ```cpp
 // ls con trái của một nút SATT
@@ -646,9 +646,9 @@ void pushrev(int x) {
 
 Nếu có thể duy trì động trọng tâm của cây trong $O(\log n)$, bài này sẽ được giải quyết.
 
-SATT hỗ trợ duy trì động trọng tâm của cây trong $O(\log n)$. Để làm được điều này cần **tìm kiếm phi cục bộ** (Non-local Search).
+SATT hỗ trợ duy trì động trọng tâm của cây trong $O(\log n)$. Để làm được điều này cần **tìm kiếm phi cục bộ**.
 
-Với một tính chất trên cây, nếu một đỉnh/một cạnh có tính chất đó trong toàn cây và cũng có tính chất đó trong mọi cây con chứa nó, tính chất này được gọi là **cục bộ (Local)**; ngược lại gọi là **phi cục bộ (Non-local)**. Thông tin cục bộ thường có thể duy trì bằng `pushup(x)`.
+Với một tính chất trên cây, nếu một đỉnh/một cạnh có tính chất đó trong toàn cây và cũng có tính chất đó trong mọi cây con chứa nó, tính chất này được gọi là **cục bộ**; ngược lại gọi là **phi cục bộ**. Thông tin cục bộ thường có thể duy trì bằng `pushup(x)`.
 
 Ví dụ, giá trị trọng số nhỏ nhất là cục bộ, vì nếu một đỉnh/một cạnh có trọng số nhỏ nhất trong toàn cây thì trong mọi cây con chứa nó, nó cũng có trọng số nhỏ nhất. Còn trọng số nhỏ thứ hai là phi cục bộ.
 

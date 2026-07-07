@@ -2,7 +2,7 @@ Trang này giới thiệu ngắn gọn cách dùng Splay để duy trì cây tì
 
 ## Định nghĩa
 
-**Cây Splay**, hay **Splay Tree**, là một cây tìm kiếm nhị phân cân bằng.
+**Cây Splay** là một cây tìm kiếm nhị phân cân bằng.
 Nó liên tục đưa một nút nào đó lên nút gốc bằng **thao tác splay**,
 sao cho toàn bộ cây vẫn thỏa mãn tính chất của cây tìm kiếm nhị phân.
 Nhờ đó, các thao tác chèn, tìm kiếm và xóa có thời gian khấu hao $O(\log N)$,
@@ -577,7 +577,7 @@ Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu
 
 ## Bài tập
 
-Các bài này đều là bài Splay Tree trực tiếp để duy trì cây tìm kiếm nhị phân:
+Các bài này đều là bài dùng cây Splay trực tiếp để duy trì cây tìm kiếm nhị phân:
 
 -   [Mẫu: cây cân bằng thông thường](https://loj.ac/problem/104)
 -   [Mẫu: cây cân bằng thao tác đoạn](https://loj.ac/problem/105)
