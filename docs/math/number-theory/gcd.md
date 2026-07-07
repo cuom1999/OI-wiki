@@ -163,7 +163,7 @@ $O(\log\max(a, b))$.
     Khi tính $\gcd(a,b)$, có hai trường hợp:
     
     -   $a < b$, khi đó $\gcd(a,b)=\gcd(b,a)$;
-    -   $a \geq b$, khi đó $\gcd(a,b)=\gcd(b,a \bmod b)$, và phép lấy modulo
+    -   $a \geq b$, khi đó $\gcd(a,b)=\gcd(b,a \bmod b)$, và phép lấy dư
         theo $a$ làm $a$ giảm ít nhất một nửa. Nghĩa là quá trình này xảy ra
         tối đa $O(\log a) = O(n)$ lần.
     
@@ -179,7 +179,7 @@ bước xấu nhất.
 <span id="thuật-toán-trừ-dần"></span>
 ### Thuật toán trừ dần
 
-Với số lớn, phép lấy modulo có độ phức tạp cao, còn cộng trừ thì thấp hơn. Vì
+Với số lớn, phép lấy dư có độ phức tạp cao, còn cộng trừ thì thấp hơn. Vì
 vậy có thể dùng cộng trừ thay cho nhân chia để tính ước chung lớn nhất.
 
 <span id="quá-trình-thuật-toán-trừ-dần"></span>
@@ -608,7 +608,7 @@ int exgcd(int a, int b, int &x, int &y) {
 }
 ```
 
-Cách diễn giải này đơn giản hơn so với đệ quy.
+Cách diễn giải này gọn hơn so với đệ quy.
 
 <span id="ứng-dụng"></span>
 ## Ứng dụng
