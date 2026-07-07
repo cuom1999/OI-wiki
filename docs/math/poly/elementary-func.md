@@ -71,7 +71,7 @@ $$
 \left[x^{0}\right]f^{-1}\left(x\right)=\left(\left[x^{0}\right]f\left(x\right)\right)^{-1}
 $$
 
-Giả sử hiện đã tìm được nghịch đảo $f^{-1}_{0}\left(x\right)$ của $f\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$. Khi đó:
+Giả sử hiện đã tìm được nghịch đảo $f^{-1}_{0}\left(x\right)$ của $f\left(x\right)$ theo môđun $x^{\left\lceil\frac{n}{2}\right\rceil}$. Khi đó:
 
 $$
 \begin{aligned}
@@ -184,7 +184,7 @@ Nếu $\left[x^0\right]g(x)$ không có căn bậc hai, thì đa thức $g(x)$ k
 
 > $\left[x^0\right]g(x)$ có thể có nhiều căn bậc hai; chọn các căn khác nhau sẽ cho các $f(x)$ khác nhau.
 
-Giả sử hiện đã tìm được căn bậc hai $f_{0}\left(x\right)$ của $g\left(x\right)$ theo modulo $x^{\left\lceil\frac{n}{2}\right\rceil}$, khi đó:
+Giả sử hiện đã tìm được căn bậc hai $f_{0}\left(x\right)$ của $g\left(x\right)$ theo môđun $x^{\left\lceil\frac{n}{2}\right\rceil}$, khi đó:
 
 $$
 \begin{aligned}
@@ -261,7 +261,7 @@ $$
 \end{aligned}
 $$
 
-Lưu ý rằng trong công thức trên, $R^{R}\left(x\right)$ được nhân với $x^{n-m+1}$, nên khi xét theo modulo $x^{n-m+1}$ thì có thể khử ảnh hưởng do $R^{R}\left(x\right)$ gây ra.
+Lưu ý rằng trong công thức trên, $R^{R}\left(x\right)$ được nhân với $x^{n-m+1}$, nên khi xét theo môđun $x^{n-m+1}$ thì có thể khử ảnh hưởng do $R^{R}\left(x\right)$ gây ra.
 
 Lại vì bậc của $Q^{R}\left(x\right)$ là $\left(n-m\right)<\left(n-m+1\right)$, nên $Q^{R}\left(x\right)$ không bị ảnh hưởng.
 
@@ -278,7 +278,7 @@ Dùng nghịch đảo đa thức là có thể tìm $Q\left(x\right)$; thay ngư
 <span id="hàm-logarit-và-hàm-mũ-của-đa-thức"></span>
 ## Hàm logarit và hàm mũ của đa thức
 
-Cho đa thức $f(x)$, cần tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo modulo $x^{n}$.
+Cho đa thức $f(x)$, cần tìm $\ln{f(x)}$ và $\exp{f(x)}$ theo môđun $x^{n}$.
 
 <span id="cách-giải_3"></span>
 ### Cách giải
@@ -425,7 +425,7 @@ Dùng [phương pháp Newton](./newton.md#newtons-method) có thể giải $\exp
 <span id="hàm-lượng-giác-của-đa-thức"></span>
 ## Hàm lượng giác của đa thức
 
-Cho đa thức $f\left(x\right)$, cần tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo modulo $x^{n}$.
+Cho đa thức $f\left(x\right)$, cần tìm $\sin{f\left(x\right)}, \cos{f\left(x\right)}$ và $\tan{f\left(x\right)}$ theo môđun $x^{n}$.
 
 <span id="cách-giải_4"></span>
 ### Cách giải
@@ -448,7 +448,7 @@ $$
 \end{aligned}
 $$
 
-Viết chương trình trực tiếp theo các biểu thức trên là có thể thu được $\sin{f\left(x\right)}$ và $\cos{f\left(x\right)}$ theo modulo $x^{n}$. Sau đó dùng $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ để tính $\tan{f\left(x\right)}$.
+Viết chương trình trực tiếp theo các biểu thức trên là có thể thu được $\sin{f\left(x\right)}$ và $\cos{f\left(x\right)}$ theo môđun $x^{n}$. Sau đó dùng $\tan{f\left(x\right)} = \frac{\sin{f\left(x\right)}}{\cos{f\left(x\right)}}$ để tính $\tan{f\left(x\right)}$.
 
 <span id="mã-nguồn_2"></span>
 ### Mã nguồn
@@ -498,7 +498,7 @@ Viết chương trình trực tiếp theo các biểu thức trên là có thể
 <span id="hàm-lượng-giác-ngược-của-đa-thức"></span>
 ## Hàm lượng giác ngược của đa thức
 
-Cho đa thức $f\left(x\right)$, cần tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo modulo $x^{n}$.
+Cho đa thức $f\left(x\right)$, cần tìm $\arcsin{f\left(x\right)}, \arccos{f\left(x\right)}$ và $\arctan{f\left(x\right)}$ theo môđun $x^{n}$.
 
 <span id="cách-giải_5"></span>
 ### Cách giải
