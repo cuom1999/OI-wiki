@@ -2,7 +2,7 @@ Kiến thức nền: [định lý nhỏ Fermat](./fermat.md#định-lý-nhỏ-fe
 
 Bậc và căn nguyên thủy là các công cụ quan trọng để hiểu cấu trúc nhân của
 [hệ thặng dư thu gọn](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
-$\mathbf Z_m^*$ modulo $m$. Dựa trên chúng, có thể định nghĩa các khái niệm
+$\mathbf Z_m^*$ theo môđun $m$. Dựa trên chúng, có thể định nghĩa các khái niệm
 như [logarit rời rạc](./discrete-logarithm.md). Phần thảo luận tổng quát hơn có
 thể xem ở các mục liên quan trong phần đại số trừu tượng, chẳng hạn
 [lý thuyết nhóm](../algebra/group-theory.md#cấp) và
@@ -12,25 +12,25 @@ thể xem ở các mục liên quan trong phần đại số trừu tượng, ch
 
 ## Bậc
 
-Trong mục này, luôn giả sử modulo $m\in\mathbf N_+$ và cơ số
+Trong mục này, luôn giả sử môđun $m\in\mathbf N_+$ và cơ số
 $a\in\mathbf Z$ nguyên tố cùng nhau, tức là $(a,m)=1$, cũng viết là
 $a\perp m$.
 
 Với $n\in\mathbf Z$, lũy thừa $a^n\bmod m$ thể hiện một cấu trúc tuần hoàn. Độ
-dài nhỏ nhất của chu kỳ này chính là bậc của $a$ modulo $m$. Bậc được định
+dài nhỏ nhất của chu kỳ này chính là bậc của $a$ theo môđun $m$. Bậc được định
 nghĩa là số mũ tại đó lũy thừa $a^n \bmod m$ lần đầu quay về điểm đầu
 $a^0\bmod m = 1$:
 
 ???+ abstract "Bậc"
     Với $a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, số nguyên dương nhỏ nhất
     $n$ thỏa mãn đồng dư $a^n \equiv 1 \pmod m$ được gọi là **bậc của $a$
-    modulo $m$** (the order of $a$ modulo $m$), ký hiệu là $\delta_m(a)$ hoặc
+    theo môđun $m$** (the order of $a$ modulo $m$), ký hiệu là $\delta_m(a)$ hoặc
     $\operatorname{ord}_m(a)$.
 
 ???+ tip "Ghi chú"
     Trong [đại số trừu tượng](../algebra/group-theory.md#cấp), "bậc" ở
     đây chính là bậc của phần tử $a$ trong nhóm tạo bởi hệ thặng dư thu gọn
-    modulo $m$ theo phép nhân. Ký hiệu $\delta$ để biểu diễn bậc chỉ dùng cho
+    theo môđun $m$ theo phép nhân. Ký hiệu $\delta$ để biểu diễn bậc chỉ dùng cho
     nhóm đặc biệt này. Nhiều tính chất bên dưới có thể mở rộng trực tiếp thành
     tính chất về bậc của phần tử trong nhóm ở đại số trừu tượng.
 
@@ -63,7 +63,7 @@ không âm đầu tiên. Từ đó suy ra một loạt tính chất về bậc.
 
 ???+ note "Tính chất 1"
     Với $a\in\mathbf Z,m\in\mathbf N_+$ và $a\perp m$, các lũy thừa
-    $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ đôi một không đồng dư modulo $m$.
+    $a^0(=1),a,a^2,\cdots,a^{\delta_m(a)-1}$ đôi một không đồng dư theo môđun $m$.
 
 ??? note "Chứng minh"
     Xét phản chứng. Giả sử tồn tại hai số $0\le i< j<\delta_m(a)$ sao cho
@@ -280,30 +280,30 @@ Kết luận này thường được dùng để xây dựng phần tử có b�
 ## Căn nguyên thủy
 
 Căn nguyên thủy là các phần tử đặc biệt: bậc của nó đúng bằng số phần tử của
-hệ thặng dư thu gọn modulo $m$.
+hệ thặng dư thu gọn theo môđun $m$.
 
 ???+ abstract "Căn nguyên thủy"
     Với $m\in\mathbf N_+$, nếu tồn tại $g\in\mathbf Z$ và $g\perp m$ sao cho
     $\delta_m(g)=|\mathbf Z_m^*|=\varphi(m)$, thì $g$ được gọi là **căn nguyên
-    thủy modulo $m$** (primitive root modulo $m$). Trong đó, $\varphi(m)$ là
+    thủy theo môđun $m$** (primitive root modulo $m$). Trong đó, $\varphi(m)$ là
     [hàm Euler](./euler-totient.md).
 
-Không phải mọi số nguyên dương $m$ đều có căn nguyên thủy modulo $m$. Theo
-[Tính chất 1](#ord-prop-1), nếu căn nguyên thủy $g$ modulo $m$ tồn tại, thì các
+Không phải mọi số nguyên dương $m$ đều có căn nguyên thủy theo môđun $m$. Theo
+[Tính chất 1](#ord-prop-1), nếu căn nguyên thủy $g$ theo môđun $m$ tồn tại, thì các
 lớp đồng dư chứa $g,g^2,\cdots,g^{\varphi(m)}$ đôi một khác nhau và tạo thành
-hệ thặng dư thu gọn modulo $m$. Đặc biệt, với số nguyên tố $p$, các thặng dư
+hệ thặng dư thu gọn theo môđun $m$. Đặc biệt, với số nguyên tố $p$, các thặng dư
 $g^i\bmod p$ đôi một khác nhau với $i=1,2,\cdots,p-1$.
 
 ???+ tip "Ghi chú"
     Trong [đại số trừu tượng](../algebra/ring-theory.md#ứng-dụng-nhóm-nhân-của-các-lớp-đồng-dư-số-nguyên),
     căn nguyên thủy chính là phần tử sinh của nhóm cyclic. Khái niệm này chỉ có
-    tên "căn nguyên thủy" trong nhóm tạo bởi hệ thặng dư thu gọn modulo $m$ theo
+    tên "căn nguyên thủy" trong nhóm tạo bởi hệ thặng dư thu gọn theo môđun $m$ theo
     phép nhân; trong nhóm cyclic tổng quát, nó được gọi là "phần tử sinh".
-    Không phải mọi nhóm tạo bởi hệ thặng dư thu gọn modulo $m$ theo phép nhân
+    Không phải mọi nhóm tạo bởi hệ thặng dư thu gọn theo môđun $m$ theo phép nhân
     đều là nhóm cyclic; việc tồn tại căn nguyên thủy cho thấy nó đẳng cấu với
     một nhóm cyclic, còn nếu không tồn tại căn nguyên thủy thì không đẳng cấu.
 
-Khi modulo bằng $1$, nhóm nhân các số nguyên modulo $1$ là $\{0\}$. Đây là
+Khi môđun bằng $1$, nhóm nhân các số nguyên theo môđun $1$ là $\{0\}$. Đây là
 nhóm cyclic, nên căn nguyên thủy là $0$.
 
 <span id="định-lí-kiểm-tra-căn-nguyên-thủy"></span>
@@ -311,10 +311,10 @@ nhóm cyclic, nên căn nguyên thủy là $0$.
 ### Định lý kiểm tra căn nguyên thủy
 
 Nếu đã biết tất cả các thừa số nguyên tố của $\varphi(m)$, có thể kiểm tra một
-số có phải căn nguyên thủy modulo $m$ hay không.
+số có phải căn nguyên thủy theo môđun $m$ hay không.
 
 ???+ note "Định lý"
-    Với số nguyên $m\ge 3$ và $g\perp m$, $g$ là căn nguyên thủy modulo $m$ khi
+    Với số nguyên $m\ge 3$ và $g\perp m$, $g$ là căn nguyên thủy theo môđun $m$ khi
     và chỉ khi với mọi thừa số nguyên tố $p$ của $\varphi(m)$, điều kiện sau
     đều đúng:
 
@@ -324,7 +324,7 @@ số có phải căn nguyên thủy modulo $m$ hay không.
 
 ??? note "Chứng minh"
     Chiều cần suy ra trực tiếp từ định nghĩa bậc. Để chứng minh chiều đủ, dùng
-    phản chứng. Nếu $g$ không phải là căn nguyên thủy modulo $m$, thì
+    phản chứng. Nếu $g$ không phải là căn nguyên thủy theo môđun $m$, thì
     $\delta_m(g)< \varphi(m)$. Theo [Tính chất 2](#ord-prop-2) và định lý
     Euler, $\delta_m(g)\mid\varphi(m)$. Do đó, có thể lấy $p$ là một thừa số
     nguyên tố của $\dfrac{\varphi(m)}{\delta_m(g)}$, và khi đó
@@ -342,17 +342,17 @@ số có phải căn nguyên thủy modulo $m$ hay không.
 ### Số lượng căn nguyên thủy
 
 Căn nguyên thủy nếu tồn tại thì cũng không nhất thiết duy nhất. Tổng quát hơn,
-với các bậc có thể có của mỗi phần tử trong hệ thặng dư thu gọn modulo $m$ và
+với các bậc có thể có của mỗi phần tử trong hệ thặng dư thu gọn theo môđun $m$ và
 số phần tử có một bậc nào đó, có kết luận sau:
 
 ???+ note "Định lý"
-    Nếu số nguyên dương $m$ có căn nguyên thủy $g$, thì phần tử bậc $d$ modulo
+    Nếu số nguyên dương $m$ có căn nguyên thủy $g$, thì phần tử bậc $d$ theo môđun
     $m$ tồn tại khi và chỉ khi $d\mid\varphi(m)$, và khi tồn tại thì có đúng
-    $\varphi(d)$ phần tử như vậy. Đặc biệt, số căn nguyên thủy modulo $m$ bằng
+    $\varphi(d)$ phần tử như vậy. Đặc biệt, số căn nguyên thủy theo môđun $m$ bằng
     $\varphi(\varphi(m))$.
 
 ??? note "Chứng minh"
-    Theo định nghĩa căn nguyên thủy, mọi lớp đồng dư thu gọn modulo $m$ đều có
+    Theo định nghĩa căn nguyên thủy, mọi lớp đồng dư thu gọn theo môđun $m$ đều có
     thể viết dưới dạng $g^k\bmod m$, trong đó $k$ là một trong các số
     $1,2,\cdots,\varphi(m)$. Theo [Tính chất 3](#ord-prop-3), bậc của các phần
     tử này bằng
@@ -382,7 +382,7 @@ số phần tử có một bậc nào đó, có kết luận sau:
 Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
 
 ???+ note "Định lý"
-    Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi
+    Căn nguyên thủy theo môđun $m$ tồn tại khi và chỉ khi
     $m=1,2,4,p^e,2p^e$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
 Để chứng minh kết luận này, cần lần lượt xét bốn trường hợp sau:
@@ -393,7 +393,7 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
     tố lẻ và $e\in\mathbf N_+$.
 
     ???+ note "Bổ đề 1"
-        Với số nguyên tố lẻ $p$, căn nguyên thủy modulo $p$ tồn tại.
+        Với số nguyên tố lẻ $p$, căn nguyên thủy theo môđun $p$ tồn tại.
 
     ??? note "Chứng minh"
         Chứng minh chia thành hai bước.
@@ -435,21 +435,21 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         đúng $\varphi(d)$ phần tử bậc $d$.
 
         Đặc biệt, với $d=p-1$, có đúng $\varphi(p-1)$ phần tử bậc $(p-1)$. Vì
-        vậy căn nguyên thủy modulo $p$ tồn tại.
+        vậy căn nguyên thủy theo môđun $p$ tồn tại.
 
     ???+ note "Bổ đề 2"
-        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy modulo
+        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy theo môđun
         $p^e$ tồn tại.
 
     ??? note "Chứng minh"
         Chứng minh chia thành ba bước.
 
-        **Bước 1**: Tồn tại căn nguyên thủy $g$ modulo $p$ sao cho
+        **Bước 1**: Tồn tại căn nguyên thủy $g$ theo môđun $p$ sao cho
         $g^{p-1}\not\equiv 1\pmod{p^2}$.
 
-        Lấy tùy ý một căn nguyên thủy $g$ modulo $p$. Nếu nó không thỏa mãn điều
+        Chọn một căn nguyên thủy $g$ theo môđun $p$. Nếu nó không thỏa mãn điều
         kiện, tức là $g^{p-1}\equiv 1\pmod{p^2}$, thì có thể chứng minh $g+p$
-        thỏa mãn điều kiện: $g+p$ cũng là căn nguyên thủy modulo $p$, và
+        thỏa mãn điều kiện: $g+p$ cũng là căn nguyên thủy theo môđun $p$, và
 
         $$
         \begin{aligned}
@@ -482,7 +482,7 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         học, mệnh đề đúng.
 
         **Bước 3**: Với $g$ đã chọn ở trên, với mọi $e\ge 1$, $g$ đều là căn
-        nguyên thủy modulo $p^e$.
+        nguyên thủy theo môđun $p^e$.
 
         Cách chọn $g$ bảo đảm mệnh đề đúng khi $e=1$. Giả sử mệnh đề đúng với
         $e$, cần chứng minh nó đúng với $e+1$. Viết gọn $\delta_{p^{e+1}}(g)$ là
@@ -497,18 +497,18 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         $g^{\varphi(p^e)}\not\equiv 1\pmod{p^{e+1}}$. Do đó khả năng
         $\delta=\varphi(p^e)$ không đúng. Khả năng duy nhất là
         $\delta=\varphi(p^{e+1})$. Điều này chứng minh $g$ là căn nguyên thủy
-        modulo $p^{e+1}$. Theo quy nạp toán học, mệnh đề đúng với mọi
+        theo môđun $p^{e+1}$. Theo quy nạp toán học, mệnh đề đúng với mọi
         $e\ge 1$.
 
 3.  $m=2p^{e}$, trong đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
     ???+ note "Bổ đề 3"
-        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy modulo
+        Với số nguyên tố lẻ $p$ và $e \in \mathbf{N}_+$, căn nguyên thủy theo môđun
         $2p^e$ tồn tại.
 
     ??? note "Chứng minh"
-        Giả sử $g$ là căn nguyên thủy modulo $p^{e}$, khi đó $g+p^e$ cũng là
-        căn nguyên thủy modulo $p^{e}$. Trong hai số này có đúng một số lẻ;
+        Giả sử $g$ là căn nguyên thủy theo môđun $p^{e}$, khi đó $g+p^e$ cũng là
+        căn nguyên thủy theo môđun $p^{e}$. Trong hai số này có đúng một số lẻ;
         không mất tính tổng quát, giả sử đó là $g$. Khi đó
         $(g,2p^e)=1$. Đặt $\delta=\delta_{2p^e}(g)$, cần chứng minh
         $\delta=\varphi(2p^e)$. Theo định lý Euler,
@@ -518,7 +518,7 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         $\delta_{p^e}(g)=\varphi(p^e)\mid \delta$. Theo công thức hàm Euler,
         $\varphi(2p^e) = \varphi(p^e)$. Vì vậy
         $\delta=\delta_{2p^e}(g)=\varphi(p^e)$. Điều này chứng minh $g$ là căn
-        nguyên thủy modulo $2p^e$.
+        nguyên thủy theo môđun $2p^e$.
 
 4.  $m\ne 1,2,4,p^{e},2p^{e}$, trong đó $p$ là số nguyên tố lẻ và
     $e\in\mathbf N_+$.
@@ -528,10 +528,10 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
     ???+ note "Bổ đề 4"
         Giả sử $m\neq 1,2,4$ và không tồn tại số nguyên tố lẻ $p$ cùng số
         nguyên dương $e$ sao cho $m=p^e$ hoặc $m=2p^e$. Khi đó căn nguyên thủy
-        modulo $m$ không tồn tại.
+        theo môđun $m$ không tồn tại.
 
     ??? note "Chứng minh"
-        Với $m=2^e$ và $e\ge 3$, giả sử căn nguyên thủy $g$ modulo $m$ tồn tại.
+        Với $m=2^e$ và $e\ge 3$, giả sử căn nguyên thủy $g$ theo môđun $m$ tồn tại.
         Vì $g\perp m$, nó phải là số lẻ. Giả sử $g=2k+1$ với $k\in\mathbf N$,
         khi đó
 
@@ -554,7 +554,7 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
 
         Giả sử $m$ thỏa mãn các điều kiện đã nêu và không phải lũy thừa của
         $2$. Khi đó tồn tại $2 < m_1 < m_2$ và $m_1\perp m_2$ sao cho
-        $m=m_1m_2$. Giả sử căn nguyên thủy $g$ modulo $m$ tồn tại. Vì
+        $m=m_1m_2$. Giả sử căn nguyên thủy $g$ theo môđun $m$ tồn tại. Vì
         $g\perp m$, nên với $i=1,2$ đều có $g\perp m_i$. Theo định lý Euler,
 
         $$
@@ -567,7 +567,7 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m_i}.
         $$
 
-        Theo [định lý thặng dư Trung Hoa](./crt.md), suy ra
+        Theo [định lý số dư Trung Hoa](./crt.md), suy ra
 
         $$
         g^{\frac{1}{2}\varphi(m_1)\varphi(m_2)} \equiv 1 \pmod{m}.
@@ -579,8 +579,8 @@ Mục này sẽ thiết lập định lý tồn tại căn nguyên thủy sau:
         \delta_m(g) \le \frac{1}{2}\varphi(m_1)\varphi(m_2) = \dfrac{1}{2}\varphi(m) < \varphi(m).
         $$
 
-        Điều này mâu thuẫn với giả thiết $g$ là căn nguyên thủy modulo $m$. Vì
-        vậy, theo phản chứng, căn nguyên thủy modulo $m$ không tồn tại.
+        Điều này mâu thuẫn với giả thiết $g$ là căn nguyên thủy theo môđun $m$. Vì
+        vậy, theo phản chứng, căn nguyên thủy theo môđun $m$ không tồn tại.
 
 Tổng hợp bốn bổ đề trên cho điều kiện cần và đủ để một số có căn
 nguyên thủy.
@@ -589,13 +589,13 @@ nguyên thủy.
 
 ### Thuật toán tìm căn nguyên thủy
 
-Với bất kỳ modulo $m$ nào có căn nguyên thủy, để tìm một căn nguyên thủy $g$,
+Với bất kỳ môđun $m$ nào có căn nguyên thủy, để tìm một căn nguyên thủy $g$,
 chỉ cần liệt kê các số nguyên dương có thể và lần lượt kiểm tra chúng có phải
 căn nguyên thủy hay không. Khi liệt kê, thường có hai cách xử lý: liệt kê từ
 nhỏ đến lớn, hoặc sinh ngẫu nhiên một vài số nguyên dương. Hiệu quả thực tế của
 hai cách này tương đương nhau.
 
-Khi liệt kê từ nhỏ đến lớn, thu được căn nguyên thủy nhỏ nhất $g_m$ modulo
+Khi liệt kê từ nhỏ đến lớn, thu được căn nguyên thủy nhỏ nhất $g_m$ theo môđun
 $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích thước của $g_m$. Về
 điểm này, có các ước lượng sau:
 
@@ -604,8 +604,8 @@ $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích
     số nguyên tố $p$ thỏa mãn $g_p=O\left(p^{0.25+\epsilon}\right)$, trong đó
     $\epsilon>0$. Cohen, Odoni và Stothers[^cohen1974least] cùng Elliott và
     Murata[^elliott1998least] lần lượt chứng minh ước lượng này cũng đúng cho
-    modulo $p^2$ và $2p^2$, trong đó $p$ là số nguyên tố lẻ. Vì với $e>2$, căn
-    nguyên thủy modulo $p^2$ (hoặc $2p^2$) cũng là căn nguyên thủy modulo $p^e$
+    theo môđun $p^2$ và $2p^2$, trong đó $p$ là số nguyên tố lẻ. Vì với $e>2$, căn
+    nguyên thủy theo môđun $p^2$ (hoặc $2p^2$) cũng là căn nguyên thủy theo môđun $p^e$
     (hoặc $2p^e$), nên cận trên $O\left(p^{0.25+\epsilon}\right)$ của căn
     nguyên thủy nhỏ nhất đúng cho mọi trường hợp.
 -   Ước lượng cận dưới: Fridlander[^fridlender1949least] và
@@ -618,7 +618,7 @@ $m$; do đó độ phức tạp của phần liệt kê phụ thuộc vào kích
     tiếp tục dự đoán giá trị trung bình của căn nguyên thủy nhỏ nhất của số
     nguyên tố $p$ là một hằng số, và qua kiểm chứng số[^more-evidence] thu được
     giá trị xấp xỉ $4.926$. Sau đó, Elliott và Murata[^elliott1998least] mở
-    rộng dự đoán này sang trường hợp modulo $2p^2$.
+    rộng dự đoán này sang trường hợp môđun $2p^2$.
 
 Theo các phân tích này, khi tìm căn nguyên thủy nhỏ nhất bằng vét cạn, độ phức
 tạp $O(g_m(\log m)^2)$ của phần liệt kê là chấp nhận được.
@@ -647,7 +647,7 @@ phần liệt kê và kiểm tra.
 
 ## Hàm Carmichael
 
-So với khái niệm cục bộ là bậc của một phần tử modulo $m$, hàm Carmichael là
+So với khái niệm cục bộ là bậc của một phần tử theo môđun $m$, hàm Carmichael là
 một khái niệm toàn cục. Nó là chu kỳ chung nhỏ nhất của lũy thừa của tất cả các
 số nguyên nguyên tố cùng nhau với $m$.
 
@@ -658,7 +658,7 @@ số nguyên nguyên tố cùng nhau với $m$.
 
 Theo [Tính chất 2](#ord-prop-2), việc $a^n\equiv 1\pmod m$ đúng với mọi
 $a\perp m$ có nghĩa là $\delta_m(a)\mid n$ với mọi $a\perp m$. Nói cách khác,
-số nguyên dương $n$ thỏa mãn điều kiện này nhất định là bội chung của tất cả các
+số nguyên dương $n$ thỏa mãn điều kiện này tất yếu là bội chung của tất cả các
 $\delta_m(a)$. Do đó, số $n$ nhỏ nhất như vậy chính là bội chung nhỏ nhất của
 chúng:
 
@@ -677,7 +677,7 @@ $$
 $$
 
 Phần tử $a\perp m$ đạt giá trị lớn nhất này cũng được gọi là **$\lambda$-căn
-nguyên thủy** modulo $m$. Nó tồn tại với mọi modulo $m$.
+nguyên thủy** theo môđun $m$. Nó tồn tại với mọi môđun $m$.
 
 <span id="công-thức-truy-hồi"></span>
 
@@ -695,9 +695,9 @@ các thừa số nguyên tố cùng nhau.
     $\lambda(m_1m_2)=[\lambda(m_1),\lambda(m_2)]$.
 
 ??? note "Chứng minh"
-    Giả sử $a_1$ và $a_2$ lần lượt là $\lambda$-căn nguyên thủy modulo $m_1$ và
-    modulo $m_2$. Đặt $m=m_1m_2$. Theo
-    [định lý thặng dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
+    Giả sử $a_1$ và $a_2$ lần lượt là $\lambda$-căn nguyên thủy theo môđun $m_1$ và
+    theo môđun $m_2$. Đặt $m=m_1m_2$. Theo
+    [định lý số dư Trung Hoa](./crt.md), tồn tại $a\perp m$ sao cho
     $a\equiv a_i\pmod{m_i}$ với $i=1,2$. Vì $a^{\lambda(m)}\equiv 1\pmod m$,
     nên với $i=1,2$ đều có $a_i^{\lambda(m)} \equiv 1\pmod{m_i}$. Từ đó theo
     [Tính chất 2](#ord-prop-2) và cách chọn $a_i$, có
@@ -734,24 +734,24 @@ nguyên tố. Trước hết, xử lý trường hợp lũy thừa của $2$.
     đó $\lambda(m)=2^{e-2}$.
 
 Trong quá trình chứng minh bổ đề này, đồng thời thu được mô tả về cấu trúc của
-hệ thặng dư thu gọn modulo $2^e$:
+hệ thặng dư thu gọn theo môđun $2^e$:
 
 <a id="mod-pow-2"></a>
 
 ???+ note "Hệ quả"
-    Giả sử modulo là $2^e$ và $e \ge 2$. Khi đó mọi số lẻ đều đồng dư với đúng
+    Giả sử môđun là $2^e$ và $e \ge 2$. Khi đó mọi số lẻ đều đồng dư với đúng
     một số nguyên có dạng $\pm 5^k$, trong đó $k\in\mathbf N$ và
     $k < 2^{e-2}$. Nói cách khác, $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi
     một không đồng dư, và tạo thành một hệ thặng dư thu gọn.
 
 ??? note "Chứng minh"
     Có thể kiểm tra trực tiếp trường hợp $e=2$ đúng. Với $e \ge 3$, trong
-    chứng minh ở trên đã có bậc của $5$ modulo $2^e$ là $2^{e-2}$, nên
+    chứng minh ở trên đã có bậc của $5$ theo môđun $2^e$ là $2^{e-2}$, nên
     $1,5,\cdots,5^{2^{e-2}-1}$ đôi một không đồng dư. Vì các số nguyên này đều
-    dư $1$ modulo $4$, còn các số đối của chúng đều dư $3$ modulo $4$, nên
-    $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi một không đồng dư modulo $2^e$.
+    dư $1$ theo môđun $4$, còn các số đối của chúng đều dư $3$ theo môđun $4$, nên
+    $\pm 1,\pm 5,\cdots,\pm 5^{2^{e-2}-1}$ đôi một không đồng dư theo môđun $2^e$.
     Vì tổng cộng có $2^{e-1}$ số, đúng bằng kích thước của hệ thặng dư thu gọn
-    modulo $2^{e}$, chúng tạo thành chính hệ thặng dư thu gọn.
+    theo môđun $2^{e}$, chúng tạo thành chính hệ thặng dư thu gọn.
 
 Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
 
@@ -763,7 +763,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     Trước hết chứng minh mệnh đề đúng với $e=1$, tức $m=p$ là số nguyên tố lẻ.
     Theo định nghĩa hàm Carmichael, mọi số nguyên $a$ nguyên tố cùng nhau với
     $p$ đều là nghiệm của phương trình đồng dư
-    $x^{\lambda(p)}\equiv 1\pmod{p}$. Theo nghĩa modulo $p$, phương trình này có
+    $x^{\lambda(p)}\equiv 1\pmod{p}$. Xét theo môđun $p$, phương trình này có
     tổng cộng $p-1$ nghiệm đôi một khác nhau. Theo
     [định lý Lagrange](./congruence-equation.md#định-lý-3-lagrange),
     có $p-1\le\lambda(p)$. Đồng thời, định lý Euler yêu cầu
@@ -776,7 +776,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     (1+p)^{p^{e-1}} \equiv 1,\quad (1+p)^{p^{e-2}} \equiv 1 + p^{e-1} \not\equiv 1 \pmod{p^e}.
     $$
 
-    Nên $\delta_m(1+p)=p^{e-1}$. Ngoài ra, giả sử $g$ là căn nguyên thủy modulo
+    Nên $\delta_m(1+p)=p^{e-1}$. Ngoài ra, giả sử $g$ là căn nguyên thủy theo môđun
     $p$. Khi đó, vì $g^{\delta_m(g)}\equiv 1 \pmod{p}$, theo
     [Tính chất 2](#ord-prop-2) về bậc, có $p-1\mid\delta_m(g)$. Theo định
     nghĩa hàm Carmichael và định lý Euler,
@@ -808,11 +808,11 @@ Dùng công thức truy hồi này có thể làm mạnh kết quả phía trên
     $\lambda([m_1,m_2])=[\lambda(m_1),\lambda(m_2)]$.
 
 So sánh định nghĩa căn nguyên thủy và hàm Carmichael, thấy rằng căn nguyên thủy
-modulo $m$ tồn tại khi và chỉ khi $\lambda(m)=\varphi(m)$. Từ công thức truy
+theo môđun $m$ tồn tại khi và chỉ khi $\lambda(m)=\varphi(m)$. Từ công thức truy
 hồi của hàm Carmichael, có thể quy nạp ra kết quả sau:
 
 ???+ note "Hệ quả"
-    Căn nguyên thủy modulo $m$ tồn tại khi và chỉ khi $m=1,2,4,p^e,2p^e$, trong
+    Căn nguyên thủy theo môđun $m$ tồn tại khi và chỉ khi $m=1,2,4,p^e,2p^e$, trong
     đó $p$ là số nguyên tố lẻ và $e\in\mathbf N_+$.
 
 Vì chứng minh công thức truy hồi trong mục này không dùng đến định lý tồn tại
@@ -857,7 +857,7 @@ phương pháp sau để xác định hợp số $n$ có phải số Carmichael 
     $(p-1) \mid (n-1)$ đúng với mọi thừa số nguyên tố $p$, thì
     $\lambda(n)\mid (n-1)$.
 
-Từ tiêu chuẩn này, có thể thiết lập một số tính chất đơn giản của số
+Từ tiêu chuẩn này, có thể thiết lập một số tính chất cơ bản của số
 Carmichael:
 
 ???+ note "Hệ quả"
@@ -918,8 +918,8 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
 [^more-evidence]: Có thể xem thêm các kết quả tại [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html).
 
-[^density-prim-root]: Nếu căn nguyên thủy modulo $m$ tồn tại, thì
-    $\varphi(m)\ge\dfrac{1}{3}m$, và dấu bằng chỉ đạt tại
+[^density-prim-root]: Nếu căn nguyên thủy theo môđun $m$ tồn tại, thì
+    $\varphi(m)\ge\dfrac{1}{3}m$, và dấu bằng chỉ xảy ra tại
     $m=2\times 3^e~(e\in\mathbf N_+)$. Hơn nữa, khi $m > 2$, có ước lượng cho
     hàm Euler $\varphi(m)$:
     $\varphi(m)>\dfrac{m}{e^{\gamma}\log\log m+\frac{3}{\log\log m}}$. Kết hợp
