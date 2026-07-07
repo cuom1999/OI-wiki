@@ -7,7 +7,7 @@ tính nó.
 Nghịch đảo nhân của số thực khác $0$ $a\in\mathbf R$ chính là số nghịch đảo
 $a^{-1}$. Tương tự, trong số học có thể định nghĩa nghịch đảo của một số nguyên
 $a$ theo môđun $m$, ký hiệu là $a^{-1}\bmod m$, hoặc viết gọn là $a^{-1}$. Đây
-là **nghịch đảo nhân modulo** (modular multiplicative inverse).
+là **nghịch đảo nhân theo môđun** (modular multiplicative inverse).
 
 ???+ abstract "Nghịch đảo"
     Với các số nguyên khác $0$ $a,m$, nếu tồn tại $b$ sao cho
@@ -17,7 +17,7 @@ là **nghịch đảo nhân modulo** (modular multiplicative inverse).
 Điều này tương đương với việc $b$ là nghiệm của phương trình đồng dư tuyến tính
 $ax\equiv 1\pmod m$. Theo tính chất của [phương trình đồng dư tuyến tính](./linear-equation.md),
 nghịch đảo $a^{-1}\bmod m$ tồn tại khi và chỉ khi $\gcd(a,m)=1$, tức $a,m$
-nguyên tố cùng nhau; khi tồn tại, nó là duy nhất modulo $m$.
+nguyên tố cùng nhau; khi tồn tại, nó là duy nhất theo môđun $m$.
 
 <span id="cách-tính-một-nghịch-đảo"></span>
 ## Cách tính một nghịch đảo
@@ -136,7 +136,7 @@ $$
 p = \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i).
 $$
 
-Lấy hai vế modulo số nguyên tố $p$:
+Lấy hai vế theo môđun số nguyên tố $p$:
 
 $$
 0 \equiv \left\lfloor \dfrac{p}{i} \right\rfloor i + (p\bmod i) \pmod p.
@@ -171,7 +171,7 @@ Thuật toán này chỉ áp dụng khi môđun là số nguyên tố. Nếu mô
 số nguyên tố, không thể bảo đảm $m\bmod i$ trong công thức truy hồi vẫn nguyên
 tố cùng nhau với $m$, nên nghịch đảo $(m\bmod i)^{-1}$ cần cho truy hồi có thể
 không tồn tại. Một ví dụ là $m=8,i=3$: khi đó $m\bmod i = 2$, và không tồn tại
-nghịch đảo modulo $m$.
+nghịch đảo theo môđun $m$.
 
 Sau khi có công thức truy hồi này, một ý tưởng tự nhiên là dùng đệ quy để tính
 nghịch đảo của một số bất kỳ $a$. Mỗi lần đệ quy dùng công thức truy hồi để
