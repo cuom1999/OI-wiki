@@ -4,22 +4,22 @@ Ngăn xếp đơn điệu là một cấu trúc ngăn xếp thỏa mãn tính đ
 đợi đơn điệu, nó chỉ thực hiện thao tác thêm và xóa ở một đầu.
 
 Để tiện mô tả, các ví dụ và mã giả sau lấy việc duy trì một ngăn xếp số nguyên
-đơn điệu tăng làm ví dụ.
+đơn điệu tăng theo chiều từ đỉnh xuống đáy làm ví dụ.
 
 ## Quá trình
 
 ### Chèn
 
 Khi chèn một phần tử vào ngăn xếp đơn điệu, để duy trì tính đơn điệu của ngăn
-xếp, cần loại bớt từ đỉnh số phần tử ít nhất sao cho sau khi đưa phần tử đó lên đỉnh,
-toàn bộ ngăn xếp vẫn thỏa mãn tính đơn điệu.
+xếp, cần loại khỏi đỉnh ít phần tử nhất sao cho sau khi đưa phần tử mới lên
+đỉnh, toàn bộ ngăn xếp vẫn thỏa mãn tính đơn điệu.
 
 Ví dụ, các phần tử trong ngăn xếp từ đỉnh xuống đáy là $\{0,11,45,81\}$.
 
 ![](images/monotonic-stack-before.svg)
 
-Khi chèn phần tử $14$, để bảo đảm tính đơn điệu, cần lần lượt loại khỏi đỉnh các phần tử
-$0,11$; sau thao tác, ngăn xếp trở thành $\{14,45,81\}$.
+Khi chèn phần tử $14$, để bảo đảm tính đơn điệu, cần lần lượt loại khỏi đỉnh các
+phần tử $0,11$; sau thao tác, ngăn xếp trở thành $\{14,45,81\}$.
 
 ![](images/monotonic-stack-after.svg)
 
@@ -35,7 +35,7 @@ Dùng mã giả có thể mô tả như sau:
 
 ### Sử dụng
 
-Đọc phần tử ở đỉnh ngăn xếp; phần tử này chính là một đầu theo tính đơn điệu.
+Đọc phần tử ở đỉnh ngăn xếp; phần tử này chính là một cực trị theo tính đơn điệu.
 
 Chẳng hạn trong ví dụ trên, phần tử lấy ra chính là giá trị nhỏ nhất trong ngăn
 xếp.
@@ -45,12 +45,12 @@ xếp.
 ??? note "[POJ3250 Bad Hair Day](http://poj.org/problem?id=3250)"
     Có $N$ con bò xếp thành một hàng từ trái sang phải, mỗi con bò có chiều cao
     $h_i$. Gọi $c_i$ là số con bò nằm giữa con bò thứ $i$ tính từ trái sang và
-    "con bò đầu tiên ở bên phải nó có chiều cao $≥h_i$". Tính
+    "con bò đầu tiên ở bên phải nó có chiều cao $\ge h_i$". Tính
     $\sum_{i=1}^{N} c_i$.
 
 Một ứng dụng khá cơ bản là bài này: chỉ cần dùng ngăn xếp đơn điệu một cách đơn
 giản, ghi lại vị trí mà mỗi con bò bị loại khỏi ngăn xếp; nếu chưa từng bị loại
-thì xem như nó có thể nhìn tới tận đầu xa nhất. Xử lý thêm một chút là có thể
+thì xem như nó có thể nhìn tới tận cuối dãy. Xử lý thêm một chút là có thể
 tính được kết quả bài toán yêu cầu.
 
 Ngoài ra, ngăn xếp đơn điệu cũng có thể dùng để giải bài toán RMQ theo kiểu
