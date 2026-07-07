@@ -833,9 +833,9 @@ Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiệ
 ## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
--   [Quadratic integer - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
--   [Formal power series - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
--   [Multiplicative group of integers modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
+-   [Số nguyên bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
+-   [Chuỗi lũy thừa hình thức - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
+-   [Nhóm nhân các số nguyên modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)
 
 [^ideal-history]: <https://en.wikipedia.org/wiki/Ideal_(ring_theory)#History>
 

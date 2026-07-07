@@ -653,22 +653,22 @@ Cho nhóm vòng $C_{n}$. Nếu theo định lý cơ bản của số học có $
 ## Tài liệu tham khảo và ghi chú
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
--   [Milne, J.S. (2021) Group Theory](https://www.jmilne.org/math/CourseNotes/GT.pdf).
--   [Group (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
--   [Group theory - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
--   [Group - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
--   [Visual Group Theory](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
+-   [Milne, J.S. (2021) Lý thuyết nhóm](https://www.jmilne.org/math/CourseNotes/GT.pdf).
+-   [Nhóm (toán học) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
+-   [Lý thuyết nhóm - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)
+-   [Nhóm - Wolfram MathWorld](https://mathworld.wolfram.com/Group.html)
+-   [Lý thuyết nhóm trực quan](https://www.youtube.com/playlist?list=PLwV-9DG53NDxU337smpTwm6sef4x-SCLv)
 
 [^klein]: Nhóm này có thể biểu diễn thành nhóm hoán vị $\{(1),(12)(34),(13)(24),(14)(23)\}$, hoặc viết thành $C_2\times C_2$.
 
 [^quotient]: Với nhóm con tổng quát $H\le G$, cũng có thể thử định nghĩa phép toán tương tự trên toàn bộ các lớp kề trái (hoặc phải). Nhưng phép toán như vậy xác định tốt khi và chỉ khi $H$ là nhóm con chuẩn tắc của $G$.
 
-[^group-action]: Chẳng hạn [Group action - Wikipedia](https://en.wikipedia.org/wiki/Group_action).
+[^group-action]: Chẳng hạn [tác động nhóm - Wikipedia](https://en.wikipedia.org/wiki/Group_action).
 
 [^cayley]: Bản thân định lý Cayley không phản ánh nhiều thông tin về cấu trúc nội tại của nhóm, vì nhóm $S_G$ thường có kích thước rất lớn, và khó nói một nhóm con nào đó của nó có kích thước đúng bằng $|G|$ sẽ có tính chất xác định nào. Tuy nhiên, sự phát triển thời kỳ đầu của lý thuyết nhóm chủ yếu tập trung vào nhóm hoán vị. Vì vậy, định lý Cayley nói rằng mọi cấu trúc nhóm có thể đều nằm trong những đối tượng đã được nghiên cứu kỹ này, dù khi nghiên cứu thực tế cần công cụ tinh vi hơn.
 
 [^conjugate]: Tổng quát hơn, các phần tử liên hợp trong nhóm hoán vị tất yếu có cùng [kiểu](../permutation.md#kiểu-chu-trình-của-hoán-vị).
 
-[^proof-abelian]: Xem Milne, J.S. (2021) Group Theory, trang 25.
+[^proof-abelian]: Xem Milne, J.S. (2021) Lý thuyết nhóm, trang 25.
 
-[^module-pid]: Xem [Structure theorem for finitely generated modules over a principal ideal domain - Wikipedia](https://en.wikipedia.org/wiki/Structure_theorem_for_finitely_generated_modules_over_a_principal_ideal_domain).
+[^module-pid]: Xem [định lý cấu trúc cho môđun hữu hạn sinh trên miền iđêan chính - Wikipedia](https://en.wikipedia.org/wiki/Structure_theorem_for_finitely_generated_modules_over_a_principal_ideal_domain).

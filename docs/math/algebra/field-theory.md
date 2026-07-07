@@ -873,14 +873,14 @@ Cuối cùng, dưới đây là một số bài toán áp dụng trực tiếp n
 ## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
--   [Milne, J.S. Fields and Galois Theory.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
--   [Factorization of polynomials - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
--   [Factorization of polynomials over finite fields - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields)
--   [Cyclotomic Polynomial - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
--   [Brett Porter's Notes on Cyclotomic Polynomials](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
--   [Jordan Bell's Notes on Cyclotomic Polynomials](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
--   [Michel Waldschmidt. An introduction to the theory of finite fields](https://webusers.imj-prg.fr/~michel.waldschmidt/articles/pdf/FiniteFields.pdf)
--   [Finite Field Arithmetic - Wikipedia](https://en.wikipedia.org/wiki/Finite_field_arithmetic)
+-   [Milne, J.S. Trường và lý thuyết Galois.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
+-   [Phân tích đa thức thành nhân tử - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
+-   [Phân tích đa thức trên trường hữu hạn thành nhân tử - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields)
+-   [Đa thức cyclotomic - Wikipedia](https://en.wikipedia.org/wiki/Cyclotomic_polynomial)
+-   [Ghi chú của Brett Porter về đa thức cyclotomic](https://www.whitman.edu/documents/academics/majors/mathematics/2015/Final%20Project%20-%20Porter%2C%20Brett.pdf)
+-   [Ghi chú của Jordan Bell về đa thức cyclotomic](https://jordanbell.info/LaTeX/mathematics/cyclotomic/cyclotomic.pdf)
+-   [Michel Waldschmidt. Nhập môn lý thuyết trường hữu hạn](https://webusers.imj-prg.fr/~michel.waldschmidt/articles/pdf/FiniteFields.pdf)
+-   [Số học trường hữu hạn - Wikipedia](https://en.wikipedia.org/wiki/Finite_field_arithmetic)
 
 [^subfield-one]: Điều này là vì phần tử một $1_E$ của trường $E$ nhất định thỏa mãn quan hệ $x^2-x=0$ trên $F$, mà quan hệ này trong trường $F$ chỉ có hai nghiệm $0_F$ và $1_F$. Do định nghĩa trường yêu cầu $1_E\neq 0_E$, nhất định có $1_E=1_F$ và $0_E=0_F$.
 

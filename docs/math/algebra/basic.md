@@ -262,11 +262,11 @@ Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các
 ## Tài liệu tham khảo và chú thích
 
 -   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
--   [Tropical semiring - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
+-   [Nửa vành nhiệt đới - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
 [^oi-wiki-not-wikipedia]: Vì [OI Wiki không phải bách khoa toàn thư](../../intro/what-oi-wiki-is-not.md#oi-wiki-không-phải-bách-khoa-toàn-thư).
 
-[^ring-wiki]: [Ring (mathematics) - Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
+[^ring-wiki]: [Vành (toán học) - Wikipedia](https://en.wikipedia.org/wiki/Ring_%28mathematics%29)
 
 [^zero-multiplication]: Cách suy ra công thức này là $0\cdot a+0 = 0\cdot a = (0+0)\cdot a = 0\cdot a + 0\cdot a$; trong đó đẳng thức thứ nhất và thứ hai đến từ định nghĩa phần tử đơn vị cộng, đẳng thức thứ ba đến từ luật phân phối, và hệ quả cuối cùng đến từ luật giản ước của phép cộng. Phép nhân ở phía còn lại cũng tương tự.
 
