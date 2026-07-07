@@ -1,11 +1,14 @@
 Kiến thức nền tảng: [Logarit rời rạc](./discrete-logarithm.md)
 
-Bài viết này thảo luận về thặng dư bậc cao và căn đơn vị theo modulo, đồng thời giới thiệu các thuật toán khai căn theo modulo.
+Bài viết này thảo luận về thặng dư bậc cao và căn đơn vị theo môđun, đồng thời
+giới thiệu các thuật toán khai căn theo môđun.
 
 <span id="thặng-dư-bậc-cao"></span>
 ## Thặng dư bậc cao
 
-Thặng dư bậc cao trong phép toán modulo có thể được hiểu là việc xét khả năng khai lũy thừa bậc cao theo modulo. Đây là một sự tổng quát hóa của [thặng dư bậc hai](./quad-residue.md).
+Thặng dư bậc cao trong phép toán theo môđun có thể hiểu là xét khả năng khai
+lũy thừa bậc cao theo môđun. Đây là một sự tổng quát hóa của
+[thặng dư bậc hai](./quad-residue.md).
 
 ???+ abstract "Thặng dư bậc $k$"
     Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố
@@ -15,12 +18,13 @@ Thặng dư bậc cao trong phép toán modulo có thể được hiểu là vi�
     x^k\equiv a\pmod m,
     $$
 
-    thì $a$ được gọi là **thặng dư bậc $k$** ($k$-th residue) modulo $m$, và
-    $x$ được gọi là **căn bậc $k$** ($k$-th root) của $a$ modulo $m$; ngược lại,
-    $a$ được gọi là **bất thặng dư bậc $k$** ($k$-th nonresidue) modulo $m$.
+    thì $a$ được gọi là **thặng dư bậc $k$** ($k$-th residue) theo môđun $m$, và
+    $x$ được gọi là **căn bậc $k$** ($k$-th root) của $a$ theo môđun $m$; ngược
+    lại, $a$ được gọi là **bất thặng dư bậc $k$** ($k$-th nonresidue) theo môđun
+    $m$.
 
-Nói cách khác, căn bậc $k$ của $a$ modulo $m$ tồn tại khi và chỉ khi $a$ là
-thặng dư bậc $k$ modulo $m$.
+Nói cách khác, căn bậc $k$ của $a$ theo môđun $m$ tồn tại khi và chỉ khi $a$ là
+thặng dư bậc $k$ theo môđun $m$.
 
 <span id="tính-chất-thặng-dư-bậc-cao"></span>
 ### Tính chất
@@ -28,41 +32,41 @@ thặng dư bậc $k$ modulo $m$.
 Tương tự thặng dư bậc hai, có thể xét bài toán kiểm tra thặng dư bậc $k$, số
 lượng nghiệm và số lớp thặng dư bậc $k$. Giống các bài toán
 [phương trình đồng dư](./congruence-equation.md) khác, có thể dùng
-[định lý thặng dư Trung Hoa](./crt.md) để đưa chúng về trường hợp modulo lũy
+[định lý số dư Trung Hoa](./crt.md) để đưa chúng về trường hợp môđun là lũy
 thừa của số nguyên tố. Tùy theo việc căn nguyên thủy có tồn tại hay không,
-trường hợp này tiếp tục tách thành modulo lũy thừa của số nguyên tố lẻ và
-modulo lũy thừa của $2$.
+trường hợp này tiếp tục tách thành môđun là lũy thừa của số nguyên tố lẻ và
+môđun là lũy thừa của $2$.
 
-Trường hợp modulo lũy thừa của số lẻ tương đối đơn giản. Trong mọi trường hợp
-có căn nguyên thủy, thu được kết quả sau:
+Trường hợp môđun là lũy thừa của số nguyên tố lẻ gọn hơn. Trong mọi
+trường hợp có căn nguyên thủy, thu được kết quả sau:
 
 ???+ note "Định lý"
     Cho số nguyên $k\geq 2$, số nguyên $a$ và số nguyên dương $m$ nguyên tố cùng
-    nhau. Giả sử căn nguyên thủy modulo $m$ tồn tại, và $g$ là một căn nguyên
-    thủy modulo $m$. Đặt $d=\gcd(k,\varphi(m))$ và
+    nhau. Giả sử căn nguyên thủy theo môđun $m$ tồn tại, và $g$ là một căn
+    nguyên thủy theo môđun $m$. Đặt $d=\gcd(k,\varphi(m))$ và
     $d'=\dfrac{\varphi(m)}{d}$, trong đó $\varphi(m)$ là
     [hàm Euler](./euler-totient.md). Khi đó:
 
-    1.  $a$ là thặng dư bậc $k$ modulo $m$ khi và chỉ khi
+    1.  $a$ là thặng dư bậc $k$ theo môđun $m$ khi và chỉ khi
 
         $$
         a^{d'} \equiv 1 \pmod m.
         $$
-    2.  Khi $a$ là thặng dư bậc $k$ modulo $m$, xét theo đồng dư, $a$ có đúng
-        $d$ căn bậc $k$ phân biệt modulo $m$, và chúng có dạng
+    2.  Khi $a$ là thặng dư bậc $k$ theo môđun $m$, xét theo đồng dư, $a$ có đúng
+        $d$ căn bậc $k$ phân biệt theo môđun $m$, và chúng có dạng
 
         $$
         x \equiv g^{y_0+id'}\pmod{m},~0\le y_0 < d',~i=0,1,\cdots,d-1.
         $$
-    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $d'$, và toàn bộ các lớp đó là
+    3.  Số lớp thặng dư bậc $k$ theo môđun $m$ là $d'$, và toàn bộ các lớp đó là
 
         $$
         \{g^{di}\bmod m : 0 \le i < d'\}.
         $$
 
 ??? note "Chứng minh"
-    Vì $a\perp m$, nên $x\perp m$. Vì $g$ là căn nguyên thủy modulo $m$, cả $x$
-    và $a$ đều đồng dư với một lũy thừa nào đó của $g$. Đặt
+    Vì $a\perp m$, nên $x\perp m$. Vì $g$ là căn nguyên thủy theo môđun $m$, cả
+    $x$ và $a$ đều đồng dư với một lũy thừa nào đó của $g$. Đặt
     $x\equiv g^y\pmod m$, phương trình $x^k\equiv a\pmod m$ tương đương với
 
     $$
@@ -98,9 +102,9 @@ có căn nguyên thủy, thu được kết quả sau:
     [tính chất 2 của bậc](./primitive-root.md#ord-prop-2), điều này tương đương
     với tiêu chuẩn trên.
 
-Trường hợp modulo lũy thừa của $2$ đặc biệt hơn. Để xử lý trường hợp này, cần
+Trường hợp môđun là lũy thừa của $2$ đặc biệt hơn. Để xử lý trường hợp này, cần
 dùng một [kết quả](./primitive-root.md#mod-pow-2) về cấu trúc hệ thặng dư thu
-gọn modulo $2^e$: mọi số lẻ $a$ đều đồng dư duy nhất với một số có dạng
+gọn theo môđun $2^e$: mọi số lẻ $a$ đều đồng dư duy nhất với một số có dạng
 $(-1)^s5^r\bmod 2^e$, trong đó $s\in\{0,1\}$ và $0\le r < 2^{e-2}$. Kết quả
 này dẫn đến kết luận sau:
 
@@ -108,23 +112,23 @@ này dẫn đến kết luận sau:
     Cho số nguyên $k\ge 2$, số lẻ $a$ và số nguyên dương $m=2^e$ với
     $e \ge 2$. Khi $k$ là số lẻ:
 
-    1.  $a$ luôn là thặng dư bậc $k$ modulo $m$.
-    2.  $a$ có đúng một căn bậc $k$ modulo $m$.
-    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $2^{e-1}$, và chúng chính là toàn
+    1.  $a$ luôn là thặng dư bậc $k$ theo môđun $m$.
+    2.  $a$ có đúng một căn bậc $k$ theo môđun $m$.
+    3.  Số lớp thặng dư bậc $k$ theo môđun $m$ là $2^{e-1}$, và chúng chính là toàn
         bộ các lớp thặng dư thu gọn.
 
     Khi $k$ là số chẵn, đặt $d=\gcd(k,2^{e-2})$ và
     $d'=\dfrac{2^{e-2}}{d}$. Khi đó:
 
-    1.  $a$ là thặng dư bậc $k$ modulo $m$ khi và chỉ khi
+    1.  $a$ là thặng dư bậc $k$ theo môđun $m$ khi và chỉ khi
         $a\equiv 1\pmod 4$ và $a^{d'}\equiv 1\pmod m$.
-    2.  Khi $a$ là thặng dư bậc $k$ modulo $m$, xét theo đồng dư, $a$ có đúng
-        $2d$ căn bậc $k$ phân biệt modulo $m$, và chúng có dạng
+    2.  Khi $a$ là thặng dư bậc $k$ theo môđun $m$, xét theo đồng dư, $a$ có đúng
+        $2d$ căn bậc $k$ phân biệt theo môđun $m$, và chúng có dạng
 
         $$
         x \equiv \pm 5^{y_0 + id'} \pmod{2^e},~ 0 \le y_0 < d',~i = 0, 1,\cdots,d-1.
         $$
-    3.  Số lớp thặng dư bậc $k$ modulo $m$ là $d'$, và toàn bộ các lớp đó là
+    3.  Số lớp thặng dư bậc $k$ theo môđun $m$ là $d'$, và toàn bộ các lớp đó là
 
         $$
         \{5^{di}\bmod m : 0 \le i < d'\}.
@@ -155,7 +159,7 @@ này dẫn đến kết luận sau:
         $2\mid s$, phương trình thứ hai có nghiệm khi và chỉ khi
         $d=\gcd(k,2^{e-2})\mid r$. Kết hợp hai điều kiện này sẽ cho toàn bộ các
         lớp thặng dư bậc $k$. Tính trực tiếp thấy điều kiện thứ nhất tương đương
-        với $a\equiv 1\pmod 4$; lặp lại phân tích trong trường hợp modulo lũy
+        với $a\equiv 1\pmod 4$; lặp lại phân tích trong trường hợp môđun là lũy
         thừa của số nguyên tố lẻ, điều kiện thứ hai tương đương với $a^{d'}=1$.
         Kết hợp hai điểm này sẽ cho tiêu chuẩn trong định lý. Nghiệm tổng quát
         của hai phương trình đồng dư tuyến tính cũng đã biết:
@@ -169,7 +173,7 @@ này dẫn đến kết luận sau:
 
         Kết hợp chúng sẽ thu được nghiệm tổng quát của phương trình ban đầu.
 
-Như vậy, bài toán kiểm tra thặng dư bậc $k$ với các modulo khác nhau đã được
+Như vậy, bài toán kiểm tra thặng dư bậc $k$ với các môđun khác nhau đã được
 giải quyết đầy đủ. Ký hiệu Legendre và luật tương hỗ bậc hai trong thặng dư bậc
 hai cũng có thể tổng quát hóa sang thặng dư bậc cao, nhưng điều này không dễ và
 cần đến các khái niệm như
@@ -183,26 +187,26 @@ quát thành [luật tương hỗ Artin](https://en.wikipedia.org/wiki/Artin_rec
 Là một trường hợp đặc biệt của căn bậc $k$, mục này thảo luận khái niệm căn đơn
 vị (nguyên thủy) bậc $k$. Nó có thể xem là đối ứng của khái niệm
 [căn đơn vị](../complex.md#căn-đơn-vị) bậc $k$ trong trường số
-phức $\mathbf C$ trên hệ thặng dư thu gọn $\mathbf Z_m^*$ modulo $m$. Khi modulo
-$m$ phù hợp, có thể dùng căn đơn vị nguyên thủy bậc $k$ modulo $m$ thay cho căn
-phức $\omega_k$ để tăng tốc tính toán.
+phức $\mathbf C$ trên hệ thặng dư thu gọn $\mathbf Z_m^*$ theo môđun $m$. Khi
+môđun $m$ phù hợp, có thể dùng căn đơn vị nguyên thủy bậc $k$ theo môđun $m$
+thay cho căn phức $\omega_k$ để tăng tốc tính toán.
 
 Tương tự trường hợp trên trường số phức, định nghĩa được phát biểu như sau:
 
-???+ abstract "Căn đơn vị bậc $k$ modulo $m$"
-    Với modulo $m$, căn bậc $k$ của phần tử $1$ được gọi là **căn đơn vị bậc
-    $k$ modulo $m$** ($k$-th root of unity modulo $m$). Đặc biệt, nếu $x$ là một
-    căn đơn vị bậc $k$ modulo $m$ và không phải là căn đơn vị bậc $k' < k$ nào
-    modulo $m$, thì $x$ được gọi là **căn đơn vị nguyên thủy bậc $k$ modulo
-    $m$** ($k$-th primitive root of unity modulo $m$).
+???+ abstract "Căn đơn vị bậc $k$ theo môđun $m$"
+    Với môđun $m$, căn bậc $k$ của phần tử $1$ được gọi là **căn đơn vị bậc
+    $k$ theo môđun $m$** ($k$-th root of unity modulo $m$). Đặc biệt, nếu $x$ là
+    một căn đơn vị bậc $k$ theo môđun $m$ và không phải là căn đơn vị bậc $k' < k$
+    nào theo môđun $m$, thì $x$ được gọi là **căn đơn vị nguyên thủy bậc $k$ theo
+    môđun $m$** ($k$-th primitive root of unity modulo $m$).
 
 So sánh với [định nghĩa căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy),
 căn nguyên thủy $g$ chính là căn đơn vị nguyên thủy bậc $\varphi(m)$
-modulo $m$, trong đó $\varphi(m)$ là [hàm Euler](./euler-totient.md).
+theo môđun $m$, trong đó $\varphi(m)$ là [hàm Euler](./euler-totient.md).
 
-Khi căn đơn vị nguyên thủy bậc $k$ modulo $m$ tồn tại, các tính chất đại số của
-nó trùng với căn đơn vị phức nguyên thủy bậc $k$ là $\omega_k$, nên có thể dùng
-nó thay $\omega_k$ trong nhiều phép tính. Ví dụ, áp dụng nó vào
+Khi căn đơn vị nguyên thủy bậc $k$ theo môđun $m$ tồn tại, các tính chất đại số
+của nó trùng với căn đơn vị phức nguyên thủy bậc $k$ là $\omega_k$, nên có thể
+dùng nó thay $\omega_k$ trong nhiều phép tính. Ví dụ, áp dụng nó vào
 [biến đổi Fourier nhanh](../poly/fft.md) sẽ thu được
 [biến đổi số học nhanh](../poly/ntt.md) trên trường hữu hạn[^fnnt].
 
@@ -213,38 +217,38 @@ Trong trường số phức, căn đơn vị (nguyên thủy) bậc bất kỳ �
 trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng tồn tại.
 
 ???+ note "Tính chất"
-    Với modulo $m$, đặt $\lambda(m)$ là
+    Với môđun $m$, đặt $\lambda(m)$ là
     [hàm Carmichael](./primitive-root.md#hàm-carmichael) của nó.
     Khi đó:
 
     1.  Mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều là căn đơn vị nguyên
-        thủy bậc $\delta_m(a)$ modulo $m$, trong đó $\delta_m(a)$ là
-        [bậc](./primitive-root.md#bậc) của $a$ modulo $m$.
-    2.  Nếu phần tử $a$ là căn đơn vị bậc $k$ modulo $m$, và $k'$ là một bội bất
-        kỳ của $k$, thì $a$ cũng là căn đơn vị bậc $k'$ modulo $m$.
-    3.  Nếu phần tử $a$ là căn đơn vị (nguyên thủy) bậc $k$ modulo $m$, thì phần
-        tử $a^{\ell}$ là căn đơn vị bậc $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$
-        (tương ứng là nguyên thủy).
+        thủy bậc $\delta_m(a)$ theo môđun $m$, trong đó $\delta_m(a)$ là
+        [bậc](./primitive-root.md#bậc) của $a$ theo môđun $m$.
+    2.  Nếu phần tử $a$ là căn đơn vị bậc $k$ theo môđun $m$, và $k'$ là một bội
+        bất kỳ của $k$, thì $a$ cũng là căn đơn vị bậc $k'$ theo môđun $m$.
+    3.  Nếu phần tử $a$ là căn đơn vị (nguyên thủy) bậc $k$ theo môđun $m$, thì
+        phần tử $a^{\ell}$ là căn đơn vị bậc $\dfrac{k}{\gcd(k,\ell)}$ theo
+        môđun $m$ (tương ứng là nguyên thủy).
     4.  Khi $k'$ chạy qua các ước của $k$, toàn bộ căn đơn vị nguyên thủy bậc
-        $k'$ modulo $m$ lập thành một phân hoạch của tập căn đơn vị bậc $k$
-        modulo $m$. Hơn nữa, với $\ell\perp k$, ánh xạ $x\mapsto x^\ell$ cho
+        $k'$ theo môđun $m$ lập thành một phân hoạch của tập căn đơn vị bậc $k$
+        theo môđun $m$. Hơn nữa, với $\ell\perp k$, ánh xạ $x\mapsto x^\ell$ cho
         một song ánh trên các căn đơn vị bậc $k$ và giữ nguyên phân hoạch đó: nó
         vẫn ánh xạ căn đơn vị nguyên thủy bậc $k'\mid k$ thành căn đơn vị nguyên
         thủy bậc $k'$.
-    5.  Căn đơn vị nguyên thủy bậc $k$ modulo $m$ tồn tại khi và chỉ khi
+    5.  Căn đơn vị nguyên thủy bậc $k$ theo môđun $m$ tồn tại khi và chỉ khi
         $k\mid\lambda(m)$. Đặc biệt, căn đơn vị nguyên thủy bậc $\lambda(m)$
-        modulo $m$ tồn tại và được gọi là **$\lambda$-căn nguyên thủy modulo
-        $m$**.
-    6.  Phần tử $a$ là căn đơn vị nguyên thủy bậc $k$ modulo $m$ khi và chỉ khi
-        $a^k\equiv 1\pmod{m}$ và với mọi ước nguyên tố $p\mid k$ đều có
+        theo môđun $m$ tồn tại và được gọi là **$\lambda$-căn nguyên thủy theo
+        môđun $m$**.
+    6.  Phần tử $a$ là căn đơn vị nguyên thủy bậc $k$ theo môđun $m$ khi và chỉ
+        khi $a^k\equiv 1\pmod{m}$ và với mọi ước nguyên tố $p\mid k$ đều có
         $a^{k/p}\not\equiv 1\pmod{m}$.
 
 ??? note "Chứng minh"
     Theo định nghĩa của bậc, mọi số nguyên $a$ nguyên tố cùng nhau với $m$ đều
-    là căn đơn vị nguyên thủy bậc $\delta_m(a)$ modulo $m$, trong đó
-    $\delta_m(a)$ là bậc của $a$ modulo $m$. Ngược lại, nếu $a$ là căn đơn vị
-    bậc $k$ modulo $m$, thì $\gcd(a^k,m)=1$, nên $\gcd(a,m)=1$. Do đó, $a$ là
-    căn đơn vị (nguyên thủy) modulo $m$ khi và chỉ khi $a$ nguyên tố cùng nhau
+    là căn đơn vị nguyên thủy bậc $\delta_m(a)$ theo môđun $m$, trong đó
+    $\delta_m(a)$ là bậc của $a$ theo môđun $m$. Ngược lại, nếu $a$ là căn đơn vị
+    bậc $k$ theo môđun $m$, thì $\gcd(a^k,m)=1$, nên $\gcd(a,m)=1$. Do đó, $a$ là
+    căn đơn vị (nguyên thủy) theo môđun $m$ khi và chỉ khi $a$ nguyên tố cùng nhau
     với $m$. Đây là tính chất 1.
 
     Kiểm tra trực tiếp từ định nghĩa thấy rằng chỉ cần $k\mid k'$, từ
@@ -255,11 +259,11 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     \delta_m(a^\ell) = \dfrac{\delta_m(a)}{\gcd(\delta_m(a),\ell)}.
     $$
 
-    Nếu $a$ là căn đơn vị nguyên thủy bậc $k$ modulo $m$, thì $\delta_m(a)=k$;
+    Nếu $a$ là căn đơn vị nguyên thủy bậc $k$ theo môđun $m$, thì $\delta_m(a)=k$;
     thay trực tiếp vào công thức trên sẽ được $a^\ell$ là căn đơn vị nguyên thủy
-    bậc $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Nếu $a$ chỉ là căn đơn vị bậc $k$
-    modulo $m$, giả sử nó là căn đơn vị nguyên thủy bậc $k'\mid k$, thì
-    $a^\ell$ là căn đơn vị nguyên thủy bậc $\dfrac{k'}{\gcd(k',\ell)}$ modulo
+    bậc $\dfrac{k}{\gcd(k,\ell)}$ theo môđun $m$. Nếu $a$ chỉ là căn đơn vị bậc $k$
+    theo môđun $m$, giả sử nó là căn đơn vị nguyên thủy bậc $k'\mid k$, thì
+    $a^\ell$ là căn đơn vị nguyên thủy bậc $\dfrac{k'}{\gcd(k',\ell)}$ theo môđun
     $m$. Vì $k'\mid k$, suy ra
 
     $$
@@ -267,19 +271,19 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     $$
 
     rồi theo tính chất 2, $a^\ell$ là căn đơn vị bậc
-    $\dfrac{k}{\gcd(k,\ell)}$ modulo $m$. Đây là tính chất 3.
+    $\dfrac{k}{\gcd(k,\ell)}$ theo môđun $m$. Đây là tính chất 3.
 
-    Với $k'\mid k$, theo tính chất 2, căn đơn vị nguyên thủy bậc $k'$ modulo
-    $m$ cũng là căn đơn vị bậc $k$ modulo $m$. Các tập này đôi một không
+    Với $k'\mid k$, theo tính chất 2, căn đơn vị nguyên thủy bậc $k'$ theo môđun
+    $m$ cũng là căn đơn vị bậc $k$ theo môđun $m$. Các tập này đôi một không
     giao nhau, nên tạo thành một phân hoạch. Với $\ell\perp k$, luôn có
-    $\ell\perp k'$, do đó nếu $a$ là căn đơn vị nguyên thủy bậc $k'$ modulo $m$
-    thì $a^\ell$ vẫn là căn đơn vị nguyên thủy bậc $k'$ modulo $m$. Lấy
+    $\ell\perp k'$, do đó nếu $a$ là căn đơn vị nguyên thủy bậc $k'$ theo môđun $m$
+    thì $a^\ell$ vẫn là căn đơn vị nguyên thủy bậc $k'$ theo môđun $m$. Lấy
     $\ell'=\ell^{-1}\bmod k$, có thể kiểm tra $x\mapsto x^\ell$ và
     $x\mapsto x^{\ell'}$ là hai ánh xạ ngược nhau; vì vậy $x\mapsto x^\ell$ là
     song ánh. Đây là tính chất 4.
 
     Theo tính chất của hàm Carmichael, căn đơn vị nguyên thủy bậc $\lambda(m)$
-    modulo $m$ luôn tồn tại; gọi nó là $a$, với $\delta_m(a)=\lambda(m)$. Với
+    theo môđun $m$ luôn tồn tại; gọi nó là $a$, với $\delta_m(a)=\lambda(m)$. Với
     $k\mid\lambda(m)$, đặt $k'=\dfrac{\lambda(m)}{k}$, luôn có
 
     $$
@@ -296,51 +300,52 @@ trong số học, căn đơn vị (nguyên thủy) không phải lúc nào cũng
     $\delta_m(a)=k$.
 
 Các tính chất trên cho thấy, so với trường hợp tồn tại căn nguyên thủy,
-$\lambda$-căn nguyên thủy modulo $m$ đóng vai trò nền tảng tương tự. Khác với
+$\lambda$-căn nguyên thủy theo môđun $m$ đóng vai trò nền tảng tương tự. Khác với
 căn nguyên thủy, các lũy thừa của $\lambda$-căn nguyên thủy không thể sinh ra
-toàn bộ các căn đơn vị modulo $m$. Dù vậy, vì mật độ của $\lambda$-căn nguyên
+toàn bộ các căn đơn vị theo môđun $m$. Dù vậy, vì mật độ của $\lambda$-căn nguyên
 thủy không quá thấp[^lambda-density], nếu cần tìm một căn đơn vị nguyên thủy bậc
 $k$, có thể trước hết dùng phương pháp ngẫu nhiên để tìm một $\lambda$-căn
 nguyên thủy, rồi lấy lũy thừa của nó để thu được căn đơn vị nguyên thủy bậc
 $k$.
 
-Nếu đã biết một căn bậc $k$ của $a$ modulo $m$, có thể dùng toàn bộ căn đơn vị
-bậc $k$ modulo $m$ để sinh ra toàn bộ căn bậc $k$ của $a$ modulo $m$.
+Nếu đã biết một căn bậc $k$ của $a$ theo môđun $m$, có thể dùng toàn bộ căn đơn vị
+bậc $k$ theo môđun $m$ để sinh ra toàn bộ căn bậc $k$ của $a$ theo môđun $m$.
 
 ???+ note "Định lý"
-    Giả sử $x$ là một căn bậc $k$ của $a$ modulo $m$. Khi $r$ chạy qua toàn bộ
-    các căn đơn vị bậc $k$ modulo $m$, $xr$ chạy qua toàn bộ các căn bậc $k$ của
-    $a$ modulo $m$.
+    Giả sử $x$ là một căn bậc $k$ của $a$ theo môđun $m$. Khi $r$ chạy qua toàn bộ
+    các căn đơn vị bậc $k$ theo môđun $m$, $xr$ chạy qua toàn bộ các căn bậc $k$
+    của $a$ theo môđun $m$.
 
 ??? note "Chứng minh"
-    Với hai căn bậc $k$ là $x,y$ của $a$ modulo $m$, đặt
+    Với hai căn bậc $k$ là $x,y$ của $a$ theo môđun $m$, đặt
     $r=x^{-1}y\bmod m$. Khi đó $r$ thỏa mãn $r^k\equiv 1\pmod m$, nên là căn
-    đơn vị bậc $k$ modulo $m$. Ngược lại, nếu $r$ là căn đơn vị bậc $k$ modulo
-    $m$, thì $(xr)^{k}= x^kr^k\equiv a\pmod m$, tức là $xr$ là căn bậc $k$ của
-    $a$ modulo $m$.
+    đơn vị bậc $k$ theo môđun $m$. Ngược lại, nếu $r$ là căn đơn vị bậc $k$ theo
+    môđun $m$, thì $(xr)^{k}= x^kr^k\equiv a\pmod m$, tức là $xr$ là căn bậc
+    $k$ của $a$ theo môđun $m$.
 
 Dùng căn đơn vị bậc $k$ để sinh ra toàn bộ căn bậc $k$ tương tự việc dùng nghiệm
 của hệ phương trình tuyến tính thuần nhất để sinh nghiệm tổng quát của hệ phương
 trình tuyến tính không thuần nhất.
 
 Phần trên thảo luận trường hợp tổng quát. Riêng khi căn nguyên thủy tồn tại, cấu
-trúc của căn đơn vị đơn giản hơn:
+trúc của căn đơn vị gọn hơn:
 
 ???+ note "Định lý"
-    Với modulo $m$, giả sử căn nguyên thủy modulo $m$ tồn tại, và $a$ là căn đơn
-    vị nguyên thủy bậc $k$ modulo $m$. Khi đó, $b$ là căn đơn vị bậc $k$ modulo
-    $m$ khi và chỉ khi $b$ có thể biểu diễn thành một lũy thừa của $a$.
+    Với môđun $m$, giả sử căn nguyên thủy theo môđun $m$ tồn tại, và $a$ là căn
+    đơn vị nguyên thủy bậc $k$ theo môđun $m$. Khi đó, $b$ là căn đơn vị bậc $k$
+    theo môđun $m$ khi và chỉ khi $b$ có thể biểu diễn thành một lũy thừa của
+    $a$.
 
 ??? note "Chứng minh"
-    Gọi $g$ là căn nguyên thủy modulo $m$. Khi đó mọi phần tử nguyên tố cùng
+    Gọi $g$ là căn nguyên thủy theo môđun $m$. Khi đó mọi phần tử nguyên tố cùng
     nhau với $m$ đều có thể biểu diễn thành một lũy thừa của $g$. Do đó, $a$ là
-    căn đơn vị nguyên thủy bậc $k$ modulo $m$ khi và chỉ khi
+    căn đơn vị nguyên thủy bậc $k$ theo môđun $m$ khi và chỉ khi
 
     $$
     \delta_m(a) = \delta_m(g^{\operatorname{ind}_ga}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_ga)} = k.
     $$
 
-    Tương tự, $b$ là căn đơn vị bậc $k$ modulo $m$ khi và chỉ khi
+    Tương tự, $b$ là căn đơn vị bậc $k$ theo môđun $m$ khi và chỉ khi
 
     $$
     \delta_m(b) = \delta_m(g^{\operatorname{ind}_gb}) = \dfrac{\varphi(m)}{\gcd(\varphi(m),\operatorname{ind}_gb)} = k' \mid k.
@@ -370,27 +375,27 @@ tiếp theo cho thấy thuật toán Tonelli-Shanks tận dụng điểm này đ
 tính logarit rời rạc trong phép khai căn.
 
 <span id="khai-căn-theo-modulo"></span>
-## Khai căn theo modulo
+## Khai căn theo môđun
 
 Cuối cùng, bài viết thảo luận cách tìm căn bậc $k$. Với $k=2$, có
 [nhiều thuật toán hiệu quả](./quad-residue.md#khai-căn-bậc-hai-trong-nghĩa-modulo)
-để khai căn bậc hai theo modulo. Tuy nhiên, với $k$ tổng quát, hiện chưa biết
+để khai căn bậc hai theo môđun. Tuy nhiên, với $k$ tổng quát, hiện chưa biết
 thuật toán thời gian đa thức. Mục này giới thiệu hai thuật toán phổ biến, lần
 lượt có thể tìm một căn bậc $k$ trong thời gian $O(m^{1/2})$ và
-$O(m^{1/4+\varepsilon})$. Dùng định lý thặng dư Trung Hoa luôn có thể đưa bài
-toán về trường hợp modulo lũy thừa của số nguyên tố, vì vậy mục này chủ yếu
-thảo luận lời giải trong trường hợp modulo lũy thừa của số nguyên tố.
+$O(m^{1/4+\varepsilon})$. Dùng định lý số dư Trung Hoa luôn có thể đưa bài
+toán về trường hợp môđun là lũy thừa của số nguyên tố, vì vậy mục này chủ yếu
+thảo luận lời giải trong trường hợp môđun là lũy thừa của số nguyên tố.
 
 <span id="thuật-toán-trực-tiếp"></span>
 ### Thuật toán trực tiếp
 
-[Phân tích](#tính-chất-thặng-dư-bậc-cao) về tính chất của thặng dư bậc $k$ ở trên thực
-ra đã chỉ ra một cách tìm căn bậc $k$ theo modulo lũy thừa của số nguyên tố.
+[Phân tích](#tính-chất-thặng-dư-bậc-cao) về tính chất của thặng dư bậc $k$ ở trên
+thực ra đã chỉ ra một cách tìm căn bậc $k$ khi môđun là lũy thừa của số nguyên tố.
 Nói chính xác, phần trên đã giải quyết trường hợp số được khai căn $a$ nguyên tố
-cùng nhau với modulo $m$. Quá trình thuật toán tóm tắt như sau:
+cùng nhau với môđun $m$. Quá trình thuật toán tóm tắt như sau:
 
 -   Khi $m=p^e$ là lũy thừa của số nguyên tố lẻ, giả sử $g$ là một căn nguyên
-    thủy modulo $m$. Khi đó, phương trình $x^k\equiv a\pmod m$ có thể chuyển
+    thủy theo môđun $m$. Khi đó, phương trình $x^k\equiv a\pmod m$ có thể chuyển
     thành phương trình đồng dư tuyến tính
 
     $$
@@ -445,7 +450,7 @@ Với trường hợp vô nghiệm, có thể dùng tiêu chuẩn đã nêu ở 
 trong $O(\log m)$, không cần đợi đến quá trình giải mới
 phát hiện.
 
-Mã tham khảo để tìm căn bậc $k$ modulo số nguyên tố như sau: mã chỉ mang tính
+Mã tham khảo để tìm căn bậc $k$ theo môđun nguyên tố như sau: mã chỉ mang tính
 minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu này.
 
 ??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
@@ -457,8 +462,8 @@ minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu nà
 ### Thuật toán Tonelli-Shanks cải tiến
 
 Mở rộng phù hợp [thuật toán Tonelli-Shanks](./quad-residue.md#thuật-toán-tonelli-shanks)
-dùng cho khai căn bậc hai theo modulo sẽ giải quyết được phép khai căn theo
-modulo lũy thừa của số nguyên tố. Một cách mở rộng trực tiếp hơn là thuật toán
+dùng cho khai căn bậc hai theo môđun sẽ giải quyết được phép khai căn khi môđun
+là lũy thừa của số nguyên tố. Một cách mở rộng trực tiếp hơn là thuật toán
 Adleman-Manders-Miller[^amm], nhưng độ phức tạp của nó vẫn chưa đủ tốt[^amm-comp].
 Mục này giới thiệu thuật toán Tonelli-Shanks cải tiến do sugarknri, Min\_25,
 37zigen và những người khác đề xuất. Nó có thể tìm một căn bậc $k$ trong thời
@@ -478,8 +483,8 @@ nguyên tố lớn, và khống chế tổng độ phức tạp ở mức $O(m^{
 <span id="quy-trình"></span>
 #### Quy trình
 
-Xét việc tính căn bậc $k$ của $a$ modulo lũy thừa số nguyên tố $m$, tức là giải
-phương trình đồng dư:
+Xét việc tính căn bậc $k$ của $a$ theo môđun $m$, trong đó $m$ là lũy thừa của
+một số nguyên tố. Nói cách khác, cần giải phương trình đồng dư:
 
 $$
 x^k \equiv a \pmod m.
@@ -487,16 +492,16 @@ $$
 
 Đặc biệt, với trường hợp $m=2^e$, còn cần bảo đảm $a\equiv 1\pmod{4}$, để $a$
 có thể viết thành lũy thừa của $g=5$. Tương tự phần đã thảo luận, việc tính căn
-bậc $k$ modulo $2^e$ luôn có thể chuyển về trường hợp này. Khi xử lý trường hợp
-modulo $2^e$, mọi $\varphi(m)$ được nhắc đến trong mục này đều nên thay bằng
+bậc $k$ theo môđun $2^e$ luôn có thể chuyển về trường hợp này. Khi xử lý trường
+hợp môđun $2^e$, mọi $\varphi(m)$ được nhắc đến trong mục này đều nên thay bằng
 $\delta_m(5)=2^{e-2}$.
 
 Trước hết, bài toán có thể được đưa về trường hợp bậc khai căn chia hết
 $\varphi(m)$. Đặt $d=\gcd(k,\varphi(m))$. Khi đó, theo tính chất của thặng dư
-bậc $k$, nếu $a$ là thặng dư bậc $k$ modulo $m$, thì $a$ luôn là căn đơn vị bậc
-$\dfrac{\varphi(m)}{d}$ modulo $m$. Theo tính chất của căn đơn vị, với mọi
-$\ell\perp\dfrac{\varphi(m)}{d}$, ánh xạ $x\mapsto x^{\ell}$ đều là song ánh
-trên các căn đơn vị bậc $\dfrac{\varphi(m)}{d}$. Vì vậy có thể chọn
+bậc $k$, nếu $a$ là thặng dư bậc $k$ theo môđun $m$, thì $a$ luôn là căn đơn vị
+bậc $\dfrac{\varphi(m)}{d}$ theo môđun $m$. Theo tính chất của căn đơn vị, với
+mọi $\ell\perp\dfrac{\varphi(m)}{d}$, ánh xạ $x\mapsto x^{\ell}$ đều là song
+ánh trên các căn đơn vị bậc $\dfrac{\varphi(m)}{d}$. Vì vậy có thể chọn
 
 $$
 \ell = \left(\dfrac{k}{d}\right)^{-1}\bmod\dfrac{\varphi(m)}{d}.
@@ -534,8 +539,8 @@ $$
 Không mất tính tổng quát, giả sử $\varphi(m)=p^sr$ và $p\perp r$. Gọi
 $q\in\mathbf N_+$ là nghiệm của phương trình $qr\equiv -1\pmod{p^e}$. Khi đó,
 vì $b$ là căn đơn vị bậc $rp^{s-e}$, $b^{qr}$ là căn đơn vị bậc
-$p^{s-e}$. Lại gọi $\zeta$ là căn đơn vị nguyên thủy bậc $p^s$ modulo $m$. Khi
-đó $\zeta^{p^e}$ là căn đơn vị nguyên thủy bậc $p^{s-e}$, nên tồn tại
+$p^{s-e}$. Lại gọi $\zeta$ là căn đơn vị nguyên thủy bậc $p^s$ theo môđun $m$.
+Khi đó $\zeta^{p^e}$ là căn đơn vị nguyên thủy bậc $p^{s-e}$, nên tồn tại
 $h\in\mathbf N$ sao cho $b^{qr}\equiv \zeta^{hp^{e}}\pmod{m}$. Vì vậy, kiểm tra
 trực tiếp cho thấy
 
@@ -543,9 +548,9 @@ $$
 x\equiv b^{(qr+1)/p^e}\zeta^{-h} \pmod{m}
 $$
 
-là một căn bậc $p^e$ của $b$ modulo $m$.
+là một căn bậc $p^e$ của $b$ theo môđun $m$.
 
-Để tính $x$, cần tìm một bất thặng dư bậc $p$ là $\eta$ modulo $m$. Theo các
+Để tính $x$, cần tìm một bất thặng dư bậc $p$ là $\eta$ theo môđun $m$. Theo các
 tính chất đã nêu, chỉ cần chọn ngẫu nhiên $\eta\perp m$ và kiểm tra
 $\eta^{\varphi(m)/p}\bmod{m}\neq 1$. Mật độ của các số như vậy là
 
@@ -641,7 +646,7 @@ trong tích bằng $1$, vì vậy giá trị tính được chính là thừa s�
 tố lớn duy nhất $p^\star$ (nếu tồn tại). Phần còn lại $z/p^\star$ chỉ có thể
 gồm một số thừa số nguyên tố thỏa mãn $e=s$, nên không cần tiếp tục phân tích.
 
-Mã tham khảo để tìm căn bậc $k$ theo modulo số nguyên tố như sau:
+Mã tham khảo để tìm căn bậc $k$ theo môđun nguyên tố như sau:
 
 ??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
     ```cpp
@@ -651,7 +656,7 @@ Mã tham khảo để tìm căn bậc $k$ theo modulo số nguyên tố như sau
 <span id="xử-lý-trường-hợp-tổng-quát"></span>
 ### Xử lý trường hợp tổng quát
 
-Xét trường hợp tổng quát, vẫn giả sử modulo $m$ là lũy thừa số nguyên tố $p^e$,
+Xét trường hợp tổng quát, vẫn giả sử môđun $m$ là lũy thừa số nguyên tố $p^e$,
 nhưng $\gcd(a,m)>1$. Nếu $a\equiv 0\pmod{m}$, thì
 
 $$
@@ -669,15 +674,15 @@ $$
 Vì $(x')^k\perp p$, công thức trên đúng khi và chỉ khi $kz = s$ và
 $(x')^k\equiv a'\pmod{p^{e-s}}$. Phương trình thứ nhất có nghiệm
 $z=\dfrac{s}{k}$ khi và chỉ khi $k\mid s$; còn phương trình thứ hai đã được
-giải ở trên. Cần lưu ý rằng do modulo của nghiệm tổng quát trong phương trình
-thứ hai khác với modulo của nghiệm tổng quát ban đầu, mỗi nghiệm $x'$ của
+giải ở trên. Cần lưu ý rằng môđun của nghiệm tổng quát trong phương trình
+thứ hai khác với môđun của nghiệm tổng quát ban đầu, mỗi nghiệm $x'$ của
 phương trình thứ hai tương ứng với một số nghiệm của phương trình ban đầu:
 
 $$
 x \equiv p^{s/k}(x' + \ell p^{e-s})\pmod{p^e},~\ell = 0,1,\cdots, p^{s-s/k}-1.
 $$
 
-Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như sau:
+Mã tham khảo để tìm toàn bộ căn bậc $k$ theo môđun bất kỳ như sau:
 
 ??? example "Bài mẫu [Luogu P5668 - mẫu căn bậc N](https://www.luogu.com.cn/problem/P5668), mã tham khảo"
     === "Thuật toán trực tiếp"
@@ -697,10 +702,25 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo modulo bất kỳ như
 -   [Root of unity modulo n - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
 -   [No.981 General Power Root, editorial by 37zigen](https://yukicoder.me/problems/no/981/editorial)
 
-[^fnnt]: Modulo $m$ không nhất thiết là số nguyên tố. Chỉ cần $a$ là căn đơn vị nguyên thủy bậc $k=2^e$ modulo $m$, nó có thể được dùng cho biến đổi số học nhanh modulo $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi thừa số nguyên tố của modulo $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số nguyên tố đã rất lớn, còn modulo $m$ thường lớn hơn nữa; vì vậy trường hợp modulo tổng quát không thông dụng bằng trường hợp modulo số nguyên tố.
+[^fnnt]: Môđun $m$ có thể không phải là số nguyên tố. Chỉ cần $a$ là căn đơn vị
+    nguyên thủy bậc $k=2^e$ theo môđun $m$, nó có thể được dùng cho biến đổi số
+    học nhanh theo môđun $m$. Tuy nhiên, vì $2^e$ cần xử lý thường khá lớn, mỗi
+    thừa số nguyên tố của môđun $m$ phải có dạng $c2^e+1$. Do đó chỉ một thừa số
+    nguyên tố đã rất lớn, còn môđun $m$ thường lớn hơn nữa; vì vậy trường hợp
+    môđun tổng quát không thông dụng bằng trường hợp môđun nguyên tố.
 
 [^lambda-density]: Theo [kết quả về số lượng căn nguyên thủy](./primitive-root.md#số-lượng-căn-nguyên-thủy), số lượng $\lambda$-căn nguyên thủy đúng bằng $\varphi(\lambda(m))$, trong đó $\varphi(\cdot)$ và $\lambda(\cdot)$ lần lượt là hàm Euler và hàm Carmichael. Vì với hầu hết số nguyên $m$, $\lambda(m)/m = \exp(-(1+o(1))\log\log m\log\log\log m)$, và tồn tại $C > 0$ sao cho với mọi số nguyên $m > 2$ đều có $\varphi(m)/m = C / \log\log m$, nên với hầu hết số nguyên $m$, $\varphi(\lambda(m))/m = \exp(-(1+o(1))\log\log m\log\log\log m)$. Trong công thức này, $o(1)$ trong hệ số của phần mũ đã hấp thụ đóng góp của thừa số $\varphi(\lambda(m))/\lambda(m)$. Vì vậy, có thể tìm $\lambda$-căn nguyên thủy sau kỳ vọng $\exp((1+o(1))\log\log m\log\log\log m)$ lần thử. Về ước lượng cho hàm Euler, có thể tham khảo bài báo Rosser, J. Barkley, and Lowell Schoenfeld. "Approximate formulas for some functions of prime numbers." Illinois Journal of Mathematics 6, no. 1 (1962): 64-94. Về ước lượng cho hàm Carmichael, có thể tham khảo bài báo Erdos, Paul, Carl Pomerance, and Eric Schmutz. "Carmichael's lambda function." Acta Arith 58, no. 4 (1991): 363-385.
 
 [^amm]: Bài báo gốc: Adleman, Leonard, Kenneth Manders, and Gary Miller. "On taking roots in finite fields." In 18th Annual Symposium on Foundations of Computer Science (sfcs 1977), pp. 175-178. IEEE Computer Society, 1977. Một phần giới thiệu dễ đọc hơn có trong Cao, Zhengjun, Qian Sha, and Xiao Fan. "Adleman-Manders-Miller root extraction method revisited." In International Conference on Information Security and Cryptology, pp. 77-85. Berlin, Heidelberg: Springer Berlin Heidelberg, 2011.
 
-[^amm-comp]: Vì thuật toán này yêu cầu $k$ là số nguyên tố, trong trường hợp xấu nhất nó cần tìm căn bậc $p$ của $a$ modulo $m$, với $p$ là thừa số nguyên tố lớn nhất của $\varphi(m)$. Trong quá trình này, cần tính logarit rời rạc của $a$ modulo $m$ theo căn đơn vị nguyên thủy bậc $p$. Ngay cả khi dùng thuật toán BSGS, quá trình này cũng cần $O(\sqrt{p})$ thời gian. Tuy nhiên, bài báo Fouvry, Etienne. "Theoreme de Brun-Titchmarsh; application au theoreme de Fermat." Inventiones mathematicae 79, no. 2 (1985): 383-407 chỉ ra rằng tồn tại một tập số nguyên tố $m$ có mật độ dương sao cho thừa số nguyên tố lớn nhất $p$ của $\varphi(m)=m-1$ thỏa mãn $p=\Omega(m^{2/3})$. Điều này có nghĩa độ phức tạp của thuật toán ít nhất là $\Omega(m^{1/3})$, kém hơn thuật toán Tonelli-Shanks cải tiến được giới thiệu trong bài.
+[^amm-comp]: Vì thuật toán này yêu cầu $k$ là số nguyên tố, trong trường hợp xấu
+    nhất nó cần tìm căn bậc $p$ của $a$ theo môđun $m$, với $p$ là thừa số nguyên
+    tố lớn nhất của $\varphi(m)$. Trong quá trình này, cần tính logarit rời rạc
+    của $a$ theo môđun $m$ ứng với căn đơn vị nguyên thủy bậc $p$. Ngay cả khi
+    dùng thuật toán BSGS, quá trình này cũng cần $O(\sqrt{p})$ thời gian. Tuy
+    nhiên, bài báo Fouvry, Etienne. "Theoreme de Brun-Titchmarsh; application au
+    theoreme de Fermat." Inventiones mathematicae 79, no. 2 (1985): 383-407 chỉ
+    ra rằng tồn tại một tập số nguyên tố $m$ có mật độ dương sao cho thừa số
+    nguyên tố lớn nhất $p$ của $\varphi(m)=m-1$ thỏa mãn $p=\Omega(m^{2/3})$.
+    Điều này có nghĩa độ phức tạp của thuật toán ít nhất là $\Omega(m^{1/3})$,
+    kém hơn thuật toán Tonelli-Shanks cải tiến được giới thiệu trong bài.
