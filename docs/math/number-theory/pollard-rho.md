@@ -4,7 +4,7 @@
 Cho một số nguyên dương $N \in \mathbf{N}_{+}$, cần tìm nhanh một
 [ước không tầm thường](basic.md) của nó.
 
-Xét thuật toán đơn giản: các ước xuất hiện theo từng cặp, nên mọi ước của $N$
+Xét thuật toán duyệt thử: các ước xuất hiện theo từng cặp, nên mọi ước của $N$
 có thể chia thành hai phần, tức $[2, \sqrt N]$ và $[\sqrt N+1,N)$. Chỉ cần duyệt
 các số trong $[2, \sqrt N]$, rồi dùng phép chia là có thể tìm được ít nhất hai
 ước. Cách này có độ phức tạp thời gian $O(\sqrt N)$.
@@ -18,9 +18,9 @@ $[2,\sqrt N]$ thì xác suất thành công lớn hơn một chút. Mục tiêu 
 quá trình đoán này.
 
 <span id="thuật-toán-đơn-giản"></span>
-## Thuật toán đơn giản
+## Thuật toán cơ bản
 
-Thuật toán đơn giản nhất là duyệt trong khoảng $[2, \sqrt N]$.
+Thuật toán cơ bản nhất là duyệt trong khoảng $[2, \sqrt N]$.
 
 === "C++"
     ```cpp
@@ -210,7 +210,7 @@ $\{x_n\bmod p\}$, sẽ xuất hiện giá trị lặp trong thời gian kỳ v�
 $O(\sqrt p)$. Chỉ cần quan sát được một lần lặp như vậy
 $x_i\equiv x_j\pmod p$, có thể tìm một ước không tầm thường của $N$ bằng
 $\gcd(|x_i-x_j|,N)$. Lưu ý rằng vì $p$ chưa biết, không thể trực tiếp kiểm tra
-việc lặp có xảy ra hay không; một cách kiểm tra đơn giản chính là xem
+việc lặp có xảy ra hay không; một cách kiểm tra trực tiếp chính là xem
 $\gcd(|x_i-x_j|,N)$ có lớn hơn một hay không.
 
 Thuật toán này không phải lúc nào cũng thành công, vì $\gcd(|x_i-x_j|,N)$ có
@@ -309,7 +309,7 @@ Dù dùng Floyd hay Brent để phát hiện chu trình, số lần lặp đều
 Tuy nhiên, nếu mỗi lần lặp đều dùng $\gcd$ để kiểm tra chu trình thì thuật toán
 sẽ chậm đi. Có thể dùng phép tích lũy bằng nhân để giảm số lần tính $\gcd$.
 
-Nói đơn giản, nếu $\gcd(a,N)>1$ thì $\gcd(ab\bmod N,N)=\gcd(ab,N)>1$ đúng với
+Nói cách khác, nếu $\gcd(a,N)>1$ thì $\gcd(ab\bmod N,N)=\gcd(ab,N)>1$ đúng với
 mọi $b\in\mathbb N_+$. Nghĩa là nếu tính được
 $\gcd(\prod |x_i-x_j| \bmod N,N)>1$, thì tồn tại một cặp $(x_i,x_j)$ thỏa
 $\gcd(|x_i-x_j|,N)>1$. Nếu tích này tại một thời điểm nào đó bằng không, phép
