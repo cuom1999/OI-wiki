@@ -981,7 +981,7 @@ public class Main {
         }
     }
     
-    static void function3() {  // Duyệt bằng iterator
+    static void function3() {  // Duyệt bằng bộ lặp
         Iterator<Integer> iterator1 = array.iterator();
         Iterator<Integer> iterator2 = linked.iterator();
         while (iterator1.hasNext()) {
@@ -1514,7 +1514,7 @@ phương thức của nó đều là phương thức tĩnh, có thể gọi tr�
 
 ### Arrays.sort()
 
-`Arrays.sort()` là phương thức sắp xếp mảng. Các overload chính như sau:
+`Arrays.sort()` là phương thức sắp xếp mảng. Các phiên bản nạp chồng chính như sau:
 
 ```java
 import java.util.Arrays;
@@ -1540,7 +1540,7 @@ public class Main {
                 return o2 - o1;
             }
         });
-        // Vì sau Java 8 có biểu thức Lambda, overload thứ ba và thứ tư cũng có thể viết là
+        // Vì sau Java 8 có biểu thức Lambda, phiên bản nạp chồng thứ ba và thứ tư cũng có thể viết là
         Arrays.sort(b, (x, y) -> {  // 5
             return y - x;
         });
@@ -1551,7 +1551,7 @@ public class Main {
 }
 ```
 
-Ý nghĩa của các overload theo số thứ tự:
+Ý nghĩa của các phiên bản nạp chồng theo số thứ tự:
 
 1.  Sắp xếp mảng `a`, mặc định tăng dần.
 2.  Sắp xếp đoạn chỉ định của mảng `a`, mặc định tăng dần; đoạn sắp xếp là nửa
@@ -1672,7 +1672,7 @@ Có thể kiểm chứng bằng đoạn mã sau:
 
 `Arrays.binarySearch()` là phương thức tìm kiếm nhị phân trên một đoạn liên tiếp
 của mảng. Điều kiện cần là mảng phải có thứ tự. Độ phức tạp thời gian là
-$O(\log n)$. Các overload chính như sau:
+$O(\log n)$. Các phiên bản nạp chồng chính như sau:
 
 ```java
 import java.util.Arrays;
@@ -1712,7 +1712,7 @@ private static int binarySearch0(int[] a, int fromIndex, int toIndex, int key) {
 }
 ```
 
-Ý nghĩa của các overload theo số thứ tự:
+Ý nghĩa của các phiên bản nạp chồng theo số thứ tự:
 
 1.  Tìm nhị phân trong mảng `a` xem có tồn tại `key` hay không. Nếu có thì trả về
     chỉ số của nó; nếu không tồn tại thì trả về một số âm.

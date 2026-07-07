@@ -56,7 +56,7 @@ Trước hết, gọi `registerGen(argc, argv, 1)` để khởi tạo Testlib (t
 | `rnd.next(10.0)`                             | Sinh ngẫu nhiên đều một số thực dấu phẩy động trong khoảng $[0,10.0)$                                                                                                                                                                                   |
 | <code>rnd.next("one \| two \| three")</code> | Trả về ngẫu nhiên đều một trong ba chuỗi `one`, `two`, `three`                                                                                                                                                                                          |
 | `rnd.wnext(4, t)`                            | `wnext()` là hàm sinh theo phân phối không đều (có kỳ vọng bị lệch)[^note1]. $t$ biểu thị số lần gọi `next()` và lấy giá trị lớn nhất sinh được. Ví dụ, `rnd.wnext(3, 1)` tương đương `max({rnd.next(3), rnd.next(3)})`; `rnd.wnext(4, 2)` tương đương `max({rnd.next(4), rnd.next(4), rnd.next(4)})`. Nếu $t<0$, hàm gọi $-t$ lần và lấy giá trị nhỏ nhất; nếu $t=0$, hàm tương đương `next()`. |
-| `rnd.any(container)`                         | Trả về đều tham chiếu tới một phần tử trong vùng chứa có bộ lặp (iterator) truy cập ngẫu nhiên, chẳng hạn `std::vector` và `std::string`                                                                                                              |
+| `rnd.any(container)`                         | Trả về đều tham chiếu tới một phần tử trong vùng chứa có bộ lặp truy cập ngẫu nhiên, chẳng hạn `std::vector` và `std::string`                                                                                                                         |
 
 Phụ lục: định nghĩa hình thức của `rnd.wnext(i,t)`:
 
@@ -69,7 +69,9 @@ $$
 \end{cases}
 $$
 
-Ngoài ra, không dùng `std::random_shuffle()`; thay vào đó nên dùng `shuffle()` trong Testlib. Hàm này cũng nhận một cặp bộ lặp (iterator). Nó dùng `rnd` để xáo trộn dãy, tức thỏa yêu cầu về "trình sinh dữ liệu tốt" nêu trên.
+Ngoài ra, không dùng `std::random_shuffle()`; thay vào đó nên dùng `shuffle()`
+trong Testlib. Hàm này cũng nhận một cặp bộ lặp. Nó dùng `rnd` để xáo trộn dãy,
+tức thỏa yêu cầu về "trình sinh dữ liệu tốt" nêu trên.
 
 ## Ví dụ: sinh một cây
 

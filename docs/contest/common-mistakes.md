@@ -30,7 +30,7 @@ Ví dụ:
         // query là hàm tự định nghĩa trả về long long
         printf("%lld\n", max(0, query(1, 1, n, l, r));
 
-        // lỗi: không có overload "std::max" khớp với danh sách tham số
+        // lỗi: không có phiên bản nạp chồng "std::max" khớp với danh sách tham số
         ```
 
 -   Khi dùng `goto` và `switch-case`, nhảy qua phần khởi tạo của một số biến
