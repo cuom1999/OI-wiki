@@ -124,4 +124,4 @@ Vì có thể xây dựng đống ngay trên mảng đầu vào, đây là một
 
 ## Liên kết ngoài
 
--   [Heapsort - Wikipedia](https://en.wikipedia.org/wiki/Heapsort)
+-   [Sắp xếp vun đống - Wikipedia](https://en.wikipedia.org/wiki/Heapsort)

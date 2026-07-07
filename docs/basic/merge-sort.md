@@ -226,6 +226,6 @@ Cài đặt tham khảo của cả hai thuật toán đều có trong mục
 
 ## Liên kết ngoài
 
--   [Merge Sort - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
--   [Merge sort - Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)
--   [Inversion - Wikipedia](https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics))
+-   [Sắp xếp trộn - GeeksforGeeks](https://www.geeksforgeeks.org/merge-sort/)
+-   [Sắp xếp trộn - Wikipedia](https://en.wikipedia.org/wiki/Merge_sort)
+-   [Nghịch thế - Wikipedia](https://en.wikipedia.org/wiki/Inversion_(discrete_mathematics))

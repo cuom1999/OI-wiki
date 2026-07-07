@@ -210,7 +210,7 @@ ngăn xếp và bộ đệm tạm thời, tổng độ phức tạp bộ nhớ l
 ## Tài liệu tham khảo
 
 1.  [Timsort](https://en.wikipedia.org/wiki/Timsort)
-2.  [On the Worst-Case Complexity of TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
-3.  [Original Explanation by Tim Peters](https://github.com/python/cpython/blob/main/Objects/listsort.txt)
+2.  [Về độ phức tạp trường hợp xấu nhất của TimSort](https://drops.dagstuhl.de/opus/volltexte/2018/9467/pdf/LIPIcs-ESA-2018-4.pdf)
+3.  [Giải thích gốc của Tim Peters](https://github.com/python/cpython/blob/main/Objects/listsort.txt)
 4.  [Cài đặt Java](https://cs.android.com/android/platform/superproject/main/+/main:libcore/ojluni/src/main/java/java/util/TimSort.java)
 5.  [Cài đặt ngôn ngữ C](https://github.com/python/cpython/blob/main/Objects/listobject.c)

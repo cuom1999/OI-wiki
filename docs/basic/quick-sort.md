@@ -492,7 +492,7 @@ trường hợp bất lợi nhất.
 
 [^ref1]: [Nguyên lý cục bộ trong hiệu năng C++ - I'm Root lee !](http://irootlee.com/juicer_locality/)
 
-[^ref2]: [Algorithm Implementation / Sorting / Quicksort - Wikibooks](https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort)
+[^ref2]: [Cài đặt thuật toán / Sắp xếp / Sắp xếp nhanh - Wikibooks](https://en.wikibooks.org/wiki/Algorithm_Implementation/Sorting/Quicksort)
 
 [^ref3]: [Ba dạng sắp xếp nhanh và tối ưu hóa sắp xếp nhanh](https://blog.csdn.net/insistGoGo/article/details/7785038)
 

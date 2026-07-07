@@ -86,4 +86,4 @@ $$
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Counting sort - Wikipedia](https://en.wikipedia.org/wiki/Counting_sort)
+[^ref1]: [Sắp xếp đếm - Wikipedia](https://en.wikipedia.org/wiki/Counting_sort)

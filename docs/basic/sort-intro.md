@@ -58,4 +58,4 @@ càng tốt.
 
 ## Liên kết ngoài
 
--   [Sorting algorithm - Wikipedia](https://en.wikipedia.org/wiki/Sorting_algorithm)
+-   [Thuật toán sắp xếp - Wikipedia](https://en.wikipedia.org/wiki/Sorting_algorithm)

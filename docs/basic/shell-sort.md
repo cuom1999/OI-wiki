@@ -405,4 +405,4 @@ Với hai định lý trên, có thể chứng minh mệnh đề $1$ và $2$.
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Shellsort - Wikipedia](https://en.wikipedia.org/wiki/Shellsort)
+[^ref1]: [Sắp xếp Shell - Wikipedia](https://en.wikipedia.org/wiki/Shellsort)
