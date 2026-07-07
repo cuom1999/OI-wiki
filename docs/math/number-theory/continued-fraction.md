@@ -475,7 +475,7 @@ Nghiệm của phương trình Diophantine tuyến tính hai ẩn cũng có th�
 
 ## Xấp xỉ Diophantine
 
-Một ứng dụng quan trọng của lý thuyết liên phân số là lý thuyết xấp xỉ Diophantine. Xấp xỉ Diophantine (tiếng Anh: Diophantine approximation) là việc dùng số hữu tỉ để xấp xỉ số thực. Do tính trù mật của số hữu tỉ, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ tùy ý. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu nhỏ hơn một giá trị nào đó. Phần này thảo luận mối quan hệ giữa xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
+Một ứng dụng quan trọng của lý thuyết liên phân số là xấp xỉ Diophantine (Diophantine approximation), tức dùng số hữu tỉ để xấp xỉ số thực. Do tập số hữu tỉ trù mật trong tập số thực, nếu không đặt ràng buộc thì có thể đạt sai số nhỏ đến mức nào cũng được. Vì vậy, cần ràng buộc các số hữu tỉ được phép dùng, chẳng hạn chỉ chọn các số hữu tỉ có mẫu không vượt quá một giá trị nào đó. Phần này thảo luận mối quan hệ giữa các xấp xỉ tốt nhất dưới ràng buộc như vậy và liên phân số.
 
 <span id="dùng-phân-số-tiệm-cận-để-xấp-xỉ-số-thực"></span>
 
@@ -513,7 +513,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, l�
     đúng, và $\sqrt{5}$ ở vế phải của bất đẳng thức không thể thay bằng số thực lớn hơn.
 
 ??? note "Chứng minh (Borel)"
-    Borel đã chứng minh rằng trong ba phân số tiệm cận liên tiếp của số vô tỉ $x$, nhất định có ít nhất một phân số thỏa mãn điều kiện trên. Vì có vô hạn phân số tiệm cận và chúng đều tối giản, phần đầu của định lý Hurwitz đúng.
+    Borel đã chứng minh rằng trong ba phân số tiệm cận liên tiếp của số vô tỉ $x$, có ít nhất một phân số thỏa mãn điều kiện trên. Vì có vô hạn phân số tiệm cận và chúng đều tối giản, phần đầu của định lý Hurwitz đúng.
     
     Chứng minh phản chứng. Giả sử tồn tại số vô tỉ $x$ cùng ba phân số tiệm cận $x_{k-1},x_k,x_{k+1}$ của nó sao cho
     
@@ -535,7 +535,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, l�
     \dfrac{q_k}{q_{k-1}}+\dfrac{q_{k-1}}{q_k}\le\sqrt 5.
     $$
     
-    Vì vế trái là số hữu tỉ còn vế phải là số vô tỉ, dấu bằng nhất định không xảy ra. Lại do $q_k\ge q_{k-1}$, giải được
+    Vì vế trái là số hữu tỉ còn vế phải là số vô tỉ, dấu bằng không thể xảy ra. Lại do $q_k\ge q_{k-1}$, giải được
     
     $$
     1\le \dfrac{q_{k}}{q_{k-1}} < \dfrac{\sqrt{5}+1}{2}.
@@ -577,7 +577,7 @@ Trước hết, từ ước lượng sai số của phân số tiệm cận, l�
     
     Với $C>\sqrt{5}$, có thể giải trực tiếp được $q<\sqrt{C(C-\sqrt{5})}$, vì vậy không thể có vô hạn nghiệm thỏa mãn bất đẳng thức trên.
 
-Các chứng minh trên cho thấy phân số tiệm cận cung cấp xấp xỉ Diophantine khá tốt. Tuy nhiên, chúng không nhất thiết là xấp xỉ tốt nhất. Để thảo luận xấp xỉ tốt nhất, cần nêu rõ thước đo mức độ xấp xỉ. Thường có hai lựa chọn.
+Các chứng minh trên cho thấy phân số tiệm cận cung cấp xấp xỉ Diophantine khá tốt. Tuy nhiên, chúng không phải lúc nào cũng là xấp xỉ tốt nhất theo mọi tiêu chí. Để thảo luận xấp xỉ tốt nhất, cần nêu rõ thước đo mức độ xấp xỉ. Thường có hai lựa chọn.
 
 ???+ warning "Có những trường hợp kết luận về xấp xỉ tốt nhất không còn đúng"
     Hai phần tiếp theo trình bày một số kết quả về xấp xỉ tốt nhất. Các kết quả này có thể không đúng trong một vài trường hợp biên không thú vị. Chẳng hạn, cả hai định nghĩa xấp xỉ tốt nhất đều yêu cầu bất đẳng thức nghiêm ngặt, nhưng với nửa số lẻ $x=n+\dfrac12$ và $n\in\mathbf Z$, liên phân số của nó có thể có dạng $[n,1,1]$. Khi đó, hai phân số tiệm cận đầu $x_0=n$ và $x_1=n+1$ đều có mẫu bằng $1$, và khoảng cách tới $x$ bằng nhau. Điều này cho thấy chúng đều không phải là xấp xỉ tốt nhất. Khi đọc các kết luận trong phần này, nên mặc định rằng những trường hợp như vậy đã được loại trừ. Nếu không quan tâm tới vài phân số tiệm cận cuối cùng, hoặc chỉ quan tâm tới xấp xỉ số vô tỉ, thì có thể bỏ qua các trường hợp phức tạp bổ sung này.
@@ -603,7 +603,7 @@ $$
     
     thì số hữu tỉ $\dfrac{p}{q}$ được gọi là **xấp xỉ tốt nhất loại một** của số thực $x$.
 
-Xấp xỉ tốt nhất loại một không nhất thiết là phân số tiệm cận, mà thuộc một lớp phân số rộng hơn.
+Xấp xỉ tốt nhất loại một không phải lúc nào cũng là phân số tiệm cận; chúng thuộc một lớp phân số rộng hơn.
 
 ???+ abstract "Phân số trung gian"
     Giả sử số thực $x$ có phân số tiệm cận $x_{k+1}=[a_0,a_1,\cdots,a_k,a_{k+1}]$, và số nguyên $t$ thỏa mãn $0\le t\le a_{k+1}$[^semi-range]. Khi đó phân số $x_{k,t}=[a_0,a_1,\cdots,a_{k},t]$ được gọi là **phân số trung gian** (intermediate fraction), **bán hội tụ** (semiconvergent), hoặc **phân số tiệm cận phụ** (secondary convergent) của $x$.[^semiconvergent]
@@ -616,7 +616,7 @@ $$
 x_{k,t} = \frac{tp_{k}+p_{k-1}}{tq_{k}+q_{k-1}}.
 $$
 
-Nó nhất định là phân số tối giản và nằm giữa hai phân số tiệm cận $x_{k-1}$ và $x_{k+1}$. Khi $t$ tăng, nó cũng dần tiến tới $x_{k+1}$; ví dụ với trường hợp $k$ chẵn:
+Phân số này luôn tối giản và nằm giữa hai phân số tiệm cận $x_{k-1}$ và $x_{k+1}$. Khi $t$ tăng, nó cũng dần tiến tới $x_{k+1}$; ví dụ với trường hợp $k$ chẵn:
 
 $$
 x_{k-1} = x_{k,0} < x_{k,1} < x_{k,2} < \cdots < x_{k,a_{k+1}} = x_{k+1}.
@@ -630,13 +630,13 @@ Mọi xấp xỉ tốt nhất loại một đều là phân số trung gian, nh�
     Mọi xấp xỉ tốt nhất loại một đều là phân số trung gian.
 
 ??? note "Chứng minh"
-    Vì $a_0\le x\le a_0+1$, nên xấp xỉ tốt nhất loại một nhất định nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$. Tất cả phân số trung gian có thể được sắp tăng dần thành
+    Vì $a_0\le x\le a_0+1$, nên xấp xỉ tốt nhất loại một phải nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$. Tất cả phân số trung gian có thể được sắp tăng dần thành
     
     $$
     x_{1,0}<x_{1,1}< \cdots < x_{1,a_2}=x_{3,0}<\ldots<x<\ldots<x_{2,0}=x_{0,a_1}<\cdots<x_{0,1}.
     $$
     
-    Các phân số trung gian cùng bậc xuất hiện liên tiếp, còn giữa các phân số trung gian khác bậc thì không có khoảng trống. Điều này nghĩa là mọi số hữu tỉ $\dfrac{p}{q}$ nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$ nhất định rơi vào giữa hai phân số trung gian cùng bậc $x_{k,t}$ và $x_{k,t+1}$. Giả sử nó không phải phân số trung gian và nhỏ hơn $x$, khi đó
+    Các phân số trung gian cùng bậc xuất hiện liên tiếp, còn giữa các phân số trung gian khác bậc thì không có khoảng trống. Điều này nghĩa là mọi số hữu tỉ $\dfrac{p}{q}$ nằm giữa $x_{1,0}=a_0$ và $x_{0,1}=a_0+1$ đều rơi vào giữa hai phân số trung gian cùng bậc $x_{k,t}$ và $x_{k,t+1}$. Giả sử nó không phải phân số trung gian và nhỏ hơn $x$, khi đó
     
     $$
     x_{k,t}<\dfrac{p}{q}<x_{k,t+1}<x.
@@ -654,13 +654,13 @@ Mọi xấp xỉ tốt nhất loại một đều là phân số trung gian, nh�
     \left|x_{k,t}-\dfrac{p}{q}\right| = \dfrac{|q(tp_k+p_{k-1})-p((t+1)q_k+q_{k-1})|}{q(tq_k+q_{k-1})}\ge\dfrac{1}{q(tq_k+q_{k-1})}.
     $$
     
-    Vì vậy, nhất định
+    Vì vậy,
     
     $$
     q>(t+1)q_k+q_{k-1}.
     $$
     
-    Nói cách khác, mẫu số của số hữu tỉ $\dfrac{p}{q}$ nhất định lớn hơn mẫu số của $x_{k,t+1}$, nhưng nó không phải xấp xỉ tốt hơn:
+    Nói cách khác, mẫu số của số hữu tỉ $\dfrac{p}{q}$ lớn hơn mẫu số của $x_{k,t+1}$, nhưng nó không phải xấp xỉ tốt hơn:
     
     $$
     \left|x-\dfrac{p}{q}\right|>\left|x-x_{k,t+1}\right|
@@ -674,7 +674,7 @@ Chiều ngược lại không đúng: không thể khẳng định mọi phân s
     Mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại một. Ngoài ra, giả sử $0<t<a_{k+1}$; khi đó phân số trung gian $x_{k,t}$ là xấp xỉ tốt nhất loại một khi và chỉ khi $t>\dfrac{a_{k+1}}{2}$, hoặc $t=\dfrac{a_{k+1}}{2}$ và $r_{k+2}>\dfrac{q_k}{q_{k-1}}$.
 
 ??? note "Chứng minh"
-    Phần sau sẽ chứng minh rằng mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai, nên nhất định là xấp xỉ tốt nhất loại một. Điểm chính nằm ở các phân số trung gian không phải phân số tiệm cận.
+    Phần sau sẽ chứng minh rằng mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai, nên cũng là xấp xỉ tốt nhất loại một. Điểm chính nằm ở các phân số trung gian không phải phân số tiệm cận.
     
     Như đã nói ở trên, mẫu số của phân số trung gian $x_{k,t}$ nằm giữa mẫu số của $x_k$ và $x_{k+1}$, và tăng dần theo $t$; đồng thời $x_{k,t}$ cũng tiến dần tới $x_{k+1}$, nên gần $x$ hơn. Lấy ví dụ $x_{k,t}<x$, quan hệ vị trí tương đối của nó với các phân số trung gian kề nhau là:
     
@@ -682,7 +682,7 @@ Chiều ngược lại không đúng: không thể khẳng định mọi phân s
     x_{k-1} < x_{k,t} < x_{k+1} < x < x_{k}.
     $$
     
-    Vì mẫu số của $x_k$ nhỏ hơn mẫu số của $x_{k,t}$, điều kiện cần để $x_{k,t}$ trở thành xấp xỉ tốt nhất loại một là nó phải gần $x$ hơn $x_k$. Đây cũng là điều kiện đủ: vì $x_k$ là phân số tiệm cận, không có phân số nào có mẫu nhỏ hơn mà lại gần $x$ hơn; còn các phân số trung gian có mẫu lớn hơn $x_k$ thì tất yếu cùng bậc với $x_{k,t}$ nhưng có mẫu nhỏ hơn, nên nhất định xa $x$ hơn. Với sai số của phân số tiệm cận và phân số trung gian, tính toán cho thấy
+    Vì mẫu số của $x_k$ nhỏ hơn mẫu số của $x_{k,t}$, điều kiện cần để $x_{k,t}$ trở thành xấp xỉ tốt nhất loại một là nó phải gần $x$ hơn $x_k$. Đây cũng là điều kiện đủ: vì $x_k$ là phân số tiệm cận, không có phân số nào có mẫu nhỏ hơn mà lại gần $x$ hơn; còn các phân số trung gian có mẫu lớn hơn $x_k$ thì cùng bậc với $x_{k,t}$ nhưng có mẫu nhỏ hơn, nên xa $x$ hơn. Với sai số của phân số tiệm cận và phân số trung gian, tính toán cho thấy
     
     $$
     \begin{aligned}
@@ -700,9 +700,9 @@ Chiều ngược lại không đúng: không thể khẳng định mọi phân s
     
     Lúc này có ba khả năng:
     
-    1.  Nếu $t<\dfrac{a_{t+1}}{2}$, thì $2t<a_{t+1}$. Vì hai vế đều là số nguyên, $2t\le a_{k+1}-1$, nên $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{t+1}$. Khi đó, $x_{k,t}$ không phải xấp xỉ tốt nhất loại một;
-    2.  Nếu $t>\dfrac{a_{t+1}}{2}$, thì $2t>a_{t+1}$. Vì hai vế đều là số nguyên, $2t\ge a_{t+1}+1>r_{t+1}$. Khi đó, $x_{k,t}$ là xấp xỉ tốt nhất loại một;
-    3.  Nếu $a_{t+1}$ là số chẵn, còn có khả năng thứ ba, tức $t=\dfrac{a_{t+1}}{2}$. Điều kiện trên tương đương với $\dfrac{1}{r_{k+1}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$, tức $r_{k+2}>\dfrac{q_k}{q_{k-1}}$.
+    1.  Nếu $t<\dfrac{a_{k+1}}{2}$, thì $2t<a_{k+1}$. Vì hai vế đều là số nguyên, $2t\le a_{k+1}-1$, nên $2t+\dfrac{q_{k-1}}{q_k}\le 2t+1\le a_{k+1}\le r_{k+1}$. Khi đó, $x_{k,t}$ không phải xấp xỉ tốt nhất loại một;
+    2.  Nếu $t>\dfrac{a_{k+1}}{2}$, thì $2t>a_{k+1}$. Vì hai vế đều là số nguyên, $2t\ge a_{k+1}+1>r_{k+1}$. Khi đó, $x_{k,t}$ là xấp xỉ tốt nhất loại một;
+    3.  Nếu $a_{k+1}$ là số chẵn, còn có khả năng thứ ba, tức $t=\dfrac{a_{k+1}}{2}$. Điều kiện trên tương đương với $\dfrac{1}{r_{k+2}}=r_{k+1}-a_{k+1}<\dfrac{q_{k-1}}{q_k}$, tức $r_{k+2}>\dfrac{q_k}{q_{k-1}}$.
 
 Vì vậy, nếu sắp tất cả xấp xỉ tốt nhất loại một của số thực $x$ theo mẫu số tăng dần, chúng sẽ được chia thành nhiều đoạn theo quan hệ lớn nhỏ với $x$. Mỗi đoạn luôn gồm một số (có thể bằng không) phân số trung gian liên tiếp cùng bậc, và luôn kết thúc bằng một phân số tiệm cận. Trong mỗi đoạn, các phân số luôn nằm cùng một phía của số thực $x$; giữa các đoạn thì chúng luân phiên nằm ở hai phía của $x$.
 
@@ -758,7 +758,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     Mọi xấp xỉ tốt nhất loại hai đều là phân số tiệm cận, và mọi phân số tiệm cận đều là xấp xỉ tốt nhất loại hai.
 
 ??? note "Chứng minh"
-    Để chứng minh phần thứ nhất, vì xấp xỉ tốt nhất loại hai cũng nhất định là xấp xỉ tốt nhất loại một, chỉ cần chứng minh các phân số trung gian không phải phân số tiệm cận không thể là xấp xỉ tốt nhất loại hai. Đặt $x_{k,t}=\dfrac{p}{q}$ là phân số trung gian nhưng không phải phân số tiệm cận, và giả sử $x_{k,t}<x$, có
+    Để chứng minh phần thứ nhất, vì xấp xỉ tốt nhất loại hai cũng là xấp xỉ tốt nhất loại một, chỉ cần chứng minh các phân số trung gian không phải phân số tiệm cận không thể là xấp xỉ tốt nhất loại hai. Đặt $x_{k,t}=\dfrac{p}{q}$ là phân số trung gian nhưng không phải phân số tiệm cận, và giả sử $x_{k,t}<x$, có
     
     $$
     x_{k-1} < x_{k,t} < x_{k+1} < x < x_{k}.
@@ -773,7 +773,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     và dùng ước lượng sai số của phân số tiệm cận, nên luôn có
     
     $$
-    |qx_{k,t}-p| \ge \dfrac{1}{q_{k+1}} \ge |q_kx_k-p_k|,
+    |qx-p| \ge \dfrac{1}{q_{k+1}} \ge |q_kx-p_k|,
     $$
     
     tức mức độ xấp xỉ của $x_{k,t}$ không tốt hơn mức độ xấp xỉ của $x_k$ có mẫu nhỏ hơn, nên nó không thể là xấp xỉ tốt nhất loại hai.
@@ -784,9 +784,9 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     |q_{k-1} x-p_{k-1}| \ge \frac{1}{q_{k-1}+q_{k}} \ge \dfrac{1}{q_{k+1}}\ge |q_kx-p_k|.
     $$
     
-    Tất cả các bất đẳng thức cùng xảy ra dấu bằng khi và chỉ khi $a_{k+1}=1$ và đó là hạng cuối của liên phân số. Bỏ qua trường hợp này, $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ kém nghiêm ngặt so với $x_k=\dfrac{p_k}{q_k}$.
+    Tất cả các bất đẳng thức cùng xảy ra dấu bằng khi và chỉ khi $a_{k+1}=1$ và đó là hạng cuối của liên phân số. Bỏ qua trường hợp này, $x_{k-1}=\dfrac{p_{k-1}}{q_{k-1}}$ xấp xỉ kém hơn nghiêm ngặt so với $x_k=\dfrac{p_k}{q_k}$.
     
-    Lấy tùy ý một phân số $\dfrac{p}{q}\neq x_k$ với $0<q\le q_k$. Vì có công thức hiệu $p_{k}q_{k-1} − p_{k-1}q_{k} = (−1)^{k-1}$, theo quy tắc Cramer, hệ phương trình tuyến tính
+    Lấy một phân số bất kỳ $\dfrac{p}{q}\neq x_k$ với $0<q\le q_k$. Vì có công thức hiệu $p_{k}q_{k-1} - p_{k-1}q_{k} = (-1)^{k-1}$, theo quy tắc Cramer, hệ phương trình tuyến tính
     
     $$
     \begin{cases}
@@ -795,7 +795,7 @@ Xấp xỉ tốt nhất loại hai chính xác là các phân số tiệm cận.
     \end{cases}
     $$
     
-    nhất định có nghiệm nguyên duy nhất $(\lambda,\mu)$. Nếu $\lambda\mu>0$, thì $q>|\lambda|q_k\ge q_k$, mâu thuẫn. Ngược lại, $\lambda\mu\le 0$, tức $\lambda$ và $\mu$ trái dấu. Vì $q_{k-1}x-p_{k-1}$ và $q_kx-p_k$ cũng trái dấu, nên $\lambda(q_{k-1}x-p_{k-1})$ và $\mu(q_kx-p_k)$ cùng dấu, do đó
+    có nghiệm nguyên duy nhất $(\lambda,\mu)$. Nếu $\lambda\mu>0$, thì $q>|\lambda|q_k\ge q_k$, mâu thuẫn. Ngược lại, $\lambda\mu\le 0$, tức $\lambda$ và $\mu$ trái dấu. Vì $q_{k-1}x-p_{k-1}$ và $q_kx-p_k$ cũng trái dấu, nên $\lambda(q_{k-1}x-p_{k-1})$ và $\mu(q_kx-p_k)$ cùng dấu, do đó
     
     $$
     |qx-p|=|\lambda||q_kx-p_k|+|\mu||q_{k-1}x-p_{k-1}|>|q_{k}x-p_{k}|.
@@ -815,16 +815,16 @@ Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ đ�
     Với số thực $x$ và phân số $\dfrac{p}{q}$, nếu
     
     $$
-    \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}
+    \left|x-\dfrac{p}{q}\right|<\dfrac{1}{2q^2}
     $$
     
-    thì $\dfrac{p}{q}$ nhất định là phân số tiệm cận của $x$.
+    thì $\dfrac{p}{q}$ là phân số tiệm cận của $x$.
 
 ??? note "Chứng minh"
     Gọi $\epsilon\in\{-1,1\}$ và $\theta\in(0,1/2)$ là các hằng số sao cho
     
     $$
-    x−\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
+    x-\dfrac{p}{q} = \dfrac{\epsilon\theta}{q^2}
     $$
     
     đúng. Khai triển số hữu tỉ $\dfrac{p}{q}$ thành liên phân số $[a_0,a_1,\cdots,a_n]$. Số hữu tỉ có hai biểu diễn liên phân số, trong đó $n$ chênh nhau đúng một; vì vậy có thể chọn biểu diễn liên phân số sao cho $(-1)^n=\epsilon$, và ký hiệu các phân số tiệm cận của biểu diễn này là $\dfrac{p_k}{q_k}$. Giả sử số thực $\omega$ thỏa mãn
@@ -833,10 +833,10 @@ Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ đ�
     x = \dfrac{\omega p_n+p_{n-1}}{\omega q_n+q_{n-1}}.
     $$
     
-    Khi đó, nhất định
+    Khi đó,
     
     $$
-    \dfrac{\epsilon\theta}{q^2} = x−\dfrac{p}{q} = x-\dfrac{p_n}{q_n} = \dfrac{p_{n-1}q_n-p_nq_{n-1}}{(\omega q_n+q_{n-1})q_n} = \dfrac{(-1)^n}{(\omega q_n+q_{n-1})q_n}.
+    \dfrac{\epsilon\theta}{q^2} = x-\dfrac{p}{q} = x-\dfrac{p_n}{q_n} = \dfrac{p_{n-1}q_n-p_nq_{n-1}}{(\omega q_n+q_{n-1})q_n} = \dfrac{(-1)^n}{(\omega q_n+q_{n-1})q_n}.
     $$
     
     Do đó,
@@ -861,29 +861,29 @@ Xấp xỉ tốt nhất loại hai cung cấp điều kiện cần và đủ đ�
     
     Chứng minh này cho thấy điều kiện cần và đủ để $\dfrac{p}{q}$ là phân số tiệm cận chính là $\omega>1$ trong chứng minh trên; đó là dạng gốc của tiêu chuẩn Legendre.
 
-Tiêu chuẩn này cho thấy chỉ cần mức xấp xỉ đủ tốt thì phân số đó nhất định là phân số tiệm cận. Định lý tiếp theo cho thấy có đủ nhiều phân số tiệm cận tốt như vậy: ít nhất một nửa các phân số tiệm cận thỏa mãn điều kiện này.
+Tiêu chuẩn này cho thấy chỉ cần mức xấp xỉ đủ tốt thì phân số đó là phân số tiệm cận. Định lý tiếp theo cho thấy có đủ nhiều phân số tiệm cận tốt như vậy: ít nhất một nửa các phân số tiệm cận thỏa mãn điều kiện này.
 
-???+ note "Định lý (Valhen)"
+???+ note "Định lý (Vahlen)"
     Trong hai phân số tiệm cận kề nhau của số thực $x$, ít nhất một phân số thỏa mãn
     
     $$
-    \left|x−\dfrac{p}{q}\right|<\dfrac{1}{2q^2}.
+    \left|x-\dfrac{p}{q}\right|<\dfrac{1}{2q^2}.
     $$
 
 ??? note "Chứng minh"
-    Giả sử ngược lại. Tồn tại số thực $x$ có hai phân số tiệm cận kề nhau $x_{k-1}$ và $x_k$ thỏa mãn
+    Giả sử ngược lại. Tồn tại số thực $x$ có hai phân số tiệm cận kề nhau $x_k$ và $x_{k+1}$ thỏa mãn
     
     $$
     \left|x-\dfrac{p_k}{q_k}\right|\ge \dfrac{1}{2q_{k}^2},\ \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right|\ge \dfrac{1}{2q_{k+1}^2}.
     $$
     
-    Vì $x$ nằm giữa $x_{k-1}$ và $x_k$, nên
+    Vì $x$ nằm giữa $x_k$ và $x_{k+1}$, nên
     
     $$
     \dfrac{1}{2q_{k}^2} + \dfrac{1}{2q_{k+1}^2} \le \left|x-\dfrac{p_k}{q_k}\right| + \left|x-\dfrac{p_{k+1}}{q_{k+1}}\right| = \left|\dfrac{p_k}{q_k}-\dfrac{p_{k+1}}{q_{k+1}}\right| = \dfrac{1}{q_kq_{k+1}}.
     $$
     
-    Điều này cho thấy $q_k=q_{k+1}$. Vì vậy nhất định $k=0$ và $a_1=1$. Khi đó hai phân số tiệm cận đầu là $x_0=a_0$ và $x_1=a_0+1$. Do đó phản ví dụ duy nhất của mệnh đề là nửa số lẻ; như đã nói ở trên, bài viết này không xét trường hợp đó.
+    Điều này cho thấy $q_k=q_{k+1}$. Vì vậy chỉ có thể có $k=0$ và $a_1=1$. Khi đó hai phân số tiệm cận đầu là $x_0=a_0$ và $x_1=a_0+1$. Do đó phản ví dụ duy nhất của mệnh đề là nửa số lẻ; như đã nói ở trên, bài viết này không xét trường hợp đó.
 
 <span id="diễn-giải-hình-học"></span>
 
