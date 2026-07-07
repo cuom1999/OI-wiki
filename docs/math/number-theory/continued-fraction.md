@@ -1748,13 +1748,13 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.py:core"
         ```
 
-???+ example "[OKC 2 - Từ modulo đến hữu tỉ](https://codeforces.com/gym/102354/problem/I)"
+???+ example "[OKC 2 - Từ môđun đến hữu tỉ](https://codeforces.com/gym/102354/problem/I)"
     Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Được phép hỏi giá trị của $pq^{-1}$ theo môđun một số nguyên tố $m\in[10^9,10^{12}]$. Cần xác định $p$ và $q$ trong không quá mười lần hỏi.
     
     Bài toán này tương đương với việc tìm $x$ trong $[1,N]$ sao cho $Ax\bmod M$ nhỏ nhất.
 
 ??? note "Lời giải"
-    Theo [định lý số dư Trung Hoa](./crt.md), hỏi kết quả theo nhiều môđun nguyên tố tương đương với hỏi kết quả theo môđun là tích của các số nguyên tố đó. Vì vậy, bài này có thể xem là hỏi kết quả của phân số theo một môđun đủ lớn $m$, rồi yêu cầu xác định tử số và mẫu số của phân số.
+    Theo [định lý số dư Trung Hoa](./crt.md), hỏi kết quả theo nhiều môđun nguyên tố tương đương với hỏi kết quả theo môđun là tích của các số nguyên tố đó. Vì vậy, bài này có thể xem là hỏi kết quả của phân số theo môđun đủ lớn $m$, rồi yêu cầu xác định tử số và mẫu số của phân số.
     
     Với một môđun $m$, cặp $(p,q)$ làm cho $qr\equiv p\pmod m$ đúng có thể không duy nhất. Giả sử $(p_1,q_1)$ và $(p_2,q_2)$ đều làm đẳng thức này đúng, thì suy ra $(p_1q_2-p_2q_1)r\equiv 0\pmod m$. Theo cách dựng $r$, $r$ nguyên tố cùng nhau với $m$, nên $p_1q_2-p_2q_1\equiv 0\pmod m$, tức $m\mid(p_1q_2-p_2q_1)$. Nếu $p_1q_2-p_2q_1$ khác không, giá trị tuyệt đối của nó ít nhất là $m$. Bài toán giới hạn $p,q\in[1,10^9]$, nghĩa là hiệu này không vượt quá $10^{18}$; vì vậy chỉ cần lấy $m>10^{18}$ là có thể bảo đảm $(p,q)$ tìm được là duy nhất.
     
@@ -1782,7 +1782,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 -   [Codeforces Round #184 (Div. 2) - Liên phân số](https://codeforces.com/contest/305/problem/B)
 -   [Codeforces Round #201 (Div. 1) - Nhảy Doodle](https://codeforces.com/contest/346/problem/E)
 -   [Codeforces Round #325 (Div. 1) - Alice, Bob, cam và táo](https://codeforces.com/contest/585/problem/C)
--   [POJ Founder Monthly Contest 2008.03.16 - Một thử thách số học modulo](http://poj.org/problem?id=3530)
+-   [POJ Founder Monthly Contest 2008.03.16 - Một thử thách số học theo môđun](http://poj.org/problem?id=3530)
 -   [2019 Multi-University Training Contest 5 - phân số](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
 -   [SnackDown 2019 Elimination Round - Mồi nhử bầu cử](https://www.codechef.com/SNCKEL19/problems/EBAIT)
 -   [Luogu P5179. Phân số](https://www.luogu.com.cn/problem/P5179)

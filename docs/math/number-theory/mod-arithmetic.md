@@ -44,7 +44,7 @@ assert(-5 % -3 == -2);
 
 Số học môđun có thể xem là việc thực hiện các phép toán trên [lớp đồng
 dư](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
-theo một môđun. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
+theo môđun cho trước. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
 gói phép cộng, trừ, nhân giữa các lớp đồng dư thành phương thức của struct hoặc
 toán tử nạp chồng, số học môđun có thể được cài đặt tự nhiên thành một lớp số
 nguyên theo môđun. Ví dụ sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên số nguyên
