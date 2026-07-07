@@ -61,7 +61,7 @@ số trong một đẳng thức bằng liên hợp của nó, tức đổi dấu
 
 Dùng liên hợp có thể xây dựng một số ánh xạ từ số đại số bậc hai đến số hữu tỉ,
 giúp chuyển các thảo luận về số đại số bậc hai thành thảo luận về số hữu tỉ.
-Ánh xạ đơn giản hơn là **vết** (trace) của số đại số bậc hai $\alpha$, tức tổng
+Ánh xạ cơ bản hơn là **vết** (trace) của số đại số bậc hai $\alpha$, tức tổng
 của một số và liên hợp của nó, ký hiệu $\operatorname{tr}(\alpha)$. Vì nó thực
 chất chỉ là hai lần phần hữu tỉ của số đó, nên không cung cấp nhiều thông tin.
 
@@ -463,7 +463,7 @@ $$
 
 Ký hiệu trong tổng bên phải cũng dùng sự thật rằng ký hiệu Kronecker
 $\left(\dfrac{-4}{n}\right)$ là [đặc trưng Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_character)
-thực modulo $4$.
+thực theo môđun $4$.
 
 <span id="phương-trình-pythagoras"></span>
 ### Phương trình Pythagoras
@@ -584,7 +584,7 @@ f(n)=6\sum_{d\mid n}\left(\dfrac{-3}{d}\right)=6\sum_{d\mid n}\chi_{3,2}(d).
 $$
 
 Trong đó $\chi_{3,2}(n)=\left(\dfrac{-3}{n}\right)$ là đặc trưng Dirichlet thực
-modulo $3$. Biểu thức này cho thấy các số nguyên Eisenstein như vậy tồn tại khi
+theo môđun $3$. Biểu thức này cho thấy các số nguyên Eisenstein như vậy tồn tại khi
 và chỉ khi mọi thừa số nguyên tố dạng $3k+2$ của $n$ đều có số mũ chẵn.
 
 Theo công thức chuẩn ở trên, $f(n)$ cũng là số nghiệm của phương trình vô định
