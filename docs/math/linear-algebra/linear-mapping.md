@@ -240,7 +240,7 @@ $$
 \begin{pmatrix}\eta_1\\\eta_2\\\vdots\\\eta_n\end{pmatrix}=A^{-1}\begin{pmatrix}\xi_1\\\xi_2\\\vdots\\\xi_n\end{pmatrix}
 $$
 
-Đây là phép biến đổi thuần túy giữa các tọa độ; các công thức đổi tọa độ đều nằm trong trường vô hướng. Do phần trước đã phân biệt, vectơ trong không gian tuyến tính và nhóm Abel là "vectơ trừu tượng", còn tọa độ và các phần tử của ma trận chuyển cơ sở đều nằm trong trường vô hướng, được xem là "vectơ cụ thể"; hai loại vectơ này nên được coi là "những thứ khác nhau".
+Đây là phép biến đổi thuần túy giữa các tọa độ; các công thức đổi tọa độ đều nằm trong trường vô hướng. Như đã phân biệt ở phần trước, vectơ trong không gian tuyến tính và nhóm Abel là "vectơ trừu tượng", còn tọa độ và các phần tử của ma trận chuyển cơ sở đều nằm trong trường vô hướng, có thể coi là "vectơ cụ thể"; cần xem hai loại vectơ này là hai khái niệm khác nhau.
 
 Ma trận có thể biến đổi toàn bộ không gian, tức toàn bộ các tọa độ; vectơ cột $x$ với vai trò tọa độ trải khắp toàn bộ không gian.
 

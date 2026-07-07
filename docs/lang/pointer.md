@@ -353,7 +353,7 @@ int* a = new int[N * M];
 Cách này có thể bảo đảm mảng hai chiều là **liên tiếp**.
 
 ???+ note "Lưu trữ tuyến tính của mảng"
-    Dữ liệu trong bộ nhớ đều có thể được xem là được lưu theo tuyến tính. Vì vậy,
+    Dữ liệu trong bộ nhớ có thể coi là được lưu tuyến tính. Vì vậy,
     dưới một quy tắc ánh xạ chỉ số nhất định, cấp phát động vùng nhớ của mảng một
     chiều đã đủ để lưu mảng n chiều trên đó.
 

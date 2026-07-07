@@ -21,11 +21,11 @@ Như hình vẽ, toàn bộ hình chữ nhật được chia thành các hình c
 ???+ note "Ghi chú"
     Thao tác này giống như duyệt một dãy ngoặc: gặp ngoặc mở thì cộng 1, gặp ngoặc đóng thì trừ 1. "Trọng số" tương ứng với độ sâu tại vị trí hiện tại; việc "trọng số" có lớn hơn 0 hay không tương ứng với việc hiện tại có đang nằm trong cặp ngoặc hay không, tức đoạn này có được tính vào chiều rộng của hình chữ nhật nhỏ hay không.
 
-Chiều rộng của hình chữ nhật nhỏ, không nhất thiết chỉ có một hình, chính là tổng độ dài các đoạn trên toàn trục số có trọng số lớn hơn 0.
+Tổng chiều rộng cần tính là tổng độ dài các đoạn trên trục số có trọng số lớn hơn 0; các đoạn này không nhất thiết tạo thành một khoảng liên tục.
 
 ### Cài đặt
 
-Dùng cây đoạn để duy trì độ dài của hình chữ nhật, tức các điểm trên toàn trục số có số lần phủ lớn hơn 0. Các yêu cầu cần hỗ trợ như sau:
+Dùng cây đoạn để duy trì tổng độ dài phần đang được phủ trên trục số, tức các vị trí có số lần phủ lớn hơn 0. Các yêu cầu cần hỗ trợ như sau:
 
 -   Cộng 1 hoặc trừ 1 cho trọng số của một đoạn.
 -   Thống kê trên toàn trục số "tổng độ dài các đoạn" có trọng số lớn hơn 0.
@@ -103,7 +103,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
     
     Với loại bài toán này, có thể suy luận tính chất, rồi dùng đường quét liệt kê tất cả đầu mút phải và cấu trúc dữ liệu duy trì đáp án cho mỗi đầu mút trái. Cũng có thể chuyển bài toán lên mặt phẳng hai chiều, biến nó thành bài toán truy vấn thông tin trong hình chữ nhật.
     
-    Trong bài này, đặt $pre_i$ là vị trí xuất hiện trước đó của $a_i$ trong dãy; nếu $a_i$ chưa từng xuất hiện thì $pre_i = 0$. Theo đề bài, nếu một giá trị xuất hiện nhiều lần trong đoạn thì nó chỉ đóng góp một lần. Có thể xem vị trí sinh đóng góp của mỗi giá trị là lần xuất hiện đầu tiên của nó trong đoạn; khi đó tổng đóng góp chính là số lượng $pre_x \le l - 1$, có thể chứng minh bằng phản chứng.
+    Trong bài này, đặt $pre_i$ là vị trí xuất hiện trước đó của $a_i$ trong dãy; nếu $a_i$ chưa từng xuất hiện thì $pre_i = 0$. Theo đề bài, nếu một giá trị xuất hiện nhiều lần trong đoạn thì nó chỉ đóng góp một lần. Với mỗi giá trị, ta tính đóng góp tại lần xuất hiện đầu tiên của nó trong đoạn; khi đó tổng đóng góp bằng số phần tử thỏa $pre_x \le l - 1$, điều này có thể chứng minh bằng phản chứng.
     
     Bài toán hiện trở thành: cho một dãy $pre$, nhiều lần truy vấn trong đoạn $[l,r]$ có bao nhiêu $pre_i \le l - 1$.
     

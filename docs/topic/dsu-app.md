@@ -105,6 +105,6 @@ Tổng hợp lại, độ phức tạp toàn bộ thuật toán là $O(n\log n+m
 
 ## Tổng kết
 
-DSU và cây tái cấu trúc Kruskal có nhiều điểm chung, còn tối ưu hóa của DSU, tức hợp nhất theo hạng, chính là một ứng dụng của tư tưởng hợp nhất theo kinh nghiệm. Vì vậy, vận dụng linh hoạt DSU có thể xử lý thuận tiện nhiều bài toán đồ thị liên quan đến tính liên thông.
+DSU và cây tái cấu trúc Kruskal có nhiều điểm chung; phép hợp nhất theo hạng trong DSU cũng là một ứng dụng của tư tưởng hợp nhất theo kinh nghiệm. Vì vậy, vận dụng linh hoạt DSU có thể xử lý thuận tiện nhiều bài toán đồ thị liên quan đến tính liên thông.
 
 **Một phần nội dung của trang này được dịch từ bài viết [Поиск мостов в режиме онлайн](http://e-maxx.ru/algo/bridge_searching_online) và bản dịch tiếng Anh của nó, [Finding Bridges Online](https://cp-algorithms.com/graph/bridge-searching-online.html). Phiên bản tiếng Nga có giấy phép Public Domain + Leave a Link; phiên bản tiếng Anh có giấy phép CC-BY-SA 4.0.**

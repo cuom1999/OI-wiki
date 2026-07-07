@@ -525,7 +525,7 @@ Nhận xét: trong chiến lược tối ưu, nếu đã chọn rút vật phẩ
 
 -   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới cũng là "rút thêm một lần".
 
-Có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩm khác nhau, thì kỳ vọng cần tốn bao nhiêu tiền để rút được vật phẩm mới. Theo nhận xét vừa rồi, có thể xem trực tiếp $f_k$ như một chi phí cố định, tức là chuyển thành "mỗi lần trả $f_k$ tiền để nhận ngẫu nhiên một vật phẩm mới".
+Ta có thể tính $f_k$, là chi phí kỳ vọng để rút được một vật phẩm mới khi hiện đã sở hữu $k$ vật phẩm khác nhau. Theo nhận xét vừa rồi, có thể xem trực tiếp $f_k$ như một chi phí cố định, tức là chuyển thành "mỗi lần trả $f_k$ tiền để nhận ngẫu nhiên một vật phẩm mới".
 
 ???+ note "Tính chi phí kỳ vọng"
     Có $f_k=\dfrac x2 \cdot (R-1)+x$, trong đó $R$ biểu thị số lần rút kỳ vọng để nhận được vật phẩm mới.
@@ -573,7 +573,7 @@ Cuối cùng, liệt kê mọi trạng thái có thể, tức tập các phần 
 
 ***
 
-**Nhìn lại**: kỹ thuật ghép cặp được dùng hai lần trong bài này. Lần đầu là trong chứng minh, cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là chuyển việc mua thành mua ngẫu nhiên (tức đưa thêm nguồn ngẫu nhiên), từ đó làm cho hai thao tác mua và rút về bản chất được "ghép cặp" thành cùng một thao tác, tức là cho thao tác rút và mua chia sẻ cùng một nguồn ngẫu nhiên.
+**Nhìn lại**: kỹ thuật ghép cặp được dùng hai lần trong bài này. Lần đầu là trong chứng minh, khi cho hai quá trình ngẫu nhiên dùng chung một nguồn ngẫu nhiên; lần thứ hai là khi biến thao tác mua thành mua ngẫu nhiên bằng cách đưa thêm nguồn ngẫu nhiên, nhờ đó hai thao tác mua và rút được ghép cặp thành cùng một thao tác dùng chung nguồn ngẫu nhiên.
 
 ## Tài liệu tham khảo
 
