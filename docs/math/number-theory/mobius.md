@@ -2,7 +2,7 @@ author: hydingsy, hyp1231, ranwen, 383494
 
 Kiến thức cần biết trước: [phân khối số học](./sqrt-decomposition.md), [tích chập Dirichlet](./dirichlet.md#tích-chập-dirichlet)
 
-Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, có thể dùng đảo Möbius để đơn giản hóa phép tính và tìm được giá trị của $f(n)$.
+Đảo Möbius là một nội dung quan trọng trong lý thuyết số. Với một số hàm $f(n)$, nếu khó tính trực tiếp giá trị của nó nhưng dễ tính tổng trên các bội hoặc tổng trên các ước $g(n)$, có thể dùng đảo Möbius để rút gọn phép tính và tìm được giá trị của $f(n)$.
 
 <span id="hàm-möbius"></span>
 ## Hàm Möbius
@@ -560,7 +560,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     G(pn) = G(n) + p^2\left(G(n) - G\left(\dfrac{n}{p}\right)\right).
     $$
     
-    Điều này đơn giản hóa phần tính sàng tuyến tính. Suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
+    Điều này làm phần tính sàng tuyến tính gọn hơn. Suy luận này không bắt buộc; với hàm nhân tính không có tính chất đặc biệt, dùng trực tiếp $G(pn)=G(p^{e+1})G(m)$ vẫn có thể hoàn thành sàng tuyến tính.
 
 ??? note "Mã tham khảo"
     ```cpp
@@ -577,7 +577,7 @@ Hai bài tiếp theo minh họa cách xử lý bằng cách liệt kê ước ch
     Giới hạn dữ liệu: $1\le n,m\le 10^7$.
 
 ??? note "Lời giải"
-    Trong quá trình suy luận, tạm bỏ qua modulo. Đặt
+    Trong quá trình suy luận, tạm bỏ qua môđun. Đặt
     
     $$
     f(n,m) = \sum_{i=1}^n\sum_{j=1}^m\operatorname{lcm}(i,j).
@@ -711,7 +711,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     Giới hạn dữ liệu: $1\le n\le 1\times 10^6$.
 
 ??? note "Lời giải 1"
-    Trong quá trình suy luận, tạm bỏ qua modulo. Đặt
+    Trong quá trình suy luận, tạm bỏ qua môđun. Đặt
     
     $$
     f(n) = \prod_{i=1}^n\prod_{j=1}^n\dfrac{\operatorname{lcm}(i,j)}{\gcd(i,j)}.
@@ -777,7 +777,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     F(n) = \prod_{d\mid n}\left(\dfrac{n}{d}\right)\uparrow\mu(d).
     $$
     
-    Đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Do dạng của $\tilde F(n)$ rất đơn giản, biểu thức của $F(n)$ có thể tính trực tiếp:
+    Đây là đảo Möbius dạng tích đối với $\tilde F(n)=n$. Ngay cả khi không biết biểu thức của nó, vẫn có thể dùng phương pháp [sai phân Dirichlet](#tổng-tiền-tố-dirichlet) để tiền xử lý trong thời gian $O(n\log\log n)$. Do dạng của $\tilde F(n)$ rất gọn, biểu thức của $F(n)$ có thể tính trực tiếp:
     
     $$
     F(n) = 
@@ -789,7 +789,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
     
     [Hàm von Mangoldt](#đảo-möbius) chính là logarit tự nhiên của nó. Sau khi có giá trị của $F(n)$, dùng trực tiếp phân khối số học phiên bản nhân là có thể tính giá trị của $g(n)$ trong thời gian $O(\sqrt{n})$, rồi từ đó tính được $f(n)$. Tổng độ phức tạp thời gian là $O(n)$.
     
-    Khi tính các tích, thường phải dùng [định lý Euler](./fermat.md), nên modulo dùng cho phần số mũ không giống modulo đề bài cho.
+    Khi tính các tích, thường phải dùng [định lý Euler](./fermat.md), nên môđun áp dụng cho phần số mũ không giống môđun của đề bài.
 
 ??? note "Lời giải 2"
     Điểm khó của suy luận phiên bản nhân nằm ở việc xử lý tích và lũy thừa còn khá lạ. Vì vậy, với loại bài này cũng có thể lấy logarit rồi suy luận. Trong bài này, chỉ xét phần suy luận cho $g(n)$. Lấy logarit, có:
