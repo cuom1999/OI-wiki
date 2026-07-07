@@ -57,7 +57,7 @@ Khi cài đặt, cần duyệt $y$ trước để khi duyệt $x$ có thể dùn
 
 ## Bài tập
 
-???+ note "Bài ví dụ [CF372C Watching Fireworks is Fun](http://codeforces.com/problemset/problem/372/C)"
+???+ note "Bài ví dụ [CF372C Ngắm pháo hoa thật vui](http://codeforces.com/problemset/problem/372/C)"
     Tóm tắt đề bài: Trong thị trấn có $n$ vị trí và có $m$ pháo hoa được bắn. Pháo hoa thứ $i$ được bắn vào thời điểm $t_i$, tại vị trí $a_i$. Nếu khi pháo hoa được bắn, người chơi đang ở vị trí $x$, điểm vui vẻ nhận được là $b_i-|a_i-x|$.
     
     Ban đầu người chơi có thể ở bất kỳ vị trí nào. Mỗi đơn vị thời gian, người chơi có thể di chuyển không quá $d$ đơn vị khoảng cách. Cần tối đa hóa tổng điểm vui vẻ nhận được.

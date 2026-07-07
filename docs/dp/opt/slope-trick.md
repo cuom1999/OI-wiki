@@ -484,7 +484,7 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 <span id="ví-dụ-dãy-tăng-với-chi-phí-nhỏ-nhất"></span>
 ### Ví dụ: dãy tăng với chi phí nhỏ nhất
 
-???+ example "[\[BalticOI 2004\] Sequence](https://www.luogu.com.cn/problem/P4331)"
+???+ example "[\[BalticOI 2004\] Dãy số](https://www.luogu.com.cn/problem/P4331)"
     Cho dãy $\{a_i\}$ độ dài $n$. Tìm một dãy tăng nghiêm ngặt $\{b_i\}$ sao
     cho $\sum_i|a_i-b_i|$ nhỏ nhất, và in ra giá trị nhỏ nhất cùng một phương án
     tối ưu bất kỳ $\{b_i\}$.
@@ -578,16 +578,16 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 
 Bài mẫu:
 
--   [Codeforces 713 C. Sonya and Problem Without a Legend](https://codeforces.com/problemset/problem/713/C)
--   [Luogu P2893 \[USACO08FEB\] Making the Grade G](https://www.luogu.com.cn/problem/P2893)
--   [Luogu P4331 \[BalticOI 2004\] Sequence](https://www.luogu.com.cn/problem/P4331)
--   [Luogu P4597 Sequence](https://www.luogu.com.cn/problem/P4597)
--   [AtCoder dwango Challenge 2 Preliminary E - Fireworks](https://atcoder.jp/contests/dwango2016-prelims/tasks/dwango2016qual_e)
+-   [Codeforces 713 C. Sonya và bài toán không có truyền thuyết](https://codeforces.com/problemset/problem/713/C)
+-   [Luogu P2893 \[USACO08FEB\] Đạt chuẩn G](https://www.luogu.com.cn/problem/P2893)
+-   [Luogu P4331 \[BalticOI 2004\] Dãy số](https://www.luogu.com.cn/problem/P4331)
+-   [Luogu P4597 Dãy số](https://www.luogu.com.cn/problem/P4597)
+-   [AtCoder dwango Challenge 2 Preliminary E - Pháo hoa](https://atcoder.jp/contests/dwango2016-prelims/tasks/dwango2016qual_e)
 
 <span id="ví-dụ-trường-hợp-chuyển-trạng-thái-có-ràng-buộc"></span>
 ### Ví dụ: trường hợp chuyển trạng thái có ràng buộc
 
-???+ example "[\[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)"
+???+ example "[\[NOISG 2018 Finals\] An toàn](https://www.luogu.com.cn/problem/P11598)"
     Cho dãy $\{a_i\}$ độ dài $n$. Tìm dãy $\{b_i\}$ sao cho
     $|b_i-b_{i-1}|\le h$ với mọi $1<i\le n$, và làm $\sum_i|a_i-b_i|$ nhỏ nhất.
     In ra giá trị nhỏ nhất.
@@ -661,11 +661,11 @@ Bài mẫu:
 
 Bài mẫu:
 
--   [Luogu P4272 \[CTSC2009\] Sequence Transformation](https://www.luogu.com.cn/problem/P4272)
--   [Luogu P11598 \[NOISG 2018 Finals\] Safety](https://www.luogu.com.cn/problem/P11598)
+-   [Luogu P4272 \[CTSC2009\] Biến đổi dãy số](https://www.luogu.com.cn/problem/P4272)
+-   [Luogu P11598 \[NOISG 2018 Finals\] An toàn](https://www.luogu.com.cn/problem/P11598)
 -   [AtCoder Beginner Contest 217 H - Snuketoon](https://atcoder.jp/contests/abc217/tasks/abc217_h)
--   [AtCoder Regular Contest 070 E - NarrowRectangles](https://atcoder.jp/contests/arc070/tasks/arc070_c)
--   [AtCoder Regular Contest 123 D - Inc, Dec - Decomposition](https://atcoder.jp/contests/arc123/tasks/arc123_d)
+-   [AtCoder Regular Contest 070 E - Hình chữ nhật hẹp](https://atcoder.jp/contests/arc070/tasks/arc070_c)
+-   [AtCoder Regular Contest 123 D - Phân rã tăng, giảm](https://atcoder.jp/contests/arc123/tasks/arc123_d)
 
 <span id="duy-trì-độ-dốc"></span>
 ## Duy trì độ dốc
@@ -679,7 +679,7 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
 <span id="ví-dụ-bài-toán-giao-dịch-cổ-phiếu"></span>
 ### Ví dụ: bài toán giao dịch cổ phiếu
 
-???+ example "[Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)"
+???+ example "[Codeforces 865 D. Mua thấp bán cao](https://codeforces.com/problemset/problem/865/D)"
     Cho dãy giá cổ phiếu $\{p_i\}$ trong $n$ ngày (đều dương). Ban đầu nắm giữ
     $0$ cổ phiếu. Mỗi ngày có thể mua một cổ phiếu, bán một cổ phiếu hoặc không
     giao dịch. Tính lợi nhuận lớn nhất sau $n$ ngày.
@@ -740,12 +740,12 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
 
 Bài mẫu:
 
--   [Codeforces 865 D. Buy Low Sell High](https://codeforces.com/problemset/problem/865/D)
+-   [Codeforces 865 D. Mua thấp bán cao](https://codeforces.com/problemset/problem/865/D)
 
 <span id="ví-dụ-bài-toán-vận-chuyển-đất-đá"></span>
 ### Ví dụ: bài toán vận chuyển đất đá
 
-???+ example "[\[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)"
+???+ example "[\[USACO16OPEN\] Cải tạo cảnh quan P](https://www.luogu.com.cn/problem/P2748)"
     Cho hai dãy độ dài $n$, $\{a_i\}$ và $\{b_i\}$, lần lượt biểu thị lượng đất
     hiện có và lượng đất cần có trong vườn thứ $i$ (không được thừa cũng không
     được thiếu). Mua một đơn vị đất và đặt vào một vườn bất kỳ tốn $X$; chuyển
@@ -824,9 +824,9 @@ Bài mẫu:
 
 Bài mẫu:
 
--   [Luogu P2748 \[USACO16OPEN\] Landscaping P](https://www.luogu.com.cn/problem/P2748)
+-   [Luogu P2748 \[USACO16OPEN\] Cải tạo cảnh quan P](https://www.luogu.com.cn/problem/P2748)
 -   [Kyoto University PC 2016 H - WAAAAAAAAAAAAALL](https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h)
--   [JAG Practice Contest 2017 J - Farm Village](https://atcoder.jp/contests/jag2017autumn/tasks/jag2017autumn_j)
+-   [JAG Practice Contest 2017 J - Làng nông trại](https://atcoder.jp/contests/jag2017autumn/tasks/jag2017autumn_j)
 
 <span id="bài-tập"></span>
 ## Bài tập
@@ -834,20 +834,20 @@ Bài mẫu:
 Cuối bài viết, dưới đây là một số bài toán từng xuất hiện trong các kỳ thi lập
 trình, có thể giải bằng Slope Trick để luyện tập.
 
--   [Luogu P3642 \[APIO2016\] Fireworks](https://www.luogu.com.cn/problem/P3642)
--   [Luogu P9962 \[THUPC 2024 Preliminary\] A Tree](https://www.luogu.com.cn/problem/P9962)
--   [Luogu P11317 \[RMI 2021\] Paths](https://www.luogu.com.cn/problem/P11317)
--   [AtCoder Beginner Contest 383 G - Bar Cover](https://atcoder.jp/contests/abc383/tasks/abc383_g)
--   [Codeforces 280 D. k-Maximum Subsequence Sum](https://codeforces.com/problemset/problem/280/D)
--   [Codeforces 280 E. Sequence Transformation](https://codeforces.com/problemset/problem/280/E)
--   [Codeforces 802 O. April Fools' Problem (hard)](https://codeforces.com/contest/802/problem/O)
--   [Codeforces 1209 H. Moving Walkways](https://codeforces.com/contest/1209/problem/H)
--   [Codeforces 1229 F. Mateusz and Escape Room](https://codeforces.com/contest/1229/problem/F)
--   [Codeforces 1534 G. A New Beginning](https://codeforces.com/problemset/problem/1534/G)
--   [Codeforces 1787 H. Codeforces Scoreboard](https://codeforces.com/problemset/problem/1787/H)
--   [2019 Summer Petrozavodsk Camp H. Honorable Mention](https://codeforces.com/gym/102331/problem/H)
--   [2018 ACM-ICPC World Finals C. Conquer The World](https://codeforces.com/gym/102482/problem/C)
--   [300iq Contest 3 F. Farm of Monsters](https://codeforces.com/gym/102538/problem/F)
+-   [Luogu P3642 \[APIO2016\] Pháo hoa](https://www.luogu.com.cn/problem/P3642)
+-   [Luogu P9962 \[THUPC 2024 Preliminary\] Một cái cây](https://www.luogu.com.cn/problem/P9962)
+-   [Luogu P11317 \[RMI 2021\] Đường đi](https://www.luogu.com.cn/problem/P11317)
+-   [AtCoder Beginner Contest 383 G - Phủ thanh](https://atcoder.jp/contests/abc383/tasks/abc383_g)
+-   [Codeforces 280 D. Tổng dãy con k-lớn nhất](https://codeforces.com/problemset/problem/280/D)
+-   [Codeforces 280 E. Biến đổi dãy số](https://codeforces.com/problemset/problem/280/E)
+-   [Codeforces 802 O. Bài toán Cá tháng Tư (khó)](https://codeforces.com/contest/802/problem/O)
+-   [Codeforces 1209 H. Băng chuyền di động](https://codeforces.com/contest/1209/problem/H)
+-   [Codeforces 1229 F. Mateusz và phòng thoát hiểm](https://codeforces.com/contest/1229/problem/F)
+-   [Codeforces 1534 G. Khởi đầu mới](https://codeforces.com/problemset/problem/1534/G)
+-   [Codeforces 1787 H. Bảng điểm Codeforces](https://codeforces.com/problemset/problem/1787/H)
+-   [2019 Summer Petrozavodsk Camp H. Nhắc đến danh dự](https://codeforces.com/gym/102331/problem/H)
+-   [2018 ACM-ICPC World Finals C. Chinh phục thế giới](https://codeforces.com/gym/102482/problem/C)
+-   [300iq Contest 3 F. Nông trại quái vật](https://codeforces.com/gym/102538/problem/F)
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú

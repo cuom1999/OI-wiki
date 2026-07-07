@@ -764,7 +764,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
         --8<-- "docs/dp/code/opt/wqs-binary-search/plant-tree-2.cpp"
         ```
 
-???+ example "[Luogu P2619 Đội tuyển quốc gia Tree I](https://www.luogu.com.cn/problem/P2619)"
+???+ example "[Luogu P2619 Đội tuyển quốc gia Cây I](https://www.luogu.com.cn/problem/P2619)"
     Cho một đồ thị vô hướng liên thông có trọng số, mỗi cạnh màu đen hoặc trắng. Tìm cây khung có đúng $m$ cạnh trắng và tổng trọng số nhỏ nhất.
 
 ??? note "Lời giải"
@@ -837,7 +837,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
 <span id="điều-kiện-ràng-buộc-hai-chiều"></span>
 ### Điều kiện ràng buộc hai chiều
 
-???+ example "[Codeforces 739 E. Gosha is hunting](https://codeforces.com/problemset/problem/739/E)"
+???+ example "[Codeforces 739 E. Gosha đi săn](https://codeforces.com/problemset/problem/739/E)"
     Có $n$ Pokemon, hai dãy $\{p_i\}$ và $\{q_i\}$ lần lượt biểu thị xác suất bắt được Pokemon thứ $i$ bằng Poke Ball và Great Ball. Có thể ném vào một Pokemon một Poke Ball, hoặc một Great Ball, hoặc mỗi loại một quả, hoặc không ném quả nào. Hiện có $m_1$ Poke Ball và $m_2$ Great Ball, cần phân phối hợp lý và ném đồng thời. Việc bắt thành công hay không trong mỗi lần độc lập với kết quả của các lần bắt khác. Tìm giá trị kỳ vọng lớn nhất của số Pokemon bắt được.
     
     Tổng quát hơn, có thể trừu tượng hóa thành bài toán sau:
@@ -888,7 +888,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
 <span id="điều-kiện-ràng-buộc-tổng-quát-hơn"></span>
 ### Điều kiện ràng buộc tổng quát hơn
 
-???+ example "[Codeforces 1661 F. Teleporters](https://codeforces.com/problemset/problem/1661/F)"
+???+ example "[Codeforces 1661 F. Máy dịch chuyển](https://codeforces.com/problemset/problem/1661/F)"
     Có $n$ đoạn thẳng, độ dài của chúng được cho bởi dãy $\{a_i\}$. Có thể cắt chúng tùy ý thành một số đoạn có độ dài nguyên; mục tiêu là tối thiểu hóa tổng bình phương độ dài của mọi đoạn. Hỏi cần cắt ít nhất bao nhiêu lần để tổng bình phương này giảm xuống không vượt quá $V$.
 
 ??? note "Lời giải"
@@ -973,27 +973,27 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 
 -   [Luogu P1484 Trồng cây](https://www.luogu.com.cn/problem/P1484)
 -   [Luogu P1792 Đội tuyển quốc gia: Trồng cây](https://www.luogu.com.cn/problem/P1792)
--   [Luogu P2619 Đội tuyển quốc gia: Tree I](https://www.luogu.com.cn/problem/P2619)
+-   [Luogu P2619 Đội tuyển quốc gia: Cây I](https://www.luogu.com.cn/problem/P2619)
 -   [Luogu P3620 APIO/CTSC2007 Sao lưu dữ liệu](https://www.luogu.com.cn/problem/P3620)
 -   [Luogu P4072 SDOI2016 Hành trình](https://www.luogu.com.cn/problem/P4072)
 -   [Luogu P4383 Liên khảo tám tỉnh 2018: Cây Link-Cut](https://www.luogu.com.cn/problem/P4383)
 -   [Luogu P4983 Quên tình](https://www.luogu.com.cn/problem/P4983)
 -   [Luogu P5308 COCI 2018/2019 #4 Akvizna](https://www.luogu.com.cn/problem/P5308)
 -   [Luogu P5633 Cây khung có ràng buộc bậc nhỏ nhất](https://www.luogu.com.cn/problem/P5633)
--   [Luogu P5896 IOI 2016 aliens](https://www.luogu.com.cn/problem/P5896)
+-   [Luogu P5896 IOI 2016 người ngoài hành tinh](https://www.luogu.com.cn/problem/P5896)
 -   [Luogu P6246 IOI 2000 Bưu điện, bản tăng cường](https://www.luogu.com.cn/problem/P6246)
--   [AtCoder Beginner Contest 218 H - Red and Blue Lamps](https://atcoder.jp/contests/abc218/tasks/abc218_h)
+-   [AtCoder Beginner Contest 218 H - Đèn đỏ và xanh](https://atcoder.jp/contests/abc218/tasks/abc218_h)
 -   [AtCoder Beginner Contest 305 Ex - Shojin](https://atcoder.jp/contests/abc305/tasks/abc305_h)
--   [AtCoder Regular Contest 164 E - Segment-Tree Optimization](https://atcoder.jp/contests/arc164/tasks/arc164_e)
--   [Codeforces 125 E. MST Company](https://codeforces.com/problemset/problem/125/E)
--   [Codeforces 321 E. Ciel and Gondolas](https://codeforces.com/problemset/problem/321/E)
--   [Codeforces 739 E. Gosha is hunting](https://codeforces.com/problemset/problem/739/E)
--   [Codeforces 802 O. April Fools' Problem (hard)](https://codeforces.com/contest/802/problem/O)
--   [Codeforces 958 E2. Guard Duty (medium)](https://codeforces.com/problemset/problem/958/E2)
--   [Codeforces 1279 F. New Year and Handle Change](https://codeforces.com/problemset/problem/1279/F)
--   [Codeforces 1661 F. Teleporters](https://codeforces.com/problemset/problem/1661/F)
--   [Codeforces 1799 F. Halve or Subtract](https://codeforces.com/problemset/problem/1799/F)
--   [2019 Summer Petrozavodsk Camp H. Honorable Mention](https://codeforces.com/gym/102331/problem/H)
+-   [AtCoder Regular Contest 164 E - Tối ưu cây phân đoạn](https://atcoder.jp/contests/arc164/tasks/arc164_e)
+-   [Codeforces 125 E. Công ty MST](https://codeforces.com/problemset/problem/125/E)
+-   [Codeforces 321 E. Ciel và những chiếc thuyền gondola](https://codeforces.com/problemset/problem/321/E)
+-   [Codeforces 739 E. Gosha đi săn](https://codeforces.com/problemset/problem/739/E)
+-   [Codeforces 802 O. Bài toán Cá tháng Tư (khó)](https://codeforces.com/contest/802/problem/O)
+-   [Codeforces 958 E2. Nhiệm vụ canh gác (trung bình)](https://codeforces.com/problemset/problem/958/E2)
+-   [Codeforces 1279 F. Năm mới và đổi tay cầm](https://codeforces.com/problemset/problem/1279/F)
+-   [Codeforces 1661 F. Máy dịch chuyển](https://codeforces.com/problemset/problem/1661/F)
+-   [Codeforces 1799 F. Chia đôi hoặc trừ](https://codeforces.com/problemset/problem/1799/F)
+-   [2019 Summer Petrozavodsk Camp H. Nhắc đến danh dự](https://codeforces.com/gym/102331/problem/H)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

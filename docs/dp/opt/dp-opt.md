@@ -33,7 +33,7 @@ Nếu việc tính trạng thái hiện tại phụ thuộc vào tổng một đ
 Bài tập:
 
 -   [Luogu P2513 \[HAOI2009\] Dãy số nghịch thế](https://www.luogu.com.cn/problem/P2513)
--   [AtCoder Educational DP Contest M - Candies](https://atcoder.jp/contests/dp/tasks/dp_m)
+-   [AtCoder Educational DP Contest M - Kẹo](https://atcoder.jp/contests/dp/tasks/dp_m)
 
 ### Tối ưu DP bằng hàng đợi/ngăn xếp đơn điệu
 
@@ -49,9 +49,9 @@ Nếu mỗi lần chuyển trạng thái đều cần truy vấn tổng, cực t
 
 Bài tập:
 
--   [AtCoder Educational DP Contest Q - Flowers](https://atcoder.jp/contests/dp/tasks/dp_q)
--   [AtCoder Educational DP Contest W - Intervals](https://atcoder.jp/contests/dp/tasks/dp_w)
--   [Codeforces 115 E. Linear Kingdom Races](https://codeforces.com/problemset/problem/115/E)
+-   [AtCoder Educational DP Contest Q - Hoa](https://atcoder.jp/contests/dp/tasks/dp_q)
+-   [AtCoder Educational DP Contest W - Các đoạn](https://atcoder.jp/contests/dp/tasks/dp_w)
+-   [Codeforces 115 E. Các cuộc đua vương quốc tuyến tính](https://codeforces.com/problemset/problem/115/E)
 
 ### Tối ưu DP bằng chia để trị CDQ
 
@@ -82,7 +82,7 @@ Bài tập:
 
 -   [Luogu P1081 \[NOIP 2012 nâng cao\] Du lịch bằng xe](https://www.luogu.com.cn/problem/P1081)
 -   [Luogu P1613 Chạy đường](https://www.luogu.com.cn/problem/P1613)
--   [Luogu P4739 \[CERC2017\] Donut Drone](https://www.luogu.com.cn/problem/P4739)
+-   [Luogu P4739 \[CERC2017\] Drone bánh vòng](https://www.luogu.com.cn/problem/P4739)
 
 ## Tối ưu bằng cấu trúc của bài toán
 
@@ -138,7 +138,7 @@ Bài tập:
 
 -   [Luogu P1397 \[NOI2013\] Trò chơi ma trận](https://www.luogu.com.cn/problem/P1397)
 -   [Luogu P3176 \[HAOI2015\] Tách chuỗi số](https://www.luogu.com.cn/problem/P3176)
--   [Codeforces 576 D. Flights for Regular Customers](https://codeforces.com/problemset/problem/576/D)
+-   [Codeforces 576 D. Chuyến bay cho khách hàng thường xuyên](https://codeforces.com/problemset/problem/576/D)
 -   [Luogu P6772 \[NOI2020\] Người sành ăn](https://www.luogu.com.cn/problem/P6772)
 
 ### Tối ưu DP bằng FFT
@@ -149,8 +149,8 @@ Nếu phương trình chuyển trạng thái của bài DP có dạng tích ch�
 
 Bài tập:
 
--   [Codeforces 553 E. Kyoya and Train](https://codeforces.com/contest/553/problem/E)
--   [Codeforces 1784 D. Wooden Spoon](https://codeforces.com/problemset/problem/1784/D)
+-   [Codeforces 553 E. Kyoya và tàu hỏa](https://codeforces.com/contest/553/problem/E)
+-   [Codeforces 1784 D. Muỗng gỗ](https://codeforces.com/problemset/problem/1784/D)
 
 ### Tối ưu DP bằng nội suy Lagrange
 
@@ -160,7 +160,7 @@ Trong một số bài DP, hàm trạng thái $f(i,j)$ là đa thức bậc $k$ t
 
 Bài tập:
 
--   [Luogu P5223 Function](https://www.luogu.com.cn/problem/P5223)
+-   [Luogu P5223 Hàm](https://www.luogu.com.cn/problem/P5223)
 -   [Luogu P4463 \[Kiểm tra chéo đội tuyển 2012\] calc](https://www.luogu.com.cn/problem/P4463)
 -   [Luogu P5469 \[NOI2019\] Robot](https://www.luogu.com.cn/problem/P5469)
 

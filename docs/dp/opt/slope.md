@@ -123,7 +123,7 @@ Tối ưu DP bằng độ dốc cần được dùng linh hoạt. Mục tiêu c�
 -   [「ZJOI2007」Xây dựng kho](https://loj.ac/problem/10189)
 -   [「APIO2010」Đội hành động đặc biệt](https://loj.ac/problem/10190)
 -   [「JSOI2011」Chanh](https://www.luogu.com.cn/problem/P5504)
--   [「Codeforces 311B」Cats Transport](http://codeforces.com/problemset/problem/311/B)
+-   [「Codeforces 311B」Vận chuyển mèo](http://codeforces.com/problemset/problem/311/B)
 -   [「NOI2007」Đổi tiền](https://loj.ac/problem/2353)
 -   [「NOI2019」Đường về nhà](https://loj.ac/problem/3156)
 -   [「NOI2016」Chuyện nhà vua uống nước](https://uoj.ac/problem/223)

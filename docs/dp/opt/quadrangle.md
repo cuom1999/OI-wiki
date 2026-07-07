@@ -430,11 +430,11 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 <span id="bài-tập"></span>
 
--   [Codeforces - Ciel and Gondolas](https://codeforces.com/contest/321/problem/E) (Cẩn thận với nhập/xuất!)
+-   [Codeforces - Ciel và những chiếc thuyền gondola](https://codeforces.com/contest/321/problem/E) (Cẩn thận với nhập/xuất!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
 -   [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
--   [Hackerrank - Guardians of the Lunatics](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
--   [ACM ICPC World Finals 2017 - Money](https://open.kattis.com/problems/money)
+-   [Hackerrank - Những người canh giữ kẻ điên](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
+-   [ACM ICPC World Finals 2017 - Tiền](https://open.kattis.com/problems/money)
 
 ## Tài liệu tham khảo và chú thích
 
