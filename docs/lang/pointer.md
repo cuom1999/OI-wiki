@@ -433,7 +433,7 @@ của hàm đó; các thông tin này thường được gọi chung là chữ k
 
 Có thể gọi hàm thông qua con trỏ hàm. Đôi khi, một số hàm có cùng chữ ký; dùng
 con trỏ hàm cho phép chọn hàm cần gọi **một cách động** theo quá trình chạy của
-chương trình. Nhờ vậy, không cần sửa thân hàm nhận callback; chỉ cần thay đổi đối
+chương trình. Nhờ vậy, không cần sửa thân hàm nhận hàm gọi lại; chỉ cần thay đổi đối
 số truyền vào, tức con trỏ hàm, là có thể thay đổi hành vi của hàm đó.
 
 Giả sử có một số hàm phép toán hai ngôi dành cho kiểu `int`: mỗi hàm nhận 2 giá
@@ -499,7 +499,7 @@ tham số kiểu `int` và giá trị trả về cũng là `int`".
 Ngoài con trỏ hàm, `std::function` cũng có thể dùng để tham chiếu hàm thuận tiện
 hơn.
 
-Con trỏ hàm cũng thường được dùng để triển khai "hàm callback".
+Con trỏ hàm cũng thường được dùng để triển khai hàm gọi lại (callback).
 
 ## Tài liệu tham khảo và chú thích
 

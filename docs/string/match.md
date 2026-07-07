@@ -4,7 +4,7 @@ Trang này giới thiệu ngắn gọn bài toán khớp xâu và các cách gi�
 
 ### Định nghĩa
 
-Còn gọi là khớp mẫu (pattern matching). Bài toán có thể tóm tắt là: "cho hai xâu $S$ và $T$, tìm xâu con $T$ trong xâu chính $S$". Xâu $T$ được gọi là xâu mẫu (pattern).
+Còn gọi là khớp mẫu. Bài toán có thể tóm tắt là: "cho hai xâu $S$ và $T$, tìm xâu con $T$ trong xâu chính $S$". Xâu $T$ được gọi là xâu mẫu.
 
 ### Phân loại
 

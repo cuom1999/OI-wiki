@@ -588,12 +588,12 @@ Generic cung cấp cơ chế kiểm tra an toàn kiểu tại thời điểm bi�
 phát hiện được kiểu không hợp lệ trước khi chạy chương trình.
 
 <span id="interface"></span>
-## Giao diện (interface)
+## Giao diện
 
 <span id="interface-giới-thiệu"></span>
 ### Giới thiệu
 
-Giao diện (interface) trong Java là một kiểu trừu tượng, thường được khai báo
+Giao diện trong Java là một kiểu trừu tượng, thường được khai báo
 bằng từ khóa `interface`. Nó mô tả một tập phương thức mà lớp triển khai giao diện
 phải cung cấp.
 
@@ -729,7 +729,7 @@ Trong đó, `->` là ký hiệu của lambda: phần bên trái nhận tham số
 mô tả biểu thức hoặc khối lệnh sẽ thực thi.
 
 <span id="functional-interface"></span>
-### Giao diện hàm (functional interface)
+### Giao diện hàm
 
 1.  Là một giao diện, phù hợp với định nghĩa giao diện của Java.
 2.  Chỉ chứa một phương thức trừu tượng.
