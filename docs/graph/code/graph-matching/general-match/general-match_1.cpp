@@ -86,7 +86,7 @@ vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
         label[u] = 0;
         q.push(u);
       }
-      orig[v] = orig[u] = a;  // Co blossom.
+      orig[v] = orig[u] = a;  // Co hoa.
       v = parent[u];
     }
   };  // blossom

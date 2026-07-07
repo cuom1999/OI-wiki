@@ -269,7 +269,7 @@ Với mỗi giá trị $i$, ký hiệu $x_i$ là vị trí của nó trong hoán
       int qry(int l, int r) { return qry(r) - qry(l - 1); }
     };
     
-    // Fenwick Tree
+    // Cây Fenwick
     Treap T[N];
     
     int lb(int x) { return x & -x; }
@@ -542,7 +542,7 @@ Nếu chỉ chèn các điểm tương ứng sau khi kiểm tra xong các phần
       int qry(int l, int r) { return query(r) - query(l - 1); }
     };
     
-    // Segment Tree
+    // Cây đoạn
     Treap T[N << 2];
     
     void insert(int x, int l, int r, int p, int val) {

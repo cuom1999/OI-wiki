@@ -15,7 +15,7 @@ struct IO {
   ~IO() { fwrite(pbuf, 1, pp - pbuf, stdout); }
 #endif
   char gc() {
-#if DEBUG  // Debug: có thể hiển thị ký tự.
+#if DEBUG  // Gỡ lỗi: có thể hiển thị ký tự.
     return getchar();
 #endif
     if (p1 == p2) p2 = (p1 = buf) + fread(buf, 1, MAXSIZE, stdin);
@@ -44,7 +44,7 @@ struct IO {
   void read(char &c) { for (c = gc(); isspace(c); c = gc()); }
 
   void push(const char &c) {
-#if DEBUG  // Debug: có thể hiển thị ký tự.
+#if DEBUG  // Gỡ lỗi: có thể hiển thị ký tự.
     putchar(c);
 #else
     if (pp - pbuf == MAXSIZE) fwrite(pbuf, 1, MAXSIZE, stdout), pp = pbuf;

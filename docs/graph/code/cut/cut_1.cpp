@@ -49,7 +49,7 @@ int main() {
   }  // Dùng vector để lưu đồ thị.
   for (int i = 1; i <= n; i++)  // Vì đồ thị trong Tarjan không nhất thiết liên thông.
     if (!vis[i]) {
-      idx = 0;       // Timestamp khởi tạo bằng 0.
+      idx = 0;       // Mốc thời gian khởi tạo bằng 0.
       Tarjan(i, i);  // Bắt đầu từ đỉnh i, cha là chính nó.
     }
   cout << res << endl;

@@ -41,7 +41,7 @@ void work() {
 int main() {
   cin >> n >> m;
   for (int i = 1; i <= n; cin >> a[i], s[i] = s[i - 1] + a[i], ++i);
-  for (w = 2e12; u <= w;) {  // WQS binary search
+  for (w = 2e12; u <= w;) {  // Tìm kiếm nhị phân WQS.
     v = (u + w) >> 1;
     work();
     if (cnt[n] < m)
