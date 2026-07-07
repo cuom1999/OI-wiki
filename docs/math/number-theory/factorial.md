@@ -71,7 +71,7 @@ Theo ký hiệu của bài viết này, định lý Wilson có thể viết thà
     \prod_{1\le k<m,\ k\perp m} k\equiv 1\pmod{p_j^{e_j}}
     $$
     
-    với mọi thừa số $p_j^{e_j}$. Định lý phần dư Trung Hoa cho biết mỗi tổ hợp phần dư khả dĩ $(r_1,r_2,\cdots,r_s)$, trong đó $1\le r_j<p_j^{e_j}$ và $p_j\perp r_j$, tương ứng duy nhất với một số $1\le k<m$ thỏa mãn $k\perp m$ và $k\equiv r_j\pmod{p_j^{e_j}}$. Vì vậy, với một phần dư $r_j$ cố định, có đúng ${\varphi(m)}/{\varphi(p_j^{e_j})}$ số $k$ sao cho $k\equiv r_j\pmod{p_j^{e_j}}$. Dùng điều này để nhóm tích, có
+    với mọi thừa số $p_j^{e_j}$. Định lý số dư Trung Hoa cho biết mỗi tổ hợp phần dư khả dĩ $(r_1,r_2,\cdots,r_s)$, trong đó $1\le r_j<p_j^{e_j}$ và $p_j\perp r_j$, tương ứng duy nhất với một số $1\le k<m$ thỏa mãn $k\perp m$ và $k\equiv r_j\pmod{p_j^{e_j}}$. Vì vậy, với một phần dư $r_j$ cố định, có đúng ${\varphi(m)}/{\varphi(p_j^{e_j})}$ số $k$ sao cho $k\equiv r_j\pmod{p_j^{e_j}}$. Dùng điều này để nhóm tích, có
     
     $$
     \prod_{1\le k<m,\ k\perp m} k\equiv\left(\prod_{1\le r_j<p_j^{e_j},\ r_j\perp p_j} r_j\right)^{{\varphi(m)}/{\varphi(p_j^{e_j})}}\pmod{p_j^{e_j}}.

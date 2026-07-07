@@ -706,7 +706,7 @@ các thừa số nguyên tố cùng nhau.
 
     Ngược lại, với mọi $a\perp m$ và $i=1,2$, đều có
     $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m_i}$. Áp dụng định lý
-    thặng dư Trung Hoa, thu được
+    số dư Trung Hoa, thu được
     $a^{[\lambda(m_1),\lambda(m_2)]} \equiv 1 \pmod{m}$ với mọi $a\perp m$.
     Theo định nghĩa hàm Carmichael, $\lambda(m)\mid [\lambda(m_1),\lambda(m_2)]$.
 
