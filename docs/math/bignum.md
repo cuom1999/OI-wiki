@@ -1041,4 +1041,4 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
 <span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết
 
-1.  [Karatsuba algorithm - Wikipedia](https://en.wikipedia.org/wiki/Karatsuba_algorithm)
+1.  [Thuật toán Karatsuba - Wikipedia](https://en.wikipedia.org/wiki/Karatsuba_algorithm)

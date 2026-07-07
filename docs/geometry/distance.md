@@ -357,10 +357,10 @@ $$
 2.  Khi $p=2$, $D(X, Y) = \left(\sum_{i=1}^n (x_i - y_i)^2\right)^{1/2}$ chính là khoảng cách Euclid.
 3.  Khi $p \to \infty$, $D(X, Y) = \lim_{p \to \infty}\left(\sum_{i=1}^n \left\vert x_i - y_i \right\vert ^p\right) ^{1/p} = \max\limits_{i=1}^n \left\vert x_i - y_i \right\vert$ chính là khoảng cách Chebyshev.
 
-Lưu ý: khi $p \ge 1$, khoảng cách Minkowski mới là một độ đo. Chứng minh chi tiết có thể xem tại [Minkowski distance - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance).
+Lưu ý: khi $p \ge 1$, khoảng cách Minkowski mới là một độ đo. Chứng minh chi tiết có thể xem tại [Khoảng cách Minkowski - Wikipedia](https://en.wikipedia.org/wiki/Minkowski_distance).
 
 ## Tài liệu tham khảo và liên kết
 
 1.  [A brief discussion of three common distance algorithms](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm), cảm ơn tác giả xuxing đã cho phép sử dụng.
 
-[^ref1]: [Chebyshev distance - Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_distance)
+[^ref1]: [Khoảng cách Chebyshev - Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_distance)

@@ -229,5 +229,5 @@ Từ C++20 trở đi, thư viện chuẩn bổ sung các hàm [`std::midpoint`](
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
-1.  [Interpolation - Wikipedia](https://en.wikipedia.org/wiki/Interpolation)
-2.  [Newton polynomial - Wikipedia](https://en.wikipedia.org/wiki/Newton_polynomial)
+1.  [Nội suy - Wikipedia](https://en.wikipedia.org/wiki/Interpolation)
+2.  [Đa thức Newton - Wikipedia](https://en.wikipedia.org/wiki/Newton_polynomial)

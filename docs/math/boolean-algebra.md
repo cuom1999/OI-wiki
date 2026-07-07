@@ -207,11 +207,11 @@ Một biểu thức logic bất kỳ chỉ chứa các phép toán $\lnot$, $\la
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
-1.  [Boolean algebra - Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra)
-2.  [Boolean function - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
-3.  [Logical connective - Wikipedia](https://en.wikipedia.org/wiki/Logical_connective)
-4.  [Disjunctive normal form - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
-5.  [Zhegalkin polynomial - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
+1.  [Đại số Boole - Wikipedia](https://en.wikipedia.org/wiki/Boolean_algebra)
+2.  [Hàm Boole - Wikipedia](https://en.wikipedia.org/wiki/Boolean_function)
+3.  [Liên kết logic - Wikipedia](https://en.wikipedia.org/wiki/Logical_connective)
+4.  [Dạng chuẩn tuyển - Wikipedia](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
+5.  [Đa thức Zhegalkin - Wikipedia](https://en.wikipedia.org/wiki/Zhegalkin_polynomial)
 
 [^note1]: Khi dùng cho suy diễn mệnh đề, nên dùng mũi tên hai vạch dài, như $A\implies B$, $A\impliedby B$, $A\iff B$, v.v.
 

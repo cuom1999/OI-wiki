@@ -259,5 +259,5 @@ $$
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Zero-sum game - Wikipedia](https://en.wikipedia.org/wiki/Zero-sum_game)
--   [Minimax theorem - Wikipedia](https://en.wikipedia.org/wiki/Minimax_theorem)
+-   [Trò chơi tổng bằng không - Wikipedia](https://en.wikipedia.org/wiki/Zero-sum_game)
+-   [Định lý minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax_theorem)
