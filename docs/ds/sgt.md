@@ -2,12 +2,13 @@ author: Ir1d, 0xis-cn
 
 ## Dẫn nhập
 
-**Cây scapegoat** là một loại cây cân bằng theo trọng số, duy trì cân bằng bằng thao tác xây lại. Sau mỗi thao tác chèn
-hoặc xóa, cây scapegoat kiểm tra xem cây có bị mất cân bằng hay không; nếu có, nó sẽ xây lại phần thích hợp để khôi phục
-cân bằng.
+**Cây scapegoat** là một loại cây cân bằng theo trọng số, duy trì cân bằng bằng thao tác xây lại.
+Sau mỗi thao tác chèn hoặc xóa,
+cây scapegoat kiểm tra xem cây có bị mất cân bằng hay không;
+nếu có, nó sẽ xây lại phần thích hợp để khôi phục cân bằng.
 
-Nhìn chung, cây scapegoat không hỗ trợ thao tác trên đoạn và cũng không thể bền vững hóa hoàn toàn. Bù lại, nó có ưu
-điểm là cài đặt đơn giản và hằng số nhỏ.
+Nhìn chung, cây scapegoat không hỗ trợ thao tác trên đoạn và cũng khó lưu phiên bản hoàn toàn.
+Bù lại, nó có ưu điểm là cài đặt đơn giản và hằng số nhỏ.
 
 ## Cấu trúc và thao tác cơ bản
 
@@ -43,11 +44,13 @@ Cần phân biệt cách cập nhật `tot[x]` và `sz[x]`.
 
 ### Thao tác xây lại
 
-Khi cây bị mất cân bằng, cần xây lại một cây con nào đó sao cho nó cân bằng nhất có thể. Việc xây lại gồm hai bước:
+Khi cây bị mất cân bằng,
+cần xây lại một cây con nào đó sao cho nó cân bằng nhất có thể.
+Việc xây lại gồm hai bước:
 
 -   Duyệt trung thứ tự cây con cần xây lại, đưa tất cả nút chưa bị xóa vào một dãy;
--   Xây cây bằng cách chia đôi, tức là lấy phần tử giữa làm gốc, đệ quy xây cây con ở hai phía trái và phải, rồi cập nhật
-    thông tin nút.
+-   Xây cây bằng cách chia đôi, tức lấy phần tử giữa làm gốc,
+    đệ quy xây cây con ở hai phía trái và phải, rồi cập nhật thông tin nút.
 
 Cài đặt tham khảo như sau:
 
@@ -58,15 +61,17 @@ Cài đặt tham khảo như sau:
 
 Khi xây cây, cần duy trì đầy đủ thông tin nút, bao gồm cả thông tin của nút lá.
 
-Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$. Vì vậy, nếu lần nào chèn hoặc xóa cũng xây lại, độ phức tạp sẽ khó
-chấp nhận. Ý tưởng cốt lõi của cây scapegoat nằm ở việc chọn thời điểm xây lại, nhờ đó đạt được độ phức tạp khấu hao
-$O(\log n)$.
+Độ phức tạp của một lần xây lại là $\Theta(|T_x|)$.
+Vì vậy, nếu lần nào chèn hoặc xóa cũng xây lại,
+độ phức tạp sẽ khó chấp nhận.
+Ý tưởng cốt lõi của cây scapegoat nằm ở việc chọn thời điểm xây lại,
+nhờ đó đạt được độ phức tạp khấu hao $O(\log n)$.
 
 ### Thao tác chèn
 
 Thao tác chèn có thể làm cây mất cân bằng.
-Để xác định mất cân bằng, cần đưa vào tham số $\alpha\in(0.5,1)$,
-thường chọn trong khoảng $0.7\sim 0.8$.
+Để xác định mất cân bằng, cần đưa vào tham số $\alpha \in (0.5,1)$,
+thường chọn trong khoảng $0.7 \sim 0.8$.
 Tham số này còn được gọi là hệ số cân bằng $\alpha$.
 
 Nếu độ sâu của nút mới chèn vượt quá $\lfloor\log_{1/\alpha}|T|\rfloor$,
@@ -75,7 +80,7 @@ thì khi quay lui cần tìm nút xảy ra mất cân bằng và xây lại.
 Khi đó, dùng điều kiện sau để xác định cây con gốc $x$ bị mất cân bằng:
 
 $$
-\max\{|T_{\mathrm{left}(x)}|,|T_{\mathrm{right}(x)}|\} > \alpha\cdot |T_x|,
+\max\{|T_{\mathrm{left}(x)}|, |T_{\mathrm{right}(x)}|\} > \alpha \cdot |T_x|,
 $$
 
 trong đó $\mathrm{left}(x)$ và $\mathrm{right}(x)$ lần lượt là nút con trái
@@ -83,8 +88,8 @@ và nút con phải của $x$, còn $|T_x|$ là kích thước cây con gốc $x
 
 Các bước cụ thể của thao tác chèn như sau:
 
--   Trước hết dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí của giá trị cần chèn, đồng thời ghi lại độ
-    sâu trong quá trình đi xuống;
+-   Trước hết dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí của giá trị cần chèn,
+    đồng thời ghi lại độ sâu trong quá trình đi xuống;
 -   Nếu đã có nút tương ứng, chỉ cần sửa thông tin nút; nếu chưa thì tạo nút mới;
 -   Nếu nút mới quá sâu, cần quay lui từ dưới lên tới gốc,
     cập nhật thông tin nút và ghi lại nút đầu tiên
@@ -107,13 +112,17 @@ Nút mất cân bằng đầu tiên trong quá trình quay lui chính là "scape
 
 ### Thao tác xóa
 
-Thao tác xóa được xử lý khá đơn giản. Chiến lược xóa của cây scapegoat là "xóa lười": khi một nút trở thành rỗng, không
-loại bỏ nút đó ngay mà để xử lý sau.
+Thao tác xóa được xử lý khá đơn giản.
+Chiến lược xóa của cây scapegoat là "xóa lười":
+khi một nút trở thành rỗng, không loại bỏ nút đó ngay mà để xử lý sau.
 
-Nếu trong cây có quá nhiều nút rỗng, hiệu suất truy cập sẽ giảm mạnh. Vì vậy, cây scapegoat duy trì hai bộ đếm: số nút
-chưa bị xóa trong toàn bộ cây và số nút thực tế đã dùng trong toàn bộ cây. Với một ngưỡng đã chọn[^threshold]
-$\alpha\in(0,1)$, khi tỉ lệ giữa bộ đếm thứ nhất và bộ đếm thứ hai giảm xuống dưới $\alpha$, xây lại toàn bộ cây một
-lần. Trong quá trình xây lại, tất cả nút rỗng sẽ bị loại bỏ.
+Nếu trong cây có quá nhiều nút rỗng, hiệu suất truy cập sẽ giảm mạnh.
+Vì vậy, cây scapegoat duy trì hai bộ đếm:
+số nút chưa bị xóa trong toàn bộ cây và số nút thực tế đã dùng trong toàn bộ cây.
+Với một ngưỡng đã chọn[^threshold] $\alpha \in (0,1)$,
+khi tỉ lệ giữa bộ đếm thứ nhất và bộ đếm thứ hai giảm xuống dưới $\alpha$,
+xây lại toàn bộ cây một lần.
+Trong quá trình xây lại, tất cả nút rỗng sẽ bị loại bỏ.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -132,10 +141,10 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
 
 ??? note "Lập luận về độ phức tạp thời gian của cây scapegoat"
     Do dùng chiến lược xóa lười,
-    một cây scapegoat có $n$ nút chưa bị xóa có thể chiếm tới $\alpha^{-1}n$ nút.
+    một cây scapegoat có $n$ nút chưa bị xóa có thể dùng tới $\alpha^{-1}n$ nút đã cấp phát.
     Vì chỉ khác nhau một hằng số,
     phần trình bày này không phân biệt số nút chưa bị xóa
-    và số nút bị chiếm dụng của cây scapegoat,
+    và số nút đã cấp phát của cây scapegoat,
     mà gọi chung là "kích thước cây".
 
     1.  **Thao tác truy cập**: Độ phức tạp của thao tác truy cập được bảo đảm
@@ -180,11 +189,11 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
         tại nút $x$ đã thỏa mãn
 
         $$
-        \max\{|T_{\mathrm{left}(x)}|,|T_{\mathrm{right}(x)}|\} > \alpha\cdot |T_x|.
+        \max\{|T_{\mathrm{left}(x)}|, |T_{\mathrm{right}(x)}|\} > \alpha \cdot |T_x|.
         $$
 
         Điều kiện này bảo đảm độ chênh lệch kích thước giữa hai cây con trái và phải
-        ít nhất là $(2\alpha-1)|T_x|$.
+        ít nhất là $(2\alpha - 1)|T_x|$.
         Vì vậy, giữa hai lần xây lại này,
         đã có $\Omega(|T_x|)$ nút được chèn vào cây con $T_x$.
 
@@ -216,7 +225,7 @@ Chứng minh chi tiết có thể xem trong bài báo gốc.
         chi phí thời gian thực tế của $\Theta(n)$ thao tác xóa này là
 
         $$
-        \Theta(n)O(\log n)+\Theta(n)
+        \Theta(n \log n)+\Theta(n)
         $$
 
         Do đó, độ phức tạp khấu hao của một lần xóa là $O(\log n)$.
@@ -232,8 +241,8 @@ các thao tác này cũng cần được điều chỉnh tương ứng.
 
 ### Truy vấn hạng
 
-Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí nút, đồng thời ghi lại số lượng giá trị được lưu ở bên
-trái đường đi là đủ.
+Dùng tính chất của cây tìm kiếm nhị phân để đi xuống tìm vị trí nút,
+đồng thời ghi lại số lượng giá trị được lưu ở bên trái đường đi là đủ.
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -296,7 +305,7 @@ Cuối phần này là cài đặt tham khảo cho bài mẫu [Cây cân bằng 
     còn độ phức tạp tổng thể vẫn đúng.
 
 [^hei-bal]: Theo định nghĩa trong bài báo gốc,
-    $n$ chỉ số nút chưa bị xóa,
+    $n$ là số nút chưa bị xóa,
     vì vậy chỉ có thể bảo đảm chiều cao cây không vượt quá $\lfloor\log_{1/\alpha}n\rfloor+1$.
     Đây được gọi là cân bằng chiều cao $\alpha$ yếu.
     Trang này không đi sâu vào khác biệt ở hằng số này.
