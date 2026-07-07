@@ -156,4 +156,4 @@ phần tử.
 
 ## Liên kết ngoài
 
--   [Tournament sort - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)
+-   [Sắp xếp giải đấu - Wikipedia](https://en.wikipedia.org/wiki/Tournament_sort)

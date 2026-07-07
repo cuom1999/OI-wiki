@@ -107,4 +107,4 @@ $O(n^2)$.
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Bucket sort - Wikipedia tiếng Anh](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)
+[^ref1]: [Sắp xếp xô - Wikipedia tiếng Anh](https://en.wikipedia.org/wiki/Bucket_sort#Average-case_analysis)

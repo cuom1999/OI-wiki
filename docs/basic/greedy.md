@@ -184,4 +184,4 @@ có khả năng quay lại xét các lựa chọn theo nghĩa rộng.
 
 ## Tài liệu tham khảo và ghi chú
 
-[^ref1]: [Greedy algorithm - Wikipedia](https://en.wikipedia.org/wiki/Greedy_algorithm)
+[^ref1]: [Thuật toán tham lam - Wikipedia](https://en.wikipedia.org/wiki/Greedy_algorithm)

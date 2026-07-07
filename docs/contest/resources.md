@@ -37,12 +37,12 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [AtCoder](https://atcoder.jp/): OJ của Nhật Bản; bản tiếng Nhật có các cuộc thi của các trường đại học Nhật, còn bản tiếng Anh không hiển thị. Bài thú vị và chất lượng cao.
 -   [CodeChef](https://codechef.com/): OJ của Ấn Độ, tổ chức thi định kỳ. Hệ thống dựa trên Sphere Engine của SPOJ.
 -   [Codeforces](https://codeforces.com/): OJ của Nga, bắt đầu từ năm 2010, người sáng lập là [Mike Mirzayanov](https://www.linkedin.com/in/mike-mirzayanov-31772a93/). Có nhiều chuỗi cuộc thi, hỗ trợ cá nhân ra đề và đăng ký tổ chức thi. Chất lượng bài cao.
--   [CSES](https://cses.fi/problemset/) (Code Submission Evaluation System), kho bài được chia theo chuyên đề, [mục tiêu](https://cses.fi/problemset/text/2433) là trở thành một kho bài tổng hợp chất lượng cao, chủ yếu do Antti Laaksonen, tác giả của [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf), phát triển; bắt đầu từ năm 2013.
+-   [CSES](https://cses.fi/problemset/) (Code Submission Evaluation System), kho bài được chia theo chuyên đề, [mục tiêu](https://cses.fi/problemset/text/2433) là trở thành một kho bài tổng hợp chất lượng cao, chủ yếu do Antti Laaksonen, tác giả của [Sổ tay lập trình viên thi đấu](https://cses.fi/book/book.pdf), phát triển; bắt đầu từ năm 2013.
 -   [CS Academy](https://csacademy.com/)
 -   [DMOJ](https://dmoj.ca/) là OJ mã nguồn mở của Canada, hỗ trợ nhiều ngôn ngữ; kho bài lưu trữ đề của nhiều cuộc thi lớn và cũng có các cuộc thi tự tổ chức định kỳ.
 -   [HackerRank](https://www.hackerrank.com/) có nhiều cuộc thi.
--   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức trivial/easy/medium/hard phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng Elo](https://en.wikipedia.org/wiki/Elo_rating_system).
--   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode China](https://leetcode.cn).
+-   [Kattis](https://open.kattis.com/) có kho bài chủ yếu gồm các bài giống phong cách ICPC; hệ thống đánh giá cấp độ người dùng dựa trên tình hình giải bài và gợi ý các bài ở bốn mức `trivial`/`easy`/`medium`/`hard` phù hợp với trình độ, trong đó độ khó bài được đánh giá bằng hệ thống tương tự [điểm xếp hạng Elo](https://en.wikipedia.org/wiki/Elo_rating_system).
+-   [LeetCode](https://leetcode.com/) là trang luyện bài phỏng vấn cho lập trình viên, có nhánh tiếng Trung: [LeetCode Trung Quốc](https://leetcode.cn).
 -   [Light OJ](https://lightoj.com)
 -   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Open Cup qua các năm và bài từ trại huấn luyện Petrozavodsk.
 -   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
@@ -119,7 +119,7 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
     -   Nội dung bao quát tốt các ý chính, nhưng khá ngắn.
 -   [Ghi chú về cấu trúc dữ liệu và thuật toán của Legend-K](http://web.archive.org/web/20180826111306/http://www.legend-k.com/Algorithm/Algorithm.pdf)
 -   [acm-cheat-sheet](https://github.com/soulmachine/acm-cheat-sheet)
--   [Competitive Programmer’s Handbook](https://cses.fi/book/book.pdf) - Antti Laaksonen
+-   [Sổ tay lập trình viên thi đấu](https://cses.fi/book/book.pdf) - Antti Laaksonen
     -   Tác giả dành ba năm thời gian cá nhân để hoàn thành. Sách hướng đến lập trình thi đấu, phạm vi rộng và mức độ chi tiết hợp lý.
 -   [*Programming Challenges: The Programming Contest Training Manual*](http://acm.cs.buap.mx/downloads/Programming_Challenges.pdf)- Steven S. Skiena/Miguel A. Revilla
     -   Do hai giáo sư của University of Valladolid, Tây Ban Nha biên soạn.
@@ -190,5 +190,5 @@ Danh sách này ghi tác giả của sách, không liệt kê dịch giả. Vì 
 -   [Huấn luyện nhiều trường](http://acm.hdu.edu.cn) từ khóa: `Multi-University Training Contest`
 -   [Vjudge](https://vjudge.net/)
 -   [Project Euler](https://projecteuler.net/)
--   [Junior Training Sheet](https://goo.gl/unDETI): kế hoạch luyện tập thân thiện với người mới
--   [USACO Guide](https://usaco.guide/): tài nguyên luyện tập được phân loại theo từng cấp độ của USACO
+-   [Bảng luyện tập Junior](https://goo.gl/unDETI): kế hoạch luyện tập thân thiện với người mới
+-   [Hướng dẫn USACO](https://usaco.guide/): tài nguyên luyện tập được phân loại theo từng cấp độ của USACO

@@ -265,5 +265,5 @@ khấu hao của mọi thao tác ngăn xếp đều là $O(1)$.
 
 ## Tài liệu tham khảo
 
--   [Amortized Analysis - Wikipedia](https://en.wikipedia.org/wiki/Amortized_analysis)
--   [Cornell CS 3110 - Lecture 20: Amortized Analysis](https://www.cs.cornell.edu/courses/cs3110/2011sp/Lectures/lec20-amortized/amortized.htm)
+-   [Phân tích khấu hao - Wikipedia](https://en.wikipedia.org/wiki/Amortized_analysis)
+-   [Cornell CS 3110 - Bài giảng 20: Phân tích khấu hao](https://www.cs.cornell.edu/courses/cs3110/2011sp/Lectures/lec20-amortized/amortized.htm)
