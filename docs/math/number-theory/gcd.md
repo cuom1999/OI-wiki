@@ -58,7 +58,7 @@ Có thể chứng minh $\gcd(a,b)=\gcd(b,a \bmod b)$ như sau:
     
     Do đó $\gcd(a,b)=\gcd(b,a\bmod b)$.
 
-Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước hai số không tăng lên, nên thu
+Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước của cặp số giảm xuống, nên thu
 được một cách đệ quy để tính ước chung lớn nhất của hai số.
 
 <span id="cài-đặt-thuật-toán-euclid"></span>
@@ -154,10 +154,10 @@ cùng nhau.
 <span id="tính-chất-thuật-toán-euclid"></span>
 #### Tính chất
 
-Hiệu quả thời gian của thuật toán Euclid ra sao? Sau đây chứng minh: khi đầu
-vào là hai số nguyên nhị phân có độ dài $n$, độ phức tạp thời gian của thuật
-toán Euclid là $O(n)$. Nói cách khác, nếu mặc định $a, b$ cùng bậc, độ phức tạp
-thời gian là $O(\log\max(a, b))$.
+Thuật toán Euclid cần bao nhiêu bước chia lấy dư? Sau đây chứng minh: khi đầu
+vào là hai số nguyên nhị phân có độ dài $n$, số bước đệ quy của thuật toán
+Euclid là $O(n)$. Nói cách khác, nếu mặc định $a, b$ cùng bậc, số bước là
+$O(\log\max(a, b))$.
 
 ???+ note "Chứng minh"
     Khi tính $\gcd(a,b)$, có hai trường hợp:
@@ -167,14 +167,14 @@ thời gian là $O(\log\max(a, b))$.
         theo $a$ làm $a$ giảm ít nhất một nửa. Nghĩa là quá trình này xảy ra
         tối đa $O(\log a) = O(n)$ lần.
     
-    Sau trường hợp thứ nhất nhất định sẽ đến trường hợp thứ hai, nên số lần xảy
-    ra trường hợp thứ nhất **không nhiều hơn** số lần xảy ra trường hợp thứ hai.
+    Sau trường hợp thứ nhất luôn đến trường hợp thứ hai, nên số lần xảy ra
+    trường hợp thứ nhất **không nhiều hơn** số lần xảy ra trường hợp thứ hai.
     
     Vì vậy chỉ cần đệ quy tối đa $O(n)$ lần là có kết quả.
 
-Thực tế, nếu dùng thuật toán Euclid để tính ước chung lớn nhất của hai số hàng
-xóm trong [dãy Fibonacci](../combinatorics/fibonacci.md), thuật toán sẽ đạt độ
-phức tạp xấu nhất.
+Thực tế, nếu dùng thuật toán Euclid để tính ước chung lớn nhất của hai số kề
+nhau trong [dãy Fibonacci](../combinatorics/fibonacci.md), thuật toán sẽ đạt số
+bước xấu nhất.
 
 <span id="thuật-toán-trừ-dần"></span>
 ### Thuật toán trừ dần
@@ -188,7 +188,7 @@ vậy có thể dùng cộng trừ thay cho nhân chia để tính ước chung 
 Cho hai số $a$ và $b$, cần tính $\gcd(a,b)$.
 
 Giả sử $a \ge b$. Nếu $a = b$, thì $\gcd(a,b)=a=b$. Nếu không, với mọi
-$\forall d\mid a, d\mid b$, có thể chứng minh $d\mid a-b$.
+$d\mid a$ và $d\mid b$, có thể chứng minh $d\mid a-b$.
 
 Do đó **tất cả** ước chung của $a$ và $b$ đều là ước chung của $a-b$ và $b$,
 nên $\gcd(a,b) = \gcd(a-b, b)$.
@@ -206,8 +206,8 @@ Nếu không, giả sử $2\mid a$ (trường hợp $2\mid b$ tương tự). Vì
 $2\mid b$ đã được xét, nên $2 \nmid b$. Do đó
 $\gcd(a,b)=\gcd\left(\dfrac a2,b\right)$.
 
-Thuật toán sau khi tối ưu, tức thuật toán Stein, có độ phức tạp thời gian
-$O(\log n)$.
+Thuật toán sau khi tối ưu, tức thuật toán Stein, cần $O(\log\max(a,b))$ bước đệ
+quy.
 
 ???+ note "Chứng minh"
     Nếu $2\mid a$ hoặc $2\mid b$, mỗi lần đệ quy sẽ làm ít nhất một trong hai
@@ -289,7 +289,7 @@ ngược lại nó có thể chậm hơn Euclid.
     int countr_zero(Big a) {
       int ans = 0;
       for (auto x : a) {
-        if (x != 0) {
+        if (x == 0) {
           ans += 32;  // độ dài bit của kiểu dữ liệu mỗi phần tử
         } else {
           return ans + countr_zero(x);
