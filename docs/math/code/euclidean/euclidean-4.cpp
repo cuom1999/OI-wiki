@@ -1,19 +1,19 @@
-/* Verified by Library Checker.                             */
-/* Matrix: https://judge.yosupo.jp/submission/283818        */
-/* Info merging: https://judge.yosupo.jp/submission/283819  */
+/* Đã được kiểm chứng bởi Library Checker.                   */
+/* Ma trận: https://judge.yosupo.jp/submission/283818       */
+/* Gộp thông tin: https://judge.yosupo.jp/submission/283819  */
 // --8<-- [start:full-text]
 #include <array>
 #include <iostream>
 
-// Switch between matrix and info merging approaches.
+// Chuyển giữa cách dùng ma trận và cách gộp thông tin.
 #define MATRIX 1
 
 // --8<-- [start:euclidean]
-// Class T implements the monoid.
-// Assume that it provides a multiplication operator
-//     and a default constructor returning the unity in the monoid.
+// Lớp T cài đặt vị nhóm.
+// Giả sử nó cung cấp toán tử nhân
+//     và hàm dựng mặc định trả về phần tử đơn vị trong vị nhóm.
 
-// Binary exponentiation.
+// Lũy thừa nhị phân.
 template <typename T>
 T pow(T a, int b) {
   T res;

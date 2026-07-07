@@ -5,7 +5,7 @@ class LinearBasis {
   static constexpr int K = 30;
   std::array<int, K> a;
 
-  // Size of basis.
+  // Kích thước của cơ sở.
   int size() const {
     int res = 0;
     for (auto x : a) {
@@ -31,7 +31,7 @@ class LinearBasis {
     }
   }
 
-  // Return a basis for *THIS intersecting RHS.
+  // Trả về một cơ sở cho giao của *THIS với RHS.
   LinearBasis intersect(const LinearBasis& rhs) const {
     LinearBasis res;
     std::array<int, K> c = a, b_parts = {};

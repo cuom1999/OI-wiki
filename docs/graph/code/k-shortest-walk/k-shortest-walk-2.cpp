@@ -1,4 +1,4 @@
-// Submission: https://judge.yosupo.jp/submission/311623
+// Bài nộp: https://judge.yosupo.jp/submission/311623
 #include <algorithm>
 #include <iostream>
 #include <queue>
@@ -9,7 +9,7 @@ std::mt19937_64 rng(static_cast<std::mt19937_64::result_type>(time(nullptr)));
 
 constexpr long long inf = 0x3f3f3f3f3f3f3f3f;
 
-// Persistent Randomized Heap.
+// Heap ngẫu nhiên hóa bền vững.
 struct PersistentRandomizedHeap {
   static constexpr int N = 1e7;
   int id;

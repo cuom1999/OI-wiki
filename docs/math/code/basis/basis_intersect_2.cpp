@@ -20,7 +20,7 @@ class LinearBasis {
     }
   }
 
-  // Output those not exceeding 2^k.
+  // Xuất các phần tử không vượt quá 2^k.
   void print(int k) const {
     int sz = 0;
     for (int i = 0; i < k; ++i) {

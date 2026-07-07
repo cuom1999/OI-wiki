@@ -1,5 +1,5 @@
-/* Verified by Library Checker.                             */
-/* Submission: https://judge.yosupo.jp/submission/285178    */
+/* Đã được kiểm chứng bởi Library Checker.                   */
+/* Bài nộp: https://judge.yosupo.jp/submission/285178        */
 // --8<-- [start:full-text]
 #include <iostream>
 

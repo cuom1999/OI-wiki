@@ -4,16 +4,16 @@
 
 class FiniteField {
   int p, k;
-  std::vector<int> mod;  // Monic.
+  std::vector<int> mod;  // Đa thức có hệ số cao nhất bằng 1.
 
-  // Remove leadings zeros of a polynomial.
+  // Xóa các hệ số 0 ở bậc cao nhất của đa thức.
   static void trim(std::vector<int>& poly) {
     int m = poly.size();
     for (; m && !poly[m - 1]; --m);
     poly.resize(m);
   }
 
-  // Binary exponentiation mod p.
+  // Lũy thừa nhị phân modulo p.
   int pow(int a, int b) const {
     int res = 1, po = a;
     while (b) {
@@ -24,16 +24,16 @@ class FiniteField {
     return res;
   }
 
-  // Multiplicative inverse mod p.
+  // Nghịch đảo nhân modulo p.
   int inv(int a) const { return pow(a, p - 2); }
 
-  // Polynomial GCD. Inputs are supposed to have no leading zeros.
+  // UCLN đa thức. Dữ liệu vào được giả sử không có hệ số 0 ở bậc cao nhất.
   std::vector<int> poly_gcd(const std::vector<int>& lhs,
                             const std::vector<int>& rhs) const {
     if (lhs.size() < rhs.size()) {
       return poly_gcd(rhs, lhs);
     } else if (rhs.size()) {
-      auto rem = lhs;  // remainder.
+      auto rem = lhs;  // phần dư.
       long long v = inv(rhs.back());
       for (int i = rem.size() - rhs.size(); i >= 0; --i) {
         auto d = v * (p - rem[i + rhs.size() - 1]) % p;
@@ -41,21 +41,22 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem);  // Remove leading zeros.
+      trim(rem);  // Xóa các hệ số 0 ở bậc cao nhất.
       return poly_gcd(rhs, rem);
     } else {
       return lhs;
     }
   }
 
-  // Polynomials Ex-GCD. Inputs are supposed to have no leading zeros.
+  // Euclid mở rộng cho đa thức. Dữ liệu vào được giả sử
+  // không có hệ số 0 ở bậc cao nhất.
   void poly_ex_gcd(const std::vector<int>& lhs, const std::vector<int>& rhs,
                    std::vector<int>& x, std::vector<int>& y) const {
     if (lhs.size() < rhs.size()) {
       poly_ex_gcd(rhs, lhs, y, x);
     } else if (rhs.size()) {
-      std::vector<int> quo(lhs.size() - rhs.size() + 1);  // quotient.
-      auto rem = lhs;                                     // remainder.
+      std::vector<int> quo(lhs.size() - rhs.size() + 1);  // thương.
+      auto rem = lhs;                                     // phần dư.
       long long v = inv(rhs.back());
       for (int i = rem.size() - rhs.size(); i >= 0; --i) {
         quo[i] = v * rem[i + rhs.size() - 1] % p;
@@ -64,8 +65,8 @@ class FiniteField {
           rem[i + j] = (rem[i + j] + d * rhs[j]) % p;
         }
       }
-      trim(rem);  // Remove leading zeros.
-      // Recursively ex_gcd.
+      trim(rem);  // Xóa các hệ số 0 ở bậc cao nhất.
+      // Tính ex_gcd đệ quy.
       poly_ex_gcd(rhs, rem, y, x);
       // y -= a/b*x.
       if (y.size() < quo.size() + x.size() - 1) {
@@ -77,7 +78,7 @@ class FiniteField {
           if (y[i + j] < 0) y[i + j] += p;
         }
       }
-      trim(y);  // Remove leading zeros.
+      trim(y);  // Xóa các hệ số 0 ở bậc cao nhất.
     } else {
       // x = 1, y = 0.
       x.assign(1, inv(lhs.back()));
@@ -86,15 +87,15 @@ class FiniteField {
   }
 
  public:
-  // Class for Finite Field Elements.
+  // Lớp biểu diễn các phần tử của trường hữu hạn.
   struct Element {
     const FiniteField* gf;
     std::vector<int> a;
 
-    // Element initialization as zero.
+    // Khởi tạo phần tử bằng 0.
     Element(const FiniteField* gf) : gf(gf), a(gf->k) {}
 
-    // Element initialization from the numeric representation.
+    // Khởi tạo phần tử từ biểu diễn số.
     Element(const FiniteField* gf, int id) : gf(gf), a(gf->k) {
       for (int i = 0; i < gf->k; ++i) {
         a[i] = id % gf->p;
@@ -102,7 +103,7 @@ class FiniteField {
       }
     }
 
-    // Generate the numeric representation from an element.
+    // Sinh biểu diễn số từ một phần tử.
     int idx() const {
       int id = 0;
       for (int i = gf->k - 1; i >= 0; --i) {
@@ -111,10 +112,10 @@ class FiniteField {
       return id;
     }
 
-    // Access the i-th coefficient.
+    // Truy cập hệ số thứ i.
     int& operator[](int i) { return a[i]; }
 
-    // Addition.
+    // Phép cộng.
     Element& operator+=(const Element& rhs) {
       for (int i = 0; i < gf->k; ++i) {
         a[i] += rhs.a[i];
@@ -123,14 +124,14 @@ class FiniteField {
       return *this;
     }
 
-    // Addition.
+    // Phép cộng.
     Element operator+(const Element& rhs) const {
       Element res(*this);
       res += rhs;
       return res;
     }
 
-    // Subtraction.
+    // Phép trừ.
     Element& operator-=(const Element& rhs) {
       for (int i = 0; i < gf->k; ++i) {
         a[i] -= rhs.a[i];
@@ -139,14 +140,14 @@ class FiniteField {
       return *this;
     }
 
-    // Subtraction.
+    // Phép trừ.
     Element operator-(const Element& rhs) const {
       Element res(*this);
       res -= rhs;
       return res;
     }
 
-    // Multiplication by a scalar.
+    // Nhân với một vô hướng.
     Element& operator*=(int x) {
       for (int i = 0; i < gf->k; ++i) {
         a[i] = (long long)a[i] * x % gf->p;
@@ -154,14 +155,14 @@ class FiniteField {
       return *this;
     }
 
-    // Multiplication by a scalar.
+    // Nhân với một vô hướng.
     Element operator*(int x) const {
       Element res(*this);
       res *= x;
       return res;
     }
 
-    // Multiplication by x.
+    // Nhân với x.
     Element& shift() {
       long long d = gf->p - a.back();  // d = -a[k-1].
       for (int i = gf->k - 1; i >= 0; --i) {
@@ -170,7 +171,7 @@ class FiniteField {
       return *this;
     }
 
-    // Multiplication.
+    // Phép nhân.
     Element& operator*=(const Element& rhs) {
       Element prod(*this);
       *this *= rhs.a[0];
@@ -181,14 +182,14 @@ class FiniteField {
       return *this;
     }
 
-    // Multiplication.
+    // Phép nhân.
     Element operator*(const Element& rhs) const {
       Element res(*this);
       res *= rhs;
       return res;
     }
 
-    // Binary exponentiation.
+    // Lũy thừa nhị phân.
     Element pow(int b) const {
       Element res(gf, 1);
       Element po(*this);
@@ -200,7 +201,7 @@ class FiniteField {
       return res;
     }
 
-    // Multiplicative inverse.
+    // Nghịch đảo nhân.
     Element inv() const {
       Element res(gf);
       auto& x = res.a;
@@ -213,13 +214,13 @@ class FiniteField {
       return res;
     }
 
-    // Division.
+    // Phép chia.
     Element& operator/=(const Element& rhs) {
       *this *= rhs.inv();
       return *this;
     }
 
-    // Division.
+    // Phép chia.
     Element operator/(const Element& rhs) const {
       Element res(*this);
       res /= rhs;
@@ -228,7 +229,7 @@ class FiniteField {
   };
 
  private:
-  // Check whether the current MOD is irreducible.
+  // Kiểm tra MOD hiện tại có bất khả quy hay không.
   bool checkIrreducible() const {
     Element f(this, p);
     for (int j = 1; j < k; ++j) {
@@ -240,7 +241,7 @@ class FiniteField {
       trim(g);
       // H = MOD.
       auto h = mod;
-      // Reducible if deg(GCD(G,H))>0.
+      // Khả quy nếu deg(GCD(G,H))>0.
       if (poly_gcd(h, g).size() > 1) return false;
     }
     return true;
@@ -248,7 +249,7 @@ class FiniteField {
 
  public:
   FiniteField(int p, int k) : p(p), k(k), mod(k + 1, 1) {
-    do {  // Randomly generate a polynomial.
+    do {  // Sinh ngẫu nhiên một đa thức.
       for (int i = 0; i < k; ++i) {
         mod[i] = rand() % p;
       }

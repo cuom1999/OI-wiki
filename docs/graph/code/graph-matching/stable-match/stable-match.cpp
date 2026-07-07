@@ -2,13 +2,13 @@
 #include <queue>
 #include <vector>
 
-// Solver for stable marriage problems.
-// Assume strict preferences with incomplete lists.
+// Bộ giải cho bài toán ghép cặp ổn định.
+// Giả sử thứ tự ưu tiên là nghiêm ngặt và các danh sách có thể không đầy đủ.
 struct StableMatching {
   int nx, ny;
   std::vector<std::vector<int>> pref_x,
-      pref_y;  // Preferences: preferred first, only acceptable.
-  std::vector<int> match_x, match_y;  // Matching: -1 means unmatched.
+      pref_y;  // Thứ tự ưu tiên: ưu tiên hơn đứng trước, chỉ gồm các cặp chấp nhận được.
+  std::vector<int> match_x, match_y;  // Ghép cặp: -1 nghĩa là chưa ghép.
 
   StableMatching(int nx, int ny)
       : nx(nx),
