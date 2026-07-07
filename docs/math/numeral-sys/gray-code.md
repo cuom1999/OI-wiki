@@ -132,6 +132,6 @@ Mã Gray có nhiều ứng dụng rất hữu ích, một số ứng dụng khá
 
 -   [CSP S2 2019 D1T1](https://www.luogu.com.cn/problem/P5657) Độ khó: dễ
 
--   [SGU #249 Matrix](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Độ khó: trung bình
+-   [SGU #249 Ma trận](http://codeforces.com/problemsets/acmsguru/problem/99999/249) Độ khó: trung bình
 
 > Một phần nội dung trang này được dịch từ bài viết [Код Грея](http://e-maxx.ru/algo/gray_code) và bản dịch tiếng Anh [Gray code](https://cp-algorithms.com/algebra/gray-code.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.

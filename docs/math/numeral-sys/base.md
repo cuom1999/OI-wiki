@@ -280,12 +280,12 @@ Với số không âm, C++ biểu diễn một literal số nguyên bằng `<ti�
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [Positional notation - Wikipedia](https://en.wikipedia.org/wiki/Positional_notation)
--   [Method of complements - Wikipedia](https://en.wikipedia.org/wiki/Method_of_complements)
--   [Non-standard positional numeral systems - Wikipedia](https://en.wikipedia.org/wiki/Non-standard_positional_numeral_systems)
--   [Bijective numeration - Wikipedia](https://en.wikipedia.org/wiki/Bijective_numeration)
--   [Midy's theorem - Wikipedia](https://en.wikipedia.org/wiki/Midy%27s_theorem)
--   [N3472 - Binary Literals in the C++ Core Language](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472.pdf)
+-   [Ký pháp vị trí - Wikipedia](https://en.wikipedia.org/wiki/Positional_notation)
+-   [Phương pháp bù - Wikipedia](https://en.wikipedia.org/wiki/Method_of_complements)
+-   [Hệ ghi số vị trí phi chuẩn - Wikipedia](https://en.wikipedia.org/wiki/Non-standard_positional_numeral_systems)
+-   [Hệ đếm song ánh - Wikipedia](https://en.wikipedia.org/wiki/Bijective_numeration)
+-   [Định lý Midy - Wikipedia](https://en.wikipedia.org/wiki/Midy%27s_theorem)
+-   [N3472 - Literal nhị phân trong ngôn ngữ lõi C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3472.pdf)
 
 [^note1]: Các chữ số $0$ nằm trước chữ số khác $0$ cao nhất được gọi là [**số 0 dẫn đầu**](https://en.wikipedia.org/wiki/Leading_zero) (leading zero). Tương tự, có thể định nghĩa [**số 0 theo sau**](https://en.wikipedia.org/wiki/Trailing_zero) (trailing zero).
 

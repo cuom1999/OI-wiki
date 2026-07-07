@@ -10,4 +10,4 @@ Trong lập trình thi đấu, thường chỉ quan tâm đến quan hệ chuy�
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Numeral system - Wikipedia](https://en.wikipedia.org/wiki/Numeral_system)
+-   [Hệ ghi số - Wikipedia](https://en.wikipedia.org/wiki/Numeral_system)
