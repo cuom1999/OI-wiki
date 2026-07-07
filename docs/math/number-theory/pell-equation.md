@@ -1154,10 +1154,10 @@ trước, trong thuật toán này chỉ số $k$ thỏa điều kiện có th�
 ## Bài tập
 
 -   [LOJ 6687. Project Euler 66 - Giải phương trình](https://loj.ac/p/6687)
--   [SPOJ EQU2 - Yet Another Equation](https://www.spoj.com/problems/EQU2/)
+-   [SPOJ EQU2 - Lại một phương trình nữa](https://www.spoj.com/problems/EQU2/)
 -   [SPOJ PELL2 - Pell (Mid pelling)](https://www.spoj.com/problems/PELL2/)
--   [UVa 12909. Numeric Center](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4774)
--   [UVa 10241. Semi-triangular and also Square](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=14&page=show_problem&problem=1182)
+-   [UVa 12909. Tâm số](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4774)
+-   [UVa 10241. Vừa bán tam giác vừa là số chính phương](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=14&page=show_problem&problem=1182)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

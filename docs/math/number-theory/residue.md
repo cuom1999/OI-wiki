@@ -453,7 +453,7 @@ phát hiện.
 Mã tham khảo để tìm căn bậc $k$ theo môđun nguyên tố như sau: mã chỉ mang tính
 minh họa; do độ phức tạp quá cao, không đủ để AC bài mẫu này.
 
-??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
+??? example "Bài mẫu [Library Checker - Căn bậc k (mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/residue/bsgs-mod-p.cpp"
     ```
@@ -648,7 +648,7 @@ gồm một số thừa số nguyên tố thỏa mãn $e=s$, nên không cần t
 
 Mã tham khảo để tìm căn bậc $k$ theo môđun nguyên tố như sau:
 
-??? example "Bài mẫu [Library Checker - Kth Root (Mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
+??? example "Bài mẫu [Library Checker - Căn bậc k (mod)](https://judge.yosupo.jp/problem/kth_root_mod), mã tham khảo"
     ```cpp
     --8<-- "docs/math/code/residue/tonelli-shanks-mod-p.cpp"
     ```

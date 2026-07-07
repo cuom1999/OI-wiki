@@ -107,7 +107,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, thu 
 <span id="ví-dụ"></span>
 ### Ví dụ
 
-???+ example "[Codeforces 510 D. Fox And Jumping](https://codeforces.com/problemset/problem/510/D)"
+???+ example "[Codeforces 510 D. Fox và nhảy](https://codeforces.com/problemset/problem/510/D)"
     Cho $n\le 300$ tấm thẻ, tấm thứ $i$ có hai giá trị $l_i$ và $c_i$. Trên một
     băng giấy dài vô hạn, được phép trả $c_i$ để mua thẻ $i$; từ đó trở đi, được
     phép nhảy sang trái hoặc sang phải đúng $l_i$ đơn vị với số lần bất kỳ. Hỏi

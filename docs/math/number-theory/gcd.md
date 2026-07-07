@@ -613,9 +613,9 @@ Cách diễn giải này gọn hơn so với đệ quy.
 <span id="ứng-dụng"></span>
 ## Ứng dụng
 
--   [10104 - Euclid Problem](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
--   [GYM - (J) once upon a time](http://codeforces.com/gym/100963)
--   [UVa - 12775 - Gift Dilemma](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
+-   [10104 - Bài toán Euclid](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1045)
+-   [GYM - (J) Ngày xửa ngày xưa](http://codeforces.com/gym/100963)
+-   [UVa - 12775 - Thế khó của món quà](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4628)
 
 <span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết

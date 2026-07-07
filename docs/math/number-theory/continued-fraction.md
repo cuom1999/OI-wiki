@@ -1020,7 +1020,7 @@ Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot
         --8<-- "docs/math/code/continued-fraction/inner-point.py:core"
         ```
 
-???+ example "[GCJ 2019, Round 2 - New Elements: Part 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
+???+ example "[GCJ 2019, Round 2 - Phần tử mới: Phần 2](https://github.com/google/coding-competitions-archive/blob/main/codejam/2019/round_2/new_elements_part_2/statement.pdf)"
     Cho $N$ cặp số nguyên dương $(C_i,J_i)$, tìm cặp số nguyên dương $(x,y)$ sao cho $\{C_ix+J_iy\}$ tăng nghiêm ngặt. Trong tất cả các cặp thỏa mãn, xuất cặp nhỏ nhất theo thứ tự từ điển.
 
 ??? note "Lời giải"
@@ -1651,7 +1651,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/hull-under-line.py:core"
         ```
 
-???+ example "[Timus - Crime and Punishment](https://timus.online/problem.aspx?space=1&num=1430)"
+???+ example "[Timus - Tội ác và hình phạt](https://timus.online/problem.aspx?space=1&num=1430)"
     Cho các số nguyên dương $A,B,N \le 2\times 10^9$, tìm $x,y\ge 0$ sao cho $Ax+By\le N$ và $Ax+By$ lớn nhất có thể.
 
 ??? note "Lời giải"
@@ -1687,7 +1687,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/closest-dio.py:core"
         ```
 
-???+ example "[June Challenge 2017 - Euler Sum](https://www.codechef.com/problems/ES)"
+???+ example "[June Challenge 2017 - Tổng Euler](https://www.codechef.com/problems/ES)"
     Tính giá trị $\sum\limits_{x=1}^N \lfloor \mathrm{e}x \rfloor$, trong đó $\mathrm{e}$ là cơ số của logarit tự nhiên.
     
     Gợi ý: $e = [2,1,2,1,1,4,1,1,6,1,\cdots,1,2n,1, \cdots]$.[^continued-fraction-of-e]
@@ -1707,7 +1707,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/sum-floor.py:core"
         ```
 
-???+ example "[NAIPC 2019 - It's a Mod, Mod, Mod, Mod World](https://open.kattis.com/problems/itsamodmodmodmodworld)"
+???+ example "[NAIPC 2019 - Thế giới modulo, modulo, modulo, modulo](https://open.kattis.com/problems/itsamodmodmodmodworld)"
     Cho các số nguyên dương $p,q,n$, cần tính giá trị $\sum\limits_{i=1}^n [pi \bmod q]$.
 
 ??? note "Lời giải"
@@ -1730,7 +1730,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/mod-mod-mod.py:core"
         ```
 
-???+ example "[Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
+???+ example "[Library Checker - Tổng phần sàn của hàm tuyến tính](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)"
     Cho các số nguyên dương $N,M,A,B$, cần tính giá trị $\displaystyle\sum_{i=0}^{N-1} \left\lfloor \frac{A \cdot i + B}{M} \right\rfloor$.
 
 ??? note "Lời giải"
@@ -1748,7 +1748,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
         --8<-- "docs/math/code/continued-fraction/sum-floor-axbc.py:core"
         ```
 
-???+ example "[OKC 2 - From Modular to Rational](https://codeforces.com/gym/102354/problem/I)"
+???+ example "[OKC 2 - Từ modulo đến hữu tỉ](https://codeforces.com/gym/102354/problem/I)"
     Có một số hữu tỉ chưa biết $\dfrac{p}{q}$ với $1\le p, q\le 10^9$. Được phép hỏi giá trị của $pq^{-1}$ theo môđun một số nguyên tố $m\in[10^9,10^{12}]$. Cần xác định $p$ và $q$ trong không quá mười lần hỏi.
     
     Bài toán này tương đương với việc tìm $x$ trong $[1,N]$ sao cho $Ax\bmod M$ nhỏ nhất.
@@ -1780,7 +1780,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 -   [ProjectEuler+ #64: Căn bậc hai có chu kỳ lẻ](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
 -   [LibreOJ NOI Round #2 - Một mình một ngựa](https://loj.ac/p/573)
 -   [Codeforces Round #184 (Div. 2) - Liên phân số](https://codeforces.com/contest/305/problem/B)
--   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
+-   [Codeforces Round #201 (Div. 1) - Nhảy Doodle](https://codeforces.com/contest/346/problem/E)
 -   [Codeforces Round #325 (Div. 1) - Alice, Bob, cam và táo](https://codeforces.com/contest/585/problem/C)
 -   [POJ Founder Monthly Contest 2008.03.16 - Một thử thách số học modulo](http://poj.org/problem?id=3530)
 -   [2019 Multi-University Training Contest 5 - phân số](http://acm.hdu.edu.cn/showproblem.php?pid=6624)

@@ -710,8 +710,8 @@ Bài mẫu:
 
 -   [Library Checker - Tổng phần sàn của hàm tuyến tính](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
 -   [Luogu P5170 - Bài mẫu: Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)
--   [Luogu P5171 Earthquake](https://www.luogu.com.cn/problem/P5171)
--   [Luogu P5172 - Tsinghua Training 2014: Sum](https://www.luogu.com.cn/problem/P5172)
+-   [Luogu P5171 Động đất](https://www.luogu.com.cn/problem/P5171)
+-   [Luogu P5172 - Tsinghua Training 2014: Tổng](https://www.luogu.com.cn/problem/P5172)
 -   [Luogu P4132 - BJOI2012: Phương trình không tính ra được](https://www.luogu.com.cn/problem/P4132)
 -   [LOJ 138. Thuật toán Euclid tương tự](https://loj.ac/p/138)
 -   [LOJ 6440. Euclid vạn năng](https://loj.ac/p/6440)
@@ -722,10 +722,10 @@ Bài ứng dụng:
 
 -   [Luogu P4433 - COCI 2009/2010 #1: ALADIN](https://www.luogu.com.cn/problem/P4433)
 -   [AtCoder Beginner Contest 372 G - Ax + By < C](https://atcoder.jp/contests/abc372/tasks/abc372_g)
--   [AtCoder Beginner Contest 313 G - Redistribution of Piles](https://atcoder.jp/contests/abc313/tasks/abc313_g)
--   [AtCoder Beginner Contest 283 Ex - Popcount Sum](https://atcoder.jp/contests/abc283/tasks/abc283_h)
--   [Codeforces 1098 E. Fedya the Potter](https://codeforces.com/problemset/problem/1098/E)
--   [Codeforces 868 G. El Toll Caves](https://codeforces.com/problemset/problem/868/G)
+-   [AtCoder Beginner Contest 313 G - Phân phối lại các đống](https://atcoder.jp/contests/abc313/tasks/abc313_g)
+-   [AtCoder Beginner Contest 283 Ex - Tổng popcount](https://atcoder.jp/contests/abc283/tasks/abc283_h)
+-   [Codeforces 1098 E. Fedya thợ gốm](https://codeforces.com/problemset/problem/1098/E)
+-   [Codeforces 868 G. Hang El Toll](https://codeforces.com/problemset/problem/868/G)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
