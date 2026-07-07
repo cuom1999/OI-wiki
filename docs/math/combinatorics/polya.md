@@ -509,8 +509,8 @@ Các bài này chỉ cần phân tích cấu trúc của nhóm hoán vị và á
 
 -   [Luogu P4980 Mẫu: Định lý Polya](https://www.luogu.com.cn/problem/P4980)
 -   [Luogu P2561 [AHOI2002] Gạch trắng đen](https://www.luogu.com.cn/problem/P2561)
--   [TRANSP - Transposing is Fun](https://www.spoj.com/problems/TRANSP/)
--   [TRANSP2 - Transposing is Even More Fun](https://www.spoj.com/problems/TRANSP2/)
+-   [TRANSP - Chuyển vị thật vui](https://www.spoj.com/problems/TRANSP/)
+-   [TRANSP2 - Chuyển vị còn vui hơn](https://www.spoj.com/problems/TRANSP2/)
 -   [Luogu P3307 [SDOI2013] Vòng cổ](https://www.luogu.com.cn/problem/P3307)
 
 Khi tổ hợp màu được phép dùng bị ràng buộc, cần dùng DP ba lô hoặc phương pháp tổ hợp để tính số cách tô các chu trình.

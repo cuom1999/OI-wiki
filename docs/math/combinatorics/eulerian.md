@@ -92,7 +92,7 @@ $$
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [CF1349F1 Slime and Sequences (Easy Version)](https://codeforces.com/problemset/problem/1349/F1)
--   [CF1349F2 Slime and Sequences (Hard Version)](https://codeforces.com/problemset/problem/1349/F2)
--   [UOJ 593. New Year's Army](https://uoj.ac/problem/593)
--   [P7511 Three to Six](https://www.luogu.com.cn/problem/P7511)
+-   [CF1349F1 Slime và dãy số (bản dễ)](https://codeforces.com/problemset/problem/1349/F1)
+-   [CF1349F2 Slime và dãy số (bản khó)](https://codeforces.com/problemset/problem/1349/F2)
+-   [UOJ 593. Đội quân năm mới](https://uoj.ac/problem/593)
+-   [P7511 Từ ba đến sáu](https://www.luogu.com.cn/problem/P7511)

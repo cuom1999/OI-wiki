@@ -150,7 +150,7 @@ Vì vậy, độ dài dãy con $k-LIS$ dài nhất có thể biểu diễn là $
 ???+ note "[BJWC2018 Dãy con tăng dài nhất](https://www.luogu.com.cn/problem/P4484)"
     Cho một hoán vị ngẫu nhiên độ dài $n$, tính kỳ vọng độ dài dãy con tăng dài nhất của nó.
 
-???+ note "[CF1268B Domino Young](https://codeforces.com/problemset/problem/1268/B)"
+???+ note "[CF1268B Domino trên biểu đồ Young](https://codeforces.com/problemset/problem/1268/B)"
     Cho một histogram gồm $n$ cột có độ dài $a_{1} ,a_{2},\ldots,a_{n}\,(a_{1} \geq a_{2} \geq \ldots \geq a_{n} \geq 1)$. Đây là biểu đồ Young của $a=[3,2,2,2,1]$. Tìm số lượng domino không giao nhau lớn nhất có thể vẽ trong histogram này, trong đó mỗi domino là một hình chữ nhật $1 \times 2$ hoặc $2 \times 1$.
 
 <span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>

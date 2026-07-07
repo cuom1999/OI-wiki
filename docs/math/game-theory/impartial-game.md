@@ -688,15 +688,15 @@ Sau đó là một số bài đòi hỏi tư duy hơn hoặc tổng hợp hơn:
 -   [Luogu P6791 \[SNOI2020\] Lấy đá](https://www.luogu.com.cn/problem/P6791)
 -   [Luogu P7864 "EVOI-RD1" Hái lá](https://www.luogu.com.cn/problem/P7864)
 -   [Luogu P8347 "Wdoi-6" Mặt trăng phía bên kia](https://www.luogu.com.cn/problem/P8347)
--   [AtCoder Grand Contest 002 E - Candy Piles](https://atcoder.jp/contests/agc002/tasks/agc002_e)
--   [AtCoder Grand Contest 010 F - Tree Game](https://atcoder.jp/contests/agc010/tasks/agc010_f)
--   [AtCoder Grand Contest 017 D - Game on Tree](https://atcoder.jp/contests/agc017/tasks/agc017_d)
--   [AtCoder Beginner Contest 278 G - Generalized Subtraction Game](https://atcoder.jp/contests/abc278/tasks/abc278_g)
--   [SPOJ COT3 - Combat on a tree](https://www.spoj.com/problems/COT3/)
+-   [AtCoder Grand Contest 002 E - Các đống kẹo](https://atcoder.jp/contests/agc002/tasks/agc002_e)
+-   [AtCoder Grand Contest 010 F - Trò chơi trên cây](https://atcoder.jp/contests/agc010/tasks/agc010_f)
+-   [AtCoder Grand Contest 017 D - Trò chơi trên cây](https://atcoder.jp/contests/agc017/tasks/agc017_d)
+-   [AtCoder Beginner Contest 278 G - Trò chơi trừ tổng quát](https://atcoder.jp/contests/abc278/tasks/abc278_g)
+-   [SPOJ COT3 - Chiến đấu trên cây](https://www.spoj.com/problems/COT3/)
 -   [Codeforces 494 E. Sharti](https://codeforces.com/problemset/problem/494/E)
--   [Codeforces 1149 E. Election Promises](https://www.luogu.com.cn/problem/CF1149E)
--   [Codeforces 1451 F. Nullify The Matrix](https://codeforces.com/problemset/problem/1451/F)
--   [Codeforces 1704 F. Colouring Game](https://codeforces.com/problemset/problem/1704/F)
+-   [Codeforces 1149 E. Lời hứa tranh cử](https://www.luogu.com.cn/problem/CF1149E)
+-   [Codeforces 1451 F. Triệt tiêu ma trận](https://codeforces.com/problemset/problem/1451/F)
+-   [Codeforces 1704 F. Trò chơi tô màu](https://codeforces.com/problemset/problem/1704/F)
 
 Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. Vì cần dùng một số thuật toán ghép trên đồ thị hai phía, nên chúng được liệt kê riêng:
 
@@ -704,7 +704,7 @@ Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. V�
 -   [Luogu P4617 \[COCI 2017/2018 #5\] Planinarenje](https://www.luogu.com.cn/problem/P4617)
 -   [Luogu P4055 \[JSOI2009\] Trò chơi](https://www.luogu.com.cn/problem/P4055)
 -   [Luogu P1971 \[NOI2011\] Trò chơi của Thỏ Thỏ và Đản Đản](https://www.luogu.com.cn/problem/P1971)
--   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
+-   [Codeforces 1147 F. Trò chơi zích zắc](https://codeforces.com/problemset/problem/1147/F)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

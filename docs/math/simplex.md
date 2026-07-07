@@ -683,8 +683,8 @@ Phần này cung cấp một cài đặt tham khảo của phương pháp đơn 
 -   [Luogu P13337: Mẫu quy hoạch tuyến tính](https://www.luogu.com.cn/problem/P13337)
 -   [UOJ#179. Quy hoạch tuyến tính](https://uoj.ac/problem/179)
 -   [Luogu P4232: Trốn tìm bên ngoài vô thức](https://www.luogu.com.cn/problem/P4232)
--   [Codeforces 1430 G. Yet Another DAG Problem](https://codeforces.com/problemset/problem/1430/G)
--   [AtCoder Beginner Contest 231 H - Minimum Coloring](https://atcoder.jp/contests/abc231/tasks/abc231_h)
+-   [Codeforces 1430 G. Lại là một bài toán DAG nữa](https://codeforces.com/problemset/problem/1430/G)
+-   [AtCoder Beginner Contest 231 H - Tô màu nhỏ nhất](https://atcoder.jp/contests/abc231/tasks/abc231_h)
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
