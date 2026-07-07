@@ -902,17 +902,17 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
     -   Véc-tơ chỉ phương của đường thẳng $y=\xi x$ là $\vec\xi=(1,\xi)$. Dùng khái niệm [tích có hướng](../linear-algebra/product.md#trường-hợp-vectơ-hai-chiều) $(x_1,y_1)\times(x_2,y_2)=x_1y_2-x_2y_1$, có thể xét dấu của $\vec\xi\times\vec\nu=p-q\xi$ để xác định điểm nằm phía trên hay phía dưới đường thẳng. Vì vậy, điểm phía trên đường thẳng tương ứng với phân số lớn hơn hoặc bằng $\xi$, còn điểm phía dưới đường thẳng tương ứng với phân số nhỏ hơn hoặc bằng $\xi$. Giá trị tuyệt đối của tích có hướng $|\vec\xi\times\vec\nu|$ tỉ lệ với khoảng cách từ điểm $\vec\nu$ tới đường thẳng $y=\xi x$:
     
         $$
-        \dfrac{|p-qx|}{\sqrt{1+\xi^2}},
+        \dfrac{|p-q\xi|}{\sqrt{1+\xi^2}},
         $$
     
         và tương ứng với mức độ xấp xỉ số thực $\xi$ của phân số $\nu$.
-    -   Gọi điểm tương ứng với phân số tiệm cận $\xi_k=\dfrac{p_k}{q_k}$ là $\vec\xi_k=(p_k,q_k)$, khi đó công thức truy hồi có thể viết thành
+    -   Gọi điểm tương ứng với phân số tiệm cận $\xi_k=\dfrac{p_k}{q_k}$ là $\vec\xi_k=(q_k,p_k)$, khi đó công thức truy hồi có thể viết thành
     
         $$
         \vec\xi_k = a_k\vec\xi_{k-1} + \vec\xi_{k-2}.
         $$
     
-        Điểm bắt đầu của đệ quy là $\xi_{-2} = (1,0)$ và $\xi_{-1} = (0,1)$.
+        Điểm bắt đầu của đệ quy là $\vec\xi_{-2} = (1,0)$ và $\vec\xi_{-1} = (0,1)$.
     -   Với số nguyên $t$, nếu $0\le t\le a_k$, thì điểm
     
         $$
@@ -920,7 +920,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
         $$
     
         nằm trên đoạn nối điểm $\vec\xi_{k-2}$ và điểm $\vec\xi_k$. Chúng tương ứng với các phân số trung gian $\xi_{k-1,t}$.
-    -   Có thể dùng phương pháp hình học để dựng tất cả phân số tiệm cận và phân số trung gian. Bắt đầu từ điểm $\vec\xi_{-2}=(1,0)$ và điểm $\vec\xi_{-1}=(0,1)$; hai điểm này nằm ở hai phía của đường thẳng $y=\xi x$, nghĩa là $\vec\xi\times\vec\xi_{-2}$ và $\vec\xi\times\vec\xi_{-1}$ trái dấu. Cộng $\vec\xi_{-1}$ vào $\vec\xi_{-2}$ theo phép cộng véc-tơ cho đến khi không thể cộng tiếp mà không vượt qua đường thẳng $y=\xi x$; ký hiệu kết quả là $\vec\xi_0$, lúc này nó vẫn khác phía với $\vec\xi_{-1}$. Sau đó cộng $\vec\xi_0$ vào $\vec\xi_{-1}$ cho đến khi không thể cộng tiếp mà không vượt qua đường thẳng $y=\xi x$; ký hiệu kết quả là $\vec\xi_1$, lúc này nó vẫn khác phía với $\vec\xi_0$. Quá trình này có thể tiếp tục vô hạn, trừ khi sau hữu hạn bước có một $\vec\xi_n$ nằm đúng trên đường thẳng $y=\xi x$. Trường hợp sau nghĩa là véc-tơ $\vec\xi$ cùng phương với $\vec\xi_n$, tức $\xi=\dfrac{p_n}{q_n}$ là điểm hữu tỉ. Quá trình này tạo ra hình minh họa ở trên. Boris Delaunay gọi một cách hình tượng quá trình này là thuật toán kéo dài mũi (nose-streching algorithm)[^nose-streching].
+    -   Có thể dùng phương pháp hình học để dựng tất cả phân số tiệm cận và phân số trung gian. Bắt đầu từ điểm $\vec\xi_{-2}=(1,0)$ và điểm $\vec\xi_{-1}=(0,1)$; hai điểm này nằm ở hai phía của đường thẳng $y=\xi x$, nghĩa là $\vec\xi\times\vec\xi_{-2}$ và $\vec\xi\times\vec\xi_{-1}$ trái dấu. Cộng $\vec\xi_{-1}$ vào $\vec\xi_{-2}$ theo phép cộng véc-tơ cho đến khi nếu cộng tiếp thì sẽ vượt qua đường thẳng $y=\xi x$; ký hiệu kết quả là $\vec\xi_0$, lúc này nó vẫn khác phía với $\vec\xi_{-1}$. Sau đó cộng $\vec\xi_0$ vào $\vec\xi_{-1}$ theo cách tương tự; ký hiệu kết quả là $\vec\xi_1$, lúc này nó vẫn khác phía với $\vec\xi_0$. Quá trình này có thể tiếp tục vô hạn, trừ khi sau hữu hạn bước có một $\vec\xi_n$ nằm đúng trên đường thẳng $y=\xi x$. Trường hợp sau nghĩa là véc-tơ $\vec\xi$ cùng phương với $\vec\xi_n$, tức $\xi=\dfrac{p_n}{q_n}$ là số hữu tỉ. Quá trình này tạo ra hình minh họa ở trên. Boris Delaunay gọi một cách hình tượng quá trình này là thuật toán kéo dài mũi (nose-stretching algorithm)[^nose-stretching].
     -   Nếu cần tính nhanh số lần phải cộng $\vec\xi_{k-1}$ vào $\vec\xi_{k-2}$ ở mỗi bước, có thể dùng tích có hướng. Vì $\vec\xi\times\vec\xi_{k-1}$ và $\vec\xi\times\vec\xi_{k-2}$ trái dấu, nếu ký hiệu $\vec\xi_{k-1,t}=t\vec\xi_{k-1}+\vec\xi_{k-2}$ là kết quả sau khi cộng $\vec\xi_{k-1}$ vào $\vec\xi_{k-2}$ đúng $t$ lần, thì việc $\vec\xi\times\vec\xi_{k-1,t}=t(\vec\xi\times\vec\xi_{k-1})+(\vec\xi\times\vec\xi_{k-2})$ không đổi dấu nghĩa là chưa vượt qua đường thẳng. Trước khi đổi dấu, giá trị tuyệt đối của $\vec\xi\times\vec\xi_{k-1,t}$ giảm dần. Ký hiệu
     
         $$
@@ -940,7 +940,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
         $$
     
         Đây chính là hệ thức liên phân số $\xi = [a_0,a_1,\cdots,a_{k-1},r_k]$.
-    -   Vì mỗi lần cộng véc-tơ làm $\vec\xi\times\vec\xi_{k-1,t}$ thay đổi với bước đúng bằng $|\vec\xi\times\vec\xi_{k-1}|$, khoảng cách còn lại cuối cùng $|\vec\xi\times\vec\xi_k|$ nhất định nhỏ hơn nghiêm ngặt $|\vec\xi\times\vec\xi_{k-1}|$. Điều này cho thấy mức độ xấp xỉ của phân số tiệm cận (đo bằng $|qx-p|$) tốt lên nghiêm ngặt khi $k$ tăng.
+    -   Vì mỗi lần cộng véc-tơ làm $\vec\xi\times\vec\xi_{k-1,t}$ thay đổi với bước đúng bằng $|\vec\xi\times\vec\xi_{k-1}|$, khoảng cách còn lại cuối cùng $|\vec\xi\times\vec\xi_k|$ nhỏ hơn nghiêm ngặt $|\vec\xi\times\vec\xi_{k-1}|$. Điều này cho thấy mức độ xấp xỉ của phân số tiệm cận (đo bằng $|qx-p|$) tốt lên nghiêm ngặt khi $k$ tăng.
     -   Dùng quy tắc tính của tích có hướng, có
     
         $$
@@ -966,7 +966,7 @@ Phần lớn các kết luận ở trên về liên phân số đều có diễn
         I + \dfrac{B}{2} - 1 = \dfrac{a_k}{2}.
         $$
     
-        Mặt khác, trên biên tam giác đã có tổng cộng $a_k+2$ điểm nguyên là $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$. Điều này cho thấy nhất định $I=0$ và $B=a_k+2$. Vì vậy, trên các cạnh của tam giác không còn điểm nguyên nào khác, và bên trong tam giác cũng không có điểm nguyên. Nói cách khác, $q_k$ và $p_k$ nguyên tố cùng nhau, các phân số trung gian là toàn bộ điểm nguyên trên cạnh nối $\vec\xi_{k-2}$ và $\vec\xi_k$, và tất cả điểm nguyên trong góc phần tư thứ nhất đều nằm trong hai bao lồi trên và dưới.
+        Mặt khác, trên biên tam giác đã có tổng cộng $a_k+2$ điểm nguyên là $\{\vec 0\}\cup\{\vec\xi_{k-1,t}:0\le t\le a_k\}$. Điều này buộc $I=0$ và $B=a_k+2$. Vì vậy, trên các cạnh của tam giác không còn điểm nguyên nào khác, và bên trong tam giác cũng không có điểm nguyên. Nói cách khác, $q_k$ và $p_k$ nguyên tố cùng nhau, các phân số trung gian là toàn bộ điểm nguyên trên cạnh nối $\vec\xi_{k-2}$ và $\vec\xi_k$, và tất cả điểm nguyên trong góc phần tư thứ nhất đều nằm trong hai bao lồi trên và dưới.
 
 Hai bao lồi trên và dưới thu được như vậy được gọi là đa giác Klein. Trong không gian chiều cao hơn cũng có thể định nghĩa tương tự để thu được [đa diện Klein](https://en.wikipedia.org/wiki/Klein_polyhedron) (Klein polyhedron), qua đó mở rộng khái niệm liên phân số lên không gian nhiều chiều.
 
@@ -1008,7 +1008,7 @@ Hiểu biểu diễn liên phân số như đường đi trên cây Stern-Brocot
 ??? note "Lời giải"
     Vì cây Stern-Brocot vừa là cây tìm kiếm nhị phân của các phân số trong $[0,\infty]$, vừa là [cây Descartes](../../ds/cartesian-tree.md) của cặp $(q,p)$, nên ý bài gần như chuyển thành tìm LCA (tổ tiên chung gần nhất) của hai điểm trên cây Stern-Brocot. Tuy nhiên, LCA chỉ xử lý được trường hợp khoảng đóng, và LCA có thể chính là một đầu mút. Để tránh thảo luận phụ, trước hết có thể dựng $\dfrac{p_0}{q_0}+\varepsilon$ và $\dfrac{p_1}{q_1}-\varepsilon$, rồi tính LCA. Khi đã dùng liên phân số để tính đường đi từ gốc tới nút, LCA chỉ cần lấy đường đi chung dài nhất.
     
-    Để dựng $x\pm\varepsilon$, tại nút $x$ chỉ cần trước hết đi sang phải (trái) một lần, rồi đi sang trái (phải) $\infty$ lần. Chuyển sang ngôn ngữ liên phân số, với phân số $x=[a_0,a_1,\cdots,a_{n-1},1]$, hai giá trị $x\pm\varepsilon$ nhất định là $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ và $[a_0,a_1,\cdots,a_{n-1},1,\infty]$; vì vậy chỉ cần so sánh hai liên phân số này, rồi định nghĩa liên phân số lớn hơn (nhỏ hơn) là $x\pm\varepsilon$.
+    Để dựng $x\pm\varepsilon$, tại nút $x$ chỉ cần trước hết đi sang phải (trái) một lần, rồi đi sang trái (phải) $\infty$ lần. Chuyển sang ngôn ngữ liên phân số, với phân số $x=[a_0,a_1,\cdots,a_{n-1},1]$, hai giá trị $x\pm\varepsilon$ là $[a_0,a_1,\cdots,a_{n-1}+1,\infty]$ và $[a_0,a_1,\cdots,a_{n-1},1,\infty]$; vì vậy chỉ cần so sánh hai liên phân số này, rồi định nghĩa liên phân số lớn hơn (nhỏ hơn) là $x+\varepsilon$ ($x-\varepsilon$).
     
     === "C++"
         ```cpp
@@ -1812,7 +1812,7 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 
 [^semiconvergent]: Khi $t=0$, nên hiểu đây là liên phân số hình thức, tương đương với việc cắt liên phân số ở hạng áp chót.
 
-[^nose-streching]: Cách gọi này không phải thuật ngữ chuyên môn. Có thể nó được dịch gián tiếp từ tài liệu tiếng Nga [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf), phần Алгоритм «вытягивания носов».
+[^nose-stretching]: Cách gọi này không phải thuật ngữ chuyên môn. Có thể nó được dịch gián tiếp từ tài liệu tiếng Nga [ЦЕПНЫЕ ДРОБИ](https://old.mccme.ru/free-books/mmmf-lectures/book.14-full.pdf), phần Алгоритм «вытягивания носов».
 
 [^pgl2]: Các tính chất này cho thấy nhóm gồm toàn bộ các biến đổi tuyến tính phân thức đẳng cấu với [nhóm tuyến tính xạ ảnh](https://en.wikipedia.org/wiki/Projective_linear_group) $PGL_2(\mathbf R)$.
 
