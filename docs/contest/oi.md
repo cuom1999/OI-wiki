@@ -130,13 +130,13 @@ CTS năm 2020 bị dừng vì dịch bệnh; đội tuyển tập huấn quốc 
 
 ### Trại học thuật
 
-#### Peking University (PKU)
+#### Đại học Bắc Kinh (PKU)
 
--   Peking University Informatics Winter Camp (PKUWC): tổ chức vào khoảng thời gian trước hoặc sau Winter Camp.
--   Peking University Informatics Experience Camp (PKUSC): thường tổ chức trong khuôn viên trường vào tháng 6. Do thi trong phòng máy của trường, môi trường phòng máy là Windows, hệ thống thi là OpenJudge.
--   Peking University Summer School for High School Students (Informatics): tổ chức trong kỳ nghỉ hè, dành cho học sinh khối 11 ban khoa học tự nhiên.
+-   Trại mùa đông Tin học Đại học Bắc Kinh (Peking University Informatics Winter Camp, PKUWC): tổ chức vào khoảng thời gian trước hoặc sau Winter Camp.
+-   Trại trải nghiệm Tin học Đại học Bắc Kinh (Peking University Informatics Experience Camp, PKUSC): thường tổ chức trong khuôn viên trường vào tháng 6. Do thi trong phòng máy của trường, môi trường phòng máy là Windows, hệ thống thi là OpenJudge.
+-   Trường hè Đại học Bắc Kinh cho học sinh trung học (Tin học) (Peking University Summer School for High School Students (Informatics)): tổ chức trong kỳ nghỉ hè, dành cho học sinh khối 11 ban khoa học tự nhiên.
 
-#### Tsinghua University (THU)
+#### Đại học Thanh Hoa (THU)
 
 -   Hoạt động hội thảo và giảng dạy mùa đông "chuyển tiếp trung học - đại học" của Khoa Khoa học Máy tính: tương đương Winter Camp tin học, đôi khi cũng dùng viết tắt tiếng Anh là THUWC. Thường kéo dài tổng cộng hai ngày; buổi sáng là thi đấu (ngày đầu là cuộc thi OI chuẩn, ngày thứ hai là cuộc thi "bài kỹ thuật" do Tsinghua tự sáng tạo), buổi chiều là đào tạo theo khóa học.
 
