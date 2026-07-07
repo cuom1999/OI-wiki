@@ -1,21 +1,21 @@
 author: 383494, buuzzing, c-forrest, cr4c1an, Emp7iness, Enter-tainer, Great-designer, HeRaNO, jifbt, Kaiser-Yang, Koishilll, ksyx, Marcythm, Qiu-Quanzhi, Saisyc, sshwy, StarryReverie, StudyingFather, Tiphereth-A, Xeonacid, xyf007
 
-Trong lập trình thi đấu, một phần quan trọng của số học là **số học modulo**
-(modular arithmetic), tức là thực hiện các phép toán trên số nguyên dưới một
-modulo nào đó. Ngoài bốn phép toán cơ bản và phép lũy thừa, số học modulo còn
+Trong lập trình thi đấu, một phần quan trọng của số học là **số học môđun**
+(modular arithmetic), tức là thực hiện các phép toán trên số nguyên theo một
+môđun nào đó. Ngoài bốn phép toán cơ bản và phép lũy thừa, số học môđun còn
 cho phép tính thuận tiện logarit rời rạc, khai căn bậc bất kỳ, tính giai thừa,
 tổ hợp và nhiều phép toán khác.
 
-Số học modulo xuất hiện trong nhiều loại bài toán, không chỉ trong phần số học.
+Số học môđun xuất hiện trong nhiều loại bài toán, không chỉ trong phần số học.
 Đáp án thật sự của nhiều bài toán có thể rất lớn, vượt quá miền lưu trữ của các
 kiểu số nguyên thông dụng. Khi đó, để tránh dùng số nguyên lớn và in ra chuỗi
-chữ số dài, đề bài thường yêu cầu in đáp án sau khi lấy modulo. Vì vậy cần nắm
-vững các kỹ thuật số học modulo.
+chữ số dài, đề bài thường yêu cầu in đáp án sau khi lấy dư theo môđun. Vì vậy
+cần nắm vững các kỹ thuật số học môđun.
 
 <span id="phép-chia-nguyên-và-phép-modulo-trong-c-cpp"></span>
-## Phép chia nguyên và phép modulo trong C/C++
+## Phép chia nguyên và phép lấy dư trong C/C++
 
-Trong C/C++, phép chia nguyên và phép modulo không trùng với phép modulo và
+Trong C/C++, phép chia nguyên và phép lấy dư không trùng với phép lấy dư và
 phép chia quen dùng trong toán học.
 
 Trong mọi phiên bản tiêu chuẩn C/C++, phép chia nguyên được quy định như sau:
@@ -23,14 +23,14 @@ Trong mọi phiên bản tiêu chuẩn C/C++, phép chia nguyên được quy đ
 1.  Nếu số chia bằng 0, hành vi là không xác định;
 2.  Nếu không, kết quả của `(a / b) * b + a % b` bằng `a`.
 
-Nói cách khác, dấu của kết quả modulo phụ thuộc vào cách làm tròn thương; còn
+Nói cách khác, dấu của kết quả lấy dư phụ thuộc vào cách làm tròn thương; còn
 cách làm tròn thương từng là hành vi do cài đặt quyết định (do trình biên dịch
 quyết định).
 
 Từ tiêu chuẩn [C99](https://en.cppreference.com/w/c/language/operator_arithmetic)
 và [C++11](https://en.cppreference.com/w/cpp/language/operator_arithmetic) trở
-đi, **thương được làm tròn về 0** (bỏ phần thập phân); vì vậy dấu của phép
-modulo trùng với dấu của số bị chia. Từ đó, các khẳng định sau luôn đúng:
+đi, **thương được làm tròn về 0** (bỏ phần thập phân); vì vậy dấu của phép lấy
+dư trùng với dấu của số bị chia. Từ đó, các khẳng định sau luôn đúng:
 
 ```c
 assert(5 % 3 == 2);
@@ -40,31 +40,31 @@ assert(-5 % -3 == -2);
 ```
 
 <span id="lớp-số-nguyên-modulo"></span>
-## Lớp số nguyên modulo
+## Lớp số nguyên môđun
 
-Số học modulo có thể xem là việc thực hiện các phép toán trên [lớp đồng
+Số học môđun có thể xem là việc thực hiện các phép toán trên [lớp đồng
 dư](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
-theo một modulo. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
+theo một môđun. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
 gói phép cộng, trừ, nhân giữa các lớp đồng dư thành phương thức của struct hoặc
-toán tử nạp chồng, số học modulo có thể được cài đặt tự nhiên thành một lớp số
-nguyên modulo. Ví dụ đơn giản sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên
-số nguyên có dấu $32$ bit với modulo $M < 2^{30}$:
+toán tử nạp chồng, số học môđun có thể được cài đặt tự nhiên thành một lớp số
+nguyên môđun. Ví dụ sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên số nguyên
+có dấu $32$ bit với môđun $M < 2^{30}$:
 
-???+ example "Một lớp số nguyên modulo đơn giản"
+???+ example "Một lớp số nguyên môđun cơ bản"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-arithmetic.cpp:core"
     ```
 
-Cách cài đặt này cố ý giảm số lần thực hiện modulo, vì phép modulo thường tốn
+Cách cài đặt này cố ý giảm số lần lấy dư, vì phép lấy dư thường tốn
 thời gian hơn phép cộng, trừ, nhân hoặc so sánh thông thường. Trong chú thích
 mã nguồn có đưa ra cách cài đặt tương đương và trực tiếp hơn. Ý tưởng chính của
-các tối ưu đơn giản này là: khi cộng trừ hai số nguyên trong $[0,M)$, kết quả
+các tối ưu này là: khi cộng trừ hai số nguyên trong $[0,M)$, kết quả
 luôn nằm trong khoảng $(-M,2M)$, nên có thể đưa về lại $[0,M)$ bằng một
 lần cộng hoặc trừ. Phép lũy thừa trong cài đặt này dùng kỹ thuật [lũy thừa
 nhanh](../binary-exponentiation.md#lũy-thừa-theo-mô-đun).
 
-Ngoài các phép toán cơ bản này, còn có thể thực hiện các phép sau dưới nhiều
-modulo:
+Ngoài các phép toán cơ bản này, còn có thể thực hiện các phép sau theo nhiều
+môđun:
 
 -   [Nghịch đảo](./inverse.md)
 -   [Phép chia](./linear-equation.md)
@@ -74,28 +74,28 @@ modulo:
 -   [Logarit rời rạc](./discrete-logarithm.md)
 -   [Khai căn](./residue.md#khai-căn-theo-modulo)
 
-Các phép toán này thường dễ hơn khi modulo là số nguyên tố. Với modulo hợp số,
-thường cần dùng các phiên bản mở rộng của thuật toán tương ứng và [định lý phần
-dư Trung Hoa](./crt.md). Phần lớn các phép toán dưới modulo có thể xem là bài
+Các phép toán này thường dễ hơn khi môđun là số nguyên tố. Với môđun hợp số,
+thường cần dùng các phiên bản mở rộng của thuật toán tương ứng và [định lý số
+dư Trung Hoa](./crt.md). Phần lớn các phép toán theo môđun có thể xem là bài
 toán giải một loại phương trình đồng dư. Về phương pháp chung để giải phương
 trình đồng dư, có thể tham khảo trang [Phương trình đồng dư](./congruence-equation.md).
 
 <span id="thuật-toán-liên-quan"></span>
 ## Thuật toán liên quan
 
-Mục này giới thiệu một vài phương pháp tối ưu phép modulo, phép nhân và lũy
-thừa nhanh dưới modulo. Với đại đa số bài toán, cách cài đặt đơn giản ở trên
-đã đủ nhanh. Tuy nhiên, khi bài toán yêu cầu chặt về hằng số thời gian, các tối
-ưu này có thể phát huy tác dụng bằng cách giảm tính toán và thao tác modulo
-không cần thiết.
+Mục này giới thiệu một vài phương pháp tối ưu phép lấy dư, phép nhân và lũy
+thừa nhanh theo môđun. Với đại đa số bài toán, cách cài đặt trực tiếp ở trên đã
+đủ nhanh. Tuy nhiên, khi bài toán yêu cầu chặt về hằng số thời gian, các tối ưu
+này có thể phát huy tác dụng bằng cách giảm tính toán và thao tác lấy dư không
+cần thiết.
 
 <span id="nhân-nhanh"></span>
 ### Nhân nhanh
 
-Trong kiểm tra tính nguyên tố và phân tích thừa số, thường gặp phép nhân lấy
-modulo với modulo nằm trong phạm vi `long long`. Để tránh tràn số nguyên trong
-quá trình tính, mục này giới thiệu một cách "nhân nhanh" xử lý được modulo
-trong phạm vi `long long`, không cần dùng `__int128`, và có độ phức tạp
+Trong kiểm tra tính nguyên tố và phân tích thừa số, thường gặp phép nhân lấy dư
+với môđun nằm trong phạm vi `long long`. Để tránh tràn số nguyên trong quá
+trình tính, mục này giới thiệu một cách "nhân nhanh" xử lý được môđun trong
+phạm vi `long long`, không cần dùng `__int128`, và có độ phức tạp
 $O(1)$. Thuật toán yêu cầu trên hệ thống chấm, `long double` ít nhất phải được
 biểu diễn bằng số dấu phẩy động mở rộng $80$ bit[^long-double-80bit].
 
@@ -123,8 +123,8 @@ bit dấu, $15$ bit mũ và $64$ bit trị), thì số chữ số có nghĩa t�
 `long double` có thể biểu diễn chính xác là $64$[^floating-format]. Vì vậy
 $\dfrac am$ trong trường hợp xấu nhất bắt đầu sai từ bit thứ $65$, với miền sai
 số[^ld-mul-err] là $\left(-2^{-64},2^{-64}\right)$. Nhân với $b$, một số nguyên
-có dấu $64$ bit, miền sai số thành $(-0.5,0.5)$. Để đơn giản hóa phần thảo luận
-sau, cộng thêm $0.5$ rồi lấy phần nguyên; miền sai số cuối cùng là
+có dấu $64$ bit, miền sai số thành $(-0.5,0.5)$. Để phần thảo luận gọn hơn, cộng
+thêm $0.5$ rồi lấy phần nguyên; miền sai số cuối cùng là
 $\{0,1\}$.
 
 Cuối cùng, khi thay vào công thức trên cần nhân với $-m$, nên miền sai số cuối
@@ -140,25 +140,25 @@ Cài đặt như sau:
 
 Hiện nay, hầu hết trình biên dịch C/C++ trên các hệ thống chấm đều hỗ trợ kiểu
 `__int128`[^int128], vì vậy cũng có thể nâng kiểu của thừa số lên `__int128`
-rồi lấy modulo trực tiếp:
+rồi lấy dư trực tiếp:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i64-mul.cpp:i128-mul"
     ```
 
-Dù vậy, phép modulo trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
+Dù vậy, phép lấy dư trên `__int128` cũng không rẻ. Nếu cần tối ưu hằng số
 hơn nữa, có thể xét các phương pháp trong hai mục tiếp theo.
 
 <span id="rút-gọn-barrett"></span>
 ### Rút gọn Barrett
 
-Như đã nói ở trên, phép chia và modulo thường tốn thời gian hơn các phép toán số
-học khác. Để giảm chi phí modulo, có một số thuật toán cho kết quả tương tự mà
-không trực tiếp thực hiện modulo. Phép rút gọn Barrett
-là một trong số đó.
+Như đã nói ở trên, phép chia và phép lấy dư thường tốn thời gian hơn các phép
+toán số học khác. Để giảm chi phí lấy dư, có một số thuật toán cho kết quả tương
+tự mà không trực tiếp thực hiện phép lấy dư. Phép rút gọn Barrett là một trong
+số đó.
 
-Cho $m$ là modulo cố định, giả sử cần tính $a\bmod m$ nhiều lần với các giá trị
+Cho $m$ là môđun cố định, giả sử cần tính $a\bmod m$ nhiều lần với các giá trị
 $a > 0$ khác nhau. Theo phép chia có dư,
 
 $$
@@ -193,10 +193,10 @@ Chỉ cần $a \le R$, sai số $\Delta$ không vượt quá $m$. Do $z' \ge z$,
 ước lượng $z'$ chỉ có thể là $z$ hoặc $z + m$. Sau khi có ước lượng, nếu
 $z' \ge m$ thì trừ đi phần $m$ thừa là đủ để bảo đảm đáp án đúng.
 
-Trong quá trình tính phép rút gọn Barrett, chỉ cần hai phép nhân, một phép dịch bit
-và tối đa hai phép trừ để hoàn thành modulo số nguyên. Tuy nhiên, hiệu năng tăng
-không miễn phí: các biến trung gian trong phép rút gọn Barrett thường dài hơn biến
-đầu vào. Biến trung gian dài nhất trong phép rút gọn Barrett là
+Trong quá trình tính phép rút gọn Barrett, chỉ cần hai phép nhân, một phép dịch
+bit và tối đa hai phép trừ để hoàn thành phép lấy dư số nguyên. Tuy nhiên, hiệu
+năng tăng không miễn phí: các biến trung gian trong phép rút gọn Barrett thường
+dài hơn biến đầu vào. Biến trung gian dài nhất trong phép rút gọn Barrett là
 $a\left\lfloor\dfrac{R}{m}\right\rfloor$. Đặt $\ell(x)$ là độ dài biểu diễn nhị
 phân của số nguyên $x$. Khi đó
 
@@ -205,9 +205,9 @@ $$
 $$
 
 Vì cách chọn $R$ cần thỏa mãn $a < R$, độ dài này ít nhất là
-$2\ell(a) - \ell(m)$. Nhưng khi cần modulo, thường có $\ell(m)\le\ell(a)$, nên
+$2\ell(a) - \ell(m)$. Nhưng khi cần lấy dư, thường có $\ell(m)\le\ell(a)$, nên
 độ dài biến trung gian này có thể lớn hơn độ dài đầu vào $\ell(a)$. Ví dụ, nếu
-cần lấy modulo một số nguyên $64$ bit theo một số nguyên $32$ bit, thực tế cần
+cần lấy dư một số nguyên $64$ bit theo một số nguyên $32$ bit, thực tế cần
 biến trung gian $64 \times 2 - 32 = 96$ bit.
 
 Một ứng dụng của phép rút gọn Barrett là tính số dư của tích $ab\bmod m$. Nếu một
@@ -218,20 +218,20 @@ ab\bmod m = ab - \left\lfloor a\left\lfloor\dfrac{bR}{m}\right\rfloor/R\right\rf
 $$
 
 chỉ cần tiền xử lý giá trị $\left\lfloor\dfrac{bR}{m}\right\rfloor$. Trường hợp
-$b$ cố định này đôi khi được gọi là phép nhân modulo Shoup[^shoup].
+$b$ cố định này đôi khi được gọi là phép nhân môđun Shoup[^shoup].
 
 Trường hợp phổ biến hơn là cả $a,b$ đều không cố định. Khi đó cần tính giá trị
 $ab$ trước, rồi dùng phép rút gọn Barrett để thu được $ab\bmod m$. Ví dụ, khi cài
-đặt phép nhân modulo, cần tính $ab\bmod m$ với $0 \le a,b < m$. Lúc này $R$
+đặt phép nhân môđun, cần tính $ab\bmod m$ với $0 \le a,b < m$. Lúc này $R$
 được chọn cần thỏa mãn $ab < R$. Theo phân tích trên, biến trung gian dài nhất
 trong quá trình tính có độ dài $2\ell(ab)-\ell(m)$. Khi
 $\ell(a)\approx\ell(b)\approx\ell(m)$, độ dài này là $3\ell(m)$. Nói cách khác,
-nếu dùng phép rút gọn Barrett để cài đặt phép nhân modulo cho số nguyên $32$ bit,
+nếu dùng phép rút gọn Barrett để cài đặt phép nhân môđun cho số nguyên $32$ bit,
 biến trung gian cần số nguyên $96$ bit. Đây cũng là một hạn chế của phép rút gọn
 Barrett khi áp dụng trong lập trình thi đấu.
 
-Làm ví dụ, cài đặt tham khảo cho phép nhân modulo số nguyên có dấu $32$ bit bằng
-phép rút gọn Barrett như sau:
+Làm ví dụ, cài đặt tham khảo cho phép nhân môđun trên số nguyên có dấu $32$ bit
+bằng phép rút gọn Barrett như sau:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -241,15 +241,15 @@ phép rút gọn Barrett như sau:
 Cài đặt này cần dùng số nguyên $128$ bit[^int128].
 
 <span id="phép-nhân-modulo-montgomery"></span>
-### Phép nhân modulo Montgomery
+### Phép nhân Montgomery theo môđun
 
-Thuật toán nhân modulo Montgomery có chức năng rất giống thuật toán Barrett: nó
-cũng giảm chi phí modulo trong quá trình tính số nguyên modulo. Khác với hai
-thuật toán trước đều dựa trên xấp xỉ thương, phép nhân modulo Montgomery ánh xạ
-mỗi số nguyên vào không gian Montgomery, trong đó các phép toán tương đối dễ
+Thuật toán nhân Montgomery theo môđun có chức năng rất giống thuật toán Barrett:
+nó cũng giảm chi phí lấy dư trong quá trình tính số nguyên môđun. Khác với hai
+thuật toán trước đều dựa trên xấp xỉ thương, phép nhân Montgomery theo môđun ánh
+xạ mỗi số nguyên vào không gian Montgomery, trong đó các phép toán tương đối dễ
 thực hiện, từ đó giảm chi phí tính toán tổng thể.
 
-Cho modulo $m$ là số lẻ, và chọn $R = 2^k > m$. Khi đó dạng Montgomery của lớp
+Cho môđun $m$ là số lẻ, và chọn $R = 2^k > m$. Khi đó dạng Montgomery của lớp
 đồng dư $a \bmod m$ là
 
 $$
@@ -258,12 +258,12 @@ $$
 
 Vì $R\perp m$, có một song ánh giữa lớp đồng dư $a \bmod m$ và dạng Montgomery
 của nó $aR\bmod m$. Do đó, có thể chuyển số nguyên sang dạng Montgomery, thực
-hiện một số phép toán modulo $m$, rồi chuyển dạng Montgomery thu được về số
+hiện một số phép toán theo môđun $m$, rồi chuyển dạng Montgomery thu được về số
 nguyên; kết quả luôn đúng.
 
-Dạng Montgomery cho phép thực hiện thuận tiện nhiều phép toán số nguyên modulo.
-Như đã nói, để so sánh hai lớp đồng dư có giống nhau hay không, chỉ cần so sánh
-dạng Montgomery của chúng. Lại có
+Dạng Montgomery cho phép thực hiện thuận tiện nhiều phép toán số nguyên theo
+môđun. Như đã nói, để so sánh hai lớp đồng dư có giống nhau hay không, chỉ cần
+so sánh dạng Montgomery của chúng. Lại có
 
 $$
 (a+b)R\bmod m = ((aR\bmod m)\pm(bR\bmod m)) \bmod{m},
@@ -286,13 +286,13 @@ $$
 
 Dùng thao tác này, dạng Montgomery của tích $ab$ là
 $\operatorname{REDC}((aR\bmod m)(bR\bmod m))$. Phép rút gọn Montgomery là thao
-tác cốt lõi của phép nhân modulo Montgomery:
+tác cốt lõi của phép nhân Montgomery theo môđun:
 
 -   Chuyển $a$ sang dạng Montgomery của nó là
     $\operatorname{REDC}((a\bmod m)(R^2\bmod m))$.
 -   Chuyển dạng Montgomery của $a$ về $a\bmod m$ là
     $\operatorname{REDC}(aR\bmod m)$.
--   Dạng Montgomery ứng với nghịch đảo modulo $a^{-1}\bmod m$ là
+-   Dạng Montgomery ứng với nghịch đảo theo môđun $a^{-1}\bmod m$ là
     $\operatorname{REDC}((aR\bmod m)^{-1}(R^3\bmod m))$.
 
 Bây giờ xét cách cài đặt phép rút gọn Montgomery $\operatorname{REDC}$. Khi tính
@@ -321,55 +321,58 @@ $$
 Nói cách khác, thương này và $xR^{-1}\bmod m$ chênh nhau nhiều nhất một $m$.
 Chỉ cần nếu thương âm thì cộng thêm $m$ là thu được $\operatorname{REDC}(x)$.
 Tính thương này chỉ cần hai phép nhân số nguyên, một phép trừ số nguyên và hai
-thao tác bit (lần lượt là lấy modulo theo $R=2^k$ và thực hiện phép chia). Vì
+thao tác bit (lần lượt là lấy dư theo $R=2^k$ và thực hiện phép chia). Vì
 vậy, phép rút gọn Montgomery có thể thực hiện hiệu quả.
 
-Để thực hiện phép nhân modulo Montgomery, cần tiền xử lý một loạt hằng số. Trước
-hết, phép rút gọn Montgomery cần $m' = m^{-1}\bmod R$, có thể tính bằng phương
-pháp Newton-Hensel giới thiệu [bên dưới](#lớp-số-nguyên-modulo-lũy-thừa-của-2).
+Để thực hiện phép nhân Montgomery theo môđun, cần tiền xử lý một loạt hằng số.
+Trước hết, phép rút gọn Montgomery cần $m' = m^{-1}\bmod R$, có thể tính bằng
+phương pháp Newton-Hensel giới thiệu
+[bên dưới](#lớp-số-nguyên-modulo-lũy-thừa-của-2).
 Tiếp theo, khi quy các thao tác khác về phép rút gọn Montgomery, còn cần các
 hằng số như $R^2\bmod m$. Để tính nó, trước hết tính $R\bmod m$, cộng nó với
 chính nó để được $2R\bmod m$. Sau đó xem nó là dạng Montgomery của $2$, tính lũy
 thừa nhanh trực tiếp, sẽ thu được $2^kR\bmod m = R^2\bmod m$.
 
-Làm ví dụ, cài đặt phép nhân modulo Montgomery cho số nguyên có dấu $32$ bit như
-sau:
+Làm ví dụ, cài đặt phép nhân Montgomery theo môđun cho số nguyên có dấu $32$ bit
+như sau:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/i32-mul.cpp:montgomery"
     ```
 
-So với việc dùng phép rút gọn Barrett để cài đặt phép nhân modulo, phép nhân modulo
-Montgomery gồm nhiều bước như chuyển đổi, nhân trong dạng Montgomery và chuyển
-ngược. Vì vậy, chỉ khi số phép toán modulo giữa chuyển đổi và chuyển ngược đủ
-nhiều, chi phí chuyển đổi mới được khấu hao và hiệu năng tổng thể mới cao. Tuy
-nhiên, do quá trình cài đặt phép nhân modulo Montgomery chỉ cần biến trung gian
-có độ dài $2\ell(m)$, nó linh hoạt hơn. Ví dụ, phép nhân modulo cho số nguyên
-$32$ bit chỉ cần biến trung gian $64$ bit. Do đó, nếu cần cài đặt một lớp số
-nguyên modulo để thực hiện nhiều tính toán số học, phép nhân modulo Montgomery
-phù hợp hơn.
+So với việc dùng phép rút gọn Barrett để cài đặt phép nhân môđun, phép nhân
+Montgomery theo môđun gồm nhiều bước như chuyển đổi, nhân trong dạng Montgomery
+và chuyển ngược. Vì vậy, chỉ khi số phép toán theo môđun giữa chuyển đổi và
+chuyển ngược đủ nhiều, chi phí chuyển đổi mới được khấu hao và hiệu năng tổng thể
+mới cao. Tuy nhiên, do quá trình cài đặt phép nhân Montgomery theo môđun chỉ cần
+biến trung gian có độ dài $2\ell(m)$, nó linh hoạt hơn. Ví dụ, phép nhân môđun
+cho số nguyên $32$ bit chỉ cần biến trung gian $64$ bit. Do đó, nếu cần cài đặt
+một lớp số nguyên môđun để thực hiện nhiều tính toán số học, phép nhân Montgomery
+theo môđun phù hợp hơn.
 
 <span id="lớp-số-nguyên-modulo-lũy-thừa-của-2"></span>
-### Lớp số nguyên modulo lũy thừa của 2
+### Lớp số nguyên môđun lũy thừa của 2
 
-Mục này thảo luận cách cài đặt lớp số nguyên modulo khi modulo là lũy thừa của
-$2$. Trong trường hợp đặc biệt này, phép chia và modulo có thể thực hiện bằng
-thao tác bit, nên rất hiệu quả. Phép rút gọn Barrett và phép nhân modulo Montgomery
-đều tận dụng đặc tính này khi dùng $2^e$ làm số chia và modulo để tăng tốc. Đặc
-biệt, khi modulo đúng bằng các số đặc biệt như $2^{32}$ và $2^{64}$, có thể
-dùng số nguyên không dấu có độ dài bit tương ứng kết hợp với tràn tự nhiên để
-cài đặt lớp số nguyên modulo, không cần phép modulo tường minh nào. Ngay cả khi
-modulo không đúng bằng như vậy, cũng có thể chuyển về các modulo đặc biệt này.
-Ví dụ với modulo $2^{58}$, có thể hoàn thành tính toán trung gian dưới modulo
-$2^{64}$, rồi cuối cùng lấy kết quả modulo $2^{58}$. Ngoài modulo để tính, lớp
-số nguyên modulo $2^e$ còn có nhiều cách cài đặt đặc biệt cho các thao tác khác.
+Mục này thảo luận cách cài đặt lớp số nguyên môđun khi môđun là lũy thừa của
+$2$. Trong trường hợp đặc biệt này, phép chia và phép lấy dư có thể thực hiện
+bằng thao tác bit, nên rất hiệu quả. Phép rút gọn Barrett và phép nhân
+Montgomery theo môđun đều tận dụng đặc tính này khi dùng $2^e$ làm số chia và
+môđun trung gian để tăng tốc. Đặc biệt, khi môđun đúng bằng các số đặc biệt như
+$2^{32}$ và $2^{64}$, có thể dùng số nguyên không dấu có độ dài bit tương ứng
+kết hợp với tràn tự nhiên để
+cài đặt lớp số nguyên môđun, không cần phép lấy dư tường minh nào. Ngay cả khi
+môđun không đúng bằng như vậy, cũng có thể chuyển về các môđun đặc biệt này.
+Ví dụ với môđun $2^{58}$, có thể hoàn thành tính toán trung gian theo môđun
+$2^{64}$, rồi cuối cùng lấy dư kết quả theo môđun $2^{58}$. Ngoài môđun để tính,
+lớp số nguyên môđun $2^e$ còn có nhiều cách cài đặt đặc biệt cho các thao tác
+khác.
 Mục này tập trung giới thiệu cách cài đặt nghịch đảo và lũy thừa.
 
-Trước hết là phép lấy nghịch đảo: cho số lẻ $a$ và modulo $m=2^e~(e > 2)$, cần
+Trước hết là phép lấy nghịch đảo: cho số lẻ $a$ và môđun $m=2^e~(e > 2)$, cần
 tính $a^{-1}\bmod m$. Các cách lấy nghịch đảo thường gặp gồm thuật toán Euclid
-mở rộng và lũy thừa nhanh. Quá trình Euclid mở rộng liên quan đến phép modulo
-theo modulo tổng quát; lũy thừa nhanh thông thường cần tính
+mở rộng và lũy thừa nhanh. Quá trình Euclid mở rộng liên quan đến phép lấy dư
+theo môđun tổng quát; lũy thừa nhanh thông thường cần tính
 $a^{\varphi(m)-1}\bmod{m}$, cần $\Theta(e)$ phép nhân số nguyên. Phương pháp
 hiệu quả hơn là [Newton-Hensel](../poly/newton.md). Cụ thể, xét kết luận
 sau:[^newton-hensel]
@@ -382,17 +385,17 @@ Theo biểu thức này, chỉ cần bắt đầu từ $x = 1$ và lặp lại
 $x \gets x(2-mx)$, sau $\lceil\log_2 e\rceil$ lần lặp sẽ thu được
 $m^{-1}\bmod R$.
 
-Làm ví dụ, cài đặt tham khảo cho phép lấy nghịch đảo modulo $2^{32}$ như sau:
+Làm ví dụ, cài đặt tham khảo cho phép lấy nghịch đảo theo môđun $2^{32}$ như sau:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-32-inv-pow.cpp:inv"
     ```
 
-Tiếp theo, xét phép lũy thừa: cho $x,a,b$ và modulo $m=2^e~(e > 2)$, cần tính
+Tiếp theo, xét phép lũy thừa: cho $x,a,b$ và môđun $m=2^e~(e > 2)$, cần tính
 $xa^b\bmod m$, trong đó $a$ là số lẻ. Theo
-[phân tích](./primitive-root.md#mod-pow-2) cấu trúc nhân của các số nguyên
-modulo $2^e$, $a$ luôn có thể viết dưới dạng $\pm g^{\ell}$[^mod-2-g], và dấu
+[phân tích](./primitive-root.md#mod-pow-2) cấu trúc nhân của các số nguyên theo
+môđun $2^e$, $a$ luôn có thể viết dưới dạng $\pm g^{\ell}$[^mod-2-g], và dấu
 trừ xuất hiện khi và chỉ khi $a\equiv 3\pmod 4$. Trong trường hợp này, có thể
 thay $a$ bằng $-a$, rồi nhân kết quả cuối cùng với $(-1)^b$. Vì vậy, tiếp theo
 có thể giả sử $a\equiv 1\pmod 4$. Ý tưởng cốt lõi của thuật toán là viết $a$
@@ -415,10 +418,10 @@ $$
 4L(a) \equiv 4L(2^{e_1}+1) + 4L(2^{e_2}+1) + \cdots + 4L(2^{e_s}+1) \pmod{m}.
 $$
 
-Vì modulo của logarit rời rạc bằng bậc $\delta_m(g)=2^{e-2}=m/4$, cần nhân cả
+Vì môđun của logarit rời rạc bằng bậc $\delta_m(g)=2^{e-2}=m/4$, cần nhân cả
 đồng dư thức với $4$ để bảo đảm quá trình tính có thể thực hiện trong các lớp
-thặng dư modulo $m$. Do đó, chỉ cần tiền xử lý tất cả giá trị $4L(2^d+1)$ với
-$1 < d < e$, là có thể tính nhanh $4L(a)$.
+thặng dư theo môđun $m$. Do đó, chỉ cần tiền xử lý tất cả giá trị $4L(2^d+1)$
+với $1 < d < e$, là có thể tính nhanh $4L(a)$.
 
 Ngược lại, từ $L(a)$ cũng dễ thu được giá trị $g^a\bmod{m}$. Theo
 [định lý nhị thức](../combinatorics/combination.md#định-lý-nhị-thức),
@@ -488,7 +491,7 @@ nhất, toàn bộ phép lũy thừa chỉ cần $O(e)$ phép cộng trừ, thao
 phép nhân; sau tối ưu thứ hai, tiết kiệm được gần một nửa số phép cộng trừ và
 thao tác bit, đổi lại cần thêm $1$ phép nhân.
 
-Làm ví dụ, cài đặt tham khảo cho phép lũy thừa modulo $2^{32}$ như sau:
+Làm ví dụ, cài đặt tham khảo cho phép lũy thừa theo môđun $2^{32}$ như sau:
 
 ???+ example "Cài đặt tham khảo"
     ```cpp
@@ -536,8 +539,8 @@ $$
     $\left\lfloor\dfrac{r}{m}\right\rceil$, miễn là điều chỉnh bước sửa sai số
     của giá trị ước lượng tương ứng.
 
-[^shoup]: Shoup đã cài đặt mở rộng này của phép rút gọn Barrett trong thư viện tính
-    toán số học [NTL](https://libntl.org/), nên cách làm được đặt tên như vậy.
+[^shoup]: Shoup đã cài đặt mở rộng này của phép rút gọn Barrett trong thư viện
+    tính toán số học [NTL](https://libntl.org/), nên cách làm được đặt tên như vậy.
 
 [^newton-hensel]: Kiểm tra trực tiếp: từ $mx \equiv 1 \pmod{2^e}$, đặt
     $mx = 1 + \lambda 2^e$, khi đó
@@ -545,5 +548,5 @@ $$
 
 [^mod-2-g]: Trang được dẫn trong bài chỉ chứng minh $g$ có thể lấy bằng $5$.
     Lặp lại hoàn toàn chứng minh đó cho thấy $g$ có thể là bất kỳ số
-    nguyên nào đồng dư $5$ theo modulo $8$. Phần sau sẽ thảo luận cách chọn
+    nguyên nào đồng dư $5$ theo môđun $8$. Phần sau sẽ thảo luận cách chọn
     $g$.
