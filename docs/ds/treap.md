@@ -775,7 +775,7 @@ dùng ngăn xếp đơn điệu để duy trì chuỗi phải.
 #### Xây cây
 
 Một lợi thế lớn của Treap không xoay so với Treap xoay là có thể cài đặt nhiều loại thao tác trên đoạn.
-Phần dưới lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng văn nghệ
+Phần dưới lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng thao tác đoạn
 làm ví dụ để giới thiệu thao tác đoạn của Treap.
 
 > Cần viết một cấu trúc dữ liệu (có thể tham khảo tiêu đề bài) để duy trì một dãy có thứ tự.
@@ -1419,7 +1419,8 @@ Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cà
 #### Cài đặt bằng con trỏ
 
 ??? note "Mã đầy đủ"
-    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng văn nghệ.
+    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên,
+    là mã mẫu cho bài cây cân bằng thao tác đoạn.
 
     ```cpp
 
@@ -1553,7 +1554,7 @@ Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cà
 
 [Cây cân bằng thông thường](https://loj.ac/problem/104)
 
-[Cây cân bằng văn nghệ (Splay)](https://loj.ac/problem/105)
+[Cây cân bằng thao tác đoạn (Splay)](https://loj.ac/problem/105)
 
 [ZJOI2006 - Giá sách](https://www.luogu.com.cn/problem/P2596)
 

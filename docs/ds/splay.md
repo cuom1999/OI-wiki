@@ -494,7 +494,8 @@ Cây Splay được xây từ dãy có các tính chất sau:
 
 Nhờ có thao tác splay, có thể nhanh chóng trích ra cây con Splay đại diện cho một đoạn nào đó.
 
-Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu [Cây cân bằng văn nghệ](https://loj.ac/problem/105).
+Làm ví dụ, phần này sẽ thảo luận cách cài đặt bài mẫu
+[Cây cân bằng thao tác đoạn](https://loj.ac/problem/105).
 
 ### Xây cây theo dãy
 
@@ -566,7 +567,8 @@ Cần đẩy xuống trước rồi mới thực hiện thao tác splay, đúng 
 
 ### Cài đặt tham khảo
 
-Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu [Cây cân bằng văn nghệ](https://loj.ac/problem/105).
+Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu
+[Cây cân bằng thao tác đoạn](https://loj.ac/problem/105).
 
 ??? example "Cài đặt tham khảo"
     ```cpp
@@ -578,7 +580,7 @@ Cuối phần này, đưa ra cài đặt tham khảo cho bài mẫu [Cây cân b
 Các bài này đều là bài Splay Tree trực tiếp để duy trì cây tìm kiếm nhị phân:
 
 -   [Mẫu: cây cân bằng thông thường](https://loj.ac/problem/104)
--   [Mẫu: cây cân bằng văn nghệ](https://loj.ac/problem/105)
+-   [Mẫu: cây cân bằng thao tác đoạn](https://loj.ac/problem/105)
 -   [HNOI2002: thống kê doanh thu](https://loj.ac/problem/10143)
 -   [HNOI2004: trại nhận nuôi thú cưng](https://loj.ac/problem/10144)
 
