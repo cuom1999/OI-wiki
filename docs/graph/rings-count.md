@@ -1,6 +1,6 @@
 ## Đếm chu trình thông thường
 
-???+ note "[Bài mẫu 1: Codeforces Beta Round 11 D. A Simple Task](https://codeforces.com/problemset/problem/11/D)"
+???+ note "[Bài mẫu 1: Codeforces Beta Round 11 D. Một nhiệm vụ đơn giản](https://codeforces.com/problemset/problem/11/D)"
     Cho một đồ thị đơn, cần tính số chu trình đơn trong đồ thị. Chu trình đơn là chu trình không có đỉnh hoặc cạnh lặp lại.
     
     Số đỉnh $1\leq n\leq 19$.
@@ -54,7 +54,7 @@ Liệt kê $u$ và các đỉnh $v$ mà $u$ trỏ tới, rồi trong các đỉn
 
 ### Bài mẫu 2
 
-???+ note "[HDU 6184 Counting Stars](https://acm.hdu.edu.cn/showproblem.php?pid=6184)"
+???+ note "[HDU 6184 Đếm sao](https://acm.hdu.edu.cn/showproblem.php?pid=6184)"
     Cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, cần tính số lần xuất hiện của hình dưới đây.
     
     ![](./images/rings-count1.svg)
@@ -92,7 +92,7 @@ Ngoài ra, các đỉnh có cùng bậc vẫn phải có thứ hạng khác nhau
 
 ### Bài mẫu 3
 
-???+ note "[Gym 102028L Connected Subgraphs](https://codeforces.com/gym/102028/problem/L)"
+???+ note "[Gym 102028L Đồ thị con liên thông](https://codeforces.com/gym/102028/problem/L)"
     Cho một đồ thị vô hướng có $n$ đỉnh và $m$ cạnh, cần tính số cách chọn bốn cạnh sao cho đồ thị con do chúng sinh ra là liên thông.
     
     $4\leq n\leq 10^5$, $4\leq m\leq 2\times 10^5$.

@@ -228,7 +228,7 @@ Ví dụ này tương ứng với đồ thị sau (bao gồm cả trường hợ
 
 Phần này trình bày một vài bài tập có thể giải bằng cây tròn-vuông.
 
-???+ note "[APIO2018 Ironman Triathlon](https://loj.ac/p/2587)"
+???+ note "[APIO2018 Ba môn phối hợp Ironman](https://loj.ac/p/2587)"
     ??? note "Tóm tắt đề bài"
         Cho một đồ thị vô hướng đơn. Hỏi có bao nhiêu bộ ba $\langle s, c, f \rangle$ ($s, c, f$ đôi một khác nhau) sao cho tồn tại một đường đi đơn bắt đầu từ $s$, đi qua $c$ rồi đến $f$.
     
@@ -276,7 +276,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
     
     Với test case vừa rồi, đáp án của bài này là $212$.
 
-???+ note "[Codeforces #487 E. Tourists](https://codeforces.com/contest/487/problem/E)"
+???+ note "[Codeforces #487 E. Du khách](https://codeforces.com/contest/487/problem/E)"
     ??? note "Tóm tắt đề bài"
         Cho một đồ thị vô hướng đơn liên thông, cần hỗ trợ hai loại thao tác:
         
@@ -304,7 +304,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         --8<-- "docs/graph/code/block-forest/block-forest_2.cpp"
         ```
 
-???+ note "[SDOI2018 Strategic Game](https://loj.ac/p/2562)"
+???+ note "[SDOI2018 Trò chơi chiến lược](https://loj.ac/p/2562)"
     ??? note "Tóm tắt đề bài"
         Cho một đồ thị vô hướng đơn liên thông. Có $q$ truy vấn:
         
@@ -317,7 +317,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         
         Tính số đỉnh tròn trong đồ thị con liên thông như thế nào? Có một cách:
         
-        Đưa trọng số của đỉnh tròn lên cạnh nối nó với đỉnh vuông cha; bài toán chuyển thành tính tổng trọng số cạnh. Bài toán này có thể tham khảo một cách giải của [SDOI2015 Treasure Hunt](https://loj.ac/p/2182).
+        Đưa trọng số của đỉnh tròn lên cạnh nối nó với đỉnh vuông cha; bài toán chuyển thành tính tổng trọng số cạnh. Bài toán này có thể tham khảo một cách giải của [SDOI2015 Săn kho báu](https://loj.ac/p/2182).
         Cụ thể, sắp xếp các đỉnh trong $S$ theo thứ tự DFS, tính tổng khoảng cách giữa hai đỉnh liền kề sau khi sắp xếp (đồng thời tính cả khoảng cách giữa đỉnh cuối và đỉnh đầu). Đáp án là một nửa tổng khoảng cách, vì mỗi cạnh chỉ được đi qua hai lần.
         
         Cuối cùng, nếu đỉnh có độ sâu nhỏ nhất trong đồ thị con là đỉnh tròn, đáp án còn phải cộng thêm $1$, vì đỉnh đó chưa được tính.
@@ -331,9 +331,9 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
 
 ## Bài tập
 
--   [UVa 1464 Traffic Real Time Query](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210)
--   [Luogu P4320 Road Encounters](https://www.luogu.com.cn/problem/P4320)
--   [Luogu P10517 Land-use Planning](https://www.luogu.com.cn/problem/P10517)
+-   [UVa 1464 Truy vấn giao thông thời gian thực](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4210)
+-   [Luogu P4320 Gặp nhau trên đường](https://www.luogu.com.cn/problem/P4320)
+-   [Luogu P10517 Quy hoạch sử dụng đất](https://www.luogu.com.cn/problem/P10517)
 
 ## Liên kết ngoài
 

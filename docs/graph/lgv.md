@@ -92,7 +92,7 @@ Chứng minh hoàn tất[^1].
 
 ## Ví dụ
 
-???+ note "Ví dụ 1 [CF348D Turtles](https://codeforces.com/contest/348/problem/D)"
+???+ note "Ví dụ 1 [CF348D Những chú rùa](https://codeforces.com/contest/348/problem/D)"
     Tóm tắt đề bài: Có một bàn cờ dạng lưới $n\times m$,
     trong đó một số ô có thể đi qua và một số ô không thể đi qua.
     Một con rùa ở $(x, y)$ chỉ có thể đi đến $(x+1, y)$ và $(x, y+1)$.
@@ -124,7 +124,7 @@ nên dễ tính được $f$.
     --8<-- "docs/graph/code/lgv/lgv_2.cpp"
     ```
 
-???+ note "Ví dụ 2 [HDU 5852 Intersection is not allowed!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
+???+ note "Ví dụ 2 [HDU 5852 Không được phép giao nhau!](https://acm.hdu.edu.cn/showproblem.php?pid=5852)"
     Tóm tắt đề bài: Có một bàn cờ $n\times n$.
     Một quân cờ ở $(x, y)$ chỉ có thể đi đến $(x, y+1)$ hoặc $(x + 1, y)$.
     Có $k$ quân cờ; ban đầu quân cờ thứ $i$ đặt tại $(1, a_i)$,

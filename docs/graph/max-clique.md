@@ -60,7 +60,7 @@ BronKerbosch1(R, P, X):
 
 ## Ví dụ
 
-???+ note "[POJ 2989: All Friends](http://poj.org/problem?id=2989)"
+???+ note "[POJ 2989: Tất cả bạn bè](http://poj.org/problem?id=2989)"
     Tóm tắt đề bài: Cho $n$ người, trong đó có $m$ cặp người quen biết nhau. Yêu cầu tính số lượng clique cực đại.
 
 Ý tưởng: Bài toán điển hình, cần dùng thuật toán Bron–Kerbosch.

@@ -297,7 +297,7 @@ Tiếp theo là một bài mẫu về phân rã chuỗi nặng có thao tác đ�
 
 Cuối cùng là một bài tương tác, cũng là một ứng dụng không truyền thống của HLD.
 
-???+ example "[Nauuo and Binary Tree](https://loj.ac/problem/6669)"
+???+ example "[Nauuo và cây nhị phân](https://loj.ac/problem/6669)"
     Có một cây nhị phân gốc $1$. Có thể hỏi khoảng cách giữa hai đỉnh bất kỳ; cần tìm cha của mỗi đỉnh.
     
     Số đỉnh không vượt quá $3000$, số lần hỏi không quá $30000$.
@@ -383,7 +383,7 @@ Có thể cân nhắc dùng phân rã chuỗi dài để tối ưu DP trên cây
 
 Cụ thể, trạng thái của mỗi đỉnh được xây từ trạng thái của con nặng, đồng thời gộp trực tiếp các trạng thái DP của các con nhẹ.
 
-???+ example "[Codeforces 1009 F. Dominant Indices](http://codeforces.com/contest/1009/problem/F)"
+???+ example "[Codeforces 1009 F. Chỉ số trội](http://codeforces.com/contest/1009/problem/F)"
     Cho một cây có gốc gồm $n$ đỉnh, lấy đỉnh $1$ làm gốc.
     
     Định nghĩa mảng độ sâu của đỉnh $x$ là một dãy vô hạn $[d_{x, 0}, d_{x, 1}, d_{x, 2}, \dots]$, trong đó $d_{x, i}$ biểu thị số đỉnh $y$ thỏa hai điều kiện sau:
