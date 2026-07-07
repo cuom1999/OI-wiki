@@ -908,7 +908,7 @@ thu hồi các nút không còn dùng tới; nếu không, mức sử dụng kh�
 
 ## Tài liệu tham khảo và chú thích
 
--   [Weight-balanced tree - Wikipedia](https://en.wikipedia.org/wiki/Weight-balanced_tree)
+-   [Cây cân bằng theo trọng số - Wikipedia](https://en.wikipedia.org/wiki/Weight-balanced_tree)
 -   Nievergelt, J.; Reingold, E. M. (1973). "Binary Search Trees of Bounded Balance". SIAM Journal
     on Computing. 2: 33-43.
 -   Blum, Norbert; Mehlhorn, Kurt (1980). "On the average number of rebalancing operations in

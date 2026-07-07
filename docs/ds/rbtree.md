@@ -374,9 +374,9 @@ nâng cao hiệu suất tìm kiếm.
 
 ## Tài liệu tham khảo
 
--   Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022).*Introduction to algorithms*. MIT press.
--   [Red-Black Tree - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
--   [Red-Black Tree Visualization](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
+-   Cormen, T. H., Leiserson, C. E., Rivest, R. L., & Stein, C. (2022).*Nhập môn thuật toán*. MIT press.
+-   [Cây đỏ-đen - Wikipedia](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)
+-   [Trực quan hóa cây đỏ-đen](https://www.cs.usfca.edu/~galles/visualization/RedBlack.html)
 
 [^gilbas1978]: L. J. Guibas and R. Sedgewick, "A dichromatic framework for balanced trees," *19th Annual Symposium on
     Foundations of Computer Science (sfcs 1978)*, Ann Arbor, MI, USA, 1978, pp. 8-21,

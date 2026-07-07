@@ -366,7 +366,7 @@ $$
 
 -   [Luogu P6086 [Mẫu] Dãy Prüfer](https://www.luogu.com.cn/problem/P6086) (bài mẫu)
 -   [Luogu P11039 [MX-X3-T6] "RiOI-4" TECHNOPOLIS 2085](https://www.luogu.com.cn/problem/P11039)
--   [UVa #10843 - Anne's game](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
--   [Timus #1069 - Prufer Code](http://acm.timus.ru/problem.aspx?space=1&num=1069)
--   [Codeforces - Clues](http://codeforces.com/contest/156/problem/D)
--   [Topcoder - TheCitiesAndRoadsDivTwo](https://archive.topcoder.com/ProblemStatement/pm/10774)
+-   [UVa #10843 - Trò chơi của Anne](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
+-   [Timus #1069 - Mã Prüfer](http://acm.timus.ru/problem.aspx?space=1&num=1069)
+-   [Codeforces - Manh mối](http://codeforces.com/contest/156/problem/D)
+-   [Topcoder - Các thành phố và con đường Div Two](https://archive.topcoder.com/ProblemStatement/pm/10774)

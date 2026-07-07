@@ -399,8 +399,8 @@ class PQTree {
 
 ## Bài tập
 
--   [CF243E Matrix](https://codeforces.com/problemset/problem/243/E)
--   [CF1552I Organizing a Music Festival](https://codeforces.com/contest/1552/problem/I)
+-   [CF243E Ma trận](https://codeforces.com/problemset/problem/243/E)
+-   [CF1552I Tổ chức lễ hội âm nhạc](https://codeforces.com/contest/1552/problem/I)
 
 ## Tài liệu tham khảo
 
@@ -408,5 +408,5 @@ class PQTree {
     planarity using PQ-tree algorithms". *[Journal of Computer and System
     Sciences](https://en.wikipedia.org/wiki/Journal_of_Computer_and_System_Sciences)*. **13**(3): 335-379.
     [doi:10.1016/S0022-0000(76)80045-1](https://doi.org/10.1016%2FS0022-0000%2876%2980045-1).
--   [PQ Tree Algorithm and Consecutive Ones Problem](https://gregable.com/2008/11/pq-tree-algorithm.html)
--   [CF243E Matrix PQTree - RainAir's Blog](https://blog.aor.sd.cn/archives/1657/)
+-   [Thuật toán cây PQ và bài toán các số 1 liên tiếp](https://gregable.com/2008/11/pq-tree-algorithm.html)
+-   [CF243E Ma trận PQTree - Blog của RainAir](https://blog.aor.sd.cn/archives/1657/)

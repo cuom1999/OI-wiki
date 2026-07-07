@@ -176,8 +176,8 @@ Một vài nhận xét để chứng minh:
 
 ## Bài tập
 
--   [USACO 4.4 - Pollutant Control](https://www.luogu.com.cn/problem/P1344)
--   [USACO 5.4 - Telecowmunication](https://www.luogu.com.cn/problem/P1345)
--   [Luogu 1361 - Crops of Little M](https://www.luogu.com.cn/problem/P1361)
--   [SHOI 2007 - Goodwill Voting](https://www.luogu.com.cn/problem/P2057)
--   [Space Flight Plan](https://www.luogu.com.cn/problem/P2762)
+-   [USACO 4.4 - Kiểm soát ô nhiễm](https://www.luogu.com.cn/problem/P1344)
+-   [USACO 5.4 - Viễn thông bò](https://www.luogu.com.cn/problem/P1345)
+-   [Luogu 1361 - Cây trồng của Little M](https://www.luogu.com.cn/problem/P1361)
+-   [SHOI 2007 - Bỏ phiếu thiện chí](https://www.luogu.com.cn/problem/P2057)
+-   [Kế hoạch bay không gian](https://www.luogu.com.cn/problem/P2762)

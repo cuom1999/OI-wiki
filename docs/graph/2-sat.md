@@ -147,7 +147,7 @@ Dưới đây là mã của cách cài đặt thứ hai.
 
 ## Bài tập
 
--   [Luogu P5782 Peace Committee](https://www.luogu.com.cn/problem/P5782)
--   [POJ3683 Priest John's Busiest Day](http://poj.org/problem?id=3683)
+-   [Luogu P5782 Ủy ban hòa bình](https://www.luogu.com.cn/problem/P5782)
+-   [POJ3683 Ngày bận rộn nhất của Cha John](http://poj.org/problem?id=3683)
 
 [wu-yu-2sat]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2003%E8%AE%BA%E6%96%87%E9%9B%86/%E4%BC%8D%E6%98%B1--%E7%94%B1%E5%AF%B9%E7%A7%B0%E6%80%A7%E8%A7%A32-SAT%E9%97%AE%E9%A2%98/%E4%BC%8D%E6%98%B1.ppt
