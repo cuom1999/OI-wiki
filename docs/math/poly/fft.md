@@ -590,7 +590,7 @@ Vì vậy cùng một hàm FFT có thể kiêm nhiệm cả DFT lẫn IDFT. Cài
     }
     ```
 
-??? note "Mẫu FFT ([HDU 1402 - A * B Problem Plus](http://acm.hdu.edu.cn/showproblem.php?pid=1402))"
+??? note "Mẫu FFT ([HDU 1402 - Bài toán A * B bản mở rộng](http://acm.hdu.edu.cn/showproblem.php?pid=1402))"
     ```cpp
     --8<-- "docs/math/code/poly/fft/fft_3.cpp"
     ```

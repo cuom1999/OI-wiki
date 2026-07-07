@@ -353,7 +353,7 @@ Trie nào cũng có thể hợp nhất. Nói cách khác, thao tác hợp nhất
         --8<-- "docs/string/code/trie/trie_3.cpp"
         ```
 
-???+ note "[luogu-P6623 Tree](https://www.luogu.com.cn/problem/P6623)"
+???+ note "[Luogu P6623 Cây](https://www.luogu.com.cn/problem/P6623)"
     Cho một cây có gốc $T$ gồm $n$ đỉnh, các đỉnh được đánh số từ $1$, gốc là đỉnh $1$, mỗi đỉnh có một trọng số nguyên dương $v_i$.
     Gọi các đỉnh trong cây con của đỉnh $x$ (bao gồm chính $x$) là $c_1,c_2,\dots,c_k$, định nghĩa giá trị của $x$ là:
     $val(x)=(v_{c_1}+d(c_1,x)) \oplus (v_{c_2}+d(c_2,x)) \oplus \cdots \oplus (v_{c_k}+d(c_k, x))$ trong đó $d(x,y)$

@@ -155,7 +155,7 @@ Chỉ cần tìm $g^{-1}(x)\bmod x^n$ rồi khôi phục $g^{-1}(x^2)\bmod x^{2n
 <span id="ví-dụ"></span>
 ### Ví dụ
 
-1.  Đếm số đồ thị vô hướng đơn liên thông có nhãn: [POJ 1737 - Connected Graph](http://poj.org/problem?id=1737)
+1.  Đếm số đồ thị vô hướng đơn liên thông có nhãn: [POJ 1737 - Đồ thị liên thông](http://poj.org/problem?id=1737)
 
 <span id="khai-căn-đa-thức"></span>
 ## Khai căn đa thức
@@ -230,7 +230,7 @@ Xem [phương pháp Newton](./newton.md#newtons-method).
 <span id="ví-dụ_1"></span>
 ### Ví dụ
 
-1.  [Codeforces Round #250 - E. The Child and Binary Tree](https://codeforces.com/contest/438/problem/E)
+1.  [Codeforces Round #250 - E. Đứa trẻ và cây nhị phân](https://codeforces.com/contest/438/problem/E)
 
 <span id="chia-đa-thức-và-lấy-dư"></span>
 ## Chia đa thức và lấy dư

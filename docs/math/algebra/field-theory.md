@@ -857,16 +857,16 @@ Cụ thể, thuật toán Cipolla trước hết chọn $r$ sao cho $r^2-a$ là 
 Cuối cùng, dưới đây là một số bài toán áp dụng trực tiếp nội dung bài này để củng cố hiểu biết. Tuy nhiên cần lưu ý, nhiều nội dung không phải là điểm kiến thức thường gặp trong lập trình thi đấu.
 
 -   Đa thức cyclotomic:
-    -   [Luogu P1520 Factorization](https://www.luogu.com.cn/problem/P1520)
-    -   [Gym102114C Call It What You Want](https://codeforces.com/gym/102114/problem/C)
+    -   [Luogu P1520 Phân tích nhân tử](https://www.luogu.com.cn/problem/P1520)
+    -   [Gym102114C Gọi nó là gì cũng được](https://codeforces.com/gym/102114/problem/C)
 -   Trường hữu hạn:
-    -   [Luogu P3923 University Math Problem](https://www.luogu.com.cn/problem/P3923)
+    -   [Luogu P3923 Bài toán toán học đại học](https://www.luogu.com.cn/problem/P3923)
     -   [\[COTS 2021\] Cai Jelo](https://www.luogu.com.cn/problem/P11192)
-    -   [CF1310F. Bad Cryptography](https://codeforces.com/problemset/problem/1310/F)
-    -   [LOJ 178. Polynomial Root Finding](https://loj.ac/p/178)
+    -   [CF1310F. Mật mã học tệ](https://codeforces.com/problemset/problem/1310/F)
+    -   [LOJ 178. Tìm nghiệm đa thức](https://loj.ac/p/178)
 -   Mở rộng trường:
-    -   [\[Oleksandr Kulkov Contest 2\] Problem A. Square Root Partitioning](https://codeforces.com/gym/102354/problem/A)
-    -   [CF1103E. Radix Sum](https://codeforces.com/problemset/problem/1103/E)
+    -   [\[Oleksandr Kulkov Contest 2\] Bài A. Phân hoạch căn bậc hai](https://codeforces.com/gym/102354/problem/A)
+    -   [CF1103E. Tổng theo cơ số](https://codeforces.com/problemset/problem/1103/E)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 

@@ -91,9 +91,9 @@ tương ứng với phép nhân chuỗi lũy thừa hình thức.
 
 <span id="cấu-trúc-sequence-của-tập-hợp"></span>
 
-### Cấu trúc Sequence của tập hợp
+### Cấu trúc dãy (Sequence) của tập hợp
 
-Cấu trúc Sequence sinh ra tất cả các tổ hợp có thể.
+Cấu trúc dãy (Sequence) sinh ra tất cả các tổ hợp có thể.
 
 ???+ note "Ví dụ"
     $$
@@ -106,7 +106,7 @@ Cấu trúc Sequence sinh ra tất cả các tổ hợp có thể.
     \end{aligned}
     $$
     
-    Các phần tử như $\lbrace (a,b)\rbrace$ và $\lbrace (b,a)\rbrace$, tức các phần tử có thứ tự thành phần khác nhau, đều được sinh ra. Vì vậy có thể xem cấu trúc Sequence sinh ra các tổ hợp có thứ tự.
+    Các phần tử như $\lbrace (a,b)\rbrace$ và $\lbrace (b,a)\rbrace$, tức các phần tử có thứ tự thành phần khác nhau, đều được sinh ra. Vì vậy có thể xem cấu trúc dãy sinh ra các tổ hợp có thứ tự.
 
 Định nghĩa
 
@@ -125,7 +125,7 @@ $$
 trong đó $Q$ là giả nghịch đảo Pólya (quasi-inversion).
 
 ???+ note "Ví dụ: cây có gốc có thứ tự (ordered rooted tree)"
-    Có thể dùng cấu trúc Sequence để định nghĩa cây có gốc có thứ tự, tức cây có gốc mà thứ tự giữa các con có ý nghĩa. Gọi lớp tổ hợp này là $\mathcal{T}$. Khi đó một cây gồm một nút gốc và một Sequence các cây, tức là
+    Có thể dùng cấu trúc dãy để định nghĩa cây có gốc có thứ tự, tức cây có gốc mà thứ tự giữa các con có ý nghĩa. Gọi lớp tổ hợp này là $\mathcal{T}$. Khi đó một cây gồm một nút gốc và một dãy các cây, tức là
     
     $$
     \mathcal{T}=\lbrace \bullet\rbrace\times\operatorname{SEQ}(\mathcal{T})

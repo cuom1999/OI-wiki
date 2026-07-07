@@ -57,7 +57,7 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 <span id="ví-dụ"></span>
 ### Ví dụ
 
-???+ example "[Codeforces 794 E. Choosing Carrot](https://codeforces.com/problemset/problem/794/E)"
+???+ example "[Codeforces 794 E. Chọn cà rốt](https://codeforces.com/problemset/problem/794/E)"
     Cho một dãy số ${a_i}$ có độ dài $n$. Hai người chơi $1$ và $2$ luân phiên lấy đi một số ở một trong hai đầu dãy, cho đến khi trong dãy chỉ còn lại đúng một số cuối cùng. Mục tiêu của người chơi $1$ là tối đa hóa số cuối cùng còn lại này, còn mục tiêu của người chơi $2$ là tối thiểu hóa nó. Trước khi trò chơi chính thức bắt đầu, người chơi $1$ còn có thể thực hiện trước $k$ hành động. Giả sử cả hai người chơi đều dùng chiến lược tối ưu trong suốt quá trình. Với mỗi $k = 0,1,2,\cdots,n-1$, tìm số cuối cùng còn lại khi trò chơi kết thúc. Trong đó, $1 \le n \le 3\times 10^5$.
 
 ??? note "Lời giải"
@@ -98,12 +98,12 @@ Khi áp dụng thuật toán này vào bài toán thực tế, thường có cá
 <span id="bài-tập"></span>
 ### Bài tập
 
--   [Luogu P2734 \[USACO3.3\] Trò chơi A Game](https://www.luogu.com.cn/problem/P2734)
+-   [Luogu P2734 \[USACO3.3\] Trò chơi A](https://www.luogu.com.cn/problem/P2734)
 -   [Luogu P4576 \[CQOI2013\] Trò chơi bàn cờ](https://www.luogu.com.cn/problem/P4576)
 -   [Luogu P7097 \[yLOI2020\] Múa rối dây](https://www.luogu.com.cn/problem/P7097)
--   [Codeforces 388 C. Fox and Card Game](https://codeforces.com/problemset/problem/388/C)
--   [Codeforces 794 E. Choosing Carrot](https://codeforces.com/problemset/problem/794/E)
--   [Codeforces 1628 D2. Game on Sum (Hard Version)](https://codeforces.com/problemset/problem/1628/D2)
+-   [Codeforces 388 C. Cáo và trò chơi bài](https://codeforces.com/problemset/problem/388/C)
+-   [Codeforces 794 E. Chọn cà rốt](https://codeforces.com/problemset/problem/794/E)
+-   [Codeforces 1628 D2. Trò chơi trên tổng (bản khó)](https://codeforces.com/problemset/problem/1628/D2)
 -   [Luogu P3210 \[HNOI2010\] Trò chơi lấy đá](https://www.luogu.com.cn/problem/P3210)
 
 <span id="trò-chơi-đồng-thời-tổng-bằng-không"></span>

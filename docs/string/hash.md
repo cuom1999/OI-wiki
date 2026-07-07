@@ -259,7 +259,7 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
 ???+ note "[Ví dụ: BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
     Cho một hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
-???+ note "[Ví dụ: Luogu U461211 String Hash (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
+???+ note "[Ví dụ: Luogu U461211 Băm xâu (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"
     Cho $n$ chuỗi, xác định có bao nhiêu chuỗi khác nhau.
 
 ## Cải tiến hash

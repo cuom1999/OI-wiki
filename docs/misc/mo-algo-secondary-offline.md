@@ -16,7 +16,7 @@ Kỹ thuật này được minh họa qua các bài toán cụ thể.
 
 ## Ví dụ
 
-???+ note "[Luogu P5047 \[Ynoi2019 Simulation Contest\] Yuno loves sqrt technology II](https://www.luogu.com.cn/problem/P5047)"
+???+ note "[Luogu P5047 \[Ynoi2019 Simulation Contest\] Yuno yêu công nghệ căn bậc hai II](https://www.luogu.com.cn/problem/P5047)"
     Cho một dãy $a$ độ dài $n$ và $m$ truy vấn, mỗi truy vấn hỏi số cặp nghịch thế trong một đoạn.
 
     Giới hạn dữ liệu: $1 \leq n,m \leq 10^5$, $0 \leq a_i \leq 10^9$.

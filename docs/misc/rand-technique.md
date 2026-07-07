@@ -511,7 +511,7 @@ Kết luận này trông rất tự nhiên, nhưng chứng minh nghiêm ngặt l
 
 Tư tưởng được dùng trong đoạn chứng minh này gọi là "ghép cặp"; có thể hiểu theo nghĩa mặt chữ. Trong ví dụ này, nó thể hiện ở việc gộp hai quá trình ngẫu nhiên vốn độc lập thành một.
 
-#### Ứng dụng: [NERC 2019 Problem G: Game Relics](https://codeforces.com/contest/1267/problem/G)
+#### Ứng dụng: [NERC 2019 Bài G: Di vật trò chơi](https://codeforces.com/contest/1267/problem/G)
 
 ???+ note "Tóm tắt đề bài"
     Có một số vật phẩm, mỗi vật phẩm có giá $c_i$. Cần sở hữu tất cả vật phẩm, và có thể tùy ý thực hiện hai thao tác:
