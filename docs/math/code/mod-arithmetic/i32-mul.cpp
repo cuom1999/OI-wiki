@@ -11,7 +11,7 @@
 
 #if HAS_WORKING_INT128
 // --8<-- [start:barrett]
-// Phép nhân modulo cho int32_t bằng Barrett reduction.
+// Phép nhân modulo cho int32_t bằng rút gọn Barrett.
 class Barrett {
   int32_t m;
   uint64_t r;
@@ -19,7 +19,7 @@ class Barrett {
  public:
   Barrett(int32_t m) : m(m), r((uint64_t)(-m) / m + 1) {}
 
-  // Barrett reduction: a % m.
+  // Rút gọn Barrett: a % m.
   int32_t reduce(int64_t a) const {
     int64_t q = (__int128)a * r >> 64;
     a -= q * m;
@@ -58,7 +58,7 @@ class Montgomery {
     }
   }
 
-  // Montgomery reduction: x * inv(r) % m.
+  // Rút gọn Montgomery: x * inv(r) % m.
   // Cũng dùng để chuyển x từ không gian Montgomery về không gian thường.
   int32_t reduce(int64_t x) {
     uint32_t u = (uint32_t)x * mm;

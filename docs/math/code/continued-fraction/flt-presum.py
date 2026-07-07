@@ -1,5 +1,5 @@
-# PYTHON IS TOO SLOW TO PASS THIS PROBLEM.
-# JUST FOR REFERENCE.
+# PYTHON QUÁ CHẬM ĐỂ QUA ĐƯỢC BÀI NÀY.
+# CHỈ DÙNG ĐỂ THAM KHẢO.
 M = 10**9 + 7
 
 
@@ -18,7 +18,7 @@ def inv(a):
 
 n, q = map(int, input().split())
 ps = [(1, 0, 0, 1)]
-# Get presum.
+# Tính tích tiền tố.
 for a in map(int, input().split()):
     ps.append(mul(ps[-1], (a, 1, 1, 0)))
 for _ in range(q):

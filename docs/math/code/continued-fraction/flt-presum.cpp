@@ -5,7 +5,7 @@
 
 constexpr int M = 1e9 + 7;
 
-// FLTs. Essentially 2x2 matrix.
+// Các FLT, về bản chất là ma trận 2x2.
 struct FracLinearTrans {
   int mat[4];
 
@@ -31,7 +31,7 @@ struct FracLinearTrans {
 int main() {
   int n, q;
   std::cin >> n >> q;
-  // Tính tổng tiền tố của các FLT.
+  // Tính tích tiền tố của các FLT.
   std::vector<FracLinearTrans> ps(1, {1, 0, 0, 1});
   ps.reserve(n + 1);
   for (int i = 1; i <= n; ++i) {

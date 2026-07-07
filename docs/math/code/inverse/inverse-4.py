@@ -1,5 +1,5 @@
 # --8<-- [start:core]
-# Precomputes modular inverses of all integers from 1 to n modulo prime p.
+# Tiền xử lý nghịch đảo modulo của mọi số nguyên từ 1 đến n theo modulo nguyên tố p.
 def precompute_inverses(n, p):
     res = [0] * (n + 1)
     res[1] = 1

@@ -263,10 +263,10 @@ int main() {
   FiniteField::Element e1(&gf, rand() + 1);
   FiniteField::Element e2(&gf, rand() + 1);
   FiniteField::Element e3(&gf, rand() + 1);
-  // Test Frobenius endomorphism.
+  // Kiểm tra tự đồng cấu Frobenius.
   std::cout
       << ((e1 * e2 + e3).pow(p) - e1.pow(p) * e2.pow(p) - e3.pow(p)).idx();
-  // Test inverse.
+  // Kiểm tra nghịch đảo.
   std::cout << ((e1 * e2).inv() - e1.inv() / e2).idx();
   return 0;
 }
