@@ -2,9 +2,9 @@
 
 ## Mở đầu
 
-Heap ghép cặp (pairing heap) là một cấu trúc dữ liệu hỗ trợ các thao tác chèn,
+Đống ghép cặp (pairing heap) là một cấu trúc dữ liệu hỗ trợ các thao tác chèn,
 truy vấn hoặc xóa phần tử nhỏ nhất, hợp nhất, giảm khóa, v.v.
-Đây là một loại heap có thể hợp nhất.
+Đây là một loại đống có thể hợp nhất.
 Nó có ưu điểm là nhanh và có cấu trúc đơn giản,
 nhưng vì độ phức tạp chỉ được bảo đảm theo nghĩa khấu hao qua phân tích thế năng nên không phù hợp để bền vững hóa.
 
@@ -12,18 +12,18 @@ nhưng vì độ phức tạp chỉ được bảo đảm theo nghĩa khấu hao
 
 ## Định nghĩa
 
-Heap ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất heap (như hình dưới),
+Đống ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất đống (như hình dưới),
 tức trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó.
 Bài viết xét min-heap; các phần sau cũng dùng quy ước này.
 
 ![](./images/pairingheap1.jpg)
 
-Thông thường, heap ghép cặp được lưu bằng biểu diễn con - anh em (như hình dưới).
+Thông thường, đống ghép cặp được lưu bằng biểu diễn con - anh em (như hình dưới).
 Tất cả các nút con của một nút tạo thành một danh sách liên kết đơn.
 Mỗi nút lưu con trỏ tới nút con đầu tiên, tức nút đầu của danh sách liên kết,
 và con trỏ tới nút anh em bên phải của nó.
 
-Cách này thuận tiện cho việc cài đặt heap ghép cặp, đồng thời cũng giúp phân tích độ phức tạp dễ hơn.
+Cách này thuận tiện cho việc cài đặt đống ghép cặp, đồng thời cũng giúp phân tích độ phức tạp dễ hơn.
 
 ![](./images/pairingheap2.jpg)
 
@@ -36,17 +36,17 @@ struct Node {
 };
 ```
 
-Từ định nghĩa, so với các cấu trúc heap thường gặp khác,
-heap ghép cặp không duy trì thêm bất kỳ thông tin nào như kích thước cây,
+Từ định nghĩa, so với các cấu trúc đống thường gặp khác,
+đống ghép cặp không duy trì thêm bất kỳ thông tin nào như kích thước cây,
 độ sâu, hạng, v.v.
-Heap nhị phân cũng không duy trì thông tin phụ,
+Đống nhị phân cũng không duy trì thông tin phụ,
 nhưng nó bảo đảm độ phức tạp thao tác bằng cách giữ một cấu trúc cây nhị phân hoàn chỉnh nghiêm ngặt.
-Hơn nữa, bất kỳ cây nào thỏa mãn tính chất heap cũng là một heap ghép cặp hợp lệ.
-Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của heap ghép cặp trong thực tế.
-Để so sánh, hằng số lớn của heap Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
+Hơn nữa, bất kỳ cây nào thỏa mãn tính chất đống cũng là một đống ghép cặp hợp lệ.
+Chính cấu trúc đơn giản nhưng rất linh hoạt này là nền tảng cho hiệu quả tốt của đống ghép cặp trong thực tế.
+Để so sánh, hằng số lớn của đống Fibonacci xuất phát từ việc nó phải duy trì rất nhiều thông tin phụ.
 
-Heap ghép cặp bảo đảm tổng độ phức tạp nhờ một trình tự thao tác được thiết kế cẩn thận.
-Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting Heap).
+Đống ghép cặp bảo đảm tổng độ phức tạp nhờ một trình tự thao tác được thiết kế cẩn thận.
+Bài báo gốc[^ref1] gọi nó là "đống tự điều chỉnh" (self-adjusting heap).
 Ở khía cạnh này, nó khá giống cây Splay
 (trong bài báo gốc gọi là Self Adjusting Binary Tree, tức cây nhị phân tự điều chỉnh).
 
@@ -58,13 +58,13 @@ Bài báo gốc[^ref1] gọi nó là "heap tự điều chỉnh" (Self Adjusting
 
 ### Truy vấn phần tử nhỏ nhất
 
-Theo định nghĩa của heap ghép cặp, trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
+Theo định nghĩa của đống ghép cặp, trọng số của nút gốc luôn là nhỏ nhất, vì vậy chỉ cần trả về nút gốc.
 
 <span id="hợp-nhất"></span>
 
 ### Hợp nhất
 
-Thao tác hợp nhất hai heap ghép cặp rất đơn giản:
+Thao tác hợp nhất hai đống ghép cặp rất đơn giản:
 trước hết chọn nút gốc có khóa nhỏ hơn trong hai nút gốc làm nút gốc mới,
 sau đó chèn nút gốc lớn hơn vào làm con của nó (xem hình dưới).
 
@@ -77,7 +77,7 @@ còn nút ngoài cùng bên trái trở thành con của nút cha gần đây nh
 ???+ note "Cài đặt"
     ```cpp
     Node* meld(Node* x, Node* y) {
-      // Nếu một heap rỗng thì trả về heap còn lại
+      // Nếu một đống rỗng thì trả về đống còn lại
       if (x == nullptr) return y;
       if (y == nullptr) return x;
       if (x->v > y->v) std::swap(x, y);  // Sau khi swap, x có khóa nhỏ hơn, y có khóa lớn hơn.
@@ -93,7 +93,7 @@ còn nút ngoài cùng bên trái trở thành con của nút cha gần đây nh
 ### Chèn
 
 Khi đã có thao tác hợp nhất,
-thao tác chèn chỉ cần xem phần tử mới như một heap ghép cặp mới rồi hợp nhất với heap ban đầu.
+thao tác chèn chỉ cần xem phần tử mới như một đống ghép cặp mới rồi hợp nhất với đống ban đầu.
 
 <span id="xóa-phần-tử-nhỏ-nhất"></span>
 
@@ -107,7 +107,7 @@ Vì vậy, thao tác xóa phần tử nhỏ nhất cần được thiết kế c
 Nút gốc chính là phần tử nhỏ nhất, nên nút cần xóa là nút gốc.
 Sau khi lấy nút gốc đi,
 toàn bộ các con ban đầu của nút gốc tạo thành một rừng.
-Trong khi đó heap ghép cặp phải là một cây,
+Trong khi đó đống ghép cặp phải là một cây,
 vì vậy cần hợp nhất toàn bộ các nút con này theo một thứ tự nào đó.
 
 Một ý tưởng rất tự nhiên là dùng hàm `meld` để lần lượt hợp nhất các con từ trái sang phải.
@@ -117,7 +117,7 @@ nhưng độ phức tạp của một thao tác có thể suy giảm thành $O(n
 Để bảo đảm độ phức tạp khấu hao, cần dùng một phương pháp hợp nhất "hai bước":
 
 1.  Ghép các con thành từng cặp, rồi dùng thao tác `meld` để hợp nhất hai con trong cùng một cặp (xem hình 1 bên dưới).
-2.  Hợp nhất lần lượt các heap mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới; xem hình
+2.  Hợp nhất lần lượt các đống mới sinh ra **từ phải sang trái** (tức theo hướng từ các con cũ đến các con mới; xem hình
     2 bên dưới).
 
 ![](./images/pairingheap4.jpg)
@@ -218,16 +218,16 @@ Thao tác `merges` được sửa thành:
 Bây giờ xét cách cài đặt thao tác `decrease-key`.
 
 Sau khi giảm trọng số của nút `x`,
-cây con gốc `x` vẫn thỏa mãn tính chất heap ghép cặp,
-nhưng giữa cha của `x` và `x` có thể không còn thỏa mãn tính chất heap.
+cây con gốc `x` vẫn thỏa mãn tính chất đống ghép cặp,
+nhưng giữa cha của `x` và `x` có thể không còn thỏa mãn tính chất đống.
 
 Do đó, tách cả cây con có gốc `x` ra.
-Lúc này cả hai cây đều thỏa mãn tính chất heap ghép cặp,
+Lúc này cả hai cây đều thỏa mãn tính chất đống ghép cặp,
 rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tác.
 
 ???+ note "Cài đặt"
     ```cpp
-    // root là gốc của heap, x là nút cần thao tác, v là trọng số mới; khi gọi cần bảo đảm v <= x->v
+    // root là gốc của đống, x là nút cần thao tác, v là trọng số mới; khi gọi cần bảo đảm v <= x->v
     // Giá trị trả về là nút gốc mới
     Node *decrease_key(Node *root, Node *x, LL v) {
       x->v = v;                 // Cập nhật trọng số.
@@ -251,13 +251,13 @@ rồi chỉ cần hợp nhất chúng lại là hoàn thành toàn bộ thao tá
 
 ## Phân tích độ phức tạp
 
-Cấu trúc và cài đặt của heap ghép cặp đều đơn giản, nhưng phân tích độ phức tạp thời gian của nó thì không dễ.
+Cấu trúc và cài đặt của đống ghép cặp đều đơn giản, nhưng phân tích độ phức tạp thời gian của nó thì không dễ.
 
 Bài báo gốc[^ref1] chỉ phân tích được rằng các thao tác `meld` và `delete-min`
 đều có độ phức tạp khấu hao $O(\log n)$,
-nhưng đưa ra phỏng đoán rằng mọi thao tác của nó đều có độ phức tạp giống heap Fibonacci.
+nhưng đưa ra phỏng đoán rằng mọi thao tác của nó đều có độ phức tạp giống đống Fibonacci.
 
-Đáng tiếc là các nghiên cứu sau đó phát hiện rằng với heap ghép cặp không duy trì thông tin phụ,
+Đáng tiếc là các nghiên cứu sau đó phát hiện rằng với đống ghép cặp không duy trì thông tin phụ,
 trong một số chuỗi thao tác cụ thể,
 cận dưới độ phức tạp khấu hao của thao tác `decrease-key`
 ít nhất là $\Omega (\log \log n)$[^ref2].
