@@ -3,17 +3,17 @@
 
 // --8<-- [start:core]
 int n;
-std::vector<int> a, ps;  // length = 1 << n.
+std::vector<int> a, ps;  // độ dài = 1 << n.
 
 void sum_of_subsets() {
   ps = a;
-  // Loop over dimensions.
+  // Duyệt qua các chiều.
   for (int i = 0; i < n; ++i) {
-    // Loop over i-th dimension.
+    // Duyệt theo chiều thứ i.
     for (int st = 0; st < (1 << n); ++st) {
-      // This condition implies that i-th dimension is 1.
+      // Điều kiện này cho biết chiều thứ i bằng 1.
       if ((st >> i) & 1) {
-        // ps[... 1 ...] += ps[... 0 ...]. (i-th dimension)
+        // ps[... 1 ...] += ps[... 0 ...]. (chiều thứ i)
         ps[st] += ps[st ^ (1 << i)];
       }
     }

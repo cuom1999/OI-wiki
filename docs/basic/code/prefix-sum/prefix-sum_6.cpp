@@ -5,13 +5,13 @@
 int n;
 std::vector<int> diff, a;
 
-// Add v to each element in [l, r].
+// Cộng v vào mỗi phần tử trong [l, r].
 void add(int l, int r, int v) {
   diff[l] += v;
   if (r < n) diff[r + 1] -= v;
 }
 
-// Execute this after all modifications and before all queries.
+// Chạy hàm này sau mọi lần sửa đổi và trước mọi truy vấn.
 void prefix_sum() {
   for (int i = 1; i <= n; ++i) a[i] = a[i - 1] + diff[i];
 }
