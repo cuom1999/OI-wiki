@@ -299,4 +299,4 @@ $$
 
 Ở trên, vectơ được định nghĩa là đoạn thẳng có hướng trong không gian. Tuy nhiên, nói chặt chẽ, vectơ không chỉ là đoạn thẳng có hướng. Để đưa ra định nghĩa chặt chẽ hơn về vectơ, trước hết cần định nghĩa [không gian tuyến tính](./vector-space.md); nội dung cụ thể xem phần giới thiệu trong trang [không gian tuyến tính](./vector-space.md).
 
-[^note1]: Xem [Rotation matrix from axis and angle - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)
+[^note1]: Xem [ma trận quay từ trục và góc - Wikipedia](https://en.wikipedia.org/wiki/Rotation_matrix#Rotation_matrix_from_axis_and_angle)

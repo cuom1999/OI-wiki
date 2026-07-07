@@ -401,4 +401,4 @@ Tương đương nghiệm của hệ phương trình tương đương với vi�
 ## Tài liệu tham khảo và chú thích
 
 1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
-2.  [Vector space](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097). *Wikipedia, The Free Encyclopedia*.
+2.  [Không gian vectơ](https://en.wikipedia.org/w/index.php?title=Vector_space&oldid=1108546097). *Wikipedia, Bách khoa toàn thư tự do*.

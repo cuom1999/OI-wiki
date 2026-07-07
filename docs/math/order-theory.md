@@ -299,14 +299,14 @@ Trong các [thuật toán và cấu trúc dữ liệu cần dùng so sánh](http
 <span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Order theory - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
-2.  [Binary Relation - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
-3.  [Order Theory - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
-4.  [Hasse diagram - Wikipedia](https://en.wikipedia.org/wiki/Hasse_diagram)
-5.  [Directed set - Wikipedia](https://en.wikipedia.org/wiki/Directed_set)
-6.  [Order Theory, Lecture Notes by Mark Dean for Decision Theory](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
+1.  [Lý thuyết thứ tự - From Academic Kids](https://academickids.com/encyclopedia/index.php/Order_theory)
+2.  [Quan hệ hai ngôi - Wikipedia](https://en.wikipedia.org/wiki/Binary_relation)
+3.  [Lý thuyết thứ tự - Wikipedia](https://en.wikipedia.org/wiki/Order_theory)
+4.  [Biểu đồ Hasse - Wikipedia](https://en.wikipedia.org/wiki/Hasse_diagram)
+5.  [Tập có hướng - Wikipedia](https://en.wikipedia.org/wiki/Directed_set)
+6.  [Lý thuyết thứ tự, ghi chú bài giảng của Mark Dean cho lý thuyết quyết định](http://www.columbia.edu/~md3405/DT_Order_15.pdf)
 7.  Kai-Cheng Lu, Hua-Ming Lu, [Combinatorics, ấn bản thứ 3](http://www.tup.tsinghua.edu.cn/bookscenter/book_00458101.html), 2006
-8.  [List of Order Theory Topics - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
+8.  [Danh sách chủ đề lý thuyết thứ tự - Wikipedia](https://en.wikipedia.org/wiki/List_of_order_theory_topics)
 9.  [Bàn về ứng dụng của sắp xếp bằng hoán đổi hai phần tử kề và những lưu ý liên quan, bởi ouuan](https://ouuan.github.io/post/%E6%B5%85%E8%B0%88%E9%82%BB%E9%A1%B9%E4%BA%A4%E6%8D%A2%E6%8E%92%E5%BA%8F%E7%9A%84%E5%BA%94%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E9%97%AE%E9%A2%98/)
 10. [One thing you should know about comparators: Strict Weak Ordering](https://codeforces.com/blog/entry/72525)
 11. [Dilworth's theorem - Wikipedia](https://en.wikipedia.org/wiki/Dilworth%27s_theorem)

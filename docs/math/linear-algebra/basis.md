@@ -415,8 +415,8 @@ Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$
 ## Tài liệu tham khảo và chú thích
 
 1.  Qiu Weisheng, *Advanced Algebra (Vol. 2)*. Tsinghua University Press.
-2.  [Basis (linear algebra) - Wikipedia](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29)
-3.  [Vector Basis -- from Wolfram MathWorld](https://mathworld.wolfram.com/VectorBasis.html)
-4.  [Zassenhaus algorithm - Wikipedia](https://en.wikipedia.org/wiki/Zassenhaus_algorithm)
+2.  [Cơ sở (đại số tuyến tính) - Wikipedia](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29)
+3.  [Cơ sở vectơ -- Wolfram MathWorld](https://mathworld.wolfram.com/VectorBasis.html)
+4.  [Thuật toán Zassenhaus - Wikipedia](https://en.wikipedia.org/wiki/Zassenhaus_algorithm)
 
-[^existence_basis]: [Proof that every vector space has a basis](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29#Proof_that_every_vector_space_has_a_basis)
+[^existence_basis]: [Chứng minh mọi không gian vectơ đều có cơ sở](https://en.wikipedia.org/wiki/Basis_%28linear_algebra%29#Proof_that_every_vector_space_has_a_basis)

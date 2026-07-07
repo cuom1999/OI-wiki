@@ -737,10 +737,10 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 ## Liên kết ngoài
 
 -   [Wikipedia tiếng Việt: Cẩm nang biên soạn](https://vi.wikipedia.org/wiki/Wikipedia:C%E1%BA%A9m_nang_bi%C3%AAn_so%E1%BA%A1n)
--   [Wikipedia: Manual of Style/Punctuation](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Punctuation)
--   [Google developer documentation style guide](https://developers.google.com/style)
--   [The Markdown Guide: Basic Syntax](https://www.markdownguide.org/basic-syntax/)
--   [LaTeX2e unofficial reference manual](https://latexref.xyz/)
+-   [Wikipedia: cẩm nang văn phong/dấu câu](https://en.wikipedia.org/wiki/Wikipedia:Manual_of_Style#Punctuation)
+-   [Quy chuẩn phong cách tài liệu dành cho nhà phát triển của Google](https://developers.google.com/style)
+-   [The Markdown Guide: cú pháp cơ bản](https://www.markdownguide.org/basic-syntax/)
+-   [Sổ tay tham khảo không chính thức LaTeX2e](https://latexref.xyz/)
 
 ## Tài liệu tham khảo và chú thích
 
