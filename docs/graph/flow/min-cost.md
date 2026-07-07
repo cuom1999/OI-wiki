@@ -2,46 +2,66 @@ Trước khi đọc bài này, nên xem phần định nghĩa trong bài [Giới
 
 ## Luồng chi phí
 
-Cho một mạng $G=(V,E)$, ngoài giới hạn dung lượng $c(u,v)$, mỗi cạnh còn có chi phí trên một đơn vị luồng $w(u,v)$.
+Cho một mạng $G=(V,E)$.
+Ngoài giới hạn dung lượng $c(u,v)$, mỗi cạnh còn có chi phí trên một đơn vị luồng $w(u,v)$.
 
 Khi luồng trên $(u,v)$ là $f(u,v)$, chi phí cần trả là $f(u,v)\times w(u,v)$.
 
 $w$ cũng thỏa mãn tính phản đối xứng, tức là $w(u,v)=-w(v,u)$.
 
-Khi đó, luồng cực đại có tổng chi phí nhỏ nhất trong mạng được gọi là **luồng cực đại chi phí nhỏ nhất**, tức là tối thiểu hóa $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$ với điều kiện đã tối đa hóa $\sum_{(s,v)\in E}f(s,v)$.
+Khi đó, luồng cực đại có tổng chi phí nhỏ nhất trong mạng được gọi là **luồng cực đại chi phí nhỏ nhất**.
+Nói cách khác, ta cần tối thiểu hóa $\sum_{(u,v)\in E}f(u,v)\times w(u,v)$
+với điều kiện giá trị $\sum_{(s,v)\in E}f(s,v)$ đã được tối đa hóa.
 
 ## Thuật toán SSP
 
-Thuật toán SSP (Successive Shortest Path) là một thuật toán tham lam. Ý tưởng của nó là mỗi lần tìm một đường tăng luồng có chi phí đơn vị nhỏ nhất để tăng luồng, cho đến khi trên đồ thị không còn đường tăng luồng nào.
+Thuật toán SSP (Successive Shortest Path) là một thuật toán tham lam.
+Ở mỗi bước, thuật toán tìm một đường tăng luồng có chi phí đơn vị nhỏ nhất rồi tăng luồng theo đường đó,
+cho đến khi trên đồ thị không còn đường tăng luồng nào.
 
-Nếu trên đồ thị tồn tại chu trình có chi phí đơn vị âm, thuật toán SSP không thể tìm đúng luồng cực đại chi phí nhỏ nhất của mạng. Khi đó cần dùng thuật toán khử chu trình để loại bỏ các chu trình âm trên đồ thị trước.
+Nếu trong đồ thị có chu trình với tổng chi phí âm, thuật toán SSP có thể không tìm đúng luồng cực đại chi phí nhỏ nhất.
+Khi đó cần dùng thuật toán khử chu trình để loại bỏ các chu trình âm trước.
 
 ### Chứng minh
 
 Dùng quy nạp toán học và phản chứng để chứng minh tính đúng đắn của thuật toán SSP.
 
-Gọi chi phí nhỏ nhất khi lượng luồng bằng $i$ là $f_i$. Giả sử mạng ban đầu **không có chu trình âm**, khi đó $f_0=0$.
+Gọi chi phí nhỏ nhất khi lượng luồng bằng $i$ là $f_i$.
+Giả sử mạng ban đầu **không có chu trình âm**, khi đó $f_0=0$.
 
-Giả sử $f_i$ do thuật toán SSP tìm được là chi phí nhỏ nhất. Từ $f_i$, tìm một đường tăng luồng ngắn nhất để suy ra $f_{i+1}$. Khi đó $f_{i+1}-f_i$ chính là độ dài của đường tăng luồng ngắn nhất này.
+Giả sử $f_i$ do thuật toán SSP tìm được là chi phí nhỏ nhất.
+Từ trạng thái ứng với $f_i$, thuật toán tìm một đường tăng luồng ngắn nhất để suy ra $f_{i+1}$.
+Khi đó $f_{i+1}-f_i$ chính là độ dài của đường tăng luồng ngắn nhất này.
 
-Giả sử tồn tại một giá trị $f_{i+1}$ nhỏ hơn, ký hiệu là $f'_{i+1}$. Vì $f_{i+1}-f_i$ đã là đường tăng luồng ngắn nhất, nên $f'_{i+1}-f_i$ tương ứng với một đường tăng luồng đi qua **ít nhất một chu trình âm**.
+Giả sử tồn tại một giá trị nhỏ hơn, ký hiệu là $f'_{i+1}$.
+Vì $f_{i+1}-f_i$ đã là đường tăng luồng ngắn nhất,
+nên phần chênh lệch $f'_{i+1}-f_i$ chỉ có thể đạt được bằng một đường tăng luồng đi qua **ít nhất một chu trình âm**.
 
-Mâu thuẫn nằm ở chỗ: nếu tồn tại một đường tăng luồng đi qua ít nhất một chu trình âm, thì $f_i$ không phải là chi phí nhỏ nhất. Thật vậy, chỉ cần đẩy thêm luồng trên chu trình âm này, có thể làm chi phí ứng với $f_i$ nhỏ hơn mà không làm tăng lượng luồng đi ra từ $s$.
+Điều này mâu thuẫn với giả thiết $f_i$ là chi phí nhỏ nhất.
+Thật vậy, nếu tồn tại một chu trình âm như vậy, chỉ cần đẩy thêm luồng trên chu trình đó
+là có thể giảm chi phí ứng với cùng lượng luồng $i$ mà không làm tăng lượng luồng đi ra từ $s$.
 
 Do đó, thuật toán SSP có thể tìm đúng luồng cực đại chi phí nhỏ nhất của một mạng không có chu trình âm.
 
 ### Độ phức tạp thời gian
 
-Nếu dùng [thuật toán Bellman–Ford](../shortest-path.md#thuật-toán-bellman-ford) để tìm đường đi ngắn nhất, độ phức tạp cho mỗi lần tìm đường tăng luồng là $O(nm)$. Gọi luồng cực đại của mạng là $f$, độ phức tạp xấu nhất là $O(nmf)$. Nói cách khác, thuật toán SSP có [thời gian giả đa thức](../../misc/cc-basic.md#pseudo-polynomial-time).
+Nếu dùng [thuật toán Bellman–Ford](../shortest-path.md#thuật-toán-bellman-ford) để tìm đường đi ngắn nhất,
+độ phức tạp cho mỗi lần tìm đường tăng luồng là $O(nm)$.
+Gọi giá trị luồng cực đại của mạng là $f$, độ phức tạp xấu nhất là $O(nmf)$.
+Nói cách khác, thuật toán SSP có [thời gian giả đa thức](../../misc/cc-basic.md#pseudo-polynomial-time).
 
 ???+ note "Vì sao thuật toán SSP có thời gian giả đa thức?"
-    Độ phức tạp thời gian của thuật toán SSP có cận trên $O(nmf)$. Đây là một đa thức theo miền giá trị, nên là thời gian giả đa thức.
+    Độ phức tạp thời gian của thuật toán SSP có cận trên $O(nmf)$.
+    Đây là một đa thức theo miền giá trị, nên là thời gian giả đa thức.
     
-    Có thể xây dựng một mạng[^note1] với $m=n^2,f=2^{n/2}$ làm cho độ phức tạp thời gian của thuật toán SSP đạt $O(n^3 2^{n/2})$, vì vậy thuật toán SSP không phải là thuật toán thời gian đa thức.
+    Có thể xây dựng một mạng[^note1] với $m=n^2,f=2^{n/2}$,
+    làm cho độ phức tạp thời gian của thuật toán SSP đạt $O(n^3 2^{n/2})$.
+    Vì vậy thuật toán SSP không phải là thuật toán thời gian đa thức.
 
 ### Cài đặt
 
-Chỉ cần thay quá trình tìm đường tăng luồng trong thuật toán EK hoặc thuật toán Dinic bằng việc dùng thuật toán đường đi ngắn nhất để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất.
+Chỉ cần thay quá trình tìm đường tăng luồng trong thuật toán EK hoặc thuật toán Dinic
+bằng việc dùng thuật toán đường đi ngắn nhất để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất.
 
 ??? note "Cài đặt dựa trên thuật toán EK"
     ```cpp
@@ -170,23 +190,48 @@ Chỉ cần thay quá trình tìm đường tăng luồng trong thuật toán EK
     }
     ```
 
-### Thuật toán Primal-Dual nguyên thủy-đối ngẫu
+### Thuật toán Primal-Dual
 
-Dùng Bellman–Ford để tìm đường đi ngắn nhất có độ phức tạp thời gian $O(nm)$; cả trên đồ thị thưa lẫn đồ thị dày, nó đều kém thuật toán Dijkstra[^note2]. Tuy nhiên, trong mạng có thể tồn tại cạnh có chi phí đơn vị âm, nên không thể dùng trực tiếp thuật toán Dijkstra.
+Thuật toán Primal-Dual, hay thuật toán nguyên thủy-đối ngẫu,
+dùng thế năng để biến đổi trọng số cạnh trước khi chạy Dijkstra.
+Nếu dùng Bellman–Ford để tìm đường đi ngắn nhất thì mỗi lượt cần $O(nm)$ thời gian;
+cả trên đồ thị thưa lẫn đồ thị dày, cận này đều kém Dijkstra[^note2].
+Tuy nhiên, trong mạng có thể tồn tại cạnh có chi phí đơn vị âm,
+nên không thể dùng trực tiếp thuật toán Dijkstra.
 
-Ý tưởng của thuật toán Primal-Dual nguyên thủy-đối ngẫu tương tự [thuật toán Johnson tìm đường đi ngắn nhất mọi cặp](../shortest-path.md#thuật-toán-johnson-tìm-đường-đi-ngắn-nhất-mọi-cặp): đặt một thế năng cho mỗi đỉnh để biến chi phí của mọi cạnh trong mạng (sau đây gọi tắt là trọng số cạnh) thành giá trị không âm, từ đó có thể áp dụng thuật toán Dijkstra để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất trong mạng.
+Ý tưởng của thuật toán này tương tự
+[thuật toán Johnson tìm đường đi ngắn nhất mọi cặp](../shortest-path.md#thuật-toán-johnson-tìm-đường-đi-ngắn-nhất-mọi-cặp):
+đặt một thế năng cho mỗi đỉnh để biến chi phí của mọi cạnh trong mạng thành giá trị không âm.
+Sau phép biến đổi đó, ta có thể dùng Dijkstra để tìm đường tăng luồng có chi phí đơn vị nhỏ nhất.
 
-Trước hết chạy một lần thuật toán đường đi ngắn nhất để tìm khoảng cách ngắn nhất từ nguồn đến mỗi đỉnh, cũng chính là thế năng ban đầu $h_i$ của đỉnh đó. Tiếp theo, giống thuật toán Johnson, với một cạnh từ $u$ đến $v$ có chi phí đơn vị $w$, đặt lại trọng số cạnh thành $w+h_u-h_v$.
+Trước hết chạy một lần thuật toán đường đi ngắn nhất để tìm khoảng cách ngắn nhất từ nguồn đến mỗi đỉnh;
+giá trị đó được dùng làm thế năng ban đầu $h_i$ của đỉnh $i$.
+Tiếp theo, giống thuật toán Johnson, với một cạnh từ $u$ đến $v$ có chi phí đơn vị $w$,
+đặt lại trọng số cạnh thành $w+h_u-h_v$.
 
-Sau khi đặt thế năng như vậy, đường đi ngắn nhất trên mạng mới tương ứng với đường đi ngắn nhất trên mạng gốc. Chứng minh đã được đưa ra khi giới thiệu thuật toán Johnson, nên không trình bày lại trong phần này.
+Sau khi đặt thế năng như vậy, đường đi ngắn nhất trên mạng mới tương ứng với đường đi ngắn nhất trên mạng gốc.
+Chứng minh đã được đưa ra khi giới thiệu thuật toán Johnson, nên không trình bày lại trong phần này.
 
-Khác với bài toán đường đi ngắn nhất thông thường, sau mỗi lần tăng luồng, hình dạng của đồ thị sẽ thay đổi. Trong trường hợp này, thế năng của các đỉnh cần được cập nhật.
+Khác với bài toán đường đi ngắn nhất thông thường, sau mỗi lần tăng luồng, đồ thị dư sẽ thay đổi.
+Vì vậy thế năng của các đỉnh cũng cần được cập nhật.
 
-Cập nhật như thế nào? Trước hết nêu kết luận: giả sử sau khi tăng luồng, khoảng cách ngắn nhất từ nguồn đến đỉnh số $i$ là $d'_i$ (khoảng cách này được tính sau khi đã đặt lại trọng số cho từng cạnh), chỉ cần cộng $d'_i$ vào $h_i$. Dưới đây chứng minh rằng sau cách cập nhật trọng số cạnh này, trọng số của mọi cạnh trên đồ thị đều không âm.
+Cách cập nhật như sau.
+Giả sử sau khi tăng luồng, khoảng cách ngắn nhất từ nguồn đến đỉnh $i$ là $d'_i$;
+khoảng cách này được tính theo trọng số đã biến đổi.
+Khi đó chỉ cần cộng $d'_i$ vào $h_i$.
+Dưới đây chứng minh rằng sau cách cập nhật này, trọng số của mọi cạnh trên đồ thị đều không âm.
 
-Sau một lượt tăng luồng, do một số cạnh $(i,j)$ nằm trên đường tăng luồng, mạng dư sẽ xuất hiện tương ứng một số cạnh $(j,i)$, và thỏa mãn $d'_i+(w(i,j)+h_i-h_j)=d'_j$ (nếu không, cạnh $(i,j)$ đã không nằm trên đường tăng luồng). Biến đổi nhẹ sẽ được $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$. Vì vậy trọng số của các cạnh mới thêm là không âm.
+Sau một lượt tăng luồng, với mỗi cạnh $(i,j)$ nằm trên đường tăng luồng,
+mạng dư sẽ xuất hiện cạnh ngược $(j,i)$.
+Vì $(i,j)$ nằm trên đường ngắn nhất nên
+$d'_i+(w(i,j)+h_i-h_j)=d'_j$.
+Biến đổi công thức này sẽ được $w(j,i)+(h_j+d'_j)-(h_i+d'_i)=0$.
+Vì vậy trọng số của các cạnh mới thêm là không âm.
 
-Còn với các cạnh đã có, trước khi tăng luồng có $d'_i+(w(i,j)+h_i-h_j) - d'_j \geq 0$, do đó $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$. Tức là dùng $h_i+d'_i$ làm thế năng mới sẽ không khiến trọng số của cạnh $(i,j)$ trở thành âm.
+Còn với các cạnh đã có, trước khi tăng luồng ta có
+$d'_i+(w(i,j)+h_i-h_j)-d'_j \geq 0$,
+do đó $w(i,j)+(d'_i+h_i)-(d'_j+h_j) \geq 0$.
+Nói cách khác, dùng $h_i+d'_i$ làm thế năng mới sẽ không khiến trọng số của cạnh $(i,j)$ trở thành âm.
 
 Tóm lại, sau khi tăng luồng, trọng số của mọi cạnh đều không âm, nên có thể dùng thuật toán Dijkstra để tìm đúng đường đi ngắn nhất trên đồ thị.
 
