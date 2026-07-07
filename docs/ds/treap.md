@@ -678,82 +678,157 @@ int qnex(int val) {
 
 Chuyển một dãy có $n$ nút $\{a_n\}$ thành một Treap.
 
-Có thể chèn lần lượt từng nút trong $n$ nút này một cách trực tiếp. Mỗi lần chèn một nút có giá trị $v$, tách toàn bộ Treap theo giá trị thành hai phần: giá trị nhỏ hơn hoặc bằng $v$ và giá trị lớn hơn $v$; sau đó tạo một nút mới có giá trị $v$, rồi hợp nhất hai phần và nút mới theo thứ tự tăng dần. Độ phức tạp mỗi lần chèn là $O(\log n)$, tổng độ phức tạp là $O(n\log n)$.
+Có thể chèn lần lượt từng nút trong $n$ nút này một cách trực tiếp.
+Mỗi lần chèn một nút có giá trị $v$, tách toàn bộ Treap theo giá trị thành hai phần:
+giá trị nhỏ hơn hoặc bằng $v$ và giá trị lớn hơn $v$.
+Sau đó tạo một nút mới có giá trị $v$,
+rồi hợp nhất hai phần và nút mới theo thứ tự tăng dần.
+Độ phức tạp mỗi lần chèn là $O(\log n)$,
+tổng độ phức tạp là $O(n\log n)$.
 
-Trong một số bài, có thể có nhiều thao tác chèn một đoạn dãy đã sắp xếp; lúc này cần hoàn thành thao tác xây cây trong độ phức tạp $O(n)$.
+Trong một số bài, có thể có nhiều thao tác chèn một đoạn dãy đã sắp xếp;
+lúc này cần hoàn thành thao tác xây cây trong độ phức tạp $O(n)$.
 
-Cách 1: Trong quá trình đệ quy xây cây, mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn, và gán cho mỗi nút một độ ưu tiên phù hợp để cây mới thỏa mãn tính chất heap. Cách này bảo đảm chiều cao cây là $O(\log n)$.
+Cách 1: Trong quá trình đệ quy xây cây,
+mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn,
+và gán cho mỗi nút một độ ưu tiên phù hợp để cây mới thỏa mãn tính chất heap.
+Cách này bảo đảm chiều cao cây là $O(\log n)$.
 
-Cách 2: Trong quá trình đệ quy xây cây, mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn, sau đó gán cho mỗi nút một độ ưu tiên ngẫu nhiên. Cách này bảo đảm chiều cao cây là $O(\log n)$, nhưng không bảo đảm nó thỏa mãn tính chất heap. Cách này vẫn dùng được, vì độ ưu tiên của Treap không xoay dùng để làm thao tác `merge` ngẫu nhiên hơn, chứ không phải để bảo đảm chiều cao cây.
+Cách 2: Trong quá trình đệ quy xây cây,
+mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn,
+sau đó gán cho mỗi nút một độ ưu tiên ngẫu nhiên.
+Cách này bảo đảm chiều cao cây là $O(\log n)$,
+nhưng không bảo đảm nó thỏa mãn tính chất heap.
+Cách này vẫn dùng được,
+vì độ ưu tiên của Treap không xoay dùng để làm thao tác `merge` ngẫu nhiên hơn,
+chứ không phải để bảo đảm chiều cao cây.
 
-Cách 3: Nhận thấy Treap là cây Descartes, nên chỉ cần dùng phương pháp xây cây $O(n)$ của cây Descartes, dùng ngăn xếp đơn điệu để duy trì chuỗi phải.
+Cách 3: Nhận thấy Treap là cây Descartes,
+nên chỉ cần dùng phương pháp xây cây $O(n)$ của cây Descartes,
+dùng ngăn xếp đơn điệu để duy trì chuỗi phải.
 
 ### Thao tác đoạn của Treap không xoay
 
 #### Xây cây
 
-Một lợi thế lớn của Treap không xoay so với Treap xoay là có thể cài đặt nhiều loại thao tác trên đoạn. Phần dưới lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng nghệ thuật làm ví dụ để giới thiệu thao tác đoạn của Treap.
+Một lợi thế lớn của Treap không xoay so với Treap xoay là có thể cài đặt nhiều loại thao tác trên đoạn.
+Phần dưới lấy [bài mẫu](https://loj.ac/problem/105) về cây cân bằng văn nghệ
+làm ví dụ để giới thiệu thao tác đoạn của Treap.
 
 > Cần viết một cấu trúc dữ liệu (có thể tham khảo tiêu đề bài) để duy trì một dãy có thứ tự.
 >
-> Cần cung cấp thao tác sau: đảo ngược một đoạn. Ví dụ dãy có thứ tự ban đầu là $5\ 4\ 3\ 2\ 1$, nếu đoạn đảo ngược là $[2,4]$, kết quả là $5\ 2\ 3\ 4\ 1$.
+> Cần cung cấp thao tác sau: đảo ngược một đoạn.
+> Ví dụ dãy có thứ tự ban đầu là $5\ 4\ 3\ 2\ 1$,
+> nếu đoạn đảo ngược là $[2,4]$, kết quả là $5\ 2\ 3\ 4\ 1$.
 > Với $100\%$ dữ liệu, $1 \le n, m \le 10^5$, trong đó $n$ là độ dài dãy ban đầu và $m$ là số lần đảo ngược.
 
-Trong bài này, cần cài đặt thao tác đảo ngược đoạn. Trước hết cần xét cách xây cây, cây được xây ra cần biểu diễn đoạn ban đầu.
+Trong bài này, cần cài đặt thao tác đảo ngược đoạn.
+Trước hết cần xét cách xây cây: cây được xây ra cần biểu diễn đúng dãy ban đầu.
 
-Chỉ cần chèn lần lượt các chỉ số của đoạn vào Treap. Khi duyệt trung thứ tự (duyệt cây con trái trước, sau đó đến nút hiện tại, cuối cùng là cây con phải), kết quả thu được chính là đoạn này[^ref3].
+Chỉ cần chèn lần lượt các chỉ số của đoạn vào Treap.
+Khi duyệt trung thứ tự
+(duyệt cây con trái trước, sau đó đến nút hiện tại, cuối cùng là cây con phải),
+kết quả thu được chính là đoạn này[^ref3].
 
-Trong cây tìm kiếm nhị phân mộc mạc, nếu chèn nút theo thứ tự tăng dần, cây được tạo ra là một chuỗi dài; khi duyệt trung thứ tự, kết quả chính là đoạn này.
+Trong cây tìm kiếm nhị phân mộc mạc,
+nếu chèn nút theo thứ tự tăng dần, cây được tạo ra là một chuỗi dài;
+khi duyệt trung thứ tự, kết quả chính là đoạn này.
 
 <div align=center>
   <img style="width: 50%; " src="../images/treap-search-tree-chain.svg" >
 </div>
 
-Như hình trên, nếu chèn các nút vào cây tìm kiếm mộc mạc theo thứ tự $1\ 2\ 3\ 4\ 5$, khi duyệt trung thứ tự cũng thu được $1\ 2\ 3\ 4\ 5$.
+Như hình trên, nếu chèn các nút vào cây tìm kiếm mộc mạc theo thứ tự $1\ 2\ 3\ 4\ 5$,
+khi duyệt trung thứ tự cũng thu được $1\ 2\ 3\ 4\ 5$.
 
-Nhưng trong Treap, sau khi chèn các nút theo thứ tự tăng dần, thao tác hợp nhất còn điều chỉnh cấu trúc cây dựa theo $\textit{priority}$. Trong trường hợp này, làm sao bảo đảm duyệt trung thứ tự nhất định xuất đúng?
+Nhưng trong Treap, sau khi chèn các nút theo thứ tự tăng dần,
+thao tác hợp nhất còn điều chỉnh cấu trúc cây dựa theo $\textit{priority}$.
+Trong trường hợp này, làm sao bảo đảm duyệt trung thứ tự vẫn xuất ra đúng dãy?
 
 Có thể tham khảo [phương pháp xây cây bằng ngăn xếp đơn điệu của cây Descartes](./cartesian-tree.md) để hiểu vấn đề này.
 
 Giả sử nút mới chèn là $\textit{u}$.
 
-Trước hết, vì chèn nút theo thứ tự tăng dần, mỗi nút mới chèn sẽ được nối vào chuỗi phải của Treap (tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
+Trước hết, vì chèn nút theo thứ tự tăng dần,
+mỗi nút mới chèn sẽ được nối vào chuỗi phải của Treap
+(tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
 
-Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (min-heap). Có thể tìm nút đầu tiên trên chuỗi phải có $\textit{priority}$ lớn hơn $\textit{u}$, gọi nút này là $\textit{v}$, và thay nút này bằng $\textit{u}$.
+Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (min-heap).
+Có thể tìm nút đầu tiên trên chuỗi phải có $\textit{priority}$ lớn hơn $\textit{u}$,
+gọi nút này là $\textit{v}$, rồi thay nút này bằng $\textit{u}$.
 
-Vì $\textit{u}$ lớn hơn tất cả nút khác trong cây, cần đặt $\textit{v}$ và cây con của nó làm cây con trái của $\textit{u}$. Đồng thời lúc này $\textit{u}$ không có cây con phải.
+Vì $\textit{u}$ lớn hơn tất cả nút khác trong cây,
+cần đặt $\textit{v}$ và cây con của nó làm cây con trái của $\textit{u}$.
+Đồng thời lúc này $\textit{u}$ không có cây con phải.
 
-Khi duyệt trung thứ tự, $\textit{u}$ là nút cuối cùng được duyệt (vì $\textit{u}$ là nút cuối trên chuỗi phải, mà trong duyệt trung thứ tự, cây con phải được duyệt cuối cùng).
+Khi duyệt trung thứ tự, $\textit{u}$ là nút cuối cùng được duyệt
+(vì $\textit{u}$ là nút cuối trên chuỗi phải,
+mà trong duyệt trung thứ tự, cây con phải được duyệt cuối cùng).
 
-Hình dưới đây cho thấy sự thay đổi khi chèn nút số $5$ trong quá trình chèn các nút $1 \sim 5$ vào Treap theo thứ tự tăng dần. Có thể dùng hình này để hiểu tốt hơn quá trình chèn tăng dần.
+Hình dưới đây cho thấy sự thay đổi khi chèn nút số $5$
+trong quá trình chèn các nút $1 \sim 5$ vào Treap theo thứ tự tăng dần.
+Có thể dùng hình này để hiểu tốt hơn quá trình chèn tăng dần.
 
 ![Chèn nút](./images/treap-none-rot-seg-build.svg)
 
 #### Đảo ngược đoạn
 
-Khi đảo ngược đoạn $[l, r]$, ý tưởng cơ bản là tách cây thành ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$, rồi đảo ngược đoạn giữa $[l, r]$[^ref3].
+Khi đảo ngược đoạn $[l, r]$,
+ý tưởng cơ bản là tách cây thành ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$,
+rồi đảo ngược đoạn giữa $[l, r]$[^ref3].
 
-Thao tác đảo ngược cụ thể là hoán đổi vị trí mọi cặp nút con trái và con phải trong cây con của đoạn. Hình dưới đây minh họa Treap sau khi đảo ngược các đoạn $[3, 4]$ và $[3, 5]$ của Treap ở hình trên.
+Thao tác đảo ngược cụ thể là hoán đổi vị trí mọi cặp nút con trái và con phải trong cây con của đoạn.
+Hình dưới đây minh họa Treap sau khi đảo ngược các đoạn $[3, 4]$ và $[3, 5]$ của Treap ở hình trên.
 
 ![Đảo ngược đoạn](./images/treap-none-rot-seg-flip-ex.svg)
 
-Lưu ý nếu đảo ngược theo cách này, mỗi lần đảo ngược đoạn $[l, r]$ sẽ có $r - l$ nút bị hoán đổi vị trí. Thao tác thường xuyên như vậy không đáp ứng được giới hạn dữ liệu $10^5$; độ phức tạp một lần đảo ngược $O(n \times \log_2 n)$ kém hiệu quả hơn cả làm trực tiếp (vì ngoài thời gian tuyến tính để hoán đổi nút, còn cần tốn $O(\log_2 n)$ để tìm các nút cần hoán đổi trong cây).
+Lưu ý nếu đảo ngược theo cách này,
+mỗi lần đảo ngược đoạn $[l, r]$ sẽ có $r - l$ nút bị hoán đổi vị trí.
+Thao tác thường xuyên như vậy không đáp ứng được giới hạn dữ liệu $10^5$;
+độ phức tạp một lần đảo ngược $O(n \log n)$ kém hiệu quả hơn cả làm trực tiếp
+(vì ngoài thời gian tuyến tính để hoán đổi nút,
+còn cần tốn $O(\log n)$ để tìm các nút cần hoán đổi trong cây).
 
-Quan sát lại yêu cầu bài toán, vì chỉ cần xuất đoạn cuối cùng sau tất cả thao tác, không cần mỗi lần đều hoán đổi thật. Do đó có thể dùng đánh dấu lười thường gặp trong cây phân đoạn để tối ưu độ phức tạp. Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha, biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
+Quan sát lại yêu cầu bài toán:
+vì chỉ cần xuất dãy cuối cùng sau tất cả thao tác,
+không cần mỗi lần đều hoán đổi thật.
+Do đó có thể dùng đánh dấu lười thường gặp trong cây phân đoạn để tối ưu độ phức tạp.
+Khi hoán đổi, chỉ cần gán đánh dấu trên nút cha,
+biểu thị mọi cặp nút con trái/phải dưới cây con này đều cần hoán đổi.
 
-Trong cây phân đoạn, đánh dấu lười thường được đẩy xuống khi cập nhật và truy vấn. Lý do là khi cập nhật/truy vấn, phạm vi cần cập nhật/truy vấn không nhất thiết trùng với phạm vi mà đánh dấu lười đại diện, nên phải đẩy đánh dấu xuống trước để bảo đảm giá trị tìm được và giá trị sau cập nhật là đúng.
+Trong cây phân đoạn, đánh dấu lười thường được đẩy xuống khi cập nhật và truy vấn.
+Lý do là khi cập nhật/truy vấn,
+phạm vi cần cập nhật/truy vấn không nhất thiết trùng với phạm vi mà đánh dấu lười đại diện,
+nên phải đẩy đánh dấu xuống trước để bảo đảm giá trị tìm được và giá trị sau cập nhật là đúng.
 
-Trong Treap không xoay cũng vậy. Khi thao tác cụ thể, tách Treap thành ba cây như đã nói ở trên, sau đó gán đánh dấu lười cho cây ở giữa rồi hợp nhất ba cây này. Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà đánh dấu lười đại diện, cần đẩy đánh dấu xuống khi tách. Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút và tập nút mà đánh dấu lười của nó đại diện, nên trước khi hợp nhất cũng cần đẩy đánh dấu lười xuống.
+Trong Treap không xoay cũng vậy.
+Khi thao tác cụ thể, tách Treap thành ba cây như đã nói ở trên,
+sau đó gán đánh dấu lười cho cây ở giữa rồi hợp nhất ba cây này.
+Vì đoạn cần đảo ngược không nhất thiết trùng với đoạn mà đánh dấu lười đại diện,
+cần đẩy đánh dấu xuống khi tách.
+Đồng thời, thao tác tách và hợp nhất làm thay đổi mỗi nút
+và tập nút mà đánh dấu lười của nó đại diện,
+nên trước khi hợp nhất cũng cần đẩy đánh dấu lười xuống.
 
-Nói cách khác, khi cấu trúc cây thay đổi, trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút, nên đẩy đánh dấu xuống, không phải sau đó. Vì đánh dấu lười cần đẩy xuống các nút con; nếu đã thay đổi thông tin con trái/con phải mà đánh dấu lười chưa được đẩy xuống, đánh dấu lười sẽ mất đối tượng để đẩy xuống.[^ref4]
+Nói cách khác, khi cấu trúc cây thay đổi,
+trước thời điểm một thao tác tách hoặc hợp nhất cần thay đổi thông tin con trái/con phải của một nút,
+nên đẩy đánh dấu xuống, không phải sau đó.
+Vì đánh dấu lười cần đẩy xuống các nút con;
+nếu đã thay đổi thông tin con trái/con phải mà đánh dấu lười chưa được đẩy xuống,
+đánh dấu lười sẽ mất đối tượng để đẩy xuống.[^ref4]
 
 Dưới đây là phần giải thích mã, mã tham khảo từ [^ref3].
 
-Vì phần lớn thao tác trong thao tác đoạn giống Treap không xoay thông thường, phần này chỉ giải thích những điểm khác với Treap không xoay thông thường.
+Vì phần lớn thao tác trong thao tác đoạn giống Treap không xoay thông thường,
+phần này chỉ giải thích những điểm khác biệt.
 
 #### Đẩy đánh dấu xuống
 
-Cần lưu ý đánh dấu lười trong phần này biểu thị cần hoán đổi vị trí mọi cặp nút con trong cây này. Vì vậy nếu nút con của nút hiện tại cũng có đánh dấu lười, hai lần đảo ngược sẽ triệt tiêu nhau. Nếu nút con không cần đảo ngược, đánh dấu lười này cần tiếp tục được đẩy xuống nút con.
+Cần lưu ý đánh dấu lười trong phần này biểu thị cần hoán đổi vị trí mọi cặp nút con trong cây này.
+Vì vậy nếu nút con của nút hiện tại cũng có đánh dấu lười,
+hai lần đảo ngược sẽ triệt tiêu nhau.
+Nếu nút con không cần đảo ngược,
+đánh dấu lười này cần tiếp tục được đẩy xuống nút con.
 
 ```cpp
 // pushdown là hàm thành viên của lớp Node, trong đó to_rev là đánh dấu lười
@@ -771,11 +846,17 @@ void check_tag() {
 
 #### Tách
 
-Lưu ý trong bài này, do thao tác đảo ngược, $\textit{val}$ trong Treap sẽ không thỏa mãn tính chất cây tìm kiếm nhị phân (xem hình ở phần đảo ngược đoạn), nên không thể dựa vào $\textit{val}$ để xác định nên đệ quy sang cây con trái hay phải.
+Lưu ý trong bài này, do thao tác đảo ngược,
+$\textit{val}$ trong Treap sẽ không thỏa mãn tính chất cây tìm kiếm nhị phân
+(xem hình ở phần đảo ngược đoạn),
+nên không thể dựa vào $\textit{val}$ để xác định nên đệ quy sang cây con trái hay phải.
 
-Vì vậy, thao tác tách trong phần này giống tách theo hạng trong Treap không xoay thông thường hơn: dựa vào kích thước cây hiện tại để quyết định đệ quy sang trái hay phải. Nói cách khác, vị trí ban đầu của nút trong cây là căn cứ để xác định nhánh đệ quy.
+Vì vậy, thao tác tách trong phần này giống tách theo hạng trong Treap không xoay thông thường hơn:
+dựa vào kích thước cây hiện tại để quyết định đệ quy sang trái hay phải.
+Nói cách khác, vị trí ban đầu của nút trong cây là căn cứ để xác định nhánh đệ quy.
 
-Mỗi nút trong Treap thứ nhất trả về có hạng nhỏ hơn hoặc bằng $\textit{sz}$, còn mỗi nút trong Treap thứ hai có hạng lớn hơn $\textit{sz}$.
+Mỗi nút trong Treap thứ nhất trả về có hạng nhỏ hơn hoặc bằng $\textit{sz}$,
+còn mỗi nút trong Treap thứ hai có hạng lớn hơn $\textit{sz}$.
 
 ```cpp
 #define siz(_) (_ == nullptr ? 0 : _->siz)
@@ -827,7 +908,9 @@ Node *merge(Node *sm, Node *bg) {
 
 #### Đảo ngược đoạn
 
-Giống như đã giới thiệu ở trên, tách ra ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$, sau đó gán tag cho đoạn giữa rồi hợp nhất lại.
+Giống như đã giới thiệu ở trên,
+tách ra ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$,
+sau đó gán tag cho đoạn giữa rồi hợp nhất lại.
 
 ```cpp
 void seg_rev(int l, int r) {
@@ -1273,7 +1356,7 @@ Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cà
 #### Cài đặt bằng con trỏ
 
 ??? note "Mã đầy đủ"
-    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng nghệ thuật.
+    Dưới đây là phiên bản đầy đủ của mã đã giải thích ở trên, là mã mẫu cho bài cây cân bằng văn nghệ.
 
     ```cpp
 
@@ -1407,7 +1490,7 @@ Dưới đây là mã mẫu bzoj cho bài cây cân bằng thông thường, cà
 
 [Cây cân bằng thông thường](https://loj.ac/problem/104)
 
-[Cây cân bằng nghệ thuật (Splay)](https://loj.ac/problem/105)
+[Cây cân bằng văn nghệ (Splay)](https://loj.ac/problem/105)
 
 [ZJOI2006 - Giá sách](https://www.luogu.com.cn/problem/P2596)
 
