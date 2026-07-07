@@ -275,7 +275,7 @@ nhận tất cả phần tử.
 
 ## Đối tượng hàm
 
-Đối tượng có thể được gọi bằng toán tử gọi hàm `operator()` được gọi là đối tượng
+Đối tượng hỗ trợ toán tử gọi hàm `operator()` được gọi là đối tượng
 hàm.
 
 Đây không phải một tính năng cú pháp riêng của ngôn ngữ, mà là một

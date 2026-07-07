@@ -568,7 +568,7 @@ So với HTTP(S), dùng ssh để kết nối kho từ xa gọn và an toàn hơ
 Trước khi dùng ssh để kết nối kho từ xa, cần thêm khóa ssh ở cục bộ. Sau đó cần
 tải **khóa công khai** của khóa ssh đã thêm ở cục bộ lên tài khoản kho từ xa.
 
-Xét việc bài này chủ yếu là hướng dẫn dùng Git cho người đóng góp **OI Wiki**, phần này trực tiếp đưa [hướng dẫn do GitHub Docs cung cấp](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để người đọc tham khảo.
+Vì bài này chủ yếu hướng dẫn người đóng góp **OI Wiki** dùng Git, phần này dẫn lại [hướng dẫn của GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để người đọc tham khảo.
 
 Sau khi hoàn thành các bước trên, có thể kết nối đến kho từ xa bằng ssh. Dưới đây là một lệnh clone kho **OI Wiki** thông qua ssh:
 

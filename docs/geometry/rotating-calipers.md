@@ -7,7 +7,7 @@ Thuật toán thước kẹp quay, tiếng Anh là Rotating Calipers, dựa trê
 ???+ note "Tên gọi của thuật toán"
     Tên tiếng Việt trong bản dịch này là "thước kẹp quay". Có thể hiểu như sau: ứng với cạnh đang được liệt kê, từ mỗi điểm đang duy trì, vẽ một đường thẳng song song hoặc vuông góc với cạnh đó. Để bảo đảm tính tối ưu đối với cạnh hiện tại, các đường thẳng này cần vừa kẹp sát bao lồi. Các cạnh thường được liệt kê theo thứ tự quay về một hướng, nên toàn bộ quá trình giống như một chiếc thước kẹp đang quay quanh bao lồi.
     
-    Tên tiếng Anh "rotating calipers" được hiểu trực tiếp là "thước kẹp quay", trong đó "calipers" là thước kẹp. Bài báo đầu tiên đề xuất thuật ngữ này[^ref1] có ý tưởng dùng một chiếc thước kẹp có thể điều chỉnh động để kẹp bao lồi, rồi quay chiếc thước kẹp đó quanh bao lồi.
+    Tên tiếng Anh "rotating calipers" có thể dịch sát là "thước kẹp quay", trong đó "calipers" là thước kẹp. Bài báo đầu tiên đề xuất thuật ngữ này[^ref1] có ý tưởng dùng một chiếc thước kẹp có thể điều chỉnh động để kẹp bao lồi, rồi quay chiếc thước kẹp đó quanh bao lồi.
 
 ## Tìm đường kính bao lồi
 

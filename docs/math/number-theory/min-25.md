@@ -132,7 +132,7 @@ Sau khi xác định rõ các điểm trên, chỉ cần lần lượt cài đ�
 ??? note "Lời giải"
     Để tính tổng tiền tố của $\varphi(i)$, trước hết dễ biết $f(p) = p - 1$. Với hạng tử bậc nhất $(p)$ của $f(p)$, có $g(p) = p, G_{0}(n) = \sum_{i = 2}^{n} g(i) = \frac{(n + 2) (n - 1)}{2}$; với hạng tử hằng $(-1)$, có $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$. Sàng hai lần rồi cộng lại là thu được mọi giá trị cần thiết $O(\sqrt{n})$ của $F_{\mathrm{prime}}$.
 
-    Để tính tổng tiền tố của $\mu(i)$, dễ biết $f(p) = -1$. Khi đó $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$. Sàng trực tiếp là thu được mọi giá trị cần thiết $O(\sqrt{n})$ của $F_{\mathrm{prime}}$.
+    Để tính tổng tiền tố của $\mu(i)$, dễ biết $f(p) = -1$. Khi đó $g(p) = -1, G_{0}(n) = \sum_{i = 2}^{n} g(i) = -n + 1$. Chỉ cần sàng trực tiếp là thu được mọi giá trị $O(\sqrt{n})$ cần thiết của $F_{\mathrm{prime}}$.
 
 ???+ example "[LOJ 6053: Hàm đơn giản](https://loj.ac/p/6053)"
     Cho $f(n)$:

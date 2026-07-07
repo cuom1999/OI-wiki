@@ -145,7 +145,7 @@ $$
 \end{aligned}
 $$
 
-Các thao tác sau có thể biến mọi bài toán quy hoạch tuyến tính một cách tương đương về một trong sáu dạng trên:
+Các thao tác sau có thể biến đổi tương đương mọi bài toán quy hoạch tuyến tính về một trong sáu dạng trên:
 
 1.  Thêm dấu âm, tức thay $c$ bằng $-c$, để chuyển đổi qua lại giữa bài toán tối đa hóa và tối thiểu hóa.
 2.  Thêm dấu âm, tức thay $a_j^Tx \lesseqqgtr b_j$ bằng $-a_j^Tx \gtreqqless -b_j$, để đổi chiều bất đẳng thức, hoặc để biến hằng số vế phải của ràng buộc đẳng thức thành số không âm.

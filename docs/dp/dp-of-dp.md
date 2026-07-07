@@ -53,7 +53,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
 ??? note "Lời giải"
     Trước hết thường nghĩ tới một DP: đặt $f_{i,j}$ là số phương án sao cho trong $T$ độ dài $i$, độ dài dãy con chung dài nhất với $S$ là $j$. Nhưng trạng thái này không thể chuyển được. Vấn đề chính là không biết dãy con chung dài nhất đó tương ứng với những ký tự nào.
     
-    Xét quá trình tìm dãy con chung dài nhất một cách đơn giản. Đặt $g_{i,j}$ là độ dài dãy con chung dài nhất của $i$ ký tự đầu của $T$ và $j$ ký tự đầu của $S$. Khi đó có
+    Xét cách tìm dãy con chung dài nhất đơn giản nhất. Đặt $g_{i,j}$ là độ dài dãy con chung dài nhất của $i$ ký tự đầu của $T$ và $j$ ký tự đầu của $S$. Khi đó có
     
     $$
     g_{i,j} = \max\{g_{i-1,j},g_{i,j-1},g_{i-1,j-1}+[T_i=S_j]\}.

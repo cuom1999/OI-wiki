@@ -146,7 +146,7 @@ Dù NFA và DFA có cùng khả năng nhận dạng ngôn ngữ, NFA vẫn hữu
 
 Giả sử độ dài chuỗi cho trước là $n$, số trạng thái của ô-tô-mát là $s$, và kích thước bảng chữ cái là hằng số. Khi đó độ phức tạp thời gian để tính toán DFA là $O(n)$, chỉ cần mô phỏng quá trình nêu trên.
 
-Tính toán NFA một cách đơn giản có độ phức tạp $O(ns^2)$, vì cần xét mọi trạng thái kế tiếp và chi phí hợp nhất các trạng thái. Có thể dùng bitset hoặc phương pháp Four Russians để tối ưu độ phức tạp tính toán xuống $O\left(\dfrac{ns^2}{w}\right)$ hoặc $O\left(\dfrac{ns^2}{w\cdot \log n}\right)$.
+Nếu tính NFA theo cách đơn giản, độ phức tạp là $O(ns^2)$, vì cần xét mọi trạng thái kế tiếp và chi phí hợp nhất các trạng thái. Có thể dùng bitset hoặc phương pháp Four Russians để tối ưu độ phức tạp tính toán xuống $O\left(\dfrac{ns^2}{w}\right)$ hoặc $O\left(\dfrac{ns^2}{w\cdot \log n}\right)$.
 
 ## Biểu thức chính quy và ngôn ngữ chính quy
 

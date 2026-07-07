@@ -208,7 +208,7 @@ macro.
 
 ### Toán tử
 
-Tham khảo trực tiếp bài [Phép toán](./op.md). Phần phụ lục cũng cung cấp bảng đối
+Xem thêm bài [Phép toán](./op.md). Phần phụ lục cũng cung cấp bảng đối
 chiếu cú pháp toán tử và hàm toán học.
 
 ### Điều kiện
