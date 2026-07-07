@@ -114,7 +114,7 @@ Sau khi duyệt hết mọi điểm, đường tròn thu được chính là đ�
 
 [HNOI2012 Archery](https://www.luogu.com.cn/problem/P3222)
 
-[CodeForces 442E](https://codeforces.com/problemset/problem/442/E)
+[Codeforces 442E](https://codeforces.com/problemset/problem/442/E)
 
 ## Tài liệu tham khảo và đọc thêm
 

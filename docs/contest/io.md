@@ -157,7 +157,7 @@ void *mmap(void addr[.length], size_t length, int prot, int flags, int fd,
 ```
 
 ???+ warning "Lưu ý"
-    `mmap` không thể dùng trong môi trường Windows (ví dụ hệ thống chấm của CodeForces và HDU), đồng thời cũng không khuyến nghị dùng trong phòng thi chính thức. Dùng `fread` thường đã đủ nhanh; nếu dùng `mmap` để lặp đi lặp lại việc đọc một tệp nhỏ, chi phí thực hiện ánh xạ bộ nhớ một lần và chi phí nhân hệ điều hành xử lý lỗi trang (page fault) sẽ lớn hơn nhiều so với chi phí dùng `fread`.
+    `mmap` không thể dùng trong môi trường Windows (ví dụ hệ thống chấm của Codeforces và HDU), đồng thời cũng không khuyến nghị dùng trong phòng thi chính thức. Dùng `fread` thường đã đủ nhanh; nếu dùng `mmap` để lặp đi lặp lại việc đọc một tệp nhỏ, chi phí thực hiện ánh xạ bộ nhớ một lần và chi phí nhân hệ điều hành xử lý lỗi trang (page fault) sẽ lớn hơn nhiều so với chi phí dùng `fread`.
 
 Trước hết cần lấy bộ mô tả tệp (file descriptor) `fd`, sau đó dùng `fstat` để lấy kích thước tệp, rồi dùng `mmap` để thu được con trỏ `*pc` trỏ tới tệp đã ánh xạ vào bộ nhớ. Sau đó có thể trực tiếp dùng `*pc++` thay cho `getchar()` để đọc tệp.
 

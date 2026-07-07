@@ -432,7 +432,7 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 
 -   [Codeforces - Ciel và những chiếc thuyền gondola](https://codeforces.com/contest/321/problem/E) (Cẩn thận với nhập/xuất!)
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
--   [Codechef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
+-   [CodeChef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
 -   [Hackerrank - Những người canh giữ kẻ điên](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
 -   [ACM ICPC World Finals 2017 - Tiền](https://open.kattis.com/problems/money)
 

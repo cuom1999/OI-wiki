@@ -107,7 +107,7 @@ Nếu trong quá trình này đáp án được cập nhật, xây dựng lại 
 
 -   [UVa 10245 "Bài toán cặp gần nhất" \[độ khó: thấp\]](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1186)
 -   [SPOJ #8725 CLOPPAIR "Cặp điểm gần nhất" \[độ khó: thấp\]](https://www.spoj.com/problems/CLOPPAIR/)
--   [CODEFORCES Team Olympiad Saratov - 2011 "Lượng nhỏ nhất" \[độ khó: trung bình\]](http://codeforces.com/contest/120/problem/J)
+-   [Codeforces Team Olympiad Saratov - 2011 "Lượng nhỏ nhất" \[độ khó: trung bình\]](http://codeforces.com/contest/120/problem/J)
 -   [SPOJ #7029 CLOSEST "Bộ ba gần nhất" \[độ khó: trung bình\]](https://www.spoj.com/problems/CLOSEST/)
 -   [Google Code Jam 2009 Final "Chu vi nhỏ nhất" \[độ khó: trung bình\]](https://github.com/google/coding-competitions-archive/blob/main/codejam/2009/world_finals/min_perimeter/statement.pdf)
 

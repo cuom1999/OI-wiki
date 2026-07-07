@@ -130,4 +130,4 @@ Ngoài ra, các đỉnh có cùng bậc vẫn phải có thứ hạng khác nhau
 
 [Luogu P3547 \[POI2013\] CEN-Bảng giá](https://www.luogu.com.cn/problem/P3547)
 
-[CodeForces 985G Người chơi trong đội](https://codeforces.com/contest/985/problem/G) (nguyên lý bao hàm - loại trừ)
+[Codeforces 985G Người chơi trong đội](https://codeforces.com/contest/985/problem/G) (nguyên lý bao hàm - loại trừ)

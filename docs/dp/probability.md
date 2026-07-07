@@ -36,7 +36,7 @@ Dạng bài này dùng cách đẩy xuôi, tức là đẩy từ trạng thái b
 ### Bài tập
 
 -   [POJ3071 Bóng đá](http://poj.org/problem?id=3071)
--   [CodeForces 768D Jon và các quả cầu](https://codeforces.com/problemset/problem/768/D)
+-   [Codeforces 768D Jon và các quả cầu](https://codeforces.com/problemset/problem/768/D)
 
 <span id="dp-kỳ-vọng"></span>
 ## DP kỳ vọng
@@ -111,7 +111,7 @@ So sánh hai bài toán này cho thấy: trong các bài dùng DP để tính k�
 <span id="ví-dụ_2"></span>
 ### Ví dụ
 
-???+ example "[CodeForces 24D Robot hỏng](https://codeforces.com/problemset/problem/24/D)"
+???+ example "[Codeforces 24D Robot hỏng](https://codeforces.com/problemset/problem/24/D)"
     Cho một vùng ma trận $n \times m$. Một robot ban đầu ở hàng thứ $x$, cột thứ $y$. Ở mỗi bước, robot chọn với xác suất bằng nhau một trong các hành động: đứng yên, đi sang trái một ô, đi sang phải một ô, đi xuống một ô. Nếu robot đang ở biên thì nó sẽ không đi ra ngoài vùng. Hỏi số bước kỳ vọng để robot tới hàng cuối cùng.
 
 ??? note "Lời giải"

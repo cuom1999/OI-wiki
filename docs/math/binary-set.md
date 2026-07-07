@@ -139,7 +139,7 @@ Tổng trên bằng khai triển của $(1+2)^n$ theo định lý nhị thức, 
 <span id="bài-tập"></span>
 ### Bài tập
 
-- [Atcoder - Nhóm khép kín](https://atcoder.jp/contests/abc187/tasks/abc187_f)
+- [AtCoder - Nhóm khép kín](https://atcoder.jp/contests/abc187/tasks/abc187_f)
 - [Codeforces - Phản ứng nhiệt hạch](http://codeforces.com/problemset/problem/71/E)
 - [Codeforces - Sandy and Nuts](http://codeforces.com/problemset/problem/599/E)
 - [UVa 1439 - Truy cập độc quyền 2](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4185)

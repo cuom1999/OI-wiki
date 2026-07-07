@@ -171,7 +171,7 @@ Chứng minh tính chất này giống với chứng minh khi dùng [hàm tiền
 -   [UVa # 455 Chuỗi tuần hoàn](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
 -   [UVa # 11022 Phân tích chuỗi](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
 -   [UVa 11475 - Mở rộng thành hồi văn](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=2470)
--   [Codechef - Chef và các chuỗi](https://www.codechef.com/problems/CHSTR)
+-   [CodeChef - Chef và các chuỗi](https://www.codechef.com/problems/CHSTR)
 -   [Codeforces - Tiền tố và hậu tố](http://codeforces.com/problemset/problem/432/D)
 -   [Leetcode 2223 - Tổng điểm của các chuỗi được xây dựng](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 

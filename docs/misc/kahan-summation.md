@@ -41,10 +41,10 @@ Vì $sum$ lớn còn $y$ nhỏ, các bit thấp của $y$ bị mất. $(t - sum)
 
 Trong OI, cộng Kahan chủ yếu tồn tại như một công cụ phụ trợ, cung cấp giá trị có sai số nhỏ hơn cho kết quả tính toán.
 
-???+ note "Ví dụ [CodeForces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
+???+ note "Ví dụ [Codeforces Contest 800 Problem A. Voltage Keepsake](https://codeforces.com/contest/800/problem/A)"
     Có $n$ thiết bị đang được sử dụng đồng thời. Thiết bị thứ $i$ tiêu thụ $a_{i}$ đơn vị năng lượng mỗi giây. Việc tiêu thụ này là liên tục. Nghĩa là trong $\lambda$ giây, thiết bị sẽ tiêu thụ $\lambda \times a_{i}$ đơn vị năng lượng. Thiết bị thứ $i$ hiện lưu trữ $b_{i}$ đơn vị điện năng. Mọi thiết bị đều có thể lưu trữ lượng điện bất kỳ. Có một bộ sạc có thể cắm vào bất kỳ một thiết bị đơn lẻ nào. Mỗi giây, bộ sạc bổ sung $p$ đơn vị điện năng cho thiết bị. Việc sạc cũng là liên tục. Nghĩa là nếu cắm thiết bị trong $\lambda$ giây, nó sẽ nhận được $\lambda \times p$ đơn vị năng lượng. Có thể chuyển thiết bị đang được sạc tại bất kỳ thời điểm nào, kể cả thời điểm thực, và thời gian chuyển đổi được bỏ qua. Cần tìm thời gian dài nhất có thể sử dụng các thiết bị trước khi một thiết bị nào đó đạt mức $0$ đơn vị năng lượng.
 
-???+ note "Ví dụ [CodeForces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
+???+ note "Ví dụ [Codeforces Contest 504 Problem B. Misha and Permutations Summation](https://codeforces.com/problemset/problem/504/B)"
     Định nghĩa tổng của hai hoán vị $p$ và $q$ của các số $0, 1, \cdots, (n - 1)$ là $Perm((Ord(p)+Ord(q))\bmod n!)$, trong đó $Perm(x)$ là hoán vị theo thứ tự từ điển thứ $x$ của các số $0, 1, \cdots, (n-1)$, tính từ $0$, còn $Ord(p)$ là số thứ tự từ điển của hoán vị $p$. Ví dụ, $Perm(0) = (0, 1, \cdots , n - 2, n - 1)$, $Perm(n! - 1) = (n - 1, n-2,\cdots, 1,0))$. Misha có hai hoán vị $p$ và $q$; cần tìm tổng của chúng.
 
 ## Phép tính tổng trong các ngôn ngữ lập trình

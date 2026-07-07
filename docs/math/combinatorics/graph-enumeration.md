@@ -357,7 +357,7 @@ Nếu một cạnh nối hai đỉnh nằm trong hai chu trình khác nhau, đ�
 <span id="bài-tập_2"></span>
 ## Bài tập
 
--   [CodeForces 438 E. Đứa trẻ và cây nhị phân](https://codeforces.com/problemset/problem/438/E)
+-   [Codeforces 438 E. Đứa trẻ và cây nhị phân](https://codeforces.com/problemset/problem/438/E)
 -   [Luogu P5448. \[THUPC2018\] Đếm đồ thị tốt](https://www.luogu.com.cn/problem/P5448)
 -   [Luogu P5818. \[JSOI2011\] Đếm đồng phân cấu tạo](https://www.luogu.com.cn/problem/P5818)
 -   [Luogu P6597. Đếm anken](https://www.luogu.com.cn/problem/P6597)
