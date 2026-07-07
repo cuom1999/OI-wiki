@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// Find the continued fraction representation of P/Q.
+// Tìm biểu diễn phân số liên tục của P/Q.
 auto fraction(int p, int q) {
   std::vector<int> a;
   while (q) {
@@ -13,8 +13,8 @@ auto fraction(int p, int q) {
   return a;
 }
 
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số hội tụ của phân số liên tục A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -26,7 +26,7 @@ auto convergents(std::vector<int> a) {
 }
 
 // --8<-- [start:core]
-// Find convex hull of lattice (x, y) such that C*y <= A*x+B.
+// Tìm bao lồi của các điểm lưới (x, y) sao cho C*y <= A*x+B.
 auto hull(int A, int B, int C, int N) {
   auto diff = [&](int x, int y) -> int { return C * y - A * x; };
   auto a = fraction(A, C);
@@ -68,14 +68,14 @@ auto hull(int A, int B, int C, int N) {
   return std::make_tuple(ah, ph, qh);
 }
 
-// Sum of floor (Ax+B)/M from 0 to N-1.
+// Tính tổng floor((Ax+B)/M) từ 0 đến N-1.
 auto solve(int N, int M, int A, int B) {
   std::vector<int> ah, ph, qh;
   std::tie(ah, ph, qh) = hull(A, B, M, N);
-  // The number of lattice points within a vertical right trapezoid
-  // on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-  // a+1 integer points on the segment (0; y1) - (dx; y2) but with
-  // the number of points on the vertical right line excluded.
+  // Số điểm lưới trong hình thang vuông đứng có các điểm
+  // (0; 0) - (0; y1) - (dx; y2) - (dx; 0), với a+1 điểm nguyên
+  // trên đoạn (0; y1) - (dx; y2), nhưng không tính số điểm trên
+  // đường thẳng đứng bên phải.
   auto picks = [&](int y1, int y2, int dx, int a) -> int {
     int b = y1 + y2 + a + dx;
     int A = (y1 + y2) * dx;

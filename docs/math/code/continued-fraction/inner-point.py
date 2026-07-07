@@ -1,5 +1,5 @@
-# BEST INNER POINT.
-# Find the continued fraction representation of P/Q.
+# ĐIỂM TRONG TỐT NHẤT.
+# Tìm biểu diễn phân số liên tục của P/Q.
 def fraction(p, q):
     a = []
     while q:
@@ -8,8 +8,8 @@ def fraction(p, q):
     return a
 
 
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -19,7 +19,7 @@ def convergents(a):
     return p, q
 
 
-# Expand [..., n] to [..., n-1, 1] if needed.
+# Mở rộng [..., n] thành [..., n-1, 1] nếu cần.
 def expand(a):
     if a[-1] != 1 or len(a) == 1:
         a[-1] -= 1
@@ -27,7 +27,7 @@ def expand(a):
     return a
 
 
-# Check if a is smaller than b.
+# Kiểm tra a có nhỏ hơn b hay không.
 def less_than(a, b):
     a = expand(a)
     b = expand(b)
@@ -37,9 +37,9 @@ def less_than(a, b):
 
 
 # --8<-- [start:core]
-# Get X +- EPSILON.
+# Lấy X +- EPSILON.
 def pm_eps(a):
-    # Deal with empty continued fraction for 1/0.
+    # Xử lý phân số liên tục rỗng cho 1/0.
     if not a:
         a.append(float("inf"))
     b = expand(a.copy())
@@ -48,8 +48,8 @@ def pm_eps(a):
     return (a, b) if less_than(a, b) else (b, a)
 
 
-# Find the lexicographically smallest (q, p)
-#   such that p0/q0 < p/q < p1/q1.
+# Tìm (q, p) nhỏ nhất theo thứ tự từ điển
+#   sao cho p0/q0 < p/q < p1/q1.
 def middle(p0, q0, p1, q1):
     a0 = pm_eps(fraction(p0, q0))[1]
     a1 = pm_eps(fraction(p1, q1))[0]

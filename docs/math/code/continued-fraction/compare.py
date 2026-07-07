@@ -1,6 +1,6 @@
-# CONTINUED FRACTION COMPARISON.
+# SO SÁNH PHÂN SỐ LIÊN TỤC.
 # --8<-- [start:core]
-# Expand [..., n] to [..., n-1, 1] if needed.
+# Mở rộng [..., n] thành [..., n-1, 1] nếu cần.
 def expand(a):
     if a[-1] != 1 or len(a) == 1:
         a[-1] -= 1
@@ -8,7 +8,7 @@ def expand(a):
     return a
 
 
-# Check if a is smaller than b.
+# Kiểm tra a có nhỏ hơn b hay không.
 def less_than(a, b):
     a = expand(a)
     b = expand(b)

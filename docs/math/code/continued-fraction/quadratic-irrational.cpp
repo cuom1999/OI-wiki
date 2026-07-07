@@ -6,8 +6,8 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Return the continued fraction and minimal positive period
-//   of a quadratic irrational (x + y * sqrt(n)) / z.
+// Trả về phân số liên tục và chu kỳ dương nhỏ nhất
+//   của số vô tỉ bậc hai (x + y * sqrt(n)) / z.
 auto quadratic_irrational(int x, int y, int z, int n) {
   int p = x * z;
   int d = n * y * y * z * z;

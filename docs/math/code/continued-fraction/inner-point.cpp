@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// Find the continued fraction representation of P/Q.
+// Tìm biểu diễn phân số liên tục của P/Q.
 auto fraction(int p, int q) {
   std::vector<int> a;
   while (q) {
@@ -13,8 +13,8 @@ auto fraction(int p, int q) {
   return a;
 }
 
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số hội tụ của phân số liên tục A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -25,7 +25,7 @@ auto convergents(std::vector<int> a) {
   return std::make_pair(p, q);
 }
 
-// Expand [..., n] to [..., n-1, 1] if needed.
+// Mở rộng [..., n] thành [..., n-1, 1] nếu cần.
 void expand(std::vector<int>& a) {
   if (a.back() > 1 || a.size() == 1) {
     --a.back();
@@ -33,7 +33,7 @@ void expand(std::vector<int>& a) {
   }
 }
 
-// Check if a is smaller than b.
+// Kiểm tra a có nhỏ hơn b hay không.
 bool less_than(std::vector<int> a, std::vector<int> b) {
   expand(a);
   expand(b);
@@ -50,10 +50,10 @@ bool less_than(std::vector<int> a, std::vector<int> b) {
 }
 
 // --8<-- [start:core]
-// Get X +- EPSILON.
+// Lấy X +- EPSILON.
 auto pm_eps(std::vector<int> a) {
   constexpr int inf = 0x3f3f3f3f;
-  // Deal with empty continued fraction for 1/0.
+  // Xử lý phân số liên tục rỗng cho 1/0.
   if (a.empty()) {
     a.emplace_back(inf);
   }
@@ -64,8 +64,8 @@ auto pm_eps(std::vector<int> a) {
   return less_than(a, b) ? std::make_pair(a, b) : std::make_pair(b, a);
 }
 
-// Find the lexicographically smallest (q, p)
-//   such that p0/q0 < p/q < p1/q1.
+// Tìm (q, p) nhỏ nhất theo thứ tự từ điển
+//   sao cho p0/q0 < p/q < p1/q1.
 auto middle(int p0, int q0, int p1, int q1) {
   auto a0 = pm_eps(fraction(p0, q0)).second;
   auto a1 = pm_eps(fraction(p1, q1)).first;

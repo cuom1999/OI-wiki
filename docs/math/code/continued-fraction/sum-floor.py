@@ -1,6 +1,6 @@
-# SUM FLOOR.
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# TỔNG FLOOR.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -10,10 +10,10 @@ def convergents(a):
     return p, q
 
 
-# Find [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute
-# upper convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x,
-# where r = [a0, a1, a2, ...] and there are ah[i]-1 integer points on the
-# segment between r[i] and r[i+1].
+# Tìm [ah, ph, qh] sao cho các điểm r[i]=(ph[i], qh[i]) tạo thành
+# bao lồi trên của các điểm lưới trên 0 <= x <= N và 0 <= y <= r * x,
+# trong đó r = [a0, a1, a2, ...] và có ah[i]-1 điểm nguyên trên
+# đoạn giữa r[i] và r[i+1].
 def hull(a, N):
     p, q = convergents(a)
     t = N // q[-1]
@@ -34,15 +34,15 @@ def hull(a, N):
 
 
 # --8<-- [start:core]
-# Find sum of floor(k * x) for k in [1, N] and x = [a0; a1, a2, ...].
+# Tìm tổng floor(k * x) với k trong [1, N] và x = [a0; a1, a2, ...].
 def sum_floor(a, N):
     N += 1
     ah, ph, qh = hull(a, N)
 
-    # The number of lattice points within a vertical right trapezoid
-    # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-    # a+1 integer points on the segment (0; y1) - (dx; y2) but with
-    # the number of points on the vertical right line excluded.
+    # Số điểm lưới trong hình thang vuông đứng có các điểm
+    # (0; 0) - (0; y1) - (dx; y2) - (dx; 0), với a+1 điểm nguyên
+    # trên đoạn (0; y1) - (dx; y2), nhưng không tính số điểm trên
+    # đường thẳng đứng bên phải.
     def picks(y1, y2, dx, a):
         b = y1 + y2 + a + dx
         A = (y1 + y2) * dx
@@ -55,7 +55,7 @@ def sum_floor(a, N):
 
 
 # --8<-- [end:core]
-# Get the continued fraction of e.
+# Lấy phân số liên tục của e.
 def cf_e(N):
     i, a = 0, 0
     q, qq = 0, 1

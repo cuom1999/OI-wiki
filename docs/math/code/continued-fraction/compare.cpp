@@ -4,7 +4,7 @@
 #include <vector>
 
 // --8<-- [start:core]
-// Expand [..., n] to [..., n-1, 1] if needed.
+// Mở rộng [..., n] thành [..., n-1, 1] nếu cần.
 void expand(std::vector<int>& a) {
   if (a.size() == 1 || a.back() > 1) {
     --a.back();
@@ -12,7 +12,7 @@ void expand(std::vector<int>& a) {
   }
 }
 
-// Check if a is smaller than b.
+// Kiểm tra a có nhỏ hơn b hay không.
 bool less_than(std::vector<int> a, std::vector<int> b) {
   expand(a);
   expand(b);

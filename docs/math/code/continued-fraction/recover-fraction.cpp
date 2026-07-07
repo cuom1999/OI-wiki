@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// Find the continued fraction representation of P/Q.
+// Tìm biểu diễn phân số liên tục của P/Q.
 auto fraction(int p, int q) {
   std::vector<int> a;
   while (q) {
@@ -13,8 +13,8 @@ auto fraction(int p, int q) {
   return a;
 }
 
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số hội tụ của phân số liên tục A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -26,7 +26,7 @@ auto convergents(std::vector<int> a) {
 }
 
 // --8<-- [start:core]
-// Find Q that minimizes Q*r mod m for 1 <= k <= n < m.
+// Tìm Q làm nhỏ nhất Q*r mod m với 1 <= Q <= n < m.
 int mod_min(int r, int n, int m) {
   auto a = fraction(r, m);
   std::vector<int> p, q;

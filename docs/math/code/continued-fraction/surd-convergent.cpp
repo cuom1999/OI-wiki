@@ -5,8 +5,8 @@
 #include <unordered_map>
 #include <vector>
 
-// Return the continued fraction and minimal positive period
-//   of a quadratic irrational (x + y * sqrt(n)) / z.
+// Trả về phân số liên tục và chu kỳ dương nhỏ nhất
+//   của số vô tỉ bậc hai (x + y * sqrt(n)) / z.
 auto quadratic_irrational(int x, int y, int z, int n) {
   int p = x * z;
   int d = n * y * y * z * z;
@@ -24,7 +24,7 @@ auto quadratic_irrational(int x, int y, int z, int n) {
   return std::make_pair(a, i - used[((1LL << 32) * p) | q]);
 }
 
-// Fractional Linear Transformation.
+// Biến đổi tuyến tính phân thức.
 struct FracLinearTrans {
   static constexpr int M = 1e9 + 7;
   int mat[4];
@@ -45,23 +45,23 @@ int main() {
   std::cin >> x >> k;
   std::vector<int> a;
   std::tie(a, L) =
-      quadratic_irrational(0, 1, 1, x);  // L==a.size()-1 for sqrt(x)
+      quadratic_irrational(0, 1, 1, x);  // L==a.size()-1 với sqrt(x)
   FracLinearTrans cyc(1, 0, 0, 1);
   for (int i = a.size() - 1; i; --i) {
     cyc = FracLinearTrans(a[i], 1, 1, 0) * cyc;
   }
-  // 1/0=Inf.
+  // 1/0=Vô cực.
   FracLinearTrans res(0, 1, 0, 0);
-  // Tail terms.
+  // Các hạng đuôi.
   for (int i = k % L; i; --i) {
     res = FracLinearTrans(a[i], 1, 1, 0) * res;
   }
-  // Binary exponentiation.
+  // Lũy thừa nhị phân.
   for (int b = k / L; b; b >>= 1) {
     if (b & 1) res = cyc * res;
     cyc = cyc * cyc;
   }
-  // First term.
+  // Hạng đầu tiên.
   res = FracLinearTrans(a[0], 1, 1, 0) * res;
   printf("%d/%d", res.mat[1], res.mat[3]);
   return 0;

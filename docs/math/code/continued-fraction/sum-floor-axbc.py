@@ -1,5 +1,5 @@
-# SUM OF FLOOR (Ax+B)/M.
-# Find the continued fraction representation of P/Q.
+# TỔNG FLOOR (Ax+B)/M.
+# Tìm biểu diễn phân số liên tục của P/Q.
 def fraction(p, q):
     a = []
     while q:
@@ -8,8 +8,8 @@ def fraction(p, q):
     return a
 
 
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -20,7 +20,7 @@ def convergents(a):
 
 
 # --8<-- [start:core]
-# Find convex hull of lattice (x, y) such that C*y <= A*x+B.
+# Tìm bao lồi của các điểm lưới (x, y) sao cho C*y <= A*x+B.
 def hull(A, B, C, N):
     def diff(x, y):
         return C * y - A * x
@@ -66,10 +66,10 @@ def hull(A, B, C, N):
 def solve(N, M, A, B):
     ah, ph, qh = hull(A, B, M, N)
 
-    # The number of lattice points within a vertical right trapezoid
-    # on points (0; 0) - (0; y1) - (dx; y2) - (dx; 0) that has
-    # a+1 integer points on the segment (0; y1) - (dx; y2) but with
-    # the number of points on the vertical right line excluded.
+    # Số điểm lưới trong hình thang vuông đứng có các điểm
+    # (0; 0) - (0; y1) - (dx; y2) - (dx; 0), với a+1 điểm nguyên
+    # trên đoạn (0; y1) - (dx; y2), nhưng không tính số điểm trên
+    # đường thẳng đứng bên phải.
     def picks(y1, y2, dx, a):
         b = y1 + y2 + a + dx
         A = (y1 + y2) * dx

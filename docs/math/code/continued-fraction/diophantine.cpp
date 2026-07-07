@@ -4,7 +4,7 @@
 #include <vector>
 
 // --8<-- [start:fraction]
-// Find the continued fraction representation of P/Q.
+// Tìm biểu diễn phân số liên tục của P/Q.
 auto fraction(int p, int q) {
   std::vector<int> a;
   while (q) {
@@ -16,8 +16,8 @@ auto fraction(int p, int q) {
 
 // --8<-- [end:fraction]
 // --8<-- [start:convergents]
-// Find the convergents of a continued fraction A.
-// Numerators and denominators stored separately in P and Q.
+// Tìm các phân số hội tụ của phân số liên tục A.
+// Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
   std::vector<int> q = {1, 0};
@@ -30,8 +30,8 @@ auto convergents(std::vector<int> a) {
 
 // --8<-- [end:convergents]
 // --8<-- [start:dio]
-// Return (x,y) such that Ax+By=C.
-// Assume that such (x,y) exists.
+// Trả về (x,y) sao cho Ax+By=C.
+// Giả sử một cặp (x,y) như vậy tồn tại.
 auto dio(int A, int B, int C) {
   std::vector<int> p, q;
   std::tie(p, q) = convergents(fraction(A, B));
@@ -45,6 +45,6 @@ int main() {
   int A, B, C, x, y;
   std::cin >> A >> B >> C;
   std::tie(x, y) = dio(A, B, C);
-  std::cout << A * x + B * y - C;  // Should be 0.
+  std::cout << A * x + B * y - C;  // Kết quả phải là 0.
   return 0;
 }

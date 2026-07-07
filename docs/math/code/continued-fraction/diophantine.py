@@ -1,6 +1,6 @@
-# DIOPHANTINE EQUATION SOLVER.
+# BỘ GIẢI PHƯƠNG TRÌNH DIOPHANTINE.
 # --8<-- [start:fraction]
-# Find the continued fraction representation of P/Q.
+# Tìm biểu diễn phân số liên tục của P/Q.
 def fraction(p, q):
     a = []
     while q:
@@ -11,8 +11,8 @@ def fraction(p, q):
 
 # --8<-- [end:fraction]
 # --8<-- [start:convergents]
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -24,11 +24,11 @@ def convergents(a):
 
 # --8<-- [end:convergents]
 # --8<-- [start:dio]
-# Return (x, y) such that Ax+By=C.
-# Assume that such (x, y) exists.
+# Trả về (x, y) sao cho Ax+By=C.
+# Giả sử một cặp (x, y) như vậy tồn tại.
 def dio(A, B, C):
     p, q = convergents(fraction(A, B))
-    C //= A // p[-1]  # divide by gcd(A, B)
+    C //= A // p[-1]  # chia cho gcd(A, B)
     t = (-1) if len(p) % 2 else 1
     return t * C * q[-2], -t * C * p[-2]
 
@@ -37,4 +37,4 @@ def dio(A, B, C):
 if __name__ == "__main__":
     A, B, C = map(int, input().split())
     x, y = dio(A, B, C)
-    print(A * x + B * y - C)  # Should be 0
+    print(A * x + B * y - C)  # Kết quả phải là 0

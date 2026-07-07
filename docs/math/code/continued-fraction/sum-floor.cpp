@@ -3,7 +3,7 @@
 #include <tuple>
 #include <vector>
 
-// Tìm các phân số tiệm cận của liên phân số A.
+// Tìm các phân số hội tụ của phân số liên tục A.
 // Tử số và mẫu số được lưu riêng trong P và Q.
 auto convergents(std::vector<int> a) {
   std::vector<int> p = {0, 1};
@@ -67,7 +67,7 @@ int sum_floor(std::vector<int> a, int N) {
 }
 
 // --8<-- [end:core]
-// Get the continued fraction of e.
+// Lấy phân số liên tục của e.
 auto cf_e(int N) {
   int q = 0, qq = 1;
   std::vector<int> res;

@@ -1,5 +1,5 @@
-# CONVEX HULL UNDER THE LINE.
-# Find the continued fraction representation of P/Q.
+# BAO LỒI DƯỚI ĐƯỜNG THẲNG.
+# Tìm biểu diễn phân số liên tục của P/Q.
 def fraction(p, q):
     a = []
     while q:
@@ -8,8 +8,8 @@ def fraction(p, q):
     return a
 
 
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -20,10 +20,10 @@ def convergents(a):
 
 
 # --8<-- [start:core]
-# Find [ah, ph, qh] such that points r[i]=(ph[i], qh[i]) constitute
-# upper convex hull of lattice points on 0 <= x <= N and 0 <= y <= r * x,
-# where r = [a0, a1, a2, ...] and there are ah[i]-1 integer points on the
-# segment between r[i] and r[i+1].
+# Tìm [ah, ph, qh] sao cho các điểm r[i]=(ph[i], qh[i]) tạo thành
+# bao lồi trên của các điểm lưới trên 0 <= x <= N và 0 <= y <= r * x,
+# trong đó r = [a0, a1, a2, ...] và có ah[i]-1 điểm nguyên trên
+# đoạn giữa r[i] và r[i+1].
 def hull(a, N):
     p, q = convergents(a)
     t = N // q[-1]

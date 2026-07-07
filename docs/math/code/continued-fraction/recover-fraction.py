@@ -1,5 +1,5 @@
-# FIND Q IN [1,N] MINIMIZING Q*R MOD M.
-# Find the continued fraction representation of P/Q.
+# TÌM Q TRONG [1,N] LÀM NHỎ NHẤT Q*R MOD M.
+# Tìm biểu diễn phân số liên tục của P/Q.
 def fraction(p, q):
     a = []
     while q:
@@ -8,8 +8,8 @@ def fraction(p, q):
     return a
 
 
-# Find the convergents of a continued fraction A.
-# Numerators and denominators stored separately in P and Q.
+# Tìm các phân số hội tụ của phân số liên tục A.
+# Tử số và mẫu số được lưu riêng trong P và Q.
 def convergents(a):
     p = [0, 1]
     q = [1, 0]
@@ -20,7 +20,7 @@ def convergents(a):
 
 
 # --8<-- [start:core]
-# Find Q that minimizes Q*r mod m for 1 <= k <= n < m.
+# Tìm Q làm nhỏ nhất Q*r mod m với 1 <= Q <= n < m.
 def mod_min(r, n, m):
     a = fraction(r, m)
     p, q = convergents(a)

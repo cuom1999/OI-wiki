@@ -1,8 +1,8 @@
 from math import sqrt, floor
 
 
-# Return the continued fraction and minimal positive period
-#   of a quadratic irrational (x + y * sqrt(n)) / z.
+# Trả về phân số liên tục và chu kỳ dương nhỏ nhất
+#   của số vô tỉ bậc hai (x + y * sqrt(n)) / z.
 def quadratic_irrational(x, y, z, n):
     p = x * z
     d = n * y * y * z * z
@@ -20,7 +20,7 @@ def quadratic_irrational(x, y, z, n):
     return a, i - used[p, q]
 
 
-# Compose (A[0]*x + A[1]) / (A[2]*x + A[3]) and (B[0]*x + B[1]) / (B[2]*x + B[3])
+# Hợp thành (A[0]*x + A[1]) / (A[2]*x + A[3]) và (B[0]*x + B[1]) / (B[2]*x + B[3])
 def combine(A, B):
     return [
         t % mod
@@ -33,7 +33,7 @@ def combine(A, B):
     ]
 
 
-# Binary exponentiation.
+# Lũy thừa nhị phân.
 def bpow(A, n):
     return (
         [1, 0, 0, 1]
@@ -50,7 +50,7 @@ a, T = quadratic_irrational(0, 1, 1, x)
 
 A = (1, 0, 0, 1)  # (x + 0) / (0*x + 1) = x
 
-# apply ak + 1/x = (ak*x+1)/(1x+0) to (Ax + B) / (Cx + D)
+# áp dụng ak + 1/x = (ak*x+1)/(1x+0) cho (Ax + B) / (Cx + D)
 for i in reversed(range(1, len(a))):
     A = combine([a[i], 1, 1, 0], A)
 
