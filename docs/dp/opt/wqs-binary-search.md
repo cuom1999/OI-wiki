@@ -60,7 +60,7 @@ Giả sử với mọi $\lambda$ trong phạm vi hợp lý, hàm $h(\lambda)$ �
 1.  có tồn tại hệ số góc $\lambda$ của đường thẳng sao cho giá trị tung độ gốc nhỏ nhất đạt được đúng tại điểm $(y,v(y))$ hay không, và
 2.  nếu tồn tại, làm thế nào để tìm hệ số góc đó.
 
-Vấn đề thứ nhất tương đối dễ giải quyết. Khi hệ số góc $\lambda$ thay đổi, tập được cắt ra bởi tất cả các đường thẳng này (tức giao của các nửa mặt phẳng phía trên tương ứng) nhất định là một tập lồi. Vì vậy, các đường thẳng này có thể đi qua một điểm khi và chỉ khi điểm đó nằm trên bao lồi dưới của tập lồi này. Điều đó tương đương với việc hàm $v(y)$ là [hàm lồi](./slope-trick.md#hàm-lồi-trên-tập-điểm-rời-rạc).
+Vấn đề thứ nhất tương đối dễ giải quyết. Khi hệ số góc $\lambda$ thay đổi, tập được cắt ra bởi tất cả các đường thẳng này (tức giao của các nửa mặt phẳng phía trên tương ứng) luôn là một tập lồi. Vì vậy, các đường thẳng này có thể đi qua một điểm khi và chỉ khi điểm đó nằm trên bao lồi dưới của tập lồi này. Điều đó tương đương với việc hàm $v(y)$ là [hàm lồi](./slope-trick.md#hàm-lồi-trên-tập-điểm-rời-rạc).
 
 Vấn đề thứ hai tinh tế hơn. Vì hoành độ của điểm cần tìm đã biết là $y$, một ý tưởng tự nhiên là khi tính $h(\lambda)$, đồng thời tính giá trị của hàm ràng buộc $g(x)$ tại nghiệm tối ưu hiện tại $x_\lambda$. Chẳng hạn, trong ví dụ ở trên, khi giải bài toán có phạt, có thể ghi lại số vật phẩm được chọn khi hàm mục tiêu có phạt đạt tối ưu. Sau đó so sánh $g(x_\lambda)$ với $y$ mong muốn và điều chỉnh giá trị $\lambda$ cho lần tính tiếp theo. Đây là phương pháp tìm kiếm nhị phân WQS truyền thống nhất.
 
@@ -164,7 +164,7 @@ $$
     f^*(x^*) = \sup_{x\in\mathbf R^d}x^*\cdot x - f(x).
     $$
 
-Nhìn từ biến $x^*$, $f^*(x^*)$ là cận trên đúng của một họ các hàm tuyến tính, nên nhất định là hàm lồi trên $\mathbf R^d$.
+Nhìn từ biến $x^*$, $f^*(x^*)$ là cận trên đúng của một họ các hàm tuyến tính, nên là hàm lồi trên $\mathbf R^d$.
 
 ???+ info ""Vector hệ số góc" và "tung độ gốc" của siêu phẳng"
     Các phương trình siêu phẳng trong không gian vector $\mathbf R^{d+1}$ được thảo luận trong bài viết này đều có dạng
@@ -225,9 +225,9 @@ Vì vậy, bài toán được chuyển thành: loại hàm $v(y)$ nào có song
 ??? note "Chứng minh"
     Một hàm là proper khi và chỉ khi nó không bao giờ nhận giá trị $-\infty$ và không luôn luôn nhận giá trị $+\infty$.
     
-    Với trường hợp hàm không proper, có thể kiểm chứng $f(x)\equiv+\infty$ và $f(x)\equiv-\infty$ là liên hợp của nhau. Ngoài ra, chỉ cần $f(x)$ nhận giá trị $-\infty$ tại bất kỳ điểm nào thì nhất định có $f^*(x^*)\equiv+\infty$. Vì vậy, các hàm không proper thỏa $f^{**}=f$ chỉ có hai trường hợp này. Phần thảo luận sau chỉ xét hàm proper. Với hàm proper, điều kiện nửa liên tục dưới và lồi tương đương với epigraph của nó là một tập lồi đóng.
+    Với trường hợp hàm không proper, có thể kiểm chứng $f(x)\equiv+\infty$ và $f(x)\equiv-\infty$ là liên hợp của nhau. Ngoài ra, chỉ cần $f(x)$ nhận giá trị $-\infty$ tại bất kỳ điểm nào thì luôn có $f^*(x^*)\equiv+\infty$. Vì vậy, các hàm không proper thỏa $f^{**}=f$ chỉ có hai trường hợp này. Phần thảo luận sau chỉ xét hàm proper. Với hàm proper, điều kiện nửa liên tục dưới và lồi tương đương với epigraph của nó là một tập lồi đóng.
     
-    Tính cần thiết của điều kiện này có thể kiểm tra trực tiếp. Vì $f=f^{**}$ là liên hợp lồi của $f^*$, và với tư cách là cận trên đúng của một họ các hàm tuyến tính, epigraph của nó nhất định là giao của một họ các tập lồi đóng, nên nhất định là tập lồi đóng. Điều này cho thấy hàm proper thỏa $f^{**}=f$ nhất định là nửa liên tục dưới và lồi.
+    Tính cần thiết của điều kiện này có thể kiểm tra trực tiếp. Vì $f=f^{**}$ là liên hợp lồi của $f^*$, và với tư cách là cận trên đúng của một họ các hàm tuyến tính, epigraph của nó luôn là giao của một họ các tập lồi đóng, nên là tập lồi đóng. Điều này cho thấy hàm proper thỏa $f^{**}=f$ phải là nửa liên tục dưới và lồi.
     
     Chiều ngược lại, các điều kiện này cũng là đủ. Giống chứng minh của các định lý đối ngẫu mạnh khác, chứng minh có thể chia thành hai bước.
     
@@ -251,7 +251,7 @@ Vì vậy, bài toán được chuyển thành: loại hàm $v(y)$ nào có song
     \lambda\cdot x-ty <\alpha <\lambda\cdot x_0 - tf^{**}(x_0)
     $$
     
-    đúng. Vì $y$ có thể được chọn lớn tùy ý, nhất định phải có $t\ge 0$. Lại chia thành hai trường hợp.
+    đúng. Vì $y$ có thể được chọn lớn tùy ý, buộc phải có $t\ge 0$. Lại chia thành hai trường hợp.
     
     Trước hết xét trường hợp $t>0$. Khi đó, chia mọi phần của bất đẳng thức cho $t$, đặt $\lambda'=t^{-1}\lambda$ và $\alpha'=t^{-1}\alpha$, thu được
     
@@ -714,8 +714,8 @@ Lập luận trao đổi cung cấp một cách chứng minh khác cho tính l�
     
     Dãy này đánh dấu sự khác biệt giữa hai phương án trồng cây. Vị trí có giá trị $0$ trong dãy nghĩa là hố đó hoặc được trồng trong cả hai phương án, hoặc không được trồng trong cả hai phương án; còn các vị trí có giá trị $-1$ và $+1$ lần lượt nghĩa là chỉ trong phương án $x^{(m-1)}$ hoặc chỉ trong phương án $x^{(m+1)}$, hố đó được trồng cây. Vì trong bất kỳ phương án nào cũng không được trồng cây ở hai hố kề nhau, có các quan sát sau:
     
-    -   Trong một đoạn con liên tiếp khác không, các giá trị $z_i$ nhất định luân phiên giữa $\pm 1$;
-    -   các số $0$ ở hai bên của một đoạn con liên tiếp khác không cực đại nhất định biểu thị các hố không được trồng cây trong cả hai phương án.
+    -   Trong một đoạn con liên tiếp khác không, các giá trị $z_i$ phải luân phiên giữa $\pm 1$;
+    -   các số $0$ ở hai bên của một đoạn con liên tiếp khác không cực đại biểu thị các hố không được trồng cây trong cả hai phương án.
     
     Do đó, nếu trong một đoạn con liên tiếp khác không cực đại nào đó, tổng của $z_i$ đúng bằng $+1$, tức trong đoạn hố này phương án $x^{(m+1)}$ trồng nhiều hơn phương án $x^{(m-1)}$ một cây, thì có thể trao đổi vị trí trồng cây của hai phương án trong đoạn đó. Như vậy thu được hai phương án khả thi, mỗi phương án trồng $m$ cây. Vì không thay đổi tổng vị trí và tổng số lượng cây trồng trong hai phương án, mà chỉ phân phối lại chúng, tổng lợi ích không đổi và vẫn là $v(m-1)+v(m+1)$. Nhưng hai phương án trồng $m$ cây này không nhất thiết tối ưu, nên lợi ích của từng phương án không vượt quá $v(m)$. Điều này chứng minh
     
@@ -725,7 +725,7 @@ Lập luận trao đổi cung cấp một cách chứng minh khác cho tính l�
     
     tức là $v(m)$ là hàm lõm theo $m$.
     
-    Bây giờ chỉ còn một vấn đề: có tồn tại đoạn con liên tiếp khác không cực đại có tổng đúng bằng $+1$ hay không. Vì đây là tổng của một số giá trị $\pm 1$ luân phiên, tổng của một đoạn con liên tiếp khác không chỉ có thể là $0$ hoặc $\pm 1$. Lại vì tổng của tất cả các đoạn con liên tiếp khác không cực đại này bằng $2$, nhất định tồn tại ít nhất hai đoạn con cực đại có tổng đúng bằng $+1$. Như vậy hoàn tất chứng minh.
+    Bây giờ chỉ còn một vấn đề: có tồn tại đoạn con liên tiếp khác không cực đại có tổng đúng bằng $+1$ hay không. Vì đây là tổng của một số giá trị $\pm 1$ luân phiên, tổng của một đoạn con liên tiếp khác không chỉ có thể là $0$ hoặc $\pm 1$. Lại vì tổng của tất cả các đoạn con liên tiếp khác không cực đại này bằng $2$, phải tồn tại ít nhất hai đoạn con cực đại có tổng đúng bằng $+1$. Như vậy hoàn tất chứng minh.
 
 <span id="ví-dụ"></span>
 ## Ví dụ
@@ -779,7 +779,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
     Gọi $T_{m-1}$ và $T_{m+1}$ là các cây khung nhỏ nhất có số cạnh trắng lần lượt là $m-1$ và $m+1$. Gọi $e$ là một cạnh trắng thuộc $T_{m+1}\setminus T_{m-1}$. Áp dụng bổ đề trên cho $e$, tồn tại cạnh $f\in T_{m-1}\setminus T_{m+1}$ sao cho $T'=T_{m+1}-e+f$ và $T''=T_{m-1}+e-f$ đều là cây khung. Vì chỉ trao đổi một cặp cạnh, tổng trọng số của cây $T'$ và cây $T''$ vẫn là $v(m-1)+v(m+1)$. Tiếp theo xét hai trường hợp:
     
     -   Nếu $f$ là cạnh đen, thì số cạnh trắng trong cả $T'$ và $T''$ đều là $m$. Tổng trọng số của mỗi cây đều không nhỏ hơn $v(m)$. Điều này chứng minh $2v(m)\le v(m-1)+v(m+1)$, do đó $v(m)$ lồi theo $m$.
-    -   Nếu $f$ là cạnh trắng, thì số cạnh trắng trong $T'$ và $T''$ lần lượt là $m+1$ và $m-1$, nên tổng trọng số của chúng lần lượt không nhỏ hơn $v(m+1)$ và $v(m-1)$. Nhưng ở trên đã chỉ ra tổng trọng số của chúng cộng lại bằng $v(m-1)+v(m+1)$. Điều này cho thấy tổng trọng số của $T'$ đúng bằng $v(m+1)$. So sánh $T'$ với $T_{m+1}$, suy ra trọng số của $e$ và $f$ nhất định bằng nhau. Điều này mâu thuẫn với giả thiết, nên trường hợp này không xảy ra.
+    -   Nếu $f$ là cạnh trắng, thì số cạnh trắng trong $T'$ và $T''$ lần lượt là $m+1$ và $m-1$, nên tổng trọng số của chúng lần lượt không nhỏ hơn $v(m+1)$ và $v(m-1)$. Nhưng ở trên đã chỉ ra tổng trọng số của chúng cộng lại bằng $v(m-1)+v(m+1)$. Điều này cho thấy tổng trọng số của $T'$ đúng bằng $v(m+1)$. So sánh $T'$ với $T_{m+1}$, suy ra trọng số của $e$ và $f$ bằng nhau. Điều này mâu thuẫn với giả thiết, nên trường hợp này không xảy ra.
     
     Như vậy đã chứng minh $v(m)$ là hàm lồi theo $m$.
     
@@ -806,7 +806,7 @@ Mục này giới thiệu một số ví dụ áp dụng phương pháp tìm ki�
 ??? note "Lời giải"
     Đây là một [bài toán phân đoạn khoảng](./quadrangle.md#bài-toán-phân-tách-khoảng) điển hình. Chi tiết cài đặt hàng đợi nhị phân có thể tham khảo trang đó.
     
-    Mỗi bưu điện phục vụ các làng gần nó nhất, nên những làng này nhất định là một số làng liên tiếp bên đường cao tốc. Vì vậy, xây $m$ bưu điện tương đương với chia tất cả các làng thành $m$ đoạn liên tiếp, rồi xây một bưu điện có chi phí thấp nhất cho mỗi đoạn làng. Như đã biết, bưu điện nên được xây tại vị trí trung vị của các làng. Từ đó có thể viết hàm chi phí của khoảng $[l,r]$ là
+    Mỗi bưu điện phục vụ các làng gần nó nhất, nên những làng này phải là một số làng liên tiếp bên đường cao tốc. Vì vậy, xây $m$ bưu điện tương đương với chia tất cả các làng thành $m$ đoạn liên tiếp, rồi xây một bưu điện có chi phí thấp nhất cho mỗi đoạn làng. Như đã biết, bưu điện nên được xây tại vị trí trung vị của các làng. Từ đó có thể viết hàm chi phí của khoảng $[l,r]$ là
     
     $$
     w(l,r) = \sum_{i=l}^r|a_i-a_{\lfloor(l+r)/2\rfloor}|.
@@ -1012,7 +1012,7 @@ Cuối cùng, liệt kê một số bài có thể giải bằng tìm kiếm nh�
 
 [^high-d-convex]: Trong bài toán thực tế, $y$ có thể chỉ nhận hữu hạn nhiều điểm lưới trong $\mathbf R^d$. Điều kiện thật sự cần trong ngữ cảnh này là nghiệm $v(y)$ của bài toán gốc có thể được mở rộng thành một hàm lồi $\tilde v:\mathbf R^d\rightarrow \mathbf R\cup\{\pm\infty\}$ trên $\mathbf R^d$, tức $v(y)$ là **có thể mở rộng lồi** (convex-extensible). Để tiện trình bày, trong phần chính vẫn dùng $v(y)$ để chỉ hàm sau khi mở rộng. Về trực quan hình học, điều này tương đương với việc toàn bộ tập điểm $\{(y,v(y))\}$ đều nằm trên bao lồi dưới của bao lồi của chúng. Với trường hợp một chiều, điều kiện này [rất dễ mô tả](./slope-trick.md#hàm-lồi-trên-tập-điểm-rời-rạc) bằng ngôn ngữ đại số; nhưng với trường hợp nhiều chiều thì hơi phức tạp hơn, và [bài giảng này](https://kzmurota.fpark.tmu.ac.jp/paper/HIMSummerSchool15Murota.pdf) cung cấp một số điều kiện đủ đơn giản.
 
-[^other-conditions]: Các điều kiện trong định lý trông có vẻ mạnh hơn tính lồi một chút, nhưng với các trường hợp thường gặp trong lập trình thi đấu, đặc biệt khi $X$ là tập hữu hạn, chỉ nhấn mạnh tính lồi đã đủ. Hàm $\tilde v$ được mở rộng từ hàm lồi proper $v$ trên tập rời rạc nhất định là hàm lồi nửa liên tục dưới, vì bao lồi của hữu hạn điểm nhất định là bao lồi đóng, còn hàm lồi nửa liên tục dưới tương đương với việc epigraph của nó là bao lồi đóng. Từ "proper" trong hàm lồi proper được thỏa mãn miễn là $v(y)$ nhận giá trị hữu hạn tại ít nhất một điểm và là hàm lồi.
+[^other-conditions]: Các điều kiện trong định lý trông có vẻ mạnh hơn tính lồi một chút, nhưng với các trường hợp thường gặp trong lập trình thi đấu, đặc biệt khi $X$ là tập hữu hạn, chỉ nhấn mạnh tính lồi đã đủ. Hàm $\tilde v$ được mở rộng từ hàm lồi proper $v$ trên tập rời rạc luôn là hàm lồi nửa liên tục dưới, vì bao lồi của hữu hạn điểm là bao lồi đóng, còn hàm lồi nửa liên tục dưới tương đương với việc epigraph của nó là bao lồi đóng. Từ "proper" trong hàm lồi proper được thỏa mãn miễn là $v(y)$ nhận giá trị hữu hạn tại ít nhất một điểm và là hàm lồi.
 
 [^mst]: Bài toán cây khung nhỏ nhất có hai [cách](https://math.arizona.edu/~glickenstein/math443f14/golari.pdf) thường gặp để viết thành bài toán quy hoạch tuyến tính: mô hình khử chu trình con (subtour-elimination formulation) và mô hình dựa trên tập cắt (cut-based formulation). Chỉ cách mô hình hóa thứ nhất mới bảo đảm bài toán quy hoạch tuyến tính thu được tương đương với bài toán gốc.
 
