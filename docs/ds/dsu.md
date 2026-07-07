@@ -277,8 +277,8 @@ xem trong ví dụ.
 Có thể định nghĩa trọng số trên các cạnh của DSU,
 cùng với phép toán cập nhật trọng số khi nén đường đi, để giải quyết nhiều bài toán hơn.
 Chẳng hạn, với bài kinh điển "NOI2001 Food Chain",
-có thể duy trì nhóm cộng modulo $3$ trên trọng số cạnh.
-Với các bài toán duy trì trọng số cạnh theo modulo nhỏ như vậy,
+có thể duy trì nhóm cộng theo môđun $3$ trên trọng số cạnh.
+Với các bài toán duy trì trọng số cạnh theo môđun nhỏ như vậy,
 còn có thể giải bằng cách tách một điểm DSU thành nhiều trạng thái.
 Kỹ thuật trong trường hợp đặc biệt này còn được gọi là "DSU phân loại" hoặc "DSU mở rộng miền".
 Phần sau sẽ minh họa các cách làm này qua ví dụ.
@@ -373,7 +373,7 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 
     Cụ thể, với mỗi phát biểu, ngoài các phát biểu sai ngay như $x>n$ hoặc $y>n$,
     cần kiểm tra $x$ và $y$ đã thuộc cùng thành phần hay chưa:
-    nếu đã thuộc cùng thành phần, tính khoảng cách giữa chúng theo modulo rồi so sánh với thông tin
+    nếu đã thuộc cùng thành phần, tính khoảng cách giữa chúng theo môđun rồi so sánh với thông tin
     mà phát biểu khẳng định; nếu chưa, hợp nhất chúng theo thông tin do phát biểu cung cấp.
     Trừ các trường hợp sai ngay,
     một phát biểu là sai khi và chỉ khi hai nút được nhắc tới đã thuộc cùng thành phần,

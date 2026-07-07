@@ -34,7 +34,7 @@ chấp nhận được, có thể dùng làm chỉ số mảng.
 Trong OI, trường hợp thường gặp nhất có lẽ là khóa kiểu số nguyên. Khi phạm vi
 khóa nhỏ, có thể trực tiếp dùng khóa làm chỉ số mảng. Khi phạm vi khóa lớn,
 chẳng hạn dùng số nguyên trong phạm vi $10^9$ làm khóa, cần dùng bảng băm. Cách
-phổ biến là lấy khóa modulo một số nguyên tố lớn để làm chỉ số, tức dùng
+phổ biến là lấy khóa theo môđun một số nguyên tố lớn để làm chỉ số, tức dùng
 $f(x)=x \bmod M$ làm hàm băm.
 
 Một trường hợp khá thường gặp khác là `key` dạng chuỗi. Vì không thể dùng chuỗi
@@ -49,16 +49,16 @@ có độ dài $n$, có:
 
 $x = s_0 \cdot 127^0 + s_1 \cdot 127^1 + s_2 \cdot 127^2 + \dots + s_{n-1} \cdot 127^{n-1}$
 
-Có thể lấy $x$ thu được modulo $2^{64}$ (tức miền biểu diễn của
+Có thể lấy giá trị $x$ theo môđun $2^{64}$ (tức miền biểu diễn của
 `unsigned long long`). Khi đó hiện tượng tràn tự nhiên của `unsigned long long`
-tương đương với phép lấy modulo, giúp thao tác thuận tiện hơn.
+tương đương với phép lấy dư theo môđun, giúp thao tác thuận tiện hơn.
 
 Phương pháp này tuy đơn giản nhưng không hoàn hảo. Có thể xây dựng dữ liệu khiến
-phương pháp này xảy ra va chạm, tức là hai chuỗi có cùng kết quả sau khi lấy
-$x$ modulo $2^{64}$.
+phương pháp này xảy ra va chạm, tức là hai chuỗi có cùng kết quả sau khi lấy dư
+$x$ theo môđun $2^{64}$.
 
 Có thể dùng băm kép: chọn hai số nguyên tố lớn $a,b$. Chỉ khi giá trị băm của
-hai chuỗi sau khi lấy modulo $a$ và modulo $b$ đều bằng nhau, mới xem hai chuỗi
+hai chuỗi sau khi lấy dư theo môđun $a$ và theo môđun $b$ đều bằng nhau, mới xem hai chuỗi
 đó là bằng nhau. Cách này có thể giảm mạnh xác suất va chạm băm.
 
 <span id="va-chạm"></span>
