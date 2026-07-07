@@ -22,11 +22,11 @@ int main(int argc, char* argv[]) {
 }
 
 /**
- * Dynamic Forest Maintained With Euler Tour Tree.
+ * Rừng động được duy trì bằng cây Euler tour.
  *
- * As said in reference, link and cut operation of dynamic trees can be
- * transformed into sequence split and sequence merge operation, which can be
- * easily maintained using balanced search trees like Treap.
+ * Như trong tài liệu tham khảo, thao tác link và cut trên cây động có thể
+ * chuyển thành thao tác tách dãy và gộp dãy, vốn có thể duy trì dễ dàng bằng
+ * cây tìm kiếm cân bằng như Treap.
  *
  * @reference: Dynamic trees as search trees via euler tours, applied to the
  * network simplex algorithm by Robert E. Tarjan.
@@ -109,15 +109,15 @@ class DynamicForest {
   }
 
   /*
-   * Dynamic Sequence Maintained using Treap.
+   * Dãy động được duy trì bằng Treap.
    */
   class Treap {
    public:
     /**
-     * Merge two treap a and b into a single treap, with keys in a less than
-     * keys in b.
+     * Gộp hai treap a và b thành một treap, với khóa trong a nhỏ hơn khóa
+     * trong b.
      *
-     * In the other word, concating sequence a and sequence b.
+     * Nói cách khác, nối dãy a và dãy b.
      */
     static Node* Merge(Node* a, Node* b) {
       if (a == nullptr) return b;
@@ -135,10 +135,9 @@ class DynamicForest {
     }
 
     /**
-     * Get the number of nodes with keys less than or equal to the key of p.
+     * Lấy số nút có khóa nhỏ hơn hoặc bằng khóa của p.
      *
-     * In the other word, the 1-based index of p inside the sequence
-     * containing p.
+     * Nói cách khác, đây là chỉ số 1-based của p trong dãy chứa p.
      */
     static int GetPosition(Node* p) {
       assert(p != nullptr);
@@ -153,8 +152,8 @@ class DynamicForest {
     }
 
     /**
-     * Split sequence containning p into two sequences, the first one contains
-     * the first k elements, the second one contains the remaining elements.
+     * Tách dãy chứa p thành hai dãy; dãy thứ nhất chứa k phần tử đầu tiên,
+     * dãy thứ hai chứa các phần tử còn lại.
      */
     static std::pair<Node*, Node*> Split(Node* p, int k) {
       if (!p) return {nullptr, nullptr};
@@ -185,13 +184,12 @@ class DynamicForest {
     }
 
     /*
-     * Bottom up split treap p into 2 treaps a and b.
-     *   - a: a treap containing nodes with position less than or equal to p.
-     *   - b: a treap containing nodes with postion greater than p.
+     * Tách từ dưới lên treap p thành 2 treap a và b.
+     *   - a: treap chứa các nút có vị trí nhỏ hơn hoặc bằng p.
+     *   - b: treap chứa các nút có vị trí lớn hơn p.
      *
-     * In the other word, split sequence containning p into two sequences, the
-     * first one contains elements before p and element p, the second one
-     * contains elements after p.
+     * Nói cách khác, tách dãy chứa p thành hai dãy: dãy thứ nhất chứa các
+     * phần tử trước p và phần tử p, dãy thứ hai chứa các phần tử sau p.
      */
     static std::pair<Node*, Node*> SplitUp2(Node* p) {
       assert(p != nullptr);
@@ -231,14 +229,13 @@ class DynamicForest {
     }
 
     /*
-     * Bottom up split treap p into 3 treaps a, b and c.
-     *   - a: a treap containing nodes with key less than p.
-     *   - b: a treap containing nodes with key greater than p.
-     *   - c: a treap containing nodes with key equal p.
+     * Tách từ dưới lên treap p thành 3 treap a, b và c.
+     *   - a: treap chứa các nút có khóa nhỏ hơn p.
+     *   - b: treap chứa các nút có khóa lớn hơn p.
+     *   - c: treap chứa các nút có khóa bằng p.
      *
-     * In the other word, split sequence containning p into three sequences, the
-     * first one contains elements before p, the second one contains element p,
-     * the third one contains elements after p.
+     * Nói cách khác, tách dãy chứa p thành ba dãy: dãy thứ nhất chứa các phần
+     * tử trước p, dãy thứ hai chứa phần tử p, dãy thứ ba chứa các phần tử sau p.
      */
     static std::tuple<Node*, Node*, Node*> SplitUp3(Node* p) {
       assert(p != nullptr);
