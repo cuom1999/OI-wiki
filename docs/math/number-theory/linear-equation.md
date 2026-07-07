@@ -13,7 +13,7 @@ $$
 
 Giải phương trình đồng dư tuyến tính nghĩa là tìm toàn bộ nghiệm $x$ trong đoạn
 $[0,n-1]$. Việc cộng hoặc trừ bội bất kỳ của $n$ vào các nghiệm này vẫn cho
-nghiệm của phương trình. Theo modulo $n$, đó là toàn bộ nghiệm của phương trình.
+nghiệm của phương trình. Theo môđun $n$, đó là toàn bộ nghiệm của phương trình.
 
 Bài viết này giới thiệu hai cách giải phương trình đồng dư tuyến tính, lần lượt
 dùng nghịch đảo và phương trình nghiệm nguyên. Trong trường hợp tổng quát, cả
@@ -99,7 +99,7 @@ $$
 x \equiv \left(x_0+t\frac{n}{d}\right)\pmod{n},\quad t\in\mathbf Z.
 $$
 
-Lấy $x_0$ theo modulo $n/d$ sẽ nhận được nghiệm nguyên không âm nhỏ nhất của
+Lấy $x_0$ theo môđun $n/d$ sẽ nhận được nghiệm nguyên không âm nhỏ nhất của
 phương trình đồng dư, tức $x'$ ở phần trên.
 
 <span id="cài-đặt-tham-khảo"></span>
