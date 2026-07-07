@@ -126,7 +126,7 @@ std::cout << q1.empty() << " " << q2.empty() << std::endl;  // 1 0
 ## Hàng đợi ưu tiên
 
 Hàng đợi ưu tiên `std::priority_queue` là một bộ chuyển đổi bộ chứa được cài đặt
-bằng [heap](../../ds/heap.md), thường là [heap nhị phân](../../ds/binary-heap.md).
+bằng [đống](../../ds/heap.md), thường là [đống nhị phân](../../ds/binary-heap.md).
 
 <span id="tệp-tiêu-đề-hàng-đợi-ưu-tiên"></span>
 
@@ -170,17 +170,17 @@ hơn. Vì vậy, với `std::less<T>` mặc định, phần tử lớn nhất s�
 
 **Các hàm sau có độ phức tạp hằng số**
 
--   `top()` truy cập phần tử ở đỉnh heap (nếu hàng đợi ưu tiên rỗng thì hành vi
+-   `top()` truy cập phần tử ở đỉnh đống (nếu hàng đợi ưu tiên rỗng thì hành vi
     không xác định)
 -   `empty()` trả về `true` nếu bộ chứa rỗng, ngược lại trả về `false`
 -   `size()` trả về số lượng phần tử trong bộ chứa
 
 **Các hàm sau có độ phức tạp logarit**
 
--   `push(x)` chèn phần tử rồi điều chỉnh lại heap trong bộ chứa cơ sở
--   `emplace(args...)` xây dựng trực tiếp một phần tử rồi điều chỉnh lại heap
+-   `push(x)` chèn phần tử rồi điều chỉnh lại đống trong bộ chứa cơ sở
+-   `emplace(args...)` xây dựng trực tiếp một phần tử rồi điều chỉnh lại đống
     (C++11)
--   `pop()` xóa phần tử ở đỉnh heap (nếu hàng đợi ưu tiên rỗng thì hành vi không
+-   `pop()` xóa phần tử ở đỉnh đống (nếu hàng đợi ưu tiên rỗng thì hành vi không
     xác định)
 
 `std::priority_queue` cũng hỗ trợ `swap()` để trao đổi nội dung với một hàng đợi
@@ -195,7 +195,7 @@ std::priority_queue<int> q1;
 std::priority_queue<int, std::vector<int>> q2;
 // Sau C++11 có thể bỏ khoảng trắng
 std::priority_queue<int, std::deque<int>, std::greater<int>> q3;
-// q3 là heap nhỏ nhất
+// q3 là đống nhỏ nhất
 for (int i = 1; i <= 5; i++) q1.push(i);
 // Các phần tử trong q1: [1, 2, 3, 4, 5]
 std::cout << q1.top() << std::endl;

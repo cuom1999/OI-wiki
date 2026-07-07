@@ -1056,14 +1056,14 @@ Queue<Integer> q = new ArrayDeque<>();
 
 #### PriorityQueue
 
-`PriorityQueue` là hàng đợi ưu tiên; mặc định là heap nhỏ.
+`PriorityQueue` là hàng đợi ưu tiên; mặc định là đống nhỏ.
 
 <span id="priorityqueue-khởi-tạo"></span>
 ##### Khởi tạo
 
 ```java
-Queue<Integer> q1 = new PriorityQueue<>();  // Heap nhỏ
-Queue<Integer> q2 = new PriorityQueue<>((x, y) -> {return y - x;});  // Heap lớn
+Queue<Integer> q1 = new PriorityQueue<>();  // Đống nhỏ
+Queue<Integer> q2 = new PriorityQueue<>((x, y) -> {return y - x;});  // Đống lớn
 ```
 
 <span id="queue-phương-thức-thường-dùng"></span>

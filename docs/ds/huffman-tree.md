@@ -215,7 +215,7 @@ Các bước xây dựng như sau:
 ??? note "Tính trực tiếp WPL khi chưa xây dựng cây Huffman"
     ```cpp
     int getWPL(int arr[], int n) {  // Tính trực tiếp WPL khi chưa xây dựng cây Huffman
-      priority_queue<int, vector<int>, greater<int>> huffman;  // Heap nhỏ
+      priority_queue<int, vector<int>, greater<int>> huffman;  // Đống nhỏ
       for (int i = 0; i < n; i++) huffman.push(arr[i]);
     
       int res = 0;

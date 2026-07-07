@@ -155,10 +155,10 @@ for (int i = 0; i < n; i++) {
 
 Như đã nói, `pair` có thể làm kiểu dữ liệu của `priority_queue`.
 
-Trong phiên bản Dijkstra tối ưu bằng heap, có thể dùng `pair` và
+Trong phiên bản Dijkstra tối ưu bằng đống, có thể dùng `pair` và
 `priority_queue` để duy trì các đỉnh: thành viên thứ nhất lưu khoảng cách hiện
 tại từ nguồn đến đỉnh, còn thành viên thứ hai lưu số hiệu đỉnh. Ví dụ dưới đây
-dùng `greater<pair<int, int>>` để biến `priority_queue` mặc định thành min-heap
+dùng `greater<pair<int, int>>` để biến `priority_queue` mặc định thành đống nhỏ
 theo thứ tự từ điển của `pair`.
 
 ```cpp
@@ -166,7 +166,7 @@ priority_queue<pair<int, int>, std::vector<pair<int, int>>,
                std::greater<pair<int, int>>>
     q;
 ... while (!q.empty()) {
-  // dis là khoảng cách từ nguồn đến đỉnh khi được đưa vào heap, i là số hiệu đỉnh
+  // dis là khoảng cách từ nguồn đến đỉnh khi được đưa vào đống, i là số hiệu đỉnh
   int dis = q.top().first, i = q.top().second;
   q.pop();
   ...
