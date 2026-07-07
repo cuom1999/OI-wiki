@@ -47,13 +47,14 @@ Các nút trong PQ tree cần được sắp xếp theo màu.
 Cây con nhỏ nhất chứa tất cả các nút đen được gọi là **cây con liên quan**, và gốc của cây con liên quan (không nhất
 thiết là gốc của toàn bộ cây) được gọi là **gốc liên quan**.
 
-Quá trình thêm một ràng buộc được gọi là một lần rút gọn. Một lần rút gọn gồm hai giai đoạn: giai đoạn nổi bọt và giai đoạn rút gọn.
+Quá trình thêm một ràng buộc được gọi là một lần rút gọn. Một lần rút gọn gồm hai giai đoạn: giai đoạn nổi bọt và giai
+đoạn rút gọn.
 
 #### Giai đoạn nổi bọt
 
 Giai đoạn nổi bọt chỉ xử lý cây con liên quan. Mọi nút trong cây con liên quan được đánh dấu là đen hoặc xám, đồng thời
 tính số nút con liên quan của từng nút. Để thực hiện quá trình này hiệu quả, xử lý cây con liên quan từ lá lên gốc.
-Việc này cần ghi lại nút cha của mỗi điểm, nhưng trong giai đoạn rút gọn, nút cha của một điểm thường phải bị sửa. Để
+Việc này cần ghi lại nút cha của mỗi nút, nhưng trong giai đoạn rút gọn, nút cha của một nút thường phải bị sửa. Để
 xây dựng trong thời gian tuyến tính, chỉ các con của nút P và **con cuối cùng của nút Q** luôn ghi đúng nút cha. Với các
 con khác của nút Q, giai đoạn nổi bọt dùng nút cha của con cuối cùng để cập nhật nút cha của chúng.
 
@@ -132,7 +133,8 @@ Nếu $u$ chỉ có con đen, đánh dấu $u$ là đen. (Hình dạng trong hì
 
 Nếu $u$ có một con xám $p$, và mọi con có cùng màu đều xuất hiện liên tiếp, thực hiện như sau:
 
--   Gọi $p_f$ là con đen cuối cùng của $p$, $p_e$ là con trắng cuối cùng của $p$, $f$ là anh em đen của $p$, và $e$ là anh em trắng của $p$.
+-   Gọi $p_f$ là con đen cuối cùng của $p$, $p_e$ là con trắng cuối cùng của $p$, $f$ là anh em đen của $p$, và $e$ là
+    anh em trắng của $p$.
 -   Đặt anh em của $f$ là $p_f$, và anh em của $e$ là $p_e$.
 -   Nếu $p$ không có anh em trắng hoặc anh em đen, đặt con cuối cùng của $u$ thành con cuối cùng của $p$.
 -   Xóa $p$.
@@ -152,7 +154,7 @@ Phương pháp xây dựng này đến từ bài báo gốc, nhưng khá bất t
 Hiện nay, phần lớn các cài đặt trong OI dùng phương pháp này. Ý tưởng vẫn tương tự; các trường hợp xuất hiện bên dưới về
 cơ bản đều có thể tìm thấy ở trên.
 
-Lưu ý rằng theo quá trình tô màu ở trên, mọi điểm đen và trắng đều đã thỏa mãn điều kiện, vì vậy **chỉ cần xử lý các nút
+Lưu ý rằng theo quá trình tô màu ở trên, mọi nút đen và trắng đều đã thỏa mãn điều kiện, vì vậy **chỉ cần xử lý các nút
 xám**.
 
 #### Nút P
@@ -176,7 +178,7 @@ giữ lại **tất cả khả năng** của các nút trong các cây con thu �
 
 #### Hàm tách
 
-Gọi điểm cần tách là $u$. Mục tiêu là tách $u$ thành một rừng mà bên trái toàn trắng, bên phải toàn đen. Nếu $u$ không
+Gọi nút cần tách là $u$. Mục tiêu là tách $u$ thành một rừng mà bên trái toàn trắng, bên phải toàn đen. Nếu $u$ không
 phải nút xám, trả về trực tiếp cây con đó. Chỉ cần xét trường hợp nút xám.
 
 Nếu $u$ là nút loại P:
@@ -242,7 +244,7 @@ class PQTree {
 
   void Delete(int u) { g_[u].clear(), pool_[++top_] = u; }
 
-  void Dfs0(int u) {  // get color of each node
+  void Dfs0(int u) {  // Lấy màu của từng nút.
     if (u >= 1 && u <= n_) {
       col_[u] = s_[u] == '1';
       return;
@@ -373,7 +375,7 @@ class PQTree {
     }
   }
 
-  void Remove(int u) {  // remove the nodes with only one child
+  void Remove(int u) {  // Xóa các nút chỉ có một con.
     for (auto &&v : g_[u]) {
       int tv = v;
       while (g_[tv].size() == 1) {
