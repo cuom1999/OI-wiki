@@ -6,7 +6,10 @@ Kiến thức cần có: [Cây tìm kiếm nhị phân mộc mạc](./bst.md), [
 
 Treap là một **cây tìm kiếm nhị phân** **cân bằng yếu**.
 
-Ngoài **giá trị** cần duy trì ($\textit{val}$), mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$). Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân, còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
+Ngoài **giá trị** cần duy trì ($\textit{val}$),
+mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$).
+Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân,
+còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
 
 Tính chất của cây tìm kiếm nhị phân là:
 
@@ -17,7 +20,13 @@ Tính chất của heap là:
 
 -   Độ ưu tiên ($\textit{priority}$) của nút con lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
 
-Nếu dùng cùng một giá trị cho cả hai cấu trúc, khi kết hợp lại cấu trúc sẽ biến thành một chuỗi. Vì vậy, trên nền tảng cây tìm kiếm, Treap đưa thêm một giá trị $\textit{priority}$ cho heap. Với giá trị $\textit{val}$, duy trì tính chất cây tìm kiếm; với giá trị $\textit{priority}$, duy trì tính chất heap. Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
+Nếu dùng cùng một giá trị cho cả hai cấu trúc,
+khi kết hợp lại cấu trúc sẽ biến thành một chuỗi.
+Vì vậy, trên nền tảng cây tìm kiếm,
+Treap đưa thêm một giá trị $\textit{priority}$ cho heap.
+Với giá trị $\textit{val}$, duy trì tính chất cây tìm kiếm;
+với giá trị $\textit{priority}$, duy trì tính chất heap.
+Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
 
 Hình dưới đây là một ví dụ về Treap (dùng min-heap, tức nút gốc có độ ưu tiên nhỏ nhất).
 
@@ -25,40 +34,63 @@ Hình dưới đây là một ví dụ về Treap (dùng min-heap, tức nút g�
 
 Vì sao cấu trúc dữ liệu này cần đồng thời thỏa mãn tính chất của cây và heap, đồng thời gán ngẫu nhiên giá trị heap?
 
-Để hiểu điều này, trước hết cần xét vấn đề của cây tìm kiếm nhị phân mộc mạc. Khi chèn một nút mới vào cây tìm kiếm mộc mạc, quá trình đệ quy bắt đầu từ nút gốc của cây. Nếu nút mới nhỏ hơn nút hiện tại thì đệ quy sang trái, ngược lại thì đệ quy sang phải.
+Để hiểu điều này, trước hết cần xét vấn đề của cây tìm kiếm nhị phân cơ bản.
+Khi chèn một nút mới vào cây tìm kiếm cơ bản,
+quá trình đệ quy bắt đầu từ nút gốc của cây.
+Nếu nút mới nhỏ hơn nút hiện tại thì đệ quy sang trái,
+ngược lại thì đệ quy sang phải.
 
-Cuối cùng, khi gặp một nút hiện tại không có nút con phù hợp, dựa vào quan hệ lớn nhỏ của giá trị nút mới mà đặt nó làm nút con trái hoặc nút con phải của nút hiện tại.
+Cuối cùng, khi gặp một nút hiện tại không có nút con phù hợp,
+dựa vào quan hệ lớn nhỏ của giá trị nút mới mà đặt nó làm nút con trái
+hoặc nút con phải của nút hiện tại.
 
-Nếu giá trị của các nút được chèn là ngẫu nhiên (nói cách khác, chèn theo thứ tự ngẫu nhiên), chiều cao của cây tìm kiếm mộc mạc này sẽ nhỏ (gần $\log n$, trong đó $n$ là số nút), và số nút trên mỗi tầng khá lớn, tức hình dạng của cây khá "bè ngang". Treap trong hình trên là một ví dụ. Khi đó độ phức tạp của mỗi thao tác sẽ vào khoảng $O(\log n)$.
+Nếu giá trị của các nút được chèn là ngẫu nhiên
+(nói cách khác, chèn theo thứ tự ngẫu nhiên),
+chiều cao của cây tìm kiếm cơ bản này sẽ nhỏ
+(gần $\log n$, trong đó $n$ là số nút),
+và số nút trên mỗi tầng khá lớn, tức hình dạng của cây khá cân đối.
+Treap trong hình trên là một ví dụ.
+Khi đó độ phức tạp của mỗi thao tác sẽ vào khoảng $O(\log n)$.
 
-Tuy nhiên, đó chỉ là độ phức tạp trong trường hợp ngẫu nhiên. Nếu chèn nút vào một cây tìm kiếm mộc mạc theo thứ tự rất có quy luật như sau:
+Tuy nhiên, đó chỉ là độ phức tạp trong trường hợp ngẫu nhiên.
+Nếu chèn nút vào một cây tìm kiếm cơ bản theo thứ tự rất có quy luật như sau:
 
 ```plain
 1 2 3 4 5
 ```
 
-Thì cây này sẽ suy biến thành một chuỗi, tức trở nên rất "thon dài" (mỗi nút được chèn đều lớn hơn các nút trước đó, nên đều bị đặt vào nút con phải):
+thì cây này sẽ suy biến thành một chuỗi
+(mỗi nút được chèn đều lớn hơn các nút trước đó, nên đều bị đặt vào nút con phải):
 
 ![Ví dụ suy biến thành chuỗi](./images/treap-search-tree-chain.svg)
 
 Khi đó độ phức tạp truy vấn cũng từ $O(\log n)$ biến thành $O(n)$.
 
-Để giải quyết vấn đề này và đạt trạng thái tương đối "cân bằng", Treap duy trì các độ ưu tiên ngẫu nhiên thỏa mãn tính chất heap, qua đó "xáo trộn" thứ tự chèn nút, giúp cây tìm kiếm nhị phân đạt độ phức tạp mong muốn và tránh suy biến thành chuỗi.
+Để giải quyết vấn đề này và đạt trạng thái tương đối cân bằng,
+Treap duy trì các độ ưu tiên ngẫu nhiên thỏa mãn tính chất heap.
+Cách này tương đương với việc xáo trộn thứ tự chèn nút,
+giúp cây tìm kiếm nhị phân đạt độ phức tạp mong muốn và tránh suy biến thành chuỗi.
 
 ## Chứng minh độ phức tạp của Treap
 
-Vì độ phức tạp của các thao tác trên Treap đều liên quan đến độ sâu của nút được thao tác, trước hết chứng minh độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
+Vì độ phức tạp của các thao tác trên Treap đều liên quan đến độ sâu của nút được thao tác,
+trước hết chứng minh độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
 ### Quy ước ký hiệu
 
 Để tiện trình bày, quy ước:
 
 -   $n$ là số nút.
--   Trong nút Treap, giá trị thỏa mãn tính chất cây tìm kiếm nhị phân được gọi là **giá trị**, còn giá trị thỏa mãn tính chất heap (tức ngẫu nhiên) được gọi là **độ ưu tiên**. Không mất tính tổng quát, giả sử độ ưu tiên thỏa mãn tính chất min-heap.
+-   Trong nút Treap, giá trị thỏa mãn tính chất cây tìm kiếm nhị phân được gọi là **giá trị**,
+    còn giá trị thỏa mãn tính chất heap (tức ngẫu nhiên) được gọi là **độ ưu tiên**.
+    Không mất tính tổng quát, giả sử độ ưu tiên thỏa mãn tính chất min-heap.
 -   $x_k$ biểu thị nút có giá trị nhỏ thứ $k$.
--   $X_{i,j}$ biểu thị tập $\{x_i,x_{i+1},\cdots,x_{j-1},x_j\}$, tức tập các nút từ thứ $i$ đến thứ $j$ sau khi sắp xếp tăng dần theo giá trị.
+-   $X_{i,j}$ biểu thị tập $\{x_i,x_{i+1},\cdots,x_{j-1},x_j\}$,
+    tức tập các nút từ thứ $i$ đến thứ $j$ sau khi sắp xếp tăng dần theo giá trị.
 -   $\operatorname{dep}(x)$ biểu thị độ sâu của nút $x$. Quy định độ sâu của nút gốc là $0$.
--   $Y_{i,j}$ là một biến ngẫu nhiên chỉ thị; khi $x_i$ là tổ tiên của $x_j$ thì có giá trị $1$, ngược lại là $0$. Đặc biệt, $Y_{i,i}=0$.
+-   $Y_{i,j}$ là một biến ngẫu nhiên chỉ thị;
+    khi $x_i$ là tổ tiên của $x_j$ thì có giá trị $1$, ngược lại là $0$.
+    Đặc biệt, $Y_{i,i}=0$.
 -   $\Pr(A)$ biểu thị xác suất xảy ra sự kiện $A$.
 
 ### Chứng minh độ sâu kỳ vọng của nút
@@ -86,10 +118,22 @@ Trước hết chứng minh bổ đề: $Y_{i,j}=1$ khi và chỉ khi độ ưu 
 ??? note "Chứng minh bổ đề"
     Xét các trường hợp của $x_i$ và $x_j$.
 
-    1.  Nếu $x_i$ là nút gốc: do độ ưu tiên thỏa mãn tính chất min-heap, độ ưu tiên của $x_i$ là nhỏ nhất, và với mọi $x_j$, $x_i$ đều là tổ tiên của $x_j$.
-    2.  Nếu $x_j$ là nút gốc: tương tự, do độ ưu tiên của $x_j$ là nhỏ nhất, nên $x_i$ không phải nút có độ ưu tiên nhỏ nhất trong $X_{i,j}$; đồng thời $x_i$ cũng không phải tổ tiên của $x_j$.
-    3.  Nếu $x_i$ và $x_j$ nằm trong hai cây con của nút gốc (một trái, một phải), thì nút gốc $r\in X_{i,j}$. Do đó độ ưu tiên của $x_i$ không thể là nhỏ nhất trong $X_{i,j}$ (vì độ ưu tiên của nút gốc nhỏ hơn nó). Đồng thời, vì $x_i$ và $x_j$ thuộc hai cây con khác nhau, $x_i$ cũng không phải tổ tiên của $x_j$.
-    4.  Nếu $x_i$ và $x_j$ nằm trong cùng một cây con của nút gốc, có thể tách riêng cây con này thành một Treap mới và chứng minh đệ quy như trên.
+    1.  Nếu $x_i$ là nút gốc:
+        do độ ưu tiên thỏa mãn tính chất min-heap,
+        độ ưu tiên của $x_i$ là nhỏ nhất,
+        và với mọi $x_j$, $x_i$ đều là tổ tiên của $x_j$.
+    2.  Nếu $x_j$ là nút gốc:
+        tương tự, do độ ưu tiên của $x_j$ là nhỏ nhất,
+        nên $x_i$ không phải nút có độ ưu tiên nhỏ nhất trong $X_{i,j}$;
+        đồng thời $x_i$ cũng không phải tổ tiên của $x_j$.
+    3.  Nếu $x_i$ và $x_j$ nằm trong hai cây con của nút gốc (một trái, một phải),
+        thì nút gốc $r\in X_{i,j}$.
+        Do đó độ ưu tiên của $x_i$ không thể là nhỏ nhất trong $X_{i,j}$
+        (vì độ ưu tiên của nút gốc nhỏ hơn nó).
+        Đồng thời, vì $x_i$ và $x_j$ thuộc hai cây con khác nhau,
+        $x_i$ cũng không phải tổ tiên của $x_j$.
+    4.  Nếu $x_i$ và $x_j$ nằm trong cùng một cây con của nút gốc,
+        có thể tách riêng cây con này thành một Treap mới và chứng minh đệ quy như trên.
 
 Theo bổ đề, kỳ vọng của độ sâu có thể chuyển thành
 
@@ -97,7 +141,9 @@ $$
 E(\operatorname{dep}(x_i))=\sum_{k=1}^n\Pr(x_k=\min X_{i,k}\land k\neq i).
 $$
 
-Vì độ ưu tiên của các nút là ngẫu nhiên, giả định mỗi nút trong tập $X_{i,j}$ có xác suất như nhau để có độ ưu tiên nhỏ nhất. Khi đó
+Vì độ ưu tiên của các nút là ngẫu nhiên,
+giả định mỗi nút trong tập $X_{i,j}$ có xác suất như nhau để có độ ưu tiên nhỏ nhất.
+Khi đó
 
 $$
 \begin{aligned}
@@ -113,27 +159,44 @@ $$
 
 Do đó độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
-Độ phức tạp của các thao tác trên cây tìm kiếm nhị phân mộc mạc đều là $O(h)$, và độ phức tạp để Treap duy trì tính chất heap cũng là $O(h)$, nên độ phức tạp kỳ vọng của các thao tác trên Treap đều là $O(\log n)$.
+Độ phức tạp của các thao tác trên cây tìm kiếm nhị phân cơ bản đều là $O(h)$,
+và độ phức tạp để Treap duy trì tính chất heap cũng là $O(h)$.
+Vì vậy, độ phức tạp kỳ vọng của các thao tác trên Treap đều là $O(\log n)$.
 
 ???+ note "Cách hiểu trực quan về độ phức tạp kỳ vọng"
-    Trước hết, cần nhận ra thuộc tính $\textit{priority}$ của một nút có liên hệ trực tiếp với tầng chứa nút đó. Nhắc lại tính chất heap:
+    Trước hết, cần nhận ra thuộc tính $\textit{priority}$ của một nút
+    có liên hệ trực tiếp với tầng chứa nút đó.
+    Nhắc lại tính chất heap:
 
     -   Giá trị nút con ($\textit{priority}$) lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
 
-    Các nút ở tầng thấp, chẳng hạn nút gốc của toàn bộ cây, sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong min-heap). Đồng thời, trong cây tìm kiếm mộc mạc, nút được chèn trước cũng có khả năng nằm ở tầng nông hơn. Có thể liên hệ thuộc tính $\textit{priority}$ này với thứ tự chèn để hiểu vì sao Treap có thể dùng $\textit{priority}$ để xáo trộn thứ tự chèn nút.
+    Các nút ở tầng thấp, chẳng hạn nút gốc của toàn bộ cây,
+    sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong min-heap).
+    Đồng thời, trong cây tìm kiếm cơ bản,
+    nút được chèn trước cũng có khả năng nằm ở tầng nông hơn.
+    Có thể liên hệ thuộc tính $\textit{priority}$ này với thứ tự chèn
+    để hiểu vì sao Treap có thể dùng $\textit{priority}$ để xáo trộn thứ tự chèn nút.
 
-Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap. Trong đó, thao tác chèn có thể duy trì tính chất cây tìm kiếm, còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất. Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
+Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap.
+Trong đó, thao tác chèn có thể duy trì tính chất cây tìm kiếm,
+còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất.
+Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
 
 ## Treap xoay
 
-**Treap xoay** duy trì cân bằng bằng phép xoay, tương tự thao tác xoay của cây AVL, gồm **xoay trái** và **xoay phải**. Tức là, với điều kiện vẫn thỏa mãn cây tìm kiếm nhị phân, Treap được cân bằng dựa theo độ ưu tiên của heap.
+**Treap xoay** duy trì cân bằng bằng phép xoay,
+tương tự thao tác xoay của cây AVL, gồm **xoay trái** và **xoay phải**.
+Tức là, với điều kiện vẫn thỏa mãn cây tìm kiếm nhị phân,
+Treap được cân bằng dựa theo độ ưu tiên của heap.
 
 Khi làm các bài cây cân bằng thông thường, Treap xoay có hằng số nhỏ trong số các cây cân bằng.
 
 Phần giải thích dưới đây dùng con trỏ để cài đặt Treap xoay; cuối bài có kèm cài đặt đầy đủ bằng mảng.
 
 ???+ info "Thông tin"
-    Trong code, `rank` đại diện cho độ ưu tiên đã nói ở trên (thuộc tính $\textit{priority}$); thuộc tính này thỏa mãn tính chất min-heap.
+    Trong code, `rank` đại diện cho độ ưu tiên đã nói ở trên
+    (thuộc tính $\textit{priority}$);
+    thuộc tính này thỏa mãn tính chất min-heap.
 
 ### Cấu trúc nút
 
@@ -730,7 +793,7 @@ Khi duyệt trung thứ tự
 (duyệt cây con trái trước, sau đó đến nút hiện tại, cuối cùng là cây con phải),
 kết quả thu được chính là đoạn này[^ref3].
 
-Trong cây tìm kiếm nhị phân mộc mạc,
+Trong cây tìm kiếm nhị phân cơ bản,
 nếu chèn nút theo thứ tự tăng dần, cây được tạo ra là một chuỗi dài;
 khi duyệt trung thứ tự, kết quả chính là đoạn này.
 
@@ -738,7 +801,7 @@ khi duyệt trung thứ tự, kết quả chính là đoạn này.
   <img style="width: 50%; " src="../images/treap-search-tree-chain.svg" >
 </div>
 
-Như hình trên, nếu chèn các nút vào cây tìm kiếm mộc mạc theo thứ tự $1\ 2\ 3\ 4\ 5$,
+Như hình trên, nếu chèn các nút vào cây tìm kiếm cơ bản theo thứ tự $1\ 2\ 3\ 4\ 5$,
 khi duyệt trung thứ tự cũng thu được $1\ 2\ 3\ 4\ 5$.
 
 Nhưng trong Treap, sau khi chèn các nút theo thứ tự tăng dần,
