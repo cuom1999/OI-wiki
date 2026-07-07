@@ -6,7 +6,7 @@ Trang này giới thiệu ngắn gọn nền tảng ra đề cộng tác nhiều
 
 ### Polygon là gì
 
-Trang web: [Index Page - Polygon](https://polygon.codeforces.com)
+Trang web: [Trang chỉ mục - Polygon](https://polygon.codeforces.com)
 
 Polygon là một nền tảng ra đề hỗ trợ nhiều người cộng tác, với hệ thống chức năng
 hoàn chỉnh. Mô tả trên trang chính thức là: "Sứ mệnh của Polygon là cung cấp một

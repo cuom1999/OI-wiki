@@ -1,6 +1,6 @@
 ???+ note "Ghi chú"
     Trang này tập trung giới thiệu hệ thống quản lý phiên bản Git. Nội dung liên
-    quan đến GitHub xem tại [GitHub Docs](https://docs.github.com/en) và [Cách
+    quan đến GitHub xem tại [Tài liệu GitHub](https://docs.github.com/en) và [Cách
     tham gia - OI Wiki](../intro/htc.md).
 
 Git hiện là một trong những hệ thống quản lý phiên bản được sử dụng rộng rãi
@@ -8,7 +8,7 @@ nhất. **OI Wiki** cũng dùng Git làm hệ thống quản lý phiên bản.
 
 ## Cài đặt
 
-Xem [Git - Downloads](https://git-scm.com/downloads).
+Xem [Git - tải xuống](https://git-scm.com/downloads).
 
 ## Cấu hình
 
@@ -568,7 +568,7 @@ So với HTTP(S), dùng ssh để kết nối kho từ xa gọn và an toàn hơ
 Trước khi dùng ssh để kết nối kho từ xa, cần thêm khóa ssh ở cục bộ. Sau đó cần
 tải **khóa công khai** của khóa ssh đã thêm ở cục bộ lên tài khoản kho từ xa.
 
-Vì bài này chủ yếu hướng dẫn người đóng góp **OI Wiki** dùng Git, phần này dẫn lại [hướng dẫn của GitHub Docs](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để người đọc tham khảo.
+Vì bài này chủ yếu hướng dẫn người đóng góp **OI Wiki** dùng Git, phần này dẫn lại [hướng dẫn trong Tài liệu GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) để người đọc tham khảo.
 
 Sau khi hoàn thành các bước trên, có thể kết nối đến kho từ xa bằng ssh. Dưới đây là một lệnh clone kho **OI Wiki** thông qua ssh:
 
@@ -594,15 +594,15 @@ Nhiều công cụ GUI có hỗ trợ nhiều ngôn ngữ giao diện, ví dụ 
 
 ## Liên kết ngoài
 
--   [Git Reference](https://git-scm.com/docs)
--   [Pro Git Book](https://git-scm.com/book/en/v2)
--   [Learn Git Branching](https://learngitbranching.js.org/)
+-   [Tài liệu tham khảo Git](https://git-scm.com/docs)
+-   [Sách Pro Git](https://git-scm.com/book/en/v2)
+-   [Học phân nhánh Git](https://learngitbranching.js.org/)
 
 ## Tài liệu tham khảo và chú thích
 
 [^note1]: Git còn có một tệp cấu hình chung dành cho mọi người dùng trên hệ thống và mọi kho trên hệ thống. Tệp cấu hình này có phạm vi bao phủ rộng nhất, cấp cao hơn tệp cấu hình người dùng. Vì cấu hình này ít dùng trong thực tế, phần này không trình bày thêm.
 
-[^note2]: [Pro Git Book](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) cung cấp hình minh họa quá trình Rebase; nhờ hình ảnh, người đọc có thể hiểu cơ chế Rebase tốt hơn.
+[^note2]: [Sách Pro Git](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) cung cấp hình minh họa quá trình Rebase; nhờ hình ảnh, người đọc có thể hiểu cơ chế Rebase tốt hơn.
 
 [^note3]: [TortoiseGit](https://tortoisegit.org/)
 

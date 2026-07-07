@@ -327,6 +327,6 @@ thường.
 
 [^1]: Phụ lục A "Môi trường và phương pháp phát triển" trong sách "Nhập môn kinh điển về thi đấu thuật toán (bản thứ 2)" của Lưu Nhữ Giai
 
-[^autocomplete]: [Comparison\_of\_command\_shells#Interactive\_features](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
+[^autocomplete]: [So sánh các shell dòng lệnh#Tính năng tương tác](https://en.wikipedia.org/wiki/Comparison_of_command_shells#Interactive_features)
 
 [^bash-time-format]: <https://unix.stackexchange.com/a/70655>

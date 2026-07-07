@@ -201,7 +201,7 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 
 ## Tài liệu tham khảo và chú thích
 
-[^have-to-link-libm-in-gcc]: [Why do you have to link the math library in C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
+[^have-to-link-libm-in-gcc]: [Vì sao cần liên kết thư viện toán học trong C?](https://stackoverflow.com/questions/1033898/why-do-you-have-to-link-the-math-library-in-c)
 
 [^address-sanitizer]: <https://clang.llvm.org/docs/AddressSanitizer.html>
 
@@ -211,6 +211,6 @@ Cả hai lệnh `display` và `print` đều hỗ trợ điều khiển định 
 
 [^ub-san]: <https://clang.llvm.org/docs/UndefinedBehaviorSanitizer.html>
 
-[^gnu-make-built-in-rules]: [Catalogue of Built-In Rules](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
+[^gnu-make-built-in-rules]: [Danh mục các quy tắc dựng sẵn](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)
 
 [^checkpoint]: Các lệnh liên quan đến điểm kiểm tra (checkpoint) chỉ dùng được trên nền tảng GNU/Linux. Xem [sổ tay chính thức của GDB](https://sourceware.org/gdb/current/onlinedocs/gdb#Checkpoint_002fRestart) để biết chi tiết.
