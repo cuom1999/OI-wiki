@@ -9,7 +9,7 @@ int find(int x) { return fa[x] == x ? x : fa[x] = find(fa[x]); }
 int dist[N], vis[N], bin[N];
 int n, m;
 
-int contract(int &s, int &t) {  // Find s,t
+int contract(int &s, int &t) {  // Tìm s,t
   memset(dist, 0, sizeof(dist));
   memset(vis, false, sizeof(vis));
   int i, j, k, mincut, maxc;

@@ -66,25 +66,25 @@ Sau khi có $\gcd(a, b) = \gcd(b, r)$, kích thước của cặp số giảm xu
 
 === "C++"
     ```cpp
-    // Version 1
+    // Phiên bản 1
     int gcd(int a, int b) {
       if (b == 0) return a;
       return gcd(b, a % b);
     }
     
-    // Version 2
+    // Phiên bản 2
     int gcd(int a, int b) { return b == 0 ? a : gcd(b, a % b); }
     ```
 
 === "Java"
     ```java
-    // Version 1
+    // Phiên bản 1
     public int gcd(int a, int b) {
         if (b == 0) return a;
         return gcd(b, a % b);
     }
     
-    // Version 2
+    // Phiên bản 2
     public int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }

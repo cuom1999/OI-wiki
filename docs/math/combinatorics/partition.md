@@ -74,10 +74,10 @@ Nếu lập bảng, giá trị trong mỗi ô bằng giá trị ở góc trái t
         for (i = 1; i <= n; ++i) {
           int j;
           for (j = 1; j <= k; ++j) {
-            if (i - j >= 0) /* Moi phan trong p[i-j][j] deu lon hon 1 */
+            if (i - j >= 0) /* Mọi phần trong p[i-j][j] đều lớn hơn 1 */
             {
               p[i][j] = (p[i - j][j] + p[i - 1][j - 1]) %
-                        1000007; /* p[i-1][j-1] co it nhat mot phan bang 1. */
+                        1000007; /* p[i-1][j-1] có ít nhất một phần bằng 1. */
             }
           }
         }
@@ -191,13 +191,13 @@ Cũng có thể lập bảng giống như với số tổ hợp. Mỗi ô bằng
         for (j = 1; j < 350; ++j) {
           int i;
           for (i = 0; i < 350; ++i) {
-            pd[i][j & 1] = 0; /* pd[i][j] chi lien quan den pd[][j] va pd[][j-1] */
+            pd[i][j & 1] = 0; /* pd[i][j] chỉ liên quan đến pd[][j] và pd[][j-1] */
           }
           for (i = 0; i <= n; ++i) {
-            if (i - j >= 0) /* Moi phan trong pd[i-j][j] deu lon hon 1 */
+            if (i - j >= 0) /* Mọi phần trong pd[i-j][j] đều lớn hơn 1 */
             {
               pd[i][j & 1] = (pd[i - j][j & 1] + pd[i - j][(j - 1) & 1]) %
-                             1000007; /* pd[i-j][j-1] co it nhat mot phan bang 1. */
+                             1000007; /* pd[i-j][j-1] có ít nhất một phần bằng 1. */
             }
           }
           ans = (ans + pd[n][j & 1]) % 1000007;
@@ -337,9 +337,9 @@ Công thức truy hồi này có vô hạn hạng, nhưng nếu quy ước số 
       p[2] = 2;
       int i;
       for (i = 1; i < 50005;
-           i++) /* He so truy hoi 1,2,5,7,12,15,22,26... i*(3*i-1)/2, i*(3*i+1)/2 */
+           i++) /* Hệ số truy hồi 1,2,5,7,12,15,22,26... i*(3*i-1)/2, i*(3*i+1)/2 */
       {
-        a[2 * i] = i * (i * 3 - 1) / 2; /* So ngu giac 1,5,12,22... i*(3*i-1)/2 */
+        a[2 * i] = i * (i * 3 - 1) / 2; /* Số ngũ giác 1,5,12,22... i*(3*i-1)/2 */
         a[2 * i + 1] = i * (i * 3 + 1) / 2;
       }
       for (
@@ -348,7 +348,7 @@ Công thức truy hồi này có vô hạn hạng, nhưng nếu quy ước số 
       {
         p[i] = 0;
         int j;
-        for (j = 2; a[j] <= i; j++) /* Co the bi am, nen cong them 1000007 */
+        for (j = 2; a[j] <= i; j++) /* Có thể bị âm, nên cộng thêm 1000007 */
         {
           if (j & 2) {
             p[i] = (p[i] + p[i - a[j]] + 1000007) % 1000007;

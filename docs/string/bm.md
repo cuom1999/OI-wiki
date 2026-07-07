@@ -840,7 +840,7 @@ Tùy mục tiêu ưu tiên là tiết kiệm thời gian hay tiết kiệm bộ 
                         
                         offset = offset0;
                         
-                        // Galil rule
+                        // Quy tắc Galil
                         string_index += self.k;
                         continue;
                     }
