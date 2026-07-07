@@ -16,13 +16,13 @@ Liên phân số có thể biểu diễn một số thực dưới dạng giới
 **Liên phân số** (continued fraction) về bản chất chỉ là một ký hiệu hình thức.
 
 ???+ abstract "Liên phân số hữu hạn"
-    Với dãy $\{a_k\}_{i=0}^n$, liên phân số $[a_0,a_1,\cdots,a_n]$ biểu thị khai triển
+    Với dãy $\{a_i\}_{i=0}^n$, liên phân số $[a_0,a_1,\cdots,a_n]$ biểu thị khai triển
     
     $$
     x = a_0+\dfrac{1}{a_1+\dfrac{1}{a_2+\dfrac{1}{\cdots+\dfrac{1}{a_n}}}}.
     $$
     
-    Liên phân số có nghĩa khi và chỉ khi khai triển tương ứng có nghĩa. Các $a_k$ này được gọi là **hạng** (term) hoặc **hệ số** (coefficient) của liên phân số.
+    Liên phân số có nghĩa khi và chỉ khi khai triển tương ứng có nghĩa. Các $a_i$ được gọi là **hạng** (term) hoặc **hệ số** (coefficient) của liên phân số.
 
 ???+ info "Ký hiệu"
     Liên phân số tổng quát hơn cho phép các tử số trong khai triển không luôn bằng $1$; khi đó ký hiệu liên phân số cũng cần thay đổi, và nằm ngoài phạm vi bài viết này. Ngoài ra, một số tài liệu viết dấu phẩy đầu tiên "$,$" thành dấu chấm phẩy "$;$"; cách viết đó không khác về ý nghĩa so với ký hiệu dùng trong bài này.
@@ -30,7 +30,7 @@ Liên phân số có thể biểu diễn một số thực dưới dạng giới
 Liên phân số cũng có thể được mở rộng cho trường hợp dãy vô hạn.
 
 ???+ abstract "Liên phân số vô hạn"
-    Với dãy vô hạn $\{a_k\}_{i=0}^\infty$, liên phân số $[a_0,a_1,\cdots]$ biểu thị giới hạn
+    Với dãy vô hạn $\{a_i\}_{i=0}^\infty$, liên phân số $[a_0,a_1,\cdots]$ biểu thị giới hạn
     
     $$
     x = \lim_{k\rightarrow\infty} x_k = \lim_{k\rightarrow\infty} [a_0,a_1,\cdots,a_k].
@@ -57,7 +57,7 @@ Liên phân số có các tính chất cơ bản sau:
     1.  Với mọi $k\in\mathbf Z$, có $x+k=[a_0+k,a_1,a_2,\cdots]$;
     2.  Với số thực $x>1$, có $a_0>0$, và nghịch đảo của nó là $x^{-1}=[0,a_0,a_1,a_2,\cdots]$.
 
-Liên phân số hữu hạn tương ứng với số hữu tỉ. Mỗi số hữu tỉ có đúng hai cách biểu diễn thành liên phân số, và độ dài của hai cách này tất yếu một chẵn một lẻ. Khác biệt duy nhất giữa hai biểu diễn nằm ở việc hạng cuối có bằng $1$ hay không, tức là
+Liên phân số hữu hạn tương ứng với số hữu tỉ. Mỗi số hữu tỉ có đúng hai cách biểu diễn thành liên phân số, và độ dài của hai cách này luôn có một chẵn, một lẻ. Khác biệt duy nhất giữa hai biểu diễn nằm ở việc hạng cuối có bằng $1$ hay không, tức là
 
 $$
 x = [a_0,a_1,\cdots,a_n] = [a_0,a_1,\cdots,a_n-1,1].
@@ -195,7 +195,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     So sánh với biểu thức trên, có thể đặt $Q_k(a_0, \cdots, a_k) = P_{k-1}(a_1, \cdots, a_k)$; khi đó phân số tiệm cận có thể viết thành
     
     $$
-    r_k =  \frac{P_k(a_0, a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}
+    r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}
     $$
     
     và đa thức $P_k$ có quan hệ truy hồi
@@ -243,7 +243,7 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     P_k(a_0, \cdots, a_k) = a_k P_{k-1}(a_0, \cdots, a_{k-1}) + P_{k-2}(a_0, \cdots, a_{k-2}),
     $$
     
-    Điều này chứng minh điều cần chứng minh.
+    Điều này chứng minh công thức cần chứng minh.
 
 ???+ info "Ký hiệu"
     Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Phần sau sẽ chỉ ra rằng cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
@@ -321,7 +321,7 @@ Trước hết, có thể tính hiệu của hai phân số tiệm cận kề nh
     Giả sử $x_k=\dfrac{p_k}{q_k}$ là phân số tiệm cận thứ $k$ của số thực $x$. Khi đó,
     
     $$
-    p_{k+1}q_k − p_kq_{k+1} = (−1)^k.
+    p_{k+1}q_k - p_kq_{k+1} = (-1)^k.
     $$
     
     Vì vậy, hiệu giữa hai phân số tiệm cận kề nhau là
@@ -366,7 +366,7 @@ Trước hết, có thể tính hiệu của hai phân số tiệm cận kề nh
     \end{aligned}
     $$
     
-    Đây chính là $p_{k+1}q_k − p_kq_{k+1} = (−1)^k$. Chia hai vế cho $q_{k+1}q_k$ sẽ thu được kết luận về $x_{k+1}-x_k$.
+    Đây chính là $p_{k+1}q_k - p_kq_{k+1} = (-1)^k$. Chia hai vế cho $q_{k+1}q_k$ sẽ thu được kết luận về $x_{k+1}-x_k$.
 
 Do đó, phân số tiệm cận có chỉ số lẻ luôn lớn hơn hai phân số kề nó, còn phân số tiệm cận có chỉ số chẵn luôn nhỏ hơn hai phân số kề nó: các phân số tiệm cận dao động luân phiên.
 
@@ -376,7 +376,7 @@ $$
 x_{k+2}-x_k = \dfrac{(-1)^{k+1}}{q_{k+2}q_{k+1}}+\dfrac{(-1)^{k}}{q_{k+1}q_{k}} = \dfrac{(-1)^k(q_{k+2}-q_k)}{q_{k+2}q_{k+1}q_k} = \dfrac{(-1)^ka_{k+2}}{q_{k+2}q_k}
 $$
 
-Khi $k$ chẵn (lẻ) thì giá trị này dương (âm). Đồng thời, do có quan hệ truy hồi $q_{k}=a_kq_{k-1}+q_{k-2}$, tốc độ tăng của mẫu số $q_k$ không chậm hơn tốc độ tăng của dãy Fibonacci. Vì thế, hiệu giữa hai hạng kề nhau nhất định tiến về không. Điều này cho thấy các phân số tiệm cận chỉ số chẵn và chỉ số lẻ lần lượt xấp xỉ cùng một giới hạn từ dưới lên và từ trên xuống. Như vậy liên phân số đơn giản vô hạn nhất định hội tụ. Hình dưới minh họa quá trình các phân số tiệm cận tiến tới số thực tương ứng:
+Khi $k$ chẵn (lẻ) thì giá trị này dương (âm). Đồng thời, do có quan hệ truy hồi $q_{k}=a_kq_{k-1}+q_{k-2}$, tốc độ tăng của mẫu số $q_k$ không chậm hơn tốc độ tăng của dãy Fibonacci. Vì thế, hiệu giữa hai hạng kề nhau tiến về không. Điều này cho thấy các phân số tiệm cận chỉ số chẵn và chỉ số lẻ lần lượt xấp xỉ cùng một giới hạn từ dưới lên và từ trên xuống. Như vậy liên phân số đơn giản vô hạn luôn hội tụ. Hình dưới minh họa quá trình các phân số tiệm cận tiến tới số thực tương ứng:
 
 ![](./images/golden-ratio-convergents.svg)
 
