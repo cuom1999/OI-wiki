@@ -191,9 +191,9 @@ Một cách đơn giản hơn là đặt một cờ để xác định liệu đ
 ## Bài tập
 
 -   [P3388 [Mẫu] Đỉnh khớp (đỉnh cắt)](https://www.luogu.com.cn/problem/P3388)
--   [POJ2117 Electricity](http://poj.org/problem?id=2117)
--   [HDU4738 Caocao's Bridges](https://acm.hdu.edu.cn/showproblem.php?pid=4738)
--   [HDU2460 Network](https://acm.hdu.edu.cn/showproblem.php?pid=2460)
+-   [POJ2117 Điện lực](http://poj.org/problem?id=2117)
+-   [HDU4738 Những cây cầu của Tào Tháo](https://acm.hdu.edu.cn/showproblem.php?pid=4738)
+-   [HDU2460 Mạng](https://acm.hdu.edu.cn/showproblem.php?pid=2460)
 -   [POJ1523 SPF](http://poj.org/problem?id=1523)
 
 Thuật toán Tarjan còn có nhiều ứng dụng khác, thường gặp như tìm thành phần liên thông mạnh, co đỉnh, giải 2-SAT, v.v.

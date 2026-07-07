@@ -51,7 +51,7 @@ Cũng có thể tối ưu độ phức tạp bằng cách tìm trọng tâm củ
     --8<-- "docs/graph/code/tree-hash/tree-hash_3.cpp"
     ```
 
-### [HDU 6647 Bracket Sequences on Tree](https://acm.hdu.edu.cn/showproblem.php?pid=6647)
+### [HDU 6647 Dãy ngoặc trên cây](https://acm.hdu.edu.cn/showproblem.php?pid=6647)
 
 Bài toán yêu cầu đếm số phương án sinh ra các dãy ngoặc khác nhau về bản chất khi duyệt một cây không gốc.
 

@@ -292,13 +292,13 @@ thực chất, Dijkstra tối ưu bằng heap chính là BFS hàng đợi ưu ti
 
 ## Bài tập
 
--   [NOIP2017 Cheese](https://uoj.ac/problem/332)
+-   [NOIP2017 Phô mai](https://uoj.ac/problem/332)
 
 BFS hai đầu hàng đợi:
 
--   [CF1063B. Labyrinth](https://codeforces.com/problemset/problem/1063/B)
--   [CF173B. Chamber of Secrets](https://codeforces.com/problemset/problem/173/B)
--   [BalticOI 2011 Day1. Switch the Lamp On](https://loj.ac/p/2632)
+-   [CF1063B. Mê cung](https://codeforces.com/problemset/problem/1063/B)
+-   [CF173B. Căn phòng bí mật](https://codeforces.com/problemset/problem/173/B)
+-   [BalticOI 2011 Day1. Bật đèn lên](https://loj.ac/p/2632)
 
 ## Tham khảo
 

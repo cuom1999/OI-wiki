@@ -97,10 +97,10 @@ Dưới đây là cài đặt dùng thuật toán Bellman–Ford để kiểm tr
 
 ## Bài tập
 
-[USACO 2006 December Wormholes](https://loj.ac/problem/10085)
+[USACO 2006 December Lỗ sâu](https://loj.ac/problem/10085)
 
-[SCOI2011 Candy](https://loj.ac/problem/2436)
+[SCOI2011 Kẹo](https://loj.ac/problem/2436)
 
-[POJ 1364 King](http://poj.org/problem?id=1364)
+[POJ 1364 Vua](http://poj.org/problem?id=1364)
 
-[POJ 2983 Is the Information Reliable?](http://poj.org/problem?id=2983)
+[POJ 2983 Thông tin có đáng tin cậy không?](http://poj.org/problem?id=2983)

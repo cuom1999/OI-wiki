@@ -312,7 +312,7 @@ for (int i = 1; i <= n; i++)
 
 ## Bài tập
 
-[SPOJ FISHNET - Fishing Net](https://www.spoj.com/problems/FISHNET)
+[SPOJ FISHNET - Lưới đánh cá](https://www.spoj.com/problems/FISHNET)
 
 [P3196\[HNOI2008\] Vương quốc kỳ diệu](https://www.luogu.com.cn/problem/P3196)
 

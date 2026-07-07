@@ -362,4 +362,4 @@ Một ví dụ đơn giản: tìm một đường đi có thể đi qua các đ�
 
 [USACO Fall/HAOI 2006 Những con bò được yêu thích](https://loj.ac/problem/10091)
 
-[POJ1236 Network of Schools](http://poj.org/problem?id=1236)
+[POJ1236 Mạng lưới trường học](http://poj.org/problem?id=1236)
