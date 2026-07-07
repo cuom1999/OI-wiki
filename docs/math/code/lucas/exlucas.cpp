@@ -19,7 +19,7 @@ int inverse(int a, int m) {
   return (x % m + m) % m;
 }
 
-// Hệ số trong định lý phần dư Trung Hoa.
+// Hệ số trong định lý số dư Trung Hoa.
 int crt_coeff(int m_i, int m) {
   long long mm = m / m_i;
   mm *= inverse(mm, m_i);
