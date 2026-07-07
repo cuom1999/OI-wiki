@@ -1,9 +1,12 @@
 ???+ note "Ghi chú"
-    Bài viết này được dịch từ [e-maxx Prüfer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md). Cần nói thêm rằng trong bản gốc, các đỉnh được đánh số từ $0$; bài viết này đổi sang đánh số từ $1$ theo thói quen của đa số người đọc.
+    Bài viết này được dịch từ [e-maxx Prüfer Code](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/graph/pruefer_code.md).
+    Trong bản gốc, các đỉnh được đánh số từ $0$;
+    bài viết này đổi phần trình bày sang đánh số từ $1$ theo thói quen của đa số người đọc.
 
 Bài viết này giới thiệu dãy Prüfer (Prüfer code), một phương pháp biểu diễn một cây có nhãn bằng một dãy số nguyên duy nhất.
 
-Có thể dùng dãy Prüfer để chứng minh [công thức Cayley](#công-thức-cayley-cayleys-formula) (Cayley's formula). Bài viết cũng trình bày cách tính số phương án thêm cạnh vào một đồ thị để làm cho đồ thị liên thông.
+Có thể dùng dãy Prüfer để chứng minh [công thức Cayley](#công-thức-cayley-cayleys-formula) (Cayley's formula).
+Bài viết cũng trình bày cách tính số phương án thêm cạnh vào một đồ thị để làm cho đồ thị liên thông.
 
 **Quy ước**: Không xét cây chỉ có $1$ đỉnh.
 
@@ -11,13 +14,17 @@ Có thể dùng dãy Prüfer để chứng minh [công thức Cayley](#công-th�
 
 ### Giới thiệu
 
-Dãy Prüfer có thể biểu diễn một cây có nhãn gồm $n$ đỉnh bằng $n-2$ số nguyên thuộc $[1,n]$. Cũng có thể hiểu nó là một song ánh giữa các cây khung của đồ thị đầy đủ và các dãy số. Dãy này thường được dùng trong các bài toán đếm tổ hợp.
+Dãy Prüfer có thể biểu diễn một cây có nhãn gồm $n$ đỉnh bằng $n-2$ số nguyên thuộc $[1,n]$.
+Cũng có thể hiểu nó là một song ánh giữa các cây khung của đồ thị đầy đủ và các dãy số.
+Dãy này thường được dùng trong các bài toán đếm tổ hợp.
 
 Heinz Prüfer phát minh ra dãy này vào năm 1918 để chứng minh [công thức Cayley](#công-thức-cayley-cayleys-formula).
 
 ### Xây dựng dãy Prüfer cho cây
 
-Dãy Prüfer được xây dựng như sau: mỗi lần chọn lá có số hiệu nhỏ nhất rồi xóa nó, sau đó ghi vào dãy đỉnh kề với nó. Sau khi lặp lại $n-2$ lần, cây chỉ còn hai đỉnh và thuật toán kết thúc.
+Dãy Prüfer được xây dựng như sau:
+mỗi lần chọn lá có số hiệu nhỏ nhất rồi xóa nó, sau đó ghi vào dãy đỉnh kề với lá đó.
+Sau khi lặp lại $n-2$ lần, cây chỉ còn hai đỉnh và thuật toán kết thúc.
 
 Nếu dùng heap thì độ phức tạp là $O(n\log n)$.
 
@@ -92,12 +99,20 @@ Ngoài ra, còn có một thuật toán xây dựng tuyến tính.
 
 ### Thuật toán xây dựng dãy Prüfer tuyến tính
 
-Bản chất của cách xây dựng tuyến tính là duy trì một con trỏ trỏ tới đỉnh sắp bị xóa. Trước hết nhận thấy rằng số lá là không tăng: khi xóa một lá, tổng số lá hoặc giữ nguyên hoặc giảm đi $1$.
+Bản chất của cách xây dựng tuyến tính là duy trì một con trỏ trỏ tới đỉnh sắp bị xóa.
+Trước hết nhận thấy rằng số lá không tăng:
+khi xóa một lá, tổng số lá hoặc giữ nguyên hoặc giảm đi $1$.
 
-Vì vậy, xét quy trình sau: duy trì một con trỏ $p$. Ban đầu $p$ trỏ tới lá có số hiệu nhỏ nhất. Đồng thời, duy trì bậc của từng đỉnh để biết khi xóa một đỉnh có sinh ra lá mới hay không. Các thao tác như sau:
+Vì vậy, xét quy trình sau: duy trì một con trỏ $p$.
+Ban đầu $p$ trỏ tới lá có số hiệu nhỏ nhất.
+Đồng thời, duy trì bậc của từng đỉnh để biết khi xóa một đỉnh có sinh ra lá mới hay không.
+Các thao tác như sau:
 
 1.  Xóa đỉnh mà $p$ đang trỏ tới và kiểm tra xem có sinh ra lá mới hay không.
-2.  Nếu sinh ra lá mới, giả sử số hiệu của nó là $x$, so sánh $p$ và $x$. Nếu $x>p$, không cần thao tác gì thêm; nếu không, lập tức xóa $x$, rồi kiểm tra sau khi xóa $x$ có sinh ra lá mới hay không. Lặp lại bước $2$ cho đến khi không sinh ra đỉnh mới hoặc số hiệu của đỉnh mới $>p$.
+2.  Nếu sinh ra lá mới, giả sử số hiệu của nó là $x$, so sánh $p$ và $x$.
+    Nếu $x>p$, không cần thao tác gì thêm.
+    Nếu không, lập tức xóa $x$, rồi kiểm tra sau khi xóa $x$ có sinh ra lá mới hay không.
+    Lặp lại bước $2$ cho đến khi không sinh ra đỉnh mới hoặc số hiệu của đỉnh mới $>p$.
 3.  Tăng con trỏ $p$ cho đến khi gặp một lá chưa bị xóa.
 
 #### Tính đúng đắn
@@ -106,8 +121,10 @@ Lặp các thao tác trên $n-2$ lần là hoàn thành việc xây dựng dãy.
 
 $p$ là lá có số hiệu nhỏ nhất hiện tại. Nếu sau khi xóa $p$ không sinh ra lá mới, chỉ có thể đi tìm lá tiếp theo; nếu sinh ra lá $x$:
 
--   Nếu $x>p$, dù sao khi $p$ quét tiếp về sau cũng sẽ gặp nó, nên không cần thao tác gì.
--   Nếu $x<p$, vì $p$ vốn là lá có số hiệu nhỏ nhất, mà $x$ còn nhỏ hơn $p$, nên $x$ chính là lá có số hiệu nhỏ nhất hiện tại và cần được xóa trước. Sau khi xóa $x$, tiếp tục lập luận như vậy cho đến khi không còn lá nào nhỏ hơn.
+-   Nếu $x>p$, khi $p$ quét tiếp về sau cũng sẽ gặp nó, nên không cần thao tác gì.
+-   Nếu $x<p$, vì $p$ vốn là lá có số hiệu nhỏ nhất, mà $x$ còn nhỏ hơn $p$,
+    nên $x$ chính là lá có số hiệu nhỏ nhất hiện tại và cần được xóa trước.
+    Sau khi xóa $x$, tiếp tục lập luận như vậy cho đến khi không còn lá nào nhỏ hơn.
 
 Về độ phức tạp, mỗi cạnh được thăm nhiều nhất một lần khi giảm bậc, còn con trỏ đi qua mỗi đỉnh nhiều nhất một lần. Do đó độ phức tạp là $O(n)$.
 
@@ -203,9 +220,18 @@ Về độ phức tạp, mỗi cạnh được thăm nhiều nhất một lần 
 
 ### Dựng lại cây từ dãy Prüfer
 
-Phương pháp dựng lại cây cũng tương tự. Dựa vào tính chất của dãy Prüfer, có thể suy ra bậc của mỗi đỉnh trong cây ban đầu. Từ đó cũng tìm được lá có số hiệu nhỏ nhất, và lá này nối với đỉnh tương ứng với số đầu tiên trong dãy Prüfer. Sau đó, đồng thời giảm bậc của hai đỉnh này đi một.
+Phương pháp dựng lại cây cũng tương tự.
+Dựa vào tính chất của dãy Prüfer, có thể suy ra bậc của mỗi đỉnh trong cây ban đầu.
+Từ đó cũng tìm được lá có số hiệu nhỏ nhất;
+lá này nối với đỉnh tương ứng với số đầu tiên trong dãy Prüfer.
+Sau đó, đồng thời giảm bậc của hai đỉnh này đi một.
 
-Từ đó có quy trình dựng lại cây: mỗi lần chọn đỉnh có bậc $1$ và số hiệu nhỏ nhất, nối nó với đỉnh đang xét trong dãy Prüfer, rồi đồng thời giảm bậc của hai đỉnh. Cuối cùng còn lại hai đỉnh có bậc $1$, trong đó một đỉnh là đỉnh $n$; nối hai đỉnh này lại. Nếu dùng heap để duy trì quá trình này, mỗi khi bậc của một đỉnh giảm xuống $1$ thì thêm đỉnh đó vào heap. Độ phức tạp là $O(n\log n)$.
+Từ đó có quy trình dựng lại cây:
+mỗi lần chọn đỉnh có bậc $1$ và số hiệu nhỏ nhất, nối nó với đỉnh đang xét trong dãy Prüfer,
+rồi đồng thời giảm bậc của hai đỉnh.
+Cuối cùng còn lại hai đỉnh có bậc $1$, trong đó một đỉnh là đỉnh $n$; nối hai đỉnh này lại.
+Nếu dùng heap để duy trì quá trình này, mỗi khi bậc của một đỉnh giảm xuống $1$ thì thêm đỉnh đó vào heap.
+Độ phức tạp là $O(n\log n)$.
 
 ???+ note "Cài đặt"
     ```cpp
@@ -234,7 +260,9 @@ Từ đó có quy trình dựng lại cây: mỗi lần chọn đỉnh có bậc
 
 ### Dựng lại cây trong thời gian tuyến tính
 
-Tương tự phương pháp xây dựng dãy Prüfer tuyến tính. Khi giảm bậc có thể sinh ra lá mới, vì vậy cần so sánh lá này với con trỏ $p$; nếu nó nhỏ hơn thì ưu tiên xử lý nó.
+Tương tự phương pháp xây dựng dãy Prüfer tuyến tính.
+Khi giảm bậc có thể sinh ra lá mới, vì vậy cần so sánh lá này với con trỏ $p$;
+nếu nó nhỏ hơn thì ưu tiên xử lý nó.
 
 #### Cài đặt
 
@@ -271,7 +299,10 @@ Qua các quy trình trên, có thể hiểu rằng dãy Prüfer thiết lập m�
 
 Đồ thị đầy đủ $K_n$ có $n^{n-2}$ cây khung.
 
-Chứng minh như thế nào? Có nhiều cách, nhưng chứng minh bằng dãy Prüfer rất đơn giản. Mọi dãy số nguyên có độ dài $n-2$ và miền giá trị $[1,n]$ đều tương ứng song ánh, thông qua dãy Prüfer, với một cây khung. Vì vậy số phương án là $n^{n-2}$.
+Có nhiều cách chứng minh công thức này, nhưng chứng minh bằng dãy Prüfer rất trực tiếp.
+Mọi dãy số nguyên có độ dài $n-2$ và miền giá trị $[1,n]$
+đều tương ứng song ánh, thông qua dãy Prüfer, với một cây khung.
+Vì vậy số phương án là $n^{n-2}$.
 
 ## Số phương án làm đồ thị liên thông
 
@@ -281,13 +312,19 @@ Dãy Prüfer còn có thể tạo ra một công thức tổng quát hơn [công
 
 ### Chứng minh
 
-Gọi $s_i$ là số đỉnh trong thành phần liên thông thứ $i$. Xét việc xây dựng dãy Prüfer trên $k$ thành phần liên thông. Vì có nhiều cách nối giữa hai thành phần liên thông, đây không phải là dãy Prüfer thông thường. Giả sử $d_i$ là bậc của thành phần liên thông thứ $i$. Do tổng bậc bằng hai lần số cạnh, có $\sum_{i=1}^kd_i=2k-2$. Khi đó, với một dãy $d$ cố định, số cách xây dựng dãy Prüfer là
+Gọi $s_i$ là số đỉnh trong thành phần liên thông thứ $i$.
+Xét việc xây dựng dãy Prüfer trên $k$ thành phần liên thông.
+Vì có nhiều cách nối giữa hai thành phần liên thông, đây không phải là dãy Prüfer thông thường.
+Giả sử $d_i$ là bậc của thành phần liên thông thứ $i$.
+Do tổng bậc bằng hai lần số cạnh, có $\sum_{i=1}^kd_i=2k-2$.
+Khi đó, với một dãy $d$ cố định, số cách xây dựng dãy Prüfer là
 
 $$
 \binom{k-2}{d_1-1,d_2-1,\cdots,d_k-1}=\frac{(k-2)!}{(d_1-1)!(d_2-1)!\cdots(d_k-1)!}
 $$
 
-Đối với thành phần liên thông thứ $i$, nó có ${s_i}^{d_i}$ cách kết nối. Vì vậy, với dãy $d$ cố định, số phương án làm đồ thị liên thông là
+Đối với thành phần liên thông thứ $i$, có ${s_i}^{d_i}$ cách chọn các đỉnh đầu mút để kết nối.
+Vì vậy, với dãy $d$ cố định, số phương án làm đồ thị liên thông là
 
 $$
 \binom{k-2}{d_1-1,d_2-1,\cdots,d_k-1}\cdot \prod_{i=1}^k{s_i}^{d_i}
