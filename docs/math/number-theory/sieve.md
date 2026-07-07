@@ -17,9 +17,9 @@ $n$. Cách vét cạn này không đạt độ phức tạp tối ưu.
 <span id="quá-trình"></span>
 #### Quá trình
 
-Xét một nhận xét: với bất kỳ số nguyên dương $n$ lớn hơn $1$, bội $x$ của nó
-là hợp số nếu $x > 1$. Dựa vào kết luận này, có thể tránh nhiều lần kiểm tra
-không cần thiết.
+Xét một nhận xét: với bất kỳ số nguyên dương $n$ lớn hơn $1$, mọi bội của $n$
+lớn hơn chính $n$ đều là hợp số. Dựa vào kết luận này, có thể tránh nhiều lần
+kiểm tra không cần thiết.
 
 Nếu xét từng số từ nhỏ đến lớn, đồng thời đánh dấu tất cả các bội số của số
 hiện tại (lớn hơn chính nó) là hợp số, thì sau khi kết thúc, những số chưa bị
@@ -41,8 +41,8 @@ hiện tại (lớn hơn chính nó) là hợp số, thì sau khi kết thúc, n
           prime.push_back(i);
           if ((long long)i * i > n) continue;
           for (int j = i * i; j <= n; j += i)
-            // Các bội từ 2 đến i - 1 đã được sàng trước đó, nên bắt đầu
-            // trực tiếp từ bội của i để tăng tốc
+            // Các bội 2i, 3i, ..., (i - 1)i đã được sàng trước đó,
+            // nên bắt đầu trực tiếp từ i * i để tăng tốc.
             is_prime[j] = false;  // các bội của i đều không phải số nguyên tố
         }
       }
@@ -206,7 +206,7 @@ các số nguyên tố (từ $1$ đến $\sqrt n$) và dùng chúng để sàng.
 Cần lưu ý khi xử lý các số đầu tiên phải sửa chiến lược một chút: thứ nhất, cần
 giữ tất cả số nguyên tố trong $[1, \sqrt n]$; thứ hai, số $0$ và $1$ phải được
 đánh dấu là không phải số nguyên tố. Khi xử lý khối cuối, không được quên rằng
-số cuối cùng $n$ không nhất thiết nằm ở cuối khối.
+số cuối cùng $n$ có thể không nằm ở cuối khối.
 
 Cài đặt dưới đây dùng sàng theo khối để tính số lượng số nguyên tố không vượt
 quá $n$.
@@ -254,8 +254,8 @@ Kích thước khối $S$ trong khoảng $10^4$ đến $10^5$ thường cho tố
 <span id="sàng-tuyến-tính"></span>
 ### Sàng tuyến tính
 
-Sàng Eratosthenes vẫn còn không gian tối ưu, vì nó đánh dấu một hợp số nhiều
-lần. Có cách nào bỏ qua các bước vô nghĩa này không? Câu trả lời là có.
+Sàng Eratosthenes vẫn còn dư địa tối ưu, vì nó đánh dấu một hợp số nhiều lần.
+Có cách nào bỏ qua các bước thừa này không? Câu trả lời là có.
 
 Nếu mỗi hợp số chỉ bị đánh dấu một lần, độ phức tạp thời gian có thể giảm xuống
 $O(n)$.
@@ -276,7 +276,7 @@ $O(n)$.
               not_prime[i * pri_j] = true;
               if (i % pri_j == 0) {
                 // i % pri_j == 0
-                // Nói cách khác, i đã bị sàng bởi pri_j trước đó
+                // Nói cách khác, i đã được đánh dấu thông qua pri_j trước đó
                 // Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
                 // với các số nguyên tố khác sẽ bị sàng bởi bội của pri_j;
                 // không cần sàng trước tại đây, nên break trực tiếp
@@ -304,7 +304,7 @@ $O(n)$.
                     if i % pri_j == 0:
                         """
                         i % pri_j == 0
-                        Nói cách khác, i đã bị sàng bởi pri_j trước đó
+                        Nói cách khác, i đã được đánh dấu thông qua pri_j trước đó
                         Vì các số nguyên tố trong pri tăng dần, nên kết quả của i nhân
                         với các số nguyên tố khác sẽ bị sàng bởi bội của pri_j;
                         không cần sàng trước tại đây, nên break trực tiếp
