@@ -105,7 +105,7 @@ Dưới đây là hiện thực của phương pháp này cho bốn toán tử $
             process_op(st, op.top());
             op.pop();  // Liên tục xuất phần tử đỉnh ngăn xếp cho đến khi gặp dấu ngoặc trái
           }
-          op.pop();                // Pop dấu ngoặc trái
+          op.pop();                // Lấy dấu ngoặc trái ra
         } else if (is_op(s[i])) {  // 4. Nếu gặp toán tử khác
           char cur_op = s[i];
           while (!op.empty() && priority(op.top()) >= priority(cur_op)) {
@@ -236,7 +236,7 @@ Dưới đây là hiện thực cho các toán tử nhị phân $+$, $-$, $*$, $
             process_op(st, op.top());
             op.pop();  // Liên tục xuất phần tử đỉnh ngăn xếp cho đến khi gặp dấu ngoặc trái
           }
-          op.pop();  // Pop dấu ngoặc trái
+          op.pop();  // Lấy dấu ngoặc trái ra
           may_be_unary = false;
         } else if (is_op(s[i])) {  // 4. Nếu gặp toán tử khác
           char cur_op = s[i];

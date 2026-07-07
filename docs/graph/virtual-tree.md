@@ -167,11 +167,13 @@ Còn chuỗi cần biến thành là:
 
 ![Chuỗi cần thu được sau khi thêm đỉnh hiện tại](./images/vtree-add4.svg)
 
-Khi đó chỉ cần pop các đỉnh được đánh dấu bằng đường đứt nét; trước khi pop, cần nối cạnh từ đỉnh đó đến cha của nó trong cây ảo.
+Khi đó chỉ cần lấy các đỉnh được đánh dấu bằng đường đứt nét ra; trước khi lấy
+ra, cần nối cạnh từ đỉnh đó đến cha của nó trong cây ảo.
 
-![Pop các đỉnh không còn nằm trên chuỗi và nối cạnh cây ảo](./images/vtree-add5.svg)
+![Lấy các đỉnh không còn nằm trên chuỗi ra và nối cạnh cây ảo](./images/vtree-add5.svg)
 
-Nếu sau khi pop mà phát hiện đỉnh trên đỉnh ngăn xếp không phải LCA, cần đưa LCA vào ngăn xếp.
+Nếu sau khi lấy ra mà phát hiện đỉnh trên đỉnh ngăn xếp không phải LCA, cần đưa
+LCA vào ngăn xếp.
 
 Sau đó đưa đỉnh hiện tại vào ngăn xếp.
 
@@ -186,7 +188,8 @@ Các bước như sau:
 
 ![Khởi tạo ngăn xếp với đỉnh gốc 1](./images/vtree-construction2.svg)
 
-Dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn xếp, và đỉnh màu xanh lam nhạt để biểu thị các đỉnh đã bị pop khỏi ngăn xếp.
+Dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn xếp, và đỉnh màu xanh
+lam nhạt để biểu thị các đỉnh đã được lấy ra khỏi ngăn xếp.
 
 -   Lấy phần tử đầu tiên trong dãy làm đỉnh hiện tại, tức là $4$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $1$. Tính LCA của $1$ và $4$: $LCA(1,4)=1$.
 -   Vì $LCA(1,4)=$ phần tử trên đỉnh ngăn xếp, hai đỉnh này nằm trên một chuỗi của cây ảo; do đó đưa trực tiếp đỉnh hiện tại $4$ vào ngăn xếp. Ngăn xếp hiện tại là $4,1$.
@@ -194,19 +197,29 @@ Dùng đỉnh màu đỏ để biểu thị các đỉnh đang nằm trong ngăn
 ![Đưa đỉnh 4 vào ngăn xếp](./images/vtree-construction3.svg)
 
 -   Lấy phần tử thứ hai trong dãy làm đỉnh hiện tại, là $6$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $4$. Tính LCA của $6$ và $4$: $LCA(6,4)=1$.
--   Vì $LCA(6,4)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang bước xử lý pop.
--   Trong bước xử lý pop, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $4$ lớn hơn thứ tự DFS của $LCA(6,4)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ bằng LCA (thứ tự DFS bằng nhau nghĩa là hai đỉnh cũng bằng nhau). Điều này nghĩa là LCA đã nằm trong ngăn xếp, nên nối trực tiếp cạnh $1\to4$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp, rồi pop $4$ khỏi ngăn xếp.
+-   Vì $LCA(6,4)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang bước xử lý lấy ra.
+-   Trong bước xử lý lấy ra, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $4$ lớn hơn
+    thứ tự DFS của $LCA(6,4)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống
+    (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ bằng LCA (thứ tự DFS bằng nhau nghĩa
+    là hai đỉnh cũng bằng nhau). Điều này nghĩa là LCA đã nằm trong ngăn xếp,
+    nên nối trực tiếp cạnh $1\to4$, tức là cạnh từ LCA đến phần tử trên đỉnh
+    ngăn xếp, rồi lấy $4$ khỏi ngăn xếp.
 
-![Nối cạnh 1 đến 4 rồi pop đỉnh 4](./images/vtree-construction4.svg)
+![Nối cạnh 1 đến 4 rồi lấy đỉnh 4 ra](./images/vtree-construction4.svg)
 
--   Kết thúc bước xử lý pop, đưa $6$ vào ngăn xếp. Ngăn xếp hiện tại là $6,1$.
+-   Kết thúc bước xử lý lấy ra, đưa $6$ vào ngăn xếp. Ngăn xếp hiện tại là $6,1$.
 
 ![Đưa đỉnh 6 vào ngăn xếp](./images/vtree-construction5.svg)
 
 -   Lấy phần tử thứ ba trong dãy làm đỉnh hiện tại, là $7$. Lấy tiếp phần tử trên đỉnh ngăn xếp, là $6$. Tính LCA của $7$ và $6$: $LCA(7,6)=3$.
--   Vì $LCA(7,6)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang bước xử lý pop.
--   Trong bước xử lý pop, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $6$ lớn hơn thứ tự DFS của $LCA(7,6)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ nhỏ hơn LCA. Điều này nghĩa là LCA chưa từng vào ngăn xếp, nên nối trực tiếp cạnh $3\to6$, tức là cạnh từ LCA đến phần tử trên đỉnh ngăn xếp. Pop $6$ khỏi ngăn xếp, đồng thời đưa $LCA(6,7)$ vào ngăn xếp.
--   Kết thúc bước xử lý pop, đưa $7$ vào ngăn xếp. Ngăn xếp hiện tại là $1,3,7$.
+-   Vì $LCA(7,6)\neq$ phần tử trên đỉnh ngăn xếp, chuyển sang bước xử lý lấy ra.
+-   Trong bước xử lý lấy ra, thứ tự DFS của đỉnh trên đỉnh ngăn xếp $6$ lớn hơn
+    thứ tự DFS của $LCA(7,6)$, nhưng thứ tự DFS của đỉnh thứ hai từ trên xuống
+    (đỉnh nằm ngay dưới đỉnh ngăn xếp) $1$ nhỏ hơn LCA. Điều này nghĩa là LCA
+    chưa từng vào ngăn xếp, nên nối trực tiếp cạnh $3\to6$, tức là cạnh từ LCA
+    đến phần tử trên đỉnh ngăn xếp. Lấy $6$ khỏi ngăn xếp, đồng thời đưa
+    $LCA(6,7)$ vào ngăn xếp.
+-   Kết thúc bước xử lý lấy ra, đưa $7$ vào ngăn xếp. Ngăn xếp hiện tại là $1,3,7$.
 
 ![Thêm LCA 3 và đưa đỉnh 7 vào ngăn xếp](./images/vtree-construction6.svg)
 
@@ -248,16 +261,16 @@ Mã C++ xây dựng cây ảo có thể viết như sau:
             while (id[l] < id[sta[top - 1]])
               // Khi thứ tự DFS của đỉnh thứ hai từ trên xuống lớn hơn thứ tự DFS của LCA
               g.push(sta[top - 1], sta[top]), top--;
-            // Nối và pop phần chuỗi không trùng với chuỗi chứa đỉnh hiện tại
+            // Nối và lấy ra phần chuỗi không trùng với chuỗi chứa đỉnh hiện tại
             if (id[l] > id[sta[top - 1]])
               // Nếu LCA không bằng đỉnh thứ hai từ trên xuống (dấu lớn hơn về bản
               // chất tương đương với dấu không bằng)
               g.head[l] = -1, g.push(l, sta[top]), sta[top] = l;
             // LCA vào ngăn xếp lần đầu: xóa danh sách kề của nó, nối cạnh,
-            // pop phần tử trên đỉnh ngăn xếp, rồi đưa LCA vào ngăn xếp
+            // Lấy phần tử trên đỉnh ngăn xếp ra, rồi đưa LCA vào ngăn xếp
             else
               g.push(l, sta[top--]);
-            // LCA chính là đỉnh thứ hai từ trên xuống, pop trực tiếp phần tử trên đỉnh
+            // LCA chính là đỉnh thứ hai từ trên xuống, lấy trực tiếp phần tử trên đỉnh ra
             // ngăn xếp
           }
           g.head[h[i]] = -1, sta[++top] = h[i];

@@ -128,9 +128,12 @@ Như vậy có thể xác định trong quá trình DFS những chỗ nào tồn
 
 Vấn đề này có thể xử lý bằng cách duy trì một ngăn xếp trong quá trình DFS, lưu các đỉnh chưa xác định thuộc thành phần song liên thông theo đỉnh nào (có thể là nhiều thành phần).
 
-Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh trong thành phần đó ngoài $u$ đều tập trung ở đầu ngăn xếp; chỉ cần liên tục pop cho đến khi pop ra $v$.
+Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh trong thành phần
+đó ngoài $u$ đều tập trung ở đầu ngăn xếp; chỉ cần liên tục lấy ra cho đến khi
+lấy ra $v$.
 
-Các đỉnh bị pop ra có thể được xử lý ngay lúc đó: chỉ cần nối chúng với đỉnh vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
+Các đỉnh bị lấy ra có thể được xử lý ngay lúc đó: chỉ cần nối chúng với đỉnh
+vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
 
 Như vậy việc xây dựng cây tròn-vuông được hoàn tất tự nhiên. Có thể đánh số các đỉnh vuông bằng các số nguyên bắt đầu từ $n+1$, nhờ đó phân biệt hiệu quả đỉnh tròn và đỉnh vuông.
 
@@ -161,14 +164,14 @@ Phần này có thể chưa đủ trực quan. Bên dưới là một đoạn m�
           if (low[v] == dfn[u]) {  // Đánh dấu đã tìm thấy một thành phần song liên thông theo đỉnh có gốc u
             ++cnt;                 // Tăng số đỉnh vuông
             printf("  Found a New BCC #%d.\n", cnt - N);
-            // Pop các đỉnh khác u trong thành phần và nối cạnh trong cây tròn-vuông
+            // Lấy các đỉnh khác u trong thành phần ra và nối cạnh trong cây tròn-vuông
             for (int x = 0; x != v; --tp) {
               x = stk[tp];
               T[cnt].push_back(x);
               T[x].push_back(cnt);
               printf("    BCC #%d has vertex #%d\n", cnt - N, x);
             }
-            // Lưu ý rằng bản thân u cũng cần nối cạnh (nhưng không pop)
+            // Lưu ý rằng bản thân u cũng cần nối cạnh (nhưng không lấy ra)
             T[cnt].push_back(u);
             T[u].push_back(cnt);
             printf("    BCC #%d has vertex #%d\n", cnt - N, u);
@@ -194,7 +197,7 @@ Phần này có thể chưa đủ trực quan. Bên dưới là một đoạn m�
       // Xử lý đồ thị không liên thông
       for (int u = 1; u <= N; ++u)
         if (!dfn[u]) Tarjan(u), --tp;
-      // Lưu ý khi thoát Tarjan, trong ngăn xếp vẫn còn một phần tử là gốc; pop nó ra
+      // Lưu ý khi thoát Tarjan, trong ngăn xếp vẫn còn một phần tử là gốc; lấy nó ra
       return 0;
     }
     ```
