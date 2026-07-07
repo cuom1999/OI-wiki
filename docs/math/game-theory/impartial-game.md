@@ -717,9 +717,9 @@ Cuối cùng là một số bài về trò chơi trên đồ thị hai phía. V�
 -   [Dãy Beatty - Wikipedia](https://en.wikipedia.org/wiki/Beatty_sequence)
 -   [Trò chơi trên đồ thị tùy ý - CP Algorithms](https://cp-algorithms.com/game_theory/games_on_graphs.html)
 -   [Ghi chú học thuật toán (74): Trò chơi trên đồ thị hai phía bởi Pecco - Zhihu](https://zhuanlan.zhihu.com/p/359334008)
--   Conway, John H. On numbers and games. AK Peters/CRC Press, 2000.
+-   Conway, John H. Về số và trò chơi. AK Peters/CRC Press, 2000.
 -   Berlekamp, Elwyn R., John H. Conway, and Richard K. Guy. Winning ways for your mathematical plays, volume 1-4. AK Peters/CRC Press, 2001-2004.
 
 [^n-vs-p]: Hai tên gọi "trạng thái $\mathcal N$" và "trạng thái $\mathcal P$" lần lượt biểu thị "người chơi tiếp theo thắng" (Next player wins) và "người chơi trước đó thắng" (Previous player wins).
 
-[^more-sums]: Các "tổng" được thảo luận trong bài này đều là **tổng rời rạc** (disjunctive sum) theo **luật dài** (long rule). Đây cũng là cách kết hợp trò chơi thường gặp nhất. Ngoài ra còn có những cách kết hợp trò chơi khác. Để đọc thảo luận chi tiết về chúng, có thể tham khảo chương 14 của sách Conway, John H. On numbers and games. AK Peters/CRC Press, 2000.
+[^more-sums]: Các "tổng" được thảo luận trong bài này đều là **tổng rời rạc** (disjunctive sum) theo **luật dài** (long rule). Đây cũng là cách kết hợp trò chơi thường gặp nhất. Ngoài ra còn có những cách kết hợp trò chơi khác. Để đọc thảo luận chi tiết về chúng, có thể tham khảo chương 14 của sách Conway, John H. Về số và trò chơi. AK Peters/CRC Press, 2000.

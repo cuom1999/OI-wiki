@@ -606,8 +606,8 @@ Ngoài ra, còn có một số mô hình đồ thị thường gặp mà mọi n
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   Schrijver, Alexander. Theory of linear and integer programming. John Wiley & Sons, 1998.
--   Papadimitriou, Christos H., and Kenneth Steiglitz. Combinatorial optimization: algorithms and complexity. Courier Corporation, 1998.
+-   Schrijver, Alexander. Lý thuyết quy hoạch tuyến tính và quy hoạch nguyên. John Wiley & Sons, 1998.
+-   Papadimitriou, Christos H., và Kenneth Steiglitz. Tối ưu hóa tổ hợp: thuật toán và độ phức tạp. Courier Corporation, 1998.
 -   [Đối ngẫu trong quy hoạch tuyến tính. Phần 1: định nghĩa và xây dựng. bởi adamant - Codeforces blog](https://codeforces.com/blog/entry/105049)
 -   [Đối ngẫu trong quy hoạch tuyến tính. Phần 2: trong lập trình thi đấu. bởi adamant - Codeforces blog](https://codeforces.com/blog/entry/105789)
 

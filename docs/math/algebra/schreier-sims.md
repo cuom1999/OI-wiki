@@ -454,12 +454,12 @@ Phần này cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ 
 ## Tài liệu tham khảo và ghi chú
 
 -   [Thuật toán Schreier-Sims - Wikipedia](https://en.wikipedia.org/wiki/Schreier%E2%80%93Sims_algorithm)
--   [Sims, Charles C, Các phương pháp tính toán trong nghiên cứu nhóm hoán vị, Computational Problems in Abstract Algebra, pp. 169-183, Pergamon, Oxford, 1970.](https://www.sciencedirect.com/science/article/pii/B9780080129754500205)
+-   [Sims, Charles C, Các phương pháp tính toán trong nghiên cứu nhóm hoán vị, Các bài toán tính toán trong đại số trừu tượng, tr. 169-183, Pergamon, Oxford, 1970.](https://www.sciencedirect.com/science/article/pii/B9780080129754500205)
 -   [Knuth, Donald E. Biểu diễn hiệu quả nhóm hoán vị, Combinatorica 11 (1991), no. 1, 33-43.](https://arxiv.org/abs/math/9201304)
 -   [Ákos Seress, Thuật toán nhóm hoán vị, Cambridge University Press](https://www.cambridge.org/core/books/permutation-group-algorithms/199629665EC545A10BCB99FFE6AAFD25)
 -   [Ghi chú của Alexander Hulpke về lý thuyết nhóm tính toán](https://www.math.colostate.edu/%7Ehulpke/CGT/cgtnotes.pdf)
 -   [Slide của Derek Holt về thuật toán Schreier-Sims cho nhóm hoán vị hữu hạn](https://blogs.cs.st-andrews.ac.uk/codima/files/2015/11/CoDiMa2015_Holt.pdf)
--   [Martin Jaggi, Triển khai 3 kiểu thuật toán Schreier-Sims, MAS334 - Mathematics Computing Project, 2005](https://www.m8j.net/data/List/Files-118/Documentation.pdf)
+-   [Martin Jaggi, Triển khai 3 kiểu thuật toán Schreier-Sims, MAS334 - Dự án tính toán toán học, 2005](https://www.m8j.net/data/List/Files-118/Documentation.pdf)
 -   [Henrik Bäärnhielm. Thuật toán Schreier-Sims cho nhóm ma trận](https://henrik.baarnhielm.net/schreiersims.pdf)
 
 [^knuth-year]: Bài báo của Knuth được xuất bản năm 1991, nhưng cải tiến của ông đã được phổ biến rộng rãi qua hội nghị từ năm 1981. Bài báo được viết dựa trên bài giảng hội nghị của ông.
