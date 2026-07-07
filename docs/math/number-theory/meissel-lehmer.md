@@ -81,7 +81,7 @@ Do đó rút ra kết luận:
 > \phi\left(x,b\right)=\phi\left(x,b-1\right)-\phi\left(\dfrac{x}{p_b},b-1\right)\tag{6}
 > $$
 
-Một cách đơn giản để tính $\phi\left(x,a\right)$ có thể suy ra từ định lý này: lặp lại việc dùng đẳng thức $\left(6\right)$ cho đến khi cuối cùng thu được $\phi\left(u,0\right)$. Quá trình này có thể xem như tạo một cây nhị phân có gốc bắt đầu từ nút $\phi\left(x,a\right)$; hình $1$ minh họa quá trình đó. Từ đó thu được công thức sau:
+Có thể suy ra một cách tính $\phi\left(x,a\right)$ trực tiếp từ định lý này: lặp lại việc dùng đẳng thức $\left(6\right)$ cho đến khi cuối cùng thu được $\phi\left(u,0\right)$. Quá trình này có thể xem như tạo một cây nhị phân có gốc bắt đầu từ nút $\phi\left(x,a\right)$; hình $1$ minh họa quá trình đó. Từ đó thu được công thức sau:
 
 $$
 \phi\left(x,a\right)=\sum_{\substack{1\le n\le x\\ P^+\left(n\right)\le y}}{\mu\left(n\right)\left[x/n\right]}
@@ -285,7 +285,7 @@ Sau khi tiền xử lý $\pi\left(t\right)\left(t\le y\right)$, có thể tính 
 
 Xét cách tăng tốc quá trình tính $V_2$. Có thể tách đóng góp của $q$ thành các khoảng mà trên mỗi khoảng, $\pi\left(\dfrac{x}{pq} \right)$ là hằng số; như vậy chỉ cần tính độ dài của từng khoảng và lượng thay đổi của $\pi\left(\dfrac{x}{pq} \right)$ khi chuyển từ khoảng này sang khoảng kế tiếp.
 
-Chính xác hơn, trước hết chia $V_2$ thành hai phần để đơn giản hóa điều kiện phức tạp $q\le \min\left(\dfrac x{p^2},y\right)$:
+Chính xác hơn, trước hết chia $V_2$ thành hai phần để làm gọn điều kiện phức tạp $q\le \min\left(\dfrac x{p^2},y\right)$:
 
 $$
 V_2=\sum_{x^{1/4}<p\le \sqrt{x/y}}{\ \sum_{p<q\le y}{\pi\left(\dfrac{x}{pq} \right)}}+\sum_{\sqrt{x/y}<p\le x^{1/3}}{\ \sum_{p<q\le x/p^2}{\pi\left(\dfrac{x}{pq} \right)}}
