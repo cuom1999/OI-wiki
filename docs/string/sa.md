@@ -460,7 +460,7 @@ Một số bài yêu cầu tìm vài số đầu tiên thỏa điều kiện, tr
 Ví dụ: [AHOI2013 - Difference](https://loj.ac/problem/2377).
 
 ??? note "Lời giải"
-    Hai hạng đầu của biểu thức cần cộng rất dễ xử lý, bằng $n(n-1)(n+1)/2$ (mỗi hậu tố xuất hiện $n-1$ lần, tổng độ dài hậu tố là $n(n+1)/2$). Điểm chính là hạng cuối, tức LCP của từng cặp hậu tố.
+    Hai hạng đầu của biểu thức cần cộng có thể xử lý trực tiếp, bằng $n(n-1)(n+1)/2$ (mỗi hậu tố xuất hiện $n-1$ lần, tổng độ dài hậu tố là $n(n+1)/2$). Điểm chính là hạng cuối, tức LCP của từng cặp hậu tố.
     
     Có $lcp(i,j)=k$ tương đương với $\min\{height[i+1..j]\}=k$. Vì vậy có thể quy phần đóng góp của $lcp(i,j)$ vào $\min\{x|i+1\le x\le j, height[x]=lcp(i,j)\}$.
     

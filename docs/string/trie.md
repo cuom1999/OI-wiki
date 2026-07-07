@@ -12,7 +12,7 @@ Trước hết xem hình sau:
 
 Cây trie này dùng cạnh để biểu diễn chữ cái, và đường đi từ gốc đến một đỉnh nào đó trên cây biểu diễn một xâu. Ví dụ, $1\to4\to 8\to 12$ biểu diễn xâu `caa`.
 
-Cấu trúc trie rất dễ hiểu. Dùng $\delta(u,c)$ để chỉ đỉnh tiếp theo mà ký tự $c$ của đỉnh $u$ trỏ đến; nói cách khác, đó là đỉnh của xâu thu được khi thêm một ký tự $c$ vào sau xâu mà đỉnh $u$ biểu diễn. (Phạm vi giá trị của $c$ phụ thuộc vào kích thước bảng chữ cái, không nhất thiết là $0\sim 26$.)
+Cấu trúc trie dễ hiểu. Dùng $\delta(u,c)$ để chỉ đỉnh tiếp theo mà ký tự $c$ của đỉnh $u$ trỏ đến; nói cách khác, đó là đỉnh của xâu thu được khi thêm một ký tự $c$ vào sau xâu mà đỉnh $u$ biểu diễn. (Phạm vi giá trị của $c$ phụ thuộc vào kích thước bảng chữ cái, không nhất thiết là $0\sim 26$.)
 
 Đôi khi cần đánh dấu những xâu nào đã được chèn vào trie. Khi chèn xong, chỉ cần đánh dấu tại đỉnh biểu diễn xâu đó.
 

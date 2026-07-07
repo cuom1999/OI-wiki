@@ -1,6 +1,6 @@
 Khi cần xác định một số cây có đẳng cấu hay không, thường có thể chuyển các cây đó thành giá trị băm rồi lưu lại để giảm độ phức tạp.
 
-Băm cây rất linh hoạt, có thể thiết kế nhiều cách băm khác nhau. Tuy nhiên, nếu thiết kế tùy tiện thì rất dễ sai hoặc bị dữ liệu đối kháng phá. Dưới đây giới thiệu một lớp phương pháp dễ cài đặt và khó bị phá.
+Băm cây rất linh hoạt, có thể thiết kế nhiều cách băm khác nhau. Tuy nhiên, nếu thiết kế tùy tiện thì dễ sai hoặc bị dữ liệu đối kháng phá. Dưới đây giới thiệu một lớp phương pháp dễ cài đặt và khó bị phá.
 
 ## Phương pháp
 
@@ -20,7 +20,7 @@ $$
 
 Trong đó $c$ là hằng số, thường chỉ cần dùng $1$. $m$ là mô-đun; thông thường dùng $2^{32}$ hoặc $2^{64}$ để tận dụng tràn tự nhiên, cũng có thể dùng một số nguyên tố lớn. $g$ là một ánh xạ từ số nguyên sang số nguyên; trong mã dùng xor shift, cũng có thể chọn hàm khác, nhưng không khuyến nghị dùng đa thức. Để đề phòng dữ liệu được tạo nhằm phá xor hash, còn có thể xor thêm một hằng số ngẫu nhiên trước và sau ánh xạ.
 
-Cách băm này rất dễ viết. Nếu cần đổi gốc, trong lượt DP thứ hai chỉ cần trừ phần băm của cây con tương ứng.
+Cách băm này dễ viết. Nếu cần đổi gốc, trong lượt DP thứ hai chỉ cần trừ phần băm của cây con tương ứng.
 
 ## Bài tập ví dụ
 

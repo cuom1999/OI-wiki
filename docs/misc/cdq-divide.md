@@ -106,7 +106,7 @@ Khác biệt lớn nhất giữa cách viết CDQ này và cách viết CDQ xử
 
 2.  Tất cả các giá trị $dp_{j}$ dùng để tính $dp_{i}$ đều phải có khả năng cập nhật vào $dp_{i}$, không được tồn tại giá trị $dp_{j}$ chưa cập nhật tới.
 
-Hai điều kiện trên khá dễ bảo đảm khi vét cạn $O(n^2)$, nhưng sau khi dùng chia để trị CDQ, thứ tự chuyển trạng thái đã bị xáo trộn, vì vậy cần kiểm tra tính đúng đắn của các chuyển trạng thái.
+Hai điều kiện trên dễ bảo đảm khi vét cạn $O(n^2)$, nhưng sau khi dùng chia để trị CDQ, thứ tự chuyển trạng thái đã bị xáo trộn, vì vậy cần kiểm tra tính đúng đắn của các chuyển trạng thái.
 
 Cây đệ quy của chia để trị CDQ được minh họa dưới đây.
 

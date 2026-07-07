@@ -6,7 +6,7 @@ Bài này giới thiệu ngắn gọn về DP chữ số.
 
 Chữ số là cách tách một số theo từng vị trí như hàng đơn vị, hàng chục, hàng trăm, hàng nghìn, v.v. rồi quan tâm đến chữ số nằm ở mỗi vị trí đó. Nếu đang xét số thập phân thì mỗi chữ số nằm trong $0\sim 9$; với các hệ cơ số khác có thể suy luận tương tự như hệ thập phân.
 
-DP chữ số dùng để giải một lớp bài toán đặc thù, thường khá dễ nhận ra, nhìn chung có các đặc điểm sau:
+DP chữ số dùng để giải một lớp bài toán đặc thù, thường dễ nhận ra, nhìn chung có các đặc điểm sau:
 
 1.  Cần thống kê số lượng các số thỏa một điều kiện nào đó, tức mục tiêu cuối cùng là đếm.
 
@@ -375,7 +375,7 @@ Cần lưu ý thêm rằng phần ghi nhớ của bài này không được dùn
 
 Với điều kiện "không chứa" trong đề, chỉ cần đánh dấu các nút kết thúc của mọi xâu mẫu trên automaton AC; trong quá trình DP, hễ gặp những nút kết thúc này thì bỏ qua.
 
-Chuyển trạng thái khá dễ nghĩ, xem chi tiết trong phần hàm chính của mã.
+Chuyển trạng thái không khó nghĩ, xem chi tiết trong phần hàm chính của mã.
 
 <span id="cài-đặt_4"></span>
 

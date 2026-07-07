@@ -202,7 +202,7 @@ Một định lý liên quan khác là định lý Wagner. Định lý này dùn
 ???+ note "Định lý Wagner"
     Đồ thị $G$ là đồ thị phẳng khi và chỉ khi $G$ không có đồ thị con nào có thể co về $K_5$ hoặc $K_{3,3}$.
 
-Việc đồ thị phẳng không chứa các loại đồ thị con này khá dễ thấy, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ đều có thể co về chúng, nhưng chiều ngược lại không phải lúc nào cũng đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
+Việc đồ thị phẳng không chứa các loại đồ thị con này dễ thấy, nên phần then chốt của cả hai định lý nằm ở tính đủ của điều kiện đồ thị cấm tương ứng. Vì một đồ thị con đồng phôi với $K_5$ hoặc $K_{3,3}$ đều có thể co về chúng, nhưng chiều ngược lại không phải lúc nào cũng đúng, nên định lý Kuratowski cung cấp một điều kiện kiểm tra tính phẳng yếu hơn nhưng cũng dễ kiểm tra hơn.
 
 ### Thuật toán kiểm tra tính phẳng
 

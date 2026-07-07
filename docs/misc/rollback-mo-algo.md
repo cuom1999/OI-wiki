@@ -10,7 +10,7 @@ Mo có khôi phục trạng thái được chia thành loại chỉ dùng thao t
 
 Cho một mảng $A$ độ dài $n$ và $m$ truy vấn $(1 \leq n, m \leq 10^5)$. Mỗi truy vấn hỏi số có độ quan trọng lớn nhất trong đoạn $[L, R]$, và yêu cầu **in ra độ quan trọng đó**. Độ quan trọng của một số $i$ được định nghĩa là $i$ nhân với số lần $i$ xuất hiện trong đoạn.
 
-Trong bài toán này, cập nhật đáp án khi thêm phần tử rất dễ hiện thực, nhưng cập nhật đáp án khi xóa phần tử lại khó. Nếu thao tác thêm làm thay đổi đáp án, đáp án mới là độ quan trọng của số vừa được thêm. Còn nếu sau khi xóa, số có độ quan trọng lớn nhất trong đoạn thay đổi, khó xác định số mới có độ quan trọng lớn nhất là số nào. Vì vậy Mo thông thường khó giải được bài này.
+Trong bài toán này, cập nhật đáp án khi thêm phần tử dễ hiện thực, nhưng cập nhật đáp án khi xóa phần tử lại khó. Nếu thao tác thêm làm thay đổi đáp án, đáp án mới là độ quan trọng của số vừa được thêm. Còn nếu sau khi xóa, số có độ quan trọng lớn nhất trong đoạn thay đổi, khó xác định số mới có độ quan trọng lớn nhất là số nào. Vì vậy Mo thông thường khó giải được bài này.
 
 ## Quy trình
 

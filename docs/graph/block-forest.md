@@ -289,7 +289,7 @@ Phần này trình bày một vài bài tập có thể giải bằng cây tròn
         
         Giá trị nhỏ nhất trên đường đi có thể được duy trì bằng phân rã chuỗi nặng và cây đoạn, nhưng còn thao tác sửa thì sao?
         
-        Mỗi lần sửa trọng số của một đỉnh tròn, cần sửa tất cả các đỉnh vuông kề với nó; khi đó rất dễ chạm đến $O(n)$ lần sửa.
+        Mỗi lần sửa trọng số của một đỉnh tròn, cần sửa tất cả các đỉnh vuông kề với nó; khi đó dễ chạm đến $O(n)$ lần sửa.
         
         Lúc này tận dụng tính chất cây tròn-vuông là một cây: đặt trọng số của đỉnh vuông bằng giá trị nhỏ nhất trong các đỉnh tròn con của nó. Khi sửa, chỉ cần sửa đỉnh vuông cha.
         
