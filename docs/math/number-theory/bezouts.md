@@ -110,7 +110,7 @@ Xét trường hợp đặc biệt $\gcd(a,b)=1$ của định lý Bézout, thu 
 ???+ example "[Codeforces 510 D. Fox And Jumping](https://codeforces.com/problemset/problem/510/D)"
     Cho $n\le 300$ tấm thẻ, tấm thứ $i$ có hai giá trị $l_i$ và $c_i$. Trên một
     băng giấy dài vô hạn, được phép trả $c_i$ để mua thẻ $i$; từ đó trở đi, được
-    phép nhảy sang trái hoặc sang phải đúng $l_i$ đơn vị bao nhiêu lần tùy ý. Hỏi
+    phép nhảy sang trái hoặc sang phải đúng $l_i$ đơn vị với số lần bất kỳ. Hỏi
     cần ít nhất bao nhiêu tiền để có thể nhảy tới mọi vị trí trên băng giấy. Nếu
     không thể, in ra $-1$.
 
@@ -290,7 +290,7 @@ Bài toán vẫn xét khi nào một số nguyên $k$ có thể biểu diễn d�
 $a_1x_1+a_2x_2+\cdots+a_nx_n$. Trong định lý Bézout, $x_i$ có thể là số nguyên
 bất kỳ, còn trong bài toán đồng xu Frobenius, $x_i$ chỉ được là số tự nhiên.
 
-Trường hợp chỉ có một loại đồng xu khá đơn giản, vì khi đó chỉ có thể có $a_1=1$
+Trường hợp chỉ có một loại đồng xu khá dễ xử lý, vì khi đó chỉ có thể có $a_1=1$
 và mọi số tự nhiên đều biểu diễn được. Trường hợp $n>2$ lại quá phức tạp, nên
 mục này chỉ thảo luận trường hợp $n=2$.
 
@@ -376,7 +376,7 @@ $a_1x_1+a_2x_2~(x_1,x_2\in\mathbf N)$ là **biểu diễn được**.
     Phần này chỉ chứng minh $C=a_1a_2-a_1-a_2$ là số tự nhiên không biểu diễn
     được lớn nhất; các phần còn lại được chứng minh tương tự Chứng minh 1.
 
-    Xét trong từng lớp thặng dư modulo $a_2$, số tự nhiên biểu diễn được nhỏ
+    Xét trong từng lớp thặng dư theo môđun $a_2$, số tự nhiên biểu diễn được nhỏ
     nhất. Vì các số tự nhiên khác nhau trong cùng một lớp thặng dư có thể chuyển
     hóa qua lại bằng cách cộng trừ một số bội của $a_2$, nên khi xét số biểu
     diễn được nhỏ nhất, chỉ cần xét khả năng cộng trừ $a_1$. Do $a_1$ và $a_2$
