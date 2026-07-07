@@ -4,20 +4,22 @@ author: Marcythm, Ir1d, Ycrpro, Xeonacid, konnyakuxzy, CJSoft, HeRaNO, ethan-enh
 
 Cây phân đoạn là một cấu trúc dữ liệu thường dùng trong lập trình thi đấu để duy trì **thông tin trên đoạn**.
 
-Cây phân đoạn hỗ trợ các thao tác như sửa đổi một điểm, sửa đổi đoạn và truy vấn đoạn trong thời gian $O(\log N)$,
-chẳng hạn tính tổng đoạn hoặc tìm giá trị lớn nhất/nhỏ nhất trên đoạn.
+Cây phân đoạn hỗ trợ các thao tác như sửa đổi một điểm, sửa đổi đoạn và truy vấn đoạn trong thời
+gian $O(\log N)$, chẳng hạn tính tổng đoạn hoặc tìm giá trị lớn nhất/nhỏ nhất trên đoạn.
 
 ## Cấu trúc cơ bản và xây cây
 
 ### Quy trình
 
-Cây phân đoạn chia mỗi đoạn có độ dài khác $1$ thành hai đoạn trái/phải và xử lý đệ quy, từ đó biến toàn bộ đoạn thành
-một cấu trúc dạng cây. Thông tin của một đoạn được tính bằng cách hợp nhất thông tin của hai đoạn con trái/phải. Cấu trúc
-dữ liệu này xử lý thuận tiện phần lớn các thao tác trên đoạn.
+Cây phân đoạn chia mỗi đoạn có độ dài khác $1$ thành hai đoạn trái/phải và xử lý đệ quy, từ đó
+biến toàn bộ đoạn thành một cấu trúc dạng cây. Thông tin của một đoạn được tính bằng cách hợp nhất
+thông tin của hai đoạn con trái/phải. Cấu trúc dữ liệu này xử lý thuận tiện phần lớn các thao tác
+trên đoạn.
 
-Với mảng kích thước $5$ là $a=\{10,11,12,13,14\}$, có thể xây cây phân đoạn như sau: đặt nút gốc của cây phân đoạn có số
-hiệu $1$, dùng mảng $d$ để lưu cây phân đoạn, và $d_i$ lưu giá trị của nút có số hiệu $i$ trên cây phân đoạn. Trong ví dụ
-này, giá trị mà mỗi nút duy trì là tổng đoạn mà nút đó biểu diễn.
+Với mảng kích thước $5$ là $a=\{10,11,12,13,14\}$, có thể xây cây phân đoạn như sau: đặt nút gốc
+của cây phân đoạn có số hiệu $1$, dùng mảng $d$ để lưu cây phân đoạn, và $d_i$ lưu giá trị của nút
+có số hiệu $i$ trên cây phân đoạn. Trong ví dụ này, giá trị mà mỗi nút duy trì là tổng đoạn mà nút
+đó biểu diễn.
 
 Trước hết, hình dạng của cây phân đoạn này như sau:
 
@@ -27,8 +29,8 @@ Trong hình, đoạn được đánh dấu bằng chữ đỏ trong mỗi nút b
 hạn, đoạn do $d_1$ quản lý là $[1,5]$ ($a_1,a_2, \cdots ,a_5$), tức giá trị được lưu trong $d_1$ là
 $a_1+a_2+ \cdots +a_5$; $d_1=60$ nghĩa là $a_1+a_2+ \cdots +a_5=60$.
 
-Theo cách đánh số này, con trái của $d_i$ là $d_{2\times i}$, còn con phải của $d_i$ là $d_{2\times i+1}$. Nếu $d_i$ biểu
-diễn đoạn $[s,t]$ (tức $d_i=a_s+a_{s+1}+ \cdots +a_t$), thì con trái của $d_i$ biểu diễn đoạn
+Theo cách đánh số này, con trái của $d_i$ là $d_{2\times i}$, còn con phải của $d_i$ là
+$d_{2\times i+1}$. Nếu $d_i$ biểu diễn đoạn $[s,t]$ (tức $d_i=a_s+a_{s+1}+ \cdots +a_t$), thì con trái của $d_i$ biểu diễn đoạn
 $[ s, \frac{s+t}{2} ]$, còn con phải của $d_i$ biểu diễn đoạn $[ \frac{s+t}{2} +1,t ]$.
 
 Khi cài đặt, thường xây cây bằng đệ quy. Giả sử nút gốc hiện tại là $p$. Nếu đoạn mà nút gốc quản lý đã có độ dài $1$, có
@@ -103,8 +105,8 @@ Vẫn lấy hình ban đầu làm ví dụ, nếu cần truy vấn tổng đoạ
 Nếu đoạn cần truy vấn là $[3,5]$, lúc này không thể lấy trực tiếp giá trị của đoạn. Tuy nhiên $[3,5]$ có thể tách thành
 $[3,3]$ và $[4,5]$, rồi hợp nhất đáp án của hai đoạn này để thu được đáp án của cả đoạn.
 
-Tổng quát hơn, nếu đoạn cần truy vấn là $[l,r]$, có thể tách nó thành nhiều nhất $O(\log n)$ đoạn **cực đại**, rồi hợp nhất các
-đoạn đó để tính đáp án của $[l,r]$.
+Tổng quát hơn, nếu đoạn cần truy vấn là $[l,r]$, có thể tách nó thành nhiều nhất $O(\log n)$ đoạn
+**cực đại**, rồi hợp nhất các đoạn đó để tính đáp án của $[l,r]$.
 
 ### Cài đặt
 
@@ -471,11 +473,12 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
         ```
 
 ???+ note "[HihoCoder 1078 Sửa đổi đoạn bằng cây phân đoạn](https://vjudge.net/problem/HihoCoder-1078)"
-    Giả sử trên kệ có $N$ loại hàng hóa xếp từ trái sang phải, được đánh số lần lượt từ $1$ đến $N$; giá của hàng hóa số
-    $i$ là $Pi$. Mỗi thao tác của Hi nhỏ có một trong hai loại. Loại thứ nhất là sửa giá: Hi nhỏ cho một đoạn $[L, R]$ và
-    một giá mới $\textit{NewP}$, mọi hàng hóa có số hiệu trong đoạn này đều đổi giá thành $\textit{NewP}$. Loại thứ hai là
-    hỏi: Hi nhỏ cho một đoạn $[L, R]$, còn Ho nhỏ cần tính tổng giá của mọi hàng hóa có số hiệu trong đoạn này rồi nói cho
-    Hi nhỏ biết.
+    Giả sử trên kệ có $N$ loại hàng hóa xếp từ trái sang phải, được đánh số lần lượt từ $1$ đến
+    $N$; giá của hàng hóa số $i$ là $P_i$. Mỗi thao tác của Hi thuộc một trong hai loại. Loại thứ
+    nhất là sửa giá: Hi cho một đoạn $[L, R]$ và một giá mới $\textit{NewP}$, mọi hàng hóa có số
+    hiệu trong đoạn này đều đổi giá thành $\textit{NewP}$. Loại thứ hai là hỏi: Hi cho một đoạn
+    $[L, R]$, còn Ho cần tính tổng giá của mọi hàng hóa có số hiệu trong đoạn này rồi nói cho Hi
+    biết.
     
     ??? note "Mã tham khảo"
         ```cpp
@@ -531,7 +534,7 @@ hình đầu tiên ở trên. Cây phía trên gọi là cây vào, còn cây d�
     
     Tìm đường đi ngắn nhất từ điểm $s$ tới các điểm khác.
     
-    $1 \le n,q \le 10^5, 1 \le w \le 10^9$．
+    $1 \le n,q \le 10^5, 1 \le w \le 10^9$.
     
     ??? note "Mã tham khảo"
         ```cpp
