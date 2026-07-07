@@ -361,6 +361,6 @@ Lưu ý: khi $p \ge 1$, khoảng cách Minkowski mới là một độ đo. Ch�
 
 ## Tài liệu tham khảo và liên kết
 
-1.  [A brief discussion of three common distance algorithms](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm), cảm ơn tác giả xuxing đã cho phép sử dụng.
+1.  [Thảo luận ngắn về ba thuật toán khoảng cách thường gặp](https://www.luogu.com.cn/blog/xuxing/Distance-Algorithm), cảm ơn tác giả xuxing đã cho phép sử dụng.
 
 [^ref1]: [Khoảng cách Chebyshev - Wikipedia](https://en.wikipedia.org/wiki/Chebyshev_distance)

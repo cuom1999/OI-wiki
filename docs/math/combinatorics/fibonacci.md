@@ -141,7 +141,7 @@ Dãy Fibonacci có nhiều tính chất thú vị; dưới đây là một số 
 4.  Từ tính chất trên có thể chứng minh bằng quy nạp rằng $\forall k\in \mathbb{N},F_n|F_{nk}$.
 5.  Chiều ngược lại cũng đúng nếu $a\ge 3$: từ $F_a\mid F_b$ suy ra $a\mid b$.
 6.  Tính chất GCD: $(F_m, F_n) = F_{(m, n)}$.
-7.  Khi đầu vào là hai số Fibonacci liên tiếp, thuật toán Euclid đạt độ phức tạp xấu nhất; xem thêm [Wikipedia - Lame](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9).
+7.  Khi đầu vào là hai số Fibonacci liên tiếp, thuật toán Euclid đạt độ phức tạp xấu nhất; xem thêm [Gabriel Lamé - Wikipedia](https://en.wikipedia.org/wiki/Gabriel_Lam%C3%A9).
 
 <span id="quan-hệ-giữa-dãy-fibonacci-và-dãy-lucas"></span>
 ### Quan hệ giữa dãy Fibonacci và dãy Lucas

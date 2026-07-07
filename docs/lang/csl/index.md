@@ -72,6 +72,6 @@ nếu cần.
 
 1.  [C++ reference](https://en.cppreference.com/)
 2.  [Sổ tay tham khảo C++](https://en.cppreference.com/)
-3.  [Wikipedia - C++](https://en.wikipedia.org/wiki/C%2B%2B)
+3.  [C++ - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B)
 4.  [Trang chính thức Boost](https://www.boost.org/)
 5.  [Trang hướng dẫn Boost](https://theboostcpplibraries.com/)

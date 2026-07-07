@@ -383,7 +383,7 @@ Trong một bài toán phân bổ tài nguyên, có một tập tài nguyên $R 
 
 ## Tài liệu tham khảo và chú thích
 
-1.  [Wikipedia - Matroid](https://en.wikipedia.org/wiki/Matroid)
-2.  [Baidu Baike - Matroid](https://baike.baidu.com/item/%E6%8B%9F%E9%98%B5)
-3.  [Luogu - Matroid và bài toán tối ưu hóa](https://www.luogu.com.cn/article/87d02q9f)
-4.  [Luogu - Từ cơ sở matroid đến trò chơi công tắc Shannon](https://www.luogu.com.cn/article/fuj3x886)
+1.  [Matroid - Wikipedia](https://en.wikipedia.org/wiki/Matroid)
+2.  [Matroid - Bách khoa Baidu](https://baike.baidu.com/item/%E6%8B%9F%E9%98%B5)
+3.  [Matroid và bài toán tối ưu hóa - Luogu](https://www.luogu.com.cn/article/87d02q9f)
+4.  [Từ cơ sở matroid đến trò chơi công tắc Shannon - Luogu](https://www.luogu.com.cn/article/fuj3x886)

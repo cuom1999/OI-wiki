@@ -286,6 +286,6 @@ Biểu đồ Voronoi là đồ thị đối ngẫu của tam giác phân Delauna
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Wikipedia - Triangulation (geometry)](https://en.wikipedia.org/wiki/Triangulation_%28geometry%29)
-2.  [Wikipedia - Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
+1.  [Tam giác phân (hình học) - Wikipedia](https://en.wikipedia.org/wiki/Triangulation_%28geometry%29)
+2.  [Tam giác phân Delaunay - Wikipedia](https://en.wikipedia.org/wiki/Delaunay_triangulation)
 3.  Samuel Peterson - [Computing Constrained Delaunay Triangulations in 2-D (1997-98)](http://www.geom.uiuc.edu/~samuelp/del_project.html)

@@ -115,4 +115,4 @@ Nếu trong quá trình này đáp án được cập nhật, xây dựng lại 
 
 **Phần thuật toán chia để trị trong trang này chủ yếu được dịch từ bài viết [Нахождение пары ближайших точек](http://e-maxx.ru/algo/nearest_points) và bản dịch tiếng Anh của nó, [Finding the nearest pair of points](https://github.com/e-maxx-eng/e-maxx-eng/blob/master/src/geometry/nearest_points.md). Phiên bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; phiên bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**
 
-[Zhihu column: Computational Geometry - Closest Pair Problem](https://zhuanlan.zhihu.com/p/74905629)
+[Chuyên mục Zhihu: hình học tính toán - bài toán cặp điểm gần nhất](https://zhuanlan.zhihu.com/p/74905629)
