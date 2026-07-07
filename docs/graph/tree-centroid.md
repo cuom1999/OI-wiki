@@ -125,7 +125,7 @@ Một cách khác là dùng DP đổi gốc để tính tổng độ sâu của 
 
 ## Ví dụ
 
-???+ example "[Codeforces Round 359 (Div. 1) B. Kay and Snowflake](https://codeforces.com/problemset/problem/685/B)"
+???+ example "[Codeforces Round 359 (Div. 1) B. Kay và bông tuyết](https://codeforces.com/problemset/problem/685/B)"
     Cho một cây có gốc, cần tìm trọng tâm của mỗi cây con.
 
 ??? note "Ý tưởng lời giải"
@@ -142,11 +142,11 @@ Một cách khác là dùng DP đổi gốc để tính tổng độ sâu của 
 
 ## Bài tập
 
--   [Gym 101649G Godfather](https://codeforces.com/gym/101649/problem/G)
--   [POJ 1655 Balancing Art](http://poj.org/problem?id=1655)
--   [Luogu P1364 Hospital Setup](https://www.luogu.com.cn/problem/P1364)
--   [Codeforces 1406C Link Cut Centroids](https://codeforces.com/contest/1406/problem/C)
--   [Codeforces 708C Centroids](https://codeforces.com/problemset/problem/708/C)
+-   [Gym 101649G Bố già](https://codeforces.com/gym/101649/problem/G)
+-   [POJ 1655 Nghệ thuật cân bằng](http://poj.org/problem?id=1655)
+-   [Luogu P1364 Bố trí bệnh viện](https://www.luogu.com.cn/problem/P1364)
+-   [Codeforces 1406C Cắt nối trọng tâm](https://codeforces.com/contest/1406/problem/C)
+-   [Codeforces 708C Trọng tâm](https://codeforces.com/problemset/problem/708/C)
 
 ## Tài liệu tham khảo
 

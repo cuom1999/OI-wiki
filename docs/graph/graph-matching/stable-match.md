@@ -49,7 +49,7 @@ Vì mỗi nam cầu hôn mỗi nữ nhiều nhất một lần, thuật toán k�
 
 Cài đặt tham khảo như sau:
 
-??? example "Bài mẫu [SPOJ STABLEMP - Stable Marriage Problem](https://www.spoj.com/problems/STABLEMP/) cài đặt tham khảo"
+??? example "Bài mẫu [SPOJ STABLEMP - Bài toán hôn nhân ổn định](https://www.spoj.com/problems/STABLEMP/) cài đặt tham khảo"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/stable-match/stable-match.cpp"
     ```
@@ -136,8 +136,8 @@ Trong bài toán hôn nhân ổn định, hai nhóm cá thể có sở thích đ
 
 ## Bài tập
 
--   [UOJ 41. Tsinghua Training Camp 2014 - Matrix Transform](https://uoj.ac/problem/41)
--   [Codeforces 1147 F. Zigzag Game](https://codeforces.com/problemset/problem/1147/F)
+-   [UOJ 41. Tsinghua Training Camp 2014 - Biến đổi ma trận](https://uoj.ac/problem/41)
+-   [Codeforces 1147 F. Trò chơi zích zắc](https://codeforces.com/problemset/problem/1147/F)
 
 ## Tài liệu tham khảo và chú thích
 

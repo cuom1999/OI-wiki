@@ -45,7 +45,7 @@ Mặc dù độ phức tạp xấu nhất vẫn là $O(|V||E|)$, thuật toán K
 
 Khi cài đặt, không cần thật sự duy trì hướng của các cạnh; chỉ cần lưu đỉnh được ghép với từng đỉnh.
 
-??? example "Bài mẫu [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
+??? example "Bài mẫu [Library Checker - Ghép cặp trên đồ thị hai phía](https://judge.yosupo.jp/problem/bipartitematching)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_1.cpp"
     ```
@@ -102,7 +102,7 @@ Khi xây dựng đồ thị phân tầng, giống như thuật toán Dinic thôn
 
 ### Cài đặt tham khảo
 
-??? example "Bài mẫu [Library Checker - Matching on Bipartite Graph](https://judge.yosupo.jp/problem/bipartitematching)"
+??? example "Bài mẫu [Library Checker - Ghép cặp trên đồ thị hai phía](https://judge.yosupo.jp/problem/bipartitematching)"
     ```cpp
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_2.cpp"
     ```

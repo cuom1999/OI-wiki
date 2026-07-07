@@ -28,7 +28,7 @@ Ngoài ra, trong trang này, đồ thị thưa là đồ thị có số cạnh c
 
 ## Đồ thị lưới
 
-???+ note "Bài ví dụ 1 [Circles of Waiting](https://codeforces.com/problemset/problem/963/E)"
+???+ note "Bài ví dụ 1 [Những vòng tròn chờ đợi](https://codeforces.com/problemset/problem/963/E)"
     Ban đầu có một quân cờ được đặt tại điểm $(0,0)$ trên mặt phẳng tọa độ Descartes. Mỗi giây quân cờ sẽ di chuyển ngẫu nhiên. Giả sử hiện tại nó ở $(x, y)$; trong giây tiếp theo, nó di chuyển đến $(x-1, y)$ với xác suất $p_1$, đến $(x, y-1)$ với xác suất $p_2$, đến $(x+1, y)$ với xác suất $p_3$, và đến $(x, y+1)$ với xác suất $p_4$. Bảo đảm $p_1+p_2+p_3+p_4=1$.
     Tính kỳ vọng thời gian để nó di chuyển đến một vị trí có khoảng cách Euclid tới gốc tọa độ lớn hơn $R$. $0 \leq R \leq 50$, $p_1, p_2, p_3, p_4>0$, đáp án lấy theo môđun $10^9+7$.
 
@@ -92,7 +92,7 @@ Tóm lại, hai cách làm đều có sở trường riêng; cần phân tích t
 
 ## Đồ thị thưa
 
-???+ note "Bài ví dụ 2 Expected Value"
+???+ note "Bài ví dụ 2 Giá trị kỳ vọng"
     Cho một đồ thị đơn vô hướng liên thông và thưa $G=(V, E)$. Ban đầu có một quân cờ được đặt tại $v_1$; mỗi giây, quân cờ chọn đều ngẫu nhiên một cạnh trong các cạnh nối với đỉnh hiện tại rồi đi đến đỉnh mà cạnh đó dẫn tới. Tính kỳ vọng thời gian để đến $v_n$. $n \leq 2000$, đáp án lấy theo môđun $p$, trong đó $p$ là một số nguyên tố được sinh ngẫu nhiên trong khoảng $\left[10^9, 1.01 \times 10^9\right]$.
 
 ### Kiến thức cơ sở
