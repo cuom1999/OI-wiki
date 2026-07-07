@@ -355,4 +355,4 @@ Tóm lại, sau khi tăng luồng, trọng số của mọi cạnh đều không
 
 [^note1]: Có thể tham khảo cách xây dựng chi tiết trong [blog của min\_25](https://web.archive.org/web/20211009144446/https://min-25.hatenablog.com/entry/2018/03/19/235802).
 
-[^note2]: Trên đồ thị thưa, dùng tối ưu bằng heap có thể đạt độ phức tạp thời gian $O(m \log n)$; còn trên đồ thị dày, không dùng tối ưu bằng heap có thể đạt độ phức tạp thời gian $O(n^2)$.
+[^note2]: Trên đồ thị thưa, dùng tối ưu bằng đống có thể đạt độ phức tạp thời gian $O(m \log n)$; còn trên đồ thị dày, không dùng tối ưu bằng đống có thể đạt độ phức tạp thời gian $O(n^2)$.

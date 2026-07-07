@@ -427,11 +427,11 @@ Thuật toán chuẩn của bài này là luồng mạng, nhưng phần này dù
     }
     ```
 
-### Ví dụ: (*) heap ngẫu nhiên[^ref3]
+### Ví dụ: (*) đống ngẫu nhiên[^ref3]
 
-Cách viết heap gộp được thường gặp nhất có lẽ là cây nghiêng trái, bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên có thể muốn tránh việc này nếu có thể.
+Cách viết đống gộp được thường gặp nhất có lẽ là cây nghiêng trái, bảo đảm độ phức tạp của phép gộp bằng cách duy trì chiều cao để cây nghiêng trái. Tuy nhiên duy trì chiều cao hơi phiền, nên có thể muốn tránh việc này nếu có thể.
 
-Vậy có thể xét dùng heap ngẫu nhiên: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
+Vậy có thể xét dùng đống ngẫu nhiên: không đổi con theo chiều cao, mà đổi ngẫu nhiên.
 
 ???+ note "Mã"
     ```cpp
@@ -452,12 +452,12 @@ Vậy có thể xét dùng heap ngẫu nhiên: không đổi con theo chiều ca
     void pop(int &now) { now = merge(nd[now].child[0], nd[now].child[1]); }
     ```
 
-Heap ngẫu nhiên không đặt bất kỳ yêu cầu cứng hay mềm nào lên hình dạng của heap; độ phức tạp kỳ vọng của phép gộp đúng cho bất kỳ hai heap nào, khi chúng là tham số của hàm `merge`. Chứng minh như sau.
+Đống ngẫu nhiên không đặt bất kỳ yêu cầu cứng hay mềm nào lên hình dạng của đống; độ phức tạp kỳ vọng của phép gộp đúng cho bất kỳ hai đống nào, khi chúng là tham số của hàm `merge`. Chứng minh như sau.
 
 ???+ note "Chứng minh độ phức tạp kỳ vọng"
-    Sẽ chứng minh rằng với bất kỳ heap $A$ nào, nếu bắt đầu từ nút gốc và mỗi lần chọn ngẫu nhiên đi sang trái hoặc phải cho đến khi không còn đường, thì kỳ vọng độ dài đường đi (tức số nút trên đường đi) là $h(A)\leq\log_2 (|A|+1)$.
+    Sẽ chứng minh rằng với bất kỳ đống $A$ nào, nếu bắt đầu từ nút gốc và mỗi lần chọn ngẫu nhiên đi sang trái hoặc phải cho đến khi không còn đường, thì kỳ vọng độ dài đường đi (tức số nút trên đường đi) là $h(A)\leq\log_2 (|A|+1)$.
     
-    -   Lưu ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai heap $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của heap ngẫu nhiên.
+    -   Lưu ý trong quá trình trên, độ phức tạp kỳ vọng khi gộp hai đống $A,B$ là $O\big(h(A)+h(B)\big)$, nên kết luận trên bảo đảm độ phức tạp kỳ vọng của đống ngẫu nhiên.
     
     Chứng minh bằng quy nạp toán học. Trường hợp cơ sở là $A$ rỗng, kết luận đúng ngay. Giả sử $A$ không rỗng.
     

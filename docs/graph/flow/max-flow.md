@@ -409,7 +409,7 @@ Tóm lại, thu được một số hệ quả.
 
 ### Thuật toán MPM
 
-Thuật toán **MPM** (Malhotra, Pramodh-Kumar và Maheshwari) có hai cách tìm luồng cực đại: dùng hàng đợi ưu tiên dựa trên heap với độ phức tạp thời gian $O(n^3\log n)$, hoặc dùng cách BFS thường gặp với độ phức tạp thời gian $O(n^3)$. Mục này chỉ tập trung phân tích thuật toán $O(n^3)$ gọn hơn.
+Thuật toán **MPM** (Malhotra, Pramodh-Kumar và Maheshwari) có hai cách tìm luồng cực đại: dùng hàng đợi ưu tiên dựa trên đống với độ phức tạp thời gian $O(n^3\log n)$, hoặc dùng cách BFS thường gặp với độ phức tạp thời gian $O(n^3)$. Mục này chỉ tập trung phân tích thuật toán $O(n^3)$ gọn hơn.
 
 Cấu trúc tổng thể của thuật toán MPM tương tự thuật toán Dinic, cũng chạy theo từng pha. Trong mỗi pha, thuật toán tìm đường tăng luồng trong mạng phân tầng của mạng dư của $G$. Khác biệt chính so với Dinic nằm ở cách tìm đường tăng luồng: phần tìm đường tăng luồng trong thuật toán MPM chỉ tốn $O(n^2)$, có độ phức tạp thời gian tốt hơn Dinic.
 

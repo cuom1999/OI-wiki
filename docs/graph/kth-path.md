@@ -1,4 +1,4 @@
-Kiến thức tiên quyết: [thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra), [thuật toán A\*](../search/astar.md), [heap có thể hợp nhất bền vững](../ds/persistent-heap.md)
+Kiến thức tiên quyết: [thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra), [thuật toán A\*](../search/astar.md), [đống có thể hợp nhất bền vững](../ds/persistent-heap.md)
 
 ## Mô tả bài toán
 
@@ -24,9 +24,9 @@ Nếu dùng Dijkstra tối ưu bằng hàng đợi ưu tiên, do tối đa đưa
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-1.cpp"
     ```
 
-## Cách làm bằng heap có thể hợp nhất bền vững
+## Cách làm bằng đống có thể hợp nhất bền vững
 
-Về bản chất, thuật toán ở trên tìm $k$ đường đi ngắn nhất đến mọi đỉnh. Nếu chỉ muốn tìm $k$ đường đi ngắn nhất đến một đỉnh đích $t$ cho trước, ta có thể làm nhanh hơn. Mục này trình bày một cách làm $O(m\log m+k\log k)$ dựa trên heap có thể hợp nhất bền vững.
+Về bản chất, thuật toán ở trên tìm $k$ đường đi ngắn nhất đến mọi đỉnh. Nếu chỉ muốn tìm $k$ đường đi ngắn nhất đến một đỉnh đích $t$ cho trước, ta có thể làm nhanh hơn. Mục này trình bày một cách làm $O(m\log m+k\log k)$ dựa trên đống có thể hợp nhất bền vững.
 
 ### Cây đường đi ngắn nhất và cạnh lệch
 
@@ -60,25 +60,25 @@ Trên đồ thị này, điều kiện $(*)$ chuyển thành yêu cầu các c�
 
 Bài toán sau chuyển đổi có cách giải trực tiếp. Chỉ cần xuất phát từ đỉnh đầu $s$ và chạy đường đi ngắn nhất một nguồn. Mỗi lần lấy ra một đỉnh từ hàng đợi ưu tiên, tức là đã tìm được một đường đi trong đồ thị $G'$, cũng tương ứng với một đường đi đến đỉnh đích $t$ trong đồ thị $G$.
 
-### Tối ưu bằng heap có thể hợp nhất bền vững
+### Tối ưu bằng đống có thể hợp nhất bền vững
 
 Ý tưởng thuật toán đã rõ, nhưng cài đặt ngây thơ có độ phức tạp quá cao. Trong đồ thị $G'$, số cạnh tại một đỉnh đơn lẻ có thể là $\Theta(m)$, nên mỗi lần chạy đường đi ngắn nhất một nguồn có thể phải đẩy một tập cạnh kích thước $\Theta(m)$ vào hàng đợi ưu tiên. Không cần đưa mọi cạnh vào hàng đợi ưu tiên: trong nhiều trường hợp, trong số các cạnh được đưa vào hàng đợi, chỉ những cạnh ngắn nhất mới có khả năng được lấy ra trong các bước sau. Nói cách khác, có thể xem toàn bộ tập cạnh tại một đỉnh là một đơn vị lưu trữ và đưa đơn vị đó vào hàng đợi ưu tiên; mỗi lần chỉ cần truy cập nhanh cạnh ngắn nhất trong tập cạnh.
 
-Điều này gợi ý dùng heap min để lưu tập cạnh tại một đỉnh. Trong hàng đợi ưu tiên của thuật toán đường đi ngắn nhất một nguồn, chỉ cần lưu các heap này; chi phí của chúng chính là chi phí đường đi ngắn nhất tương ứng với phần tử ở đỉnh heap. Mỗi lần lấy đầu hàng đợi, cũng cần đồng thời lấy cạnh ở đỉnh heap của heap đầu hàng đợi. Sau đó, vừa đưa heap sau khi bỏ đỉnh heap trở lại hàng đợi ưu tiên, vừa đưa đỉnh heap tương ứng với tập cạnh lệch tại điểm cuối của cạnh vừa lấy vào hàng đợi ưu tiên.
+Điều này gợi ý dùng đống nhỏ để lưu tập cạnh tại một đỉnh. Trong hàng đợi ưu tiên của thuật toán đường đi ngắn nhất một nguồn, chỉ cần lưu các đống này; chi phí của chúng chính là chi phí đường đi ngắn nhất tương ứng với phần tử ở đỉnh đống. Mỗi lần lấy đầu hàng đợi, cũng cần đồng thời lấy cạnh ở đỉnh đống của đống đầu hàng đợi. Sau đó, vừa đưa đống sau khi bỏ đỉnh đống trở lại hàng đợi ưu tiên, vừa đưa đỉnh đống tương ứng với tập cạnh lệch tại điểm cuối của cạnh vừa lấy vào hàng đợi ưu tiên.
 
-Dùng heap để lưu tập cạnh cũng giải quyết được việc truyền tập cạnh xuống theo cây đường đi ngắn nhất. Vì truyền tập cạnh xuống tương đương với hợp nhất tập cạnh của đỉnh hiện tại vào đỉnh con của nó, heap cần hỗ trợ thao tác hợp nhất; đồng thời khi hợp nhất vào đỉnh con, không được phá hỏng tập cạnh tại đỉnh hiện tại, nên heap còn cần hỗ trợ tính bền vững. Đây chính là heap có thể hợp nhất bền vững.
+Dùng đống để lưu tập cạnh cũng giải quyết được việc truyền tập cạnh xuống theo cây đường đi ngắn nhất. Vì truyền tập cạnh xuống tương đương với hợp nhất tập cạnh của đỉnh hiện tại vào đỉnh con của nó, đống cần hỗ trợ thao tác hợp nhất; đồng thời khi hợp nhất vào đỉnh con, không được phá hỏng tập cạnh tại đỉnh hiện tại, nên đống còn cần hỗ trợ tính bền vững. Đây chính là đống có thể hợp nhất bền vững.
 
 Từ đó thu được toàn bộ quy trình thuật toán:
 
 1.  Từ đỉnh đích $t$, chạy đường đi ngắn nhất một nguồn để tìm cây đường đi ngắn nhất.
-2.  Với mỗi đỉnh trên cây đường đi ngắn nhất, xây dựng tập cạnh lệch tương ứng và lưu vào heap có thể hợp nhất bền vững.
-3.  Dọc theo các cạnh của cây đường đi ngắn nhất, bắt đầu từ đỉnh đích $t$, gộp heap tại mỗi đỉnh vào heap của các đỉnh con.
-4.  Từ đỉnh xuất phát $s$, đưa heap tại đó vào hàng đợi ưu tiên.
-5.  Lấy heap ở đầu hàng đợi, ghi nhận đáp án, rồi đưa heap sau khi bỏ đỉnh heap trở lại hàng đợi ưu tiên, đồng thời đưa heap tại điểm cuối của cạnh ở đỉnh heap vào hàng đợi ưu tiên.
+2.  Với mỗi đỉnh trên cây đường đi ngắn nhất, xây dựng tập cạnh lệch tương ứng và lưu vào đống có thể hợp nhất bền vững.
+3.  Dọc theo các cạnh của cây đường đi ngắn nhất, bắt đầu từ đỉnh đích $t$, gộp đống tại mỗi đỉnh vào đống của các đỉnh con.
+4.  Từ đỉnh xuất phát $s$, đưa đống tại đó vào hàng đợi ưu tiên.
+5.  Lấy đống ở đầu hàng đợi, ghi nhận đáp án, rồi đưa đống sau khi bỏ đỉnh đống trở lại hàng đợi ưu tiên, đồng thời đưa đống tại điểm cuối của cạnh ở đỉnh đống vào hàng đợi ưu tiên.
 
-Thông thường dùng cây lệch trái hoặc heap ngẫu nhiên để cài đặt heap có thể hợp nhất bền vững. Khi đó, bước cuối còn có thể tối ưu thêm. Cấu trúc bên trong của các heap này đều là cây nhị phân. Sau khi lấy đỉnh heap, cách trực tiếp là hợp nhất hai đỉnh con trái và phải, rồi đưa heap sau khi hợp nhất vào hàng đợi ưu tiên; tuy nhiên trong thuật toán này, có thể không thực hiện thao tác hợp nhất mà trực tiếp đưa hai heap ứng với hai đỉnh con vào hàng đợi ưu tiên riêng rẽ. Như vậy tiết kiệm được độ phức tạp $O(\log m)$ của một lần hợp nhất. Vì sau mỗi lần lấy heap đầu hàng đợi, tối đa chỉ đưa thêm ba heap mới vào hàng đợi ưu tiên, kích thước hàng đợi ưu tiên là $O(k)$. Khi đó, độ phức tạp thời gian của một lần truy vấn giảm xuống $O(\log k)$, và tổng độ phức tạp truy vấn là $O(k\log k)$.
+Thông thường dùng cây lệch trái hoặc đống ngẫu nhiên để cài đặt đống có thể hợp nhất bền vững. Khi đó, bước cuối còn có thể tối ưu thêm. Cấu trúc bên trong của các đống này đều là cây nhị phân. Sau khi lấy đỉnh đống, cách trực tiếp là hợp nhất hai đỉnh con trái và phải, rồi đưa đống sau khi hợp nhất vào hàng đợi ưu tiên; tuy nhiên trong thuật toán này, có thể không thực hiện thao tác hợp nhất mà trực tiếp đưa hai đống ứng với hai đỉnh con vào hàng đợi ưu tiên riêng rẽ. Như vậy tiết kiệm được độ phức tạp $O(\log m)$ của một lần hợp nhất. Vì sau mỗi lần lấy đống đầu hàng đợi, tối đa chỉ đưa thêm ba đống mới vào hàng đợi ưu tiên, kích thước hàng đợi ưu tiên là $O(k)$. Khi đó, độ phức tạp thời gian của một lần truy vấn giảm xuống $O(\log k)$, và tổng độ phức tạp truy vấn là $O(k\log k)$.
 
-Vì độ phức tạp xây dựng cây đường đi ngắn nhất và xây dựng heap có thể hợp nhất bền vững đều là $O(m\log m)$, tổng độ phức tạp thời gian của thuật toán là $O(m\log m+k\log k)$.
+Vì độ phức tạp xây dựng cây đường đi ngắn nhất và xây dựng đống có thể hợp nhất bền vững đều là $O(m\log m)$, tổng độ phức tạp thời gian của thuật toán là $O(m\log m+k\log k)$.
 
 ### Cài đặt
 

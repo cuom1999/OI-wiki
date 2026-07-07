@@ -169,7 +169,7 @@ Trong đồ thị hai phía không trọng số, có thể dùng thuật toán K
 
 Xem chi tiết tại trang [ghép cặp trọng số lớn nhất trong đồ thị hai phía](./bigraph-weight-match.md).
 
-Trong đồ thị hai phía có trọng số, có thể dùng thuật toán Hungarian. Nếu dùng Bellman–Ford để tìm đường đi ngắn nhất, độ phức tạp thời gian là $O(|V|^2|E|)$; nếu dùng Dijkstra với Fibonacci heap, có thể giải trong thời gian $O(|V|^{2}\log {|V|}+|V||E|)$.
+Trong đồ thị hai phía có trọng số, có thể dùng thuật toán Hungarian. Nếu dùng Bellman–Ford để tìm đường đi ngắn nhất, độ phức tạp thời gian là $O(|V|^2|E|)$; nếu dùng Dijkstra với đống Fibonacci, có thể giải trong thời gian $O(|V|^{2}\log {|V|}+|V||E|)$.
 
 ### Ghép cặp lớn nhất trong đồ thị tổng quát
 
