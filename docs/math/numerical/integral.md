@@ -171,7 +171,7 @@ Mã tham khảo như sau:
 ## Bài tập
 
 -   [Luogu4525【Mẫu】Phương pháp Simpson thích nghi 1](https://www.luogu.com.cn/problem/P4525)
--   [HDU1724 Ellipse](https://acm.hdu.edu.cn/showproblem.php?pid=1724)
+-   [HDU1724 Hình elip](https://acm.hdu.edu.cn/showproblem.php?pid=1724)
 -   [NOI2005 Cây chanh dưới trăng](https://www.luogu.com.cn/problem/P4207)
 
 <span id="tài-liệu-tham-khảo"></span>

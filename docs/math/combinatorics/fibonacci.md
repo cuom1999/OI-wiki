@@ -366,11 +366,11 @@ $$
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [SPOJ - Euclid Algorithm Revisited](http://www.spoj.com/problems/MAIN74/)
--   [SPOJ - Fibonacci Sum](http://www.spoj.com/problems/FIBOSUM/)
--   [HackerRank - Is Fibo](https://www.hackerrank.com/challenges/is-fibo/problem)
--   [Project Euler - Even Fibonacci numbers](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
--   [Luogu P4000 Fibonacci sequence](https://www.luogu.com.cn/problem/P4000)
+-   [SPOJ - Nhìn lại thuật toán Euclid](http://www.spoj.com/problems/MAIN74/)
+-   [SPOJ - Tổng Fibonacci](http://www.spoj.com/problems/FIBOSUM/)
+-   [HackerRank - Có phải Fibo](https://www.hackerrank.com/challenges/is-fibo/problem)
+-   [Project Euler - Các số Fibonacci chẵn](https://www.hackerrank.com/contests/projecteuler/challenges/euler002/problem)
+-   [Luogu P4000 Dãy Fibonacci](https://www.luogu.com.cn/problem/P4000)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

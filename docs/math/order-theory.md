@@ -282,7 +282,7 @@ Có thể dùng định lý Dilworth để chứng minh định lý sau:
 ### Bài tập
 
 -   [\[CTSC2008\] Tế lễ](https://www.luogu.com.cn/problem/P4298)
--   [CodeForces 590E Birthday](https://codeforces.com/problemset/problem/590/E)
+-   [CodeForces 590E Sinh nhật](https://codeforces.com/problemset/problem/590/E)
 
 <span id="ứng-dụng-trong-c"></span>
 ## Ứng dụng trong C++

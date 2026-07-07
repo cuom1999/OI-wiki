@@ -677,7 +677,7 @@ Trước hết là một số bài mẫu. Chúng là các ứng dụng đơn gi�
 -   [Luogu P6487 \[COCI 2010/2011 #4\] HRPA](https://www.luogu.com.cn/problem/P6487)
 -   [Luogu P6560 \[SBCOI2020\] Thời gian trôi qua](https://www.luogu.com.cn/problem/P6560)
 -   [Luogu P7589 Cờ đen trắng (2021 CoE-II B)](https://www.luogu.com.cn/problem/P7589)
--   [AtCoder Regular Contest 168 B - Arbitrary Nim](https://atcoder.jp/contests/arc168/tasks/arc168_b)
+-   [AtCoder Regular Contest 168 B - Nim tùy ý](https://atcoder.jp/contests/arc168/tasks/arc168_b)
 
 Sau đó là một số bài đòi hỏi tư duy hơn hoặc tổng hợp hơn:
 

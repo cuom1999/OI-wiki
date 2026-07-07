@@ -543,7 +543,7 @@ Trong đó $g^e\equiv ab^2\pmod p$ đã biết, còn giá trị $e\bmod 2^k$ có
 ## Bài tập
 
 -   [Luogu P5491 [Mẫu] Thặng dư bậc hai](https://www.luogu.com.cn/problem/P5491)
--   ["Timus 1132" Square Root](https://acm.timus.ru/problem.aspx?space=1&num=1132)
+-   ["Timus 1132" Căn bậc hai](https://acm.timus.ru/problem.aspx?space=1&num=1132)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

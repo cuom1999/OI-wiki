@@ -447,8 +447,8 @@ Phần này cung cấp một cài đặt tham khảo cho Schreier-Sims. Vì $n$ 
 
 -   [LOJ 177. Cấp của nhóm con sinh ra](https://loj.ac/p/177)
 -   [\[WC2017\] Bàn cờ](https://uoj.ac/problem/287)
--   [Permutations](https://codeforces.com/gym/421334/problem/A)
--   [\[Grand Prix of Yekaterinburg 2015\] Problem H. Heimdall](https://disk.yandex.com/i/OfEXXcu-anMHuw)
+-   [Hoán vị](https://codeforces.com/gym/421334/problem/A)
+-   [\[Grand Prix of Yekaterinburg 2015\] Bài H. Heimdall](https://disk.yandex.com/i/OfEXXcu-anMHuw)
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú

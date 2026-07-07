@@ -310,7 +310,7 @@ Cơ sở tuyến tính $\gamma$ thu được theo cách này chính là giao c�
 
 Mã mẫu cho bài toán mẫu như sau:
 
-??? example "Mã nguồn (Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
+??? example "Mã nguồn (Library Checker [Giao của các không gian vectơ $\mathbf F_2$](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_1.cpp"
     ```
@@ -354,7 +354,7 @@ Ngoài ra, cũng có thể đưa ra một chứng minh đại số độc lập 
 
 Mã mẫu cho bài toán mẫu như sau:
 
-??? example "Mã nguồn (Library Checker [Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
+??? example "Mã nguồn (Library Checker [Giao của các không gian vectơ $\mathbf F_2$](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces))"
     ```cpp
     --8<-- "docs/math/code/basis/basis_intersect_2.cpp"
     ```
@@ -390,7 +390,7 @@ Nói cách khác, nếu bit hiện tại có thể được biểu diễn bằng
 
 Mã mẫu cho bài toán mẫu như sau:
 
-??? example "Mã nguồn (Codeforces [1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F))"
+??? example "Mã nguồn (Codeforces [1100F Ivan và bánh burger](https://codeforces.com/problemset/problem/1100/F))"
     ```cpp
     --8<-- "docs/math/code/basis/prefix_basis.cpp"
     ```
@@ -401,15 +401,15 @@ Nếu cần truy vấn trực tuyến, cũng có thể dùng không gian $O(mn)$
 ### Bài tập
 
 -   [Luogu P3812 Mẫu: cơ sở tuyến tính](https://www.luogu.com.cn/problem/P3812)
--   [Acwing 3164. Linear Basis](https://www.acwing.com/problem/content/description/3167)
--   [SGU 275 to xor or not xor](https://codeforces.com/problemsets/acmsguru/problem/99999/275)
+-   [Acwing 3164. Cơ sở tuyến tính](https://www.acwing.com/problem/content/description/3167)
+-   [SGU 275 xor hay không xor](https://codeforces.com/problemsets/acmsguru/problem/99999/275)
 -   [HDU 3949 XOR](https://acm.hdu.edu.cn/showproblem.php?pid=3949)
--   [HDU 6579 Operation](https://acm.hdu.edu.cn/showproblem.php?pid=6579)
--   [Luogu P4151 [WC2011] Maximum XOR Sum Path](https://www.luogu.com.cn/problem/P4151)
--   [Library Checker - Intersection of $\mathbf F_2$ vector spaces](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)
--   [AtCoder Grand Contest 045 A - Xor Battle](https://atcoder.jp/contests/agc045/tasks/agc045_a)
--   [Codeforces 1100F Ivan and Burgers](https://codeforces.com/problemset/problem/1100/F)
--   [Luogu P3292 [SCOI2016] Lucky Numbers](https://www.luogu.com.cn/problem/P3292)
+-   [HDU 6579 Phép toán](https://acm.hdu.edu.cn/showproblem.php?pid=6579)
+-   [Luogu P4151 [WC2011] Đường đi có tổng XOR lớn nhất](https://www.luogu.com.cn/problem/P4151)
+-   [Library Checker - Giao của các không gian vectơ $\mathbf F_2$](https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces)
+-   [AtCoder Grand Contest 045 A - Trận chiến XOR](https://atcoder.jp/contests/agc045/tasks/agc045_a)
+-   [Codeforces 1100F Ivan và bánh burger](https://codeforces.com/problemset/problem/1100/F)
+-   [Luogu P3292 [SCOI2016] Những con số may mắn](https://www.luogu.com.cn/problem/P3292)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
