@@ -11,12 +11,12 @@ struct exSAM {
   int next[MAXN][CHAR_NUM];  // Chuyển trạng thái.
   int tot;                   // Tổng số nút: [0, tot).
 
-  void init() {  // Initialization function.
+  void init() {  // Hàm khởi tạo.
     tot = 1;
     link[0] = -1;
   }
 
-  int insertSAM(int last, int c) {  // last is the parent, c is the child.
+  int insertSAM(int last, int c) {  // last là cha, c là con.
     int cur = next[last][c];
     if (len[cur]) return cur;
     len[cur] = len[last] + 1;
@@ -52,8 +52,8 @@ struct exSAM {
   }
 
   int insertTrie(int cur, int c) {
-    if (next[cur][c]) return next[cur][c];  // Return if the node exists.
-    return next[cur][c] = tot++;            // Otherwise create the node.
+    if (next[cur][c]) return next[cur][c];  // Trả về nếu nút đã tồn tại.
+    return next[cur][c] = tot++;            // Nếu không thì tạo nút.
   }
 
   void insert(const string &s) {
@@ -72,7 +72,7 @@ struct exSAM {
     queue<pair<int, int>> q;
     for (int i = 0; i < CHAR_NUM; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  // BFS traversal.
+    while (!q.empty()) {  // Duyệt BFS.
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);

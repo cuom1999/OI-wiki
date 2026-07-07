@@ -18,7 +18,7 @@ struct exSAM {
   /**
    * Mảng phụ dùng cho sắp xếp đếm.
    */
-  int lc[MAXN];  // Counts.
+  int lc[MAXN];  // Số lượng.
 
   void init() {
     tot = 1;
@@ -81,7 +81,7 @@ struct exSAM {
     queue<pair<int, int>> q;
     for (int i = 0; i < CHAR_NUM; ++i)
       if (next[0][i]) q.push({i, 0});
-    while (!q.empty()) {  // BFS traversal.
+    while (!q.empty()) {  // Duyệt BFS.
       auto item = q.front();
       q.pop();
       auto last = insertSAM(item.second, item.first);
@@ -105,7 +105,7 @@ struct exSAM {
 } exSam;
 
 int main() {
-  exSam.init();  // Initialize.
+  exSam.init();  // Khởi tạo.
   string s;
   while (cin >> s) exSam.insert(s);
   exSam.build();
