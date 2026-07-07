@@ -122,8 +122,8 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 
 -   [Luogu P8593 KDOI-02 Đạn bắn](https://www.luogu.com.cn/problem/P8593), ứng dụng của nghịch thế.
 -   [AcWing 4709. Bộ ba](https://www.acwing.com/problem/content/4712/), phiên bản yếu hơn của bài trên, cũng là ứng dụng của nghịch thế.
--   [Luogu P8773 Lanqiao Cup 2022 Provincial A Chọn số XOR](https://www.luogu.com.cn/problem/P8773), biến thể của bài Vòng cổ của HH.
--   [Luogu P8844 Chuanzhi Cup #4 Preliminary Round: Xiao Ka và lá rơi](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
+-   [Luogu P8773 Cúp Lanqiao 2022 vòng tỉnh A Chọn số XOR](https://www.luogu.com.cn/problem/P8773), biến thể của bài Vòng cổ của HH.
+-   [Luogu P8844 Cúp Chuanzhi #4 vòng sơ loại: Xiao Ka và lá rơi](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
 
 Tóm lại, ý tưởng chính của đếm điểm hai chiều là dùng cấu trúc dữ liệu duy trì một chiều, rồi liệt kê chiều còn lại.
 

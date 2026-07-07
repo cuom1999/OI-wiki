@@ -164,7 +164,7 @@ Phần tìm bao lồi cần thiết được lược bỏ; dưới đây là mã
 
 -   [POJ 3608. Cầu nối qua các đảo](http://poj.org/problem?id=3608)
 -   [2011 ACM-ICPC World Finals, Bài K. Dọn rác](https://codeforces.com/gym/101175)
--   [ICPC WF Moscow Invitational Contest - Online Mirror, Bài F. Đóng khung tranh](https://codeforces.com/contest/1578/problem/F)
+-   [ICPC WF Moscow Invitational Contest - bản thi trực tuyến, Bài F. Đóng khung tranh](https://codeforces.com/contest/1578/problem/F)
 
 ## Tài liệu tham khảo và chú thích
 

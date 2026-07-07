@@ -300,8 +300,8 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
     ␣␣␣␣
     ␣␣␣␣Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
-    ???+note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-    ␣␣␣␣Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "A + B Problem" của HDOJ.
+    ???+note "[Bài toán A + B của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+    ␣␣␣␣Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "Bài toán A + B" của HDOJ.
     ␣␣␣␣
     ␣␣␣␣Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
     ␣␣␣␣
@@ -315,8 +315,8 @@ Trong quá trình cấu hình, nhóm dự án **OI Wiki** cũng gặp một số
         
         Nên đặt **mã lời giải** trong hộp văn bản gấp được.
 
-    ???+ note "[A + B Problem của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
-        Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "A + B Problem" của HDOJ.
+    ???+ note "[Bài toán A + B của HDOJ](https://acm.hdu.edu.cn/showproblem.php?pid=1000)"
+        Tiêu đề cũng có thể dùng siêu liên kết Markdown. Trong ví dụ này, siêu liên kết là "Bài toán A + B" của HDOJ.
         
         Ngoài ra, nên **ghi chú liên kết bài gốc** theo cách này.
         
