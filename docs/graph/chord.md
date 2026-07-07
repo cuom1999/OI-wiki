@@ -36,7 +36,8 @@ Chứng minh: trong mỗi clique chọn được nhiều nhất một đỉnh.
 
 **Bổ đề 3**: mọi đồ thị con cảm sinh của đồ thị dây cung đều là đồ thị dây cung.
 
-Chứng minh: nếu đồ thị dây cung có một đồ thị con cảm sinh không phải đồ thị dây cung, thì trong đồ thị con cảm sinh này tồn tại một chu trình không dây cung có độ dài lớn hơn $3$. Khi đó dù đồ thị ban đầu có thêm cạnh như thế nào, nó cũng không thể là đồ thị dây cung, mâu thuẫn.
+Chứng minh: nếu đồ thị dây cung có một đồ thị con cảm sinh không phải đồ thị dây cung, thì trong đồ thị con cảm sinh này tồn tại một chu trình không dây cung có độ dài lớn hơn $3$.
+Khi đó dù đồ thị ban đầu có thêm cạnh như thế nào, nó cũng không thể là đồ thị dây cung, mâu thuẫn.
 
 **Bổ đề 4**: mọi đồ thị con cảm sinh của đồ thị dây cung không thể là một chu trình có số đỉnh lớn hơn $3$.
 
@@ -50,21 +51,33 @@ Cho một đồ thị vô hướng, cần xác định nó có phải là đồ 
 
 ### Tập cắt đỉnh
 
-Với hai đỉnh $u,v$ trên đồ thị $G$, định nghĩa **tập cắt đỉnh** giữa hai đỉnh này là một tập đỉnh sao cho sau khi xóa tập đó, hai đỉnh $u,v$ không còn liên thông với nhau. Nếu mọi tập con của một tập cắt đỉnh giữa $u,v$ đều không phải là tập cắt đỉnh, thì tập cắt đỉnh đó được gọi là **tập cắt đỉnh cực tiểu**.
+Với hai đỉnh $u,v$ trên đồ thị $G$, định nghĩa **tập cắt đỉnh** giữa hai đỉnh này là một tập đỉnh sao cho sau khi xóa tập đó, hai đỉnh $u,v$ không còn liên thông với nhau.
+Nếu mọi tập con của một tập cắt đỉnh giữa $u,v$ đều không phải là tập cắt đỉnh, thì tập cắt đỉnh đó được gọi là **tập cắt đỉnh cực tiểu**.
 
-**Bổ đề 5**: tập cắt đỉnh cực tiểu giữa $u,v$ trong đồ thị chia đồ thị ban đầu thành nhiều thành phần liên thông. Gọi thành phần liên thông chứa $u$ là $V_1$, thành phần liên thông chứa $v$ là $V_2$. Khi đó với mọi đỉnh $a$ thuộc tập cắt đỉnh cực tiểu, $a$ đều có láng giềng thuộc cả $V_1$ và $V_2$.
+**Bổ đề 5**: tập cắt đỉnh cực tiểu giữa $u,v$ trong đồ thị chia đồ thị ban đầu thành nhiều thành phần liên thông.
+Gọi thành phần liên thông chứa $u$ là $V_1$, thành phần liên thông chứa $v$ là $V_2$.
+Khi đó với mọi đỉnh $a$ thuộc tập cắt đỉnh cực tiểu, $a$ đều có láng giềng thuộc cả $V_1$ và $V_2$.
 
-Chứng minh: nếu $N(a)$ chỉ chứa đỉnh thuộc nhiều nhất một trong hai thành phần liên thông $V_1$ hoặc $V_2$, thì sau khi bỏ đỉnh $a$ khỏi tập cắt đỉnh, đồ thị vẫn không liên thông. Khi đó tập cắt đỉnh ban đầu không phải là tập cắt đỉnh cực tiểu.
+Chứng minh: nếu $N(a)$ chỉ chứa đỉnh thuộc nhiều nhất một trong hai thành phần liên thông $V_1$ hoặc $V_2$, thì sau khi bỏ đỉnh $a$ khỏi tập cắt đỉnh, đồ thị vẫn không liên thông.
+Khi đó tập cắt đỉnh ban đầu không phải là tập cắt đỉnh cực tiểu.
 
 **Bổ đề 6**: đồ thị con cảm sinh bởi tập cắt đỉnh cực tiểu giữa hai đỉnh bất kỳ trên đồ thị dây cung luôn là một clique.
 
 Chứng minh: khi kích thước tập cắt đỉnh cực tiểu $\le 1$, đồ thị con cảm sinh là một clique.
 
-Ngược lại, giả sử trong tập cắt đỉnh cực tiểu có hai đỉnh $x,y$. Theo **Bổ đề 5**, trong $N(x)$ có các đỉnh thuộc $V_1,V_2$, ký hiệu là $x_1,x_2$. Tương tự, ký hiệu các đỉnh tương ứng với $y$ là $y_1,y_2$. Trường hợp $x_1=y_1,x_2=y_2$ vẫn được phép xảy ra.
+Ngược lại, giả sử trong tập cắt đỉnh cực tiểu có hai đỉnh $x,y$.
+Theo **Bổ đề 5**, trong $N(x)$ có các đỉnh thuộc $V_1,V_2$, ký hiệu là $x_1,x_2$.
+Tương tự, ký hiệu các đỉnh tương ứng với $y$ là $y_1,y_2$.
+Trường hợp $x_1=y_1,x_2=y_2$ vẫn được phép xảy ra.
 
-Vì $V_1,V_2$ đều là các thành phần liên thông, nên giữa hai cặp đỉnh $x_1,y_1$ và $x_2,y_2$ tồn tại các đường đi ngắn nhất. Gọi các đường đi ngắn nhất bên trong $V_1,V_2$ lần lượt là $x-x_1\sim y_1-y,x-x_2\sim y_2-y$. Khi đó trong đồ thị tồn tại một chu trình $x-x_1\sim y_1-y-y_2\sim x_2-x$, chu trình này có độ dài ít nhất $4$. Theo định nghĩa đồ thị dây cung, trên chu trình đó phải tồn tại một dây cung.
+Vì $V_1,V_2$ đều là các thành phần liên thông, nên giữa hai cặp đỉnh $x_1,y_1$ và $x_2,y_2$ tồn tại các đường đi ngắn nhất.
+Gọi các đường đi ngắn nhất bên trong $V_1,V_2$ lần lượt là $x-x_1\sim y_1-y,x-x_2\sim y_2-y$.
+Khi đó trong đồ thị tồn tại một chu trình $x-x_1\sim y_1-y-y_2\sim x_2-x$, chu trình này có độ dài ít nhất $4$.
+Theo định nghĩa đồ thị dây cung, trên chu trình đó phải tồn tại một dây cung.
 
-Nếu dây cung này nối hai thành phần liên thông $V_1,V_2$, thì tập đỉnh đang xét không phải là tập cắt đỉnh. Nếu dây cung nối hai đỉnh trong cùng một thành phần liên thông, hoặc nối một đỉnh trong một thành phần liên thông với một đỉnh trên tập cắt, thì nó đều trái với tính chất đường đi ngắn nhất. Vì vậy dây cung này chỉ có thể nối hai đỉnh $x,y$.
+Nếu dây cung này nối hai thành phần liên thông $V_1,V_2$, thì tập đỉnh đang xét không phải là tập cắt đỉnh.
+Nếu dây cung nối hai đỉnh trong cùng một thành phần liên thông, hoặc nối một đỉnh trong một thành phần liên thông với một đỉnh trên tập cắt, thì nó đều trái với tính chất đường đi ngắn nhất.
+Vì vậy dây cung này chỉ có thể nối hai đỉnh $x,y$.
 
 Từ đó suy ra mọi cặp đỉnh trong mỗi tập cắt đỉnh cực tiểu của đồ thị dây cung đều kề nhau trực tiếp, nên tính chất được chứng minh.
 
@@ -78,7 +91,15 @@ Chứng minh: dùng quy nạp toán học. Xét riêng từng thành phần liê
 
 Cơ sở quy nạp: khi đồ thị đẳng cấu với đồ thị đầy đủ, mọi đỉnh trên đồ thị đều là đỉnh đơn hình. Khi số đỉnh của đồ thị $\le 3$, bổ đề đúng.
 
-Nếu đồ thị có số đỉnh $\ge 4$ và không phải đồ thị đầy đủ, phải tồn tại $u,v$ sao cho $(u,v)\notin E$. Gọi $I$ là tập cắt đỉnh cực tiểu giữa $u,v$ trong đồ thị. Gọi $A,B$ lần lượt là các thành phần liên thông chứa $u,v$ trong đồ thị con cảm sinh sau khi xóa $I$. Do tính đối xứng của bài toán, chỉ cần xét phía $A$. Đặt $L=A\cup I$. Nếu $L$ là đồ thị đầy đủ, thì $u$ là đỉnh đơn hình; nếu không, vì $L$ là đồ thị con cảm sinh của đồ thị ban đầu nên nó cũng là đồ thị dây cung, do đó có hai đỉnh đơn hình không kề nhau. Vì $I$ là một clique, mọi cặp đỉnh trong $I$ đều kề nhau, nên trong $A$ phải tồn tại một đỉnh đơn hình. Đỉnh đơn hình này mở rộng ra toàn đồ thị vẫn là đỉnh đơn hình.
+Nếu đồ thị có số đỉnh $\ge 4$ và không phải đồ thị đầy đủ, phải tồn tại $u,v$ sao cho $(u,v)\notin E$.
+Gọi $I$ là tập cắt đỉnh cực tiểu giữa $u,v$ trong đồ thị.
+Gọi $A,B$ lần lượt là các thành phần liên thông chứa $u,v$ trong đồ thị con cảm sinh sau khi xóa $I$.
+Do tính đối xứng của bài toán, chỉ cần xét phía $A$.
+Đặt $L=A\cup I$.
+Nếu $L$ là đồ thị đầy đủ, thì $u$ là đỉnh đơn hình.
+Nếu không, vì $L$ là đồ thị con cảm sinh của đồ thị ban đầu nên nó cũng là đồ thị dây cung, do đó có hai đỉnh đơn hình không kề nhau.
+Vì $I$ là một clique, mọi cặp đỉnh trong $I$ đều kề nhau, nên trong $A$ phải tồn tại một đỉnh đơn hình.
+Đỉnh đơn hình này mở rộng ra toàn đồ thị vẫn là đỉnh đơn hình.
 
 Do mỗi bước quy nạp tách đồ thị thành các thành phần liên thông nhỏ hơn, và các phần đó đều thỏa mãn tính chất, nên quy nạp đúng.
 
@@ -88,9 +109,12 @@ Do mỗi bước quy nạp tách đồ thị thành các thành phần liên th�
 
 **Bổ đề 8**: một đồ thị vô hướng là đồ thị dây cung khi và chỉ khi nó có một thứ tự khử hoàn hảo.
 
-Chiều đủ: đồ thị dây cung một đỉnh có thứ tự khử hoàn hảo. Theo **Bổ đề 3** và **Bổ đề 7**, thứ tự khử hoàn hảo của một đồ thị dây cung có $n$ đỉnh có thể thu được bằng cách lấy thứ tự khử hoàn hảo của một đồ thị dây cung có $n-1$ đỉnh rồi thêm một đỉnh đơn hình.
+Chiều đủ: đồ thị dây cung một đỉnh có thứ tự khử hoàn hảo.
+Theo **Bổ đề 3** và **Bổ đề 7**, thứ tự khử hoàn hảo của một đồ thị dây cung có $n$ đỉnh có thể thu được bằng cách lấy thứ tự khử hoàn hảo của một đồ thị dây cung có $n-1$ đỉnh rồi thêm một đỉnh đơn hình.
 
-Chiều cần: giả sử có một đồ thị vô hướng tồn tại chu trình có số đỉnh $>3$ và vẫn có thứ tự khử hoàn hảo. Gọi $v$ là đỉnh đầu tiên trên chu trình xuất hiện trong thứ tự khử hoàn hảo, và gọi $v_1,v_2$ là hai đỉnh kề với $v$ trên chu trình. Theo tính chất của thứ tự khử hoàn hảo và theo định nghĩa của đỉnh đơn hình, $v_1,v_2$ phải kề nhau trực tiếp, mâu thuẫn.
+Chiều cần: giả sử có một đồ thị vô hướng tồn tại chu trình có số đỉnh $>3$ và vẫn có thứ tự khử hoàn hảo.
+Gọi $v$ là đỉnh đầu tiên trên chu trình xuất hiện trong thứ tự khử hoàn hảo, và gọi $v_1,v_2$ là hai đỉnh kề với $v$ trên chu trình.
+Theo tính chất của thứ tự khử hoàn hảo và theo định nghĩa của đỉnh đơn hình, $v_1,v_2$ phải kề nhau trực tiếp, mâu thuẫn.
 
 ### Thuật toán đơn giản
 
@@ -119,7 +143,10 @@ Vì mỗi cạnh đóng góp nhiều nhất $2$ vào $\sum_{i=1}^n label_i$, đ�
 Gọi $\alpha(x)$ là vị trí của $x$ trong thứ tự này.
 Cần chứng minh rằng với mọi đồ thị dây cung, thứ tự do thuật toán tìm được là một thứ tự khử hoàn hảo, tức với mỗi đỉnh, các đỉnh đứng sau nó trong thứ tự và kề với nó đều kề nhau từng đôi một.
 
-**Bổ đề 9**: xét ba đỉnh $u,v,w$ thỏa mãn $\alpha(u)<\alpha(v)<\alpha(w)$. Nếu $uw$ kề nhau, còn $vw$ không kề nhau, thì $w$ chỉ đóng góp vào $label$ của $u$, không đóng góp vào $label$ của $v$. Để $v$ được đưa vào thứ tự trước $u$, cần có một đỉnh $x$ thỏa mãn $\alpha(v)<\alpha(x)$, $vx$ kề nhau và $ux$ không kề nhau, tức $x$ chỉ đóng góp cho $v$ mà không đóng góp cho $u$.
+**Bổ đề 9**: xét ba đỉnh $u,v,w$ thỏa mãn $\alpha(u)<\alpha(v)<\alpha(w)$.
+Nếu $uw$ kề nhau, còn $vw$ không kề nhau, thì $w$ chỉ đóng góp vào $label$ của $u$, không đóng góp vào $label$ của $v$.
+Để $v$ được đưa vào thứ tự trước $u$, cần có một đỉnh $x$ thỏa mãn $\alpha(v)<\alpha(x)$, $vx$ kề nhau và $ux$ không kề nhau.
+Nói cách khác, $x$ chỉ đóng góp cho $v$ mà không đóng góp cho $u$.
 
 **Bổ đề 10**: trong bất kỳ đồ thị dây cung nào, không tồn tại một dãy $v_0,v_1,\dots,v_k(k\ge 2)$ thỏa mãn các tính chất sau:
 
@@ -171,7 +198,9 @@ while (cur) {
 }
 ```
 
-Nếu đồ thị ban đầu là đồ thị dây cung, thứ tự vừa tìm được là thứ tự khử hoàn hảo. Nhưng vì đồ thị ban đầu có thể không phải là đồ thị dây cung, thứ tự tìm được lúc này không nhất thiết là thứ tự khử hoàn hảo, nên bài toán chuyển thành **kiểm tra thứ tự tìm được có phải là thứ tự khử hoàn hảo của đồ thị ban đầu hay không**.
+Nếu đồ thị ban đầu là đồ thị dây cung, thứ tự vừa tìm được là thứ tự khử hoàn hảo.
+Nhưng vì đồ thị ban đầu có thể không phải là đồ thị dây cung, thứ tự tìm được lúc này không nhất thiết là thứ tự khử hoàn hảo.
+Do đó bài toán chuyển thành **kiểm tra thứ tự tìm được có phải là thứ tự khử hoàn hảo của đồ thị ban đầu hay không**.
 
 ### Kiểm tra một thứ tự có phải là thứ tự khử hoàn hảo hay không
 
@@ -181,7 +210,9 @@ Theo định nghĩa, lần lượt kiểm tra xem các đỉnh kề với $v_i$ 
 
 #### Thuật toán tối ưu
 
-Theo định nghĩa thứ tự khử hoàn hảo, giả sử các đỉnh kề với $v_i$ trong $\{v_i,v_{i+1},\ldots , v_n\}$, sắp theo thứ tự tăng dần, là $\{v_{c_1},v_{c_2},\ldots ,v_{c_k} \}$. Khi đó chỉ cần kiểm tra $v_{c_1}$ có kề trực tiếp với các đỉnh còn lại hay không. Độ phức tạp thời gian $O(n+m)$.
+Theo định nghĩa thứ tự khử hoàn hảo, giả sử các đỉnh kề với $v_i$ trong $\{v_i,v_{i+1},\ldots , v_n\}$, sắp theo thứ tự tăng dần, là $\{v_{c_1},v_{c_2},\ldots ,v_{c_k} \}$.
+Khi đó chỉ cần kiểm tra $v_{c_1}$ có kề trực tiếp với các đỉnh còn lại hay không.
+Độ phức tạp thời gian $O(n+m)$.
 
 ```cpp
 jud = true;
@@ -210,13 +241,18 @@ Vì thế, **bài toán nhận biết đồ thị dây cung** giải được tr
 
 Gọi $N(x)$ là tập các đỉnh kề trực tiếp với $x$ và đứng sau $x$ trong thứ tự khử hoàn hảo. Khi đó các clique cực đại của đồ thị dây cung có dạng $\{x\}\cup N(x)$.
 
-Chứng minh: xét một clique cực đại $V$ của đồ thị dây cung. Gọi $x$ là đỉnh trong clique này xuất hiện đầu tiên trong thứ tự khử hoàn hảo. Khi đó $V\subseteq \{x\}\cup N(x)$. Lại vì $V$ là clique cực đại, nên $V=\{x\}\cup N(x)$.
+Chứng minh: xét một clique cực đại $V$ của đồ thị dây cung.
+Gọi $x$ là đỉnh trong clique này xuất hiện đầu tiên trong thứ tự khử hoàn hảo.
+Khi đó $V\subseteq \{x\}\cup N(x)$.
+Lại vì $V$ là clique cực đại, nên $V=\{x\}\cup N(x)$.
 
 Đồ thị dây cung có nhiều nhất $n$ clique cực đại. Để tìm từng clique cực đại của đồ thị dây cung, có thể kiểm tra mỗi $\{x\}\cup N(x)$ có phải là clique cực đại hay không.
 
 Đặt $A=\{x\}\cup N(x),B=\{y\}\cup N(y)$. Nếu $A\subsetneqq B$, thì $A$ không phải là clique cực đại. Khi đó suy ra trong thứ tự khử hoàn hảo, $y$ đứng trước $x$.
 
-Gọi $nxt_x$ là đỉnh đứng sớm nhất trong thứ tự khử hoàn hảo trong $N(x)$, và gọi $y^*$ là đỉnh đứng muộn nhất trong mọi $y$ thỏa mãn $A\subseteq B$. Khi đó $nxt_{y^*}=x$; nếu không, $y^*$ không phải là đỉnh muộn nhất, vì đặt $y^*=nxt_{y^*}$ vẫn thỏa mãn điều kiện.
+Gọi $nxt_x$ là đỉnh đứng sớm nhất trong thứ tự khử hoàn hảo trong $N(x)$, và gọi $y^*$ là đỉnh đứng muộn nhất trong mọi $y$ thỏa mãn $A\subseteq B$.
+Khi đó $nxt_{y^*}=x$.
+Nếu không, $y^*$ không phải là đỉnh muộn nhất, vì đặt $y^*=nxt_{y^*}$ vẫn thỏa mãn điều kiện.
 
 $A\subsetneqq B$ khi và chỉ khi $|A|+1\le |B|$.
 
@@ -243,7 +279,9 @@ for (int i = 1; i <= n; i++) {
 
 Một cách xây dựng: theo thứ tự khử hoàn hảo từ sau ra trước, lần lượt tô màu mỗi đỉnh bằng màu nhỏ nhất có thể dùng. Độ phức tạp thời gian $O(m+n)$.
 
-Chứng minh tính đúng đắn: giả sử phương pháp trên dùng $t$ màu, khi đó $\chi(G)\le t$. Khi thuật toán phải dùng màu thứ $t$, đỉnh đó cùng các láng giềng đã tô tạo thành một clique kích thước $t$, nên $\omega(G)\ge t$. Kết hợp với $\omega(G)\le\chi(G)\le t$, suy ra $t=\chi(G)=\omega(G)$.
+Chứng minh tính đúng đắn: giả sử phương pháp trên dùng $t$ màu, khi đó $\chi(G)\le t$.
+Khi thuật toán phải dùng màu thứ $t$, đỉnh đó cùng các láng giềng đã tô tạo thành một clique kích thước $t$, nên $\omega(G)\ge t$.
+Kết hợp với $\omega(G)\le\chi(G)\le t$, suy ra $t=\chi(G)=\omega(G)$.
 
 Nếu không cần phương án tô màu mà chỉ cần tìm sắc số/cỡ clique lớn nhất của đồ thị dây cung, có thể lấy giá trị lớn nhất của $|\{x\}\cup N(x)|$.
 
@@ -255,9 +293,13 @@ for (int i = 1; i <= n; i++) ans = max(ans, deg[i] + 1);
 
 Tập độc lập lớn nhất: duyệt thứ tự khử hoàn hảo từ trước ra sau, chọn mọi đỉnh không có cạnh nối trực tiếp với các đỉnh đã chọn.
 
-Phủ clique tối thiểu: giả sử tập độc lập lớn nhất là $\{v_1,v_2,\ldots ,v_t\}$, khi đó tập các clique $\{\{v_1\}\cup N(v_1),\{v_2\}\cup N(v_2),\ldots ,\{v_t\}\cup N(v_t)\}$ là phủ clique tối thiểu của đồ thị. Độ phức tạp thời gian của cả hai bài toán đều là $O(n+m)$.
+Phủ clique tối thiểu: giả sử tập độc lập lớn nhất là $\{v_1,v_2,\ldots ,v_t\}$.
+Khi đó tập các clique $\{\{v_1\}\cup N(v_1),\{v_2\}\cup N(v_2),\ldots ,\{v_t\}\cup N(v_t)\}$ là phủ clique tối thiểu của đồ thị.
+Độ phức tạp thời gian của cả hai bài toán đều là $O(n+m)$.
 
-Chứng minh tính đúng đắn: giả sử phương án trên có kích thước tập độc lập và số clique phủ đều là $t$. Theo định nghĩa, $t\le \alpha(G),t\ge \kappa(G)$. Theo **Bổ đề 2**, $\alpha(G)\le \kappa(G)$, nên $t=\alpha(G)=\kappa(G)$.
+Chứng minh tính đúng đắn: giả sử phương án trên có kích thước tập độc lập và số clique phủ đều là $t$.
+Theo định nghĩa, $t\le \alpha(G),t\ge \kappa(G)$.
+Theo **Bổ đề 2**, $\alpha(G)\le \kappa(G)$, nên $t=\alpha(G)=\kappa(G)$.
 
 ```cpp
 for (int i = 1; i <= n; i++)
@@ -284,4 +326,6 @@ for (int i = 1; i <= n; i++)
 
 [Tổng kết về đồ thị dây cung - Zu Suyu](https://www.cnblogs.com/zhoushuyu/p/8716935.html)
 
-[R. E. Tarjan and M. Yannakakis, Simple linear-time algorithms to test chordality of graphs, test acyclicity of hypergraphs, and selectively reduce acyclic hypergraphs, SIAM J. Comput., 13 (1984), pp. 566-579.](https://dl.acm.org/doi/abs/10.1137/0213035)
+R. E. Tarjan and M. Yannakakis,
+[Simple linear-time algorithms to test chordality of graphs, test acyclicity of hypergraphs, and selectively reduce acyclic hypergraphs](https://dl.acm.org/doi/abs/10.1137/0213035),
+SIAM J. Comput., 13 (1984), pp. 566-579.
