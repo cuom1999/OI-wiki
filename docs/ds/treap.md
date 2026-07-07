@@ -1,6 +1,6 @@
 author: Dev-XYS, ttzytt, Sora233, qwqAutomaton
 
-Kiến thức cần có: [Cây tìm kiếm nhị phân mộc mạc](./bst.md), [Cơ sở về heap](./heap.md).
+Kiến thức cần có: [Cây tìm kiếm nhị phân mộc mạc](./bst.md), [Cơ sở về đống](./heap.md).
 
 ## Giới thiệu
 
@@ -9,30 +9,30 @@ Treap là một **cây tìm kiếm nhị phân** **cân bằng yếu**.
 Ngoài **giá trị** cần duy trì ($\textit{val}$),
 mỗi nút của Treap còn có thêm một **độ ưu tiên** ngẫu nhiên ($\textit{priority}$).
 Trong đó, giá trị thỏa mãn tính chất của cây tìm kiếm nhị phân,
-còn độ ưu tiên thỏa mãn tính chất heap (min-heap hoặc max-heap).
+còn độ ưu tiên thỏa mãn tính chất đống (đống nhỏ hoặc đống lớn).
 
 Tính chất của cây tìm kiếm nhị phân là:
 
 -   Giá trị ($\textit{val}$) của mỗi nút trong cây con trái nhỏ hơn nút cha.
 -   Giá trị ($\textit{val}$) của mỗi nút trong cây con phải lớn hơn nút cha.
 
-Tính chất của heap là:
+Tính chất của đống là:
 
--   Độ ưu tiên ($\textit{priority}$) của nút con lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
+-   Độ ưu tiên ($\textit{priority}$) của nút con lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là đống nhỏ hay đống lớn.
 
 Nếu dùng cùng một giá trị cho cả hai cấu trúc,
 khi kết hợp lại cấu trúc sẽ biến thành một chuỗi.
 Vì vậy, trên nền tảng cây tìm kiếm,
-Treap đưa thêm một giá trị $\textit{priority}$ cho heap.
+Treap đưa thêm một giá trị $\textit{priority}$ để duy trì tính chất đống.
 Với giá trị $\textit{val}$, duy trì tính chất cây tìm kiếm;
-với giá trị $\textit{priority}$, duy trì tính chất heap.
+với giá trị $\textit{priority}$, duy trì tính chất đống.
 Giá trị $\textit{priority}$ này được gán ngẫu nhiên.
 
-Hình dưới đây là một ví dụ về Treap (dùng min-heap, tức nút gốc có độ ưu tiên nhỏ nhất).
+Hình dưới đây là một ví dụ về Treap (dùng đống nhỏ, tức nút gốc có độ ưu tiên nhỏ nhất).
 
 ![Một ví dụ về Treap](./images/treap-treap-example.svg)
 
-Vì sao cấu trúc dữ liệu này cần đồng thời thỏa mãn tính chất của cây và heap, đồng thời gán ngẫu nhiên giá trị heap?
+Vì sao cấu trúc dữ liệu này cần đồng thời thỏa mãn tính chất của cây và đống, đồng thời gán ngẫu nhiên giá trị độ ưu tiên?
 
 Để hiểu điều này, trước hết cần xét vấn đề của cây tìm kiếm nhị phân cơ bản.
 Khi chèn một nút mới vào cây tìm kiếm cơ bản,
@@ -67,7 +67,7 @@ thì cây này sẽ suy biến thành một chuỗi
 Khi đó độ phức tạp truy vấn cũng từ $O(\log n)$ biến thành $O(n)$.
 
 Để giải quyết vấn đề này và đạt trạng thái tương đối cân bằng,
-Treap duy trì các độ ưu tiên ngẫu nhiên thỏa mãn tính chất heap.
+Treap duy trì các độ ưu tiên ngẫu nhiên thỏa mãn tính chất đống.
 Cách này tương đương với việc xáo trộn thứ tự chèn nút,
 giúp cây tìm kiếm nhị phân đạt độ phức tạp mong muốn và tránh suy biến thành chuỗi.
 
@@ -82,8 +82,8 @@ trước hết chứng minh độ sâu kỳ vọng của mỗi nút đều là $
 
 -   $n$ là số nút.
 -   Trong nút Treap, giá trị thỏa mãn tính chất cây tìm kiếm nhị phân được gọi là **giá trị**,
-    còn giá trị thỏa mãn tính chất heap (tức ngẫu nhiên) được gọi là **độ ưu tiên**.
-    Không mất tính tổng quát, giả sử độ ưu tiên thỏa mãn tính chất min-heap.
+    còn giá trị thỏa mãn tính chất đống (tức ngẫu nhiên) được gọi là **độ ưu tiên**.
+    Không mất tính tổng quát, giả sử độ ưu tiên thỏa mãn tính chất đống nhỏ.
 -   $x_k$ biểu thị nút có giá trị nhỏ thứ $k$.
 -   $X_{i,j}$ biểu thị tập $\{x_i,x_{i+1},\cdots,x_{j-1},x_j\}$,
     tức tập các nút từ thứ $i$ đến thứ $j$ sau khi sắp xếp tăng dần theo giá trị.
@@ -119,7 +119,7 @@ Trước hết chứng minh bổ đề: $Y_{i,j}=1$ khi và chỉ khi độ ưu 
     Xét các trường hợp của $x_i$ và $x_j$.
 
     1.  Nếu $x_i$ là nút gốc:
-        do độ ưu tiên thỏa mãn tính chất min-heap,
+        do độ ưu tiên thỏa mãn tính chất đống nhỏ,
         độ ưu tiên của $x_i$ là nhỏ nhất,
         và với mọi $x_j$, $x_i$ đều là tổ tiên của $x_j$.
     2.  Nếu $x_j$ là nút gốc:
@@ -160,26 +160,26 @@ $$
 Do đó độ sâu kỳ vọng của mỗi nút đều là $O(\log n)$.
 
 Độ phức tạp của các thao tác trên cây tìm kiếm nhị phân cơ bản đều là $O(h)$,
-và độ phức tạp để Treap duy trì tính chất heap cũng là $O(h)$.
+và độ phức tạp để Treap duy trì tính chất đống cũng là $O(h)$.
 Vì vậy, độ phức tạp kỳ vọng của các thao tác trên Treap đều là $O(\log n)$.
 
 ???+ note "Cách hiểu trực quan về độ phức tạp kỳ vọng"
     Trước hết, cần nhận ra thuộc tính $\textit{priority}$ của một nút
     có liên hệ trực tiếp với tầng chứa nút đó.
-    Nhắc lại tính chất heap:
+    Nhắc lại tính chất đống:
 
-    -   Giá trị nút con ($\textit{priority}$) lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là min-heap hay max-heap.
+    -   Giá trị nút con ($\textit{priority}$) lớn hơn hoặc nhỏ hơn nút cha, tùy theo đó là đống nhỏ hay đống lớn.
 
     Các nút ở tầng thấp, chẳng hạn nút gốc của toàn bộ cây,
-    sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong min-heap).
+    sẽ có thuộc tính $\textit{priority}$ nhỏ hơn (trong đống nhỏ).
     Đồng thời, trong cây tìm kiếm cơ bản,
     nút được chèn trước cũng có khả năng nằm ở tầng nông hơn.
     Có thể liên hệ thuộc tính $\textit{priority}$ này với thứ tự chèn
     để hiểu vì sao Treap có thể dùng $\textit{priority}$ để xáo trộn thứ tự chèn nút.
 
-Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của heap.
+Khi chèn nút mới vào Treap, cần đồng thời duy trì tính chất của cây và của đống.
 Trong đó, thao tác chèn có thể duy trì tính chất cây tìm kiếm,
-còn tính chất heap có hai cách xử lý: phép xoay và tách/hợp nhất.
+còn tính chất đống có hai cách xử lý: phép xoay và tách/hợp nhất.
 Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và **Treap không xoay**.
 
 ## Treap xoay
@@ -187,7 +187,7 @@ Treap dùng hai cách này lần lượt được gọi là **Treap xoay** và *
 **Treap xoay** duy trì cân bằng bằng phép xoay,
 tương tự thao tác xoay của cây AVL, gồm **xoay trái** và **xoay phải**.
 Tức là, với điều kiện vẫn thỏa mãn cây tìm kiếm nhị phân,
-Treap được cân bằng dựa theo độ ưu tiên của heap.
+Treap được cân bằng dựa theo độ ưu tiên của đống.
 
 Khi làm các bài cây cân bằng thông thường, Treap xoay có hằng số nhỏ trong số các cây cân bằng.
 
@@ -196,7 +196,7 @@ Phần giải thích dưới đây dùng con trỏ để cài đặt Treap xoay;
 ???+ info "Thông tin"
     Trong code, `rank` đại diện cho độ ưu tiên đã nói ở trên
     (thuộc tính $\textit{priority}$);
-    thuộc tính này thỏa mãn tính chất min-heap.
+    thuộc tính này thỏa mãn tính chất đống nhỏ.
 
 ### Cấu trúc nút
 
@@ -224,14 +224,14 @@ struct Node {
 
 ### Phép xoay
 
-Phép xoay là một thao tác rất quan trọng của Treap, chủ yếu dùng để điều chỉnh tầng của các nút khác nhau trong khi vẫn giữ tính chất của Treap, qua đó duy trì tính chất heap.
+Phép xoay là một thao tác rất quan trọng của Treap, chủ yếu dùng để điều chỉnh tầng của các nút khác nhau trong khi vẫn giữ tính chất của Treap, qua đó duy trì tính chất đống.
 
 Xoay trái và xoay phải có thể không quá dễ phân biệt. Dưới đây là hai đặc điểm khá rõ:
 
 Ý nghĩa của thao tác xoay:
 
 -   Không làm ảnh hưởng đến tính chất cây tìm kiếm; cây con ở hướng ngược với hướng xoay sẽ trở thành nút gốc (ví dụ xoay trái là biến cây con phải thành nút gốc).
--   Không ảnh hưởng đến tính chất heap; sau khi xoay, nút con cùng hướng với hướng xoay sẽ trở thành nút gốc ban đầu (ví dụ sau khi xoay trái, nút con trái là nút gốc trước khi xoay).
+-   Không ảnh hưởng đến tính chất đống; sau khi xoay, nút con cùng hướng với hướng xoay sẽ trở thành nút gốc ban đầu (ví dụ sau khi xoay trái, nút con trái là nút gốc trước khi xoay).
 
 Thao tác xoay trái và xoay phải là hai thao tác đối xứng với nhau, như hình dưới đây.
 
@@ -266,7 +266,7 @@ void _rotate(Node *&cur,
 
 ### Chèn
 
-Tương tự chèn trong cây tìm kiếm nhị phân thông thường, nhưng cần dùng phép xoay trong quá trình chèn để duy trì tính chất heap của độ ưu tiên.
+Tương tự chèn trong cây tìm kiếm nhị phân thông thường, nhưng cần dùng phép xoay trong quá trình chèn để duy trì tính chất đống của độ ưu tiên.
 
 ```cpp
 void _insert(Node *&cur, int val) {
@@ -282,7 +282,7 @@ void _insert(Node *&cur, int val) {
     // Duy trì tính chất cây tìm kiếm: val nhỏ hơn nút hiện tại thì chèn bên trái, ngược lại bên phải
     _insert(cur->ch[0], val);
     if (cur->ch[0]->rank < cur->rank) {
-      // Trong min-heap, độ ưu tiên của nút phía trên luôn nhỏ hơn
+      // Trong đống nhỏ, độ ưu tiên của nút phía trên luôn nhỏ hơn
       // Vì nút con trái mới chèn nhỏ hơn nút cha, bây giờ cần cho nút con trái thành nút cha
       _rotate(cur, RT);  // Lưu ý tính chất xoay ở trên: muốn đưa nút con trái lên thì cần xoay phải
     }
@@ -559,9 +559,9 @@ tuple<Node *, Node *, Node *> split_by_rk(Node *cur, int rk) {
 
 Quá trình hợp nhất nhận hai tham số: con trỏ gốc của Treap trái $\textit{u}$ và con trỏ gốc của Treap phải $\textit{v}$. Cần thỏa mãn mọi nút trong $\textit{u}$ có giá trị nhỏ hơn hoặc bằng mọi nút trong $\textit{v}$. Thông thường, hai Treap được hợp nhất đều tách ra từ một Treap ban đầu, nên điều kiện mọi nút trong $\textit{u}$ có giá trị nhỏ hơn $\textit{v}$ được thỏa mãn tự nhiên.
 
-Trong Treap xoay, thao tác xoay được dùng để duy trì $\textit{priority}$ thỏa mãn tính chất heap, đồng thời khi xoay không được làm thay đổi tính chất cây. Trong Treap không xoay, thao tác hợp nhất đạt hiệu ứng tương tự.
+Trong Treap xoay, thao tác xoay được dùng để duy trì $\textit{priority}$ thỏa mãn tính chất đống, đồng thời khi xoay không được làm thay đổi tính chất cây. Trong Treap không xoay, thao tác hợp nhất đạt hiệu ứng tương tự.
 
-Vì hai Treap đã có thứ tự, khi hợp nhất chỉ cần xét cây nào được "đặt lên trên" và cây nào "đặt xuống dưới", tức cần xác định cây nào làm cây con. Theo tính chất heap, cần đặt $\textit{priority}$ nhỏ hơn lên trên (phần này dùng min-heap).
+Vì hai Treap đã có thứ tự, khi hợp nhất chỉ cần xét cây nào được "đặt lên trên" và cây nào "đặt xuống dưới", tức cần xác định cây nào làm cây con. Theo tính chất đống, cần đặt $\textit{priority}$ nhỏ hơn lên trên (phần này dùng đống nhỏ).
 
 Đồng thời, vẫn cần thỏa mãn tính chất cây tìm kiếm. Vì vậy, nếu $\textit{priority}$ của nút gốc $\textit{u}$ nhỏ hơn của $\textit{v}$, thì $\textit{u}$ sẽ là nút gốc mới; do $\textit{v}$ có giá trị lớn hơn $\textit{u}$, nó cần được hợp nhất với cây con phải của $\textit{u}$. Ngược lại, $\textit{v}$ làm nút gốc mới; do giá trị của $u$ nhỏ hơn $\textit{v}$, hợp nhất với cây con trái của $v$.
 
@@ -569,8 +569,8 @@ Vì hai Treap đã có thứ tự, khi hợp nhất chỉ cần xét cây nào �
 Node *merge(Node *u, Node *v) {
   // Hai cây truyền vào đã thỏa mãn tính chất cây tìm kiếm ở bên trong
   // Và mọi nút trong u có giá trị < mọi nút trong v
-  // Nên khi hợp nhất cần duy trì tính chất heap
-  // Đoạn này dùng min-heap
+  // Nên khi hợp nhất cần duy trì tính chất đống
+  // Đoạn này dùng đống nhỏ
   if (u == nullptr && v == nullptr) return nullptr;
   if (u != nullptr && v == nullptr) return u;
   if (v != nullptr && u == nullptr) return v;
@@ -754,14 +754,14 @@ lúc này cần hoàn thành thao tác xây cây trong độ phức tạp $O(n)$
 
 Cách 1: Trong quá trình đệ quy xây cây,
 mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn,
-và gán cho mỗi nút một độ ưu tiên phù hợp để cây mới thỏa mãn tính chất heap.
+và gán cho mỗi nút một độ ưu tiên phù hợp để cây mới thỏa mãn tính chất đống.
 Cách này bảo đảm chiều cao cây là $O(\log n)$.
 
 Cách 2: Trong quá trình đệ quy xây cây,
 mỗi lần chọn điểm giữa của đoạn hiện tại làm gốc của cây trong đoạn,
 sau đó gán cho mỗi nút một độ ưu tiên ngẫu nhiên.
 Cách này bảo đảm chiều cao cây là $O(\log n)$,
-nhưng không bảo đảm nó thỏa mãn tính chất heap.
+nhưng không bảo đảm nó thỏa mãn tính chất đống.
 Cách này vẫn dùng được,
 vì độ ưu tiên của Treap không xoay dùng để làm thao tác `merge` ngẫu nhiên hơn,
 chứ không phải để bảo đảm chiều cao cây.
@@ -816,7 +816,7 @@ Trước hết, vì chèn nút theo thứ tự tăng dần,
 mỗi nút mới chèn sẽ được nối vào chuỗi phải của Treap
 (tức chuỗi gồm các nút đi từ nút gốc liên tục sang cây con phải).
 
-Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (min-heap).
+Bắt đầu từ nút gốc, độ ưu tiên $\textit{priority}$ của các nút trên chuỗi phải tăng dần (đống nhỏ).
 Có thể tìm nút đầu tiên trên chuỗi phải có $\textit{priority}$ lớn hơn $\textit{u}$,
 gọi nút này là $\textit{v}$, rồi thay nút này bằng $\textit{u}$.
 
