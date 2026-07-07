@@ -253,10 +253,10 @@ $s_{12}$ và $!s_{12}$ chính là hai chuỗi cần tìm.
 <span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
 
-???+ note "[Ví dụ: BZOJ 3097 Hash Killer I](https://hydro.ac/p/bzoj-P3097)"
+???+ note "[Ví dụ: BZOJ 3097 Kẻ phá hash I](https://hydro.ac/p/bzoj-P3097)"
     Cho một hash được cài đặt bằng **tràn tự nhiên**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
-???+ note "[Ví dụ: BZOJ 3097 Hash Killer II](https://hydro.ac/p/bzoj-P3098)"
+???+ note "[Ví dụ: BZOJ 3097 Kẻ phá hash II](https://hydro.ac/p/bzoj-P3098)"
     Cho một hash được cài đặt bằng **modulo lớn**; yêu cầu xây dựng một chuỗi để đánh bại nó.
 
 ???+ note "[Ví dụ: Luogu U461211 Băm xâu (dữ liệu tăng cường)](https://www.luogu.com.cn/problem/U461211)"

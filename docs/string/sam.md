@@ -506,7 +506,7 @@ Bây giờ xét một số bài toán có thể giải bằng SAM. Để đơn g
     
     Tổng độ phức tạp thời gian vẫn là $O(\left|S\right|)$.
 
-Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804), [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
+Bài ví dụ: [Mẫu máy tự động hậu tố](https://www.luogu.com.cn/problem/P3804), [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 
 <span id="tổng-độ-dài-của-mọi-xâu-con-phân-biệt"></span>
 
@@ -808,7 +808,7 @@ Bài ví dụ: [SPOJ Chuỗi con chung dài nhất II](https://www.spoj.com/prob
 
 ## Bài tập
 
--   [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804)
+-   [Mẫu máy tự động hậu tố](https://www.luogu.com.cn/problem/P3804)
 -   [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 -   [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)
 -   [TJOI2015 Lý thuyết chuỗi](https://loj.ac/problem/2102)

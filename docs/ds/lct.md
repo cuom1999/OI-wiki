@@ -576,7 +576,7 @@ Khi đẩy đánh dấu xuống, thứ tự cần là: đẩy đánh dấu nhân
 
 ### Bài tập
 
--   [Luogu P3690 - Mẫu Link Cut Tree (cây động)](https://www.luogu.com.cn/problem/P3690)
+-   [Luogu P3690 - Mẫu cây Link-Cut (cây động)](https://www.luogu.com.cn/problem/P3690)
 -   [SDOI2011 - Tô màu](https://www.luogu.com.cn/problem/P2486)
 -   [SHOI2014 - Cây thần kinh tam thoa](https://loj.ac/problem/2187)
 
