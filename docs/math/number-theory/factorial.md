@@ -3,9 +3,9 @@ author: aofall, c-forrest, CoelacanthusHex, Early0v0, Enter-tainer, Great-design
 <span id="mở-đầu"></span>
 ## Mở đầu
 
-Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo một môđun, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước môđun. Vì vậy, phương pháp này chủ yếu phù hợp khi môđun không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày tại đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#giai-thừa-theo-modulo-số-nguyên-tố) để tính nhanh.
+Bài viết này thảo luận các kết quả liên quan đến việc tính giai thừa theo môđun cho trước, đồng thời đưa ra một phương pháp có độ phức tạp thời gian tuyến tính theo kích thước môđun. Vì vậy, phương pháp này chủ yếu phù hợp khi môđun không quá lớn ($\sim 10^6$). Ngoài phương pháp được trình bày tại đây, tùy ngữ cảnh cũng có thể dùng [kỹ thuật đa thức](../poly/shift.md#giai-thừa-theo-modulo-số-nguyên-tố) để tính nhanh.
 
-Theo [định lý số dư Trung Hoa](./crt.md), bài toán lấy dư giai thừa theo môđun có thể chuyển về trường hợp môđun là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
+Theo [định lý số dư Trung Hoa](./crt.md), bài toán tính phần dư của giai thừa theo môđun có thể chuyển về trường hợp môđun là lũy thừa nguyên tố $p^\alpha$. Khi xử lý dạng bài này, với số nguyên tố $p$ và số nguyên dương $n$, thường cần tách toàn bộ các thừa số $p$ trong giai thừa $n!$ ra, từ đó thu được phân tích:
 
 $$
 n! = p^{\nu_p(n!)}(n!)_p.
@@ -13,7 +13,7 @@ $$
 
 Trong đó, $\nu_p(n!)$ biểu thị số mũ của $p$ trong phân tích thừa số nguyên tố của $n!$, còn $(n!)_p$ biểu thị số nguyên thu được sau khi loại bỏ mọi lũy thừa của $p$ khỏi giá trị của $n!$. Bài viết này sẽ thảo luận phần dư của $(n!)_p$ theo môđun số nguyên tố hoặc lũy thừa nguyên tố, cũng như cách tính cụ thể số mũ $\nu_p(n!)$.
 
-Phân tích này đặc biệt hữu ích khi giai thừa xuất hiện đồng thời ở tử số và mẫu số của biểu thức cần tính, chẳng hạn khi [tính hệ số nhị thức theo một môđun](./lucas.md). Với những bài toán như vậy, số mũ của $p$ ở tử và mẫu có thể trừ trực tiếp cho nhau; còn phần nguyên tố cùng nhau với $p$, tức $(n!)_p$, có thể xử lý bằng [nghịch đảo nhân](./inverse.md).
+Phân tích này đặc biệt hữu ích khi giai thừa xuất hiện đồng thời ở tử số và mẫu số của biểu thức cần tính, chẳng hạn khi [tính hệ số nhị thức theo môđun cho trước](./lucas.md). Với những bài toán như vậy, số mũ của $p$ ở tử và mẫu có thể trừ trực tiếp cho nhau; còn phần nguyên tố cùng nhau với $p$, tức $(n!)_p$, có thể xử lý bằng [nghịch đảo nhân](./inverse.md).
 
 Bài viết cũng giới thiệu định lý Wilson và mở rộng của nó, công thức Legendre, định lý Kummer cùng một số nội dung liên quan.
 
