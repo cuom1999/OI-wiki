@@ -99,6 +99,6 @@ Miễn là có căn nguyên thủy, tức phần tử sinh trong lý thuyết nh
 
 1.  [FWT (biến đổi Walsh nhanh) giải thích chi tiết từ con số 0 qaq (ACM/OI)](https://zhuanlan.zhihu.com/p/41867199)
 2.  [FFT (biến đổi Fourier nhanh) giải thích chi tiết từ cơ bản, kèm NTT (ACM/OI)](https://zhuanlan.zhihu.com/p/40505277)
-3.  [Number-theoretic transform(NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_%28general%29#Number-theoretic_transform)
-4.  [Tutorial on FFT/NTT-The tough made simple. (Part 1)](https://codeforces.com/blog/entry/43499)
+3.  [Biến đổi số học (NTT) - Wikipedia](https://en.wikipedia.org/wiki/Discrete_Fourier_transform_%28general%29#Number-theoretic_transform)
+4.  [Hướng dẫn FFT/NTT - biến phần khó thành đơn giản. (Phần 1)](https://codeforces.com/blog/entry/43499)
 5.  [Mẫu NTT - blog CSDN của BlackJack_](https://blog.csdn.net/blackjack_/article/details/79346433)

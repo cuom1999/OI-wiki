@@ -2,7 +2,7 @@ Phương pháp ký hiệu (symbolic method) là một cách nhanh để chuyển
 
 Một lớp tổ hợp, hoặc gọi tắt là lớp, là $(\mathcal{A},\lvert \cdot \rvert)$, trong đó $\mathcal{A}$ là tập các đối tượng tổ hợp, còn hàm $\lvert \cdot \rvert$ ánh xạ mỗi đối tượng tổ hợp tới một số nguyên không âm, thường gọi là hàm kích thước. Cần lưu ý rằng số nguyên không âm này không được là vô hạn. Ví dụ, với chuỗi trên bảng chữ cái $\lbrace 0,1\rbrace$, có thể lấy độ dài chuỗi làm hàm kích thước; với cây hoặc đồ thị, có thể lấy số đỉnh làm hàm kích thước. Điều này không phải tuyệt đối: đôi khi cũng có thể gán kích thước $0$ cho một vài loại đỉnh đặc biệt.
 
-Bài viết này là một bản giản lược dựa trên chương 1 của sách Analytic Combinatorics.
+Bài viết này là một bản giản lược dựa trên chương 1 của sách Tổ hợp giải tích.
 
 <span id="hệ-không-gắn-nhãn"></span>
 
@@ -316,7 +316,7 @@ $$
 
 trong đó $\varphi$ là hàm Euler, còn $\operatorname{Log}$ là logarit Pólya.
 
-Vì chứng minh khá phức tạp, có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Analytic Combinatorics.
+Vì chứng minh khá phức tạp, có thể tham khảo bài báo [The Cycle Construction](https://epubs.siam.org/doi/10.1137/0404006) của Flajolet hoặc phụ lục của Tổ hợp giải tích.
 
 <span id="cấu-trúc-có-ràng-buộc"></span>
 
@@ -445,7 +445,7 @@ Cần lưu ý rằng với cấu trúc có ràng buộc $\mathfrak{K}_k(\mathcal
     \end{aligned}
     $$
 
-Cách tính trên tuy hiệu quả nhưng khá rườm rà. Có thể đọc thêm các mục [Pólya Enumeration Theorem](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [Cycle Index](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; Cycle Index cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
+Cách tính trên tuy hiệu quả nhưng khá rườm rà. Có thể đọc thêm các mục [định lý đếm Pólya](https://mathworld.wolfram.com/PolyaEnumerationTheorem.html) và [chỉ số chu trình](https://mathworld.wolfram.com/CycleIndex.html) trên Wolfram MathWorld; chỉ số chu trình cũng thường xuất hiện trong biểu thức hàm sinh trên OEIS.
 
 ???+ note "Bài tập [LOJ 6538. Đếm alkyl, bản tăng cường hai lần](https://loj.ac/p/6538)"
     **Đề bài**: tính số cây không thứ tự có $n$ đỉnh, có gốc và bậc của nút gốc không vượt quá $3$, còn bậc của các nút còn lại không vượt quá $4$, modulo $998244353$. Quy ước $1\leq n\leq 10^5$.
@@ -468,4 +468,4 @@ Cách tính trên tuy hiệu quả nhưng khá rườm rà. Có thể đọc th�
 
 ## Tài liệu tham khảo
 
--   Philippe Flajolet and Robert Sedgewick. [Analytic Combinatorics](http://algo.inria.fr/flajolet/Publications/books.html).
+-   Philippe Flajolet and Robert Sedgewick. [Tổ hợp giải tích](http://algo.inria.fr/flajolet/Publications/books.html).

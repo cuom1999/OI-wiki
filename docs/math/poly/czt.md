@@ -139,4 +139,4 @@ Nói ngắn gọn, lần lượt thực hiện các phép tính sau:
 
 ## Tài liệu tham khảo
 
-1.  [Bostan, A. (2010). Fast algorithms for polynomials and matrices. JNCF 2010. Algorithms Project, INRIA.](https://specfun.inria.fr/bostan/publications/exposeJNCF.pdf)
+1.  [Bostan, A. (2010). Thuật toán nhanh cho đa thức và ma trận. JNCF 2010. Dự án Algorithms, INRIA.](https://specfun.inria.fr/bostan/publications/exposeJNCF.pdf)

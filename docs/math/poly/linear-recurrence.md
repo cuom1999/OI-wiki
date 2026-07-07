@@ -268,4 +268,4 @@ Cuối cùng dùng phép chia chuỗi lũy thừa hình thức để tính $\lef
 
 ## Tài liệu tham khảo
 
-1.  Alin Bostan, Ryuhei Mori. [A Simple and Fast Algorithm for Computing the $N$-th Term of a Linearly Recurrent Sequence](https://arxiv.org/abs/2008.08822).
+1.  Alin Bostan, Ryuhei Mori. [Một thuật toán đơn giản và nhanh để tính số hạng thứ $N$ của dãy truy hồi tuyến tính](https://arxiv.org/abs/2008.08822).

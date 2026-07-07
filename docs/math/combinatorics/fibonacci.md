@@ -375,10 +375,10 @@ $$
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Fibonacci sequence - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)
--   [Zeckendorf's theorem - Wikipedia](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem)
--   [Pisano period - Wikipedia](https://en.wikipedia.org/wiki/Pisano_period)
+-   [Dãy Fibonacci - Wikipedia](https://en.wikipedia.org/wiki/Fibonacci_sequence)
+-   [Định lý Zeckendorf - Wikipedia](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem)
+-   [Chu kỳ Pisano - Wikipedia](https://en.wikipedia.org/wiki/Pisano_period)
 
-**Trang này chủ yếu được dịch từ bài viết [Chisla Fibonachchi](http://e-maxx.ru/algo/fibonacci_numbers) và bản dịch tiếng Anh [Fibonacci Numbers](https://cp-algorithms.com/algebra/fibonacci-numbers.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**
+**Trang này chủ yếu được dịch từ bài viết [Chisla Fibonachchi](http://e-maxx.ru/algo/fibonacci_numbers) và bản dịch tiếng Anh [số Fibonacci](https://cp-algorithms.com/algebra/fibonacci-numbers.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**
 
 [^mod-m]: Nói chính xác, đó là bậc của ma trận $A$ trong nhóm tuyến tính tổng quát $GL_2(\mathbf Z_m)$.

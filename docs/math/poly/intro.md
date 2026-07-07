@@ -433,6 +433,6 @@ trong đó $k_n(x)$ được gọi là hàm nhân. Các hàm nhân khác nhau s�
 
 -   [**Picks's Blog**](https://picks.logdown.com)
 -   [**Miskcoo's Space**](https://blog.miskcoo.com)
--   [**Polynomial ring - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
--   [**Formal power series - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
+-   [**Vành đa thức - Wikipedia**](https://en.wikipedia.org/wiki/Polynomial_ring)
+-   [**Chuỗi lũy thừa hình thức - Wikipedia**](https://en.wikipedia.org/wiki/Formal_power_series#The_ring_of_formal_power_series)
 -   Khung lý thuyết tính toán hàm sinh trong thi lập trình tin học

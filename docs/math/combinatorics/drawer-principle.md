@@ -34,5 +34,5 @@ Nguyên lý chuồng bồ câu có thể được phát biểu như sau: với m
 
 ## Tài liệu tham khảo
 
--   [Wikipedia: Pigeonhole principle](https://en.wikipedia.org/wiki/Pigeonhole_principle)
+-   [Wikipedia: nguyên lý chuồng bồ câu](https://en.wikipedia.org/wiki/Pigeonhole_principle)
 -   *Discrete Mathematics and Its Applications*: Chapter 6, Section 1

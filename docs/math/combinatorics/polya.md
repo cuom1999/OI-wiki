@@ -538,9 +538,9 @@ Một loại bài toán đếm đồ thị khác có thể áp dụng nguyên l�
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Pólya enumeration theorem - Wikipedia](https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem)
--   [Notes on Pólya's Enumeration Theorem](https://www.diva-portal.org/smash/get/diva2:324594/FULLTEXT01.pdf)
--   [Cycle index - Wikipedia](https://en.wikipedia.org/wiki/Cycle_index)
+-   [Định lý đếm Pólya - Wikipedia](https://en.wikipedia.org/wiki/P%C3%B3lya_enumeration_theorem)
+-   [Ghi chú về định lý đếm Pólya](https://www.diva-portal.org/smash/get/diva2:324594/FULLTEXT01.pdf)
+-   [Chỉ số chu trình - Wikipedia](https://en.wikipedia.org/wiki/Cycle_index)
 
 [^perm-group]: Vì vậy nhóm đối xứng không gian $G$ có thể biểu diễn thành một nhóm hoán vị trên tập $X$, tức một nhóm con của nhóm đối xứng $S_X$.
 
