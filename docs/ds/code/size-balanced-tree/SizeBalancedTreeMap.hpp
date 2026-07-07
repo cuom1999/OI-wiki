@@ -1,10 +1,9 @@
 /**
  * @file SizeBalancedTreeMap.hpp
- * @brief An SizeBalancedTree-based map implementation
- * @details The map is sorted according to the natural ordering of its
- *  keys or by a {@code Compare} function provided; This implementation
- *  provides guaranteed log(n) time cost for the contains, get, insert
- *  and remove operations.
+ * @brief Cài đặt map dựa trên SizeBalancedTree
+ * @details Map được sắp xếp theo thứ tự tự nhiên của khóa hoặc theo hàm
+ *  {@code Compare} được cung cấp; cài đặt này bảo đảm chi phí thời gian
+ *  log(n) cho các thao tác contains, get, insert và remove.
  * @author [r.ivance](https://github.com/RIvance)
  */
 
@@ -21,11 +20,11 @@
 #include <vector>
 
 /**
- * An SizeBalancedTree-based map implementation
+ * Cài đặt map dựa trên SizeBalancedTree
  * http://wcipeg.com/wiki/Size_Balanced_Tree
- * @tparam Key the type of keys maintained by this map
- * @tparam Value the type of mapped values
- * @tparam Compare the compare function
+ * @tparam Key kiểu khóa được map này quản lý
+ * @tparam Value kiểu giá trị được ánh xạ
+ * @tparam Compare hàm so sánh
  */
 template <typename Key, typename Value, typename Compare = std::less<Key> >
 class SizeBalancedTreeMap {
@@ -116,7 +115,7 @@ class SizeBalancedTreeMap {
   SizeBalancedTreeMap() noexcept = default;
 
   /**
-   * Returns the number of entries in this map.
+   * Trả về số mục trong map này.
    * @return size_t
    */
   inline USize size() const noexcept {
@@ -128,20 +127,19 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Returns true if this collection contains no elements.
+   * Trả về true nếu tập hợp này không chứa phần tử nào.
    * @return bool
    */
   inline bool empty() const noexcept { return this->root == nullptr; }
 
   /**
-   * Removes all of the elements from this map.
+   * Xóa toàn bộ phần tử khỏi map này.
    */
   void clear() noexcept { this->root = nullptr; }
 
   /**
-   * Returns the value to which the specified key is mapped; If this map
-   * contains no mapping for the key, a {@code NoSuchMappingException} will
-   * be thrown.
+   * Trả về giá trị mà khóa chỉ định được ánh xạ tới; nếu map này không chứa
+   * ánh xạ cho khóa đó, một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Value
    * @throws NoSuchMappingException
@@ -160,9 +158,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Returns the value to which the specified key is mapped; If this map
-   * contains no mapping for the key, a new mapping with a default value
-   * will be inserted.
+   * Trả về giá trị mà khóa chỉ định được ánh xạ tới; nếu map này không chứa
+   * ánh xạ cho khóa đó, một ánh xạ mới với giá trị mặc định sẽ được chèn.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Value &
    */
@@ -179,7 +176,7 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Returns true if this map contains a mapping for the specified key.
+   * Trả về true nếu map này chứa ánh xạ cho khóa chỉ định.
    * @param key
    * @return bool
    */
@@ -188,7 +185,7 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Associates the specified value with the specified key in this map.
+   * Gắn giá trị chỉ định với khóa chỉ định trong map này.
    * @param key
    * @param value
    */
@@ -201,8 +198,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * If the specified key is not already associated with a value, associates
-   * it with the given value and returns true, else returns false.
+   * Nếu khóa chỉ định chưa được gắn với giá trị nào, gắn nó với giá trị đã cho
+   * và trả về true; ngược lại trả về false.
    * @param key
    * @param value
    * @return bool
@@ -218,9 +215,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * If the specified key is not already associated with a value, associates
-   * it with the given value and returns the value, else returns the associated
-   * value.
+   * Nếu khóa chỉ định chưa được gắn với giá trị nào, gắn nó với giá trị đã cho
+   * và trả về giá trị đó; ngược lại trả về giá trị đã được gắn.
    * @param key
    * @param value
    * @return SizeBalancedTreeMap<Key, Value>::Value &
@@ -241,9 +237,9 @@ class SizeBalancedTreeMap {
   Value &operator[](K key) { return this->getOrDefault(key); }
 
   /**
-   * Removes the mapping for a key from this map if it is present;
-   * Returns true if the mapping is present else returns false
-   * @param key the key of the mapping
+   * Xóa ánh xạ của một khóa khỏi map này nếu ánh xạ tồn tại;
+   * trả về true nếu ánh xạ tồn tại, ngược lại trả về false.
+   * @param key khóa của ánh xạ
    * @return bool
    */
   bool remove(K key) {
@@ -255,9 +251,9 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Removes the mapping for a key from this map if it is present and returns
-   * the value which is mapped to the key; If this map contains no mapping for
-   * the key, a {@code NoSuchMappingException} will be thrown.
+   * Xóa ánh xạ của một khóa khỏi map này nếu ánh xạ tồn tại và trả về giá trị
+   * được ánh xạ tới khóa đó; nếu map này không chứa ánh xạ cho khóa đó, một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Value
    * @throws NoSuchMappingException
@@ -278,10 +274,10 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Gets the entry corresponding to the specified key; if no such entry
-   * exists, returns the entry for the least key greater than the specified
-   * key; if no such entry exists (i.e., the greatest key in the Tree is less
-   * than the specified key), a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục tương ứng với khóa chỉ định; nếu không có mục như vậy, trả về mục
+   * ứng với khóa nhỏ nhất lớn hơn khóa chỉ định; nếu vẫn không có mục như vậy
+   * (tức khóa lớn nhất trong cây nhỏ hơn khóa chỉ định), một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -339,9 +335,9 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Gets the entry corresponding to the specified key; if no such entry exists,
-   * returns the entry for the greatest key less than the specified key;
-   * if no such entry exists, a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục tương ứng với khóa chỉ định; nếu không có mục như vậy, trả về mục
+   * ứng với khóa lớn nhất nhỏ hơn khóa chỉ định; nếu vẫn không có mục như vậy,
+   * một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -399,10 +395,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Gets the entry for the least key greater than the specified
-   * key; if no such entry exists, returns the entry for the least
-   * key greater than the specified key; if no such entry exists,
-   * a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục ứng với khóa nhỏ nhất lớn hơn khóa chỉ định; nếu không có mục như
+   * vậy, một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -457,9 +451,9 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Returns the entry for the greatest key less than the specified key; if
-   * no such entry exists (i.e., the least key in the Tree is greater than
-   * the specified key), a {@code NoSuchMappingException} will be thrown.
+   * Trả về mục ứng với khóa lớn nhất nhỏ hơn khóa chỉ định; nếu không có mục
+   * như vậy (tức khóa nhỏ nhất trong cây lớn hơn khóa chỉ định), một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return SizeBalancedTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -513,14 +507,14 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Count the number of entries that are less than the given key
+   * Đếm số mục nhỏ hơn khóa đã cho.
    * @param key
    * @return USize
    */
   USize countLessThan(K key) { return this->countLess(this->root, key); }
 
   /**
-   * Count the number of entries that are less or equal to the given key
+   * Đếm số mục nhỏ hơn hoặc bằng khóa đã cho.
    * @param key
    * @return USize
    */
@@ -529,14 +523,14 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Count the number of entries that are greater than the given key
+   * Đếm số mục lớn hơn khóa đã cho.
    * @param key
    * @return USize
    */
   USize countGreaterThan(K key) { return this->countGreater(this->root, key); }
 
   /**
-   * Count the number of entries that are greater or equal to the given key
+   * Đếm số mục lớn hơn hoặc bằng khóa đã cho.
    * @param key
    * @return USize
    */
@@ -545,7 +539,7 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Remove all entries that satisfy the filter condition.
+   * Xóa toàn bộ mục thỏa điều kiện lọc.
    * @param filter
    */
   void removeAll(KeyValueFilter filter) {
@@ -561,8 +555,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Performs the given action for each key and value entry in this map.
-   * The value is immutable for the action.
+   * Thực hiện hành động đã cho cho từng mục khóa và giá trị trong map này.
+   * Giá trị là bất biến đối với hành động này.
    * @param action
    */
   void forEach(KeyValueConsumer action) const {
@@ -571,8 +565,8 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Performs the given action for each key and value entry in this map.
-   * The value is mutable for the action.
+   * Thực hiện hành động đã cho cho từng mục khóa và giá trị trong map này.
+   * Giá trị có thể thay đổi đối với hành động này.
    * @param action
    */
   void forEachMut(MutKeyValueConsumer action) {
@@ -581,7 +575,7 @@ class SizeBalancedTreeMap {
   }
 
   /**
-   * Returns a list containing all of the entries in this map.
+   * Trả về danh sách chứa toàn bộ mục trong map này.
    * @return SizeBalancedTreeMap<Key, Value>::EntryList
    */
   EntryList toEntryList() const {
@@ -601,7 +595,7 @@ class SizeBalancedTreeMap {
     // clang-format off
     //     |                       |
     //     N                       S
-    //    / \     l-rotate(N)     / \
+    //    / \     xoay trái(N)    / \
     //   L   S    ==========>    N   R
     //      / \                 / \
     //     M   R               L   M
@@ -621,7 +615,7 @@ class SizeBalancedTreeMap {
     // clang-format off
     //       |                   |
     //       N                   S
-    //      / \   r-rotate(N)   / \
+    //      / \   xoay phải(N)  / \
     //     S   R  ==========>  L   N
     //    / \                     / \
     //   L   M                   M   R
@@ -652,7 +646,7 @@ class SizeBalancedTreeMap {
         // clang-format off
         //       |                       |
         //       N                       L
-        //      / \     r-rotate(N)     / \
+        //      / \     xoay phải(N)    / \
         //     L  <R>   ==========>   [M]  N
         //    /                             \
         //  [M]                             <R>
@@ -665,7 +659,7 @@ class SizeBalancedTreeMap {
         // clang-format off
         //     |                     |                      |
         //     N                     N                     [M]
-        //    / \    l-rotate(L)    / \     r-rotate(N)    / \
+        //    / \    xoay trái(L)   / \     xoay phải(N)   / \
         //   L  <R>  ==========>  [M] <R>   ==========>   L   N
         //    \                   /                            \
         //    [M]                L                             <R>
@@ -684,7 +678,7 @@ class SizeBalancedTreeMap {
         // clang-format off
         //     |                       |
         //     N                       R
-        //    / \     l-rotate(N)     / \
+        //    / \     xoay trái(N)    / \
         //  <L>  R    ==========>    N  [M]
         //        \                 /
         //        [M]             <L>
@@ -697,7 +691,7 @@ class SizeBalancedTreeMap {
         // clang-format off
         //     |                     |                      |
         //     N                     N                     [M]
-        //    / \    r-rotate(R)    / \     l-rotate(N)    / \
+        //    / \    xoay phải(R)   / \     xoay trái(N)   / \
         //  <L>  R   ==========>  <L> [M]   ==========>   N   R
         //      /                       \                /
         //    [M]                        R             <L>
@@ -836,7 +830,7 @@ class SizeBalancedTreeMap {
       // clang-format off
       // Trường hợp 2: chỉ có con trái
       //     P
-      //     |  remove(N)  P
+      //     |  xóa(N)     P
       //     N  ========>  |
       //    /              L
       //   L
@@ -846,7 +840,7 @@ class SizeBalancedTreeMap {
       // clang-format off
       // Trường hợp 3: chỉ có con phải
       //   P
-      //   |    remove(N)  P
+      //   |    xóa(N)     P
       //   N    ========>  |
       //    \              R
       //     R
@@ -856,7 +850,7 @@ class SizeBalancedTreeMap {
       // clang-format off
       // Trường hợp 4: có cả con trái và con phải, con phải không có con trái
       //    |                 |
-      //    N    remove(N)    R
+      //    N    xóa(N)       R
       //   / \   ========>   /
       //  L   R             L
       // clang-format on
@@ -878,7 +872,7 @@ class SizeBalancedTreeMap {
       //     |                  |
       //     N                  S                 |
       //    / \                / \                S
-      //   L  ..  swap(N, S)  L  ..  remove(N)   / \
+      //   L  ..  đổi(N, S)   L  ..  xóa(N)      / \
       //       |  =========>      |  ========>  L  ..
       //       P                  P                 |
       //      / \                / \                P

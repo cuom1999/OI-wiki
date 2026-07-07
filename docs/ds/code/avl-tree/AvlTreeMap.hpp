@@ -1,9 +1,8 @@
 /**
- * @brief An AVLTree-based map implementation
- * @details The map is sorted according to the natural ordering of its
- *  keys or by a {@code Compare} function provided; This implementation
- *  provides guaranteed log(n) time cost for the contains, get, insert
- *  and remove operations.
+ * @brief Cài đặt map dựa trên AVLTree
+ * @details Map được sắp xếp theo thứ tự tự nhiên của khóa hoặc theo hàm
+ *  {@code Compare} được cung cấp; cài đặt này bảo đảm chi phí thời gian
+ *  log(n) cho các thao tác contains, get, insert và remove.
  */
 
 #ifndef AVLTREE_MAP_HPP
@@ -19,11 +18,11 @@
 #include <vector>
 
 /**
- * An AVLTree-based map implementation
+ * Cài đặt map dựa trên AVLTree
  * https://en.wikipedia.org/wiki/AVL_tree
- * @tparam Key the type of keys maintained by this map
- * @tparam Value the type of mapped values
- * @tparam Compare
+ * @tparam Key kiểu khóa được map này quản lý
+ * @tparam Value kiểu giá trị được ánh xạ
+ * @tparam Compare hàm so sánh
  */
 template <typename Key, typename Value, typename Compare = std::less<Key> >
 class AvlTreeMap {
@@ -134,19 +133,19 @@ class AvlTreeMap {
   AvlTreeMap() noexcept = default;
 
   /**
-   * Returns the number of entries in this map.
+   * Trả về số mục trong map này.
    * @return size_t
    */
   inline USize size() const noexcept { return this->count; }
 
   /**
-   * Returns true if this collection contains no elements.
+   * Trả về true nếu tập hợp này không chứa phần tử nào.
    * @return bool
    */
   inline bool empty() const noexcept { return this->count == 0; }
 
   /**
-   * Removes all of the elements from this map.
+   * Xóa toàn bộ phần tử khỏi map này.
    */
   void clear() noexcept {
     this->root = nullptr;
@@ -154,9 +153,8 @@ class AvlTreeMap {
   }
 
   /**
-   * Returns the value to which the specified key is mapped; If this map
-   * contains no mapping for the key, a {@code NoSuchMappingException} will
-   * be thrown.
+   * Trả về giá trị mà khóa chỉ định được ánh xạ tới; nếu map này không chứa
+   * ánh xạ cho khóa đó, một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Value
    * @throws NoSuchMappingException
@@ -175,9 +173,8 @@ class AvlTreeMap {
   }
 
   /**
-   * Returns the value to which the specified key is mapped; If this map
-   * contains no mapping for the key, a new mapping with a default value
-   * will be inserted.
+   * Trả về giá trị mà khóa chỉ định được ánh xạ tới; nếu map này không chứa
+   * ánh xạ cho khóa đó, một ánh xạ mới với giá trị mặc định sẽ được chèn.
    * @param key
    * @return AvlTreeMap<Key, Value>::Value &
    */
@@ -195,7 +192,7 @@ class AvlTreeMap {
   }
 
   /**
-   * Returns true if this map contains a mapping for the specified key.
+   * Trả về true nếu map này chứa ánh xạ cho khóa chỉ định.
    * @param key
    * @return bool
    */
@@ -204,7 +201,7 @@ class AvlTreeMap {
   }
 
   /**
-   * Associates the specified value with the specified key in this map.
+   * Gắn giá trị chỉ định với khóa chỉ định trong map này.
    * @param key
    * @param value
    */
@@ -218,8 +215,8 @@ class AvlTreeMap {
   }
 
   /**
-   * If the specified key is not already associated with a value, associates
-   * it with the given value and returns true, else returns false.
+   * Nếu khóa chỉ định chưa được gắn với giá trị nào, gắn nó với giá trị đã cho
+   * và trả về true; ngược lại trả về false.
    * @param key
    * @param value
    * @return bool
@@ -236,9 +233,8 @@ class AvlTreeMap {
   }
 
   /**
-   * If the specified key is not already associated with a value, associates
-   * it with the given value and returns the value, else returns the associated
-   * value.
+   * Nếu khóa chỉ định chưa được gắn với giá trị nào, gắn nó với giá trị đã cho
+   * và trả về giá trị đó; ngược lại trả về giá trị đã được gắn.
    * @param key
    * @param value
    * @return
@@ -260,9 +256,9 @@ class AvlTreeMap {
   Value &operator[](K key) { return this->getOrDefault(key); }
 
   /**
-   * Removes the mapping for a key from this map if it is present;
-   * Returns true if the mapping is present else returns false
-   * @param key the key of the mapping
+   * Xóa ánh xạ của một khóa khỏi map này nếu ánh xạ tồn tại;
+   * trả về true nếu ánh xạ tồn tại, ngược lại trả về false.
+   * @param key khóa của ánh xạ
    * @return bool
    */
   bool remove(K key) {
@@ -274,9 +270,9 @@ class AvlTreeMap {
   }
 
   /**
-   * Removes the mapping for a key from this map if it is present and returns
-   * the value which is mapped to the key; If this map contains no mapping for
-   * the key, a {@code NoSuchMappingException} will be thrown.
+   * Xóa ánh xạ của một khóa khỏi map này nếu ánh xạ tồn tại và trả về giá trị
+   * được ánh xạ tới khóa đó; nếu map này không chứa ánh xạ cho khóa đó, một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Value
    * @throws NoSuchMappingException
@@ -297,10 +293,10 @@ class AvlTreeMap {
   }
 
   /**
-   * Gets the entry corresponding to the specified key; if no such entry
-   * exists, returns the entry for the least key greater than the specified
-   * key; if no such entry exists (i.e., the greatest key in the Tree is less
-   * than the specified key), a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục tương ứng với khóa chỉ định; nếu không có mục như vậy, trả về mục
+   * ứng với khóa nhỏ nhất lớn hơn khóa chỉ định; nếu vẫn không có mục như vậy
+   * (tức khóa lớn nhất trong cây nhỏ hơn khóa chỉ định), một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -358,9 +354,9 @@ class AvlTreeMap {
   }
 
   /**
-   * Gets the entry corresponding to the specified key; if no such entry exists,
-   * returns the entry for the greatest key less than the specified key;
-   * if no such entry exists, a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục tương ứng với khóa chỉ định; nếu không có mục như vậy, trả về mục
+   * ứng với khóa lớn nhất nhỏ hơn khóa chỉ định; nếu vẫn không có mục như vậy,
+   * một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -418,10 +414,8 @@ class AvlTreeMap {
   }
 
   /**
-   * Gets the entry for the least key greater than the specified
-   * key; if no such entry exists, returns the entry for the least
-   * key greater than the specified key; if no such entry exists,
-   * a {@code NoSuchMappingException} will be thrown.
+   * Lấy mục ứng với khóa nhỏ nhất lớn hơn khóa chỉ định; nếu không có mục như
+   * vậy, một {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -476,9 +470,9 @@ class AvlTreeMap {
   }
 
   /**
-   * Returns the entry for the greatest key less than the specified key; if
-   * no such entry exists (i.e., the least key in the Tree is greater than
-   * the specified key), a {@code NoSuchMappingException} will be thrown.
+   * Trả về mục ứng với khóa lớn nhất nhỏ hơn khóa chỉ định; nếu không có mục
+   * như vậy (tức khóa nhỏ nhất trong cây lớn hơn khóa chỉ định), một
+   * {@code NoSuchMappingException} sẽ được ném ra.
    * @param key
    * @return AvlTreeMap<Key, Value>::Entry
    * @throws NoSuchMappingException
@@ -532,7 +526,7 @@ class AvlTreeMap {
   }
 
   /**
-   * Remove all entries that satisfy the filter condition.
+   * Xóa toàn bộ mục thỏa điều kiện lọc.
    * @param filter
    */
   void removeAll(KeyValueFilter filter) {
@@ -548,8 +542,8 @@ class AvlTreeMap {
   }
 
   /**
-   * Performs the given action for each key and value entry in this map.
-   * The value is immutable for the action.
+   * Thực hiện hành động đã cho cho từng mục khóa và giá trị trong map này.
+   * Giá trị là bất biến đối với hành động này.
    * @param action
    */
   void forEach(KeyValueConsumer action) const {
@@ -558,8 +552,8 @@ class AvlTreeMap {
   }
 
   /**
-   * Performs the given action for each key and value entry in this map.
-   * The value is mutable for the action.
+   * Thực hiện hành động đã cho cho từng mục khóa và giá trị trong map này.
+   * Giá trị có thể thay đổi đối với hành động này.
    * @param action
    */
   void forEachMut(MutKeyValueConsumer action) {
@@ -568,7 +562,7 @@ class AvlTreeMap {
   }
 
   /**
-   * Returns a list containing all of the entries in this map.
+   * Trả về danh sách chứa toàn bộ mục trong map này.
    * @return AvlTreeMap<Key, Value>::EntryList
    */
   EntryList toEntryList() const {
@@ -583,7 +577,7 @@ class AvlTreeMap {
     // clang-format off
     //     |                       |
     //     N                       S
-    //    / \     l-rotate(N)     / \
+    //    / \     xoay trái(N)    / \
     //   L   S    ==========>    N   R
     //      / \                 / \
     //     M   R               L   M
@@ -602,7 +596,7 @@ class AvlTreeMap {
     // clang-format off
     //       |                   |
     //       N                   S
-    //      / \   r-rotate(N)   / \
+    //      / \   xoay phải(N)  / \
     //     S   R  ==========>  L   N
     //    / \                     / \
     //   L   M                   M   R
@@ -627,10 +621,10 @@ class AvlTreeMap {
     if (node->factor() < -1) {
       if (node->left->factor() < 0) {
         // clang-format off
-        //  Left-Left Case
+        //  Trường hợp trái-trái
         //       |
         //       C                 |
-        //      /   r-rotate(C)    B
+        //      /   xoay phải(C)   B
         //     B    ==========>   / \
         //    /                  A   C
         //   A
@@ -638,10 +632,10 @@ class AvlTreeMap {
         node = rotateRight(node);
       } else {
         // clang-format off
-        //  Left-Right Case
+        //  Trường hợp trái-phải
         //     |                   |
         //     C                   C                 |
-        //    /   l-rotate(A)     /   r-rotate(C)    B
+        //    /   xoay trái(A)    /   xoay phải(C)   B
         //   A    ==========>    B    ==========>   / \
         //    \                 /                  A   C
         //     B               A
@@ -652,10 +646,10 @@ class AvlTreeMap {
     } else if (node->factor() > 1) {
       if (node->right->factor() > 0) {
         // clang-format off
-        //  Right-Right Case
+        //  Trường hợp phải-phải
         //   |
         //   C                     |
-        //    \     l-rotate(C)    B
+        //    \     xoay trái(C)   B
         //     B    ==========>   / \
         //      \                A   C
         //       A
@@ -663,10 +657,10 @@ class AvlTreeMap {
         node = rotateLeft(node);
       } else {
         // clang-format off
-        //  Right-Left Case
+        //  Trường hợp phải-trái
         //   |                 |
         //   A                 A                     |
-        //    \   r-rotate(C)   \     l-rotate(A)    B
+        //    \   xoay phải(C)  \     xoay trái(A)   B
         //     C  ==========>    B    ==========>   / \
         //    /                   \                A   C
         //   B                     C
@@ -805,7 +799,7 @@ class AvlTreeMap {
       // clang-format off
       // Trường hợp 2: chỉ có con trái
       //     P
-      //     |  remove(N)  P
+      //     |  xóa(N)     P
       //     N  ========>  |
       //    /              L
       //   L
@@ -816,7 +810,7 @@ class AvlTreeMap {
       // clang-format off
       // Trường hợp 3: chỉ có con phải
       //   P
-      //   |    remove(N)  P
+      //   |    xóa(N)     P
       //   N    ========>  |
       //    \              R
       //     R
@@ -827,7 +821,7 @@ class AvlTreeMap {
       // clang-format off
       // Trường hợp 4: có cả con trái và con phải, con phải không có con trái
       //    |                 |
-      //    N    remove(N)    R
+      //    N    xóa(N)       R
       //   / \   ========>   /
       //  L   R             L
       // clang-format on
@@ -848,7 +842,7 @@ class AvlTreeMap {
       //     |                  |
       //     N                  S                 |
       //    / \                / \                S
-      //   L  ..  swap(N, S)  L  ..  remove(N)   / \
+      //   L  ..  đổi(N, S)   L  ..  xóa(N)      / \
       //       |  =========>      |  ========>  L  ..
       //       P                  P                 |
       //      / \                / \                P
