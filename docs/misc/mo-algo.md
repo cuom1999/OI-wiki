@@ -6,7 +6,7 @@ Giả sử $n=m$. Với bài toán truy vấn đoạn trên dãy, nếu từ đ�
 
 ## Giải thích
 
-Sau khi đưa các truy vấn về dạng ngoại tuyến, cần sắp xếp rồi xử lý lần lượt từng truy vấn, chuyển đáp án từ đoạn trước sang đoạn sau một cách trực tiếp bằng cách di chuyển từng bước.
+Sau khi đưa các truy vấn về dạng ngoại tuyến, ta sắp xếp rồi xử lý lần lượt, chuyển đáp án từ đoạn trước sang đoạn sau bằng cách di chuyển từng bước.
 
 ## Cách sắp xếp
 

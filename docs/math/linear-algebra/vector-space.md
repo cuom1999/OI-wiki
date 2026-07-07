@@ -4,7 +4,7 @@ Không gian tuyến tính là một khái quát của không gian Euclid $d$ chi
 
 Kiến thức chuẩn bị: nhóm Abel, trường.
 
-Nói một cách trực quan, nếu một tập hợp đóng với một phép toán nào đó và thỏa mãn tính kết hợp, có phần tử đơn vị và phần tử nghịch đảo thì nó tạo thành một nhóm. Nếu còn thỏa mãn tính giao hoán thì nó tạo thành một nhóm Abel.
+Nhìn trực quan, nếu một tập hợp đóng với một phép toán nào đó và thỏa mãn tính kết hợp, có phần tử đơn vị và phần tử nghịch đảo thì nó tạo thành một nhóm. Nếu còn thỏa mãn tính giao hoán thì nó tạo thành một nhóm Abel.
 
 Nếu một tập hợp đóng với bốn phép toán số học thì nó tạo thành một trường. Định nghĩa liên quan được trình bày chi tiết trong [các khái niệm cơ bản của đại số trừu tượng](../algebra/basic.md#trường).
 

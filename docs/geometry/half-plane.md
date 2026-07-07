@@ -40,7 +40,7 @@ Xem mỗi cạnh của đa giác như một vectơ nối đầu-cuối liên ti�
 
 Ngôn ngữ C có một hàm thư viện tên là `atan2(double y,double x)`, trả về $\theta\in (-\pi,\pi]$, với $\theta =\arctan \frac{y}{x}$.
 
-Gọi trực tiếp hàm này trên vectơ làm đối số, rồi sắp xếp theo giá trị trả về để thu được tập cạnh, tức tập vectơ, mới.
+Gọi hàm này với vectơ làm đối số, rồi sắp xếp theo giá trị trả về để thu được tập cạnh, tức tập vectơ, mới.
 
 Khi sắp xếp, nếu gặp các vectơ thẳng hàng và cùng hướng, cần giữ vectơ gần miền khả thi hơn. Ví dụ, nếu hai vectơ có cùng góc cực và cần nửa mặt phẳng bên trái vectơ, thì chỉ cần giữ vectơ nằm bên trái. Cách kiểm tra là lấy đầu hoặc cuối của một vectơ so với vectơ còn lại, rồi xét điểm đó ở bên trái hay bên phải.
 

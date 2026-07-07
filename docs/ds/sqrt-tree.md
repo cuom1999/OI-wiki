@@ -128,7 +128,7 @@ Có thể cập nhật phần tử trên Sqrt Tree; cả cập nhật điểm v�
 <span id="cập-nhật-điểm"></span>
 ### Cập nhật điểm
 
-Xét một thao tác gán tại một điểm $a_x=\mathit{val}$. Mục tiêu là cập nhật các thông tin liên quan một cách hiệu quả.
+Xét một thao tác gán tại một điểm $a_x=\mathit{val}$. Mục tiêu là cập nhật hiệu quả các thông tin liên quan.
 
 <span id="cài-đặt-đơn-giản"></span>
 #### Cài đặt đơn giản
@@ -188,7 +188,7 @@ Trong cách cài đặt thứ nhất, chỉ gắn đánh dấu lười cho các 
 
 4.  Xây dựng lại cây `index`, độ phức tạp $O(\sqrt{n}\log\log n)$.
 
-Đến đây đã có thể cập nhật đoạn một cách hiệu quả. Cách dùng đánh dấu lười để trả lời truy vấn như sau:
+Đến đây đã có thể cập nhật đoạn hiệu quả. Cách dùng đánh dấu lười để trả lời truy vấn như sau:
 
 1.  Nếu truy vấn nằm trong một khối có đánh dấu lười, có thể dùng đánh dấu lười để tính đáp án.
 

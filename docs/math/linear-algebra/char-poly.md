@@ -243,7 +243,7 @@ Sau khi áp dụng các thao tác trên cho ma trận (nhân trái với ma tr�
 
 Nếu có thể đưa ma trận bằng biến đổi tương tự về dạng tam giác trên hoặc tam giác dưới, thì có thể tính đa thức đặc trưng trực tiếp. Tuy nhiên, nếu áp dụng phép biến đổi $A\mapsto T_{ij}(k)AT_{ij}(-k)$ lên các phần tử trên đường chéo chính, thì sau khi dùng $A\mapsto T_{ij}(k)A$ để khử phần tử ở hàng $i$ cột $j$ về không, việc nhân phải với $T_{ij}(-k)$, tức cộng $-k$ lần cột thứ $i$ của $A$ vào cột thứ $j$, có thể làm phần tử đã khử về không trước đó lại khác không; vì thế có thể không đưa được về dạng tam giác trên hoặc tam giác dưới.
 
-Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng một cách thuận tiện.
+Phần sau sẽ giải thích rằng sau khi áp dụng phép biến đổi lên các phần tử trên đường chéo phụ, ma trận thu được vẫn có thể được dùng để tính đa thức đặc trưng thuận tiện.
 
 <span id="ma-trận-hessenberg-trên"></span>
 ### Ma trận Hessenberg trên

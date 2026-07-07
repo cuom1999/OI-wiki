@@ -1,4 +1,4 @@
-Cây AA là một cấu trúc cây cân bằng dùng để lưu trữ và truy vấn dữ liệu có thứ tự một cách hiệu quả. Giáo sư Arne
+Cây AA là một cấu trúc cây cân bằng dùng để lưu trữ và truy vấn hiệu quả dữ liệu có thứ tự. Giáo sư Arne
 Andersson giới thiệu cấu trúc này vào năm 1993 trong bài báo "Balanced search trees made simple", với mục tiêu giảm số
 trường hợp cần xét so với cây đỏ-đen. Cây AA có thể thực hiện tìm kiếm, chèn và xóa trong thời gian $O(\log n)$. Dưới
 đây là một ví dụ về cây AA.

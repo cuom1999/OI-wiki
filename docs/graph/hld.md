@@ -15,7 +15,7 @@ Phân rã chuỗi nặng còn bảo đảm các đỉnh trên mỗi chuỗi sau 
 1.  Sửa giá trị của tất cả các đỉnh **trên đường đi giữa hai đỉnh của cây**.
 2.  Truy vấn **tổng/cực trị/thông tin khác** của trọng số các đỉnh **trên đường đi giữa hai đỉnh của cây**, miễn là thông tin đó có thể được duy trì trên dãy và dễ gộp bằng cấu trúc dữ liệu.
 
-Ngoài việc phối hợp với cấu trúc dữ liệu để duy trì thông tin đường đi trên cây, HLD còn có thể dùng để tìm LCA trong $O(\log n)$ với hằng số nhỏ. Trong một số bài toán, cũng có thể khai thác các tính chất của nó một cách linh hoạt.
+Ngoài việc phối hợp với cấu trúc dữ liệu để duy trì thông tin đường đi trên cây, HLD còn có thể dùng để tìm LCA trong $O(\log n)$ với hằng số nhỏ. Trong một số bài toán, cũng có thể khai thác linh hoạt các tính chất của nó.
 
 ## Phân rã chuỗi nặng
 

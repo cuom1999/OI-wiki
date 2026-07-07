@@ -238,7 +238,7 @@ $$
 pd_n=pde_n+pdo_n
 $$
 
-Các khái niệm $k$ phần tương ứng cũng tồn tại. Vì khá phức tạp nên không liệt kê trong phần này.
+Các khái niệm $k$ phần tương ứng cũng tồn tại, nhưng phần này không liệt kê vì chúng khá phức tạp.
 
 <span id="định-lý-số-ngũ-giác"></span>
 ## Định lý số ngũ giác

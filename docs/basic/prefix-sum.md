@@ -417,7 +417,7 @@ trọng số cạnh sau cập nhật.
     
     ![](./images/prefix_sum2.svg)
     
-    Vì thực hiện sai phân trực tiếp trên cạnh tương đối khó, chuyển giá trị vốn
+    Vì sai phân trên cạnh khó cài đặt, chuyển giá trị vốn
     cần cộng vào cạnh màu đỏ xuống đỉnh kề phía dưới sẽ làm thao tác gọn hơn. So
     sánh với công thức sai phân đỉnh để hiểu công thức sai phân cạnh.
 

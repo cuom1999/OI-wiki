@@ -4,7 +4,7 @@ author: GavinZhengOI, PlanariaIce
 
 Rời rạc hóa là một kỹ thuật xử lý dữ liệu. Về bản chất, có thể xem nó như một dạng [hash](../string/hash.md), bảo đảm dữ liệu sau khi hash vẫn giữ nguyên quan hệ [thứ tự toàn phần hoặc thứ tự bộ phận](../math/order-theory.md) ban đầu.
 
-Nói một cách đơn giản, khi một số dữ liệu quá lớn hoặc có kiểu không hỗ trợ dùng trực tiếp làm chỉ số mảng, nhưng kết quả cuối cùng chỉ phụ thuộc vào quan hệ thứ tự tương đối giữa các phần tử, có thể xử lý bài toán bằng thứ hạng của dữ liệu ban đầu. Đó chính là rời rạc hóa.
+Hiểu đơn giản, khi một số dữ liệu quá lớn hoặc có kiểu không hỗ trợ dùng trực tiếp làm chỉ số mảng, nhưng kết quả cuối cùng chỉ phụ thuộc vào quan hệ thứ tự tương đối giữa các phần tử, có thể xử lý bài toán bằng thứ hạng của dữ liệu ban đầu. Đó chính là rời rạc hóa.
 
 Dữ liệu được rời rạc hóa có thể là số nguyên lớn, số thực, chuỗi, v.v.
 

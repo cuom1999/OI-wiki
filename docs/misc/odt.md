@@ -2,7 +2,7 @@
 
 Cây Chtholly Tree, còn gọi là Old Driver Tree ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
 
-Tên gọi này chỉ một kỹ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lý. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ một cách thuận tiện hơn.
+Tên gọi này chỉ một kỹ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lý. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ thuận tiện hơn.
 
 ## Cài đặt (`std::set`)
 
@@ -159,7 +159,7 @@ void perform(int l, int r) {  // Lưu ý: r là đầu phải của khoảng + 1
 
 ## Cài đặt (danh sách liên kết)
 
-Hiện nay cách cài đặt chủ lưu dựa trên `set` để duy trì các nút, nhưng vì số khoảng trung bình cần duy trì rất nhỏ, ưu thế của `set` không rõ rệt. So với nó, danh sách liên kết (hoặc mảng) có thể duy trì các thao tác tách và gộp một cách gọn hơn.
+Hiện nay cách cài đặt chủ lưu dựa trên `set` để duy trì các nút, nhưng vì số khoảng trung bình cần duy trì rất nhỏ, ưu thế của `set` không rõ rệt. So với nó, danh sách liên kết (hoặc mảng) có thể duy trì các thao tác tách và gộp gọn hơn.
 
 ### Lưu trữ nút
 

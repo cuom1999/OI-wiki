@@ -261,7 +261,7 @@ Sau đó chạy trực tiếp 0-1 BFS là được.
 
 Hàng đợi ưu tiên tương đương với một heap nhị phân.
 STL cung cấp [`std::priority_queue`](../lang/csl/container-adapter.md),
-hỗ trợ sử dụng hàng đợi ưu tiên một cách thuận tiện.
+hỗ trợ sử dụng hàng đợi ưu tiên thuận tiện.
 
 Trong BFS dựa trên hàng đợi ưu tiên,
 mỗi lần lấy ra từ đầu hàng đợi đỉnh có chi phí nhỏ nhất để tiếp tục tìm kiếm.

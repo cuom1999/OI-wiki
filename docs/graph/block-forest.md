@@ -132,7 +132,7 @@ Khi tìm thấy một thành phần song liên thông theo đỉnh, các đỉnh
 
 Các đỉnh bị pop ra có thể được xử lý ngay lúc đó: chỉ cần nối chúng với đỉnh vuông mới tạo. Cuối cùng còn phải nối $u$ với đỉnh vuông.
 
-Như vậy việc xây dựng cây tròn-vuông được hoàn tất một cách tự nhiên. Có thể đánh số các đỉnh vuông bằng các số nguyên bắt đầu từ $n+1$, nhờ đó phân biệt hiệu quả đỉnh tròn và đỉnh vuông.
+Như vậy việc xây dựng cây tròn-vuông được hoàn tất tự nhiên. Có thể đánh số các đỉnh vuông bằng các số nguyên bắt đầu từ $n+1$, nhờ đó phân biệt hiệu quả đỉnh tròn và đỉnh vuông.
 
 Phần này có thể chưa đủ trực quan. Bên dưới là một đoạn mã kèm chú thích chi tiết, các câu lệnh in giúp theo dõi quá trình và một ví dụ. Có thể sao chép mã và tự thực hành để hiểu, vì mã nguồn thường là cách giúp nắm rõ nhất (cần bật `c++11`).
 

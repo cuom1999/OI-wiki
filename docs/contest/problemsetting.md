@@ -257,7 +257,7 @@ Thông thường, giới hạn thời gian nên thỏa mãn các yêu cầu sau:
 
 Để vừa chấp nhận các lời giải có hằng số lớn vừa chặn được lời giải sai, thường có thể đồng thời tăng giới hạn dữ liệu và giới hạn thời gian. Tuy nhiên, đôi khi lời giải đúng (do các vấn đề khó đoán như cache) sẽ có hằng số tăng rất lớn khi giới hạn dữ liệu tăng; lúc này tăng giới hạn dữ liệu có thể không làm tăng khoảng cách thời gian giữa lời giải đúng và lời giải sai.
 
-Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu có phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để những lời giải sai nhưng khá tốt và những lời giải đúng có hằng số lớn không được chấp nhận trên toàn bộ dữ liệu, nhưng vẫn nhận được điểm thành phần khá cao.
+Trong thể thức có điểm thành phần, còn có thể dùng các bộ dữ liệu phân tầng, hoặc dữ liệu có giới hạn nhỏ hơn một chút, để những lời giải sai nhưng vượt qua được nhiều dữ liệu và những lời giải đúng có hằng số lớn không được chấp nhận trên toàn bộ dữ liệu, nhưng vẫn nhận được điểm thành phần cao.
 
 Khi giới hạn dữ liệu nhỏ hơn $5\cdot 10^5$, nên cân nhắc liệu có thể dùng [tối ưu bằng tập lệnh CPU](https://ouuan.github.io/post/n%E6%96%B9%E8%BF%87%E7%99%BE%E4%B8%87-%E6%9A%B4%E5%8A%9B%E7%A2%BE%E6%A0%87%E7%AE%97%E2%80%94%E2%80%94%E6%8C%87%E4%BB%A4%E9%9B%86%E4%BC%98%E5%8C%96%E7%9A%84%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8) để được chấp nhận hay không.
 
@@ -400,7 +400,7 @@ gen 2000 1000 > 4.in
 gen 100000 100000 > 5.in
 ```
 
-Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một bộ sinh dữ liệu, đồng thời có thể sửa tham số của một bộ kiểm thử nào đó một cách thuận tiện.
+Lợi ích của cách này là với các bộ dữ liệu khác nhau, chỉ cần viết một bộ sinh dữ liệu, đồng thời có thể sửa thuận tiện tham số của một bộ kiểm thử nào đó.
 
 ### Yêu cầu đối với dữ liệu
 

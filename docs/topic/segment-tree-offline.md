@@ -6,7 +6,7 @@ Nếu cần duy trì một số thông tin chỉ tồn tại trong từng khoả
 
 Trong thực tế, chia để trị bằng cây đoạn thường có các công dụng sau:
 
-1.  Dùng một cấu trúc dữ liệu vốn không hỗ trợ xóa, nhưng hỗ trợ khôi phục trạng thái, để mô phỏng thao tác xóa. Ví dụ, DSU thông thường không thể hỗ trợ xóa cạnh một cách hiệu quả.
+1.  Dùng một cấu trúc dữ liệu vốn không hỗ trợ xóa, nhưng hỗ trợ khôi phục trạng thái, để mô phỏng thao tác xóa. Ví dụ, DSU thông thường không thể hỗ trợ xóa cạnh hiệu quả.
 2.  Tính riêng dữ liệu theo các thuộc tính khác nhau. Ví dụ, cần tính đáp án của các dữ liệu có màu khác sau khi loại trừ một màu nào đó.
 
 Nếu hiện tại chưa rõ cũng không sao, hai công dụng này sẽ được minh họa trong các ví dụ.
@@ -127,9 +127,9 @@ Toàn bộ quá trình chia để trị có tổng độ phức tạp thời gia
         
         Sau đó quay lại bài toán gốc. Có thể duy trì tập các đỉnh đen, đồng thời duy trì các khoảng thời gian mà mỗi đỉnh nằm trong tập đỉnh đen. Cụ thể, chỉ cần mở một mảng xô để ghi lại thời điểm lần gần nhất đỉnh đó đi vào tập đỉnh đen.
         
-        Khi đó có thể xử lý ngoại tuyến một cách tự nhiên: chèn tất cả khoảng thời gian vào cây đoạn. Sau đó chia để trị trên cây đoạn; mỗi nút trên cây đoạn ghi lại các đỉnh được thêm vào tập đỉnh trong đoạn thời gian hiện tại. Với các đỉnh mới thêm, có thể dùng suy luận trên để tìm hai đầu mút đường kính của tập đỉnh mới.
+        Khi đó cách xử lý ngoại tuyến tự nhiên là chèn tất cả khoảng thời gian vào cây đoạn. Sau đó chia để trị trên cây đoạn; mỗi nút trên cây đoạn ghi lại các đỉnh được thêm vào tập đỉnh trong đoạn thời gian hiện tại. Với các đỉnh mới thêm, có thể dùng suy luận trên để tìm hai đầu mút đường kính của tập đỉnh mới.
         
-        Việc khôi phục trạng thái rất trực tiếp: chỉ cần dùng một ngăn xếp để ghi lại các thay đổi của hai đầu mút đường kính.
+        Có thể khôi phục trạng thái bằng một ngăn xếp ghi lại các thay đổi của hai đầu mút đường kính.
     
     ??? note "Mã tham khảo"
         ```cpp

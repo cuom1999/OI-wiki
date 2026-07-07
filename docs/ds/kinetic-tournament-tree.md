@@ -71,7 +71,7 @@ Tổng quát hơn, mọi cấu trúc áp dụng chiến lược động học h�
 -   Sinh chứng chỉ kiểm chứng tính đúng đắn cho các thao tác then chốt trong thuật toán tĩnh (chẳng hạn phép so sánh),
     rồi gắn mỗi chứng chỉ với một hàng đợi sự kiện toàn cục,
     ghi lại thời điểm chứng chỉ đó có thể mất hiệu lực.
--   Khi một chứng chỉ mất hiệu lực, cập nhật đầu ra của thuật toán và duy trì tập chứng chỉ một cách hiệu quả.
+-   Khi một chứng chỉ mất hiệu lực, cập nhật đầu ra của thuật toán và duy trì hiệu quả tập chứng chỉ.
 
 Trong cộng đồng lập trình thi đấu, cấu trúc này trở nên phổ biến nhờ luận văn đội tuyển tập huấn quốc gia Trung Quốc năm
 2020, "[Bàn về việc duy trì động giá trị cực trị của hàm số][ktt-training-2020]".

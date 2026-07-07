@@ -275,7 +275,7 @@ Miền Euclid là miền nguyên cho phép thực hiện phép chia có dư, t�
 
 Định nghĩa này là sự khái quát của phép chia có dư trong số nguyên. Sự tồn tại của chuẩn cho phép đo kích thước tương đối giữa số dư và số chia. Khi thực hiện thuật toán Euclid, chuẩn của các số dư liên tiếp sẽ giảm dần; vì chuẩn nhận giá trị trong các số tự nhiên, quá trình này phải kết thúc khi $r=0$. Từ đó thu được thuật toán Euclid trên miền Euclid.
 
-Việc thực hiện được thuật toán Euclid có nghĩa là trên miền Euclid có thể tính ước chung lớn nhất một cách hiệu quả. Hoàn toàn tương tự lý thuyết chia hết của số nguyên, có thể chứng minh kết quả của thuật toán Euclid là ước chung lớn nhất, và định lý Bézout vẫn đúng; các hệ số trong định lý có thể được xác định bằng thuật toán Euclid mở rộng.
+Trên miền Euclid, thuật toán Euclid cho phép tính ước chung lớn nhất hiệu quả. Hoàn toàn tương tự lý thuyết chia hết của số nguyên, có thể chứng minh kết quả của thuật toán Euclid là ước chung lớn nhất, và định lý Bézout vẫn đúng; các hệ số trong định lý có thể được xác định bằng thuật toán Euclid mở rộng.
 
 ???+ note "Định lý"
     Với miền Euclid $R$ và các phần tử $a,b\in R$ của nó, kết quả $d$ thu được khi áp dụng thuật toán Euclid cho $a$ và $b$ là ước chung lớn nhất của $a$ và $b$, và tồn tại $x,y\in R$ sao cho $d=ax+by$; ngược lại, mọi phần tử có dạng $ax+by$ đều là bội của $d$.

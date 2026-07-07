@@ -25,7 +25,7 @@ $$
  x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 $$
 
-Trực quan mà nói, nếu $f(x)$ tương đối trơn, thì khi số lần lặp tăng lên, $x_i$ sẽ ngày càng tiến gần nghiệm của phương trình.
+Nói trực quan, nếu $f(x)$ đủ trơn, thì khi số lần lặp tăng lên, $x_i$ sẽ ngày càng tiến gần nghiệm của phương trình.
 
 Phương pháp Newton có tốc độ hội tụ bậc hai, nghĩa là sau mỗi lần lặp, số chữ số chính xác của nghiệm xấp xỉ sẽ tăng gấp đôi.
 Chứng minh tính hội tụ của phương pháp Newton có thể tham khảo [citizendium - Newton method Convergence analysis](http://en.citizendium.org/wiki/Newton%27s_method#Convergence_analysis).
