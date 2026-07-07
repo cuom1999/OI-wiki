@@ -1,6 +1,7 @@
 ## Giới thiệu
 
-Cây Chtholly, còn gọi là ODT (Old Driver Tree). Nó bắt nguồn từ [CF896C](https://codeforces.com/problemset/problem/896/C).
+Cây Chtholly còn được gọi là ODT (Old Driver Tree), bắt nguồn từ
+[CF896C](https://codeforces.com/problemset/problem/896/C).
 
 Tên gọi này chỉ một kỹ thuật "dùng cây cân bằng (`std::set`, `std::map`, v.v.) hoặc danh sách liên kết (`std::list`, danh sách liên kết tự cài đặt, v.v.) để duy trì các đoạn màu theo phân tích khấu hao", chứ không phải một cấu trúc dữ liệu cụ thể. Ý tưởng cốt lõi là gộp một đoạn liên tiếp có cùng giá trị thành một nút để xử lý. So với các cấu trúc dữ liệu truyền thống như cây phân đoạn, với những bài toán có thao tác phủ giá trị trên đoạn, Chtholly Tree có thể duy trì giá trị của từng đoạn bị phủ thuận tiện hơn.
 
@@ -34,7 +35,9 @@ Khi khởi tạo, chèn vào Chtholly Tree một khoảng rất dài (ví dụ n
 
 ### Thao tác `split`
 
-Thao tác `split` là cốt lõi của Chtholly Tree. Nó nhận một vị trí $x$, tách khoảng ban đầu chứa điểm $x$ (giả sử là $[l, r]$) thành hai khoảng $[l, x)$ và $[x, r]$, đồng thời trả về iterator trỏ đến khoảng sau.
+Thao tác `split` là cốt lõi của Chtholly Tree. Nó nhận một vị trí $x$, tách
+khoảng ban đầu chứa điểm $x$ (giả sử là $[l, r]$) thành hai khoảng $[l, x)$ và
+$[x, r]$, đồng thời trả về bộ lặp trỏ đến khoảng sau.
 
 Mã tham khảo như sau:
 
@@ -56,7 +59,10 @@ Trên các trình biên dịch không hỗ trợ suy diễn kiểu trả về b�
 
 Một thao tác quan trọng khác là `assign`. Nó dùng để gán giá trị cho một đoạn. Giả sử cần gán khoảng $[l,r]$ thành $v$.
 
-Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`, và ký hiệu các iterator mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi iterator $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong $[l,r]$.
+Trước hết, cắt riêng khoảng $[l, r]$ ra. Gọi lần lượt `split(r + 1), split(l)`,
+và ký hiệu các bộ lặp mà hai lời gọi này trả về là $itr, itl$. Khi đó phạm vi
+bộ lặp $[itl, itr)$ sẽ trỏ đến tất cả các khoảng trong Chtholly Tree nằm trong
+$[l,r]$.
 
 Sau đó, xóa thông tin cũ. `std::set` có hàm thành viên `erase`, với chữ kí như `iterator erase( const_iterator first, const_iterator last );`, có thể loại bỏ các phần tử trong phạm vi `[first; last)`. Vì vậy gọi `odt.erase(itl, itr);` để xóa thông tin cũ.
 
@@ -73,9 +79,18 @@ void assign(int l, int r, int v) {
 ```
 
 ???+ note "Vì sao cần gọi `split(r + 1)` trước rồi mới gọi `split(l)`?"
-    1.  Phương thức `std::set::erase` sẽ làm mất hiệu lực các tham chiếu và iterator trỏ đến phần tử bị xóa. Các tham chiếu và iterator khác không bị ảnh hưởng.
-    2.  Phương thức `std::set::insert` không làm mất hiệu lực bất kì iterator hay tham chiếu nào.
-    3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi `split` khoảng bên trái, quá trình sẽ không truy cập đến khoảng có đầu trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là $r + 1$ khiến iterator mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm iterator mất hiệu lực.
+    1.  Phương thức `std::set::erase` sẽ làm mất hiệu lực các tham chiếu và bộ
+        lặp trỏ đến phần tử bị xóa. Các tham chiếu và bộ lặp khác không bị ảnh
+        hưởng.
+    2.  Phương thức `std::set::insert` không làm mất hiệu lực bất kì bộ lặp hay
+        tham chiếu nào.
+    3.  Thao tác `split` sẽ tách khoảng. Sau khi gọi `split(r + 1)`, $r + 1$ sẽ
+        trở thành đầu trái của khoảng bên phải trong hai khoảng mới. Lúc này khi
+        `split` khoảng bên trái, quá trình sẽ không truy cập đến khoảng có đầu
+        trái là $r + 1$, nên cũng không tách và xóa khoảng có đầu trái là
+        $r + 1$ khiến bộ lặp mất hiệu lực. Ngược lại, nếu gọi `split(l)` trước
+        rồi mới gọi `split(r + 1)`, có thể xóa khoảng có đầu trái là $l$, làm bộ
+        lặp mất hiệu lực.
 
 ### Thao tác `perform`
 
@@ -100,7 +115,10 @@ So với cách cài đặt bằng `std::set`, thao tác `split` trong cách cài
 
 ### Lưu trữ nút
 
-Vì các khoảng được Chtholly Tree lưu trữ là liên tục, không nhất thiết phải ghi lại đầu phải. Có thể dùng một `map<int, int> mp;` để lưu tất cả các khoảng: key duy trì đầu trái, value duy trì giá trị từ đầu trái tương ứng đến trước đầu trái kế tiếp.
+Vì các khoảng được Chtholly Tree lưu trữ là liên tục, không nhất thiết phải ghi
+lại đầu phải. Có thể dùng một `map<int, int> mp;` để lưu tất cả các khoảng:
+khóa lưu đầu trái, còn phần giá trị lưu giá trị áp dụng từ đầu trái tương ứng
+đến trước đầu trái kế tiếp.
 
 Khi khởi tạo, nếu đề bài yêu cầu duy trì thông tin tại các vị trí từ $1$ đến $n$, gọi `mp[1] = -1, mp[n + 1] = -1` để biểu thị rằng $[1,n+1)$, tức $[1, n]$, đều được gán thành giá trị đặc biệt $-1$. Khoảng $[n+1, +\infty)$ được dùng làm lính canh, và cũng có thể khởi tạo nó.
 
@@ -125,7 +143,12 @@ auto split(int pos) {
 }
 ```
 
-Đoạn này dùng overload `iterator insert( const_iterator pos, const value_type& value );` của `std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước `pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước container.
+Đoạn này dùng phiên bản nạp chồng
+`iterator insert( const_iterator pos, const value_type& value );` của
+`std::map::insert`. Nó chèn `value` vào vị trí gần nhất có thể ngay trước
+`pos`. Nếu việc chèn thực sự xảy ra ngay trước `pos`, độ phức tạp là hằng số
+theo phân tích khấu hao; nếu không, độ phức tạp là logarit theo kích thước vùng
+chứa.
 
 ### Thao tác `assign`
 
