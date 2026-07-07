@@ -5,13 +5,15 @@ Bài viết này giới thiệu tích chập Dirichlet và hàm sinh Dirichlet.
 <span id="tích-chập-dirichlet"></span>
 ## Tích chập Dirichlet
 
-Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (tiếng Anh: Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
+Với hai hàm số học $f(n)$ và $g(n)$, **tích chập Dirichlet** (tiếng Anh:
+Dirichlet convolution), ký hiệu là $f \ast g$, được định nghĩa là hàm số học
 
 $$
 (f \ast g)(n) = \sum_{k\mid n}f(k)g\left(\dfrac{n}{k}\right) = \sum_{k\ell=n}f(k)g(\ell).
 $$
 
-Tích chập Dirichlet là một phép toán quan trọng trên các hàm số học. Nhiều tính chất của hàm số học được khai thác thông qua phép toán này.
+Tích chập Dirichlet là một phép toán quan trọng trên các hàm số học. Nhiều tính
+chất của hàm số học được khai thác thông qua phép toán này.
 
 ???+ example "Ví dụ"
     1.  Hàm đơn vị $\varepsilon$ là tích chập Dirichlet của hàm Mobius $\mu$ và hàm hằng $1$:
@@ -51,8 +53,13 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     1.  **Giao hoán**: $f\ast g=g\ast f$.
     2.  **Kết hợp**: $(f\ast g)\ast h=f\ast(g\ast h)$.
     3.  **Phân phối**: $(f+g)\ast h = f\ast h + g\ast h$.
-    4.  **Đơn vị**: $f\ast\varepsilon = \varepsilon \ast f = f$, trong đó $\varepsilon(n) = [n=1]$ là phần tử đơn vị của tích chập, còn $[\cdot]$ là ngoặc Iverson.
-    5.  **Nghịch đảo**: tồn tại $g$ sao cho $f\ast g=g\ast f=\varepsilon$ khi và chỉ khi $f(1)\neq 0$; khi đó $g$ được gọi là **nghịch đảo Dirichlet** (tiếng Anh: Dirichlet inverse) của $f$, có thể ký hiệu là $f^{-1}$. Hơn nữa, nghịch đảo $g$ thỏa công thức truy hồi
+    4.  **Đơn vị**: $f\ast\varepsilon = \varepsilon \ast f = f$, trong đó
+        $\varepsilon(n) = [n=1]$ là phần tử đơn vị của tích chập, còn $[\cdot]$
+        là ngoặc Iverson.
+    5.  **Nghịch đảo**: tồn tại $g$ sao cho $f\ast g=g\ast f=\varepsilon$ khi và
+        chỉ khi $f(1)\neq 0$; khi đó $g$ được gọi là **nghịch đảo Dirichlet**
+        (tiếng Anh: Dirichlet inverse) của $f$, có thể ký hiệu là $f^{-1}$. Hơn
+        nữa, nghịch đảo $g$ thỏa công thức truy hồi
     
         $$
         g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
@@ -94,13 +101,17 @@ Tích chập Dirichlet có một loạt tính chất đại số.
     (f\ast g)(n) = \sum_{k\ell = n}f(k)g(\ell) = \varepsilon(n).
     $$
     
-    Thực chất, đây là một hệ các phương trình về giá trị của $g(n)$, từ đó có thể giải trực tiếp $g(n)$. Đặc biệt, khi $n=1$, đẳng thức trở thành $f(1)g(1)=1$, nên để $g$ tồn tại thì tối thiểu phải có $f(1)\neq 0$. Ngược lại, chỉ cần $f(1)\neq 0$, có thể giải trực tiếp
+    Thực chất, đây là một hệ các phương trình về giá trị của $g(n)$, từ đó có
+    thể giải trực tiếp $g(n)$. Đặc biệt, khi $n=1$, đẳng thức trở thành
+    $f(1)g(1)=1$, nên để $g$ tồn tại thì tối thiểu phải có $f(1)\neq 0$. Ngược
+    lại, chỉ cần $f(1)\neq 0$, có thể giải trực tiếp
     
     $$
     g(n) = \dfrac{\varepsilon(n) - \sum_{k\ell = n,~k\neq 1}f(k)g(\ell)}{f(1)}.
     $$
     
-    Công thức này có thể dùng để tính đệ quy các giá trị của $g(n)$. Vì vậy, nghịch đảo $g$ tồn tại khi và chỉ khi $f(1)\neq 0$.
+    Công thức này có thể dùng để tính đệ quy các giá trị của $g(n)$. Vì vậy,
+    nghịch đảo $g$ tồn tại khi và chỉ khi $f(1)\neq 0$.
 
 Theo ngôn ngữ đại số trừu tượng, các tính chất đại số này nói rằng toàn bộ các hàm số học, với phép cộng theo điểm và tích chập Dirichlet, tạo thành một [vành giao hoán](../algebra/basic.md#vành); tập các phần tử khả nghịch của vành này chính là các hàm nhận giá trị khác không tại $n=1$. Vành này được gọi là **vành Dirichlet** (tiếng Anh: Dirichlet ring).
 
@@ -260,7 +271,10 @@ $$
 F(s) = \prod_{p\in\mathbf P}\sum_{e=0}^{\infty}\dfrac{f(p)^e}{p^{es}} = \prod_{p\in\mathbf P}\left(1-\dfrac{f(p)}{p^s}\right)^{-1}.
 $$
 
-Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn nhân tính không đóng dưới phép nhân. Vì vậy, tích chập Dirichlet và nghịch đảo Dirichlet của các hàm hoàn toàn nhân tính không nhất thiết là hàm hoàn toàn nhân tính, nhưng luôn là hàm nhân tính.
+Khác với hàm nhân tính, dạng hàm sinh Dirichlet của hàm hoàn toàn nhân tính
+không đóng dưới phép nhân. Vì vậy, tích chập Dirichlet và nghịch đảo Dirichlet
+của các hàm hoàn toàn nhân tính có thể không còn là hàm hoàn toàn nhân tính,
+nhưng luôn là hàm nhân tính.
 
 ???+ example "Ví dụ"
     1.  Hàm đơn vị $\varepsilon(n)$ là hàm hoàn toàn nhân tính. Hàm sinh Dirichlet của nó là hàm hằng theo biến bất định $s$:
@@ -335,7 +349,10 @@ So sánh với hàm sinh Dirichlet của hàm lũy thừa, chỉ cần lấy $g 
 <span id="tính-tích-chập-dirichlet"></span>
 ## Tính tích chập Dirichlet
 
-Mục này thảo luận bài toán tính tích chập Dirichlet: cho hai dãy $\{f(k)\}_{k=1}^n$ và $\{g(k)\}_{k=1}^n$, cần tìm một số hạng đầu của tích chập Dirichlet $h=f\ast g$, tức $\{h(k)\}_{k=1}^n$. Tùy theo tính chất của các hàm liên quan, độ phức tạp thuật toán cũng hơi khác nhau.
+Mục này thảo luận bài toán tính tích chập Dirichlet: cho hai dãy
+$\{f(k)\}_{k=1}^n$ và $\{g(k)\}_{k=1}^n$, cần tìm $n$ số hạng đầu của tích chập
+Dirichlet $h=f\ast g$, tức $\{h(k)\}_{k=1}^n$. Tùy theo tính chất của các hàm
+liên quan, độ phức tạp thuật toán cũng khác nhau.
 
 <span id="trường-hợp-tổng-quát"></span>
 ### Trường hợp tổng quát
@@ -374,7 +391,10 @@ $$
 G_p(s) = \sum_{p^k\le n}\dfrac{f(p^k)}{p^{ks}} = 1 + \dfrac{f(p)}{p^s} + \dfrac{f(p^2)}{p^{2s}} + \cdots.
 $$
 
-Vậy, bắt đầu từ $F(s)$, duyệt tất cả số nguyên tố $p$ không vượt quá $n$ và lần lượt nhân thêm $G_p(s)$, cũng thu được kết quả cuối cùng $H(s)$. Khi nhân thêm $G_p(s)$, chỉ cần áp dụng trực tiếp thuật toán liệt kê vét cạn trong trường hợp tổng quát. Tổng số lần liệt kê là
+Vậy, bắt đầu từ $F(s)$, duyệt tất cả số nguyên tố $p$ không vượt quá $n$ và lần
+lượt nhân thêm $G_p(s)$, cũng thu được kết quả cuối cùng $H(s)$. Khi nhân thêm
+$G_p(s)$, chỉ cần áp dụng trực tiếp thuật toán liệt kê vét cạn trong trường hợp
+tổng quát. Tổng số lần liệt kê là
 
 $$
 \sum_{p\in\mathbf P,~p\le n}\sum_{k=1}^{\infty}\left\lfloor\dfrac{n}{p^k}\right\rfloor \le \sum_{p\in\mathbf P,~p\le n}\dfrac{n}{p-1} \le \sum_{p\in\mathbf P,~p\le n}\dfrac{2n}{p} \in O(n\log\log n).
@@ -389,12 +409,21 @@ Cài đặt tham khảo như sau:
     --8<-- "docs/math/code/dirichlet/dirichlet-2.cpp:core"
     ```
 
-Đặc biệt, khi hàm nhân tính $g$ là hàm hoàn toàn nhân tính hoặc là nghịch đảo Dirichlet của một hàm hoàn toàn nhân tính, chẳng hạn $g = 1$ hoặc $g = \mu$, thuật toán còn có thể được đơn giản hóa hơn nữa. Lúc này, việc tính tích chập Dirichlet $h = f\ast g$ có thể dùng thuật toán [tổng tiền tố/sai phân Dirichlet](./mobius.md#tổng-tiền-tố-dirichlet) với hằng số nhỏ hơn, nhưng độ phức tạp thời gian vẫn là $O(n\log\log n)$.
+Đặc biệt, khi hàm nhân tính $g$ là hàm hoàn toàn nhân tính hoặc là nghịch đảo
+Dirichlet của một hàm hoàn toàn nhân tính, chẳng hạn $g = 1$ hoặc $g = \mu$,
+thuật toán còn có thể rút gọn thêm. Lúc này, việc tính tích chập Dirichlet
+$h = f\ast g$ có thể dùng thuật toán
+[tổng tiền tố/sai phân Dirichlet](./mobius.md#tổng-tiền-tố-dirichlet) với hằng
+số nhỏ hơn, nhưng độ phức tạp thời gian vẫn là $O(n\log\log n)$.
 
 <span id="trường-hợp-kết-quả-là-hàm-nhân-tính"></span>
 ### Trường hợp kết quả là hàm nhân tính
 
-Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá trị của nó tại các lũy thừa nguyên tố, rồi dùng [sàng tuyến tính](./sieve.md#sàng-tuyến-tính) để tính trong thời gian $O(n)$. Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, cứ tính vét cạn trực tiếp:
+Cuối cùng, xét trường hợp $h$ là hàm nhân tính. Đặc biệt, khi $f,g$ đều là hàm
+nhân tính, $h=f \ast g$ sẽ là hàm nhân tính. Để tính $h$, chỉ cần xác định giá
+trị của nó tại các lũy thừa nguyên tố, rồi dùng
+[sàng tuyến tính](./sieve.md#sàng-tuyến-tính) để tính trong thời gian $O(n)$.
+Với giá trị $h(p^e)$ tại lũy thừa nguyên tố $p^e$, ta tính vét cạn trực tiếp:
 
 $$
 h(p^e) = \sum_{i=0}^e f(p^i)g(p^{e-i}).
