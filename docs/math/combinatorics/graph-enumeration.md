@@ -10,15 +10,15 @@ Trong tổ hợp, đếm đồ thị (Graph Enumeration) là nhánh nghiên cứ
 <span id="bài-tập"></span>
 ### Bài tập
 
--   [Hihocoder 1047. Random Tree](https://vjudge.net/problem/HihoCoder-1047)
+-   [Hihocoder 1047. Cây ngẫu nhiên](https://vjudge.net/problem/HihoCoder-1047)
 
 <span id="đồ-thị-liên-thông-có-nhãn"></span>
 ## Đồ thị liên thông có nhãn
 
 <span id="ví-dụ-poj-1737-connected-graph"></span>
-### Ví dụ "POJ 1737" Connected Graph
+### Ví dụ "POJ 1737" Đồ thị liên thông
 
-???+ note "Ví dụ [\"POJ 1737\" Connected Graph](http://poj.org/problem?id=1737)"
+???+ note "Ví dụ [\"POJ 1737\" Đồ thị liên thông](http://poj.org/problem?id=1737)"
     Tóm tắt đề bài: tính số cách lập đồ thị liên thông có nhãn trên $n$ đỉnh ($n \leq 50$).
 
 Loại bài toán này xuất hiện rất sớm trong bộ "tám bài của nam nhân" của Lou Jiaozhu. Đặt $g_n$ là số đồ thị có nhãn trên $n$ đỉnh, và $c_n$ là dãy cần tính. Đồ thị trên $n$ đỉnh có nhiều nhất $\binom{n}{2}$ cạnh; mỗi cạnh có hai trạng thái tùy theo có xuất hiện hay không, và các trạng thái độc lập với nhau, nên $g_n = 2^{\binom{n}{2}}$. Cố định một đỉnh, rồi liệt kê kích thước thành phần liên thông chứa đỉnh đó; khi đó cần chọn thêm $i-1$ đỉnh từ $n-1$ đỉnh còn lại để tạo thành một thành phần liên thông. Các đỉnh nằm ngoài thành phần liên thông này có thể nối cạnh tùy ý, do đó có truy hồi:
@@ -87,9 +87,9 @@ Dùng [ln đa thức](../poly/elementary-func.md#hàm-logarit-và-hàm-mũ-của
 ## Đồ thị Euler và đồ thị hai phía có nhãn
 
 <span id="ví-dụ-spoj-kpgraphs-counting-graphs"></span>
-### Ví dụ "SPOJ KPGRAPHS" Counting Graphs
+### Ví dụ "SPOJ KPGRAPHS" Đếm đồ thị
 
-???+ note "Ví dụ [\"SPOJ KPGRAPHS\" Counting Graphs](http://www.spoj.com/problems/KPGRAPHS/)"
+???+ note "Ví dụ [\"SPOJ KPGRAPHS\" Đếm đồ thị](http://www.spoj.com/problems/KPGRAPHS/)"
     Tóm tắt đề bài: tính số đồ thị có nhãn trên $n$ đỉnh thỏa mãn từng tính chất sau ($n \leq 1000$).
     
     -   Đồ thị liên thông [A001187](https://oeis.org/A001187).
@@ -357,15 +357,15 @@ Nếu một cạnh nối hai đỉnh nằm trong hai chu trình khác nhau, đ�
 <span id="bài-tập_2"></span>
 ## Bài tập
 
--   [CodeForces 438 E. The Child and Binary Tree](https://codeforces.com/problemset/problem/438/E)
+-   [CodeForces 438 E. Đứa trẻ và cây nhị phân](https://codeforces.com/problemset/problem/438/E)
 -   [Luogu P5448. \[THUPC2018\] Đếm đồ thị tốt](https://www.luogu.com.cn/problem/P5448)
 -   [Luogu P5818. \[JSOI2011\] Đếm đồng phân cấu tạo](https://www.luogu.com.cn/problem/P5818)
 -   [Luogu P6597. Đếm anken](https://www.luogu.com.cn/problem/P6597)
 -   [Luogu P6598. Đếm ankan](https://www.luogu.com.cn/problem/P6598)
 -   [Luogu P4128. \[SHOI2006\] Đồ thị tô màu](https://www.luogu.com.cn/problem/P4128)
 -   [Luogu P4727. \[HNOI2009\] Đếm đẳng cấu của đồ thị](https://www.luogu.com.cn/problem/P4727)
--   [AtCoder Beginner Contest 222 H. Binary Tree](https://atcoder.jp/contests/abc222/tasks/abc222_h)
--   [AtCoder Beginner Contest 284 Ex. Count Unlabeled Graphs](https://atcoder.jp/contests/abc284/tasks/abc284_h)
+-   [AtCoder Beginner Contest 222 H. Cây nhị phân](https://atcoder.jp/contests/abc222/tasks/abc222_h)
+-   [AtCoder Beginner Contest 284 Ex. Đếm đồ thị không nhãn](https://atcoder.jp/contests/abc284/tasks/abc284_h)
 -   [Luogu P4708. Vẽ tranh](https://www.luogu.com.cn/problem/P4708)
 -   [Luogu P7592. Đếm cây (2021 CoE-II E)](https://www.luogu.com.cn/problem/P7592)
 -   [Luogu P5206. \[WC2019\] Đếm cây](https://www.luogu.com.cn/problem/P5206)

@@ -550,9 +550,9 @@ Vì $\operatorname{lcm},\gcd,a^{1},a^{-1}$ lần lượt tương ứng với $\m
 
 <span id="pkuwc2018-random-walk"></span>
 
-## PKUWC2018 Random Walk
+## PKUWC2018 Bước đi ngẫu nhiên
 
-???+ note "[PKUWC2018 Random Walk](https://loj.ac/problem/2542)"
+???+ note "[PKUWC2018 Bước đi ngẫu nhiên](https://loj.ac/problem/2542)"
     Cho một cây có $n$ đỉnh. Xuất phát từ $x$; mỗi lần chọn ngẫu nhiên đồng xác suất một cạnh kề với đỉnh hiện tại và đi theo cạnh đó.
     
     Có $Q$ truy vấn. Mỗi truy vấn cho một tập $S$; hỏi nếu xuất phát từ $x$ và cứ tiếp tục đi ngẫu nhiên cho đến khi mọi đỉnh trong $S$ đều đã được đi qua ít nhất một lần, thì kỳ vọng cần đi bao nhiêu bước.
@@ -619,8 +619,8 @@ Quay lại phần bao hàm-loại trừ, có $E(\max_{i\in S}x_i)=\sum_{T\subset
 
 ### Bài tập
 
--   [ABC331- G - Collect Them All](https://atcoder.jp/contests/abc331/tasks/abc331_g)
--   [Luogu P4707 Return to the Present World](https://www.luogu.com.cn/problem/P4707)
+-   [ABC331- G - Thu thập tất cả](https://atcoder.jp/contests/abc331/tasks/abc331_g)
+-   [Luogu P4707 Trở về thế giới hiện tại](https://www.luogu.com.cn/problem/P4707)
 
 <span id="tài-liệu-tham-khảo"></span>
 

@@ -1031,12 +1031,12 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [NOIP 2012 - King's Game](https://loj.ac/problem/2603)
--   [SPOJ - Fast Multiplication](http://www.spoj.com/problems/MUL/en/)
+-   [NOIP 2012 - Trò chơi của nhà vua](https://loj.ac/problem/2603)
+-   [SPOJ - Nhân nhanh](http://www.spoj.com/problems/MUL/en/)
 -   [SPOJ - GCD2](http://www.spoj.com/problems/GCD2/)
--   [UVa - Division](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
--   [UVa - Fibonacci Freeze](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
--   [Codeforces - Notepad](http://codeforces.com/contest/17/problem/D)
+-   [UVa - Phép chia](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1024)
+-   [UVa - Đóng băng Fibonacci](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=436)
+-   [Codeforces - Sổ tay](http://codeforces.com/contest/17/problem/D)
 
 <span id="tài-liệu-tham-khảo-và-liên-kết"></span>
 ## Tài liệu tham khảo và liên kết

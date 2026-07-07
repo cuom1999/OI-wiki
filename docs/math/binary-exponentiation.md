@@ -188,7 +188,7 @@ Chỉ cần lấy lũy thừa bậc $k$ của hoán vị này, rồi áp dụng 
 <span id="tăng-tốc-thao-tác-trên-tập-điểm-trong-hình-học"></span>
 ### Tăng tốc thao tác trên tập điểm trong hình học
 
-???+ example "[HDU 4087 A Letter to Programmers](https://acm.hdu.edu.cn/showproblem.php?pid=4087)"
+???+ example "[HDU 4087 Một lá thư gửi lập trình viên](https://acm.hdu.edu.cn/showproblem.php?pid=4087)"
     Cho $n$ điểm $p_i$ trong không gian ba chiều, cần áp dụng $m$ thao tác lên các điểm này. Có 3 loại thao tác:
     
     1.  Tịnh tiến vị trí điểm theo một véc-tơ nào đó (Shift).
@@ -259,11 +259,11 @@ Giả sử phạm vi của số mũ $b$ là $[0,n]$, khi đó độ dài khối 
 ## Bài tập
 
 -   [UVa 1230 - MODEX](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3671)
--   [UVa 374 - Big Mod](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
--   [UVa 11029 - Leading and Trailing](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
--   [Codeforces - Parking Lot](http://codeforces.com/problemset/problem/630/I)
--   [SPOJ - The last digit](http://www.spoj.com/problems/LASTDIG/)
--   [SPOJ - Locker](http://www.spoj.com/problems/LOCKER/)
--   [SPOJ - Just add it](http://www.spoj.com/problems/ZSUM/)
+-   [UVa 374 - Mô đun lớn](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=310)
+-   [UVa 11029 - Chữ số đầu và cuối](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1970)
+-   [Codeforces - Bãi đỗ xe](http://codeforces.com/problemset/problem/630/I)
+-   [SPOJ - Chữ số cuối cùng](http://www.spoj.com/problems/LASTDIG/)
+-   [SPOJ - Tủ khóa](http://www.spoj.com/problems/LOCKER/)
+-   [SPOJ - Chỉ cần cộng vào](http://www.spoj.com/problems/ZSUM/)
 
 **Một phần nội dung của trang này được dịch từ bài viết [Бинарное возведение в степень](http://e-maxx.ru/algo/binary_pow) và bản dịch tiếng Anh của bài viết đó, [Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html). Bản tiếng Nga được cấp phép theo Public Domain + Leave a Link; bản tiếng Anh được cấp phép theo CC-BY-SA 4.0.**

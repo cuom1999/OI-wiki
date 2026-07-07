@@ -845,7 +845,7 @@ $$
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [HDU3625 Examining the Rooms](https://acm.hdu.edu.cn/showproblem.php?pid=3625)
+-   [HDU3625 Kiểm tra các căn phòng](https://acm.hdu.edu.cn/showproblem.php?pid=3625)
 -   [UOJ540 Bài toán số tổ hợp, kì tuyển chọn liên tỉnh 2020](https://uoj.ac/problem/540)
 -   [UOJ269 Trại huấn luyện Tsinghua 2016: Cách tính tổng một cách thanh lịch](https://uoj.ac/problem/269)
 

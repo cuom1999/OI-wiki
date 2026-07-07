@@ -258,7 +258,7 @@ Vì số Catalan có ý nghĩa tổ hợp trực tiếp, chỉ dùng phương ph
 <span id="ví-dụ"></span>
 ## Ví dụ
 
-???+ example "[Luogu P1044 Stack](https://www.luogu.com.cn/problem/P1044)"
+???+ example "[Luogu P1044 Ngăn xếp](https://www.luogu.com.cn/problem/P1044)"
     Với thứ tự đưa vào ngăn xếp là $1,2,\ldots ,n$, tính tổng số thứ tự lấy ra có thể có.
 
 ??? note "Mã tham khảo"
@@ -275,13 +275,13 @@ Vì số Catalan có ý nghĩa tổ hợp trực tiếp, chỉ dùng phương ph
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [Luogu P2532 [AHOI2012] Treehouse Stairs](https://www.luogu.com.cn/problem/P2532)
--   [Luogu P1641 [SCOI2010] Generate Strings](https://www.luogu.com.cn/problem/P1641)
--   [Luogu P3200 [HNOI2009] Interesting Sequence](https://www.luogu.com.cn/problem/P3200)
--   [AtCoder Beginner Contest 205 E - White and Black Balls](https://atcoder.jp/contests/abc205/tasks/abc205_e)
--   [AtCoder Regular Contest 145 C - Split and Maximize](https://www.luogu.com.cn/problem/AT_arc145_c)
--   [Luogu P5014 Water Triangle (modified version)](https://www.luogu.com.cn/problem/P5014)
--   [Luogu P3978 [TJOI2015] Probability Theory](https://www.luogu.com.cn/problem/P3978)
+-   [Luogu P2532 [AHOI2012] Cầu thang nhà cây](https://www.luogu.com.cn/problem/P2532)
+-   [Luogu P1641 [SCOI2010] Sinh chuỗi](https://www.luogu.com.cn/problem/P1641)
+-   [Luogu P3200 [HNOI2009] Dãy thú vị](https://www.luogu.com.cn/problem/P3200)
+-   [AtCoder Beginner Contest 205 E - Bóng trắng và bóng đen](https://atcoder.jp/contests/abc205/tasks/abc205_e)
+-   [AtCoder Regular Contest 145 C - Tách và tối đa hóa](https://www.luogu.com.cn/problem/AT_arc145_c)
+-   [Luogu P5014 Tam giác nước (phiên bản sửa đổi)](https://www.luogu.com.cn/problem/P5014)
+-   [Luogu P3978 [TJOI2015] Lý thuyết xác suất](https://www.luogu.com.cn/problem/P3978)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
