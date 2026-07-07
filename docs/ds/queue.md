@@ -44,13 +44,13 @@ hàng đợi.
 
 Cách này dùng hai ngăn xếp $F$ và $S$ để mô phỏng một hàng đợi, trong đó $F$ là
 ngăn xếp ở phía cuối hàng đợi, còn $S$ biểu diễn phía đầu hàng đợi. Cách cài đặt
-này hỗ trợ các thao tác push (chèn vào cuối hàng đợi) và pop (xóa ở đầu hàng
-đợi):
+này hỗ trợ thao tác đưa vào cuối hàng đợi (`push`) và lấy khỏi đầu hàng đợi
+(`pop`):
 
--   push: chèn vào ngăn xếp $F$.
--   pop: nếu $S$ không rỗng thì pop khỏi $S$; nếu không, chuyển ngược các phần
-    tử của $F$ sang $S$ (thực chất là pop rồi push từng phần tử, sau khi làm
-    xong thứ tự đầu cuối bị đảo ngược), rồi pop khỏi $S$.
+-   `push`: chèn phần tử vào ngăn xếp $F$.
+-   `pop`: nếu $S$ không rỗng thì lấy phần tử khỏi $S$; nếu không, chuyển ngược
+    các phần tử của $F$ sang $S$ (thực chất là lấy rồi chèn từng phần tử, sau
+    khi làm xong thứ tự đầu cuối bị đảo ngược), rồi lấy phần tử khỏi $S$.
 
 Dễ chứng minh rằng mỗi phần tử chỉ được đưa vào, chuyển sang ngăn xếp kia, và
 lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
@@ -63,8 +63,8 @@ lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
 <span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
-C++ cung cấp adapter container `std::queue` trong STL. Trước khi dùng, cần nạp
-tệp tiêu đề `<queue>`.
+C++ cung cấp bộ điều hợp container `std::queue` trong STL. Trước khi dùng, cần
+nạp tệp tiêu đề `<queue>`.
 
 ???+ info "Định nghĩa `queue` trong STL"
     ```cpp
@@ -88,8 +88,8 @@ tệp tiêu đề `<queue>`.
     Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
     không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
 
-Adapter `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường dùng
-gồm:
+Bộ điều hợp `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường
+dùng gồm:
 
 -   Truy cập phần tử
     -   `q.front()` trả về phần tử đầu hàng đợi
@@ -144,13 +144,13 @@ cách xử lý này, các thao tác chèn và xóa vẫn có thời gian hằng 
 
 ??? note "Chứng minh ngắn gọn"
     Vì thao tác chèn chỉ đóng góp độ phức tạp hằng số, tiếp theo xét thao tác
-    pop. Giả sử ban đầu hàng đợi có $m$ phần tử; xét độ phức tạp thời gian để
-    pop toàn bộ phần tử (bất kể từ đầu hay từ cuối). Lần cân bằng đầu tiên có
-    độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có $\frac{m}{2}$ phần tử. Lúc này
-    cần $O(\frac{m}{2})$ thời gian để làm rỗng một trong hai ngăn xếp, rồi lại
-    kích hoạt một thao tác cân bằng có độ phức tạp $O(\frac{m}{2})$, cứ tiếp
-    tục như vậy cho đến khi toàn bộ phần tử được pop ra. Vì vậy, tổng độ phức
-    tạp là
+    lấy phần tử ra. Giả sử ban đầu hàng đợi có $m$ phần tử; xét độ phức tạp
+    thời gian để lấy toàn bộ phần tử ra (bất kể từ đầu hay từ cuối). Lần cân
+    bằng đầu tiên có độ phức tạp $O(m)$. Sau đó, mỗi ngăn xếp có
+    $\frac{m}{2}$ phần tử. Lúc này cần $O(\frac{m}{2})$ thời gian để làm rỗng
+    một trong hai ngăn xếp, rồi lại kích hoạt một thao tác cân bằng có độ phức
+    tạp $O(\frac{m}{2})$, cứ tiếp tục như vậy cho đến khi toàn bộ phần tử được
+    lấy ra. Vì vậy, tổng độ phức tạp là
     
     $$
     T(m)=T\left(\frac{m}{2}\right)+O(m)

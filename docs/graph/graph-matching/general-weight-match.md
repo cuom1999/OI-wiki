@@ -226,7 +226,7 @@ x là một đỉnh trong b, xs là một hoa hoặc một đỉnh trong b,
 // S[u]={-1: chưa thăm, 0: đỉnh chẵn, 1: đỉnh lẻ}
 // vis chỉ được dùng khi tìm lca để kiểm tra đã đi qua hay chưa
 queue<int> q;
-// queue dùng cho BFS tìm đường tăng cường
+// Hàng đợi dùng cho BFS tìm đường tăng cường
 ```
 
 ![Ánh xạ flower_from trong hoa lồng nhau](images/general-weight-match-4.png)
@@ -266,11 +266,11 @@ void set_slack(int x) {
 
 ```cpp
 void q_push(int x) {
-  // Đưa x vào queue, quy ước queue không thể push trực tiếp một hoa
+  // Đưa x vào hàng đợi, quy ước hàng đợi không thể nhận trực tiếp một hoa
   if (x <= n)
     q.push(x);
   else {
-    // Nếu muốn push một hoa thì phải thêm tất cả đỉnh của đồ thị gốc trong hoa vào queue
+    // Nếu muốn đưa một hoa vào, cần thêm tất cả đỉnh của đồ thị gốc trong hoa vào hàng đợi
     for (size_t i = 0; i < flower[x].size(); i++) {
       q_push(flower[x][i]);
     }
@@ -429,7 +429,7 @@ int get_lca(int u, int v) {
       int pr = get_pr(b, xr);  // Tìm vị trí của xr và để 0~pr là đường luân phiên trong hoa
       for (int i = 0; i < pr; i += 2) {
         // Bung đường luân phiên vào trong cây luân phiên
-        // Và đưa các đỉnh chẵn trong đường luân phiên vào queue
+        // Và đưa các đỉnh chẵn trong đường luân phiên vào hàng đợi
         int xs = flower[b][i];
         int xns = flower[b][i + 1];
         pa[xs] = g[xns][xs].u;
@@ -487,10 +487,10 @@ int get_lca(int u, int v) {
     bool matching() {
       memset(S + 1, -1, sizeof(int) * n_x);
       memset(slack + 1, 0, sizeof(int) * n_x);
-      q = queue<int>();  // Xóa rỗng queue
+      q = queue<int>();  // Xóa rỗng hàng đợi
       for (int x = 1; x <= n_x; ++x) {
         if (st[x] == x && !match[x]) {
-          // Đưa tất cả đỉnh chưa ghép cặp vào queue và đặt thành đỉnh chẵn
+          // Đưa tất cả đỉnh chưa ghép cặp vào hàng đợi và đặt thành đỉnh chẵn
           pa[x] = 0;
           S[x] = 0;
           q_push(x);

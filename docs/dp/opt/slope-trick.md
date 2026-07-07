@@ -535,24 +535,25 @@ vị trí nào trong khoảng $[\xi_{-1},\xi_1]$.
 
     1.  Thêm một điểm gãy $a'_i$ của đoạn độ dốc âm và một điểm gãy $a'_i$ của
         đoạn độ dốc dương;
-    2.  Pop tất cả điểm gãy $\xi_1,\cdots,\xi_{\ell}$ của các đoạn độ dốc dương.
+    2.  Lấy ra tất cả điểm gãy $\xi_1,\cdots,\xi_{\ell}$ của các đoạn độ dốc
+        dương.
 
     Khi duy trì thực tế, vì sau mỗi thao tác không còn điểm gãy của đoạn độ dốc
     dương, tức các điểm gãy của độ dốc có dạng
     $\xi_{-k}\le\cdots\le\xi_{-1}$, và thao tác luôn xảy ra tại biên giữa đoạn
-    độ dốc âm và dương, nên chỉ cần dùng một max-heap để lưu tất cả điểm gãy.
+    độ dốc âm và dương, nên chỉ cần dùng một heap lớn để lưu tất cả điểm gãy.
     Hai bước lần lượt tương ứng với:
 
     1.  Chèn $a'_i$ hai lần;
-    2.  Pop đỉnh heap.
+    2.  Lấy đỉnh heap ra.
 
     Sau mỗi lần thao tác, cần duy trì giá trị nhỏ nhất hiện tại của hàm. Vì sau
     khi thao tác kết thúc không còn đoạn độ dốc dương, giá trị nhỏ nhất của hàm
-    là giá trị tại đỉnh max-heap. Giả sử trước mỗi thao tác, đỉnh heap là
-    $\xi_{-1}$ và giá trị nhỏ nhất là $f_{i-1}(\xi_{-1})$. Vì đỉnh heap bị pop
-    là điểm gãy nhỏ nhất của đoạn độ dốc dương, giá trị nhỏ nhất của hàm bằng
-    giá trị hàm tại đó, nên chỉ cần tính giá trị hàm tại đỉnh heap trước khi
-    pop, tức
+    là giá trị tại đỉnh heap lớn. Giả sử trước mỗi thao tác, đỉnh heap là
+    $\xi_{-1}$ và giá trị nhỏ nhất là $f_{i-1}(\xi_{-1})$. Vì đỉnh heap bị lấy
+    ra là điểm gãy nhỏ nhất của đoạn độ dốc dương, giá trị nhỏ nhất của hàm
+    bằng giá trị hàm tại đó, nên chỉ cần tính giá trị hàm tại đỉnh heap trước
+    khi lấy ra, tức
 
     $$
     f_{i-1}(\max\{a'_i,\xi_{-1}\})+|\max\{a'_i,\xi_{-1}\}-a'_i|=f_{i-1}(\xi_{-1})+\max\{0,\xi_{-1}-a'_i\}.
@@ -626,12 +627,11 @@ Bài mẫu:
     Với bài này, duy trì riêng các đoạn độ dốc âm và dương sẽ tiện
     lợi hơn. Vì thao tác chủ yếu tập trung quanh đoạn độ dốc bằng không, dùng
     [hai heap đối đỉnh](../../ds/binary-heap.md#heap-đối-đỉnh),
-    tức dùng riêng max-heap và min-heap để duy trì các điểm gãy của đoạn độ dốc
-    âm và dương. Các phép tịnh tiến toàn bộ điểm gãy được thực hiện bằng lazy
-    tag. Vì bước thứ hai cần chèn một $a_i$ vào mỗi heap, sau khi chèn, đỉnh
-    max-heap không nhất thiết vẫn nhỏ hơn hoặc bằng đỉnh min-heap. Khi đó, hoán
-    đổi hai đỉnh heap cho đến khi quan hệ thứ tự của hai đỉnh heap được thỏa
-    mãn.
+    tức dùng riêng heap lớn và heap nhỏ để duy trì các điểm gãy của đoạn độ dốc
+    âm và dương. Các phép tịnh tiến toàn bộ điểm gãy được thực hiện bằng nhãn
+    lười. Vì bước thứ hai cần chèn một $a_i$ vào mỗi heap, sau khi chèn, đỉnh
+    heap lớn không nhất thiết vẫn nhỏ hơn hoặc bằng đỉnh heap nhỏ. Khi đó, hoán
+    đổi hai đỉnh heap cho đến khi quan hệ thứ tự của hai đỉnh heap được thỏa mãn.
 
     Cuối cùng, xét cách cập nhật giá trị nhỏ nhất trong quá trình thao tác. Vì
     bước tịnh tiến đầu tiên không làm thay đổi giá trị nhỏ nhất, chỉ cần xét thao
@@ -716,16 +716,16 @@ thường là hàm lồi theo lượng, và đây là cơ sở để dùng Slope
 
     Vì độ dài của các đoạn độ dốc luôn là số tự nhiên, có thể duy trì nhiều
     đoạn độ dài một, như vậy chỉ cần ghi lại độ dốc của mỗi đoạn. Vì chỉ cần
-    chèn và truy cập giá trị lớn nhất, chỉ cần dùng một max-heap. Thao tác gồm
+    chèn và truy cập giá trị lớn nhất, chỉ cần dùng một heap lớn. Thao tác gồm
     hai bước:
 
     1.  Chèn $-p_i$ hai lần;
-    2.  Pop đỉnh heap.
+    2.  Lấy đỉnh heap ra.
 
     Còn cần duy trì giá trị $f_i(0)$. Vì sau bước đầu tiên, giá trị của hàm tại
     $x=-1$ là $f_{i-1}(0)+p_i$, nên giá trị tại $x=0$ là giá trị này cộng với
-    đỉnh heap sắp bị pop, chính là độ dốc của hàm trên khoảng $[-1,0]$. Vì phép
-    cắt không đổi giá trị hàm tại $x=0$, đây chính là $f_i(0)$.
+    đỉnh heap sắp bị lấy ra, chính là độ dốc của hàm trên khoảng $[-1,0]$. Vì
+    phép cắt không đổi giá trị hàm tại $x=0$, đây chính là $f_i(0)$.
 
     So sánh cách cài đặt thuật toán này với code của phần
     [dãy tăng với chi phí nhỏ nhất](#ví-dụ-dãy-tăng-với-chi-phí-nhỏ-nhất)
@@ -802,18 +802,19 @@ Bài mẫu:
     Trong đề gốc, $a_i$ và $b_i$ rất nhỏ, nên chỉ cần duy trì nhiều đoạn độ dốc
     độ dài $1$. Mặc dù số đoạn độ dốc là vô hạn, chúng có cận trên $X$ và cận
     dưới $-Y$, và số đoạn độ dốc nằm nghiêm ngặt giữa hai cận này không nhiều.
-    Vì không có thao tác chèn, có thể dùng hai stack để duy trì các đoạn độ dốc
-    hai phía gốc. Phép cộng trên khoảng và phép lấy cực trị trên khoảng đều được
-    xử lý bằng đánh dấu lười. Ba bước trên lần lượt tương ứng với:
+    Vì không có thao tác chèn, có thể dùng hai ngăn xếp để duy trì các đoạn độ
+    dốc hai phía gốc. Phép cộng trên khoảng và phép lấy cực trị trên khoảng đều
+    được xử lý bằng đánh dấu lười. Ba bước trên lần lượt tương ứng với:
 
-    1.  Gắn đánh dấu lười cho hai stack trái và phải: bên trái cộng $-Z$, bên phải
-        cộng $Z$;
-    2.  Mỗi khi pop phần tử trong stack, lấy max với $-Y$ và min với $X$. Nếu
-        stack trái rỗng thì pop $-Y$. Nếu stack phải rỗng thì pop $X$;
-    3.  Pop $(b_i-a_i)$ phần tử trên đỉnh stack trái và chèn vào stack phải; tất
-        nhiên, khi $b_i-a_i<0$ thì làm ngược lại.
+    1.  Gắn đánh dấu lười cho hai ngăn xếp trái và phải: bên trái cộng $-Z$,
+        bên phải cộng $Z$;
+    2.  Mỗi khi lấy phần tử khỏi ngăn xếp, lấy cực đại với $-Y$ và cực tiểu với
+        $X$. Nếu ngăn xếp trái rỗng thì lấy giá trị $-Y$. Nếu ngăn xếp phải rỗng
+        thì lấy giá trị $X$;
+    3.  Lấy $(b_i-a_i)$ phần tử trên đỉnh ngăn xếp trái và chèn vào ngăn xếp
+        phải; tất nhiên, khi $b_i-a_i<0$ thì làm ngược lại.
 
-    Khi trao đổi đỉnh stack, cập nhật đáp án: đi sang trái thì trừ đi độ dốc
+    Khi trao đổi đỉnh ngăn xếp, cập nhật đáp án: đi sang trái thì trừ đi độ dốc
     hiện tại, đi sang phải thì cộng độ dốc hiện tại.
 
     Độ phức tạp của thuật toán là $O(n\max\{a_i,b_i\})$.

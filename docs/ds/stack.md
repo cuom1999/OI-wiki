@@ -48,7 +48,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
         st[++*st] = var1;
         // Đọc đỉnh ngăn xếp:
         int u = st[*st];
-        // Pop khỏi ngăn xếp: lưu ý không thể pop khi *st == 0.
+        // Lấy khỏi ngăn xếp: lưu ý không thể pop khi *st == 0.
         if (*st) --*st;
         // Xóa rỗng ngăn xếp:
         *st = 0;
@@ -65,7 +65,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
         st[0] = st[0] + 1
         # Đọc đỉnh ngăn xếp:
         u = st[st[0]]
-        # Pop khỏi ngăn xếp: lưu ý không thể pop khi st[0] == 0.
+        # Lấy khỏi ngăn xếp: lưu ý không thể pop khi st[0] == 0.
         if st[0]:
             st[0] = st[0] - 1
         # Xóa rỗng ngăn xếp:
@@ -76,8 +76,8 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
 
 ## Ngăn xếp trong C++ STL
 
-C++ STL cung cấp adapter container `std::stack`; trước khi dùng cần nạp tệp tiêu đề
-`<stack>`.
+C++ STL cung cấp bộ điều hợp container `std::stack`; trước khi dùng cần nạp tệp
+tiêu đề `<stack>`.
 
 ???+ info "Định nghĩa `stack` trong STL"
     ```cpp
@@ -101,8 +101,8 @@ C++ STL cung cấp adapter container `std::stack`; trước khi dùng cần nạ
     những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm
     container nền.
 
-Adapter `stack` trong STL cung cấp nhiều hàm thành viên; các hàm thường dùng
-gồm:
+Bộ điều hợp `stack` trong STL cung cấp nhiều hàm thành viên; các hàm thường
+dùng gồm:
 
 -   Truy cập phần tử
     -   `st.top()` trả về đỉnh ngăn xếp

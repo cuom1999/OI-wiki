@@ -38,7 +38,9 @@ Con trỏ `fail` của trạng thái $u$ trỏ tới một trạng thái khác $
 So sánh con trỏ `fail` với con trỏ `next` trong [KMP](./kmp.md):
 
 1.  Điểm giống nhau: cả hai đều là con trỏ dùng để nhảy khi khớp thất bại.
-2.  Điểm khác nhau: con trỏ `next` tìm Border dài nhất (tiền tố và hậu tố giống nhau dài nhất), còn con trỏ `fail` trỏ tới tiền tố của một xâu mẫu nào đó khớp với hậu tố dài nhất của trạng thái hiện tại.
+2.  Điểm khác nhau: con trỏ `next` tìm biên dài nhất (tiền tố và hậu tố giống
+    nhau dài nhất), còn con trỏ `fail` trỏ tới tiền tố của một xâu mẫu nào đó
+    khớp với hậu tố dài nhất của trạng thái hiện tại.
 
 Nguyên nhân là KMP chỉ khớp một xâu mẫu, còn ô-tô-mát AC phải khớp nhiều xâu mẫu. Đỉnh mà con trỏ `fail` trỏ tới có thể tương ứng với một xâu mẫu khác, nên tiền tố của hai xâu có thể khác nhau.
 

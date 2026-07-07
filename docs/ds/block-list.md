@@ -10,7 +10,7 @@ Chia mảng ban đầu có độ dài $n$ thành khoảng $\sqrt{n}$ nút,
 mỗi nút tương ứng với một mảng có kích thước khoảng $\sqrt{n}$.
 Vì vậy có thể định nghĩa cấu trúc như sau.
 Trong đó `sqn` biểu thị `sqrt(n)`, tức $\sqrt{n}$;
-`pb` biểu thị `push_back`, tức thêm một phần tử vào `node` này.
+`pb` biểu thị `push_back`, tức thêm một phần tử vào nút `node` này.
 
 ???+ note "Cài đặt"
     ```cpp
