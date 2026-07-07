@@ -16,7 +16,7 @@ Tích chập Dirichlet là một phép toán quan trọng trên các hàm số h
 chất của hàm số học được khai thác thông qua phép toán này.
 
 ???+ example "Ví dụ"
-    1.  Hàm đơn vị $\varepsilon$ là tích chập Dirichlet của hàm Mobius $\mu$ và hàm hằng $1$:
+    1.  Hàm đơn vị $\varepsilon$ là tích chập Dirichlet của hàm Möbius $\mu$ và hàm hằng $1$:
     
         $$
         \varepsilon=\mu \ast 1 \iff\varepsilon(n)=\sum_{d\mid n}\mu(d).
@@ -34,13 +34,13 @@ chất của hàm số học được khai thác thông qua phép toán này.
         \sigma=\mathrm{id} \ast 1 \iff\sigma(n)=\sum_{d\mid n}d.
         $$
     
-    4.  Hàm Euler $\varphi$ là tích chập Dirichlet của hàm đồng nhất $\mathrm{id}$ và hàm Mobius $\mu$:
+    4.  Hàm Euler $\varphi$ là tích chập Dirichlet của hàm đồng nhất $\mathrm{id}$ và hàm Möbius $\mu$:
     
         $$
         \varphi=\mathrm{id}\ast \mu \iff\varphi(n)=\sum_{d\mid n}d\cdot\mu\left(\frac{n}{d}\right).
         $$
 
-[Phép đảo Mobius](./mobius.md) chính là việc dùng $\varepsilon=\mu \ast 1$ để biến đổi các đồng nhất thức giữa hàm số học.
+[Phép đảo Möbius](./mobius.md) chính là việc dùng $\varepsilon=\mu \ast 1$ để biến đổi các đồng nhất thức giữa hàm số học.
 
 <span id="tính-chất"></span>
 ### Tính chất
@@ -164,7 +164,7 @@ Theo ngôn ngữ đại số trừu tượng, toàn bộ các hàm nhân tính, 
     
     1.  Luật phân phối: $(\alpha f)\ast(\alpha g) = \alpha\cdot(f\ast g)$.
     2.  Nghịch đảo: $(\alpha f)^{-1}=\alpha f^{-1}$, miễn là $f^{-1}$ tồn tại.
-    3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Mobius](./mobius.md#hàm-möbius).
+    3.  Hàm nhân tính $f$ là hàm hoàn toàn nhân tính khi và chỉ khi $f^{-1}=\mu f$, trong đó $\mu$ là [hàm Möbius](./mobius.md#hàm-möbius).
 
 ??? note "Chứng minh"
     Với ý thứ nhất, kiểm tra trực tiếp thu được
@@ -289,7 +289,7 @@ nhưng luôn là hàm nhân tính.
         I(s) = \sum_{n=1}^{\infty}\dfrac{1}{n^s} = \prod_{p\in\mathbf P}\dfrac{1}{1-p^{-s}} = \zeta(s).
         $$
     
-    3.  Hàm Mobius $\mu(n)$ là nghịch đảo Dirichlet của hàm hằng. Hàm sinh Dirichlet của nó là nghịch đảo của $\zeta(s)$:
+    3.  Hàm Möbius $\mu(n)$ là nghịch đảo Dirichlet của hàm hằng. Hàm sinh Dirichlet của nó là nghịch đảo của $\zeta(s)$:
     
         $$
         M(s) = \sum_{n=1}^{\infty}\dfrac{\mu(n)}{n^s} = \prod_{p\in\mathbf P}(1-p^{-s}) = \dfrac{1}{\zeta(s)}.
