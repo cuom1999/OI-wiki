@@ -12,7 +12,8 @@ Tên tiếng Anh là Directed Acyclic Graph, viết tắt là DAG.
 
 -   Một đồ thị có hướng không chu trình có thể sắp xếp tô pô;
 
-    (Chứng minh bằng quy nạp) Giả sử mọi đồ thị có hướng không chu trình với số đỉnh không vượt quá $k$ đều có thể sắp xếp tô pô. Với trường hợp có đúng $k$ đỉnh, chỉ cần xét tình huống sau khi thực hiện bước đầu tiên của sắp xếp tô pô.
+    (Chứng minh bằng quy nạp) Giả sử mọi đồ thị có hướng không chu trình với số đỉnh không vượt quá $k$ đều có thể sắp xếp tô pô.
+    Với trường hợp có $k+1$ đỉnh, chỉ cần xét đồ thị còn lại sau khi thực hiện bước đầu tiên của sắp xếp tô pô.
 
 ## Kiểm tra
 
@@ -20,15 +21,19 @@ Làm thế nào để kiểm tra một đồ thị có phải là đồ thị c�
 
 Chỉ cần kiểm tra xem nó có thể [sắp xếp tô pô](./topo.md) hay không.
 
-Một cách khác là chạy một lượt [DFS](../search/dfs.md) trên đồ thị, rồi trên cây DFS thu được kiểm tra xem có cạnh không thuộc cây nào đi tới tổ tiên (cạnh ngược) hay không. Nếu có, đồ thị chứa chu trình.
+Một cách khác là chạy một lượt [DFS](./dfs.md) trên đồ thị, rồi trên cây DFS thu được kiểm tra xem có cạnh không thuộc cây nào đi tới tổ tiên (cạnh ngược) hay không.
+Nếu có, đồ thị chứa chu trình.
 
 ## Ứng dụng
 
 ### Dùng DP tìm đường đi dài nhất (ngắn nhất)
 
-Trên đồ thị tổng quát, độ phức tạp thời gian tốt nhất để tìm đường đi dài nhất (ngắn nhất) đơn nguồn là $O(nm)$ ([thuật toán Bellman–Ford](./shortest-path.md#thuật-toán-bellman-ford), dùng được cho đồ thị có trọng số âm) hoặc $O(m \log m)$ ([thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra), dùng cho đồ thị không có trọng số âm).
+Trên đồ thị tổng quát, bài toán đường đi ngắn nhất đơn nguồn thường dùng [Bellman–Ford](./shortest-path.md#thuật-toán-bellman-ford) với độ phức tạp $O(nm)$.
+Nếu đồ thị không có trọng số âm, có thể dùng [thuật toán Dijkstra](./shortest-path.md#thuật-toán-dijkstra) với độ phức tạp $O(m \log m)$.
+Riêng bài toán đường đi dài nhất trên đồ thị tổng quát khó hơn nhiều.
 
-Nhưng trên DAG, có thể dùng DP để tìm đường đi dài nhất (ngắn nhất), đưa độ phức tạp thời gian xuống $O(n+m)$. Phương trình chuyển trạng thái là $dis_v = min(dis_v, dis_u + w_{u,v})$ hoặc $dis_v = max(dis_v, dis_u + w_{u,v})$.
+Nhưng trên DAG, có thể dùng DP để tìm đường đi dài nhất (ngắn nhất), đưa độ phức tạp thời gian xuống $O(n+m)$.
+Phương trình chuyển trạng thái là $dis_v = min(dis_v, dis_u + w_{u,v})$ hoặc $dis_v = max(dis_v, dis_u + w_{u,v})$.
 
 Sau khi sắp xếp tô pô, duyệt từng đỉnh theo thứ tự tô pô và dùng đỉnh hiện tại để cập nhật các đỉnh đứng sau nó.
 
