@@ -377,7 +377,7 @@ và lời giải chuẩn dựa vào SPFA, thì không nên đặt giới hạn d
     Những tối ưu này hiệu quả rõ rệt trên một số đồ thị,
     nhưng trên vài đồ thị đặc biệt, độ phức tạp xấu nhất có thể đạt mức hàm mũ.
     
-    -   Tối ưu bằng heap: thay hàng đợi bằng heap.
+    -   Tối ưu bằng đống: thay hàng đợi bằng đống.
         Khác với Dijkstra, cách này cho phép một đỉnh vào hàng đợi nhiều lần.
         Trên đồ thị có cạnh âm, cách này có thể bị đẩy đến độ phức tạp hàm mũ.
     -   Tối ưu bằng stack: thay hàng đợi bằng stack, tức biến quá trình BFS ban đầu thành DFS.
@@ -424,14 +424,14 @@ Tổng thời gian của thao tác 2 là $O(m)$,
 tổng thời gian của thao tác 1 là $O(n^2)$,
 nên toàn bộ quá trình có độ phức tạp thời gian $O(n^2 + m) = O(n^2)$.
 
-Có thể dùng heap để tối ưu quá trình này.
-Mỗi khi nới lỏng thành công một cạnh $(u,v)$, chèn $v$ vào heap;
-nếu $v$ đã ở trong heap thì trực tiếp thực hiện Decrease-key.
-Thao tác 1 chỉ cần lấy đỉnh ở đỉnh của heap.
+Có thể dùng đống để tối ưu quá trình này.
+Mỗi khi nới lỏng thành công một cạnh $(u,v)$, chèn $v$ vào đống;
+nếu $v$ đã ở trong đống thì trực tiếp thực hiện Decrease-key.
+Thao tác 1 chỉ cần lấy đỉnh ở đỉnh của đống.
 Tổng cộng có $O(m)$ lần Decrease-key và $O(n)$ lần pop;
-chọn heap khác nhau sẽ cho độ phức tạp khác nhau, xem trang [heap](../ds/heap.md).
-Độ phức tạp tối ưu mà Dijkstra tối ưu bằng heap có thể đạt được là $O(n\log n+m)$,
-ví dụ với heap Fibonacci.
+chọn đống khác nhau sẽ cho độ phức tạp khác nhau, xem trang [đống](../ds/heap.md).
+Độ phức tạp tối ưu mà Dijkstra tối ưu bằng đống có thể đạt được là $O(n\log n+m)$,
+ví dụ với đống Fibonacci.
 
 Đặc biệt, có thể dùng hàng đợi ưu tiên để duy trì.
 Khi đó không thể thực hiện Decrease-key,
@@ -439,12 +439,12 @@ nhưng có thể chèn lại đỉnh mỗi khi nới lỏng.
 Khi lấy ra thì kiểm tra đỉnh đó đã được xử lý hay chưa; nếu rồi thì bỏ qua.
 Độ phức tạp là $O(m\log n)$, ưu điểm là cài đặt đơn giản hơn.
 
-Heap trong phần này cũng có thể được cài bằng cây phân đoạn, độ phức tạp là $O(m\log n)$.
-Với một số cài đặt cây phân đoạn không đệ quy đặc biệt, hằng số của cách này nhỏ hơn heap.
+Đống trong phần này cũng có thể được cài bằng cây phân đoạn, độ phức tạp là $O(m\log n)$.
+Với một số cài đặt cây phân đoạn không đệ quy đặc biệt, hằng số của cách này nhỏ hơn đống.
 Ngoài ra cây phân đoạn hỗ trợ nhiều thao tác hơn,
 và trong một số bài đồ thị đặc biệt bắt buộc phải dùng cây phân đoạn để duy trì.
 
-Trong đồ thị thưa, $m = O(n)$, Dijkstra tối ưu bằng heap có lợi thế lớn về hiệu suất; còn trong đồ thị dày, $m = O(n^2)$, cài đặt đơn giản lại tốt hơn.
+Trong đồ thị thưa, $m = O(n)$, Dijkstra tối ưu bằng đống có lợi thế lớn về hiệu suất; còn trong đồ thị dày, $m = O(n^2)$, cài đặt đơn giản lại tốt hơn.
 
 ### Chứng minh tính đúng đắn
 
@@ -628,7 +628,7 @@ bằng cách liệt kê đỉnh xuất phát và chạy Bellman-Ford $n$ lần,
 độ phức tạp thời gian là $O(n^2m)$.
 Cũng có thể dùng trực tiếp Floyd, độ phức tạp thời gian là $O(n^3)$.
 
-Nhận thấy Dijkstra tối ưu bằng heap có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford.
+Nhận thấy Dijkstra tối ưu bằng đống có độ phức tạp tìm đường đi ngắn nhất từ một nguồn tốt hơn Bellman-Ford.
 Nếu liệt kê đỉnh xuất phát và chạy Dijkstra $n$ lần,
 có thể giải bài toán trong độ phức tạp $O(nm\log m)$, phụ thuộc vào cách cài đặt Dijkstra.
 Cận này tốt hơn độ phức tạp chạy Bellman-Ford $n$ lần ở trên,

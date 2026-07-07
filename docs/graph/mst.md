@@ -145,10 +145,10 @@ Cụ thể, mỗi lần chọn một đỉnh chưa được thêm có khoảng c
 rồi dùng các cạnh kề với đỉnh này để cập nhật khoảng cách của các đỉnh khác.
 
 Quá trình này giống thuật toán Dijkstra:
-mỗi lần cần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng heap.
+mỗi lần cần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm bằng vét cạn hoặc duy trì bằng đống.
 
-Cách tối ưu bằng heap tương tự tối ưu heap của Dijkstra.
-Tuy nhiên, nếu dùng heap nhị phân hoặc các loại heap không hỗ trợ thao tác decrease-key trong $O(1)$,
+Cách tối ưu bằng đống tương tự tối ưu bằng đống của Dijkstra.
+Tuy nhiên, nếu dùng đống nhị phân hoặc các loại đống không hỗ trợ thao tác decrease-key trong $O(1)$,
 độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn.
 Vì vậy, trong trường hợp thông thường thường chọn Kruskal.
 Trên đồ thị dày, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal,
@@ -156,9 +156,9 @@ nhưng khi chạy thực tế chưa chắc nhanh hơn.
 
 Vét cạn: $O(n^2+m)$.
 
-Heap nhị phân: $O((n+m) \log n)$.
+Đống nhị phân: $O((n+m) \log n)$.
 
-Heap Fibonacci: $O(n \log n + m)$.
+Đống Fibonacci: $O(n \log n + m)$.
 
 Mã giả:
 
@@ -189,7 +189,7 @@ Lưu ý: đoạn mã trên chỉ tính tổng trọng số của cây khung nh�
 
 ??? note "Cài đặt mã"
     ```cpp
-    // Thuật toán Prim tối ưu bằng heap nhị phân.
+    // Thuật toán Prim tối ưu bằng đống nhị phân.
     #include <cstring>
     #include <iostream>
     #include <queue>

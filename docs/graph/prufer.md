@@ -26,7 +26,7 @@ Dãy Prüfer được xây dựng như sau:
 mỗi lần chọn lá có số hiệu nhỏ nhất rồi xóa nó, sau đó ghi vào dãy đỉnh kề với lá đó.
 Sau khi lặp lại $n-2$ lần, cây chỉ còn hai đỉnh và thuật toán kết thúc.
 
-Nếu dùng heap thì độ phức tạp là $O(n\log n)$.
+Nếu dùng đống thì độ phức tạp là $O(n\log n)$.
 
 ???+ note "Cài đặt"
     === "C++"
@@ -230,7 +230,7 @@ Từ đó có quy trình dựng lại cây:
 mỗi lần chọn đỉnh có bậc $1$ và số hiệu nhỏ nhất, nối nó với đỉnh đang xét trong dãy Prüfer,
 rồi đồng thời giảm bậc của hai đỉnh.
 Cuối cùng còn lại hai đỉnh có bậc $1$, trong đó một đỉnh là đỉnh $n$; nối hai đỉnh này lại.
-Nếu dùng heap để duy trì quá trình này, mỗi khi bậc của một đỉnh giảm xuống $1$ thì thêm đỉnh đó vào heap.
+Nếu dùng đống để duy trì quá trình này, mỗi khi bậc của một đỉnh giảm xuống $1$ thì thêm đỉnh đó vào đống.
 Độ phức tạp là $O(n\log n)$.
 
 ???+ note "Cài đặt"

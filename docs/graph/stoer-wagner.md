@@ -130,9 +130,9 @@ Tổng cộng có $O(|V|)$ pha co đỉnh, nên tổng độ phức tạp là $O
 
 Theo kinh nghiệm từ [đường đi ngắn nhất](./shortest-path.md), nút thắt của thuật toán nằm ở việc tìm đỉnh có trọng số lớn nhất.
 
-Trong một pha co đỉnh, cần lấy đỉnh khỏi heap $|V|$ lần và tăng trọng số $|E|$ lần.
+Trong một pha co đỉnh, cần lấy đỉnh khỏi đống $|V|$ lần và tăng trọng số $|E|$ lần.
 
-Heap Fibonacci có thể đảm nhiệm việc tìm đỉnh lớn nhất trong $O(\log|V|)$ và tăng trọng số trong $O(1)$, nhờ đó độ phức tạp lý thuyết có thể đạt $O(|E| + |V|\log|V|)$.
-Tuy nhiên, vì heap Fibonacci có hằng số quá lớn và lượng mã nhiều, giá trị ứng dụng thực tế tương đối thấp.
+Đống Fibonacci có thể đảm nhiệm việc tìm đỉnh lớn nhất trong $O(\log|V|)$ và tăng trọng số trong $O(1)$, nhờ đó độ phức tạp lý thuyết có thể đạt $O(|E| + |V|\log|V|)$.
+Tuy nhiên, vì đống Fibonacci có hằng số quá lớn và lượng mã nhiều, giá trị ứng dụng thực tế tương đối thấp.
 
 Trong thử nghiệm thực tế, ngay cả khi bật O2, việc được chấp nhận vẫn có thể phụ thuộc vào dao động của trình chấm.

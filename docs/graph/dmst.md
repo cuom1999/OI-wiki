@@ -70,15 +70,15 @@ Thuật toán của Tarjan gồm hai giai đoạn: **co** và **mở rộng**. T
 
 Giả sử đồ thị đầu vào liên thông mạnh. Nếu chưa thỏa điều kiện này, thêm $O(n)$ cạnh có trọng số vô cùng lớn.
 
-Thuật toán cần một heap để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh.
-Vì các bước sau có thao tác gộp heap, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt.
-Ở mỗi bước, chọn một đỉnh bất kỳ $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong heap.
-Sau đó đưa cạnh vào nhỏ nhất của $v$ vào heap.
-Nếu cạnh mới thêm khiến các cạnh trong heap tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; các đỉnh đã được co như vậy được gọi là **siêu đỉnh**.
+Thuật toán cần một đống để lưu các thông tin như chỉ số cạnh vào của đỉnh, trọng số cạnh vào và tổng chi phí của đỉnh.
+Vì các bước sau có thao tác gộp đống, phần này dùng [cây lệch trái](../ds/leftist-tree.md) và [DSU](../ds/dsu.md) để cài đặt.
+Ở mỗi bước, chọn một đỉnh bất kỳ $v$ sao cho $v$ không phải là đỉnh gốc và cạnh vào của nó chưa nằm trong đống.
+Sau đó đưa cạnh vào nhỏ nhất của $v$ vào đống.
+Nếu cạnh mới thêm khiến các cạnh trong đống tạo thành một chu trình, co các đỉnh thuộc chu trình đó lại; các đỉnh đã được co như vậy được gọi là **siêu đỉnh**.
 Quá trình tiếp diễn cho đến khi toàn bộ các đỉnh được co thành một siêu đỉnh, khi đó giai đoạn co kết thúc.
 Sau giai đoạn co, thu được một cây co để thực hiện thao tác mở rộng.
 
-Các cạnh trong heap luôn tạo thành một đường đi $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$. Do đồ thị liên thông mạnh, đường đi này luôn tồn tại; mỗi $v_i$ là một đỉnh đơn ban đầu hoặc một siêu đỉnh sau khi co.
+Các cạnh trong đống luôn tạo thành một đường đi $v_0\leftarrow v_1\leftarrow \dots\leftarrow v_k$. Do đồ thị liên thông mạnh, đường đi này luôn tồn tại; mỗi $v_i$ là một đỉnh đơn ban đầu hoặc một siêu đỉnh sau khi co.
 
 Ban đầu có $v_0=a$, trong đó $a$ là một đỉnh bất kỳ trong đồ thị.
 Mỗi lần chọn một cạnh vào nhỏ nhất $v_k\leftarrow u$.
@@ -91,7 +91,7 @@ Nếu $u$ là một đỉnh $v_i$ trong số đó, đã tìm được chu trình
     Nếu đỉnh $b$ chưa từng được ghi nhận, nghĩa là chưa hình thành chu trình; đặt $a\leftarrow b$ và tiếp tục thao tác hiện tại để tìm chu trình.
 
 2.  Nếu $b$ đã được ghi nhận, nghĩa là đã xuất hiện chu trình.
-    Tăng tổng số đỉnh lên một, đánh số lại mọi đỉnh trên chu trình, gộp các heap, đồng thời cập nhật tổng trọng số của các đỉnh hoặc siêu đỉnh.
+    Tăng tổng số đỉnh lên một, đánh số lại mọi đỉnh trên chu trình, gộp các đống, đồng thời cập nhật tổng trọng số của các đỉnh hoặc siêu đỉnh.
     Thao tác cập nhật trọng số là gom tất cả cạnh vào của các đỉnh trên chu trình và trừ đi trọng số của cạnh vào tương ứng trên chu trình.
 
 ![Co chu trình trong đồ thị thành cây co](./images/dmst1.png)
