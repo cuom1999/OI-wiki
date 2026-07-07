@@ -838,7 +838,7 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
--   [Möbius function - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_function)
--   [Möbius inversion formula - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
--   [Von Mangoldt function - Wikipedia](https://en.wikipedia.org/wiki/Von_Mangoldt_function)
+-   [Hàm Möbius - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_function)
+-   [Công thức nghịch đảo Möbius - Wikipedia](https://en.wikipedia.org/wiki/M%C3%B6bius_inversion_formula)
+-   [Hàm von Mangoldt - Wikipedia](https://en.wikipedia.org/wiki/Von_Mangoldt_function)
 -   [algocode algorithm blog](https://web.archive.org/web/20190523150159/https://algocode.net/2018/04/18/20180418-KB-Mobius-Inversion-Formula/)

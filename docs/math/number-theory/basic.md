@@ -727,9 +727,9 @@ trang sau:
 
 -   Pan Chengdong, Pan Chengbiao. *Số học sơ cấp*. Nhà xuất bản Đại học Bắc
     Kinh.
--   [Floor and ceiling functions - Wikipedia](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)
+-   [Hàm sàn và hàm trần - Wikipedia](https://en.wikipedia.org/wiki/Floor_and_ceiling_functions)
 -   Graham, Ronald L., Donald E. Knuth, and Oren Patashnik. "Concrete mathematics: a foundation for computer science." (1989).
 
-[^ref1]: [Are all primes (past 2 and 3) of the forms 6n+1 and 6n-1?](https://primes.utm.edu/notes/faq/six.html)
+[^ref1]: [Có phải mọi số nguyên tố (sau 2 và 3) đều có dạng 6n+1 hoặc 6n-1?](https://primes.utm.edu/notes/faq/six.html)
 
 [^gcdcpp]: [std::gcd - cppreference.com](https://en.cppreference.com/w/cpp/numeric/gcd)

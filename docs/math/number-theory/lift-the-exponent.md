@@ -128,4 +128,4 @@ Nếu $4\mid x-y$, thì:
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
-1.  [Lifting-the-exponent lemma - Wikipedia](https://en.wikipedia.org/wiki/Lifting-the-exponent_lemma)
+1.  [Bổ đề nâng số mũ - Wikipedia](https://en.wikipedia.org/wiki/Lifting-the-exponent_lemma)

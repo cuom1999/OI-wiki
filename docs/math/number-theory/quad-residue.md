@@ -548,8 +548,8 @@ Trong đó $g^e\equiv ab^2\pmod p$ đã biết, còn giá trị $e\bmod 2^k$ có
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
-1.  [Quadratic residue - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_residue)
-2.  [Euler's criterion - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_criterion)
+1.  [Thặng dư bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_residue)
+2.  [Tiêu chuẩn Euler - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_criterion)
 
 [^ref1]: Daniel. J. Bernstein. Faster Square Roots in Annoying Finite Fields.
 
@@ -559,7 +559,7 @@ Trong đó $g^e\equiv ab^2\pmod p$ đã biết, còn giá trị $e\bmod 2^k$ có
 
 [^ref4]: Alin Bostan, Ryuhei Mori. A Simple and Fast Algorithm for Computing the N-th Term of a Linearly Recurrent Sequence. Available at <https://arxiv.org/abs/2008.08822>.
 
-[^ref5]: [Proofs of quadratic reciprocity - Wikipedia](https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity)
+[^ref5]: [Các chứng minh của luật thuận nghịch bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Proofs_of_quadratic_reciprocity)
 
 [^ref6]: Carl Friedrich Gauss. Untersuchungen über höhere Arithmetik, 1965. Page 458-462.
 

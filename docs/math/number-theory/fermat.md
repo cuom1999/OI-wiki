@@ -294,8 +294,8 @@ không âm.
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   [Fermat's little theorem - Wikipedia](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
--   [Euler's theorem - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_theorem)
+-   [Định lý nhỏ Fermat - Wikipedia](https://en.wikipedia.org/wiki/Fermat%27s_little_theorem)
+-   [Định lý Euler - Wikipedia](https://en.wikipedia.org/wiki/Euler%27s_theorem)
 -   Hardy, Godfrey Harold, and Edward Maitland Wright. An introduction to the theory of numbers. Oxford university press, 1979.
 
 [^ex-euler]: Tên gọi này chủ yếu xuất hiện trong cộng đồng lập trình thi đấu, không phải tên gọi phổ biến của kết quả này.
