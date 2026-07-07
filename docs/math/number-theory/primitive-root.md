@@ -892,7 +892,7 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
 ## Tài liệu tham khảo và ghi chú
 
--   [Căn nguyên thủy modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
+-   [Căn nguyên thủy theo môđun $n$ - Wikipedia](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)
 -   [Cấp của một đơn vị - ghi chú bài giảng](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
 -   [Định lý căn nguyên thủy - ghi chú của Amin Witno](http://witno.com/philadelphia/notes/won5.pdf)
 -   [Hàm Carmichael - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)

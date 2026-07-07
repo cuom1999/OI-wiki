@@ -699,7 +699,7 @@ Mã tham khảo để tìm toàn bộ căn bậc $k$ theo môđun bất kỳ nh�
 ## Tài liệu tham khảo và ghi chú
 
 -   Feng Keqin. Elementary Number Theory and Its Applications.
--   [Căn đơn vị modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
+-   [Căn đơn vị theo môđun $n$ - Wikipedia](https://en.wikipedia.org/wiki/Root_of_unity_modulo_n)
 -   [No.981 Căn lũy thừa tổng quát, lời giải của 37zigen](https://yukicoder.me/problems/no/981/editorial)
 
 [^fnnt]: Môđun $m$ có thể không phải là số nguyên tố. Chỉ cần $a$ là căn đơn vị

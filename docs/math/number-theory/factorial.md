@@ -451,4 +451,4 @@ Nếu phân tích kỹ, việc $p$ có chia hết hệ số nhị thức hay kh�
 -   [Định lý Wilson - Wikipedia](https://en.wikipedia.org/wiki/Wilson%27s_theorem)
 -   [Công thức Legendre - Wikipedia](https://en.wikipedia.org/wiki/Legendre%27s_formula)
 
-**Trang này chủ yếu được dịch từ bài viết [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) và bản dịch tiếng Anh [Giai thừa modulo p](https://cp-algorithms.com/algebra/factorial-modulo.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**
+**Trang này chủ yếu được dịch từ bài viết [Вычисление факториала по модулю](http://e-maxx.ru/algo/modular_factorial) và bản dịch tiếng Anh [Giai thừa theo môđun p](https://cp-algorithms.com/algebra/factorial-modulo.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0. Nội dung đã được chỉnh sửa.**

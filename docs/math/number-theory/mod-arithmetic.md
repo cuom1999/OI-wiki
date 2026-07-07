@@ -508,12 +508,12 @@ $$
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
--   [Phép nhân modulo nhanh bởi orz - Codeforces](https://codeforces.com/blog/entry/96759)
+-   [Phép nhân nhanh theo môđun bởi orz - Codeforces](https://codeforces.com/blog/entry/96759)
 -   [Rút gọn Barrett - Wikipedia](https://en.wikipedia.org/wiki/Barrett_reduction)
 -   [Rút gọn Barrett - A41](https://encrypt.a41.io/primitives/modular-arithmetic/modular-reduction/barrett-reduction#cost-analysis-of-modular-multiplication)
 -   [Nguyên lý và chứng minh tính đúng của rút gọn Barrett bởi Chen - Zhihu](https://zhuanlan.zhihu.com/p/690876166)
 -   [Phép nhân Montgomery - CP Algorithms](https://cp-algorithms.com/algebra/montgomery_multiplication.html)
--   [Phép nhân modulo Montgomery bởi Chen - Zhihu](https://zhuanlan.zhihu.com/p/645428404)
+-   [Phép nhân Montgomery theo môđun bởi Chen - Zhihu](https://zhuanlan.zhihu.com/p/645428404)
 -   [Lũy thừa nhị phân bằng phân tích nhân tử - CP Algorithms](https://cp-algorithms.com/algebra/factoring-exp.html)
 -   Barrett, Paul. "Implementing the Rivest Shamir and Adleman public key encryption algorithm on a standard digital signal processor." In Conference on the Theory and Application of Cryptographic Techniques, pp. 311-323. Berlin, Heidelberg: Springer Berlin Heidelberg, 1986.
 -   Becker, Hanno, Vincent Hwang, Matthias J. Kannwischer, Bo-Yin Yang, and Shang-Yi Yang. "Neon NTT: Faster Dilithium, Kyber, and Saber on Cortex-A72 and Apple M1." IACR Transactions on Cryptographic Hardware and Embedded Systems (2022): 221-244.
