@@ -452,8 +452,8 @@ $$
 
 ### Bài tập
 
--   [UVa 1476 - Error Curves](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
--   [UVa 10385 - Duathlon](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
+-   [UVa 1476 - Các đường cong sai số](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=447&page=show_problem&problem=4222)
+-   [UVa 10385 - Hai môn phối hợp](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=15&page=show_problem&problem=1326)
 -   [UOJ 162 - Tập huấn Thanh Hoa 2015: Kiểm tra bóng đèn](https://uoj.ac/problem/162)
 -   [Luogu P7579 - RdOI R2: Cân khối lượng (weigh)](https://www.luogu.com.cn/problem/P7579)
 
@@ -471,6 +471,6 @@ Quy hoạch phân số có thể được giải bằng phương pháp nhị ph�
 
 ## Tài liệu tham khảo
 
--   [Ternary search - Wikipedia](https://en.wikipedia.org/wiki/Ternary_search)
--   [Golden-section search - Wikipedia](https://en.wikipedia.org/wiki/Golden-section_search)
--   [Ternary search - CP Algortihms](https://cp-algorithms.com/num_methods/ternary_search.html)
+-   [Tìm kiếm tam phân - Wikipedia](https://en.wikipedia.org/wiki/Ternary_search)
+-   [Tìm kiếm lát cắt vàng - Wikipedia](https://en.wikipedia.org/wiki/Golden-section_search)
+-   [Tìm kiếm tam phân - CP Algorithms](https://cp-algorithms.com/num_methods/ternary_search.html)

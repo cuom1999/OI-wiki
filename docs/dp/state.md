@@ -66,5 +66,5 @@ Cần lưu ý rằng không nên duyệt trực tiếp các tập rồi kiểm t
 ## Bài tập
 
 -   [「NOI2001」Trận địa pháo binh](https://loj.ac/problem/10173)
--   [「USACO06NOV」Corn Fields](https://www.luogu.com.cn/problem/P1879)
+-   [「USACO06NOV」Cánh đồng ngô](https://www.luogu.com.cn/problem/P1879)
 -   [「Kỳ thi liên tỉnh 2018」Một cặp quân cờ gỗ](https://loj.ac/problem/2471)

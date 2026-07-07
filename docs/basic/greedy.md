@@ -178,7 +178,7 @@ có khả năng quay lại xét các lựa chọn theo nghĩa rộng.
 
 ## Bài tập
 
--   [P1209\[USACO1.3\] Barn Repair - Luogu](https://www.luogu.com.cn/problem/P1209)
+-   [P1209\[USACO1.3\] Sửa chuồng bò - Luogu](https://www.luogu.com.cn/problem/P1209)
 -   [P2123 Trò chơi hoàng hậu - Luogu](https://www.luogu.com.cn/problem/P2123)
 -   [Các bài có nhãn greedy trên LeetCode](https://leetcode-cn.com/tag/greedy/)
 

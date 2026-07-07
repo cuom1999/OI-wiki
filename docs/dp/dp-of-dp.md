@@ -145,6 +145,6 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [CF979E Kuro and Topological Parity](https://codeforces.com/problemset/problem/979/E)
+-   [CF979E Kuro và tính chẵn lẻ tô pô](https://codeforces.com/problemset/problem/979/E)
 -   [\[TJOI2018\] Hội dạo chơi](https://loj.ac/p/2575)
 -   [\[NOI2022\] Loại bỏ đá](https://loj.ac/p/3848)

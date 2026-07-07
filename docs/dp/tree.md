@@ -26,9 +26,9 @@ Thông thường, trạng thái của DP trên cây là lời giải tối ưu t
 
 ### Bài tập
 
--   [HDU 2196 Computer](https://acm.hdu.edu.cn/showproblem.php?pid=2196)
+-   [HDU 2196 Máy tính](https://acm.hdu.edu.cn/showproblem.php?pid=2196)
 
--   [POJ 1463 Strategic game](http://poj.org/problem?id=1463)
+-   [POJ 1463 Trò chơi chiến lược](http://poj.org/problem?id=1463)
 
 -   [\[POI2014\] FAR-FarmCraft](https://www.luogu.com.cn/problem/P3574)
 
@@ -110,15 +110,15 @@ Vì vậy, trong lần DFS thứ hai, duyệt toàn bộ cây và chuyển trạ
 
 ### Bài tập
 
--   [Atcoder Educational DP Contest, Problem V, Subtree](https://atcoder.jp/contests/dp/tasks/dp_v)
+-   [Atcoder Educational DP Contest, Bài V, Cây con](https://atcoder.jp/contests/dp/tasks/dp_v)
 
--   [Educational Codeforces Round 67, Problem E, Tree Painting](https://codeforces.com/contest/1187/problem/E)
+-   [Educational Codeforces Round 67, Bài E, Tô màu cây](https://codeforces.com/contest/1187/problem/E)
 
--   [POJ 3585 Accumulation Degree](http://poj.org/problem?id=3585)
+-   [POJ 3585 Bậc tích lũy](http://poj.org/problem?id=3585)
 
--   [\[USACO10MAR\]Great Cow Gathering G](https://www.luogu.com.cn/problem/P2986)
+-   [\[USACO10MAR\] Cuộc tụ họp bò lớn G](https://www.luogu.com.cn/problem/P2986)
 
--   [CodeForce 708C Centroids](http://codeforces.com/problemset/problem/708/C)
+-   [CodeForce 708C Trọng tâm](http://codeforces.com/problemset/problem/708/C)
 
 ## Tài liệu tham khảo và chú thích
 

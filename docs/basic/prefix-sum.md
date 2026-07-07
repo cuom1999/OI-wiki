@@ -452,17 +452,17 @@ Tổng tiền tố:
 -   [Luogu B3612【Nhập môn sâu 1. Ví dụ 1】Tính tổng đoạn](https://www.luogu.com.cn/problem/B3612)
 -   [Luogu U69096 Nghịch đảo của tổng tiền tố](https://www.luogu.com.cn/problem/U69096)
 -   [AtCoder joi2007ho\_a Tổng lớn nhất](https://atcoder.jp/contests/joi2007ho/tasks/joi2007ho_a)
--   [「USACO16JAN」Subsequences Summing to Sevens](https://www.luogu.com.cn/problem/P3131)
--   [「USACO05JAN」Moo Volume S](https://www.luogu.com.cn/problem/P6067)
+-   [「USACO16JAN」Các dãy con có tổng chia hết cho bảy](https://www.luogu.com.cn/problem/P3131)
+-   [「USACO05JAN」Âm lượng Moo S](https://www.luogu.com.cn/problem/P6067)
 
 Tổng tiền tố hai chiều / nhiều chiều:
 
--   [HDU 6514 Monitor](https://acm.hdu.edu.cn/showproblem.php?pid=6514)
+-   [HDU 6514 Màn hình](https://acm.hdu.edu.cn/showproblem.php?pid=6514)
 -   [Luogu P1387 Hình vuông lớn nhất](https://www.luogu.com.cn/problem/P1387)
 -   [「HNOI2003」Bom laser](https://www.luogu.com.cn/problem/P2280)
--   [CF 165E Compatible Numbers](https://codeforces.com/contest/165/problem/E)
--   [CF 383E Vowels](https://codeforces.com/problemset/problem/383/E)
--   [ARC 100C Or Plus Max](https://atcoder.jp/contests/arc100/tasks/arc100_c)
+-   [CF 165E Các số tương thích](https://codeforces.com/contest/165/problem/E)
+-   [CF 383E Nguyên âm](https://codeforces.com/problemset/problem/383/E)
+-   [ARC 100C Or cộng lớn nhất](https://atcoder.jp/contests/arc100/tasks/arc100_c)
 
 Tổng tiền tố trên cây:
 
@@ -472,7 +472,7 @@ Tổng tiền tố trên cây:
 Sai phân:
 
 -   [Cây Fenwick 3: sửa đoạn, truy vấn đoạn](https://loj.ac/problem/132)
--   [「Poetize6」IncDec Sequence](https://www.luogu.com.cn/problem/P4552)
+-   [「Poetize6」Dãy tăng giảm](https://www.luogu.com.cn/problem/P4552)
 -   [Luogu P4231 Ba bước tất sát](https://www.luogu.com.cn/problem/P4231)
 
 Sai phân hai chiều / nhiều chiều:

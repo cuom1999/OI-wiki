@@ -85,6 +85,6 @@ Khi sửa, chỉ cần sửa $g_{i,1}$ và các chuỗi nặng đi lên phía tr
 
 ## Bài tập
 
--   [SPOJ GSS3 - Can you answer these queries III](https://www.spoj.com/problems/GSS3/)
+-   [SPOJ GSS3 - Bạn có thể trả lời các truy vấn này III](https://www.spoj.com/problems/GSS3/)
 -   [「NOIP2018」Bảo vệ vương quốc](https://loj.ac/p/2955)
 -   [「SDOI2017」Trò chơi cắt cây](https://loj.ac/p/2269)
