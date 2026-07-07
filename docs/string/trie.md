@@ -254,7 +254,7 @@ Những điểm cần lưu ý:
 
 Cộng một toàn cục nghĩa là tăng tất cả các giá trị trong trie lên `+1`.
 
-Nói một cách hình thức, giả sử các giá trị đang được duy trì trong trie là $V_1, V_2, V_3 \dots V_n$, sau khi cộng một toàn cục, các giá trị được duy trì sẽ trở thành $V_1+1, V_2+1, V_3+1 \dots V_n+1$.
+Về mặt hình thức, giả sử các giá trị đang được duy trì trong trie là $V_1, V_2, V_3 \dots V_n$, sau khi cộng một toàn cục, các giá trị được duy trì sẽ trở thành $V_1+1, V_2+1, V_3+1 \dots V_n+1$.
 
 ```cpp
 void addall(int o) {

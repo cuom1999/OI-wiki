@@ -6,7 +6,7 @@ $$
 \displaystyle\frac{\sum\limits_{i=1}^na_i\times w_i}{\sum\limits_{i=1}^nb_i\times w_i}
 $$
 
-Nói một cách trực quan, loại bài này có dạng: mỗi vật có hai trọng số $a$ và $b$, chọn một số vật sao cho $\displaystyle\frac{\sum a}{\sum b}$ nhỏ nhất hoặc lớn nhất.
+Nhìn trực quan, loại bài này có dạng: mỗi vật có hai trọng số $a$ và $b$, chọn một số vật sao cho $\displaystyle\frac{\sum a}{\sum b}$ nhỏ nhất hoặc lớn nhất.
 
 Thông thường, bài toán quy hoạch phân thức còn có một số ràng buộc đặc biệt, chẳng hạn "mẫu số ít nhất là $W$".
 

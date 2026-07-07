@@ -26,7 +26,7 @@ Trước hết, ô-tô-mát AC chèn một số xâu mẫu vào một Trie, rồ
 
 Mỗi đỉnh trong Trie biểu diễn một tiền tố của một xâu mẫu nào đó. Trong các phần sau, đỉnh này cũng được gọi là một trạng thái. Một đỉnh biểu diễn một trạng thái, còn các cạnh của Trie là các phép chuyển trạng thái.
 
-Nói một cách hình thức, với các xâu mẫu $s_1,s_2,\cdots,s_n$, sau khi xây dựng Trie từ chúng, gọi tập tất cả các trạng thái là $Q$.
+Về mặt hình thức, với các xâu mẫu $s_1,s_2,\cdots,s_n$, sau khi xây dựng Trie từ chúng, gọi tập tất cả các trạng thái là $Q$.
 
 <span id="con-trỏ-thất-bại"></span>
 ## Con trỏ thất bại

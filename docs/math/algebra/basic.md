@@ -33,7 +33,7 @@ Trên cơ sở đó, chương này sẽ tập trung giới thiệu các kiến t
     3.  Với mọi phần tử $a\in G$, nghịch đảo $a^{-1}$ của nó cũng duy nhất;
     4.  Luật giản ước (cancellation law): với $a,b,c\in G$, nếu $a\cdot c=b\cdot c$ hoặc $c\cdot a=c\cdot b$, thì $a=b$.
 
-Nhóm xuất hiện rất phổ biến. Nói một cách bình dân, mọi phép biến đổi không làm mất cấu trúc đều tự động tạo thành một nhóm. Xét một vài kiểu nhóm thường gặp làm ví dụ.
+Nhóm xuất hiện rất phổ biến. Hiểu nôm na, mọi phép biến đổi không làm mất cấu trúc đều tự động tạo thành một nhóm. Xét một vài kiểu nhóm thường gặp làm ví dụ.
 
 ???+ example "Ví dụ về nhóm"
     -   **Nhóm đối xứng** (symmetric group): tất cả các [hoán vị](../permutation.md) trên tập hợp $M$, tức các song ánh từ $M$ đến chính $M$, tạo thành nhóm $S_M$ dưới phép hợp thành ánh xạ. Phần tử đơn vị là phép biến đổi đồng nhất, phần tử nghịch đảo là ánh xạ nghịch đảo (song ánh tất yếu có ánh xạ nghịch đảo). Nếu tập hợp $M$ hữu hạn và có kích thước $n$, nhóm này cũng thường được ký hiệu là $S_n$ và gọi là nhóm đối xứng bậc $n$.
@@ -168,7 +168,7 @@ Ví dụ thường gặp về trường như sau.
 ???+ example "Ví dụ về trường"
     -   Trường số: tập số hữu tỷ $\mathbf Q$, tập số thực $\mathbf R$ và tập số phức $\mathbf C$ đều tạo thành trường dưới phép cộng và phép nhân theo nghĩa thông thường.
     -   Trường hữu hạn (finite field): tập hợp các lớp đồng dư của số nguyên modulo số nguyên tố $p$, $\mathbf Z/p\mathbf Z$, tạo thành trường dưới phép cộng và phép nhân các lớp đồng dư. Ngoài chúng ra còn có các trường hữu hạn khác; cấu trúc của chúng được xác định duy nhất bởi kích thước, và kích thước đó tất yếu có dạng lũy thừa của một số nguyên tố.
-    -   **Trường phân thức** (fraction field): cho $(R,+,\cdot)$ là một miền nguyên, có thể xét tập hợp $Q$ gồm các phần tử có dạng $ab^{-1}$. Nói một cách chặt chẽ, định nghĩa quan hệ tương đương trên tập $R\times(R\setminus\{0\})$: $(a_1,b_1)\sim(a_2,b_2)$ khi và chỉ khi $a_1b_2=a_2b_1$. Khi đó, $Q$ là tập hợp các lớp tương đương theo quan hệ này, tức $R\times(R\setminus\{0\})/\sim$; trong đó lớp tương đương chứa $(a,b)$ được ký hiệu là $ab^{-1}$. Nếu định nghĩa các phép toán trên nó bởi
+    -   **Trường phân thức** (fraction field): cho $(R,+,\cdot)$ là một miền nguyên, có thể xét tập hợp $Q$ gồm các phần tử có dạng $ab^{-1}$. Nói chặt chẽ hơn, định nghĩa quan hệ tương đương trên tập $R\times(R\setminus\{0\})$: $(a_1,b_1)\sim(a_2,b_2)$ khi và chỉ khi $a_1b_2=a_2b_1$. Khi đó, $Q$ là tập hợp các lớp tương đương theo quan hệ này, tức $R\times(R\setminus\{0\})/\sim$; trong đó lớp tương đương chứa $(a,b)$ được ký hiệu là $ab^{-1}$. Nếu định nghĩa các phép toán trên nó bởi
     
         $$
         \begin{aligned}

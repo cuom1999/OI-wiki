@@ -148,7 +148,7 @@ $$
 
 Trong đó $pre(u)$ được định nghĩa là tập các đỉnh tiền nhiệm của $u$. Phương trình này có thể suy ra từ bổ đề 3.
 
-Nói một cách dễ hiểu,
+Hiểu đơn giản,
 tập các đỉnh thống trị của một đỉnh bằng giao của các tập đỉnh thống trị
 của tất cả các đỉnh tiền nhiệm của nó, rồi hợp thêm chính nó.
 Theo phương trình này,
@@ -356,7 +356,7 @@ Trước hết, xuất phát từ $s$ và chạy dfs trên đồ thị có hư�
 
 #### Bán thống trị
 
-Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh $v$ sao cho từ $v$ có một đường đi đến $u$ mà trên đường đi đó, ngoài $u, v$ ra, mọi đỉnh đều lớn hơn $u$. Nói một cách hình thức, bán thống trị $sdom(u)$ của $u$ được định nghĩa là:
+Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh $v$ sao cho từ $v$ có một đường đi đến $u$ mà trên đường đi đó, ngoài $u, v$ ra, mọi đỉnh đều lớn hơn $u$. Về mặt hình thức, bán thống trị $sdom(u)$ của $u$ được định nghĩa là:
 
 $sdom(u) = \min(v|\exists v=v_0 \rightarrow v_1 \rightarrow\dots \rightarrow v_k = u, \forall 1\le i\le k - 1, v_i > u)$
 
@@ -384,7 +384,7 @@ Bán thống trị có một số tính chất hữu ích:
 
 Từ các bổ đề trên, thu được định lý sau:
 
-**Định lý 1:** Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh tiền nhiệm của nó và trong các bán thống trị của mọi tổ tiên lớn hơn $u$ trên $T$ của các đỉnh thống trị của nó. Nói một cách hình thức, $sdom(u)=\min(\{v|\exists v \rightarrow u, v < u \} \cup \{sdom(w) | w > u\ and\ \exists w \rightarrow \dots \rightarrow v \rightarrow u \})$.
+**Định lý 1:** Bán thống trị của một đỉnh $u$ là đỉnh nhỏ nhất trong các đỉnh tiền nhiệm của nó và trong các bán thống trị của mọi tổ tiên lớn hơn $u$ trên $T$ của các đỉnh thống trị của nó. Về mặt hình thức, $sdom(u)=\min(\{v|\exists v \rightarrow u, v < u \} \cup \{sdom(w) | w > u\ and\ \exists w \rightarrow \dots \rightarrow v \rightarrow u \})$.
 
 **Chứng minh:** Đặt $x$ bằng vế phải của công thức trên.
 

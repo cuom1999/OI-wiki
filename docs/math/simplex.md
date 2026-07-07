@@ -622,7 +622,7 @@ Việc chọn biến ra khỏi cơ sở thường quyết định thuật toán 
 
     Nếu bài toán quy hoạch tuyến tính ở dạng dư, các đại lượng này đều có thể lấy trực tiếp từ bảng đơn hình $T_B$ dạng đã nêu ở trên; ngược lại, sau khi tìm một nghiệm cơ bản ban đầu (không nhất thiết khả thi), có thể dùng các hệ số của các cột ứng với biến cơ sở trong cơ sở ban đầu này (giữ nguyên thứ tự) làm hệ số của $A_B^{-1}$.
 
-Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. Tương đối mà nói, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
+Quy tắc Bland có hiệu quả thấp, vì bản thân quy tắc chọn biến vào cơ sở và ra khỏi cơ sở theo cùng một cách, dễ làm cùng một biến liên tục vào rồi ra khỏi cơ sở. So với Bland, quy tắc thứ tự từ điển thực dụng hơn. Quy tắc thứ tự từ điển tương đương với việc nhiễu loạn các tham số trong bài toán quy hoạch tuyến tính[^lexico], làm cho không tồn tại các nghiệm cơ bản khả thi có cùng giá trị tối ưu, và vì vậy không có khả năng lặp.
 
 <span id="cài-đặt-tham-khảo"></span>
 ## Cài đặt tham khảo
