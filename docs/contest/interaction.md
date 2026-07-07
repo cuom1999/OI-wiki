@@ -16,13 +16,13 @@ Khi thi, nếu tác giả bài cho sẵn tệp tiêu đề của trình chấm (
 
 Ví dụ:
 
--   [CF679A Bear and Prime 100](https://codeforces.com/problemset/problem/679/A)
--   [CF843B Interactive LowerBound](https://codeforces.com/problemset/problem/843/B)
+-   [CF679A Gấu và số nguyên tố 100](https://codeforces.com/problemset/problem/679/A)
+-   [CF843B Cận dưới tương tác](https://codeforces.com/problemset/problem/843/B)
 -   [UOJ206\[APIO2016\]Gap](http://uoj.ac/problem/206)
--   [CF750F New Year and Finding Roots](https://codeforces.com/problemset/problem/750/F)
--   [UVa12731 Bí ẩn trạm không gian / Mysterious Space Station](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=823&page=show_problem&problem=4584)
+-   [CF750F Năm mới và tìm gốc](https://codeforces.com/problemset/problem/750/F)
+-   [UVa12731 Bí ẩn trạm không gian](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=823&page=show_problem&problem=4584)
 
-## CF679A Bear and Prime 100
+## CF679A Gấu và số nguyên tố 100
 
 Mỗi số nguyên tố có đúng hai ước, nên có thể trực tiếp liệt kê các ước của số cần đoán. Vì giới hạn tối đa 20 truy vấn, và với các số lớn hơn (như 92), khi thử phân tích thừa số nguyên tố sẽ thấy cần liệt kê các số nguyên tố đến tận $\lfloor\frac{n}{2}\rfloor$ trong trường hợp xấu nhất. Vì vậy trước tiên sàng các số nguyên tố không vượt quá 50, rồi lần lượt hỏi tất cả các số đó.
 
@@ -48,7 +48,7 @@ Do bài này dễ đối chiếu kiểm thử, có thể trực tiếp thử m�
     }
     ```
 
-## CF843B Interactive LowerBound
+## CF843B Cận dưới tương tác
 
 Danh sách liên kết có tối đa $5 \times 10 ^ 4$ phần tử, nhưng chỉ được truy vấn $1999$ lần và chỉ lấy được phần tử kế tiếp của một phần tử, nên cách duyệt toàn bộ danh sách liên kết thông thường không dùng được. Chỉ có một cách trực tiếp để tìm cách tiến gần đến vị trí của phần tử mục tiêu: rải điểm ngẫu nhiên.
 
@@ -154,7 +154,7 @@ Chia thành hai bài con để thảo luận:
     }
     ```
 
-## CF750F New Year and Finding Roots
+## CF750F Năm mới và tìm gốc
 
 Yêu cầu $h \le 7$, số lần truy vấn $\le 16$ rất chặt, nên cần tận dụng tối đa thông tin thu được từ mỗi lần thăm.
 
@@ -278,7 +278,7 @@ Khi đó thuật toán vừa khít trường hợp xấu nhất 16 lần.
     }
     ```
 
-## UVa12731 Bí ẩn trạm không gian / Mysterious Space Station
+## UVa12731 Bí ẩn trạm không gian
 
 Vì phản hồi duy nhất là khi di chuyển có va vào tường hay không, nên xét cách đi sát mép tường nhiều nhất có thể trong khi vẫn không để robot bị lạc. Cách này có vài lợi ích:
 
@@ -293,7 +293,7 @@ Có thể dùng phương pháp trên: ban đầu đánh dấu toàn bộ các ô
 
 Sau khi tìm ra các ô chưa biết, cần xác định quan hệ ghép cặp của $2k$ ô chưa biết. Cách làm thực tế cũng rất đơn giản: chỉ cần vét cạn cách ghép cặp. Vì $k \le 5$, nên nhiều nhất chỉ cần $9 + 7 + 5 + 3$ lần thử sai. Để so sánh, trường hợp xác định toàn bộ ô chưa biết trong hình nhiều nhất cần $121 - 40$ lần thử sai.
 
-Hiện tại, mã dưới đây chỉ được chấp nhận trên bản sao UOJ: [#247. Rujia Liu's Present 7: Mysterious Space Station](http://uoj.ac/problem/247), nhưng không được chấp nhận ở đề gốc UVa. Sau khi sửa lời giải chuẩn của Liu Rujia trên UOJ vẫn chưa được chấp nhận, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy mã dưới đây lấy UOJ làm chuẩn.
+Hiện tại, mã dưới đây chỉ được chấp nhận trên bản sao UOJ: [#247. Món quà 7 của Rujia Liu: Bí ẩn trạm không gian](http://uoj.ac/problem/247), nhưng không được chấp nhận ở đề gốc UVa. Sau khi sửa lời giải chuẩn của Liu Rujia trên UOJ vẫn chưa được chấp nhận, và tạm thời chưa liên hệ được với Liu Rujia. Vì vậy mã dưới đây lấy UOJ làm chuẩn.
 
 Tuy nhiên chất lượng lời giải chuẩn của Liu Rujia vẫn cao hơn mã dưới đây rất nhiều; có thể xem [lời giải chuẩn được chấp nhận trên bản sao UOJ](http://uoj.ac/submission/105789) trên UOJ. Với cùng một bộ dữ liệu, số lần di chuyển mà lời giải chuẩn dùng là rất ít.
 
@@ -566,7 +566,7 @@ Tuy nhiên chất lượng lời giải chuẩn của Liu Rujia vẫn cao hơn m
 
 ## Bài tập
 
--   [Chuyên đề bài tương tác Rujia Liu's Present 7 của Liu Rujia có chất lượng rất cao, rất đáng làm thử.](https://onlinejudge.org/contests/328-9976a2e2/)
+-   [Chuyên đề bài tương tác Món quà 7 của Rujia Liu có chất lượng rất cao, rất đáng làm thử.](https://onlinejudge.org/contests/328-9976a2e2/)
 -   [P5473 [NOI2019] Cuộc thám hiểm của I-kun](https://www.luogu.com.cn/problem/P5473)
 -   [P5208 [WC2019] Cửa hàng của I-kun](https://www.luogu.com.cn/problem/P5208)
 

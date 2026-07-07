@@ -59,6 +59,6 @@ Thực tế, các bước trên cũng hữu ích khi giải những dạng bài 
 
 ## Bài tập
 
--   [「NOIP2014」Oẳn tù tì phiên bản Big Bang Theory - Universal Online Judge](https://uoj.ac/problem/15)
--   [「OpenJudge 3750」World of Warcraft](http://bailian.openjudge.cn/practice/3750/)
+-   [「NOIP2014」Oẳn tù tì phiên bản Thuyết Big Bang - Universal Online Judge](https://uoj.ac/problem/15)
+-   [「OpenJudge 3750」Thế giới Warcraft](http://bailian.openjudge.cn/practice/3750/)
 -   [「SDOI2010」Sát Tam Quốc - LibreOJ](https://loj.ac/problem/2885)

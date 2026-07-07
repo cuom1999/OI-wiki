@@ -870,7 +870,7 @@ Khi $n,m\le 100$, có thể dùng [thuật toán FKT](https://en.wikipedia.org/w
 
 -   [「51nod 1031」Lát domino](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1031)
 -   [「51nod 1033」Lát domino V2](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1033)|[「Vijos 1194」Domino](https://vijos.org/p/1194)
--   [「51nod 1034」Lát domino V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Aztec Treasure](https://acm.timus.ru/problem.aspx?space=1&num=1594)
+-   [「51nod 1034」Lát domino V3](https://www.51nod.com/Html/Challenge/Problem.html#problemId=1034)|[「Ural 1594」Kho báu Aztec](https://acm.timus.ru/problem.aspx?space=1&num=1594)
 -   [Wolfram MathWorld, đa thức Chebyshev loại hai](https://mathworld.wolfram.com/ChebyshevPolynomialoftheSecondKind.html)
 
 ### Một đường đi
