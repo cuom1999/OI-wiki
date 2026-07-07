@@ -6,7 +6,7 @@ Kiến thức nền: [hàm ngẫu nhiên](../misc/random.md) và [xác suất s�
 
 Bài viết này phân loại sơ bộ các kỹ thuật liên quan đến ngẫu nhiên hóa trong OI/ICPC, đồng thời giới thiệu từng nhóm. Bài viết cũng nhắc đến một số phương pháp ít dùng trong OI/ICPC, nhưng khá gần với OI/ICPC về phong cách; các mục đó sẽ được đánh dấu bằng `(*)`.
 
-Cách phân loại này không phải đồng thuận rộng rãi, và nhất định không bao quát hết mọi khả năng, vì vậy chỉ nên xem như tài liệu tham khảo.
+Cách phân loại này chưa phải một quy ước được thống nhất rộng rãi, và chắc chắn không bao quát hết mọi khả năng, vì vậy chỉ nên xem như tài liệu tham khảo.
 
 **Ký hiệu và quy ước**:
 
@@ -42,18 +42,18 @@ Với cách làm này, xác suất đúng của một lần chạy là $\big(\fr
 ???+ note "Tóm tắt đề bài"
     Cho một đồ thị vô hướng có trọng số không âm trên cả đỉnh và cạnh. Tìm một tập cạnh $S$ có kích thước $\leq K$ để tối đa hóa tổng trọng số của các đỉnh liên thông với $S$ trừ đi tổng trọng số các cạnh trong $S$. Trọng số của một đỉnh chỉ được tính một lần.
 
-Nhận xét: nếu trong các cạnh đã chọn có ba cạnh tạo thành một đường đi, thì xóa cạnh ở giữa nhất định không tệ hơn; nếu trong các cạnh đã chọn có một số cạnh tạo thành chu trình, thì xóa bất kỳ cạnh nào cũng không tệ hơn.
+Nhận xét: nếu trong các cạnh đã chọn có ba cạnh tạo thành một đường đi, thì xóa cạnh ở giữa không làm nghiệm tệ hơn; nếu trong các cạnh đã chọn có một số cạnh tạo thành chu trình, thì xóa bất kỳ cạnh nào cũng không làm nghiệm tệ hơn.
 
-Hệ quả: tập cạnh được chọn trong nghiệm tối ưu nhất định tạo thành một số đồ thị hoa cúc rời nhau, tức là các cây có đường kính không quá 2.
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu phải tạo thành một số đồ thị hoa cúc rời nhau, tức là các cây có đường kính không quá 2.
 
-Hệ quả: tập cạnh được chọn trong nghiệm tối ưu nhất định tạo thành một đồ thị hai phía.
+Hệ quả: tập cạnh được chọn trong nghiệm tối ưu phải tạo thành một đồ thị hai phía.
 
 Tô mỗi đỉnh độc lập và đều bằng một trong hai màu đen/trắng, và yêu cầu cách tô màu này trùng với cách tô hai phía của đồ thị hai phía tương ứng với nghiệm tối ưu.
 
 Thử tính xác suất nghiệm tối ưu thỏa yêu cầu này:
 
 -   Xét một đồ thị hoa cúc có $n$ đỉnh. Nó có 2 cách tô màu, nên xác suất tô đúng màu là $\dfrac 2{2^n}=2^{1-n}$.
--   Giả sử số đỉnh của từng hoa cúc trong nghiệm tối ưu lần lượt là $a_1,\cdots,a_l$. Khi đó nhất định có $(a_1-1)+\cdots+(a_l-1)\leq K$, trong đó $K$ là số cạnh tối đa có thể chọn.
+-   Giả sử số đỉnh của từng hoa cúc trong nghiệm tối ưu lần lượt là $a_1,\cdots,a_l$. Khi đó phải có $(a_1-1)+\cdots+(a_l-1)\leq K$, trong đó $K$ là số cạnh tối đa có thể chọn.
 -   Suy ra xác suất tất cả các hoa cúc đều được tô đúng màu là $2^{1-a_1}\cdots 2^{1-a_l}\geq 2^{-K}$.
 
 Dưới yêu cầu trên, thử lập mô hình luồng chi phí để tính đáp án tối ưu:
@@ -90,9 +90,9 @@ Toàn bộ đồ thị có thể tách thành một chu trình cộng với bố
 -   Dưới điều kiện trên, khoảng cách ngắn nhất từ thiết bị nghe lén trên $C$ đến chu trình là nhỏ nhất có thể.
     -   Mục đích của yêu cầu này là chặn nhiều nhất các cuộc gọi có đúng một đầu mút nằm trong $C$.
 
-Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và vét cạn xem trên các cạnh này có đặt thiết bị nghe lén hay không. Nếu muốn chặn các cuộc gọi cắt qua giữa chuỗi và chu trình, đặt thiết bị nghe lén trên 4 cạnh này nhất định là tối ưu. Bây giờ có thể chia các đường gọi thành các loại sau:
+Tiếp theo xét tổng cộng 4 cạnh nối giữa chuỗi và chu trình, và vét cạn xem trên các cạnh này có đặt thiết bị nghe lén hay không. Nếu muốn chặn các cuộc gọi cắt qua giữa chuỗi và chu trình, đặt thiết bị nghe lén trên 4 cạnh này là tối ưu. Bây giờ có thể chia các đường gọi thành các loại sau:
 
-1.  Đường gọi nằm hoàn toàn trên chuỗi. Các đường này nhất định đã bị chặn, nên có thể bỏ qua.
+1.  Đường gọi nằm hoàn toàn trên chuỗi. Các đường này đã chắc chắn bị chặn, nên có thể bỏ qua.
 2.  Đường gọi cắt qua chuỗi và chu trình, và đã bị chặn. Chúng có thể bị bỏ qua.
 3.  Đường gọi cắt qua chuỗi và chu trình, nhưng chưa bị chặn. Có thể cắt bỏ phần trên chuỗi của nó, vì cách đặt thiết bị trên chuỗi đã cố định, và chỉ giữ lại phần trên chu trình.
 4.  Đường gọi nằm hoàn toàn trên chu trình.
@@ -233,7 +233,7 @@ Cách băm là: với mỗi $(a,b)$, gán một số nguyên không âm ngẫu n
 Khi đó, giá trị băm của bất kỳ tập cố định nào đều tuân theo phân bố đều trên $R:=\left\{0,1,\cdots,2^{64}-1\right\}$, nói cách khác miền giá trị của băm là $R$ và xác suất lấy mỗi giá trị là bằng nhau. Lý do:
 
 1.  Một $H_{(a,b)}$ riêng lẻ tuân theo phân bố đều.
-2.  Xor của hai biến ngẫu nhiên độc lập và đều trên $R$ nhất định cũng đều trên $R$. Có thể chứng minh trực tiếp.
+2.  Xor của hai biến ngẫu nhiên độc lập và đều trên $R$ cũng phân bố đều trên $R$. Có thể chứng minh trực tiếp.
 
 Do đó xác suất đúng của thuật toán này được bảo đảm.
 
@@ -521,9 +521,9 @@ Tư tưởng được dùng trong đoạn chứng minh này gọi là "ghép c�
     
     Hỏi chi phí kỳ vọng dưới chiến lược tối ưu.
 
-Nhận xét: nếu chọn rút vật phẩm, thì nhất định sẽ tiếp tục rút cho đến khi nhận được vật phẩm mới.
+Nhận xét: trong chiến lược tối ưu, nếu đã chọn rút vật phẩm, thì sẽ tiếp tục rút cho đến khi nhận được vật phẩm mới.
 
--   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới nhất định cũng là "rút thêm một lần".
+-   Lý do: nếu rút một lần mà không nhận được vật phẩm mới, trạng thái mới giống hệt trạng thái trước khi rút. Vì vậy nếu hành động tối ưu ở trạng thái cũ là "rút một lần", thì hành động tối ưu ở trạng thái mới cũng là "rút thêm một lần".
 
 Có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩm khác nhau, thì kỳ vọng cần tốn bao nhiêu tiền để rút được vật phẩm mới. Theo nhận xét vừa rồi, có thể xem trực tiếp $f_k$ như một chi phí cố định, tức là chuyển thành "mỗi lần trả $f_k$ tiền để nhận ngẫu nhiên một vật phẩm mới".
 
@@ -538,7 +538,7 @@ Có thể tính $f_k$ biểu thị: nếu hiện đã sở hữu $k$ vật phẩ
     
     Xác suất rút một lần được vật phẩm mới là $\dfrac {n-k}n$, nên $R=\dfrac n{n-k}$.
 
-Kết luận: chiến lược tối ưu nhất định là rút một số lần trước, rồi mua hết các vật phẩm chưa rút được.
+Kết luận: chiến lược tối ưu là rút một số lần trước, rồi mua hết các vật phẩm chưa rút được.
 
 Kết luận này phù hợp trực giác, vì $f_k$ tăng theo $k$, nên rút sớm có vẻ thực sự tốt hơn rút muộn.
 
@@ -546,20 +546,20 @@ Kết luận này phù hợp trực giác, vì $f_k$ tăng theo $k$, nên rút s
     Trước hết chứng minh một trường hợp đặc biệt. Sẽ chứng minh:
     
     -   Quá trình ngẫu nhiên $A$: mua vật phẩm $x$ trước, sau đó liên tục rút cho đến khi có tất cả vật phẩm.
-    -   ... nhất định không tốt hơn ...
+    -   ... không tốt hơn ...
     -   Quá trình ngẫu nhiên $B$: liên tục rút cho đến khi có tất cả vật phẩm trừ $x$, sau đó nếu vẫn chưa có $x$ thì mua nó.
     
     Cho hai quá trình ngẫu nhiên $A$ và $B$ dùng cùng một bộ sinh số ngẫu nhiên. Tức là lần rút đầu tiên của $A$ và lần rút đầu tiên của $B$ sẽ rút trúng cùng một phần tử, lần thứ hai, thứ ba, ... cũng vậy.
     
-    Khi đó số lần rút của $A$ và $B$ nhất định bằng nhau. Với một vật phẩm $y\neq x$ được $A$ rút trúng, quan sát thấy:
+    Khi đó số lần rút của $A$ và $B$ bằng nhau. Với một vật phẩm $y\neq x$ được $A$ rút trúng, quan sát thấy:
     
-    -   Số vật phẩm đã sở hữu khi $A$ rút trúng $y$ nhất định lớn hơn hoặc bằng số vật phẩm đã sở hữu khi $B$ rút trúng $y$.
+    -   Số vật phẩm đã sở hữu khi $A$ rút trúng $y$ luôn lớn hơn hoặc bằng số vật phẩm đã sở hữu khi $B$ rút trúng $y$.
     
     Vì vậy chi phí một lần rút của $B$ không cao hơn của $A$, và tổng chi phí rút cũng không cao hơn của $A$.
     
-    Chi phí mua của $B$ cũng không cao hơn của $A$. Tóm lại, $B$ nhất định không tệ hơn $A$.
+    Chi phí mua của $B$ cũng không cao hơn của $A$. Tóm lại, $B$ không tệ hơn $A$.
     
-    Sau đó có thể dùng quy nạp toán học để mở rộng kết luận này sang trường hợp tổng quát. Cụ thể, mỗi lần tìm lần mua cuối cùng trong chiến lược hiện tại, rồi theo kết luận trên, dời lần mua này về cuối nhất định không tệ hơn. Chi tiết lược bỏ.
+    Sau đó có thể dùng quy nạp toán học để mở rộng kết luận này sang trường hợp tổng quát. Cụ thể, mỗi lần tìm lần mua cuối cùng trong chiến lược hiện tại, rồi theo kết luận trên, dời lần mua này về cuối không làm nghiệm tệ hơn. Chi tiết lược bỏ.
 
 Dựa trên kết luận này, lại chuyển đổi tương đương bài toán: thay thao tác "chọn một vật phẩm và trả giá tương ứng để mua" bằng "chọn ngẫu nhiên một vật phẩm chưa sở hữu và trả giá tương ứng để mua". Lý do tương đương là: vì mua chỉ dùng để dọn phần còn lại, chọn trúng vật phẩm nào cũng không quan trọng.
 
@@ -567,7 +567,7 @@ Bây giờ "rút" và "mua" về bản chất đã trở thành cùng một thao
 
 Nhận xét: tại một thời điểm, nên chọn mua khi và chỉ khi chi phí lần rút tiếp theo (được xác định bởi số vật phẩm đã rút được) lớn hơn giá trung bình của các vật phẩm còn lại (nếu bằng nhau thì chọn cách nào cũng được).
 
--   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút nhất định không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
+-   Có thể chứng minh rằng theo thời gian, tốc độ tăng của chi phí rút không thấp hơn tốc độ tăng của giá trung bình các vật phẩm còn lại. Điều này cho thấy chỉ có một "điểm tới hạn" từ rút sang mua, và tiếp tục xác nhận kết luận trước đó.
 
 Cuối cùng, liệt kê mọi trạng thái có thể, tức tập các phần tử đã sở hữu; tính xác suất xuất hiện của trạng thái đó (số hoán vị của các phần tử đã có chia cho tổng số phương án), nhân với chi phí của quyết định tối ưu ở trạng thái hiện tại (được xác định bởi số phần tử đã sở hữu và tổng giá các vật phẩm còn lại), rồi cộng lại. Quá trình này có thể tối ưu bằng quy hoạch động kiểu ba lô, đủ để giải bài này.
 
