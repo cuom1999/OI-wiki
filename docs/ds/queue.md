@@ -8,7 +8,7 @@ của chúng.
 
 Hàng đợi (queue) là một dạng danh sách có tính chất "phần tử vào hàng đợi trước
 sẽ ra khỏi hàng đợi trước". Vì tính chất này, hàng đợi thường được gọi là cấu
-trúc vào trước ra trước (first in first out), viết tắt là FIFO.
+trúc vào trước ra trước (first in, first out), viết tắt là FIFO.
 
 <span id="cài-đặt"></span>
 ## Cài đặt
@@ -63,8 +63,8 @@ lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
 <span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
-C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp tệp tiêu
-đề `<queue>`.
+C++ cung cấp adapter container `std::queue` trong STL. Trước khi dùng, cần nạp
+tệp tiêu đề `<queue>`.
 
 ???+ info "Định nghĩa `queue` trong STL"
     ```cpp
@@ -77,7 +77,7 @@ C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp
     
     `T` là kiểu dữ liệu của các phần tử được lưu trong `queue`.
     
-    `Container` là kiểu container nền dùng để lưu phần tử. Container này phải
+    `Container` là kiểu container nền dùng để lưu phần tử. Container nền này phải
     cung cấp các hàm sau với ngữ nghĩa thông thường:
     
     -   `back()`
@@ -88,7 +88,7 @@ C++ cung cấp container `std::queue` trong STL. Trước khi dùng, cần nạp
     Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
     không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
 
-Container `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường dùng
+Adapter `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường dùng
 gồm:
 
 -   Truy cập phần tử
@@ -213,7 +213,7 @@ cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới 
 <span id="hàng-đợi-hai-đầu-trong-python"></span>
 #### Hàng đợi hai đầu trong Python
 
-Trong Python, container hàng đợi hai đầu được cung cấp bởi `collections.deque`.
+Trong Python, hàng đợi hai đầu được cung cấp bởi `collections.deque`.
 
 Ví dụ như sau:
 
@@ -238,7 +238,7 @@ Ví dụ như sau:
 <span id="hàng-đợi-vòng"></span>
 ### Hàng đợi vòng
 
-Dùng mảng để mô phỏng hàng đợi sẽ gây ra một vấn đề: theo thời gian, toàn bộ
+Dùng mảng để mô phỏng hàng đợi có thể gây ra một vấn đề: theo thời gian, toàn bộ
 hàng đợi dịch dần về phía cuối mảng. Khi đã đến cuối mảng, dù phía đầu mảng vẫn
 còn vị trí trống, thao tác enqueue tiếp theo vẫn gây tràn. Hiện tượng mảng thực
 tế vẫn còn vị trí trống nhưng lại báo tràn như vậy được gọi là "tràn giả".
