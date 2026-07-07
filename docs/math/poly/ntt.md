@@ -30,7 +30,7 @@ Trong toán học, NTT là biến đổi Fourier rời rạc (DFT) trên một [
 
 Vì phần này liên quan đến biến đổi số học, nên $N$ (để phân biệt với $n$ trong FFT, ký hiệu $n$ được đổi thành $N$) có thể lớn hơn $n$ trong FFT; chỉ cần xem $\frac{qN}{n}$ là $q$ trong ngữ cảnh này là đủ để tránh vấn đề về kích thước.
 
-Các modulo thường gặp gồm:
+Các môđun thường gặp gồm:
 
 $$
 p = 167772161 = 5 \times 2^{25}+1, g=3
@@ -68,7 +68,7 @@ Trong thi lập trình, thuật ngữ NTT thường chỉ FNTT; thông thường
 
 Cách viết tắt này tương tự biến đổi Fourier nhanh. Thuật ngữ "biến đổi Fourier nhanh" (FFT) vốn chỉ "biến đổi Fourier rời rạc nhanh" (FDFT), nhưng tính chất "nhanh" chỉ áp dụng cho trường hợp rời rạc, cụ thể hơn là trường hợp bậc của căn đơn vị nguyên thủy là lũy thừa của $2$, chứ không áp dụng cho trường hợp liên tục, nên từ "rời rạc" được lược bỏ. Vì vậy FDFT trở thành FFT, tức FFT luôn chỉ trường hợp rời rạc đặc biệt đó.
 
-Biến đổi số học hoặc biến đổi số học nhanh là phép toán trong nghĩa modulo, không có trường hợp liên tục, nên luôn là rời rạc và tự nhiên không cần nhắc đến từ "rời rạc".
+Biến đổi số học hoặc biến đổi số học nhanh là phép toán theo môđun, không có trường hợp liên tục, nên luôn là rời rạc và tự nhiên không cần nhắc đến từ "rời rạc".
 
 Trong lĩnh vực thuật toán, các thao tác không được tăng tốc thường không có ý nghĩa thực tiễn. Khi giới thiệu thuật ngữ DFT trong biến đổi Fourier nhanh, lí do là DFT còn có các ứng dụng cụ thể khác trong xử lý tín hiệu và xử lý ảnh, đồng thời DFT cũng là nguyên lý hoặc kiến thức nền của FFT.
 

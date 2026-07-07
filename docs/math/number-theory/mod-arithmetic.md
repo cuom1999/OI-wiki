@@ -40,17 +40,17 @@ assert(-5 % -3 == -2);
 ```
 
 <span id="lớp-số-nguyên-modulo"></span>
-## Lớp số nguyên môđun
+## Lớp số nguyên theo môđun
 
 Số học môđun có thể xem là việc thực hiện các phép toán trên [lớp đồng
 dư](./basic.md#lớp-đồng-dư-và-hệ-thặng-dư)
 theo một môđun. Nếu dùng một struct để biểu diễn một lớp đồng dư, rồi đóng
 gói phép cộng, trừ, nhân giữa các lớp đồng dư thành phương thức của struct hoặc
 toán tử nạp chồng, số học môđun có thể được cài đặt tự nhiên thành một lớp số
-nguyên môđun. Ví dụ sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên số nguyên
+nguyên theo môđun. Ví dụ sau hỗ trợ cộng, trừ, nhân và lũy thừa nhanh trên số nguyên
 có dấu $32$ bit với môđun $M < 2^{30}$:
 
-???+ example "Một lớp số nguyên môđun cơ bản"
+???+ example "Một lớp số nguyên theo môđun cơ bản"
     ```cpp
     --8<-- "docs/math/code/mod-arithmetic/mod-arithmetic.cpp:core"
     ```
@@ -244,7 +244,7 @@ Cài đặt này cần dùng số nguyên $128$ bit[^int128].
 ### Phép nhân Montgomery theo môđun
 
 Thuật toán nhân Montgomery theo môđun có chức năng rất giống thuật toán Barrett:
-nó cũng giảm chi phí lấy dư trong quá trình tính số nguyên môđun. Khác với hai
+nó cũng giảm chi phí lấy dư trong quá trình tính số nguyên theo môđun. Khác với hai
 thuật toán trước đều dựa trên xấp xỉ thương, phép nhân Montgomery theo môđun ánh
 xạ mỗi số nguyên vào không gian Montgomery, trong đó các phép toán tương đối dễ
 thực hiện, từ đó giảm chi phí tính toán tổng thể.
@@ -348,24 +348,24 @@ chuyển ngược đủ nhiều, chi phí chuyển đổi mới được khấu 
 mới cao. Tuy nhiên, do quá trình cài đặt phép nhân Montgomery theo môđun chỉ cần
 biến trung gian có độ dài $2\ell(m)$, nó linh hoạt hơn. Ví dụ, phép nhân môđun
 cho số nguyên $32$ bit chỉ cần biến trung gian $64$ bit. Do đó, nếu cần cài đặt
-một lớp số nguyên môđun để thực hiện nhiều tính toán số học, phép nhân Montgomery
+một lớp số nguyên theo môđun để thực hiện nhiều tính toán số học, phép nhân Montgomery
 theo môđun phù hợp hơn.
 
 <span id="lớp-số-nguyên-modulo-lũy-thừa-của-2"></span>
-### Lớp số nguyên môđun lũy thừa của 2
+### Lớp số nguyên theo môđun lũy thừa của 2
 
-Mục này thảo luận cách cài đặt lớp số nguyên môđun khi môđun là lũy thừa của
+Mục này thảo luận cách cài đặt lớp số nguyên theo môđun khi môđun là lũy thừa của
 $2$. Trong trường hợp đặc biệt này, phép chia và phép lấy dư có thể thực hiện
 bằng thao tác bit, nên rất hiệu quả. Phép rút gọn Barrett và phép nhân
 Montgomery theo môđun đều tận dụng đặc tính này khi dùng $2^e$ làm số chia và
 môđun trung gian để tăng tốc. Đặc biệt, khi môđun đúng bằng các số đặc biệt như
 $2^{32}$ và $2^{64}$, có thể dùng số nguyên không dấu có độ dài bit tương ứng
 kết hợp với tràn tự nhiên để
-cài đặt lớp số nguyên môđun, không cần phép lấy dư tường minh nào. Ngay cả khi
+cài đặt lớp số nguyên theo môđun, không cần phép lấy dư tường minh nào. Ngay cả khi
 môđun không đúng bằng như vậy, cũng có thể chuyển về các môđun đặc biệt này.
 Ví dụ với môđun $2^{58}$, có thể hoàn thành tính toán trung gian theo môđun
 $2^{64}$, rồi cuối cùng lấy dư kết quả theo môđun $2^{58}$. Ngoài môđun để tính,
-lớp số nguyên môđun $2^e$ còn có nhiều cách cài đặt đặc biệt cho các thao tác
+lớp số nguyên theo môđun $2^e$ còn có nhiều cách cài đặt đặc biệt cho các thao tác
 khác.
 Mục này tập trung giới thiệu cách cài đặt nghịch đảo và lũy thừa.
 
