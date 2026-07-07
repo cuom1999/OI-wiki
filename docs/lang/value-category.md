@@ -4,7 +4,7 @@ hiện và tránh các phép sao chép không cần thiết, từ đó cải thi
 mã.
 
 Khái niệm loại giá trị đã nhiều lần thay đổi từ ngôn ngữ C, qua C++98, C++11 rồi
-đến C++17, nên ngày nay nó là một chủ đề tương đối phức tạp.
+đến C++17, nên ngày nay nó là một chủ đề có nhiều quy tắc cần phân biệt.
 
 ## Sao chép không cần thiết
 

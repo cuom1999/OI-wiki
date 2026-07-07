@@ -235,7 +235,7 @@ Bài tập: [Luogu P1776 - Sàng lọc bảo vật, NOI Guide 2010 Advanced (02)
 
 Ba lô hỗn hợp là bài toán trộn ba loại ba lô ở trên: có vật phẩm chỉ được chọn một lần, có vật phẩm được chọn vô hạn lần, và có vật phẩm chỉ được chọn $k$ lần.
 
-Dạng bài này thoạt nhìn khá đáng sợ, nhưng chỉ cần hiểu tư tưởng cốt lõi của các loại ba lô phía trên và ghép chúng lại là được. Dưới đây là mã giả:
+Dạng bài này thoạt nhìn có vẻ đáng sợ, nhưng chỉ cần hiểu tư tưởng cốt lõi của các loại ba lô phía trên và ghép chúng lại là được. Dưới đây là mã giả:
 
 ```plain
 với mỗi loại vật phẩm {

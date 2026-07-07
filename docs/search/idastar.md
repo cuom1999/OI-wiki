@@ -29,7 +29,7 @@ So với A\*, IDA\* có các ưu điểm sau:
 
 Đồng thời, nó cũng có nhược điểm:
 
--   Tìm kiếm lặp lại. Ngay cả khi hai lần tìm kiếm liên tiếp chỉ khác nhau rất ít, mỗi lần nới lỏng giới hạn vẫn phải tìm lại từ đầu.
+-   Tìm kiếm lặp lại. Ngay cả khi hai lần tìm kiếm liên tiếp chỉ chênh lệch một ngưỡng nhỏ, mỗi lần nới lỏng giới hạn vẫn phải tìm lại từ đầu.
 
 <span id="cài-đặt"></span>
 ## Cài đặt

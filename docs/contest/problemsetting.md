@@ -516,11 +516,11 @@ Phản ví dụ kinh điển: CTS2019, bao phủ nhiều kiến thức như quy 
 
 ### Polygon
 
-Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh. Nó có thể là lựa chọn ưu tiên để ra đề cộng tác nhiều người cho bất kỳ trang web nào (dùng chức năng gói để xuất sang những trang web không hỗ trợ Polygon), và cũng là lựa chọn khá tốt khi ra đề một mình (đặc biệt là khi ra đề trên nhiều thiết bị khác nhau). Cách sử dụng xem [Giới thiệu Polygon](../tools/polygon.md).
+Polygon là một nền tảng ra đề hợp tác nhiều người rất mạnh. Nó có thể là lựa chọn ưu tiên để ra đề cộng tác nhiều người cho bất kỳ trang web nào (dùng chức năng gói để xuất sang những trang web không hỗ trợ Polygon), và cũng là lựa chọn tốt khi ra đề một mình (đặc biệt là khi ra đề trên nhiều thiết bị khác nhau). Cách sử dụng xem [Giới thiệu Polygon](../tools/polygon.md).
 
 ### Codeforces
 
-Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài khá cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt khá chậm (thường mất vài tháng), nhưng cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
+Codeforces là một trong những trang web thi đấu thuật toán nổi tiếng nhất thế giới, chất lượng bài cao, rất phù hợp với người ra đề đã có một ít kinh nghiệm và muốn nâng cao trình độ ra đề hơn nữa, muốn ra một bộ bài chất lượng cao. Điểm chưa thuận lợi là tốc độ duyệt chậm (thường mất vài tháng), nhưng cũng có thể bắt đầu chuẩn bị bài trong thời gian chờ duyệt (dù có rủi ro bài bị từ chối khiến công chuẩn bị trở nên vô ích).
 
 #### Tư cách ra đề
 

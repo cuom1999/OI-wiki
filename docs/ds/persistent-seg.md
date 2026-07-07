@@ -62,7 +62,7 @@ nên tổng số nút sau $n$ lần sửa là $2\times 10^5-1+18\times 10^5$;
 bỏ qua $-1$ thì xấp xỉ $20\times 10^5$.
 
 Cuối cùng là một điểm cần lưu ý khi cài đặt: không nên cấp phát quá sát giới hạn ước tính.
-Trong đa số bài, giới hạn bộ nhớ khá rộng nên thường không cần quá lo vượt bộ nhớ.
+Trong đa số bài, giới hạn bộ nhớ thường rộng nên không cần quá lo vượt bộ nhớ.
 Có thể cấp $2^5\times 10^5$, gần gấp đôi dung lượng ước tính ban đầu, tức dùng `n << 5`.
 
 ## Cài đặt

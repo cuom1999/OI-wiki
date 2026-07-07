@@ -42,7 +42,7 @@ Khi $S=\log n$, độ phức tạp tiền xử lý đạt tối ưu, bằng $O((
 
 Độ phức tạp thời gian $O(n\log \log n) \sim O(1)$, độ phức tạp không gian $O(n\log \log n)$.
 
-Tuy nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đặt này có hằng số khá lớn.
+Tuy nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đặt này có hằng số lớn.
 
 ??? note "Một vài cải tiến thuật toán nhỏ"
     Khi hai đầu mút của truy vấn thuộc hai khối khác nhau trong mảng A, các truy vấn nội bộ khối trong mảng A đều là truy vấn trên tiền tố hoặc hậu tố của mỗi khối.
@@ -62,7 +62,7 @@ Tuy nhiên, vì mỗi truy vấn phải chạy trên ba bảng ST, cách cài đ
     
     Trong lập trình thi đấu, không cần quá lo việc người ra đề cố tình làm thuật toán này bị kẹt, vì có thể tinh chỉnh ngẫu nhiên kích thước khối quanh $\sqrt n$ để phần lớn tránh trường hợp xấu nhất trên dữ liệu được dựng theo một kích thước khối cụ thể. Hơn nữa, nếu người ra đề muốn chặn phương pháp này, lời giải vét cạn cũng có thể được chấp nhận.
     
-    Đây là một thuật toán đạt cận dưới về độ phức tạp thời gian kỳ vọng, đồng thời có độ khó cài đặt và hằng số thuật toán đều nhỏ, nên khá thực dụng trong lập trình thi đấu.
+    Đây là một thuật toán đạt cận dưới về độ phức tạp thời gian kỳ vọng, đồng thời có độ khó cài đặt và hằng số thuật toán đều nhỏ, nên thực dụng trong lập trình thi đấu.
     
     Cách làm trên tham khảo lời giải của bài [P3793 Yuno cứu ông nội](https://www.luogu.com.cn/problem/P3793).
 
@@ -88,7 +88,7 @@ Nếu chưa quen với cây Cartesian, xem [cây Cartesian](../ds/cartesian-tree
 
 Min/max giữa hai điểm trên dãy ban đầu bằng trọng số của LCA của hai điểm đó trên cây Cartesian. Dựa vào điều này, có thể mượn lời giải LCA giữa hai điểm trên cây với độ phức tạp $O(n) \sim O(1)$ để giải RMQ. LCA trên cây với $O(n) \sim O(1)$ đã được mô tả trong [LCA - RMQ chuẩn](../graph/lca.md#rmq-chuẩn), nên phần này không trình bày thêm.
 
-Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ thông thường thành bài toán LCA, rồi tiếp tục chuyển thành bài toán RMQ cộng trừ 1 để giải, với độ phức tạp thời gian $O(n) \sim O(1)$. Do có nhiều bước chuyển đổi, RMQ $O(n) \sim O(1)$ có hằng số khá lớn.
+Tóm lại, ứng dụng cây Cartesian trong RMQ là chuyển bài toán RMQ thông thường thành bài toán LCA, rồi tiếp tục chuyển thành bài toán RMQ cộng trừ 1 để giải, với độ phức tạp thời gian $O(n) \sim O(1)$. Do có nhiều bước chuyển đổi, RMQ $O(n) \sim O(1)$ có hằng số lớn.
 
 Nếu dữ liệu ngẫu nhiên, cũng có thể tìm kiếm vét cạn trên cây Cartesian. Khi đó độ phức tạp thời gian là kỳ vọng $O(n) \sim O(\log n)$, và trong thực tế hằng số của thuật toán này thường rất nhỏ.
 

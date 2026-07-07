@@ -142,7 +142,7 @@ và tái cấu trúc cây trong quá trình đó.
 
 Quá trình xóa tương tự các cây cân bằng nhị phân khác: trước hết chuyển thao tác xóa một nút trong thành thao tác xóa
 một nút lá. Cụ thể, thay nút trong bằng nút tiền nhiệm hoặc nút kế nhiệm gần nhất của nó. Vì mọi nút trong cây AA có mức
-lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 tương đối đơn
+lớn hơn 1 đều có hai nút con, nút tiền nhiệm hoặc kế nhiệm sẽ nằm ở mức 1, nên việc xóa một nút mức 1 đơn
 giản.
 
 ???+ note "Cài đặt giả mã"

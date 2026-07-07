@@ -81,7 +81,7 @@ Do đó, hình sau là một cách biểu diễn khác của một chuỗi thao 
 
 Bây giờ cần biểu diễn toàn bộ quá trình co rút cây của một cây nào đó.
 
-Hai cách ở trên đều có thể biểu diễn quá trình này, nhưng khá rườm rà: nếu quá trình co rút cây có $n$ bước, cần dùng $n$ cây để biểu diễn toàn bộ quá trình.
+Hai cách ở trên đều có thể biểu diễn quá trình này, nhưng rườm rà: nếu quá trình co rút cây có $n$ bước, cần dùng $n$ cây để biểu diễn toàn bộ quá trình.
 
 Để có một cách biểu diễn gọn hơn cho quá trình co rút cây trên một cây, đưa vào khái niệm **top tree**.
 

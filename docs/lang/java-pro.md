@@ -111,7 +111,7 @@ public class Main {
     `PrintWriter` và có thể gọi trực tiếp các hàm xuất của `PrintWriter`; đồng
     thời nó dùng `StringTokenizer` làm biến thành viên. Cách thứ hai trong lớp
     `Main` lại dùng `StreamTokenizer` và `PrintWriter` làm biến thành viên riêng,
-    nên cách sử dụng hơi khác.
+    nên cách gọi hàm nhập và xuất khác với `Kattio`.
 
 Tóm lại, trong đa số trường hợp `StringTokenizer` thuận tiện hơn
 `StreamTokenizer`. Chỉ nên thử `StreamTokenizer` trong các trường hợp MLE cực

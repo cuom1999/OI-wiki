@@ -218,7 +218,7 @@ Yêu cầu đưa ra một thuật toán chọn ngẫu nhiên đều xác suất 
     
     -   Ký hiệu biến ngẫu nhiên 0-1 $X_i$ biểu diễn việc $i$ có được chọn vào tập con ban đầu hay không, và đặt $X:=X_1+\cdots+X_n$ biểu diễn kích thước tập con. Khi đó số thao tác cần ở bước hai và bước ba bằng $\big|X-\mathrm{E}[X]\big|$. Trong bất đẳng thức Hoeffding, lấy $t=c\cdot\sqrt n$ (trong đó $c$ là hằng số tùy ý), được $\mathrm{Pr}\Big[\big|X-\mathrm{E}[X]\big|\geq t\Big]\leq 2\mathrm{e}^{-c^2}$. Nói cách khác, bằng cách cho phép độ lệch ở mức $\Theta(\sqrt n)$, có thể thu được xác suất thất bại nhỏ tùy ý ở cấp hằng số.
     
-    Đến đây đã chứng minh rằng: với xác suất rất lớn, thuật toán này có thể bảo đảm số lần tung đồng xu không vượt quá $n+\Theta(\sqrt n\log n)$.
+    Đến đây đã chứng minh rằng: với xác suất cao, thuật toán này có thể bảo đảm số lần tung đồng xu không vượt quá $n+\Theta(\sqrt n\log n)$.
     
     -   Trong đó $n$ đến từ số lần tung đồng xu để thu được tập con ban đầu; $\Theta(\sqrt n\log n)$ là tổng chi phí của $\Theta(\sqrt n)$ lần thêm/xóa phần tử.
     

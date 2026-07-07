@@ -489,7 +489,7 @@ $$
 
 trong đó $O$ là ma trận không $n\times n$, $A\in\mathbb{C}^{n\times n}$ và $p_A(x)=x^n+\sum_{i=1}^nc_ix^{n-i}\in\mathbb{C}[x]$ là đa thức đặc trưng của $A$.
 
-Nếu cần tính $A^K$ với $K$ khá lớn, có thể tìm $f(x)=x^K\bmod{p_A(x)}$ rồi dùng $f(A)=A^K$.
+Nếu cần tính $A^K$ với $K$ lớn đến mức không nên nhân ma trận trực tiếp, có thể tìm $f(x)=x^K\bmod{p_A(x)}$ rồi dùng $f(A)=A^K$.
 
 Có $\deg(f(x))\lt n$. Đặt $f(x)=\sum_{i=0}^{n-1}f_ix^i$ và $n=km$, khi đó:
 

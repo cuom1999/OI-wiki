@@ -259,7 +259,7 @@ Do đó, chỉ cần $y$ là nghiệm khả thi của bài toán đối ngẫu, 
 
 Thứ hai, biến ra khỏi cơ sở có thể không tồn tại, tức $A_B^{-1}A_i\le 0$. Khi đó quá trình xoay trục không có "nút thắt" nào; nói cách khác, có thể liên tục tăng $x_i$ để cải thiện hàm mục tiêu cho tới khi nó bằng $-\infty$. Điều này nói rằng bài toán quy hoạch tuyến tính đã cho là không bị chặn, và thuật toán dừng.
 
-Cuối cùng, lựa chọn biến vào cơ sở và biến ra khỏi cơ sở có thể không duy nhất. Cách chọn không thích hợp có thể dẫn tới quá nhiều lần xoay trục, thậm chí làm thuật toán rơi vào vòng lặp và không dừng bình thường. Việc xử lý các trường hợp này hơi phức tạp hơn, cần dùng một số [quy tắc xoay trục](#quy-tắc-xoay-trục) để tránh vòng lặp và giảm số lần xoay trục.
+Cuối cùng, lựa chọn biến vào cơ sở và biến ra khỏi cơ sở có thể không duy nhất. Cách chọn không thích hợp có thể dẫn tới quá nhiều lần xoay trục, thậm chí làm thuật toán rơi vào vòng lặp và không dừng bình thường. Việc xử lý các trường hợp này phức tạp hơn, cần dùng một số [quy tắc xoay trục](#quy-tắc-xoay-trục) để tránh vòng lặp và giảm số lần xoay trục.
 
 <span id="bảng-đơn-hình"></span>
 ### Bảng đơn hình

@@ -226,7 +226,7 @@ Bắt đầu từ gốc và thử khớp $\mathtt{ushersheishis}$, khi đó sự
 
 Bài toán tham khảo: Luogu [P5357 - Mẫu ô-tô-mát AC](https://www.luogu.com.cn/problem/P5357).
 
-Trong ô-tô-mát AC ở trên, mỗi lần khớp sẽ liên tục nhảy theo các cạnh `fail` để tìm tất cả các lần khớp. Cách này có hiệu suất khá thấp và sẽ quá thời gian ở một số bài.
+Trong ô-tô-mát AC ở trên, mỗi lần khớp sẽ liên tục nhảy theo các cạnh `fail` để tìm tất cả các lần khớp. Cách này không đủ nhanh và sẽ quá thời gian ở một số bài.
 
 Cách tối ưu dựa trên một tính chất của con trỏ `fail`: trong một ô-tô-mát AC, nếu chỉ giữ lại các cạnh `fail`, đồ thị còn lại luôn là một cây.
 

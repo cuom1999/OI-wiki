@@ -94,7 +94,7 @@ Như hình trên, nếu xác nhận $M$ nằm bên phải $\vec a$, thì lúc n�
 
 Còn lý do loại bỏ đầu hàng đợi là **ràng buộc của vectơ hiện tại mạnh hơn vectơ ở đầu hàng đợi**; điều kiện này giả định trong hàng đợi có nhiều hơn hai đoạn thẳng, tức vectơ. Nếu không, sẽ xuất hiện tình huống như trên.
 
-Vì vậy nhất định phải loại bỏ cuối hàng đợi trước rồi mới loại bỏ đầu hàng đợi.
+Vì vậy cần loại bỏ cuối hàng đợi trước rồi mới loại bỏ đầu hàng đợi.
 
 ???+ note "Mã - phần so sánh"
     ```cpp
