@@ -94,7 +94,7 @@ Phần này giới thiệu một bài toán kinh điển có thể giải bằng
 
 ## Tài liệu tham khảo và chú thích
 
--   [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
+-   [Thuật toán tìm kiếm A\* - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm)
 
-[^note1]: $h$ trong ngữ cảnh này nghĩa là heuristic. Xem thêm [Heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
-    và phần Bounded relaxation của [A\* search algorithm - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).
+[^note1]: $h$ trong ngữ cảnh này nghĩa là heuristic. Xem thêm [heuristic - Wikipedia](https://en.wikipedia.org/wiki/Heuristic_(computer_science))
+    và phần nới lỏng bị chặn của [thuật toán tìm kiếm A\* - Wikipedia](https://en.wikipedia.org/wiki/A*_search_algorithm#Bounded_relaxation).

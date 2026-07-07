@@ -274,8 +274,8 @@ Dưới đây là hiện thực cho các toán tử nhị phân $+$, $-$, $*$, $
 
 ## Đọc thêm
 
-1.  [Operator-precedence\_parser](https://en.wikipedia.org/wiki/Operator-precedence_parser)
-2.  [Shunting yard algorithm](https://en.wikipedia.org/wiki/Shunting_yard_algorithm)
+1.  [Bộ phân tích cú pháp theo độ ưu tiên toán tử](https://en.wikipedia.org/wiki/Operator-precedence_parser)
+2.  [Thuật toán shunting yard](https://en.wikipedia.org/wiki/Shunting_yard_algorithm)
 
 ## Bài tập
 

@@ -70,5 +70,5 @@ Có thể tận dụng đặc tính của số nguyên có dấu: dùng số âm
 ## Tài liệu tham khảo và đọc thêm
 
 1.  Chen Zhixuan. "Bàn về các vấn đề tối ưu không gian trong thi đấu tin học". 2022 National Training Team Paper
-2.  [Information theory - Wikipedia](https://en.wikipedia.org/wiki/Information_theory)
+2.  [Lý thuyết thông tin - Wikipedia](https://en.wikipedia.org/wiki/Information_theory)
 3.  [Nhập môn lý thuyết thông tin - Luogu Column](https://www.luogu.com.cn/article/i65ca8i5)

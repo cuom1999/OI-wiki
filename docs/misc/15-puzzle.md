@@ -42,7 +42,7 @@ Vì các cấu hình của trò chơi trượt số 15 ô có thể được sin
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [15 puzzle - Wikipedia](https://en.wikipedia.org/wiki/15_puzzle)
-2.  jrdnjacobson, [How to Solve the 15 Puzzle - instructables](https://www.instructables.com/How-To-Solve-The-15-Puzzle/)
+1.  [Trò chơi 15 ô - Wikipedia](https://en.wikipedia.org/wiki/15_puzzle)
+2.  jrdnjacobson, [Cách giải trò chơi 15 ô - instructables](https://www.instructables.com/How-To-Solve-The-15-Puzzle/)
 3.  Korf, R. E. (2000), ["Recent Progress in the Design and Analysis of Admissible Heuristic Functions"](https://www.researchgate.net/publication/2604757_Recent_Progress_in_the_Design_and_Analysis_of_Admissible_Heuristic_Functions), in Choueiry, B. Y.; Walsh, T. (eds.), Abstraction, Reformulation, and Approximation (PDF), SARA 2000. Lecture Notes in Computer Science, vol. 1864, Springer, Berlin, Heidelberg, pp. 45–55, doi:10.1007/3-540-44914-0\_3, ISBN 978-3-540-67839-7, retrieved 2010-04-26
-4.  [Welcome to N-Puzzle - web demo](https://tristanpenman.com/demos/n-puzzle/)
+4.  [Chào mừng đến N-Puzzle - bản demo web](https://tristanpenman.com/demos/n-puzzle/)

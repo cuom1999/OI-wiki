@@ -134,7 +134,7 @@ Sau khi tính điểm số của nút I, vì I là một nút con của nút H, 
 
 ## Tài liệu tham khảo và ghi chú
 
--   [Minimax Algorithm - Wikipedia](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves)
--   [Alpha-beta pruning - Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
+-   [Thuật toán minimax - Wikipedia](https://en.wikipedia.org/wiki/Minimax#Minimax_algorithm_with_alternate_moves)
+-   [Cắt tỉa alpha-beta - Wikipedia](https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning)
 
 **Một phần nội dung bài viết này được trích từ blog [Giải thích chi tiết thuật toán Minimax và cắt tỉa Alpha-Beta](https://blog.csdn.net/wenjianmuran/article/details/90633418), tuân theo giấy phép CC 4.0 BY-SA. Nội dung đã được chỉnh sửa.**

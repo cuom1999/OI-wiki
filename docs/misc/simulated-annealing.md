@@ -35,7 +35,7 @@ Trước hết đặt nhiệt độ $T=T_0$, sau đó thực hiện một lần 
 
 Lưu ý rằng để nghiệm chính xác hơn, thông thường không lấy trực tiếp nghiệm hiện tại làm đáp án, mà duy trì giá trị tốt nhất trong tất cả các nghiệm đã gặp trong quá trình ủ.
 
-Dưới đây là một hình từ [Simulated annealing - Wikipedia](https://en.wikipedia.org/wiki/Simulated_annealing). Khi nhiệt độ giảm, các bước nhảy ngày càng ít ngẫu nhiên hơn và nghiệm tối ưu cũng ngày càng ổn định hơn.
+Dưới đây là một hình từ [ủ mô phỏng - Wikipedia](https://en.wikipedia.org/wiki/Simulated_annealing). Khi nhiệt độ giảm, các bước nhảy ngày càng ít ngẫu nhiên hơn và nghiệm tối ưu cũng ngày càng ổn định hơn.
 
 ![](./images/simulated-annealing.gif)
 

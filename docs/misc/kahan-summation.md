@@ -55,7 +55,7 @@ Trong Julia, cài đặt mặc định của hàm [sum](https://docs.julialang.o
 
 ## Tài liệu tham khảo và chú thích
 
-1.  [Kahan\_summation\_algorithm - Wikipedia](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
-2.  [Kahan summation - Rosetta Code](https://rosettacode.org/wiki/Kahan_summation)
-3.  [VK Cup Round 2 + Codeforces Round 409 Announcement](https://codeforces.com/blog/entry/51577)
-4.  [Rounding off errors in Java - GeeksforGeeks](https://www.geeksforgeeks.org/rounding-off-errors-java/)
+1.  [Thuật toán cộng Kahan - Wikipedia](https://en.wikipedia.org/wiki/Kahan_summation_algorithm)
+2.  [Cộng Kahan - Rosetta Code](https://rosettacode.org/wiki/Kahan_summation)
+3.  [Thông báo VK Cup vòng 2 + Codeforces Round 409](https://codeforces.com/blog/entry/51577)
+4.  [Lỗi làm tròn trong Java - GeeksforGeeks](https://www.geeksforgeeks.org/rounding-off-errors-java/)

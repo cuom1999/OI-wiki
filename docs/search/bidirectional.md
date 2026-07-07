@@ -115,5 +115,5 @@ $O(a^{b/2})$.
 
 ## Liên kết ngoài
 
--   [What is meet in the middle algorithm w.r.t. competitive programming? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
--   [Meet in the Middle Algorithm - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)
+-   [Thuật toán meet-in-the-middle trong lập trình thi đấu là gì? - Quora](https://www.quora.com/What-is-meet-in-the-middle-algorithm-w-r-t-competitive-programming)
+-   [Thuật toán meet-in-the-middle - YouTube](https://www.youtube.com/watch?v=57SUNQL4JFA)

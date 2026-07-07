@@ -349,10 +349,10 @@ So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
+[^ref1]: [Đừng dùng `rand()`: hướng dẫn về bộ sinh số ngẫu nhiên trong C++](https://codeforces.com/blog/entry/61587)
 
 [^ref2]: [Sinh số giả ngẫu nhiên - cppreference.com](https://en.cppreference.com/w/cpp/numeric/random#Predefined_random_number_generators)
 
-[^ref3]: [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
+[^ref3]: [Thuật toán Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
 
 [^note1]: Phiên bản là GCC 9.2.0

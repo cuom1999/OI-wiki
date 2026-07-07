@@ -60,8 +60,8 @@ Gói [garsia-wachs](https://hackage.haskell.org/package/garsia-wachs) của ngô
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Garsia–Wachs algorithm - Wikipedia](https://en.wikipedia.org/wiki/Garsia%E2%80%93Wachs_algorithm)
+1.  [Thuật toán Garsia–Wachs - Wikipedia](https://en.wikipedia.org/wiki/Garsia%E2%80%93Wachs_algorithm)
 2.  [Data.Algorithm.GarsiaWachs - Hackage Haskell](https://hackage.haskell.org/package/garsia-wachs-1.2/docs/Data-Algorithm-GarsiaWachs.html)
-3.  [garsia-wachs: A Functional Implementation of the Garsia-Wachs Algorithm](https://hackage.haskell.org/package/garsia-wachs)
-4.  [Sentinel value - Wikipedia](https://en.wikipedia.org/wiki/Sentinel_value)
-5.  [A new proof of the Garsia-Wachs algorithm](https://www.sciencedirect.com/science/article/abs/pii/0196677488900090)
+3.  [garsia-wachs: cài đặt hàm của thuật toán Garsia–Wachs](https://hackage.haskell.org/package/garsia-wachs)
+4.  [Giá trị canh gác - Wikipedia](https://en.wikipedia.org/wiki/Sentinel_value)
+5.  [Một chứng minh mới cho thuật toán Garsia–Wachs](https://www.sciencedirect.com/science/article/abs/pii/0196677488900090)
