@@ -289,7 +289,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     ràng $a^{u2^{\ell-1}}\equiv 1\pmod n$ cũng đúng, tức $a\in S'$. Nếu tồn tại
     $0\le i < t$ sao cho $a^{u2^i}\equiv -1\pmod n$, thì với mọi thừa số nguyên
     tố $p\mid n$ đều có $a^{u2^i}\equiv-1\pmod p$. Gọi $\delta_p(a)$ là
-    [cấp](./primitive-root.md#bậc) của $a$ theo modulo $p$. Khi đó
+    [cấp](./primitive-root.md#bậc) của $a$ theo môđun $p$. Khi đó
     $\delta_p(a)\mid u2^{i+1}$ nhưng $\delta_p(a)\nmid u2^{i}$, nên trong phân
     tích thừa số nguyên tố của $\delta_p(a)$, số mũ của $2$ đúng bằng $i+1$, vì
     vậy $2^{i+1}\mid\delta_p(a)$. Theo định lý nhỏ Fermat,
@@ -302,10 +302,10 @@ là số nguyên tố không vượt quá $1/4^k$.
 
     Giả sử $n$ có phân tích thừa số nguyên tố
     $n = p_1^{e_1}p_2^{e_2}\cdots p_k^{e_k}$. Theo
-    [định lý thặng dư Trung Hoa](./crt.md), điều kiện
+    [định lý số dư Trung Hoa](./crt.md), điều kiện
     $a^{u2^{\ell - 1}}\equiv 1\pmod n$ tương đương với
     $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ đúng với mọi $p_i^{e_i}$. Vì
-    [căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy) modulo lũy thừa
+    [căn nguyên thủy](./primitive-root.md#căn-nguyên-thủy) theo môđun lũy thừa
     của số nguyên tố lẻ $p_i^{e_i}$ luôn tồn tại, số
     [nghiệm](./residue.md#tính-chất) của phương trình đồng dư
     $a^{u2^{\ell - 1}}\equiv 1\pmod{p_i^{e_i}}$ là
@@ -316,7 +316,7 @@ là số nguyên tố không vượt quá $1/4^k$.
 
     Đẳng thức đầu tiên đúng vì $u$ là ước của $n-1$, nên không thể là bội của
     $p_i$; đẳng thức thứ hai đúng theo cách chọn $\ell$. Vì vậy, theo định lý
-    thặng dư Trung Hoa, số nghiệm của phương trình đồng dư
+    số dư Trung Hoa, số nghiệm của phương trình đồng dư
     $a^{u2^{\ell-1}}\equiv 1\pmod n$ là
 
     $$
@@ -338,7 +338,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     2^{\ell}\gcd(u,p_i-1) - 2^{\ell-1}\gcd(u,p_i-1) = 2^{\ell-1}\gcd(u,p_i-1).
     $$
 
-    Lại áp dụng định lý thặng dư Trung Hoa, số nghiệm của phương trình đồng dư
+    Lại áp dụng định lý số dư Trung Hoa, số nghiệm của phương trình đồng dư
     $a^{u2^{\ell - 1}}\equiv -1\pmod n$ bằng
 
     $$
@@ -377,7 +377,7 @@ là số nguyên tố không vượt quá $1/4^k$.
     phương. Giả sử $n=p_1p_2$ với $p_1<p_2$ đều là số nguyên tố. Hai thừa số đều
     bằng $2$, nên luôn có $p_i-1=2^{\ell}\gcd(u,p_i-1)$. Do đó
     $p_i=1+2^\ell m_i$, trong đó $m_i$ là số lẻ và $m_i\mid u$. Lấy
-    $p_1p_2=n=1+u2^t$ modulo $m_1$ được $p_1p_2\equiv 1\pmod{m_1}$, vì thế
+    $p_1p_2=n=1+u2^t$ theo môđun $m_1$ được $p_1p_2\equiv 1\pmod{m_1}$, vì thế
     $p_2\equiv 1\pmod{m_1}$, suy ra $m_1\mid m_2$. Chiều ngược lại cũng đúng.
     Vậy $m_1=m_2$, tức $p_1=p_2$, mâu thuẫn với $p_1<p_2$. Trường hợp này không
     thể xảy ra.
@@ -501,7 +501,7 @@ cây, rồi tìm dần theo từng tầng. Khi nào dừng?
 4.  Số ước hiện tại vừa bằng số ước mong muốn; khi đó xét có cần cập nhật
     $\mathit{ans}$ nhỏ nhất hay không.
 
-Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ quy xuống dưới.
+Sau đó trong tìm kiếm theo chiều sâu, liên tục liệt kê số mũ theo từng tầng và đệ quy xuống dưới.
 
 <span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
@@ -511,7 +511,7 @@ Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ
     không vượt quá $10^{18}$.
 
 ??? note "Ý tưởng giải"
-    Với dạng bài này, chỉ cần lấy số ước làm điều kiện dừng của DFS, liên tục
+    Với dạng bài này, chỉ cần lấy số ước làm điều kiện dừng của tìm kiếm theo chiều sâu, liên tục
     cập nhật giá trị nhỏ nhất tìm được.
 
 ??? note "Mã tham khảo"
@@ -523,7 +523,7 @@ Sau đó trong DFS, liên tục liệt kê số mũ theo từng tầng và đệ
     Tìm số không vượt quá $n$ có nhiều ước nhất.
 
 ??? note "Ý tưởng giải"
-    Ý tưởng giống trên, chỉ cần sửa điều kiện dừng của DFS. Lưu ý phạm vi dữ
+    Ý tưởng giống trên, chỉ cần sửa điều kiện dừng của tìm kiếm theo chiều sâu. Lưu ý phạm vi dữ
     liệu của bài này: số nguyên 32 bit có thể bị tràn.
 
 ??? note "Mã tham khảo"
