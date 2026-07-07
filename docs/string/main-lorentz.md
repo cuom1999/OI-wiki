@@ -192,4 +192,4 @@ void find_repetitions(string s, int shift = 0) {
 }
 ```
 
-**Trang này chủ yếu được dịch từ bài viết [Поиск всех тандемных повторов в строке. Алгоритм Мейна-Лоренца](http://e-maxx.ru/algo/string_tandems) và bản dịch tiếng Anh [Finding repetitions](https://cp-algorithms.com/string/main_lorentz.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
+**Trang này chủ yếu được dịch từ bài viết [Поиск всех тандемных повторов в строке. Алгоритм Мейна-Лоренца](http://e-maxx.ru/algo/string_tandems) và bản dịch tiếng Anh [tìm các đoạn lặp](https://cp-algorithms.com/string/main_lorentz.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

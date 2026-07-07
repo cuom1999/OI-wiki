@@ -566,7 +566,7 @@ Bài toán này cũng có thể giải bằng cách xây dựng ô-tô-mát củ
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú
 
-**Trang này chủ yếu được dịch từ bài viết [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) và bản dịch tiếng Anh của nó, [Prefix function. Knuth-Morris-Pratt algorithm](https://cp-algorithms.com/string/prefix-function.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
+**Trang này chủ yếu được dịch từ bài viết [Префикс-функция. Алгоритм Кнута-Морриса-Пратта](http://e-maxx.ru/algo/prefix_function) và bản dịch tiếng Anh của nó, [hàm tiền tố. Thuật toán Knuth-Morris-Pratt](https://cp-algorithms.com/string/prefix-function.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
 
 [^ref1]: [Jin Ce - Bài giảng chuyên đề thuật toán chuỗi](https://github.com/hzwer/shareOI/blob/master/%E5%AD%97%E7%AC%A6%E4%B8%B2/%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%AE%97%E6%B3%95%E9%80%89%E8%AE%B2_%E9%87%91%E7%AD%96.pdf)
 

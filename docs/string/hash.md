@@ -483,4 +483,4 @@ Bài toán: Cho chuỗi độ dài $n$ chỉ gồm các chữ cái thường ti�
         --8<-- "docs/string/code/hash/hash_1.cpp"
         ```
 
-**Một phần nội dung của trang này được dịch từ bài viết [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) và bản dịch tiếng Anh [String Hashing](https://cp-algorithms.com/string/string-hashing.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**
+**Một phần nội dung của trang này được dịch từ bài viết [строковый хеш](https://github.com/e-maxx-eng/e-maxx-eng/blob/61aff51f658644424c5e1b717f14fb7bf054ae80/src/string/string-hashing.md) và bản dịch tiếng Anh [băm chuỗi](https://cp-algorithms.com/string/string-hashing.html). Giấy phép của bản tiếng Nga là Public Domain + Leave a Link; giấy phép của bản tiếng Anh là CC-BY-SA 4.0.**

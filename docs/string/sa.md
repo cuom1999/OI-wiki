@@ -280,7 +280,7 @@ Với các bài đặc biệt, giới hạn thời gian chặt, hoặc yêu cầ
 
 #### SA-IS
 
-Tham khảo [Induced Sorting and SA-IS Algorithm](https://riteme.site/blog/2016-6-19/sais.html); [trang bình luận](https://github.com/riteme/riteme.github.io/issues/28) của bài viết này cũng có giá trị tham khảo.
+Tham khảo [sắp xếp cảm ứng và thuật toán SA-IS](https://riteme.site/blog/2016-6-19/sais.html); [trang bình luận](https://github.com/riteme/riteme.github.io/issues/28) của bài viết này cũng có giá trị tham khảo.
 
 #### DC3
 
@@ -516,7 +516,7 @@ Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
 
-Các phần trên trang này được đưa vào từ commit [4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef), chủ yếu dịch từ bài viết [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) và bản dịch tiếng Anh [Suffix Array](https://cp-algorithms.com/string/suffix-array.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.
+Các phần trên trang này được đưa vào từ commit [4070a9b](https://github.com/OI-wiki/OI-wiki/pull/950/commits/4070a9b3db8576db16c74d3ec33806ad10476eef), chủ yếu dịch từ bài viết [Суффиксный массив](http://e-maxx.ru/algo/suffix_array) và bản dịch tiếng Anh [mảng hậu tố](https://cp-algorithms.com/string/suffix-array.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.
 
 Bài báo:
 

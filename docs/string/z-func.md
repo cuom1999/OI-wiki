@@ -175,4 +175,4 @@ Chứng minh tính chất này giống với chứng minh khi dùng [hàm tiền
 -   [Codeforces - Prefixes and Suffixes](http://codeforces.com/problemset/problem/432/D)
 -   [Leetcode 2223 - Sum of Scores of Built Strings](https://leetcode.com/problems/sum-of-scores-of-built-strings/)
 
-**Trang này chủ yếu được dịch từ bài viết [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) và bản dịch tiếng Anh [Z-function and its calculation](https://cp-algorithms.com/string/z-function.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
+**Trang này chủ yếu được dịch từ bài viết [Z-функция строки и её вычисление](http://e-maxx.ru/algo/z_function) và bản dịch tiếng Anh [hàm Z và cách tính](https://cp-algorithms.com/string/z-function.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

@@ -850,7 +850,7 @@ Ngoài ra còn có một số tài liệu khác:
 -   <https://codeforces.com/blog/entry/20861>
 -   <https://zhuanlan.zhihu.com/p/25948077>
 
-**Trang này chủ yếu được dịch từ bài viết [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) và bản dịch tiếng Anh của nó [Suffix Automaton](https://cp-algorithms.com/string/suffix-automaton.html). Trong đó, bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
+**Trang này chủ yếu được dịch từ bài viết [Суффиксный автомат](http://e-maxx.ru/algo/suffix_automata) và bản dịch tiếng Anh của nó [ô-tô-mát hậu tố](https://cp-algorithms.com/string/suffix-automaton.html). Trong đó, bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
 
 [^state-endpos]: Lý do cần lấy mỗi trạng thái làm một lớp tương đương $\operatorname{endpos}$ chính là định lý Myhill-Nerode được nhắc tới trong đoạn này. Nói ngắn gọn, nếu hai xâu $t$ và $u$ có tập $\operatorname{endpos}$ khác nhau, thì chúng không thể ứng với cùng một trạng thái của SAM: các đường đi từ cùng một trạng thái tới trạng thái kết thúc luôn giống nhau, nghĩa là cách thêm ký tự vào cuối $t$ và $u$ để đi tới cuối xâu $s$ cũng giống nhau, và điều này lại cho thấy vị trí kết thúc của $t$ và $u$ trong xâu $s$ là giống nhau. Ngược lại, nếu hai xâu $t$ và $u$ có cùng tập $\operatorname{endpos}$, có thể cho chúng ứng với cùng một trạng thái của SAM. Việc này khả thi chính là nội dung chứng minh của định lý Nerode, nên không thảo luận thêm trong ghi chú này. Nhưng ít nhất từ thảo luận này có thể tin rằng, đặt các xâu có cùng tập $\operatorname{endpos}$ vào cùng một trạng thái sẽ tạo ra SAM nhỏ nhất, vì không thể gộp đỉnh thêm nữa.
 

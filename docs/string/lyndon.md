@@ -146,4 +146,4 @@ Vì vậy trong quá trình phân tích, chỉ cần ghi lại điểm bắt đ�
 
 -   [UVa #719 - Glass Beads](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=660)
 
-    **Trang này chủ yếu được dịch từ bài viết [Декомпозиция Линдона. Алгоритм Дюваля. Нахождение наименьшего циклического сдвига](http://e-maxx.ru/algo/duval_algorithm) và bản dịch tiếng Anh [Lyndon factorization](https://cp-algorithms.com/string/lyndon_factorization.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**
+    **Trang này chủ yếu được dịch từ bài viết [Декомпозиция Линдона. Алгоритм Дюваля. Нахождение наименьшего циклического сдвига](http://e-maxx.ru/algo/duval_algorithm) và bản dịch tiếng Anh [phân tích Lyndon](https://cp-algorithms.com/string/lyndon_factorization.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

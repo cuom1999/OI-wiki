@@ -238,9 +238,9 @@ Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đ�
 <span id="tài-liệu-liên-quan"></span>
 ## Tài liệu liên quan
 
--   [EERTREE: An Efficient Data Structure for Processing Palindromes in Strings](https://arxiv.org/pdf/1506.04862)
+-   [EERTREE: cấu trúc dữ liệu hiệu quả để xử lý hồi văn trong chuỗi](https://arxiv.org/pdf/1506.04862)
 
--   [Palindromic tree](http://adilet.org/blog/palindromic-tree/)
+-   [Cây hồi văn](http://adilet.org/blog/palindromic-tree/)
 
 -   Tuyển tập luận văn đội tuyển ứng viên IOI Trung Quốc 2017, "Cây hồi văn và ứng dụng", Weng Wentao
 
@@ -248,6 +248,6 @@ Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đ�
 
 -   "Chuyên đề thuật toán xâu", Jin Ce
 
--   [A bit more about palindromes](https://codeforces.com/blog/entry/19193)
+-   [Thêm một chút về hồi văn](https://codeforces.com/blog/entry/19193)
 
--   [A Subquadratic Algorithm for Minimum Palindromic Factorization](https://arxiv.org/pdf/1403.2431.pdf)
+-   [Thuật toán dưới bậc hai cho phân tích hồi văn nhỏ nhất](https://arxiv.org/pdf/1403.2431.pdf)
