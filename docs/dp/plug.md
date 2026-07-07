@@ -821,7 +821,7 @@ Thực hiện DP dọc theo các giao điểm của bàn cờ (vì vậy chiều
 ??? note "Bài tập [「ZOJ 2126」Cơn sốt tên lửa Plus](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=11&problemSetProblemId=91827365625)"
     Tóm tắt đề bài: trên bản đồ $9\times6$, mỗi ô chứa một loại ống (`-`, `T`, `L`, `+` hoặc không có). Có thể xoay ống 0°, 90°, 180°, 270°. Hỏi tối đa có bao nhiêu hàng có biên phải nối được với biên trái thông qua ống.
 
-??? note "Bài tập [「World Finals 2009/2010 Harbin」Kênh](https://qoj.ac/problem/13134)"
+??? note "Bài tập [「Vòng chung kết thế giới 2009/2010 Harbin」Kênh](https://qoj.ac/problem/13134)"
     Tóm tắt đề bài: trên một bản đồ ô vuông, dùng `.` biểu thị đất trống và `#` biểu thị đá. Tìm một đường đi dài nhất thỏa mãn:
     
     1.  Điểm đầu ở góc trên trái, điểm cuối ở góc dưới phải.

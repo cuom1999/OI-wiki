@@ -369,4 +369,4 @@ $$
 -   [UVa #10843 - Trò chơi của Anne](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=20&page=show_problem&problem=1784)
 -   [Timus #1069 - Mã Prüfer](http://acm.timus.ru/problem.aspx?space=1&num=1069)
 -   [Codeforces - Manh mối](http://codeforces.com/contest/156/problem/D)
--   [Topcoder - Các thành phố và con đường Div Two](https://archive.topcoder.com/ProblemStatement/pm/10774)
+-   [Topcoder - Các thành phố và con đường, bảng Hai](https://archive.topcoder.com/ProblemStatement/pm/10774)

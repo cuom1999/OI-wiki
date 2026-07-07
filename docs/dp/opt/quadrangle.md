@@ -434,7 +434,7 @@ Trước hết cần làm rõ một điểm: định nghĩa hàm lồi (Convex F
 -   [SPOJ - LARMY](https://www.spoj.com/problems/LARMY/)
 -   [CodeChef - CHEFAOR](https://www.codechef.com/problems/CHEFAOR)
 -   [Hackerrank - Những người canh giữ kẻ điên](https://www.hackerrank.com/contests/ioi-2014-practice-contest-2/challenges/guardians-lunatics-ioi14)
--   [ACM ICPC World Finals 2017 - Tiền](https://open.kattis.com/problems/money)
+-   [Vòng chung kết thế giới ACM-ICPC 2017 - Tiền](https://open.kattis.com/problems/money)
 
 ## Tài liệu tham khảo và chú thích
 

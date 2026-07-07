@@ -846,7 +846,7 @@ trình, có thể giải bằng Slope Trick để luyện tập.
 -   [Codeforces 1534 G. Khởi đầu mới](https://codeforces.com/problemset/problem/1534/G)
 -   [Codeforces 1787 H. Bảng điểm Codeforces](https://codeforces.com/problemset/problem/1787/H)
 -   [2019 Summer Petrozavodsk Camp H. Nhắc đến danh dự](https://codeforces.com/gym/102331/problem/H)
--   [2018 ACM-ICPC World Finals C. Chinh phục thế giới](https://codeforces.com/gym/102482/problem/C)
+-   [Vòng chung kết thế giới ACM-ICPC 2018 C. Chinh phục thế giới](https://codeforces.com/gym/102482/problem/C)
 -   [300iq Contest 3 F. Nông trại quái vật](https://codeforces.com/gym/102538/problem/F)
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>

@@ -9,8 +9,7 @@ chức và là một trong những cuộc thi lập trình đại học có ản
 trước đây ACM từng tài trợ cuộc thi này, nhiều người vẫn quen gọi là cuộc thi
 ACM.
 
-ICPC chủ yếu gồm hai phần: vòng khu vực (Regionals) và vòng chung kết thế giới
-(World Finals).
+ICPC chủ yếu gồm hai phần: vòng khu vực và vòng chung kết thế giới.
 
 Trang chính thức: <https://icpc.global>
 
@@ -52,7 +51,7 @@ trên Nowcoder,...
 -   Cuộc thi trực tuyến ICPC/CCPC: cuối tháng 8 đến đầu tháng 9.
 -   Vòng khu vực ICPC/CCPC: cuối tháng 9 đến cuối tháng 11.
 -   ICPC EC Final/CCPC Final: giữa tháng 12.
--   Vòng chung kết thế giới ICPC (ICPC World Finals): tháng 4 đến tháng 6 năm sau.
+-   Vòng chung kết thế giới ICPC: tháng 4 đến tháng 6 năm sau.
 
 ## Hướng dẫn luyện tập
 

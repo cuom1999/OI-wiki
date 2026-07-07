@@ -47,9 +47,9 @@ Nền tảng chấm trực tuyến (tiếng Anh: Online Judging System, viết t
 -   [Open Trains](https://opentrains.opencup.org/) là nền tảng luyện tập cho Russian Open Cup, xây dựng trên hệ thống mã nguồn mở [ejudge](https://ejudge.ru/), hỗ trợ cuộc thi ảo; kho bài gồm đề Open Cup qua các năm và bài từ trại huấn luyện Petrozavodsk.
 -   [SPOJ](http://www.spoj.com) bắt đầu từ năm 2003; hệ thống nền [Sphere Engine](https://sphere-engine.com/) được thương mại hóa vào năm 2008; hỗ trợ chức năng thích bài và gắn thẻ.
 -   [TopCoder](https://www.topcoder.com/) bắt đầu từ năm 2001; [cộng đồng lập trình thi đấu](https://www.topcoder.com/community/competitive-programming/) của nền tảng này có nhiều cuộc thi; hiện mảng kinh doanh chính là crowdsourcing kỹ thuật.
--   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Đại học Liên bang Ural phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Đại học Liên bang Ural, Ural Championship, ICPC Ural Regional Contest và trại huấn luyện Petrozavodsk.
+-   [TimusOJ](http://acm.timus.ru/) bắt đầu từ năm 2000, do Đại học Liên bang Ural phát triển, sở hữu kho bài chấm trực tuyến lớn nhất của Nga; bài chủ yếu đến từ các cuộc thi nội bộ Đại học Liên bang Ural, Giải vô địch Ural, vòng khu vực ICPC Ural và trại huấn luyện Petrozavodsk.
 -   Online Judge (trước đây là [UVaOJ](https://uva.onlinejudge.org/)) bắt đầu từ năm 1995, là OJ nổi tiếng quốc tế sớm nhất; người sáng lập là giáo sư Miguel Ángel Revilla của Đại học Valladolid (UVa), Tây Ban Nha. Do [giáo sư Revilla không may qua đời năm 2018](https://www.elnortedecastilla.es/valladolid/muere-profesor-miguel-20180402225739-nt.html) và Đại học Valladolid dừng bảo trì, UVaOJ đổi tên thành Online Judge từ tháng 7 năm 2019. Hiện người duy trì nền tảng này [đang xây dựng nền tảng chấm mới trên GitHub](https://github.com/TheOnlineJudge/ojudge).
--   [Yandex](https://contest.yandex.ru/) lưu trữ đề của Russian Olympiad in Informatics trong vài năm gần đây.
+-   [Yandex](https://contest.yandex.ru/) lưu trữ đề của Olympic Tin học Nga trong vài năm gần đây.
 
 ## Tài liệu hướng dẫn
 
