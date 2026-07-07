@@ -1,22 +1,44 @@
 ## Lời nói đầu
 
-Năm 1959, khái niệm "thống trị" được Reese T. Prosser đưa ra trong [một bài báo về luồng mạng](http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747), nhưng bài báo chưa đưa ra thuật toán cụ thể để giải quyết; đến năm 1969, Edward S. Lowry và C. W. Medlock mới lần đầu đề xuất [một thuật toán hiệu quả](http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747). Thuật toán Lengauer-Tarjan, hiện là thuật toán được sử dụng rộng rãi nhất, được Lengauer và Tarjan đề xuất vào năm 1979 trong [một bài báo](https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf).
+Năm 1959, khái niệm "thống trị" được Reese T. Prosser đưa ra trong
+[một bài báo về luồng mạng][prosser-1959],
+nhưng bài báo chưa đưa ra thuật toán cụ thể để giải quyết.
+Đến năm 1969, Edward S. Lowry và C. W. Medlock mới lần đầu đề xuất
+[một thuật toán hiệu quả][lowry-medlock-1969].
+Thuật toán Lengauer-Tarjan, hiện là thuật toán được sử dụng rộng rãi nhất,
+được Lengauer và Tarjan đề xuất vào năm 1979 trong
+[một bài báo][lengauer-tarjan-1979].
 
-Trong giới OI, khái niệm cây thống trị được đưa vào sớm nhất qua bài [ZJOI2012 Thảm họa](https://www.luogu.com.cn/problem/P2597), khi đó còn được gọi là "cây tuyệt chủng"; Chen Sunli cũng giới thiệu thuật toán này trong luận văn đội tuyển quốc gia năm 2020.
+Trong giới OI, khái niệm cây thống trị được đưa vào sớm nhất qua bài
+[ZJOI2012 Thảm họa](https://www.luogu.com.cn/problem/P2597),
+khi đó còn được gọi là "cây tuyệt chủng".
+Chen Sunli cũng giới thiệu thuật toán này trong luận văn đội tuyển quốc gia năm 2020.
 
-Hiện nay cây thống trị không thật sự phổ biến trong lập trình thi đấu, và các bài tập liên quan cũng không nhiều; tuy vậy trong công nghiệp, đặc biệt là các lĩnh vực liên quan đến trình biên dịch, cây thống trị đã được ứng dụng rộng rãi.
+Hiện nay cây thống trị không thật sự phổ biến trong lập trình thi đấu,
+và các bài tập liên quan cũng không nhiều.
+Tuy vậy trong công nghiệp, đặc biệt là các lĩnh vực liên quan đến trình biên dịch,
+cây thống trị đã được ứng dụng rộng rãi.
 
 Bài viết này sẽ giới thiệu khái niệm cây thống trị và một vài phương pháp xây dựng.
 
 ## Quan hệ thống trị
 
-Trên một đồ thị có hướng bất kỳ, chọn cố định một đỉnh vào $s$. Với một đỉnh $u$, nếu mọi đường đi từ $s$ đến $u$ đều đi qua một đỉnh $v$ nào đó, nói rằng $v$ **thống trị** $u$, hay $v$ là một **đỉnh thống trị** của $u$, ký hiệu $v\ dom\ u$.
+Trên một đồ thị có hướng bất kỳ, chọn cố định một đỉnh vào $s$.
+Với một đỉnh $u$, nếu mọi đường đi từ $s$ đến $u$ đều đi qua một đỉnh $v$ nào đó,
+nói rằng $v$ **thống trị** $u$,
+hay $v$ là một **đỉnh thống trị** của $u$, ký hiệu $v\ dom\ u$.
 
-Đối với các đỉnh không thể đạt tới từ $s$, việc xét quan hệ thống trị là không có ý nghĩa. Vì vậy, nếu không có ghi chú đặc biệt, bài viết này mặc định rằng từ $s$ có thể đi tới mọi đỉnh trong đồ thị.
+Đối với các đỉnh không thể đạt tới từ $s$,
+việc xét quan hệ thống trị là không có ý nghĩa.
+Vì vậy, nếu không có ghi chú đặc biệt,
+bài viết này mặc định rằng từ $s$ có thể đi tới mọi đỉnh trong đồ thị.
 
 ![](images/dom-tree1.png)
 
-Ví dụ trong đồ thị có hướng này, $2$ bị $1$ thống trị, $3$ bị $1, 2$ thống trị, $4$ bị $1, 2, 3$ thống trị, $5$ bị $1, 2$ thống trị, v.v.
+Ví dụ trong đồ thị có hướng này, $2$ bị $1$ thống trị,
+$3$ bị $1, 2$ thống trị,
+$4$ bị $1, 2, 3$ thống trị,
+$5$ bị $1, 2$ thống trị, v.v.
 
 ### Bổ đề
 
@@ -26,33 +48,56 @@ Trong các bổ đề dưới đây, mặc định $u, v, w\ne s$.
 
 **Chứng minh:** Mọi đường đi từ $s$ đến $u$ đều phải đi qua hai đỉnh $s$ và $u$.
 
-**Bổ đề 2:** Quan hệ thống trị thu được khi chỉ xét các đường đi đơn giống với quan hệ thu được khi xét tất cả các đường đi.
+**Bổ đề 2:** Quan hệ thống trị thu được khi chỉ xét các đường đi đơn
+giống với quan hệ thu được khi xét tất cả các đường đi.
 
-**Chứng minh:** Với một đường đi không đơn, giả sử $S$ là tập các đỉnh đi qua giữa hai lần xuất hiện của cùng một đỉnh. Nếu xóa các đỉnh trong $S$, có thể tương ứng mỗi đường đi không đơn với một đường đi đơn.
+**Chứng minh:** Với một đường đi không đơn,
+giả sử $S$ là tập các đỉnh đi qua giữa hai lần xuất hiện của cùng một đỉnh.
+Nếu xóa các đỉnh trong $S$,
+có thể tương ứng mỗi đường đi không đơn với một đường đi đơn.
 
-Trong $S$, các đỉnh nằm trên đường đi không đơn nhưng không nằm trên đường đi đơn không thể trở thành đỉnh thống trị, vì tồn tại ít nhất một đường đi đơn từ $s$ đến $u$ không chứa đỉnh đó; đồng thời, các đỉnh nằm trên cả đường đi đơn và đường đi không đơn chỉ cần được xét trên đường đi đơn.
+Trong $S$, các đỉnh nằm trên đường đi không đơn nhưng không nằm trên đường đi đơn
+không thể trở thành đỉnh thống trị,
+vì tồn tại ít nhất một đường đi đơn từ $s$ đến $u$ không chứa đỉnh đó.
+Đồng thời, các đỉnh nằm trên cả đường đi đơn và đường đi không đơn
+chỉ cần được xét trên đường đi đơn.
 
 Tóm lại, việc loại bỏ các đường đi không đơn không ảnh hưởng đến quan hệ thống trị.
 
-**Bổ đề 3:** Nếu $u$  $dom$  $v$, $v$  $dom$  $w$, thì $u$  $dom$  $w$.
+**Bổ đề 3:** Nếu $u\ dom\ v$, $v\ dom\ w$, thì $u\ dom\ w$.
 
-**Chứng minh:** Mọi đường đi đến $w$ đều đi qua $v$, và mọi đường đi đến $v$ đều đi qua $u$, do đó mọi đường đi đến $w$ đều đi qua $u$, tức là $u \ dom \ w$.
+**Chứng minh:** Mọi đường đi đến $w$ đều đi qua $v$,
+và mọi đường đi đến $v$ đều đi qua $u$.
+Do đó mọi đường đi đến $w$ đều đi qua $u$, tức là $u \ dom \ w$.
 
 **Bổ đề 4:** Nếu $u \ dom \ v$, $v \ dom\ u$, thì $u=v$.
 
-**Chứng minh:** Giả sử $u \ne v$. Khi đó mọi đường đi đến $v$ đều đã đi qua $u$, đồng thời mọi đường đi đến $u$ đều đã đi qua $v$, mâu thuẫn.
+**Chứng minh:** Giả sử $u \ne v$.
+Khi đó mọi đường đi đến $v$ đều đã đi qua $u$,
+đồng thời mọi đường đi đến $u$ đều đã đi qua $v$, mâu thuẫn.
 
 **Bổ đề 5:** Nếu $u \ne v \ne w$, $u \ dom \ w$ và $v \ dom \ w$, thì có $u \ dom \ v$ hoặc $v \ dom \ u$.
 
-**Chứng minh:** Xét một đường đi $s \rightarrow \dots \rightarrow u \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$. Nếu $u$ và $v$ không có quan hệ thống trị, thì tồn tại một đường đi từ $s$ đến $v$ không đi qua $u$, tức là tồn tại một đường đi $s \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$, mâu thuẫn với $u\ dom\ w$.
+**Chứng minh:** Xét một đường đi
+$s \rightarrow \dots \rightarrow u \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$.
+Nếu $u$ và $v$ không có quan hệ thống trị,
+thì tồn tại một đường đi từ $s$ đến $v$ không đi qua $u$,
+tức là tồn tại một đường đi
+$s \rightarrow \dots \rightarrow v \rightarrow \dots \rightarrow w$,
+mâu thuẫn với $u\ dom\ w$.
 
 ### Tìm quan hệ thống trị
 
 #### Phương pháp xóa đỉnh
 
-Một kết luận tương đương với định nghĩa: nếu sau khi xóa một đỉnh nào đó trong đồ thị, một số đỉnh trở nên không thể đạt tới, thì đỉnh bị xóa này thống trị các đỉnh trở nên không thể đạt tới đó.
+Một kết luận tương đương với định nghĩa:
+nếu sau khi xóa một đỉnh nào đó trong đồ thị,
+một số đỉnh trở nên không thể đạt tới,
+thì đỉnh bị xóa này thống trị các đỉnh đó.
 
-Vì vậy chỉ cần thử xóa từng đỉnh rồi chạy dfs, độ phức tạp của mã là $O(n^3)$. Dưới đây là phần mã cốt lõi.
+Vì vậy chỉ cần thử xóa từng đỉnh rồi chạy DFS,
+độ phức tạp của cách cài đặt là $O(n^3)$.
+Dưới đây là phần mã chính.
 
 ```cpp
 // Giả sử đồ thị có n đỉnh, đỉnh bắt đầu s = 1
@@ -85,9 +130,15 @@ void getdom() {
 
 #### Phương pháp lặp luồng dữ liệu
 
-Phương pháp lặp luồng dữ liệu cũng là một kiến thức không thường gặp trong OI, nên phần này giới thiệu ngắn gọn trước.
+Phương pháp lặp luồng dữ liệu cũng là một kiến thức không thường gặp trong OI,
+nên phần này giới thiệu ngắn gọn trước.
 
-Phân tích luồng dữ liệu là một khái niệm trong nguyên lý trình biên dịch, dùng để phân tích dữ liệu chảy như thế nào trên các đường thực thi của chương trình. Phương pháp lặp luồng dữ liệu là cách lập các phương trình trên các đỉnh của đồ thị luồng điều khiển của chương trình rồi liên tục lặp để giải, từ đó thu được giá trị luồng dữ liệu tại một số điểm của chương trình. Trong ngữ cảnh này, đồ thị có hướng được xem như một đồ thị luồng điều khiển của chương trình.
+Phân tích luồng dữ liệu là một khái niệm trong nguyên lý trình biên dịch,
+dùng để phân tích dữ liệu chảy như thế nào trên các đường thực thi của chương trình.
+Phương pháp lặp luồng dữ liệu là cách lập các phương trình trên các đỉnh
+của đồ thị luồng điều khiển của chương trình rồi liên tục lặp để giải,
+từ đó thu được giá trị luồng dữ liệu tại một số điểm của chương trình.
+Trong ngữ cảnh này, đồ thị có hướng được xem như một đồ thị luồng điều khiển.
 
 Trong bài toán này, phương trình là:
 
@@ -97,11 +148,22 @@ $$
 
 Trong đó $pre(u)$ được định nghĩa là tập các đỉnh tiền nhiệm của $u$. Phương trình này có thể suy ra từ bổ đề 3.
 
-Nói một cách dễ hiểu, tập các đỉnh thống trị của một đỉnh bằng giao của các tập đỉnh thống trị của tất cả các đỉnh tiền nhiệm của nó, rồi hợp thêm chính nó. Theo phương trình này, liên tục lặp tập đỉnh thống trị trên mỗi đỉnh cho đến khi đáp án không còn thay đổi.
+Nói một cách dễ hiểu,
+tập các đỉnh thống trị của một đỉnh bằng giao của các tập đỉnh thống trị
+của tất cả các đỉnh tiền nhiệm của nó, rồi hợp thêm chính nó.
+Theo phương trình này,
+liên tục lặp tập đỉnh thống trị trên mỗi đỉnh cho đến khi đáp án không còn thay đổi.
 
-Để nâng cao hiệu suất, trong mỗi vòng lặp nên để càng nhiều đỉnh tiền nhiệm của đỉnh đang xét đã hoàn thành vòng lặp hiện tại càng tốt. Vì vậy cần dùng thứ tự duyệt sâu để lấy thứ tự hậu tố ngược của đồ thị, rồi lặp theo thứ tự đó.
+Để nâng cao hiệu suất,
+trong mỗi vòng lặp nên để càng nhiều đỉnh tiền nhiệm của đỉnh đang xét
+đã hoàn thành vòng lặp hiện tại càng tốt.
+Vì vậy cần dùng thứ tự duyệt sâu để lấy thứ tự hậu tố ngược của đồ thị,
+rồi lặp theo thứ tự đó.
 
-Dưới đây là một cài đặt tham khảo của phần mã cốt lõi. Phần cài đặt này cần tiền xử lý tập đỉnh tiền nhiệm của mỗi đỉnh và thứ tự hậu tố ngược của đồ thị, nhưng đó không phải nội dung chính của bài viết này nên không cung cấp cài đặt tham khảo.
+Dưới đây là một cài đặt tham khảo cho phần mã chính.
+Cách cài đặt này cần tiền xử lý tập đỉnh tiền nhiệm của mỗi đỉnh
+và thứ tự hậu tố ngược của đồ thị;
+hai phần đó không phải trọng tâm của bài viết nên không đưa mã tham khảo.
 
 ```cpp
 std::vector<int> pre[N];  // Các đỉnh tiền nhiệm của mỗi đỉnh
@@ -142,19 +204,40 @@ void getdom() {
 
 Từ phần trước suy ra rằng, ngoài $s$ ra, một đỉnh có ít nhất hai đỉnh thống trị: $s$ và chính nó.
 
-Trong các đỉnh thống trị của một đỉnh bất kỳ $u$, gọi đỉnh $v$ gần $u$ nhất sau khi loại trừ chính $u$ là đỉnh thống trị trực tiếp của $u$, ký hiệu $idom(u) = v$. Ngoài $s$ không có đỉnh thống trị trực tiếp, mỗi đỉnh đều có duy nhất một đỉnh thống trị trực tiếp.
+Trong các đỉnh thống trị của một đỉnh bất kỳ $u$,
+gọi đỉnh $v$ gần $u$ nhất sau khi loại trừ chính $u$
+là đỉnh thống trị trực tiếp của $u$, ký hiệu $idom(u) = v$.
+Ngoài $s$ không có đỉnh thống trị trực tiếp,
+mỗi đỉnh đều có duy nhất một đỉnh thống trị trực tiếp.
 
-Xét việc nối cạnh từ $idom(u)$ đến $u$ cho mỗi đỉnh $u$ khác $s$, thu được một đồ thị có hướng với $n$ đỉnh và $n - 1$ cạnh. Theo bổ đề 3 và bổ đề 4, quan hệ thống trị không tạo thành chu trình, tức là các cạnh này không tạo thành vòng. Vì vậy đồ thị thu được thực chất là một cây. Cây này được gọi là **cây thống trị** của đồ thị ban đầu.
+Xét việc nối cạnh từ $idom(u)$ đến $u$ cho mỗi đỉnh $u$ khác $s$,
+thu được một đồ thị có hướng với $n$ đỉnh và $n - 1$ cạnh.
+Theo bổ đề 3 và bổ đề 4,
+quan hệ thống trị không tạo thành chu trình,
+tức là các cạnh này không tạo thành vòng.
+Vì vậy đồ thị thu được thực chất là một cây.
+Cây này được gọi là **cây thống trị** của đồ thị ban đầu.
 
 ## Tìm cây thống trị
 
 ### Tìm từ dom
 
-Xét tập đỉnh thống trị $\{s_1, s_2, \dots, s_k\}$ của một đỉnh nào đó. Khi đó tồn tại một đường đi $s \rightarrow \dots \rightarrow s_1 \rightarrow \dots \rightarrow s_2 \rightarrow \dots \rightarrow \dots \rightarrow s_k \rightarrow\dots \rightarrow u$. Đỉnh thống trị trực tiếp của $u$ là $s_k$. Vì vậy định nghĩa của đỉnh thống trị trực tiếp tương đương với:
+Xét tập đỉnh thống trị $\{s_1, s_2, \dots, s_k\}$ của một đỉnh nào đó.
+Khi đó tồn tại một đường đi
+$s \rightarrow \dots \rightarrow s_1 \rightarrow \dots \rightarrow s_2
+\rightarrow \dots \rightarrow s_k \rightarrow \dots \rightarrow u$.
+Đỉnh thống trị trực tiếp của $u$ là $s_k$.
+Vì vậy định nghĩa của đỉnh thống trị trực tiếp tương đương với:
 
-Với tập đỉnh thống trị $S$ của một đỉnh $u$, nếu $v \in S$ thỏa mãn $\forall w \in S\setminus\{u,v\}, w\ dom \ v$, thì $idom(u)=v$.
+Với tập đỉnh thống trị $S$ của một đỉnh $u$,
+nếu $v \in S$ thỏa mãn $\forall w \in S\setminus\{u,v\}, w\ dom \ v$,
+thì $idom(u)=v$.
 
-Vì vậy, sau khi dùng thuật toán đã nêu ở trên để thu được tập đỉnh thống trị của mỗi đỉnh, có thể dựa vào định nghĩa trên để tìm đỉnh thống trị trực tiếp của từng đỉnh, từ đó xây dựng cây thống trị. Dưới đây là mã tham khảo.
+Vì vậy, sau khi dùng thuật toán đã nêu ở trên
+để thu được tập đỉnh thống trị của mỗi đỉnh,
+có thể dựa vào định nghĩa trên để tìm đỉnh thống trị trực tiếp của từng đỉnh,
+từ đó xây dựng cây thống trị.
+Dưới đây là mã tham khảo.
 
 ```cpp
 std::bitset<N> dom[N];
@@ -516,3 +599,7 @@ Trên DAG, chỉ cần tìm cây thống trị rồi tính kích thước cây c
     ```cpp
     --8<-- "docs/graph/code/dom-tree/dom-tree_2.cpp"
     ```
+
+[prosser-1959]: http://portal.acm.org/ft_gateway.cfm?id=1460314&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747
+[lowry-medlock-1969]: http://portal.acm.org/ft_gateway.cfm?id=362838&type=pdf&coll=GUIDE&dl=GUIDE&CFID=79528182&CFTOKEN=33765747
+[lengauer-tarjan-1979]: https://www.cs.princeton.edu/courses/archive/fall03/cs528/handouts/a%20fast%20algorithm%20for%20finding.pdf
