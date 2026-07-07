@@ -48,7 +48,7 @@ bool initialize() {
         mi = tab[n][j];
       }
     }
-    // No row with a negative basic variable => Feasible.
+    // Không còn hàng nào có biến cơ sở âm => khả thi.
     if (y == -1) break;
     int x = -1;
     for (int i = 0; i < n; ++i) {
@@ -56,7 +56,7 @@ bool initialize() {
         x = i;
       }
     }
-    // No column with a negative entry => Infeasible.
+    // Không còn cột nào có phần tử âm => không khả thi.
     if (x == -1) return false;
     pivot(x, y);
   }
@@ -77,7 +77,7 @@ bool simplex() {
         mi = tab[i][m];
       }
     }
-    // No column with a negative reduced cost => Optimal.
+    // Không còn cột nào có chi phí rút gọn âm => tối ưu.
     if (x == -1) break;
     int y = -1;
     mi = INFINITY;
@@ -88,7 +88,7 @@ bool simplex() {
         mi = tab[n][j] / tab[x][j];
       }
     }
-    // No row with a positive ratio => Unbounded.
+    // Không còn hàng nào có tỉ số dương => không bị chặn.
     if (y == -1) return false;
     pivot(x, y);
   }

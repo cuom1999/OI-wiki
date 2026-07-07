@@ -95,7 +95,7 @@ bool simplex() {
         mi = tab[i][m];
       }
     }
-    // No column with a negative reduced cost => Optimal.
+    // Không còn cột nào có chi phí rút gọn âm => tối ưu.
     if (x == -1) break;
     int y = -1;
     mi = INFINITY;
@@ -106,7 +106,7 @@ bool simplex() {
         mi = tab[n][j] / tab[x][j];
       }
     }
-    // No row with a positive ratio => Unbounded.
+    // Không còn hàng nào có tỉ số dương => không bị chặn.
     if (y == -1) return false;
     pivot(x, y);
   }
