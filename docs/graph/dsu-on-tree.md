@@ -127,7 +127,7 @@ Tóm tắt đề bài: các đỉnh của cây có màu. Một màu chiếm lĩn
 
 [UOJ284 Gà chơi game vui vẻ](https://uoj.ac/problem/284)
 
-[CF1709E XOR Tree](https://codeforces.com/contest/1709/problem/E)
+[CF1709E Cây XOR](https://codeforces.com/contest/1709/problem/E)
 
 ## Tài liệu tham khảo và đọc thêm
 

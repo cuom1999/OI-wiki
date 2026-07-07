@@ -8,7 +8,7 @@ Nói một cách khái quát, thao tác cực trị đoạn là lấy $\max$ ho�
 cho toàn bộ các số trong đoạn $[l,r]$,
 tức $a_i=\max(a_i,x)$ hoặc $a_i=\min(a_i,x)$.
 
-???+ note "[HDU5306 Gorgeous Sequence](https://acm.hdu.edu.cn/showproblem.php?pid=5306)"
+???+ note "[HDU5306 Dãy số tuyệt đẹp](https://acm.hdu.edu.cn/showproblem.php?pid=5306)"
     Duy trì một dãy $a$, thực hiện các thao tác sau:
 
     1.  `0 l r t` $\forall l\le i\le r,~ a_i=\min(a_i,t)$.

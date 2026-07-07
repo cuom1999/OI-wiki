@@ -485,7 +485,7 @@ Dưới đây là một số tối ưu cho cây phân đoạn:
         --8<-- "docs/ds/code/seg/seg_3.cpp"
         ```
 
-???+ note "[2018 Multi-University Training Contest 5 Problem G. Glad You Came](https://acm.hdu.edu.cn/showproblem.php?pid=6356)"
+???+ note "[2018 Multi-University Training Contest 5 Bài G. Rất vui vì bạn đã đến](https://acm.hdu.edu.cn/showproblem.php?pid=6356)"
     ??? note "Ý tưởng giải"
         Chỉ cần duy trì nhãn vĩnh cửu cho mỗi đoạn, cuối cùng chạy một lần DFS trên cây phân đoạn để thống kê kết quả.
         Lưu ý thêm tối ưu cắt tỉa khi gắn nhãn, nếu không sẽ TLE.
@@ -502,7 +502,7 @@ Cây phân đoạn có phạm vi ứng dụng rất rộng; một số mở rộ
     -   [Cây cân bằng lồng cây Fenwick](./seg-in-balanced.md)
 -   [Cây phân đoạn Li Chao](./li-chao-tree.md)
 -   [Cây mèo](./cat-tree.md)
--   [Segment Tree Beats](./seg-beats.md)
+-   [Cây phân đoạn Beats](./seg-beats.md)
 
 Chi tiết xem các trang tương ứng.
 

@@ -96,7 +96,7 @@ Có thể cập nhật đường kính bằng cách xét giá trị lớn nhất
 ## Bài tập
 
 -   [CodeChef, Đường kính của cây](https://www.codechef.com/problems/DTREE)
--   [Educational Codeforces Round 35, Problem F, Phá hủy cây](https://codeforces.com/contest/911/problem/F)
+-   [Educational Codeforces Round 35, Bài F, Phá hủy cây](https://codeforces.com/contest/911/problem/F)
 -   [ZOJ 3820 Xây trạm cứu hỏa](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827369872&page=28)
 -   [CEOI2019/Codeforces 1192B. Đường kính động](https://codeforces.com/contest/1192/problem/B)
 -   [ICPC 2019 Shanghai Regional Online Contest, Định tuyến tia chớp I](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A2290)

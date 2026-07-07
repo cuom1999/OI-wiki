@@ -116,7 +116,7 @@ rồi co SCC và tô màu để kiểm tra.
 
 ### Ví dụ 2
 
-???+ example "[2018-2019 ACM-ICPC Asia Seoul Regional K TV Show Game](https://codeforces.com/gym/101987/problem/K)"
+???+ example "[2018-2019 ACM-ICPC Asia Seoul Regional K Trò chơi chương trình truyền hình](https://codeforces.com/gym/101987/problem/K)"
     Có $k$ bóng đèn,
     mỗi bóng có màu đỏ hoặc xanh lam,
     nhưng ban đầu chưa biết màu của từng bóng.

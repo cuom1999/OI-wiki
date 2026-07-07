@@ -596,7 +596,7 @@ Nhân tiện, nếu giống LCT mà bỏ qua quá trình splay toàn cục, đ�
 
 #### Ví dụ 1
 
-???+ note "[CEOI 2019 Dynamic Diameter](https://loj.ac/p/3163)"
+???+ note "[CEOI 2019 Đường kính động](https://loj.ac/p/3163)"
     Cho một cây có $n$ nút, mỗi cạnh có trọng số cạnh. Có $q$ lần cập nhật, mỗi lần sửa trọng số của một cạnh và truy vấn đường kính của cây. Bắt buộc xử lý trực tuyến.
 
 Duy trì đường kính động. Sau khi dựng SATT, chỉ cần duy trì đáp án của mỗi nút trong `Pushup(x)`, rồi cuối cùng truy vấn đáp án của nút gốc (tức đường kính của cả cây).

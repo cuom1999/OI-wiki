@@ -192,8 +192,8 @@ $O(\log n)$, vì vậy thu được độ phức tạp như trên.
 
 [JSOI2008 Blue Mary mở công ty](https://www.luogu.com.cn/problem/P4254)
 
-[CodeChef TSUM2 Sum on Tree](https://www.codechef.com/problems/TSUM2)
+[CodeChef TSUM2 Tổng trên cây](https://www.codechef.com/problems/TSUM2)
 
-[USACO13MAR Hill Walk G](https://www.luogu.com.cn/problem/P3081)
+[USACO13MAR Đi bộ trên đồi G](https://www.luogu.com.cn/problem/P3081)
 
-[CF932F Escape Through Leaf](https://codeforces.com/problemset/problem/932/F)
+[CF932F Thoát qua lá](https://codeforces.com/problemset/problem/932/F)
