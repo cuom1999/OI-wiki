@@ -58,7 +58,7 @@ Các phép toán này chỉ là giao, hợp, hiệu thông thường của tập
 ### Tính chất của đoạn liên tiếp
 
 Một vài tính chất cơ bản của đoạn liên tiếp:
-với $A,B\in I_P,A \cap B \neq \varnothing,A \notin B,B \notin A$,
+với $A,B\in I_P,A \cap B \neq \varnothing,A \nsubseteq B,B \nsubseteq A$,
 có $A\cup B,A\cap B,A\setminus B,B\setminus A\in I_P$.
 
 Chứng minh? Bản chất của chứng minh chính là các phép giao, hợp, hiệu của tập hợp.
@@ -114,7 +114,7 @@ Trước hết đưa ra định nghĩa, sau đó sẽ thảo luận về tính �
     Hoán vị con của nút $u$ được ký hiệu là $P_u$.
 4.  **Nút hợp nhất**: Các nút có hoán vị con là thuận thứ tự hoặc nghịch thứ tự được xem là nút hợp nhất.
     Nói hình thức hơn, nút thỏa mãn $P_u=\{1,2,\cdots,|S_u|\}$
-    hoặc $P_u=\{|S_u|,|S_u-1|,\cdots,1\}$ được gọi là nút hợp nhất.
+    hoặc $P_u=\{|S_u|,|S_u|-1,\cdots,1\}$ được gọi là nút hợp nhất.
     **Nút lá không có hoán vị con cũng được xem là nút hợp nhất**.
 5.  **Nút phân tách**: Nút không phải nút hợp nhất là nút phân tách.
 
@@ -154,7 +154,8 @@ Như vậy cây phân hợp này chưa dùng tất cả các đoạn nguyên th�
 
 ### Xây dựng cây phân hợp
 
-Về cách xây dựng cụ thể cây phân hợp, LCA đưa ra một thuật toán xây dựng tuyến tính[^ref1]. Dưới đây là một thuật toán $O(n\log n)$ dễ hiểu hơn.
+Về cách xây dựng cụ thể cây phân hợp, LCA đưa ra một thuật toán xây dựng tuyến tính[^ref1]. Dưới đây là một thuật toán
+$O(n\log n)$ dễ hiểu hơn.
 
 #### Phương pháp tăng dần
 
@@ -170,7 +171,8 @@ Bây giờ xét nút hiện tại $P_i$.
     kiểm tra xem có thể gộp một số nút liên tiếp ở đỉnh ngăn xếp thành một nút hay không.
     Cách kiểm tra có thể gộp hay không sẽ được trình bày phía sau.
     Lấy nút sau khi gộp làm nút hiện tại.
-3.  Lặp lại quá trình trên cho đến khi không thể tiếp tục. Sau đó kết thúc lần tăng này và trực tiếp đẩy nút hiện tại vào ngăn xếp.
+3.  Lặp lại quá trình trên cho đến khi không thể tiếp tục. Sau đó kết thúc lần tăng này và trực tiếp đẩy nút hiện tại
+    vào ngăn xếp.
 
 Tiếp theo là phần giải thích chi tiết hơn.
 
