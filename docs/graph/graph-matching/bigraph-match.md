@@ -295,7 +295,7 @@ Khó khăn khi áp dụng ghép cặp trên đồ thị hai phía nằm ở vi�
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_3.cpp"
     ```
 
-???+ example "[Gym 104427B Lawyers](https://codeforces.com/gym/104427/problem/B)"
+???+ example "[Gym 104427B Luật sư](https://codeforces.com/gym/104427/problem/B)"
     Có $n$ luật sư, tất cả đều bị buộc tội lừa đảo. Vì vậy, họ cần bào chữa lẫn nhau để bảo đảm mỗi luật sư đều được thả. Giữa $n$ luật sư có $m$ quan hệ tin tưởng; một quan hệ tin tưởng $(a, b)$ nghĩa là $a$ có thể bào chữa cho $b$. Bất kỳ luật sư nào được bào chữa đều sẽ được tuyên vô tội, ngoại trừ một trường hợp: nếu $a$ và $b$ bào chữa lẫn nhau, cả hai đều bị kết tội.
 
     Hỏi có thể làm cho mọi luật sư đều được thả hay không.
@@ -310,7 +310,7 @@ Khó khăn khi áp dụng ghép cặp trên đồ thị hai phía nằm ở vi�
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_4.cpp"
     ```
 
-???+ example "[Codeforces 1404E Bricks](https://codeforces.com/problemset/problem/1404/E)"
+???+ example "[Codeforces 1404E Gạch](https://codeforces.com/problemset/problem/1404/E)"
     Dùng một số viên gạch $1 \times x$ để phủ chính xác một lưới $n \times m$; gạch có thể xoay, và có một số ô không thể phủ.
 
 ??? note "Lời giải"
@@ -325,7 +325,7 @@ Khó khăn khi áp dụng ghép cặp trên đồ thị hai phía nằm ở vi�
     --8<-- "docs/graph/code/graph-matching/bigraph-match/bigraph-match_5.cpp"
     ```
 
-???+ example "[Codeforces 1139E - Maximize Mex](https://codeforces.com/problemset/problem/1139/E)"
+???+ example "[Codeforces 1139E - Tối đa hóa mex](https://codeforces.com/problemset/problem/1139/E)"
     Có $m$ đa tập, tổng cộng chứa $n$ phần tử. Mỗi lần xóa một phần tử khỏi một đa tập nào đó, rồi truy vấn "nếu chọn nhiều nhất một phần tử trong mỗi đa tập, giá trị $\operatorname{mex}$ lớn nhất có thể đạt được là bao nhiêu".
 
 ??? note "Lời giải"
@@ -355,9 +355,9 @@ Khó khăn khi áp dụng ghép cặp trên đồ thị hai phía nằm ở vi�
 
 ## Bài tập
 
--   [Codeforces 1765A - Access Levels](https://codeforces.com/problemset/problem/1765/A)
--   [AtCoder abc274G - Security Camera 3](https://atcoder.jp/contests/abc274/tasks/abc274_g)
--   [Codeforces 1773D - Dominoes](https://codeforces.com/problemset/problem/1773/D)
+-   [Codeforces 1765A - Cấp truy cập](https://codeforces.com/problemset/problem/1765/A)
+-   [AtCoder abc274G - Camera an ninh 3](https://atcoder.jp/contests/abc274/tasks/abc274_g)
+-   [Codeforces 1773D - Domino](https://codeforces.com/problemset/problem/1773/D)
 -   [Luogu P5030 - Đặt hươu cao cổ](https://www.luogu.com.cn/problem/P5030)
 -   [Luogu P2071 - Sắp xếp chỗ ngồi](https://www.luogu.com.cn/problem/P2071)
 -   [LibreOJ 6002 - Phủ đường đi nhỏ nhất](https://loj.ac/p/6002)

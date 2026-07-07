@@ -24,7 +24,7 @@ Sau khi chọn lại gốc, bắt buộc phải tính lại kích thước cây 
     --8<-- "docs/graph/code/tree-divide/tree-divide_1.cpp"
     ```
 
-??? note "Ví dụ 2 [Luogu P4178 Tree](https://www.luogu.com.cn/problem/P4178)"
+??? note "Ví dụ 2 [Luogu P4178 Cây](https://www.luogu.com.cn/problem/P4178)"
     Cho một cây có $n$ đỉnh và trọng số trên cạnh, cho giá trị $k$, hỏi số cặp đỉnh trên cây có khoảng cách không vượt quá $k$.
     
     $n\le 40000,k\le 20000,w_i\le 1000$

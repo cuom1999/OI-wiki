@@ -97,7 +97,7 @@ Hiện thực C++ sau khi thêm tối ưu hóa:
 
 ## Bài tập
 
--   [ZOJ 1492 Maximum Clique](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=4&problemSetProblemId=91827364991)
+-   [ZOJ 1492 Clique lớn nhất](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?page=4&problemSetProblemId=91827364991)
 -   [POJ 1419 Clique lớn nhất trên đồ thị vô hướng](http://poj.org/problem?id=1419)
 -   [POJ 1129 Đài phát thanh](http://poj.org/problem?id=1129)
 

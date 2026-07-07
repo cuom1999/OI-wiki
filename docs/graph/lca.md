@@ -46,7 +46,7 @@ Xét cách tối ưu các bước nhảy này:
 Ngoài ra, thuật toán nhân đôi có thể đổi thứ tự hai chiều của mảng `fa` để đặt chiều nhỏ hơn lên trước. Cách này có thể giảm số lần cache miss và nâng cao hiệu suất chương trình.
 
 ??? note "Ví dụ"
-    [HDU 2586 How far away?](https://acm.hdu.edu.cn/showproblem.php?pid=2586) Truy vấn đường đi ngắn nhất trên cây.
+    [HDU 2586 Xa bao nhiêu?](https://acm.hdu.edu.cn/showproblem.php?pid=2586) Truy vấn đường đi ngắn nhất trên cây.
 
 Có thể tìm LCA trước rồi kết hợp với tính chất $7$ để trả lời. Hoặc có thể tính trực tiếp kết quả trong lúc tìm LCA.
 

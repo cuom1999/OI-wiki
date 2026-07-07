@@ -283,5 +283,5 @@ Từ đó bài này được giải quyết gọn gàng.
 
 -   [SDOI2011 - Cuộc chiến tiêu hao](https://www.luogu.com.cn/problem/P2495)
 -   [HEOI2014 - Công trình lớn](https://www.luogu.com.cn/problem/P4103)
--   [CF613D Kingdom and its Cities](http://codeforces.com/contest/613/problem/D/)
+-   [CF613D Vương quốc và các thành phố](http://codeforces.com/contest/613/problem/D/)
 -   [HNOI2014 - Cây thế giới](https://www.luogu.com.cn/problem/P3233)

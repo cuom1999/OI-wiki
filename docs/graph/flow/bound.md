@@ -101,7 +101,7 @@ Ngược lại, xét mạng dư sau khi xóa toàn bộ các cạnh phụ.
 Chạy thêm một lần luồng cực đại từ $T$ đến $S$ trên mạng dư.
 Lấy giá trị luồng khả thi trừ đi giá trị luồng cực đại vừa tìm được sẽ cho đáp án.
 
-??? note "[AHOI 2014 - Side Story](https://loj.ac/problem/2226)"
+??? note "[AHOI 2014 - Chuyện bên lề](https://loj.ac/problem/2226)"
     Với mỗi cạnh cốt truyện từ $x$ đến $y$ có chi phí $v$, đặt cận trên là $\infty$ và cận dưới là $1$.
     
     Với mỗi đỉnh, nối đến $T$ một cạnh có chi phí $c$, cận trên $\infty$ và cận dưới $1$.
