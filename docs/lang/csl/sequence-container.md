@@ -41,8 +41,8 @@ sao chép mảng thuận tiện hơn.
 
 #### Khởi tạo `vector` thuận tiện
 
-Vì `vector` nạp chồng toán tử `=`, có thể gán toàn bộ một `vector` một cách
-thuận tiện. Ngoài ra, từ C++11, `vector` còn hỗ trợ
+Vì `vector` nạp chồng toán tử `=`, việc gán toàn bộ một `vector` khá thuận tiện.
+Ngoài ra, từ C++11, `vector` còn hỗ trợ
 [khởi tạo bằng danh sách](https://en.cppreference.com/w/cpp/language/list_initialization),
 ví dụ `vector<int> data {1, 2, 3};`.
 

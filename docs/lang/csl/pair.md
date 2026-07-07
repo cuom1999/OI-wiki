@@ -126,7 +126,7 @@ p2.swap(p3);
 
 ### Rời rạc hóa
 
-`pair` có thể dùng để cài đặt rời rạc hóa một cách gọn gàng.
+`pair` có thể dùng để cài đặt rời rạc hóa gọn gàng.
 
 Có thể tạo một mảng `pair`, dùng thành viên thứ nhất của mỗi `pair` để lưu giá
 trị dữ liệu gốc, và thành viên thứ hai để lưu vị trí ban đầu của dữ liệu đó. Sau

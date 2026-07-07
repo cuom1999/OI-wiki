@@ -64,7 +64,7 @@ Câu lệnh quan trọng nhất tiếp theo là
 std::cout << "Hello World!" << std::endl;
 ```
 
-`std::cout` dùng để xuất dữ liệu. Một số chương trình C++ cũng viết trực tiếp là
+`std::cout` dùng để xuất dữ liệu. Một số chương trình C++ cũng viết là
 `cout`.
 
 ??? note "Về tiền tố std::"
@@ -494,7 +494,7 @@ float a = 32 / 10;    // kết quả của 32/10 là 3 (chia nguyên); a = 3.0
 float b = 32.0 / 10;  // kết quả của 32.0/10 là 3.2; b = 3.2
 ```
 
-`pow(a, b)` tính $a^b$. Hàm này trả về kiểu số thực; nếu dùng trực tiếp để tính
+`pow(a, b)` tính $a^b$. Hàm này trả về kiểu số thực; nếu dùng để tính
 lũy thừa số nguyên thì nhờ chuyển đổi tự động, không cần lo nó báo lỗi.
 
 ```cpp
@@ -753,7 +753,7 @@ C++ còn có các cách truyền tham số khác. Một trong số đó là **tr
 cách dùng biến toàn cục**; nếu chưa biết dùng con trỏ, có thể tạm dùng cách này.
 Khuyết điểm của cách này là không có khung ngăn xếp riêng để lưu dữ liệu, nên
 **không thể truyền tham số trong hàm đệ quy**. Trừ khi tự viết ngăn xếp; lưu ý,
-tự viết ngăn xếp cũng là một cách vượt qua giới hạn ngăn xếp hệ thống.
+tự viết ngăn xếp cũng có thể giúp vượt qua giới hạn ngăn xếp hệ thống.
 
 ## Thư viện chuẩn C++ và tài liệu tham khảo
 

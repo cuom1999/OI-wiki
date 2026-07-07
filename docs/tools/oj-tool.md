@@ -82,7 +82,7 @@ Mở bảng xếp hạng bằng trình duyệt để xem thứ hạng.
 
     Cần đặt chương trình `cf` vào một đường dẫn đã được thêm vào biến hệ thống PATH (ví dụ `/usr/bin/` trên Linux).
 
-    Nếu chưa rõ thao tác này, có thể tìm kiếm trực tiếp cụm từ "thêm đường dẫn vào PATH".
+    Nếu chưa rõ thao tác này, có thể tìm cụm từ "thêm đường dẫn vào PATH".
 
 3.  Cách thêm một dữ liệu kiểm thử mới
 

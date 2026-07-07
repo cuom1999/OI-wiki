@@ -145,7 +145,7 @@ chương trình của thí sinh đọc dữ liệu từ tệp nhập cho trướ
 
 ### Thực thi chương trình
 
-Với một chương trình thực thi hoặc một tập lệnh batch, nhập trực tiếp tên tệp
+Với một chương trình thực thi hoặc một tập lệnh batch, nhập tên tệp
 của nó trong dòng lệnh để chạy.
 
 Khi thực thi một tệp, dòng lệnh sẽ không tìm qua tất cả thư mục. Biến môi trường
@@ -255,7 +255,7 @@ Tuy nhiên, lệnh này có hai dạng tương ứng trong hệ thống: một d
 hợp sẵn của một số shell (chẳng hạn Bash), dạng còn lại là GNU time (một phần mềm
 riêng). Hai dạng này có một số khác biệt.
 
-Thông thường, khi dùng trực tiếp `time` trong Bash thì phiên bản được gọi là
+Thông thường, khi gõ `time` ngay trong Bash thì phiên bản được gọi là
 phiên bản tích hợp của Bash. Có thể dùng biến môi trường `TIMEFORMAT` để điều
 khiển định dạng xuất; ví dụ đặt nó thành `%3lR` để xuất thời gian chạy thực tế
 với độ chính xác ba chữ số, hoặc `%3lU` để xuất thời gian chạy trong không gian

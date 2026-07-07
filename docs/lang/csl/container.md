@@ -4,7 +4,7 @@
 
 ### Bộ chứa tuần tự
 
--   **Vector** (`vector`): dãy cho phép thêm phần tử ở cuối một cách hiệu quả.
+-   **Vector** (`vector`): dãy cho phép thêm phần tử hiệu quả ở cuối.
 -   **Array** (`array`) **C++11**: dãy có độ dài cố định, đóng vai trò như lớp
     bọc đơn giản cho mảng kiểu C.
 -   **Deque** (`deque`): dãy cho phép thêm phần tử hiệu quả ở cả hai đầu.

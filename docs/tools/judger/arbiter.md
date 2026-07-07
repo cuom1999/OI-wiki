@@ -136,7 +136,7 @@ Mở thẻ "Chấm bài", sẽ thấy giao diện như sau:
 
 ![Giao diện chấm thử trong Arbiter](./images/arbiter_pretest.png)
 
-Nếu đã tạo danh sách thí sinh, chọn trực tiếp "Nhập danh sách" ở bên phải để nhập. Nếu số lượng người ít, có thể chọn "Thêm thí sinh" ở bên phải để nhập.
+Nếu đã tạo danh sách thí sinh, chọn "Nhập danh sách" ở bên phải để nhập. Nếu số lượng người ít, có thể chọn "Thêm thí sinh" ở bên phải để nhập.
 
 Sau khi nhập, giao diện như hình sau.
 
@@ -231,7 +231,7 @@ quyết.
     
     Ghi chú: nếu sau khi chạy xuất hiện thông báo `E: Unable to locate package package_name`, cần chạy lệnh này trước: `sudo apt-get update`.
     
-    Sau khi cài đặt xong, có thể dùng `rename` bình thường. Cách dùng `rename` tương tự thay thế văn bản trực tiếp; cú pháp trong môi trường NOI Linux 2.0 như sau:
+    Sau khi cài đặt xong, có thể dùng `rename` bình thường. Cách dùng `rename` tương tự thao tác thay thế văn bản; cú pháp trong môi trường NOI Linux 2.0 như sau:
     
     ```shell
     rename 's/<text-before>/<text-after>/' <filename>
