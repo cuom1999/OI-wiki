@@ -453,4 +453,4 @@ Cài đặt tham khảo như sau:
 -   [Tích chập Dirichlet - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_convolution)
 -   [Chuỗi Dirichlet - Wikipedia](https://en.wikipedia.org/wiki/Dirichlet_series)
 -   [Tích Euler - Wikipedia](https://en.wikipedia.org/wiki/Euler_product)
--   [Tích Dirichlet và tổng tích lũy của hàm số học by maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)
+-   [Tích Dirichlet và tổng tích lũy của hàm số học bởi maspy](https://maspypy.com/dirichlet-%e7%a9%8d%e3%81%a8%e3%80%81%e6%95%b0%e8%ab%96%e9%96%a2%e6%95%b0%e3%81%ae%e7%b4%af%e7%a9%8d%e5%92%8c)

@@ -608,8 +608,8 @@ Ngoài ra, còn có một số mô hình đồ thị thường gặp mà mọi n
 
 -   Schrijver, Alexander. Theory of linear and integer programming. John Wiley & Sons, 1998.
 -   Papadimitriou, Christos H., and Kenneth Steiglitz. Combinatorial optimization: algorithms and complexity. Courier Corporation, 1998.
--   [Duality in linear programming. Part 1: definition and construction. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105049)
--   [Duality in linear programming. Part 2: in competitive programming. by adamant - Codeforces blog](https://codeforces.com/blog/entry/105789)
+-   [Đối ngẫu trong quy hoạch tuyến tính. Phần 1: định nghĩa và xây dựng. bởi adamant - Codeforces blog](https://codeforces.com/blog/entry/105049)
+-   [Đối ngẫu trong quy hoạch tuyến tính. Phần 2: trong lập trình thi đấu. bởi adamant - Codeforces blog](https://codeforces.com/blog/entry/105789)
 
 [^poly-names]: Các tài liệu khác nhau có thể định nghĩa hai thuật ngữ này theo những cách khác nhau: một số tài liệu gọi trường hợp bị chặn là "đa diện" và trường hợp không bị chặn là "đa bào"; một số tài liệu không giả định chúng nhất định là tập lồi; một số tài liệu dùng "đa diện" để chỉ đa bào trong không gian ba chiều. Bài này dùng định nghĩa nhất quán với các tài liệu như Schrijver (1998) và Boyd and Vandenberghe (2004).
 

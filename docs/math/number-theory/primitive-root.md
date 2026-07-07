@@ -896,7 +896,7 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 -   [Cấp của một đơn vị - ghi chú bài giảng](https://crypto.stanford.edu/pbc/notes/numbertheory/order.html)
 -   [Định lý căn nguyên thủy - ghi chú của Amin Witno](http://witno.com/philadelphia/notes/won5.pdf)
 -   [Hàm Carmichael - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_function)
--   [Hàm lambda Carmichael - Brilliant Math & Science Wiki](https://brilliant.org/wiki/carmichaels-lambda-function/)
+-   [Hàm lambda Carmichael - trang wiki Brilliant Math & Science](https://brilliant.org/wiki/carmichaels-lambda-function/)
 -   [Số Carmichael - Wikipedia](https://en.wikipedia.org/wiki/Carmichael_number)
 -   [Số Carmichael - Wolfram MathWorld](https://mathworld.wolfram.com/CarmichaelNumber.html)
 
