@@ -2,7 +2,7 @@
 #include <iostream>
 #include <tuple>
 
-// Change here to use different strategies to balance and to merge.
+// Thay đổi tại đây để dùng chiến lược cân bằng và gộp khác.
 #define BALANCE_BY_ROTATING 0
 #define ROTATE_BY_JOINING 1
 
@@ -35,7 +35,7 @@ int new_node() {
   return x;
 }
 
-// Release a node for later use.
+// Giải phóng một nút để dùng lại sau.
 void del_node(int& x) {
   pool[top++] = x;
   x = 0;
@@ -70,7 +70,7 @@ auto cut(int& x) {
 // Kiểm tra một cây con có trọng lượng SX có quá nặng
 //     trong cây có trọng lượng SX + SY hay không.
 bool too_heavy(int sx, int sy) {
-  // or sx > sy * 3;
+  // hoặc sx > sy * 3;
   return sy < ALPHA * (sx + sy);
 }
 
@@ -107,7 +107,7 @@ void rotate(int& x, bool r) {
 
 // Kiểm tra ch[x][!r] có quá nặng đến mức cần xoay kép hay không.
 bool need_double_rotation(int x, bool r) {
-  // or sz[ch[x][!r]] > sz[ch[x][r]] * 2;
+  // hoặc sz[ch[x][!r]] > sz[ch[x][r]] * 2;
   return sz[ch[x][!r]] > sz[x] / (2 - ALPHA);
 }
 

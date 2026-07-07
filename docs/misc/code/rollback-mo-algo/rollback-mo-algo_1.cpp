@@ -88,7 +88,7 @@ int main() {
     while (__l > Q[i].l) --__l, Add(x[__l], tmp);
     ans[Q[i].id] = tmp;
 
-    // Rollback
+    // Hoàn tác
     while (__l < l) Del(x[__l]), ++__l;
   }
   for (int i = 1; i <= q; i++) cout << ans[i] << '\n';

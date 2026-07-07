@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <string>
 
-// only non-negative
+// chỉ xử lý số không âm
 // 2 <= base && base <= 36
 std::string from_dec(int x, int base) {
   if (x == 0) return "0";
@@ -27,7 +27,7 @@ std::string from_dec(int x, int base) {
 #include <algorithm>
 #include <string>
 
-// only non-negative
+// chỉ xử lý số không âm
 // 1 <= base && base < 36
 std::string from_dec_bi(int x, int base) {
   std::string res;
@@ -51,7 +51,7 @@ std::string from_dec_bi(int x, int base) {
 #include <algorithm>
 #include <string>
 
-// only non-negative
+// chỉ xử lý số không âm
 std::string from_dec_factorial(int x) {
   if (x == 0) return "0";
   std::string res;
@@ -76,7 +76,7 @@ std::string from_dec_factorial(int x) {
 #include <cctype>
 #include <string>
 
-// only non-negative
+// chỉ xử lý số không âm
 // 2 <= base && base <= 36
 int to_dec(std::string const& s, int base) {
   int res = 0;
@@ -98,7 +98,7 @@ int to_dec(std::string const& s, int base) {
 #include <cctype>
 #include <string>
 
-// only non-negative
+// chỉ xử lý số không âm
 int to_dec_factorial(std::string const& s) {
   int res = 0, base = s.size();
   for (char c : s) {

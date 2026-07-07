@@ -17,11 +17,11 @@ int q, n, na;
 string a;
 char t[N];
 
-// SuffixBST(SGT Ver)
+// SuffixBST (phiên bản SGT)
 
-// Add in order; reverse the query string when querying.
-// The prefix ending at i corresponds to node i.
-// Note: do not use lazy deletion, or the tree structure may be broken.
+// Thêm theo thứ tự; khi truy vấn thì đảo ngược chuỗi truy vấn.
+// Tiền tố kết thúc tại i tương ứng với nút i.
+// Lưu ý: không dùng xóa lười, nếu không cấu trúc cây có thể bị hỏng.
 constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
@@ -100,7 +100,7 @@ void remove(int& rt, int p, double lv, double rv) {
       rt = (L[rt] | R[rt]);
       rebuild(rt, lv, rv);
     } else {
-      // Find the predecessor of rt to replace rt.
+      // Tìm phần tử tiền nhiệm của rt để thay thế rt.
       int nrt = L[rt];
       while (R[nrt]) {
         nrt = R[nrt];
@@ -158,7 +158,7 @@ void solve() {
   for (int i = 1; i <= q; ++i) {
     cin >> op;
 
-    // Handle the three cases separately.
+    // Xử lý riêng ba trường hợp.
 
     if (op[0] == 'A') {  // ADD
       cin >> a;

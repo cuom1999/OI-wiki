@@ -6,7 +6,7 @@ int dfn[3000], tx[2], nxt[2], num[50][50], vis[50];
 std::string ans[50];
 constexpr int f[2] = {-1, 1};
 constexpr int table[12][5][2] = {
-    // directions of shapes
+    // các hướng của hình
     {{0, 0}, {1, 0}, {0, 1}},                   // A
     {{0, 0}, {0, 1}, {0, 2}, {0, 3}},           // B
     {{0, 0}, {1, 0}, {0, 1}, {0, 2}},           // C
@@ -52,7 +52,7 @@ struct DLX {
     memset(siz, 0, sizeof(siz));
   }
 
-  void insert(const int &r, const int &c) {  // insert
+  void insert(const int &r, const int &c) {  // chèn
     col[++tot] = c, row[tot] = r, ++siz[c];
     D[tot] = D[c], U[D[c]] = tot, U[tot] = c, D[c] = tot;
     if (!first[r])
@@ -62,7 +62,7 @@ struct DLX {
       R[first[r]] = tot;  // !
   }
 
-  void remove(const int &c) {  // remove
+  void remove(const int &c) {  // xóa
     int i, j;
     L[R[c]] = L[c], R[L[c]] = R[c];
     for (i = D[c]; i != c; i = D[i])
@@ -70,7 +70,7 @@ struct DLX {
         U[D[j]] = U[j], D[U[j]] = D[j], --siz[col[j]];
   }
 
-  void recover(const int &c) {  // recover
+  void recover(const int &c) {  // khôi phục
     int i, j;
     for (i = U[c]; i != c; i = U[i])
       for (j = L[i]; j != i; j = L[j]) U[D[j]] = D[U[j]] = j, ++siz[col[j]];
@@ -112,15 +112,15 @@ int main() {
       num[i][j] = ++numcol;
     }
   solver.build(2730, numcol + 12);
-  /*******build*******/
-  for (int id = 0, op; id < 12; ++id) {  // every block
+  /*******dựng*******/
+  for (int id = 0, op; id < 12; ++id) {  // từng khối
     for (++numcol, op = 0; op <= 1; ++op) {
       for (int dx = 0; dx <= 1; ++dx) {
         for (int dy = 0; dy <= 1; ++dy) {
           for (tx[0] = 1; tx[0] <= 10; ++tx[0]) {
             for (tx[1] = 1; tx[1] <= tx[0]; ++tx[1]) {
               bool flag = true;
-              // Check if out of bound.
+              // Kiểm tra có vượt biên không.
               for (int k = 0; k < len[id]; ++k) {
                 nxt[op] = tx[op] + f[dx] * table[id][k][0];
                 nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
@@ -130,7 +130,7 @@ int main() {
                 }
               }
               if (!flag) continue;
-              // Check if illegal.
+              // Kiểm tra có không hợp lệ không.
               for (int k = 0; k < len[id]; ++k) {
                 nxt[op] = tx[op] + f[dx] * table[id][k][0];
                 nxt[op ^ 1] = tx[op ^ 1] + f[dy] * table[id][k][1];
@@ -145,7 +145,7 @@ int main() {
                 }
               }
               if (!flag) continue;
-              // Try to insert.
+              // Thử chèn.
               dfn[++numrow] = id;
               solver.insert(numrow, numcol);
               for (int k = 0; k < len[id]; ++k) {
@@ -159,7 +159,7 @@ int main() {
       }
     }
   }
-  /********end********/
+  /********hết********/
   if (!solver.dance())
     cout << "No solution\n";
   else

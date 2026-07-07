@@ -4,7 +4,7 @@ using namespace std;
 constexpr int N = 200020;
 int n, m;
 int ans[N];
-// BIT begin
+// Bắt đầu BIT
 int t[N];
 int a[N];
 
@@ -24,11 +24,11 @@ void add(int p, int x) {
   }
 }
 
-// BIT end
+// Kết thúc BIT
 int tot = 0;
 
 struct Query {
-  int l, r, k, id, type;  // set values to -1 when they are not used!
+  int l, r, k, id, type;  // đặt giá trị là -1 khi không dùng!
 } q[N * 2], q1[N * 2], q2[N * 2];
 
 void solve(int l, int r, int ql, int qr) {
@@ -56,10 +56,10 @@ void solve(int l, int r, int ql, int qr) {
       }
     }
   }
-  // rollback changes
+  // hoàn tác các thay đổi
   for (int i = 1; i <= cnt1; i++)
     if (q1[i].type == 1) add(q1[i].id, -1);
-  // move them to the main array
+  // chuyển chúng về mảng chính
   for (int i = 1; i <= cnt1; i++) q[i + ql - 1] = q1[i];
   for (int i = 1; i <= cnt2; i++) q[i + cnt1 + ql - 1] = q2[i];
   solve(l, mid, ql, cnt1 + ql - 1);
@@ -72,7 +72,7 @@ int toRaw[N];
 int main() {
   cin.tie(nullptr)->sync_with_stdio(false);
   cin >> n >> m;
-  // read and discrete input data
+  // đọc và rời rạc hóa dữ liệu đầu vào
   for (int i = 1; i <= n; i++) {
     int x;
     cin >> x;

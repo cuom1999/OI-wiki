@@ -1,6 +1,6 @@
-// Tree Isomorphism, O(nlogn)
-// replace quick sort with radix sort ==> O(n)
-// Author: _Backl1ght
+// Đẳng cấu cây, O(nlogn)
+// thay sắp xếp nhanh bằng sắp xếp cơ số ==> O(n)
+// Tác giả: _Backl1ght
 #include <algorithm>
 #include <iostream>
 #include <vector>

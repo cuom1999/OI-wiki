@@ -2,14 +2,14 @@
 
 #include <cstring>
 #include <iostream>
-constexpr int MAXN = 1000;  // maximum number of nodes
+constexpr int MAXN = 1000;  // số nút tối đa
 
 extern int pathSum(TreeNode *root, int sum);
 
 int main() {
-  // build tree
+  // dựng cây
   int n;
-  std::cin >> n;  // number of nodes
+  std::cin >> n;  // số nút
   TreeNode *treeNodes[MAXN];
   for (int i = 0; i < n; i++) {
     std::string temp;

@@ -1,10 +1,10 @@
 // --8<-- [start:full]
 /**
  * @file rbtree.hpp
- * @brief An RBTree-based set implementation
- * @details The set is sorted according to the {@code compare_t} function
- * provided; This implementation provides find, insert, remove, find order, find
- * key by order in O(log(n)) time.
+ * @brief Cài đặt set dựa trên RBTree
+ * @details Set được sắp xếp theo hàm {@code compare_t} được cung cấp; cài đặt
+ * này hỗ trợ tìm kiếm, chèn, xóa, tìm thứ tự và tìm khóa theo thứ tự trong
+ * thời gian O(log(n)).
  * @author [Tiphereth-A](https://github.com/Tiphereth-A)
  */
 
@@ -20,28 +20,28 @@ using std::size_t;
 
 // --8<-- [start:class-node1]
 /**
- * An RBTree-based set implementation
+ * Cài đặt set dựa trên RBTree
  *
- * @tparam key_t key type
- * @tparam compare_t compare function
+ * @tparam key_t kiểu khóa
+ * @tparam compare_t hàm so sánh
  */
 template <typename key_t, typename compare_t = std::less<key_t>>
 struct rb_tree {
   /**
-   * Tree node
+   * Nút của cây
    */
   struct node_t {
-    node_t *fa;     // == nullptr if root of the tree, otherwise parent
-    node_t *ch[2];  // == nullptr if child is empty
-                    // ch[0]: left child, ch[1]: right child
+    node_t *fa;     // == nullptr nếu là gốc cây, ngược lại là cha
+    node_t *ch[2];  // == nullptr nếu con rỗng
+                    // ch[0]: con trái, ch[1]: con phải
     key_t data;
-    size_t sz;  // Size of subtree
-    bool red;   // == true if node is red, otherwise black
+    size_t sz;  // Kích thước cây con
+    bool red;   // == true nếu nút đỏ, ngược lại là đen
 
     /**
-     * Get child direction of current non-null node
+     * Lấy hướng con của nút hiện tại khác null
      *
-     * @return true if this node is right child of its parent, otherwise false
+     * @return true nếu nút này là con phải của cha, ngược lại là false
      */
     auto child_dir() const -> bool { return this == fa->ch[1]; }
   };
@@ -120,7 +120,7 @@ struct rb_tree {
     return (pointer)ans;
   }
 
-  // Order start from 0
+  // Thứ tự bắt đầu từ 0.
   auto order_of_key(const key_t &key) const -> size_t {
     size_t ans = 0;
     auto now = root;
@@ -133,7 +133,7 @@ struct rb_tree {
     return ans;
   }
 
-  // Order start from 0
+  // Thứ tự bắt đầu từ 0.
   auto find_by_order(size_t order) const -> const_pointer {
     const_pointer now = root, ans = nullptr;
     while (now && now->sz >= order) {
@@ -151,7 +151,7 @@ struct rb_tree {
 
   // --8<-- [start:insert]
   /**
-   * @return nullptr if insert failed, otherwise pointer of inserted node
+   * @return nullptr nếu chèn thất bại, ngược lại là con trỏ tới nút đã chèn
    */
   auto insert(const key_t &data) -> const_pointer {
     pointer n = new node_t;
@@ -171,7 +171,7 @@ struct rb_tree {
   // --8<-- [end:insert]
   // --8<-- [start:delete]
   /**
-   * @return succeed or not
+   * @return có thành công hay không
    */
   auto erase(const key_t &key) -> bool {
     auto p = lower_bound(key);
@@ -204,7 +204,7 @@ struct rb_tree {
   static auto is_red(const_pointer p) -> bool { return p ? p->red : false; }
 
   /**
-   * @param dir 0: leftmost, 1: rightmost
+   * @param dir 0: trái nhất, 1: phải nhất
    */
   auto most(const_pointer p, bool dir) const -> pointer {
     if (!p) return nullptr;
@@ -213,7 +213,7 @@ struct rb_tree {
   }
 
   /**
-   * @param dir 0: prev, 1: next
+   * @param dir 0: trước đó, 1: kế tiếp
    */
   auto neighbour(const_pointer p, bool dir) const -> pointer {
     if (!p) return nullptr;
@@ -225,11 +225,11 @@ struct rb_tree {
 
   // --8<-- [start:insert-leaf]
   /**
-   * Insert leaf node {@code n} to {@code p}
+   * Chèn nút lá {@code n} vào {@code p}
    *
-   * @param p parent of node which will be inserted
-   * @param n leaf node which will be inserted
-   * @param dir direction of n, 0: left; 1: right
+   * @param p cha của nút sẽ được chèn
+   * @param n nút lá sẽ được chèn
+   * @param dir hướng của n, 0: trái; 1: phải
    */
   void insert_leaf(pointer_const p, pointer_const n, bool dir) {
     if (!p) {
@@ -244,9 +244,9 @@ struct rb_tree {
   // --8<-- [end:insert-leaf]
   // --8<-- [start:delete-leaf]
   /**
-   * Erase node {@code n}
+   * Xóa nút {@code n}
    *
-   * @param n node which will be deleted, must have no more than 2 child
+   * @param n nút sẽ bị xóa, phải có không quá 2 con
    */
   void erase_branch_or_leaf(pointer_const n) {
     auto p = n->fa, s = n->ch[0] ? n->ch[0] : n->ch[1];
@@ -263,14 +263,14 @@ struct rb_tree {
   // --8<-- [end:delete-leaf]
   // --8<-- [start:rotate]
   /**
-   * @param p root of subtree (may be same as {@code root})
-   * @param dir direction. 0: left rotate; 1: right rotate
-   * @return new root of subtree
+   * @param p gốc của cây con (có thể chính là {@code root})
+   * @param dir hướng. 0: xoay trái; 1: xoay phải
+   * @return gốc mới của cây con
    */
   auto rotate(pointer p, bool dir) -> pointer {
     auto g = p->fa;
-    auto s = p->ch[!dir];  // new root of subtree
-    assert(s);             // pointer to true node required
+    auto s = p->ch[!dir];  // gốc mới của cây con
+    assert(s);             // cần con trỏ tới nút thật
     s->sz = p->sz, p->sz = size(p->ch[dir]) + size(s->ch[dir]) + 1;
     auto c = s->ch[dir];
     if (c) c->fa = p;
@@ -288,16 +288,16 @@ struct rb_tree {
 
   // --8<-- [start:insert-fixup1]
   /**
-   * Insert leaf node {@code n} to {@code p}, then fixup
+   * Chèn nút lá {@code n} vào {@code p}, rồi hiệu chỉnh
    *
-   * @param p parent of node which will be inserted
-   * @param n node which will be inserted
-   * @param dir direction of n, 0: left; 1: right
+   * @param p cha của nút sẽ được chèn
+   * @param n nút sẽ được chèn
+   * @param dir hướng của n, 0: trái; 1: phải
    */
   void insert_fixup_leaf(pointer p, pointer n, bool dir) {
     n->red = p;
     insert_leaf(p, n, dir);
-    // Fix double red
+    // Sửa lỗi hai nút đỏ liên tiếp.
     // --8<-- [end:insert-fixup1]
     // --8<-- [start:insert-aux1]
     while (is_red(p = n->fa)) {
@@ -305,7 +305,7 @@ struct rb_tree {
       auto g = p->fa, u = g->ch[!p_dir];
       // --8<-- [end:insert-aux1]
       // --8<-- [start:insert-case1]
-      // Case 1: both p and u are red
+      // Trường hợp 1: cả p và u đều đỏ.
       //      g              [g]
       //     / \             / \
       //   [p] [u]   ==>    p   u
@@ -319,8 +319,8 @@ struct rb_tree {
       }
       // --8<-- [end:insert-case1]
       // --8<-- [start:insert-case2]
-      // p is red and u is black
-      // Case 2: dir of n is different with dir of p
+      // p đỏ và u đen.
+      // Trường hợp 2: hướng của n khác hướng của p.
       //    g              g
       //   / \            / \
       // [p]  u   ==>   [n]  u
@@ -329,7 +329,7 @@ struct rb_tree {
       if (n->child_dir() != p_dir) rotate(p, p_dir), std::swap(n, p);
       // --8<-- [end:insert-case2]
       // --8<-- [start:insert-case3]
-      // Case 3: p is red, u is black and dir of n is same as dir of p
+      // Trường hợp 3: p đỏ, u đen và hướng của n giống hướng của p.
       //      g             p
       //     / \           / \
       //   [p]  u   ==>  [n] [g]
@@ -342,40 +342,40 @@ struct rb_tree {
     }
     // --8<-- [end:insert-aux2]
     // --8<-- [start:insert-fixup2]
-    // Post process: color root black
+    // Hậu xử lý: tô gốc thành màu đen.
     root->red = false;
   }
 
   // --8<-- [end:insert-fixup2]
   // --8<-- [start:delete-fixup1]
   /**
-   * Erase node {@code n}, then fixup
+   * Xóa nút {@code n}, rồi hiệu chỉnh
    *
-   * @param n node which will be deleted, must have no more than 2 child
+   * @param n nút sẽ bị xóa, phải có không quá 2 con
    */
   void erase_fixup_branch_or_leaf(pointer n) {
     bool n_dir = n == root ? false : n->child_dir();
     erase_branch_or_leaf(n);
     auto p = n->fa;
-    if (!p) {  // n is root
+    if (!p) {  // n là gốc
       if (root) root->red = false;
       return;
     } else {
       auto s = p->ch[n_dir];
-      if (s) {  // n has 1 child
-        // n must be black and s must be red, so we need to color s black
+      if (s) {  // n có 1 con
+        // n phải đen và s phải đỏ, nên cần tô s thành màu đen.
         s->red = false;
         return;
       }
     }
-    // n is not root but leaf with black color, need to be fixup
+    // n không phải gốc nhưng là lá màu đen, cần hiệu chỉnh.
     // --8<-- [end:delete-fixup1]
     // --8<-- [start:delete-aux1]
     while (p && !n->red) {
       auto s = p->ch[!n_dir];
       // --8<-- [end:delete-aux1]
       // --8<-- [start:delete-case1]
-      // Case 1: s is red
+      // Trường hợp 1: s đỏ.
       //    p               s
       //   / \             / \
       // |n| [s]   ==>   [p]  d
@@ -388,17 +388,17 @@ struct rb_tree {
       }
       // --8<-- [end:delete-case1]
       // --8<-- [start:delete-aux2]
-      // s must be black
+      // s phải đen.
       auto c = s->ch[n_dir], d = s->ch[!n_dir];
       // --8<-- [end:delete-aux2]
       // --8<-- [start:delete-case2]
-      // Case 2: both c and d are black
+      // Trường hợp 2: cả c và d đều đen.
       //   {p}          {p}
       //   / \          / \
       // |n|  s   ==> |n| [s]
       //     / \          / \
       //    c   d        c   d
-      // p will be colored black in the end
+      // p sẽ được tô đen ở cuối.
       if (!is_red(c) && !is_red(d)) {
         s->red = true;
         n = p;
@@ -406,7 +406,7 @@ struct rb_tree {
       }
       // --8<-- [end:delete-case2]
       // --8<-- [start:delete-case3]
-      // Case 3: c is red and d is black
+      // Trường hợp 3: c đỏ và d đen.
       //   {p}          {p}
       //   / \          / \
       // |n|  s   ==> |n|  c
@@ -421,7 +421,7 @@ struct rb_tree {
       }
       // --8<-- [end:delete-case3]
       // --8<-- [start:delete-case4]
-      // Case 4: d is red
+      // Trường hợp 4: d đỏ.
       //   {p}            {s}
       //   / \            / \
       // |n|  s   ==>    p   d
@@ -438,7 +438,7 @@ struct rb_tree {
     }
     // --8<-- [end:delete-aux3]
     // --8<-- [start:delete-fixup2]
-    // Post process: see case 2 & case 4
+    // Hậu xử lý: xem trường hợp 2 và trường hợp 4.
     n->red = false;
   }
 

@@ -9,10 +9,10 @@ constexpr double INF = 1e18;
 int n, m, sa[N];
 string t;
 
-// SuffixBST(SGT Ver)
+// SuffixBST (phiên bản SGT)
 
-// Add in order; reverse the query string when querying.
-// The suffix starting at i corresponds to node i.
+// Thêm theo thứ tự; khi truy vấn thì đảo ngược chuỗi truy vấn.
+// Hậu tố bắt đầu tại i tương ứng với nút i.
 constexpr double alpha = 0.75;
 int root;
 int sz[N], L[N], R[N];
@@ -100,7 +100,7 @@ void solve(int Case) {
     insert(root, i, 0, INF);
   }
 
-  // The inorder traversal of the suffix balanced tree is the suffix array.
+  // Thứ tự duyệt trung tố của cây cân bằng hậu tố chính là mảng hậu tố.
   m = 0;
   inorder(root);
 

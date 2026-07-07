@@ -1,5 +1,5 @@
-// Verified by https://codeforces.com/gym/101649/problem/G.
-// Codes associating I/O streams to files are omitted.
+// Đã được kiểm chứng tại https://codeforces.com/gym/101649/problem/G.
+// Phần code gắn luồng I/O với tệp đã được lược bỏ.
 #include <iostream>
 #include <vector>
 using namespace std;
