@@ -13,7 +13,7 @@ Tương tự phương pháp [ràng buộc hiệu](./diff-constraints.md), các t
 
 Không mất tính tổng quát, giả sử $x < y < z$.
 
-Gọi $d_i$ là tầng thấp nhất $p$ có thể đạt được chỉ bằng **thao tác 2** và **thao tác 3**, đồng thời thỏa $p\bmod x = i$. Nói cách khác, $d_i$ là số nhỏ nhất đồng dư với $i$ theo modulo $x$ có thể thu được sau khi thực hiện **thao tác 2** và **thao tác 3**; giá trị này dùng để tính số lượng số trong lớp đồng dư đó thỏa điều kiện.
+Gọi $d_i$ là tầng thấp nhất $p$ có thể đạt được chỉ bằng **thao tác 2** và **thao tác 3**, đồng thời thỏa $p\bmod x = i$. Nói cách khác, $d_i$ là số nhỏ nhất đồng dư với $i$ theo môđun $x$ có thể thu được sau khi thực hiện **thao tác 2** và **thao tác 3**; giá trị này dùng để tính số lượng số trong lớp đồng dư đó thỏa điều kiện.
 
 Có hai phép chuyển trạng thái:
 
@@ -21,7 +21,7 @@ Có hai phép chuyển trạng thái:
 
 -   $i \xrightarrow{z} (i+z) \bmod x$
 
-Thường chọn số nhỏ nhất trong tập $a_i$ để lấy modulo, tức là $x$ trong ví dụ này, nhằm giảm tối đa độ phức tạp bộ nhớ (hệ thặng dư nhỏ nhất).
+Thường chọn số nhỏ nhất trong tập $a_i$ để lấy dư theo môđun, tức là $x$ trong ví dụ này, nhằm giảm tối đa độ phức tạp bộ nhớ (hệ thặng dư nhỏ nhất).
 
 Khi đó, về bản chất đang thực hiện thao tác xây cạnh trong bài toán đường đi ngắn nhất:
 
@@ -77,7 +77,7 @@ Bài này có thể giải trong $O(n\log^2 n)$ bằng ba lô đầy đủ tối
 
 Quan sát rằng mọi số nguyên dương đều có thể được tạo ra từ $1$ bằng cách thực hiện các thao tác nhân $10$ và cộng $1$ theo một thứ tự nào đó; số lần thực hiện thao tác cộng $1$ chính là tổng chữ số của số đó. Điều này gợi ý dùng đường đi ngắn nhất.
 
-Với mọi $0\le k\le n-1$, nối một cạnh trọng số $0$ từ $k$ đến $10k$, và một cạnh trọng số $1$ từ $k$ đến $k+1$. (Mọi chỉ số đỉnh đều xét theo modulo $n$.)
+Với mọi $0\le k\le n-1$, nối một cạnh trọng số $0$ từ $k$ đến $10k$, và một cạnh trọng số $1$ từ $k$ đến $k+1$. (Mọi chỉ số đỉnh đều xét theo môđun $n$.)
 
 Mỗi bội số của $n$ đều tương ứng với một đường đi từ đỉnh $1$ đến đỉnh $0$ trong đồ thị này, nên chỉ cần tìm đường đi ngắn nhất từ $1$ đến $0$. Một số đường đi không hợp lệ (chẳng hạn đi liên tiếp $10$ cạnh trọng số $1$), nhưng đáp án do các đường đi này tạo ra không thể tối ưu, nên không ảnh hưởng đến đáp án.
 
