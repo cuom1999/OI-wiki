@@ -44,7 +44,7 @@ Dùng hai con trỏ để duy trì thông tin đoạn cũng có thể kết hợ
 
 Tiếp theo là một bài ví dụ dùng hai con trỏ trên cây và kết hợp với sai phân trên cây:
 
-???+ note "Ví dụ 2 [luogu P3066 Running Away From the Barn G](https://www.luogu.com.cn/problem/P3066)"
+???+ note "Ví dụ 2 [Luogu P3066 Chạy khỏi chuồng G](https://www.luogu.com.cn/problem/P3066)"
     Cho một cây có gốc gồm $n$ đỉnh, các cạnh có trọng số, các đỉnh được đánh số từ 1 đến $n$, và đỉnh 1 là gốc của cây. Cho thêm một tham số $t$; với mỗi đỉnh $u$ trên cây, tính trong cây con của $u$ có bao nhiêu đỉnh mà khoảng cách từ đỉnh đó đến $u$ không vượt quá $t$. Phạm vi dữ liệu: $1\leq n \leq 2\times 10^5,1 \leq t \leq 10^{18},1 \leq p_i \lt i,1 \leq w_i \leq 10^{12}$
 
 #### Quá trình

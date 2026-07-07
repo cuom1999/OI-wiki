@@ -534,7 +534,7 @@ Vẫn còn một vấn đề: tính theo $\bmod \Phi_{K}(x)$ có hằng số l�
         
         Tuy nhiên khi UFWT, cần chia cho cơ số $10$, mà $10$ không có nghịch đảo modulo $2^{58}$. Số $5$ có nghịch đảo modulo $2^{58}$: $57646075230342349$; phần còn lại là chia thêm một thừa số $2$. Giả sử đáp án sau khi đã chia cho $5$ là $x$, đáp án thật là $y$, tức $2^5y\equiv x\pmod{2^{64}}$. Khi đó $y\equiv \frac{x}{2^5}\pmod{2^{64-5}}$, tức $y\equiv \frac{x}{2^5}\pmod{2^{59}}$. Vì vậy chỉ cần chia đáp án cuối cùng cho $2^5$. Mặc dù không rõ vì sao tác giả đề bài lại yêu cầu modulo $2^{58}$, sau đó chỉ cần lấy modulo lại là đủ.
 
-???+ note "[CF103329F, XXII Opencup, Grand Prix of XiAn - The Struggle](https://codeforces.com/gym/103329/problem/F)"
+???+ note "[CF103329F, XXII Opencup, Grand Prix of XiAn - Cuộc đấu tranh](https://codeforces.com/gym/103329/problem/F)"
     Cho một elip $E$, trong đó tọa độ của mọi điểm nguyên đều nằm trong $[1,4 \cdot 10^6]$. Tính giá trị $\sum_{(x,y) \in E} (x \oplus y)^{33}x^{-2}y^{-1} \mod 10^9+7$.
     
     ??? note "Lời giải"

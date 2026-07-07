@@ -373,7 +373,7 @@ Mục này giới thiệu cách áp dụng thực tế kỹ thuật tối thiể
     --8<-- "docs/misc/code/fsm/fsm_2.cpp:main"
     ```
 
-???+ example "[Minimal Subset Difference](https://codeforces.com/contest/956/problem/F)"
+???+ example "[Hiệu tập con nhỏ nhất](https://codeforces.com/contest/956/problem/F)"
     Định nghĩa $f(n)$ là giá trị tuyệt đối nhỏ nhất của kết quả thu được sau khi chèn dấu cộng hoặc dấu trừ giữa mọi chữ số thập phân của $n$.
     
     Có $T$ truy vấn. Mỗi truy vấn cho $l, r, k$, tính số lượng $m$ thỏa $l \le m \le r$ và $f(m) \le k$.

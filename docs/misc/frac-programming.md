@@ -63,7 +63,7 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
     --8<-- "docs/misc/code/frac-programming/frac-2.cpp"
     ```
 
-???+ example "[POJ2728 Desert King](http://poj.org/problem?id=2728)"
+???+ example "[POJ2728 Vua sa mạc](http://poj.org/problem?id=2728)"
     Mỗi cạnh có hai trọng số $a_i$ và $b_i$. Cần tìm một cây khung $T$ sao cho $\displaystyle\frac{\sum_{e\in T}a_e}{\sum_{e\in T}b_e}$ nhỏ nhất.
 
 ??? note "Lời giải"

@@ -140,7 +140,7 @@ Hiệu quả thực tế: khi $n=10^{1000}$, thời gian chạy của thuật to
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [UVa 10428 - The Roots](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369)
+-   [UVa 10428 - Các nghiệm](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1369)
 -   [LeetCode 69. Căn bậc hai của x](https://leetcode-cn.com/problems/sqrtx/)
 
     **Trang này chủ yếu được dịch từ bài viết [Метод Ньютона (касательных) для поиска корней](http://e-maxx.ru/algo/roots_newton) và bản dịch tiếng Anh [Newton's method for finding roots](https://cp-algorithms.com/num_methods/roots_newton.html). Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy phép CC-BY-SA 4.0.**

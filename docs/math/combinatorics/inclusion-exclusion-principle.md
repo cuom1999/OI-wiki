@@ -121,9 +121,9 @@ Nên phần này cũng tính được bằng số tổ hợp. Mảng $a$ độ d
 
 <span id="haoi2008-coin-shopping"></span>
 
-## HAOI2008 Coin Shopping
+## HAOI2008 Mua xu
 
-???+ note "HAOI2008 Coin Shopping"
+???+ note "HAOI2008 Mua xu"
     Có 4 loại đồng xu, mệnh giá của loại thứ $i$ là $C_i$. Có $n$ truy vấn; mỗi truy vấn cho số lượng $D_i$ của mỗi loại xu và một giá tiền $S$, hỏi số cách thanh toán.
     
     $n\leq 10^3,S\leq 10^5$.
@@ -253,9 +253,9 @@ for (long long k = N; k >= 1; k--) {
 
 Thêm ba bài tập cùng dạng để luyện tập.
 
--   [Luogu P2398 GCD SUM](https://www.luogu.com.cn/problem/P2398)
--   [Luogu P2158\[SDOI2008\] Honor Guard](https://www.luogu.com.cn/problem/P2158)
--   [Luogu P1447\[NOI2010\] Energy Collection](https://www.luogu.com.cn/problem/P1447)
+-   [Luogu P2398 Tổng GCD](https://www.luogu.com.cn/problem/P2398)
+-   [Luogu P2158\[SDOI2008\] Đội danh dự](https://www.luogu.com.cn/problem/P2158)
+-   [Luogu P1447\[NOI2010\] Thu thập năng lượng](https://www.luogu.com.cn/problem/P1447)
 
 <span id="suy-ra-hàm-euler-bằng-nguyên-lý-bao-hàm-loại-trừ"></span>
 
