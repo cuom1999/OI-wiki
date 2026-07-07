@@ -129,12 +129,12 @@ $$
 
 Để đánh bại hash, cần thỏa mãn các điều kiện sau:
 
-1.  $d$ phải lớn hơn modulo.
+1.  $d$ phải lớn hơn môđun.
 2.  $1-p(d,n)$ càng nhỏ càng tốt.
 
 Lấy một ví dụ:
 
-Nếu bảng chữ cái gồm **chữ cái hoa, chữ cái thường và chữ số**, và modulo là $10^9+7$:
+Nếu bảng chữ cái gồm **chữ cái hoa, chữ cái thường và chữ số**, và môđun là $10^9+7$:
 
 $\log_{62}10^9+7\approx 6$
 
@@ -144,7 +144,7 @@ Vì vậy trong phạm vi này, nếu sinh ngẫu nhiên $10^6$ chuỗi có đ�
 
 ### Đánh bại hash tràn tự nhiên
 
-Vì loại hash này có modulo quá lớn, không thể đánh bại bằng cách trên, nên cần một phương pháp khác.
+Vì loại hash này có môđun quá lớn, không thể đánh bại bằng cách trên, nên cần một phương pháp khác.
 
 Trước hết, dạng hash này có dạng $f(s) = \sum_{i=1}^{l} s[i] \times b^{l-i}$; phân loại theo $b$ để thảo luận.
 

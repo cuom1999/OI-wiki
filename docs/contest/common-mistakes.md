@@ -688,7 +688,7 @@ khác nhau.
 
 ### Lỗi làm hằng số quá lớn
 
--   Khi định nghĩa modulo, không định nghĩa là hằng số.
+-   Khi định nghĩa môđun, không định nghĩa là hằng số.
 
     -   Ví dụ:
 

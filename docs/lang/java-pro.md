@@ -159,7 +159,7 @@ Dưới đây dùng `this` để chỉ `BigInteger` hiện tại:
 |   `multiply(BigInteger val)`    |              Trả về tích của `this` và `val`               |
 |    `divide(BigInteger val)`     |              Trả về thương của `this` và `val`             |
 |  `remainder(BigInteger val)`    |              Trả về phần dư khi `this` chia cho `val`      |
-|      `mod(BigInteger val)`      |              Trả về `this` modulo `val`                    |
+|      `mod(BigInteger val)`      |              Trả về `this` theo môđun `val`                |
 |          `pow(int val)`         |              Trả về `this` mũ `val`                        |
 |      `and(BigInteger val)`      |              Trả về phép AND bit của `this` và `val`       |
 |       `or(BigInteger val)`      |              Trả về phép OR bit của `this` và `val`        |
@@ -385,7 +385,7 @@ Dưới đây dùng `this` để chỉ `BigInteger` hiện tại:
 |           `gcd(BigInteger val)`          | Trả về ước chung lớn nhất của giá trị tuyệt đối của `this` và `val` |
 |        `isProbablePrime(int val)`        | Trả về giá trị boolean biểu thị `this` có phải số nguyên tố hay không |
 |           `nextProbablePrime()`          | Trả về số nguyên tố đầu tiên lớn hơn `this`                      |
-|   `modPow(BigInteger b, BigInteger p)`   | Trả về `this` mũ `b` modulo `p`                                  |
+|   `modPow(BigInteger b, BigInteger p)`   | Trả về `this` mũ `b` theo môđun `p`                              |
 |        `modInverse(BigInteger p)`        | Trả về nghịch đảo nhân của `this` theo môđun `p`                |
 
 Ví dụ sử dụng:

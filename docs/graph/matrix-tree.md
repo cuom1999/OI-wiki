@@ -812,7 +812,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     thu được ma trận Laplace rồi xóa một hàng $i$ và cột $i$ bất kỳ của $L$.
     Sau đó tính định thức của định thức con này.
     Cách tính định thức là khử Gauss về ma trận tam giác trên rồi lấy tích đường chéo.
-    Ngoài ra, bài này cần khử Gauss trên vành số nguyên modulo $k$, tức $\mathbb{Z}_k$,
+    Ngoài ra, bài này cần khử Gauss trên vành số nguyên theo môđun $k$, tức $\mathbb{Z}_k$,
     nên có thể dùng thuật toán Euclid.
 
 ???+ note "Ví dụ 2: [FJOI2007 - Virus hình bánh xe](https://www.luogu.com.cn/problem/P2144)"
