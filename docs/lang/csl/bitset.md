@@ -311,7 +311,7 @@ Ngoài ra, cách vét cạn có thêm vài nhánh cắt tỉa cũng đủ để 
     }
     ```
 
-### [CF1097F Alex and a TV Show](https://codeforces.com/contest/1097/problem/F)
+### [CF1097F Alex và chương trình TV](https://codeforces.com/contest/1097/problem/F)
 
 <span id="tóm-tắt-đề-bài"></span>
 #### Tóm tắt đề bài

@@ -525,7 +525,7 @@ hình đầu tiên ở trên. Cây phía trên gọi là cây vào, còn cây d�
 
 ![](./images/segt7.svg)
 
-???+ note "[Legacy](https://codeforces.com/problemset/problem/786/B)"
+???+ note "[Di sản](https://codeforces.com/problemset/problem/786/B)"
     Tóm tắt đề bài: có $n$ điểm và $q$ thao tác. Mỗi thao tác thuộc một trong ba loại sau:
     
     -   Loại một: nối một cạnh có hướng $u \rightarrow v$ với trọng số $w$.

@@ -73,7 +73,7 @@ Với dạng bài này, thí sinh chỉ cần ghi truy vấn ra đầu ra chuẩ
 
 Phương thức tương tác với trình chấm thường gặp trong các kỳ thi OI quốc tế như IOI, APIO (đặc biệt là các kỳ thi trên nền tảng CMS).
 
-???+ note "Ví dụ [UOJ #206. APIO2016 Gap](https://uoj.ac/problem/206)"
+???+ note "Ví dụ [UOJ #206. APIO2016 Khoảng cách](https://uoj.ac/problem/206)"
     Có $N$ số nguyên không âm tăng nghiêm ngặt $a_1,a_2,\cdots,a_N (0\leq a_1<a2<\cdots<a_N\leq 10^{18})$. Nhiệm vụ là tìm giá trị lớn nhất trong các hiệu $a_{i+1}−a_i (0\leq i\leq N−1)$.
 
     Chương trình không thể trực tiếp đọc dãy số nguyên này, nhưng có thể truy vấn thông tin của dãy bằng các hàm đã cho. Chi tiết của hàm truy vấn được mô tả trong phần chi tiết cài đặt bên dưới theo từng ngôn ngữ.

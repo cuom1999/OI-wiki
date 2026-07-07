@@ -106,7 +106,7 @@ Sau khi tìm được nút cần thiết, trả về thông tin của $B$.
 Về bản chất, thao tác này giao việc duy trì thông tin cực trị cho $B$.
 Ngoài ra vẫn phải xử lý vấn đề các tập giá trị bị trùng.
 
-???+ note "[CTSN loves segment tree](https://www.luogu.com.cn/problem/U180387)"
+???+ note "[CTSN yêu cây phân đoạn](https://www.luogu.com.cn/problem/U180387)"
     Duy trì hai dãy $a,b$, thực hiện các thao tác sau:
 
     1.  `1 l r x` $\forall l\le i\le r,~ a_i=\min(a_i,x)$.
