@@ -2,15 +2,20 @@ author: Ir1d, greyqz, yjl9903, partychicken, ChungZH, qq1010903229, Marcythm, Ac
 
 ## Giới thiệu
 
-DFS là viết tắt của [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search), tức tìm kiếm theo chiều sâu. Đây là một thuật toán dùng để duyệt hoặc tìm kiếm trên cây hay đồ thị. "Theo chiều sâu" có nghĩa là mỗi lần thuật toán đều cố gắng đi tới một đỉnh sâu hơn.
+DFS là viết tắt của [Depth First Search](https://en.wikipedia.org/wiki/Depth-first_search), tức tìm kiếm theo chiều sâu.
+Đây là một thuật toán dùng để duyệt hoặc tìm kiếm trên cây hay đồ thị.
+"Theo chiều sâu" có nghĩa là mỗi lần thuật toán đều cố gắng đi tới một đỉnh sâu hơn.
 
-Khi được giới thiệu, thuật toán này thường được đặt cạnh BFS. Tuy nhiên, ngoài việc cả hai đều có thể duyệt một thành phần liên thông của đồ thị, mục đích sử dụng của chúng rất khác nhau, và hiếm khi có trường hợp hai thuật toán có thể dùng thay thế lẫn nhau.
+Khi được giới thiệu, thuật toán này thường được đặt cạnh BFS.
+Tuy nhiên, ngoài việc cả hai đều có thể duyệt một thành phần liên thông của đồ thị, mục đích sử dụng của chúng rất khác nhau, và hiếm khi có trường hợp hai thuật toán có thể dùng thay thế lẫn nhau.
 
 DFS thường dùng để chỉ kiểu tìm kiếm cài đặt bằng hàm đệ quy, nhưng hai khái niệm này không hoàn toàn giống nhau. Về tư tưởng tìm kiếm dạng đó, xem [DFS trong tìm kiếm](../search/dfs.md).
 
 ## Quy trình
 
-Đặc trưng rõ nhất của DFS là **tự gọi đệ quy**. Đồng thời, tương tự BFS, DFS sẽ đánh dấu các đỉnh đã thăm và bỏ qua những đỉnh đã được đánh dấu khi duyệt đồ thị, nhằm bảo đảm **mỗi đỉnh chỉ được thăm một lần**. Một hàm thỏa hai quy tắc trên có thể được xem là DFS theo nghĩa rộng.
+Đặc trưng rõ nhất của DFS là **tự gọi đệ quy**.
+Đồng thời, tương tự BFS, DFS sẽ đánh dấu các đỉnh đã thăm và bỏ qua những đỉnh đã được đánh dấu khi duyệt đồ thị, nhằm bảo đảm **mỗi đỉnh chỉ được thăm một lần**.
+Một hàm thỏa hai quy tắc trên có thể được xem là DFS theo nghĩa rộng.
 
 Nói cụ thể hơn, DFS có cấu trúc đại khái như sau:
 
@@ -27,12 +32,18 @@ Nói cụ thể hơn, DFS có cấu trúc đại khái như sau:
 
 ## Tính chất
 
-Thuật toán này thường có độ phức tạp thời gian $O(n+m)$ và độ phức tạp bộ nhớ $O(n)$, trong đó $n$ là số đỉnh và $m$ là số cạnh. Lưu ý rằng độ phức tạp bộ nhớ bao gồm cả bộ nhớ ngăn xếp, mà phần này có độ phức tạp $O(n)$. Độ phức tạp thời gian trên chỉ đạt được khi việc duyệt một cạnh mất trung bình $O(1)$, chẳng hạn khi lưu đồ thị bằng sao tiến hoặc danh sách kề; nếu dùng ma trận kề thì không nhất thiết đạt được độ phức tạp này.
+Thuật toán này thường có độ phức tạp thời gian $O(n+m)$ và độ phức tạp bộ nhớ $O(n)$, trong đó $n$ là số đỉnh và $m$ là số cạnh.
+Lưu ý rằng độ phức tạp bộ nhớ bao gồm cả bộ nhớ ngăn xếp, mà phần này có độ phức tạp $O(n)$.
+Độ phức tạp thời gian trên chỉ đạt được khi việc duyệt một cạnh mất trung bình $O(1)$, chẳng hạn khi lưu đồ thị bằng sao tiến hoặc danh sách kề.
+Nếu dùng ma trận kề thì không nhất thiết đạt được độ phức tạp này.
 
-> Ghi chú: Hiện nay, phần lớn các kỳ thi lập trình thuật toán, bao gồm NOIP, đa số kỳ chọn đội cấp tỉnh và các cuộc thi do CCF tổ chức, đều hỗ trợ **không giới hạn riêng bộ nhớ ngăn xếp**. Nghĩa là bộ nhớ ngăn xếp không bị giới hạn tách biệt, nhưng tổng bộ nhớ vẫn chịu giới hạn của đề bài. Tuy vậy, hầu hết hệ điều hành sẽ đặt thêm giới hạn cho bộ nhớ ngăn xếp, vì thế khi gỡ lỗi cục bộ cần dùng một số cách để gỡ giới hạn này.
+> Ghi chú: Hiện nay, phần lớn các kỳ thi lập trình thuật toán, bao gồm NOIP, đa số kỳ chọn đội cấp tỉnh và các cuộc thi do CCF tổ chức, đều hỗ trợ **không giới hạn riêng bộ nhớ ngăn xếp**.
+> Nghĩa là bộ nhớ ngăn xếp không bị giới hạn tách biệt, nhưng tổng bộ nhớ vẫn chịu giới hạn của đề bài.
+> Tuy vậy, hầu hết hệ điều hành sẽ đặt thêm giới hạn cho bộ nhớ ngăn xếp, vì thế khi gỡ lỗi cục bộ cần dùng một số cách để gỡ giới hạn này.
 >
 > -   Trên Windows, cách thông dụng là thêm `-Wl,--stack=1000000000` vào **tùy chọn biên dịch**, nghĩa là đặt giới hạn bộ nhớ ngăn xếp thành 1000000000 byte.
-> -   Trên Linux, cách thông dụng là chạy `ulimit -s unlimited` **trong terminal** trước khi chạy chương trình, nghĩa là đặt bộ nhớ ngăn xếp thành không giới hạn. Mỗi terminal chỉ cần thực hiện một lần, và lệnh sẽ có hiệu lực với mọi lần chạy chương trình sau đó trong terminal ấy.
+> -   Trên Linux, cách thông dụng là chạy `ulimit -s unlimited` **trong terminal** trước khi chạy chương trình, nghĩa là đặt bộ nhớ ngăn xếp thành không giới hạn.
+>     Mỗi terminal chỉ cần thực hiện một lần, và lệnh sẽ có hiệu lực với mọi lần chạy chương trình sau đó trong terminal ấy.
 
 ## Cài đặt
 
@@ -87,7 +98,8 @@ Có thể cài đặt DFS bằng cách dùng [ngăn xếp (Stack)](../ds/stack.m
 
 ### Cài đặt bằng đệ quy
 
-Khi gọi đệ quy một hàm, thứ tự tính toán tương tự thứ tự thêm và xóa phần tử trên ngăn xếp. Vì vậy vùng địa chỉ ảo mà các lời gọi hàm chiếm giữ được gọi là ngăn xếp lời gọi hàm (Call Stack), và có thể cài đặt DFS bằng đệ quy.
+Khi gọi đệ quy một hàm, thứ tự tính toán tương tự thứ tự thêm và xóa phần tử trên ngăn xếp.
+Vì vậy vùng địa chỉ ảo mà các lời gọi hàm chiếm giữ được gọi là ngăn xếp lời gọi hàm (Call Stack), và có thể cài đặt DFS bằng đệ quy.
 
 Với cách lưu đồ thị bằng [danh sách kề (Adjacency List)](./save.md#danh-sách-kề):
 
