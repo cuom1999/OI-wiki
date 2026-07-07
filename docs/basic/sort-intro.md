@@ -2,7 +2,7 @@ Trang này giới thiệu ngắn gọn về các thuật toán sắp xếp.
 
 ## Định nghĩa
 
-**Thuật toán sắp xếp** (sorting algorithm) là thuật toán sắp xếp một tập dữ liệu
+**Thuật toán sắp xếp** là thuật toán sắp xếp một tập dữ liệu
 theo một thứ tự nhất định. Có nhiều thuật toán sắp xếp, và tính chất của chúng
 cũng thường khác nhau.
 

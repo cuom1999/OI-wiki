@@ -683,7 +683,7 @@ Trong trường hợp số học, định lý đúng khi các môđun nguyên t�
 ???+ abstract "Cùng nhau cực đại"
     Giả sử vành $R$ có các iđêan $I$ và $J$. Nếu $I+J=R$, thì $I$ và $J$ được gọi là **cùng nhau cực đại** (comaximal).
 
-Trong trường hợp vành có đơn vị, nếu xét các iđêan chính $(a)$ và $(b)$, điều kiện này tương đương với việc tồn tại $x,y\in R$ sao cho $ax+by=1$, tương tự định lý Bézout khi hai số nguyên nguyên tố cùng nhau. Dùng định nghĩa này, có thể xây dựng **định lý số dư Trung Hoa** (Chinese remainder theorem) trên vành giao hoán có đơn vị hoàn toàn tương tự trường hợp vành số nguyên.
+Trong trường hợp vành có đơn vị, nếu xét các iđêan chính $(a)$ và $(b)$, điều kiện này tương đương với việc tồn tại $x,y\in R$ sao cho $ax+by=1$, tương tự định lý Bézout khi hai số nguyên nguyên tố cùng nhau. Dùng định nghĩa này, có thể xây dựng **định lý số dư Trung Hoa** trên vành giao hoán có đơn vị hoàn toàn tương tự trường hợp vành số nguyên.
 
 ???+ note "Định lý số dư Trung Hoa"
     Giả sử vành giao hoán có đơn vị, khác không $R$ có các iđêan $I_1,\cdots,I_n$. Nếu chúng đôi một cùng nhau cực đại, thì đồng cấu vành $\varphi$ vừa định nghĩa là toàn ánh, hạt nhân của nó bằng tích của các iđêan này, $\ker\varphi=I_1\cap\cdots\cap I_n=I_1\cdots I_n$, do đó

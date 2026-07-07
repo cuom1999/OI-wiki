@@ -150,7 +150,7 @@ có khả năng quay lại xét các lựa chọn theo nghĩa rộng.
         nó với phần tử có thù lao nhỏ nhất trong hàng đợi. Nếu công việc thứ
         `i` có thù lao cao hơn, tức là nên "hối tiếc" lựa chọn trước đó, cập
         nhật `ans += a[i].p - q.top()`.
-        Dùng hàng đợi ưu tiên dạng min-heap để duy trì phần tử nhỏ nhất ở đầu.
+        Dùng hàng đợi ưu tiên dạng đống nhỏ để duy trì phần tử nhỏ nhất ở đầu.
     3.  Điều kiện `a[i].d <= q.size()` có thể hiểu như sau: từ thời điểm 0 đến
         `a[i].d` chỉ có thể làm `a[i].d` công việc. Nếu `q.size() >= a[i].d`,
         nghĩa là thời gian cần để hoàn thành `q.size()` công việc đã lớn hơn
