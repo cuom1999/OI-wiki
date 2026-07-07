@@ -479,7 +479,7 @@ LaTeX là lựa chọn ưu tiên để dàn công thức, và cần sử dụng 
     \log, \ln, \lg, \sin, \cos, \tan, \sec, \csc, \cot, \gcd, \min, \max, \exp, \inf, \mod, \bmod, \pmod
     ```
 
-    Vì vậy, khi nhập hằng, tên hàm, toán tử, v.v., vui lòng kiểm tra trước xem có nên dùng Roman hoặc font khác hay không. Cách viết ký hiệu LaTeX có thể tham khảo trang [Supported Functions của KaTeX](https://katex.org/docs/supported.html) (không phải đầy đủ tất cả), hoặc có thể tìm kiếm lời giải.
+    Vì vậy, khi nhập hằng, tên hàm, toán tử, v.v., vui lòng kiểm tra trước xem có nên dùng Roman hoặc font khác hay không. Cách viết ký hiệu LaTeX có thể tham khảo trang [các hàm được hỗ trợ của KaTeX](https://katex.org/docs/supported.html) (không phải đầy đủ tất cả), hoặc có thể tìm kiếm lời giải.
 
     Do trong LaTeX việc viết chữ cái Hy Lạp thường dạng Roman tương đối khó, các hằng, toán tử và hàm là chữ cái Hy Lạp thường có thể dùng Italic, như $\pi$ và $\delta$ trong $\delta x$.
 
@@ -638,15 +638,15 @@ Khối mã hiện được chia thành hai loại: đoạn mã và bài mẫu.
 Về đoạn mã:
 
 -   <a id="CODE-1.1"></a>CODE-1.1: nếu đoạn mã đủ ngắn và không cần thiết phải kiểm thử, có thể sửa trực tiếp trong tài liệu Markdown.
--   <a id="CODE-1.2"></a>CODE-1.2: vì mã nhúng trong tài liệu Markdown khó tự động hóa kiểm thử, nên dùng định dạng mã bài mẫu để chèn đoạn mã. Có thể chọn [phương án biên dịch nhiều tệp](https://github.com/OI-wiki/OI-wiki/pull/5729) hoặc cú pháp [Snippet Sections](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections):
+-   <a id="CODE-1.2"></a>CODE-1.2: vì mã nhúng trong tài liệu Markdown khó tự động hóa kiểm thử, nên dùng định dạng mã bài mẫu để chèn đoạn mã. Có thể chọn [phương án biên dịch nhiều tệp](https://github.com/OI-wiki/OI-wiki/pull/5729) hoặc cú pháp [đoạn mã theo vùng](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-sections):
 
     Ví dụ về phương án biên dịch nhiều tệp: [sắp xếp nổi bọt](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/bubble-sort.md?plain=1#L48). Phần thân bài dẫn [bubble-sort\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.cpp), mã kiểm thử đặt trong [bubble-sort\_1.aux1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c35defebff6cea072d6cfeb359642f6fd84e66c7/docs/basic/code/bubble-sort/bubble-sort_1.aux1.cpp).
 
-    Ví dụ về Snippet Sections: [tổng tiền tố](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37). Trong phần thân bài không cần dẫn phần kiểm thử trong [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp), nên chọn chèn đoạn mã chính.
+    Ví dụ về đoạn mã theo vùng: [tổng tiền tố](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/prefix-sum.md?plain=1#L37). Trong phần thân bài không cần dẫn phần kiểm thử trong [prefix-sum\_1.cpp](https://github.com/OI-wiki/OI-wiki/blob/c7cf6d6de13b44757f1d0528e952349beb921f8a/docs/basic/code/prefix-sum/prefix-sum_1.cpp), nên chọn chèn đoạn mã chính.
 
-    **Lưu ý**: không dùng cú pháp [Snippet Lines](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
+    **Lưu ý**: không dùng cú pháp [đoạn mã theo dòng](https://facelessuser.github.io/pymdown-extensions/extensions/snippets/#snippet-lines).
 
-    Để tăng tỷ lệ tái sử dụng mã, cũng có thể tách mã thành tệp tiêu đề và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp Snippet Sections để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
+    Để tăng tỷ lệ tái sử dụng mã, cũng có thể tách mã thành tệp tiêu đề và khi kiểm thử thì dẫn vào các mã kiểm thử khác nhau. Nếu phần thân bài cần xuất hiện đầy đủ mã kiểm thử làm hiện thực tham khảo cho bài mẫu, trong phần thân bài nên dùng riêng cú pháp đoạn mã theo vùng để ghép thành mã một tệp, để người đọc dễ đọc. Ví dụ: [cây đỏ-đen](https://github.com/OI-wiki/OI-wiki/blob/3b721e22ea60d59a2687a9b10555263de7bdc2f0/docs/ds/rbtree.md?plain=1#L218-L231).
 
 Về mã bài mẫu:
 
@@ -764,7 +764,7 @@ Liệt kê tài liệu tham khảo ở cuối bài có thể làm nội dung tra
 
 [^ref4]: [SVG | MDN](https://developer.mozilla.org/en-US/docs/Web/SVG)
 
-[^webarchive]: [Save Page in Internet Archive](https://web.archive.org/save/)
+[^webarchive]: [Lưu trang vào Internet Archive](https://web.archive.org/save/)
 
 [^apng]: [APNG](https://en.wikipedia.org/wiki/APNG)
 

@@ -280,9 +280,9 @@ Biểu đồ Voronoi là đồ thị đối ngẫu của tam giác phân Delauna
 
 [SGU 383 Caravans](https://codeforces.com/problemsets/acmsguru/problem/99999/383) tam giác phân + nhân đôi
 
-[ContestHunter. Endless Destruction](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20%28%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2%29/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) dùng tam giác phân để tìm đồ thị đối ngẫu và xây dựng biểu đồ Voronoi
+[ContestHunter. Hủy diệt vô tận](http://noi-test.zzstep.com/contest/Beta%20Round%20%EF%BC%832%20%28%E6%96%B0%E7%96%86%E7%9C%81%E9%98%9F%E4%BA%92%E6%B5%8BWeek1-Day2%29/%E6%97%A0%E5%B0%BD%E7%9A%84%E6%AF%81%E7%81%AD) dùng tam giác phân để tìm đồ thị đối ngẫu và xây dựng biểu đồ Voronoi
 
-[Codeforces Gym 103485M. Constellation collection](https://codeforces.com/gym/103485/problem/M) xây đồ thị sau khi tam giác phân rồi chạy Floodfill
+[Codeforces Gym 103485M. Bộ sưu tập chòm sao](https://codeforces.com/gym/103485/problem/M) xây đồ thị sau khi tam giác phân rồi chạy tô loang
 
 ## Tài liệu tham khảo và đọc thêm
 

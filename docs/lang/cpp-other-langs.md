@@ -153,7 +153,7 @@ tượng như đóng gói, kế thừa, đa hình. Vì hướng đối tượng 
 với Python, Java và C++ có nhiều điểm giống nhau hơn.
 
 Khác biệt lớn nhất giữa hai ngôn ngữ nằm ở cơ chế JVM của Java. JVM là viết tắt
-của Java Virtual Machine, tức máy ảo Java. Một tính chất quan trọng của Java là
+của tên tiếng Anh chỉ máy ảo Java. Một tính chất quan trọng của Java là
 tính độc lập với nền tảng. Máy ảo Java là mấu chốt để đạt được tính chất này. Nếu
 muốn chạy trên nhiều nền tảng, ngôn ngữ bậc cao thông thường ít nhất cần biên dịch
 thành các mã máy tương ứng. Với Java, trình biên dịch sinh bytecode chạy trên JVM;

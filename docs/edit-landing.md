@@ -10,7 +10,7 @@ Sau khi đọc xong, nhấp nút bên dưới rồi bắt đầu chỉnh sửa.
 
 ???+ note "Vui lòng lưu ý"
     -   Nhớ thêm GitHub ID vào sau trường `author` ở đầu tệp theo đúng định dạng.
-    -   Theo Issue [#3061](https://github.com/OI-wiki/OI-wiki/issues/3061), thay đổi hiện sẽ được gộp bằng một trong hai cách Rebase hoặc Squash tùy theo chất lượng Commit Message. Khi dùng Squash, người đóng góp có thể là author của commit đó thay vì committer; vui lòng lưu ý điều này.
+    -   Theo Issue [#3061](https://github.com/OI-wiki/OI-wiki/issues/3061), thay đổi hiện sẽ được gộp bằng một trong hai cách rebase hoặc squash tùy theo chất lượng thông điệp commit. Khi dùng squash, người đóng góp có thể là tác giả của commit đó thay vì người commit; vui lòng lưu ý điều này.
 
 <a id="btn-startedit" style="padding: 0.75em 1.25em; display: inline-block; line-height: 1; text-decoration: none; white-space: nowrap; cursor: pointer; border: 1px solid #6190e8; border-radius: 5px; background-color: #6190e8; color: #fff; outline: none; font-size: 0.75em;">Bắt đầu chỉnh sửa</a>
 

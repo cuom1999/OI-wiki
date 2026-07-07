@@ -255,9 +255,9 @@ Sau khi tìm được các tiếp tuyến chung, lấy ảnh nghịch đảo tr�
 
 ## Bài tập
 
-[ICPC 2017 Nanning Regional Online - Finding the Radius for an Inserted Circle](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
+[ICPC 2017 vòng khu vực Nam Ninh trực tuyến - Tìm bán kính cho đường tròn được chèn](https://vjudge.net/problem/%E8%AE%A1%E8%92%9C%E5%AE%A2-A1283)
 
-[CCPC 2017 Online - The Designer](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
+[CCPC 2017 trực tuyến - Nhà thiết kế](https://acm.hdu.edu.cn/showproblem.php?pid=6158)
 
 ## Tài liệu tham khảo và đọc thêm
 

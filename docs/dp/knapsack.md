@@ -228,7 +228,7 @@ Với cách tách trên, có thể biểu diễn mọi cách chọn tương đư
 
 Xem [Tối ưu bằng hàng đợi đơn điệu/ngăn xếp đơn điệu](./opt/monotonic-queue-stack.md).
 
-Bài tập: [Luogu P1776 - Sàng lọc bảo vật, NOI Guide 2010 Advanced (02)](https://www.luogu.com.cn/problem/P1776)
+Bài tập: [Luogu P1776 - Sàng lọc bảo vật, Hướng dẫn NOI 2010 nâng cao (02)](https://www.luogu.com.cn/problem/P1776)
 
 <span id="ba-lô-hỗn-hợp"></span>
 ## Ba lô hỗn hợp
@@ -271,7 +271,7 @@ với mỗi loại vật phẩm {
     }
     ```
 
-Bài tập: [HDU 5410 CRB and His Birthday](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
+Bài tập: [HDU 5410 CRB và sinh nhật của anh ấy](https://acm.hdu.edu.cn/showproblem.php?pid=5410)
 
 <span id="ba-lô-với-chi-phí-hai-chiều"></span>
 ## Ba lô với chi phí hai chiều
