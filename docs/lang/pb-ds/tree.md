@@ -139,6 +139,6 @@ int main() {
 
 ## Tài liệu tham khảo
 
--   [Tree-Based Containers](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
+-   [Bộ chứa dựa trên cây](https://gcc.gnu.org/onlinedocs/libstdc++/ext/pb_ds/tree_based_containers.html)
 -   [Mã triển khai hàm `join` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18391_source.html#l00043)
 -   [Mã triển khai hàm `erase` trong GCC 14.1.0](https://gcc.gnu.org/onlinedocs/gcc-14.1.0/libstdc++/api/a18211_source.html#l00043)

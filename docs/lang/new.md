@@ -675,4 +675,4 @@ int main() {
 
 ## Tham khảo
 
-1.  [C++ Reference](https://en.cppreference.com/)
+1.  [Tài liệu tham khảo C++](https://en.cppreference.com/)

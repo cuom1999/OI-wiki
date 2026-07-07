@@ -195,7 +195,7 @@ Trong C++, dấu nháy đơn được dùng riêng để biểu diễn một ký
 chẳng hạn `'a'`; còn chuỗi (mảng ký tự) phải dùng dấu nháy kép.
 
 C++ còn có nhiều kiểu dữ liệu bổ sung. Xem
-[Fundamental types - cppreference.com](https://en.cppreference.com/w/cpp/language/types).
+[Kiểu cơ bản - cppreference.com](https://en.cppreference.com/w/cpp/language/types).
 
 #### Khai báo hằng
 
@@ -512,7 +512,7 @@ std::cout << (a == '0');  // true xuất ra 1
 Trong C++, `char` và `bool` về bản chất đều là kiểu số nguyên.
 
 Chi tiết xem bài
-[Implicit conversions - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
+[Chuyển đổi ngầm định - cppreference.com](https://en.cppreference.com/w/cpp/language/implicit_conversion).
 
 ### Nhiều câu lệnh C++ có giá trị trả về
 
@@ -789,11 +789,11 @@ tay tham khảo để đọc cẩn thận.
 -   [Tài nguyên học tập](../contest/resources.md)
 -   [cppreference.com](https://en.cppreference.com/): tài liệu tham khảo C/C++
     quan trọng nhất
--   [C++ Tutorial - Runoob](https://www.runoob.com/cplusplus/cpp-tutorial.html)
--   [C++ Language - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
+-   [Hướng dẫn C++ - Runoob](https://www.runoob.com/cplusplus/cpp-tutorial.html)
+-   [Ngôn ngữ C++ - C++ Tutorials](https://www.cplusplus.com/doc/tutorial/)
 -   [Tài liệu tham khảo C++ - cplusplus.com](https://www.cplusplus.com/reference/)
--   [C++ Standard Library - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library)
--   [The Ultimate Question of Programming, Refactoring, and Everything](https://www.gitbook.com/book/alexastva/the-ultimate-question-of-programming-refactoring-/details)
+-   [Thư viện chuẩn C++ - Wikipedia](https://en.wikipedia.org/wiki/C%2B%2B_Standard_Library)
+-   [Câu hỏi tối hậu về lập trình, tái cấu trúc và mọi thứ](https://www.gitbook.com/book/alexastva/the-ultimate-question-of-programming-refactoring-/details)
 -   [Quy chuẩn phong cách C++ của Google](https://google.github.io/styleguide/cppguide.html)
 
 ## Lời bạt

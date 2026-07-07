@@ -221,7 +221,7 @@ auto result5 = *v;      // lấy đối tượng mà con trỏ v trỏ tới
 
 ## Bảng tổng hợp độ ưu tiên toán tử C++
 
-Dựa trên [C++ operator precedence - cppreference](https://en.cppreference.com/w/cpp/language/operator_precedence),
+Dựa trên [độ ưu tiên toán tử C++ - cppreference](https://en.cppreference.com/w/cpp/language/operator_precedence),
 có chỉnh sửa.
 
 | Toán tử | Mô tả | Ví dụ | Có thể nạp chồng |

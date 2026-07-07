@@ -99,6 +99,6 @@ tổng kích thước của tất cả thành viên.
 
 ## Tài liệu tham khảo
 
-1.  [Class - cppreference.com](https://en.cppreference.com/w/cpp/language/class)
+1.  [Lớp - cppreference.com](https://en.cppreference.com/w/cpp/language/class)
 2.  [Cấu trúc dữ liệu - cplusplus.com](http://www.cplusplus.com/doc/tutorial/structures/)
 3.  [Căn chỉnh - Microsoft Learn](https://learn.microsoft.com/en-us/cpp/cpp/alignment-cpp-declarations)

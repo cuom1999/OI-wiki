@@ -719,7 +719,7 @@ Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn b
 
 ## Tài liệu tham khảo và chú thích
 
-1.  [Working Draft, Standard for Programming Language C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4917.pdf)
+1.  [Bản nháp làm việc, chuẩn ngôn ngữ lập trình C++](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2022/n4917.pdf)
 2.  [Kiểu - cppreference.com](https://en.cppreference.com/w/cpp/language/type)
 3.  [Kiểu số học - cppreference.com](https://en.cppreference.com/w/c/language/arithmetic_types) của ngôn ngữ C
 4.  [Kiểu cơ bản - cppreference.com](https://en.cppreference.com/w/cpp/language/types)
@@ -756,4 +756,4 @@ Nếu sửa giá trị của hằng, lỗi sẽ xuất hiện ở giai đoạn b
     $-2^{x-1}+1\sim 2^{x-1}-1$), nhưng hầu hết bản triển khai đều dùng
     [mã bù hai](../math/bit.md#số-nguyên-và-chuỗi-bit); từ C++20, chuẩn quy định
     thêm rằng số nguyên có dấu bắt buộc phải dùng mã bù hai. Xem chi tiết tại
-    [Range of values - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).
+    [phạm vi giá trị - cppreference](https://en.cppreference.com/w/cpp/language/types.html#Range_of_values).

@@ -167,4 +167,4 @@ int main() { Sol::solve(); }
 
 ## Tham khảo
 
--   [Namespaces - cppreference.com](https://en.cppreference.com/w/cpp/language/namespace)
+-   [Không gian tên - cppreference.com](https://en.cppreference.com/w/cpp/language/namespace)

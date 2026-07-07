@@ -899,11 +899,11 @@ Quan sát hành vi và mã hợp ngữ của các trình biên dịch tại đâ
 <a id="đọc-thêm"></a>
 ## Đọc thêm
 
-1.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #1/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
-2.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #2/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html)
-3.  [The LLVM Project Blog: What Every C Programmer Should Know About Undefined Behavior #3/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_21.html)
+1.  [Blog dự án LLVM: điều mọi lập trình viên C nên biết về hành vi không xác định #1/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know.html)
+2.  [Blog dự án LLVM: điều mọi lập trình viên C nên biết về hành vi không xác định #2/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_14.html)
+3.  [Blog dự án LLVM: điều mọi lập trình viên C nên biết về hành vi không xác định #3/3](https://blog.llvm.org/2011/05/what-every-c-programmer-should-know_21.html)
 
 <a id="tài-liệu-tham-khảo-và-chú-thích"></a>
 ## Tài liệu tham khảo và chú thích
 
-[^p0001r1]: [Remove Deprecated Use of the register Keyword (open-std.org)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0001r1.html)
+[^p0001r1]: [Loại bỏ cách dùng đã lỗi thời của từ khóa `register` (open-std.org)](https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2015/p0001r1.html)

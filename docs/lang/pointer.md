@@ -503,6 +503,6 @@ Con trỏ hàm cũng thường được dùng để triển khai "hàm callback"
 
 ## Tài liệu tham khảo và chú thích
 
-[^note1]: Xem [Introduce the nullptr constant](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)
+[^note1]: Xem [Giới thiệu hằng `nullptr`](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3042.htm)
 
 [so-6893285]: https://stackoverflow.com/questions/6893285/why-do-function-pointer-definitions-work-with-any-number-of-ampersands-or-as

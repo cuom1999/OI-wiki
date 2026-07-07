@@ -275,8 +275,8 @@ std::string&& f2() {
 
 ## Tài liệu tham khảo và đọc thêm
 
-1.  [Value categories](https://en.cppreference.com/w/cpp/language/value_category)
-2.  [Wording for guaranteed copy elision through simplified value categories](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
+1.  [Loại giá trị](https://en.cppreference.com/w/cpp/language/value_category)
+2.  [Diễn đạt chuẩn cho lược bỏ sao chép được bảo đảm thông qua loại giá trị đơn giản hóa](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0135r1.html)
 3.  [Loại giá trị trong C++](https://paul.pub/cpp-value-category/)
 4.  [Tham chiếu phải trị, di chuyển và hệ thống loại giá trị của C++](https://zclll.com/index.php/cpp/value_category.html)
-5.  [Copy elision](https://en.cppreference.com/w/cpp/language/copy_elision)
+5.  [Lược bỏ sao chép](https://en.cppreference.com/w/cpp/language/copy_elision)

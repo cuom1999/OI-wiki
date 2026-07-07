@@ -593,4 +593,4 @@ hàm riêng, lambda không cần thêm tên hàm và không phải khai báo l�
 ## Tài liệu tham khảo
 
 -   [cppreference-lambda](https://en.cppreference.com/w/cpp/language/lambda)
--   [Stackoverflow: Overhead with std::function](https://stackoverflow.com/a/33881130/11120338)
+-   [Stack Overflow: chi phí phụ của `std::function`](https://stackoverflow.com/a/33881130/11120338)
