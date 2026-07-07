@@ -6,11 +6,12 @@ author: HeRaNO, JuicyMio, Xeonacid, sailordiary, ouuan, Pig-Eat-Earth
 
 ## Giới thiệu
 
-DSU (Disjoint Set Union, cấu trúc tập hợp rời nhau) là cấu trúc dữ liệu dùng để quản lý tập hợp chứa mỗi phần tử.
+DSU (Disjoint Set Union, cấu trúc tập hợp rời nhau) là cấu trúc dữ liệu dùng để quản lý các
+tập hợp rời nhau chứa các phần tử.
 Nó thường được cài đặt như một rừng, trong đó mỗi cây biểu diễn một tập hợp,
 còn các nút trong cây biểu diễn các phần tử thuộc tập hợp tương ứng.
 
-Đúng như tên gọi hợp nhất - tìm kiếm (union-find), DSU hỗ trợ hai thao tác chính:
+Đúng như tên gọi hợp nhất-tìm kiếm (union-find), DSU hỗ trợ hai thao tác chính:
 
 -   Hợp nhất (unite): hợp nhất hai tập hợp chứa hai phần tử đã cho (tức hợp nhất hai cây tương ứng).
 -   Tìm (find): tìm tập hợp chứa một phần tử (tức tìm nút gốc của cây tương ứng);
@@ -115,30 +116,33 @@ nên có thể nối trực tiếp chúng vào nút gốc để tăng tốc các
 
 ### Hợp nhất theo heuristic
 
-Khi hợp nhất, việc chọn nút gốc của cây nào làm gốc mới sẽ ảnh hưởng đến độ phức tạp của các thao tác sau.
+Khi hợp nhất, việc chọn nút gốc của cây nào làm gốc mới sẽ ảnh hưởng đến độ phức tạp của các
+thao tác sau.
 Có thể nối cây có ít nút hơn hoặc độ sâu nhỏ hơn vào cây còn lại để tránh cấu trúc bị suy biến.
 
 ??? note "Thảo luận cụ thể về độ phức tạp"
     Vì DSU chỉ cần hỗ trợ hợp nhất và tìm,
     khi cần gộp hai tập hợp thành một, nối tập hợp nào làm con của tập hợp nào cũng cho kết quả đúng.
     Tuy vậy, các cách nối khác nhau có độ phức tạp thời gian khác nhau.
-    Cụ thể, nếu nối cây biểu diễn tập hợp có số nút và độ sâu nhỏ hơn vào dưới một cây tập hợp lớn hơn,
+    Cụ thể, nếu nối cây biểu diễn tập hợp có số nút ít hơn hoặc độ sâu nhỏ hơn vào dưới một cây
+    lớn hơn,
     thì so với phương án ngược lại, các thao tác tìm sau đó sẽ tốn ít thời gian hơn
     và cho độ phức tạp xấu nhất tốt hơn.
 
     Không phải lúc nào cũng gặp đúng trường hợp một tập hợp vừa ít nút hơn vừa nông hơn.
     Vì hai đặc trưng số nút và độ sâu đều dễ duy trì,
     thường chọn một trong hai làm hàm đánh giá.
-    Dù chọn cách nào, độ phức tạp đều là $O (m\alpha(m,n))$;
+    Dù chọn cách nào, độ phức tạp đều là $O(m\alpha(m,n))$;
     chứng minh chi tiết có thể xem trong các bài báo được trích ở phần tài liệu tham khảo.
 
     Trong mã thi lập trình thực tế, ngay cả khi không dùng hợp nhất theo heuristic,
     chương trình thường vẫn chạy kịp thời gian.
     Trong bài báo của Tarjan[^tarjan1984worst],
-    độ phức tạp xấu nhất khi không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi được chứng minh là $O (m \log n)$.
+    độ phức tạp xấu nhất khi không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi được chứng
+    minh là $O(m \log n)$.
     Trong bài báo của Yao[^yao1985expected],
     nếu không dùng hợp nhất theo heuristic mà chỉ dùng nén đường đi,
-    độ phức tạp trung bình vẫn là $O (m\alpha(m,n))$.
+    độ phức tạp trung bình vẫn là $O(m\alpha(m,n))$.
 
     Nếu chỉ dùng hợp nhất theo heuristic mà không dùng nén đường đi, độ phức tạp là $O(m\log n)$.
     Vì một lần nén đường đi có thể gây ra nhiều thay đổi, đôi khi không nên dùng kỹ thuật này.
@@ -212,7 +216,8 @@ Nói cách khác, thời gian khấu hao của một thao tác DSU có thể xem
 Chứng minh độ phức tạp nằm ở [trang này](./dsu-complexity.md).
 
 ???+ info "Hàm Ackermann ngược"
-    [Hàm Ackermann](https://en.wikipedia.org/wiki/Ackermann_function)  $A(m, n)$ được định nghĩa như sau:
+    [Hàm Ackermann](https://en.wikipedia.org/wiki/Ackermann_function) $A(m, n)$ được định nghĩa
+    như sau:
 
     $$
     A(m, n) =
@@ -223,8 +228,8 @@ Chứng minh độ phức tạp nằm ở [trang này](./dsu-complexity.md).
     \end{cases}
     $$
 
-    Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất $m$ sao cho
-    $A(m, m) \leqslant n$.
+    Còn hàm Ackermann ngược $\alpha(n)$ là hàm ngược của hàm Ackermann, tức là số nguyên lớn nhất
+    $m$ sao cho $A(m, m) \leqslant n$.
 
 Độ phức tạp bộ nhớ của DSU là $O(n)$.
 
@@ -248,8 +253,8 @@ Vì mỗi lần hợp nhất hai tập hợp chỉ nối hai gốc của cây,
 từ đầu đến cuối chỉ các nút ảo mới có nút con.
 Nhờ vậy, khi xóa một nút, sẽ không xóa nhầm các nút khác.
 
-Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không, các thao tác hợp nhất và
-xóa về sau sẽ không còn đúng.
+Lưu ý rằng sau khi xóa một nút riêng lẻ, cần tạo lại một nút ảo làm cha của nút đó; nếu không,
+các thao tác hợp nhất và xóa về sau sẽ không còn đúng.
 
 ??? example "Bài mẫu [SPOJ JMFILTER - Junk-Mail Filter](https://www.spoj.com/problems/JMFILTER/), cài đặt tham khảo"
     === "C++"
@@ -262,7 +267,8 @@ xóa về sau sẽ không còn đúng.
         --8<-- "docs/ds/code/dsu/dsu_4.py"
         ```
 
-Cách tương tự cũng có thể dùng để di chuyển một phần tử riêng lẻ giữa các tập hợp. Chi tiết cài đặt xem trong ví dụ.
+Cách tương tự cũng có thể dùng để di chuyển một phần tử riêng lẻ giữa các tập hợp. Chi tiết cài đặt
+xem trong ví dụ.
 
 <span id="dsu-có-trọng-số"></span>
 
@@ -314,7 +320,8 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 ??? note "Lời giải"
     Trong bài này, thao tác 1 và thao tác 3 đều dễ xử lý; điểm khó nằm ở thao tác 2.
     Giả sử cần di chuyển phần tử $x$ sang tập hợp chứa phần tử $y$.
-    Trong DSU thông thường, không thể trực tiếp đặt cha của phần tử $x$ thành gốc của tập hợp chứa phần tử $y$,
+    Trong DSU thông thường, không thể trực tiếp đặt cha của phần tử $x$ thành gốc của tập hợp chứa
+    phần tử $y$,
     vì làm như vậy sẽ di chuyển cả các phần tử trong cây con của $x$.
     Để xử lý vấn đề này, cần bảo đảm phần tử $x$ không có nút con.
     Do đó, khi xây DSU, tạo cho mỗi phần tử $x$ một nút ảo $\tilde x$,
@@ -366,8 +373,8 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
 
     Cụ thể, với mỗi phát biểu, ngoài các phát biểu sai ngay như $x>n$ hoặc $y>n$,
     cần kiểm tra $x$ và $y$ đã thuộc cùng thành phần hay chưa:
-    nếu đã thuộc cùng thành phần, tính khoảng cách giữa chúng theo modulo rồi so sánh với thông tin mà phát biểu khẳng
-    định; nếu chưa, hợp nhất chúng theo thông tin do phát biểu cung cấp.
+    nếu đã thuộc cùng thành phần, tính khoảng cách giữa chúng theo modulo rồi so sánh với thông tin
+    mà phát biểu khẳng định; nếu chưa, hợp nhất chúng theo thông tin do phát biểu cung cấp.
     Trừ các trường hợp sai ngay,
     một phát biểu là sai khi và chỉ khi hai nút được nhắc tới đã thuộc cùng thành phần,
     và khoảng cách tương ứng mâu thuẫn với thông tin mà phát biểu khẳng định.
@@ -419,8 +426,8 @@ Trong lập trình thi đấu, các bài hỏi trực tiếp về DSU phần l�
     $X=(X_1,X_2,\ldots,X_M)$, $Y=(Y_1,Y_2,\ldots,Y_M)$, $Z=(Z_1,Z_2,\ldots,Z_M)$.
     Bảo đảm mọi phần tử của $X$ và $Y$ đều nằm trong phạm vi từ $1$ đến $N$.
 
-    Định nghĩa một dãy số nguyên không âm độ dài $N$, $A=(A_1,A_2,\ldots,A_N)$, là một **dãy số nguyên tốt** khi và chỉ
-    khi thỏa điều kiện sau:
+    Định nghĩa một dãy số nguyên không âm độ dài $N$, $A=(A_1,A_2,\ldots,A_N)$, là một
+    **dãy số nguyên tốt** khi và chỉ khi thỏa điều kiện sau:
 
     -   Với mọi số nguyên $i$ thỏa $1 \leq i \leq M$,
         có $A_{X_i} \oplus A_{Y_i} = Z_i$, trong đó $\oplus$ biểu thị phép XOR.
