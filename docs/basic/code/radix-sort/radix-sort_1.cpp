@@ -23,7 +23,7 @@ void MSD_radix_sort(unsigned* begin, unsigned* end, int digit)
   {
     return;
   }
-  /** Counting sort; cách viết này chỉ để tham khảo. **/
+  /** Sắp xếp đếm; cách viết này chỉ để tham khảo. **/
   static unsigned cnt[RADIX + 1],
       tmp[MAXN + 5];  // Các tầng đệ quy khác nhau không dùng cnt/tmp đồng thời
                       // (mỗi tầng dùng xong mới gọi tầng tiếp theo), nên dùng

@@ -195,17 +195,17 @@ def combine(svg_dir="./svg/", output_file="andrew.svg"):
         tree = ET.parse(f)
         root = tree.getroot()
 
-        # grab viewBox (same for all)
+        # lấy viewBox (giống nhau cho mọi frame)
         if viewBox is None and "viewBox" in root.attrib:
             viewBox = root.attrib["viewBox"]
 
-        # wrap all children of <svg> into a <g>
+        # bọc toàn bộ phần tử con của <svg> vào một <g>
         g = ET.Element("g", id=f"frame{i}", display="none")
         for child in list(root):
             g.append(child)
         groups.append(g)
 
-    # Build master SVG
+    # Dựng SVG chính
     svg_attrs = {
         "xmlns": "http://www.w3.org/2000/svg",
         "version": "1.1",
@@ -215,22 +215,22 @@ def combine(svg_dir="./svg/", output_file="andrew.svg"):
 
     svg = ET.Element("svg", svg_attrs)
 
-    total_dur = len(frames)  # total cycle duration
+    total_dur = len(frames)  # tổng thời lượng chu kỳ
 
     for i, g in enumerate(groups):
-        # Calculate keyTimes - each frame gets equal time slice
+        # Tính keyTimes - mỗi frame nhận một lát thời gian bằng nhau
         frame_start = i / len(frames)
         frame_end = (i + 1) / len(frames)
 
-        # Build keyTimes and values like the example
-        # Format: "start_time;end_time;1" with values "none;inline;none"
+        # Dựng keyTimes và values giống ví dụ
+        # Định dạng: "start_time;end_time;1" với values "none;inline;none"
         keyTimes = f"0;{frame_start:.6f};{frame_end:.6f};1"
 
         if i == 0:
-            # First frame: visible at start, then hidden
+            # Frame đầu tiên: hiển thị lúc bắt đầu, rồi ẩn
             values = "inline;inline;none;none"
         else:
-            # Other frames: hidden, then visible, then hidden
+            # Các frame khác: ẩn, rồi hiển thị, rồi ẩn
             values = "none;inline;none;none"
 
         animate = ET.Element(
@@ -241,7 +241,7 @@ def combine(svg_dir="./svg/", output_file="andrew.svg"):
                 "dur": f"{total_dur}s",
                 "keyTimes": keyTimes,
                 "values": values,
-                "calcMode": "discrete",  # This ensures instant transitions like the example
+                "calcMode": "discrete",  # Bảo đảm chuyển trạng thái tức thì như ví dụ
             },
         )
 
@@ -259,18 +259,18 @@ def generate_table(
     line_width=1,
     line_color="#000000",
 ):
-    # Get all SVG files and sort them
+    # Lấy toàn bộ tệp SVG và sắp xếp chúng
     frames = [os.path.join(svg_dir, file) for file in sorted(os.listdir(svg_dir))]
     frames = frames[1:]
 
     if not frames:
         raise ValueError(f"No SVG files found in {svg_dir}")
 
-    # Parse first frame to get dimensions and viewBox
+    # Phân tích frame đầu tiên để lấy kích thước và viewBox
     first_tree = ET.parse(frames[0])
     first_root = first_tree.getroot()
 
-    # Get original viewBox or calculate from width/height
+    # Lấy viewBox gốc hoặc tính từ width/height
     original_viewbox = None
     if "viewBox" in first_root.attrib:
         original_viewbox = first_root.attrib["viewBox"]
@@ -280,17 +280,17 @@ def generate_table(
         vb_x = float(vb_parts[0])
         vb_y = float(vb_parts[1])
     else:
-        # Fallback to width/height attributes
+        # Dự phòng bằng thuộc tính width/height
         frame_width = float(first_root.attrib.get("width", 100))
         frame_height = float(first_root.attrib.get("height", 100))
         vb_x = 0
         vb_y = 0
 
-    # Calculate total dimensions including separating lines
+    # Tính tổng kích thước, gồm cả các đường phân tách
     total_width = cols * frame_width + (cols + 1) * line_width
     total_height = rows * frame_height + (rows + 1) * line_width
 
-    # Create master SVG
+    # Tạo SVG chính
     master_attrs = {
         "xmlns": "http://www.w3.org/2000/svg",
         "version": "1.1",
@@ -301,26 +301,26 @@ def generate_table(
 
     svg = ET.Element("svg", master_attrs)
 
-    # Add frames to the grid
-    for idx, frame_path in enumerate(frames[: rows * cols]):  # Limit to grid size
+    # Thêm các frame vào lưới
+    for idx, frame_path in enumerate(frames[: rows * cols]):  # Giới hạn theo kích thước lưới
         row = idx // cols
         col = idx % cols
 
-        # Calculate position with separating lines
+        # Tính vị trí có xét các đường phân tách
         x = col * (frame_width + line_width) + line_width
         y = row * (frame_height + line_width) + line_width
 
         try:
-            # Parse the frame
+            # Phân tích frame
             tree = ET.parse(frame_path)
             root = tree.getroot()
 
-            # Create group for this frame
+            # Tạo group cho frame này
             g = ET.Element(
                 "g", {"id": f"frame_{row}_{col}", "transform": f"translate({x}, {y})"}
             )
 
-            # If the original had a viewBox, we need to add a nested SVG to maintain scaling
+            # Nếu bản gốc có viewBox, cần thêm SVG lồng nhau để giữ tỉ lệ
             if original_viewbox:
                 nested_svg = ET.Element(
                     "svg",
@@ -332,13 +332,13 @@ def generate_table(
                     },
                 )
 
-                # Copy all children from original SVG
+                # Sao chép toàn bộ phần tử con từ SVG gốc
                 for child in list(root):
                     nested_svg.append(child)
 
                 g.append(nested_svg)
             else:
-                # Copy children directly
+                # Sao chép trực tiếp các phần tử con
                 for child in list(root):
                     g.append(child)
 
@@ -348,7 +348,7 @@ def generate_table(
             print(f"Warning: Could not parse {frame_path}: {e}")
             continue
 
-    # Add horizontal separating lines
+    # Thêm các đường phân tách ngang
     for i in range(rows + 1):
         y = i * (frame_height + line_width) + line_width / 2
         line = ET.Element(
@@ -364,7 +364,7 @@ def generate_table(
         )
         svg.append(line)
 
-    # Add vertical separating lines
+    # Thêm các đường phân tách dọc
     for j in range(cols + 1):
         x = j * (frame_width + line_width) + line_width / 2
         line = ET.Element(
@@ -380,12 +380,12 @@ def generate_table(
         )
         svg.append(line)
 
-    # Write the result
+    # Ghi kết quả
     tree = ET.ElementTree(svg)
     try:
-        ET.indent(tree, space="  ")  # Pretty print (Python 3.9+)
+        ET.indent(tree, space="  ")  # Định dạng đẹp (Python 3.9+)
     except AttributeError:
-        pass  # Skip pretty printing for older Python versions
+        pass  # Bỏ qua định dạng đẹp với các phiên bản Python cũ hơn
 
     tree.write(output_file, encoding="utf-8", xml_declaration=True)
 
