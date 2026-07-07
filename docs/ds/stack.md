@@ -76,7 +76,7 @@ Có thể dùng mảng để mô phỏng một ngăn xếp như sau:
 
 ## Ngăn xếp trong C++ STL
 
-C++ STL cung cấp bộ điều hợp container `std::stack`; trước khi dùng cần nạp tệp
+C++ STL cung cấp bộ điều hợp bộ chứa `std::stack`; trước khi dùng cần nạp tệp
 tiêu đề `<stack>`.
 
 ???+ info "Định nghĩa `stack` trong STL"
@@ -90,16 +90,16 @@ tiêu đề `<stack>`.
 
     `T` là kiểu dữ liệu cần lưu trong `stack`.
 
-    `Container` là kiểu container nền dùng để lưu phần tử. Container nền này phải
+    `Container` là kiểu bộ chứa nền dùng để lưu phần tử. Bộ chứa nền này phải
     cung cấp các hàm sau với ngữ nghĩa thông thường:
 
     -   `back()`
     -   `push_back()`
     -   `pop_back()`
 
-    Các container STL `std::vector`, `std::deque` và `std::list` đều thỏa mãn
+    Các bộ chứa STL `std::vector`, `std::deque` và `std::list` đều thỏa mãn
     những yêu cầu này. Nếu không chỉ định, mặc định dùng `std::deque` làm
-    container nền.
+    bộ chứa nền.
 
 Bộ điều hợp `stack` trong STL cung cấp nhiều hàm thành viên; các hàm thường
 dùng gồm:

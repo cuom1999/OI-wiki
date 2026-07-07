@@ -450,7 +450,7 @@ Mã cài đặt `build(r, c)` như sau:
     ```
 
 <span id="thao-tác-insert"></span>
-#### Thao tác insert
+#### Thao tác chèn
 
 `insert(r, c)` biểu diễn việc chèn một nút vào hàng thứ $r$, cột thứ $c$.
 

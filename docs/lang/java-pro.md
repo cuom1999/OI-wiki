@@ -1050,7 +1050,7 @@ Queue<Integer> q = new ArrayDeque<>();
     kém thân thiện với cache hơn.
 5.  Tốc độ thao tác: thao tác stack và queue của `ArrayDeque` và `LinkedList` đều
     có độ phức tạp thời gian $O(1)$. Thao tác push/enqueue của `ArrayDeque` có thể
-    kích hoạt mở rộng mảng, nhưng theo phân tích amortized vẫn là $O(1)$.
+    kích hoạt mở rộng mảng, nhưng theo phân tích khấu hao vẫn là $O(1)$.
 6.  Bộ nhớ phụ: `ArrayDeque` có thể còn vùng trống ngoài con trỏ đầu và con trỏ
     cuối của mảng, còn `LinkedList` cần thêm con trỏ trước và sau trên mỗi nút.
 

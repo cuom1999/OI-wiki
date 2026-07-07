@@ -183,7 +183,7 @@ Mẫu nạp chồng toán tử thường có các dạng sau:
 /* khai báo trong định nghĩa lớp, định nghĩa bên ngoài */ kiểu_trả_về TênLớp::operator_ký_hiệu(tham_số){...}
 ```
 
-Với lớp tự định nghĩa, nếu muốn dùng các container hoặc thuật toán STL tương ứng
+Với lớp tự định nghĩa, nếu muốn dùng các bộ chứa hoặc thuật toán STL tương ứng
 như [`sort`](../basic/stl-sort.md), thông thường cần nạp chồng toán tử so sánh
 `<`.
 

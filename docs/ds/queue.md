@@ -63,7 +63,7 @@ lấy ra một lần; do đó độ phức tạp khấu hao là $O(1)$.
 <span id="hàng-đợi-trong-c-stl"></span>
 ## Hàng đợi trong C++ STL
 
-C++ cung cấp bộ điều hợp container `std::queue` trong STL. Trước khi dùng, cần
+C++ cung cấp bộ điều hợp bộ chứa `std::queue` trong STL. Trước khi dùng, cần
 nạp tệp tiêu đề `<queue>`.
 
 ???+ info "Định nghĩa `queue` trong STL"
@@ -77,7 +77,7 @@ nạp tệp tiêu đề `<queue>`.
     
     `T` là kiểu dữ liệu của các phần tử được lưu trong `queue`.
     
-    `Container` là kiểu container nền dùng để lưu phần tử. Container nền này phải
+    `Container` là kiểu bộ chứa nền dùng để lưu phần tử. Bộ chứa nền này phải
     cung cấp các hàm sau với ngữ nghĩa thông thường:
     
     -   `back()`
@@ -85,8 +85,8 @@ nạp tệp tiêu đề `<queue>`.
     -   `push_back()`
     -   `pop_front()`
     
-    Các container STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
-    không chỉ định, `std::deque` sẽ được dùng làm container nền mặc định.
+    Các bộ chứa STL `std::deque` và `std::list` thỏa mãn các yêu cầu này. Nếu
+    không chỉ định, `std::deque` sẽ được dùng làm bộ chứa nền mặc định.
 
 Bộ điều hợp `queue` trong STL cung cấp nhiều hàm thành viên; những hàm thường
 dùng gồm:
@@ -167,7 +167,7 @@ cách xử lý này, các thao tác chèn và xóa vẫn có thời gian hằng 
 <span id="hàng-đợi-hai-đầu-trong-c-stl"></span>
 #### Hàng đợi hai đầu trong C++ STL
 
-C++ cũng cung cấp container `std::deque` trong STL. Trước khi dùng, cần nạp tệp
+C++ cũng cung cấp bộ chứa `std::deque` trong STL. Trước khi dùng, cần nạp tệp
 tiêu đề `<deque>`.
 
 ??? info "Định nghĩa `deque` trong STL"

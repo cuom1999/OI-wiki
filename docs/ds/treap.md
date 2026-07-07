@@ -973,7 +973,7 @@ Node *merge(Node *sm, Node *bg) {
 
 Giống như đã giới thiệu ở trên,
 tách ra ba đoạn $[1, l - 1],\ [l, r],\ [r + 1, n]$,
-sau đó gán tag cho đoạn giữa rồi hợp nhất lại.
+sau đó gán nhãn cho đoạn giữa rồi hợp nhất lại.
 
 ```cpp
 void seg_rev(int l, int r) {

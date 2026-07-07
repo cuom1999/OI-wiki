@@ -46,13 +46,13 @@ Phương pháp được giới thiệu dưới đây xem toán tử và độ ư
 
 Xét một bài toán đơn giản hóa. Giả sử mọi toán tử đều là toán tử nhị phân: mỗi toán tử đều có hai đối số. Đồng thời, mọi toán tử đều kết hợp trái: nếu các toán tử có cùng độ ưu tiên thì thực hiện từ trái sang phải. Cho phép dùng ngoặc.
 
-Để tính loại biểu thức trung tố này, có thể chuyển nó thành biểu thức hậu tố rồi tính. Định nghĩa hai [ngăn xếp](../ds/stack.md) để lần lượt lưu toán tử và toán hạng; mỗi khi gặp một số thì đưa trực tiếp vào ngăn xếp toán hạng. Mỗi khối toán tử tương ứng với một cặp ngoặc, và ngăn xếp toán tử chỉ đơn điệu bên trong từng khối toán tử. Mỗi khi gặp một toán tử, cần xét các phần tử trong khối toán tử trên cùng của ngăn xếp toán tử; bên trong khối đó, thực hiện thao tác pop phù hợp sao cho các toán tử được giữ theo thứ tự giảm dần của độ ưu tiên, đồng thời tính giá trị của biểu thức con tương ứng với toán tử được pop ra.
+Để tính loại biểu thức trung tố này, có thể chuyển nó thành biểu thức hậu tố rồi tính. Định nghĩa hai [ngăn xếp](../ds/stack.md) để lần lượt lưu toán tử và toán hạng; mỗi khi gặp một số thì đưa trực tiếp vào ngăn xếp toán hạng. Mỗi khối toán tử tương ứng với một cặp ngoặc, và ngăn xếp toán tử chỉ đơn điệu bên trong từng khối toán tử. Mỗi khi gặp một toán tử, cần xét các phần tử trong khối toán tử trên cùng của ngăn xếp toán tử; bên trong khối đó, thực hiện thao tác lấy ra phù hợp sao cho các toán tử được giữ theo thứ tự giảm dần của độ ưu tiên, đồng thời tính giá trị của biểu thức con tương ứng với toán tử được lấy ra.
 
-Trong phần dưới đây, "xuất" nghĩa là xuất ra biểu thức hậu tố: tức là đặt số đó lên ngăn xếp toán hạng, hoặc pop một toán tử và hai toán hạng, tính xong rồi đẩy kết quả trở lại ngăn xếp toán hạng. Quét biểu thức trung tố từ trái sang phải:
+Trong phần dưới đây, "xuất" nghĩa là xuất ra biểu thức hậu tố: tức là đặt số đó lên ngăn xếp toán hạng, hoặc lấy một toán tử và hai toán hạng ra, tính xong rồi đẩy kết quả trở lại ngăn xếp toán hạng. Quét biểu thức trung tố từ trái sang phải:
 
 1.  Nếu gặp số, xuất trực tiếp số đó.
 2.  Nếu gặp dấu ngoặc trái, đưa nó vào ngăn xếp toán tử.
-3.  Nếu gặp dấu ngoặc phải, liên tục xuất phần tử trên đỉnh ngăn xếp cho đến khi gặp dấu ngoặc trái, rồi pop dấu ngoặc trái. Nói cách khác, thực hiện mọi toán tử bên trong cặp ngoặc đó.
+3.  Nếu gặp dấu ngoặc phải, liên tục xuất phần tử trên đỉnh ngăn xếp cho đến khi gặp dấu ngoặc trái, rồi lấy dấu ngoặc trái ra. Nói cách khác, thực hiện mọi toán tử bên trong cặp ngoặc đó.
 4.  Nếu gặp toán tử khác, liên tục xuất tất cả các toán tử có độ ưu tiên lớn hơn hoặc bằng toán tử hiện tại. Cuối cùng, đưa toán tử mới vào ngăn xếp toán tử.
 5.  Sau khi xử lý hết toàn bộ chuỗi, một số toán tử có thể vẫn còn trong ngăn xếp, vì vậy lần lượt xuất các ký hiệu còn lại trong ngăn xếp; quá trình chuyển đổi biểu thức kết thúc.
 
@@ -147,7 +147,7 @@ Kết hợp phải nghĩa là mỗi khi độ ưu tiên bằng nhau, các toán 
 
 Như đã nói ở trên, toán tử một ngôi thường kết hợp phải. Một ví dụ khác về toán tử kết hợp phải là toán tử lũy thừa. Với $a \wedge b \wedge c$, thông thường nó được xem là $a^{b^c}$ chứ không phải $(a^b)^c$.
 
-Để xử lý đúng loại toán tử này, thay đổi tương ứng là: nếu độ ưu tiên bằng nhau, cần trì hoãn thao tác pop toán tử ra khỏi ngăn xếp.
+Để xử lý đúng loại toán tử này, thay đổi tương ứng là: nếu độ ưu tiên bằng nhau, cần trì hoãn thao tác lấy toán tử ra khỏi ngăn xếp.
 
 Đoạn mã cần thay đổi như sau. Thay:
 

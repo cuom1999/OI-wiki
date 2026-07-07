@@ -456,7 +456,7 @@ Nếu còn câu hỏi về mkdocs-material (chủ đề đang dùng), cũng có 
             -   `gcd` thứ nhất nhận hai số nguyên không dấu `x`, `y`, trả về ước chung lớn nhất của `x`, `y`; miền giá trị của kiểu trả về bảo đảm có thể chứa đồng thời `x` và `y`.
             -   `gcd` thứ hai nhận hai số nguyên `x`, `y`, trong đó ít nhất một trong `x`, `y` là số nguyên có dấu, và trả về ước chung lớn nhất của `x`, `y`.
             -   `gcd` thứ ba nhận hơn hai số nguyên và trả về ước chung lớn nhất của các số đó.
-            -   `gcd` thứ tư nhận một container và trả về ước chung lớn nhất của tất cả số trong container.
+            -   `gcd` thứ tư nhận một bộ chứa và trả về ước chung lớn nhất của tất cả số trong bộ chứa.
             
             Với **OI Wiki**, trọng tâm chỉ là tư tưởng của thuật toán ước chung lớn nhất; đoạn mã này bao gồm quá nhiều chi tiết kỹ thuật phức tạp và không liên quan, nên cần tránh.
 

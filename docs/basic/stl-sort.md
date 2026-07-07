@@ -170,11 +170,11 @@ $(\mathit{last}-\mathit{first})\log(\mathit{mid}-\mathit{first})$ lần áp dụ
 Nguyên lý:
 
 Ý tưởng của `std::partial_sort` là thực hiện `make_heap()` trên khoảng
-`[first, mid)` trong container ban đầu để xây dựng một heap lớn nhất, rồi so
+`[first, mid)` trong bộ chứa ban đầu để xây dựng một đống lớn nhất, rồi so
 sánh từng phần tử trong `[mid, last)` với `first`. Khi đó phần tử tại `first`
-luôn là phần tử lớn nhất trong heap. Nếu phần tử đang xét nhỏ hơn giá trị lớn
+luôn là phần tử lớn nhất trong đống. Nếu phần tử đang xét nhỏ hơn giá trị lớn
 nhất đó, ta hoán đổi vị trí hai phần tử, rồi điều chỉnh các phần tử trong
-`[first, mid)` để chúng tiếp tục duy trì thứ tự heap lớn nhất.
+`[first, mid)` để chúng tiếp tục duy trì thứ tự đống lớn nhất.
 
 Sau khi so sánh xong, thuật toán thực hiện thêm `sort_heap()` trên các phần tử
 trong `[first, mid)`, để chúng được sắp theo thứ tự tăng dần. Lưu ý rằng thứ tự

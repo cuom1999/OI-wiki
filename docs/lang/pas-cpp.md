@@ -368,7 +368,7 @@ sang lần lặp tiếp theo (quay về đầu vòng lặp).
 
 #### Mảng độ dài thay đổi: kiểu thư viện chuẩn `vector`
 
-Tham khảo nội dung trong trang [Container tuần tự](csl/sequence-container.md).
+Tham khảo nội dung trong trang [Bộ chứa tuần tự](csl/sequence-container.md).
 
 Thư viện chuẩn C++ cung cấp `vector`, tương đương với mảng có độ dài thay đổi.
 Trước khi dùng cần nạp tệp thư viện.
@@ -766,9 +766,9 @@ Trong thư viện chuẩn C++, `<algorithm>` có nhiều hàm hữu ích như s�
 tìm kiếm nhị phân, v.v.; có thể gọi ngay. Tham khảo trang
 [Thuật toán STL](csl/algorithm.md).
 
-Ngoài ra còn có container STL, chẳng hạn mảng, vector (mảng có kích thước thay
+Ngoài ra còn có bộ chứa STL, chẳng hạn mảng, vector (mảng có kích thước thay
 đổi), hàng đợi, ngăn xếp, v.v., kèm nhiều hàm hỗ trợ. Tham khảo trang [Giới thiệu
-container STL](csl/container.md).
+bộ chứa STL](csl/container.md).
 
 Nếu muốn tìm các hàm thao tác chuỗi, xem:
 
