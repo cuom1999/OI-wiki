@@ -16,7 +16,7 @@ Với đoạn $[l,r]$, sắp xếp tăng dần theo khóa thứ nhất là chỉ
 
 ```cpp
 void move(int pos, int sign) {
-  // update nowAns
+  // Cập nhật nowAns
 }
 
 void solve() {

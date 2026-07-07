@@ -50,7 +50,7 @@ Còn một điểm cần lưu ý: dễ viết ra đoạn **mã lõi sai** như s
     for (int i = 1; i <= n; i++)
       for (int l = 0; l <= W - w[i]; l++)
         f[l + w[i]] = max(f[l] + v[i], f[l + w[i]]);
-    // Rut gon tu f[i][l + w[i]] =
+    // Rút gọn từ f[i][l + w[i]] =
     // max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]), f[i][l + w[i]]);
     ```
 
@@ -59,7 +59,7 @@ Còn một điểm cần lưu ý: dễ viết ra đoạn **mã lõi sai** như s
     for i in range(1, n + 1):
         for l in range(0, W - w[i] + 1):
             f[l + w[i]] = max(f[l] + v[i], f[l + w[i]])
-    # Rut gon tu f[i][l + w[i]] =
+    # Rút gọn từ f[i][l + w[i]] =
     # max(max(f[i - 1][l + w[i]], f[i - 1][l] + v[i]), f[i][l + w[i]])
     ```
 
@@ -147,7 +147,7 @@ $$
     ```cpp
     for (int i = 1; i <= n; i++) {
       for (int weight = W; weight >= w[i]; weight--) {
-        // Duyet them mot tang so luong vat pham
+        // Duyệt thêm một tầng số lượng vật phẩm
         for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
           dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
         }
@@ -257,11 +257,11 @@ với mỗi loại vật phẩm {
 ??? note "Mã lõi"
     ```cpp
     for (int i = 1; i <= n; i++) {
-      if (cnt[i] == 0) {  // Neu so luong khong gioi han, dung ma loi cua ba lo day du
+      if (cnt[i] == 0) {  // Nếu số lượng không giới hạn, dùng mã lõi của ba lô đầy đủ
         for (int weight = w[i]; weight <= W; weight++) {
           dp[weight] = max(dp[weight], dp[weight - w[i]] + v[i]);
         }
-      } else {  // Vat pham huu han: dung ma loi cua ba lo nhieu vat pham; cung xu ly duoc ba lo 0-1
+      } else {  // Vật phẩm hữu hạn: dùng mã lõi của ba lô nhiều vật phẩm; cũng xử lý được ba lô 0-1
         for (int weight = W; weight >= w[i]; weight--) {
           for (int k = 1; k * w[i] <= weight && k <= cnt[i]; k++) {
             dp[weight] = max(dp[weight], dp[weight - k * w[i]] + k * v[i]);
@@ -291,16 +291,16 @@ Lúc này cần lưu ý rằng mở thêm một chiều để lưu số thứ t�
 === "C++"
     ```cpp
     for (int k = 1; k <= n; k++)
-      for (int i = m; i >= mi; i--)    // Duyet mot tang theo kinh phi
-        for (int j = t; j >= ti; j--)  // Duyet mot tang theo thoi gian
+      for (int i = m; i >= mi; i--)    // Duyệt một tầng theo kinh phí
+        for (int j = t; j >= ti; j--)  // Duyệt một tầng theo thời gian
           dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1);
     ```
 
 === "Python"
     ```python
     for k in range(1, n + 1):
-        for i in range(m, mi - 1, -1):  # Duyet mot tang theo kinh phi
-            for j in range(t, ti - 1, -1):  # Duyet mot tang theo thoi gian
+        for i in range(m, mi - 1, -1):  # Duyệt một tầng theo kinh phí
+            for j in range(t, ti - 1, -1):  # Duyệt một tầng theo thời gian
                 dp[i][j] = max(dp[i][j], dp[i - mi][j - ti] + 1)
     ```
 
@@ -319,23 +319,23 @@ Nói thêm về cách lưu trữ. Có thể dùng $t_{k,i}$ để biểu diễn 
 
 === "C++"
     ```cpp
-    for (int k = 1; k <= ts; k++)          // Duyet tung nhom
-      for (int i = m; i >= 0; i--)         // Duyet suc chua ba lo
-        for (int j = 1; j <= cnt[k]; j++)  // Duyet tung vat pham trong nhom nay
-          if (i >= w[t[k][j]])             // Suc chua ba lo du
+    for (int k = 1; k <= ts; k++)          // Duyệt từng nhóm
+      for (int i = m; i >= 0; i--)         // Duyệt sức chứa ba lô
+        for (int j = 1; j <= cnt[k]; j++)  // Duyệt từng vật phẩm trong nhóm này
+          if (i >= w[t[k][j]])             // Sức chứa ba lô đủ
             dp[i] = max(dp[i],
-                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // Chuyen trang thai nhu ba lo 0-1
+                        dp[i - w[t[k][j]]] + c[t[k][j]]);  // Chuyển trạng thái như ba lô 0-1
     ```
 
 === "Python"
     ```python
-    for k in range(1, ts + 1):  # Duyet tung nhom
-        for i in range(m, -1, -1):  # Duyet suc chua ba lo
-            for j in range(1, cnt[k] + 1):  # Duyet tung vat pham trong nhom nay
-                if i >= w[t[k][j]]:  # Suc chua ba lo du
+    for k in range(1, ts + 1):  # Duyệt từng nhóm
+        for i in range(m, -1, -1):  # Duyệt sức chứa ba lô
+            for j in range(1, cnt[k] + 1):  # Duyệt từng vật phẩm trong nhóm này
+                if i >= w[t[k][j]]:  # Sức chứa ba lô đủ
                     dp[i] = max(
                         dp[i], dp[i - w[t[k][j]]] + c[t[k][j]]
-                    )  # Chuyen trang thai nhu ba lo 0-1
+                    )  # Chuyển trạng thái như ba lô 0-1
     ```
 
 Lưu ý: **tuyệt đối không được nhầm thứ tự vòng lặp**, như vậy mới bảo đảm tính đúng đắn.
@@ -427,10 +427,10 @@ Nếu $f_{i,j} = f_{i-1,j}$ và $f_{i,j} = f_{i-1,j-v}+w$, nghĩa là chọn ho�
 
 ```cpp
 memset(f, 0xcf, sizeof(f));
-// Vi can lay gia tri lon nhat, khoi tao la am vo cung de tranh chuyen trang thai khi chua lap day
-// Neu can lay gia tri nho nhat, khoi tao la duong vo cung 0x3f
+// Vì cần lấy giá trị lớn nhất, khởi tạo là âm vô cùng để tránh chuyển trạng thái khi chưa lấp đầy
+// Nếu cần lấy giá trị nhỏ nhất, khởi tạo là dương vô cùng 0x3f
 f[0] = 0;
-g[0] = 1;  // Khong chon gi cung la mot phuong an
+g[0] = 1;  // Không chọn gì cũng là một phương án
 ```
 
 Vì thể tích lớn nhất của ba lô có thể không lấp đầy được, nghiệm tối ưu không nhất thiết là $f_{m}$.
@@ -443,20 +443,20 @@ Cuối cùng, tìm giá trị của nghiệm tối ưu, rồi cộng tất cả 
       for (int j = V; j >= v[i]; j--) {
         int tmp = std::max(dp[j], dp[j - v[i]] + w[i]);
         int c = 0;
-        if (tmp == dp[j]) c += cnt[j];                       // Neu chuyen tu dp[j]
-        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // Neu chuyen tu dp[j-v[i]]
+        if (tmp == dp[j]) c += cnt[j];                       // Nếu chuyển từ dp[j]
+        if (tmp == dp[j - v[i]] + w[i]) c += cnt[j - v[i]];  // Nếu chuyển từ dp[j-v[i]]
         dp[j] = tmp;
         cnt[j] = c;
       }
     }
-    int max = 0;  // Tim nghiem toi uu
+    int max = 0;  // Tìm nghiệm tối ưu
     for (int i = 0; i <= V; i++) {
       max = std::max(max, dp[i]);
     }
     int res = 0;
     for (int i = 0; i <= V; i++) {
       if (dp[i] == max) {
-        res += cnt[i];  // Cong so phuong an toi uu
+        res += cnt[i];  // Cộng số phương án tối ưu
       }
     }
     ```

@@ -349,7 +349,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             if pat_char_type(pat[i], pat[i + 1], last_scanned_type) == STYPE {
                 last_scanned_type = STYPE;
             } else {
-                if last_scanned_type == STYPE {  // pat[i + 1] is LMS type
+                if last_scanned_type == STYPE {  // pat[i + 1] có kiểu LMS
                     sa[pat[i + 1]] += 1;
                 }
                 
@@ -366,24 +366,24 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                 let e_i = i + 1;
                 let e = pat[e_i];
                 
-                if last_scanned_type == STYPE {  // pat[i + 1] is LMS type
+                if last_scanned_type == STYPE {  // pat[i + 1] có kiểu LMS
                     lms_cnt += 1;
                     if sa[e] == UNIQUE {
                         sa[e] = e_i;
                     } else if sa[e] >= MULTI && sa[e - 1] == EMPTY {
                         if sa[e - 2] == EMPTY {
                             sa[e - 2] = e_i;
-                            sa[e - 1] = 1;  // set counter
+                            sa[e - 1] = 1;  // Đặt bộ đếm
                         } else {  // MUL = 2
                             sa[e] = e_i;
                             sa[e - 1] = EMPTY;
                         }
                     } else if sa[e] >= MULTI && sa[e - 1] != EMPTY {
-                        let c = sa[e - 1];  // get counter
+                        let c = sa[e - 1];  // Lấy bộ đếm
                         
                         if sa[e - 2 - c] == EMPTY {
                             sa[e - 2 - c] = e_i;
-                            sa[e - 1] += 1;  // update counter
+                            sa[e - 1] += 1;  // Cập nhật bộ đếm
                         } else {
                             for j in (1..c + 1).rev() {
                                 sa[e - c + j] = sa[e - 2 - c + j]
@@ -428,11 +428,11 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
         let pat_last_pos = pat.len() - 1;
         let mut lms_cnt = 0;
         let mut i = pat_last_pos;
-        let mut bucket_tail_ptr = pat_last_pos + 1;  // for renamed bucket ver
+        let mut bucket_tail_ptr = pat_last_pos + 1;  // Dành cho phiên bản bucket đã đổi tên
         let mut bucket = EMPTY;  // Có thể bỏ, nhưng giữ lại để code dễ viết hơn
         let mut num = 0;  // Số ký tự kiểu S trong bucket
         while i > 0 {
-            if pat[sa[i]] != bucket {  // reach new bucket
+            if pat[sa[i]] != bucket {  // Gặp bucket mới
                 num = 0;
                 
                 let mut l = 0;
@@ -499,7 +499,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             prev_lms_str_len = cur_lms_str_len;
         }
         
-        // move to head of sa
+        // Chuyển lên đầu sa
         let mut j = 0;
         for i in 0..patlen - lms_cnt {
             if sa[i] != EMPTY {
@@ -537,7 +537,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             sa[i] = sa[patlen- lms_cnt + i];
         }
         
-        // put all LMS-suffixes in SA tail
+        // Đưa tất cả hậu tố LMS vào cuối SA
         let mut last_scanned_type = STYPE;
         let mut j = 0;
         for i in (0..pat.len() - 1).rev() {
@@ -553,7 +553,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             }
         }
         
-        // backward map the LMS-suffixes rank
+        // Ánh xạ ngược hạng của các hậu tố LMS
         for i in 0..lms_cnt {
             let relative_rank = sa[i];
             sa[i] = sa[patlen - lms_cnt + relative_rank];
@@ -618,7 +618,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                     } else if sa[pat[j]] >= MULTI && sa[pat[j] + 1] == EMPTY {
                         if sa[pat[j]] - EMPTY > 2 {
                             sa[pat[j] + 2] = j;
-                            sa[pat[j] + 1] = 1;  // set counter
+                            sa[pat[j] + 1] = 1;  // Đặt bộ đếm
                         } else {
                             sa[pat[j]] = j;
                         }
@@ -628,7 +628,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                         let lfp = e + c + 2;
                         if  c + 2 < sa[pat[j]] - EMPTY {  // Chưa đến cuối bucket
                             sa[lfp] = j;
-                            sa[e + 1] += 1;  // update counter
+                            sa[e + 1] += 1;  // Cập nhật bộ đếm
                         } else {
                             for k in 1..c + 1 {
                                 sa[e + k - 1] = sa[e + k + 1];
@@ -661,7 +661,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
             if pat_char_type(pat[i], pat[i + 1], last_scanned_type) == STYPE {
                 last_scanned_type = STYPE;
             } else {
-                if last_scanned_type == STYPE {  // pat[i + 1] is LMS type
+                if last_scanned_type == STYPE {  // pat[i + 1] có kiểu LMS
                     if sa[pat[i + 1]] <= EMPTY {
                         sa[pat[i + 1]] = UNIQUE;
                     } else {
@@ -729,7 +729,7 @@ Về thời gian, thuật toán không khác SA-IS đáng kể; còn không gian
                     } else if sa[pat[j]] >= MULTI && sa[pat[j] - 1] == EMPTY {
                         if sa[pat[j]] - EMPTY > 2 {
                             sa[pat[j] - 2] = j;
-                            sa[pat[j] - 1] = 1;  // set counter
+                            sa[pat[j] - 1] = 1;  // Đặt bộ đếm
                         } else {
                             sa[pat[j]] = j;
                         }

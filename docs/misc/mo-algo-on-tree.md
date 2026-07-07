@@ -68,7 +68,7 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
       int to, nxt;
     } e[MAXN];
     
-    int cnt1 = 0, cnt2 = 0;  // Moc thoi gian
+    int cnt1 = 0, cnt2 = 0;  // Mốc thời gian
     
     struct query {
       int l, r, t, id;
@@ -93,12 +93,12 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
           dfs(e[i].to);
         }
       }
-      id[g[x] = ++index] = x;  // Thu tu ngoac
+      id[g[x] = ++index] = x;  // Thứ tự ngoặc
     }
     
     int lca(int x, int y) {
       if (dep[x] < dep[y]) swap(x, y);
-      if (dep[x] != dep[y]) {  // Dua len cung do sau
+      if (dep[x] != dep[y]) {  // Đưa lên cùng độ sâu
         int dis = dep[x] - dep[y];
         for (int i = 20; i >= 0; i--)
           if (dis >= (1 << i)) dis -= 1 << i, x = fa[x][i];
@@ -118,7 +118,7 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
       vis[x] ^= 1;
     }
     
-    // Di chuyen tren chieu thoi gian
+    // Di chuyển trên chiều thời gian
     void modify(int x, int t) {
       if (vis[x]) {
         add(x);
@@ -145,7 +145,7 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
       dfs(1);
       for (int j = 1; j <= 20; j++)
         for (int i = 1; i <= n; i++)
-          fa[i][j] = fa[fa[i][j - 1]][j - 1];  // Tien xu ly to tien
+          fa[i][j] = fa[fa[i][j - 1]][j - 1];  // Tiền xử lý tổ tiên
       int block = pow(index, 2.0 / 3);
       for (int i = 1; i <= index; i++) {
         pos[i] = (i - 1) / block;
@@ -163,7 +163,7 @@ Ngoài ra, đoạn đang xét có thể không chứa LCA. Với trường hợp
         }
       }
       sort(a + 1, a + cnt1 + 1);
-      int L, R, T;  // Toa do con tro
+      int L, R, T;  // Tọa độ con trỏ
       L = R = 0;
       T = 1;
       for (int i = 1; i <= cnt1; i++) {
@@ -252,22 +252,22 @@ Vì vậy mỗi lần không đánh dấu LCA ngay; chỉ khi cần trả lời 
 #### Cài đặt
 
 ```cpp
-// Dao trang thai tat ca dinh tren duong di, tru LCA
+// Đảo trạng thái tất cả đỉnh trên đường đi, trừ LCA
 void move(int x, int y) {
   if (dp[x] < dp[y]) swap(x, y);
   while (dp[x] > dp[y]) update(x), x = fa[x];
   while (x != y) update(x), update(y), x = fa[x], y = fa[y];
-  // x!=y dam bao LCA khong bi dao trang thai
+  // x!=y bảo đảm LCA không bị đảo trạng thái
 }
 ```
 
 Để tìm LCA, có thể dùng phân rã nặng nhẹ. Khi đó có thể đặt bước chia khối vào lần DFS đầu tiên của phân rã nặng nhẹ, còn mốc thời gian có thể trực tiếp dùng thứ tự DFS của lần DFS thứ hai.
 
 ```cpp
-int bl[100002], bls = 0;  // Khoi chua dinh, so luong khoi
-unsigned step;            // Kich thuoc khoi
+int bl[100002], bls = 0;  // Khối chứa đỉnh, số lượng khối
+unsigned step;            // Kích thước khối
 int fa[100002], dp[100002], hs[100002] = {0}, sz[100002] = {0};
-// Cha, do sau, con nang, kich thuoc
+// Cha, độ sâu, con nặng, kích thước
 stack<int> sta;
 
 void dfs1(int x) {
@@ -290,7 +290,7 @@ void dfs1(int x) {
 
 // main
 if (!sta.empty()) {
-  bls++;  // Dong nay co the co hoac khong
+  bls++;  // Dòng này có thể có hoặc không
   while (!sta.empty()) bl[sta.top()] = bls, sta.pop();
 }
 ```

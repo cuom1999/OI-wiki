@@ -58,7 +58,7 @@ Khi cài đặt thuật toán, do mỗi lần điều chỉnh hệ số truy h�
 ??? note "Cài đặt tham khảo"
     ```cpp
     vector<int> berlekamp_massey(const vector<int> &a) {
-      vector<int> v, last;  // v is the answer, 0-based, p is the module
+      vector<int> v, last;  // v là đáp án, đánh số từ 0; p là môđun
       int k = -1, delta = 0;
     
       for (int i = 0; i < (int)a.size(); i++) {

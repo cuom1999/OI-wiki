@@ -129,7 +129,7 @@ Sau đây là các hàm dùng trong cây Splay; xem chi tiết tại [Splay Tree
 
 ```cpp
 void PushUp(int p) {
-  // maintain other variables
+  // Duy trì các biến khác
   siz[p] = siz[ls] + siz[rs] + 1;
 }
 ```
@@ -139,7 +139,7 @@ void PushUp(int p) {
 ```cpp
 void PushDown(int p) {
   if (tag[p] != std_tag) {
-    // pushdown the tag
+    // Đẩy đánh dấu xuống
     tag[p] = std_tag;
   }
 }

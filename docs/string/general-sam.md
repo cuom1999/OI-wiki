@@ -60,8 +60,8 @@ Trước hết cần tạo một cây từ điển cho nhiều chuỗi. Đây kh
     constexpr int CHAR_NUM = 30;
     
     struct Trie {
-      int next[MAXN][CHAR_NUM];  // Chuyen trang thai
-      int tot;                   // Tong so nut: [0, tot)
+      int next[MAXN][CHAR_NUM];  // Chuyển trạng thái
+      int tot;                   // Tổng số nút: [0, tot)
     
       void init() { tot = 1; }
     
@@ -127,10 +127,10 @@ Chỉ cần sửa một lượng nhỏ cần thiết trong hàm chèn là có th
 ??? note "Mã tham khảo"
     ```cpp
     struct GSA {
-      int len[MAXN];             // Do dai nut
-      int link[MAXN];            // Lien ket hau to, link
-      int next[MAXN][CHAR_NUM];  // Chuyen trang thai
-      int tot;                   // Tong so nut: [0, tot)
+      int len[MAXN];             // Độ dài nút
+      int link[MAXN];            // Liên kết hậu tố, link
+      int next[MAXN][CHAR_NUM];  // Chuyển trạng thái
+      int tot;                   // Tổng số nút: [0, tot)
     
       int insertSAM(int last, int c) {
         int cur = next[last][c];

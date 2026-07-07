@@ -87,7 +87,7 @@ Mã tham khảo như sau:
 void perform(int l, int r) {
   auto itr = split(r + 1), itl = split(l);
   for (; itl != itr; ++itl) {
-    // Perform Operations here
+    // Thực hiện thao tác tại đây
   }
 }
 ```
@@ -151,7 +151,7 @@ void perform(int l, int r) {  // Lưu ý: r là đầu phải của khoảng + 1
   split(r);
   auto it = mp.find(l);
   while (it->first != r) {
-    // Perform Operations here
+    // Thực hiện thao tác tại đây
     it = next(it);
   }
 }
@@ -230,7 +230,7 @@ void assign(int l, int r, i64 val) {
 void perform(int l, int r) {
   prepare(l, r);
   for (Block *b = lb; b != rb; b = b->next) {
-    // Perform Operations here
+    // Thực hiện thao tác tại đây
   }
 }
 ```

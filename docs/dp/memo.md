@@ -91,13 +91,13 @@ Thông qua cách xử lý này, mỗi trạng thái chỉ bị truy cập một 
         
         int dfs(int pos, int tleft) {
           if (mem[pos][tleft] != -1)
-            return mem[pos][tleft];  // Trang thai da truy cap, tra ve gia tri da ghi lai
+            return mem[pos][tleft];  // Trạng thái đã truy cập, trả về giá trị đã ghi lại
           if (pos == n + 1) return mem[pos][tleft] = 0;
           int dfs1, dfs2 = -INF;
           dfs1 = dfs(pos + 1, tleft);
           if (tleft >= tcost[pos])
-            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // Chuyen trang thai
-          return mem[pos][tleft] = max(dfs1, dfs2);  // Luu gia tri cua trang thai hien tai
+            dfs2 = dfs(pos + 1, tleft - tcost[pos]) + mget[pos];  // Chuyển trạng thái
+          return mem[pos][tleft] = max(dfs1, dfs2);  // Lưu giá trị của trạng thái hiện tại
         }
         
         int main() {
@@ -153,7 +153,7 @@ int main() {
     for (int j = 0; j <= t; j++) {
       f[i][j] = f[i - 1][j];
       if (j >= w[i])
-        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // Phuong trinh chuyen trang thai
+        f[i][j] = max(f[i][j], f[i - 1][j - w[i]] + v[i]);  // Phương trình chuyển trạng thái
     }
   cout << f[n][t];
   return 0;
@@ -192,7 +192,7 @@ Chuyển thành
     
     int main() {
       memset(mem, -1, sizeof(mem));
-      // Bo qua phan doc du lieu
+      // Bỏ qua phần đọc dữ liệu
       int ret = 0;
       for (int j = 1; j <= n; j++) {
         ret = max(ret, dfs(j));
