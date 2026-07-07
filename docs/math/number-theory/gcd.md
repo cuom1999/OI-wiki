@@ -323,8 +323,7 @@ hưởng đến đáp án cần tìm.
 <span id="bội-chung-nhỏ-nhất"></span>
 ## Bội chung nhỏ nhất
 
-Phần tiếp theo giới thiệu cách tính bội chung nhỏ nhất (Least Common Multiple,
-LCM).
+Phần tiếp theo giới thiệu cách tính bội chung nhỏ nhất (LCM).
 
 <span id="định-nghĩa-bội-chung-nhỏ-nhất"></span>
 ### Định nghĩa
@@ -374,7 +373,7 @@ nhất vào dãy.
 <span id="thuật-toán-euclid-mở-rộng"></span>
 ## Thuật toán Euclid mở rộng
 
-Thuật toán Euclid mở rộng (Extended Euclidean algorithm, EXGCD) thường dùng để
+Thuật toán Euclid mở rộng (EXGCD) thường dùng để
 tìm một nghiệm khả thi của $ax+by=\gcd(a,b)$.
 
 <span id="quá-trình-thuật-toán-euclid-mở-rộng"></span>

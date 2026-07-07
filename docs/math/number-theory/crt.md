@@ -21,7 +21,7 @@ $2\times 70+3\times 21+2\times 15=233=2\times 105+23$, nên đáp án là $23$.
 <span id="định-nghĩa"></span>
 ## Định nghĩa
 
-Định lý số dư Trung Hoa (Chinese Remainder Theorem, CRT) giải hệ phương trình
+Định lý số dư Trung Hoa (CRT) giải hệ phương trình
 đồng dư tuyến tính một ẩn có dạng sau, trong đó $n_1, n_2, \cdots, n_k$ đôi một
 nguyên tố cùng nhau:
 

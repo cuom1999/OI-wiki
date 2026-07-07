@@ -14,18 +14,18 @@ Giới hạn thời gian là giới hạn về thời gian chạy của chương
 
 Giới hạn bộ nhớ là giới hạn về lượng bộ nhớ mà chương trình sử dụng. Lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng khi chạy không được vượt quá giới hạn đã cho.
 
-Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu đầu ra của bộ kiểm thử. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt (Special Judge)](../tools/special-judge.md) để so sánh.
+Sau khi chương trình kết thúc bình thường, dữ liệu xuất ra của thí sinh sẽ được so sánh với dữ liệu đầu ra của bộ kiểm thử. Việc so sánh này thường bỏ qua dòng mới ở cuối tệp và khoảng trắng cuối dòng, rồi so sánh toàn văn. Với một số bài đặc biệt, hệ thống sẽ dùng [trình chấm đặc biệt](../tools/special-judge.md) để so sánh.
 
 Khi quá trình này kết thúc, hệ thống chấm sẽ căn cứ vào trạng thái chạy của chương trình để đưa ra các **kết quả chấm** khác nhau[^note5]:
 
--   Được chấp nhận (Accepted, AC): chương trình của thí sinh được chấp nhận.
--   Lỗi biên dịch (Compile Error, CE): chương trình của thí sinh không thể biên dịch bình thường.
--   Đáp án sai (Wrong Answer, WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu đầu ra của bộ kiểm thử.
--   Lỗi trình bày (Presentation Error, PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
--   Lỗi khi chạy (Runtime Error, RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
--   Quá giới hạn thời gian (Time Limit Exceeded, TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
--   Quá giới hạn bộ nhớ (Memory Limit Exceeded, MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
--   Quá giới hạn đầu ra (Output Limit Exceeded, OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
+-   Được chấp nhận (AC): chương trình của thí sinh được chấp nhận.
+-   Lỗi biên dịch (CE): chương trình của thí sinh không thể biên dịch bình thường.
+-   Đáp án sai (WA): chương trình của thí sinh kết thúc bình thường, nhưng dữ liệu xuất ra không khớp với dữ liệu đầu ra của bộ kiểm thử.
+-   Lỗi trình bày (PE): chương trình của thí sinh kết thúc bình thường, nhưng định dạng không đúng yêu cầu[^note6].
+-   Lỗi khi chạy (RE): chương trình của thí sinh kết thúc bất thường (giá trị trả về khi chương trình kết thúc không bằng không).
+-   Quá giới hạn thời gian (TLE): thời gian chạy của chương trình thí sinh vượt quá giới hạn thời gian đã cho.
+-   Quá giới hạn bộ nhớ (MLE): lượng bộ nhớ lớn nhất chương trình thí sinh chiếm dụng vượt quá giới hạn bộ nhớ đã cho.
+-   Quá giới hạn đầu ra (OLE): lượng nội dung chương trình thí sinh xuất ra vượt quá giới hạn tối đa.
 
 Trong các kỳ thi ICPC, chương trình của thí sinh phải đạt trạng thái AC trên tất cả bộ kiểm thử của một bài thì mới được tính là đã giải được bài đó. Trong các kỳ thi OI, đạt trạng thái AC trên một bộ kiểm thử là có thể nhận điểm của bộ kiểm thử đó[^note7].
 

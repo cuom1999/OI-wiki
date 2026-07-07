@@ -426,7 +426,7 @@ T find_kth_element(T arr[], int rk, const int len) {
 
 ### Cải tiến: trung vị của các trung vị
 
-Trung vị của các trung vị (median of medians) cung cấp một cách chọn giá trị
+Trung vị của các trung vị cung cấp một cách chọn giá trị
 mốc xác định trong quá trình phân hoạch, nhờ đó thuật toán tìm phần tử hạng $k$
 cũng đạt độ phức tạp thời gian tuyến tính trong trường hợp bất lợi nhất.
 

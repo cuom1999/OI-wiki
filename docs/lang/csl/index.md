@@ -36,7 +36,7 @@ thi.
 
 ## Thư viện template chuẩn (STL)
 
-STL, tức Thư viện Template Chuẩn (Standard Template Library), là một phần của thư
+STL, tức thư viện mẫu chuẩn, là một phần của thư
 viện chuẩn C++ và chứa nhiều cấu trúc dữ liệu cùng thuật toán tổng quát được viết
 bằng template. Nhờ cơ chế template, STL dùng được với kiểu dữ liệu tự định nghĩa
 và giúp tránh nhiều việc "tự chế lại" mã có sẵn. Các cuộc thi NOI và ICPC đều cho

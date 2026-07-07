@@ -162,7 +162,7 @@ Mảng, danh sách liên kết, hàng đợi và ngăn xếp đều là cấu tr
 
 ### 2.8 Nhập môn quy hoạch động
 
-Quy hoạch động (Dynamic Programming, DP) là phương pháp giải các bài toán phức tạp bằng cách phân rã bài toán gốc thành những bài toán con đơn giản hơn.
+Quy hoạch động (DP) là phương pháp giải các bài toán phức tạp bằng cách phân rã bài toán gốc thành những bài toán con đơn giản hơn.
 
 Vì quy hoạch động không phải một thuật toán cụ thể mà là một phương pháp giải một lớp bài toán nhất định, nó sẽ xuất hiện trong đủ loại cấu trúc dữ liệu, và các dạng bài liên quan cũng phức tạp hơn.
 

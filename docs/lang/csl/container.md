@@ -60,7 +60,7 @@ Các khai báo thường có dạng `containerName<typeName,...> name`, nhưng s
 hình thức tham số template (các tham số trong `<>`) thay đổi theo từng bộ chứa cụ
 thể.
 
-Lý do là STL viết tắt của Standard Template Library, nên các bộ chứa đều là mẫu
+Lý do là STL viết tắt của thư viện mẫu chuẩn, nên các bộ chứa đều là mẫu
 lớp.
 
 ### Bộ lặp

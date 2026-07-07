@@ -70,7 +70,7 @@ class Test {
 <span id="dùng-streamtokenizer-để-nhập-dữ-liệu"></span>
 ### Dùng StreamTokenizer để nhập dữ liệu
 
-Trong một số trường hợp, dùng `StringTokenizer` có thể gây MLE (Memory Limit Exceeded, vượt giới hạn bộ nhớ). Khi đó cần dùng `StreamTokenizer` để nhập dữ liệu.
+Trong một số trường hợp, dùng `StringTokenizer` có thể gây MLE (vượt giới hạn bộ nhớ). Khi đó cần dùng `StreamTokenizer` để nhập dữ liệu.
 
 ```java
 import java.io.*;

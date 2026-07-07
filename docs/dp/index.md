@@ -1,4 +1,4 @@
-Chương này giới thiệu quy hoạch động (Dynamic Programming, DP), các dạng bài
+Chương này giới thiệu quy hoạch động (DP), các dạng bài
 mà nó giải quyết, những thuật toán được thiết kế dựa trên DP và các kỹ thuật
 tối ưu tương ứng.
 

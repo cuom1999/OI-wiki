@@ -25,8 +25,7 @@ bài toán RMQ và tìm [LCA (tổ tiên chung gần nhất)](../graph/lca.md).
 
 Xem thêm: [chuyên đề RMQ](../topic/rmq.md)
 
-RMQ là viết tắt của Range Maximum/Minimum Query, nghĩa là truy vấn giá trị lớn
-nhất hoặc nhỏ nhất trên một đoạn. Một cách dùng tư tưởng nhảy nhị phân để giải
+RMQ là viết tắt thường dùng cho bài toán truy vấn giá trị lớn nhất hoặc nhỏ nhất trên một đoạn. Một cách dùng tư tưởng nhảy nhị phân để giải
 RMQ là [bảng ST](../ds/sparse-table.md).
 
 ### Nhảy nhị phân trên cây để tìm LCA
