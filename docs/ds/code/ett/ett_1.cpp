@@ -8,7 +8,7 @@ phiền phức. Vì vậy, đoạn code này dùng FHQ Treap.
 #include <vector>
 constexpr int N = 1000000;
 using namespace std;
-/*FHQ TREAP*/
+/* Treap FHQ */
 long long rt, tot, f[N], rnd[N], ls[N], rs[N], siz[N], tag[N], val[N], sum[N],
     pd[N], pds[N];
 

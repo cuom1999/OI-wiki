@@ -221,7 +221,7 @@ Những lỗi này trình biên dịch không phát hiện được, chỉ có t
 
     -   Thứ tự khởi tạo biến thành viên phụ thuộc vào thứ tự khai báo trong
         class, không phụ thuộc vào thứ tự trong initializer list. Xem mục
-        "Initialization order" của
+        "thứ tự khởi tạo" trong
         [constructor và member initializer list](https://en.cppreference.com/w/cpp/language/constructor).
     -   Ví dụ:
 

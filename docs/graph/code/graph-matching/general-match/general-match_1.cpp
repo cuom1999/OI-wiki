@@ -46,7 +46,7 @@ class undirectedgraph : public graph<T> {
   }
 };
 
-// Hoa / find_max_unweighted_matching
+// Thuật toán hoa / find_max_unweighted_matching
 template <typename T>
 vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
   std::mt19937 rng(114514);  // Seed ngẫu nhiên tại đây không quan trọng.

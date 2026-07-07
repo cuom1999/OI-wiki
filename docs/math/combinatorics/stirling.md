@@ -73,9 +73,9 @@ Mã dưới đây dùng một lớp đa thức tên `poly`, chỉ để tham kh�
     #define _FEISTDLIB_POLY_
     
     /*
-     * This file is part of the fstdlib project.
-     * Version: Build v0.0.2
-     * You can check for details at https://github.com/FNatsuka/fstdlib
+     * Tệp này là một phần của dự án fstdlib.
+     * Phiên bản: bản dựng v0.0.2
+     * Có thể xem chi tiết tại https://github.com/FNatsuka/fstdlib
      */
     
     #include <algorithm>

@@ -92,7 +92,7 @@ Liệt kê tất cả các đỉnh chưa ghép cặp để tìm đường tăng,
       }
     };
     
-    // Hoa / find_max_unweighted_matching
+    // Thuật toán hoa / find_max_unweighted_matching
     template <typename T>
     vector<int> find_max_unweighted_matching(const undirectedgraph<T> &g) {
       std::mt19937 rng(std::random_device{}());
