@@ -14,7 +14,7 @@ nhưng vì độ phức tạp chỉ được bảo đảm theo nghĩa khấu hao
 
 Đống ghép cặp là một cây đa phân có trọng số thỏa mãn tính chất đống (như hình dưới),
 tức trọng số của mỗi nút đều nhỏ hơn hoặc bằng trọng số của mọi nút con của nó.
-Bài viết xét min-heap; các phần sau cũng dùng quy ước này.
+Bài viết xét đống nhỏ; các phần sau cũng dùng quy ước này.
 
 ![](./images/pairingheap1.jpg)
 

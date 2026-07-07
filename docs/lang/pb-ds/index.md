@@ -4,7 +4,7 @@ Tên đầy đủ của thư viện pb\_ds là Policy-Based Data Structures, ngh
 cấu trúc dữ liệu dựa trên chính sách.
 
 Thư viện pb\_ds cung cấp nhiều cấu trúc dữ liệu, chẳng hạn bảng băm (hash
-table), cây nhị phân cân bằng, trie, heap (hàng đợi ưu tiên), v.v.
+table), cây nhị phân cân bằng, trie, đống (hàng đợi ưu tiên), v.v.
 
 Giống như `vector`, `set`, `map`, nhiều thành phần của pb\_ds cố gắng tuân theo
 quy ước giao diện của STL. Một số thành phần (như hàng đợi ưu tiên) có đầy đủ

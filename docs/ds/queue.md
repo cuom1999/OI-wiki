@@ -208,7 +208,7 @@ Ngoài ra, `deque` còn cung cấp một số toán tử. Những toán tử th�
 -   Dùng `[]` để truy cập phần tử, tương tự `vector`.
 
 Tệp tiêu đề `<queue>` còn cung cấp hàng đợi ưu tiên `std::priority_queue`. Vì
-cấu trúc này giống với [heap](./heap.md) hơn, trang này không giới thiệu sâu.
+cấu trúc này giống với [đống](./heap.md) hơn, trang này không giới thiệu sâu.
 
 <span id="hàng-đợi-hai-đầu-trong-python"></span>
 #### Hàng đợi hai đầu trong Python
