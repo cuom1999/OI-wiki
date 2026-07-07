@@ -23,7 +23,7 @@ Trước hết, mỗi tầng của skip list đều là một danh sách liên k
 Mỗi nút nằm ở tầng thứ $i$ sẽ xuất hiện ở tầng thứ $i+1$ với xác suất $p$,
 trong đó $p$ là một hằng số.
 
-Gọi tầng kỳ vọng chứa $\frac{1}{p}$ phần tử trong skip list có $n$ nút
+Gọi tầng kỳ vọng còn chứa khoảng $\frac{1}{p}$ phần tử trong skip list có $n$ nút
 là tầng thứ $L(n)$.
 Khi đó $L(n) = \log_{\frac{1}{p}}n$.
 
@@ -35,7 +35,7 @@ Lúc này, nếu nút kế tiếp là nút mục tiêu thì tìm kiếm thành c
 ngược lại, phần tử không tồn tại.
 Nhờ vậy, quá trình tìm kiếm sẽ bỏ qua một số phép so sánh không cần thiết,
 nên truy vấn trên skip list nhanh hơn so với truy vấn trên danh sách liên kết có thứ tự.
-Có thể chứng minh rằng độ phức tạp trung bình của truy vấn trên skip list là $O(\log n)$.
+Có thể chứng minh rằng độ phức tạp kỳ vọng của truy vấn trên skip list là $O(\log n)$.
 
 ## Chứng minh độ phức tạp
 
@@ -43,7 +43,7 @@ Có thể chứng minh rằng độ phức tạp trung bình của truy vấn tr
 
 Đối với một nút, xác suất để tầng cao nhất của nút đó là $i$
 bằng $p^{i-1}(1 - p)$.
-Vì vậy, số tầng kỳ vọng của skip list là
+Vì vậy, số tầng kỳ vọng của mỗi nút là
 $\sum_{i\ge 1} ip^{i - 1}(1-p) = \frac{1}{1 - p}$.
 Do $p$ là hằng số,
 **độ phức tạp không gian kỳ vọng** của skip list là $O(n)$.
@@ -108,14 +108,14 @@ Thao tác chèn và thao tác xóa đều bắt đầu bằng một lượt truy
 ghi lại các nút cần sửa đổi trên đường đi,
 rồi hoàn tất việc sửa đổi.
 Ở mỗi tầng nhiều nhất chỉ cần sửa đổi một nút.
-Lại do số tầng kỳ vọng của skip list là $\log_{\frac{1}{p}}n$,
+Lại do số tầng cần xét theo kỳ vọng là $\log_{\frac{1}{p}}n$,
 nên **độ phức tạp thời gian kỳ vọng** của thao tác chèn và xóa cũng là $O(\log n)$.
 
 ## Cài đặt cụ thể
 
 ### Lấy số tầng tối đa của nút
 
-Mô phỏng việc tăng thêm một tầng với xác suất $p$, sau đó lấy giá trị nhỏ hơn giữa kết quả và giới hạn trên.
+Mô phỏng việc tăng thêm một tầng với xác suất $p$, sau đó chặn kết quả bởi giới hạn trên.
 
 ```cpp
 int randomLevel() {
@@ -128,7 +128,7 @@ int randomLevel() {
 
 ### Truy vấn
 
-Truy vấn xem trong skip list có tồn tại nút có khóa là `key` hay không.
+Truy vấn xem trong skip list có tồn tại nút có khóa `key` hay không.
 Khi cài đặt cụ thể,
 có thể đặt hai nút lính canh để giảm số trường hợp biên cần xét.
 
@@ -432,8 +432,7 @@ bool erase(const K &key) {
 
 ## Tối ưu truy cập ngẫu nhiên cho skip list
 
-Truy cập nút thứ $k$ trong skip list tương đương với truy cập nút thứ $k$
-trong danh sách liên kết có thứ tự ban đầu.
+Truy cập nút thứ $k$ trong skip list tương đương với truy cập nút thứ $k$ trong danh sách liên kết có thứ tự ban đầu.
 Độ phức tạp thời gian của thao tác này là $O(n)$,
 chưa đủ tốt.
 
@@ -446,9 +445,8 @@ Khi đó độ dài của con trỏ tiến này là $b - a$.
 
 Bây giờ, để truy cập nút thứ $k$ trong skip list,
 có thể bắt đầu từ tầng trên cùng,
-duyệt danh sách liên kết của tầng đó theo chiều ngang
-cho đến khi vị trí của nút hiện tại cộng với độ dài con trỏ tiến của nút hiện tại tại tầng đó
-lớn hơn hoặc bằng $k$, rồi đi xuống tầng dưới.
+duyệt danh sách liên kết của tầng đó theo chiều ngang cho đến khi vị trí của nút hiện tại cộng với độ dài con trỏ tiến
+của nút hiện tại tại tầng đó lớn hơn hoặc bằng $k$, rồi đi xuống tầng dưới.
 Lặp lại quá trình này cho đến khi đến tầng thứ nhất và không thể tiếp tục thao tác.
 Lúc này, nút hiện tại chính là nút thứ $k$ trong skip list.
 
