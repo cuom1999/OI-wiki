@@ -554,7 +554,7 @@ Bài ví dụ: [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804),
 ??? info "Ghi chú thêm"
     Dù đây là một bài kinh điển về suffix automaton, do bài toán liên quan đến thứ tự từ điển nên dùng mảng hậu tố là thuận tiện nhất.
 
-Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015 String Theory](https://loj.ac/problem/2102)
+Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015 Lý thuyết chuỗi](https://loj.ac/problem/2102)
 
 <span id="phép-dịch-vòng-nhỏ-nhất"></span>
 
@@ -771,7 +771,7 @@ Bài ví dụ: [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/), [TJOI2015
     }
     ```
 
-Bài ví dụ: [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
+Bài ví dụ: [SPOJ Chuỗi con chung dài nhất](https://www.spoj.com/problems/LCS/en/)
 
 <span id="xâu-con-chung-dài-nhất-giữa-nhiều-xâu"></span>
 
@@ -802,7 +802,7 @@ Bài ví dụ: [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS
     
     Độ phức tạp thời gian của thuật toán là $O(\sum_i |S_i|)$. Dù SAM của xâu $S_1$ được duyệt $k$ lần, vì $|S_1|$ là nhỏ nhất nên $k|S_1|\le \sum_i |S_i|$; thành phần chính của độ phức tạp vẫn là quá trình khớp duyệt qua mọi xâu con.
 
-Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
+Bài ví dụ: [SPOJ Chuỗi con chung dài nhất II](https://www.spoj.com/problems/LCS2/)
 
 <span id="bài-tập"></span>
 
@@ -811,17 +811,17 @@ Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/
 -   [Mẫu suffix automaton](https://www.luogu.com.cn/problem/P3804)
 -   [SDOI2016 Sinh bùa chú](https://loj.ac/problem/2033)
 -   [SPOJ - SUBLEX](https://www.spoj.com/problems/SUBLEX/)
--   [TJOI2015 String Theory](https://loj.ac/problem/2102)
--   [SPOJ Longest Common Substring](https://www.spoj.com/problems/LCS/en/)
--   [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
--   [Codeforces 1037H Security](https://codeforces.com/problemset/problem/1037/H)
--   [Codeforces 666E Forensic Examination](https://codeforces.com/problemset/problem/666/E)
--   [HDU4416 Good Article Good sentence](https://acm.hdu.edu.cn/showproblem.php?pid=4416)
+-   [TJOI2015 Lý thuyết chuỗi](https://loj.ac/problem/2102)
+-   [SPOJ Chuỗi con chung dài nhất](https://www.spoj.com/problems/LCS/en/)
+-   [SPOJ Chuỗi con chung dài nhất II](https://www.spoj.com/problems/LCS2/)
+-   [Codeforces 1037H Bảo mật](https://codeforces.com/problemset/problem/1037/H)
+-   [Codeforces 666E Giám định pháp y](https://codeforces.com/problemset/problem/666/E)
+-   [HDU4416 Bài viết hay câu văn hay](https://acm.hdu.edu.cn/showproblem.php?pid=4416)
 -   [HDU4436 str2int](https://acm.hdu.edu.cn/showproblem.php?pid=4436)
--   [HDU6583 Typewriter](https://acm.hdu.edu.cn/showproblem.php?pid=6583)
--   [Codeforces 235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
--   [CTSC2012 Familiar Article](https://www.luogu.com.cn/problem/P4022)
--   [NOI2018 Your Name](https://uoj.ac/problem/395)
+-   [HDU6583 Máy đánh chữ](https://acm.hdu.edu.cn/showproblem.php?pid=6583)
+-   [Codeforces 235C Nhiệm vụ tuần hoàn](https://codeforces.com/problemset/problem/235/C)
+-   [CTSC2012 Bài viết quen thuộc](https://www.luogu.com.cn/problem/P4022)
+-   [NOI2018 Tên của bạn](https://uoj.ac/problem/395)
 
 <span id="tài-liệu-liên-quan"></span>
 

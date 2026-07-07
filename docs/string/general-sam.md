@@ -219,7 +219,7 @@ Sau đó duyệt theo thứ tự `len` giảm dần, dùng liên kết hậu t�
 
 Duyệt tất cả nút, tìm một nút có `len` lớn nhất và thỏa mãn với mọi chỉ số trong $k$, giá trị `flag` của nó đều khác $0$. Khi đó $len$ của nút này là đáp án.
 
-Bài ví dụ: [SPOJ Longest Common Substring II](https://www.spoj.com/problems/LCS2/)
+Bài ví dụ: [SPOJ Chuỗi con chung dài nhất II](https://www.spoj.com/problems/LCS2/)
 
 ??? note "Mã tham khảo"
     ```cpp

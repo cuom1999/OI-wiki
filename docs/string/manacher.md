@@ -239,8 +239,8 @@ Vì cách xử lý thống nhất này về bản chất là tính $d_1[]$ của
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [UVa #11475 "Extend to Palindrome"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
+-   [UVa #11475 "Mở rộng thành hồi văn"](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2470)
 -   [[Đội tuyển quốc gia] Xâu đối xứng kép dài nhất](https://www.luogu.com.cn/problem/P4555)
--   [CF1326D2. Labyrinth](https://codeforces.com/contest/1326/problem/D2)
+-   [CF1326D2. Mê cung](https://codeforces.com/contest/1326/problem/D2)
 
 **Trang này chủ yếu được dịch từ bài viết [Нахождение всех подпалиндромов](http://e-maxx.ru/algo/palindromes_count) và bản dịch tiếng Anh [tìm tất cả xâu con hồi văn trong $O(N)$](https://cp-algorithms.com/string/manacher.html). Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng giấy phép CC-BY-SA 4.0.**

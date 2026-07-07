@@ -553,15 +553,15 @@ Bài toán này cũng có thể giải bằng cách xây dựng ô-tô-mát củ
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [UVa 455 "Periodic Strings"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
--   [UVa 11022 "String Factoring"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
--   [UVa 11452 "Dancing the Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
--   [UVa 12604 - Caesar Cipher](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
--   [UVa 12467 - Secret Word](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
--   [UVa 11019 - Matrix Matcher](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
--   [SPOJ - Pattern Find](http://www.spoj.com/problems/NAJPF/)
--   [Codeforces - Anthem of Berland](http://codeforces.com/contest/808/problem/G)
--   [Codeforces - MUH and Cube Walls](http://codeforces.com/problemset/problem/471/D)
+-   [UVa 455 "Chuỗi tuần hoàn"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=396)
+-   [UVa 11022 "Phân tích chuỗi"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1963)
+-   [UVa 11452 "Điệu nhảy Cheeky-Cheeky"](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2447)
+-   [UVa 12604 - Mật mã Caesar](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4282)
+-   [UVa 12467 - Từ bí mật](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3911)
+-   [UVa 11019 - Khớp ma trận](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1960)
+-   [SPOJ - Tìm mẫu](http://www.spoj.com/problems/NAJPF/)
+-   [Codeforces - Quốc ca Berland](http://codeforces.com/contest/808/problem/G)
+-   [Codeforces - MUH và các bức tường khối lập phương](http://codeforces.com/problemset/problem/471/D)
 
 <span id="tài-liệu-tham-khảo-và-ghi-chú"></span>
 ## Tài liệu tham khảo và ghi chú

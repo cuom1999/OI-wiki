@@ -216,7 +216,7 @@ Tìm giá trị lớn nhất của số lần xuất hiện của một chuỗi 
     ```
 
 <span id="cf235c-cyclical-quest"></span>
-### [CF235C Cyclical Quest](https://codeforces.com/problemset/problem/235/C)
+### [CF235C Nhiệm vụ tuần hoàn](https://codeforces.com/problemset/problem/235/C)
 
 Tóm tắt đề bài: Cho một chuỗi mẹ $S$ chỉ gồm chữ cái thường và $n$ chuỗi truy vấn, tính tổng số lần xuất hiện trong chuỗi mẹ của tất cả chuỗi đồng cấu vòng của mỗi chuỗi truy vấn $x_i$.
 

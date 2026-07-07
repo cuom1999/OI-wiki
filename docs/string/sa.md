@@ -284,7 +284,7 @@ Tham khảo [sắp xếp cảm ứng và thuật toán SA-IS](https://riteme.sit
 
 #### DC3
 
-Tham khảo [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2].
+Tham khảo [[2009] Mảng hậu tố: công cụ mạnh để xử lý chuỗi, bởi Luo Suiqian][2].
 
 <span id="ứng-dụng-của-mảng-hậu-tố"></span>
 ## Ứng dụng của mảng hậu tố
@@ -387,7 +387,7 @@ $lcp(sa[i],sa[j])=\min\{height[i+1..j]\}$
 
 Trực giác: nếu $height$ luôn lớn hơn một giá trị nào đó, thì bấy nhiêu ký tự đầu vẫn không đổi; ngược lại, vì các hậu tố đã được sắp xếp, sau khi đã thay đổi thì không thể quay lại trạng thái cũ.
 
-Chứng minh chặt chẽ được trình bày trong [[2004] Suffix Array, by Xu Zhilei][1].
+Chứng minh chặt chẽ được trình bày trong [[2004] Mảng hậu tố, bởi Xu Zhilei][1].
 
 Với định lý này, bài toán tìm tiền tố chung dài nhất của hai xâu con được chuyển thành [bài toán RMQ](../topic/rmq.md).
 
@@ -438,7 +438,7 @@ Có thể nhị phân độ dài $|s|$ của xâu mục tiêu, chia mảng $h$ t
 <span id="một-số-xâu-con-giống-nhau-liên-tiếp"></span>
 ### Một số xâu con giống nhau liên tiếp
 
-Có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Suffix Array: A Powerful Tool for String Processing][2].
+Có thể duyệt độ dài $|s|$ của chuỗi lặp liên tiếp, chia toàn bộ xâu thành các khối theo $|s|$, rồi truy vấn LCP và LCS tại đầu của hai khối kề nhau. Chi tiết xem [[2009] Mảng hậu tố: công cụ mạnh để xử lý chuỗi][2].
 
 Ví dụ: [NOI2016 - Excellent Splitting](https://loj.ac/p/2083).
 
@@ -478,40 +478,40 @@ Bài tương tự: [HAOI2016 - Find Identical Characters](https://loj.ac/problem
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [UVa 760 - DNA Sequencing](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
--   [UVa 1223 - Editor](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
+-   [UVa 760 - Giải trình tự DNA](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=701)
+-   [UVa 1223 - Trình soạn thảo](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=3664)
 -   [Codechef - Tandem](https://www.codechef.com/problems/TANDEM)
--   [Codechef - Substrings and Repetitions](https://www.codechef.com/problems/ANUSAR)
--   [Codechef - Entangled Strings](https://www.codechef.com/problems/TANGLED)
--   [Codeforces - Martian Strings](http://codeforces.com/problemset/problem/149/E)
--   [Codeforces - Little Elephant and Strings](http://codeforces.com/problemset/problem/204/E)
--   [SPOJ - Ada and Terramorphing](http://www.spoj.com/problems/ADAPHOTO/)
--   [SPOJ - Ada and Substring](http://www.spoj.com/problems/ADASTRNG/)
--   [UVa - 1227 - The longest constant gene](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668)
--   [SPOJ - Longest Common Substring](http://www.spoj.com/problems/LCS/en/)
+-   [Codechef - Xâu con và lặp lại](https://www.codechef.com/problems/ANUSAR)
+-   [Codechef - Các chuỗi rối](https://www.codechef.com/problems/TANGLED)
+-   [Codeforces - Chuỗi Sao Hỏa](http://codeforces.com/problemset/problem/149/E)
+-   [Codeforces - Chú voi nhỏ và các chuỗi](http://codeforces.com/problemset/problem/204/E)
+-   [SPOJ - Ada và Terramorphing](http://www.spoj.com/problems/ADAPHOTO/)
+-   [SPOJ - Ada và xâu con](http://www.spoj.com/problems/ADASTRNG/)
+-   [UVa - 1227 - Gen không đổi dài nhất](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3668)
+-   [SPOJ - Chuỗi con chung dài nhất](http://www.spoj.com/problems/LCS/en/)
 -   [UVa 11512 - GATTACA](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2507)
--   [QOJ 11240 - Suffixes and Palindromes](https://qoj.ac/problem/11240)
--   [GYM - Por Costel and the Censorship Committee](http://codeforces.com/gym/100923/problem/D)
+-   [QOJ 11240 - Hậu tố và hồi văn](https://qoj.ac/problem/11240)
+-   [GYM - Por Costel và ủy ban kiểm duyệt](http://codeforces.com/gym/100923/problem/D)
 -   [UVa 1254 - Top 10](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3695)
--   [UVa 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
--   [UVa 12206 - Stammering Aliens](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
--   [Codechef - Jarvis and LCP](https://www.codechef.com/problems/INSQ16F)
--   [Luogu P8617 - Repeated Pattern](https://www.luogu.com.cn/problem/P8617)
--   [UVa 11107 - Life Forms](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
--   [UVa 12974 - Exquisite Strings](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
--   [UVa 10526 - Intellectual Property](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
--   [UVa 12338 - Anti-Rhyme Pairs](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760)
--   [DevSkills Reconstructing Blue Print of Life](https://devskill.com/CodingProblems/ViewProblem/328)
--   [UVa 12191 - File Recover](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
--   [SPOJ - Suffix Array](http://www.spoj.com/problems/SARRAY/)
--   [Gym 102470J - Stammering Aliens](https://codeforces.com/gym/102470/problem/J)
+-   [UVa 12191 - Khôi phục tệp](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+-   [UVa 12206 - Người ngoài hành tinh nói lắp](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3358)
+-   [Codechef - Jarvis và LCP](https://www.codechef.com/problems/INSQ16F)
+-   [Luogu P8617 - Mẫu lặp lại](https://www.luogu.com.cn/problem/P8617)
+-   [UVa 11107 - Dạng sống](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2048)
+-   [UVa 12974 - Các chuỗi tinh tế](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4853)
+-   [UVa 10526 - Sở hữu trí tuệ](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1467)
+-   [UVa 12338 - Cặp phản vần](https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3760)
+-   [DevSkills Tái dựng bản thiết kế sự sống](https://devskill.com/CodingProblems/ViewProblem/328)
+-   [UVa 12191 - Khôi phục tệp](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3343)
+-   [SPOJ - Mảng hậu tố](http://www.spoj.com/problems/SARRAY/)
+-   [Gym 102470J - Người ngoài hành tinh nói lắp](https://codeforces.com/gym/102470/problem/J)
 -   [SPOJ - LCS2](http://www.spoj.com/problems/LCS2/)
--   [Codeforces - Fake News (hard)](http://codeforces.com/contest/802/problem/I)
--   [SPOJ - Longest Commong Substring](http://www.spoj.com/problems/LONGCS/)
--   [SPOJ - Lexicographical Substring Search](http://www.spoj.com/problems/SUBLEX/)
--   [Codeforces - Forbidden Indices](http://codeforces.com/contest/873/problem/F)
--   [Codeforces - Tricky and Clever Password](http://codeforces.com/contest/30/problem/E)
--   [Gym 101470B - Circle of digits](https://codeforces.com/gym/101470/problem/B)
+-   [Codeforces - Tin giả (khó)](http://codeforces.com/contest/802/problem/I)
+-   [SPOJ - Chuỗi con chung dài nhất](http://www.spoj.com/problems/LONGCS/)
+-   [SPOJ - Tìm kiếm xâu con theo thứ tự từ điển](http://www.spoj.com/problems/SUBLEX/)
+-   [Codeforces - Các chỉ số bị cấm](http://codeforces.com/contest/873/problem/F)
+-   [Codeforces - Mật khẩu rắc rối và thông minh](http://codeforces.com/contest/30/problem/E)
+-   [Gym 101470B - Vòng tròn chữ số](https://codeforces.com/gym/101470/problem/B)
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo
@@ -520,10 +520,10 @@ Các phần trên trang này được đưa vào từ commit [4070a9b](https://g
 
 Bài báo:
 
-1.  [[2004] Suffix Array, by Xu Zhilei][1]
+1.  [[2004] Mảng hậu tố, bởi Xu Zhilei][1]
 
-2.  [[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian][2]
+2.  [[2009] Mảng hậu tố: công cụ mạnh để xử lý chuỗi, bởi Luo Suiqian][2]
 
-[1]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2004%E8%AE%BA%E6%96%87%E9%9B%86/%E8%AE%B8%E6%99%BA%E7%A3%8A--%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84.pdf "[2004] Suffix Array, by Xu Zhilei"
+[1]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2004%E8%AE%BA%E6%96%87%E9%9B%86/%E8%AE%B8%E6%99%BA%E7%A3%8A--%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84.pdf "[2004] Mảng hậu tố, bởi Xu Zhilei"
 
-[2]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2009%E8%AE%BA%E6%96%87%E9%9B%86/11.%E7%BD%97%E7%A9%97%E9%AA%9E%E3%80%8A%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7%E3%80%8B/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7.pdf "[2009] Suffix Array: A Powerful Tool for String Processing, by Luo Suiqian"
+[2]: https://github.com/OI-wiki/libs/blob/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87/%E5%9B%BD%E5%AE%B6%E9%9B%86%E8%AE%AD%E9%98%9F2009%E8%AE%BA%E6%96%87%E9%9B%86/11.%E7%BD%97%E7%A9%97%E9%AA%9E%E3%80%8A%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7%E3%80%8B/%E5%90%8E%E7%BC%80%E6%95%B0%E7%BB%84%E2%80%94%E2%80%94%E5%A4%84%E7%90%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%89%E5%8A%9B%E5%B7%A5%E5%85%B7.pdf "[2009] Mảng hậu tố: công cụ mạnh để xử lý chuỗi, bởi Luo Suiqian"

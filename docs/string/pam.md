@@ -227,13 +227,13 @@ Cho một xâu $s$, yêu cầu chia $s$ thành $t_1, t_2, \dots, t_k$, trong đ�
 
 -   [Xâu song đối xứng dài nhất](https://www.luogu.com.cn/problem/P4555)
 
--   [Cheerleader Practice](https://www.luogu.com.cn/problem/P1659)
+-   [Luyện tập cổ động viên](https://www.luogu.com.cn/problem/P1659)
 
--   [SHOI2011 - Double Palindrome](https://www.luogu.com.cn/problem/P4287)
+-   [SHOI2011 - Hồi văn kép](https://www.luogu.com.cn/problem/P4287)
 
--   [HDU 5421 Victor and String](https://acm.hdu.edu.cn/showproblem.php?pid=5421)
+-   [HDU 5421 Victor và chuỗi](https://acm.hdu.edu.cn/showproblem.php?pid=5421)
 
--   [CodeChef Palindromeness](https://www.codechef.com/LTIME23/problems/PALPROB)
+-   [CodeChef Tính hồi văn](https://www.codechef.com/LTIME23/problems/PALPROB)
 
 <span id="tài-liệu-liên-quan"></span>
 ## Tài liệu liên quan
