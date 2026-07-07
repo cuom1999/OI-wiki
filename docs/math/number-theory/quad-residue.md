@@ -563,4 +563,4 @@ Trong đó $g^e\equiv ab^2\pmod p$ đã biết, còn giá trị $e\bmod 2^k$ có
 
 [^ref6]: Carl Friedrich Gauss. Untersuchungen über höhere Arithmetik, 1965. Page 458-462.
 
-[^ref7]: Kobi Kremnizer. [Lectures in number theory 2022](https://courses.maths.ox.ac.uk/pluginfile.php/29788/mod_resource/content/1/numbertheory-2022.pdf). Proposition 4.3.
+[^ref7]: Kobi Kremnizer. [Bài giảng lý thuyết số 2022](https://courses.maths.ox.ac.uk/pluginfile.php/29788/mod_resource/content/1/numbertheory-2022.pdf). Mệnh đề 4.3.

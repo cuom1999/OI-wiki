@@ -649,6 +649,6 @@ Nếu $n=g_n$, nghĩa là $n$ chính là lũy thừa của một số nguyên t�
 tính $f(n)$ trong $O(1)$; ngược lại, $f(n)=f(\frac{n}{g_n})\cdot f(g_n)$.
 
 **Một phần nội dung mục này được dịch từ bài viết [Resheto Eratosthena](http://e-maxx.ru/algo/eratosthenes_sieve)
-và bản dịch tiếng Anh [Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html).
+và bản dịch tiếng Anh [Sàng Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html).
 Bản tiếng Nga có giấy phép Public Domain + Leave a Link; bản tiếng Anh có giấy
 phép CC-BY-SA 4.0.**

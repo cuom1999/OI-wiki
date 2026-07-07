@@ -170,11 +170,11 @@ Chứng minh và bài tập xem tại [định lý Euler](./fermat.md).
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [SPOJ ETF. Euler Totient Function](http://www.spoj.com/problems/ETF/)
--   [UVa 10179. Irreducible Basic Fractions](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
--   [UVa 10299. Relatives](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
--   [UVa 11327. Enumerating Rational Numbers](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
--   [TIMUS 1673. Admission to Exam](http://acm.timus.ru/problem.aspx?space=1&num=1673)
+-   [SPOJ ETF. Hàm phi Euler](http://www.spoj.com/problems/ETF/)
+-   [UVa 10179. Phân số cơ bản bất khả quy](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1120)
+-   [UVa 10299. Họ hàng](http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1240)
+-   [UVa 11327. Liệt kê số hữu tỉ](http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2302)
+-   [TIMUS 1673. Nhập học vào kỳ thi](http://acm.timus.ru/problem.aspx?space=1&num=1673)
 -   [Luogu P1390 Tổng các ước chung](https://www.luogu.com.cn/problem/P1390)
 -   [Luogu P2155 [SDOI2008] Nỗi băn khoăn của công chúa salad](https://www.luogu.com.cn/problem/P2155)
 -   [Luogu P2568 GCD](https://www.luogu.com.cn/problem/P2568)

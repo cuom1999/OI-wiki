@@ -100,7 +100,7 @@ Trong quá trình tính, có thể xuất hiện trường hợp $m=0$; khi đó
 
 Cài đặt tham khảo cho bài mẫu như sau:
 
-??? example "Cài đặt bài mẫu ([Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
+??? example "Cài đặt bài mẫu ([Library Checker - Tổng phần sàn của hàm tuyến tính](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-0.cpp:full-text"
     ```
@@ -544,7 +544,7 @@ Quy trình của thuật toán Euclid vạn năng có thể viết thành một 
 
 Dùng thuật toán Euclid vạn năng, có cài đặt cho bài mẫu như sau:
 
-??? example "Cài đặt bài mẫu ([Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
+??? example "Cài đặt bài mẫu ([Library Checker - Tổng phần sàn của hàm tuyến tính](https://judge.yosupo.jp/problem/sum_of_floor_of_linear))"
     ```cpp
     --8<-- "docs/math/code/euclidean/euclidean-4.cpp:full-text"
     ```
@@ -708,7 +708,7 @@ Dùng thuật toán Euclid vạn năng, có cài đặt cho bài mẫu như sau:
 
 Bài mẫu:
 
--   [Library Checker - Sum of Floor of Linear](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
+-   [Library Checker - Tổng phần sàn của hàm tuyến tính](https://judge.yosupo.jp/problem/sum_of_floor_of_linear)
 -   [Luogu P5170 - Bài mẫu: Thuật toán Euclid tương tự](https://www.luogu.com.cn/problem/P5170)
 -   [Luogu P5171 Earthquake](https://www.luogu.com.cn/problem/P5171)
 -   [Luogu P5172 - Tsinghua Training 2014: Sum](https://www.luogu.com.cn/problem/P5172)

@@ -325,8 +325,8 @@ Dùng phương pháp trên để ghép từng cặp phương trình.
 -   [NOI2018: Dũng sĩ diệt rồng](https://uoj.ac/problem/396)
 -   [TJOI2009: đoán số](https://www.luogu.com.cn/problem/P3868)
 
-    **Một phần nội dung trang này được dịch từ bài viết [Russian: Chinese
-    Remainder Theorem](http://e-maxx.ru/algo/chinese_theorem) và bản dịch tiếng
-    Anh [Chinese Remainder Theorem](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html).
+    **Một phần nội dung trang này được dịch từ bài viết [bản tiếng Nga: Định lý
+    số dư Trung Hoa](http://e-maxx.ru/algo/chinese_theorem) và bản dịch tiếng
+    Anh [Định lý số dư Trung Hoa](https://cp-algorithms.com/algebra/chinese-remainder-theorem.html).
     Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng
     giấy phép CC-BY-SA 4.0.**

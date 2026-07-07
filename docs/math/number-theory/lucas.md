@@ -312,6 +312,6 @@ tính nghịch đảo và việc tính số mũ, phần dư giai thừa.
 ## Bài tập
 
 -   [Luogu P3807 [Mẫu] Định lý Lucas](https://www.luogu.com.cn/problem/P3807)
--   [SDOI2010 Ancient Pig Script - Định lý Lucas](https://loj.ac/problem/10229)
+-   [SDOI2010 Văn bản lợn cổ đại - Định lý Lucas](https://loj.ac/problem/10229)
 -   [Luogu P4720 [Mẫu] Lucas mở rộng](https://www.luogu.com.cn/problem/P4720)
--   [Ceizenpok's formula](http://codeforces.com/gym/100633/problem/J)
+-   [Công thức Ceizenpok](http://codeforces.com/gym/100633/problem/J)

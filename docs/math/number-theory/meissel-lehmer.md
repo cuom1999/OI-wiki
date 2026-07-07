@@ -435,4 +435,4 @@ Phần này trình bày các cách cải tiến để giảm hằng số của t
 <span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>
 ## Tài liệu tham khảo và đọc thêm
 
-Bài viết này được dịch từ: [Computing $\pi(x)$: the Meissel, Lehmer, Lagarias, Miller, Odlyzko method](https://dl.acm.org/doi/abs/10.1090/s0025-5718-96-00674-6)
+Bài viết này được dịch từ: [Tính $\pi(x)$: phương pháp Meissel, Lehmer, Lagarias, Miller, Odlyzko](https://dl.acm.org/doi/abs/10.1090/s0025-5718-96-00674-6)

@@ -125,6 +125,6 @@ phương trình đồng dư. Nếu nghiệm không tồn tại, trả về $-1$.
 -   [[NOIP2012] Phương trình đồng dư](https://loj.ac/problem/2605)
 
 **Trang này chủ yếu được dịch từ bài viết [Модульное линейное уравнение первого порядка](http://e-maxx.ru/algo/diofant_1_equation)
-và bản dịch tiếng Anh [Linear Congruence Equation](https://cp-algorithms.com/algebra/linear_congruence_equation.html).
+và bản dịch tiếng Anh [Phương trình đồng dư tuyến tính](https://cp-algorithms.com/algebra/linear_congruence_equation.html).
 Bản tiếng Nga dùng giấy phép Public Domain + Leave a Link; bản tiếng Anh dùng
 giấy phép CC-BY-SA 4.0. Nội dung có chỉnh sửa.**

@@ -916,7 +916,7 @@ Thực tế, có[^pinchcarmichael] $C(10^9)=646$, $C(10^{18})=1~401~644$.
 
 [^elliott1997average]: Elliott, Peter DTA, and Leo Murata. "On the average of the least primitive root modulo p." Journal of The london Mathematical Society 56, no. 3 (1997): 435-454.
 
-[^more-evidence]: Có thể xem thêm các kết quả tại [Least prime primitive root of prime numbers](https://sweet.ua.pt/tos/p_roots.html).
+[^more-evidence]: Có thể xem thêm các kết quả tại [căn nguyên thủy nguyên tố nhỏ nhất theo môđun số nguyên tố](https://sweet.ua.pt/tos/p_roots.html).
 
 [^density-prim-root]: Nếu căn nguyên thủy theo môđun $m$ tồn tại, thì
     $\varphi(m)\ge\dfrac{1}{3}m$, và dấu bằng chỉ xảy ra tại
