@@ -28,9 +28,17 @@ Cần thêm một mảng khác là `low`, dùng để lưu nhãn thời gian nh�
 
 Ví dụ, `low[2]` bằng 1, còn `low[5]` và `low[6]` bằng 3.
 
-Sau đó bắt đầu DFS. Tiêu chí xác định một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, tức nhánh con đó không thể quay về tổ tiên của $u$, thì $u$ là đỉnh khớp.
+Sau đó bắt đầu DFS.
+Tiêu chí xác định một đỉnh có phải đỉnh khớp hay không là: với một đỉnh $u$, nếu tồn tại ít nhất một đỉnh $v$ là con của $u$ sao cho $low_v \geq dfn_u$, thì $u$ là đỉnh khớp.
+Điều kiện này nghĩa là nhánh con đó không thể quay về tổ tiên của $u$.
 
-Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng: nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh, nên từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con. Nếu trong cây DFS nó có từ hai con trở lên, đỉnh đó là đỉnh khớp (trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6). Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng. Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
+Riêng đỉnh bắt đầu DFS không áp dụng trực tiếp tiêu chí trên và cần xét riêng.
+Nếu đỉnh đó không phải đỉnh khớp, các đường đi khác vẫn có thể đi tới tất cả các đỉnh.
+Khi đó từ đỉnh bắt đầu chỉ có một lần tìm kiếm "đi xuống", tức trong cây DFS nó chỉ có một con.
+Nếu trong cây DFS nó có từ hai con trở lên, đỉnh đó là đỉnh khớp.
+Trong hình trên, nếu bắt đầu tìm kiếm từ 2, cây DFS sẽ có hai con: một trong 3 hoặc 4, và một trong 5 hoặc 6.
+Nếu nó chỉ có một con, việc xóa nó sẽ không gây ảnh hưởng.
+Chẳng hạn trong đồ thị dưới đây, các đỉnh tạo thành một chu trình.
 
 ![](./images/cut3.svg)
 
@@ -60,7 +68,9 @@ $$
 
 Khái niệm này tương tự đỉnh khớp và thường được gọi là cầu.
 
-> Với một đồ thị vô hướng, nếu sau khi xóa một cạnh mà số thành phần liên thông trong đồ thị tăng lên, thì cạnh đó được gọi là cầu hoặc cạnh cắt. Nói chặt chẽ hơn: giả sử có đồ thị liên thông $G=\{V,E\}$ và $e$ là một cạnh của nó, tức $e \in E$. Nếu $G-e$ không liên thông, thì cạnh $e$ là một cạnh cắt, hay một cầu, của đồ thị $G$.
+> Với một đồ thị vô hướng, nếu sau khi xóa một cạnh mà số thành phần liên thông trong đồ thị tăng lên, thì cạnh đó được gọi là cầu hoặc cạnh cắt.
+> Nói chặt chẽ hơn: giả sử có đồ thị liên thông $G=\{V,E\}$ và $e$ là một cạnh của nó, tức $e \in E$.
+> Nếu $G-e$ không liên thông, thì cạnh $e$ là một cạnh cắt, hay một cầu, của đồ thị $G$.
 
 Ví dụ, trong hình dưới đây:
 
@@ -72,7 +82,10 @@ Các cạnh màu đỏ chính là cầu.
 
 Cách làm gần giống đỉnh khớp, chỉ cần đổi một chỗ thành điều kiện $low_v>dfn_u$ là được, và không cần xét riêng đỉnh gốc.
 
-Việc một cạnh có phải cầu hay không không phụ thuộc vào đỉnh gốc. Khi tìm đỉnh khớp, cần xét việc đỉnh $v$ không thể quay về một tổ tiên, kể cả cha, nếu không đi qua cha $u$, nên đỉnh $u$ là đỉnh khớp. Nếu $low_v=dfn_u$ thì vẫn có thể quay về cha. Chỉ khi đỉnh $v$ không thể quay về tổ tiên và cũng không có đường nào khác quay về cha, cạnh $u-v$ mới là cầu.
+Việc một cạnh có phải cầu hay không không phụ thuộc vào đỉnh gốc.
+Khi tìm đỉnh khớp, cần xét việc đỉnh $v$ không thể quay về một tổ tiên, kể cả cha, nếu không đi qua cha $u$, nên đỉnh $u$ là đỉnh khớp.
+Nếu $low_v=dfn_u$ thì vẫn có thể quay về cha.
+Chỉ khi đỉnh $v$ không thể quay về tổ tiên và cũng không có đường nào khác quay về cha, cạnh $u-v$ mới là cầu.
 
 ### Cài đặt
 
@@ -183,4 +196,4 @@ Một cách đơn giản hơn là đặt một cờ để xác định liệu đ
 -   [HDU2460 Network](https://acm.hdu.edu.cn/showproblem.php?pid=2460)
 -   [POJ1523 SPF](http://poj.org/problem?id=1523)
 
-Thuật toán Tarjan còn có nhiều ứng dụng khác, thường gặp như tìm thành phần liên thông mạnh, co điểm, giải 2-SAT, v.v.
+Thuật toán Tarjan còn có nhiều ứng dụng khác, thường gặp như tìm thành phần liên thông mạnh, co đỉnh, giải 2-SAT, v.v.
