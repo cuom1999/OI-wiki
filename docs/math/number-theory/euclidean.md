@@ -306,7 +306,7 @@ Dùng trực giác hình học tương tự, có thể mở rộng thuật toán
     --8<-- "docs/math/code/euclidean/euclidean-2.cpp"
     ```
 
-???+ example "[Fraction](https://www.luogu.com.cn/problem/P5179)"
+???+ example "[Phân số](https://www.luogu.com.cn/problem/P5179)"
     Cho các số nguyên dương $a,b,c,d$, cần tìm trong tất cả các phân số tối giản $p/q$ thỏa mãn $a/b<p/q<c/d$ phân số có thứ tự từ điển của $(q,p)$ nhỏ nhất.
 
 ??? note "Lời giải"
@@ -715,8 +715,8 @@ Bài mẫu:
 -   [Luogu P4132 - BJOI2012: Phương trình không tính ra được](https://www.luogu.com.cn/problem/P4132)
 -   [LOJ 138. Thuật toán Euclid tương tự](https://loj.ac/p/138)
 -   [LOJ 6440. Euclid vạn năng](https://loj.ac/p/6440)
--   [Luogu P5179 Fraction](https://www.luogu.com.cn/problem/P5179)
--   [Codeforces 1182 F. Maximum Sine](https://codeforces.com/problemset/problem/1182/F)
+-   [Luogu P5179 Phân số](https://www.luogu.com.cn/problem/P5179)
+-   [Codeforces 1182 F. Sin lớn nhất](https://codeforces.com/problemset/problem/1182/F)
 
 Bài ứng dụng:
 

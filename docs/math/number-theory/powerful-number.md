@@ -201,9 +201,9 @@ $S_1$ có thể tính bằng sàng Dujiao, còn $S_2$ được suy trực tiếp
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [PE708 Twos are all you need](https://projecteuler.net/problem=708)
--   [PE639 Summing a multiplicative function](https://projecteuler.net/problem=639)
--   [PE484 Arithmetic Derivative](https://projecteuler.net/problem=484)
+-   [PE708 Chỉ cần các số hai](https://projecteuler.net/problem=708)
+-   [PE639 Tính tổng một hàm nhân tính](https://projecteuler.net/problem=639)
+-   [PE484 Đạo hàm số học](https://projecteuler.net/problem=484)
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo

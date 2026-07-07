@@ -486,19 +486,19 @@ Cơ sở truy hồi là $(p_0,q_0)=(0,1)$ và $(p_1,q_1)=(1,n)$.
 
 Các bài toán có nền tảng là nội dung trong bài này:
 
--   [LOJ 6685. Maze](https://loj.ac/p/6685)
--   [UVa 10077. The Stern-Brocot Number System](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=33&page=show_problem&problem=1018)
--   [Luogu P8058. \[BalkanOI2003\] Farey Sequence](https://www.luogu.com.cn/problem/P8058)
--   [UVa 12995. Farey Sequence](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4878)
--   [UVa 10408. Farey Sequences](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1349)
--   [UVa 12438. Farey Polygon](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=279&page=show_problem&problem=3869)
--   [AtCoder ARC123F. Insert Addition](https://atcoder.jp/contests/arc123/tasks/arc123_f)
+-   [LOJ 6685. Mê cung](https://loj.ac/p/6685)
+-   [UVa 10077. Hệ đếm Stern-Brocot](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=33&page=show_problem&problem=1018)
+-   [Luogu P8058. \[BalkanOI2003\] Dãy Farey](https://www.luogu.com.cn/problem/P8058)
+-   [UVa 12995. Dãy Farey](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=862&page=show_problem&problem=4878)
+-   [UVa 10408. Các dãy Farey](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=1349)
+-   [UVa 12438. Đa giác Farey](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=279&page=show_problem&problem=3869)
+-   [AtCoder ARC123F. Chèn phép cộng](https://atcoder.jp/contests/arc123/tasks/arc123_f)
 
 Các bài toán cần tìm kiếm nhị phân trên cây Stern-Brocot:
 
--   [AtCoder ABC333G. Nearest Fraction](https://atcoder.jp/contests/abc333/tasks/abc333_g)
--   [SPOJ DIVCNT1 - Counting Divisors](https://www.spoj.com/problems/DIVCNT1/)
--   [SPOJ AFS3 - Amazing Factor Sequence (hard)](https://www.spoj.com/problems/AFS3/)
+-   [AtCoder ABC333G. Phân số gần nhất](https://atcoder.jp/contests/abc333/tasks/abc333_g)
+-   [SPOJ DIVCNT1 - Đếm ước](https://www.spoj.com/problems/DIVCNT1/)
+-   [SPOJ AFS3 - Dãy thừa số kỳ diệu (khó)](https://www.spoj.com/problems/AFS3/)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích

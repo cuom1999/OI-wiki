@@ -251,7 +251,7 @@ là biểu thức dạng $A\uparrow(B\uparrow(C\uparrow(D\uparrow\cdots)))$, tro
 $\uparrow$ là ký hiệu mũi tên Knuth, còn $A,B,C,D,\cdots$ là một dãy số nguyên
 không âm.
 
-???+ example "[Library Checker - Tetration Mod](https://judge.yosupo.jp/problem/tetration_mod)"
+???+ example "[Library Checker - Lũy thừa chồng modulo](https://judge.yosupo.jp/problem/tetration_mod)"
     Có $T$ bộ kiểm thử. Trong mỗi bộ, cho $A,B,M$, cần tính
     $(A\uparrow\uparrow B)\bmod M$. Trong đó, $A\uparrow\uparrow B$ biểu thị
     tháp lũy thừa gồm $B$ số $A$. Nói chính xác hơn,
@@ -285,7 +285,7 @@ không âm.
 ## Bài tập
 
 -   [Luogu P5091, mẫu: định lý Euler mở rộng](https://www.luogu.com.cn/problem/P5091)
--   [Codeforces 906 D. Power Tower](https://codeforces.com/problemset/problem/906/D)
+-   [Codeforces 906 D. Tháp lũy thừa](https://codeforces.com/problemset/problem/906/D)
 -   [Luogu P3747, kỳ thi liên tỉnh sáu tỉnh 2017: Gặp nhau là lời chào](https://www.luogu.com.cn/problem/P3747)
 -   [Luogu P4139, cách dùng đúng của Chúa và tập hợp](https://www.luogu.com.cn/problem/P4139)
 -   [Luogu P3934, Ynoi Easy Round 2016: Khủng long cổ dài nổ tung I](https://www.luogu.com.cn/problem/P3934)

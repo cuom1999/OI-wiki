@@ -701,7 +701,7 @@ Bài ví dụ tiếp theo tương đối đặc biệt, cần biến đổi hàm
 
 Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của đảo Möbius.
 
-???+ example "[Luogu P5221 Product](https://www.luogu.com.cn/problem/P5221)"
+???+ example "[Luogu P5221 Tích](https://www.luogu.com.cn/problem/P5221)"
     Tính:
     
     $$
@@ -822,18 +822,18 @@ Bài ví dụ cuối cùng minh họa cách áp dụng phiên bản nhân của 
 <span id="bài-tập"></span>
 ## Bài tập
 
--   [Luogu P3312 \[SDOI2014\] Number Table](https://www.luogu.com.cn/problem/P3312)
--   [Luogu P3700 \[CQOI2017\] Table of Little Q](https://www.luogu.com.cn/problem/P3700)
--   [Luogu P3704 \[SDOI2017\] Number Table](https://www.luogu.com.cn/problem/P3704)
--   [Luogu P3768 Simple Math Problem](https://www.luogu.com.cn/problem/P3768)
--   [Luogu P4464 \[National Training Team\] JZPKIL](https://www.luogu.com.cn/problem/P4464)
--   [Luogu P4619 \[SDOI2018\] Old Problem](https://www.luogu.com.cn/problem/P4619)
--   [Luogu P5518 \[MtOI2019\] Ghost Orchestra](https://www.luogu.com.cn/problem/P5518)
--   [Luogu P6222 Simple Problem, Enhanced Version](https://www.luogu.com.cn/problem/P6222)
--   [Luogu P6825 \[EZEC-4\] Sum](https://www.luogu.com.cn/problem/P6825)
--   [Luogu P7486 \[Stoi2031\] Rainbow](https://www.luogu.com.cn/problem/P7486)
--   [AtCoder Grand Contest 038 C - LCMs](https://atcoder.jp/contests/agc038/tasks/agc038_c)
--   [Codeforces 1139 D. Steps to One](https://codeforces.com/problemset/problem/1139/D)
+-   [Luogu P3312 \[SDOI2014\] Bảng số](https://www.luogu.com.cn/problem/P3312)
+-   [Luogu P3700 \[CQOI2017\] Bảng của Little Q](https://www.luogu.com.cn/problem/P3700)
+-   [Luogu P3704 \[SDOI2017\] Bảng số](https://www.luogu.com.cn/problem/P3704)
+-   [Luogu P3768 Bài toán toán học đơn giản](https://www.luogu.com.cn/problem/P3768)
+-   [Luogu P4464 \[Đội tuyển quốc gia\] JZPKIL](https://www.luogu.com.cn/problem/P4464)
+-   [Luogu P4619 \[SDOI2018\] Bài toán cũ](https://www.luogu.com.cn/problem/P4619)
+-   [Luogu P5518 \[MtOI2019\] Dàn nhạc ma](https://www.luogu.com.cn/problem/P5518)
+-   [Luogu P6222 Bài toán đơn giản, bản tăng cường](https://www.luogu.com.cn/problem/P6222)
+-   [Luogu P6825 \[EZEC-4\] Tổng](https://www.luogu.com.cn/problem/P6825)
+-   [Luogu P7486 \[Stoi2031\] Cầu vồng](https://www.luogu.com.cn/problem/P7486)
+-   [AtCoder Grand Contest 038 C - LCM](https://atcoder.jp/contests/agc038/tasks/agc038_c)
+-   [Codeforces 1139 D. Các bước về một](https://codeforces.com/problemset/problem/1139/D)
 
 <span id="tài-liệu-tham-khảo"></span>
 ## Tài liệu tham khảo

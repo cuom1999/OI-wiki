@@ -506,7 +506,7 @@ Sau đó trong tìm kiếm theo chiều sâu, liên tục liệt kê số mũ th
 <span id="bài-tập-ví-dụ"></span>
 ### Bài tập ví dụ
 
-???+ example "[Codeforces 27E. A number with a given number of divisors](https://codeforces.com/problemset/problem/27/E)"
+???+ example "[Codeforces 27E. Số có số lượng ước cho trước](https://codeforces.com/problemset/problem/27/E)"
     Tìm số tự nhiên nhỏ nhất có số lượng ước cho trước. Đáp án được bảo đảm
     không vượt quá $10^{18}$.
 
@@ -519,7 +519,7 @@ Sau đó trong tìm kiếm theo chiều sâu, liên tục liệt kê số mũ th
     --8<-- "docs/math/code/prime/prime_1.cpp"
     ```
 
-???+ example "[ZOJ 2562 More Divisors](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
+???+ example "[ZOJ 2562 Nhiều ước hơn](https://pintia.cn/problem-sets/91827364500/exam/problems/type/7?problemSetProblemId=91827366061)"
     Tìm số không vượt quá $n$ có nhiều ước nhất.
 
 ??? note "Ý tưởng giải"

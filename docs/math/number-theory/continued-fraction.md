@@ -1138,7 +1138,7 @@ $$
 
 Từ đó có thể thu được dạng trên bằng quy nạp. Biến đổi tuyến tính phân thức cũng cung cấp một góc nhìn khác về công thức truy hồi và điều kiện đầu.
 
-???+ example "[DMOPC '19 Contest 7 P4 - Bob and Continued Fractions](https://dmoj.ca/problem/dmopc19c7p4)"
+???+ example "[DMOPC '19 Contest 7 P4 - Bob và liên phân số](https://dmoj.ca/problem/dmopc19c7p4)"
     Cho mảng số nguyên dương $a_1,\cdots,a_n$ và $m$ truy vấn. Mỗi truy vấn cho $l\le r$ và yêu cầu tính giá trị $[a_l,\cdots,a_r]$.
 
 ??? note "Lời giải"
@@ -1414,7 +1414,7 @@ Công thức truy hồi này có thể dùng trực tiếp để tính liên ph�
         --8<-- "docs/math/code/continued-fraction/quadratic-irrational.py:core"
         ```
 
-???+ example "[Tavrida NU Akai Contest - Continued Fraction](https://timus.online/problem.aspx?space=1&num=1814)"
+???+ example "[Tavrida NU Akai Contest - Liên phân số](https://timus.online/problem.aspx?space=1&num=1814)"
     Cho $x$ và $k$, trong đó $x$ không phải số chính phương, $0\le k\le 10^9$. Cần tìm phân số tiệm cận thứ $k$ là $x_k$ của $\sqrt{x}$.
 
 ??? note "Lời giải"
@@ -1776,16 +1776,16 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 
 ## Bài tập
 
--   [UVa OJ - Continued Fractions](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
--   [ProjectEuler+ #64: Odd period square roots](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
+-   [UVa OJ - Liên phân số](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=775)
+-   [ProjectEuler+ #64: Căn bậc hai có chu kỳ lẻ](https://www.hackerrank.com/contests/projecteuler/challenges/euler064/problem)
 -   [LibreOJ NOI Round #2 - Một mình một ngựa](https://loj.ac/p/573)
--   [Codeforces Round #184 (Div. 2) - Continued Fractions](https://codeforces.com/contest/305/problem/B)
+-   [Codeforces Round #184 (Div. 2) - Liên phân số](https://codeforces.com/contest/305/problem/B)
 -   [Codeforces Round #201 (Div. 1) - Doodle Jump](https://codeforces.com/contest/346/problem/E)
--   [Codeforces Round #325 (Div. 1) - Alice, Bob, Oranges and Apples](https://codeforces.com/contest/585/problem/C)
--   [POJ Founder Monthly Contest 2008.03.16 - A Modular Arithmetic Challenge](http://poj.org/problem?id=3530)
--   [2019 Multi-University Training Contest 5 - fraction](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
--   [SnackDown 2019 Elimination Round - Election Bait](https://www.codechef.com/SNCKEL19/problems/EBAIT)
--   [Luogu P5179. Fraction](https://www.luogu.com.cn/problem/P5179)
+-   [Codeforces Round #325 (Div. 1) - Alice, Bob, cam và táo](https://codeforces.com/contest/585/problem/C)
+-   [POJ Founder Monthly Contest 2008.03.16 - Một thử thách số học modulo](http://poj.org/problem?id=3530)
+-   [2019 Multi-University Training Contest 5 - phân số](http://acm.hdu.edu.cn/showproblem.php?pid=6624)
+-   [SnackDown 2019 Elimination Round - Mồi nhử bầu cử](https://www.codechef.com/SNCKEL19/problems/EBAIT)
+-   [Luogu P5179. Phân số](https://www.luogu.com.cn/problem/P5179)
 -   [Luogu P7739. \[NOI2021\] Hộp mật mã](https://www.luogu.com.cn/problem/P7739)
 
 <span id="tài-liệu-tham-khảo-và-đọc-thêm"></span>

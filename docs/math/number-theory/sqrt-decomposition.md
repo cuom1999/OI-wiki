@@ -277,7 +277,7 @@ Dựa vào các tính chất này, có thể thực hiện phân khối số h�
     --8<-- "docs/math/code/sqrt-decomposition/sqrt-decomposition_1.cpp"
     ```
 
-???+ example "[Codeforces 1954E Chain Reaction](https://codeforces.com/contest/1954/problem/E)"
+???+ example "[Codeforces 1954E Phản ứng dây chuyền](https://codeforces.com/contest/1954/problem/E)"
     Có một hàng gồm $n$ quái vật, quái vật thứ $i$ có lượng máu ban đầu là $a_i$. Một lần tấn công làm giảm $k$ máu của một đoạn liên tiếp các quái vật còn sống; quái vật có máu không dương được xem là đã chết. Với mọi $k$, tính số lần tấn công cần để tiêu diệt toàn bộ quái vật. Trong đó $n,a_i\leq 10^5$.
 
 ??? note "Lời giải"
@@ -301,7 +301,7 @@ Dựa vào các tính chất này, có thể thực hiện phân khối số h�
 
 -   [UVa11526 H(n)](https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=27&page=show_problem&problem=2521)
 -   [Luogu P2261 CQOI2007 Tổng phần dư](https://www.luogu.com.cn/problem/P2261)
--   [Luogu P3455 POI2007 ZAP-Queries](https://www.luogu.com.cn/problem/P3455)
+-   [Luogu P3455 POI2007 Truy vấn ZAP](https://www.luogu.com.cn/problem/P3455)
 
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
