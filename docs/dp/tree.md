@@ -76,7 +76,7 @@ Có thể chứng minh cách làm này có độ phức tạp thời gian $O(nm)
 
 -   [「SDOI2017」Cây táo](https://loj.ac/problem/2268)
 
--   [「Codeforces Round 875 Div. 1」Problem D. Mex Tree](https://codeforces.com/contest/1830/problem/D)
+-   [「Codeforces Round 875 Div. 1」Bài D. Cây MEX](https://codeforces.com/contest/1830/problem/D)
 
 ## DP đổi gốc
 
@@ -86,7 +86,7 @@ Thông thường cần hai lần DFS: lần DFS thứ nhất tiền xử lý cá
 
 Tiếp theo là một số ví dụ minh họa cho nội dung này.
 
-???+ note "Bài ví dụ [\[POI2008\] STA-Station](https://www.luogu.com.cn/problem/P3478)"
+???+ note "Bài ví dụ [\[POI2008\] STA-Trạm](https://www.luogu.com.cn/problem/P3478)"
     Cho một cây có $n$ nút. Cần tìm một nút sao cho khi lấy nút đó làm gốc, tổng độ sâu của mọi nút là lớn nhất.
 
 Gọi $u$ là nút hiện tại, $v$ là một nút con của nó. Trước hết dùng $s_i$ để biểu diễn số nút trong cây con gốc $i$, khi đó $s_u=1+\sum s_v$. Cần một lần DFS để tính mọi $s_i$; lần DFS này chính là tiền xử lý, giúp xác định tổng số nút trong cây con khi lấy một nút nào đó làm gốc.

@@ -250,7 +250,7 @@ loại bài toán.
 
 ## Phân tích bài ví dụ
 
-???+ note "[437. Path Sum III](https://leetcode-cn.com/problems/path-sum-iii/)"
+???+ note "[437. Tổng đường đi III](https://leetcode-cn.com/problems/path-sum-iii/)"
     Cho một cây nhị phân, mỗi nút chứa một giá trị nguyên.
 
     Tìm tổng số đường đi có tổng bằng giá trị cho trước.

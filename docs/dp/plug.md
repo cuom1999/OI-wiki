@@ -130,7 +130,7 @@ Với một bàn cờ rộng $m$, độ rộng của đường biên là $m+1$, 
 
 <span id="ví-dụ_1"></span>
 
-???+ note "Ví dụ [「Andrew Stankevich Contest 16 - Problem F」Pipe Layout](https://codeforces.com/gym/100220)"
+???+ note "Ví dụ [「Andrew Stankevich Contest 16 - Bài F」Bố trí đường ống](https://codeforces.com/gym/100220)"
     Tóm tắt đề bài: đếm số cách phủ bàn cờ $N\times M$ bằng đúng một chu trình.
 
 Trong cách biểu diễn trạng thái ở trên, mỗi lần ghép một nhóm đầu nối liên thông, một chu trình độc lập sẽ được tạo ra. Vì vậy ở bài này, còn cần phân biệt tính liên thông giữa các đầu nối (nó đã xuất hiện!). Điều này đòi hỏi mã hóa trạng thái thêm một bước.
@@ -604,13 +604,13 @@ Trường hợp này được xử lý riêng. Nhờ vậy trong bài này có t
 
 <span id="bài-tập_3"></span>
 
-??? note "Bài tập [「Topcoder SRM 312. Div1 Hard」CheapestIsland](https://archive.topcoder.com/ProblemStatement/pm/6482)"
+??? note "Bài tập [「Topcoder SRM 312. Div1 khó」Hòn đảo rẻ nhất](https://archive.topcoder.com/ProblemStatement/pm/6482)"
     Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số nhỏ nhất.
 
 ??? note "Bài tập [「JLOI 2009」Sinh vật bí ẩn](https://www.luogu.com.cn/problem/P3886)"
     Tóm tắt đề bài: cho một đồ thị bàn cờ, mỗi ô có trọng số. Tìm một khối liên thông có tổng trọng số lớn nhất.
 
-??? note "Bài tập [「AtCoder Beginner Contest 211. Problem E」Red Polyomino](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
+??? note "Bài tập [「AtCoder Beginner Contest 211. Bài E」Polyomino đỏ](https://atcoder.jp/contests/abc211/tasks/abc211_e)"
     Tóm tắt đề bài: cho một bàn cờ kích thước $N\times N$, mỗi ô ban đầu là đen hoặc trắng. Được chọn đúng $K$ ô trắng và tô chúng thành đỏ. Hỏi có bao nhiêu phương án tô màu sao cho các ô đỏ tạo thành một khối liên thông.
 
 ## Mô hình đồ thị
@@ -620,7 +620,7 @@ Trường hợp này được xử lý riêng. Nhờ vậy trong bài này có t
 ???+ note "Ví dụ [「NOI 2007 Day2」Đếm cây khung](https://www.luogu.com.cn/problem/P2109)"
     Tóm tắt đề bài: đếm cây khung của một lớp đồ thị đặc biệt, trong đó mỗi nút có cạnh nối tới đúng $k$ nút đứng trước nó.
 
-???+ note "Ví dụ [「2015 ACM-ICPC Asia Shenyang Regional Contest - Problem E」Efficient Tree](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
+???+ note "Ví dụ [「2015 ACM-ICPC Asia Shenyang Regional Contest - Bài E」Cây hiệu quả](https://acm.hdu.edu.cn/showproblem.php?pid=5513)"
     Tóm tắt đề bài: cho một đồ thị lưới $N\times M$ và trọng số cạnh giữa các ô kề nhau theo bốn hướng.
     Với một cây khung, điểm của mỗi nút là 1+\[có một cạnh nối lên trên]+\[có một cạnh nối sang trái].
     Điểm của cây khung là tích điểm của tất cả các nút.
