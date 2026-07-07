@@ -265,7 +265,7 @@ ngược lại nó có thể chậm hơn Euclid.
         [`std::countr_zero`](https://en.cppreference.com/w/cpp/numeric/countr_zero);
     3.  Nếu không dùng hàm ngoài thư viện chuẩn và cũng không dùng được C++20,
         đoạn mã sau là một cách cài đặt $O(1)$ sau tiền xử lý trong mô hình
-        Word-RAM with multiplication:
+        Word-RAM có phép nhân:
     
     ```cpp
     constexpr int loghash[64] = {0,  32, 48, 56, 60, 62, 63, 31, 47, 55, 59, 61, 30,
@@ -309,8 +309,8 @@ ngược lại nó có thể chậm hơn Euclid.
     }
     ```
 
-Đọc thêm thảo luận về tốc độ của các cách cài đặt `gcd` tại [Fastest way to
-compute the greatest common divisor](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/).
+Đọc thêm thảo luận về tốc độ của các cách cài đặt `gcd` tại [cách nhanh nhất
+để tính ước chung lớn nhất](https://lemire.me/blog/2013/12/26/fastest-way-to-compute-the-greatest-common-divisor/).
 
 <span id="ước-chung-lớn-nhất-của-nhiều-số"></span>
 ### Ước chung lớn nhất của nhiều số

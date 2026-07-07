@@ -19,7 +19,7 @@ docker pull ccr.ccs.tencentyun.com/oi-wiki/oi-wiki
 
 ```bash
 # Chạy các lệnh sau trên máy chủ
-# Clone kho Git
+# Sao chép kho Git
 git clone https://github.com/cuom1999/OI-wiki.git
 cd OI-wiki/
 # Xây dựng image
@@ -79,10 +79,10 @@ wiki-upd
 # Dùng theme tùy chỉnh của chúng tôi
 wiki-theme
 
-# Build mkdocs, trang tĩnh sẽ được tạo trong thư mục site
+# Dựng mkdocs, trang tĩnh sẽ được tạo trong thư mục site
 wiki-bld
 
-# Build mkdocs và render MathJax, trang tĩnh sẽ được tạo trong thư mục site
+# Dựng mkdocs và render MathJax, trang tĩnh sẽ được tạo trong thư mục site
 wiki-bld-math
 
 # Chạy một server; truy cập http://127.0.0.1:8000 trong container hoặc http://127.0.0.1:[port] trên máy chủ để xem kết quả
