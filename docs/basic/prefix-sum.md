@@ -189,7 +189,7 @@ trên để tính tổng trên tập con. Độ phức tạp thời gian là $O(
 Phép ngược của tổng trên tập con cần thực hiện bằng
 [nguyên lý bao hàm - loại trừ](../math/combinatorics/inclusion-exclusion-principle.md).
 Bài toán tổng trên tập con cũng là một trong những bước cần thiết của biến đổi
-Mobius nhanh.
+Möbius nhanh.
 
 ### Tổng tiền tố trên cây
 

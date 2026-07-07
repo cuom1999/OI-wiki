@@ -912,7 +912,7 @@ Có thể dùng khử Gauss-Jordan để giải, độ phức tạp thời gian 
     Vì vậy đáp án còn phải nhân với bậc ra của phòng số 1.
 
 ???+ note "Ví dụ 4: [Liên tuyển tỉnh 2020 A - Bài tập](https://loj.ac/p/3304)"
-    **Lời giải** Trước hết cần dùng đảo ngược Mobius
+    **Lời giải** Trước hết cần dùng đảo Möbius
     để chuyển thành bài toán tính tổng trọng số cạnh của mọi cây khung.
     Vì phần này không liên quan nhiều đến bài viết nên lược bỏ.
 

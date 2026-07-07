@@ -230,7 +230,7 @@ Xét bài toán sau:
 ???+ note "Đếm số cặp có ước chung lớn nhất bằng $k$"
     Cho $1 \le x, y \le N$, $f(k)$ là số cặp có thứ tự $(x, y)$ có ước chung lớn nhất bằng $k$. Tính các giá trị từ $f(1)$ đến $f(N)$.
 
-Bài này có thể làm bằng hàm Euler hoặc nghịch đảo Mobius, nhưng không cách nào đơn giản bằng bao hàm-loại trừ.
+Bài này có thể làm bằng hàm Euler hoặc nghịch đảo Möbius, nhưng không cách nào đơn giản bằng bao hàm-loại trừ.
 
 Theo nguyên lý bao hàm-loại trừ, trước tiên tìm tất cả các cặp có $k$ là **ước chung**, rồi loại bỏ mọi cặp có một bội của $k$ là **ước chung**; các cặp còn lại chính là các cặp có $k$ là **ước chung lớn nhất**. Tức là $f(k)=$ số cặp có $k$ là **ước chung** $-$ số cặp có bội của $k$ là **ước chung**.
 
