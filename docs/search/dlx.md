@@ -632,18 +632,18 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
     ```
 
 <span id="ví-dụ-3-noi2005-trò-chơi-smart-beads"></span>
-### Ví dụ 3 ["NOI2005" Trò chơi Smart Beads](https://www.luogu.com.cn/problem/P4205)
+### Ví dụ 3 ["NOI2005" Trò chơi hạt thông minh](https://www.luogu.com.cn/problem/P4205)
 
 ??? note "Ý tưởng giải"
-    Định nghĩa: hình dạng Smart Bead mà đề bài cho được gọi là *hình dạng chuẩn* của Smart Bead đó.
+    Định nghĩa: hình dạng hạt thông minh mà đề bài cho được gọi là *hình dạng chuẩn* của hạt thông minh đó.
     
-    Có thể thay đổi hình dạng của Smart Bead bằng cách thay đổi hai tham số $d$ (biểu thị số lần xoay thuận chiều kim đồng hồ $90^{\circ}$) và $f$ (có lật ngang hay không).
+    Có thể thay đổi hình dạng của hạt thông minh bằng cách thay đổi hai tham số $d$ (biểu thị số lần xoay thuận chiều kim đồng hồ $90^{\circ}$) và $f$ (có lật ngang hay không).
     
     Vẫn như trước, xét quyết định là gì.
     
     Trong bài này, có thể biểu diễn mỗi quyết định bằng bộ năm có thứ tự dạng $(v, d, f, i)$.
     
-    Nó biểu thị vị trí góc trên bên trái của *hình dạng chuẩn* của Smart Bead thứ $i$, có số thứ tự là $v$, sau khi đã xoay thuận chiều kim đồng hồ $90^{\circ}$ tổng cộng $d$ lần.
+    Nó biểu thị vị trí góc trên bên trái của *hình dạng chuẩn* của hạt thông minh thứ $i$, có số thứ tự là $v$, sau khi đã xoay thuận chiều kim đồng hồ $90^{\circ}$ tổng cộng $d$ lần.
     
     Có thể quy ước $f = 1$ nghĩa là không lật ngang, $f = -1$ nghĩa là lật ngang, từ đó đơn giản hóa mã.
     
@@ -651,7 +651,7 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
     
     Cần lưu ý rằng do có một số cách đặt không hợp lệ, chẳng hạn $(1, 0, 1, 4)$,
     
-    nên **trong cài đặt thực tế, bàn Smart Beads rỗng cũng chỉ cần xây dựng $2730$ hàng**.
+    nên **trong cài đặt thực tế, bàn hạt thông minh rỗng cũng chỉ cần xây dựng $2730$ hàng**.
     
     Tiếp theo xét trạng thái là gì.
     
@@ -660,11 +660,11 @@ Khi gặp một bài toán, nên xét ý nghĩa mà hàng và cột biểu diễ
     Xét ảnh hưởng của quyết định $(v, d, f, i)$.
     
     1.  Một số ô bị chiếm (biểu diễn bằng $55$ cột);
-    2.  Smart Bead thứ $i$ đã được dùng (biểu diễn bằng $12$ cột).
+    2.  Hạt thông minh thứ $i$ đã được dùng (biểu diễn bằng $12$ cột).
     
     Vì vậy có $55 + 12 = 67$ cột, tổng cộng $5280 \times (5 + 1) = 31680$ ô $1$.
     
-    Đến đây, trò chơi Smart Beads đã được chuyển thành một bài toán phủ chính xác **có $5280$ hàng, $67$ cột, tổng cộng $31680$ ô $1$**.
+    Đến đây, trò chơi hạt thông minh đã được chuyển thành một bài toán phủ chính xác **có $5280$ hàng, $67$ cột, tổng cộng $31680$ ô $1$**.
 
 ??? note "Mã tham khảo"
     ```cpp

@@ -28,7 +28,7 @@ Thực tế, các bước trên cũng hữu ích khi giải những dạng bài 
 
 ## Phân tích ví dụ
 
-???+ note "[Climbing Worm](https://open.kattis.com/problems/climbingworm)"
+???+ note "[Sâu leo giếng](https://open.kattis.com/problems/climbingworm)"
     Một con sâu có chiều dài không đáng kể đang ở đáy một cái giếng sâu $n$
     inch. Mỗi lần nó bò lên $u$ inch, nhưng phải nghỉ một lần trước khi có thể
     bò tiếp. Trong lúc nghỉ, nó trượt xuống $d$ inch. Sau đó nó lặp lại quá

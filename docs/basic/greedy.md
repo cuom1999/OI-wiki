@@ -135,7 +135,7 @@ có khả năng quay lại xét các lựa chọn theo nghĩa rộng.
 
 ### Ví dụ dùng phương pháp hối tiếc
 
-???+ note "[USACO09OPEN Work Scheduling](https://www.luogu.com.cn/problem/P2949)"
+???+ note "[USACO09OPEN Lập lịch công việc](https://www.luogu.com.cn/problem/P2949)"
     Ngày làm việc của John bắt đầu từ thời điểm $0$ và có $10^9$ đơn vị thời
     gian. Ở mỗi đơn vị thời gian, anh có thể chọn hoàn thành một trong $N$ công
     việc được đánh số từ $1$ đến $N$, với $1 \leq N \leq 10^5$. Công việc $i$

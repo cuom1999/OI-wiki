@@ -122,7 +122,7 @@ trì được khá hạn chế, khó mở rộng tốt, và không hỗ trợ c�
 
 -   [SCOI2007 Lượng mưa](https://loj.ac/p/2279)
 
--   [\[USACO07JAN\] Đội hình cân bằng Balanced Lineup](https://www.luogu.com.cn/problem/P2880)
+-   [\[USACO07JAN\] Đội hình cân bằng](https://www.luogu.com.cn/problem/P2880)
 
 ## Phụ lục: Phân tích độ phức tạp thời gian khi dùng bảng ST tìm GCD trên đoạn
 

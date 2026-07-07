@@ -21,7 +21,7 @@ Như vậy, cây đã được biến thành một dãy.
 
 ### Ví dụ
 
-???+ note "Ví dụ [WC2013 Candy Park](https://uoj.ac/problem/58)"
+???+ note "Ví dụ [WC2013 Công viên kẹo](https://uoj.ac/problem/58)"
     Đề bài: cho một cây, đỉnh thứ $i$ trên cây có màu $c_i$. Mỗi truy vấn cho một đường đi $u_i$,$v_i$, cần tính trên đường đi đó:
     
     $\sum_{c}val_c\sum_{i=1}^{cnt_c}w_i$
@@ -306,7 +306,7 @@ Giả sử kích thước khối là $unit$:
 
 Cộng hai phần lại, giá trị nhỏ nhất xấp xỉ đạt được tại căn bậc hai. Do kích thước khối trong thuật toán Mo trên cây không cố định, không nhất thiết phải theo đúng tuyệt đối.
 
-### Ví dụ WC2013 Candy Park
+### Ví dụ WC2013 Công viên kẹo
 
 Vì có thêm chiều thời gian, lấy kích thước khối khoảng $n^{0.6}$ là tương đối ổn.
 

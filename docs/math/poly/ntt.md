@@ -88,7 +88,7 @@ Miễn là có căn nguyên thủy, tức phần tử sinh trong lý thuyết nh
 
 ## Mẫu
 
-??? example "[Library Checker - Convolution](https://judge.yosupo.jp/problem/convolution_mod)"
+??? example "[Library Checker - Tích chập](https://judge.yosupo.jp/problem/convolution_mod)"
     ```cpp
     --8<-- "docs/math/code/poly/ntt/ntt_1.cpp"
     ```
