@@ -82,7 +82,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 
 ### Ví dụ
 
-???+ note "[Luogu P2163 SHOI 2007 Gardener's Trouble](https://www.luogu.com.cn/problem/P2163)"
+???+ note "[Luogu P2163 SHOI 2007 Rắc rối của người làm vườn](https://www.luogu.com.cn/problem/P2163)"
     Trước hết rời rạc hóa. Gọi $ans_{x, y}$ là số điểm nằm trong hình chữ nhật có góc trái dưới $(0, 0)$ và góc phải trên $(x, y)$. Khi đó có thể tách đáp án của truy vấn bằng hiệu thành $ans_{c, d} - ans_{a - 1, d} - ans_{c, b - 1} + ans_{a - 1, b - 1}$.
     
     ??? note "Mã nguồn"
@@ -90,7 +90,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
         --8<-- "docs/geometry/code/scanning/scanning_3.cpp"
         ```
 
-???+ note "[Luogu P1908 Inversion Count](https://www.luogu.com.cn/problem/P1908)"
+???+ note "[Luogu P1908 Đếm nghịch thế](https://www.luogu.com.cn/problem/P1908)"
     Cũng có thể giải nghịch thế bằng tư duy đường quét. Xét việc chuyển bài toán đếm số nghịch thế thành: liệt kê từng vị trí $i$ từ sau ra trước, rồi tìm số điểm trong đoạn vị trí $[i+1,n]$ có giá trị thuộc đoạn $[0,a_i]$. Phạm vi dữ liệu của đề là $10^9$, nên cần rời rạc hóa trước. Duyệt mảng từ sau ra trước; mỗi khi duyệt đến một số thì cập nhật cây Fenwick, hoặc cây đoạn, rồi thống kê hiện có bao nhiêu số nhỏ hơn số đang liệt kê. Vì duyệt từ sau ra trước, số lượng số nhỏ hơn giá trị hiện tại chính là số nghịch thế do nó tạo ra. Có thể dùng cây Fenwick hoặc cây đoạn để sửa một điểm và truy vấn đoạn.
     
     ??? note "Mã nguồn"
@@ -98,7 +98,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
         --8<-- "docs/geometry/code/scanning/scanning_4.cpp"
         ```
 
-???+ note "[Luogu P1972 SDOI 2009 HH's Necklace](https://www.luogu.com.cn/problem/P1972)"
+???+ note "[Luogu P1972 SDOI 2009 Vòng cổ của HH](https://www.luogu.com.cn/problem/P1972)"
     Tóm tắt đề: cho một dãy, nhiều lần hỏi trong đoạn $[l,r]$ có bao nhiêu giá trị khác nhau.
     
     Với loại bài toán này, có thể suy luận tính chất, rồi dùng đường quét liệt kê tất cả đầu mút phải và cấu trúc dữ liệu duy trì đáp án cho mỗi đầu mút trái. Cũng có thể chuyển bài toán lên mặt phẳng hai chiều, biến nó thành bài toán truy vấn thông tin trong hình chữ nhật.
@@ -122,7 +122,7 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 
 -   [Luogu P8593 KDOI-02 Đạn bắn](https://www.luogu.com.cn/problem/P8593), ứng dụng của nghịch thế.
 -   [AcWing 4709. Bộ ba](https://www.acwing.com/problem/content/4712/), phiên bản yếu hơn của bài trên, cũng là ứng dụng của nghịch thế.
--   [Luogu P8773 Lanqiao Cup 2022 Provincial A Chọn số XOR](https://www.luogu.com.cn/problem/P8773), biến thể của HH's Necklace.
+-   [Luogu P8773 Lanqiao Cup 2022 Provincial A Chọn số XOR](https://www.luogu.com.cn/problem/P8773), biến thể của bài Vòng cổ của HH.
 -   [Luogu P8844 Chuanzhi Cup #4 Preliminary Round: Xiao Ka và lá rơi](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
 
 Tóm lại, ý tưởng chính của đếm điểm hai chiều là dùng cấu trúc dữ liệu duy trì một chiều, rồi liệt kê chiều còn lại.

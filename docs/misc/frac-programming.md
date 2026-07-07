@@ -44,7 +44,7 @@ Vì vậy chỉ cần tìm giá trị lớn nhất của vế trái. Nếu giá 
     --8<-- "docs/misc/code/frac-programming/frac-1.cpp"
     ```
 
-???+ example "[Luogu 4377 Talent Show G](https://www.luogu.com.cn/problem/P4377)"
+???+ example "[Luogu 4377 Chương trình tài năng G](https://www.luogu.com.cn/problem/P4377)"
     Có $n$ vật, mỗi vật có hai trọng số $a$ và $b$.
     
     Cần xác định một bộ $w_i\in\{0,1\}$ sao cho $\displaystyle\frac{\sum w_i\times a_i}{\sum w_i\times b_i}$ lớn nhất.

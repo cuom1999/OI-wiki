@@ -7,7 +7,7 @@ Kiến thức nền: [Giới thiệu phần quy hoạch động](./index.md).
 
 Trước khi nói cụ thể "DP ba lô" là gì, xét bài ví dụ sau:
 
-???+ note "[「USACO07 DEC」Charm Bracelet](https://www.luogu.com.cn/problem/P2871)"
+???+ note "[「USACO07 DEC」Vòng tay may mắn](https://www.luogu.com.cn/problem/P2871)"
     Tóm tắt đề bài: có $n$ vật phẩm và một ba lô có sức chứa $W$. Mỗi vật phẩm có hai thuộc tính là trọng lượng $w_{i}$ và giá trị $v_{i}$. Cần chọn một số vật phẩm cho vào ba lô sao cho tổng giá trị các vật phẩm trong ba lô là lớn nhất, đồng thời tổng trọng lượng không vượt quá sức chứa của ba lô.
 
 Trong ví dụ trên, mỗi vật phẩm chỉ có hai trạng thái có thể xảy ra (chọn hoặc không chọn), tương ứng với $0$ và $1$ trong hệ nhị phân, nên loại bài toán này được gọi là "bài toán ba lô 0-1".
@@ -467,7 +467,7 @@ Cuối cùng, tìm giá trị của nghiệm tối ưu, rồi cộng tất cả 
 Ba lô 0-1 thông thường yêu cầu nghiệm tối ưu. Trên phương pháp DP ba lô thông thường, chỉ cần sửa nhẹ bằng cách thêm một chiều để ghi các nghiệm tốt nhất thứ 1 đến thứ $k$ dưới trạng thái hiện tại, sẽ thu được thuật toán tìm nghiệm tốt thứ $k$ của ba lô 0-1.
 Cụ thể, $\mathit{dp_{i,j,k}}$ ghi tổng giá trị lớn thứ $k$ có thể đạt được khi xét $i$ vật phẩm đầu tiên và tổng thể tích các vật phẩm được chọn là $j$. Có thể hiểu trạng thái này là mở rộng $\mathit{dp_{i,j}}$ của ba lô 0-1 thông thường, vốn chỉ cần ghi một dữ liệu, thành việc ghi một dãy nghiệm tốt có thứ tự. Khi chuyển trạng thái, cách tìm nghiệm tối ưu trong ba lô thông thường là $\mathit{dp_{i,j}}=\max(\mathit{dp_{i-1,j}},\mathit{dp_{i-1,j-v_{i}}}+w_{i})$; còn bây giờ cần hợp nhất hai dãy giảm dần có kích thước $k$, gồm $\mathit{dp_{i-1,j}}$ và $\mathit{dp_{i-1,j-v_{i}}}+w_{i}$, rồi giữ lại $k$ giá trị lớn nhất sau khi hợp nhất trong $\mathit{dp_{i,j}}$. Bước này dùng phương pháp hai con trỏ, có độ phức tạp $O(k)$; độ phức tạp thời gian tổng thể là $O(nmk)$. Về bộ nhớ, phương pháp này cũng có thể nén bỏ chiều thứ nhất như ba lô thông thường, với độ phức tạp $O(mk)$.
 
-??? note "Bài ví dụ [HDU 2639 Bone Collector II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
+??? note "Bài ví dụ [HDU 2639 Người sưu tập xương II](https://acm.hdu.edu.cn/showproblem.php?pid=2639)"
     Tìm nghiệm tốt thứ $k$ nghiêm ngặt của ba lô 0-1. $n \leq 100,v \leq 1000,k \leq 30$
 
 ??? note "Cài đặt"

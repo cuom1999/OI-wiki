@@ -110,9 +110,9 @@ Sau khi duyệt hết mọi điểm, đường tròn thu được chính là đ�
 
 ## Bài tập
 
-[Minimum Enclosing Circle](https://www.luogu.com.cn/problem/P1742)
+[Đường tròn bao nhỏ nhất](https://www.luogu.com.cn/problem/P1742)
 
-[HNOI2012 Archery](https://www.luogu.com.cn/problem/P3222)
+[HNOI2012 Bắn cung](https://www.luogu.com.cn/problem/P3222)
 
 [Codeforces 442E](https://codeforces.com/problemset/problem/442/E)
 

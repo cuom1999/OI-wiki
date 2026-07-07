@@ -139,8 +139,8 @@ Vì vậy cần loại bỏ cuối hàng đợi trước rồi mới loại bỏ
 
 ## Bài tập
 
-[POJ 2451 Uyuw's Concert](http://poj.org/problem?id=2451) xử lý biên
+[POJ 2451 Buổi hòa nhạc của Uyuw](http://poj.org/problem?id=2451) xử lý biên
 
-[POJ 1279 Art Gallery](http://poj.org/problem?id=1279) tìm nhân đa giác
+[POJ 1279 Phòng trưng bày nghệ thuật](http://poj.org/problem?id=1279) tìm nhân đa giác
 
-[CQOI2006 Convex Polygon](https://www.luogu.com.cn/problem/P4196)
+[CQOI2006 Đa giác lồi](https://www.luogu.com.cn/problem/P4196)

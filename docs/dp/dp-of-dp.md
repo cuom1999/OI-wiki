@@ -47,7 +47,7 @@ Hai ví dụ tiếp theo sẽ giải thích chi tiết cách làm chung của DP
 <span id="ví-dụ-1"></span>
 ### Ví dụ 1
 
-???+ example "[Hero meet devil](https://www.luogu.com.cn/problem/P10614)"
+???+ example "[Anh hùng gặp ác quỷ](https://www.luogu.com.cn/problem/P10614)"
     Cho một xâu $S$ trên bảng chữ cái `ACGT`, với $|S|\le 15$. Với mỗi $0\leq i \leq |S|$, tính có bao nhiêu xâu $T$ độ dài $m$ trên bảng chữ cái `ACGT` sao cho độ dài dãy con chung dài nhất của nó với $S$ bằng $i$.
 
 ??? note "Lời giải"

@@ -11,7 +11,7 @@ Thuật toán thước kẹp quay, tiếng Anh là Rotating Calipers, dựa trê
 
 ## Tìm đường kính bao lồi
 
-???+ note "Ví dụ 1: [Luogu P1452 Beauty Contest G](https://www.luogu.com.cn/problem/P1452)"
+???+ note "Ví dụ 1: [Luogu P1452 Cuộc thi sắc đẹp G](https://www.luogu.com.cn/problem/P1452)"
     Cho $n$ điểm trên mặt phẳng, tìm khoảng cách lớn nhất giữa mọi cặp điểm. ($2\leq n \leq 50000,|x|,|y| \leq 10^4$)
 
 ### Quá trình
@@ -87,7 +87,7 @@ Trong quá trình liệt kê, với mỗi cạnh, kiểm tra khoảng cách từ
 
 ## Tìm hình chữ nhật phủ nhỏ nhất
 
-[Luogu P3187 Minimum Rectangle Cover](https://www.luogu.com.cn/problem/P3187)
+[Luogu P3187 Hình chữ nhật phủ nhỏ nhất](https://www.luogu.com.cn/problem/P3187)
 
 Cho tọa độ một số điểm, tìm hình chữ nhật có diện tích nhỏ nhất có thể phủ tất cả các điểm. ($3\leq n \leq 50000$)
 

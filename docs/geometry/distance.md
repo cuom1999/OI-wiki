@@ -117,7 +117,7 @@ Ngoài công thức, khoảng cách Manhattan còn có các tính chất toán h
 
 ### Bài ví dụ
 
-[P5098 "USACO04OPEN" Cave Cows 3](https://www.luogu.com.cn/problem/P5098)
+[P5098 "USACO04OPEN" Bò trong hang 3](https://www.luogu.com.cn/problem/P5098)
 
 Theo đề bài, với biểu thức $|x_1-x_2|+|y_1-y_2|$, có thể giả sử $x_1 - x_2 \geq 0$, rồi dựa vào dấu của $y_1 - y_2$ để chia thành hai trường hợp:
 
@@ -290,11 +290,11 @@ Khi gặp bài toán yêu cầu tính khoảng cách Chebyshev hoặc khoảng c
 
 ### Bài ví dụ
 
-[P4648 "IOI2007" pairs Animal Pairs](https://www.luogu.com.cn/problem/P4648) (chuyển khoảng cách Manhattan thành khoảng cách Chebyshev)
+[P4648 "IOI2007" Cặp động vật](https://www.luogu.com.cn/problem/P4648) (chuyển khoảng cách Manhattan thành khoảng cách Chebyshev)
 
-[P3964 "TJOI2013" Squirrel Party](https://www.luogu.com.cn/problem/P3964) (chuyển khoảng cách Chebyshev thành khoảng cách Manhattan)
+[P3964 "TJOI2013" Tiệc sóc](https://www.luogu.com.cn/problem/P3964) (chuyển khoảng cách Chebyshev thành khoảng cách Manhattan)
 
-Cuối cùng, dưới đây là cách giải thứ hai cho [P5098 "USACO04OPEN" Cave Cows 3](https://www.luogu.com.cn/problem/P5098):
+Cuối cùng, dưới đây là cách giải thứ hai cho [P5098 "USACO04OPEN" Bò trong hang 3](https://www.luogu.com.cn/problem/P5098):
 
 Xét việc chuyển khoảng cách Manhattan mà bài toán yêu cầu thành khoảng cách Chebyshev, tức là biến đổi tọa độ mỗi điểm $(x,y)$ thành $(x + y, x - y)$.
 

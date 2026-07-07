@@ -1,12 +1,12 @@
 Kiến thức cần có: [ma trận](../math/linear-algebra/matrix.md), [phân rã cây theo chuỗi nặng nhẹ](../graph/hld.md).
 
-Dynamic DP là một kỹ thuật được Mao Kun trình bày tại WC2018, thường dùng để giải các bài toán DP trên cây có thao tác sửa trọng số đỉnh (hoặc cạnh).
+DP động (Dynamic DP) là một kỹ thuật được Mao Kun trình bày tại WC2018, thường dùng để giải các bài toán DP trên cây có thao tác sửa trọng số đỉnh (hoặc cạnh).
 
 ## Ví dụ
 
-Dùng bài mẫu sau để minh họa quá trình dynamic DP.
+Dùng bài mẫu sau để minh họa quá trình DP động.
 
-???+ note "Bài ví dụ [Luogu P4719 [Mẫu] Dynamic DP](https://www.luogu.com.cn/problem/P4719)"
+???+ note "Bài ví dụ [Luogu P4719 [Mẫu] DP động](https://www.luogu.com.cn/problem/P4719)"
     Cho một cây có $n$ đỉnh, mỗi đỉnh có trọng số. Có $m$ thao tác, mỗi thao tác cho $x,y$ nghĩa là sửa trọng số của đỉnh $x$ thành $y$. Sau mỗi thao tác, cần tính trọng số của tập độc lập có trọng số lớn nhất trên cây.
 
 ### Phép nhân ma trận tổng quát

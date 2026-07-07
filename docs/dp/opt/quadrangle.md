@@ -281,7 +281,7 @@ Kết luận này bảo đảm có thể dùng tìm kiếm nhị phân WQS (ở 
 
 Với ba thuật toán cho bài toán phân tách khoảng có giới hạn số khoảng, hiệu quả của chúng khác nhau theo từng phạm vi dữ liệu; cần chọn thuật toán phù hợp theo bài cụ thể.
 
-???+ example "Ví dụ 3: [P4767 \[IOI2000\] Post Office bản tăng cường](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] Post Office bản tăng cường hơn](https://www.luogu.com.cn/problem/P6246)"
+???+ example "Ví dụ 3: [P4767 \[IOI2000\] Bưu điện bản tăng cường](https://www.luogu.com.cn/problem/P4767)  [P6246 \[IOI2000\] Bưu điện bản tăng cường hơn](https://www.luogu.com.cn/problem/P6246)"
     Có một số ngôi làng bên cạnh đường cao tốc. Đường cao tốc được biểu diễn bằng trục số nguyên, và vị trí của mỗi làng được đánh dấu bằng một tọa độ nguyên đơn. Không có hai làng ở cùng một vị trí. Khoảng cách giữa hai vị trí là trị tuyệt đối hiệu hai tọa độ nguyên của chúng.
     
     Bưu cục sẽ được xây tại một số, nhưng không nhất thiết là tất cả, các làng. Để xây bưu cục, cần chọn vị trí xây sao cho tổng khoảng cách từ mỗi làng đến bưu cục gần nhất là nhỏ nhất.
