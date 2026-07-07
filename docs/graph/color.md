@@ -21,21 +21,38 @@ Giả sử đồ thị liên thông không phải là đồ thị đầy đủ v
     
     Không mất tính tổng quát, chỉ cần xét đồ thị $\Delta(G)$-chính quy, vì đồ thị không chính quy có thể xem là thu được bằng cách xóa một số cạnh khỏi một đồ thị chính quy, và quá trình này không ảnh hưởng đến kết luận.
     
-    Với một đồ thị chính quy $G$ bất kỳ không phải đồ thị đầy đủ cũng không phải chu trình lẻ, chọn tùy ý một đỉnh $v$ và xét đồ thị con $H:=G-v$. Theo giả thiết quy nạp, $\chi(H)\leq\Delta(H)=\Delta(G)$. Do đó chỉ cần chứng minh rằng chèn lại $v$ vào $H$ không làm thay đổi kết luận.
+    Với một đồ thị chính quy $G$ bất kỳ không phải đồ thị đầy đủ cũng không phải chu trình lẻ, chọn tùy ý một đỉnh $v$ và xét đồ thị con $H:=G-v$.
+    Theo giả thiết quy nạp, $\chi(H)\leq\Delta(H)=\Delta(G)$.
+    Do đó chỉ cần chứng minh rằng chèn lại $v$ vào $H$ không làm thay đổi kết luận.
     
-    Đặt $\Delta:=\Delta(G)$. Giả sử $\Delta$ màu được dùng để tô $H$ lần lượt là $c_1,c_2,\dots,c_{\Delta}$, và $\Delta$ đỉnh kề của $v$ là $v_1,v_2,\dots,v_{\Delta}$. Không mất tính tổng quát, giả sử các đỉnh kề này của $v$ có màu đôi một khác nhau; nếu không thì mệnh đề đã được chứng minh.
+    Đặt $\Delta:=\Delta(G)$.
+    Giả sử $\Delta$ màu được dùng để tô $H$ lần lượt là $c_1,c_2,\dots,c_{\Delta}$, và $\Delta$ đỉnh kề của $v$ là $v_1,v_2,\dots,v_{\Delta}$.
+    Không mất tính tổng quát, giả sử các đỉnh kề này của $v$ có màu đôi một khác nhau; nếu không thì mệnh đề đã được chứng minh.
     
-    Tiếp theo, xét đồ thị con $H_{i,j}$ tạo bởi tất cả các đỉnh trong $H$ được tô màu $c_i$ hoặc $c_j$ cùng với tất cả các cạnh giữa chúng. Không mất tính tổng quát, giả sử với hai đỉnh khác nhau bất kỳ $v_i$, $v_j$, chúng luôn nằm trong cùng một thành phần liên thông của $H_{i,j}$. Nếu chúng nằm ở hai thành phần liên thông khác nhau, có thể hoán đổi màu của tất cả các đỉnh trong một thành phần liên thông, khiến $v_i$ và $v_j$ có cùng màu.
+    Tiếp theo, xét đồ thị con $H_{i,j}$ tạo bởi tất cả các đỉnh trong $H$ được tô màu $c_i$ hoặc $c_j$ cùng với tất cả các cạnh giữa chúng.
+    Không mất tính tổng quát, giả sử với hai đỉnh khác nhau bất kỳ $v_i$, $v_j$, chúng luôn nằm trong cùng một thành phần liên thông của $H_{i,j}$.
+    Nếu chúng nằm ở hai thành phần liên thông khác nhau, có thể hoán đổi màu của tất cả các đỉnh trong một thành phần liên thông, khiến $v_i$ và $v_j$ có cùng màu.
     
     > Trong ngữ cảnh này, hoán đổi màu nghĩa là: nếu trong đồ thị chỉ có hai màu $a$ và $b$, thì đổi tất cả các đỉnh đang có màu $a$ thành màu $b$, đồng thời đổi tất cả các đỉnh đang có màu $b$ thành màu $a$.
     
-    Gọi thành phần liên thông nói trên là $C_{i,j}$. Khi đó $C_{i,j}$ chỉ có thể là một đường đi từ $v_i$ đến $v_j$. Vì bậc của $v_i$ trong $H$ là $\Delta-1$, các đỉnh kề của $v_i$ trong $H$ phải có màu đôi một khác nhau; nếu không có thể tô lại $v_i$ bằng một màu khác, làm màu của nó trùng với một đỉnh kề khác của $v$. Do đó số đỉnh kề của $v_i$ trong $C_{i,j}$ là 1, và với $v_j$ cũng tương tự. Tiếp theo, lấy một đường đi từ $v_i$ đến $v_j$ trong $C_{i,j}$ và gọi nó là $P$. Nếu $C_{i,j}\ne P$, tô lại màu các đỉnh trên đường đi $P$ theo thứ tự. Gọi $u$ là đỉnh đầu tiên gặp được có bậc lớn hơn 2. Các đỉnh kề của $u$ dùng nhiều nhất $\Delta-2$ màu, nên có thể tô lại $u$, từ đó làm cho $v_i$ và $v_j$ không còn liên thông với nhau.
+    Gọi thành phần liên thông nói trên là $C_{i,j}$.
+    Khi đó $C_{i,j}$ chỉ có thể là một đường đi từ $v_i$ đến $v_j$.
+    Vì bậc của $v_i$ trong $H$ là $\Delta-1$, các đỉnh kề của $v_i$ trong $H$ phải có màu đôi một khác nhau; nếu không có thể tô lại $v_i$ bằng một màu khác, làm màu của nó trùng với một đỉnh kề khác của $v$.
+    Do đó số đỉnh kề của $v_i$ trong $C_{i,j}$ là 1, và với $v_j$ cũng tương tự.
+    Tiếp theo, lấy một đường đi từ $v_i$ đến $v_j$ trong $C_{i,j}$ và gọi nó là $P$.
+    Nếu $C_{i,j}\ne P$, tô lại màu các đỉnh trên đường đi $P$ theo thứ tự.
+    Gọi $u$ là đỉnh đầu tiên gặp được có bậc lớn hơn 2.
+    Các đỉnh kề của $u$ dùng nhiều nhất $\Delta-2$ màu, nên có thể tô lại $u$, từ đó làm cho $v_i$ và $v_j$ không còn liên thông với nhau.
     
     Khi đó suy ra với ba đỉnh khác nhau bất kỳ $v_i$, $v_j$, $v_k$, có $V(C_{i,j})\cap V(C_{j,k})=\{v_j\}$.
     
     Đến đây việc tăng cường mệnh đề đã hoàn tất.
     
-    Phần còn lại rất đơn giản. Trước hết, nếu các đỉnh kề của v đôi một kề nhau, mệnh đề được chứng minh. Ngược lại, giả sử $v_1$ và $v_2$ không kề nhau. Lấy đỉnh kề w của $v_1$ trong $C_{1,2}$, rồi hoán đổi màu trong $C_{1,3}$. Trong đồ thị mới thu được, $w\in V(C_{1,2})\cap V(C_{2,3})$, mâu thuẫn.
+    Phần còn lại rất đơn giản.
+    Trước hết, nếu các đỉnh kề của $v$ đôi một kề nhau, mệnh đề được chứng minh.
+    Ngược lại, giả sử $v_1$ và $v_2$ không kề nhau.
+    Lấy đỉnh kề $w$ của $v_1$ trong $C_{1,2}$, rồi hoán đổi màu trong $C_{1,3}$.
+    Trong đồ thị mới thu được, $w\in V(C_{1,2})\cap V(C_{2,3})$, mâu thuẫn.
     
     Vậy mệnh đề đã được chứng minh.
 
@@ -218,4 +235,6 @@ trong đó $H_i=G[V_1 \cup V(G_i)]$
 ## Tài liệu tham khảo
 
 1.  [Graph coloring - Wikipedia](https://en.wikipedia.org/wiki/Graph_coloring)
-2.  Welsh, D. J. A.; Powell, M. B. (1967), "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)", The Computer Journal, 10 (1): 85-86
+2.  Welsh, D. J. A.; Powell, M. B. (1967),
+    "[An upper bound for the chromatic number of a graph and its application to timetabling problems](https://doi.org/10.1093%2Fcomjnl%2F10.1.85)",
+    The Computer Journal, 10 (1): 85-86
