@@ -220,7 +220,7 @@ C++17 tiếp tục tinh giản loại giá trị:
 C++11 đã mở rộng loại bỏ sao chép sang cả di chuyển; trước C++17, đoạn mã dưới
 đây có thể không tạo thao tác di chuyển nếu trình biên dịch áp dụng RVO.
 
-C++17 yêu cầu giá trị thuần phải không nhất thiết phải được vật chất hóa thành
+Trong C++17, giá trị thuần phải không nhất thiết phải được vật chất hóa thành
 một đối tượng tạm riêng, mà có thể được khởi tạo thẳng vào vùng lưu trữ của đích
 cuối cùng. Trước khi khởi tạo, đối tượng tạm riêng đó còn chưa tồn tại. Vì vậy
 trong C++17, không còn bước tạo rồi trả về một đối tượng tạm riêng, và trường hợp
