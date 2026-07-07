@@ -311,17 +311,17 @@ Lặp lại quy trình trên là có thể thu được đáp án.
 
 ## Bài tập
 
--   [UVa11626 Convex Hull](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
+-   [UVa11626 Bao lồi](https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=78&page=show_problem&problem=2673)
 
--   ["USACO5.1" Fencing the Cows](https://www.luogu.com.cn/problem/P2742)
+-   ["USACO5.1" Rào bò](https://www.luogu.com.cn/problem/P2742)
 
--   [POJ1873 The Fortified Forest](http://poj.org/problem?id=1873)
+-   [POJ1873 Khu rừng kiên cố](http://poj.org/problem?id=1873)
 
--   [POJ1113 Wall](http://poj.org/problem?id=1113)
+-   [POJ1113 Bức tường](http://poj.org/problem?id=1113)
 
--   [USACO22JAN Multiple Choice Test P](https://www.luogu.com.cn/problem/P8101)
+-   [USACO22JAN Bài kiểm tra trắc nghiệm P](https://www.luogu.com.cn/problem/P8101)
 
--   ["SHOI2012" Credit Card Convex Hull](https://www.luogu.com.cn/problem/P3829)
+-   ["SHOI2012" Bao lồi thẻ tín dụng](https://www.luogu.com.cn/problem/P3829)
 
 ## Tài liệu tham khảo và chú thích
 

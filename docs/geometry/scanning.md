@@ -48,9 +48,9 @@ Cần [rời rạc hóa](../misc/discrete.md).
 
 ### Luyện tập
 
--   [POJ 1177 Picture](http://poj.org/problem?id=1177)
--   [POJ 3832 Posters](http://poj.org/problem?id=3832)
--   [Luogu P1856 IOI 1998 USACO 5.5 Rectangle Perimeter Picture](https://www.luogu.com.cn/problem/P1856)
+-   [POJ 1177 Bức tranh](http://poj.org/problem?id=1177)
+-   [POJ 3832 Áp phích](http://poj.org/problem?id=3832)
+-   [Luogu P1856 IOI 1998 USACO 5.5 Bức tranh chu vi hình chữ nhật](https://www.luogu.com.cn/problem/P1856)
     -   Đóng góp của cạnh ngang chính là độ biến thiên của độ dài được phủ.
     -   Tính riêng theo hai hướng có thể tránh phải thảo luận cạnh thẳng đứng.
     -   Khi sắp xếp các thao tác, cần xử lý trường hợp cạnh của hai hình chữ nhật trùng nhau.
@@ -120,16 +120,16 @@ Trước hết rời rạc hóa tất cả truy vấn, dùng cây Fenwick để 
 
 ### Luyện tập
 
--   [Luogu P8593 KDOI-02 Projectile](https://www.luogu.com.cn/problem/P8593), ứng dụng của nghịch thế.
--   [AcWing 4709. Triples](https://www.acwing.com/problem/content/4712/), phiên bản yếu hơn của bài trên, cũng là ứng dụng của nghịch thế.
--   [Luogu P8773 Lanqiao Cup 2022 Provincial A Choose Numbers XOR](https://www.luogu.com.cn/problem/P8773), biến thể của HH's Necklace.
--   [Luogu P8844 Chuanzhi Cup #4 Preliminary Round: Xiao Ka and Falling Leaves](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
+-   [Luogu P8593 KDOI-02 Đạn bắn](https://www.luogu.com.cn/problem/P8593), ứng dụng của nghịch thế.
+-   [AcWing 4709. Bộ ba](https://www.acwing.com/problem/content/4712/), phiên bản yếu hơn của bài trên, cũng là ứng dụng của nghịch thế.
+-   [Luogu P8773 Lanqiao Cup 2022 Provincial A Chọn số XOR](https://www.luogu.com.cn/problem/P8773), biến thể của HH's Necklace.
+-   [Luogu P8844 Chuanzhi Cup #4 Preliminary Round: Xiao Ka và lá rơi](https://www.luogu.com.cn/problem/P8844), chuyển bài toán trên cây thành bài toán trên dãy rồi đếm điểm hai chiều.
 
 Tóm lại, ý tưởng chính của đếm điểm hai chiều là dùng cấu trúc dữ liệu duy trì một chiều, rồi liệt kê chiều còn lại.
 
 ## Tài liệu tham khảo
 
--   [cnblogs/Yang1208: explanation of sweep line with dynamic segment tree](https://www.cnblogs.com/yangsongyi/p/8378629.html)
--   [csdn/riba2534: solution for POJ 1151 Atlantis](https://blog.csdn.net/riba2534/article/details/76851233)
--   [csdn/winddreams: solution for POJ 1151 Atlantis](https://blog.csdn.net/winddreams/article/details/38495093)
--   [A brief discussion of sweep line](https://www.luogu.com.cn/article/f8q5bmnz)
+-   [cnblogs/Yang1208: giải thích sweep line với cây phân đoạn động](https://www.cnblogs.com/yangsongyi/p/8378629.html)
+-   [csdn/riba2534: lời giải POJ 1151 Atlantis](https://blog.csdn.net/riba2534/article/details/76851233)
+-   [csdn/winddreams: lời giải POJ 1151 Atlantis](https://blog.csdn.net/winddreams/article/details/38495093)
+-   [Bàn ngắn về sweep line](https://www.luogu.com.cn/article/f8q5bmnz)

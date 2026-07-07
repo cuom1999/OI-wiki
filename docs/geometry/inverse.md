@@ -261,6 +261,6 @@ Sau khi tìm được các tiếp tuyến chung, lấy ảnh nghịch đảo tr�
 
 ## Tài liệu tham khảo và đọc thêm
 
--   [Inversive geometry - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
+-   [Hình học nghịch đảo - Wikipedia](https://en.wikipedia.org/wiki/Inversive_geometry)
 
 -   [Phép nghịch đảo của đường tròn - blog ACdreamers](https://blog.csdn.net/acdreamers/article/details/16966369)
