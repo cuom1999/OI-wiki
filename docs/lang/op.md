@@ -313,7 +313,7 @@ không gây nhập nhằng.
     đó được [chuyển đổi](../lang/var.md#chuyển-đổi-kiểu) thành giá trị có dấu
     tương ứng; nếu không thì hành vi không xác định. Với số không dấu, dịch trái
     sẽ loại bỏ các bit bị dịch ra khỏi kiểu kết quả. Từ C++20, `a << b` được quy
-    định là giá trị của $a\cdot 2^b$ theo modulo $2^N$ ($N$ là độ rộng bit của
+    định là giá trị của $a\cdot 2^b$ theo môđun $2^N$ ($N$ là độ rộng bit của
     kiểu kết quả), tức dù là số có dấu hay không dấu, dịch trái đều loại bỏ các
     bit bị dịch ra khỏi kiểu kết quả (tức
     [dịch trái số học/dịch trái logic](../math/bit.md#dịch-bit)).

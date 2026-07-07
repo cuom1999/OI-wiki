@@ -386,7 +386,7 @@ Dưới đây dùng `this` để chỉ `BigInteger` hiện tại:
 |        `isProbablePrime(int val)`        | Trả về giá trị boolean biểu thị `this` có phải số nguyên tố hay không |
 |           `nextProbablePrime()`          | Trả về số nguyên tố đầu tiên lớn hơn `this`                      |
 |   `modPow(BigInteger b, BigInteger p)`   | Trả về `this` mũ `b` modulo `p`                                  |
-|        `modInverse(BigInteger p)`        | Trả về nghịch đảo nhân của `this` theo modulo `p`                |
+|        `modInverse(BigInteger p)`        | Trả về nghịch đảo nhân của `this` theo môđun `p`                |
 
 Ví dụ sử dụng:
 

@@ -61,7 +61,7 @@ $$
 
 2.  **Đơn điệu**: nếu $A \subseteq B \subseteq E$ thì $r(A) \leq r(B)$.
 
-3.  **Dưới mô-đun**: với mọi $A, B \subseteq E$, bất đẳng thức $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$ luôn đúng.
+3.  **Tính dưới môđun**: với mọi $A, B \subseteq E$, bất đẳng thức $r(A \cup B) + r(A \cap B) \leq r(A) + r(B)$ luôn đúng.
 
 <span id="các-ví-dụ-điển-hình"></span>
 
