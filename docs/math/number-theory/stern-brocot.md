@@ -109,7 +109,7 @@ Thuật toán xây cây chỉ cần mô phỏng quá trình trên. Dưới đây
 <span id="tính-chất"></span>
 ### Tính chất
 
-Tiếp theo xét các tính chất của cây Stern-Brocot. Nói ngắn gọn, cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) chứa tất cả các phân số hữu tỉ dương tối giản; nó cũng là một [heap](../../ds/binary-heap.md) theo tử số và mẫu số, đồng thời là [cây Descartes](../../ds/cartesian-tree.md) của các cặp gồm mẫu số và tử số. Nếu xét các đoạn được tạo bởi hai đầu mút trái phải trong cách xây dựng bằng bộ ba ở trên, cây Stern-Brocot cũng có thể xem là một [cây đoạn](../../ds/seg.md) trên $[0,\infty]$. Những phát biểu này đều có thể suy ra từ ba tính chất cơ bản sau.
+Tiếp theo xét các tính chất của cây Stern-Brocot. Nói ngắn gọn, cây Stern-Brocot là một [cây tìm kiếm nhị phân](../../ds/bst.md) chứa tất cả các phân số hữu tỉ dương tối giản; nó cũng là một [đống](../../ds/binary-heap.md) theo tử số và mẫu số, đồng thời là [cây Descartes](../../ds/cartesian-tree.md) của các cặp gồm mẫu số và tử số. Nếu xét các đoạn được tạo bởi hai đầu mút trái phải trong cách xây dựng bằng bộ ba ở trên, cây Stern-Brocot cũng có thể xem là một [cây đoạn](../../ds/seg.md) trên $[0,\infty]$. Những phát biểu này đều có thể suy ra từ ba tính chất cơ bản sau.
 
 <span id="tính-đơn-điệu"></span>
 #### Tính đơn điệu

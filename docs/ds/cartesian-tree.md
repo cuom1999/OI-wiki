@@ -4,7 +4,7 @@ author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
 
 Cây Descartes là một loại cây nhị phân, trong đó mỗi nút chứa một cặp khóa-giá trị $(k,w)$.
 Khóa $k$ thỏa mãn tính chất của cây tìm kiếm nhị phân (BST), còn giá trị $w$ thỏa mãn tính chất
-heap.
+đống.
 
 Nếu toàn bộ các cặp $(k,w)$ đã được xác định, đồng thời các khóa $k$ đôi một khác nhau và các giá
 trị $w$ cũng đôi một khác nhau, thì cấu trúc của cây Descartes là duy nhất. Ví dụ:
@@ -15,13 +15,13 @@ trị $w$ cũng đôi một khác nhau, thì cấu trúc của cây Descartes l�
 
 Cây Descartes ở trên tương ứng với việc xem giá trị phần tử của mảng là $w$, còn chỉ số mảng là
 khóa $k$. Khi đó, khóa $k$ thỏa mãn tính chất cây tìm kiếm nhị phân, còn $w$ thỏa mãn tính chất
-min-heap. Đồng thời, theo tính chất của cây tìm kiếm nhị phân, cây Descartes đặc biệt này có một
+đống nhỏ. Đồng thời, theo tính chất của cây tìm kiếm nhị phân, cây Descartes đặc biệt này có một
 đặc điểm quan trọng: các chỉ số nằm trong cùng một cây con tạo thành một đoạn liên tiếp.
 
 Khi dùng cây Descartes trong thi đấu, thường lấy chỉ số mảng làm khóa $k$ trong cặp khóa-giá trị.
 Khi đó, chỉ số mảng $k$ chính là phần thỏa mãn tính chất cây tìm kiếm nhị phân.
 
-Trong phần sau, khi dùng $k,w$, mặc định $k$ thỏa mãn tính chất cây tìm kiếm nhị phân và $w$ thỏa mãn tính chất heap.
+Trong phần sau, khi dùng $k,w$, mặc định $k$ thỏa mãn tính chất cây tìm kiếm nhị phân và $w$ thỏa mãn tính chất đống.
 
 ## Dựng cây Descartes bằng ngăn xếp đơn điệu
 
@@ -81,11 +81,11 @@ for (int i = 1; i <= n; i++) {
     Phần tô bóng chính là hình chữ nhật con lớn nhất trong hình.
 
 ??? note "Ý tưởng giải"
-    Cụ thể, dùng chỉ số làm khóa $k$, dùng $h_i$ làm giá trị $w$ thỏa mãn tính chất min-heap, rồi
+    Cụ thể, dùng chỉ số làm khóa $k$, dùng $h_i$ làm giá trị $w$ thỏa mãn tính chất đống nhỏ, rồi
     dựng một cây Descartes của các cặp $(i,h_i)$.
 
     Khi đó, duyệt từng nút $u$ và lấy $w_u$ (tức chiều cao $h$ của nút $u$) làm chiều cao của hình
-    chữ nhật lớn nhất tương ứng. Vì cây Descartes đã dựng thỏa mãn tính chất min-heap, mọi nút trong
+    chữ nhật lớn nhất tương ứng. Vì cây Descartes đã dựng thỏa mãn tính chất đống nhỏ, mọi nút trong
     cây con của $u$ đều có chiều cao lớn hơn hoặc bằng $w_u$. Mặt khác, các chỉ số trong cây con của
     $u$ tạo thành một đoạn liên tiếp. Vì vậy, chỉ cần biết kích thước cây con là có thể tính diện
     tích hình chữ nhật lớn nhất của đoạn này. Dùng giá trị tính được từ từng nút để cập nhật đáp án.

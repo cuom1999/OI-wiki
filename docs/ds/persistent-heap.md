@@ -1,6 +1,6 @@
-Heap có thể hợp nhất bền vững thường được dùng trong các bài toán tìm $k$ đường đi ngắn nhất.
+Đống có thể hợp nhất bền vững thường được dùng trong các bài toán tìm $k$ đường đi ngắn nhất.
 
-Nếu một loại heap có thể hợp nhất có độ phức tạp được bảo đảm theo từng thao tác, thay vì chỉ theo nghĩa khấu hao,
+Nếu một loại đống có thể hợp nhất có độ phức tạp được bảo đảm theo từng thao tác, thay vì chỉ theo nghĩa khấu hao,
 thì sau khi bền vững hóa, độ phức tạp của một thao tác đơn lẻ vẫn được bảo đảm là $O(\log n)$.
 Nói cách khác, hiệu năng không bị suy giảm trên các bộ dữ liệu đặc biệt.
 
@@ -12,7 +12,7 @@ Trước khi đọc phần này, cần nắm các kiến thức liên quan về 
 
 Nhắc lại quá trình hợp nhất cây lệch trái.
 Giả sử cần hợp nhất hai cây lệch trái có gốc lần lượt là $x,y$,
-và cây được duy trì theo tính chất min-heap:
+và cây được duy trì theo tính chất đống nhỏ:
 
 1.  Nếu một trong hai nút $x,y$ rỗng, trả về $x+y$.
 
