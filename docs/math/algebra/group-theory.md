@@ -652,7 +652,7 @@ Cho nhóm vòng $C_{n}$. Nếu theo định lý cơ bản của số học có $
 
 ## Tài liệu tham khảo và ghi chú
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummitt, D.S. và Foote, R.M. (2004) Đại số trừu tượng. Ấn bản thứ 3, John Wiley & Sons, Inc.
 -   [Milne, J.S. (2021) Lý thuyết nhóm](https://www.jmilne.org/math/CourseNotes/GT.pdf).
 -   [Nhóm (toán học) - Wikipedia](https://en.wikipedia.org/wiki/Group_%28mathematics%29)
 -   [Lý thuyết nhóm - Wikipedia](https://en.wikipedia.org/wiki/Group_theory)

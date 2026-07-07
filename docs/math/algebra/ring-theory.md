@@ -832,7 +832,7 @@ Phân tích cấu trúc nhóm nhân chứa nhiều thông tin hơn điều kiệ
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummitt, D.S. và Foote, R.M. (2004) Đại số trừu tượng. Ấn bản thứ 3, John Wiley & Sons, Inc.
 -   [Số nguyên bậc hai - Wikipedia](https://en.wikipedia.org/wiki/Quadratic_integer)
 -   [Chuỗi lũy thừa hình thức - Wikipedia](https://en.wikipedia.org/wiki/Formal_power_series)
 -   [Nhóm nhân các số nguyên modulo $n$ - Wikipedia](https://en.wikipedia.org/wiki/Multiplicative_group_of_integers_modulo_n)

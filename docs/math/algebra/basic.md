@@ -261,7 +261,7 @@ Cuối cùng, lấy bài toán dưới đây làm ví dụ để minh họa các
 <span id="tài-liệu-tham-khảo-và-chú-thích"></span>
 ## Tài liệu tham khảo và chú thích
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummitt, D.S. và Foote, R.M. (2004) Đại số trừu tượng. Ấn bản thứ 3, John Wiley & Sons, Inc.
 -   [Nửa vành nhiệt đới - Wikipedia](https://en.wikipedia.org/wiki/Tropical_semiring)
 
 [^oi-wiki-not-wikipedia]: Vì [OI Wiki không phải bách khoa toàn thư](../../intro/what-oi-wiki-is-not.md#oi-wiki-không-phải-bách-khoa-toàn-thư).

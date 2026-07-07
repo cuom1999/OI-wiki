@@ -872,7 +872,7 @@ Cuối cùng, dưới đây là một số bài toán áp dụng trực tiếp n
 
 ## Tài liệu tham khảo và chú thích
 
--   Dummitt, D.S. and Foote, R.M. (2004) Abstract Algebra. 3rd Edition, John Wiley & Sons, Inc.
+-   Dummitt, D.S. và Foote, R.M. (2004) Đại số trừu tượng. Ấn bản thứ 3, John Wiley & Sons, Inc.
 -   [Milne, J.S. Trường và lý thuyết Galois.](https://www.jmilne.org/math/CourseNotes/FT.pdf)
 -   [Phân tích đa thức thành nhân tử - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials)
 -   [Phân tích đa thức trên trường hữu hạn thành nhân tử - Wikipedia](https://en.wikipedia.org/wiki/Factorization_of_polynomials_over_finite_fields)
