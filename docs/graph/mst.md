@@ -343,8 +343,8 @@ Cần lưu ý rằng phép so sánh giữa các cạnh thường cần khóa ph�
 
 ## Bài tập
 
--   [HAOI2006 Clever Monkey](https://www.luogu.com.cn/problem/P2504)
--   [SCOI2005 Busy City](https://loj.ac/problem/2149)
+-   [HAOI2006 Khỉ thông minh](https://www.luogu.com.cn/problem/P2504)
+-   [SCOI2005 Thành phố bận rộn](https://loj.ac/problem/2149)
 
 ## Tính duy nhất của cây khung nhỏ nhất
 
@@ -683,12 +683,12 @@ Tìm trên cây tái cấu trúc Kruskal nút nông nhất trên đường từ 
 Nếu cần tìm giá trị lớn nhất của trọng số cạnh nhỏ nhất trên mọi đường đi đơn giữa hai đỉnh trong đồ thị ban đầu,
 thì khi chạy Kruskal, hãy thêm cạnh theo thứ tự trọng số giảm dần.
 
-??? note "[LOJ 137 Minimum Bottleneck Path, enhanced version](https://loj.ac/problem/137)"
+??? note "[LOJ 137 Đường đi cổ chai nhỏ nhất, phiên bản nâng cao](https://loj.ac/problem/137)"
     ```cpp
     --8<-- "docs/graph/code/mst/mst_2.cpp"
     ```
 
-??? note "[NOI 2018 Return Journey](https://uoj.ac/problem/393)"
+??? note "[NOI 2018 Hành trình trở về](https://uoj.ac/problem/393)"
     Trước hết tiền xử lý đường đi ngắn nhất từ mỗi đỉnh đến nút gốc.
 
     Xây dựng cây khung lớn nhất theo độ cao.

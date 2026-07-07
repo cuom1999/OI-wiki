@@ -70,7 +70,7 @@ Khi cài đặt, phạm vi của $h$ là $h \leq 2^{63}-1$, nên trước khi gi
 
 ### Ví dụ 2
 
-???+ note "[ARC084B Small Multiple](https://atcoder.jp/contests/arc084/tasks/arc084_b)"
+???+ note "[ARC084B Bội số nhỏ](https://atcoder.jp/contests/arc084/tasks/arc084_b)"
     Tóm tắt đề bài: cho $n$, cần tìm tổng chữ số của bội số của $n$ có tổng chữ số nhỏ nhất. ($1\le n\le 10^5$)
 
 Bài này có thể giải trong $O(n\log^2 n)$ bằng ba lô đầy đủ tối ưu bằng tích chập vòng, nhưng có thể tìm một thuật toán tuyến tính.
@@ -93,6 +93,6 @@ Mỗi bội số của $n$ đều tương ứng với một đường đi từ �
 
 [NOIP2018 Hệ thống tiền tệ](https://loj.ac/problem/2951)
 
-[AGC057D - Sum Avoidance](https://atcoder.jp/contests/agc057/tasks/agc057_d)
+[AGC057D - Tránh tổng](https://atcoder.jp/contests/agc057/tasks/agc057_d)
 
-[THUPC 2023 Vòng sơ khảo Knapsack](https://loj.ac/p/6872)
+[THUPC 2023 Vòng sơ khảo Ba lô](https://loj.ac/p/6872)

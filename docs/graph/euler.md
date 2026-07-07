@@ -150,7 +150,7 @@ Tìm một chu trình Euler bất kỳ $C$ trong $D$, lấy chữ cái cuối c�
 
 ## Bài tập mẫu
 
-???+ note "[Luogu P2731: Riding the Fences](https://www.luogu.com.cn/problem/P2731)"
+???+ note "[Luogu P2731: Cưỡi ngựa dọc hàng rào](https://www.luogu.com.cn/problem/P2731)"
     Cho một đồ thị vô hướng có 500 đỉnh. Cần tìm một đường đi Euler hoặc chu trình Euler của đồ thị đó. Nếu có nhiều lời giải, cần xuất lời giải nhỏ nhất.
     
     Trong bài này, đường đi Euler hoặc chu trình Euler không cần đi qua mọi đỉnh.
@@ -173,7 +173,7 @@ Tìm một chu trình Euler bất kỳ $C$ trong $D$, lấy chữ cái cuối c�
 
 -   [SGU 101 Domino](https://codeforces.com/problemsets/acmsguru/problem/99999/101)
 
--   [POJ 1780 Code](http://poj.org/problem?id=1780)
+-   [POJ 1780 Mã](http://poj.org/problem?id=1780)
 
 -   [Luogu P1127: Chuỗi từ](https://www.luogu.com.cn/problem/P1127)
 
@@ -181,7 +181,7 @@ Tìm một chu trình Euler bất kỳ $C$ trong $D$, lấy chữ cái cuối c�
 
 -   [Luogu P1341: Cặp chữ cái không thứ tự](https://www.luogu.com.cn/problem/P1341)
 
--   [Luogu P6066 \[USACO05JAN\] Watchcow S](https://www.luogu.com.cn/problem/P6066)
+-   [Luogu P6066 \[USACO05JAN\] Bò canh gác S](https://www.luogu.com.cn/problem/P6066)
 
 -   [Luogu P6628 \[Kỳ thi liên tỉnh 2020, đề B\] Con đường hoa đinh hương](https://www.luogu.com.cn/problem/P6628)
 

@@ -19,7 +19,7 @@ Nếu dùng Dijkstra tối ưu bằng hàng đợi ưu tiên, do tối đa đưa
 
 ### Cài đặt
 
-??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk)"
+??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - Walk ngắn thứ k](https://judge.yosupo.jp/problem/k_shortest_walk)"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-1.cpp"
     ```
@@ -82,14 +82,14 @@ Vì độ phức tạp xây dựng cây đường đi ngắn nhất và xây d�
 
 ### Cài đặt
 
-??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - K-Shortest Walk](https://judge.yosupo.jp/problem/k_shortest_walk)"
+??? example "Cài đặt tham khảo cho bài mẫu [Library Checker - Walk ngắn thứ k](https://judge.yosupo.jp/problem/k_shortest_walk)"
     ```cpp
     --8<-- "docs/graph/code/k-shortest-walk/k-shortest-walk-2.cpp"
     ```
 
 ## Bài tập
 
--   [SDOI2010 Magic Pig Academy](https://www.luogu.com.cn/problem/P2483)
+-   [SDOI2010 Học viện lợn ma thuật](https://www.luogu.com.cn/problem/P2483)
 
 ## Tài liệu tham khảo và ghi chú
 
