@@ -174,11 +174,12 @@ MkDocs source layout intact.
   direct modular-root algorithm, improved Tonelli-Shanks derivation and
   complexity analysis, general-case handling, and footnotes.
 - `docs/math/number-theory/dirichlet.md`,
-  `docs/math/number-theory/mobius.md`, `docs/math/number-theory/du.md`,
+  `docs/math/number-theory/mobius.md`, `docs/math/number-theory/hyperbola.md`,
   `docs/math/number-theory/powerful-number.md`,
   `docs/math/number-theory/min-25.md`, `docs/math/number-theory/zhou.md`,
   `docs/math/number-theory/meissel-lehmer.md`: translated multiplicative
-  function, Möbius inversion, Dujiao/Powerful Number/Min_25/Zhouge sieve, and
+  function, Möbius inversion, the Dirichlet hyperbola method,
+  Dujiao/Powerful Number/Min_25/Zhouge sieve, and
   Meissel-Lehmer prime-counting material, plus explanatory comments in included
   snippets.
 - `docs/math/number-theory/euclidean.md`,
@@ -493,8 +494,11 @@ MkDocs source layout intact.
 - `mkdocs.yml`: Vietnamese project metadata and translated top-level
   navigation labels for translated sections and pages.
 
-The rest of `docs/` is intentionally left in the upstream structure and should
-be translated page by page.
+All Markdown articles under `docs/` have been translated into Vietnamese. The
+repository structure, source-code identifiers, official names, URLs, and other
+non-article assets may remain in their upstream language where translating them
+would reduce compatibility or fidelity. The translation was synchronized with
+upstream `master` through 2026-09-01 and proofread after the synchronization.
 
 ## Translation Conventions
 

@@ -550,7 +550,7 @@ Về bản chất, đây là bài toán quy hoạch tuyến tính khả thi, tro
     \end{array}
     $$
     
-    Bảng này gần giống bảng đơn hình rút gọn thông thường, chỉ khác là biến ở hàng cuối được đánh dấu dấu âm, biểu thị hàng đó vẫn chứa biến nhân tạo, tức biến dư ban đầu vẫn chưa khả thi. Dùng bảng này, quá trình xoay trục như sau:
+    Bảng này gần giống bảng đơn hình rút gọn thông thường, chỉ khác là biến ở hàng cuối mang dấu âm, biểu thị hàng đó vẫn chứa biến nhân tạo, tức biến dư ban đầu vẫn chưa khả thi. Dùng bảng này, quá trình xoay trục như sau:
     
     1.  Nếu $L=\varnothing$, thuật toán dừng.
     2.  Ngược lại, chọn biến vào cơ sở $x_{N_i}$ theo điều kiện chi phí rút gọn ở hàng $0$ âm. Nếu không tồn tại, bài toán gốc không khả thi và thuật toán dừng.

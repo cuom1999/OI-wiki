@@ -1,4 +1,4 @@
-author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky
+author: StudyingFather, Backl1ght, countercurrent-time, Ir1d, greyqz, MicDZ, ouuan, Linky, yinqf
 
 ## Thuật toán Mo trên cây theo thứ tự ngoặc
 
@@ -10,14 +10,36 @@ Cụ thể làm như sau.
 
 ### Quy trình
 
-DFS cây. Khi DFS tới đỉnh x thì `push_back(x)`, khi DFS x xong thì `push_back(-x)`. Khi di chuyển con trỏ:
+Dùng DFS để duy trì thứ tự ngoặc của cây: thêm $x$ vào dãy khi đi vào đỉnh $x$
+và thêm $x$ lần nữa khi rời đỉnh đó. Dãy thu được có độ dài $2N$. Gọi $st_x$
+là thời điểm đi vào $x$ và $ed_x$ là thời điểm rời $x$.
 
--   Giá trị mới được thêm là x --->`add(x)`
--   Giá trị mới được thêm là -x --->`del(x)`
--   Giá trị mới bị xóa là x --->`del(x)`
--   Giá trị mới bị xóa là -x --->`add(x)`
+Theo tính chất của thứ tự ngoặc, với đường đi $u\to v$ trên cây (không mất
+tính tổng quát, giả sử $st_u\le st_v$):
 
-Như vậy, cây đã được biến thành một dãy.
+-   Nếu $\operatorname{LCA}(u,v)=u$, mỗi đỉnh trên đường đi xuất hiện đúng một
+    lần trong đoạn $[st_u,st_v]$; các đỉnh không thuộc đường đi xuất hiện không
+    lần hoặc hai lần.
+-   Nếu $\operatorname{LCA}(u,v)\ne u$, mỗi đỉnh trên đường đi trừ
+    $\operatorname{LCA}(u,v)$ xuất hiện đúng một lần trong đoạn $[ed_u,st_v]$;
+    các đỉnh không thuộc đường đi xuất hiện không lần hoặc hai lần. Riêng LCA
+    xuất hiện không lần và phải được xử lý riêng.
+
+Vì vậy, khi chạy thuật toán Mo, bất kể gặp thời điểm vào hay ra một đỉnh, bản
+chất của thao tác vẫn chỉ là thay đổi số lần đỉnh đó xuất hiện trong đoạn hiện
+tại. Đỉnh xuất hiện không lần hoặc hai lần không thuộc tập đỉnh trên đường đi;
+đỉnh xuất hiện đúng một lần thì thuộc tập này. Do đó, khi hai con trỏ Mo đã tới
+đoạn tương ứng, tập đang duy trì gần như chính là tập đỉnh trên đường đi
+$u\to v$.
+
+Trong cài đặt, chỉ cần duy trì số lần xuất hiện của mỗi đỉnh theo môđun $2$.
+Mỗi lần dịch chuyển con trỏ—dù là thêm hay xóa—đều tương đương với đảo trạng
+thái xuất hiện của đỉnh đó.
+
+Với truy vấn có $\operatorname{LCA}(u,v)\ne u$, sau khi đưa hai con trỏ vào
+đúng vị trí, tạm thời thêm LCA vào tập bằng cách đảo trạng thái, tính và lưu đáp
+án, rồi đảo trạng thái lần nữa để loại LCA ra. Nhờ vậy truy vấn này không ảnh
+hưởng tới việc dịch chuyển con trỏ cho các truy vấn sau.
 
 ### Ví dụ
 

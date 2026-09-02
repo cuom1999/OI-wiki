@@ -782,7 +782,7 @@ Sau đó, xử lý trường hợp lũy thừa của số nguyên tố lẻ.
     nghĩa hàm Carmichael và định lý Euler,
 
     $$
-    p^{e-1}(p-1) = [\delta_m(g),p^{e-1}]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
+    p^{e-1}(p-1) \mid [\delta_m(1+p),\delta_m(g)]\mid\lambda(m) \mid \varphi(m) = p^{e-1}(p-1).
     $$
 
     Do đó $\lambda(m)=p^{e-1}(p-1)$.

@@ -338,7 +338,7 @@ Hàm sinh Dirichlet có thể dùng để biểu diễn hàm nhân tính dưới
 
 Ví dụ, trong quá trình dùng sàng Du, để tính tổng tiền tố của một hàm nhân tính $f$, cần tìm một hàm nhân tính khác $g$ sao cho cả $f\ast g$ và $g$ đều có thể tính tổng tiền tố nhanh. Có thể dùng hàm sinh Dirichlet để suy ra quá trình này.
 
-Lấy bài ví dụ [Luogu P3768 Bài toán đơn giản](../number-theory/du.md#bài-toán-2) trong mục sàng Du làm ví dụ. Cần xây dựng hàm số học $g(n)$ thỏa điều kiện trên cho $f(n)=n^2\varphi(n)$. Vì $f$ là hàm nhân tính, hàm sinh Dirichlet của nó là
+Lấy bài ví dụ [Luogu P3768 - Bài toán đơn giản](./hyperbola.md#ví-dụ) trong mục sàng Dujiao làm ví dụ. Cần xây dựng hàm số học $g(n)$ thỏa điều kiện trên cho $f(n)=n^2\varphi(n)$. Vì $f$ là hàm nhân tính, hàm sinh Dirichlet của nó là
 
 $$
 F(s) = \prod_{p\in\mathbf P}\left(1 + \sum_{k=1}^{\infty}\dfrac{p^{3k-1}(p-1)}{p^{ks}}\right) = \prod_{p\in\mathbf P}\dfrac{1-p^{2-s}}{1-p^{3-s}} = \dfrac{\zeta(s-3)}{\zeta(s-2)}.

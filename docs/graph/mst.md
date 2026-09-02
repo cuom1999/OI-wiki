@@ -150,7 +150,7 @@ mỗi lần cần tìm đỉnh có khoảng cách nhỏ nhất, có thể tìm b
 Cách tối ưu bằng đống tương tự tối ưu bằng đống của Dijkstra.
 Tuy nhiên, nếu dùng đống nhị phân hoặc các loại đống không hỗ trợ thao tác decrease-key trong $O(1)$,
 độ phức tạp sẽ không tốt hơn Kruskal và hằng số cũng lớn hơn.
-Vì vậy, trong trường hợp thông thường thường chọn Kruskal.
+Vì vậy, trong trường hợp thông thường, ta thường chọn Kruskal.
 Trên đồ thị dày, đặc biệt là đồ thị đầy đủ, độ phức tạp của Prim vét cạn tốt hơn Kruskal,
 nhưng khi chạy thực tế chưa chắc nhanh hơn.
 

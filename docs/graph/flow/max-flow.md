@@ -97,7 +97,7 @@ Các cách cài đặt khác nhau của tăng luồng Ford–Fulkerson có độ
 
 -   Với đường tăng luồng $p$, tính giá trị nhỏ nhất của dung lượng còn dư trên các cạnh mà $p$ đi qua: $\Delta = \min_{(u, v) \in p} c_f(u, v)$. Cộng $\Delta$ luồng vào mỗi cạnh trên $p$, đồng thời hoàn $\Delta$ luồng trên các cạnh ngược của chúng, làm luồng cực đại tăng thêm $\Delta$.
 
--   Vì luồng đã thay đổi, thu được $G_f$ mới. Lặp lại quá trình trên trên $G_f$ mới cho đến khi không còn đường tăng luồng, khi đó giá trị luồng không tăng thêm nữa.
+-   Vì luồng đã thay đổi, ta thu được $G_f$ mới. Lặp lại quá trình trên với $G_f$ này cho đến khi không còn đường tăng luồng; khi đó giá trị luồng không thể tăng thêm nữa.
 
 Thuật toán trên chính là thuật toán Edmonds–Karp.
 

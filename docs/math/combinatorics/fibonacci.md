@@ -201,7 +201,7 @@ $$
 <span id="mã-hóa-fibonacci"></span>
 ## Mã hóa Fibonacci
 
-Có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số số Fibonacci:
+Có thể dùng dãy Fibonacci để mã hóa số nguyên dương. Theo [định lý Zeckendorf](https://en.wikipedia.org/wiki/Zeckendorf%27s_theorem), mọi số tự nhiên $n$ đều có thể được biểu diễn duy nhất thành tổng của một số hạng Fibonacci:
 
 $$
 N = F_{k_1} + F_{k_2} + \ldots + F_{k_r}

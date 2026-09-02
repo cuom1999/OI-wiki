@@ -58,15 +58,17 @@ Suy ra điều phải chứng minh.
 
 Thuật toán Tarjan dựa trên [tìm kiếm theo chiều sâu](./dfs.md) trên đồ thị.
 Mỗi thành phần liên thông có thể được xem như một cây con trong cây tìm kiếm.
-Trong quá trình tìm kiếm, thuật toán duy trì một ngăn xếp và đưa các đỉnh chưa xử lý trong cây tìm kiếm vào ngăn xếp.
+Trong quá trình tìm kiếm, thuật toán duy trì một ngăn xếp, đưa các đỉnh chưa xử
+lý trong cây tìm kiếm vào đó và lấy ra những đỉnh đã xác định xong đáp án.
 
 Trong thuật toán Tarjan, với mỗi đỉnh $u$ cần duy trì các biến sau:
 
 1.  $\textit{dfn}_u$: thứ tự mà đỉnh $u$ được thăm trong quá trình DFS.
-2.  $\textit{low}_u$: giá trị $\textit{dfn}$ nhỏ nhất của một đỉnh đã nằm trong ngăn xếp mà cây con của $u$ có thể lần ngược tới.
-    Gọi cây con gốc $u$ là $\textit{Subtree}_u$.
-    $\textit{low}_u$ được định nghĩa là giá trị $\textit{dfn}$ nhỏ nhất trong hai nhóm đỉnh.
-    Nhóm thứ nhất là các đỉnh thuộc $\textit{Subtree}_u$; nhóm thứ hai là các đỉnh có thể đến được từ $\textit{Subtree}_u$ thông qua một cạnh không nằm trong cây tìm kiếm.
+2.  $\textit{low}_u$: giá trị $\textit{dfn}$ nhỏ nhất của một đỉnh đang nằm
+    trong ngăn xếp mà cây con của $u$ có thể lần ngược tới. Gọi cây con gốc
+    $u$ trong cây tìm kiếm là $\textit{Subtree}_u$. Khi đó $\textit{low}_u$
+    là giá trị $\textit{dfn}$ nhỏ nhất của các đỉnh đang nằm trong ngăn xếp có
+    thể đến được từ $\textit{Subtree}_u$ qua một cạnh không thuộc cây tìm kiếm.
 
 Giá trị dfn của các đỉnh trong cây con của một đỉnh đều lớn hơn dfn của chính đỉnh đó.
 
@@ -82,6 +84,14 @@ Trong quá trình tìm kiếm, với đỉnh $u$ và một đỉnh kề $v$ củ
 2.  $v$ đã được thăm và vẫn nằm trong ngăn xếp: theo định nghĩa của giá trị low, dùng $\textit{dfn}_v$ để cập nhật $\textit{low}_u$.
 3.  $v$ đã được thăm nhưng không còn nằm trong ngăn xếp: điều này cho biết quá trình tìm kiếm ở $v$ đã kết thúc và thành phần liên thông chứa $v$ đã được xử lý, nên không cần thao tác gì thêm.
 
+Với một thành phần liên thông mạnh, có đúng một đỉnh $u$ sao cho
+$\textit{dfn}_u=\textit{low}_u$. Đỉnh này là đỉnh đầu tiên của thành phần đó
+được thăm trong DFS: dfn và low của nó là nhỏ nhất và không thể bị một đỉnh
+khác trong cùng thành phần làm giảm thêm.
+
+Do đó, khi quay lui, nếu $\textit{dfn}_u=\textit{low}_u$ thì $u$ cùng các đỉnh
+nằm phía trên nó trong ngăn xếp tạo thành một SCC.
+
 Viết thuật toán trên thành giả mã:
 
 ???+ note "Cài đặt"
@@ -96,12 +106,14 @@ Viết thuật toán trên thành giả mã:
                 low[u]=min(low[u],low[v]) // Quay lui
             ngược lại nếu v đang nằm trong ngăn xếp thì
                 low[u]=min(low[u],dfn[v])
+        nếu dfn[u] bằng low[u] thì
+            ++scccnt
+            trong khi đỉnh ngăn xếp khác u thì
+                scc[đỉnh ngăn xếp] = scccnt
+                lấy đỉnh ngăn xếp ra
+            scc[u] = scccnt
+            lấy u còn lại ra khỏi ngăn xếp
     ```
-
-Với một thành phần liên thông mạnh, có đúng một đỉnh $u$ sao cho $\textit{dfn}_u=\textit{low}_u$.
-Đỉnh này là đỉnh đầu tiên của thành phần liên thông mạnh đó được thăm trong quá trình DFS, vì dfn và low của nó là nhỏ nhất, không bị các đỉnh khác trong cùng thành phần liên thông mạnh làm giảm thêm.
-
-Do đó, trong quá trình quay lui, cần kiểm tra điều kiện $\textit{dfn}_u=\textit{low}_u$. Nếu điều kiện này đúng, thì $u$ cùng các đỉnh nằm phía trên $u$ trong ngăn xếp tạo thành một SCC.
 
 ### Cài đặt
 
@@ -228,7 +240,7 @@ Sau hai lần DFS, tìm được các thành phần liên thông mạnh. Độ p
       sccCnt = 0;
       for (int i = 1; i <= n; ++i)
         if (!vis[i]) dfs1(i);
-      for (int i = n; i >= 1; --i)
+      for (int i = n - 1; i >= 0; --i)
         if (!color[s[i]]) {
           ++sccCnt;
           dfs2(s[i]);
@@ -258,7 +270,7 @@ Sau hai lần DFS, tìm được các thành phần liên thông mạnh. Độ p
         for i in range(1, n + 1):
             if vis[i] == False:
                 dfs1(i)
-        for i in range(n, 0, -1):
+        for i in range(n - 1, -1, -1):
             if color[s[i]] == False:
                 sccCnt = sccCnt + 1
                 dfs2(s[i])

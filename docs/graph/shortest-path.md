@@ -525,7 +525,7 @@ Dưới đây đồng thời đưa ra cài đặt đơn giản $O(n^2)$ và cài
     === "Python"
         ```python
         class Edge:
-            def __init(self, v=0, w=0):
+            def __init__(self, v=0, w=0):
                 self.v = v
                 self.w = w
         

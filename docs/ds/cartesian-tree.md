@@ -1,4 +1,4 @@
-author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer
+author: sshwy, zhouyuyang2002, StudyingFather, Ir1d, ouuan, Enter-tainer, AtomAlpaca
 
 ## Giới thiệu
 
@@ -29,8 +29,9 @@ Trong phần sau, khi dùng $k,w$, mặc định $k$ thỏa mãn tính chất c�
 
 Xét việc lần lượt chèn các phần tử vào cây Descartes hiện tại theo thứ tự tăng dần của $k$.
 
-Với một cây Descartes, "chuỗi phải" là chuỗi thu được bằng cách bắt đầu từ nút gốc rồi liên tục đi
-theo con phải cho đến một nút lá. Sau khi chèn một nút, nút đó luôn nằm trên chuỗi phải.
+Với một cây Descartes, "chuỗi phải" là chuỗi thu được bằng cách bắt đầu từ nút
+gốc rồi liên tục đi theo con phải cho đến một nút không có con phải. Sau khi
+chèn một nút, nút đó luôn nằm trên chuỗi phải.
 
 Vì các nút được chèn theo thứ tự tăng dần của $k$, mà $k$ là khóa thỏa mãn tính chất cây tìm kiếm
 nhị phân, nút mới chèn nằm ở **đầu mút phải** của cây. Nút này không thể là con trái và cũng không

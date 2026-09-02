@@ -820,7 +820,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
     // DLEN ghi nhận số chữ số được gộp
     struct Big {
       int a[MAXSIZE], len;
-      bool flag;  // Đánh dấu dấu '-'
+      bool flag;  // Ghi nhận dấu '-'
     
       Big() {
         len = 1;
@@ -987,7 +987,7 @@ Phép nhân đa thức thông thường vẫn có độ phức tạp thời gian
     }
     
     Big Big::operator^(const int& n) const {
-      Big t(n), res(1);
+      Big t(*this), res(1);
       int y = n;
       while (y) {
         if (y & 1) res = res * t;

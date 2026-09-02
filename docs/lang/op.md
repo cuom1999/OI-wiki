@@ -243,7 +243,7 @@ có chỉnh sửa.
 | `-` | dấu âm | `int i = -1;` | có thể |
 | `!` | phủ định logic | `if (!done) …` | có thể |
 | `~` | phủ định theo bit | `flags = ~flags;` | có thể |
-| `(type)` | ép kiểu kiểu C | `int i = (int) floatNum;` | có thể |
+| `(type)` | ép kiểu theo cú pháp C | `int i = (int) floatNum;` | có thể |
 | `*` | lấy giá trị qua con trỏ | `int data = *intPtr;` | có thể |
 | `&` | lấy địa chỉ của giá trị | `int *intPtr = &data;` | có thể |
 | `sizeof` | trả về kích thước bộ nhớ của kiểu | `int size = sizeof floatNum; int size = sizeof(float);` | không thể |

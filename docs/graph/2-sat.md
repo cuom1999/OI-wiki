@@ -129,7 +129,7 @@ rồi co SCC và tô màu để kiểm tra.
 
 Theo [Wu Yu - Solving 2-SAT Problems Using Symmetry][wu-yu-2sat],
 để xuất một nghiệm khả thi của bài toán 2-SAT,
-chỉ cần chọn các đỉnh từ dưới lên trên trên DAG thu được sau khi Tarjan co SCC.
+chỉ cần chọn các đỉnh từ dưới lên trên DAG thu được sau khi Tarjan co SCC.
 
 Khi cài đặt cụ thể,
 có thể dựng đồ thị ngược của DAG rồi sắp xếp topo trên đồ thị ngược.

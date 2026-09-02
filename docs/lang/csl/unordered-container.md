@@ -15,7 +15,7 @@ Từ chuẩn C++11, bốn bộ chứa kết hợp không thứ tự được cà
     `tr1::unordered_map`).
 
 Chúng có nhiều điểm chung với các bộ chứa kết hợp tương ứng về chức năng, hàm
-thành viên, v.v. Khác biệt lớn nhất là các bộ chứa kết hợp thông thường thường
+thành viên, v.v. Khác biệt lớn nhất là các bộ chứa kết hợp thông thường
 được cài đặt bằng cây đỏ-đen, nên các phần tử bên trong được sắp xếp theo một
 thứ tự xác định; còn bộ chứa kết hợp không thứ tự lưu phần tử bằng bảng băm, nên
 không bảo đảm thứ tự duyệt phần tử. Thứ tự duyệt cũng có thể thay đổi sau khi bộ

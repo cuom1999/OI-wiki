@@ -128,12 +128,10 @@ void build_heap_1() {
 }
 ```
 
-Lý do: với một đỉnh ở tầng thứ $k$, độ phức tạp của điều chỉnh lên là $O(k)$ chứ
-không phải $O(\log n)$.
-
-Tổng độ phức tạp: $\log 1 + \log 2 + \cdots + \log n = \Theta(n \log n)$.
-
-(Điều này đã được chứng minh trong phần "sắp xếp dựa trên so sánh".)
+Cách này về bản chất vẫn là chèn từng phần tử một, chỉ khác ở chỗ các phần tử đã
+được đặt sẵn trong mảng nên hằng số có thể nhỏ hơn. Trong trường hợp xấu nhất,
+độ phức tạp thỏa mãn truy hồi $T(n)=T(n-1)+\Theta(\log n)$; cộng dồn cho ta
+$T(n)=\Theta(n\log n)$.
 
 <span id="cách-2-dùng-điều-chỉnh-xuống"></span>
 
@@ -150,23 +148,13 @@ void build_heap_2() {
 Một cách hiểu khác là mỗi lần "gộp" hai đống đã được điều chỉnh xong; điều này
 cho thấy tính đúng đắn của thuật toán.
 
-Lưu ý rằng độ phức tạp của điều chỉnh xuống là $O(\log n - k)$. Ngoài ra, các
-đỉnh lá không cần điều chỉnh, nên có thể bắt đầu từ vị trí xấp xỉ $n/2$ trong
-dãy. Cách này giảm được một phần hằng số nhưng không ảnh hưởng đến độ phức tạp
-tiệm cận.
+Các nút lá không cần điều chỉnh, vì vậy có thể bắt đầu từ vị trí xấp xỉ $n/2$
+trong dãy để giảm hằng số. Theo cách hiểu mỗi bước gộp hai đống đã được điều
+chỉnh, độ phức tạp thỏa mãn
+$T(n)=2T\left(\dfrac n2\right)+O(\log n)$. Theo định lý chính,
+$T(n)=\Theta(n)$.
 
-???+ note "Chứng minh"
-    $$
-    \begin{aligned}
-    \text{Tổng độ phức tạp} & = n \log n - \log 1 - \log 2 - \cdots - \log n \\
-    & \leq n \log n - 0 \times 2^0 - 1 \times 2^1 -\cdots - (\log n - 1) \times \frac{n}{2} \\\
-    & = n \log n - (n-1) - (n-2) - (n-4) - \cdots - (n-\frac{n}{2}) \\
-    & = n \log n - n \log n + 1 + 2 + 4 + \cdots + \frac{n}{2} \\
-    & = n - 1 \\ &  = O(n)
-    \end{aligned}
-    $$
-
-Sở dĩ có thể xây đống trong $O(n)$ là vì tính chất đống khá yếu, đống nhị phân
+Sở dĩ có thể xây đống trong $\Theta(n)$ là vì tính chất đống khá yếu, đống nhị phân
 không phải là duy nhất.
 
 Nếu yêu cầu mạnh như trong bài toán sắp xếp, chưa chắc có thể đạt được cách xây

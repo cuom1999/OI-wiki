@@ -440,7 +440,7 @@ Chạy lệnh `wsl -l -v` để xem phiên bản WSL hiện là 1; nếu cần d
     -   Gói cập nhật nhân cho [x64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi).
     -   Gói cập nhật nhân cho [ARM64/AArch64](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_arm64.msi).
 
-3.  Thiết lập phiên bản bản phân phối
+3.  Thiết lập phiên bản của bản phân phối
 
     Chạy lệnh: `wsl --set-version <tên_bản_phân_phối> <số_phiên_bản>`
 

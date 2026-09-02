@@ -1,4 +1,4 @@
-author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest
+author: 383494, CCXXXI, chunibyo-wly, Enter-tainer, Great-designer, megakite, Menci, shawlleyw, shuzhouliu, StudyingFather, Tiphereth-A, untitledunrevised, c-forrest, Resorie
 
 <span id="mở-đầu"></span>
 
@@ -180,73 +180,51 @@ Trước hết, cần giải quyết bài toán tính các phân số tiệm c�
     $$
 
 ??? note "Chứng minh"
-    Tử số và mẫu số của phân số tiệm cận $x_k$ có thể xem là các đa thức nhiều biến theo $a_0, a_1, \cdots, a_k$:
-    
+    Mỗi phân số tiệm cận là một liên phân số hữu hạn. Việc tính một liên phân
+    số hữu hạn tương đương với thuật toán Euclid, nhưng thuật toán Euclid tạo
+    ra một hậu tố, còn ở đây ta cần lần lượt nối thêm hệ số vào tiền tố. Ta
+    biểu diễn một bước bằng ma trận
+
     $$
-    r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{Q_k(a_0,a_1, \cdots, a_k)}.
+    M(a)=\begin{pmatrix}a&1\\1&0\end{pmatrix},\qquad
+    M(a)\begin{pmatrix}u\\v\end{pmatrix}
+    =\begin{pmatrix}au+v\\u\end{pmatrix},\qquad
+    \frac{au+v}{u}=a+\frac{1}{u/v}.
     $$
-    
-    Theo định nghĩa phân số tiệm cận, có
-    
+
+    Vectơ $(a_k,1)^{\mathrm T}$ biểu diễn liên phân số hữu hạn $[a_k]$.
+    Nhân lần lượt các ma trận từ bên trái tương đương với việc nối các hệ số
+    vào bên trái, nên
+
     $$
-    r_k = a_0 + \frac{1}{[a_1,a_2,\cdots, a_k]}= a_0 + \frac{Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)} = \frac{a_0 P_{k-1}(a_1, \dots, a_k) + Q_{k-1}(a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}.
+    M(a_0)M(a_1)\cdots M(a_{k-1})
+    \begin{pmatrix}a_k\\1\end{pmatrix}
+    =\begin{pmatrix}p_k\\q_k\end{pmatrix}.
     $$
-    
-    So sánh với biểu thức trên, có thể đặt $Q_k(a_0, \cdots, a_k) = P_{k-1}(a_1, \cdots, a_k)$; khi đó phân số tiệm cận có thể viết thành
-    
+
+    Định thức của tích ma trận bên trái bằng $(-1)^k$, vì vậy phép biến đổi
+    này đưa vectơ nguyên thủy $(a_k,1)^{\mathrm T}$ thành
+    $(p_k,q_k)^{\mathrm T}$; do đó $p_k$ và $q_k$ nguyên tố cùng nhau. Bổ
+    sung cột thứ hai của tích ma trận, ta được
+
     $$
-    r_k = \frac{P_k(a_0, a_1, \cdots, a_k)}{P_{k-1}(a_1, \cdots, a_k)}
+    M(a_0)M(a_1)\cdots M(a_k)
+    =\begin{pmatrix}p_k&p_{k-1}\\q_k&q_{k-1}\end{pmatrix}.
     $$
-    
-    và đa thức $P_k$ có quan hệ truy hồi
-    
+
+    Cuối cùng, tách ma trận cuối khỏi tích:
+
     $$
-    P_k(a_0, \cdots, a_k) = a_0 P_{k-1}(a_1, \cdots, a_k) + P_{k-2}(a_2, \cdots, a_k).
+    \begin{aligned}
+    \begin{pmatrix}p_{k-1}&p_{k-2}\\q_{k-1}&q_{k-2}\end{pmatrix}M(a_k)
+    &=\begin{pmatrix}p_k&p_{k-1}\\q_k&q_{k-1}\end{pmatrix},\\
+    p_k&=a_kp_{k-1}+p_{k-2},\qquad
+    q_k=a_kq_{k-1}+q_{k-2}.
+    \end{aligned}
     $$
-    
-    Vì
-    
-    $$
-    r_0 = a_0,\ r_1 = a_0+\dfrac{1}{a_1} = \frac{a_0a_1+1}{a_1},
-    $$
-    
-    nên điểm bắt đầu của truy hồi là
-    
-    $$
-    P_0(a_0) = a_0,\ P_1(a_0,a_1) = a_0a_1 + 1.
-    $$
-    
-    Nếu đặt
-    
-    $$
-    P_{-1} = 1,\ P_{-2} = 0,
-    $$
-    
-    có thể kiểm tra rằng quan hệ truy hồi trên cũng đúng với $k=0,1$. Điều này tương đương với việc quy ước các phân số hình thức $r_{-1}=\dfrac{1}{0}$ và $r_{-2}=\dfrac{0}{1}$.
-    
-    Dãy đa thức $P_k$ thỏa mãn quan hệ truy hồi trên được gọi là **continuant**[^continuant]. Nó có thể được viết dưới dạng định thức:
-    
-    $$
-    P_k(a_0,\cdots,a_k)=\det
-    \begin{pmatrix}
-    a_0 & 1 & 0 & \cdots & 0 \\
-    -1 & a_1 & 1 & \ddots & \vdots \\
-    0 & -1 & a_2 & \ddots & 0 \\
-    \vdots & \ddots & \ddots & \ddots & 1 \\
-    0 & \cdots & 0 & -1 & a_k
-    \end{pmatrix}.
-    $$
-    
-    Đây là định thức của một [ma trận tam đường chéo](https://en.wikipedia.org/wiki/Tridiagonal_matrix). Khai triển từ góc trên trái, có thể kiểm tra rằng nó có quan hệ truy hồi và điều kiện đầu như trên. Ngược lại, khai triển từ góc dưới phải lại thu được quan hệ truy hồi
-    
-    $$
-    P_k(a_0, \cdots, a_k) = a_k P_{k-1}(a_0, \cdots, a_{k-1}) + P_{k-2}(a_0, \cdots, a_{k-2}),
-    $$
-    
-    Điều này chứng minh công thức cần chứng minh.
 
 ???+ info "Ký hiệu"
-    Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Phần sau sẽ chỉ ra rằng cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
+    Khi bài viết ký hiệu phân số tiệm cận $x_k$ là $\dfrac{p_k}{q_k}$, luôn mặc định tử số $p_k$ và mẫu số $q_k$ được cho bởi quan hệ truy hồi trên. Chứng minh vừa rồi cho thấy cách này luôn cho biểu diễn tối giản của phân số tiệm cận.
 
 Công thức truy hồi này cho thấy
 
@@ -308,6 +286,167 @@ Dùng quan hệ truy hồi trong phần này, thu được thuật toán tính p
         ```py
         --8<-- "docs/math/code/continued-fraction/diophantine.py:convergents"
         ```
+
+### Continuant
+
+**Continuant** xuất hiện tự nhiên trong truy hồi của các phân số tiệm
+cận.[^continuant]
+
+???+ abstract "Continuant"
+    Với mọi dãy hữu hạn, định nghĩa
+
+    -   $K(\varnothing)=1$ và $K(a)=a$;
+    -   với $n\ge1$,
+        $K(a_0,\ldots,a_n)=a_nK(a_0,\ldots,a_{n-1})+K(a_0,\ldots,a_{n-2})$.
+
+Nếu $x=[a_0,a_1,a_2,\ldots]$ thì phân số tiệm cận
+$p_k/q_k=[a_0,\ldots,a_k]$ có dạng
+
+$$
+p_k=K(a_0,\ldots,a_k),\qquad q_k=K(a_1,\ldots,a_k).
+$$
+
+Do đó
+
+$$
+\frac{K(a_0,\ldots,a_k)}{K(a_1,\ldots,a_k)}=[a_0,\ldots,a_k]
+$$
+
+và, với $k\ge1$,
+
+$$
+M(a_0)\cdots M(a_k)=
+\begin{pmatrix}
+K(a_0,\ldots,a_k)&K(a_0,\ldots,a_{k-1})\\
+K(a_1,\ldots,a_k)&K(a_1,\ldots,a_{k-1})
+\end{pmatrix}.
+$$
+
+???+ note "Tính đối xứng"
+    Với mọi dãy hữu hạn $(a_0,\ldots,a_n)$,
+    $K(a_0,\ldots,a_n)=K(a_n,\ldots,a_0)$.
+
+??? note "Chứng minh"
+    Mỗi $M(a)$ đối xứng. Chuyển vị tích cho
+    $(M(a_0)\cdots M(a_n))^{\mathrm T}=M(a_n)\cdots M(a_0)$; so sánh phần tử
+    góc trên trái là đủ.
+
+Từ tính đối xứng còn có truy hồi ngược
+
+$$
+K(a_0,\ldots,a_n)=a_0K(a_1,\ldots,a_n)+K(a_2,\ldots,a_n).
+$$
+
+??? info "Biểu diễn định thức"
+    $$
+    K(a_0,\ldots,a_k)=\det
+    \begin{pmatrix}
+    a_0 & 1 & 0 & \cdots & 0 \\
+    -1 & a_1 & 1 & \ddots & \vdots \\
+    0 & -1 & a_2 & \ddots & 0 \\
+    \vdots & \ddots & \ddots & \ddots & 1 \\
+    0 & \cdots & 0 & -1 & a_k
+    \end{pmatrix}.
+    $$
+
+    Khai triển ma trận tam đường chéo từ hai góc cho hai truy hồi trên.
+
+???+ note "Tính chất ghép"
+    Với hai dãy khác rỗng $(a_1,\ldots,a_m)$ và $(b_1,\ldots,b_n)$,
+
+    $$
+    \begin{aligned}
+    K(a_1,\ldots,a_m,b_1,\ldots,b_n)={}&
+    K(a_1,\ldots,a_m)K(b_1,\ldots,b_n)\\
+    &+K(a_1,\ldots,a_{m-1})K(b_2,\ldots,b_n).
+    \end{aligned}
+    $$
+
+??? note "Chứng minh"
+    Đặt $P=M(a_1)\cdots M(a_m)$ và $Q=M(b_1)\cdots M(b_n)$. Đẳng thức
+    $(PQ)_{1,1}=P_{1,1}Q_{1,1}+P_{1,2}Q_{2,1}$ chính là công thức cần chứng
+    minh.
+
+Tính chất ghép giúp khảo sát các đại lượng trung gian của thuật toán Euclid;
+Heilbronn từng dùng nó để ước lượng số bước trung bình.[^heilbronn]
+
+???+ example "[Luogu P17229 - Math×Girl²: Biến tấu anh hùng](https://www.luogu.com.cn/problem/P17229)"
+    Cho $N>0$ và giá trị hai hàm nguyên $g,h$ trên $\{1,\ldots,N\}$. Với
+    $1\le y<x\le N$, đặt $z=x\bmod y$ và
+
+    $$
+    f(x,y)=\begin{cases}
+    0,&z=0,\\
+    g(\lfloor x/y\rfloor)h(\lfloor y/z\rfloor)+f(y,z),&z>0.
+    \end{cases}
+    $$
+
+    Tính $S(N)=\sum_{1\le b<a\le N,\,\gcd(a,b)=1}f(a,b)$.
+
+??? note "Ý tưởng"
+    Định nghĩa $f(x,y)$ mô tả đúng quá trình của thuật toán Euclid. Nếu
+    $x/y=[a_0,\ldots,a_k]$ là biểu diễn liên phân số chuẩn thì
+
+    $$
+    f(x,y)=\sum_{i=0}^{k-1}g(a_i)h(a_{i+1}).
+    $$
+
+    Dùng tính chất ghép và cắt continuant tại $a_i$:
+
+    $$
+    K(a_0,\ldots,a_k)=K(a_0,\ldots,a_i)K(a_{i+1},\ldots,a_k)
+    +K(a_0,\ldots,a_{i-1})K(a_{i+2},\ldots,a_k).
+    $$
+
+    Đặt
+
+    $$
+    \begin{aligned}
+    X&=K(a_0,\ldots,a_i),&Y&=K(a_0,\ldots,a_{i-1}),\\
+    Z&=K(a_{i+1},\ldots,a_k),&W&=K(a_{i+2},\ldots,a_k).
+    \end{aligned}
+    $$
+
+    Từ cách continuant biểu diễn liên phân số, ta có
+
+    $$
+    \frac XY=[a_i,a_{i-1},\ldots,a_0],\qquad
+    \frac ZW=[a_{i+1},a_{i+2},\ldots,a_k].
+    $$
+
+    Các biến phải thỏa
+    $\gcd(X,Y)=\gcd(Z,W)=1$, $1\le Y\le X$, $1\le W\le Z$ và
+    $XZ+YW=x\le N$. Có vẻ phép đổi biến này tạo một song ánh giữa
+    $(x,y,i)$ và $(X,Y,Z,W)$. Tuy nhiên, do $a_0$ có thể bằng $1$,
+    $X/Y$ có thể đang dùng biểu diễn liên phân số không chuẩn; còn $Z/W$
+    luôn dùng biểu diễn chuẩn, nên đặc biệt không thể có $Z=W=1$.
+
+    Ta tính đóng góp của mỗi bộ $(X,Y,Z,W)$ vào tổng. Phần nguyên của một
+    phân số cho hệ số đầu tiên của liên phân số, nên cho đúng đối số của
+    $g$ và $h$. Xét riêng $(X,Y)$:
+
+    1.  Nếu $Y>1$, biểu diễn chuẩn và không chuẩn của $X/Y$ tương ứng với hai
+        bộ $(x,y,i)$, đóng góp tổng cộng
+        $2g(\lfloor X/Y\rfloor)h(\lfloor Z/W\rfloor)$.
+    2.  Nếu $Y=1$ và $X\ge2$, ta có $X/Y=X$, ứng với hai biểu diễn $[X]$
+        và $[X-1,1]$. Đóng góp là
+        $(g(X)+g(X-1))h(\lfloor Z/W\rfloor)$.
+    3.  Nếu $X=Y=1$, đóng góp là
+        $g(1)h(\lfloor Z/W\rfloor)$.
+
+    Vì vậy, sau khi bổ sung định nghĩa $g(0)=2g(1)$, tổng ban đầu trở thành
+
+    $$
+    \begin{aligned}
+    S(N)={}&2\!\sum_{\substack{XZ+YW\le N\\X>Y\ge1,\,Z>W\ge1\\
+    \gcd(X,Y)=\gcd(Z,W)=1}}g(\lfloor X/Y\rfloor)h(\lfloor Z/W\rfloor)\\
+    &+\!\sum_{\substack{XZ+W\le N\\X\ge1,\,Z>W\ge1\\\gcd(Z,W)=1}}
+    (g(X-1)-g(X))h(\lfloor Z/W\rfloor).
+    \end{aligned}
+    $$
+
+    Tổng mới dễ xử lý hơn bằng các công cụ số học thông thường; phần xử lý
+    tiếp theo không được trình bày ở đây.
 
 <span id="ước-lượng-sai-số"></span>
 
@@ -1805,6 +1944,8 @@ Sau khi nắm được các khái niệm cơ bản, cần xét một số ví d�
 [^one-representation]: Số tự nhiên $1$ chỉ có biểu diễn không chuẩn: $1=[1]=[0,1]$.
 
 [^continuant]: Tên gọi này tham khảo bản dịch tiếng Trung chương 6.7 của *Concrete Mathematics* do Zhang Mingyao và Zhang Fan dịch.
+
+[^heilbronn]: [H. Heilbronn, *On the Average Length of a Class of Finite Continued Fractions*, 1969.](https://link.springer.com/chapter/10.1007/978-1-4615-4819-5_7)
 
 [^sqrt5]: Không thể mặc định phân số tối giản $\dfrac{p}{q}$ là phân số tiệm cận, dù định lý Legendre cho thấy $\dfrac{p}{q}$  chỉ có thể là một phân số tiệm cận nào đó. Với trường hợp phân số tiệm cận, có thể chứng minh từ sai số khi phân số tiệm cận xấp xỉ số thực.
 

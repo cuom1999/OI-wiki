@@ -22,7 +22,7 @@ F(p')-F(p)&=c_{p'_i}\sum_{j=1}^{i-1}t_{p'_j}+c_{p'_{i+1}}\sum_{j=1}^{i}t_{p'_j}
 \end{aligned}
 $$
 
-Vì vậy, chỉ cần sắp xếp theo chiến lược: nếu $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}>0$ thì đổi chỗ hai phần tử. Viết lại dưới dạng $\dfrac{c_{p_i}}{t_{p_i}}>\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$, có thể hiểu là sắp xếp hoán vị theo thứ tự tăng dần của $\dfrac{c_i}{t_i}$.
+Vì vậy, chỉ cần sắp xếp theo chiến lược: nếu $c_{p_i}t_{p_{i+1}}-c_{p_{i+1}}t_{p_i}<0$ thì đổi chỗ hai phần tử. Viết lại dưới dạng $\dfrac{c_{p_i}}{t_{p_i}}<\dfrac{c_{p_{i+1}}}{t_{p_{i+1}}}$, có thể hiểu là sắp xếp hoán vị theo thứ tự giảm dần của $\dfrac{c_i}{t_i}$.
 
 Khi xử lý bài toán này, ý tưởng là xét sự thay đổi sau một nhiễu nhỏ, rồi chọn nghiệm tối ưu theo cách tham lam.
 

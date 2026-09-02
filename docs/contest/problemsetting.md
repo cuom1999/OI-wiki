@@ -510,7 +510,7 @@ Phản ví dụ kinh điển: CTS2019, bao phủ nhiều kiến thức như quy 
 
 > Tôi phải chọn sáu bài từ năm bài, tôi cũng bất lực lắm chứ.
 >
-> --Lý do do người phối đề CTS2019 đưa ra: không nhận đủ bài gửi đến.
+> --Lý do người phối đề CTS2019 đưa ra: không nhận đủ bài gửi đến.
 
 ## Nền tảng ra đề
 

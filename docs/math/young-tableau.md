@@ -91,7 +91,7 @@ Bảng Young thường được dùng trong tổ hợp, lý thuyết biểu di�
 
 Cho một bảng Young $\pi_{\lambda}$ có tổng cộng $n$ ô. Điền $n$ số từ $1$ đến $n$ vào bảng Young sao cho mỗi hàng tăng từ trái sang phải và mỗi cột tăng từ dưới lên trên. Dùng $\dim_{\pi_{\lambda}}$ để chỉ số cách điền như vậy.
 
-Với một ô $v$ trong bảng Young, định nghĩa **độ dài móc** $\mathrm{hook}(v)$ bằng số ô ở bên phải trên cùng hàng cộng với số ô ở phía trên trên cùng cột, rồi cộng thêm 1 (chính ô đó).
+Với một ô $v$ trong bảng Young, định nghĩa **độ dài móc** $\mathrm{hook}(v)$ bằng số ô ở bên phải trong cùng hàng cộng với số ô ở bên dưới trong cùng cột, rồi cộng thêm 1 (chính ô đó).
 
 <span id="công-thức-độ-dài-móc"></span>
 

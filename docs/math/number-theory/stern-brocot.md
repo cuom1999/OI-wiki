@@ -145,15 +145,19 @@ Với cơ sở quy nạp $\dfrac{0}{1}$ và $\dfrac{1}{0}$, điều này cũng �
 <span id="tính-đầy-đủ"></span>
 #### Tính đầy đủ
 
-Cuối cùng, cần chỉ ra rằng cây Stern-Brocot chứa tất cả các phân số tối giản dương. Vì hai tính chất trước đã cho thấy cây Stern-Brocot là một cây tìm kiếm nhị phân, còn mọi phân số tối giản dương $\dfrac{p}{q}$ đều nằm giữa $\dfrac{0}{1}$ và $\dfrac{1}{0}$, nên theo cách tìm kiếm trên cây tìm kiếm nhị phân, khả năng duy nhất để trên cây không có $\dfrac{p}{q}$ là quá trình tìm kiếm kéo dài vô hạn. Điều này là không thể.
+Cuối cùng, cần chỉ ra rằng cây Stern-Brocot chứa tất cả các phân số tối giản dương. Vì hai tính chất trước đã cho thấy cây Stern-Brocot là một cây tìm kiếm nhị phân, còn mọi phân số tối giản dương $\dfrac{p}{q}$ đều nằm giữa $\dfrac{0}{1}$ và $\dfrac{1}{0}$, nên theo cách tìm kiếm trên cây tìm kiếm nhị phân, khả năng duy nhất để trên cây không có $\dfrac{p}{q}$ là quá trình tìm kiếm kéo dài vô hạn. Ta sẽ chứng minh rằng với mọi số hữu tỉ dương $\dfrac{p}{q}$, quá trình tìm kiếm vô hạn là không thể.
 
-Giả sử hiện đã biết
+Gọi $\dfrac{a}{b}$ và $\dfrac{c}{d}$ lần lượt là cận dưới và cận trên của
+$\dfrac{p}{q}$ trong quá trình tìm kiếm. Ban đầu hai cận là $\dfrac01$ và
+$\dfrac10$; sau đó chúng được cập nhật dần theo kết quả so sánh
+$\dfrac{a+c}{b+d}$ với $\dfrac pq$. Nếu quá trình tìm kiếm là vô hạn thì ở
+mọi bước ta đều có
 
 $$
 \dfrac{a}{b} < \dfrac{p}{q} < \dfrac{c}{d},
 $$
 
-khi đó tất yếu có
+và do đó ở mọi bước đều có
 
 $$
 bp-aq \ge 1,\ cq-dp \ge 1.
@@ -165,13 +169,15 @@ $$
 (c+d)(bp-aq) + (a+b)(cq-dp) \ge a+b+c+d.
 $$
 
-Dùng đẳng thức đã chứng minh ở trên $bc-ad=1$, suy ra
+Dùng đẳng thức đã chứng minh ở trên $bc-ad=1$, ta rút gọn bất đẳng thức thành
 
 $$
 p+q \ge a+b+c+d.
 $$
 
-Mỗi lần quá trình tìm kiếm đi sâu thêm một tầng, vế phải của đẳng thức này tăng nghiêm ngặt, còn vế trái không đổi; do đó quá trình tìm kiếm sẽ dừng sau hữu hạn bước.
+Tuy nhiên, mỗi lần quá trình tìm kiếm đi sâu thêm một tầng, vế phải tăng nghiêm
+ngặt còn vế trái không đổi, nên điều kiện trên không thể đúng qua vô hạn bước.
+Do đó quá trình tìm kiếm sẽ dừng sau hữu hạn bước.
 
 <span id="tìm-phân-số"></span>
 ### Tìm phân số
@@ -386,7 +392,7 @@ $$
 \end{aligned}
 $$
 
-Tại đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Du](./du.md#bài-toán-1).
+Tại đây $\varphi(n)$ là [hàm Euler](./euler-totient.md). Công thức này có thể được tính trong $O(n)$ bằng [sàng tuyến tính](./sieve.md#tính-hàm-euler-bằng-sàng), và giảm xuống $O(n^{2/3})$ bằng [sàng Dujiao](./hyperbola.md#sàng-dujiao).
 
 So với việc trực tiếp tính độ dài dãy, tình huống thường gặp hơn là cần tìm chỉ số của một phân số $r=\dfrac{p}{q}$ trong dãy $F_k$. Điều này tương đương với việc tính
 

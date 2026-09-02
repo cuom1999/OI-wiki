@@ -344,13 +344,13 @@ $$
 \sum_{i=0}^ni\binom{n}{i}=n2^{n-1}\tag{8}
 $$
 
-Một công thức tổng có trọng số; có thể chứng minh bằng cách lấy đạo hàm hàm đa thức tương ứng với $(4)$.
+Một công thức tổng có trọng số; có thể chứng minh bằng cách lấy đạo hàm của đa thức tương ứng với $(4)$.
 
 $$
 \sum_{i=0}^ni^2\binom{n}{i}=n(n+1)2^{n-2}\tag{9}
 $$
 
-Tương tự công thức trên, có thể chứng minh bằng đạo hàm hàm đa thức.
+Tương tự công thức trên, có thể chứng minh bằng cách lấy đạo hàm của đa thức.
 
 $$
 \sum_{l=0}^n\binom{l}{k} = \binom{n+1}{k+1}\tag{10}

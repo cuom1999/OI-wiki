@@ -42,7 +42,7 @@ std::string s;
 Ngôn ngữ C cũng có nhiều hàm xử lý chuỗi, nhưng tham số của chúng thường là con
 trỏ `char`. Để phối hợp với các hàm này, `string` có hai hàm thành viên trả về
 con trỏ đến dữ liệu ký tự bên trong: `data()` và `c_str()`. Từ C++11 trở đi, cả
-hai hàm đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng; nếu cần tương thích
+hai hàm đều trả về vùng dữ liệu kết thúc bằng ký tự rỗng[^string1]; nếu cần tương thích
 với chuẩn cũ hơn, nên ưu tiên dùng `c_str()`. Ví dụ:
 
 ```cpp
@@ -189,3 +189,7 @@ Kết quả:
 sau khi thay các vị trí từ 3 đến 7 của s bằng chuỗi rỗng, chuỗi thu được là OI
 sau khi thay hai vị trí đầu của s bằng NOI, chuỗi thu được là NOI
 ```
+
+## Tài liệu tham khảo và chú thích
+
+[^string1]: [Bản thảo chuẩn C++ — \[basic.string\]](https://eel.is/c++draft/basic.string#general-3)

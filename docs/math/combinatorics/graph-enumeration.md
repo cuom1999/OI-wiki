@@ -301,7 +301,7 @@ Khi $n$ chẵn:
 Lưu ý rằng khi có hai trọng tâm, quá trình trên chỉ trừ một lần, nên cần trừ thêm
 
 $$
-g_n = f_n - \sum_{i=\left\lceil\frac{n}{2}\right\rceil}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
+g_n = f_n - \sum_{i=\frac{n}{2}+1}^{n-1} f_i f_{n-i} - \binom{f_{\frac{n}{2}}}{2}
 $$
 
 <span id="ví-dụ-luogu-p5900-đếm-cây-không-gốc-không-nhãn"></span>

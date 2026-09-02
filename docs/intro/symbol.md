@@ -64,9 +64,9 @@ Về cách viết LaTeX của các ký hiệu, tham khảo [mã nguồn của b�
 | <a id="n4.2"></a>n4.2 | $a \ne b$ | $a$ không bằng $b$ | |
 | <a id="n4.3"></a>n4.3 | $a := b$ | $a$ được định nghĩa là $b$ | Xem [n2.9](#n2.9), [n2.10](#n2.10). |
 | <a id="n4.4"></a>n4.4 | $a \approx b$ | $a$ xấp xỉ bằng $b$ | Không loại trừ trường hợp bằng nhau. |
-| <a id="n4.5"></a>n4.5 | $a \simeq b$ | $a$ tiệm cận bằng $b$ | Ví dụ:<br>khi $x\to a$, $\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>ý nghĩa của $x \to a$ xem tại n4.15. |
+| <a id="n4.5"></a>n4.5 | $a \simeq b$ | $a$ tiệm cận bằng $b$ | Ví dụ:<br>khi $x\to a$, $\dfrac{1}{\sin(x-a)} \simeq \dfrac{1}{x-a}$;<br>ý nghĩa của $x \to a$ xem tại [n4.15](#n4.15). |
 | <a id="n4.6"></a>n4.6 | $a \propto b$ | $a$ tỉ lệ thuận với $b$ | Cũng có thể dùng $a \sim b$.<br>$\sim$ cũng được dùng để biểu thị quan hệ tương đương. |
-| <a id="n4.7"></a>n4.7 | $M \cong N$ | $M$ toàn đẳng với $N$ | Khi $M$ và $N$ là tập điểm (hình hình học).<br>Ký hiệu này cũng được dùng để biểu thị đẳng cấu của cấu trúc đại số. |
+| <a id="n4.7"></a>n4.7 | $M \cong N$ | $M$ toàn đẳng với $N$ | Khi $M$ và $N$ là tập điểm (hình học).<br>Ký hiệu này cũng được dùng để biểu thị đẳng cấu của cấu trúc đại số. |
 | <a id="n4.8"></a>n4.8 | $a < b$ | $a$ nhỏ hơn $b$ | |
 | <a id="n4.9"></a>n4.9 | $b > a$ | $b$ lớn hơn $a$ | |
 | <a id="n4.10"></a>n4.10 | $a \leq b$ | $a$ nhỏ hơn hoặc bằng $b$ | |
@@ -107,8 +107,8 @@ Về cách viết LaTeX của các ký hiệu, tham khảo [mã nguồn của b�
 | <a id="n6.11"></a>n6.11 | $a^{1/n}$;<br>$\sqrt[n]{a}$ | Lũy thừa bậc $1/n$ của $a$, căn bậc $n$ của $a$ | Nên tránh dùng $\sqrt[n]{}a$. |
 | <a id="n6.12"></a>n6.12 | $\bar{x}$;<br>$\bar{x}_a$ | Trung bình cộng của $x$ | Các loại trung bình khác gồm:<br>trung bình điều hòa $\bar{x}_h$;<br>trung bình nhân $\bar{x}_g$;<br>trung bình bình phương/căn trung bình bình phương $\bar{x}_q$ hoặc $\bar{x}_{rms}$.<br>$\bar{x}$ cũng được dùng để biểu thị số phức liên hợp của $x$, xem [n11.6](#n11.6). |
 | <a id="n6.13"></a>n6.13 | $\operatorname{sgn} a$ | Hàm dấu của $a$ | Với số thực $a$:<br>$\operatorname{sgn} a=1\quad (a>0)$;<br>$\operatorname{sgn} a=-1\quad (a<0)$;<br>$\operatorname{sgn} 0=0$;<br>xem [n11.7](#n11.7). |
-| <a id="n6.14"></a>n6.14 | $\inf M$ | Cận dưới đúng của $M$ | Cận dưới lớn nhất trong các số nhỏ hơn hoặc bằng mọi phần tử của tập không rỗng $M$. |
-| <a id="n6.15"></a>n6.15 | $\sup M$ | Cận trên đúng của $M$ | Cận trên nhỏ nhất trong các số lớn hơn hoặc bằng mọi phần tử của tập không rỗng $M$. |
+| <a id="n6.14"></a>n6.14 | $\inf M$ | Cận dưới đúng của $M$ | Cận dưới lớn nhất của tập không rỗng $M$. |
+| <a id="n6.15"></a>n6.15 | $\sup M$ | Cận trên đúng của $M$ | Cận trên nhỏ nhất của tập không rỗng $M$. |
 | <a id="n6.16"></a>n6.16 | $\lvert a\rvert$ | Giá trị tuyệt đối của $a$ | Cũng có thể dùng $\operatorname{abs} a$. |
 | <a id="n6.17"></a>n6.17 | $\lfloor a\rfloor$ | Làm tròn xuống<br>số nguyên lớn nhất nhỏ hơn hoặc bằng số thực $a$ | Ví dụ:<br>$\lfloor 2.4\rfloor = 2$;<br>$\lfloor -2.4\rfloor = -3$. |
 | <a id="n6.18"></a>n6.18 | $\lceil a\rceil$ | Làm tròn lên<br>số nguyên nhỏ nhất lớn hơn hoặc bằng số thực $a$ | Ví dụ:<br>$\lceil 2.4\rceil = 3$;<br>$\lceil -2.4\rceil = -2$. |

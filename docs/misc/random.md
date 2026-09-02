@@ -1,223 +1,157 @@
 ## Tổng quan
 
-Muốn sử dụng các kỹ thuật ngẫu nhiên hóa, điều kiện tiên quyết là có thể sinh số ngẫu nhiên thật nhanh. Bài viết này giới thiệu các phương pháp phổ biến để sinh số ngẫu nhiên.
+Muốn sử dụng các kỹ thuật ngẫu nhiên hóa, trước hết phải có khả năng sinh số
+ngẫu nhiên nhanh. Bài viết này giới thiệu những phương pháp sinh số ngẫu nhiên
+thường gặp.
 
 ### Số ngẫu nhiên và số giả ngẫu nhiên
 
-Nói rằng một số đơn lẻ là "số ngẫu nhiên" không có nhiều ý nghĩa, vì vậy nội dung bên dưới mặc định thảo luận về "dãy số ngẫu nhiên"; ngay cả khi nhắc tới "số ngẫu nhiên", ý nói cũng là "một phần tử trong dãy số ngẫu nhiên".
+Nói một số riêng lẻ là "số ngẫu nhiên" không có ý nghĩa, vì vậy bên dưới ta
+luôn ngầm xét một **dãy số ngẫu nhiên**. Khi nói "một số ngẫu nhiên", ta cũng
+đang nói tới một phần tử của dãy đó.
 
-Quá trình tính toán của các máy tính hiện nay đều có tính xác định. Vì thế, chỉ dựa vào thuật toán thì không thể sinh được một dãy số ngẫu nhiên thật sự **không thể dự đoán** và **không thể lặp lại**.
+Quá trình tính toán của máy tính hiện nay mang tính xác định. Vì thế, chỉ dựa
+vào thuật toán thì không thể sinh một dãy số thật sự **không thể dự đoán** và
+**không thể lặp lại**.
 
-Tuy nhiên, trong phần lớn trường hợp, không cần tính ngẫu nhiên mạnh đến vậy, mà chỉ cần dãy được sinh ra có các đặc trưng thống kê của dãy số ngẫu nhiên, chẳng hạn phân bố đều, độc lập lẫn nhau, v.v. Những dãy như vậy được gọi là dãy **giả ngẫu nhiên**.
+Tuy nhiên, trong phần lớn tình huống ta không cần tính ngẫu nhiên mạnh đến vậy;
+chỉ cần dãy sinh ra có những đặc trưng thống kê của một dãy ngẫu nhiên, chẳng
+hạn phân bố đều và độc lập lẫn nhau. Dãy như vậy được gọi là dãy **giả ngẫu
+nhiên**.
 
-Ví dụ về ứng dụng của số ngẫu nhiên và số giả ngẫu nhiên trong đời sống thực tế và trong thuật toán:
+Một số ứng dụng:
 
--   Khi điều tra lấy mẫu, thường chỉ cần dùng số giả ngẫu nhiên, vì mục tiêu vốn chỉ là các đặc trưng thống kê.
--   Trong an ninh mạng, thường cần dùng số ngẫu nhiên mạnh hơn loại số giả ngẫu nhiên vừa nhắc tới, vì kẻ tấn công có thể khai thác tính dự đoán được.
--   Các thuật toán ngẫu nhiên dùng trong OI/ICPC về cơ bản chỉ cần số giả ngẫu nhiên. Lý do là các thuật toán này thường đưa xác suất vào phân tích độ phức tạp bằng cách đưa số ngẫu nhiên vào, từ đó giảm độ phức tạp. Về bản chất, chúng vẫn chỉ sử dụng các đặc trưng thống kê của số ngẫu nhiên.
--   Một số thuật toán ngẫu nhiên, ví dụ [thuật toán Moser](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma), sử dụng các tính chất liên quan đến entropy của số ngẫu nhiên, nên bắt buộc phải dùng số ngẫu nhiên thật sự.
+-   Khảo sát lấy mẫu thường chỉ cần số giả ngẫu nhiên vì mục tiêu là các đặc
+    trưng thống kê.
+-   An toàn mạng thường cần nguồn ngẫu nhiên mạnh hơn vì kẻ tấn công có thể
+    khai thác tính dự đoán được.
+-   Thuật toán ngẫu nhiên trong OI/ICPC hầu như chỉ cần số giả ngẫu nhiên. Chúng
+    đưa xác suất vào phân tích độ phức tạp nên chỉ dùng các đặc trưng thống kê.
+-   Một số thuật toán, chẳng hạn [thuật toán
+    Moser](https://en.wikipedia.org/wiki/Algorithmic_Lov%C3%A1sz_local_lemma),
+    sử dụng tính chất liên quan đến entropy nên cần số ngẫu nhiên thật.
 
-## Cài đặt
+## Phương pháp sinh số ngẫu nhiên
 
 ### `rand`
 
-Dùng để sinh số giả ngẫu nhiên. Nhược điểm là khá chậm; khi sử dụng cần `#include<cstdlib>`.
+`rand` sinh số giả ngẫu nhiên, có nhược điểm là khá chậm và cần
+`#include <cstdlib>`. Hàm `rand()` trả về số nguyên không âm trong
+`[0,RAND_MAX]`. Trên Linux, `RAND_MAX` thường bằng $2^{31}-1$; có thể dùng phép
+lấy dư để giới hạn kết quả.
 
-Gọi hàm `rand()` sẽ trả về một số nguyên không âm ngẫu nhiên trong `[0,RAND_MAX]`, trong đó `RAND_MAX` là một macro trong thư viện chuẩn. Trên hệ thống Linux, `RAND_MAX` bằng $2^{31}-1$. Có thể dùng phép lấy dư theo môđun để giới hạn kích thước của số được sinh ra.
-
-Khi dùng `rand()` cần có một hạt giống ngẫu nhiên. Có thể dùng hàm `srand(seed)` để đổi hạt giống ngẫu nhiên thành `seed`; cũng có thể không khởi tạo.
-
-Nếu cùng một chương trình chạy hai lần với cùng `seed`, trên cùng máy và cùng trình biên dịch, kết quả ngẫu nhiên nhận được sẽ giống nhau.
-
-Một lựa chọn là dùng thời gian hệ thống hiện tại làm hạt giống ngẫu nhiên: `srand(time(nullptr))`.
-
-??? warning "Cảnh báo"
-    Trên hệ thống `Windows`, miền giá trị trả về của `rand()` là $\left[0,2^{15}\right)$, tức `RAND_MAX` bằng $2^{15}-1$. Khi cần sinh số không nhỏ hơn $2^{15}$, nên dùng `(rand() << 15 | rand())` để sinh số ngẫu nhiên lớn hơn.
-
-Về tính ngẫu nhiên của `rand()` và `rand()%n`:
-
--   Chuẩn C/C++ không quy định bất kì yêu cầu nào về chất lượng của các số ngẫu nhiên do `rand()` sinh ra.
--   Cách hiện thực `rand()` mà trình biên dịch GCC sử dụng bảo đảm các tính chất cơ bản như phân bố đều, nhưng có những khuyết điểm rõ rệt như chu kỳ của các bit thấp ngắn. Ví dụ trên máy của tác giả, dãy do `rand()%2` sinh ra có chu kỳ khoảng $2\cdot 10^6$.
--   Ngay cả khi giả sử `rand()` là ngẫu nhiên đều, `rand()%n` cũng không bảo đảm tính đều, vì mỗi số trong `[0,n)` có thể xuất hiện với số lần khác nhau trong `0%n,1%n,...,RAND_MAX%n`.
-
-### Bộ sinh số ngẫu nhiên định nghĩa sẵn
-
-Thư viện chuẩn định nghĩa sẵn một số bộ sinh số ngẫu nhiên thông dụng. Nếu không nói rõ thêm, tất cả đều được định nghĩa trong tệp tiêu đề `<random>`.
+Hàm `srand(seed)` đặt hạt giống. Nếu cùng chương trình chạy hai lần với cùng
+`seed` trên cùng máy và trình biên dịch, kết quả sẽ giống nhau. Một lựa chọn
+phổ biến là `srand(time(nullptr))`.
 
 ??? warning "Cảnh báo"
-    Các bộ sinh số ngẫu nhiên định nghĩa sẵn chỉ bắt đầu được dùng từ chuẩn C++11[^ref2].
+    Trên Windows, miền của `rand()` là $[0,2^{15})$. Khi cần số không nhỏ hơn
+    $2^{15}$, nên dùng `(rand() << 15 | rand())` để tạo số lớn hơn.
 
-#### mt19937
+Về chất lượng của `rand()` và `rand() % n`:
 
-Đây là một lớp bộ sinh số ngẫu nhiên, có tác dụng tương tự `rand()`. Miền giá trị ngẫu nhiên giống miền giá trị của kiểu `unsigned int`.
+-   Chuẩn C/C++ không quy định chất lượng của số do `rand()` sinh ra.
+-   Cài đặt của GCC bảo đảm các tính chất cơ bản như phân bố đều, nhưng các bit
+    thấp có chu kỳ ngắn. Trên máy của tác giả, dãy `rand() % 2` có chu kỳ xấp
+    xỉ $2\cdot10^6$.
+-   Ngay cả khi `rand()` phân bố đều, `rand() % n` vẫn không nhất thiết đều vì
+    số lần xuất hiện của từng số trong `[0,n)` có thể khác nhau. Xem [Daniel
+    Lemire, *Fast Random Integer Generation in an
+    Interval*](https://arxiv.org/abs/1805.10941) để biết cách bảo đảm tính đều.
 
-Ưu điểm của nó là chất lượng số ngẫu nhiên cao, ví dụ chu kỳ trước khi lặp dài hơn, các mặt khác cũng ít nhất không kém `rand()`, đồng thời tốc độ nhanh hơn `rand()` rất nhiều. Khi sử dụng cần `#include<random>`.
+### Các bộ sinh định nghĩa sẵn
 
-`mt19937` dựa trên Mersenne Twister 32 bit, do Matsumoto và Nishimura thiết kế năm 1998[^ref3]. Khi dùng, chỉ cần dùng nó để định nghĩa một bộ sinh số ngẫu nhiên: `std::mt19937 myrand(seed)`. Có thể bỏ qua `seed`; khi đó hạt giống ngẫu nhiên mặc định sẽ được dùng.
+Thư viện chuẩn định nghĩa một số thuật toán phổ biến trong `<random>`.
 
-`mt19937` nạp chồng `operator ()`; khi cần sinh số ngẫu nhiên, gọi `myrand()` là có thể trả về một số ngẫu nhiên.
+??? warning "Cảnh báo"
+    Các bộ sinh này xuất hiện từ C++11.[^ref2]
 
-Một bộ sinh tương tự khác là `mt19937_64`, dựa trên Mersenne Twister 64 bit, do Matsumoto và Nishimura thiết kế năm 2000. Cách dùng giống `mt19937`, nhưng miền số ngẫu nhiên được mở rộng đến miền giá trị của kiểu `unsigned long long`.
+#### Mersenne Twister
 
-??? note "Ví dụ mã nguồn"
+Mersenne Twister do Matsumoto và Nishimura đề xuất năm 1998.[^ref3] Một cài
+đặt, MT19937, có chu kỳ dài bằng số nguyên tố Mersenne
+$M_{19937}=2^{19937}-1$.
+
+Từ C++11, `std::mersenne_twister_engine` cài đặt phương pháp này; thực tế
+thường dùng `std::mt19937` và `std::mt19937_64`. Chúng cho số chất lượng cao và
+nhanh hơn `rand()` đáng kể.
+
+`mt19937` là phiên bản 32 bit, có miền kết quả bằng `unsigned int`. Khai báo
+`mt19937 myrand(seed)` (có thể bỏ `seed`), rồi gọi `myrand()` để lấy số.
+`mt19937_64` tương tự nhưng là phiên bản 64 bit, có miền kết quả bằng
+`unsigned long long`.
+
+??? note "Ví dụ mã"
     ```cpp
-    #include <ctime>
-    #include <iostream>
-    #include <random>
-    
-    using namespace std;
-    
-    int main() {
-      mt19937 myrand(time(nullptr));
-      cout << myrand() << endl;
-      return 0;
-    }
+    --8<-- "docs/misc/code/random/random_1.cpp:core"
     ```
 
-#### `minstd_rand0`
+#### Bộ sinh đồng dư tuyến tính
 
-Thuật toán đồng dư tuyến tính được Lewis, Goodman và Miller phát hiện năm 1969, rồi được Park và Miller chọn làm "tiêu chuẩn tối thiểu" năm 1988.
-
-Công thức tính như sau, trong đó $A,C,M$ là các hằng số định nghĩa sẵn.
+Bộ sinh đồng dư tuyến tính (LCG) do Thomson và Rotenberg đề xuất năm 1958:
 
 $$
-s_i\equiv s_{i-1}\times A+C\mod{M}
+s_i \equiv \begin{cases}
+\operatorname{seed} & i=0,\\
+s_{i-1}A+C & i\ge1
+\end{cases}\pmod M,
 $$
 
-`minstd_rand()` là "tiêu chuẩn tối thiểu" mới hơn, được Park, Miller và Stockmeyer khuyến nghị năm 1993.
-
-Với `minstd_rand0()`, kiểu của $s$ là số nguyên không dấu 32 bit, $A$ lấy 16807, $C$ lấy 0, $M$ lấy 2147483647.
-
-Với `minstd_rand()`, kiểu của $s$ là số nguyên không dấu 32 bit, $A$ lấy 48271, $C$ lấy 0, $M$ lấy 2147483647.
-
-### `random_shuffle`
-
-Dùng để xáo trộn ngẫu nhiên một dãy được chỉ định. Khi sử dụng cần `#include<algorithm>`.
-
-Khi dùng, chỉ cần truyền con trỏ hoặc bộ lặp đầu cuối của đoạn được chỉ định,
-theo dạng đóng trái mở phải: `std::random_shuffle(first, last)` hoặc
-`std::random_shuffle(first, last, myrand)`.
-
-Bộ sinh số ngẫu nhiên dùng bên trong mặc định là `rand()`. Cũng có thể truyền vào bộ sinh số ngẫu nhiên tự định nghĩa.
-
-Về tính ngẫu nhiên của `random_shuffle`:
-
--   Chuẩn C++ yêu cầu `random_shuffle` chọn ngẫu nhiên **đồng xác suất** trong tất cả các hoán vị có thể, nhưng trình biên dịch GCC[^note1] **không** thực hiện nghiêm ngặt điều này.
--   Một trong các nguyên nhân gây khiếm khuyết về tính ngẫu nhiên của `random_shuffle` trong GCC là nó dùng cách viết như `rand()%n`. Như đã nói ở trên, cách này không sinh ra số nguyên ngẫu nhiên đều.
--   Nguyên nhân thứ hai là miền giá trị của `rand()` hữu hạn. Nếu độ dài đoạn truyền vào vượt quá `RAND_MAX`, sẽ tồn tại một số hoán vị **không thể** được sinh ra[^ref1].
-
-??? warning "Cảnh báo"
-    `random_shuffle` đã bị loại khỏi khuyến nghị sử dụng từ chuẩn C++14 và bị gỡ bỏ trong chuẩn C++17.
-
-### shuffle
-
-Tác dụng giống `random_shuffle`. Khi sử dụng cần `#include<algorithm>`.
-
-Điểm khác biệt là bắt buộc phải dùng bộ sinh số ngẫu nhiên tự định nghĩa: `std::shuffle(first, last, myrand)`.
-
-Hiện thực `shuffle` của GCC[^note1] đáp ứng yêu cầu của chuẩn C++, tức là chọn ngẫu nhiên đồng xác suất trong tất cả các hoán vị có thể.
-
-Dưới đây là một bộ sinh dữ liệu viết bằng `rand()` và `random_shuffle()`. Dữ liệu được sinh là dữ liệu nhỏ ngẫu nhiên cho bài ["ZJOI2012" Thảm họa](https://www.luogu.com.cn/problem/P2597).
+trong đó $A,C,M$ là các hằng số định trước. Từ C++11, lớp mẫu sau cài đặt nó:
 
 ```cpp
-#include <algorithm>
-#include <cstdlib>
-#include <ctime>
-#include <iostream>
-
-int a[100];
-
-int main() {
-  srand(time(nullptr));
-  int n = rand() % 99 + 1;
-  for (int i = 1; i <= n; i++) a[i] = i;
-  std::cout << n << '\n';
-  for (int i = 1; i <= n; i++) {
-    std::random_shuffle(a + 1, a + i);
-    int cnt = rand() % i;
-    for (int j = 1; j <= cnt; j++) std::cout << a[j] << ' ';
-    std::cout << 0 << '\n';
-  }
-}
+template <class UIntType, UIntType A, UIntType C, UIntType M>
+class linear_congruential_engine;
 ```
 
-Dưới đây là cùng bộ sinh dữ liệu đó, viết bằng `mt19937` và `shuffle()`.
+Năm 1969, Lewis, Goodman và Miller chỉ ra rằng với $A=16807$, $C=0$ và
+$M=2147483647$, thuật toán đạt chu kỳ gần cực đại $2^{31}-2$ (vì $16807$ là
+[căn nguyên thủy](../math/number-theory/primitive-root.md)) và có đặc trưng
+thống kê khá tốt. Park và Miller chọn bộ tham số này làm "tiêu chuẩn tối thiểu"
+năm 1988; năm 1993, Park, Miller và Stockmeyer đổi $A$ thành $48271$.
+
+C++11 định nghĩa sẵn hai phiên bản:
+
+-   `minstd_rand0`: `std::uint_fast32_t`, $A=16807$, $C=0$,
+    $M=2147483647$;
+-   `minstd_rand`: `std::uint_fast32_t`, $A=48271$, $C=0$,
+    $M=2147483647$.
+
+Khai báo `std::minstd_rand myrand(seed)` (hạt giống mặc định là $1$), rồi gọi
+`myrand()`. Nếu $A,C,M$ không phải hằng số, có thể tự cài đặt; cách này đơn
+giản nhưng chu kỳ tối đa là $M$ và thường ngắn hơn.
+
+??? note "Cài đặt tham khảo"
+    ```cpp
+    --8<-- "docs/misc/code/random/random_2.cpp"
+    ```
+
+### Bộ điều hợp động cơ ngẫu nhiên
+
+Có thể bọc các bộ sinh định nghĩa sẵn để tạo bộ sinh mới. Xem danh sách tại
+[cppreference](https://en.cppreference.com/w/cpp/numeric/random). Mã sau dùng
+`std::independent_bits_engine` để bọc `std::minstd_rand`:
 
 ```cpp
-#include <algorithm>
-#include <ctime>
-#include <iostream>
-#include <random>
-
-int a[100];
-
-int main() {
-  std::mt19937 rng(time(nullptr));
-  int n = rng() % 99 + 1;
-  for (int i = 1; i <= n; i++) a[i] = i;
-  std::cout << n << '\n';
-  for (int i = 1; i <= n; i++) {
-    std::shuffle(a + 1, a + i, rng);
-    int cnt = rng() % i;
-    for (int j = 1; j <= cnt; j++) std::cout << a[j] << ' ';
-    std::cout << 0 << '\n';
-  }
-}
+--8<-- "docs/misc/code/random/random_3.cpp"
 ```
 
-Dưới đây là một cách hiện thực để tạo hoán vị ngẫu nhiên của mười số nguyên dương đầu tiên.
+### Sinh số nguyên phân bố đều không xác định
+
+`random_device` là bộ sinh phân bố đều dựa trên phần cứng và có thể sinh nhanh
+trước khi **bể entropy cạn**. Nó có từ C++11 trong `<random>`. Vì hiệu năng giảm
+mạnh sau khi bể entropy cạn, nên chỉ dùng nó làm hạt giống cho bộ sinh giả ngẫu
+nhiên như `mt19937`.
+
+Nếu hệ thống không hỗ trợ nguồn không xác định, cài đặt được phép dùng động cơ
+giả ngẫu nhiên. Chưa có báo cáo máy chấm NOIP không hỗ trợ nguồn phần cứng,
+nhưng để thận trọng vẫn chỉ nên dùng nó để sinh hạt giống.
 
 ```cpp
-#include <algorithm>
-#include <iostream>
-#include <iterator>
-#include <random>
-
-int main() {
-  std::vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-
-  std::random_device rd;
-  std::mt19937 g(rd());
-
-  std::shuffle(v.begin(), v.end(), g);
-
-  std::copy(v.begin(), v.end(), std::ostream_iterator<int>(std::cout, " "));
-  std::cout << "\n";
-}
+--8<-- "docs/misc/code/random/random_4.cpp"
 ```
 
-### Bộ sinh số nguyên ngẫu nhiên phân bố đều không xác định
-
-`random_device` là một bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng, có thể sinh số ngẫu nhiên với tốc độ cao **trước khi cạn nguồn entropy**. Lớp này được định nghĩa trong C++11 và cần tệp tiêu đề `random`. Vì hiệu năng giảm mạnh sau khi nguồn entropy cạn, nên khuyến nghị dùng phương pháp này để sinh hạt giống cho các bộ sinh số giả ngẫu nhiên như `mt19937`, thay vì dùng trực tiếp để sinh số.
-
-`random_device` là một bộ sinh bit ngẫu nhiên đều không tất định, mặc dù nếu việc sinh số ngẫu nhiên không tất định không được hỗ trợ, hiện thực vẫn được phép dùng một bộ sinh số giả ngẫu nhiên để hiện thực nó. Hiện tại tác giả chưa nhận được báo cáo nào nói rằng máy chấm NOIP không hỗ trợ bộ sinh số ngẫu nhiên phân bố đều dựa trên phần cứng. Tuy vậy, để thận trọng, nên dùng thuật toán này để sinh hạt giống ngẫu nhiên.
-
-Mã tham khảo như sau.
-
-```cpp
-#include <iostream>
-#include <map>
-#include <random>
-#include <string>
-
-int main() {
-  std::random_device rd;
-  std::map<int, int> hist;
-  std::uniform_int_distribution<int> dist(0, 9);
-  for (int n = 0; n < 20000; ++n) {
-    ++hist[dist(rd)];  // Lưu ý: chỉ dùng để minh họa. Khi nguồn entropy
-                       // cạn, nhiều hiện thực random_device sẽ giảm
-                       // hiệu năng rất mạnh. Trong thực tế, random_device
-                       // thường chỉ dùng để gieo hạt giống cho các
-                       // bộ sinh giả ngẫu nhiên như mt19937.
-  }
-  for (auto p : hist) {
-    std::cout << p.first << " : " << std::string(p.second / 100, '*') << '\n';
-  }
-}
-```
-
-Kết quả có thể như sau.
+Một đầu ra có thể là:
 
 ```plain
 0 : ********************
@@ -234,127 +168,171 @@ Kết quả có thể như sau.
 
 ### Phân bố số ngẫu nhiên
 
-Phần này giới thiệu việc yêu cầu số ngẫu nhiên được sinh ra xuất hiện theo một phân bố xác suất cho trước, chẳng hạn xác suất bằng nhau, [phân bố Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [phân bố nhị thức](https://en.wikipedia.org/wiki/Binomial_distribution), [phân bố hình học](https://en.wikipedia.org/wiki/Geometric_distribution), [phân bố chuẩn, còn gọi là phân bố Gaussian](https://en.wikipedia.org/wiki/Normal_distribution).
+Các lớp phân bố biến đầu ra của động cơ thành số tuân theo phân bố cho trước,
+chẳng hạn [đều rời rạc](https://en.wikipedia.org/wiki/Discrete_uniform_distribution),
+[Bernoulli](https://en.wikipedia.org/wiki/Bernoulli_distribution), [nhị
+thức](https://en.wikipedia.org/wiki/Binomial_distribution), [hình
+học](https://en.wikipedia.org/wiki/Geometric_distribution) hoặc [chuẩn
+(Gauss)](https://en.wikipedia.org/wiki/Normal_distribution). Danh sách cụ thể
+có tại [cppreference](https://en.cppreference.com/w/cpp/numeric/random#Random_number_distributions).
 
-Tên lớp cụ thể có thể xem trong danh sách [sinh số giả ngẫu nhiên: phân bố số ngẫu nhiên](https://en.cppreference.com/w/cpp/numeric/random#Random_number_distributions).
-
-#### Cài đặt
-
-Chương trình dưới đây mô phỏng một con xúc xắc sáu mặt.
+Chương trình sau mô phỏng xúc xắc sáu mặt:
 
 ```cpp
-#include <iostream>
-#include <random>
-
-int main() {
-  std::random_device rd;   // Dùng để lấy hạt giống cho bộ sinh ngẫu nhiên
-  std::mt19937 gen(rd());  // Gieo hạt giống cho mersenne_twister_engine chuẩn
-  std::uniform_int_distribution<> dis(1, 6);
-
-  for (int n = 0; n < 10; ++n)
-    // Dùng dis để biến unsigned int ngẫu nhiên do gen sinh ra thành int trong [1, 6]
-    std::cout << dis(gen) << ' ';
-  std::cout << '\n';
-}
+--8<-- "docs/misc/code/random/random_5.cpp:header"
+--8<-- "docs/misc/code/random/random_5.cpp:real-using"
+--8<-- "docs/misc/code/random/random_5.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_5.cpp:main"
 ```
 
-### Các cách hiện thực khác
+### Các cách cài đặt khác
 
-Đôi khi cần tự hiện thực bộ sinh số ngẫu nhiên riêng. Dưới đây là một số phương pháp sinh số ngẫu nhiên thường dùng.
+Đôi khi cần tự cài đặt bộ sinh. Sau đây là những phương pháp thường dùng.
 
-#### Bộ sinh số ngẫu nhiên đồng dư tuyến tính
+#### Xorshift
 
-Dùng công thức sau để sinh dãy số ngẫu nhiên $\{R_i\}$:
+Họ Xorshift do George Marsaglia đề xuất năm 2003, chủ yếu dựa trên phép XOR
+một số với phiên bản dịch bit của nó. Trong thi đấu thường dùng `xorshift32`
+và `xorshift64`:
+
+```cpp
+--8<-- "docs/misc/code/random/random_6.cpp:core"
+```
+
+Khai báo `xorshift32 rng32(seed)` hoặc `xorshift64 rng64(seed)`, rồi gọi đối
+tượng. Với hạt giống khác $0$, chu kỳ lần lượt là $2^{32}-1$ và $2^{64}-1$.
+Do cài đặt đơn giản, chúng thường được phát cùng hạt giống để thí sinh sinh dữ
+liệu lớn và giảm chi phí vào/ra.
+
+#### SplitMix
+
+Họ SplitMix do Steele, Lea và Flood đề xuất năm 2014, được dùng trong
+`java.util.SplittableRandom` của Java 8. Phiên bản phổ biến là `splitmix64`:
+
+```cpp
+--8<-- "docs/misc/code/random/random_7.cpp:core"
+```
+
+Một ứng dụng chính là băm lần hai một giá trị băm đã có, tránh dữ liệu được
+thiết kế để làm bảng băm quá thời gian:
+
+```cpp
+--8<-- "docs/misc/code/random/random_8.cpp:core"
+```
+
+Nó cũng có thể sinh số: khai báo `splitmix64 rng64(seed)` rồi gọi `rng64()`.
+Chu kỳ là $2^{64}$ vì các số cộng vào đều lẻ và mọi phép biến đổi tiếp theo đều
+khả nghịch. Nếu không nhớ các hằng số, có thể dùng vài số lẻ đủ lớn kết hợp XOR
+và dịch phải để đạt hiệu quả tương tự.
+
+#### Bộ sinh Fibonacci trễ
+
+Với $0<j<k$, sinh dãy $\{R_i\}$ bằng
 
 $$
-R_{i+1} = (A \times R_i + B) \bmod P
+R_i\equiv R_{i-j}\star R_{i-k}\pmod P.
 $$
 
-Trong đó $A,B,P$ đều là hằng số.
+$P$ thường là $2^{32}$ hoặc $2^{64}$; $\star$ có thể là cộng, trừ, nhân hoặc
+XOR. Phương pháp có chu kỳ dài hơn LCG nhưng phụ thuộc nhiều vào điều kiện đầu.
 
-Phương pháp này dễ hiện thực, nhưng dãy ngẫu nhiên được sinh ra có chu kỳ khá ngắn. Chu kỳ lớn nhất là $P$, nhưng trong đa số trường hợp sẽ ngắn hơn $P$.
-
-??? note "Hiện thực tham khảo"
+??? note "Cài đặt tham khảo"
     ```cpp
-    #include <iostream>
-    using namespace std;
-    
-    struct myrand {
-      int A, B, P, x;
-    
-      myrand(int A, int B, int P) {
-        this->A = A;
-        this->B = B;
-        this->P = P;
-      }
-    
-      // Sinh số ngẫu nhiên tiếp theo trong dãy ngẫu nhiên
-      int next() { return x = (A * x + B) % P; }
-    };
-    
-    myrand rnd(3, 5, 97);  // Khởi tạo một bộ sinh số ngẫu nhiên
-    
-    int main() {
-      int x = rnd.next();
-      cout << x << endl;
-      return 0;
-    }
+    --8<-- "docs/misc/code/random/random_9.cpp:core"
     ```
 
-#### Bộ sinh số ngẫu nhiên Fibonacci trễ
+Trong C++11, `std::subtract_with_carry_engine` là một cài đặt thuộc họ này;
+`std::ranlux24_base`, `std::ranlux48_base` là các chuyên biệt hóa, còn
+`std::ranlux24`, `std::ranlux48` bọc thêm `std::discard_block_engine`. Hiện nay
+chúng thường không còn được khuyến nghị.
 
-Dùng công thức sau để sinh dãy số ngẫu nhiên $\{R_i\}$, trong đó $0 < j < k$:
+## Thuật toán ngẫu nhiên
 
-$$
-R_i \equiv R_{i-j} \star R_{i-k} \bmod P
-$$
+Phần này giới thiệu một số thuật toán trong thư viện chuẩn C++ phụ thuộc vào
+bộ sinh số ngẫu nhiên.
 
-Trong công thức này, $P$ thường lấy là một lũy thừa của $2$, phổ biến là $2^{32}$ hoặc $2^{64}$; $\star$ biểu thị toán tử nhị phân, có thể dùng phép cộng, phép trừ, phép nhân hoặc XOR.
+### `random_shuffle`
 
-So với bộ sinh số ngẫu nhiên đồng dư tuyến tính truyền thống, phương pháp này có chu kỳ dài hơn, nhưng tính ngẫu nhiên chịu ảnh hưởng khá lớn từ điều kiện ban đầu.
+`std::random_shuffle` được đưa vào C++98 để xáo trộn ngẫu nhiên một dãy, cần
+`#include <algorithm>`, và thường dùng [thuật toán
+Fisher–Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle).
 
-??? note "Hiện thực tham khảo"
-    ```cpp
-    #include <iostream>
-    #include <vector>
-    using namespace std;
-    
-    struct myrand {
-      vector<unsigned> vec;
-      int l, j, k, cur;
-    
-      myrand(int l, int j, int k) {
-        this->l = l;
-        this->j = j;
-        this->k = k;
-        cur = 0;
-        for (int i = 0; i < l; i++) {
-          vec.push_back(rand());  // Trước tiên sinh vài phần tử đầu bằng phương pháp khác
-        }
-      }
-    
-      unsigned next() {
-        vec[cur] = vec[(cur - j + l) % l] * vec[(cur - k + l) % l];
-        // Dùng kiểu unsigned để tự động lấy dư theo môđun 2^32
-        return vec[cur++];
-      }
-    };
-    
-    myrand rnd(11, 4, 7);
-    
-    int main() {
-      unsigned x = rnd.next();
-      cout << x << endl;
-      return 0;
-    }
-    ```
+Truyền đoạn nửa kín bằng `std::random_shuffle(first, last)`, hoặc thêm bộ sinh
+tự định nghĩa bằng `std::random_shuffle(first, last, myrand)`. Mặc định hàm
+dùng `rand()`.
+
+Về tính ngẫu nhiên:
+
+-   Chuẩn C++ yêu cầu chọn **đều** trong mọi hoán vị, nhưng libstdc++ mặc định
+    của GCC[^note1] không tuân thủ nghiêm ngặt.
+-   Một nguyên nhân là biểu thức dạng `rand() % n` không sinh số nguyên phân bố
+    đều như đã giải thích ở trên.
+-   Miền của `rand()` hữu hạn. Nếu đoạn dài hơn `RAND_MAX`, một số hoán vị sẽ
+    **không thể** được sinh ra.[^ref1]
+
+??? warning "Cảnh báo"
+    `random_shuffle` bị đánh dấu lỗi thời trong C++14 và bị loại khỏi C++17.
+
+### `shuffle`
+
+`std::shuffle` xuất hiện từ C++11, có công dụng tương tự và cũng cần
+`#include <algorithm>`. Khác biệt là phải truyền bộ sinh:
+`std::shuffle(first, last, myrand)`. Cài đặt của GCC[^note1] tuân thủ yêu cầu
+chọn đều trong mọi hoán vị.
+
+Đây là bộ sinh dữ liệu nhỏ ngẫu nhiên cho [ZJOI2012 - Thảm
+họa](https://www.luogu.com.cn/problem/P2597), dùng `rand()` và
+`random_shuffle()`:
+
+```cpp
+--8<-- "docs/misc/code/random/random_10.cpp:header"
+--8<-- "docs/misc/code/random/random_10.cpp:real-using"
+--8<-- "docs/misc/code/random/random_10.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_10.cpp:main"
+```
+
+Cùng bộ sinh đó, viết bằng `mt19937` và `shuffle()`:
+
+```cpp
+--8<-- "docs/misc/code/random/random_11.cpp:header"
+--8<-- "docs/misc/code/random/random_11.cpp:real-using"
+--8<-- "docs/misc/code/random/random_11.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_11.cpp:main"
+```
+
+Ví dụ xáo trộn mười số nguyên dương đầu tiên:
+
+```cpp
+--8<-- "docs/misc/code/random/random_12.cpp:header"
+--8<-- "docs/misc/code/random/random_12.cpp:real-using"
+--8<-- "docs/misc/code/random/random_12.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_12.cpp:main"
+```
+
+### `sample`
+
+`std::sample` xuất hiện từ C++17, dùng để chọn ngẫu nhiên $n$ phần tử trong một
+dãy. Khác với xáo trộn rồi lấy $n$ phần tử đầu, các phần tử được chọn vẫn giữ
+nguyên thứ tự tương đối. Cài đặt thường dùng [lấy mẫu hồ
+chứa](https://en.wikipedia.org/wiki/Reservoir_sampling).
+
+Cú pháp là `std::sample(first, last, dest, n, myrand)`, trong đó
+`[first,last)` là đoạn nguồn, `[dest,dest+n)` là vùng đích và `myrand` là bộ
+sinh. Ví dụ chọn ngẫu nhiên bốn trong mười một chữ cái viết hoa:
+
+```cpp
+--8<-- "docs/misc/code/random/random_13.cpp:header"
+--8<-- "docs/misc/code/random/random_13.cpp:real-using"
+--8<-- "docs/misc/code/random/random_13.cpp:fake-using"
+--8<-- "docs/misc/code/random/random_13.cpp:main"
+```
 
 ## Tài liệu tham khảo và chú thích
 
-[^ref1]: [Đừng dùng `rand()`: hướng dẫn về bộ sinh số ngẫu nhiên trong C++](https://codeforces.com/blog/entry/61587)
+[^ref1]: [Don't use rand(): a guide to random number generators in C++](https://codeforces.com/blog/entry/61587)
 
-[^ref2]: [Sinh số giả ngẫu nhiên - cppreference.com](https://en.cppreference.com/w/cpp/numeric/random#Predefined_random_number_generators)
+[^ref2]: [Pseudo-random number generation - cppreference.com](https://en.cppreference.com/w/cpp/numeric/random)
 
-[^ref3]: [Thuật toán Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister)
+[^ref3]: [Mersenne Twister algorithm](https://en.wikipedia.org/wiki/Mersenne_Twister)
 
-[^note1]: Phiên bản là GCC 9.2.0
+[^note1]: Phiên bản GCC 9.2.0.

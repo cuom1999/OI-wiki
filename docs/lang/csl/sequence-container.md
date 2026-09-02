@@ -305,7 +305,7 @@ Vì mỗi `array` đều là bộ chứa kích thước cố định, giá trị
 
 | Hàm    | Tác dụng                           |
 | ------ | ---------------------------------- |
-| `fill` | Gán cùng một giá trị cho toàn bộ bộ chứa |
+| `fill` | Gán cùng một giá trị cho mọi phần tử trong bộ chứa |
 | `swap` | Trao đổi nội dung                         |
 
 **Lưu ý: trao đổi hai `array` có độ phức tạp $\Theta(\text{size})$, không phải

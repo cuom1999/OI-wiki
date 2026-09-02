@@ -65,7 +65,7 @@ Thông thường chọn $n^{2/3}$ làm độ dài khối, chia thành $n^{1/3}$ 
 
     Độ phức tạp thường được nói là $O\left(n^{5/3}\right)$ chính là trường hợp xem $n,m,t$ cùng bậc.
 
-    Trong hiện thực thực tế, vẫn nên đặt độ dài khối là $n^{2/3}$.
+    Trong cài đặt thực tế, vẫn nên đặt độ dài khối là $n^{2/3}$.
 
 ## Ví dụ
 
